@@ -11,7 +11,7 @@ import User from "../../Assets/Homepage Assets/user.png";
 import Like from "../../Assets/Homepage Assets/like.png";
 import Home from "../../Assets/Homepage Assets/home.png";
 import Shopping from "../../Assets/Homepage Assets/Shoppingbag.png";
-import MobileFooterAccordions from "./FooterForMobile/index";
+import MobileFooterAccordions from "./FooterForMobile/FooterForMobile";
 export const Footer = () => {
   return (
     <div className="Footer">
