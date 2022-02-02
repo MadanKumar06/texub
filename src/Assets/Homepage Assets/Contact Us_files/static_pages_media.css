@@ -1,0 +1,1020 @@
+@media (min-width: 1640px) and (max-width: 1799px) {
+    .buyer_advantage_bg {
+        min-height: 504px;
+    }
+
+}
+@media (min-width: 1440px) and (max-width: 1639px) {
+    .heading2 {
+        font-size: 72px;
+        line-height: 76px;
+    }
+    .heading1 {
+        font-size: 36px;
+        margin-top: 0%;
+    }
+    .about_bg {
+        min-height: 450px;
+        background-size: 100% 100% !important;
+    }
+    .mission_statement, .about_us {
+        font-size: 42px;
+        line-height: 55px;
+    }
+    .about-us_description {
+        font-size: 24px;
+        line-height: 32px;
+    }
+    .about_row2 {
+        background-size: 100% 100% !important;
+        padding-bottom: 20px;
+        min-height: 450px;
+    }
+    .statement_section {
+        margin-top: 4%;
+        background-size: 100% 100% !important;
+        margin-left: 0px;
+        margin-right: 40px;
+        padding: 1%;
+    }
+    .mission_statement_description {
+        font-size: 24px;
+        line-height: 28px;
+    }
+    .aboutsection_2 {
+        margin-left: 12%;
+        margin-right: 5%;
+        padding-top: 3%;
+    }
+    .highlights {
+        font-size: 48px;
+    }
+    .industrial_img {
+        width: 116px;
+        margin-right: 10px;
+    }
+    .highlights_section, .highlights_section1 {
+        font-size: 20px;
+        height: 34px;
+        text-align: center;
+    }
+    .highlights_section {
+        float: right;
+    }
+    .highlights_section1  {
+        float: left;
+    }
+    .left_arrow1 {
+        margin-left: 10px;
+        width: 5%;
+    }
+    .numbers {
+        font-size: 48px;
+    }
+    .highlights_section1 .industrial_img {
+        margin-left: 10px;
+    }
+    .highlights_section1 .left_arrow1 {
+        margin-right: 10px;
+    }
+    .valued_assets {
+        font-size: 48px;
+    }
+    .valued_assets_section {
+        margin-top: 3%;
+    }
+    .worldwide_office {
+        font-size: 48px;
+    }
+    .country {
+        font-size: 18px;
+        margin-top: 8px;
+    }
+    .country.usa {
+        width: 45%;
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+    .country.nigeria {
+        width: 55%;
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+    .country.netherland {
+        width: 65%;
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+    .country.uae {
+        width: 75%;
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+    .country.india {
+        width: 85%;
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+    .country.singapore {
+        width: 95%;
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+    .map_block {
+        background-size: contain !important;
+        min-height: 450px;
+    }
+    .border2, .border4, .border6, .border8 {
+        order: 0;
+    }
+    .asset_heading {
+        font-size: 22px;
+    }
+    .asset_content {
+        padding-left: 0px; 
+    }
+    .number_text1, .number_text2, .number_text3, .number_text4, .number_text5 {
+        margin-bottom: 18px;
+        font-size: 34px;
+    }
+    .border-block {
+        margin-top: 25px;
+    }
+
+    /* buyer_advantage */
+    .secutiry_column, .verified_column {
+        min-height: 235px;
+    }
+    .buyer_advantage_bg {
+        min-height: 432px;
+    }
+    
+
+}
+@media (min-width: 1366px) and (max-width: 1439px) {
+    .heading2 {
+        font-size: 64px;
+        line-height: 68px;
+    }
+    .heading1 {
+        font-size: 32px;
+        margin-top: 0%;
+    }
+    .about_bg {
+        min-height: 400px;
+        background-size: 100% 100% !important;
+    }
+    .mission_statement, .about_us {
+        font-size: 38px;
+        line-height: 38px;
+    }
+    .about-us_description {
+        font-size: 22px;
+        line-height: 32px;
+    }
+    .about_row2 {
+        background-size: 100% 100% !important;
+        padding-bottom: 20px;
+        min-height: 397px;
+    }
+    .statement_section {
+        margin-top: 4%;
+        background-size: 100% 100% !important;
+        margin-left: 0px;
+        margin-right: 40px;
+        padding: 2%;
+    }
+    .mission_statement_description {
+        font-size: 22px;
+        line-height: 28px;
+    }
+    .aboutsection_2 {
+        margin-left: 5%;
+        margin-right: 5%;
+        padding-top: 6%;
+    }
+    .highlights {
+        font-size: 40px;
+    }
+    .industrial_img {
+        width: 116px;
+        margin-right: 10px;
+    }
+    .highlights_section, .highlights_section1 {
+        font-size: 20px;
+        height: 34px;
+        text-align: center;
+    }
+    .highlights_section {
+        float: right;
+    }
+    .highlights_section1  {
+        float: left;
+    }
+    .left_arrow1 {
+        margin-left: 10px;
+        width: 5%;
+    }
+    .numbers {
+        font-size: 44px;
+    }
+    .highlights_section1 .industrial_img {
+        margin-left: 10px;
+    }
+    .highlights_section1 .left_arrow1 {
+        margin-right: 10px;
+    }
+    .valued_assets {
+        font-size: 40px;
+    }
+    .valued_assets_section {
+        margin-top: 3%;
+    }
+    .worldwide_office {
+        font-size: 40px;
+    }
+    .country {
+        font-size: 18px;
+        margin-top: 8px;
+    }
+    .country.usa {
+        width: 45%;
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+    .country.nigeria {
+        width: 55%;
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+    .country.netherland {
+        width: 65%;
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+    .country.uae {
+        width: 75%;
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+    .country.india {
+        width: 85%;
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+    .country.singapore {
+        width: 95%;
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+    .map_block {
+        background-size: contain !important;
+        min-height: 450px;
+    }
+    .border2, .border4, .border6, .border8 {
+        order: 0;
+    }
+    .asset_heading {
+        font-size: 20px;
+    }
+    .asset_content {
+        padding-left: 0px; 
+    }
+    .number_text1, .number_text2, .number_text3, .number_text4, .number_text5 {
+        margin-bottom: 18px;
+        font-size: 28px;
+    }
+    .border-block {
+        margin-top: 25px;
+    }
+
+    /* buyer_advantage */
+
+    .advantage_column {
+        max-width: 35%;
+        flex: 0 0 35%;
+    }
+    .buyer_advantage {
+        font-size: 36px;
+        line-height: 36px;
+    }
+    .secutiry_column, .verified_column {
+        min-height: 225px;
+    }
+    .buyer_advantage_bg {
+        min-height: 418px;
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 1365px) {
+    .heading2 {
+        font-size: 48px;
+        line-height: 52px;
+    }
+    .heading1 {
+        font-size: 24px;
+        margin-top: 0%;
+    }
+    .about_bg {
+        min-height: 300px;
+        background-size: 100% 100% !important;
+    }
+    .mission_statement, .about_us {
+        font-size: 28px;
+        line-height: 34px;
+    }
+    .about-us_description {
+        font-size: 20px;
+        line-height: 28px;
+    }
+    .about_row2 {
+        background-size: 100% 100% !important;
+        padding-bottom: 20px;
+        min-height: 397px;
+    }
+    .statement_section {
+        margin-top: 4%;
+        background-size: 100% 100% !important;
+        margin-left: 0px;
+        margin-right: 40px;
+        padding: 2%;
+    }
+    .mission_statement_description {
+        font-size: 18px;
+        line-height: 24px;
+    }
+    .aboutsection_2 {
+        margin-left: 12%;
+        margin-right: 5%;
+        padding-top: 6%;
+    }
+    .highlights {
+        font-size: 40px;
+    }
+    .industrial_img {
+        width: 90px;
+        margin-right: 10px;
+    }
+    .highlights_section, .highlights_section1 {
+        font-size: 18px;
+        height: 34px;
+        text-align: center;
+    }
+    .highlights_section {
+        float: right;
+    }
+    .highlights_section1  {
+        float: left;
+    }
+    .left_arrow1 {
+        margin-left: 10px;
+        width: 5%;
+    }
+    .numbers {
+        font-size: 38px;
+    }
+    .highlights_section1 .industrial_img {
+        margin-left: 10px;
+    }
+    .highlights_section1 .left_arrow1 {
+        margin-right: 10px;
+    }
+    .valued_assets {
+        font-size: 34px;
+    }
+    .valued_assets_section {
+        margin-top: 3%;
+    }
+    .worldwide_office {
+        font-size: 34px;
+    }
+    .country {
+        font-size: 14px;
+        margin-top: 5px;
+    }
+    .country.usa {
+        width: 45%;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .country.nigeria {
+        width: 55%;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .country.netherland {
+        width: 65%;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .country.uae {
+        width: 75%;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .country.india {
+        width: 85%;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .country.singapore {
+        width: 95%;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .map_block {
+        background-size: contain !important;
+        min-height: 450px;
+    }
+    .border2, .border4, .border6, .border8 {
+        order: 0;
+    }
+    .asset_heading {
+        font-size: 16px;
+    }
+    .asset_content {
+        padding-left: 0px; 
+    }
+    .number_text1, .number_text2, .number_text3, .number_text4, .number_text5 {
+        margin-bottom: 10px;
+        font-size: 24px;
+    }
+    .border-block {
+        margin-top: 12px;
+    }
+    
+    /* buyer advantage_page*/
+    .advantage_column {
+        max-width: 40%;
+        flex: 0 0 40%;
+    }
+    .secutiry_column, .verified_column {
+        min-height: 123px;
+    }
+    .buyer_advantage_bg {
+        min-height: 280px;
+    }
+    .buyer_advantage {
+        font-size: 28px;
+        line-height: 28px;
+    }
+    .tailor_made, .secure, .confidence, .verified_sellers {
+        font-size: 24px;
+        line-height: 24px;
+    }
+    .caption_text {
+        font-size: 16px;
+    }
+    .verified_column {
+        padding-left: 2%;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .heading2 {
+        font-size: 34px;
+        line-height: 38px;
+    }
+    .heading1 {
+        font-size: 20px;
+        margin-top: 0%;
+    }
+    .about_bg {
+        min-height: 220px;
+        background-size: 100% 100% !important;
+    }
+    .mission_statement, .about_us {
+        font-size: 24px;
+        line-height: 34px;
+    }
+    .about-us_description {
+        font-size: 18px;
+        line-height: 28px;
+    }
+    .about_row2 {
+        background-size: 100% 100% !important;
+        padding-bottom: 20px;
+        min-height: 397px;
+    }
+    .statement_section {
+        margin-top: 10%;
+        background-size: 100% 100% !important;
+        margin-left: 0px;
+        margin-right: 25px;
+        padding: 0%;
+    }
+    .mission_statement_description {
+        font-size: 18px;
+        line-height: 24px;
+    }
+    .aboutsection_2 {
+        margin-left: 12%;
+        margin-right: 5%;
+        padding-top: 6%;
+    }
+    .highlights {
+        font-size: 34px;
+    }
+    .industrial_img {
+        width: 75px;
+        margin-right: 10px;
+    }
+    .highlights_section, .highlights_section1 {
+        font-size: 14px;
+        height: 34px;
+        text-align: center;
+    }
+    .highlights_section {
+        float: right;
+    }
+    .highlights_section1  {
+        float: left;
+    }
+    .left_arrow1 {
+        margin-left: 10px;
+        width: 5%;
+    }
+    .numbers {
+        font-size: 34px;
+    }
+    .highlights_section1 .industrial_img {
+        margin-left: 10px;
+    }
+    .highlights_section1 .left_arrow1 {
+        margin-right: 10px;
+    }
+    .valued_assets {
+        font-size: 34px;
+    }
+    .valued_assets_section {
+        margin-top: 3%;
+    }
+    .worldwide_office {
+        font-size: 34px;
+    }
+    .country {
+        font-size: 12px;
+        margin-top: 5px;
+    }
+    .country.usa {
+        width: 55%;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .country.nigeria {
+        width: 65%;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .country.netherland {
+        width: 75%;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .country.uae {
+        width: 85%;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .country.india {
+        width: 95%;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .country.singapore {
+        width: 95%;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .map_block {
+        background-size: contain !important;
+        min-height: 450px;
+    }
+    .border2, .border4, .border6, .border8 {
+        order: 0;
+    }
+    .asset_heading {
+        font-size: 12px;
+    }
+    .asset_content {
+        padding-left: 0px; 
+    }
+    .number_text1, .number_text2, .number_text3, .number_text4, .number_text5 {
+        margin-bottom: 10px;
+        font-size: 18px;
+        margin-left: 0px;
+    }
+    .border-block {
+        margin-top: 5px;
+    }
+    .asset_type {
+        background-size: contain !important;
+    }
+
+    /* buyer advantage_page*/
+    .buyer_advantage_bg {
+        margin-right: 2%;
+        margin-left: 2%;
+        background-position: center bottom !important;
+        min-height: 220px;
+    }
+    .advantage_column {
+        max-width: 34%;
+        flex: 0 0 34%;
+    }
+    .tailor_made_block, .secure_block {
+        text-align: right;
+    }
+    .verified_seller_block, .confidence_block {
+        text-align: left;
+    }
+    .secutiry_column, .verified_column {
+        min-height: 75px;
+    }
+    .tailor_made, .secure, .confidence, .verified_sellers {
+        font-size: 18px;
+        line-height: 24px;
+    }
+    .caption_text {
+        font-size: 14px;
+        line-height: 14px;
+    }
+    .buyer_advantage {
+        font-size: 22px;
+        line-height: 26px;
+    }
+    .buyer_empty_column {
+        display: block !important;
+    }
+    .tailormade_column {
+        margin-right: 25px;
+    }
+    .verified_column {
+        padding-left: 4%;
+    }
+    .secutiry_column {
+        padding-right: 2%;
+    }
+    .cms-buyer-advantage .columns, .cms-seller-advantage .columns {
+        padding-bottom: 0px;
+    }
+
+}
+
+@media only screen and (max-width: 480px) {
+    /* about us page */
+    .heading2 {
+        font-size: 26px;
+        line-height: 32px;
+    }
+    .heading1 {
+        font-size: 14px;
+        margin-top: 12%;
+    }
+    .about_bg {
+        min-height: 164px;
+        background-size: 100% 100% !important;
+    }
+    .mission_statement, .about_us {
+        font-size: 28px;
+        line-height: 34px;
+    }
+    .about-us_description {
+        font-size: 20px;
+        line-height: 28px;
+    }
+    .about_row2 {
+        background-size: 100% 100% !important;
+        padding-bottom: 20px;
+        min-height: 397px;
+    }
+    .statement_section {
+        margin-top: 10%;
+        background-size: 100% 100% !important;
+        margin-left: 0px;
+        margin-right: 0px;
+        padding: 6%;
+    }
+    .mission_statement_description {
+        font-size: 20px;
+        line-height: 24px;
+    }
+    .aboutsection_2 {
+        margin-left: 5%;
+        margin-right: 5%;
+        padding-top: 6%;
+    }
+    .highlights {
+        font-size: 34px;
+    }
+    .industrial_img {
+        width: 20%;
+        margin-right: 10px;
+    }
+    .highlights_section, .highlights_section1 {
+        font-size: 14px;
+        height: 34px;
+        text-align: center;
+        float: none;
+    }
+    .left_arrow1 {
+        margin-left: 10px;
+        width: 5%;
+    }
+    .numbers {
+        font-size: 34px;
+    }
+    .highlights_section1 .industrial_img {
+        margin-left: 10px;
+    }
+    .highlights_section1 .left_arrow1 {
+        margin-right: 10px;
+    }
+    .valued_assets {
+        font-size: 34px;
+    }
+    .valued_assets_section {
+        margin-top: 15%;
+    }
+    .worldwide_office {
+        font-size: 34px;
+    }
+    .country {
+        font-size: 12px;
+        margin-top: 5px;
+    }
+    .country.usa {
+        width: 15%;
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+    .country.nigeria {
+        width: 25%;
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+    .country.netherland {
+        width: 35%;
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+    .country.uae {
+        width: 45%;
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+    .country.india {
+        width: 55%;
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+    .country.singapore {
+        width: 65%;
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+    .map_block {
+        background-size: contain !important;
+        min-height: 330px;
+    }
+    .border2, .border4, .border6, .border8 {
+        order: 2;
+    }
+    .asset_heading {
+        font-size: 30px;
+    }
+    .asset_content {
+        padding-left: 0px; 
+    }
+    .number_text1, .number_text2, .number_text3, .number_text4, .number_text5 {
+        margin-bottom: 20px;
+        margin-left: -12px;
+    }
+    .asset_type {
+        background-size: cover !important;
+    }
+
+    /* buyer advantage_page*/
+    .buyer_advantage_bg {
+        min-height: 471px;
+    }
+    .cms-buyer-advantage .columns, .cms-seller-advantage .columns {
+        margin-top: 15%;
+        padding-bottom: 0px;
+    }
+    .advantage_column {
+        padding-right: 60px;
+        padding-left: 60px;
+        margin-bottom: 5px;
+    }
+    .buyer_advantage {
+        font-size: 24px;
+        line-height: 28px;
+
+    }
+    .secutiry_column, .verified_column {
+        min-height: 275px;
+    }
+    .tailormade_column {
+        margin-left: 0px;
+        max-width: 50%;
+        margin-right: 0px;
+    }
+    .confidence_column, .secutiry_column, .verified_column {
+        max-width: 50%;
+    }
+    .buyer_empty_column {
+        display: none !important;
+    }
+    .tailor_made_block, .secure_block {
+        text-align: left;
+    }
+    .verified_seller_block, .confidence_block {
+        text-align: right;
+    }
+    .tailor_made, .secure, .confidence, .verified_sellers {
+        font-size: 18px;
+        line-height: 22px;
+    }
+    .caption_text {
+        font-size: 12px;
+        line-height: 16px;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    /* about us page */
+    .heading2 {
+        font-size: 26px;
+        line-height: 32px;
+    }
+    .heading1 {
+        font-size: 14px;
+        margin-top: 12%;
+    }
+    .about_bg {
+        min-height: 164px;
+        background-size: 100% 100% !important;
+    }
+    .mission_statement, .about_us {
+        font-size: 28px;
+        line-height: 34px;
+    }
+    .about-us_description {
+        font-size: 20px;
+        line-height: 28px;
+    }
+    .about_row2 {
+        background-size: 100% 100% !important;
+        padding-bottom: 20px;
+        min-height: 397px;
+    }
+    .statement_section {
+        margin-top: 10%;
+        background-size: 100% 100% !important;
+        margin-left: 0px;
+        margin-right: 0px;
+        padding: 6%;
+    }
+    .mission_statement_description {
+        font-size: 20px;
+        line-height: 24px;
+    }
+    .aboutsection_2 {
+        margin-left: 5%;
+        margin-right: 5%;
+        padding-top: 6%;
+    }
+    .highlights {
+        font-size: 34px;
+    }
+    .industrial_img {
+        width: 20%;
+        margin-right: 10px;
+    }
+    .highlights_section, .highlights_section1 {
+        font-size: 12px;
+        height: 34px;
+        text-align: center;
+        float: none;
+    }
+    .left_arrow1 {
+        margin-left: 10px;
+        width: 5%;
+    }
+    .numbers {
+        font-size: 34px;
+    }
+    .highlights_section1 .industrial_img {
+        margin-left: 10px;
+    }
+    .highlights_section1 .left_arrow1 {
+        margin-right: 10px;
+    }
+    .valued_assets {
+        font-size: 34px;
+    }
+    .valued_assets_section {
+        margin-top: 15%;
+    }
+    .worldwide_office {
+        font-size: 28px;
+    }
+    .country {
+        font-size: 12px;
+        margin-top: 5px;
+    }
+    .country.usa {
+        width: 15%;
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+    .country.nigeria {
+        width: 25%;
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+    .country.netherland {
+        width: 35%;
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+    .country.uae {
+        width: 45%;
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+    .country.india {
+        width: 55%;
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+    .country.singapore {
+        width: 65%;
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+    .map_block {
+        background-size: contain !important;
+        min-height: 320px;
+        background-position: center top;
+    }
+    .border2, .border4, .border6, .border8 {
+        order: 2;
+    }
+    .asset_heading {
+        font-size: 24px;
+    }
+    .asset_content {
+        padding-left: 0px;
+    }
+
+    /* buyer advantage_page */
+    
+    .buyer_advantage_bg {
+        min-height: 392px;
+    }
+    .cms-buyer-advantage .columns, .cms-seller-advantage .columns {
+        margin-top: 15%;
+        padding-bottom: 0px;
+    }
+    .advantage_column {
+        padding-right: 60px;
+        padding-left: 60px;
+        margin-bottom: 5px;
+    }
+    .buyer_advantage {
+        font-size: 24px;
+        line-height: 28px;
+
+    }
+    .secutiry_column, .verified_column {
+        min-height: 210px;
+    }
+    .tailormade_column {
+        margin-left: 0px;
+        max-width: 50%;
+        margin-right: 0px;
+    }
+    .confidence_column, .secutiry_column, .verified_column {
+        max-width: 50%;
+    }
+    .buyer_empty_column {
+        display: none !important;
+    }
+    .tailor_made_block, .secure_block {
+        text-align: left;
+    }
+    .verified_seller_block, .confidence_block {
+        text-align: right;
+    }
+    .tailor_made, .secure, .confidence, .verified_sellers {
+        font-size: 18px;
+        line-height: 22px;
+    }
+    .caption_text {
+        font-size: 12px;
+        line-height: 16px;
+    }
+}
+

@@ -1,0 +1,98 @@
+ .Buyer_Register_form{
+    position: absolute;
+    background-color: white;
+     margin: 30px 0px 30px 128px !important;   
+      padding: 30px 0px 30px 0px; 
+     box-shadow: 0px 3px 6px #00000029;
+     border-radius: 5px;
+     display: flex;
+     left: 0%;
+     justify-content: center; 
+     top: 42%;
+      width: 82%;
+      
+}
+.Buyer_Register_form::after{
+    content: '';
+    height: 0;
+    width: 0;
+    border-width: 20px 20px 20px 0px;
+    border-style: solid;
+    border-color: rgba(255,255,255,0) rgb(170, 165, 165) rgba(255,255,255,0) rgba(255,255,255,0);
+    position: absolute;
+    top: -30px;
+    left: 95%;
+    transform: rotate(90deg);
+    /* background-color: rgb(29, 18, 18); */
+    opacity: 0.1;
+    box-shadow: 0px 5px 50px #00000027;
+}
+ 
+.Register_label_1st{
+    position: absolute;
+    margin: 0 !important;
+    z-index: 9;
+    transition: .5s ease;
+    transform: translateY(-50%);
+    background-color: #FFFFFF;
+    padding: 3px;
+    left: 70px;
+    font-size: 11px;
+    font-family: 'source sans pro';
+    font-weight: bold;
+    color: #3E3E3E;
+}
+.Register_label_1st::after{
+    content: '*';
+    color: red;
+
+}
+.Register_label_2nd{
+    position: absolute;
+    margin: 0 !important;
+    z-index: 9;
+    transition: .5s ease;
+    transform: translateY(-50%);
+    background-color: #FFFFFF;
+    padding: 3px;
+    left: 553px;
+    font-size: 11px;
+    font-family: 'source sans pro';
+    font-weight: bold;
+    color: #3E3E3E;
+}
+.Register_label_2nd::after{
+    content: '*';
+    color: red;
+}
+
+
+.Angle_down{
+    position: absolute;
+    padding: 8px 0% 0% 39%;
+    
+}
+
+.Buyer_page_fields_input{
+    height: 25px;
+    width: 370px;
+    border-radius: 3px #CDD5DD;
+    opacity: .4;
+    padding-left: 6px;
+    font-family: 'Source Sans Pro';
+} 
+.Buyer_Register_btn{
+    text-decoration: none;
+    padding: 10px 150px 10px 150px;
+    /* margin: 10px; */
+    border-radius: 45px;
+    border: none;
+    background: linear-gradient(
+     180deg, #20639B 0%, #002D56 100%);
+    color: white;
+    cursor: pointer;
+    font-family: 'Source Sans Pro';
+    box-shadow: 0px 3px 6px #00000029;
+    width: 100%;
+    font-weight: bold;    
+}

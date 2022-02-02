@@ -1,0 +1,91 @@
+.Userdetails {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin-bottom: 5px;
+  padding: 0px 30px;
+}
+
+.Logo {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 25%;
+  margin-top: 20px;
+  height: 45px;
+}
+.Userdetails_List {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 100%;
+}
+.Userdetails_List_Content {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+  padding: 0;
+}
+.User_Call {
+  display: flex;
+  flex-direction: column;
+}
+.User_Call_tag {
+  margin: 0px 0px 0px 43px;
+  color: #5c6369;
+  font-family: "Source Sans Pro";
+  opacity: 0.8;
+}
+.Call_us {
+  color: #333c42;
+  font-family: "Source Sans Pro";
+  font-weight: bold;
+  opacity: 1;
+  font-size: 18px;
+}
+.wishlist {
+  visibility: hidden;
+}
+.Icon {
+  height: 17px;
+  margin-top: 3px;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+.User_Account {
+  display: flex;
+  flex-direction: row;
+}
+.User_Wishlist {
+  display: flex;
+  flex-direction: row;
+}
+
+.User_cart {
+  display: flex;
+  flex-direction: row;
+}
+.My_account {
+  display: flex;
+  height: 30px;
+  letter-spacing: 0.9px;
+  color: #333c42;
+  opacity: 1;
+  margin-top: 3px;
+}
+.My_account_user {
+  display: flex;
+  height: 30px;
+  letter-spacing: 0.9px;
+  color: #333c42;
+  opacity: 1;
+  margin-top: 10px;
+}
+.User_account_Wishlist_cart {
+  color: #5c6369;
+  font-family: "Source Sans Pro";
+  font-weight: bold;
+  margin-top: 13px;
+  opacity: 0.8;
+}

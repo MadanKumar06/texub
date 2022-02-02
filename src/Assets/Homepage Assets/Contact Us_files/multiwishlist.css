@@ -1,0 +1,283 @@
+@media all and (min-width: 768px), print {
+    .multiwishlist-index-index .product-item-info {
+        width: auto;
+    }
+    .multiwishlist-index-index .product-item-inner {
+        background: #ffffff;
+        border: 1px solid #bbbbbb;
+        border-top: none;
+        box-shadow: 3px 4px 4px 0 rgba(0, 0, 0, 0.3);
+        display: none;
+        left: 0;
+        margin: 9px 0 0 -1px;
+        padding: 0 9px 9px;
+        position: absolute;
+        right: -1px;
+        z-index: 2;
+    }
+    .multiwishlist-index-index .product-item-inner .comment-box {
+        margin-top: -18px;
+    }
+
+    .multiwishlist-index-wishlist .product-item-info {
+        width: auto;
+    }
+    .multiwishlist-index-wishlist .product-item-inner {
+        background: #ffffff;
+        border: 1px solid #bbbbbb;
+        border-top: none;
+        box-shadow: 3px 4px 4px 0 rgba(0, 0, 0, 0.3);
+        display: none;
+        left: 0;
+        margin: 9px 0 0 -1px;
+        padding: 0 9px 9px;
+        position: absolute;
+        right: -1px;
+        z-index: 2;
+    }
+    .multiwishlist-index-wishlist .product-item-inner .comment-box {
+        margin-top: -18px;
+    }
+}
+@media all and (min-width: 1024px), print {
+    .multiwishlist-index-index .products-grid .product-items {
+        margin: 0;
+    }
+    .multiwishlist-index-index .products-grid .product-item {
+        margin-bottom: 20px;
+        margin-left: calc((100% - 4 * 24.439%) / 3);
+        padding: 0;
+        width: 24.439%;
+    }
+    .multiwishlist-index-index .products-grid .product-item:nth-child(4n + 1) {
+        margin-left: 0;
+    }
+
+    .multiwishlist-index-wishlist .products-grid .product-items {
+        margin: 0;
+    }
+    .multiwishlist-index-wishlist .products-grid .product-item {
+        margin-bottom: 20px;
+        margin-left: calc((100% - 4 * 24.439%) / 3);
+        padding: 0;
+        width: 24.439%;
+    }
+    .multiwishlist-index-wishlist .products-grid .product-item:nth-child(4n + 1) {
+        margin-left: 0;
+    }
+}
+@media only screen and (max-width: 767px) {
+    .multiwishlist-index-index .product-item {
+        width: 100%;
+    }
+    .multiwishlist-index-index .product-item-info {
+        width: auto;
+    }
+
+    .multiwishlist-index-wishlist .product-item {
+        width: 100%;
+    }
+    .multiwishlist-index-wishlist .product-item-info {
+        width: auto;
+    }
+}
+@media (min-width: 640px)
+{
+    .products-grid .product-item {
+        margin-bottom: 20px;
+        width: 33.33333333%;
+    }
+}
+
+span.wk-wishlist-name {
+    font-size: 20px;
+    color: black;
+}
+.wk-primary {
+    /* float: right; */
+    display: inline-block;
+    position: absolute;
+    right: 23px;
+}
+.products-grid.wishlist {
+    margin-top: 15px;
+}
+ .inner{
+    background: #2cb2e4 none repeat scroll 0 0;
+    border: 1px solid #2cb2e4;
+    border-radius: 50%;
+    color: #333;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    height: 75px;
+    line-height: 21px;
+    padding: 4px;
+    text-align: center;
+    width: 75px;
+    vertical-align: middle;
+}
+span.outer {
+    background: #a5dff6 none repeat scroll 0 0;
+    border: 1px solid #a5dff6;
+    border-radius: 50%;
+    /* color: #333; */
+    display: inline-block;
+    /* font-size: 16px; */
+    /* font-weight: bold; */
+    height: 85px;
+    /* line-height: 21px; */
+    padding: 7px;
+    /* text-align: center; */
+    width: 85px;
+    /* vertical-align: middle; */
+}
+.wk-viewmore-text{
+    color: white !important;
+}
+.wk-view-more {
+    margin-top: 40%;
+}
+.no-items::before{
+    -webkit-font-smoothing: antialiased;
+    font-size: 80px;
+    /* line-height: 28px; */
+    color: #cecece;
+    content: '\e611';
+    font-family: 'luma-icons';
+    margin: 0;
+    /* vertical-align: top; */
+    display: block;
+    font-weight: normal;
+    overflow: hidden;
+    speak: none;
+    text-align: center;
+}
+.no-items{
+    text-align: center;
+}
+
+/* pop up css */
+
+li.wk-wishlist-list {
+    list-style: none;
+    padding: 3px 0;
+}
+.wk-input{
+    display: inline-block;
+    width: 60%;
+}
+.wk-button-div{
+    display: inline;
+}
+.wk-modal-button{
+    position: relative;
+    left: -1%;
+    vertical-align: top !important;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+}
+.wk-mw-add-to-wishlist>.modal-inner-wrap{
+    width: 40%;
+}
+aside.wk-mw-add-to-wishlist > div.modal-inner-wrap > header{
+    text-align: center;
+    border-bottom: 1px solid #c1c1c1;
+}
+aside.wk-mw-add-to-wishlist> div.modal-inner-wrap > footer{
+    text-align: center !important;
+}
+aside.wk-mw-add-to-wishlist > div.modal-inner-wrap > header > h1{
+    border-bottom: none;
+}
+aside.wk-mw-add-to-wishlist > div.modal-inner-wrap > div{
+    margin-top: 15px;
+}
+.wk-towishlist::before{
+    content: '\e600';
+    -webkit-font-smoothing: antialiased;
+    font-size: 16px;
+    line-height: 16px;
+    color: inherit;
+    font-family: 'luma-icons';
+    margin: -2px 5px 0 0;
+    vertical-align: middle;
+    display: inline-block;
+    font-weight: normal;
+    overflow: hidden;
+    speak: none;
+    text-align: center;
+}
+.wk-towishlist>span{
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+.wk-towishlist{
+    color: #999999;
+    font-weight: 600;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    display: inline-block;
+    text-decoration: none;
+}
+.wk-towishlist-view{
+    color: #666666;
+    font-weight: 600;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    display: inline-block;
+    text-decoration: none;
+}
+.wk-towishlist-view::before{
+    content: '\e600';
+    -webkit-font-smoothing: antialiased;
+    font-size: 16px;
+    line-height: 16px;
+    color: inherit;
+    font-family: 'luma-icons';
+    margin: -2px 5px 0 0;
+    vertical-align: middle;
+    display: inline-block;
+    font-weight: normal;
+    overflow: hidden;
+    speak: none;
+    text-align: center;
+}
+.wk-towishlist-view>span{
+    color: #666666;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+.wk-towishlist-view>span:hover{
+    color: #333;
+}
+.wk-towishlist-view:hover{
+    color: #333;
+    text-decoration: none;
+}
+@media only screen and (max-width: 1024px) {
+    .wk-primary {
+        display: block;
+        position: unset;
+    }
+}
+@media only screen and (max-width: 1024px) {
+    .wk-primary {
+        display: block;
+        position: unset;
+        /* width: 130px; */
+        width: 175px;
+    }
+    button, a.action.primary {
+        border-radius: 3px;
+        margin-top: 2px;
+    }
+}
+

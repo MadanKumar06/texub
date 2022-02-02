@@ -1,0 +1,18 @@
+@media only screen and (min-width:760px) and  (max-width: 770px){
+    .Gratitude_block{
+        margin: 50px 0 0 0;
+    }
+}
+@media only screen and   (max-width: 480px){
+    .Gratitude_block{
+        margin: 10px 10px 0 10px;
+        padding: 10px;
+    }
+    .Gratitude_thank_you, .Gratitude_dear, 
+    .Gratitude_request, .Gratitude_kyc_signin, .Gratitude_to_homepage {
+        margin: 4px;
+    }
+    .Gratitude{
+        margin-bottom: 0;
+    }
+}

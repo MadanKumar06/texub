@@ -1,0 +1,12 @@
+<svg id="Menu_BTN" data-name="Menu BTN" xmlns="http://www.w3.org/2000/svg" width="30" height="16" viewBox="0 0 30 16">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #222;
+      }
+    </style>
+  </defs>
+  <rect class="cls-1" width="20" height="2"/>
+  <rect id="Rectangle_3_copy" data-name="Rectangle 3 copy" class="cls-1" y="7" width="30" height="2"/>
+  <rect id="Rectangle_3_copy_2" data-name="Rectangle 3 copy 2" class="cls-1" y="14" width="25" height="2"/>
+</svg>

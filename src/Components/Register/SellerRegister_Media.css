@@ -1,0 +1,168 @@
+@media only screen and (min-width:1910px) and  (max-width: 1925px){
+    .Register_form{
+        margin: 20px 257px 60px 257px;
+    }
+    .Register_page_fields_input{
+        width: 617px;
+        height: 29px;
+    }
+    .Register_label_2{
+        left: 741px;
+    }
+    .Seller_Angle_down{
+        padding: 8px 0% 0% 43%;
+    }
+}
+@media only screen and (min-width:1910px) and  (max-width: 1925px){
+    
+}
+@media only screen and (min-width:760px) and  (max-width: 770px){
+    .user{
+        width: 40%;
+    }
+    .Register_page{
+        height: 625px;
+    }
+    .Form{
+        gap: 25px;
+    }
+    .Register_form::after{
+        left:93%;
+        border-color: rgba(255,255,255,0) rgb(255 255 255) rgba(255,255,255,0) rgba(255,255,255,0); 
+        opacity: 1;
+        box-shadow: none;
+    }
+    .Buyer_Seller_register{
+        margin-left: 60px;
+    }
+    .Register_label{
+        left: 57px;
+        font-size: 14px;
+    }
+    .Register_label_2{
+        left: 391px;
+        font-size: 14px;
+    }
+    .Register_inputfield{
+        width: 308px;
+    }
+    .Register_form{
+        margin: 20px 20px 60px 20px;
+        padding-top: 20px;
+    }
+    .Register_page_fields_input{
+        width: 300px;
+    }
+    .Seller_Angle_down{
+        padding: 8px 0% 0% 34%;
+    }
+    /* .Register_page_fields{
+        flex-direction: row;
+    } */
+    .Seller_Register_btn{
+        margin: 10px 0px 0px 0px;
+        padding: 10px 140px !important;
+    }
+}
+@media only screen and   (max-width: 480px){
+    .Register_page{
+        height: fit-content;
+        padding-bottom: 20px;
+    }
+    .Register_head{
+        flex-direction:column;
+        padding-left: 30px;
+    }
+    .Buyer_Seller_register{
+        margin: 0;
+    }
+    .Form{
+        gap: 10px;
+    }
+    .Register_page_fields_input{
+        width: 400px;
+        height: 34px;
+    }
+    .Register_label,
+    .Register_label_2{
+        left: 39px;
+        font-size: 16px;
+    }
+    .Register_form{
+        margin: 20px 10px 20px 10px;
+    }
+    .Register_form::after{
+         left:67%;
+        border-color: rgba(255,255,255,0) rgb(255 255 255) rgba(255,255,255,0) rgba(255,255,255,0); 
+        opacity: 1;
+        box-shadow: none;
+    }
+    .Seller_Angle_down{
+        padding: 8px 0% 0% 84%;
+    }
+    .Register_checkbox{
+        margin: 0;
+        position: absolute;
+        top: 82%;
+        left: 71%;
+    }
+    .Seller_Register_btn{
+       margin:20px 0px 0px 0px;
+       font-size: 20px;
+    }
+}
+@media only screen and   (max-width: 320px){
+    .Register_page{
+        height: fit-content;
+        padding-bottom: 20px;
+    }
+    .Register_head{
+        flex-direction:column;
+        padding-left: 20px;
+        gap: 10px;
+    }
+    .Buyer_Seller_register{
+        margin: 0;
+    }
+    .Form{
+        gap: 10px;
+    }
+    .Register_page_fields_input{
+        width: 266px;
+        height: 30px;
+    }
+    .Register_label,
+    .Register_label_2{
+        left: 23px;
+        font-size: 15px;
+    }
+    .Register_form{
+        margin: 20px 10px 20px 10px;
+    }
+    .Register_form::after{
+         left:83%;
+        border-color: rgba(255,255,255,0) rgb(255 255 255) rgba(255,255,255,0) rgba(255,255,255,0); 
+        opacity: 1;
+        box-shadow: none;
+        top: -29px;
+    }
+    .Seller_Angle_down{
+        padding: 8px 0% 0% 84%;
+    }
+    .Register_checkbox{
+        margin: 0;
+        position: absolute;
+        top: 82%;
+        left: 71%;
+    }
+    .Seller_Register_btn{
+       margin:20px 0px 0px 0px;
+       font-size: 17px;
+       width: 100%;
+       padding: 10px 20px !important;
+    }
+    .recaptcha{
+        width: 50% !important;
+    }
+}
+

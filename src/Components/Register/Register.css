@@ -1,0 +1,251 @@
+.Register_page{
+
+
+    background-image: url('../../Assets/Productlist/Register_icon.png');
+    background-repeat: no-repeat;
+    background-size:cover;
+    height: fit-content;
+     z-index: 99;
+     height: 700px; 
+
+
+}
+.Register_head{
+    display: flex;
+    justify-content: space-around;
+    padding-top:20px ;
+
+}
+.Buyer_img{
+    height: 97px;
+}
+.user_p,
+.User_account{
+    margin: 0px;
+    font-family: 'Source Sans Pro';
+    color: #333C42;
+}
+.SIGN_in_optiopn{
+    display: flex;
+    gap: 5px;
+}
+.Buyer_Seller_select{
+    margin-right: 30px;
+    padding-top: 10px;
+    font-family: 'Source Sans Pro';
+    color: #333C42;
+    
+    
+}
+
+.user_s{
+  margin: 0px;
+  color: #20639B;
+  opacity: 1;
+  font-family: 'Source Sans Pro';
+
+}
+.Register_page_fields{
+    display: flex;
+    flex-direction: column;
+    
+
+}
+
+.Register_form{
+
+     position: relative; 
+    background-color: white;
+      margin: 20px 117px 60px 117px; 
+     padding: 30px;
+     box-shadow: 0px 3px 6px #00000029;
+     border-radius: 5px;
+     display: flex;
+
+}
+ 
+/* .Register_form::after{
+
+        content:'';
+        height: 0;
+        width: 0;
+        border-width: 20px 20px 20px 0;
+        border-style: solid;
+        border-color: rgba(255,255,255,0) rgba(255,255,255,1) rgba(255,255,255,0) rgba(255,255,255,0);
+        position: absolute;
+        top: 15px;
+        left: -20px;
+
+}   */
+
+
+
+  /* overflow: hidden;
+  border: 20px solid transparent;
+  border-right-color:#fff; */
+
+
+
+
+.Form{
+    gap:40px;
+    display: flex;
+    justify-content: center;
+
+}
+.Register_form::after{
+
+        content:'';
+        height: 0;
+        width: 0;
+        border-width: 20px 20px 20px 0px;
+        border-style: solid;
+        border-color:   rgba(255,255,255,0) rgb(170, 165, 165) rgba(255,255,255,0) rgba(255,255,255,0);
+        position: absolute;
+        top: -30px;
+        left:95%;
+        transform: rotate(90deg);
+        /* background-color: rgb(29, 18, 18);  */
+        opacity: 0.1;
+        box-shadow: 0px 5px 50px #00000027; 
+        /* border-left: 5px solid red;
+        border-right: 5px solid black;
+         */
+
+
+}
+.Register_inputfield{
+    display: flex;
+    flex-direction: column;
+
+}
+.Register_label{
+    position: absolute;
+    margin: 0 !important;
+    z-index: 9;
+    transition: .5s ease;
+    transform: translateY(-50%);
+    background-color: #FFFFFF;
+    padding: 3px;
+    left: 69px;
+    font-size: 11px;
+    font-family: 'source sans pro';
+    font-weight: bold;
+    color: #3E3E3E;
+}
+.Register_label::after{
+    content:" *";
+    color: red;
+}
+.Register_label_2{
+    position: absolute;
+    margin: 0 !important;
+    z-index: 9;
+    transition: .5s ease;
+    transform: translateY(-50%);
+    background-color: #FFFFFF;
+    padding: 3px;
+    left: 550px;
+    font-size: 11px;
+    font-family: 'source sans pro';
+    font-weight: bold;
+    color: #3E3E3E;
+
+}
+.Register_label_2::after{
+    content:" *";
+    color: red;
+}
+.Seller_Angle_down{
+    position: absolute;
+    padding: 8px 0% 0% 39%;
+}
+.Seller_Register_Check_box{
+    width: 15px;
+    height: 15px;
+    margin-top: 13px;
+    opacity: .5px;
+    border: 1px;
+}
+/*   */
+.user{
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+
+}
+
+.Register_page_fields_label{
+    margin-top: 0px;
+}
+.Register_page_fields_input{
+    height: 25px;
+    width: 430px;
+    border-radius: 3px #CDD5DD;
+    
+    opacity: .4;
+    padding-left: 6px;
+    font-family: 'Source Sans Pro';
+}
+.Register_checkbox{
+    display: flex;
+    margin-top: 44px;
+}
+.Register_checkbox_tag{
+    margin: 13px 0px 0px 10px;
+    color: #5C6369;
+    font-family: 'Source Sans Pro';
+    font-weight: bold;
+    font-size: 12px;
+}
+ .Buyer_Seller_register{
+    display: flex;
+    margin-left: 301px;
+
+}
+.Buyer_register{
+ display: flex;
+}
+/* .Buyer_register:hover{
+     transform: scale(1.1)
+}  */
+
+.Seller_register_tag{
+    position: absolute;
+    padding: 60px 0px 0px 29px;
+    margin: 0px;
+    font-family: 'Source Sans Pro';
+    font-weight:bold;
+    color: #20639B;
+}
+.Seller_Register_btn{
+    text-decoration: none;
+    padding: 10px  160px  !important;
+    margin: 10px;
+    border-radius: 45px;
+    border: none;
+    background: linear-gradient(180deg, #20639B 0%, #002D56 100%);
+    color: white;
+    cursor: pointer;
+    font-family:  'Source Sans Pro';
+    box-shadow: 0px 3px 6px #00000029;
+    /* margin: 13px; */
+    font-weight: bold;
+    width: 100%;
+}
+.Buyer_register_tag{
+    position: absolute;
+    padding: 60px 0px 0px 30px;
+    margin: 0px;
+    font-family: 'Source Sans Pro';
+    font-weight:bold;
+    color: #20639B;
+}
+.recaptcha{
+    width: 100%;
+}
+/* .Seller_register_tag{
+    position: absolute;
+    margin: 0px;
+    padding: 0px 0px 0px 30px;
+} */

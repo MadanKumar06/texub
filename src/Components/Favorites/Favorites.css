@@ -1,0 +1,36 @@
+
+.Favorites{
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+
+ .Favorites_Sections{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 25%;
+  }
+
+ .Favorites_Images{
+    position: relative;
+    width: 100%;
+  }
+.Favorites_Images2{
+  position: relative;
+  width: 100%;
+  padding-bottom: 6px;
+}
+
+ .Favorites_Deals{
+   position: absolute;
+   color: #FFFFFF;
+   margin-top: 80px; 
+    font-size: 25px;
+    font-family: unset;
+
+  }
+  
+
+  

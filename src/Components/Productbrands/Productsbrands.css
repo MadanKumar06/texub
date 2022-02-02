@@ -1,0 +1,141 @@
+.Productsbrands{
+    display: flex;
+    flex-direction: column;  
+    gap:  15px ;
+    /* padding-left: 20px;
+    padding-right: 20px; */
+    box-shadow: 0px 3px 6px #00000029;
+    padding: 20px 30px 20px 30px;
+    
+}
+.Productbrands_Icon
+{
+    padding: 10px 20px 0px 20px;
+    display: flex;
+    justify-content: space-between;
+    /* width: 300px; */
+}
+.Brand_Icons{
+    height: 35px;
+    display: flex;
+}
+.Brand_Icons1{
+    height: 35px;
+    display: flex;
+    padding-top: 10px;
+}
+.ProductBrand_first_Slider{
+    display: flex;
+    justify-content: center;
+    /* background-color: royalblue; */
+    padding-left: 40px;
+}
+
+
+.Slider_Section{
+    /* width: 100%;
+    display: flex;  
+    justify-content: center; */
+
+    
+}
+.slick-slider .slide_Test .slick-initialized{
+    padding: 5px 40px;
+}
+.slick-list{
+    padding-left: 20px;
+}
+
+.slide_Test{
+    display: flex;
+    justify-content: center;
+    -webkit-user-select: auto;
+  -moz-user-select: auto;
+  -ms-user-select: auto;
+  user-select: auto;
+    /* padding: 10px 60px; */
+}
+.text-success{
+    height: 40px;
+    
+}
+.Slider_icons{
+    height: 40px;
+}
+.char,
+.arrow{
+    padding-top: 10px;
+}
+/* .char{
+    height: 500px;
+} */
+.Productbrands_btn{
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    margin-top: 20px;
+    gap: 0px;
+    padding: 0px 20px 0px 20px;
+    
+
+}
+.Productbrands_btn_content{
+    display: flex;
+    /* list-style-type: none; */
+    gap: 20px;
+    text-align: center;
+    cursor: pointer;
+    
+  
+}
+.Productbrands_btn_content_list{
+    display: flex;
+    justify-content: center;
+    padding: 10px 20px; 
+    box-shadow: 0px 3px 6px #00000029;
+    border: 1px solid #D6D8D9;
+    border-radius: 25px;
+    opacity: 1;
+    font-family:'Source Sans Pro';
+    letter-spacing: 0px;
+    color: #5C6369;  
+    width: 98px; 
+    font-size: 16px;
+    -webkit-transform: none !important;
+  -moz-transform: none !important;
+  -ms-transform: none !important;
+  -o-transform: none !important;
+  transform: none !important;
+}
+.Productbrands_btn_content_list:hover{
+    
+    background: linear-gradient(#FFD788, #CC9B3E);
+  
+}
+.Productbrands_Laptops_btn{
+    padding-top: 6px;
+}
+.Productbrands_Icons_left{
+    padding-top: 10px;
+}
+.Productbrands_btn_Laptops_Dropdown{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    gap: 20px;
+    background-color:white;    
+    padding: 15px;
+    width: auto;
+    height: auto;
+    border-radius: 5px;
+}
+.Productbrands_btn_Laptops_Dropdown_Content{
+    background-color: rgb(241 121 181 / 8%);
+    padding: 10px 13px;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0px 3px 6px #00000029;
+    font-family: 'Source Sans Pro';
+    
+}

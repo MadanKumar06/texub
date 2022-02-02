@@ -1,0 +1,168 @@
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_MultiWishlist
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+define(
+    [
+    "jquery",
+    "dexie",
+    "mage/template",
+    "Magento_Ui/js/modal/modal",
+    "db",
+    'Magento_Ui/js/modal/alert',
+    'mage/translate'
+    ], function ($, Dexie, template, modal, db, alert) {
+        "use strict";
+        $.widget(
+            "multiwishlist.guestsync",  {
+                options: {},
+                _create: function () {
+                    var self = this;
+                    var productUrl = self.options.productUrl;
+                    var login = self.options.login;
+                    var msg = self.options.msg;
+                    var data = [];
+                    var syncUrl = self.options.syncUrl;
+                    var newLogin = self.options.checkLogin;
+
+                    $(document).ready(
+                        function () {
+                            $.ajax(
+                                {
+                                    url: self.options.cookieUrl,
+                                    dataType: 'json',
+                                    success:function (data) {
+                                        var session = data.session;
+                                        db.userData.count().then(
+                                            function (count) {
+                                                if (count) { // session id exists then check for validation
+                                                    db.userData.where('sessionKey').equals(session).count().then(
+                                                        function (count1) {
+                                                            if (!newLogin && !count1) {
+                                                                db.wishlistName.clear().then(
+                                                                    function () {
+                                                                        db.wishlistData.clear();
+                                                                    }
+                                                                );
+                                                                db.userData.put({id:1, sessionKey:session});
+                                                            }
+                                                        }
+                                                    );
+                                                } else { // insert session id
+                                                    db.userData.put({id:1,session});
+                                                }
+                                            }
+                                        );
+                                        if (login) {
+                                            var wishlistCount = 0, wishlistItemsCount = 0;
+                                            db.wishlistName.count().then(
+                                                function (count) {
+                                                    wishlistCount = count;
+                                                    return db.wishlistData.count().then(
+                                                        function (count) {
+                                                            wishlistItemsCount = count;
+                                                            return  [wishlistCount, wishlistItemsCount];
+                                                        }
+                                                    );
+                                                }
+                                            ).then(
+                                                function (wishlistArr) {
+                                                    if (wishlistArr[0] || wishlistArr[1]) {
+                                    
+                                                        $('.sections.nav-sections').after(msg);
+                                                    }
+                                                }
+                                            );
+                                        }
+                                    }
+                                }
+                            );
+                        }
+                    );
+
+                    $('body').on(
+                        'click', 'a.multi-sync-link', function () {
+                            var wishlistNames = [], wishlistItems = [];
+                            var data = [];
+                            db.wishlistName.each(
+                                function (item, cursor) {
+                                    wishlistNames.push(item);
+                                }
+                            ).then(
+                                function () {
+                                    db.wishlistData.each(
+                                        function (item) {
+                                            wishlistItems.push(item);
+                                        }
+                                    ).then(
+                                        function () {
+                                            data['wishlistNames'] = wishlistNames;
+                                            data['wishlistItems'] = wishlistItems;
+                                            // data = JSON.stringify(data);
+                                            submitData(wishlistNames, wishlistItems);
+                                        }
+                                    );
+                                }
+                            );
+                        }
+                    );
+
+                    function submitData(wishlistNames, wishlistItems) 
+                    {
+                        $.ajax(
+                            {
+                                url: syncUrl,
+                                data:{'wishlistNames': wishlistNames, 
+                                    'wishlistItems': wishlistItems,
+                                    'sync': true
+                                },
+                                method:'post',
+                                dataType: 'json',
+                                showLoader: true,
+                                success: function (result) {
+                                    if (result['status']) {
+                                        db.wishlistName.clear().then(
+                                            function () {
+                                                db.wishlistData.clear().then(
+                                                    function () {
+                                                        alert(
+                                                            {
+                                                                title: $.mage.__('Success!'),
+                                                                content: $.mage.__('All data sync successfully.'),
+                                                                actions: {
+                                                                    always: function () {
+                                                                        location.reload();
+                                                                    }
+                                                                }
+                                                            }
+                                                        );
+                                                    }
+                                                );
+                                            }
+                                        );
+                                    } else {
+                                        alert(
+                                            {
+                                                title: $.mage.__('Error!'),
+                                                content: $.mage.__('Some error occurred, please try again.'),
+                                                actions: {
+                                                    always: function (){}
+                                                }
+                                            }
+                                        );
+                                    }
+                                }
+                            }
+                        );
+                    }
+                },
+            }
+        );
+        return $.multiwishlist.guestsync;
+    }
+);

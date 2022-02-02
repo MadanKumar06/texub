@@ -1,0 +1,155 @@
+
+.Header{
+    
+    margin: 0 auto;
+    width: 100%;
+    height: auto;
+}
+
+ 
+ .Header_1st_bar{
+    display: flex;   
+    cursor: pointer;
+    background-color: #F6F6F8;
+    font-family: sans-serif;
+    gap: 40px;
+    /* @media only screen and (max-width: 600px){
+        gap:60px;
+    } */
+    
+}
+ .Header_1st_bar_list{
+    list-style-type: none;
+     display: flex; 
+    gap: 20px;
+    justify-content:space-evenly; 
+    color: #5C6369;
+    padding-top: 3px;
+}
+.Products_Super{
+    background-color:#20639B;
+    color: white;
+    padding: 1px 5px;
+    border-radius: 25px;
+    font-size: 8px;
+    text-align: center;
+}
+
+
+.Header__list
+{
+    text-decoration: none;
+    font-size: 17px;
+    display: flex;
+    justify-content: space-evenly;
+    font-family: 'Source Sans Pro';
+    color: #5C6369;
+    opacity: .8;
+    font-weight: bold;
+}
+.Header__Contactus{
+    text-decoration: none;
+    font-size: 17px;
+    display: flex;
+    justify-content: space-evenly;
+    font-family: 'Source Sans Pro';
+    color: #5C6369;
+    opacity: .8;
+    font-weight: bold;
+}
+.Header_Register_btn{
+    text-decoration: none;
+    padding: 8px  26px 10px 26px;
+    margin: 10px;
+    border-radius: 45px;
+    border: none;
+    background: linear-gradient(180deg, #20639B 0%, #002D56 100%);
+    color: white;
+    cursor: pointer;
+    font-family:  'Source Sans Pro';
+    box-shadow: 0px 3px 6px #00000029;
+    margin: 13px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+
+
+ .Header_Signin_btn{
+    padding: 0px 35px 0px 35px;
+    margin: 13px;
+    border-radius: 45px;
+    border: none;
+    background: linear-gradient(180deg, #ffd788 0%, #ad7c20 100%);
+    color: white; 
+    cursor: pointer;
+    font-family:  'Source Sans Pro';
+    box-shadow: 0px 3px 6px #00000029;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+.Header_buttons{
+    display: flex;
+    /* flex: 0 0 25%; */
+} 
+ .Header_Currency_dropdown_style{
+    display: flex;
+    height: 60px;
+    margin: 0px 20px 0px 40px
+ }
+ .Currency_Select_tag{
+     margin-top: 20px;
+     font-family: 'Source Sans Pro';
+     font-weight: bold;
+     color: #5C6369;
+    opacity: 1;
+    font-size: 17px;
+ }
+ 
+ .Currency_Check{
+    display: flex;
+    gap: 10px;
+    font-family: 'Source Sans Pro';
+    font-weight: bold;
+    color: #5C6369;
+    opacity: 1;
+}
+
+.Currency_Dropdown{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    background-color: #fff;
+    padding: 15px;
+    width: 64px;
+    height: auto;
+    border-radius: 5px;
+    top: 5%;
+    z-index: 9;
+    margin-left: 86%; 
+    /* transition-duration: 3s;
+    transition-delay: 1s; */
+    /* font-family: 'Source Sans Pro';   
+    font-weight: bold; */
+ }
+
+ 
+  .Currency_Dropdown_Content{
+    display: flex;
+    gap: 10px;
+    padding: 3px 4px; 
+    cursor: pointer;
+    font-family: 'Source Sans Pro';
+    font-weight: bold;
+    color: #5C6369;
+    opacity: 1;
+}
+.Currency_img{
+    height: 22px;
+    font-family: 'Source Sans Pro';
+    font-weight: 700;
+}
+ 
+ 
+

@@ -1,0 +1,92 @@
+/* .POP_up{
+    display: block;
+    justify-content: center;
+    flex-direction: column;
+    background-color: turquoise; 
+    max-width: 290px;
+    max-height: 240px;
+    transition: 800ms;
+    opacity: 1;
+    
+}
+.POP_up_Country_select{
+    display: flex;
+    justify-content: center;
+    height: 30px;
+}
+.POP_up_Country_select_Heading{
+    display: contents;
+}
+.POP_up_Currency_INR{ 
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    justify-content: center;
+}
+.POP_up_INR_icon,
+.POP_up_AED_icon,
+.POP_up_USD_icon{
+    height: 50px;
+
+}
+.POP_up_Flags{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.Select_Country{
+    display: contents;
+}
+.Language_selection{
+    display: contents;
+    line-height: 33px;
+}
+.Select_language{
+    display: flex;
+    justify-content: center;
+    font-family: 'Source Sans Pro';
+
+    
+}
+.language_select_heading{
+    display: flex;
+    justify-content: center;
+    font-family: 'Source Sans Pro';
+    font-size: 20px;
+    margin-top: 0px;
+}
+.Select_language_Button{
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+.Save_Button{
+    display: flex;
+    justify-content: center;
+    
+    padding: 10px 40px 10px 40px;
+    border-radius: 25px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0px 3px 6px #00000029;
+    background:linear-gradient(
+                    180deg, #20639B 0%, #002D56 100%);
+}
+
+
+.Currency_hr_styel{
+    border: 20px soilid red;
+    align-items: center;
+    
+}
+
+.language_select{
+    display: flex;
+    justify-content: center;
+}
+
+.POP_up .active{
+    transform: translateY(100px) scale(0) rotateY(180deg);
+    opacity: 0;
+} */

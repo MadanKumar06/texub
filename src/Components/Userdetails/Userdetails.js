@@ -1,0 +1,43 @@
+import React from "react";
+import "./Userdetails.css";
+import "./Userdetails_Media.css";
+import logo from "../../Assets/Homepage Assets/Group.png";
+import myaccount from "../../Assets/Homepage Assets/Group 702.png";
+import wishlist from "../../Assets/Homepage Assets/Group 703.png";
+import cart from "../../Assets/Homepage Assets/Group 704.png";
+import ICon from "../../Assets/Homepage Assets/Icon.png";
+// import Shopping from "../../Assets/Homepage Assets/Shoppingbag.png";
+
+export const Userdetails = () => {
+  return (
+    <div className="Userdetails">
+      <div className="Logo">
+        <img className="Logo_img" src={logo} alt="" />
+      </div>
+      <div className="Userdetails_List">
+        <ul className="Userdetails_List_Content">
+          {/* <div className="User_Call">
+            <li className="Call_us">
+              {" "}
+              Call Us
+              <img className="Icon" src={ICon} alt="" /> +01234567890
+            </li>
+            <h6 className="User_Call_tag">From 8:00 to 17:00 (Mon-Sat)</h6>
+          </div> */}
+          <div className="User_Account">
+            <img className="My_account_user" src={myaccount} alt="" />
+            <li className="User_account_Wishlist_cart">My Account</li>
+          </div>
+          <div className="User_Wishlist">
+            <img className="My_account" src={wishlist} alt="" />
+            <li className="User_account_Wishlist_cart">My Wishlist</li>
+          </div>
+          <div className="User_cart">
+            <img className="My_account" src={cart} alt="" />
+            <li className="User_account_Wishlist_cart">My Cart</li>
+          </div>
+        </ul>
+      </div>
+    </div>
+  );
+};
