@@ -1,12 +1,5 @@
-.Home{
-    display: flex;
-    flex-direction: column;
-    padding:  0px 30px 30px 30px;
-    
-    
-}
-@media only screen and (max-width: 320px){
-    .Home{
-    padding:  0px 15px 10px 15px;
-}
+.Home {
+  display: flex;
+  flex-direction: column;
+  margin: 0 3%;
 }
