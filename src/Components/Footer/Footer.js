@@ -17,10 +17,13 @@ export const Footer = () => {
     <div className="Footer">
       <div className="Footer_box">
         <div className="Footer_box_col_1">
-          <img className="Footer_Logo" src={logo} alt="" />
+          <div className="image_div">
+            <img className="Footer_Logo" src={logo} alt="" />
+          </div>
           <p className="Footer_Paragraph">
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry.
+            Lorem Ipsum has been the industry's standard dummy text ever since
+            the 1500s, when an unknown printer took a galley of type and
+            scrambled it to make a type specimen book.
           </p>
           <div className="Footer_Icon_style">
             <img className="Footer_Icons" src={Fb} alt="" />
@@ -29,36 +32,38 @@ export const Footer = () => {
             <img className="Footer_Icons" src={Wsp} alt="" />
           </div>
         </div>
-        <div className="Footer_box_col_234">
-          <h2 className="Footer_Col_Heading">Company</h2>
-          <ul className="Footer_col_list">
-            <li>About Us</li>
-            <li>Terms Of Use</li>
-            <li>Privacy Policy</li>
-            <li>Contact Us</li>
-          </ul>
+        <div className="footer_container_right">
+          <div className="Footer_box_col_234">
+            <h2 className="Footer_Col_Heading">Company</h2>
+            <ul className="Footer_col_list">
+              <li>About Us</li>
+              <li>Terms Of Use</li>
+              <li>Privacy Policy</li>
+              <li>Contact Us</li>
+            </ul>
+          </div>
+          <div className="Footer_box_col_234">
+            <h2 className="Footer_Col_Heading">Services</h2>
+            <ul className="Footer_col_list">
+              <li>Training</li>
+              <li>Seller Advantage</li>
+              <li>Buyer Advantage</li>
+              <li>Career</li>
+            </ul>
+          </div>
+          <div className="Footer_box_col_234">
+            <h2 className="Footer_Col_Heading">Resources</h2>
+            <ul className="Footer_col_list">
+              <li>Legal</li>
+              <li>Cookies Permission</li>
+              <li>GDPR</li>
+              <li>FAQs</li>
+            </ul>
+          </div>
         </div>
-        <div className="Footer_box_col_234">
-          <h2 className="Footer_Col_Heading">Services</h2>
-          <ul className="Footer_col_list">
-            <li>Training</li>
-            <li>Seller Advantage</li>
-            <li>Buyer Advantage</li>
-            <li>Career</li>
-          </ul>
-        </div>
-        <div className="Footer_box_col_234">
-          <h2 className="Footer_Col_Heading">Resources</h2>
-          <ul className="Footer_col_list">
-            <li>Legal</li>
-            <li>Cookies Permission</li>
-            <li>GDPR</li>
-            <li>FAQs</li>
-          </ul>
-        </div>
-        <div className="footer_mobile_view">
-          <MobileFooterAccordions />
-        </div>
+      </div>
+      <div className="footer_mobile_view">
+        <MobileFooterAccordions />
       </div>
       <div className="Copyright">
         <p>@2020 Mockup. All Rights Reserved</p>

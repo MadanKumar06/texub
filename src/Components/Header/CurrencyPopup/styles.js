@@ -2,11 +2,6 @@ const styles = (theme) => ({
   header_dropdown: {
     marginLeft: "auto",
     marginRight: "0",
-    "@media (max-width:768px)": {
-      position: "absolute",
-      right: "0",
-      top: "10px",
-    },
     "& .MuiButton-text": {
       textTransform: "capitalize",
     },
