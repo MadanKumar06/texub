@@ -6,18 +6,23 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Departments from "./DepartmentJson";
 import {
-  withStyles,
   ListItemText,
   ListItem,
   List,
   Collapse,
+  Button,
+  Stack,
 } from "@material-ui/core";
+import { withStyles } from "@material-ui/styles";
 import ListItemButton from "@mui/material/ListItemButton";
 import {
   ExpandMore,
   ExpandLess,
   AccountCircle,
   Favorite,
+  ShoppingBag,
+  AppRegistration,
+  ExitToApp,
 } from "@material-ui/icons";
 
 import { Link } from "react-router-dom";
@@ -94,26 +99,26 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
         </Link>
         <Link className={classes.link_in_tab} to="/">
           <ListItem button>
-            <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+            <ShoppingBag />
             <ListItemText primary={"My Cart"} />
           </ListItem>
         </Link>
       </TabPanel>
-      <TabPanel value={value} index={1}>
-        <List>
+      <TabPanel value={value} index={1} className={classes.sub_tab_conatainer}>
+        <List className={classes.dropdowm_list_menu}>
           <ListItemButton onClick={handleClick}>
-            <ListItemText primary="DepartMent" />
+            <ListItemText primary="DepartMent" className={classes.dropdowm_list_menu_sub}/>
             {open ? <ExpandLess /> : <ExpandMore />}
           </ListItemButton>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <List
-              onClick={() => handleSideBarClose("Left", false)}
+              onClick={() => handleSideBarClose("left", false)}
               component="div"
               disablePadding
             >
               {Departments?.map((itm) => (
-                <div>
-                  <Link className={classes.link_in_tab} to={`${itm?.path}`}>
+                <div className={classes.dropdown_collapse_list}>
+                  <Link className={classes.link_in_tab} to={`/`}>
                     <ListItemButton sx={{ pl: 4 }}>
                       <ListItemText primary={`${itm?.name}`} />
                     </ListItemButton>
@@ -123,7 +128,7 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
             </List>
           </Collapse>
         </List>
-        <List onClick={() => handleSideBarClose("Left", false)}>
+        <List onClick={() => handleSideBarClose("left", false)}>
           <Link className={classes.link_in_tab} to="/aboutus">
             <ListItem button>
               <ListItemText primary={"About Us"} />
@@ -157,12 +162,22 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
           </Link>
         </List>
 
-        <ListItem button>
-          <ListItemText primary={"Register"} />
-        </ListItem>
-        <ListItem button>
-          <ListItemText primary={"SignIn"} />
-        </ListItem>
+        <Stack direction="row" spacing={2} className={classes.stackmenu_button}>
+          <Button
+            variant="contained"
+            startIcon={<AppRegistration />}
+            className={classes.menuButton}
+          >
+            Register
+          </Button>
+          <Button
+            variant="contained"
+            endIcon={<ExitToApp />}
+            className={classes.menuButton}
+          >
+            SignIn
+          </Button>
+        </Stack>
       </TabPanel>
     </Box>
   );

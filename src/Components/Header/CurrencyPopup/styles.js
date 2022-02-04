@@ -6,17 +6,14 @@ const styles = (theme) => ({
       textTransform: "capitalize",
     },
     "& .MuiButton-root": {
-      fontWeight: "400",
+      fontWeight: "600",
       fontSize: "18px",
-      "@media (max-width:1060px) and (min-width:768px)": {
-        fontSize: "15px",
+      padding: "0",
+      "@media (max-width:1184px) and (min-width:320px)": {
+        fontSize: "14px !important",
       },
-      "@media (max-width:1148px) and (min-width:1059px)": {
-        fontSize: "16px",
-      },
-      "@media (max-width:360px)": {
-        fontSize: "14px",
-        fontWeight: "600",
+      "@media (max-width:850px) and (min-width:768px)": {
+        fontSize: "12px !important",
       },
     },
     "& .MuiButton-label": {

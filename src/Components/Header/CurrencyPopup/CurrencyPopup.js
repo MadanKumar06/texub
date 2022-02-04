@@ -1,5 +1,6 @@
 import React from "react";
-import { withStyles, Button, Menu, MenuItem } from "@material-ui/core";
+import {  Button, Menu, MenuItem } from "@material-ui/core";
+import { withStyles } from '@material-ui/styles';
 import { ExpandMore } from "@material-ui/icons";
 import styles from "./styles";
 

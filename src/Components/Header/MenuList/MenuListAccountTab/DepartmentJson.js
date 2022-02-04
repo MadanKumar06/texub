@@ -1,12 +1,12 @@
 const Departments = [
   {
     id: 1,
-    path: "/Value of the day",
+    path: "/value_of_the_day",
     name: "Value of the day",
   },
   {
     id: 2,
-    path: "/new arrival",
+    path: "/new_arrival",
     name: "New arrival",
   },
   {
@@ -16,7 +16,7 @@ const Departments = [
   },
   {
     id: 4,
-    path: "/top 100 offers",
+    path: "/top_100_offers",
     name: "Top 100 offers",
   },
   {
@@ -31,22 +31,22 @@ const Departments = [
   },
   {
     id: 7,
-    path: "/watches & eyewear",
+    path: "/watches_eyewear",
     name: "Watches & Eyewear",
   },
   {
     id: 8,
-    path: "/tv&radio",
+    path: "/tv_radio",
     name: "Tv & Radio",
   },
   {
     id: 9,
-    path: "/bags&laggage",
+    path: "/bags_laggage",
     name: "Bags & Laggage",
   },
   {
     id: 10,
-    path: "/value of the day",
+    path: "/value_of_the_day",
     name: "Value of the Day",
   },
 ];

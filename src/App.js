@@ -18,12 +18,13 @@ import { Gratitude } from "./Components/Register/Gratitude/Gratitude";
 import { AfterGratitude } from "./Components/Register/AfterGratitude/AfterGratitude";
 import { BuyerGratitude } from "./Components/Register/BuyerGratitude/BuyerGratitude";
 import { BuyerKYCGratitude } from "./Components/Register/BuyerKYCGratitude/BuyerKYCGratitude";
-import { MuiThemeProvider } from "@material-ui/core/styles";
+import { ThemeProvider } from "@mui/material/styles";
+
 import theme from "./theme";
 function App() {
   return (
     <div className="App">
-      <MuiThemeProvider theme={theme}>
+      <ThemeProvider theme={theme}>
         <BrowserRouter>
           <Header className="second" />
           <Userdetails />
@@ -121,7 +122,7 @@ function App() {
             </Route>
           </Routes>
         </BrowserRouter>
-      </MuiThemeProvider>
+      </ThemeProvider>
     </div>
   );
 }

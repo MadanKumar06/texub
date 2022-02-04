@@ -4,7 +4,7 @@ const styles = (theme) => ({
       background: "#002d56",
       color: "#cdd5dd",
     },
-    "& .MuiAccordionSummary-expandIcon": {
+    "& .MuiAccordionSummary-expandIconWrapper": {
       color: "#cdd5dd",
     },
     "& .MuiPaper-elevation1": {
@@ -14,6 +14,13 @@ const styles = (theme) => ({
       padding: "0px 16px",
       flexDirection: "column",
     },
+    "& .MuiTypography-root":{
+      fontWeight: "600",
+      fontSize: "1.1em",
+    },
+    "& .MuiCollapse-root ":{
+      fontSize: "0.8em",
+    }
   },
   heading_accordion: {
     fontSize: "1.2rem",
