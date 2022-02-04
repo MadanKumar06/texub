@@ -38,7 +38,7 @@ function App() {
               }
               exact
             />
-              <Route
+            <Route
               path="/"
               element={
                 <>
