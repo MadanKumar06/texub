@@ -1,6 +1,7 @@
 import React from "react";
 import clsx from "clsx";
-import { Drawer, Button, withStyles } from "@material-ui/core";
+import { Drawer, Button } from "@material-ui/core";
+import { withStyles } from '@material-ui/styles';
 import { Menu } from "@material-ui/icons";
 import MenuListAccountTab from "./MenuListAccountTab";
 import styles from "./styles";
@@ -21,7 +22,6 @@ const MenuListDrawer = ({ classes }) => {
   };
 
   const handleSideBarClose = (event, boolean) => {
-    debugger;
     setSideBar({ ...sideBar, [event]: boolean });
   };
   const list = (anchor) => (
