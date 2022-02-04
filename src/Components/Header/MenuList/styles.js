@@ -15,6 +15,10 @@ const styles = (theme) => ({
     "@media (max-width:768px)": {
       display: "block",
       marginRight: "12px",
+      "& .MuiButton-text": {
+        padding: "0",
+        minWidth: "0",
+      },
     },
     "& .MuiButton-root": {
       "@media (max-width:768px)": {
@@ -26,13 +30,6 @@ const styles = (theme) => ({
       "@media (max-width:768px)": {
         width: "1.5em",
         height: "1.5em",
-      },
-     
-    },
-    "@media (max-width:767px)": {
-      "& .MuiButton-text": {
-        padding: "0",
-        minWidth: "0",
       },
     },
   },

@@ -62,17 +62,12 @@ const styles = (theme) => ({
       fontSize: "12px !important",
       fontWeight: "600 !important",
     },
-    "@media (max-width:1184px) and (min-width:768px)": {
+    "@media (max-width:1184px) and (min-width:818px)": {
       fontSize: "14px !important",
       marginRight: "8px",
     },
     "@media (max-width:768px)": {
-      fontSize: "14px",
-      width: "fit-content",
       display: "block",
-      marginRight: "0",
-      whiteSpace: "nowrap",
-      padding: "5px 15px 10px 15px !important",
     },
   },
   header_button_main: {
