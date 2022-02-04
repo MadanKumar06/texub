@@ -5,6 +5,10 @@ const styles = (theme) => ({
     },
   },
   header_main: {
+    "& .MuiPaper-root": {
+      backgroundColor: "#F6F6F8",
+      padding: "0 3%",
+    },
     "& .MuiPaper-elevation4": {
       boxShadow: "unset",
     },
@@ -16,7 +20,6 @@ const styles = (theme) => ({
       color: "#5C6369",
     },
     "& .MuiToolbar-gutters": {
-      margin: "auto 3%",
       padding: 0,
       "@media (max-width:768px)": {
         margin: "auto 2%",
@@ -30,7 +33,6 @@ const styles = (theme) => ({
     },
     "@media (max-width:768px)": {
       display: "block",
-     
     },
     "@media (max-width:768px) and (min-width:380px)": {
       width: "147px",
@@ -58,11 +60,11 @@ const styles = (theme) => ({
     letterSpacing: "0.45px !important",
     fontWeight: "600 !important",
     marginRight: "24px",
-    "@media (max-width:818px) and (min-width:768px)": {
+    "@media (max-width:850px) and (min-width:768px)": {
       fontSize: "12px !important",
       fontWeight: "600 !important",
     },
-    "@media (max-width:1184px) and (min-width:818px)": {
+    "@media (max-width:1184px) and (min-width:850px)": {
       fontSize: "14px !important",
       marginRight: "8px",
     },
@@ -100,6 +102,9 @@ const styles = (theme) => ({
     "@media (max-width:1184px) and (min-width:768px)": {
       minWidth: "90px !important",
     },
+    "@media (max-width:850px) and (min-width:768px)": {
+      minWidth: "85px !important",
+    },
   },
   header_button_signin: {
     textDecoration: "none",
@@ -116,6 +121,9 @@ const styles = (theme) => ({
     textTransform: "capitalize !important",
     "@media (max-width:1184px) and (min-width:768px)": {
       minWidth: "90px !important",
+    },
+    "@media (max-width:850px) and (min-width:768px)": {
+      minWidth: "85px !important",
     },
   },
 });

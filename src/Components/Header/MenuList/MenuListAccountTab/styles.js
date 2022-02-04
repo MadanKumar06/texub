@@ -19,12 +19,24 @@ const styles = (theme) => ({
   sub_tab_conatainer: {
     "& .MuiListItem-button": {
       gap: "12px",
+      background: "#ebdec6",
+      borderBottom: "1px solid #ffffff",
+    },
+    "& .MuiBox-root ": {
+      padding: "12px",
+    },
+    "& .MuiList-root": {
+      padding: "0",
     },
   },
-  menuButton:{
+  stackmenu_button: {
+    padding: "24px 0px",
+  },
+  menuButton: {
     textDecoration: "none",
-    color: "#002d56 !important",
-    background: "none !important",
+    textTransform: "capitalize !important",
+    background: "#002d56 !important",
+    color: "#ffffff !important",
     minWidth: "126px",
     padding: "8px 30px",
     border: "none",
@@ -33,8 +45,25 @@ const styles = (theme) => ({
     marginRight: "8px",
     fontWeight: "bold",
     letterSpacing: "1px",
-    textTransform: "capitalize",
     width: "50%",
-  }
+  },
+  dropdowm_list_menu: {
+    "& .MuiListItemButton-root": {
+      background: "#ebdec6",
+      borderBottom: "1px solid #ffffff",
+    },
+    "& .MuiSvgIcon-root": {
+      color: "#5C6369",
+    },
+  },
+  dropdown_collapse_list: {
+    "& .MuiListItemButton-root": {
+      background: "#fbecd0",
+      borderBottom: "1px solid #ffffff",
+    },
+  },
+  dropdowm_list_menu_sub: {
+    color: "#5C6369",
+  },
 });
 export default styles;

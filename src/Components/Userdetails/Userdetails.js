@@ -1,18 +1,18 @@
 import React from "react";
 import "./Userdetails.css";
-import "./Userdetails_Media.css";
 import logo from "../../Assets/Homepage Assets/Group.png";
 import myaccount from "../../Assets/Homepage Assets/Group 702.png";
 import wishlist from "../../Assets/Homepage Assets/Group 703.png";
 import cart from "../../Assets/Homepage Assets/Group 704.png";
-import ICon from "../../Assets/Homepage Assets/Icon.png";
-// import Shopping from "../../Assets/Homepage Assets/Shoppingbag.png";
+import { Link } from "react-router-dom";
 
 export const Userdetails = () => {
   return (
     <div className="Userdetails">
       <div className="Logo">
-        <img className="Logo_img" src={logo} alt="" />
+        <Link to="/">
+          <img className="Logo_img" src={logo} alt="" />
+        </Link>
       </div>
       <div className="Userdetails_List">
         <ul className="Userdetails_List_Content">

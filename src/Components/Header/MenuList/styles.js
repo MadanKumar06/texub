@@ -1,10 +1,15 @@
 const styles = (theme) => ({
   drawerlist_container: {
-    width: "50vw",
+    width: "400px",
     background: "#F6F6F8",
     minHeight: "100vh",
+    display: "none",
+    "@media (max-width:768px)": {
+      display: "block",
+    },
     "@media (max-width:580px)": {
-      width: "80vw",
+      width: "70vw",
+      display: "block",
     },
   },
   fullList: {
