@@ -4,8 +4,8 @@ import {
   AccordionDetails,
   Accordion,
   Typography,
-  withStyles,
 } from "@material-ui/core";
+import { withStyles } from '@material-ui/styles';
 import { ExpandMore } from "@material-ui/icons";
 import styles from "./style";
 

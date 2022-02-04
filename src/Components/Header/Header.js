@@ -4,13 +4,13 @@ import { SignIn } from "../SignIn/SignIn";
 
 import {
   AppBar,
-  withStyles,
   Toolbar,
   Typography,
   Button,
 } from "@material-ui/core";
+import { withStyles } from '@material-ui/styles';
 import styles from "./styles";
-import CurrencyPopup from "./CurrencyPopup";
+import CurrencyPopup from "./CurrencyPopup/CurrencyPopup";
 import MenuList from "./MenuList";
 import logo from "../../Assets/Homepage Assets/Group.png";
 
@@ -51,12 +51,11 @@ const Header = ({ classes }) => {
             </Typography>
           </div>
           <div className={classes.header_button_main}>
-            <Button className={classes.header_button_register} color="inherit">
+            <Button className={classes.header_button_register}>
               <Link to="/register"> Register </Link>
             </Button>
             <Button
               className={classes.header_button_signin}
-              color="inherit"
               onClick={() => Signin()}
             >
               Sign In
