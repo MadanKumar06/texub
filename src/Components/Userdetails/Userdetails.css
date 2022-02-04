@@ -2,17 +2,16 @@
   display: flex;
   flex-direction: row;
   gap: 10px;
-  margin-bottom: 5px;
-  padding: 0px 30px;
+  margin: auto 3%;
 }
 
 .Logo {
+  width: 217px;
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  width: 25%;
-  margin-top: 20px;
-  height: 45px;
+  align-items: end;
+}
+.Logo_img {
+  width: 100%;
 }
 .Userdetails_List {
   display: flex;
@@ -88,4 +87,12 @@
   font-weight: bold;
   margin-top: 13px;
   opacity: 0.8;
+}
+@media only screen and (max-width: 768px) {
+  .Logo {
+    display: none;
+  }
+  .Userdetails_List {
+    display: none;
+  }
 }

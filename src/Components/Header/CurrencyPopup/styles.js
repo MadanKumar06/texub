@@ -8,10 +8,13 @@ const styles = (theme) => ({
     "& .MuiButton-root": {
       fontWeight: "600",
       fontSize: "18px",
+      padding: "0",
       "@media (max-width:1184px) and (min-width:320px)": {
         fontSize: "14px !important",
       },
-      
+      "@media (max-width:850px) and (min-width:768px)": {
+        fontSize: "12px !important",
+      },
     },
     "& .MuiButton-label": {
       color: "#5C6369",

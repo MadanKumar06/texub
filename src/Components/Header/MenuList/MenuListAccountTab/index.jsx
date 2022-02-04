@@ -11,7 +11,7 @@ import {
   List,
   Collapse,
   Button,
-  Stack
+  Stack,
 } from "@material-ui/core";
 import { withStyles } from "@material-ui/styles";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -104,10 +104,10 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
           </ListItem>
         </Link>
       </TabPanel>
-      <TabPanel value={value} index={1}>
-        <List>
+      <TabPanel value={value} index={1} className={classes.sub_tab_conatainer}>
+        <List className={classes.dropdowm_list_menu}>
           <ListItemButton onClick={handleClick}>
-            <ListItemText primary="DepartMent" />
+            <ListItemText primary="DepartMent" className={classes.dropdowm_list_menu_sub}/>
             {open ? <ExpandLess /> : <ExpandMore />}
           </ListItemButton>
           <Collapse in={open} timeout="auto" unmountOnExit>
@@ -117,7 +117,7 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
               disablePadding
             >
               {Departments?.map((itm) => (
-                <div>
+                <div className={classes.dropdown_collapse_list}>
                   <Link className={classes.link_in_tab} to={`/`}>
                     <ListItemButton sx={{ pl: 4 }}>
                       <ListItemText primary={`${itm?.name}`} />
@@ -162,22 +162,22 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
           </Link>
         </List>
 
-        <Stack direction="row" spacing={2}>
+        <Stack direction="row" spacing={2} className={classes.stackmenu_button}>
           <Button
             variant="contained"
             startIcon={<AppRegistration />}
             className={classes.menuButton}
           >
-            Delete
+            Register
           </Button>
           <Button
             variant="contained"
             endIcon={<ExitToApp />}
             className={classes.menuButton}
           >
-            Send
+            SignIn
           </Button>
-          </Stack>
+        </Stack>
       </TabPanel>
     </Box>
   );
