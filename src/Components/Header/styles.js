@@ -2,7 +2,7 @@ const styles = (theme) => ({
   header_toolbar: {
     "@media (max-width:768px)": {
       display: "flex",
-      flexWrap: "wrap",
+      // flexWrap: "wrap",
     },
   },
   header_main: {
@@ -38,7 +38,7 @@ const styles = (theme) => ({
     "@media (max-width:768px)": {
       display: "block",
       width: "auto",
-      margin: "0px 80px 0px 0px",
+      // margin: "0px 80px 0px 0px",
     },
   },
   title_main: {
@@ -46,18 +46,19 @@ const styles = (theme) => ({
     display: "flex",
     maxWidth: "40rem",
     "@media (max-width:1060px) and (min-width:767px)": {
-        maxWidth: "32rem",
-        gap: "10px",
+      maxWidth: "32rem",
+      gap: "10px",
     },
     "& a": {
       textDecoration: "none",
       color: "#5C6369",
     },
     "@media (max-width:768px)": {
-      flexWrap: "wrap",
-      width: "100%",
-      maxWidth: "100%",
-      justifyContent: "space-around",
+      display: "none",
+      // flexWrap: "wrap",
+      // width: "100%",
+      // maxWidth: "100%",
+      // justifyContent: "space-around",
     },
   },
   title: {
@@ -89,6 +90,7 @@ const styles = (theme) => ({
     display: "flex",
     "@media (max-width:768px)": {
       margin: "auto",
+      display: "none",
     },
   },
   header_button_register: {
@@ -100,7 +102,6 @@ const styles = (theme) => ({
     background: "linear-gradient(80deg, #20639B 0%, #002D56 100%)",
     color: "white",
     cursor: "pointer",
-    fontFamily: "'Source Sans Pro'",
     boxShadow: "0px 3px 6px #00000029",
     marginRight: "8px",
     fontWeight: "bold",
@@ -131,7 +132,6 @@ const styles = (theme) => ({
     background: "linear-gradient(180deg, #ffd788 0%, #ad7c20 100%)",
     color: "white",
     cursor: "pointer",
-    fontFamily: "'Source Sans Pro'",
     boxShadow: "0px 3px 6px #00000029",
     fontWeight: "bold",
     letterSpacing: "1px",

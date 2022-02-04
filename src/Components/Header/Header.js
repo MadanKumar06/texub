@@ -11,6 +11,7 @@ import {
 } from "@material-ui/core";
 import styles from "./styles";
 import CurrencyPopup from "./CurrencyPopup";
+import MenuList from "./MenuList";
 import logo from "../../Assets/Homepage Assets/Group.png";
 
 const Header = ({ classes }) => {
@@ -22,6 +23,7 @@ const Header = ({ classes }) => {
     <div className={classes.header_main}>
       <AppBar position="static">
         <Toolbar className={classes.header_toolbar}>
+          <MenuList />
           <div className={classes.company_logo}>
             {/* //height="48px" width="140px" */}
             <Link to="/">

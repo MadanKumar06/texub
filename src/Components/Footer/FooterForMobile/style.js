@@ -2,10 +2,13 @@ const styles = (theme) => ({
   mobile_view_accordion_container: {
     "& .MuiAccordion-rounded": {
       background: "#002d56",
-      color: "#ffffff",
+      color: "#cdd5dd",
     },
     "& .MuiAccordionSummary-expandIcon": {
-      color: "#ffffff",
+      color: "#cdd5dd",
+    },
+    "& .MuiPaper-elevation1": {
+      boxShadow: "unset",
     },
     "& .MuiAccordionDetails-root": {
       padding: "0px 16px",

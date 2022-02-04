@@ -1,23 +1,35 @@
-.Footer_box {
+.Footer {
   background-color: #002d56;
+}
+.footer_container_right {
+  display: flex;
+  justify-content: space-evenly;
+  flex: 1;
+  padding-top: 1.1em;
+}
+.image_div {
+  margin: auto;
+  width: 10em;
+}
+.Footer_box {
   display: flex;
   flex-direction: row;
-  /* height: 300px; */
   padding-top: 45px;
+  margin: auto 80px;
+  gap: 2em;
 }
 .Footer_box_col_1 {
-  width: 30%;
-  padding-left: 80px;
-  padding-right: 50px;
+  width: 35%;
+  text-align: justify;
 }
 .Footer_Logo {
-  width: 40%;
-  height: 50px;
+  width: 10em;
+  object-fit: contain;
+  margin-left: -9px;
 }
 .Footer_Paragraph {
   color: #cdd5dd;
   font-size: 13px;
-  margin-left: 8px;
 }
 .Footer_Icons {
   margin-right: 15px;
@@ -27,39 +39,33 @@
   display: flex;
   flex-direction: column;
 }
-
 .Footer_col_list {
+  padding: 0;
   list-style: none;
   display: flex;
   flex-direction: column;
   color: #cdd5dd;
   line-height: 45px;
-  font-family: inherit;
 }
 .Footer_Col_Heading {
   color: #cdd5dd;
-
-  margin: 0px 0px 0px 34px;
+  margin: 0px;
+}
+.Footer_box_col_234 h2 {
+  font-size: 18px;
 }
 
 .Footer_Icon_style {
   margin-top: 21px;
   display: flex;
   flex-direction: row;
-  margin-left: 5px;
 }
 .Copyright {
   display: flex;
-  /* flex-direction: row; */
   background-color: gainsboro;
   justify-content: space-between;
-  font-family: "Source Sans Pro";
-  height: 40px;
-  /* grid-gap: 351px; */
-  /* gap: 324px; */
   font-size: 15px;
-  /* padding: 0px 100px 10px 100px; */
-  padding: 0px 20px;
+  padding: 0px 52px;
 }
 .User_Details {
   background-color: white;
@@ -69,7 +75,7 @@
   stroke-width: 30px;
 }
 
-/* css */
+/* css mobile*/
 
 .footer_mobile_view {
   display: none;
