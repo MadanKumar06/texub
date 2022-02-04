@@ -1,13 +1,13 @@
 import React from "react";
-import { Auctions } from "../../Components/Auctions/Auctions";
-import { Favorites } from "../../Components/Favorites/Favorites";
-import { Todaysdeal } from "../../Components/Todaysdeal/Todaysdeal";
-import { Departments } from "../../Components/Departments/Departments";
-import { B2Bconnect } from "../../Components/B2Bconnect/B2Bconnect";
-import { Benfits } from "../../Components/Benfits/Benfits";
 import "./Home.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { Departments } from "../../Components/Home/Departments/Departments";
+import { Favorites } from "../../Components/Home/Favorites/Favorites";
+import { Todaysdeal } from "../../Components/Home/Todaysdeal/Todaysdeal";
+import { Benfits } from "../../Components/Home/Benfits/Benfits";
+import { Auctions } from "../../Components/Home/Auctions/Auctions";
+import { B2Bconnect } from "../../Components/Home/B2Bconnect/B2Bconnect";
 
 export const Home = () => {
   return (

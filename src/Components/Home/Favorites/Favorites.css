@@ -1,0 +1,99 @@
+.Favorites {
+  display: flex;
+  gap: 30px;
+}
+
+.Favorites_Sections {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: calc(100% / 5 - 0px);
+  position: relative;
+}
+
+.Favorites_Images {
+  width: 100%;
+}
+.Favorites_Images2 {
+  position: relative;
+  width: 100%;
+  padding-bottom: 6px;
+}
+
+.Favorites_Deals {
+  position: absolute;
+  color: #ffffff;
+  font-size: 34px;
+  top: 5em;
+  margin: 0;
+}
+
+@media (max-width: 1600px) {
+  .Favorites_Deals {
+    top: 4em;
+  }
+}
+
+@media (max-width: 1440px) {
+  .Favorites_Deals {
+    top: 5em;
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .Favorites_Deals {
+    top: 5.5em;
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .Favorites_Deals {
+    top: 4.5em;
+  }
+  .Favorites {
+    gap: 0;
+  }
+}
+
+@media (max-width: 1024px) {
+  .Favorites_Deals {
+    top: 4em;
+  }
+}
+
+@media (max-width: 768px) {
+  .Favorites_Deals {
+    font-size: 16px;
+    top: 4em;
+  }
+}
+
+@media (max-width: 480px) {
+  .Favorites {
+    flex-direction: column;
+  }
+
+  .Favorites_Sections {
+    width: 100%;
+  }
+
+  .Favorites_Deals {
+    font-size: 32px;
+    top: 6em;
+  }
+}
+
+@media (max-width: 375px) {
+  .Favorites_Deals {
+    top: 5em;
+  }
+}
+
+@media (max-width: 320px) {
+  .Favorites_Deals {
+    top: 4em;
+  }
+}
