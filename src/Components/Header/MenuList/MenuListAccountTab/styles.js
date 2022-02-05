@@ -2,13 +2,14 @@ const styles = (theme) => ({
   tab_conatainer: {
     "& .MuiButtonBase-root ": {
       width: "50%",
-      backgroundColor: "#ddb363",
+      background: "linear-gradient(180deg, #ffd788 0%, #ad7c20 100%)",
       color: "#002d56",
-      fontSize: "16px",
+      fontSize: "18px",
       fontWeight: "600",
+      textTransform:"capitalize"
     },
     "& .Mui-selected": {
-      background: "#002d56",
+      background: "linear-gradient(80deg, #20639B 0%, #002D56 100%)",
       color: "#ffffff !important",
     },
   },
@@ -21,6 +22,10 @@ const styles = (theme) => ({
       gap: "12px",
       background: "#ebdec6",
       borderBottom: "1px solid #ffffff",
+    },
+    "& .MuiTypography-root": {
+      fontWeight: "600",
+      fontSize: "16px",
     },
     "& .MuiBox-root ": {
       padding: "12px",
@@ -35,7 +40,7 @@ const styles = (theme) => ({
   menuButton: {
     textDecoration: "none",
     textTransform: "capitalize !important",
-    background: "#002d56 !important",
+    background: "linear-gradient(80deg, #20639B 0%, #002D56 100%) !important",
     color: "#ffffff !important",
     minWidth: "126px",
     padding: "8px 30px",
@@ -43,14 +48,18 @@ const styles = (theme) => ({
     cursor: "pointer",
     boxShadow: "0px 3px 6px #00000029",
     marginRight: "8px",
-    fontWeight: "bold",
     letterSpacing: "1px",
     width: "50%",
+    fontWeight: "600 !important",
   },
   dropdowm_list_menu: {
     "& .MuiListItemButton-root": {
       background: "#ebdec6",
       borderBottom: "1px solid #ffffff",
+    },
+    "& .MuiTypography-root": {
+      fontWeight: "600",
+      fontSize: "16px",
     },
     "& .MuiSvgIcon-root": {
       color: "#5C6369",
@@ -60,6 +69,10 @@ const styles = (theme) => ({
     "& .MuiListItemButton-root": {
       background: "#fbecd0",
       borderBottom: "1px solid #ffffff",
+      paddingLeft: "50px",
+    },
+    "& .MuiTypography-root": {
+      fontWeight: "400",
     },
   },
   dropdowm_list_menu_sub: {
