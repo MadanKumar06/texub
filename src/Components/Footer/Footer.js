@@ -1,6 +1,5 @@
 import React from "react";
 import "./Footer.css";
-import "./Footer_Media.css";
 import { Link } from "react-router-dom";
 import logo from "../../Assets/Homepage Assets/Group.png";
 import Fb from "../../Assets/Homepage Assets/facebook.png";
@@ -11,7 +10,7 @@ import User from "../../Assets/Homepage Assets/user.png";
 import Like from "../../Assets/Homepage Assets/like.png";
 import Home from "../../Assets/Homepage Assets/home.png";
 import Shopping from "../../Assets/Homepage Assets/Shoppingbag.png";
-import MobileFooterAccordions from "./FooterForMobile/FooterForMobile";
+import MobileFooterAccordions from "./FooterForMobile";
 export const Footer = () => {
   return (
     <div className="Footer">

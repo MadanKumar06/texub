@@ -10,7 +10,7 @@ import {
 } from "@material-ui/core";
 import { withStyles } from '@material-ui/styles';
 import styles from "./styles";
-import CurrencyPopup from "./CurrencyPopup/CurrencyPopup";
+import CurrencyPopup from "./CurrencyPopup";
 import MenuList from "./MenuList";
 import logo from "../../Assets/Homepage Assets/Group.png";
 

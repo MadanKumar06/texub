@@ -21,9 +21,6 @@ const styles = (theme) => ({
     },
     "& .MuiToolbar-gutters": {
       padding: 0,
-      "@media (max-width:768px)": {
-        margin: "auto 2%",
-      },
     },
   },
   company_logo: {

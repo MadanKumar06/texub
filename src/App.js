@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import Header from "./Components/Header/Header";
+import Header from "./Components/Header";
 import { Home } from "./Pages/Home/Home";
 import { Footer } from "./Components/Footer/Footer";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -12,9 +12,7 @@ import { FAQs } from "./Pages/FAQs/FAQs";
 import { Contactus } from "./Pages/Contactus/Contactus";
 import { Userdetails } from "./Components/Userdetails/Userdetails";
 import { Register } from "./Components/Register/Sellerregister";
-//import Currency from './Components/Currency/Currency'
 import { Gratitude } from "./Components/Register/Gratitude/Gratitude";
-// import KYCform from './Components/Register/KYCform/KYCform';
 import { AfterGratitude } from "./Components/Register/AfterGratitude/AfterGratitude";
 import { BuyerGratitude } from "./Components/Register/BuyerGratitude/BuyerGratitude";
 import { BuyerKYCGratitude } from "./Components/Register/BuyerKYCGratitude/BuyerKYCGratitude";
@@ -26,19 +24,9 @@ function App() {
     <div className="App">
       <ThemeProvider theme={theme}>
         <BrowserRouter>
-          <Header className="second" />
+          <Header/>
           <Userdetails />
           <Routes>
-            <Route
-              path="/"
-              element={
-                <>
-                  <Home />
-                  <Footer />
-                </>
-              }
-              exact
-            />
             <Route
               path="/"
               element={
