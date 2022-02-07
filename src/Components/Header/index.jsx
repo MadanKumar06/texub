@@ -2,22 +2,22 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { SignIn } from "../SignIn/SignIn";
 
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  Button,
-} from "@material-ui/core";
-import { withStyles } from '@material-ui/styles';
+import { AppBar, Toolbar, Typography, Button } from "@material-ui/core";
+import { withStyles } from "@material-ui/styles";
 import styles from "./styles";
 import CurrencyPopup from "./CurrencyPopup";
 import MenuList from "./MenuList";
 import logo from "../../Assets/Homepage Assets/Group.png";
+import RegiterPopup from "../../Pages/Register/RegisterPopup/SectionLeft";
 
 const Header = ({ classes }) => {
   const [isSignin, setisSignin] = useState(false);
+  const [registerPopUp, setRegisterPopUp] = useState(false);
   const Signin = () => {
     setisSignin(!isSignin);
+  };
+  const RegistrationPop = (event) => {
+    setRegisterPopUp(event);
   };
   return (
     <div className={classes.header_main}>
@@ -51,8 +51,12 @@ const Header = ({ classes }) => {
             </Typography>
           </div>
           <div className={classes.header_button_main}>
-            <Button className={classes.header_button_register}>
-              <Link to="/register"> Register </Link>
+            <Button
+              className={classes.header_button_register}
+              onClick={() => setRegisterPopUp(true)}
+            >
+              {/* <Link to="/register"> Register </Link> */}
+              Register
             </Button>
             <Button
               className={classes.header_button_signin}
@@ -65,6 +69,7 @@ const Header = ({ classes }) => {
         </Toolbar>
       </AppBar>
       {isSignin && <SignIn isSignin={setisSignin} />}
+      {registerPopUp && <RegiterPopup openPopUp={RegistrationPop} />}
     </div>
   );
 };

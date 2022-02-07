@@ -8,7 +8,7 @@
 .Logo {
   width: 217px;
   display: flex;
-  align-items: end;
+  align-items: center;
 }
 .Logo_img {
   width: 100%;
