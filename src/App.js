@@ -11,7 +11,8 @@ import { SellonTexhub } from "./Pages/SellonTexhub/SellonTexhub";
 import { FAQs } from "./Pages/FAQs/FAQs";
 import { Contactus } from "./Pages/Contactus/Contactus";
 import { Userdetails } from "./Components/Userdetails/Userdetails";
-import { Register } from "./Components/Register/Sellerregister";
+// import { Register } from "./Components/Register/Sellerregister";
+import Register from "./Pages/Register/RegisterPopup/SectionLeft";
 import { Gratitude } from "./Components/Register/Gratitude/Gratitude";
 import { AfterGratitude } from "./Components/Register/AfterGratitude/AfterGratitude";
 import { BuyerGratitude } from "./Components/Register/BuyerGratitude/BuyerGratitude";
@@ -24,7 +25,7 @@ function App() {
     <div className="App">
       <ThemeProvider theme={theme}>
         <BrowserRouter>
-          <Header/>
+          <Header />
           <Userdetails />
           <Routes>
             <Route

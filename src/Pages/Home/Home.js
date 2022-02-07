@@ -1,7 +1,5 @@
 import React from "react";
 import "./Home.css";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import { Departments } from "../../Components/Home/Departments/Departments";
 import { Favorites } from "../../Components/Home/Favorites/Favorites";
 import { Todaysdeal } from "../../Components/Home/Todaysdeal/Todaysdeal";
