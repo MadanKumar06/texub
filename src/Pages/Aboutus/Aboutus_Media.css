@@ -1,0 +1,1112 @@
+@media  (max-width: 1920px){
+    .Aboutus_Marketing{
+        height: 619px;
+    }
+    .Aboutus_Marketing_tag1{
+        font-size: 39px;
+        padding: 282px 0px 0px 170px;
+    }
+    .Aboutus_Marketing_tag2{
+        margin-top: 7px;
+        font-size: 93px;
+    }
+    .Aboutus_Mission{
+        height: 340px;
+    }
+    .Aboutus_Mission_Heading_tag{
+        font-size: 24px;
+    }
+    .Aboutus_Mission_img1{
+        height: 320px;
+    }
+    .Aboutus_Mission_img1_Heading{
+        font-size: 49px;
+        padding-top: 51px;
+    }
+    .Aboutus_Mission_img1_Heading_tag{
+        font-size: 27px;
+        padding-top: 143px;
+    }
+    .Aboutus_Mission_Heading{
+        font-size: 42px;
+    }
+    .Aboutus_Mission_Heding_Section{
+        width: 50%;
+    }
+    .Aboutus_Headings, .Valued_Assets_Heading_Section, 
+    .Aboutus_Hightlits_Heading{
+        font-size: 43px;
+    }
+    /* .Aboutus_Hightlits_img{
+        height: 112px;
+    } */
+    .Aboutus_Hightlits_Section1{
+        padding-left: 251px;
+    }
+    .Aboutus_Hightlits_img{
+        height: 150px;
+    }
+    .Aboutus_Highlights_tags{
+        font-size: 46px;
+        margin-top: 41px;
+    }
+    .Aboutus_Hightlits_Heading_number{
+        font-size: 39px;
+        margin-top: 48px;
+    }
+    
+    .Aboutus_Hightlits_Arrow{
+        margin-top: 0px;
+        font-size: 2.5rem !important;
+    }
+    .Aboutus_Hightlits_dots{
+        font-size: 4rem !important;
+        padding-left: 955px;
+    }
+    .Aboutus_Hightlits_Section2{
+        padding-left: 946px;
+    }
+    .Aboutus_Valued_img{
+        height: 105px;
+    }
+    .Valued_Assets_1, .Valued_Assets_2, 
+    .Valued_Assets_3, .Valued_Assets_4, .Valued_Assets_5{
+        margin-top: 11px;
+        margin-left: 25px;
+        font-size: 43px;
+    }
+    .Valued_Assets_tag{
+        margin: 36px 0 0 121px;
+        font-size: 30px;
+    }
+    .Aboutus_Worldwide_Logo1{
+        padding: 28px 0 0 995px;
+    }
+    .Aboutus_Worldwide_Logo2 {
+        padding: 11px 0 0 503px;
+    }
+    .Aboutus_Worldwide_Logo3{
+        padding: 86px 0 0 832px;
+    }
+    .Aboutus_Worldwide_Logo4 {
+        margin: 24px 0 0 316px;
+    }
+    .Aboutus_Worldwide_Logo5 {
+        padding: 22px 0 0 1322px;
+    }
+    .Aboutus_Worldwide_Logo6 {
+        padding: 40px 0 0 1666px;
+    }
+    .Aboutus_Worldwide_Section{
+        padding-top: 168px;
+    }
+    .Aboutus_Worldwide_list1, .Aboutus_Worldwide_list2, 
+    .Aboutus_Worldwide_list3, .Aboutus_Worldwide_list4, 
+    .Aboutus_Worldwide_list5, .Aboutus_Worldwide_list6{
+        border-radius: 0px 23px 23px 0px;
+        margin-bottom: 8px;
+        font-size: 21px;
+        padding: 8px;
+    }
+}
+@media  (max-width: 1240px){
+    .Aboutus_Worldwide{
+        background-size: contain;
+        width: 95%;
+        height: 617px;
+    }
+    .Aboutus_Marketing{
+        height: 393px;
+    }
+    .Aboutus_Marketing_tag1{
+        font-size: 33px;
+        padding: 82px 0px 0px 58px;
+    }
+    .Aboutus_Mission{
+        height: 289px;
+    }
+    .Aboutus_Mission_Heading_tag{
+        font-size: 18px;
+    }
+    .Aboutus_Marketing_tag2{
+        margin-top: 0px;
+        font-size: 66px;
+        padding: 0px 0px 0px 72px;
+    }
+    .Aboutus_Mission_img1{
+        height: 226px;
+    }
+    .Aboutus_Mission_img1_Heading{
+        font-size: 45px;
+        padding-top: 12px;
+    }
+    .Aboutus_Mission_img1_Heading_tag{
+        font-size: 21px;
+        padding-top: 88px;
+    }
+    .Aboutus_Hightlits_Section1{
+        padding-left: 118px;
+    }
+    .Aboutus_Hightlits_img {
+        height: 85px;
+    }
+    .Aboutus_Highlights_tags {
+        font-size: 30px;
+        margin-top: 27px;
+    }
+    .Aboutus_Hightlits_Heading_number {
+        font-size: 34px;
+        margin-top: 26px;
+    }
+    .Aboutus_Hightlits_dots{
+        padding-left: 614px;
+    }
+    .Aboutus_Hightlits_Section2{
+        padding-left: 600px;
+    }
+    .Aboutus_Valued_img{
+        height: 80px;
+    }
+    .Valued_Assets_1, .Valued_Assets_2, .Valued_Assets_3, 
+    .Valued_Assets_4, .Valued_Assets_5{
+        margin: 4px 0px 0px 17px;
+    
+    }
+    .Valued_Assets_tag{
+        margin: 27px 0 0 85px;
+       font-size: 26px;
+    }
+    .Aboutus_Worldwide_Logo5{
+        padding: 22px 0 0 807px;
+    }
+    .Aboutus_Worldwide_Logo6 {
+        padding: 40px 0 0 1123px;
+    }
+    .Aboutus_Worldwide_Logo1 {
+        padding: 11px 0 0 595px;
+        height: 42px;
+    }
+    .Aboutus_Worldwide_Logo2 {
+        padding: 5px 0 0 303px;
+        height: 37px;
+    }
+    .Aboutus_Worldwide_Logo3 {
+            padding: 0 0 0 498px;
+            height: 33px;
+        
+    }
+    .Aboutus_Worldwide_Logo4 {
+        height: 32px;
+        margin: 45px 0 0 182px;
+    }
+    .Aboutus_Worldwide_Logo5 {
+        padding: 0px 0 0 794px;
+        height: 33px;
+    }
+    .Aboutus_Worldwide_Logo6 {
+        padding: 16px 0 0 999px;
+        height: 49px;
+    }
+    .Aboutus_Worldwide_Section{
+        padding: 0;
+    }
+    .Aboutus_Worldwide_list1 {
+        width: 7%;
+    }
+    .Aboutus_Worldwide_list2 {
+        width: 10%;
+    }
+    .Aboutus_Worldwide_list3 {
+        width: 13%;
+    }
+    .Aboutus_Worldwide_list6 {
+        width: 14%;
+    }
+}
+
+@media only screen and (min-width:1430px) and  (max-width: 1445px){
+    .Aboutus_Marketing{
+       height: 459px;
+   }
+   .Aboutus_Marketing_tag1{
+       padding: 207px 0px 0px 170px;
+       font-size: 29px;
+   }
+   .Aboutus_Marketing_tag2{
+       padding: 0px 0px 0px 170px;
+       font-size: 63px;
+   }
+    .Aboutus_Mission{
+       height: 227px;
+   }
+    .Aboutus_Headings{
+        font-size: 34px;
+    }
+    .Aboutus_Mission_Heading{
+        font-size: 28px;
+    }
+    .Aboutus_Mission_Heding_Section{
+        width: 52%;
+    }
+    .Aboutus_Mission_Heading_tag{
+        font-size: 16px;
+
+    }
+    .Aboutus_Mission_img1_Heading_tag{
+        font-size: 17px;
+        padding-top: 79px;
+    }
+    .Aboutus_Mission_img1_Heading{
+        font-size: 29px;
+        padding-top: 24px;
+    }
+    .Aboutus_Mission_img1{
+        height: 203px;
+    }
+    .Aboutus_Hightlits_Section1{
+        padding-left: 142px;
+    }
+    /* .Aboutus_Hightlits_dots{
+        padding-left: 697px !important;
+    } */
+    .Aboutus_Hightlits_img{
+        height: 120px;
+    }
+    .Aboutus_Highlights_tags{
+        font-size: 36px;
+    }
+    .Aboutus_Hightlits_Arrow{
+        margin-top: 5px;
+    }
+    .Aboutus_Hightlits_Heading_number{
+        margin: 41px 0 0 0;
+        font-size: 31px;
+    }
+    .Aboutus_Hightlits_Section2{
+        padding-left: 714px;
+    }
+    .Aboutus_Hightlits_dots{
+        padding-left: 724px;
+        font-size: 3rem !important;
+    }
+    .Aboutus_Valued_img{
+        height: 81px;
+    }
+    .Valued_Assets_1, .Valued_Assets_2, 
+    .Valued_Assets_3, .Valued_Assets_4, 
+    .Valued_Assets_5{
+        margin: 5px 0px 0px 17px;
+        font-size: 36px;
+    }
+    .Valued_Assets_tag{
+        margin: 28px 0px 0px 92px;
+        font-size: 23px;
+    }
+    .Aboutus_Worldwide{
+        background-size: contain;
+        width: 96%;
+        height: 718px;
+    }
+    /* .Aboutus_Worldwide_Logo1,
+.Aboutus_Worldwide_Logo2,
+.Aboutus_Worldwide_Logo3,
+.Aboutus_Worldwide_Logo4,
+.Aboutus_Worldwide_Logo5,
+.Aboutus_Worldwide_Logo6{
+    height: 50px;
+    
+}  */
+.Aboutus_Worldwide_Logo1 {
+    padding: 14px 0 0 700px;
+    height: 50px !important;
+}
+.Aboutus_Worldwide_Logo2 {
+    padding: 3px 0 0 357px;
+    height: 38px !important;
+}
+.Aboutus_Worldwide_Logo3 {
+    padding: 54px 0 0 582px;
+    height: 92px !important;
+}
+.Aboutus_Worldwide_Logo4 {
+    margin: 60px 0 0 218px;
+    height: 36px !important;
+}
+.Aboutus_Worldwide_Logo5 {
+    padding: 0px 0 0 932px;
+}
+.Aboutus_Worldwide_Logo6 {
+    padding: 16px 0 0 1172px;
+}
+.Aboutus_Worldwide_Section {
+    padding-top: 18px;
+}
+.Aboutus_Worldwide_list1 {
+    width: 8%;
+}
+.Aboutus_Worldwide_list2 {
+    width: 10%;
+}
+.Aboutus_Worldwide_list3 {
+    width: 12%;
+}
+}
+@media only screen and (min-width:1020px) and  (max-width: 1026px){
+    /* .Aboutus_Marketing_tag1{
+        padding: 140px 0px 0px 99px;
+    } */
+    
+    .Aboutus_Hightlits_Section1{
+        padding: 0 0 0 21px;
+        gap: 13px;
+
+    }
+    .Aboutus_Marketing_tag1{
+        padding: 77px 0px 0px 69px;
+        font-size: 28px;
+    }
+    
+    .Aboutus_Mission_img1{
+        height: 100%;
+        width: 100%;
+    }
+    .Aboutus_Mission_Heading_tag{
+        font-size: 15px;
+    }
+    .Aboutus_Mission_img1_Heading{
+        padding: 77px 0px 0px 0px;
+        font-size: 36px;
+    }
+    .Aboutus_Mission_img1_Heading_tag{
+        font-size: 16px;
+        padding-top: 148px;
+    }
+    .Aboutus_Mission_Heding_Section{
+        width: 70%;
+    }
+    .Aboutus_Hightlits_img{
+        height: 112px;
+    }
+    .Aboutus_Highlights_tags {
+        font-size: 32px;
+        margin-top: 30px;
+    }
+    .Aboutus_Hightlits_Heading_number {
+        font-size: 39px;
+        margin-top: 30px;
+    }    
+    .Aboutus_Hightlits_Section2{
+        padding-left: 482px;
+        gap: 13px;
+    }
+    .Aboutus_Hightlits_dots{
+        padding-left: 493px;
+    }
+    .Aboutus_Valued_img{
+        height: 63px;
+    }
+    .Valued_Assets_1, .Valued_Assets_2,
+     .Valued_Assets_3, .Valued_Assets_4, .Valued_Assets_5{
+        margin-top: 3px;
+        margin-left: 12px;
+        font-size: 32px;
+     }
+     .Valued_Assets_tag{
+        margin: 21px 0 0 63px;
+        font-size: 21px;
+     }
+    /* .Aboutus_Worldwide_Logo1, .Aboutus_Worldwide_Logo2, .Aboutus_Worldwide_Logo3, 
+    .Aboutus_Worldwide_Logo4, .Aboutus_Worldwide_Logo5, .Aboutus_Worldwide_Logo6{
+        height: 22px;
+    } */
+    .Aboutus_Worldwide_Logo1{
+        padding: 8px 0 0 480px;
+        height: 35px;
+    }
+    .Aboutus_Worldwide_Logo2{
+        padding: 0px 0 0 241px;
+        height: 30px;
+    }
+    .Aboutus_Worldwide_Logo3{
+        padding: 0px 0 0 401px;
+        height: 29px;
+    }
+    .Aboutus_Worldwide_Logo4{
+        margin: 30px 0 0 146px;
+        height: 30px;
+    }
+    .Aboutus_Worldwide_Logo5{
+        padding: 0px 0 0 642px;
+        height: 27px;
+    }
+    .Aboutus_Worldwide_Logo6{
+        padding: 9px 0 0 808px;
+        height: 36px;
+    }
+    .Aboutus_Worldwide_list3{
+        width: 15%;
+    }
+    .Aboutus_Marketing{
+        height: 315px;
+    }
+    .Aboutus_Marketing_tag2 {
+        padding: 0px 0px 0px 76px;
+        font-size: 56px;
+    
+    }
+    .Aboutus_Worldwide{
+        background-size: contain;
+        width: 93%;
+        height: 80%;
+    }
+    .Aboutus_Worldwide_Section{
+        padding: 0;
+    }
+    .Aboutus_Worldwide_list1{
+        width: 9%;
+    }
+    .Aboutus_Worldwide_list2 {
+        background-color: #EE254B;
+        width: 12%;
+    }
+    .Aboutus_Worldwide_list6 {
+        background-color: #1F2E58;
+        width: 15%;
+    }
+}
+
+@media only screen and (min-width:760px) and  (max-width: 770px){
+    .Aboutus_Marketing{
+        height: 235px;
+    }
+    .Aboutus_Worldwide{
+        background-size: contain;
+        width: 93%;
+        height: 397px;
+    }
+    .Aboutus_Marketing_tag1{
+        padding: 48px 0px 0px 36px;
+        font-size: 23px;
+    }
+    .Aboutus_Marketing_tag2{
+        padding: 0px 0px 0px 39px;
+        font-size: 43px;
+    }
+    .Aboutus_Mission_Heding_Section{
+        width: 40%;
+    }
+    .Aboutus_Mission_Heading_tag{
+        font-size: 13px;
+    }
+    .Aboutus_Mission_img1{
+        height: 160px;
+    }
+    .Aboutus_Mission{
+       height:100% ;
+       padding-bottom: 20px;
+       gap: 10px;
+    }
+    .Aboutus_Mission_Heading{
+        font-size: 40px;
+        margin-top: 0px;
+    }
+    .Aboutus_Mission_img1_Heading{
+        font-size: 39px;
+        padding-top: 1px;
+    }
+    .Aboutus_Mission_img1_Heading_tag{
+        font-size: 16px;
+        padding-top: 67px;
+    }
+    .Aboutus_Hightlits_img{
+        height: 77px;
+    }
+    .Aboutus_Highlights_tags{
+        font-size: 26px;
+        margin-top: 22px;
+    }
+    .Aboutus_Hightlits_Arrow{
+        height: 19px;
+    margin: 32px 0px 0px 0px;
+    }
+    .Aboutus_Hightlits_Section1{
+        padding-left: 6px;
+        gap: 10px;
+    }
+    .Aboutus_Hightlits_Heading_number{
+        margin-top: 16px;
+    }
+    .Aboutus_Hightlits_dots{
+        padding-left: 377px;
+    }
+    .Aboutus_Hightlits_Section2{
+        padding-left: 364px;
+        gap: 10px;
+    }
+    /* .Aboutus_Hightlits_img{
+        height: 46px;
+    } */
+    .Aboutus_Valued_img{
+        height: 49px;
+    }
+    .Valued_Assets_tag{
+        margin: 14px 0 0 45px;
+        font-size: 18px;
+    }
+    .Valued_Assets_1, .Valued_Assets_2, 
+    .Valued_Assets_3, .Valued_Assets_4, .Valued_Assets_5{
+        margin-top: 0px;
+        margin-left: 9px;
+        font-size: 25px;
+    }
+    .Aboutus_Worldwide_Section{
+        padding-top: 0px;
+    }
+    .Aboutus_Worldwide_list{
+        padding-top: 0;
+        margin: 0;
+    }
+    .Aboutus_Worldwide_list1, .Aboutus_Worldwide_list2, 
+    .Aboutus_Worldwide_list3, .Aboutus_Worldwide_list4, 
+    .Aboutus_Worldwide_list5, .Aboutus_Worldwide_list6{
+        font-size: 14px;
+        margin-bottom: 0;
+    }
+    .Aboutus_Worldwide_list1{
+        width: 8%;
+    }
+    .Aboutus_Worldwide_list2{
+        width: 12%;
+    }
+    .Aboutus_Worldwide_list3{
+        width: 15%;
+    }
+    .Aboutus_Worldwide_list6{
+        width: 15%;
+    }
+    .Aboutus_Worldwide_Logo1,
+    .Aboutus_Worldwide_Logo2,
+    .Aboutus_Worldwide_Logo3,
+    .Aboutus_Worldwide_Logo4,
+    .Aboutus_Worldwide_Logo5,
+    .Aboutus_Worldwide_Logo6{
+        height: 18px;
+    }
+    .Aboutus_Worldwide_Logo1{
+        padding: 8px 0 0 361px;
+        height: 27px;
+    }
+    .Aboutus_Worldwide_Logo2{
+        padding: 0px 0 0 183px;
+    }
+    .Aboutus_Worldwide_Logo3{
+        padding: 0px 0 0 302px;
+    }
+    .Aboutus_Worldwide_Logo4{
+        margin:27px 0 0 113px;
+    }
+    .Aboutus_Worldwide_Logo5{
+        padding: 0px 0 0 482px;
+    }
+    .Aboutus_Worldwide_Logo6{
+        padding: 9px 0 0 606px;
+        height: 29px;
+    }
+    
+}
+@media only screen and (min-width:475px) and  (max-width: 480px){
+    .Aboutus_Marketing{
+        height: auto;
+        margin: 0px 5px 0px 5px;
+        height: 103px;
+    }
+    .Aboutus_Marketing_tag1{
+      padding: 23px 0px 0px 15px;
+      font-size: 10px;
+    }
+    .Aboutus_Marketing_tag2{
+      font-size: 18px;
+      padding: 0px 0px 0px 15px;
+    }
+    .Aboutus_Mission_Heading{
+        font-size: 29px;
+    }
+    .Aboutus_Mission{
+      padding: 0px 0px 0 9px;
+      gap: 10px;
+    }
+    .Aboutus_Mission_Heding_Section{
+        width: 100%;
+    }
+    .Aboutus_Mission_img1_Heading{
+      font-size: 38px;
+      padding-top: 3px;
+    }
+    .Aboutus_Mission_img1_Heading_tag{
+        padding-top: 64px;
+        font-size: 17px;
+    }
+    .Aboutus_Mission_img1{
+      height: 100%;
+      width: 100%;
+    }
+      .Aboutus_Worldwide_Logo6{
+        padding: 0px 0 0 346px;
+        height: 12px;
+    }
+    .Aboutus_Worldwide_Logo5{
+        padding: 0px 0 0 273px;
+        height: 13px;
+    }
+    .Aboutus_Worldwide_Logo1 {
+        padding: 1px 0 0 204px;
+        height: 12px !important;
+    }
+    .Aboutus_Worldwide_Logo2{
+        padding: 0px 0 0px 103px;
+        height: 10px;
+    }
+    
+    .Aboutus_Worldwide_Logo3{
+      padding: 0px 0 0 40px;
+    }
+    .Aboutus_Worldwide_Logo4 {
+        height: 11px;
+        margin: 4px 0 0 62px;
+    }
+    .Aboutus_Mission{
+        display: flex;
+        flex-direction: column;
+        height: auto;
+    }
+    .Aboutus_Hightlits_Section1{
+        padding-left: 51px;
+        gap: 24px;
+    }
+    .Aboutus_Hightlits_Section2{
+        padding-left: 63px;
+        gap: 24px;
+    }
+    .Aboutus_Hightlits_img{
+        height: 60px;
+    }
+    .Aboutus_Highlights_tags{
+        font-size: 20px;
+        margin-top: 17px;
+    }
+    .Aboutus_Hightlits_Arrow{
+      height: 16px;
+      margin-top: 23px;
+    }
+    .Aboutus_Hightlits_Heading_number{
+      font-size: 26px;
+      margin-top: 13px;
+    }
+    .Aboutus_Hightlits_dots{
+        padding-left: 210px;
+    }
+    .Valued_Assets_Tags_Section{
+        flex-direction: column;
+        padding-left: 20px;
+    }
+    .Aboutus_Headings, .Valued_Assets_Heading_Section,
+     .Aboutus_Hightlits_Heading{
+         font-size: 34px;
+     }
+     .Aboutus_Hightlits_Heading{
+         justify-content: space-evenly;
+     }
+     .Downarrow{
+         margin-top: 39px;
+         visibility: inherit;
+     }
+     .Aboutus_Worldwide_Section{
+         padding-top: 50px;
+     }
+     .Aboutus_Worldwide_Logo1, .Aboutus_Worldwide_Logo2, 
+     .Aboutus_Worldwide_Logo3, .Aboutus_Worldwide_Logo4, 
+     .Aboutus_Worldwide_Logo5, .Aboutus_Worldwide_Logo6 {
+        display: none;
+     } 
+     .Aboutus_Worldwide{
+        margin: 20px 50px 0px 11px;
+     }
+     .Aboutus_Worldwide_list1, .Aboutus_Worldwide_list2, 
+     .Aboutus_Worldwide_list3, .Aboutus_Worldwide_list4, 
+     .Aboutus_Worldwide_list5, .Aboutus_Worldwide_list6 {
+         margin: 0;
+         padding: 2px;
+         font-size: 14px;
+     }
+.Aboutus_Worldwide_list1 {
+    width: 10%;
+    }
+.Aboutus_Worldwide_list2 {
+    width: 17%;
+    }
+.Aboutus_Worldwide_list3 {
+    width: 23%;
+    }
+.Aboutus_Worldwide_list4 {
+        width: 11%;
+    }
+.Aboutus_Worldwide_list5 {
+        width: 13%;
+    }
+.Aboutus_Worldwide_list6 {
+        width: 23%;
+    }   
+    .Aboutus_Worldwide{
+        height: 222px;
+    }
+}
+@media only screen and (max-width: 425px){
+    .Aboutus_Marketing{
+        height: auto;
+        margin: 0px 5px 0px 5px;
+        height: 103px;
+    }
+    .Aboutus_Marketing_tag1{
+      padding: 23px 0px 0px 15px;
+      font-size: 10px;
+    }
+    .Aboutus_Marketing_tag2{
+      font-size: 18px;
+      padding: 0px 0px 0px 15px;
+    }
+    .Aboutus_Mission_Heading{
+        font-size: 29px;
+    }
+    .Aboutus_Mission{
+      padding: 0px 0px 0 9px;
+      gap: 10px;
+    }
+    .Aboutus_Mission_Heding_Section{
+        width: 100%;
+    }
+    .Aboutus_Mission_img1_Heading{
+      font-size: 38px;
+      padding-top: 3px;
+    }
+    .Aboutus_Mission_img1_Heading_tag{
+        padding-top: 64px;
+        font-size: 17px;
+    }
+    .Aboutus_Mission_img1{
+      height: 100%;
+      width: 100%;
+    }
+      .Aboutus_Worldwide_Logo6{
+        padding: 0px 0 0 346px;
+        height: 12px;
+    }
+    .Aboutus_Worldwide_Logo5{
+        padding: 0px 0 0 273px;
+        height: 13px;
+    }
+    .Aboutus_Worldwide_Logo1 {
+        padding: 1px 0 0 204px;
+        height: 12px !important;
+    }
+    .Aboutus_Worldwide_Logo2{
+        padding: 0px 0 0px 103px;
+        height: 10px;
+    }
+    
+    .Aboutus_Worldwide_Logo3{
+      padding: 0px 0 0 40px;
+    }
+    .Aboutus_Worldwide_Logo4 {
+        height: 11px;
+        margin: 4px 0 0 62px;
+    }
+    .Aboutus_Mission{
+        display: flex;
+        flex-direction: column;
+        height: auto;
+    }
+    .Aboutus_Hightlits_Section2,
+    .Aboutus_Hightlits_Section1{
+        padding-left: 36px;
+        gap: 24px;
+    }
+    .Aboutus_Hightlits_img{
+        height: 60px;
+    }
+    .Aboutus_Highlights_tags{
+        font-size: 20px;
+        margin-top: 17px;
+    }
+    .Aboutus_Hightlits_Arrow{
+      height: 16px;
+      margin-top: 23px;
+    }
+    .Aboutus_Hightlits_Heading_number{
+      font-size: 26px;
+      margin-top: 13px;
+    }
+    .Aboutus_Hightlits_dots{
+        padding-left: 210px;
+    }
+    .Valued_Assets_Tags_Section{
+        flex-direction: column;
+        padding-left: 20px;
+    }
+    .Aboutus_Headings, .Valued_Assets_Heading_Section,
+     .Aboutus_Hightlits_Heading{
+         font-size: 34px;
+     }
+     .Aboutus_Hightlits_Heading{
+         justify-content: space-evenly;
+     }
+     .Downarrow{
+         margin-top: 39px;
+         visibility: inherit;
+     }
+     .Aboutus_Worldwide_Section{
+         padding-top: 50px;
+     }
+     .Aboutus_Worldwide_Logo1, .Aboutus_Worldwide_Logo2, 
+     .Aboutus_Worldwide_Logo3, .Aboutus_Worldwide_Logo4, 
+     .Aboutus_Worldwide_Logo5, .Aboutus_Worldwide_Logo6 {
+        display: none;
+     } 
+     .Aboutus_Worldwide{
+        margin: 20px 50px 0px 11px;
+     }
+     .Aboutus_Worldwide_list1, .Aboutus_Worldwide_list2, 
+     .Aboutus_Worldwide_list3, .Aboutus_Worldwide_list4, 
+     .Aboutus_Worldwide_list5, .Aboutus_Worldwide_list6 {
+         margin: 0;
+         padding: 2px;
+         font-size: 14px;
+     }
+.Aboutus_Worldwide_list1 {
+    width: 10%;
+    }
+.Aboutus_Worldwide_list2 {
+    width: 17%;
+    }
+.Aboutus_Worldwide_list3 {
+    width: 23%;
+    }
+.Aboutus_Worldwide_list4 {
+        width: 11%;
+    }
+.Aboutus_Worldwide_list5 {
+        width: 13%;
+    }
+.Aboutus_Worldwide_list6 {
+        width: 23%;
+    }   
+    .Aboutus_Worldwide{
+        height: 222px;
+    }
+}
+@media (max-width: 375px){
+    .Aboutus_Marketing{
+        height: auto;
+        margin: 0px 5px 0px 5px;
+        height: 103px;
+    }
+    .Aboutus_Marketing_tag1{
+      padding: 23px 0px 0px 15px;
+      font-size: 10px;
+    }
+    .Aboutus_Marketing_tag2{
+      font-size: 18px;
+      padding: 0px 0px 0px 15px;
+    }
+    .Aboutus_Mission_Heading{
+        font-size: 29px;
+    }
+    .Aboutus_Mission{
+      padding: 0px 0px 0 9px;
+      gap: 10px;
+    }
+    .Aboutus_Mission_Heding_Section{
+        width: 100%;
+    }
+    .Aboutus_Mission_img1_Heading{
+      font-size: 28px;
+      padding-top: 3px;
+    }
+    .Aboutus_Mission_img1_Heading_tag{
+        padding-top: 51px;
+        font-size: 13px;
+    }
+    .Aboutus_Mission_img1{
+      height: 100%;
+      width: 100%;
+    }
+      .Aboutus_Worldwide_Logo6{
+      padding: 18px 0 0 50px;
+    }
+    .Aboutus_Worldwide_Logo5{
+      padding: 0px 0 0 60px;
+    }
+    .Aboutus_Worldwide_Logo1{
+      padding: 14px 0 0 70px;
+    }
+    .Aboutus_Worldwide_Logo2{
+      padding: 0px 0 0 47px;
+    }
+    .Aboutus_Worldwide_Logo3{
+      padding: 43px 0 0 40px;
+    }
+    .Aboutus_Mission{
+        display: flex;
+        flex-direction: column;
+        height: auto;
+    }
+    .Aboutus_Hightlits_Section2,
+    .Aboutus_Hightlits_Section1{
+        padding-left: 10px;
+        gap: 18px;
+    }
+    .Aboutus_Hightlits_img{
+        height: 60px;
+    }
+    .Aboutus_Highlights_tags{
+        font-size: 20px;
+    }
+    .Aboutus_Hightlits_Arrow{
+      height: 16px;
+      margin-top: 23px;
+    }
+    .Aboutus_Hightlits_Heading_number{
+      font-size: 26px;
+      margin-top: 13px;
+    }
+    .Aboutus_Hightlits_dots{
+        padding-left: 178px;
+        height: 54px;
+    }
+    .Valued_Assets_Tags_Section{
+        flex-direction: column;
+    }
+    .Aboutus_Headings, .Valued_Assets_Heading_Section,
+     .Aboutus_Hightlits_Heading{
+         font-size: 34px;
+     }
+     .Downarrow{
+        visibility: inherit;
+    }
+    .Aboutus_Worldwide_list3 {
+        width: 26%;
+    }
+}
+@media  (max-width: 320px){
+    
+    .Aboutus_Marketing{
+      height: auto;
+      margin: 0px 5px 0px 5px;
+      height: 103px;
+  }
+  .Aboutus_Marketing_tag1{
+    padding: 23px 0px 0px 15px;
+    font-size: 10px;
+  }
+  .Aboutus_Marketing_tag2{
+    font-size: 18px;
+    padding: 0px 0px 0px 15px;
+  }
+  .Aboutus_Mission_Heading{
+      font-size: 29px;
+  }
+  .Aboutus_Mission_Heading_tag {
+    font-size: 13px;
+   }
+  .Aboutus_Mission{
+    padding: 0px 0px 0 9px;
+    gap: 10px;
+  }
+  .Aboutus_Mission_Heding_Section{
+      width: 100%;
+  }
+  .Aboutus_Mission_img1_Heading{
+    font-size: 28px;
+    padding-top: 3px;
+  }
+  .Aboutus_Mission_img1_Heading_tag{
+      padding-top: 51px;
+      font-size: 13px;
+  }
+  .Aboutus_Mission_img1{
+    height: 100%;
+    width: 100%;
+  }
+    .Aboutus_Worldwide_Logo6{
+    padding: 18px 0 0 50px;
+  }
+  .Aboutus_Worldwide_Logo5{
+    padding: 0px 0 0 60px;
+  }
+  .Aboutus_Worldwide_Logo1{
+    padding: 14px 0 0 70px;
+  }
+  .Aboutus_Worldwide_Logo2{
+    padding: 0px 0 0 47px;
+  }
+  .Aboutus_Worldwide_Logo3{
+    padding: 43px 0 0 40px;
+  }
+  .Aboutus_Mission{
+      display: flex;
+      flex-direction: column;
+      height: auto;
+  }
+  .Aboutus_Hightlits_Section2,
+  .Aboutus_Hightlits_Section1{
+      padding-left: 10px;
+      gap: 9px;
+  }
+  .Aboutus_Hightlits_img{
+      height: 60px;
+  }
+  .Aboutus_Highlights_tags{
+      font-size: 20px;
+  }
+  .Aboutus_Hightlits_Arrow{
+    height: 16px;
+    margin-top: 24px;
+  }
+  .Aboutus_Hightlits_Heading_number{
+    font-size: 26px;
+    margin-top: 13px;
+  }
+  .Aboutus_Hightlits_dots{
+      padding-left: 155px;
+  }
+  .Valued_Assets_Tags_Section{
+      flex-direction: column;
+  }
+  .Aboutus_Headings, .Valued_Assets_Heading_Section,
+   .Aboutus_Hightlits_Heading{
+       font-size: 34px;
+   }
+   .Downarrow{
+    visibility: inherit;
+}
+.Aboutus_Worldwide{
+    margin: 20px 50px 0px 10px;
+}
+.Aboutus_Worldwide_list1 {
+    width: 13%;
+}
+.Aboutus_Worldwide_list2 {
+    width: 21%;
+}
+.Aboutus_Worldwide_list3 {
+    width: 31%;
+}
+.Aboutus_Worldwide_list4 {
+    width: 14%;
+}
+.Aboutus_Worldwide_list5 {
+    width: 15%;
+}
+.Aboutus_Worldwide_list6 {
+    width: 30%;
+}
+}
