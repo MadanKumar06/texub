@@ -96,7 +96,7 @@
 .Aboutus_Hightlits_Section2,
 .Aboutus_Hightlits_Section1{
     display: flex;
-    gap: 8px;
+    gap: 35px;
     color: #20639B;
 }
 .Aboutus_Hightlits_Section1{
@@ -150,7 +150,7 @@
     margin: 19px 0 0 64px;
 }
 .Aboutus_Hightlits_Arrow{
-    margin-top: 17px;
+    margin-top: -2px;
 }
 .Aboutus_Hightlits_Heading_number{
     margin: 12px 0 0 0;
@@ -179,9 +179,9 @@
 .Aboutus_Worldwide{
     background-image: url('../../Assets/Aboutus/Group\ 794.svg');
     background-repeat: no-repeat;
-    background-size: contain;
-     height:593px;  
-    width: auto; 
+    background-size: cover;
+    height: 1000px;
+    width: 97%; 
     margin: 20px 50px 0px 50px;
 }
 .Aboutus_Worldwide_Section{
@@ -232,15 +232,15 @@
     background-color: #1F2E58;
     width: 11%;
 }
-.Aboutus_Worldwide_Logo1,
+ /* .Aboutus_Worldwide_Logo1,
 .Aboutus_Worldwide_Logo2,
 .Aboutus_Worldwide_Logo3,
 .Aboutus_Worldwide_Logo4,
 .Aboutus_Worldwide_Logo5,
 .Aboutus_Worldwide_Logo6{
-    height: 30px;
+    height: 50px;
     
-}
+}  */
 .Aboutus_Worldwide_Logo1{
     padding: 14px 0 0 586px;
 }
@@ -258,4 +258,7 @@
 }
 .Aboutus_Worldwide_Logo6{
     padding: 18px 0 0 986px;
+}
+.Downarrow{
+    visibility: hidden;
 }

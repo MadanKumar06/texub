@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import './Aboutus.css'
 import './Aboutus_Media.css'
 // import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
@@ -7,6 +7,8 @@ import './Aboutus_Media.css'
 // import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRightIcon';
 // import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 // import MoreVertIcon from '@mui/icons-material/MoreVert';
+// import {KeyboardArrowDown} from '@mui/icons-material';
+import { Menu,KeyboardArrowDown } from "@material-ui/icons";
 import Auction from '../../Assets/Aboutus/Trade_Auction.png'
 import Secure from '../../Assets/Aboutus/Secure_get.png'
 import Unlimit from '../../Assets/Aboutus/Unlimited.png'
@@ -22,9 +24,20 @@ import Tag4 from '../../Assets/Aboutus/Group 777.svg'
 import Tag5 from '../../Assets/Aboutus/Group 778.svg'
 import Mission from '../../Assets/Aboutus/Group 924.svg'
 import Logo from '../../Assets/Aboutus/Group 795.svg'
+import Left from '../../Assets/Aboutus/Group 766.svg'
+import dots from '../../Assets/Aboutus/Repeat Grid 3.svg'
+import Right from '../../Assets/Aboutus/Group 773.svg'
 
 
 export const Aboutus = () => {
+    const [isHigh, setisHigh] = useState(true);
+    const Highlights = () => {
+        setisHigh(!isHigh)
+    }
+    const [isValue, setisValue] = useState(true);
+    const ValueAssets = () =>{
+        setisValue(!isValue)
+    }
     return (
         <div className='Aboutus_main'>
             <div className='Aboutus_Marketing'>
@@ -51,67 +64,92 @@ export const Aboutus = () => {
 
             </div>
             <div className='Aboutus_Hightlits'>
-                <div className='Aboutus_Hightlits_Heading'><h2 className='Aboutus_Headings'>Highlights</h2></div>
+                <div className='Aboutus_Hightlits_Heading'>
+                    <h2 className='Aboutus_Headings'>Highlights</h2> 
+                    {/* <i class=" Products_Downloadangle" onClick={Highlights}> */}
+                    <KeyboardArrowDown onClick={Highlights} className='Downarrow'></KeyboardArrowDown>
+                    </div>
+                  {isHigh &&   
                 <div className='Aboutus_Hightlits_Section'>
                     <div className='Aboutus_Hightlits_Section1'>
                      <img src={Auction} alt="" className='Aboutus_Hightlits_img'/>
                      <p className='Aboutus_Highlights_tags'>B2B Trade & Auctions</p>
                      {/* <KeyboardDoubleArrowLeftIcon className='Aboutus_Hightlits_Arrow'/> */}
+                     <img src={Left} alt="" className='Aboutus_Hightlits_Arrow'/>
                      <h2 className='Aboutus_Hightlits_Heading_number'>01</h2>
                     </div>
                     {/* <MoreVertIcon className='Aboutus_Hightlits_dots'/> */}
+                    <img src={dots} alt="" className='Aboutus_Hightlits_dots'/>
                     <div className='Aboutus_Hightlits_Section2'>
                     <h2 className='Aboutus_Hightlits_Heading_number'>02</h2>   
                      {/* <KeyboardDoubleArrowRightIcon className='Aboutus_Hightlits_Arrow'/> */}
+                     <img src={Right} alt="" className='Aboutus_Hightlits_Arrow'/>
                      <p className='Aboutus_Highlights_tags'>B2B Trade & Auctions</p>
                      <img src={Secure} alt="" className='Aboutus_Hightlits_img'/>
                     </div>
                     {/* <MoreVertIcon className='Aboutus_Hightlits_dots'/> */}
+                    <img src={dots} alt="" className='Aboutus_Hightlits_dots'/>
                     <div className='Aboutus_Hightlits_Section1'>
                      <img src={Unlimit} alt="" className='Aboutus_Hightlits_img' />
                      <p className='Aboutus_Highlights_tags'>B2B Trade & Auctions</p>
                      {/* <KeyboardDoubleArrowLeftIcon className='Aboutus_Hightlits_Arrow'/> */}
+                     <img src={Left} alt="" className='Aboutus_Hightlits_Arrow'/>
                      <h2 className='Aboutus_Hightlits_Heading_number'>03</h2>
                     </div>
                     {/* <MoreVertIcon className='Aboutus_Hightlits_dots'/> */}
+                    <img src={dots} alt="" className='Aboutus_Hightlits_dots'/>
                     <div className='Aboutus_Hightlits_Section2'>
                     <h2 className='Aboutus_Hightlits_Heading_number'>04</h2>
                     {/* <KeyboardDoubleArrowRightIcon className='Aboutus_Hightlits_Arrow'/> */}
+                    <img src={Right} alt="" className='Aboutus_Hightlits_Arrow'/>
                     <p className='Aboutus_Highlights_tags'>B2B Trade & Auctions</p>
                      <img src={UnAccess} alt=""  className='Aboutus_Hightlits_img'/>
                     </div>
                     {/* <MoreVertIcon className='Aboutus_Hightlits_dots'/> */}
+                    <img src={dots} alt="" className='Aboutus_Hightlits_dots'/>
                     <div className='Aboutus_Hightlits_Section1'>
                      <img src={Secured} alt=""  className='Aboutus_Hightlits_img'/>
                      <p className='Aboutus_Highlights_tags'>B2B Trade & Auctions</p>
                      {/* <KeyboardDoubleArrowLeftIcon className='Aboutus_Hightlits_Arrow'/> */}
+                     <img src={Left} alt="" className='Aboutus_Hightlits_Arrow'/>
                      <h2 className='Aboutus_Hightlits_Heading_number'>05</h2>
                     </div>
                     {/* <MoreVertIcon className='Aboutus_Hightlits_dots'/> */}
+                    <img src={dots} alt="" className='Aboutus_Hightlits_dots'/>
                     <div className='Aboutus_Hightlits_Section2'>
                     <h2 className='Aboutus_Hightlits_Heading_number'>06</h2>
                     {/* <KeyboardDoubleArrowRightIcon className='Aboutus_Hightlits_Arrow'/> */}
+                    <img src={Right} alt="" className='Aboutus_Hightlits_Arrow'/>
                     <p className='Aboutus_Highlights_tags'>B2B Trade & Auctions</p>
                      <img src={Easy} alt=""  className='Aboutus_Hightlits_img'/>
                     </div>
                     {/* <MoreVertIcon className='Aboutus_Hightlits_dots'/> */}
+                    <img src={dots} alt="" className='Aboutus_Hightlits_dots'/>
                     <div className='Aboutus_Hightlits_Section1'>
                      <img src={Simplefied} alt="" className='Aboutus_Hightlits_img' />
                      <p className='Aboutus_Highlights_tags'>B2B Trade & Auctions</p>
                      {/* <KeyboardDoubleArrowLeftIcon className='Aboutus_Hightlits_Arrow'/> */}
+                     <img src={Left} alt="" className='Aboutus_Hightlits_Arrow'/>
                      <h2 className='Aboutus_Hightlits_Heading_number'>07</h2>
                     </div>
                     {/* <MoreVertIcon className='Aboutus_Hightlits_dots'/> */}
+                    <img src={dots} alt="" className='Aboutus_Hightlits_dots'/>
                     <div className='Aboutus_Hightlits_Section2'>
                     <h2 className='Aboutus_Hightlits_Heading_number'>08</h2>
                     {/* <KeyboardDoubleArrowRightIcon className='Aboutus_Hightlits_Arrow'/> */}
+                    <img src={Right} alt="" className='Aboutus_Hightlits_Arrow'/>
                     <p className='Aboutus_Highlights_tags'>B2B Trade & Auctions</p>
                      <img src={Marketing} alt=""  className='Aboutus_Hightlits_img'/>
                     </div> 
                 </div>
+                }
             </div>
             <div className='Valued_Assets'>
-                <div className='Aboutus_Hightlits_Heading'><h2 className='Aboutus_Headings'>Valued Assets</h2></div>
+                <div className='Aboutus_Hightlits_Heading'>
+                    <h2 className='Aboutus_Headings'>Valued Assets</h2>
+                    <KeyboardArrowDown onClick={ValueAssets} className='Downarrow'></KeyboardArrowDown>
+                    </div>
+                  {isValue &&   
                 <div className='Valued_Assets_Tags_Section'>
                     <div className='Valued_Assets_img'>   
                          <p className='Valued_Assets_1'>01</p>
@@ -139,6 +177,7 @@ export const Aboutus = () => {
                         <img src={Tag5} alt="" className='Aboutus_Valued_img' />
                     </div>
                 </div>
+                }
 
             </div>
             <div>
