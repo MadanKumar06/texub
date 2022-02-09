@@ -6,7 +6,6 @@
   "dependencies": {
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
-    "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@material-ui/core": "^5.0.0-beta.5",
     "@material-ui/icons": "^5.0.0-beta.5",
     "@material-ui/styles": "5.0.0-beta.3",
@@ -17,14 +16,10 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
-    "bootstrap": "^5.1.3",
     "firebase": "^9.6.1",
     "npm": "^8.4.1",
     "react": "^17.0.2",
-    "react-bootstrap": "^2.0.3",
     "react-dom": "^17.0.2",
-    "react-icons": "^4.3.1",
-    "react-recaptcha": "^2.3.10",
     "react-router-dom": "^6.2.1",
     "react-scripts": "4.0.3",
     "react-slick": "^0.28.1",
@@ -55,8 +50,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "pe7-icon": "^1.0.4"
   }
 }

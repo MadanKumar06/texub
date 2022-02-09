@@ -14,7 +14,15 @@
     }
   }
 
+  @mixin flex1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   .productlist__deal {
+    @include flex1;
+    align-items: baseline;
     color: white;
     display: flex;
     flex-direction: column;
