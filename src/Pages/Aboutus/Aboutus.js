@@ -1,220 +1,168 @@
-import React, {useState} from 'react'
-import './Aboutus.css'
-import './Aboutus_Media.css'
-// import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
-// import {KeyboardDoubleArrowLeft,KeyboardDoubleArrowRight } from  '@mui/icons-material';
-// import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
-// import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRightIcon';
-// import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
-// import MoreVertIcon from '@mui/icons-material/MoreVert';
-// import {KeyboardArrowDown} from '@mui/icons-material';
-import { Menu,KeyboardArrowDown } from "@material-ui/icons";
-import Auction from '../../Assets/Aboutus/Trade_Auction.png'
-import Secure from '../../Assets/Aboutus/Secure_get.png'
-import Unlimit from '../../Assets/Aboutus/Unlimited.png'
-import UnAccess from '../../Assets/Aboutus/Unlimited_access.png'
-import Secured from '../../Assets/Aboutus/Secured.png'
-import Easy from '../../Assets/Aboutus/Easy.png'
-import Simplefied from '../../Assets/Aboutus/Simpliefied.png'
-import Marketing from '../../Assets/Aboutus/Marketing.png'
-import Tag1 from '../../Assets/Aboutus/Group 925.svg'
-import Tag2 from '../../Assets/Aboutus/Group 926.svg'
-import Tag3 from '../../Assets/Aboutus/Group 927.svg'
-import Tag4 from '../../Assets/Aboutus/Group 777.svg'
-import Tag5 from '../../Assets/Aboutus/Group 778.svg'
-import Mission from '../../Assets/Aboutus/Group 924.svg'
-import Logo from '../../Assets/Aboutus/Group 795.svg'
-import Left from '../../Assets/Aboutus/Group 766.svg'
-import dots from '../../Assets/Aboutus/Repeat Grid 3.svg'
-import Right from '../../Assets/Aboutus/Group 773.svg'
+import React from "react";
+import "./Aboutus.scss";
+// import { Menu, KeyboardArrowDown } from "@material-ui/icons";
+import topbanner from "../../Assets/Aboutus/Group 765@2x.png";
+import missionbg from "../../Assets/Aboutus/missionbg.png";
+import missionstate from "../../Assets/Aboutus/missionstate.png";
+import industrial from "../../Assets/Aboutus/industrial.png";
+import secure from "../../Assets/Aboutus/secure.png";
+import dots from "../../Assets/Aboutus/dots.png";
+import buysell from "../../Assets/Aboutus/buysell.png";
+import quotation from "../../Assets/Aboutus/quotation.png";
+import tech from "../../Assets/Aboutus/tech.png";
+import mgmt from "../../Assets/Aboutus/mgmt.png";
+import simplified from "../../Assets/Aboutus/simplified.png";
+import corner from "../../Assets/Aboutus/corner.png";
 
+import integrity from "../../Assets/Aboutus/integrity.png";
+import commitment from "../../Assets/Aboutus/commitment.png";
+import preserverence from "../../Assets/Aboutus/preserverence.png";
+import resilence from "../../Assets/Aboutus/resilence.png";
+import action from "../../Assets/Aboutus/action.png";
+
+import wwbg from "../../Assets/Aboutus/wwbg.png";
+import usa from "../../Assets/Aboutus/usa.png";
+import nigeria from "../../Assets/Aboutus/nigeria.png";
+import nether from "../../Assets/Aboutus/nether.png";
+import uae from "../../Assets/Aboutus/uae.png";
+import india from "../../Assets/Aboutus/india.png";
+import sg from "../../Assets/Aboutus/sg.png";
+import texhub from "../../Assets/Aboutus/texhub.png";
 
 export const Aboutus = () => {
-    const [isHigh, setisHigh] = useState(true);
-    const Highlights = () => {
-        setisHigh(!isHigh)
-    }
-    const [isValue, setisValue] = useState(true);
-    const ValueAssets = () =>{
-        setisValue(!isValue)
-    }
-    return (
-        <div className='Aboutus_main'>
-            <div className='Aboutus_Marketing'>
-                <p className='Aboutus_Marketing_tag1'>A Secure,Safe and Seamless</p>
-                <p className='Aboutus_Marketing_tag2'>Digital Marketplace</p>               
-            </div>
-            <div className='Aboutus_Mission'>
-                <div className='Aboutus_Mission_Heding_Section'>
-                    <h2 className='Aboutus_Mission_Heading'>About Us</h2>
-                    <p className='Aboutus_Mission_Heading_tag'>TEXUB is a Digital B2B Marketplace that provides a Secure Technology for 
-                     Global B2B ICT Trade. TEXUB offers a compelling journey into the ICT
-                      business economy with our digital ecosystem. Buying & Selling experience is
-                      enhanced through our Scalable Cloud Platform for Manufacturers,
-                       Distributors, Resellers with the promise to maintain Trade Privacy.</p>
-                </div>
-                <div className='Aboutus_Mission_img'>
-                     <img src={Mission} alt="" className='Aboutus_Mission_img1'/>
-                     <h1 className='Aboutus_Mission_img1_Heading' >Mission Statement</h1>  
-                     <p className='Aboutus_Mission_img1_Heading_tag'>To provide safe,secure and seamless global B2B trade<br></br>
-                     ecosystem for brands, distributors and resellers of ICT</p>
+  const country = [
+    { content: "USA", image: usa },
+    { content: "NIGERIA", image: nigeria },
+    { content: "NETHERLAND", image: nether },
+    { content: "UAE", image: uae },
+    { content: "INDIA", image: india },
+    { content: "SINGAPORE", image: sg },
+  ];
 
-                </div>
-                <div></div>
+  const assets = [
+    { no: "01", content: "Integrity", image: integrity, color: "#EE254B" },
+    { no: "02", content: "Commitment", image: commitment, color: "#4BB1B3" },
+    {
+      no: "03",
+      content: "Perseverance",
+      image: preserverence,
+      color: "#1F2E58",
+    },
+    { no: "04", content: "Resilience", image: resilence, color: "#F14C1C" },
+    { no: "05", content: "Action", image: action, color: "#1C55F1" },
+  ];
 
-            </div>
-            <div className='Aboutus_Hightlits'>
-                <div className='Aboutus_Hightlits_Heading'>
-                    <h2 className='Aboutus_Headings'>Highlights</h2> 
-                    {/* <i class=" Products_Downloadangle" onClick={Highlights}> */}
-                    <KeyboardArrowDown onClick={Highlights} className='Downarrow'></KeyboardArrowDown>
-                    </div>
-                  {isHigh &&   
-                <div className='Aboutus_Hightlits_Section'>
-                    <div className='Aboutus_Hightlits_Section1'>
-                     <img src={Auction} alt="" className='Aboutus_Hightlits_img'/>
-                     <p className='Aboutus_Highlights_tags'>B2B Trade & Auctions</p>
-                     {/* <KeyboardDoubleArrowLeftIcon className='Aboutus_Hightlits_Arrow'/> */}
-                     <img src={Left} alt="" className='Aboutus_Hightlits_Arrow'/>
-                     <h2 className='Aboutus_Hightlits_Heading_number'>01</h2>
-                    </div>
-                    {/* <MoreVertIcon className='Aboutus_Hightlits_dots'/> */}
-                    <img src={dots} alt="" className='Aboutus_Hightlits_dots'/>
-                    <div className='Aboutus_Hightlits_Section2'>
-                    <h2 className='Aboutus_Hightlits_Heading_number'>02</h2>   
-                     {/* <KeyboardDoubleArrowRightIcon className='Aboutus_Hightlits_Arrow'/> */}
-                     <img src={Right} alt="" className='Aboutus_Hightlits_Arrow'/>
-                     <p className='Aboutus_Highlights_tags'>B2B Trade & Auctions</p>
-                     <img src={Secure} alt="" className='Aboutus_Hightlits_img'/>
-                    </div>
-                    {/* <MoreVertIcon className='Aboutus_Hightlits_dots'/> */}
-                    <img src={dots} alt="" className='Aboutus_Hightlits_dots'/>
-                    <div className='Aboutus_Hightlits_Section1'>
-                     <img src={Unlimit} alt="" className='Aboutus_Hightlits_img' />
-                     <p className='Aboutus_Highlights_tags'>B2B Trade & Auctions</p>
-                     {/* <KeyboardDoubleArrowLeftIcon className='Aboutus_Hightlits_Arrow'/> */}
-                     <img src={Left} alt="" className='Aboutus_Hightlits_Arrow'/>
-                     <h2 className='Aboutus_Hightlits_Heading_number'>03</h2>
-                    </div>
-                    {/* <MoreVertIcon className='Aboutus_Hightlits_dots'/> */}
-                    <img src={dots} alt="" className='Aboutus_Hightlits_dots'/>
-                    <div className='Aboutus_Hightlits_Section2'>
-                    <h2 className='Aboutus_Hightlits_Heading_number'>04</h2>
-                    {/* <KeyboardDoubleArrowRightIcon className='Aboutus_Hightlits_Arrow'/> */}
-                    <img src={Right} alt="" className='Aboutus_Hightlits_Arrow'/>
-                    <p className='Aboutus_Highlights_tags'>B2B Trade & Auctions</p>
-                     <img src={UnAccess} alt=""  className='Aboutus_Hightlits_img'/>
-                    </div>
-                    {/* <MoreVertIcon className='Aboutus_Hightlits_dots'/> */}
-                    <img src={dots} alt="" className='Aboutus_Hightlits_dots'/>
-                    <div className='Aboutus_Hightlits_Section1'>
-                     <img src={Secured} alt=""  className='Aboutus_Hightlits_img'/>
-                     <p className='Aboutus_Highlights_tags'>B2B Trade & Auctions</p>
-                     {/* <KeyboardDoubleArrowLeftIcon className='Aboutus_Hightlits_Arrow'/> */}
-                     <img src={Left} alt="" className='Aboutus_Hightlits_Arrow'/>
-                     <h2 className='Aboutus_Hightlits_Heading_number'>05</h2>
-                    </div>
-                    {/* <MoreVertIcon className='Aboutus_Hightlits_dots'/> */}
-                    <img src={dots} alt="" className='Aboutus_Hightlits_dots'/>
-                    <div className='Aboutus_Hightlits_Section2'>
-                    <h2 className='Aboutus_Hightlits_Heading_number'>06</h2>
-                    {/* <KeyboardDoubleArrowRightIcon className='Aboutus_Hightlits_Arrow'/> */}
-                    <img src={Right} alt="" className='Aboutus_Hightlits_Arrow'/>
-                    <p className='Aboutus_Highlights_tags'>B2B Trade & Auctions</p>
-                     <img src={Easy} alt=""  className='Aboutus_Hightlits_img'/>
-                    </div>
-                    {/* <MoreVertIcon className='Aboutus_Hightlits_dots'/> */}
-                    <img src={dots} alt="" className='Aboutus_Hightlits_dots'/>
-                    <div className='Aboutus_Hightlits_Section1'>
-                     <img src={Simplefied} alt="" className='Aboutus_Hightlits_img' />
-                     <p className='Aboutus_Highlights_tags'>B2B Trade & Auctions</p>
-                     {/* <KeyboardDoubleArrowLeftIcon className='Aboutus_Hightlits_Arrow'/> */}
-                     <img src={Left} alt="" className='Aboutus_Hightlits_Arrow'/>
-                     <h2 className='Aboutus_Hightlits_Heading_number'>07</h2>
-                    </div>
-                    {/* <MoreVertIcon className='Aboutus_Hightlits_dots'/> */}
-                    <img src={dots} alt="" className='Aboutus_Hightlits_dots'/>
-                    <div className='Aboutus_Hightlits_Section2'>
-                    <h2 className='Aboutus_Hightlits_Heading_number'>08</h2>
-                    {/* <KeyboardDoubleArrowRightIcon className='Aboutus_Hightlits_Arrow'/> */}
-                    <img src={Right} alt="" className='Aboutus_Hightlits_Arrow'/>
-                    <p className='Aboutus_Highlights_tags'>B2B Trade & Auctions</p>
-                     <img src={Marketing} alt=""  className='Aboutus_Hightlits_img'/>
-                    </div> 
-                </div>
-                }
-            </div>
-            <div className='Valued_Assets'>
-                <div className='Aboutus_Hightlits_Heading'>
-                    <h2 className='Aboutus_Headings'>Valued Assets</h2>
-                    <KeyboardArrowDown onClick={ValueAssets} className='Downarrow'></KeyboardArrowDown>
-                    </div>
-                  {isValue &&   
-                <div className='Valued_Assets_Tags_Section'>
-                    <div className='Valued_Assets_img'>   
-                         <p className='Valued_Assets_1'>01</p>
-                         <p className='Valued_Assets_tag'>Integrity</p>
-                         <img src={Tag1} alt="" className='Aboutus_Valued_img' /> 
-                    </div> 
-                    <div>
-                        <p className='Valued_Assets_2'>02</p>
-                        <p className='Valued_Assets_tag'>Commitment</p>
-                        <img src={Tag2} alt="" className='Aboutus_Valued_img' />
-                    </div>
-                    <div>
-                        <p className='Valued_Assets_3'>03</p>
-                        <p className='Valued_Assets_tag'>Perseverance</p>
-                        <img src={Tag3} alt="" className='Aboutus_Valued_img' />
-                    </div>
-                    <div>
-                       <p className='Valued_Assets_4'>04</p>
-                       <p className='Valued_Assets_tag'>Resilience</p>
-                       <img src={Tag4} alt="" className='Aboutus_Valued_img' />
-                    </div>
-                    <div>
-                        <p className='Valued_Assets_5'>05</p>
-                        <p className='Valued_Assets_tag'>Action</p>
-                        <img src={Tag5} alt="" className='Aboutus_Valued_img' />
-                    </div>
-                </div>
-                }
-
-            </div>
-            <div>
-                <div>
-                  <h2 className='Aboutus_Headings'>Our Worldwide Office</h2>
-                </div>
-               <div className='Aboutus_Worldwide'>
-               <div>    
-              <div><img src={Logo} alt="" className='Aboutus_Worldwide_Logo1' /></div>     
-              <div> <img src={Logo} alt="" className='Aboutus_Worldwide_Logo2' /></div>
-              <div>
-                   <img src={Logo} alt="" className='Aboutus_Worldwide_Logo3' />
-                  <img src={Logo} alt="" className='Aboutus_Worldwide_Logo4' /></div>
-              {/* <div> </div> */}
-              <div><img src={Logo} alt="" className='Aboutus_Worldwide_Logo5' /></div>
-              <div><img src={Logo} alt="" className='Aboutus_Worldwide_Logo6' /></div>
-               
-              
-              
-              
-               
-               
-               </div>
-                   <div className='Aboutus_Worldwide_Section'>
-                   <ul className='Aboutus_Worldwide_list'>
-                       <li className='Aboutus_Worldwide_list1'>USA</li>
-                       <li className='Aboutus_Worldwide_list2'>NIGERIA</li>
-                       <li className='Aboutus_Worldwide_list3'>NETHERLAND</li>
-                       <li className='Aboutus_Worldwide_list4'>UAE</li>
-                       <li className='Aboutus_Worldwide_list5'>INDIA</li>
-                       <li className='Aboutus_Worldwide_list6'>SINGAPORE</li>
-                   </ul>
-                   </div>
-
-               </div>
-            </div>
-            
+  const highlightscontent = [
+    { content: "01", image: industrial, imgcontent: "B2B Trade & Auctions" },
+    {
+      content: "02",
+      image: secure,
+      imgcontent: "Secure gateway & Crypto options",
+    },
+    { content: "03", image: quotation, imgcontent: "Unlimited Quotes" },
+    {
+      content: "04",
+      image: buysell,
+      imgcontent: "Unlimited Access to Buying & Selling",
+    },
+    { content: "05", image: tech, imgcontent: "Secured Technology" },
+    { content: "06", image: mgmt, imgcontent: "Easy Inventory Management" },
+    {
+      content: "07",
+      image: simplified,
+      imgcontent: "Simplified Product Upload",
+    },
+    { content: "08", image: corner, imgcontent: "Marketing Corner" },
+  ];
+  return (
+    <div className="aboutus">
+      <div className="aboutus__topbanner">
+        <img src={topbanner} alt="" />
+        <div className="aboutus__topbanner__floatingtext">
+          <p className="topbanner__text1">A Secure, Safe And Seamless</p>
+          <p className="topbanner__text2">Digital Marketplace</p>
         </div>
-    )
-}
+      </div>
+
+      <div className="aboutus__mission">
+        <img src={missionbg} alt="" />
+        <div className="aboutus__mission__content">
+          <div className="aboutus__mission__left">
+            <h1>About Us</h1>
+            <p>
+              TEXUB is a Digital B2B Marketplace that provides a Secure
+              Technology for Global B2B ICT Trade. TEXUB offers a compelling
+              journey into the ICT business economy with our digital ecosystem.
+              Buying & Selling experience is enhanced through our Scalable Cloud
+              Platform for Manufacturers, Distributors, Resellers with the
+              promise to maintain Trade Privacy.
+            </p>
+          </div>
+          <div className="aboutus__mission__right">
+            <img src={missionstate} alt="" />
+            <div className="aboutus__righttext">
+              <h1>Mission Statement</h1>
+              <p>
+                To provide safe, secure and seamless global B2B trade ecosystem
+                for brands, distributors and resellers of ICT.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="aboutus__highlights">
+        <h1>Highlights</h1>
+        <ul>
+          {highlightscontent.map((data, i) => (
+            <li key={i}>
+              <div className="dimagecontent">
+                <img className="dimage" src={data.image} alt="" />
+                <span>{data.imgcontent}</span>
+              </div>
+              <p>{data.content}</p>
+              <img className="dot" src={dots} alt="" />
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div className="aboutus__assets">
+        <h1>Valued Assets</h1>
+        <div className="assets__images">
+          {assets.map((data, i) => (
+            <div className="assets__imageItem">
+              <span style={{ color: data.color }} className="no">
+                {data.no}
+              </span>
+              <img src={data.image} alt="" />
+              <span className="content">{data.content}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="aboutus__worldwide">
+        <h1>Our Worldwide Office</h1>
+        <div className="aboutus__worldwide__content">
+          <img src={wwbg} alt="" />
+
+          <div className="aboutus__ww__country">
+            {country.map((data, i) => (
+              <div className="list" key={i}>
+                <img src={data.image} alt="" />
+                <span>{data.content}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+        <img src={texhub} alt="" className="tag1" />
+        <img src={texhub} alt="" className="tag2" />
+        <img src={texhub} alt="" className="tag3" />
+        <img src={texhub} alt="" className="tag4" />
+        <img src={texhub} alt="" className="tag5" />
+        <img src={texhub} alt="" className="tag6" />
+      </div>
+    </div>
+  );
+};

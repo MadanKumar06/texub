@@ -1,0 +1,143 @@
+@media only screen and (min-width: 760px) and (max-width: 770px) {
+  .Productstable {
+    margin: 10px;
+  }
+  .Productstable_Header {
+    background-color: #002d56;
+    height: 46px;
+
+    text-align: center;
+  }
+  .Productstable_Header_Text {
+    font-size: 10px;
+    width: 13%;
+  }
+  .Material_list {
+    margin-top: 9px;
+    font-size: 17px;
+  }
+
+  .Productstable_list_details {
+    padding: 0;
+  }
+  .Productstable_list_details_description,
+  .Productstable_list_details {
+    font-size: 11px;
+  }
+  .Producttable_Addtocart_btn {
+    margin: 0;
+    width: max-content;
+    margin-top: 16px;
+    padding: 7px 9px;
+    margin-right: 10px;
+  }
+  .Price_btn {
+    font-size: 10px;
+    background-color: white;
+    border-radius: 25px;
+    padding: 5px 10px;
+  }
+  .Producttable_heading_icon {
+    width: auto;
+    margin: 7px 0px 0px 0px;
+  }
+  .Product_Fullscreen_icon {
+    padding: 11px 0px 0px 1px;
+  }
+  .Productstable_list_details_price,
+  .Productstable_list_details_description {
+    padding: 0;
+  }
+  .Mobile_buttons {
+    display: none;
+  }
+}
+@media only screen and (max-width: 480px) {
+  .Productstable {
+    display: none;
+  }
+  .Mobile_View {
+    display: contents;
+  }
+  .Mobile_View_Buttons {
+    justify-content: center;
+    display: flex;
+    gap: 50px;
+    padding: 20px 0px 20px 0px;
+    /* background-color: #dedede; */
+  }
+  .Mobile_buttons_sortby {
+    border-radius: 25px;
+    padding: 10px 20px;
+    border: 1px solid;
+    opacity: 0.6;
+  }
+  .Mobile_Arrow_Up {
+    border-radius: 25px;
+    border: 1px solid;
+    width: 35px;
+    opacity: 0.6;
+  }
+  .Mobile_View_Table {
+    margin: 10px 20px 50px 20px;
+  }
+  .Mobile_View_Table_Header {
+    background-color: #002d56;
+    padding-left: 20px;
+    border-radius: 3px;
+    height: 35px;
+  }
+  .Mobile_View_Table_Header_Heading {
+    color: white;
+    font-size: 20px;
+    margin: 0 0 0px 0px;
+    padding-top: 7px;
+    font-family: "Source Sans Pro";
+    font-size: 17px;
+  }
+  .Mobile_View_Table_details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-radius: 3px;
+    padding-top: 10px;
+  }
+  .Mobile_View_Table_details_1 {
+    display: flex;
+    gap: 5px;
+    padding-left: 20px;
+  }
+  .Mobile_View_Brand {
+    margin: 0;
+    font-family: "Source Sans Pro";
+    font-weight: 700;
+    opacity: 1;
+  }
+  .Mobile_View_Brand_details {
+    margin: 0;
+    font-family: "Source Sans Pro";
+    opacity: 0.9;
+  }
+  .Mobile_buttons_sortby_Onclick {
+    z-index: 9;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: absolute;
+    background-color: white;
+    left: 28%;
+    border: 1px solid black;
+    /* width: 113px; */
+    /* height: 87px; */
+    margin-top: 41px;
+    padding: 10px;
+  }
+  .Mobile_buttons_sortby_Onclick_option {
+    font-family: "FontAwesome";
+    font-size: 12px;
+    margin: 0;
+  }
+  .Mobile_buttons_sortby_Onclick_option:hover {
+    background-color: skyblue;
+  }
+}
