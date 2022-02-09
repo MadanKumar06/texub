@@ -78,7 +78,7 @@ const SectionRight = ({ classes, handleClose }) => {
           sadipscing elitr, sed diam nonumy eirmod tempor.
         </div>
       )}
-      <Link to="/register" className={btn_link}>
+      <Link to={`/register${userDescription ? "/buyer" : "/seller"}`} className={btn_link}>
         <Button
           variant="contained"
           className={btn_user}
