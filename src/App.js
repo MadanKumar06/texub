@@ -66,10 +66,6 @@ function App() {
               path="/Gratitude"
               element={
                 <>
-                  {/* <Header/>
-          <div className='Trail'>
-          <Userdetails/> 
-          </div>  */}
                   <Gratitude />
                   <Footer />
                 </>
