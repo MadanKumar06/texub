@@ -18,6 +18,9 @@ import { AfterGratitude } from "./Components/Register/AfterGratitude/AfterGratit
 import { BuyerGratitude } from "./Components/Register/BuyerGratitude/BuyerGratitude";
 import { BuyerKYCGratitude } from "./Components/Register/BuyerKYCGratitude/BuyerKYCGratitude";
 import { ThemeProvider } from "@mui/material/styles";
+import { Selleradvantage } from "./Pages/CMS/Selleradvantage/Selleradvantage";
+import { Buyeradvantage } from "./Pages/CMS/Buyeradvantage/Buyeradvantage";
+import { Career } from "./Pages/CMS/Career/Career";
 
 import theme from "./theme";
 function App() {
@@ -107,8 +110,30 @@ function App() {
             />
             <Route path="/Faqs" element={<FAQs />} exact />
             <Route path="/Contactus" element={<Contactus />} exact>
+            
               {/* <Route path='/signin' element={<SignIn/>} exact/> */}
             </Route>
+
+              {/* CMS */}
+
+            <Route path="/seller_advantage" element={
+              <>
+            <Selleradvantage/>
+            <Footer/>
+            </>
+            } exact></Route>
+            <Route path="/buyer_advantage" element={
+              <>
+            <Buyeradvantage/>
+            <Footer/>
+            </>
+            } exact></Route>
+            <Route path="/career" element={
+            <>
+            <Career />
+            <Footer/>
+            </>
+            } exact></Route>
           </Routes>
         </BrowserRouter>
       </ThemeProvider>
