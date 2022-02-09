@@ -1,6 +1,6 @@
 const styles = (theme) => ({
   section_main: {
-    minHeight: "70vh",
+    height: "80vh",
     backgroundImage: "url('/Images/user_selection_bg.png')",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
@@ -8,23 +8,34 @@ const styles = (theme) => ({
     zIndex: "1",
     display: "flex",
     width: "100%",
+    "@media (max-width:767px)": {
+      flexDirection: "column",
+      overflowY: "scroll",
+    },
   },
   modal: {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     margin: "8%",
+    "@media (max-width:767px)": {
+      margin: "1%",
+    },
   },
   // section one css
   section_left: {
     padding: "3.5%",
     margin: "1.5%",
     width: "45%",
-    minHeight: "70vh",
+    height: "76vh",
     backgroundImage: "url('/Images/user_selection_leftbg.png')",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
     backgroundSize: "cover",
+    "@media (max-width:767px)": {
+      width: "97%",
+      height: "80vh",
+    },
   },
   welcome_column: {
     display: "flex",
@@ -39,6 +50,9 @@ const styles = (theme) => ({
     display: "flex",
     "@media (max-width:1190px) and (min-width:768px)": {
       fontSize: "18px",
+    },
+    "@media (max-width:390px)": {
+      fontSize: "22px",
     },
   },
   welcome_texub_logo: {
@@ -61,6 +75,9 @@ const styles = (theme) => ({
     "@media (max-width:1190px) and (min-width:768px)": {
       fontSize: "16px",
     },
+    "@media (max-width:390px)": {
+      fontSize: "18px",
+    },
   },
   row_info_points: {
     display: "flex",
@@ -81,6 +98,9 @@ const styles = (theme) => ({
     height: "18px",
     verticalAlign: "middle",
     marginLeft: "8px",
+    "@media (max-width:1190px) and (min-width:768px)": {
+      marginLeft: "0px",
+    },
   },
   point_info_text: {
     fontSize: "16px",
@@ -90,8 +110,11 @@ const styles = (theme) => ({
     "@media (max-width:1190px) and (min-width:980px)": {
       fontSize: "12px",
     },
-    "@media (max-width:1298px) and (min-width:1000px)": {
-      // fontSize: "12px",
+    "@media (max-width:980px) and (min-width:768px)": {
+      fontSize: "10px",
+    },
+    "@media (max-width:390px)": {
+      fontSize: "12px",
     },
   },
 
@@ -99,6 +122,10 @@ const styles = (theme) => ({
   section_right: {
     width: "55%",
     padding: "4% 2% 2%",
+    "@media (max-width:767px)": {
+      width: "100%",
+      padding: "4%",
+    },
   },
 });
 export default styles;
