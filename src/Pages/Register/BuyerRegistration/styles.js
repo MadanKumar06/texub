@@ -30,6 +30,9 @@ const styles = (theme) => ({
   },
   button_box: {
     textAlign: "end",
+    "& a": {
+      textDecoration: "none",
+    },
     "@media (max-width:580px)": { textAlign: "center" },
   },
   input_fields: {
