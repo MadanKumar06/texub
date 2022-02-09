@@ -13,7 +13,6 @@ import Register_section_Logo_arrow from "../../../../Assets/CommonImage/Register
 import SectionRight from "../SectionRight";
 const TransitionsModal = ({ classes, openPopUp }) => {
   const [open, setOpen] = React.useState(true);
-
   let {
     section_main,
     section_left,
@@ -96,7 +95,7 @@ const TransitionsModal = ({ classes, openPopUp }) => {
           ))}
         </div>
         <div className={section_right}>
-          <SectionRight />
+          <SectionRight handleClose={handleClose} />
         </div>
       </div>
     </Modal>

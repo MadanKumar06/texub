@@ -7,17 +7,19 @@ import {
   FormLabel,
   Button,
 } from "@material-ui/core";
+import { Link } from "react-router-dom";
 import { withStyles } from "@material-ui/styles";
 import styles from "./styles";
 import buyer_img from "../../../../Assets/CommonImage/RegisterPopup/user_select_buyer.png";
 import seller_img from "../../../../Assets/CommonImage/RegisterPopup/user_select_seller.png";
-const SectionRight = ({ classes }) => {
+const SectionRight = ({ classes, handleClose }) => {
   let {
     radio_btn_container,
     select_text,
     user_description,
     btn_user,
     radio_group,
+    btn_link,
   } = classes;
   const [userDescription, setUserDescription] = useState(true);
   return (
@@ -35,14 +37,24 @@ const SectionRight = ({ classes }) => {
         <FormControlLabel
           value="buyer"
           control={<Radio color="secondary" />}
-          label={<img src={buyer_img} alt="auth" />}
+          label={
+            <>
+              <img src={buyer_img} alt="auth" />
+              <p>Buyer</p>
+            </>
+          }
           labelPlacement="top"
           onClick={() => setUserDescription(true)}
         />
         <FormControlLabel
           value="seller"
           control={<Radio color="secondary" />}
-          label={<img src={seller_img} alt="auth" />}
+          label={
+            <>
+              <img src={seller_img} alt="auth" />
+              <p>Seller</p>
+            </>
+          }
           labelPlacement="top"
           onClick={() => setUserDescription(false)}
         />
@@ -66,9 +78,15 @@ const SectionRight = ({ classes }) => {
           sadipscing elitr, sed diam nonumy eirmod tempor.
         </div>
       )}
-      <Button variant="contained" className={btn_user}>
-        Continue
-      </Button>
+      <Link to="/register" className={btn_link}>
+        <Button
+          variant="contained"
+          className={btn_user}
+          onClick={() => handleClose()}
+        >
+          Continue
+        </Button>
+      </Link>
     </FormControl>
   );
 };

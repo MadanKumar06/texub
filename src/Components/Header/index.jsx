@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { SignIn } from "../SignIn/SignIn";
+import SignIn from "../../Pages/SignIn/SiginPopUp/SectionLeft";
 
 import { AppBar, Toolbar, Typography, Button } from "@material-ui/core";
 import { withStyles } from "@material-ui/styles";
@@ -11,10 +11,10 @@ import logo from "../../Assets/Homepage Assets/Group.png";
 import RegiterPopup from "../../Pages/Register/RegisterPopup/SectionLeft";
 
 const Header = ({ classes }) => {
-  const [isSignin, setisSignin] = useState(false);
+  const [isSignin, setIsSignin] = useState(false);
   const [registerPopUp, setRegisterPopUp] = useState(false);
-  const Signin = () => {
-    setisSignin(!isSignin);
+  const SigninPopUP = (event) => {
+    setIsSignin(event);
   };
   const RegistrationPop = (event) => {
     setRegisterPopUp(event);
@@ -36,6 +36,7 @@ const Header = ({ classes }) => {
             </Typography>
             <Typography variant="h6" className={classes.title}>
               <Link to="/Products">Products</Link>
+              <span>New</span>
             </Typography>
             <Typography variant="h6" className={classes.title}>
               <Link to="/Sellontexhub"> Sell On TEXUB </Link>
@@ -60,7 +61,7 @@ const Header = ({ classes }) => {
             </Button>
             <Button
               className={classes.header_button_signin}
-              onClick={() => Signin()}
+              onClick={() => setIsSignin(true)}
             >
               Sign In
             </Button>
@@ -68,7 +69,7 @@ const Header = ({ classes }) => {
           <CurrencyPopup />
         </Toolbar>
       </AppBar>
-      {isSignin && <SignIn isSignin={setisSignin} />}
+      {isSignin && <SignIn openPopUp={SigninPopUP} />}
       {registerPopUp && <RegiterPopup openPopUp={RegistrationPop} />}
     </div>
   );
