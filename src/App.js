@@ -11,7 +11,8 @@ import { SellonTexhub } from "./Pages/SellonTexhub/SellonTexhub";
 import { FAQs } from "./Pages/FAQs/FAQs";
 import { Contactus } from "./Pages/Contactus/Contactus";
 import { Userdetails } from "./Components/Userdetails/Userdetails";
-import Register from "./Pages/Register/RegisterPopup/SectionLeft";
+// import { Register } from "./Components/Register/Sellerregister";
+import Registration from "./Pages/Register";
 import { Gratitude } from "./Components/Register/Gratitude/Gratitude";
 import { AfterGratitude } from "./Components/Register/AfterGratitude/AfterGratitude";
 import { BuyerGratitude } from "./Components/Register/BuyerGratitude/BuyerGratitude";
@@ -38,6 +39,16 @@ function App() {
               exact
             />
             <Route
+              path="/register"
+              element={
+                <>
+                  <Registration />
+                  <Footer />
+                </>
+              }
+              exact
+            />
+            <Route
               path="/Products"
               element={
                 <>
@@ -50,21 +61,7 @@ function App() {
             <Route path="/Aboutus" element={<Aboutus />} exact />
             <Route path="/Buyontexhub" element={<BuyonTexhub />} exact />
             <Route path="/Sellontexhub" element={<SellonTexhub />} exact />
-            <Route
-              path="/register"
-              element={
-                <>
-                  {/* <Header/>
-              <div className='Trail'>
-              <Userdetails/> `
-              </div> */}
 
-                  <Register />
-                  <Footer />
-                </>
-              }
-              exact
-            />
             <Route
               path="/Gratitude"
               element={

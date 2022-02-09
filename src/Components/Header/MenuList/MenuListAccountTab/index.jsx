@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
@@ -24,6 +24,7 @@ import {
   AppRegistration,
   ExitToApp,
 } from "@material-ui/icons";
+import RegiterPopup from "../../../../Pages/Register/RegisterPopup/SectionLeft";
 
 import { Link } from "react-router-dom";
 import styles from "./styles";
@@ -55,12 +56,14 @@ TabPanel.propTypes = {
 
 const BasicTabs = ({ classes, handleSideBarClose }) => {
   const [value, setValue] = React.useState(0);
-
+  const [open, setOpen] = useState(false);
+  const [registerPopUp, setRegisterPopUp] = useState(false);
+  const RegistrationPop = (event) => {
+    setRegisterPopUp(event);
+  };
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
-  const [open, setOpen] = React.useState(false);
 
   const handleClick = () => {
     setOpen(!open);
@@ -107,7 +110,10 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
       <TabPanel value={value} index={1} className={classes.sub_tab_conatainer}>
         <List className={classes.dropdowm_list_menu}>
           <ListItemButton onClick={handleClick}>
-            <ListItemText primary="DepartMent" className={classes.dropdowm_list_menu_sub}/>
+            <ListItemText
+              primary="Department"
+              className={classes.dropdowm_list_menu_sub}
+            />
             {open ? <ExpandLess /> : <ExpandMore />}
           </ListItemButton>
           <Collapse in={open} timeout="auto" unmountOnExit>
@@ -167,6 +173,10 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
             variant="contained"
             startIcon={<AppRegistration />}
             className={classes.menuButton}
+            onClick={() => {
+              setRegisterPopUp(true);
+              // handleSideBarClose("left", false);
+            }}
           >
             Register
           </Button>
@@ -179,6 +189,7 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
           </Button>
         </Stack>
       </TabPanel>
+      {registerPopUp && <RegiterPopup openPopUp={RegistrationPop} />}
     </Box>
   );
 };

@@ -57,6 +57,17 @@ const styles = (theme) => ({
     letterSpacing: "0.45px !important",
     fontWeight: "600 !important",
     marginRight: "24px",
+    position: "relative",
+    "& span": {
+      position: "absolute",
+      fontSize: "9px",
+      background: "#20639B",
+      borderRadius: "9px",
+      padding: "0px 5px",
+      color: "#ffffff",
+      top: "-10px",
+      right: "-14px",
+    },
     "@media (max-width:850px) and (min-width:768px)": {
       fontSize: "12px !important",
       fontWeight: "600 !important",
