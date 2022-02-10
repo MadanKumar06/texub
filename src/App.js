@@ -20,6 +20,7 @@ import { BuyerKYCGratitude } from "./Components/Register/BuyerKYCGratitude/Buyer
 import { ThemeProvider } from "@mui/material/styles";
 
 import theme from "./theme";
+import ThankYouPage from "./Pages/Register/ThankYouPage";
 function App() {
   return (
     <div className="App">
@@ -39,7 +40,7 @@ function App() {
               exact
             />
             <Route
-              path="/register"
+              path="/register/:type"
               element={
                 <>
                   <Registration />
@@ -101,6 +102,16 @@ function App() {
             <Route path="/Contactus" element={<Contactus />} exact>
               {/* <Route path='/signin' element={<SignIn/>} exact/> */}
             </Route>
+            <Route
+              path="/thankyou/:type"
+              element={
+                <>
+                  <ThankYouPage />
+                  <Footer />
+                </>
+              }
+              exact
+            ></Route>
           </Routes>
         </BrowserRouter>
       </ThemeProvider>

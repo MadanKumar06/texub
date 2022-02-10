@@ -9,9 +9,11 @@ import {
 // import ReCAPTCHA from "react-google-recaptcha";
 import Autocomplete from "@mui/material/Autocomplete";
 import { ArrowDropUp } from "@material-ui/icons";
+import { Link, useParams } from "react-router-dom";
 import { withStyles } from "@material-ui/styles";
 import styles from "./styles";
 const BuyerRegistration = ({ classes }) => {
+  let {type} = useParams();
   let {
     main_container,
     input_fields,
@@ -207,7 +209,9 @@ const BuyerRegistration = ({ classes }) => {
         </div>
 
         <Box className={button_box} fullWidth>
-          <Button className={button_guest}>Register</Button>
+          <Link to={`/thankyou/${type}`}>
+            <Button className={button_guest}>Register</Button>
+          </Link>
         </Box>
       </div>
       {/* <ArrowDropUp className={arrow_icon} /> */}

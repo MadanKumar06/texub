@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { RadioGroup, FormControlLabel } from "@material-ui/core";
 
 import { withStyles } from "@material-ui/styles";
@@ -7,7 +7,9 @@ import BuyerRegistration from "./BuyerRegistration";
 import SellerRegistration from "./SellerRegistration";
 import buyer_img from "../../Assets/CommonImage/RegisterPopup/user_select_buyer.png";
 import seller_img from "../../Assets/CommonImage/RegisterPopup/user_select_seller.png";
+import { useParams } from "react-router-dom";
 const Registration = ({ classes }) => {
+  const { type } = useParams();
   let {
     register_main_container_buyer,
     register_main_container_seller,
@@ -20,12 +22,14 @@ const Registration = ({ classes }) => {
     clicking_user,
     clicking_user_para,
   } = classes;
-  const [user_type, setUser_type] = useState(true);
   const [clicked, setClicked] = useState("buyer");
 
-  const handleChange = (event) => {
-    setClicked(event);
+  const handleChange = () => {
+    setClicked(type);
   };
+  useEffect(() => {
+    setClicked(type);
+  }, [type]);
   return (
     <div
       className={`${
@@ -66,10 +70,7 @@ const Registration = ({ classes }) => {
               }
               label="Buyer"
               labelPlacement="top"
-              onClick={(event) => {
-                setUser_type(true);
-                handleChange("buyer");
-              }}
+              onClick={() => handleChange()}
             />
             <FormControlLabel
               value="seller"
@@ -89,17 +90,13 @@ const Registration = ({ classes }) => {
               }
               label="Seller"
               labelPlacement="top"
-              onChange={handleChange}
-              onClick={(event) => {
-                setUser_type(false);
-                handleChange("seller");
-              }}
+              onClick={() => handleChange()}
             />
           </RadioGroup>
         </div>
       </div>
 
-      {user_type ? <BuyerRegistration /> : <SellerRegistration />}
+      {clicked === "buyer" ? <BuyerRegistration /> : <SellerRegistration />}
     </div>
   );
 };
