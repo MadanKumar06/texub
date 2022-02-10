@@ -46,13 +46,13 @@ export const Footer = () => {
             <h2 className="Footer_Col_Heading">Services</h2>
             <ul className="Footer_col_list">
               <li>Training</li>
-             <Link to="/seller_advantage"> 
+             <Link to="/seller_advantage" className="to_CMS"> 
               <li>Seller Advantage</li>
                </Link> 
-               <Link to="/buyer_advantage">
+               <Link to="/buyer_advantage" className="to_CMS">
               <li>Buyer Advantage</li>
               </Link>
-              <Link to="/career">
+              <Link to="/career" className="to_CMS">
               <li>Career</li>
               </Link>
             </ul>

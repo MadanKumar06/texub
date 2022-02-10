@@ -11,7 +11,6 @@ import { SellonTexhub } from "./Pages/SellonTexhub/SellonTexhub";
 import { FAQs } from "./Pages/FAQs/FAQs";
 import { Contactus } from "./Pages/Contactus/Contactus";
 import { Userdetails } from "./Components/Userdetails/Userdetails";
-// import { Register } from "./Components/Register/Sellerregister";
 import Register from "./Pages/Register/RegisterPopup/SectionLeft";
 import { Gratitude } from "./Components/Register/Gratitude/Gratitude";
 import { AfterGratitude } from "./Components/Register/AfterGratitude/AfterGratitude";
@@ -20,7 +19,7 @@ import { BuyerKYCGratitude } from "./Components/Register/BuyerKYCGratitude/Buyer
 import { ThemeProvider } from "@mui/material/styles";
 import { Selleradvantage } from "./Pages/CMS/Selleradvantage/Selleradvantage";
 import { Buyeradvantage } from "./Pages/CMS/Buyeradvantage/Buyeradvantage";
-import { Career } from "./Pages/CMS/Career/Career";
+import  Career  from "./Pages/CMS/Career/Career";
 
 import theme from "./theme";
 function App() {
