@@ -11,6 +11,9 @@ const theme = createTheme({
     secondary: {
       main: "#20639B",
     },
+    color_third: {
+      main: "#DDB363",
+    },
   },
 });
 export default theme;

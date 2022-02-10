@@ -1,0 +1,91 @@
+.productlist {
+  background-color: #002d56;
+  display: flex;
+  align-items: center;
+  height: 129px;
+  padding: 0 3%;
+  gap: 6em;
+
+  .productlist__menu {
+    width: 36px;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  @mixin flex1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .productlist__deal {
+    @include flex1;
+    align-items: baseline;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .productlist__deal__image {
+      width: 60px;
+      img {
+        width: 100%;
+      }
+    }
+
+    .productlist__todaytext {
+      width: max-content;
+    }
+  }
+
+  .productlist__down,
+  .productlist__up {
+    width: 40px;
+    img {
+      object-fit: contain;
+    }
+  }
+
+  .productlist__search {
+    color: white;
+    min-width: 10em;
+  }
+
+  .productlist__search__field {
+    border-bottom: 2px solid white;
+  }
+
+  .MuiInputLabel-root,
+  .MuiNativeSelect-select {
+    color: white;
+  }
+
+  .css-1d3z3hw-MuiOutlinedInput-notchedOutline {
+    border-color: white;
+  }
+
+  .css-rx097p-MuiInputBase-root-MuiOutlinedInput-root {
+    color: white;
+  }
+
+  .css-hfutr2-MuiSvgIcon-root-MuiSelect-icon {
+    fill: white;
+  }
+
+  .productlist__download {
+    min-width: 72px;
+    height: 72px;
+    background-color: #ddb363;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2px;
+
+    img {
+      width: 50%;
+      object-fit: contain;
+    }
+  }
+}

@@ -35,6 +35,12 @@
   }
 }
 
+@media (max-width: 1533px) {
+  .Favorites_Deals {
+    top: 3.75rem;
+  }
+}
+
 @media (max-width: 1440px) {
   .Favorites_Deals {
     top: 5em;

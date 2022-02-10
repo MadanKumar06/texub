@@ -3,6 +3,7 @@
   flex-direction: row;
   gap: 10px;
   margin: auto 3%;
+  height: 73px;
 }
 
 .Logo {
@@ -55,15 +56,38 @@
 .User_Account {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+.User_Account svg {
+  color: #5c6369;
 }
 .User_Wishlist {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  gap: 8px;
 }
-
+.User_Wishlist svg {
+  color: #5c6369;
+}
+.User_cart svg {
+  color: #5c6369;
+}
+.badge_user {
+  color: #5c6369;
+}
+.badge_user span {
+  background-color: #ffffff;
+  box-shadow: -2px -2px 8px -6px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: -2px -2px 8px -6px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -2px -2px 8px -6px rgba(0, 0, 0, 0.75);
+}
 .User_cart {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  gap: 8px;
 }
 .My_account {
   display: flex;
@@ -85,10 +109,13 @@
   color: #5c6369;
   font-family: "Source Sans Pro";
   font-weight: bold;
-  margin-top: 13px;
   opacity: 0.8;
 }
+
 @media only screen and (max-width: 768px) {
+  .Userdetails {
+    display: none;
+  }
   .Logo {
     display: none;
   }

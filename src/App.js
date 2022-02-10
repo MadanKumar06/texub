@@ -11,7 +11,12 @@ import { SellonTexhub } from "./Pages/SellonTexhub/SellonTexhub";
 import { FAQs } from "./Pages/FAQs/FAQs";
 import { Contactus } from "./Pages/Contactus/Contactus";
 import { Userdetails } from "./Components/Userdetails/Userdetails";
+<<<<<<< HEAD
 import Register from "./Pages/Register/RegisterPopup/SectionLeft";
+=======
+// import { Register } from "./Components/Register/Sellerregister";
+import Registration from "./Pages/Register";
+>>>>>>> ca107e94efca99eb5002e839f28f6de805753136
 import { Gratitude } from "./Components/Register/Gratitude/Gratitude";
 import { AfterGratitude } from "./Components/Register/AfterGratitude/AfterGratitude";
 import { BuyerGratitude } from "./Components/Register/BuyerGratitude/BuyerGratitude";
@@ -22,6 +27,7 @@ import { Buyeradvantage } from "./Pages/CMS/Buyeradvantage/Buyeradvantage";
 import  Career  from "./Pages/CMS/Career/Career";
 
 import theme from "./theme";
+import ThankYouPage from "./Pages/Register/ThankYouPage";
 function App() {
   return (
     <div className="App">
@@ -41,6 +47,16 @@ function App() {
               exact
             />
             <Route
+              path="/register/:type"
+              element={
+                <>
+                  <Registration />
+                  <Footer />
+                </>
+              }
+              exact
+            />
+            <Route
               path="/Products"
               element={
                 <>
@@ -53,29 +69,11 @@ function App() {
             <Route path="/Aboutus" element={<Aboutus />} exact />
             <Route path="/Buyontexhub" element={<BuyonTexhub />} exact />
             <Route path="/Sellontexhub" element={<SellonTexhub />} exact />
-            <Route
-              path="/register"
-              element={
-                <>
-                  {/* <Header/>
-              <div className='Trail'>
-              <Userdetails/> `
-              </div> */}
 
-                  <Register />
-                  <Footer />
-                </>
-              }
-              exact
-            />
             <Route
               path="/Gratitude"
               element={
                 <>
-                  {/* <Header/>
-          <div className='Trail'>
-          <Userdetails/> 
-          </div>  */}
                   <Gratitude />
                   <Footer />
                 </>
@@ -112,6 +110,7 @@ function App() {
             
               {/* <Route path='/signin' element={<SignIn/>} exact/> */}
             </Route>
+<<<<<<< HEAD
 
               {/* CMS */}
 
@@ -133,6 +132,18 @@ function App() {
             <Footer/>
             </>
             } exact></Route>
+=======
+            <Route
+              path="/thankyou/:type"
+              element={
+                <>
+                  <ThankYouPage />
+                  <Footer />
+                </>
+              }
+              exact
+            ></Route>
+>>>>>>> ca107e94efca99eb5002e839f28f6de805753136
           </Routes>
         </BrowserRouter>
       </ThemeProvider>
