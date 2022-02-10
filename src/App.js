@@ -11,13 +11,20 @@ import { SellonTexhub } from "./Pages/SellonTexhub/SellonTexhub";
 import { FAQs } from "./Pages/FAQs/FAQs";
 import { Contactus } from "./Pages/Contactus/Contactus";
 import { Userdetails } from "./Components/Userdetails/Userdetails";
+<<<<<<< HEAD
+import Register from "./Pages/Register/RegisterPopup/SectionLeft";
+=======
 // import { Register } from "./Components/Register/Sellerregister";
 import Registration from "./Pages/Register";
+>>>>>>> ca107e94efca99eb5002e839f28f6de805753136
 import { Gratitude } from "./Components/Register/Gratitude/Gratitude";
 import { AfterGratitude } from "./Components/Register/AfterGratitude/AfterGratitude";
 import { BuyerGratitude } from "./Components/Register/BuyerGratitude/BuyerGratitude";
 import { BuyerKYCGratitude } from "./Components/Register/BuyerKYCGratitude/BuyerKYCGratitude";
 import { ThemeProvider } from "@mui/material/styles";
+import { Selleradvantage } from "./Pages/CMS/Selleradvantage/Selleradvantage";
+import { Buyeradvantage } from "./Pages/CMS/Buyeradvantage/Buyeradvantage";
+import  Career  from "./Pages/CMS/Career/Career";
 
 import theme from "./theme";
 import ThankYouPage from "./Pages/Register/ThankYouPage";
@@ -100,8 +107,32 @@ function App() {
             />
             <Route path="/Faqs" element={<FAQs />} exact />
             <Route path="/Contactus" element={<Contactus />} exact>
+            
               {/* <Route path='/signin' element={<SignIn/>} exact/> */}
             </Route>
+<<<<<<< HEAD
+
+              {/* CMS */}
+
+            <Route path="/seller_advantage" element={
+              <>
+            <Selleradvantage/>
+            <Footer/>
+            </>
+            } exact></Route>
+            <Route path="/buyer_advantage" element={
+              <>
+            <Buyeradvantage/>
+            <Footer/>
+            </>
+            } exact></Route>
+            <Route path="/career" element={
+            <>
+            <Career />
+            <Footer/>
+            </>
+            } exact></Route>
+=======
             <Route
               path="/thankyou/:type"
               element={
@@ -112,6 +143,7 @@ function App() {
               }
               exact
             ></Route>
+>>>>>>> ca107e94efca99eb5002e839f28f6de805753136
           </Routes>
         </BrowserRouter>
       </ThemeProvider>

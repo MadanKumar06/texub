@@ -11,6 +11,7 @@ import Like from "../../Assets/Homepage Assets/like.png";
 import Home from "../../Assets/Homepage Assets/home.png";
 import Shopping from "../../Assets/Homepage Assets/Shoppingbag.png";
 import MobileFooterAccordions from "./FooterForMobile";
+import Selleradvantage from "../../Pages/CMS/Selleradvantage/Selleradvantage";
 export const Footer = () => {
   return (
     <div className="Footer">
@@ -45,9 +46,15 @@ export const Footer = () => {
             <h2 className="Footer_Col_Heading">Services</h2>
             <ul className="Footer_col_list">
               <li>Training</li>
+             <Link to="/seller_advantage" className="to_CMS"> 
               <li>Seller Advantage</li>
+               </Link> 
+               <Link to="/buyer_advantage" className="to_CMS">
               <li>Buyer Advantage</li>
+              </Link>
+              <Link to="/career" className="to_CMS">
               <li>Career</li>
+              </Link>
             </ul>
           </div>
           <div className="Footer_box_col_234">
