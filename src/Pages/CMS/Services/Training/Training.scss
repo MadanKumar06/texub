@@ -1,0 +1,27 @@
+.training_main{
+    background-color: #FBFBFB;
+    // height: 1000px;
+    padding: 5%;
+    .training_description_section{
+        background-color: #FFFFFF;
+        padding: 5%;
+        height: 1000px;
+        .training_description{
+            margin-top: 100px;
+            .training_text{
+                list-style: none;
+                font-size: x-large;
+            }
+        }
+    .training_Heading_section{
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        .training_Heading{
+            font-size: xxx-large;
+            color: #DDB363;
+            letter-spacing: 1.5px;
+        }
+    }
+  }
+}

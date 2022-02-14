@@ -11,7 +11,7 @@ import Like from "../../Assets/Homepage Assets/like.png";
 import Home from "../../Assets/Homepage Assets/home.png";
 import Shopping from "../../Assets/Homepage Assets/Shoppingbag.png";
 import MobileFooterAccordions from "./FooterForMobile";
-import Selleradvantage from "../../Pages/CMS/Selleradvantage/Selleradvantage";
+// import Selleradvantage from "../../Pages/CMS/Selleradvantage/Selleradvantage";
 export const Footer = () => {
   return (
     <div className="Footer">
@@ -37,7 +37,9 @@ export const Footer = () => {
             <h2 className="Footer_Col_Heading">Company</h2>
             <ul className="Footer_col_list">
               <li>About Us</li>
+              <Link to="/termsofuse" className="to_CMS">
               <li>Terms Of Use</li>
+              </Link>
               <li>Privacy Policy</li>
               <li>Contact Us</li>
             </ul>
@@ -45,7 +47,9 @@ export const Footer = () => {
           <div className="Footer_box_col_234">
             <h2 className="Footer_Col_Heading">Services</h2>
             <ul className="Footer_col_list">
+              <Link to="/training" className="to_CMS">
               <li>Training</li>
+              </Link>
              <Link to="/seller_advantage" className="to_CMS"> 
               <li>Seller Advantage</li>
                </Link> 

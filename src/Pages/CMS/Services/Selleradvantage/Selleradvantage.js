@@ -1,6 +1,6 @@
 // import { Sell } from '@material-ui/icons';
 import React from 'react';
-import Sellera from '../../../Assets/Selleradvantage/Group 929.png'
+import Sellera from '../../../../Assets/Selleradvantage/Group 929.png'
 import './Selleradvantage.scss'
 
 export const Selleradvantage = () => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import Buyer from '../../../Assets/Buyeradvantage/Group 928.png'
+import Buyer from '../../../../Assets/Buyeradvantage/Group 928.png'
 import './Buyeradvantage.scss'
 
 export const Buyeradvantage = () => {
