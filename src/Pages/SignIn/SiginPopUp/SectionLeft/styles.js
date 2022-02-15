@@ -90,7 +90,7 @@ const styles = (theme) => ({
       marginBottom: "30px",
     },
     "& .MuiFormControl-root": {
-      marginBottom: "20px",
+      marginBottom: "38px",
       "& ::placeholder": {
         textTransform: "capitalize",
         fontSize: "12px",

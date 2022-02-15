@@ -6,7 +6,6 @@ import Acer from "../../../Assets/Productlist/acer_icon_td.png";
 import Apple from "../../../Assets/Productlist/apple_icon_td.png";
 import Lenovo from "../../../Assets/Productlist/lenovo_icon_td.png";
 import Samsung from "../../../Assets/Productlist/samsung_icon.png";
-import PDP from "../../PDP/PDP";
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
