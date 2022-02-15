@@ -27,7 +27,7 @@ const styles = (theme) => ({
         textTransform: "capitalize",
         fontSize: "12px",
       },
-      marginBottom: "20px",
+      marginBottom: "38px",
       "& .MuiInputLabel-root": {
         fontWeight: "600",
         fontSize: "1.2rem",

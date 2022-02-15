@@ -294,7 +294,7 @@ const styles = () => ({
   price_list_hubblk: {
     border: "1px solid #D6D8D9",
     borderRadius: "25px",
-    padding: "6px",
+    padding: "4px",
     textAlign: "center",
     cursor: "pointer",
 
@@ -310,7 +310,7 @@ const styles = () => ({
     justifyContent: "space-between",
     border: "1px solid #D6D8D9",
     width: "100%",
-    padding: "5px",
+    padding: "1px 1px",
     borderRadius: "25px",
 
     "@media (max-width:767px)": {
