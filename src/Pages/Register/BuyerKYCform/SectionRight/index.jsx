@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { TextField, Box, Button } from "@material-ui/core";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { withStyles } from "@material-ui/styles";
 import styles from "./styles";
 import Autocomplete from "@mui/material/Autocomplete";
 const BuyerKYCformSectionRight = ({ classes, handleClose }) => {
+  let { type } = useParams();
   let {
     section_right_container,
     info_text_lineNote_one,
@@ -156,7 +157,7 @@ const BuyerKYCformSectionRight = ({ classes, handleClose }) => {
         </div>
       </div>
       <Box className={button_box} fullWidth>
-        <Link to={`/thankyou${"/buyer"}`}>
+        <Link to={`/thankyou/${type}`}>
           <Button className={button_guest} onClick={() => handleClose()}>
             Submit
           </Button>

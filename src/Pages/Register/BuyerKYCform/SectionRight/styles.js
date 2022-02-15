@@ -10,6 +10,7 @@ const styles = (theme) => ({
     marginTop: "40px",
     "@media (max-width:767px)": {
       width: "100%",
+      marginTop: "0px",
     },
   },
   input_div: {
@@ -31,6 +32,9 @@ const styles = (theme) => ({
     fontSize: "22px",
     marginBottom: "37px",
     fontWeight: "600",
+    "@media (max-width:767px)": {
+      marginBottom: "0px",
+    },
   },
   info_text_lineNote_two: {
     color: "#333333",
@@ -42,8 +46,7 @@ const styles = (theme) => ({
     width: "100%",
     borderRadius: "4px",
     "@media (max-width:767px)": {
-      padding: "7% 5%",
-      marginBottom: "30px",
+      padding: "7% 5% 0%",
     },
     "& .MuiFormControl-root": {
       marginBottom: "20px",
@@ -84,6 +87,7 @@ const styles = (theme) => ({
     width: "100% !important",
   },
   button_box: {
+    paddingBottom: "30px",
     "& a": {
       textDecoration: "none",
     },

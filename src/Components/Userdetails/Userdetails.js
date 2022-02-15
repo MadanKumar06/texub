@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Userdetails.css";
 import logo from "../../Assets/Homepage Assets/Group.png";
 import { Badge } from "@material-ui/core";
@@ -6,6 +6,7 @@ import myaccount from "../../Assets/Homepage Assets/Group 702.png";
 import wishlist from "../../Assets/Homepage Assets/Group 703.png";
 import cart from "../../Assets/Homepage Assets/Group 704.png";
 import { Link } from "react-router-dom";
+import MyAccountPopUP from "./MyAccountPopup";
 
 import { AccountCircle, FavoriteBorder, ShoppingBag } from "@material-ui/icons";
 
@@ -28,11 +29,9 @@ export const Userdetails = () => {
             <h6 className="User_Call_tag">From 8:00 to 17:00 (Mon-Sat)</h6>
           </div> */}
           <div className="User_Account">
+            <MyAccountPopUP />
             {/* <img className="My_account_user" src={myaccount} alt="" /> */}
-            <Badge badgeContent={1} className="badge_user">
-              <AccountCircle />
-            </Badge>
-            <li className="User_account_Wishlist_cart">My Account</li>
+           
           </div>
           <div className="User_Wishlist">
             {/* <img className="My_account" src={wishlist} alt="" /> */}
