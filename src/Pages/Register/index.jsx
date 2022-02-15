@@ -24,8 +24,8 @@ const Registration = ({ classes }) => {
   } = classes;
   const [clicked, setClicked] = useState("buyer");
 
-  const handleChange = () => {
-    setClicked(type);
+  const handleChange = (event) => {
+    setClicked(event);
   };
   useEffect(() => {
     setClicked(type);
@@ -70,7 +70,7 @@ const Registration = ({ classes }) => {
               }
               label="Buyer"
               labelPlacement="top"
-              onClick={() => handleChange()}
+              onClick={() => handleChange("buyer")}
             />
             <FormControlLabel
               value="seller"
@@ -90,7 +90,7 @@ const Registration = ({ classes }) => {
               }
               label="Seller"
               labelPlacement="top"
-              onClick={() => handleChange()}
+              onClick={() => handleChange("seller")}
             />
           </RadioGroup>
         </div>

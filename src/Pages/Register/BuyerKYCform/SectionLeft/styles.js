@@ -63,7 +63,7 @@ const styles = (theme) => ({
     width: "50%",
     borderRight: "1px solid #E8E8E8",
     height: "max-content",
-    marginTop:"40px",
+    marginTop: "40px",
     padding: "0px 3%",
     "@media (max-width:767px)": {
       width: "100%",
@@ -98,7 +98,6 @@ const styles = (theme) => ({
     borderRadius: "4px",
     "@media (max-width:767px)": {
       padding: "7% 5%",
-      marginBottom: "30px",
     },
     "& .MuiFormControl-root": {
       marginBottom: "20px",
@@ -139,11 +138,17 @@ const styles = (theme) => ({
     flexDirection: "row",
     marginTop: "5px",
     marginBottom: "20px",
+    "@media (max-width:767px)": {
+      flexDirection: "column",
+    },
   },
   sub_media_upload_container: {
     width: "50%",
     "& small": {
       color: "#272727",
+    },
+    "@media (max-width:767px)": {
+      width: "100%",
     },
   },
   sub_media_upload_part: {
@@ -163,6 +168,9 @@ const styles = (theme) => ({
     "& input": {
       display: "none",
     },
+    "@media (max-width:767px)": {
+      marginLeft: "12px",
+    },
   },
   input_image_name: {
     width: "50%",
@@ -176,6 +184,11 @@ const styles = (theme) => ({
     alignItems: "center",
     "& p": {
       margin: "0",
+    },
+    "@media (max-width:767px)": {
+      width: "100%",
+      marginTop: "30px",
+      padding: "12px",
     },
   },
   input_image_name_clear_btn: {
@@ -191,6 +204,12 @@ const styles = (theme) => ({
     display: "flex",
     width: "100%",
     gap: "20px",
+    "@media (max-width:1040px) and (min-width: 768px)": {
+      flexWrap: "wrap",
+    },
+    "@media (max-width:490px)": {
+      flexWrap: "wrap",
+    },
   },
   button_selected: {
     borderRadius: "45px !important",
@@ -204,6 +223,12 @@ const styles = (theme) => ({
     textTransform: "capitalize !important",
     transition: "transform .2s !important",
     width: "calc(100%/3)",
+    "@media (max-width:1040px) and (min-width: 768px)": {
+      width: "100%",
+    },
+    "@media (max-width:490px)": {
+      width: "100%",
+    },
   },
   button_notselected: {
     borderRadius: "45px !important",
@@ -217,6 +242,12 @@ const styles = (theme) => ({
     textTransform: "capitalize !important",
     transition: "transform .2s !important",
     width: "calc(100%/3)",
+    "@media (max-width:1040px) and (min-width: 768px)": {
+      width: "100%",
+    },
+    "@media (max-width:490px)": {
+      width: "100%",
+    },
   },
 
   // section rigth css

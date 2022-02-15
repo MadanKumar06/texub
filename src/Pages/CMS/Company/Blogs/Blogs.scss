@@ -244,8 +244,14 @@
                 .blogs_queue_section{
                     .blogs_q_img_section{
                         .blogs_queue_text{
-                            padding: 0 !important;
-                            gap: 0 !important;
+                            padding: 8px 0 0 0!important;
+                            gap: 5px !important;
+                            .blogs_queue_heading{
+                                font-size: 23px;
+                            }
+                            .blogs_q_text{
+                                font-size: 16px;
+                            }
                         }
                         .blogs_q{
                             height: 189px;
