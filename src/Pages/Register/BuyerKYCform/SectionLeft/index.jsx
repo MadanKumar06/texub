@@ -290,7 +290,7 @@ const BuyerKYCformSectionLeft = ({ classes, KYCformPop }) => {
                 />
                 <TextField
                   id="outlined-textarea"
-                  label="Additional Infou"
+                  label="Additional Info"
                   placeholder="Additional Info"
                   fullWidth
                   InputLabelProps={{
