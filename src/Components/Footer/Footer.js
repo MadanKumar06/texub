@@ -67,7 +67,9 @@ export const Footer = () => {
               <li>Legal</li>
               <li>Cookies Permission</li>
               <li>GDPR</li>
+              <Link to="/faqs" className="to_CMS">
               <li>FAQs</li>
+              </Link>
             </ul>
           </div>
         </div>

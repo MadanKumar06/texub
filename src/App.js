@@ -8,7 +8,7 @@ import { Aboutus } from "./Pages/Aboutus/Aboutus";
 import { BuyonTexhub } from "./Pages/BuyonTexhub/BuyonTexhub";
 import { Products } from "./Pages/Products/Products";
 import { SellonTexhub } from "./Pages/SellonTexhub/SellonTexhub";
-import { FAQs } from "./Pages/FAQs/FAQs";
+// import { FAQs } from "./Pages/FAQs/FAQs";
 import { Contactus } from "./Pages/Contactus/Contactus";
 import { Userdetails } from "./Components/Userdetails/Userdetails";
 import Register from "./Pages/Register/RegisterPopup/SectionLeft";
@@ -26,6 +26,7 @@ import theme from "./theme";
 import ThankYouPage from "./Pages/Register/ThankYouPage";
 import { Training } from "./Pages/CMS/Services/Training/Training";
 import { Termsofuse } from "./Pages/CMS/Company/Termsofuse";
+import  FAQ  from "./Pages/CMS/Resources/FAQ";
 function App() {
   return (
     <div className="App">
@@ -103,7 +104,7 @@ function App() {
               element={<BuyerKYCGratitude />}
               exact
             />
-            <Route path="/Faqs" element={<FAQs />} exact />
+            {/* <Route path="/Faqs" element={<FAQs />} exact /> */}
             <Route path="/Contactus" element={<Contactus />} exact>
             
               {/* <Route path='/signin' element={<SignIn/>} exact/> */}
@@ -143,6 +144,15 @@ function App() {
             <Footer/>
             </>
             } exact></Route>
+
+            {/* Resources */}
+            <Route path="/faqs" element={ 
+            <>  
+            <FAQ/>
+            <Footer/>
+            </>
+            } exact />
+            
             <Route
               path="/thankyou/:type"
               element={
