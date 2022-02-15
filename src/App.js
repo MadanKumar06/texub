@@ -25,8 +25,9 @@ import  Career  from "./Pages/CMS/Services/Career/Career";
 import theme from "./theme";
 import ThankYouPage from "./Pages/Register/ThankYouPage";
 import { Training } from "./Pages/CMS/Services/Training/Training";
-import { Termsofuse } from "./Pages/CMS/Company/Termsofuse";
+import { Termsofuse } from "./Pages/CMS/Company/Termsofuse/Termsofuse";
 import  FAQ  from "./Pages/CMS/Resources/FAQ";
+import  Blogs  from "./Pages/CMS/Company/Blogs/Blogs";
 function App() {
   return (
     <div className="App">
@@ -106,8 +107,6 @@ function App() {
             />
             {/* <Route path="/Faqs" element={<FAQs />} exact /> */}
             <Route path="/Contactus" element={<Contactus />} exact>
-            
-              {/* <Route path='/signin' element={<SignIn/>} exact/> */}
             </Route>
 
               {/* CMS */}
@@ -119,6 +118,13 @@ function App() {
              <Footer/>
              </>
              } exact />
+             <Route path="/blogs" element={
+             <>
+             <Blogs />
+             <Footer/>
+             </>  
+             
+             } exact/>
              {/* Services  */}
             <Route path="/training" element={
             <>

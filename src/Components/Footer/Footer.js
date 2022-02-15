@@ -42,6 +42,9 @@ export const Footer = () => {
               </Link>
               <li>Privacy Policy</li>
               <li>Contact Us</li>
+              <Link to='/blogs' className="to_CMS" >
+              <li>Blogs</li>
+              </Link>
             </ul>
           </div>
           <div className="Footer_box_col_234">

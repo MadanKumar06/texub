@@ -1,6 +1,6 @@
 import React from 'react';
 import './Termsofuse.scss'
-import Terms from '../../../Assets/Career/Terms.png'
+import Terms from '../../../../Assets/Career/Terms.png'
 import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
 
 

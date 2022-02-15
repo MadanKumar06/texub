@@ -9,7 +9,6 @@ import FAQs from './FAQs';
 
 const FAQ = ({ classes }) => {
   const [description, setdescription] = useState(false)
-  console.log(description)
   return (
     <div className='faqs_main'>
       <div className='faqs_heading_section'>
@@ -25,7 +24,7 @@ const FAQ = ({ classes }) => {
             <div onClick={() =>
               setdescription(!(description))} className='faqs_qns_section'>
               <img src={item.image}  alt='' className='faqs_plus_img'></img>{item.heading}
-              {/* <img src={item.image}  alt='' className='faqs_plus_img'></img> */}
+        
             </div>
 
             {description &&
