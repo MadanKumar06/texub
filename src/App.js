@@ -22,6 +22,9 @@ import Career from "./Pages/CMS/Services/Career";
 import ThankYouPage from "./Pages/Register/ThankYouPage";
 import { Training } from "./Pages/CMS/Services/Training";
 import { Termsofuse } from "./Pages/CMS/Company/Termsofuse";
+import  FAQ  from "./Pages/CMS/Resources/FAQ";
+import   Blogsmain  from "./Pages/CMS/Company/Blogs/Blogsmain/Blogsmain";
+import Blogs from './Pages/CMS/Company/Blogs/Blogs'
 function App() {
   return (
     <div className="App">
@@ -43,7 +46,10 @@ function App() {
             <Route path="/seller_advantage" element={ <> <Selleradvantage /> <Footer /> </> } exact ></Route> 
             <Route path="/buyer_advantage" element={ <> <Buyeradvantage /> <Footer /> </> } exact ></Route>
              <Route path="/career" element={ <> <Career /> <Footer /> </> } exact ></Route>
-              <Route path="/thankyou/:type" element={ <> <ThankYouPage /> <Footer /> </> } exact ></Route>
+             <Route path="/thankyou/:type" element={ <> <ThankYouPage /> <Footer /> </> } exact ></Route>
+             <Route path="/blogsmain" element={ <> <Blogsmain /> <Footer/> </> } exact/>
+             <Route path="/blogsdetails" element={ <> <Blogs /> <Footer/> </> } exact/>
+            <Route path="/faqs" element={ <> <FAQ/> <Footer/> </> } exact />
           </Routes>
         </BrowserRouter>
       </ThemeProvider>

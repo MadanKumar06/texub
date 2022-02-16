@@ -350,14 +350,17 @@
                 display: none;
             }
             .career_team_join{
-                font-size: 31px;
-                left: 30%;
-                top: 15%;
+                font-size: 39px;
+                left: 25%;
+                top: 17%;
             }
             .career_team_join_btn{
-                font-size: 12px;
-                left: 34%;
+                font-size: 17px;
+                left: 31%;
                 top: 64%;
+            }
+            .career_team_img{
+                height: 216px;
             }
         }
         .career_joinus_section{
@@ -389,7 +392,7 @@
             }
             .career_to_texub_developers2,
             .career_to_texub_developers{
-                min-height: 64px;
+                min-height: 80px;
                 padding: 20px 20px 0 20px;
                 .career_to_texub_developers_arrow{
                     height: 13px;
@@ -440,10 +443,13 @@
                 top: 18%;
             }
             .career_team_join_btn{
-                left: 37%;
+                left: 32%;
                 padding: 6px 27px;
-                font-size: 11px;
+                font-size: 16px;
                 top: 65%;
+            }
+            .career_team_join{
+                left: 22%;
             }
         }
         .career_CultureValues{
@@ -468,11 +474,12 @@
      .career_main{
          .career_team_section{
              .career_team_join{
-                font-size: 20px;
-                left: 33%;
+                font-size: 33px;
+                left: 22%;
+                top: 20%;
              }
              .career_team_join_btn{
-                left: 33%;
+                left: 29%;
                 top: 61%;
              }
          }
@@ -501,12 +508,16 @@
     .career_main{
         .career_team_section{
             .career_team_join{
-               font-size: 20px;
-               left: 33%;
+               font-size: 28px;
+               left: 23%;
             }
             .career_team_join_btn{
-               left: 33%;
+               left: 28%;
                top: 61%;
+               font-size: 14px;
+            }
+            .career_team_img{
+                height: 166px;
             }
         }
         .career_joinus_section{

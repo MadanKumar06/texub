@@ -42,6 +42,9 @@ export const Footer = () => {
               </Link>
               <li>Privacy Policy</li>
               <li>Contact Us</li>
+              <Link to='/blogsmain' className="to_CMS" >
+              <li>Blogs</li>
+              </Link>
             </ul>
           </div>
           <div className="Footer_box_col_234">
@@ -67,7 +70,9 @@ export const Footer = () => {
               <li>Legal</li>
               <li>Cookies Permission</li>
               <li>GDPR</li>
+              <Link to="/faqs" className="to_CMS">
               <li>FAQs</li>
+              </Link>
             </ul>
           </div>
         </div>
