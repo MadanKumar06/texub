@@ -42,7 +42,7 @@ export const Footer = () => {
               </Link>
               <li>Privacy Policy</li>
               <li>Contact Us</li>
-              <Link to='/blogs' className="to_CMS" >
+              <Link to='/blogsmain' className="to_CMS" >
               <li>Blogs</li>
               </Link>
             </ul>

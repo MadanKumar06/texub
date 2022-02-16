@@ -21,7 +21,8 @@ import ThankYouPage from "./Pages/Register/ThankYouPage";
 import { Training } from "./Pages/CMS/Services/Training/Training";
 import { Termsofuse } from "./Pages/CMS/Company/Termsofuse/Termsofuse";
 import  FAQ  from "./Pages/CMS/Resources/FAQ";
-import  Blogs  from "./Pages/CMS/Company/Blogs/Blogs";
+import   Blogsmain  from "./Pages/CMS/Company/Blogs/Blogsmain/Blogsmain";
+import Blogs from './Pages/CMS/Company/Blogs/Blogs'
 function App() {
   return (
     <div className="App">
@@ -78,7 +79,14 @@ function App() {
              <Footer/>
              </>
              } exact />
-             <Route path="/blogs" element={
+             <Route path="/blogsmain" element={
+             <>
+             <Blogsmain />
+             <Footer/>
+             </>  
+             
+             } exact/>
+             <Route path="/blogsdetails" element={
              <>
              <Blogs />
              <Footer/>
