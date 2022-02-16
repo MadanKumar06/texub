@@ -1,6 +1,5 @@
 import React from 'react';
-import './Training.scss'
-import '../../../CMS/Services/Training/Training.scss'
+import './styles.scss'
 import certificate from '../../../../Assets/Career/certification@2x.png'
 const Termstext = [
      {

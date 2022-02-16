@@ -1,5 +1,5 @@
 import React from "react";
-import "./Aboutus.scss";
+import "./styles.scss";
 // import { Menu, KeyboardArrowDown } from "@material-ui/icons";
 import topbanner from "../../Assets/Aboutus/Group 765@2x.png";
 import missionbg from "../../Assets/Aboutus/missionbg.png";
@@ -29,7 +29,7 @@ import india from "../../Assets/Aboutus/india.png";
 import sg from "../../Assets/Aboutus/sg.png";
 import texhub from "../../Assets/Aboutus/texhub.png";
 
-export const Aboutus = () => {
+const Aboutus = () => {
   const country = [
     { content: "USA", image: usa },
     { content: "NIGERIA", image: nigeria },
@@ -166,3 +166,4 @@ export const Aboutus = () => {
     </div>
   );
 };
+export default Aboutus;

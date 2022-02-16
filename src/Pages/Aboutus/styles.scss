@@ -121,12 +121,12 @@
 
         &:nth-child(odd) .dimagecontent {
           position: absolute;
-          right: 12em;
+          right: 11em;
         }
 
         &:nth-child(even) .dimagecontent {
           position: absolute;
-          left: 12em;
+          left: 11em;
           flex-direction: row-reverse;
         }
 
