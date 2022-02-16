@@ -1,31 +1,100 @@
-import React, { useEffect, useState } from "react";
-import "./Productstable.scss";
-import "./Producttable_Media.css";
+import React, { useState } from "react";
 import HP from "./../../../Assets/Productlist/hp_td_icon.png";
 import Acer from "../../../Assets/Productlist/acer_icon_td.png";
 import Apple from "../../../Assets/Productlist/apple_icon_td.png";
 import Lenovo from "../../../Assets/Productlist/lenovo_icon_td.png";
 import Samsung from "../../../Assets/Productlist/samsung_icon.png";
-import { styled } from "@mui/material/styles";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell, { tableCellClasses } from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
-import FullscreenIcon from "@mui/icons-material/Fullscreen";
-import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import { DataGrid } from "@mui/x-data-grid";
-import { useDemoData } from "@mui/x-data-grid-generator";
-
-const Productstable = () => {
-  const [isClick, setisClick] = useState(false);
-  const [onClick, setonClick] = useState(false);
-  const SortBy = () => {
-    setonClick(!onClick);
+import shopping_cart from "../../../Assets/CommonImage/shopping-cart.png";
+import { withStyles } from "@material-ui/styles";
+import styles from "./styles";
+import MUIDataTable from "mui-datatables";
+import PDPpopUp from "../../../Pages/PDPpopUp";
+const Productstable = ({ classes }) => {
+  let {
+    producttable,
+    mui_datatable_main,
+    productable_image,
+    producttable_description,
+    producttable_price,
+    producttable_add_to_cart,
+  } = classes;
+  const [isPDPpopUP, setIsPDPpopUP] = useState(false);
+  const PDPPopUP = (event) => {
+    setIsPDPpopUP(event);
   };
+  const columns = [
+    {
+      name: "BRANDNAME",
+      label: "BRANDNAME",
+      options: {
+        filter: false,
+        customBodyRender: (value) => {
+          return (
+            <div className={productable_image}>
+              <img src={value} alt="" />
+            </div>
+          );
+        },
+      },
+    },
+    {
+      name: "MODELNAME",
+      label: "MODELNAME",
+    },
+    {
+      name: "PARTNUMBER",
+      label: "PARTNUMBER",
+    },
+    {
+      name: "DESCRIPTION",
+      label: "DESCRIPTION",
+      options: {
+        customBodyRender: (value) => {
+          return <div className={producttable_description}>{value}</div>;
+        },
+      },
+    },
+    {
+      name: "HUB",
+      label: "HUB",
+    },
+    {
+      name: "MOQ",
+      label: "MOQ",
+    },
+    {
+      name: "PRICE",
+      label: "PRICE",
+      options: {
+        customBodyRender: (value) => {
+          return <div className={producttable_price}>{value}</div>;
+        },
+      },
+    },
+    {
+      name: "INSTOCK",
+      label: "INSTOCK",
+    },
+    {
+      name: "CONDITION",
+      label: "CONDITION",
+    },
+    {
+      name: "CONDITION",
+      label: " ",
+      options: {
+        customBodyRender: (value) => {
+          return (
+            <p className={producttable_add_to_cart}>
+              <img src={shopping_cart} alt="" />
+              Add to Cart
+            </p>
+          );
+        },
+      },
+    },
+  ];
+
   const Productstablelist = [
     {
       id: 1,
@@ -150,59 +219,33 @@ const Productstable = () => {
       CONDITION: "New",
     },
   ];
-
-  const headings = [
-    {
-      field: "BRANDNAME",
-      headerName: "BRAND NAME",
-      width: 200,
-      height: 100,
-      renderCell: (params) => <img src={params.BRANDNAME} />,
-    },
-    { field: "MODELNAME", headerName: "MODEL NAME", width: 200 },
-    { field: "PARTNUMBER", headerName: "PART NUMBER", width: 120 },
-    { field: "DESCRIPTION", headerName: "DESCRIPTION", width: 300 },
-    { field: "HUB", headerName: "HUB", width: 150 },
-    { field: "MOQ", headerName: "MOQ", width: 150 },
-    { field: "PRICE", headerName: "Price", width: 150 },
-    { field: "INSTOCK", headerName: "IN STOCK", width: 150 },
-    { field: "CONDITION", headerName: "CONDITION", width: 150 },
-  ];
-
-  const StyledTableCell = styled(TableCell)(({ theme }) => ({
-    [`&.${tableCellClasses.head}`]: {
-      color: theme.palette.common.white,
-      fontSize: 16,
-    },
-    [`&.${tableCellClasses.body}`]: {
-      fontSize: 14,
-    },
-  }));
-
-  const StyledTableRow = styled(TableRow)(({ theme }) => ({
-    "&:nth-of-type(odd)": {
-      backgroundColor: theme.palette.action.hover,
-    },
-    // hide last border
-    "&:last-child td, &:last-child th": {
-      border: 0,
-    },
-  }));
-
-  function truncate(str, n) {
-    return str?.length > n ? str.substr(0, n - 1) + "..." : str;
-  }
+  const onRowHandleClick = (event) => {
+    setIsPDPpopUP(true);
+  };
+  const options = {
+    filter: true,
+    filterType: "dropdown",
+    responsive: "vertical",
+    selectableRows: "none",
+    download: false,
+    print: false,
+    sort: false,
+    viewColumns: false,
+    onRowClick: onRowHandleClick,
+  };
 
   return (
-    <div className="producttable" style={{ height: "60vh", width: "97%" }}>
-      <DataGrid
-        columns={headings}
-        rows={Productstablelist}
-        pageSize={10}
-        rowsPerPageOptions={[5]}
+    <div className={producttable}>
+      <MUIDataTable
+        title={""}
+        data={Productstablelist}
+        columns={columns}
+        options={options}
+        className={mui_datatable_main}
       />
+      {isPDPpopUP && <PDPpopUp PDPPopUP={PDPPopUP} />}
     </div>
   );
 };
 
-export default Productstable;
+export default withStyles(styles)(Productstable);

@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import "./Productlists.scss";
-import Products1 from "../../Filters";
 import {
   TextField,
   InputLabel,
   FormControl,
   Select,
-  FormHelperText,
   MenuItem,
 } from "@mui/material";
 import Icon1 from "../../../Assets/Productlist/Slide_icon.png";
@@ -16,11 +14,6 @@ import Icon4 from "../../../Assets/Productlist/Up_arrow.png";
 import Icon5 from "../../../Assets/Productlist/Download_icon.png";
 
 const Productlists = () => {
-  const [isClick, setisClick] = useState(true);
-  const List = () => {
-    setisClick(!isClick);
-  };
-
   const [age, setAge] = React.useState("");
 
   const handleChange = (event) => {

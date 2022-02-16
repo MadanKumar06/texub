@@ -27,17 +27,7 @@
 .ProductBrand_first_Slider{
     display: flex;
     justify-content: center;
-    /* background-color: royalblue; */
     padding-left: 40px;
-}
-
-
-.Slider_Section{
-    /* width: 100%;
-    display: flex;  
-    justify-content: center; */
-
-    
 }
 .slick-slider .slide_Test .slick-initialized{
     padding: 5px 40px;
@@ -53,7 +43,6 @@
   -moz-user-select: auto;
   -ms-user-select: auto;
   user-select: auto;
-    /* padding: 10px 60px; */
 }
 .text-success{
     height: 40px;
@@ -66,9 +55,6 @@
 .arrow{
     padding-top: 10px;
 }
-/* .char{
-    height: 500px;
-} */
 .Productbrands_btn{
     display: flex;
     justify-content: space-between;
@@ -81,7 +67,6 @@
 }
 .Productbrands_btn_content{
     display: flex;
-    /* list-style-type: none; */
     gap: 20px;
     text-align: center;
     cursor: pointer;

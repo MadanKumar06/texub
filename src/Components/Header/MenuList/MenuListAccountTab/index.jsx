@@ -123,7 +123,7 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
               disablePadding
             >
               {Departments?.map((itm) => (
-                <div className={classes.dropdown_collapse_list}>
+                <div key={itm?.name}className={classes.dropdown_collapse_list}>
                   <Link className={classes.link_in_tab} to={`/`}>
                     <ListItemButton sx={{ pl: 4 }}>
                       <ListItemText primary={`${itm?.name}`} />

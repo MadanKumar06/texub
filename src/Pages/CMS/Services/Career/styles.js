@@ -1,6 +1,6 @@
 
 
- const Styles = (theme) => ({
+ const styles = (theme) => ({
     checkbox_label: {
         fontSize:'30px !important',
         "@media (max-width:1024px)":{
@@ -29,4 +29,4 @@
 
    }
 });
-export default Styles;
+export default styles;

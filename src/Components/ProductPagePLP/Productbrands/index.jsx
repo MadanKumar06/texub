@@ -1,17 +1,14 @@
-import React, { useState, url } from "react";
+import React, { useState } from "react";
 import "./Productsbrands.css";
 import "./Productbrands_Media.css";
 
-import left from "../../../Assets/Productlist/left_icon.png";
 import hpcolor from "../../../Assets/Productlist/hp_color.png";
 import hp from "../../../Assets/Productlist/hp_icon.png";
 import dell from "../../../Assets/Productlist/dell_icon.png";
 import apple from "../../../Assets/Productlist/apple_icon.png";
 import acer from "../../../Assets/Productlist/acer_icon.png";
-import xiaomi from "../../../Assets/Productlist/xiomi_icon.png";
 import windows from "../../../Assets/Productlist/windows_icon.png";
 import samsung from "../../../Assets/Productlist/samsung_icon.png";
-import right from "../../../Assets/Productlist/right_icon.png";
 import Laptops from "../../Laptops";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -201,6 +198,7 @@ const Productsbrands = () => {
               {Laptops.map((item) => (
                 <li
                   href={item.path}
+                  key={item?.count}
                   className="Productbrands_btn_Laptops_Dropdown_Content"
                 >
                   {item.display} ({item.count})
