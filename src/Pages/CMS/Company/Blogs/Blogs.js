@@ -1,8 +1,5 @@
 import React from 'react'
 import { Blogjson,Popularblog,Queue } from './Blogjson'
-
-
-
 import './Blogs.scss'
 import { Link } from 'react-router-dom'
 
