@@ -14,10 +14,10 @@ export const Departments = () => {
             className="Departments_Body_Down_Pannel_btn"
             onClick={(e) => setIsActive(!isActive)}
           >
-            <i class="fa fa-reorder  button_Icon2"></i>
-            <i class="fa fa-search Search_Icon2"></i>
+            <i className="fa fa-reorder  button_Icon2"></i>
+            <i className="fa fa-search Search_Icon2"></i>
             <p className="Department_heading">
-              <i class="fa fa-reorder  button_Icon"> </i> DEPARTMENTS
+              <i className="fa fa-reorder  button_Icon"> </i> DEPARTMENTS
             </p>
           </div>
           <div className="Departments_Dropdown_list">
@@ -41,7 +41,7 @@ export const Departments = () => {
                 name="search"
                 placeholder="Search entire Store here.."
               />
-              <i class="fa fa-search Search_Icon"></i>
+              <i className="fa fa-search Search_Icon"></i>
             </form>
           </div>
           <div className="Body_Searchbar_Down_images">

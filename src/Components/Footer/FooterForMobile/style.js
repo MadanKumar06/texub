@@ -12,15 +12,20 @@ const styles = (theme) => ({
     },
     "& .MuiAccordionDetails-root": {
       padding: "0px 16px",
+      display: "flex",
       flexDirection: "column",
+      gap: "8px",
     },
-    "& .MuiTypography-root":{
+    "& .MuiTypography-root": {
       fontWeight: "600",
       fontSize: "1.1em",
     },
-    "& .MuiCollapse-root ":{
+    "& .MuiCollapse-root ": {
       fontSize: "0.8em",
-    }
+    },
+    "& .MuiButtonBase-root": {
+      height: "36px !important",
+    },
   },
   heading_accordion: {
     fontSize: "1.2rem",

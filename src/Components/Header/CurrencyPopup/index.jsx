@@ -1,6 +1,6 @@
 import React from "react";
-import {  Button, Menu, MenuItem } from "@material-ui/core";
-import { withStyles } from '@material-ui/styles';
+import { Button, Menu, MenuItem } from "@material-ui/core";
+import { withStyles } from "@material-ui/styles";
 import { ExpandMore } from "@material-ui/icons";
 import styles from "./styles";
 
@@ -53,7 +53,11 @@ const CurrencyPopup = ({ classes }) => {
         onClose={handleClose}
       >
         {Currency?.map((item) => (
-          <MenuItem name="currency_name" onClick={(e) => handleChange(item)}>
+          <MenuItem
+            name="currency_name"
+            key={item?.currency_name}
+            onClick={(e) => handleChange(item)}
+          >
             {item?.currency_name}
           </MenuItem>
         ))}
