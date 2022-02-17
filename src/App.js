@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
 import "./App.css";
+
 import Header from "./Components/Header";
 import { Home } from "./Pages/Home";
 import { Footer } from "./Components/Footer";
@@ -14,14 +15,13 @@ import { FAQs } from "./Pages/FAQs";
 import { Contactus } from "./Pages/Contactus";
 import { Userdetails } from "./Components/Userdetails";
 import Registration from "./Pages/Register";
-
 import { Selleradvantage } from "./Pages/CMS/Services/Selleradvantage";
 import { Buyeradvantage } from "./Pages/CMS/Services/Buyeradvantage";
 import Career from "./Pages/CMS/Services/Career";
 
 import ThankYouPage from "./Pages/Register/ThankYouPage";
 import { Training } from "./Pages/CMS/Services/Training";
-import { Termsofuse } from "./Pages/CMS/Company/Termsofuse";
+import { Termsofuse } from "./Pages/CMS/Company/Termsofuse/Termsofuse";
 import  FAQ  from "./Pages/CMS/Resources/FAQ";
 import   Blogsmain  from "./Pages/CMS/Company/Blogs/Blogsmain/Blogsmain";
 import Blogs from './Pages/CMS/Company/Blogs/Blogs'

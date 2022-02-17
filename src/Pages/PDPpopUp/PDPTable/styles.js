@@ -44,8 +44,23 @@ const styles = () => ({
     listStyleType: "none",
     margin: "0",
     paddingLeft: "0",
-    height: "63vh",
+    height: "50vh",
     overflowX: "auto",
+    "&::-webkit-scrollbar": {
+      width: "10px",
+    },
+
+    "&::-webkit-scrollbar-track": {
+      backgroundColor: "#ebebeb",
+      WebkitBorderRadius: "10px",
+      borderRadius: "10px",
+    },
+
+    "&::-webkit-scrollbar-thumb": {
+      WebkitBorderRadius: "10px",
+      borderRadius: "10px",
+      background: "#CDD5DD",
+    },
   },
   seller: {
     position: "absolute",
