@@ -18,8 +18,26 @@ import c4 from "../../../../Assets/Career/c4.png";
 import c5 from "../../../../Assets/Career/c5.png";
 import c6 from "../../../../Assets/Career/c6.png";
 import styles from "./styles";
+import   '../../../../Pages/Aboutus/styles.scss'
+
+import wwbg from "../../../../Assets/Aboutus/wwbg.png";
+import usa from "../../../../Assets/Aboutus/usa.png";
+import nigeria from "../../../../Assets/Aboutus/nigeria.png";
+import nether from "../../../../Assets/Aboutus/nether.png";
+import uae from "../../../../Assets/Aboutus/uae.png";
+import india from "../../../../Assets/Aboutus/india.png";
+import sg from "../../../../Assets/Aboutus/sg.png";
+import texhub from "../../../../Assets/Aboutus/texhub.png";
 
 const Career = ({ classes }) => {
+  const country = [
+    { content: "USA", image: usa },
+    { content: "NIGERIA", image: nigeria },
+    { content: "NETHERLAND", image: nether },
+    { content: "UAE", image: uae },
+    { content: "INDIA", image: india },
+    { content: "SINGAPORE", image: sg },
+  ];
   return (
     <div className="career_main">
       <div className="career_team_section">
@@ -237,6 +255,29 @@ const Career = ({ classes }) => {
             </Grid>
           </Grid>
         </Box>
+      </div>
+      <div className="aboutus">
+      <div className="aboutus__worldwide">
+        <h1>Our Worldwide Office</h1>
+        <div className="aboutus__worldwide__content">
+          <img src={wwbg} alt="" />
+
+          <div className="aboutus__ww__country">
+            {country.map((data, i) => (
+              <div className="list" key={i}>
+                <img src={data.image} alt="" />
+                <span>{data.content}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+        <img src={texhub} alt="" className="tag1" />
+        <img src={texhub} alt="" className="tag2" />
+        <img src={texhub} alt="" className="tag3" />
+        <img src={texhub} alt="" className="tag4" />
+        <img src={texhub} alt="" className="tag5" />
+        <img src={texhub} alt="" className="tag6" />
+      </div>
       </div>
     </div>
   );
