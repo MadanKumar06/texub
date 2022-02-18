@@ -24,7 +24,9 @@ const Blogsmain = () => {
                                 <span className='description'>{id.description}</span>
                             </div>
                             <div className='Blogs_description'>
+                            <Link to='/blogsdetails'>
                                 <span className='Blogs_blog'>{id.blog}</span>
+                            </Link>    
                             </div>
                         </div>
                     </div>

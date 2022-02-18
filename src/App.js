@@ -37,7 +37,7 @@ function App() {
             <Route path="/" element={ <> <Home /> <Footer /> </> } exact />
             <Route path="/register/:type" element={ <> <Registration /> <Footer /> </> } exact />
             <Route path="/Products" element={ <> <Products /> <Footer /> </> } exact />
-            <Route path="/Aboutus" element={<Aboutus />} exact />
+            <Route path="/Aboutus" element={ <><Aboutus />  <Footer/> </>} exact />
             <Route path="/Buyontexhub" element={<BuyonTexhub />} exact />
             <Route path="/Sellontexhub" element={<SellonTexhub />} exact />
             <Route path="/Faqs" element={<FAQs />} exact />

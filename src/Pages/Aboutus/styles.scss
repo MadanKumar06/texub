@@ -317,6 +317,38 @@
   }
 }
 
+@media (max-width: 1920px){
+  .aboutus .aboutus__worldwide .tag1 {
+    left: 30.9em;
+    top: 13.5em;
+  }
+
+  .aboutus .aboutus__worldwide .tag2 {
+    top: 21.6em;
+    left: 50.99em;
+  }
+
+  .aboutus .aboutus__worldwide .tag3 {
+    top: 9.5em;
+    right: 56.35em;
+  }
+
+  .aboutus .aboutus__worldwide .tag4 {
+    top: 22.2em;
+    right: 44.3em;
+  }
+
+  .aboutus .aboutus__worldwide .tag5 {
+    top: 25.5em;
+    right: 36.2em;
+  }
+
+  .aboutus .aboutus__worldwide .tag6 {
+    top: 31em;
+    right: 15.35em;
+  }
+}
+
 @media (max-width: 1600px) {
   .aboutus__topbanner__floatingtext {
     bottom: 7.5em !important;
@@ -465,6 +497,38 @@
   .aboutus .aboutus__worldwide .tag6 {
     top: 24.5em;
     right: 10.75em;
+    width: 2em;
+  }
+}
+
+@media (max-width: 1330px){
+  .aboutus .aboutus__worldwide .tag1 {
+    left: 21.4em;
+    width: 2em;
+  }
+  .aboutus .aboutus__worldwide .tag2 {
+    top: 17.3em;
+    left: 35.25em;
+    width: 2em;
+  }
+  .aboutus .aboutus__worldwide .tag3 {
+    top: 9.5em;
+    right: 39em;
+    width: 2em;
+  }
+  .aboutus .aboutus__worldwide .tag4 {
+    right: 30.6em;
+    width: 2em;
+    top: 18em;
+  }
+  .aboutus .aboutus__worldwide .tag5 {
+    top: 20em;
+    right: 25em;
+    width: 2em;
+  }
+  .aboutus .aboutus__worldwide .tag6 {
+    top: 24em;
+    right: 10.4em;
     width: 2em;
   }
 }
@@ -810,6 +874,13 @@
 }
 
 @media (max-width: 768px) {
+  .aboutus .aboutus__highlights ul li .dimagecontent span{
+    font-size: 16px;
+  }
+  .aboutus
+  .aboutus__worldwide{
+    padding-bottom: 5px;
+  }
   .aboutus .aboutus__worldwide .tag1 {
     left: 12.35em;
     top: 10.35em;
@@ -844,6 +915,107 @@
     top: 17.35em;
     right: 6em;
     width: 1.15em;
+  }
+  .aboutus .aboutus__worldwide .aboutus__worldwide__content .aboutus__ww__country{
+    gap: 3px;
+  }
+}
+@media (max-width: 580px){
+  .aboutus__topbanner__floatingtext {
+    .topbanner__text1 {
+      font-size: 16px !important;
+    }
+    .topbanner__text2 {
+      font-size: 32px !important;
+    }
+  }
+
+  .aboutus .aboutus__mission__content .aboutus__mission__left h1 {
+    font-size: 24px;
+  }
+
+  .aboutus .aboutus__mission__content .aboutus__mission__left p {
+    font-size: 12px;
+  }
+
+  .aboutus .aboutus__mission__content .aboutus__mission__right {
+    right: 0;
+    top: 2em;
+    .aboutus__righttext {
+      top: 2em;
+    }
+  }
+
+  .aboutus .aboutus__highlights ul li:nth-child(odd) .dimagecontent,
+  .aboutus .aboutus__highlights ul li:nth-child(even) .dimagecontent {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    span {
+      max-width: 36vw;
+    }
+  }
+
+  .aboutus .aboutus__highlights ul {
+    margin: 0;
+  }
+  .aboutus
+  .aboutus__worldwide{
+    padding-bottom: 5px;
+  }
+  .aboutus
+    .aboutus__worldwide
+    .aboutus__worldwide__content
+    .aboutus__ww__country
+    > .list
+    > img {
+    width: 50%;
+  }
+
+  .aboutus
+    .aboutus__worldwide
+    .aboutus__worldwide__content
+    .aboutus__ww__country
+    .list
+    span {
+    font-size: 15px;
+  }
+
+  .aboutus .aboutus__worldwide .tag1 {
+    left: 9.3em;
+    top: 9.6em;
+    width: 0.85em;
+  }
+  .aboutus .aboutus__worldwide .tag2 {
+    top: 12.1em;
+    left: 15.4em;
+    width: 0.85em;
+  }
+
+  .aboutus .aboutus__worldwide .tag3 {
+    top: 8.6em;
+    right: 16.99em;
+    width: 0.85em;
+  }
+
+  .aboutus .aboutus__worldwide .tag4 {
+    top: 12.4em;
+    right: 13.4em;
+    width: 0.85em;
+  }
+
+  .aboutus .aboutus__worldwide .tag5 {
+    top: 13.3em;
+    right: 10.9em;
+    width: 0.85em;
+  }
+
+  .aboutus .aboutus__worldwide .tag6 {
+    top: 15em;
+    right: 4.5em;
+    width: 0.85em;
   }
 }
 
@@ -984,38 +1156,38 @@
   }
 
   .aboutus .aboutus__worldwide .tag1 {
-    left: 7.5em;
+    left: 7.6em;
     top: 9.35em;
     width: 0.75em;
   }
 
   .aboutus .aboutus__worldwide .tag2 {
     top: 11.35em;
-    left: 12.3em;
+    left: 12.7em;
     width: 0.75em;
   }
 
   .aboutus .aboutus__worldwide .tag3 {
     top: 8.5em;
-    right: 13.65em;
+    right: 13.99em;
     width: 0.75em;
   }
 
   .aboutus .aboutus__worldwide .tag4 {
     top: 11.55em;
-    right: 10.7em;
+    right: 10.99em;
     width: 0.75em;
   }
 
   .aboutus .aboutus__worldwide .tag5 {
     top: 12.35em;
-    right: 8.7em;
+    right: 8.99em;
     width: 0.75em;
   }
 
   .aboutus .aboutus__worldwide .tag6 {
-    top: 13.65em;
-    right: 3.65em;
+    top: 13.75em;
+    right: 3.75em;
     width: 0.75em;
   }
 
@@ -1036,6 +1208,9 @@
     span {
     font-size: 12px;
   }
+  .aboutus .aboutus__worldwide .aboutus__worldwide__content .aboutus__ww__country{
+    gap: 3px;
+  }
 }
 
 @media (max-width: 375px) {
@@ -1044,38 +1219,38 @@
   }
 
   .aboutus .aboutus__worldwide .tag1 {
-    left: 6em;
-    top: 6.85em;
+    left: 6em !important;
+    top: 6.85em !important;
     width: 0.6em;
   }
 
   .aboutus .aboutus__worldwide .tag2 {
-    top: 8.45em;
-    left: 9.95em;
+    top: 8.45em !important;
+    left: 9.95em !important;
     width: 0.6em;
   }
 
   .aboutus .aboutus__worldwide .tag3 {
-    top: 6.15em;
-    right: 10.95em;
+    top: 6.15em !important;
+    right: 10.95em !important;
     width: 0.6em;
   }
 
   .aboutus .aboutus__worldwide .tag4 {
-    top: 8.58em;
-    right: 8.65em;
+    top: 8.58em !important;
+    right: 8.65em !important;
     width: 0.6em;
   }
 
   .aboutus .aboutus__worldwide .tag5 {
-    top: 9.2em;
-    right: 7em;
+    top: 9.2em !important;
+    right: 7em !important;
     width: 0.6em;
   }
 
   .aboutus .aboutus__worldwide .tag6 {
-    top: 10.3em;
-    right: 2.9em;
+    top: 10.3em !important;
+    right: 2.9em !important;
     width: 0.6em;
   }
 }
@@ -1101,38 +1276,38 @@
   }
 
   .aboutus .aboutus__worldwide .tag1 {
-    left: 5.1em;
-    top: 6.7em;
+    left: 5.1em !important;
+    top: 6.7em !important;
     width: 0.5em;
   }
 
   .aboutus .aboutus__worldwide .tag2 {
-    top: 8.05em;
-    left: 8.5em;
-    width: 0.5em;
+    top: 8.05em !important;
+    left: 8.5em !important;
+    width: 0.5em !important;
   }
 
   .aboutus .aboutus__worldwide .tag3 {
-    top: 6.15em;
-    right: 9.35em;
+    top: 6.15em !important;
+    right: 9.35em !important;
     width: 0.5em;
   }
 
   .aboutus .aboutus__worldwide .tag4 {
-    top: 8.15em;
-    right: 7.35em;
+    top: 8.15em !important;
+    right: 7.35em !important;
     width: 0.5em;
   }
 
   .aboutus .aboutus__worldwide .tag5 {
-    top: 8.7em;
-    right: 6em;
+    top: 8.7em !important;
+    right: 6em !important;
     width: 0.5em;
   }
 
   .aboutus .aboutus__worldwide .tag6 {
-    top: 9.65em;
-    right: 2.5em;
+    top: 9.65em !important;
+    right: 2.5em !important;
     width: 0.5em;
   }
 
@@ -1154,3 +1329,62 @@
     font-size: 8px;
   }
 }
+@media (max-width: 425px) {
+  .aboutus .aboutus__worldwide h1 {
+    font-size: 36px;
+  }
+  .aboutus .aboutus__worldwide .tag1 {
+    left: 6.9em;
+    top: 7.1em;
+    width: 0.5em;
+  }
+
+  .aboutus .aboutus__worldwide .tag2 {
+    top: 8.9em;
+    left: 11.3em;
+    width: 0.5em;
+  }
+
+  .aboutus .aboutus__worldwide .tag3 {
+    top: 6.15em;
+    right: 12.5em;
+    width: 0.5em;
+  }
+
+  .aboutus .aboutus__worldwide .tag4 {
+    top: 8.99em;
+    right: 9.9em;
+    width: 0.5em;
+  }
+
+  .aboutus .aboutus__worldwide .tag5 {
+    top: 9.7em;
+    right: 8em;
+    width: 0.5em;
+  }
+
+  .aboutus .aboutus__worldwide .tag6 {
+    top: 10.99em;
+    right: 3.4em;
+    width: 0.5em;
+  }
+
+  .aboutus
+    .aboutus__worldwide
+    .aboutus__worldwide__content
+    .aboutus__ww__country
+    > .list
+    > img {
+    width: 32%;
+  }
+
+  .aboutus
+    .aboutus__worldwide
+    .aboutus__worldwide__content
+    .aboutus__ww__country
+    .list
+    span {
+    font-size: 8px;
+  }
+}
+
