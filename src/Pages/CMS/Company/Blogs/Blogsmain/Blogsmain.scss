@@ -408,183 +408,6 @@
     }
  }
    
-
-@media (max-width:320px){
-   .Blogsmain_main{
-       .Blogsmain_1st_section{
-       .Blogs_list{
-           .Blogs_details{
-               .Blogs_description{
-                   margin: 0;
-               }
-               .Blogs_heading{
-                flex-direction: column;
-                gap: 10px;
-                .Blogs_date{
-                    order: 1;
-                }
-                .Blogs_heading1{
-                    order: 2;
-                    font-size: 24px;
-                }
-               }
-             
-           }
-       }
-    }  
-    .blogs_popular_main{
-        padding: 0px 5px 8px 5px !important;
-        .mainheading{
-            margin: 0 0 12px 0;
-        }
-        .blogs_popular{
-            .blogs_queue_section{
-                width: calc(100% - 0px);
-                .blogs_q_img_section{
-                    gap: 6px;
-                    flex-direction: column;
-                    .blogs_queue_text{
-                        .blogs_date{
-                            font-size: large;
-                        }
-                        .blogs_queue_heading{
-                            font-size: 24px;
-                        }
-                    }
-                    .blogs_q{
-                        width: 100%;
-                        height: 100%;
-                    }
-                }
-            }
-        }
-        .mainheading{
-            font-size: 29px;
-        }
-    }
-   }
- }
-
- @media (max-width:375px){
-    .Blogsmain_main{
-        .Blogsmain_1st_section{
-        .Blogs_list{
-            .Blogs_details{
-                gap: 20px;
-                .Blogs_description{
-                    margin: 0;
-                }
-                .Blogs_heading{
-                 flex-direction: column;
-                 gap: 10px;
-                 .Blogs_heading1{
-                    order: 2;
-                    font-size:28px !important;
-                }
-                 .Blogs_date{
-                     order: 1;
-                 }
-                }
-              
-            }
-        }
-     }  
-     .blogs_popular_main{
-         padding: 0px 5px 8px 5px !important;
-         .mainheading{
-             margin: 0 0 12px 0;
-         }
-         .blogs_popular{
-             .blogs_queue_section{
-                 width: calc(100% - 0px);
-                 .blogs_q_img_section{
-                     gap: 6px;
-                     flex-direction: column;
-                     .blogs_queue_text{
-                         .blogs_q_text{
-                             font-size: 15px;
-                         }
-                         .blogs_date{
-                             font-size: large;
-                         }
-                         .blogs_queue_heading{
-                             font-size: 27px !important;
-                         }
-                     }
-                     .blogs_q{
-                         width: 100%;
-                         height: 100%;
-                     }
-                 }
-             }
-         }
-         .mainheading{
-             font-size: 29px;
-         }
-     }
-    }
- }
-
- @media (max-width:425px){
-    .Blogsmain_main{
-        .Blogsmain_1st_section{
-        .Blogs_list{
-            .Blogs_details{
-                gap: 20px;
-                .Blogs_description{
-                    margin: 0;
-                }
-                .Blogs_heading{
-                 flex-direction: column;
-                 gap: 10px;
-                 .Blogs_heading1{
-                    order: 2;
-                    font-size: 33px !important;
-                }
-                 .Blogs_date{
-                     order: 1;
-                 }
-                }
-              
-            }
-        }
-     }  
-     .blogs_popular_main{
-         padding: 0px 5px 8px 5px !important;
-         .mainheading{
-             margin: 0 0 12px 0;
-         }
-         .blogs_popular{
-             .blogs_queue_section{
-                 width: calc(100% - 0px);
-                 .blogs_q_img_section{
-                     gap: 6px;
-                     flex-direction: column;
-                     .blogs_queue_text{
-                         .blogs_q_text{
-                             font-size: 15px;
-                         }
-                         .blogs_date{
-                             font-size: 13px;
-                         }
-                         .blogs_queue_heading{
-                             font-size: 27px;
-                         }
-                     }
-                     .blogs_q{
-                         width: 100%;
-                         height: 100%;
-                     }
-                 }
-             }
-         }
-         .mainheading{
-             font-size: 29px;
-         }
-     }
-    }
- }
-
  @media (max-width:480px){
     .Blogsmain_main{
         .Blogsmain_1st_section{
@@ -645,6 +468,178 @@
     }
  }
 
- 
+ @media (max-width:425px){
+    .Blogsmain_main{
+        .Blogsmain_1st_section{
+        .Blogs_list{
+            .Blogs_details{
+                gap: 20px;
+                .Blogs_description{
+                    margin: 0;
+                }
+                .Blogs_heading{
+                 flex-direction: column;
+                 gap: 10px;
+                 .Blogs_heading1{
+                    order: 2;
+                    font-size: 33px ;
+                }
+                 .Blogs_date{
+                     order: 1;
+                 }
+                }
+              
+            }
+        }
+     }  
+     .blogs_popular_main{
+         padding: 0px 5px 8px 5px !important;
+         .mainheading{
+             margin: 0 0 12px 0;
+         }
+         .blogs_popular{
+             .blogs_queue_section{
+                 width: calc(100% - 0px);
+                 .blogs_q_img_section{
+                     gap: 6px;
+                     flex-direction: column;
+                     .blogs_queue_text{
+                         .blogs_q_text{
+                             font-size: 15px;
+                         }
+                         .blogs_date{
+                             font-size: 13px;
+                         }
+                         .blogs_queue_heading{
+                             font-size: 27px;
+                         }
+                     }
+                     .blogs_q{
+                         width: 100%;
+                         height: 100%;
+                     }
+                 }
+             }
+         }
+         .mainheading{
+             font-size: 29px;
+         }
+     }
+    }
+ }
 
+ @media (max-width:375px){
+    .Blogsmain_main{
+        .Blogsmain_1st_section{
+        .Blogs_list{
+            .Blogs_details{
+                gap: 20px;
+                .Blogs_description{
+                    margin: 0;
+                }
+                .Blogs_heading{
+                 flex-direction: column;
+                 gap: 10px;
+                 .Blogs_heading1{
+                    order: 2;
+                    font-size:28px;
+                }
+                 .Blogs_date{
+                     order: 1;
+                 }
+                }
+              
+            }
+        }
+     }  
+     .blogs_popular_main{
+         padding: 0px 5px 8px 5px !important;
+         .mainheading{
+             margin: 0 0 12px 0;
+         }
+         .blogs_popular{
+             .blogs_queue_section{
+                 width: calc(100% - 0px);
+                 .blogs_q_img_section{
+                     gap: 6px;
+                     flex-direction: column;
+                     .blogs_queue_text{
+                         .blogs_q_text{
+                             font-size: 15px;
+                         }
+                         .blogs_date{
+                             font-size: large;
+                         }
+                         .blogs_queue_heading{
+                             font-size: 27px;
+                         }
+                     }
+                     .blogs_q{
+                         width: 100%;
+                         height: 100%;
+                     }
+                 }
+             }
+         }
+         .mainheading{
+             font-size: 29px;
+         }
+     }
+    }
+ }
 
+@media (max-width:320px){
+   .Blogsmain_main{
+       .Blogsmain_1st_section{
+       .Blogs_list{
+           .Blogs_details{
+               .Blogs_description{
+                   margin: 0;
+               }
+               .Blogs_heading{
+                flex-direction: column;
+                gap: 10px;
+                .Blogs_date{
+                    order: 1;
+                }
+                .Blogs_heading1{
+                    order: 2;
+                    font-size: 24px;
+                }
+               }
+             
+           }
+       }
+    }  
+    .blogs_popular_main{
+        padding: 0px 5px 8px 5px !important;
+        .mainheading{
+            margin: 0 0 12px 0;
+        }
+        .blogs_popular{
+            .blogs_queue_section{
+                width: calc(100% - 0px);
+                .blogs_q_img_section{
+                    gap: 6px;
+                    flex-direction: column;
+                    .blogs_queue_text{
+                        .blogs_date{
+                            font-size: large;
+                        }
+                        .blogs_queue_heading{
+                            font-size: 24px;
+                        }
+                    }
+                    .blogs_q{
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+            }
+        }
+        .mainheading{
+            font-size: 29px;
+        }
+    }
+   }
+ }

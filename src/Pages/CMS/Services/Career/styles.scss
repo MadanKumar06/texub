@@ -163,7 +163,17 @@
 }
 
 /*@media*/ 
-  
+@media (max-width:1533px){
+   .career_main{
+       .career_CultureValues{
+           .career_CultureValues_imgs2,
+           .career_CultureValues_imgs1{
+               padding-left: 2%;
+           }
+       }
+   }
+}  
+
 @media (max-width:1440px) {
     .career_main{
         .career_team_section{
@@ -200,6 +210,17 @@
         }
     }
     
+}
+
+@media (max-width:1330px){
+    .career_main{
+        .career_CultureValues{
+            .career_CultureValues_imgs1,
+            .career_CultureValues_imgs2{
+                padding-left: 9%;
+            }
+        }
+    }
 }
 
 @media (max-width:1024px) {

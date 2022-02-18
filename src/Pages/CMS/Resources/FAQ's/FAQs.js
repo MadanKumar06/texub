@@ -1,4 +1,4 @@
-import IMG from '../../../Assets/Career/plus.svg'
+import IMG from '../../../../Assets/Career/plus.svg'
 
 const FAQs = [
     {

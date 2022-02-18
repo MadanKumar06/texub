@@ -1,4 +1,4 @@
-import React from "react";
+import React,{ useState } from "react";
 import "./Footer.css";
 import { Link } from "react-router-dom";
 import logo from "../../Assets/Homepage Assets/Group.png";
@@ -12,7 +12,15 @@ import Home from "../../Assets/Homepage Assets/home.png";
 import Shopping from "../../Assets/Homepage Assets/Shoppingbag.png";
 import MobileFooterAccordions from "./FooterForMobile";
 // import Selleradvantage from "../../Pages/CMS/Selleradvantage/Selleradvantage";
+import Cookiespermission from '../../Pages/CMS/Resources/Cookiespermission'
 export const Footer = () => {
+  const [isCookies, setisCookies] = useState(false)
+
+  const  isclik=()=> {
+     setisCookies(!isCookies)
+    console.log (isCookies)
+    
+  }
   return (
     <div className="Footer">
       <div className="Footer_box">
@@ -36,12 +44,18 @@ export const Footer = () => {
           <div className="Footer_box_col_234">
             <h2 className="Footer_Col_Heading">Company</h2>
             <ul className="Footer_col_list">
+            <Link to="/rrpolicy" className="to_CMS">
               <li>About Us</li>
+              </Link>
               <Link to="/termsofuse" className="to_CMS">
               <li>Terms Of Use</li>
               </Link>
+              <Link to="/privacypolicy" className="to_CMS">
               <li>Privacy Policy</li>
+              </Link>
+              <Link to='/contactus' className="to_CMS" >
               <li>Contact Us</li>
+              </Link>
               <Link to='/blogsmain' className="to_CMS" >
               <li>Blogs</li>
               </Link>
@@ -67,14 +81,19 @@ export const Footer = () => {
           <div className="Footer_box_col_234">
             <h2 className="Footer_Col_Heading">Resources</h2>
             <ul className="Footer_col_list">
+            <Link to="/legal" className="to_CMS">
               <li>Legal</li>
-              <li>Cookies Permission</li>
+              </Link>
+              <li onClick={isclik} >Cookies Permission</li>
+              <Link to="/gdpr" className="to_CMS">
               <li>GDPR</li>
+              </Link>
               <Link to="/faqs" className="to_CMS">
               <li>FAQs</li>
               </Link>
             </ul>
           </div>
+          {isCookies && <Cookiespermission/>}
         </div>
       </div>
       <div className="footer_mobile_view">
