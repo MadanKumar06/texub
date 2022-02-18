@@ -8,8 +8,8 @@
   padding-top: 1.1em;
 }
 .image_div {
-  margin: auto;
-  width: 10em;
+  /* margin: auto;
+  width: 10em; */
 }
 .Footer_box {
   display: flex;
@@ -23,7 +23,7 @@
   text-align: justify;
 }
 .Footer_Logo {
-  width: 10em;
+  /* width: 10em; */
   object-fit: contain;
   margin-left: -9px;
 }
@@ -32,7 +32,7 @@
   font-size: 13px;
 }
 .Footer_Icons {
-  margin-right: 15px;
+  /* margin-right: 15px; */
 }
 .Footer_box_col_234 {
   text-align: left;
@@ -63,6 +63,7 @@
   margin-top: 21px;
   display: flex;
   flex-direction: row;
+  gap: 15px;
 }
 .Copyright {
   display: flex;

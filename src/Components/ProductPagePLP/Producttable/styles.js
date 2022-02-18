@@ -1,9 +1,35 @@
 const styles = () => ({
   producttable: {
-    margin: "15px 3% 20px",
+    margin: "15px 3% 4.5%",
   },
   mui_datatable_main: {
+    "& .MUIDataTable-responsiveBase-5": {
+      zIndex: "1",
+    },
+    "& .MuiToolbar-root": {
+      minHeight: "0px",
+      height: "0px",
+    },
+    "& .MuiButtonBase-root": {
+      color: "#ffffff",
+      position: "absolute",
+      right: "0",
+      top: "7px",
+      zIndex: "2",
+      background: "#002d56",
+      borderRadius: "unset",
+      "@media (max-width:900px)": {
+        color: "#002d56",
+        background: "#f5f5f5",
+      },
+    },
+    "& .MuiTable-root": {
+      zIndex: "1",
+    },
     "& .MuiTableHead-root": {
+      "@media (max-width:900px)": {
+        display: "none !important",
+      },
       "& .MuiTableCell-root": {
         background: "#002D56",
         color: "#FFFFFF",
@@ -23,6 +49,9 @@ const styles = () => ({
       "& .MuiTableCell-root ": {
         textAlign: "center",
         fontSize: "18px",
+        "@media (max-width:900px)": {
+          display: "block !important",
+        },
       },
     },
   },
@@ -34,10 +63,19 @@ const styles = () => ({
     maxWidth: "300px",
   },
   producttable_price: {
-    width:"110px",
+    width: "110px",
     padding: "10px 0",
     background: "#ffffff",
     borderRadius: "22px",
+    "& span": {
+      fontSize: "12px",
+      paddingRight: "4px",
+    },
+  },
+  producttable_price_block: {
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
   },
   producttable_add_to_cart: {
     display: "flex",
@@ -52,11 +90,10 @@ const styles = () => ({
     padding: "8px 0 !important",
     borderRadius: "45px !important",
     border: "none !important",
-    background: "linear-gradient(80deg, #20639B 0%, #002D56 100%)",
+    background: "linear-gradient(180deg, #20639B 0%, #002D56 100%)",
     color: "#ffffff !important",
     cursor: "pointer",
     boxShadow: "0px 3px 6px #00000029",
-    marginRight: "8px !important",
     fontWeight: "600 !important",
     letterSpacing: "1px",
   },

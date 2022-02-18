@@ -42,6 +42,10 @@ const styles = (theme) => ({
       width: "1em !important",
       height: "1em !important",
     },
+    "@media (max-width:480px)": {
+      top: "-26px",
+      right: "-22px",
+    },
   },
   pdp_header_bottom_container: {
     display: "flex",
@@ -115,11 +119,10 @@ const styles = (theme) => ({
     minWidth: "245px !important",
     borderRadius: "45px !important",
     border: "none !important",
-    background: "linear-gradient(80deg, #20639B 0%, #002D56 100%)",
+    background: "linear-gradient(180deg, #20639B 0%, #002D56 100%)",
     color: "#ffffff !important",
     cursor: "pointer",
     boxShadow: "0px 3px 6px #00000029",
-    marginRight: "8px !important",
     fontWeight: "600 !important",
     letterSpacing: "1px",
     textTransform: "capitalize !important",
@@ -144,7 +147,6 @@ const styles = (theme) => ({
   modal_bottom_button_add_to_cart: {
     textDecoration: "none",
     minWidth: "173px !important",
-    marginLeft: "8px !important",
     borderRadius: "45px !important",
     border: "none !important",
     background: "linear-gradient(180deg, #ffd788 0%, #ad7c20 100%)",
