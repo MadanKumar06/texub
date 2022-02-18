@@ -95,7 +95,7 @@ const styles = (theme) => ({
     minWidth: "126px !important",
     borderRadius: "45px !important",
     border: "none !important",
-    background: "linear-gradient(80deg, #20639B 0%, #002D56 100%)",
+    background: "linear-gradient(180deg, #20639B 0%, #002D56 100%)",
     color: "#ffffff !important",
     cursor: "pointer",
     boxShadow: "0px 3px 6px #00000029",

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 52 52">
+  <g id="Group_1047" data-name="Group 1047" transform="translate(-644 -660)">
+    <circle id="Ellipse_55" data-name="Ellipse 55" cx="26" cy="26" r="26" transform="translate(644 660)" fill="#f5f5f5"/>
+    <g id="Icon" transform="translate(655.5 670.333)">
+      <g id="Icon-2" data-name="Icon" transform="translate(2.5 1.667)">
+        <path id="Path" d="M2.5,5H27.054" transform="translate(-2.5 0.456)" fill="none" stroke="#002d56" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+        <path id="Path-2" data-name="Path" d="M23.264,7.123v19.1a2.727,2.727,0,0,1-2.727,2.727H6.894a2.727,2.727,0,0,1-2.727-2.727V7.123m4.092,0V4.394a2.727,2.727,0,0,1,2.727-2.727h5.458a2.727,2.727,0,0,1,2.727,2.727V7.123" transform="translate(-1.438 -1.667)" fill="none" stroke="#002d56" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+        <line id="Line" y2="8.185" transform="translate(9.549 12.277)" fill="none" stroke="#002d56" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+        <line id="Line-2" data-name="Line" y2="8.185" transform="translate(15.005 12.277)" fill="none" stroke="#002d56" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      </g>
+    </g>
+  </g>
+</svg>

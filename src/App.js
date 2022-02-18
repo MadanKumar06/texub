@@ -25,6 +25,7 @@ import { Termsofuse } from "./Pages/CMS/Company/Termsofuse/Termsofuse";
 import  FAQ  from "./Pages/CMS/Resources/FAQ";
 import   Blogsmain  from "./Pages/CMS/Company/Blogs/Blogsmain/Blogsmain";
 import Blogs from './Pages/CMS/Company/Blogs/Blogs'
+import Mycart from './Pages/MyCart'
 function App() {
   return (
     <div className="App">
@@ -50,6 +51,7 @@ function App() {
              <Route path="/blogsmain" element={ <> <Blogsmain /> <Footer/> </> } exact/>
              <Route path="/blogsdetails" element={ <> <Blogs /> <Footer/> </> } exact/>
             <Route path="/faqs" element={ <> <FAQ/> <Footer/> </> } exact />
+            <Route path="/mycart" element={ <><Mycart/> <Footer/> </> } exact />
           </Routes>
         </BrowserRouter>
       </ThemeProvider>

@@ -9,7 +9,7 @@ const styles = (theme) => ({
       textTransform:"capitalize"
     },
     "& .Mui-selected": {
-      background: "linear-gradient(80deg, #20639B 0%, #002D56 100%)",
+      background: "linear-gradient(180deg, #20639B 0%, #002D56 100%)",
       color: "#ffffff !important",
     },
   },
@@ -40,7 +40,7 @@ const styles = (theme) => ({
   menuButton: {
     textDecoration: "none",
     textTransform: "capitalize !important",
-    background: "linear-gradient(80deg, #20639B 0%, #002D56 100%) !important",
+    background: "linear-gradient(180deg, #20639B 0%, #002D56 100%) !important",
     color: "#ffffff !important",
     minWidth: "126px",
     padding: "8px 30px",
