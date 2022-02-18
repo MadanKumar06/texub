@@ -1,0 +1,99 @@
+.RRpolicy_main{
+    background-color: #FBFBFB;
+    padding:2% 5% 2% 5%;
+    .RRpolicy_heading{
+        display: flex;
+        background-color: #FFFFFF;
+        padding:20px 30px 20px 30px;
+        flex-direction: column;
+        gap: 30px;
+
+        .RRpolicy_heading_list{
+            list-style: none;
+            justify-content: center;
+            display: flex;
+            gap: 20px;
+            .RRpolicy_img{
+                height: 81px;
+            }
+            .heading{
+                font-size: 40px;
+                color: #DDB363;
+                margin-top: 18px;
+                font-weight: 600;
+                letter-spacing: 1px;
+            }
+        }
+    }
+    .RRpolicy_description{
+        .RRpolicy_heading_list{
+          .description{
+            text-align: center;
+            font-family: 'Source Sans Pro';
+            color: #333333;
+            opacity: 1;
+            font-size: 20px;
+          }   
+        
+    }
+  } 
+}
+
+@media  only screen  and (min-width:1024px) {
+    .RRpolicy_main .RRpolicy_heading .RRpolicy_heading_list .heading{
+        font-size: 32px;
+    }
+    
+}
+
+@media  only screen  and (max-width:768px){
+    .RRpolicy_main .RRpolicy_heading .RRpolicy_heading_list .RRpolicy_img{
+        height: 76px;
+    }
+    .RRpolicy_main .RRpolicy_heading .RRpolicy_heading_list .heading{
+        font-size: 28px;
+    }
+}
+
+@media  only screen  and (max-width:580px){
+    .RRpolicy_main {
+        padding: 2% 10px 2% 10px;
+    }
+    .gdpr_main .gdpr_heading{
+        padding: 20px 5px 20px 5px;
+    }
+    .RRpolicy_main .RRpolicy_heading .RRpolicy_heading_list .RRpolicy_img{
+        height: 76px;
+    }
+    .RRpolicy_main .RRpolicy_heading .RRpolicy_heading_list .heading{
+        font-size: 24px;
+        margin-top: 25px;
+    }
+
+}
+
+@media  only screen  and (max-width:425px){
+    .RRpolicy_main .RRpolicy_heading .RRpolicy_heading_list .heading{
+        font-size: 22px;
+        margin-top: 20px
+    }
+    .RRpolicy_main .RRpolicy_heading .RRpolicy_heading_list .description{
+     font-size: 17px;
+    }
+}
+
+@media  only screen  and (max-width:375px){
+    .RRpolicy_main .RRpolicy_heading .RRpolicy_heading_list .heading{
+        font-size: 20px;
+        margin-top: 20px
+    }
+    .RRpolicy_main .RRpolicy_heading .RRpolicy_heading_list {
+        gap: 0;
+    }
+}
+
+@media only screen and (max-width: 320px){
+    .RRpolicy_main .RRpolicy_heading .RRpolicy_heading_list .heading{
+        font-size: 19px;
+    } 
+}

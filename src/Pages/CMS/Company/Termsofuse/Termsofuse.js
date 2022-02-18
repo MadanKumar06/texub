@@ -28,8 +28,26 @@ export const Termsofuse = () => {
           )   
           }
           </div>
+          <div className='Termsofuse_description'>  
+          {Termstext.map((item) =>  
+          <li key={item.id} className='Termsofuse_text'>
+                {item.description}
+          </li>
+          )   
+          }
+          </div>
+          <div className='Termsofuse_description'>  
+          {Termstext.map((item) =>  
+          <li key={item.id} className='Termsofuse_text'>
+                {item.description}
+          </li>
+          )   
+          }
+          </div>
           <div className='Termsofuse_btn_section'>
-           <FileDownloadOutlinedIcon className='Termsofuse_download'/>
+          <div className='Termsofuse_btn_download'>    
+           <FileDownloadOutlinedIcon className='Termsofuse_download'/><spam className="download">Download PDF</spam>
+           </div>
           <button className='Termsofuse_decline'>Decline</button> 
           <button className='Termsofuse_accept'>Accept</button>
           </div>

@@ -1,16 +1,17 @@
 .training_main{
     background-color: #FBFBFB;
-    // height: 1000px;
     padding: 5%;
     .training_description_section{
         background-color: #FFFFFF;
         padding: 5%;
-        height: 1000px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
         .training_description{
-            margin-top: 100px;
             .training_text{
                 list-style: none;
-                font-size: x-large;
+                font-size: 20px;
+                text-align: center;
             }
         }
     .training_Heading_section{
@@ -24,4 +25,35 @@
         }
     }
   }
+}
+
+@media only screen and (max-width:1920px){
+    .training_main .training_description_section .training_Heading_section .training_certificate {
+        height: 133px;
+    }
+}
+
+
+@media only screen and (max-width:580px) {
+    .training_main .training_description_section .training_Heading_section{
+        gap: 1px;
+    }
+}
+
+@media only screen and (max-width:480px){
+    .training_main .training_description_section .training_Heading_section .training_certificate {
+        height: 90px;
+    }
+.training_main .training_description_section .training_Heading_section .training_Heading{
+   font-size: xx-large;
+     }
+}
+
+@media only screen and (max-width:375px){
+    .training_main .training_description_section .training_Heading_section .training_certificate {
+             height: 90px;
+    }
+    .training_main .training_description_section .training_Heading_section .training_Heading{
+        font-size: xx-large;
+    }
 }

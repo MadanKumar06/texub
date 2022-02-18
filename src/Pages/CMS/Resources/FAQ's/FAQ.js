@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './FAQ.scss'
-import img from '../../../Assets/Career/Group 765.png'
+import img from '../../../../Assets/Career/Group 765.png'
 import { TextareaAutosize } from '@material-ui/core';
 import { withStyles } from "@material-ui/styles";
 import styles from './styles';

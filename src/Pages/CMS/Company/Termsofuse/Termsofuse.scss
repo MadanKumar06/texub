@@ -1,5 +1,4 @@
 .Termsofuse_main{
-    height: 1000px;
     background-color: #FBFBFB;
     padding: 5%;
    .Termsofuse_Description_section{
@@ -20,7 +19,8 @@
         padding: 50px 0 0 0;
         .Termsofuse_text{
             list-style: none;
-            font-size: x-large;
+            font-size: 20px;
+            text-align: center;
         }
     }
     .Termsofuse_btn_section{
@@ -30,6 +30,17 @@
         min-height: 112px;
         padding: 30px 0 30px 0;
         margin: 10% 0 0 0;
+        .Termsofuse_btn_download{
+            display: flex;
+            gap: 10px;
+            padding-top: 16px;
+            .download{
+                color: #002D56;
+                opacity: 1;
+                font-size: 19px;
+                font-weight: 600;
+            }
+        }
         .Termsofuse_decline{
             background: linear-gradient(179deg, #FFD788 0%, #CC9B3E 100%);
             border: none;
@@ -46,14 +57,44 @@
             font-size: x-large;
             color: #FFFFFF;
         }
-        // .MuiSvgIcon-root{
-        //    .FileDownloadOutlinedIcon{
-        //        height: 70px;
-        //    }
-        // }
-        // .Termsofuse_download{
-        //     height: 50px;
-        // }
+    
     }
   }
+}
+
+@media only screen and (max-width:580px) {
+.Termsofuse_main .Termsofuse_Description_section .Termsofuse_btn_section{
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 20px 10px 20px;
+    gap: 20px;
+  }
+  .Termsofuse_main .Termsofuse_Description_section .Termsofuse_heading_section{
+      gap: 15px;
+  }
+  .Termsofuse_main .Termsofuse_Description_section .Termsofuse_description{
+    padding: 16px 0 0 0;
+  }
+  .Termsofuse_main .Termsofuse_Description_section .Termsofuse_btn_section .Termsofuse_btn_download {
+      justify-content: center;
+  }
+  .Termsofuse_main .Termsofuse_Description_section .Termsofuse_heading_section .Termsofuse_terms{
+      height: 80px;
+  }
+  .Termsofuse_main .Termsofuse_Description_section .Termsofuse_heading_section .Termsofuse_heading{
+      font-size: xx-large;
+      margin-top: 22px;
+  }
+}
+
+@media only screen and (max-width:320px){
+    .Termsofuse_main .Termsofuse_Description_section .Termsofuse_heading_section .Termsofuse_heading{
+        font-size: x-large;
+    }
+    .Termsofuse_main .Termsofuse_Description_section .Termsofuse_heading_section .Termsofuse_terms{
+        height: 65px;
+    }
+    .Termsofuse_main .Termsofuse_Description_section .Termsofuse_description .Termsofuse_text{
+        font-size: 16px;
+    }
 }

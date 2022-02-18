@@ -22,9 +22,14 @@ import Career from "./Pages/CMS/Services/Career";
 import ThankYouPage from "./Pages/Register/ThankYouPage";
 import { Training } from "./Pages/CMS/Services/Training";
 import { Termsofuse } from "./Pages/CMS/Company/Termsofuse/Termsofuse";
-import  FAQ  from "./Pages/CMS/Resources/FAQ";
+import  FAQ  from "./Pages/CMS/Resources/FAQ's/FAQ";
 import   Blogsmain  from "./Pages/CMS/Company/Blogs/Blogsmain/Blogsmain";
 import Blogs from './Pages/CMS/Company/Blogs/Blogs'
+import Legal from './Pages/CMS/Resources/Legal'
+import GDPR from './Pages/CMS/Resources/GDPR'
+import Privacypolicy from './Pages/CMS/Company/Privacypolicy'
+import RRpolicy from './Pages/CMS/Company/RRpolicy'
+
 function App() {
   return (
     <div className="App">
@@ -39,9 +44,13 @@ function App() {
             <Route path="/Aboutus" element={ <><Aboutus />  <Footer/> </>} exact />
             <Route path="/Buyontexhub" element={<BuyonTexhub />} exact />
             <Route path="/Sellontexhub" element={<SellonTexhub />} exact />
+            <Route path="/legal" element={ <><Legal/>  <Footer/> </>} exact />
+            <Route path="/gdpr" element={ <><GDPR/>  <Footer/> </>} exact />
             <Route path="/Faqs" element={<FAQs />} exact />
             <Route path="/Contactus" element={<Contactus />} exact> </Route>
+            <Route path="/privacypolicy" element={ <> <Privacypolicy /> <Footer /> </> } exact />
             <Route path="/termsofuse" element={ <> <Termsofuse /> <Footer /> </> } exact />
+            <Route path="/rrpolicy" element={ <><RRpolicy />  <Footer/> </>} exact />
             <Route path="/training" element={ <> <Training /> <Footer /> </> } exact /> 
             <Route path="/seller_advantage" element={ <> <Selleradvantage /> <Footer /> </> } exact ></Route> 
             <Route path="/buyer_advantage" element={ <> <Buyeradvantage /> <Footer /> </> } exact ></Route>
