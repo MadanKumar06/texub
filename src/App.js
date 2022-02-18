@@ -26,6 +26,7 @@ import  FAQ  from "./Pages/CMS/Resources/FAQ";
 import   Blogsmain  from "./Pages/CMS/Company/Blogs/Blogsmain/Blogsmain";
 import Blogs from './Pages/CMS/Company/Blogs/Blogs'
 import Mycart from './Pages/MyCart'
+import PendingInvoice from "./Pages/PendingInvoice";
 function App() {
   return (
     <div className="App">
@@ -52,6 +53,7 @@ function App() {
              <Route path="/blogsdetails" element={ <> <Blogs /> <Footer/> </> } exact/>
             <Route path="/faqs" element={ <> <FAQ/> <Footer/> </> } exact />
             <Route path="/mycart" element={ <><Mycart/> <Footer/> </> } exact />
+            <Route path="/pending_invoice" element={ <><PendingInvoice/> <Footer/> </> } exact />
           </Routes>
         </BrowserRouter>
       </ThemeProvider>
