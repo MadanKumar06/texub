@@ -1,0 +1,60 @@
+.privacypolicy_main{
+    background-color: #FBFBFB;
+    padding:2% 5% 2% 5%;
+    .Legal_heading{
+        display: flex;
+        background-color: #FFFFFF;
+        padding:20px 30px 20px 30px;
+        flex-direction: column;
+        gap: 30px;
+
+        .Legal_heading_list{
+            list-style: none;
+            justify-content: center;
+            display: flex;
+            gap: 20px;
+            .Legal_img{
+                height: 81px;
+            }
+            .heading{
+                font-size: 40px;
+                color: #DDB363;
+                margin-top: 18px;
+                font-weight: 600;
+                letter-spacing: 1px;
+            }
+        }
+    }
+    .Legal_description{
+        text-align: center;
+        font-family: 'Source Sans Pro';
+        color: #333333;
+        opacity: 1;
+        font-size: 20px;
+    }
+}
+
+@media only screen and (max-width:580px) {
+    .privacypolicy_main .Legal_heading .Legal_heading_list .heading{
+        font-size: 31px;
+    }
+    
+}
+
+@media only screen and (max-width:320px){
+    .privacypolicy_main{
+        padding: 2% 5px 2% 5px;
+    }
+    .privacypolicy_main .Legal_heading {
+        padding: 20px 7px 20px 7px;
+    }
+    .privacypolicy_main .Legal_heading .Legal_heading_list{
+        gap: 13px;
+    }
+    .privacypolicy_main .Legal_heading .Legal_heading_list .heading{
+        font-size: 25px;
+    }
+    .privacypolicy_main .Legal_heading .Legal_heading_list .Legal_img{
+        height: 64px;
+    }
+}

@@ -17,6 +17,7 @@ const Productstable = ({ classes }) => {
     producttable_description,
     producttable_price,
     producttable_add_to_cart,
+    producttable_price_block,
   } = classes;
   const [isPDPpopUP, setIsPDPpopUP] = useState(false);
   const PDPPopUP = (event) => {
@@ -67,7 +68,14 @@ const Productstable = ({ classes }) => {
       label: "PRICE",
       options: {
         customBodyRender: (value) => {
-          return <div className={producttable_price}>{value}</div>;
+          return (
+            <div className={producttable_price_block}>
+              <div className={producttable_price}>
+                <span>INR</span>
+                {value}
+              </div>
+            </div>
+          );
         },
       },
     },
@@ -105,7 +113,7 @@ const Productstable = ({ classes }) => {
         "Hp 14-Dv0054Tu Pavilion Laptop (11Th Gen Intel Core I5-1135G7/…512Gb Sdd/Intel Iris Xe Graphics/Windows 10/Mso/Fhd), 35.56 Cm (14 Inch)",
       HUB: "Dubai",
       MOQ: "50",
-      PRICE: "INR 66,999 ",
+      PRICE: "66,999 ",
       INSTOCK: "100",
       CONDITION: "New",
     },
@@ -117,7 +125,7 @@ const Productstable = ({ classes }) => {
       DESCRIPTION: "Acer Laptop 14-ec0036AU,AMD",
       HUB: "Dubai",
       MOQ: "50",
-      PRICE: "INR 66,999",
+      PRICE: "66,999",
       INSTOCK: "80",
       CONDITION: "New",
     },
@@ -129,7 +137,7 @@ const Productstable = ({ classes }) => {
       DESCRIPTION: "Apple Macbook 14-ec0036AU,AMD",
       HUB: "Dubai",
       MOQ: "50",
-      PRICE: "INR 1,10,999",
+      PRICE: "1,10,999",
       INSTOCK: "100",
       CONDITION: "New",
     },
@@ -141,7 +149,7 @@ const Productstable = ({ classes }) => {
       DESCRIPTION: "Lenovo Laptop 14-ec0036AU,AMD",
       HUB: "Dubai",
       MOQ: "50",
-      PRICE: "INR 66,999",
+      PRICE: "66,999",
       INSTOCK: "70",
       CONDITION: "New",
     },
@@ -154,7 +162,7 @@ const Productstable = ({ classes }) => {
       DESCRIPTION: "samsung Laptop 14-ec0036AU,AMD",
       HUB: "Dubai",
       MOQ: "50",
-      PRICE: "INR 66,999",
+      PRICE: "66,999",
       INSTOCK: "100",
       CONDITION: "New",
     },
@@ -166,7 +174,7 @@ const Productstable = ({ classes }) => {
       DESCRIPTION: "Xiaomi Laptop 14-ec0036AU,AMD",
       HUB: "Dubai",
       MOQ: "50",
-      PRICE: "INR 66,999",
+      PRICE: "66,999",
       INSTOCK: "90",
       CONDITION: "New",
     },
@@ -178,7 +186,7 @@ const Productstable = ({ classes }) => {
       DESCRIPTION: "HP Pavilion Laptop 14-ec0036AU,AMD",
       HUB: "Dubai",
       MOQ: "50",
-      PRICE: "INR 66,999",
+      PRICE: "66,999",
       INSTOCK: "100",
       CONDITION: "New",
     },
@@ -190,7 +198,7 @@ const Productstable = ({ classes }) => {
       DESCRIPTION: "HP Pavilion Laptop 14-ec0036AU,AMD",
       HUB: "Dubai",
       MOQ: "50",
-      PRICE: "INR 66,999",
+      PRICE: "66,999",
       INSTOCK: "100",
       CONDITION: "New",
     },
@@ -202,7 +210,7 @@ const Productstable = ({ classes }) => {
       DESCRIPTION: "HP Pavilion Laptop 14-ec0036AU,AMD",
       HUB: "Dubai",
       MOQ: "50",
-      PRICE: "INR 66,999",
+      PRICE: "66,999",
       INSTOCK: "100",
       CONDITION: "New",
     },
@@ -214,7 +222,7 @@ const Productstable = ({ classes }) => {
       DESCRIPTION: "HP Pavilion Laptop 14-ec0036AU,AMD",
       HUB: "Dubai",
       MOQ: "50",
-      PRICE: "INR 66,999",
+      PRICE: "66,999",
       INSTOCK: "100",
       CONDITION: "New",
     },
@@ -231,6 +239,7 @@ const Productstable = ({ classes }) => {
     print: false,
     sort: false,
     viewColumns: false,
+    search: false,
     onRowClick: onRowHandleClick,
   };
 
