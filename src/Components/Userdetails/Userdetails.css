@@ -71,7 +71,7 @@
 .User_Wishlist svg {
   color: #5c6369;
 }
-.User_cart svg {
+.User_cart a svg {
   color: #5c6369;
 }
 .badge_user {
@@ -85,9 +85,14 @@
 }
 .User_cart {
   display: flex;
+  align-items: center;
+}
+.User_cart a {
+  display: flex;
   flex-direction: row;
   align-items: center;
   gap: 8px;
+  text-decoration: none;
 }
 .My_account {
   display: flex;

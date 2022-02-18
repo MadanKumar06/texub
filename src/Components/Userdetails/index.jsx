@@ -35,11 +35,12 @@ export const Userdetails = () => {
             <li className="User_account_Wishlist_cart">My Wishlist</li>
           </div>
           <div className="User_cart">
-            <Badge badgeContent={1} className="badge_user">
-              <ShoppingBag />
-            </Badge>
-
-            <li className="User_account_Wishlist_cart">My Cart</li>
+            <Link to="/mycart">
+              <Badge badgeContent={1} className="badge_user">
+                <ShoppingBag />
+              </Badge>
+              <li className="User_account_Wishlist_cart">My Cart</li>
+            </Link>
           </div>
         </ul>
       </div>

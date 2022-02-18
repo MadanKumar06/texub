@@ -30,6 +30,7 @@ import GDPR from './Pages/CMS/Resources/GDPR'
 import Privacypolicy from './Pages/CMS/Company/Privacypolicy'
 import RRpolicy from './Pages/CMS/Company/RRpolicy'
 
+import Mycart from './Pages/MyCart'
 function App() {
   return (
     <div className="App">
@@ -47,7 +48,7 @@ function App() {
             <Route path="/legal" element={ <><Legal/>  <Footer/> </>} exact />
             <Route path="/gdpr" element={ <><GDPR/>  <Footer/> </>} exact />
             <Route path="/Faqs" element={<FAQs />} exact />
-            <Route path="/Contactus" element={<Contactus />} exact> </Route>
+            <Route path="/Contactus" element={ <><Contactus /> <Footer /> </>} exact> </Route>
             <Route path="/privacypolicy" element={ <> <Privacypolicy /> <Footer /> </> } exact />
             <Route path="/termsofuse" element={ <> <Termsofuse /> <Footer /> </> } exact />
             <Route path="/rrpolicy" element={ <><RRpolicy />  <Footer/> </>} exact />
@@ -59,6 +60,7 @@ function App() {
              <Route path="/blogsmain" element={ <> <Blogsmain /> <Footer/> </> } exact/>
              <Route path="/blogsdetails" element={ <> <Blogs /> <Footer/> </> } exact/>
             <Route path="/faqs" element={ <> <FAQ/> <Footer/> </> } exact />
+            <Route path="/mycart" element={ <><Mycart/> <Footer/> </> } exact />
           </Routes>
         </BrowserRouter>
       </ThemeProvider>

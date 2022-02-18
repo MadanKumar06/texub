@@ -160,7 +160,7 @@ const styles = () => ({
       wordBreak: "break-all",
       width: "100%",
       "&::before": {
-        content: '"seller ID : "',
+        content: '"Seller ID : "',
         fontWeight: "800",
       },
     },
