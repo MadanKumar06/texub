@@ -53,7 +53,7 @@ const styles = (theme) => ({
     },
   },
   title: {
-    fontSize: "18px !important",
+    fontSize: "20px !important",
     letterSpacing: "0.45px !important",
     fontWeight: "600 !important",
     marginRight: "24px",
@@ -72,8 +72,8 @@ const styles = (theme) => ({
       fontSize: "12px !important",
       fontWeight: "600 !important",
     },
-    "@media (max-width:1184px) and (min-width:850px)": {
-      fontSize: "14px !important",
+    "@media (max-width:1240px) and (min-width:850px)": {
+      fontSize: "16px !important",
       marginRight: "8px",
     },
     "@media (max-width:768px)": {
@@ -101,17 +101,15 @@ const styles = (theme) => ({
     boxShadow: "0px 3px 6px #00000029",
     marginRight: "8px !important",
     fontWeight: "600 !important",
+    fontSize: "18px !important",
     letterSpacing: "1px",
     textTransform: "capitalize !important",
     "& a": {
       textDecoration: "none",
       color: "#ffffff",
     },
-    "@media (max-width:1184px) and (min-width:768px)": {
+    "@media (max-width:1240px) and (min-width:768px)": {
       minWidth: "90px !important",
-    },
-    "@media (max-width:850px) and (min-width:768px)": {
-      minWidth: "85px !important",
     },
   },
   header_button_signin: {
@@ -127,11 +125,9 @@ const styles = (theme) => ({
     fontWeight: "600 !important",
     letterSpacing: "1px !important",
     textTransform: "capitalize !important",
-    "@media (max-width:1184px) and (min-width:768px)": {
+    fontSize: "18px !important",
+    "@media (max-width:1240px) and (min-width:768px)": {
       minWidth: "90px !important",
-    },
-    "@media (max-width:850px) and (min-width:768px)": {
-      minWidth: "85px !important",
     },
   },
 });
