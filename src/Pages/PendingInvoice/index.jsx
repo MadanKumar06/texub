@@ -1,243 +1,168 @@
 import React from "react";
 import "./styles.scss";
+import { Stack, Link, Breadcrumbs, Typography, Button } from "@mui/material";
+import pending_invoice_image from "../../Assets/PendingInvoice/Group 1051.png";
+import PendingInvoiceTable from "./PendingInvoiceTable";
+import { TextField, Autocomplete, FormControlLabel } from "@material-ui/core";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+
 const PendingInvoice = () => {
+  const options = ["Option 1", "Option 2"];
+  const [value, setValue] = React.useState();
+  const [inputValue, setInputValue] = React.useState("");
   return (
-    <div class="pending_invoice_main_container">
-      <div class="invoice_image_block">
+    <div className="pending_invoice_main_container">
+      <div className="pending_invoice_image_block">
+        <img src={pending_invoice_image} alt="" />
         <p>Pending Invoice</p>
       </div>
-
-      {/* table content */}
-      <div class="table_main_block">
-        <table class="rwd_table">
-          <tbody>
-            <tr>
-              <th>SELLER ID</th>
-              <th>PRODUCTS</th>
-              <th>HUB</th>
-              <th>PRICE</th>
-              <th>QUANTITY</th>
-              <th>SUBTOTAL</th>
-            </tr>
-            <tr>
-              <td data_th="seller id">
-                <span class="seller_id">220012</span>
-              </td>
-
-              <td data-th="Products">
-                <div class="products">
-                  <img
-                    src="<?php echo $this->getViewFileUrl('images/apple.png'); ?>"
-                    alt="User"
-                  />
-
-                  <div class="products-details">
-                    <div class="products-title">
-                      <p class="title"> PAVILION MODEL14-DV0054TU</p>
-                      <p class="eta">ETA : 5 Days</p>
-                    </div>
-
-                    <p class="details">
-                      Hp 14-Dv0054Tu Pavilion Laptop (11Th Gen Intel Core
-                      I5-1135G7/…512Gb Sdd/Intel Iris Xe Graphics/Windows …
-                    </p>
-                  </div>
-                </div>
-              </td>
-              <td data-th="hub">
-                <span class="hub">Mumbai</span>
-              </td>
-              <td data-th="price">
-                <span class="price-rupee">INR</span>
-                <span class="price-value">66,999</span>
-                <span class="price-unit">/Unit</span>
-              </td>
-              <td data-th="quantity">
-                <span class="quantity">60</span>
-              </td>
-              <td data-th="sub total">
-                <span class="price-rupee">INR </span>
-                <span class="price-value">4,019,940</span>
-              </td>
-            </tr>
-            <tr>
-              <td data-th="seller id">
-                <span class="seller-id">220012</span>
-              </td>
-
-              <td data-th="Products">
-                <div class="products">
-                  <img
-                    src="<?php echo $this->getViewFileUrl('images/apple.png'); ?>"
-                    alt="User"
-                  />
-
-                  <div class="products-details">
-                    <div class="products-title">
-                      <p class="title"> PAVILION MODEL14-DV0054TU</p>
-                      <p class="eta">ETA : 5 Days</p>
-                    </div>
-
-                    <p class="details">
-                      Hp 14-Dv0054Tu Pavilion Laptop (11Th Gen Intel Core
-                      I5-1135G7/…512Gb Sdd/Intel Iris Xe Graphics/Windows …
-                    </p>
-                  </div>
-                </div>
-              </td>
-              <td data-th="hub">
-                <span class="hub">Mumbai</span>
-              </td>
-              <td data-th="price">
-                <span class="price-rupee">INR</span>
-                <span class="price-value">66,999</span>
-                <span class="price-unit">/Unit</span>
-              </td>
-              <td data-th="quantity">
-                <span class="quantity">60</span>
-              </td>
-              <td data-th="sub total">
-                <span class="price-rupee">INR </span>
-                <span class="price-value">4,019,940</span>
-              </td>
-            </tr>
-            <tr>
-              <td data-th="seller id">
-                <span class="seller-id">220012</span>
-              </td>
-
-              <td data-th="Products">
-                <div class="products">
-                  <img
-                    src="<?php echo $this->getViewFileUrl('images/apple.png'); ?>"
-                    alt="User"
-                  />
-
-                  <div class="products-details">
-                    <div class="products-title">
-                      <p class="title"> PAVILION MODEL14-DV0054TU</p>
-                      <p class="eta">ETA : 5 Days</p>
-                    </div>
-
-                    <p class="details">
-                      Hp 14-Dv0054Tu Pavilion Laptop (11Th Gen Intel Core
-                      I5-1135G7/…512Gb Sdd/Intel Iris Xe Graphics/Windows …
-                    </p>
-                  </div>
-                </div>
-              </td>
-              <td data-th="hub">
-                <span class="hub">Mumbai</span>
-              </td>
-              <td data-th="price">
-                <span class="price-rupee">INR</span>
-                <span class="price-value">66,999</span>
-                <span class="price-unit">/Unit</span>
-              </td>
-              <td data-th="quantity">
-                <span class="quantity">60</span>
-              </td>
-              <td data-th="sub total">
-                <span class="price-rupee">INR </span>
-                <span class="price-value">4,019,940</span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+      <div className="pending_invoice_breadcrumbs">
+        <Stack spacing={2}>
+          <Breadcrumbs separator="››" aria-label="breadcrumb">
+            <Link to="/">Home</Link>
+            <Link to="/">Cart</Link>
+            <Typography key="3" color="#002D56">
+              Pending Invoice
+            </Typography>
+          </Breadcrumbs>
+        </Stack>
       </div>
+      <PendingInvoiceTable />
 
       {/* middle content */}
-      <div class="middle_block">
+      <div className="middle_block">
         {/* summary content at left*/}
-        <div class="section_left_container">
-          <div class="section_left_sub_container">
-            <div class="area_left_content">
-              <p class="estimate">Estimated Shipping And Tax</p>
-              <p class="apply_discount">Apply Discount Code</p>
+        <div className="section_left_container">
+          <div className="section_left_sub_container">
+            <div className="area_left_content">
+              <p className="estimate">Estimated Shipping And Tax</p>
+              <p className="apply_discount">Apply Discount Code</p>
             </div>
-            <div class="area_right_content">
-              <p class="title">
+            <div className="area_right_content">
+              <p className="title">
                 Enter Your Destination To Get A Shipping Estimate
               </p>
-              <div class="form_container">
-                <div class="form_fields">
-                  <label for="country">Country</label>
-                  <select name="country" id="country" required>
-                    <option value="" disabled selected>
-                      Country
-                    </option>
-                    <option value="country_1">country 1</option>
-                    <option value="country_2">country 2</option>
-                  </select>
+              <div className="form_container">
+                <div className="form_fields">
+                  <label>Country</label>
+                  <Autocomplete
+                    value={value}
+                    onChange={(event, newValue) => {
+                      setValue(newValue);
+                    }}
+                    inputValue={inputValue}
+                    onInputChange={(event, newInputValue) => {
+                      setInputValue(newInputValue);
+                    }}
+                    id="controllable-states-demo"
+                    options={options}
+                    renderInput={(params) => (
+                      <TextField
+                        {...params}
+                        label=""
+                        placeholder="Country"
+                        InputLabelProps={{
+                          shrink: false,
+                        }}
+                      />
+                    )}
+                  />
                 </div>
-                <div class="form_fields">
-                  <label for="state_province">State/Province</label>
-                  <select name="state_province" id="state_province" required>
-                    <option value="" disabled selected>
-                      Please Select A Region/State/Province
-                    </option>
-                    <option value="state_province_1">State/Province 1</option>
-                    <option value="state_province_2">State/Province 2</option>
-                  </select>
+                <div className="form_fields">
+                  <label>State/Province</label>
+                  <Autocomplete
+                    value={value}
+                    onChange={(event, newValue) => {
+                      setValue(newValue);
+                    }}
+                    inputValue={inputValue}
+                    onInputChange={(event, newInputValue) => {
+                      setInputValue(newInputValue);
+                    }}
+                    id="controllable-states-demo"
+                    options={options}
+                    renderInput={(params) => (
+                      <TextField
+                        {...params}
+                        label=""
+                        placeholder="Please Select A Region/State/Province"
+                        InputLabelProps={{
+                          shrink: false,
+                        }}
+                      />
+                    )}
+                  />
                 </div>
-                <div class="form_fields">
+                <div className="form_fields">
                   <label>Zip/Postal Code</label>
-                  <input
-                    class="postal_code_input"
+                  <TextField
+                    id="outlined-textarea"
+                    label=""
+                    className="texfield_zipcode"
                     placeholder="Please Enter Zip/Postal Code"
-                    type="number"
+                    InputLabelProps={{
+                      shrink: false,
+                    }}
+                    variant="outlined"
                   />
                 </div>
               </div>
             </div>
           </div>
-          <div class="section_left_container_footer">
-            <div class="footer_main">
-              <p class="footer_title">Free Shipping</p>
-              <div class="footer_content">
-                <input type="radio" name="radio" />
-                <p class="footer_sub_title">Free</p>
-                <p class="footer_value">
-                  <span>INR</span> 0.00
-                </p>
+          <div className="section_left_container_footer">
+            <RadioGroup
+              aria-labelledby="demo-radio-buttons-group-label"
+              defaultValue={"1"}
+              name="radio-buttons-group"
+            >
+              <div className="footer_main">
+                <p className="footer_title">Free Shipping</p>
+                <div className="footer_content">
+                  <FormControlLabel value="1" control={<Radio />} label={""} />
+                  <p className="footer_sub_title">Free</p>
+                  <p className="footer_value">
+                    <span>INR</span> 0.00
+                  </p>
+                </div>
               </div>
-            </div>
-            <div class="footer_main">
-              <p class="footer_title">Flat Rate</p>
-              <div class="footer_content">
-                <input type="radio" name="radio" />
-                <p class="footer_sub_title">Fixed</p>
-                <p class="footer_value">
-                  <span>INR</span> 750.00
-                </p>
+              <div className="footer_main">
+                <p className="footer_title">Flat Rate</p>
+                <div className="footer_content">
+                  <FormControlLabel value="2" control={<Radio />} label={""} />
+                  <p className="footer_sub_title">Fixed</p>
+                  <p className="footer_value">
+                    <span>INR</span> 750.00
+                  </p>
+                </div>
               </div>
-            </div>
+            </RadioGroup>
           </div>
         </div>
 
         {/* summary content at right */}
-        <div class="section_right_container">
-          <div class="section_right_sub_container">
-            <div class="summary_list">
-              <p class="summary_list_title">Subtotal</p>
-              <p class="summary_list_value">
+        <div className="section_right_container">
+          <div className="section_right_sub_container">
+            <div className="summary_list">
+              <p className="summary_list_title">Subtotal</p>
+              <p className="summary_list_value">
                 <span>INR</span> 10,729,830
               </p>
             </div>
-            <div class="summary_list">
-              <p class="summary_list_title">Tax</p>
-              <p class="summary_list_value">
+            <div className="summary_list">
+              <p className="summary_list_title">Tax</p>
+              <p className="summary_list_value">
                 <span>INR</span> 0.00
               </p>
             </div>
-            <div class="summary_list">
-              <p class="summary_list_title">Order Total</p>
-              <p class="summary_list_value">
+            <div className="summary_list">
+              <p className="summary_list_title">Order Total</p>
+              <p className="summary_list_value">
                 <span>INR</span> 10,729,830
               </p>
             </div>
           </div>
-          <p class="proceed_btn">Proceed To Checkout</p>
+          <Button className="proceed_btn">Proceed To Checkout</Button>
         </div>
       </div>
     </div>

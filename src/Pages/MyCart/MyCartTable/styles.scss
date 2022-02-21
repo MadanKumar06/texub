@@ -1,6 +1,12 @@
 .mycart_table_main_container {
   padding: 0 3%;
   .mycart_table_mui_datatable_main {
+    .MuiTableHead-root {
+      .MuiTableCell-root {
+        font-weight: 600;
+        letter-spacing: 0.66px;
+      }
+    }
     .MuiToolbar-root {
       display: none;
     }
@@ -22,6 +28,12 @@
         background: #f8f0e0;
         color: #002d56;
         width: max-content;
+        font-weight: 600;
+      }
+    }
+    .mycart_table_hub_block{
+      span {
+        font-weight: 600;
       }
     }
     .mycart_table_subtotal_block,
@@ -32,7 +44,7 @@
         font-weight: 600;
         span {
           font-size: 20px;
-          font-weight: 400;
+          font-weight: 600;
           padding: 0 3px;
         }
       }
@@ -97,8 +109,9 @@
         .mycart_right_section_block {
           display: flex;
           justify-content: space-between;
+          align-items: end;
           .mycart_product_eta {
-            padding: 2px 6px;
+            padding: 6px 9px;
             color: #002d56;
             font-size: 16px;
             background: #f8f0e0;
@@ -112,12 +125,16 @@
           margin: 0;
           color: #333c42;
           max-width: fit-content;
+          letter-spacing: 0.54px;
+          text-transform: uppercase
         }
         .my_cart_product_description {
+          padding-top: 10px;
           font-size: 18px;
           margin: 0;
           color: #878787;
           max-width: fit-content;
+          letter-spacing: 0.54px;
         }
         .my_cart_link {
           display: flex;

@@ -7,9 +7,9 @@ const styles = (theme) => ({
     },
     "& .MuiButton-root": {
       fontWeight: "600",
-      fontSize: "18px",
+      fontSize: "20px",
       padding: "0",
-      "@media (max-width:1184px) and (min-width:320px)": {
+      "@media (max-width:1240px)": {
         fontSize: "14px !important",
       },
       "@media (max-width:850px) and (min-width:768px)": {
