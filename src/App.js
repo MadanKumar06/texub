@@ -30,9 +30,9 @@ import Legal from "./Pages/CMS/Resources/Legal";
 import GDPR from "./Pages/CMS/Resources/GDPR";
 import Privacypolicy from "./Pages/CMS/Company/Privacypolicy";
 import RRpolicy from "./Pages/CMS/Company/RRpolicy";
-
 import Mycart from "./Pages/MyCart";
 import SellerDashboard from "./Pages/SellerDashboard";
+import PendingInvoice from "./Pages/PendingInvoice";
 function App() {
   return (
     <div className="App">
@@ -235,6 +235,15 @@ function App() {
               element={
                 <>
                   <SellerDashboard /> <Footer />{" "}
+                </>
+              }
+              exact
+            />
+              <Route
+              path="/pending-invoice"
+              element={
+                <>
+                  <PendingInvoice /> <Footer />{" "}
                 </>
               }
               exact
