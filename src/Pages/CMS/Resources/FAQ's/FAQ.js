@@ -23,7 +23,7 @@ const FAQ = ({ classes }) => {
           <li key={item.id} className='faqs_table_adding'>
             <div onClick={() =>
               setdescription(!(description))} className='faqs_qns_section'>
-              <img src={item.image}  alt='' className='faqs_plus_img'></img>{item.heading}
+              <img src={item.image}  alt='' className='faqs_plus_img'></img><span className='faq_qns_heading'>{item.heading}</span>
         
             </div>
 

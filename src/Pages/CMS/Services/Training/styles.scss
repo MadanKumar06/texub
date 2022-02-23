@@ -12,6 +12,9 @@
                 list-style: none;
                 font-size: 20px;
                 text-align: center;
+                letter-spacing: 0.45px;
+                font-family: 'Source Sans Pro';
+                color: #333333;
             }
         }
     .training_Heading_section{
@@ -19,9 +22,11 @@
         justify-content: center;
         gap: 40px;
         .training_Heading{
-            font-size: xxx-large;
+            font-size: 50px;
             color: #DDB363;
             letter-spacing: 1.5px;
+            font-family: 'Source Sans Pro';
+            margin: 0;
         }
     }
   }
@@ -29,7 +34,7 @@
 
 @media only screen and (max-width:1920px){
     .training_main .training_description_section .training_Heading_section .training_certificate {
-        height: 133px;
+        height: 74px;
     }
 }
 
@@ -38,6 +43,9 @@
     .training_main .training_description_section .training_Heading_section{
         gap: 1px;
     }
+    .training_main .training_description_section .training_description .training_text{
+        font-size: 15px;
+    }
 }
 
 @media only screen and (max-width:480px){
@@ -45,7 +53,7 @@
         height: 90px;
     }
 .training_main .training_description_section .training_Heading_section .training_Heading{
-   font-size: xx-large;
+   margin-top: 10px;
      }
 }
 
@@ -53,7 +61,8 @@
     .training_main .training_description_section .training_Heading_section .training_certificate {
              height: 90px;
     }
-    .training_main .training_description_section .training_Heading_section .training_Heading{
-        font-size: xx-large;
-    }
+    // .training_main .training_description_section .training_Heading_section .training_Heading{
+    //     font-size: xx-large;
+    //     margin-top: 10px;
+    // }
 }

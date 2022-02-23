@@ -68,7 +68,7 @@
                 .Blogs_heading1{
                     color: #DDB363;
                     font-size: xxx-large;
-                    letter-spacing: 1px;
+                    letter-spacing: 1.5px;
                 }
                 .Blogs_date{
                     color: #002D56;
@@ -78,6 +78,12 @@
                 }
             }
             .Blogs_description{
+                .description{
+                    font-family: "Source Sans Pro";
+                    letter-spacing: 0.54px;
+                    color: #333333;
+                    font-size: 18px;
+                }
                 .Blogs_blog{
                     width:20%;
                     padding:10px 60px;
@@ -142,7 +148,10 @@
                 letter-spacing: 1px;
             }
             .blogs_q_text{
-                font-size: large;
+                    font-family: "Source Sans Pro";
+                    letter-spacing: 0.54px;
+                    color: #333333;
+                    font-size: 18px;
             }
             .blogs_readblog{
                 color: #002D56;

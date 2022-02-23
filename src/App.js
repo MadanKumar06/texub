@@ -100,7 +100,9 @@ function App() {
               }
               exact
             />
-            <Route path="/Faqs" element={<FAQs />} exact />
+            <Route path="/Faqs" element={ 
+            <><FAQ /> <Footer /> </>}
+             exact />
             <Route
               path="/Contactus"
               element={

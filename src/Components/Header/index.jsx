@@ -45,7 +45,7 @@ const Header = ({ classes }) => {
               <Link to="/Buyontexhub"> Buy On TEXUB </Link>
             </Typography>
             <Typography variant="h6" className={classes.title}>
-              <Link to="/"> FAQ</Link>
+              <Link to="/Faqs"> FAQ</Link>
             </Typography>
             <Typography variant="h6" className={classes.title}>
               <Link to="/Contactus"> Contact Us </Link>

@@ -89,7 +89,7 @@ export const Footer = () => {
               <Link to="/gdpr" className="to_CMS">
               <li>GDPR</li>
               </Link>
-              <Link to="/faqs" className="to_CMS">
+              <Link to="/Faqs" className="to_CMS">
               <li>FAQs</li>
               </Link>
             </ul>
