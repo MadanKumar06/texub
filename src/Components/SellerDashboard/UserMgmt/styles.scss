@@ -1,0 +1,134 @@
+.usermgmt {
+  .usermgmt__table {
+    margin-top: 3em;
+    .MuiTableHead-root {
+      .MuiTableCell-root {
+        color: #959595;
+      }
+    }
+    .MuiTableBody-root {
+      .MuiTableRow-root {
+        vertical-align: baseline;
+      }
+      .MuiTableCell-root {
+        color: #4e4e4e;
+      }
+    }
+    .MuiTableRow-root {
+      .MuiTableCell-root {
+        font-size: 22px;
+        text-align: center;
+      }
+    }
+
+    .usermgmt__status {
+      color: #dd9b63;
+      background-color: #fff4eb;
+      padding: 0.3em 1.2em;
+      border: 1px solid #fff4eb;
+      border-radius: 24px;
+    }
+
+    .usermgmt__permissions,
+    .usermgmt__forbidden {
+      cursor: pointer;
+      text-decoration: underline;
+      color: #1b4e9b;
+    }
+
+    .usermgmt__action p {
+      cursor: pointer;
+      text-decoration: underline;
+      margin: 0;
+      margin-bottom: 4px;
+      color: #1b4e9b;
+    }
+  }
+
+  .usermgmt__subaccount {
+    h1 {
+      color: #ddb363;
+      font-size: 30px;
+      margin: 0;
+      margin-bottom: 30px;
+    }
+    p,
+    h5 {
+      margin: 0;
+      margin-bottom: 8px;
+    }
+
+    input {
+      padding: 1.2em;
+      border-radius: 30px;
+      outline: 0;
+      border: 1px solid #cdd5dd;
+      max-height: 54px;
+      width: 100%;
+      font-size: 20px;
+    }
+
+    .usermgmt__form {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 20px;
+
+      .usermgmt__firstname,
+      .usermgmt__lastname {
+        width: calc(100% / 2 - 20px);
+        max-width: 504px;
+      }
+
+      p {
+        width: calc(100%);
+        margin-bottom: 1em;
+        max-width: 1028px;
+      }
+
+      textarea {
+        width: calc(100%);
+        border-radius: 8px;
+        outline: none;
+      }
+
+      .MuiOutlinedInput-root {
+        width: calc(100%);
+        border-radius: 24px;
+        outline: 0;
+      }
+    }
+    .usermgmt__back {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 3em;
+      span {
+        position: relative;
+        font-size: 20px;
+        color: #002d56;
+        text-decoration: none;
+        cursor: pointer;
+        margin-left: 1em;
+        &::before {
+          content: "";
+          border-left: 1px solid black;
+          border-top: 1px solid black;
+          transform: rotate(315deg);
+          width: 0.5em;
+          height: 0.5em;
+          position: absolute;
+          left: -1em;
+          top: 6px;
+          color: #002d56;
+        }
+      }
+      .usermgmt__button {
+        font-size: 18px;
+        padding: 0.6em 7.2em;
+        background: linear-gradient(#20639b, #002d56);
+        color: white;
+        border-radius: 24px;
+      }
+    }
+  }
+}

@@ -32,6 +32,8 @@ import Privacypolicy from "./Pages/CMS/Company/Privacypolicy";
 import RRpolicy from "./Pages/CMS/Company/RRpolicy";
 import Mycart from "./Pages/MyCart";
 import SellerDashboard from "./Pages/SellerDashboard";
+import BuyerDashboard from "./Pages/BuyerDashboard";
+
 import PendingInvoice from "./Pages/PendingInvoice";
 function App() {
   return (
@@ -231,7 +233,7 @@ function App() {
               exact
             />
             <Route
-              path="/sellerdashboard"
+              path="/sellerdashboard/:currenttab"
               element={
                 <>
                   <SellerDashboard /> <Footer />{" "}
@@ -239,7 +241,17 @@ function App() {
               }
               exact
             />
-              <Route
+
+            <Route
+              path="/buyerdashboard/:currenttab"
+              element={
+                <>
+                  <BuyerDashboard /> <Footer />{" "}
+                </>
+              }
+              exact
+            />
+            <Route
               path="/pending-invoice"
               element={
                 <>
