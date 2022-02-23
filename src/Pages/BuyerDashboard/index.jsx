@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import bg from '../../Assets/buyerdashboard/bg.png'
 
 import Sidebar from '../../Components/Sidebar'
+import Dashboard from '../../Components/BuyerDashboard/Dashbaord'
 
 function Index() {
 
@@ -12,7 +13,7 @@ function Index() {
 
     const selectmenu = (value) => {
         setcurrentmenu(value)
-        navigate(`/sellerdashboard/${value}`)
+        navigate(`/buyerdashboard/${value}`)
         // setshowregister(false)
     }
 
@@ -21,8 +22,10 @@ function Index() {
     <div className='buyerdashboard'>
         <img src={bg} alt="" />
         <div className='buyerboard__bg'>
-            <Sidebar selectmenu={selectmenu} setcurrentmenu={setcurrentmenu} currentmenu={setcurrentmenu} currenttab={currenttab} />
-            <div className='buyerdashboard__main'></div>
+            <Sidebar color="blue" selectmenu={selectmenu} setcurrentmenu={setcurrentmenu} currentmenu={setcurrentmenu} currenttab={currenttab} />
+            <div className='buyerdashboard__main'>
+              <Dashboard />
+            </div>
         </div>
     </div>
   )

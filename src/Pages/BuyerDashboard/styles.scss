@@ -15,3 +15,10 @@
     flex: 1;
   }
 }
+
+.buyerdashboard > img {
+  position: absolute;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+}

@@ -1,0 +1,181 @@
+.sellerprofile {
+  position: relative;
+  padding: 3% 0;
+
+  .sellerprofile__bg {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin: 3%;
+    background-color: white;
+
+    .sellerprofile__sidebar {
+      width: 392px;
+      background-color: white;
+      box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+      display: flex;
+      justify-content: center;
+
+      ul {
+        padding: 0;
+
+        li {
+          list-style: none;
+          width: 340px;
+          height: 200px;
+          box-shadow: 0px 3px 6px #00000029;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          border-radius: 2px;
+          margin: 2em 0;
+
+          p {
+            margin: 0;
+          }
+
+          .sellerprofile__label {
+            font-size: 26px;
+            font-weight: 600;
+          }
+
+          .sellerprofile__value {
+            font-size: 50px;
+            font-weight: 500;
+          }
+        }
+
+        .bgcolor1 {
+          background: linear-gradient(#f8bbb1, #ed553b);
+          color: white;
+        }
+
+        .bgcolor2 {
+          background: linear-gradient(#bce1ff, #20639b);
+          color: white;
+        }
+
+        .bgcolor3 {
+          background: linear-gradient(#f1e3fe, #a56dd9);
+          color: white;
+        }
+      }
+    }
+
+    .sellerprofile__main {
+      flex: 1;
+
+      .sellerprofile__table {
+        margin-top: 3em;
+        .MuiTableHead-root {
+          .MuiTableRow-root {
+            .MuiTableCell-root {
+              background-color: #002d56;
+              color: white;
+              font-size: 18px;
+              font-weight: 500;
+              text-align: center;
+            }
+          }
+        }
+
+        .MuiTableBody-root {
+          .MuiTableRow-root {
+            &:nth-child(odd) {
+              background-color: #f5f5f5;
+            }
+            &:nth-child(even) {
+              background-color: #eaeaea;
+            }
+
+            .MuiTableCell-root {
+              font-size: 16px;
+              color: #333c42;
+              text-align: center;
+            }
+          }
+        }
+
+        .sellerprofile__instock,
+        .sellerprofile__moq,
+        .sellerprofile__myprice {
+          border: 1px solid #ffffff;
+          padding: 0.3em 1.2em;
+          color: #333c42;
+          font-size: 16px;
+          border-radius: 24px;
+          background-color: white;
+        }
+
+        .sellerprofile__rank {
+          font-size: 22px;
+          color: #20639b;
+          font-weight: 500;
+        }
+      }
+
+      .sellerprofile__search {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        .sellerprofile__notiIcon {
+          height: 41px;
+          width: 41px;
+
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+
+        span {
+          color: #5c6369;
+          font-size: 20px;
+        }
+
+        .sellerprofile__searchinput {
+          box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+          max-width: 1070px;
+          flex: 1;
+          height: 68px;
+
+          .sellerprofile__input {
+            color: #858a8e;
+            font-size: 20px;
+          }
+        }
+
+        .sellerprofile__notiIcon {
+          margin-left: 1em;
+        }
+      }
+    }
+  }
+}
+
+.sellerprofile > img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+@media (max-width: 926px) {
+  .sellerprofile__table {
+    .MuiTable-root {
+      .MuiTableHead-root {
+        display: none;
+      }
+
+      .MuiTableBody-root {
+        .MuiTableCell-root {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+    }
+  }
+}
