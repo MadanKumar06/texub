@@ -1,0 +1,242 @@
+.pending_invoice_table_main_container {
+  padding: 0 3%;
+  .pending_invoice_table_mui_datatable_main {
+    .MuiTableHead-root {
+      .MuiTableCell-root {
+        font-weight: 600;
+        letter-spacing: 0.66px;
+      }
+    }
+    .MuiToolbar-root {
+      display: none;
+    }
+    .MuiTableFooter-root {
+      display: none;
+    }
+    .MuiTable-root {
+      box-shadow: none;
+      .MuiTableCell-root {
+        border: 1px solid #d6d8d9;
+        text-align: center;
+        font-size: 22px;
+        color: #5c6369;
+      }
+    }
+    .pending_invoice_table_seller_id {
+      span {
+        padding: 2px 6px;
+        background: #f8f0e0;
+        color: #002d56;
+        width: max-content;
+        font-weight: 600;
+      }
+    }
+    .pending_invoice_table_hub_block {
+      span {
+        font-weight: 600;
+      }
+    }
+    .pending_invoice_table_subtotal_block,
+    .pending_invoice_table_price_block {
+      .pending_invoice_table_price,
+      .pending_invoice_table_subtotal {
+        font-size: 31px;
+        font-weight: 600;
+        width: auto;
+        span {
+          font-size: 20px;
+          font-weight: 600;
+          padding: 0 3px;
+        }
+      }
+    }
+    .pending_invoice_table_quantity {
+      .pending_invoice_quantity_subblock {
+        width: 100%;
+        border-radius: 25px;
+        padding: 7px 40px;
+        background: #f5f5f5;
+        font-weight: 600;
+        font-size: 31px;
+      }
+    }
+    .pending_invoice_product_main {
+      width: 100%;
+      .pending_invoice_product_sub_block {
+        display: flex;
+      }
+      .img_block {
+        width: 20%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img {
+          width: 35px;
+          height: 35px;
+        }
+      }
+      .pending_invoice_right_section {
+        width: 80%;
+        text-align: left;
+        .pending_invoice_right_section_block {
+          display: flex;
+          justify-content: space-between;
+          align-items: end;
+          .pending_invoice_product_eta {
+            padding: 6px 9px;
+            color: #002d56;
+            font-size: 16px;
+            background: #f8f0e0;
+            border-radius: 2px;
+            width: max-content;
+            height: max-content;
+          }
+        }
+        .pending_invoice_product_name {
+          font-size: 18px;
+          margin: 0;
+          color: #333c42;
+          letter-spacing: 0.48px;
+          text-transform: uppercase;
+        }
+        .pending_invoice_product_description {
+          font-size: 18px;
+          padding-top: 10px;
+          margin: 0;
+          color: #878787;
+          letter-spacing: 0.48px;
+          max-width: fit-content;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: "1600px") and (min-width: "1200px") {
+  .pending_invoice_table_main_container
+    .pending_invoice_table_mui_datatable_main
+    .MuiTable-root
+    .MuiTableCell-root {
+    font-size: 18px;
+  }
+  .pending_invoice_table_main_container
+    .pending_invoice_table_mui_datatable_main
+    .pending_invoice_table_subtotal_block,
+  .pending_invoice_table_price_block {
+    .pending_invoice_table_price,
+    .pending_invoice_table_subtotal {
+      font-size: 24px !important;
+      font-weight: 600;
+      span {
+        font-size: 16px !important;
+      }
+    }
+  }
+  .pending_invoice_table_main_container
+    .pending_invoice_table_mui_datatable_main
+    .pending_invoice_table_quantity
+    .pending_invoice_quantity_subblock {
+    font-size: 24px !important ;
+  }
+}
+@media (max-width: "1330px") and (min-width: "768px") {
+  .pending_invoice_table_main_container
+    .pending_invoice_table_mui_datatable_main
+    .pending_invoice_product_main
+    .pending_invoice_right_section
+    .pending_invoice_right_section_block {
+    align-items: baseline;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: "1199px") and (min-width: "900px") {
+  .pending_invoice_table_main_container
+    .pending_invoice_table_mui_datatable_main
+    .MuiTable-root
+    .MuiTableCell-root {
+    font-size: 16px;
+  }
+  .pending_invoice_table_main_container
+    .pending_invoice_table_mui_datatable_main
+    .pending_invoice_table_subtotal_block,
+  .pending_invoice_table_price_block {
+    .pending_invoice_table_price,
+    .pending_invoice_table_subtotal {
+      font-size: 22px !important;
+      font-weight: 600;
+      span {
+        font-size: 14px !important;
+      }
+    }
+  }
+  .pending_invoice_table_main_container
+    .pending_invoice_table_mui_datatable_main
+    .pending_invoice_table_quantity
+    .pending_invoice_quantity_subblock {
+    font-size: 22px !important ;
+  }
+}
+@media (max-width: "1023px") {
+  .pending_invoice_table_main_container
+    .pending_invoice_table_mui_datatable_main
+    .pending_invoice_product_main
+    .pending_invoice_right_section
+    .pending_invoice_link {
+    display: flex;
+    flex-direction: column;
+  }
+}
+@media (max-width: "900px") {
+  .pending_invoice_main .pending_invoice_image_block p {
+    font-size: 34px;
+  }
+  .pending_invoice_table_mui_datatable_main {
+    .MuiTableHead-root {
+      display: none !important;
+    }
+    .MuiTableBody-root {
+      .MuiTableCell-root {
+        // display: block !important;
+        display: flex !important;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        div {
+          width: 100%;
+          padding: 5px 0;
+          .pending_invoice_table_quantity {
+            width: 40%;
+            margin: auto;
+          }
+          .pending_invoice_link {
+            flex-direction: row !important;
+          }
+        }
+      }
+    }
+  }
+  .pending_invoice_table_main_container
+    .pending_invoice_table_mui_datatable_main
+    .pending_invoice_product_main
+    .pending_invoice_right_section
+    .pending_invoice_right_section_block {
+    flex-direction: column-reverse;
+    align-items: baseline;
+    gap: 10px;
+  }
+}
+
+@media (max-width: "475px") {
+  .pending_invoice_table_mui_datatable_main {
+    .MuiTableBody-root {
+      .MuiTableCell-root {
+        div {
+          .pending_invoice_table_quantity {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}

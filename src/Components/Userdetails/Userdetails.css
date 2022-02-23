@@ -3,16 +3,15 @@
   flex-direction: row;
   gap: 10px;
   margin: auto 3%;
-  height: 73px;
+  height: 90px;
 }
 
 .Logo {
-  width: 217px;
   display: flex;
   align-items: center;
 }
 .Logo_img {
-  width: 100%;
+  min-width: 100%;
 }
 .Userdetails_List {
   display: flex;
@@ -67,6 +66,7 @@
   flex-direction: row;
   align-items: center;
   gap: 8px;
+  font-size: 20px;
 }
 .User_Wishlist svg {
   color: #5c6369;
@@ -86,6 +86,7 @@
 .User_cart {
   display: flex;
   align-items: center;
+  font-size: 20px;
 }
 .User_cart a {
   display: flex;

@@ -147,8 +147,8 @@ const MyCartTable = () => {
                         <g id="Icon" transform="translate(-0.305 -0.431)">
                           <rect
                             id="Area"
-                            width="21"
-                            height="21"
+                            width="25"
+                            height="25"
                             transform="translate(0.341 0.431)"
                             fill="#fcfcfc"
                             opacity="0"
@@ -184,6 +184,15 @@ const MyCartTable = () => {
     {
       name: "hub",
       label: "HUB",
+      options: {
+        customBodyRender: (value) => {
+          return (
+            <div className="mycart_table_hub_block">
+              <span>{value}</span>
+            </div>
+          );
+        },
+      },
     },
     {
       name: "price",

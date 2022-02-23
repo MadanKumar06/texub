@@ -7,7 +7,7 @@ const styles = (theme) => ({
       fontWeight: "600",
       display: "flex",
       gap: "8px",
-      fontSize: "18px",
+      fontSize: "20px",
       padding: "0",
     },
     "& .MuiButton-label": {
