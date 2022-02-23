@@ -80,6 +80,18 @@
 //     }
 // }
 
+@media only screen and (max-width:768px){
+    .Termsofuse_main .Termsofuse_Description_section 
+    .Termsofuse_btn_section .Termsofuse_decline{
+        padding: 10px 70px;
+    }
+
+    .Termsofuse_main .Termsofuse_Description_section 
+    .Termsofuse_btn_section .Termsofuse_accept{
+        padding: 10px 70px;
+    }
+}
+
 @media only screen and (max-width:580px) {
 .Termsofuse_main .Termsofuse_Description_section .Termsofuse_btn_section{
     flex-direction: column;

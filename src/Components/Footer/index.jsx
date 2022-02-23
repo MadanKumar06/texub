@@ -1,5 +1,5 @@
 import React,{ useState } from "react";
-import "./Footer.css";
+import "./Footer.scss";
 import { Link } from "react-router-dom";
 import logo from "../../Assets/Homepage Assets/Group.png";
 import Fb from "../../Assets/Homepage Assets/facebook.png";
