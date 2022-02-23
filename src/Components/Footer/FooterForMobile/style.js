@@ -18,17 +18,20 @@ const styles = (theme) => ({
     },
     "& .MuiTypography-root": {
       fontWeight: "600",
-      fontSize: "1.1em",
+      fontSize: "20px",
     },
     "& .MuiCollapse-root ": {
-      fontSize: "0.8em",
+      "& .MuiAccordionDetails-root .MuiTypography-root":{
+        fontSize: "18px !important",
+        fontWeight: "400",
+      }
     },
     "& .MuiButtonBase-root": {
       height: "36px !important",
     },
   },
   heading_accordion: {
-    fontSize: "1.2rem",
+    fontSize: "20px",
     fontWeight: "600",
   },
 });
