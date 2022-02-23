@@ -15,9 +15,10 @@
             left: 42%;
            border-radius: 25px;
            border: none;
-            font-size: 20px;
+            font-size: 18px;
            padding: 13px 56px;
            transition: transform .2s;
+           letter-spacing: 0.54px;
           top: 72%;
           color: #FFFFFF;
           box-shadow: 0 3px;
@@ -31,12 +32,14 @@
             top: 37%;
             font-size: 74px;
             color: #002D56;
+            letter-spacing: 2.7px;
         }
         .career_team_ready{
             left: 41%;
             top: 36%;
             color: #20639B;
             font-size: 30px;
+            letter-spacing: 0.9px;
         }
   }
    .career_joinus_section{ 
@@ -77,7 +80,9 @@
            margin: 0;
        }
        .career_to_texub_heading_tag{
-           font-size: 18px;
+           font-size: 20px;
+           letter-spacing: 0.6px;
+           color: #5C6369;
        }
        .career_to_texub_developers2{
            background-color: #FBFBFB;
@@ -92,7 +97,7 @@
            padding: 28px 20px 0 20px;
            min-height: 100px;
         //    background-color: #F4F9FF;
-           opacity: .7;
+        
         .career_to_texub_developers:nth-child(odd) {background-color: #F4F9FF;}
            .career_to_texub_developers_designation,
            .career_to_texub_developers_location{
@@ -104,9 +109,11 @@
                display: flex;
                justify-content: flex-start;
                width: 40%;
+               font-size: 30px;
+               color: #333C42;
            }
            .career_to_texub_developers_location{
-               opacity: .6;
+               color: #858A8E;
                display: flex;
                justify-content: flex-start;
                width: 40%;
@@ -133,25 +140,39 @@
        }
        .career_CultureValues_tag{
            margin-top: 0;
-           font-size: 19px;
-           opacity: .8;
+           font-size: 20px;
+           color: #5C6369;
+           letter-spacing: 0.6px;
        }
        .career_CultureValues_Click{
-                font-size: larger;
+                font-size: 20px;
+                color: #5C6369;
+                letter-spacing: 0.6px;
+                font-weight: 600;
        }
+       .Link{
+        color: #002D56;
+        letter-spacing: 0.6px;
+        opacity: 1;
+        font-weight: 800;
+    }
        .career_CultureValues_heading{
-           font-size: 41px;
+           font-size: 50px;
            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
            color: #333333;
         //    margin-bottom: 10px;
        }
+       .css-1xgjpwf-MuiGrid-root{
+           display: flex;
+           justify-content: center;
        .career_CultureValues_imgs2,
        .career_CultureValues_imgs1{
            display: flex;
            gap: 10px;
-          padding-left: 32%;
+        //   padding-left: 32%;
+          justify-content: center;
           .career_to_texub_developers_arrow{
-            min-width: 485px;  
+            // min-width: 485px;  
             width: 100%;
           }
     
@@ -159,6 +180,7 @@
        .career_CultureValues_imgs1{
            margin-bottom: 10px;
        }
+    }
    }
 }
 
@@ -168,7 +190,7 @@
        .career_CultureValues{
            .career_CultureValues_imgs2,
            .career_CultureValues_imgs1{
-               padding-left: 2%;
+            //    padding-left: 2%;
            }
        }
    }
@@ -191,23 +213,23 @@
                 transform: scale(1.2);
             }
         }
-        .career_CultureValues{
-            .career_CultureValues_tag{
-                padding: 0 83px 0 83px;
-            }
-            .career_CultureValues_imgs1{
-                 padding-left: 23%;
-                .career_to_texub_developers_arrow{
-                    min-width: 400px;
-                }
-            }
-           .career_CultureValues_imgs2{
-            padding-left: 23%;
-            .career_to_texub_developers_arrow{
-                min-width: 400px;
-            }
-           } 
-        }
+        // .career_CultureValues{
+        //     .career_CultureValues_tag{
+        //         padding: 0 83px 0 83px;
+        //     }
+        //     .career_CultureValues_imgs1{
+        //          padding-left: 23%;
+        //         .career_to_texub_developers_arrow{
+        //             min-width: 400px;
+        //         }
+        //     }
+        //    .career_CultureValues_imgs2{
+        //     padding-left: 23%;
+        //     .career_to_texub_developers_arrow{
+        //         min-width: 400px;
+        //     }
+        //    } 
+        // }
     }
     
 }
@@ -217,7 +239,7 @@
         .career_CultureValues{
             .career_CultureValues_imgs1,
             .career_CultureValues_imgs2{
-                padding-left: 9%;
+                // padding-left: 9%;
             }
         }
     }
@@ -252,21 +274,21 @@
         .career_to_texub{
             padding: 51px 60px;
         }
-        .career_CultureValues{
-            .career_CultureValues_imgs1{
-                 padding-left: 23%;
-                .career_to_texub_developers_arrow{
-                    min-width: 280px;
-                }
-            }
-           .career_CultureValues_imgs2{
-            padding-left: 23%;
-            .career_to_texub_developers_arrow{
-                min-width: 280px;
-            }
-           } 
+    //     .career_CultureValues{
+    //     //     .career_CultureValues_imgs1{
+    //     //          padding-left: 13%;
+    //     //         .career_to_texub_developers_arrow{
+    //     //             min-width: 280px;
+    //     //         }
+    //     //     }
+    //     //    .career_CultureValues_imgs2{
+    //     //     padding-left: 13%;
+    //     //     .career_to_texub_developers_arrow{
+    //     //         min-width: 280px;
+    //     //     }
+    //     //    } 
 
-    }
+    // }
     }
 }
 
@@ -333,13 +355,13 @@
         }
         .career_CultureValues{
             .career_CultureValues_imgs1{
-                padding-left: 9%;
+                // padding-left: 2%;
                 .career_to_texub_developers_arrow{
                     min-width: 225px;
                 }
             }
             .career_CultureValues_imgs2{
-                padding-left: 9%;
+                // padding-left: 2%;
                 .career_to_texub_developers_arrow{
                     min-width: 225px;
                 }
@@ -437,12 +459,15 @@
             .career_CultureValues_heading{
                 font-size: x-large;
             }
+            .css-8v0fa4-MuiGrid-root{
+                max-width: fit-content;
+            }
             .career_CultureValues_imgs1,
             .career_CultureValues_imgs2{
                 flex-direction: column;
                 // min-width: 473px;
                 gap: 4px;
-                padding-left: 3%;
+                // padding-left: 3%;
                 .career_to_texub_developers_arrow{
                     height: 249px;
                     min-width: 466px;

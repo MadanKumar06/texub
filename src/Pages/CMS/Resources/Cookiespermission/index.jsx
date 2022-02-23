@@ -16,15 +16,20 @@ const index = ({closePOPup}) => {
     //     }
     // ]
   return (
+   <div>
     <div className='cookies_main'>
-        <div  className='cookies_bgimage_section' >
+       
+
+       
+        <div className='cookies_bgimage_section' >
         <img src={bgimage} alt='/' className='cookies_bgimage'/>   
         <img src={icon} alt='/' className='cookies_icon'/> 
         <img src={close} alt='/' className='cookies_close' onClick={()=> closePOPup(false)}/>
         <p className='cookies_description'>We use cookies to make your experience better on this website</p>
-        <p className='cookies_policies'><a href="/">Cookies Policies</a></p>
+        <p className='cookies_policies'><a href="/" className='Link'>Cookies Policies</a></p>
         <button className='cookies_btn'>Accept Cookies</button>
         </div>
+        
       {/* <div className='cookies_bgimage_section'> 
       {Cookies.map((item) =>
          <li key={item.id}  className="cookies_list">
@@ -55,6 +60,7 @@ const index = ({closePOPup}) => {
             {item.accept}       </li>
        )}
       </div> */}
+    </div>
     </div>
   )
 }

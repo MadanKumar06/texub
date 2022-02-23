@@ -1,5 +1,5 @@
 import React,{ useState } from "react";
-import "./Footer.css";
+import "./Footer.scss";
 import { Link } from "react-router-dom";
 import logo from "../../Assets/Homepage Assets/Group.png";
 import Fb from "../../Assets/Homepage Assets/facebook.png";
@@ -89,7 +89,7 @@ export const Footer = () => {
               <Link to="/gdpr" className="to_CMS">
               <li>GDPR</li>
               </Link>
-              <Link to="/faqs" className="to_CMS">
+              <Link to="/Faqs" className="to_CMS">
               <li>FAQs</li>
               </Link>
             </ul>

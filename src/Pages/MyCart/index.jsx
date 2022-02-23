@@ -15,7 +15,7 @@ const Mycart = () => {
         <Stack spacing={2}>
           <Breadcrumbs separator="››" aria-label="breadcrumb">
             <Link to="/">Home</Link>
-            <Typography key="3" color="#002D56">
+            <Typography key="4" color="#002D56">
               Cart
             </Typography>
           </Breadcrumbs>

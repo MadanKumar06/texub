@@ -105,7 +105,11 @@
         .inputfield{
             background-color: #FFFFFF;
             border-radius: none;
-            
+            .css-n1ubvy-MuiFormLabel-root-MuiInputLabel-root{
+                transform: translate(13px, -15px) scale(0.75);
+                font-size: 26px;
+                color: rgba(0, 0, 0, 2.6);
+            }
             .css-md26zr-MuiInputBase-root-MuiOutlinedInput-root{
                 border-radius: 0px !important;
                 height: 60px;
@@ -114,6 +118,11 @@
         }
         .inputfield1{
             background-color: #FFFFFF;
+            .css-n1ubvy-MuiFormLabel-root-MuiInputLabel-root{
+                transform: translate(13px, -15px) scale(0.75);
+                font-size: 26px;
+                color: rgba(0, 0, 0, 2.6);
+            }
             .css-md26zr-MuiInputBase-root-MuiOutlinedInput-root{
                 border-radius: 0px !important;
                 height: 200px;
@@ -167,7 +176,7 @@
         left: 2rem;
     }
     .contactus_main .contactus_form_section{
-        min-height: 762px;
+        min-height: 722px;
         padding: 112px 43px 0 0;
      
     }

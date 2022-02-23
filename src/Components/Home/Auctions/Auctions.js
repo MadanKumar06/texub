@@ -1,5 +1,5 @@
 import React from "react";
-import "./Auctions.css";
+import "./Auctions.scss";
 import Collect21 from "../../../Assets/Homepage Assets/Group 706.png";
 import Collect22 from "../../../Assets/Homepage Assets/Group 75.png";
 

@@ -3,6 +3,7 @@
  const styles = (theme) => ({
     checkbox_label: {
         fontSize:'30px !important',
+        letterSpacing: "0.6px",
         "@media (max-width:1024px)":{
           fontSize:'20px !important',
         },
