@@ -1,0 +1,94 @@
+.registerproduct {
+  .boxsizingBorder {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  h1 {
+    color: #ddb363;
+    font-size: 30px;
+    margin: 0;
+  }
+  .registerproducts__form {
+    display: flex;
+    flex-direction: column;
+
+    h5 {
+      color: #272727;
+      font-size: 18px;
+      font-weight: 500;
+      margin: 0;
+      margin-bottom: 5px;
+    }
+
+    input {
+      border: 1px solid #cdd5dd;
+
+      width: calc(94%);
+      padding: 0.675em 1em;
+      border-radius: 24px;
+      outline: 0;
+      font-size: 20px;
+
+      &::placeholder {
+        color: #cdd5dd;
+      }
+    }
+
+    textarea {
+      width: 94%;
+    }
+
+    .registerproduct__formflex {
+      display: flex;
+      flex-wrap: wrap;
+
+      & > * {
+        width: calc(100% / 2 - 20px);
+      }
+
+      .MuiOutlinedInput-root {
+        width: calc(94% - 6px);
+        border-radius: 24px;
+      }
+    }
+  }
+
+  .registerproduct__submit {
+    display: flex;
+    justify-content: space-between;
+
+    & > * {
+      cursor: pointer;
+    }
+
+    .registerproduct__back {
+      position: relative;
+      font-size: 20px;
+      color: #002d56;
+      text-decoration: none;
+
+      margin-left: 1em;
+      &::before {
+        content: "";
+        border-left: 1px solid black;
+        border-top: 1px solid black;
+        transform: rotate(315deg);
+        width: 0.5em;
+        height: 0.5em;
+        position: absolute;
+        left: -1em;
+        top: 6px;
+        color: #002d56;
+      }
+    }
+
+    .registerproduct__submitbutton {
+      font-size: 18px;
+      padding: 0.6em 7.2em;
+      background: linear-gradient(#20639b, #002d56);
+      color: white;
+      border-radius: 24px;
+    }
+  }
+}
