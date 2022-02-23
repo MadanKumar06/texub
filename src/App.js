@@ -33,6 +33,8 @@ import RRpolicy from "./Pages/CMS/Company/RRpolicy";
 
 import Mycart from "./Pages/MyCart";
 import SellerDashboard from "./Pages/SellerDashboard";
+import BuyerDashboard from "./Pages/BuyerDashboard";
+
 function App() {
   return (
     <div className="App">
@@ -231,10 +233,20 @@ function App() {
               exact
             />
             <Route
-              path="/sellerdashboard"
+              path="/sellerdashboard/:currenttab"
               element={
                 <>
                   <SellerDashboard /> <Footer />{" "}
+                </>
+              }
+              exact
+            />
+
+            <Route
+              path="/buyerdashboard/:currenttab"
+              element={
+                <>
+                  <BuyerDashboard /> <Footer />{" "}
                 </>
               }
               exact
