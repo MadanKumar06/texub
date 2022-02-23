@@ -48,11 +48,18 @@
   }
 
   .sellerdashboard__currentselection {
-    background-image: linear-gradient(#ffd788, #cc9b3e);
     color: white;
-
+    background-color: white;
     li {
       font-size: 24px;
     }
+  }
+
+  .sellerbg {
+    background-image: linear-gradient(#ffd788, #cc9b3e);
+  }
+
+  .buyerbg {
+    background-image: linear-gradient(#20639b, #002d56);
   }
 }

@@ -33,6 +33,7 @@ import RRpolicy from "./Pages/CMS/Company/RRpolicy";
 import Mycart from "./Pages/MyCart";
 import SellerDashboard from "./Pages/SellerDashboard";
 import BuyerDashboard from "./Pages/BuyerDashboard";
+import SellerProfile from "./Pages/SellerProfile";
 
 import PendingInvoice from "./Pages/PendingInvoice";
 function App() {
@@ -249,6 +250,15 @@ function App() {
               element={
                 <>
                   <BuyerDashboard /> <Footer />{" "}
+                </>
+              }
+              exact
+            />
+            <Route
+              path="/sellerprofile"
+              element={
+                <>
+                  <SellerProfile /> <Footer />{" "}
                 </>
               }
               exact

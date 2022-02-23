@@ -17,6 +17,7 @@ import Sidebar from '../../Components/Sidebar'
 
 function SellerDashboard() {
 
+
     const [currentmenu, setcurrentmenu] = useState()
     let navigate = useNavigate();
 
@@ -43,7 +44,6 @@ function SellerDashboard() {
         }
     }, [currenttab, userform])
 
-    console.log(showregister)
 
     const [registersuccess] = useState('You have submitted the product registration form successfully. once your product has been registered, you will receive a mail notification.')
     const [updatesuccess] = useState('You have updated the product details successfully.')
@@ -53,7 +53,7 @@ function SellerDashboard() {
     <div className='sellerdashboard'>
         <img src={bg} alt="" />
         <div className='sellerboard__bg'>
-            <Sidebar selectmenu={selectmenu} setcurrentmenu={setcurrentmenu} currentmenu={setcurrentmenu} currenttab={currenttab} />
+            <Sidebar color="yellow" selectmenu={selectmenu} setcurrentmenu={setcurrentmenu} currentmenu={setcurrentmenu} currenttab={currenttab} />
             <div className='sellerdashboard__maintab'>
                 {showregister === false && <div className='sellerdashboard__search'>
                     <Paper className='sellerdashboard__searchinput'  component="form"
