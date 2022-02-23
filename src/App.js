@@ -33,6 +33,7 @@ import RRpolicy from "./Pages/CMS/Company/RRpolicy";
 import Mycart from "./Pages/MyCart";
 import SellerDashboard from "./Pages/SellerDashboard";
 import PendingInvoice from "./Pages/PendingInvoice";
+import Checkout from "./Pages/Checkout";
 function App() {
   return (
     <div className="App">
@@ -239,11 +240,20 @@ function App() {
               }
               exact
             />
-              <Route
+            <Route
               path="/pending-invoice"
               element={
                 <>
                   <PendingInvoice /> <Footer />{" "}
+                </>
+              }
+              exact
+            />
+            <Route
+              path="/checkout"
+              element={
+                <>
+                  <Checkout /> <Footer />{" "}
                 </>
               }
               exact

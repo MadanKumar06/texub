@@ -9,10 +9,13 @@ const styles = (theme) => ({
       fontWeight: "600",
       fontSize: "20px",
       padding: "0",
-      "@media (max-width:1240px)": {
+      "@media (max-width:1300px)": {
+        fontSize: "16px !important",
+      },
+      "@media (max-width:1080px)": {
         fontSize: "14px !important",
       },
-      "@media (max-width:850px) and (min-width:768px)": {
+      "@media (max-width:768px)": {
         fontSize: "12px !important",
       },
     },
