@@ -1,5 +1,5 @@
 import React from "react";
-import "./B2Bconnect.css";
+import "./B2Bconnect.scss";
 import Card1 from "../../../Assets/Homepage Assets/OLS5890.png";
 import Card3 from "../../../Assets/Homepage Assets/8014.png";
 import Card2 from "../../../Assets/Homepage Assets/3517061.png";
