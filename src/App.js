@@ -32,6 +32,9 @@ import Privacypolicy from "./Pages/CMS/Company/Privacypolicy";
 import RRpolicy from "./Pages/CMS/Company/RRpolicy";
 import Mycart from "./Pages/MyCart";
 import SellerDashboard from "./Pages/SellerDashboard";
+import BuyerDashboard from "./Pages/BuyerDashboard";
+import SellerProfile from "./Pages/SellerProfile";
+
 import PendingInvoice from "./Pages/PendingInvoice";
 import Checkout from "./Pages/Checkout";
 function App() {
@@ -101,7 +104,15 @@ function App() {
               }
               exact
             />
-            <Route path="/Faqs" element={<FAQs />} exact />
+            <Route
+              path="/Faqs"
+              element={
+                <>
+                  <FAQ /> <Footer />{" "}
+                </>
+              }
+              exact
+            />
             <Route
               path="/Contactus"
               element={
@@ -232,10 +243,28 @@ function App() {
               exact
             />
             <Route
-              path="/sellerdashboard"
+              path="/sellerdashboard/:currenttab"
               element={
                 <>
                   <SellerDashboard /> <Footer />{" "}
+                </>
+              }
+              exact
+            />
+            <Route
+              path="/buyerdashboard/:currenttab"
+              element={
+                <>
+                  <BuyerDashboard /> <Footer />{" "}
+                </>
+              }
+              exact
+            />
+            <Route
+              path="/sellerprofile"
+              element={
+                <>
+                  <SellerProfile /> <Footer />{" "}
                 </>
               }
               exact

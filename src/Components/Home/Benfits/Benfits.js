@@ -1,6 +1,6 @@
 import React from "react";
 import Learn from "../../../Assets/Homepage Assets/Group 73.png";
-import "./Benfits.css";
+import "./Benfits.scss";
 
 export const Benfits = () => {
   return (

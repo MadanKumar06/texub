@@ -1,5 +1,5 @@
 import React,{ useState } from "react";
-import "./Footer.css";
+import "./Footer.scss";
 import { Link } from "react-router-dom";
 import logo from "../../Assets/Homepage Assets/Group.png";
 import Fb from "../../Assets/Homepage Assets/facebook.png";
@@ -16,11 +16,10 @@ import Cookiespermission from '../../Pages/CMS/Resources/Cookiespermission'
 export const Footer = () => {
   const [isCookies, setisCookies] = useState(false)
 
-  const  isclik=()=> {
-     setisCookies(!isCookies)
-    console.log (isCookies)
+  // const  isclik=()=> {
+  //    setisCookies(!isCookies)
     
-  }
+  // }
   return (
     <div className="Footer">
       <div className="Footer_box">
@@ -84,16 +83,18 @@ export const Footer = () => {
             <Link to="/legal" className="to_CMS">
               <li>Legal</li>
               </Link>
-              <li onClick={isclik} >Cookies Permission</li>
+              <li onClick={()=>{
+                setisCookies(true);
+              }} >Cookies Permission</li>
               <Link to="/gdpr" className="to_CMS">
               <li>GDPR</li>
               </Link>
-              <Link to="/faqs" className="to_CMS">
+              <Link to="/Faqs" className="to_CMS">
               <li>FAQs</li>
               </Link>
             </ul>
           </div>
-          {isCookies && <Cookiespermission/>}
+          {isCookies && <Cookiespermission closePOPup={setisCookies}/>}
         </div>
       </div>
       <div className="footer_mobile_view">

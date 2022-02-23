@@ -7,7 +7,8 @@ const styles = (theme) => ({
         gap: "30px",
     },
     faqs_text_heading: {
-        fontSize: "x-large",
+        fontSize: "22px",
+        color:"#4E4E4E",
         "@media (max-width:425px)":{
             fontSize: "larger",
         },

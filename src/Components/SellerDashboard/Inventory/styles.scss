@@ -1,0 +1,135 @@
+.inventory {
+  .inventory__table {
+    margin-top: 3em;
+    .MuiTable-root {
+      .MuiTableHead-root {
+        .MuiTableRow-root {
+          .MuiTableCell-root {
+            background-color: #002d56;
+            color: white;
+            text-align: center;
+            font-weight: 600;
+          }
+        }
+      }
+
+      .MuiTableBody-root {
+        .inventory__instock,
+        .inventory__moq,
+        .inventory__myprice,
+        .inventory__lowestprice {
+          color: #333c42;
+          background-color: white;
+          border: 1px solid white;
+          border-radius: 24px;
+          padding: 0.5em 1em;
+          text-align: center;
+        }
+
+        .inventory__myprice,
+        .inventory__lowestprice {
+          p {
+            margin: 0;
+          }
+
+          .label {
+            font-size: 12px;
+          }
+
+          .value {
+            font-size: 16px;
+          }
+        }
+
+        .inventory__action {
+          text-decoration: underline;
+          cursor: pointer;
+          color: #002d56;
+          font-size: 22px;
+        }
+
+        .inventory__rank {
+          font-size: 22px;
+          color: #20639b;
+        }
+
+        .MuiTableCell-root {
+          background-color: #f1f1f1;
+          text-align: center;
+
+          & > * {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+
+  .inventory__products {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3em;
+
+    & > * {
+      cursor: pointer;
+    }
+
+    .inventory__back {
+      position: relative;
+      font-size: 20px;
+      color: #002d56;
+
+      margin-left: 1em;
+      &::before {
+        content: "";
+        border-left: 1px solid black;
+        border-top: 1px solid black;
+        transform: rotate(315deg);
+        width: 0.5em;
+        height: 0.5em;
+        position: absolute;
+        left: -1em;
+        top: 6px;
+        color: #002d56;
+      }
+    }
+
+    .inventory__buttons {
+      display: flex;
+      gap: 1em;
+
+      p {
+        margin: 0;
+        font-size: 18px;
+        border-radius: 20px;
+        padding: 0.5em 1em;
+        border: 1px solid #002d56;
+        font-weight: 500;
+      }
+
+      .inventory_adddetails {
+        color: white;
+        background-color: #002d56;
+      }
+    }
+  }
+}
+
+@media (max-width: 540px) {
+  .inventory__table {
+    .MuiTable-root {
+      .MuiTableHead-root {
+        display: none;
+      }
+
+      .MuiTableBody-root {
+        .MuiTableCell-root {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+    }
+  }
+}

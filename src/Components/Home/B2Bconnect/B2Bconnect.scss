@@ -1,0 +1,112 @@
+.WhyTexub {
+  /* background-image: linear-gradient(to left, skyblue , white); */
+  padding-bottom: 30px;
+  margin: 3em 0;
+  color: #333333;
+  flex-direction: column;
+  width: 100%;
+  background-image: url("../../../Assets/Productlist/blue-abstract-gradient-wave-wallpaper.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  .Heading {
+    justify-content: center;
+    font-size: 25px;
+    padding-top: 17px;
+    font-family: revert;
+    opacity: 1;
+    display: flex;
+  }
+  .Heading_tag {
+    text-align: center;
+    font-size: 17px;
+    font-family: "Source Sans Pro";
+    opacity: 0.8;
+    font-weight: bold;
+    color: #333333;
+  }
+  .B2B_Images_Section {
+    display: flex;
+    flex-direction: row;
+    height: auto;
+    justify-content: space-evenly;
+    .B2B_Images {
+      display: flex;
+      flex-direction: column;
+      /* justify-content: center; */
+      .Card {
+        width: 88%;
+      }
+      .Card_Paragraph {
+        /* text-align: center; */
+        font-size: 17px;
+        font-family: "Source Sans Pro";
+        opacity: 0.9;
+        font-weight: bold;
+        color: #333333;
+        padding-left: 10px;
+      }
+    }
+  }
+}
+
+// .Heading {
+//   justify-content: center;
+//   font-size: 25px;
+//   padding-top: 17px;
+//   font-family: revert;
+//   opacity: 1;
+//   display: flex;
+// }
+// .Heading_tag {
+//   text-align: center;
+//   font-size: 17px;
+//   font-family: "Source Sans Pro";
+//   opacity: 0.8;
+//   font-weight: bold;
+//   color: #333333;
+// }
+// .B2B_Images_Section {
+//   display: flex;
+//   flex-direction: row;
+//   height: auto;
+//   justify-content: space-evenly;
+// }
+// .B2B_Images {
+//   display: flex;
+//   flex-direction: column;
+//   /* justify-content: center; */
+// }
+// .Card_Paragraph {
+//   /* text-align: center; */
+//   font-size: 17px;
+//   font-family: "Source Sans Pro";
+//   opacity: 0.9;
+//   font-weight: bold;
+//   color: #333333;
+//   padding-left: 10px;
+// }
+// .Card {
+//   width: 88%;
+// }
+@media (max-width: 1366px) {
+  .WhyTexub {
+    margin: 2em 0;
+  }
+}
+
+@media (max-width: 480px) {
+
+ .WhyTexub .B2B_Images_Section {
+    flex-direction: column;
+  }
+
+  .WhyTexub .B2B_Images_Section .B2B_Images {
+    align-items: center;
+  }
+}
+
+@media (max-width: 375px) {
+  .WhyTexub {
+    margin: 1em 0;
+  }
+}

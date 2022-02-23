@@ -1,0 +1,35 @@
+.successpage {
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 0 auto;
+
+  & > * {
+    margin: 0;
+    margin-bottom: 1em;
+  }
+
+  h3 {
+    color: #5c6369;
+    font-size: 50px;
+  }
+  h4 {
+    color: #5c6369;
+    font-size: 40px;
+  }
+  h5 {
+    color: #333c42;
+    font-size: 26px;
+  }
+
+  p {
+    color: #002d56;
+    font-size: 22px;
+    text-decoration: underline;
+    font-weight: 600;
+    cursor: pointer;
+  }
+}

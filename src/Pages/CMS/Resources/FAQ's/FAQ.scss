@@ -1,5 +1,5 @@
 .faqs_main{
-    padding:1% 3% 10% 3%;
+    padding:1% 3% 1% 3%;
     .faqs_heading_section{
         position: relative;
         .faqs_heading{
@@ -9,6 +9,7 @@
             left: 31%;
             color: #002D56;
             opacity: 1;
+            letter-spacing: 1.5px;
         }
         .faqs_heading_img{
             width: 100%;
@@ -22,6 +23,7 @@
         .faqs_table_heading{
             font-size: 25px;
             letter-spacing: 1px;
+            color: #4E4E4E;
         }
       .faqs_hr1{
           border: 1px solid goldenrod;
@@ -39,6 +41,9 @@
           display: flex;
           gap: 40px;
           padding: 20px 0 20px 20px;
+       .faq_qns_heading{
+           color: #4E4E4E;
+       }   
       .faqs_plus_img{
           height: 40px;
           margin-top: -6px;
@@ -55,6 +60,8 @@
         padding-left:15%;
         padding-top: 10px;
         gap: 20px;
+        color: #4E4E4E;
+        letter-spacing: 0.45px;
         .v1{
             border: 1px solid goldenrod;
             
@@ -136,6 +143,11 @@
         }
       }
     }
+
+    
+.faqs_main .faqs_table_section .faqs_description {
+     font-size: 15px;
+}
 
 }
 

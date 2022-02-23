@@ -8,11 +8,14 @@
         display: flex;
         justify-content: center;
         gap: 40px;
+        .Termsofuse_terms{
+            height: 81px;
+        }
         .Termsofuse_heading{
             font-size: xxx-large;
             color: #DDB363;
             letter-spacing: 1.5px;
-            margin-top: 50px;
+            margin-top: 10px;
         }
     }
     .Termsofuse_description{
@@ -21,6 +24,9 @@
             list-style: none;
             font-size: 20px;
             text-align: center;
+            font-family: "Source Sans Pro";
+            letter-spacing: 0.9px;
+            color: #333333
         }
     }
     .Termsofuse_btn_section{
@@ -45,21 +51,45 @@
             background: linear-gradient(180deg, #FFD788 0%, #CC9B3E 100%);
             border: none;
             border-radius: 25px;
-            padding: 10px 70px;
+            padding: 10px 90px;
             font-size: x-large;
             color: #FFFFFF;
+            letter-spacing: 0.45px;
         }
         .Termsofuse_accept{
             background: linear-gradient(180deg, #20639B 0%, #002D56 100%);
             border: none;
             border-radius: 25px;
-            padding: 10px 70px;
+            padding: 10px 90px;
             font-size: x-large;
             color: #FFFFFF;
+            letter-spacing: 0.45px;
         }
     
     }
   }
+}
+
+// @media only screen and (max-width:768px){
+//     .Termsofuse_Description_section .Termsofuse_heading_section .Termsofuse_heading {
+//         font-size: 40px !important;
+//         margin: 21px 0 0 0 !important;
+//     }
+//     .Termsofuse_main .Termsofuse_Description_section .Termsofuse_heading_section .Termsofuse_terms {
+//            height: 92px;
+//     }
+// }
+
+@media only screen and (max-width:768px){
+    .Termsofuse_main .Termsofuse_Description_section 
+    .Termsofuse_btn_section .Termsofuse_decline{
+        padding: 10px 70px;
+    }
+
+    .Termsofuse_main .Termsofuse_Description_section 
+    .Termsofuse_btn_section .Termsofuse_accept{
+        padding: 10px 70px;
+    }
 }
 
 @media only screen and (max-width:580px) {
@@ -74,6 +104,9 @@
   }
   .Termsofuse_main .Termsofuse_Description_section .Termsofuse_description{
     padding: 16px 0 0 0;
+  }
+  .Termsofuse_main .Termsofuse_Description_section .Termsofuse_description .Termsofuse_text{
+      font-size: 15px;
   }
   .Termsofuse_main .Termsofuse_Description_section .Termsofuse_btn_section .Termsofuse_btn_download {
       justify-content: center;
