@@ -36,6 +36,7 @@ import BuyerDashboard from "./Pages/BuyerDashboard";
 import SellerProfile from "./Pages/SellerProfile";
 
 import PendingInvoice from "./Pages/PendingInvoice";
+import Checkout from "./Pages/Checkout";
 function App() {
   return (
     <div className="App">
@@ -103,9 +104,15 @@ function App() {
               }
               exact
             />
-            <Route path="/Faqs" element={ 
-            <><FAQ /> <Footer /> </>}
-             exact />
+            <Route
+              path="/Faqs"
+              element={
+                <>
+                  <FAQ /> <Footer />{" "}
+                </>
+              }
+              exact
+            />
             <Route
               path="/Contactus"
               element={
@@ -244,7 +251,6 @@ function App() {
               }
               exact
             />
-
             <Route
               path="/buyerdashboard/:currenttab"
               element={
@@ -268,6 +274,15 @@ function App() {
               element={
                 <>
                   <PendingInvoice /> <Footer />{" "}
+                </>
+              }
+              exact
+            />
+            <Route
+              path="/checkout"
+              element={
+                <>
+                  <Checkout /> <Footer />{" "}
                 </>
               }
               exact

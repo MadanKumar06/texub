@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import MyAccountPopUP from "./MyAccountPopup";
 
 import { FavoriteBorder, ShoppingBag } from "@material-ui/icons";
+import MiniCartDrawer from "../../Pages/MiniCart";
 
 export const Userdetails = () => {
   return (
@@ -35,12 +36,7 @@ export const Userdetails = () => {
             <li className="User_account_Wishlist_cart">My Wishlist</li>
           </div>
           <div className="User_cart">
-            <Link to="/mycart">
-              <Badge badgeContent={1} className="badge_user">
-                <ShoppingBag />
-              </Badge>
-              <li className="User_account_Wishlist_cart">My Cart</li>
-            </Link>
+            <MiniCartDrawer />
           </div>
         </ul>
       </div>

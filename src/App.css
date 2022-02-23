@@ -1,3 +1,6 @@
+.App {
+  background: #fbfbfb;
+}
 iframe {
   pointer-events: none;
 }
