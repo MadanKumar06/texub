@@ -1,6 +1,5 @@
 import React from "react";
 import "./styles.scss";
-// import { Menu, KeyboardArrowDown } from "@material-ui/icons";
 import topbanner from "../../Assets/Aboutus/Group 765@2x.png";
 import missionbg from "../../Assets/Aboutus/missionbg.png";
 import missionstate from "../../Assets/Aboutus/missionstate.png";

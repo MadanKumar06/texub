@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-// import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
 import "./App.css";
@@ -12,7 +11,6 @@ import Aboutus from "./Pages/Aboutus";
 import { BuyonTexhub } from "./Pages/BuyonTexhub";
 import { Products } from "./Pages/Products";
 import { SellonTexhub } from "./Pages/SellonTexhub";
-import { FAQs } from "./Pages/FAQs";
 import { Contactus } from "./Pages/Contactus";
 import { Userdetails } from "./Components/Userdetails";
 import Registration from "./Pages/Register";
@@ -36,6 +34,7 @@ import BuyerDashboard from "./Pages/BuyerDashboard";
 import SellerProfile from "./Pages/SellerProfile";
 
 import PendingInvoice from "./Pages/PendingInvoice";
+import Checkout from "./Pages/Checkout";
 function App() {
   return (
     <div className="App">
@@ -103,7 +102,15 @@ function App() {
               }
               exact
             />
-            <Route path="/Faqs" element={<FAQs />} exact />
+            <Route
+              path="/Faqs"
+              element={
+                <>
+                  <FAQ /> <Footer />{" "}
+                </>
+              }
+              exact
+            />
             <Route
               path="/Contactus"
               element={
@@ -242,7 +249,6 @@ function App() {
               }
               exact
             />
-
             <Route
               path="/buyerdashboard/:currenttab"
               element={
@@ -266,6 +272,15 @@ function App() {
               element={
                 <>
                   <PendingInvoice /> <Footer />{" "}
+                </>
+              }
+              exact
+            />
+            <Route
+              path="/checkout"
+              element={
+                <>
+                  <Checkout /> <Footer />{" "}
                 </>
               }
               exact

@@ -1,7 +1,6 @@
 import React from "react";
-import { Modal } from "@material-ui/core";
-import Backdrop from "@material-ui/core/Backdrop";
-import { withStyles } from "@material-ui/styles";
+import { Modal,Backdrop } from "@mui/material";
+import { withStyles } from "@mui/styles";
 import styles from "./styles";
 import logo from "../../../../Assets/CommonImage/Logo/texub_logo_user_selection.svg";
 import Register_section_Logo_one from "../../../../Assets/CommonImage/RegisterPopup/trade_and_auctions.png";

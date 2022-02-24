@@ -5,10 +5,10 @@ import {
   FormControlLabel,
   Button,
   Box,
-} from "@material-ui/core";
-import { ArrowDropUp } from "@material-ui/icons";
+} from "@mui/material";
+import { ArrowDropUp } from "@mui/icons-material";
 import Autocomplete from "@mui/material/Autocomplete";
-import { withStyles } from "@material-ui/styles";
+import { withStyles } from "@mui/styles";
 import { Link, useParams } from "react-router-dom";
 import styles from "./styles";
 const BuyerRegistration = ({ classes }) => {

@@ -1,5 +1,5 @@
 import React from "react";
-import "./Favorites.css";
+import "./Favorites.scss";
 import Img1 from "../../../Assets/Homepage Assets/Group 66.png";
 import Img2 from "../../../Assets/Homepage Assets/Group 67.png";
 import Img3 from "../../../Assets/Homepage Assets/Group 68.png";

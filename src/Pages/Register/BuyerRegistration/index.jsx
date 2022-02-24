@@ -5,12 +5,11 @@ import {
   FormControlLabel,
   Button,
   Box,
-} from "@material-ui/core";
+} from "@mui/material";
 // import ReCAPTCHA from "react-google-recaptcha";
 import Autocomplete from "@mui/material/Autocomplete";
-import { ArrowDropUp } from "@material-ui/icons";
 import { Link, useParams } from "react-router-dom";
-import { withStyles } from "@material-ui/styles";
+import { withStyles } from "@mui/styles";
 import styles from "./styles";
 const BuyerRegistration = ({ classes }) => {
   let {type} = useParams();

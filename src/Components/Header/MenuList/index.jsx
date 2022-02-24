@@ -1,7 +1,7 @@
 import React from "react";
-import { Drawer, Button } from "@material-ui/core";
-import { withStyles } from "@material-ui/styles";
-import { Menu } from "@material-ui/icons";
+import { Drawer, Button } from "@mui/material";
+import { withStyles } from "@mui/styles";
+import { Menu } from "@mui/icons-material";
 import MenuListAccountTab from "./MenuListAccountTab";
 import styles from "./styles";
 

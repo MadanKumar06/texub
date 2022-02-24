@@ -5,8 +5,8 @@ import {
   FormControlLabel,
   Button,
   Box,
-} from "@material-ui/core";
-import { withStyles } from "@material-ui/styles";
+} from "@mui/material";
+import { withStyles } from "@mui/styles";
 import styles from "./styles";
 const TransitionsModal = ({ classes }) => {
   let {

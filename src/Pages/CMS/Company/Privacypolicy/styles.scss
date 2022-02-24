@@ -38,7 +38,18 @@
     .privacypolicy_main .Legal_heading .Legal_heading_list .heading{
         font-size: 31px;
     }
-    
+    .privacypolicy_main .Legal_description{
+        font-size: 15px;
+    }
+}
+@media only screen and (max-width:375px){
+    .privacypolicy_main .Legal_heading .Legal_heading_list .heading{
+        font-size: 28px;
+    }
+    .privacypolicy_main .Legal_heading .Legal_heading_list .Legal_img{
+        height: 73px;
+    }
+   
 }
 
 @media only screen and (max-width:320px){

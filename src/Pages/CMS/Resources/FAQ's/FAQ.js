@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import './FAQ.scss'
 import img from '../../../../Assets/Career/Group 765.png'
-import { TextareaAutosize } from '@material-ui/core';
-import { withStyles } from "@material-ui/styles";
+import { TextareaAutosize } from '@mui/material';
+import { withStyles } from "@mui/styles";
 import styles from './styles';
 import FAQs from './FAQs';
 
@@ -23,7 +23,7 @@ const FAQ = ({ classes }) => {
           <li key={item.id} className='faqs_table_adding'>
             <div onClick={() =>
               setdescription(!(description))} className='faqs_qns_section'>
-              <img src={item.image}  alt='' className='faqs_plus_img'></img>{item.heading}
+              <img src={item.image}  alt='' className='faqs_plus_img'></img><span className='faq_qns_heading'>{item.heading}</span>
         
             </div>
 

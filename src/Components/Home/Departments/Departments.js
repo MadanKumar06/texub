@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Departments.css";
+import "./Departments.scss";
 import Departments1 from "../../Data";
 import Apple from "../../../Assets/Homepage Assets/Placement Area [ASSEThero][SIZEDefault][STATEDEFAULT].png";
 import Best from "../../../Assets/Homepage Assets/Group 705.png";
@@ -13,7 +13,7 @@ export const Departments = () => {
           <div
             className="Departments_Body_Down_Pannel_btn"
             onClick={(e) => setIsActive(!isActive)}
-          >
+           >
             <i className="fa fa-reorder  button_Icon2"></i>
             <i className="fa fa-search Search_Icon2"></i>
             <p className="Department_heading">
@@ -34,7 +34,7 @@ export const Departments = () => {
         </div>
         <div className="Search_bar">
           <div>
-            <form>
+            <form className="form">
               <input
                 className="Body__search_bar"
                 type="search"

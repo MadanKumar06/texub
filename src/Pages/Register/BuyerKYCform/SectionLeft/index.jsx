@@ -6,11 +6,11 @@ import {
   FormControlLabel,
   Button,
   Box,
-} from "@material-ui/core";
-import Backdrop from "@material-ui/core/Backdrop";
-import { withStyles } from "@material-ui/styles";
+  Backdrop
+} from "@mui/material";
+import { withStyles } from "@mui/styles";
 import styles from "./styles";
-import { Clear } from "@material-ui/icons";
+import { Clear } from "@mui/icons-material";
 import Autocomplete from "@mui/material/Autocomplete";
 import uploadImage from "../../../../Assets/CommonImage/KYC Form/Icon.png";
 import SectionRight from "../SectionRight";
