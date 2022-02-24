@@ -12,6 +12,36 @@ import hp from '../../../Assets/buyerdashboard/dashboard/hp.png'
 
 function Index() {
 
+  const labels = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+  ];
+
+  const data = {
+    labels: labels,
+    datasets: [{
+      label: 'My First dataset',
+      backgroundColor: 'rgb(255, 99, 132)',
+      borderColor: 'rgb(255, 99, 132)',
+      data: [0, 10, 5, 2, 20, 30, 45],
+    }]
+  };
+
+  const config = {
+    type: 'pie',
+    data: data,
+    options: {}
+  };
+
+  // const myChart = new Chart(
+  //   document.getElementById('myChart'),
+  //   config
+  // );
+
   const pricelist = [
     { image: apple, name: 'Apple Macbook Pro', price: '1,87,999' },
     { image: hp, name: 'Acer Sf314-42 Swift 3', price: '66,999' },
@@ -62,15 +92,24 @@ function Index() {
             <ul>
               {pricelist.map((data, i) => 
                 <li key={i}>
-                  <span>
+                  <span className='image'>
                     <img src={data.image} alt="" />
                   </span>
-                  {data.name}
-                  {data.price}
+                  <span className='name'>{data.name}</span>
+                  <span className='price'><span>INR </span>{data.price}</span>
                 </li>
               )}
             </ul>
           </div>
+        </div>
+      </div>
+
+      <div className='dashboard__bottom'>
+        <div className='dashboard__bottom__pie'>
+          <canvas id="myChart" ></canvas>
+        </div>
+        <div className='dashboard__bottom__graph'>
+          
         </div>
       </div>
     </div>
