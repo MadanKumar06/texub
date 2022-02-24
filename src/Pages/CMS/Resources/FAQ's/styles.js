@@ -9,6 +9,7 @@ const styles = (theme) => ({
     faqs_text_heading: {
         fontSize: "22px",
         color:"#4E4E4E",
+        opacity:"1",
         "@media (max-width:425px)":{
             fontSize: "larger",
         },
@@ -22,7 +23,7 @@ const styles = (theme) => ({
     //     }
     // },
     faqs_button: {
-        width:"20%",
+        width:"30%",
         padding:"10px 20px",
         textDecoration: "none !important",
         minWidth: "126px !important",
@@ -37,7 +38,7 @@ const styles = (theme) => ({
         letterSpacing: "1px",
         textTransform: "capitalize !important",
         float:"right",
-        fontSize:'large'
+        fontSize:"18px",
     }
 });
 export default styles;

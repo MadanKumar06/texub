@@ -30,7 +30,7 @@ export const Termsofuse = () => {
           </div>
           <div className='Termsofuse_description'>  
           {Termstext.map((item) =>  
-          <li key={item.id} className='Termsofuse_text'>
+          <li key={item.id} className='Termsofuse_text1'>
                 {item.description}
           </li>
           )   
@@ -38,7 +38,7 @@ export const Termsofuse = () => {
           </div>
           <div className='Termsofuse_description'>  
           {Termstext.map((item) =>  
-          <li key={item.id} className='Termsofuse_text'>
+          <li key={item.id} className='Termsofuse_text1'>
                 {item.description}
           </li>
           )   

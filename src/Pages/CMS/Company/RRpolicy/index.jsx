@@ -31,7 +31,7 @@ const index = () => {
                 <div className='RRpolicy_description'>
                     {RRpolicy.map((item) =>
                         <li key={item.id} className='RRpolicy_heading_list'>
-                            <span className='description'>{item.description}</span>
+                            <span className='description1'>{item.description}</span>
                         </li>
                     )
                     }
@@ -39,7 +39,7 @@ const index = () => {
                 <div className='RRpolicy_description'>
                     {RRpolicy.map((item) =>
                         <li key={item.id} className='RRpolicy_heading_list'>
-                            <span className='description'>{item.description}</span>
+                            <span className='description1'>{item.description}</span>
                         </li>
                     )
                     }

@@ -31,7 +31,7 @@ const index = () => {
             <div className='Legal_description'>
                {Legal.map((item) =>
                   <li key={item.id} className='Legal_heading_list'>
-                     <span className='description'>{item.description}</span>
+                     <span className='description1'>{item.description}</span>
                   </li>
                )
                }
@@ -39,7 +39,7 @@ const index = () => {
             <div className='Legal_description'>
                {Legal.map((item) =>
                   <li key={item.id} className='Legal_heading_list'>
-                     <span className='description'>{item.description}</span>
+                     <span className='description1'>{item.description}</span>
                   </li>
                )
                }

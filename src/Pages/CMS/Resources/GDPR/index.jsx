@@ -14,19 +14,13 @@ const index = () => {
     return (
         <div className='gdpr_main'>
             <div className='gdpr_heading'>
+                <div>
                 {GDPR.map((item) =>
                     <li key={item.id} className='gdpr_heading_list'>
                         <img src={item.image} alt="/" className='gdpr_img' /> <span className='heading'>{item.heading}</span>
                     </li>
                 )
                 }
-                <div className='gdpr_description'>
-                    {GDPR.map((item) =>
-                        <li key={item.id} className='gdpr_heading_list'>
-                            <span className='description'>{item.description}</span>
-                        </li>
-                    )
-                    }
                 </div>
                 <div className='gdpr_description'>
                     {GDPR.map((item) =>
@@ -39,7 +33,15 @@ const index = () => {
                 <div className='gdpr_description'>
                     {GDPR.map((item) =>
                         <li key={item.id} className='gdpr_heading_list'>
-                            <span className='description'>{item.description}</span>
+                            <span className='description1'>{item.description}</span>
+                        </li>
+                    )
+                    }
+                </div>
+                <div className='gdpr_description'>
+                    {GDPR.map((item) =>
+                        <li key={item.id} className='gdpr_heading_list'>
+                            <span className='description1'>{item.description}</span>
                         </li>
                     )
                     }

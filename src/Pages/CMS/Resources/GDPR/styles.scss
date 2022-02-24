@@ -17,32 +17,39 @@
                 height: 81px;
             }
             .heading{
-                font-size: 40px;
+                font-size: 50px;
                 color: #DDB363;
-                margin-top: 18px;
+                margin-top: 8px;
                 font-weight: 600;
-                letter-spacing: 1px;
+                letter-spacing: 1.5px;
+                opacity: 1;
             }
         }
     }
     .gdpr_description{
         .gdpr_heading_list{
+          .description1,  
           .description{
             text-align: center;
-            font-family: 'Source Sans Pro';
             color: #333333;
             opacity: 1;
-            font-size: 20px;
-            letter-spacing: 0.45px;
+            font-size: 22px;
+            letter-spacing: 0.66px;
           }   
+          .description::first-letter{
+              font-size: 200%;
+              color: #333333;
+              font-weight: bold;
+          }
         
     }
   } 
 }
 
-@media  only screen  and (min-width:1024px) {
+@media  only screen  and (max-width:1024px) {
     .gdpr_main .gdpr_heading .gdpr_heading_list .heading{
         font-size: 32px;
+        margin-top: 22px;
     }
     
 }
@@ -53,6 +60,7 @@
     }
     .gdpr_main .gdpr_heading .gdpr_heading_list .heading{
         font-size: 24px;
+        margin-top: 10px;
     }
 }
 
