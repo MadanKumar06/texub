@@ -43,7 +43,7 @@
       .MuiTableCell-root {
         text-align: center;
         font-size: 22px;
-        color: #696969;
+        color: #4E4E4E;
       }
 
       .subaccount__orders__buyercode {
@@ -99,6 +99,12 @@
         background-color: #d5ecff;
         padding: 0.4em 0.9em;
         border-radius: 28px;
+      }
+      .subaccount__orders__date {
+        color: #333c42;
+      }
+      .subaccount__orders__subtotal {
+        color: #696969;
       }
       .subaccount__orders__order_id {
         color: #333c42;

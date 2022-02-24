@@ -51,9 +51,25 @@ function SubAccountOrders() {
       },
     },
     { name: "hub", label: "HUB" },
-    { name: "date", label: "Date" },
+    {
+      name: "date",
+      label: "Date",
+      options: {
+        customBodyRender: (value) => {
+          return <div className="subaccount__orders__date">{value}</div>;
+        },
+      },
+    },
     { name: "item_qty", label: "Items Qty" },
-    { name: "sub_total", label: "Subtotal" },
+    {
+      name: "sub_total",
+      label: "Subtotal",
+      options: {
+        customBodyRender: (value) => {
+          return <div className="subaccount__orders__subtotal">{value}</div>;
+        },
+      },
+    },
     {
       name: "status",
       label: "Status",
