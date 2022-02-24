@@ -8,6 +8,9 @@ import notification from '../../Assets/sellerdashboard/notification.png'
 
 import Sidebar from '../../Components/Sidebar'
 import Dashboard from '../../Components/BuyerDashboard/Dashbaord'
+import RMA from '../../Components/BuyerDashboard/RMA'
+import MergeCarts from '../../Components/BuyerDashboard/MergeCarts'
+import ApproveCarts from '../../Components/BuyerDashboard/ApproveCarts'
 import SubAccountOrders from '../../Components/BuyerDashboard/SubAccountOrders'
 
 function Index() {
@@ -48,6 +51,9 @@ function Index() {
                   <span>Notification</span>
               </div>
               {currenttab === 'dashboard' && <Dashboard />}
+              {currenttab === 'rma' && <RMA />}
+              {currenttab === 'approvecarts' && <ApproveCarts />}
+              {currenttab === 'mergecarts' && <MergeCarts />}
               {currenttab === 'subaccountorders' && <SubAccountOrders />}
             </div>
         </div>
