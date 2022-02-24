@@ -1,4 +1,3 @@
-// import { Sell } from '@material-ui/icons';
 import React from 'react';
 import Sellera from '../../../../Assets/Selleradvantage/Group 929.png'
 import './styles.scss'

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { withStyles } from "@material-ui/styles";
+import { withStyles } from "@mui/styles";
 import styles from "./styles";
 import thanksLogo from "../../../Assets/Productlist/gratitude_icon.png";
-import { Button, Box } from "@material-ui/core";
+import { Button, Box } from "@mui/material";
 import { useParams } from "react-router-dom";
 import BuyerKYCform from "../BuyerKYCform/SectionLeft";
 

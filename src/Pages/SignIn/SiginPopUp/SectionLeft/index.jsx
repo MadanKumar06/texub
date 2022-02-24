@@ -6,11 +6,11 @@ import {
   FormControlLabel,
   Button,
   Box,
-} from "@material-ui/core";
-import Backdrop from "@material-ui/core/Backdrop";
-import { withStyles } from "@material-ui/styles";
+  Backdrop,
+} from "@mui/material";
+import { withStyles } from "@mui/styles";
 import styles from "./styles";
-import { Clear } from "@material-ui/icons";
+import { Clear } from "@mui/icons-material";
 import SectionRight from "../SectionRight";
 const TransitionsModal = ({ classes, openPopUp }) => {
   const [open, setOpen] = React.useState(true);

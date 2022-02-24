@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import './FAQ.scss'
 import img from '../../../../Assets/Career/Group 765.png'
-import { TextareaAutosize } from '@material-ui/core';
-import { withStyles } from "@material-ui/styles";
+import { TextareaAutosize } from '@mui/material';
+import { withStyles } from "@mui/styles";
 import styles from './styles';
 import FAQs from './FAQs';
 

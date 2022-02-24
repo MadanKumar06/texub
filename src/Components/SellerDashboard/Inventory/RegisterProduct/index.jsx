@@ -1,4 +1,4 @@
-import { Select, MenuItem } from '@material-ui/core'
+import { Select, MenuItem } from '@mui/material'
 import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
 import './styles.scss'

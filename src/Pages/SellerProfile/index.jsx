@@ -2,7 +2,7 @@ import React from 'react'
 import './styles.scss'
 import bg from '../../Assets/sellerdashboard/bg.png'
 import MUIDataTable from "mui-datatables";
-import { Paper, IconButton, InputBase } from '@material-ui/core';
+import { Paper, IconButton, InputBase } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import notification from '../../Assets/sellerdashboard/notification.png'
 import hp from '../../Assets/sellerdashboard/inventory/hp.png'

@@ -1,20 +1,21 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
-import Departments from "./DepartmentJson";
 import {
+  Tabs,
+  Tab,
+  Typography,
+  Box,
   ListItemText,
   ListItem,
   List,
   Collapse,
   Button,
   Stack,
-} from "@material-ui/core";
-import { withStyles } from "@material-ui/styles";
-import ListItemButton from "@mui/material/ListItemButton";
+  ListItemButton
+} from "@mui/material";
+import Departments from "./DepartmentJson";
+
+import { withStyles } from "@mui/styles";
 import {
   ExpandMore,
   ExpandLess,
@@ -23,7 +24,7 @@ import {
   ShoppingBag,
   AppRegistration,
   ExitToApp,
-} from "@material-ui/icons";
+} from "@mui/icons-material";
 import RegiterPopup from "../../../../Pages/Register/RegisterPopup/SectionLeft";
 
 import { Link } from "react-router-dom";
@@ -123,7 +124,7 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
               disablePadding
             >
               {Departments?.map((itm) => (
-                <div key={itm?.name}className={classes.dropdown_collapse_list}>
+                <div key={itm?.name} className={classes.dropdown_collapse_list}>
                   <Link className={classes.link_in_tab} to={`/`}>
                     <ListItemButton sx={{ pl: 4 }}>
                       <ListItemText primary={`${itm?.name}`} />

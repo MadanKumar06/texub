@@ -3,7 +3,7 @@ import "./styles.scss";
 import { Stack, Link, Breadcrumbs, Typography, Button } from "@mui/material";
 import pending_invoice_image from "../../Assets/PendingInvoice/Group 1051.png";
 import PendingInvoiceTable from "./PendingInvoiceTable";
-import { TextField, Autocomplete, FormControlLabel } from "@material-ui/core";
+import { TextField, Autocomplete, FormControlLabel } from "@mui/material";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 

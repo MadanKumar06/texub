@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './styles.scss'
-import { Select, MenuItem } from '@material-ui/core'
+import { Select, MenuItem } from '@mui/material'
 import { Link } from 'react-router-dom'
 
 function Index({type}) {

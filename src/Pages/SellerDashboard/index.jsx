@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import bg from '../../Assets/sellerdashboard/bg.png'
 import notification from '../../Assets/sellerdashboard/notification.png'
-import { IconButton, InputBase, Paper } from '@material-ui/core';
+import { IconButton, InputBase, Paper } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import Dashboard from '../../Components/SellerDashboard/Dashboard';
 import Inventory from '../../Components/SellerDashboard/Inventory';

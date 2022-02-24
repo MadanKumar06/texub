@@ -1,14 +1,12 @@
 import React from "react";
 import "./styles.scss";
+import { Add } from "@mui/icons-material";
+import { RadioGroup, Radio, FormControlLabel } from "@mui/material";
 import Edit_image from "../../Assets/CheckoutPage/Group 913.png";
 import Devilvery_address_image_1 from "../../Assets/CheckoutPage/Group 911.png";
 import Devilvery_address_image_2 from "../../Assets/CheckoutPage/Group 912.png";
-import { Add } from "@mui/icons-material";
-import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
 import Payment_image_1 from "../../Assets/CheckoutPage/braintree-logo-black.png";
 import Payment_image_2 from "../../Assets/CheckoutPage/paypal (1).png";
-import { FormControlLabel } from "@material-ui/core";
 
 const DeliveryAddressJson = [
   {

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import SignIn from "../../Pages/SignIn/SiginPopUp/SectionLeft";
-
-import { AppBar, Toolbar, Typography, Button } from "@material-ui/core";
-import { withStyles } from "@material-ui/styles";
+import { AppBar, Toolbar, Typography, Button } from "@mui/material";
+import { withStyles } from "@mui/styles";
 import styles from "./styles";
+
 import CurrencyPopup from "./CurrencyPopup";
+import SignIn from "../../Pages/SignIn/SiginPopUp/SectionLeft";
 import MenuList from "./MenuList";
 import logo from "../../Assets/Homepage Assets/Group.png";
 import RegiterPopup from "../../Pages/Register/RegisterPopup/SectionLeft";

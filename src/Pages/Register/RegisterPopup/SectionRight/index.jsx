@@ -6,9 +6,9 @@ import {
   FormControl,
   FormLabel,
   Button,
-} from "@material-ui/core";
+} from "@mui/material";
 import { Link } from "react-router-dom";
-import { withStyles } from "@material-ui/styles";
+import { withStyles } from "@mui/styles";
 import styles from "./styles";
 import buyer_img from "../../../../Assets/CommonImage/RegisterPopup/user_select_buyer.png";
 import seller_img from "../../../../Assets/CommonImage/RegisterPopup/user_select_seller.png";

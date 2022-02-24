@@ -16,7 +16,7 @@
         }
       }
       .Footer_Paragraph {
-        color: #cdd5dd;
+        color: #ffffff;
         margin: 10px 0;
         font-size: 16px;
       }
@@ -37,7 +37,7 @@
         display: flex;
         flex-direction: column;
         .Footer_Col_Heading {
-          color: #cdd5dd;
+          color: #ffffff;
           margin: 0px;
           font-size: 24px;
           font-weight: 600;
@@ -47,11 +47,11 @@
           list-style: none;
           display: flex;
           flex-direction: column;
-          color: #cdd5dd;
+          color: #ffffff;
           line-height: 45px;
           .to_CMS {
             text-decoration: none;
-            color: #cdd5dd;
+            color: #ffffff;
             font-size: 18px;
           }
         }
@@ -63,7 +63,7 @@
   }
   .Copyright {
     display: flex;
-    background-color: gainsboro;
+    background-color: #cdd5dd;
     justify-content: space-between;
     font-size: 15px;
     padding: 0px 52px;
@@ -72,10 +72,11 @@
       font-size: 18px;
       font-weight: 600;
       letter-spacing: 0.54px;
+      color: #3d3d3d;
     }
   }
   .User_Details {
-    background-color: white;
+    background-color: #ffffff;
     display: none;
   }
 }

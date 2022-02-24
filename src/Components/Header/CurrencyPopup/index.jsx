@@ -1,7 +1,7 @@
 import React from "react";
-import { Button, Menu, MenuItem } from "@material-ui/core";
-import { withStyles } from "@material-ui/styles";
-import { ExpandMore } from "@material-ui/icons";
+import { Button, Menu, MenuItem } from "@mui/material";
+import { withStyles } from "@mui/styles";
+import { ExpandMore } from "@mui/icons-material";
 import styles from "./styles";
 
 const Currency = [

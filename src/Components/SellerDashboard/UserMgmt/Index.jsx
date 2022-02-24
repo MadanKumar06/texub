@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './styles.scss'
 
 import MUIDataTable from "mui-datatables";
-import { MenuItem, Select } from '@material-ui/core';
+import { MenuItem, Select } from '@mui/material';
 
 function Index({setuserform, userform}) {
 

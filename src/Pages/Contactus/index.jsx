@@ -1,7 +1,7 @@
 import React from 'react'
 import contact from '../../Assets/Career/Group 982.png'
 import './styles.scss'
-import { TextField, Box, TextareaAutosize } from '@material-ui/core'
+import { TextField, Box } from '@mui/material'
 import officeicon from '../../Assets/Contactus/office.png'
 import mailicon from '../../Assets/Contactus/mail (2).png'
 import telephoneicon from '../../Assets/Contactus/telephone.png'

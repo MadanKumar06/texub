@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { TextField, Box, Button } from "@material-ui/core";
+import { TextField, Box, Button } from "@mui/material";
 import { Link, useParams } from "react-router-dom";
-import { withStyles } from "@material-ui/styles";
+import { withStyles } from "@mui/styles";
 import styles from "./styles";
 import Autocomplete from "@mui/material/Autocomplete";
 const BuyerKYCformSectionRight = ({ classes, handleClose }) => {
