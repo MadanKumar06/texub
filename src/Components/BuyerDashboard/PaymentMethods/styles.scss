@@ -1,0 +1,120 @@
+.payment_method {
+  margin: 1em;
+  .payment_method__table {
+    margin-top: 3em;
+    box-shadow: unset;
+    table {
+      margin: 3em 0;
+    }
+    .MuiToolbar-root {
+      background: #002d56;
+      border-radius: 5px;
+      .MuiTypography-root {
+        font-size: 26px;
+        font-weight: 600;
+        color: #ffffff;
+      }
+    }
+    .MuiTypography-root {
+      font-size: 20px;
+      letter-spacing: 0.75px;
+    }
+    .MuiTableHead-root {
+      .MuiTableCell-root {
+        font-size: 22px;
+        color: #959595;
+        text-align: center;
+        font-weight: 600;
+        .MuiSvgIcon-root {
+          width: 30px;
+          height: 30px;
+          fill: #707070;
+        }
+      }
+    }
+    .MuiTable-root {
+      .MuiTableFooter-root {
+        display: none;
+      }
+    }
+
+    .MuiTableBody-root {
+      .MuiTableCell-root {
+        text-align: center;
+        font-size: 22px;
+        color: #959595;
+      }
+
+      .payment_method__action {
+        text-decoration: underline;
+        color: #002d56;
+        font-size: 22px;
+        cursor: pointer;
+        font-weight: 600;
+        padding: 0 9px;
+      }
+    }
+  }
+
+  .payment_method__footer {
+    cursor: pointer;
+    position: absolute;
+    align-items: center;
+    bottom: 51px;
+    width: 100%;
+    padding: 0 2em;
+    .payment_method__container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      a {
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        .MuiSvgIcon-root {
+          color: #002d56;
+        }
+        span {
+          font-size: 20px;
+          color: #002d56;
+          font-weight: 600;
+          margin-left: 0.6em;
+        }
+      }
+      .payment_method_btn {
+        width: 30% !important;
+        text-decoration: none !important;
+        font-size: 18px !important;
+        letter-spacing: 0.54px !important;
+        min-width: 245px !important;
+        border-radius: 45px !important;
+        border: none !important;
+        background: linear-gradient(180deg, #20639b 0%, #002d56 100%);
+        color: #ffffff !important;
+        cursor: pointer;
+        box-shadow: 0px 3px 6px #00000029;
+        font-weight: 600 !important;
+        padding: 10px !important;
+        text-transform: capitalize !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 926px) {
+  .payment_method__table {
+    .MuiTable-root {
+      .MuiTableHead-root {
+        display: none;
+      }
+
+      .MuiTableBody-root {
+        .MuiTableCell-root {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+      }
+    }
+  }
+}
