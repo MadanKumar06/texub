@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Drawer, Button, Badge } from "@material-ui/core";
+import { Drawer, Button, Badge } from "@mui/material";
 import { Link } from "react-router-dom";
-import { ShoppingBag } from "@material-ui/icons";
+import { ShoppingBag } from "@mui/icons-material";
 import "./styles.scss";
 import MiniCartList from "./MiniCartList";
 

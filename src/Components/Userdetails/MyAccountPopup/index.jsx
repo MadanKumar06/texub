@@ -1,7 +1,7 @@
 import React from "react";
-import { Menu, MenuItem, Button, Badge } from "@material-ui/core";
-import { AccountCircle } from "@material-ui/icons";
-import { withStyles } from "@material-ui/styles";
+import { Menu, MenuItem, Button, Badge } from "@mui/material";
+import { AccountCircle } from "@mui/icons-material";
+import { withStyles } from "@mui/styles";
 import styles from "./styles";
 import dashboardLogo from "../../../Assets/CommonImage/MyAccountMegamenu/menu.png";
 import myOrderLogo from "../../../Assets/CommonImage/MyAccountMegamenu/shopping-bag.png";

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { RadioGroup, FormControlLabel } from "@material-ui/core";
+import { RadioGroup, FormControlLabel } from "@mui/material";
 
-import { withStyles } from "@material-ui/styles";
+import { withStyles } from "@mui/styles";
 import styles from "./styles";
 import BuyerRegistration from "./BuyerRegistration";
 import SellerRegistration from "./SellerRegistration";

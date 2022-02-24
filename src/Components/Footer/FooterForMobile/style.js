@@ -2,10 +2,10 @@ const styles = (theme) => ({
   mobile_view_accordion_container: {
     "& .MuiAccordion-rounded": {
       background: "#002d56",
-      color: "#cdd5dd",
+      color: "#ffffff",
     },
     "& .MuiAccordionSummary-expandIconWrapper": {
-      color: "#cdd5dd",
+      color: "#ffffff",
     },
     "& .MuiPaper-elevation1": {
       boxShadow: "unset",
@@ -19,12 +19,13 @@ const styles = (theme) => ({
     "& .MuiTypography-root": {
       fontWeight: "600",
       fontSize: "20px",
+      color: "#ffffff",
     },
     "& .MuiCollapse-root ": {
-      "& .MuiAccordionDetails-root .MuiTypography-root":{
+      "& .MuiAccordionDetails-root .MuiTypography-root": {
         fontSize: "18px !important",
         fontWeight: "400",
-      }
+      },
     },
     "& .MuiButtonBase-root": {
       height: "36px !important",

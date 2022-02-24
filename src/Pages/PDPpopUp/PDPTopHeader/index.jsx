@@ -1,6 +1,6 @@
 import React from "react";
-import { Rating } from "@material-ui/core";
-import { withStyles } from "@material-ui/styles";
+import { Rating } from "@mui/material";
+import { withStyles } from "@mui/styles";
 import styles from "./styles";
 import brand_logo from "../../../Assets/Productlist/Brand_icon.png";
 import brand_tag from "../../../Assets/Productlist/Tag.png";

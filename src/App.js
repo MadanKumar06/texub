@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-// import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
 import "./App.css";
@@ -12,7 +11,6 @@ import Aboutus from "./Pages/Aboutus";
 import { BuyonTexhub } from "./Pages/BuyonTexhub";
 import { Products } from "./Pages/Products";
 import { SellonTexhub } from "./Pages/SellonTexhub";
-import { FAQs } from "./Pages/FAQs";
 import { Contactus } from "./Pages/Contactus";
 import { Userdetails } from "./Components/Userdetails";
 import Registration from "./Pages/Register";

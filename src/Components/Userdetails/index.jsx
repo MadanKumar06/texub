@@ -1,11 +1,11 @@
 import React from "react";
 import "./Userdetails.css";
 import logo from "../../Assets/Homepage Assets/Group.png";
-import { Badge } from "@material-ui/core";
+import { Badge } from "@mui/material";
 import { Link } from "react-router-dom";
 import MyAccountPopUP from "./MyAccountPopup";
 
-import { FavoriteBorder, ShoppingBag } from "@material-ui/icons";
+import { FavoriteBorder, ShoppingBag } from "@mui/icons-material";
 import MiniCartDrawer from "../../Pages/MiniCart";
 
 export const Userdetails = () => {

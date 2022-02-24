@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./styles.scss";
-import { Clear } from "@material-ui/icons";
+import { Clear } from "@mui/icons-material";
 import { Button } from "@mui/material";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
 import brand_logo from "../../../Assets/Productlist/Brand_icon.png";
-import { Rating } from "@material-ui/core";
+import { Rating } from "@mui/material";
 import index from "../../CMS/Resources/GDPR/index";
 const MiniCartList = ({ handleSideBarClose }) => {
   const [value, setValue] = React.useState(4);

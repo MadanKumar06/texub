@@ -7,7 +7,7 @@ import {
   Typography,
 } from "@mui/material";
 import "./styles.scss";
-import { withStyles } from "@material-ui/styles";
+import { withStyles } from "@mui/styles";
 import Rightarrow from "../../../../Assets/Career/Group 773.svg";
 import Mask from "../../../../Assets/Career/Mask Group 2.png";
 import Key from "../../../../Assets/Career/Group 1034@2x.png";

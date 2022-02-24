@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Modal, Button } from "@material-ui/core";
-import Backdrop from "@material-ui/core/Backdrop";
-import { withStyles } from "@material-ui/styles";
+import { Modal, Button,Backdrop } from "@mui/material";
+import { withStyles } from "@mui/styles";
 import styles from "./styles";
-import { Clear } from "@material-ui/icons";
+import { Clear } from "@mui/icons-material";
 import header_bottom_image_1 from "../../Assets/Productlist/warranty.png";
 import header_bottom_image_2 from "../../Assets/Productlist/Delivery.png";
 import header_bottom_image_3 from "../../Assets/Productlist/Retail.png";
