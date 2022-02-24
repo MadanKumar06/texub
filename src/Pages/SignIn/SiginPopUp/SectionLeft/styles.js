@@ -50,24 +50,24 @@ const styles = (theme) => ({
   // section left css
   section_left: {
     width: "50%",
-    padding: "0px 14px",
+    padding: "2em 1.5em",
     "@media (max-width:767px)": {
       width: "100%",
     },
   },
 
   info_text: {
-    fontSize: "24px",
+    fontSize: "30px",
     color: "#20639B",
     fontWeight: "600",
-    padding: "20px 0px 10px",
+    padding: "20px 0px 16px",
     "@media (max-width:767px)": {
       textAlign: "center",
     },
   },
   info_text_lineNote_one: {
     color: "#333333",
-    fontSize: "16px",
+    fontSize: "20px",
     marginBottom: "0",
     "& small": {
       color: "#FF0000",
@@ -76,12 +76,12 @@ const styles = (theme) => ({
   },
   info_text_lineNote_two: {
     color: "#333333",
-    fontSize: "16px",
+    fontSize: "20px",
     margin: "0",
   },
   input_fields: {
     width: "100%",
-    padding: "10% 5%",
+    padding: "3em",
     boxShadow: "0px 3px 6px #00000029",
     borderRadius: "4px",
     backgroundColor: "#ffffff",
@@ -97,7 +97,7 @@ const styles = (theme) => ({
       },
       "& .MuiInputLabel-root": {
         fontWeight: "600",
-        fontSize: "1.2rem",
+        fontSize: "18px",
       },
     },
     "& .MuiOutlinedInput-root": {
@@ -135,7 +135,6 @@ const styles = (theme) => ({
     textTransform: "capitalize !important",
     transition: "transform .2s !important",
     width: "80%",
-
   },
   forgot_password: {
     textAlign: "center",
