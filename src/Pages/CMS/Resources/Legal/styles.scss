@@ -7,7 +7,6 @@
         padding:20px 30px 20px 30px;
         flex-direction: column;
         gap: 30px;
-
         .Legal_heading_list{
             list-style: none;
             justify-content: center;
@@ -17,22 +16,33 @@
                 height: 81px;
             }
             .heading{
-                font-size: 40px;
+                font-size: 50px;
                 color: #DDB363;
                 margin-top: 18px;
                 font-weight: 600;
                 letter-spacing: 1.5px;
             }
         }
-    }
+    
+    
     .Legal_description{
+        .description1,
+        .description{
         text-align: center;
-        font-family: 'Source Sans Pro';
         color: #333333;
         opacity: 1;
         font-size: 20px;
         letter-spacing: 0.45px;
+     }
+     .description::first-letter{
+        font-size: 200%;
+        color: #333333;
+        font-weight: bold;
+     }
     }
+    
+   
+}
 }
 
 @media only screen and (max-width:580px) {

@@ -12,22 +12,31 @@
             height: 81px;
         }
         .Termsofuse_heading{
-            font-size: xxx-large;
+            font-size: 50px;
             color: #DDB363;
             letter-spacing: 1.5px;
             margin-top: 10px;
+            opacity: 1;
+            font-weight: 600;
         }
     }
     .Termsofuse_description{
         padding: 50px 0 0 0;
+        .Termsofuse_text1,
         .Termsofuse_text{
             list-style: none;
             font-size: 20px;
             text-align: center;
-            font-family: "Source Sans Pro";
-            letter-spacing: 0.9px;
-            color: #333333
+            letter-spacing: 0.66px;
+            color: #333333;
+            opacity: 1;
         }
+        .Termsofuse_text::first-letter {
+            font-size: 200%;
+            color: #333333;
+            font-weight: bold;
+          }
+
     }
     .Termsofuse_btn_section{
         display: flex;
@@ -35,7 +44,12 @@
         background-color: #F2F4F6;
         min-height: 112px;
         padding: 30px 0 30px 0;
-        margin: 10% 0 0 0;
+        margin: 7% 0 0 0;
+        box-shadow: 0px 3px 6px #00000029;
+        border: 1px solid #D2DFEE;
+        border-radius: 0px 0px 4px 4px;
+        opacity: 1;
+
         .Termsofuse_btn_download{
             display: flex;
             gap: 10px;
@@ -43,27 +57,32 @@
             .download{
                 color: #002D56;
                 opacity: 1;
-                font-size: 19px;
+                font-size: 18px;
                 font-weight: 600;
             }
         }
         .Termsofuse_decline{
-            background: linear-gradient(180deg, #FFD788 0%, #CC9B3E 100%);
+           background: linear-gradient(180deg, #FFD788 0%, #CC9B3E 100%);
+            // background: transparent linear-gradient(179deg, #FFD788 0%, #CC9B3E 100%) 0% 0% no-repeat padding-box;
             border: none;
             border-radius: 25px;
-            padding: 10px 90px;
-            font-size: x-large;
+            padding: 10px 50px;
+            font-size: 18px;
             color: #FFFFFF;
             letter-spacing: 0.45px;
+            box-shadow: 0px 3px 6px #00000029;
+            opacity: 1;
         }
         .Termsofuse_accept{
             background: linear-gradient(180deg, #20639B 0%, #002D56 100%);
             border: none;
             border-radius: 25px;
-            padding: 10px 90px;
-            font-size: x-large;
+            padding: 10px 50px;
+            font-size: 18px;
             color: #FFFFFF;
             letter-spacing: 0.45px;
+            box-shadow: 0px 3px 6px #00000029;
+            opacity: 1;
         }
     
     }

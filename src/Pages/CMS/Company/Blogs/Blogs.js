@@ -28,10 +28,15 @@ const Blogs = () => {
             </div>
             <div className='Blogs_description'>
               <span className='description'>{id.description}</span>
+              <span className='description1'>{id.description}</span>
+              <span className='description1'>{id.description}</span>
+              <span className='description1'>{id.description}</span>
             </div>
             <div className='blogs_meet'>
               <img src={id.meet} alt='' />
               <span className='description'>{id.description}</span>
+              <span className='description1'>{id.description}</span>
+              
             </div>
           </div>
         </div>
