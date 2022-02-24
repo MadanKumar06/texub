@@ -53,9 +53,11 @@
         font-size: 22px;
         text-align: center;
         color: #707070;
-        letter-spacing: 1px;
+        letter-spacing: 0.66px;
+        font-weight: 600;
         margin-left: 50px;
         margin-right: 50px;
+        opacity: 1;
     }
     .cookies_policies{
         top: 54%; 
@@ -64,7 +66,8 @@
         color: #002D56;
         opacity: 1;
         font-weight: 600;
-        letter-spacing: 0.45px;
+        letter-spacing: 0.54px;
+        text-shadow: 0px 3px 6px #00000029;
      }   
     }
     .cookies_btn{
@@ -80,9 +83,9 @@
         box-shadow: 0px 3px 6px #00000029;
         margin-right: 8px !important;
         font-weight: 600 !important;
-        letter-spacing: 1px;
+        letter-spacing: 0.54px;
         text-transform: capitalize !important;
-        font-size:large;
+        font-size:18px;
     }
 }
 

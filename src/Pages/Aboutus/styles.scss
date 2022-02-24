@@ -28,11 +28,13 @@
       .topbanner__text1 {
         color: #20639b;
         font-size: 43px;
+        letter-spacing: 1.29px;
       }
 
       .topbanner__text2 {
         color: #ddb363;
         font-size: 102px;
+        letter-spacing: 3.06px;
       }
     }
   }
@@ -50,6 +52,7 @@
       p {
         font-size: 26px;
         color: #707070;
+        letter-spacing: 0.78px;
       }
     }
     .aboutus__mission__right {
@@ -71,6 +74,7 @@
         p {
           font-size: 22px;
           color: #707070;
+          letter-spacing: 0.66px;
         }
       }
     }
@@ -98,6 +102,7 @@
         position: relative;
         color: #20639b;
         font-size: 50px;
+        font-weight: bold;
       }
 
       li {
@@ -193,7 +198,11 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-
+    h1 {
+      font-size: 50px;
+      font-weight: bold;
+      opacity: 1;
+    }
     .assets__images {
       display: flex;
       align-items: center;
@@ -304,12 +313,13 @@
             position: absolute;
             color: white;
             font-size: 30px;
-            left: 12px;
+            left: 18px;
             top: 0;
             bottom: 0;
             display: flex;
             justify-content: center;
             align-items: center;
+            font-weight: 600;
           }
         }
       }
@@ -1326,6 +1336,9 @@
 }
 
 @media (max-width: 320px) {
+  .aboutus__topbanner__floatingtext .topbanner__text2 {
+    font-size: 26px !important;
+}
   .aboutus
     .aboutus__mission__content
     .aboutus__mission__right
