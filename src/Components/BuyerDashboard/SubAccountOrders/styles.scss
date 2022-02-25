@@ -1,0 +1,154 @@
+.subaccount__orders {
+  .subaccount__orders__buttons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+    margin-top: 3em;
+
+    p {
+      margin: 0;
+      padding: 0.5em 1.2em;
+      background-color: #f0f0f0;
+      color: #333c42;
+      font-size: 18px;
+      border-radius: 25px;
+      cursor: pointer;
+    }
+
+    .ordertype__selected {
+      background: linear-gradient(#ffd788, #cc9b3e);
+      color: white;
+    }
+  }
+
+  .subaccount__orders__table {
+    margin-top: 3em;
+    box-shadow: unset;
+    .MuiTableHead-root {
+      .MuiTableCell-root {
+        font-size: 22px;
+        color: #959595;
+        text-align: center;
+        font-weight: 600;
+      }
+    }
+    .MuiTable-root {
+      .MuiTableFooter-root {
+        display: none;
+      }
+    }
+
+    .MuiTableBody-root {
+      .MuiTableCell-root {
+        text-align: center;
+        font-size: 22px;
+        color: #4E4E4E;
+      }
+
+      .subaccount__orders__buyercode {
+        border: 1px solid #cecece;
+        border-radius: 24px;
+        padding: 0.3em 0.9em;
+      }
+
+      .subaccount__orders__ordertotal {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+
+        .label {
+          font-size: 16px;
+        }
+
+        .value {
+          font-size: 26px;
+          font-weight: 600;
+        }
+      }
+
+      .subaccount__orders__action {
+        text-decoration: underline;
+        color: #002d56;
+        font-size: 22px;
+        cursor: pointer;
+        font-weight: 600;
+      }
+
+      .subaccount__orders__pending {
+        color: #d9ad59;
+        font-size: 22px;
+        background-color: #fff6e5;
+        padding: 0.4em 0.9em;
+        border-radius: 28px;
+        font-weight: 600;
+      }
+      .subaccount__orders__delivered {
+        color: #00b91c;
+        font-weight: 600;
+        font-size: 22px;
+        background-color: #e6ffea;
+        padding: 0.4em 0.9em;
+        border-radius: 28px;
+      }
+      .subaccount__orders__confirmed {
+        color: #20639b;
+        font-size: 22px;
+        font-weight: 600;
+        background-color: #d5ecff;
+        padding: 0.4em 0.9em;
+        border-radius: 28px;
+      }
+      .subaccount__orders__date {
+        color: #333c42;
+      }
+      .subaccount__orders__subtotal {
+        color: #696969;
+      }
+      .subaccount__orders__order_id {
+        color: #333c42;
+        font-weight: 600;
+      }
+    }
+  }
+
+  .subaccount__orders__back {
+    cursor: pointer;
+    position: absolute;
+    bottom: 38px;
+    left: 32px;
+    a {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      .MuiSvgIcon-root {
+        color: #002d56;
+      }
+      span {
+        font-size: 20px;
+        color: #002d56;
+        font-weight: 600;
+        margin-left: 0.6em;
+      }
+    }
+  }
+}
+
+@media (max-width: 926px) {
+  .subaccount__orders__table {
+    .MuiTable-root {
+      .MuiTableHead-root {
+        display: none;
+      }
+
+      .MuiTableBody-root {
+        .MuiTableCell-root {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+      }
+    }
+  }
+}

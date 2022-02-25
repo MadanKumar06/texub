@@ -1,0 +1,16 @@
+.want_to_buy__container {
+  .block_1 {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+  }
+  .block_3 {
+    .input_field {
+      width: calc(100% - 5px);
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+    }
+  }
+}
