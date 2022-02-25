@@ -5,7 +5,7 @@ import micro from '../../../../../Assets/Blogs/businessman-working-tablet-cafe.p
 export  const Blogsmainjson = [
     {
         id:1,
-        date:"date: 21 Dec 2021",
+        date:" 21 Dec 2021",
         image:Arial,
         heading:"Financial & Legal Marketers",
         blog:"Read Blog",
@@ -18,7 +18,7 @@ export const Blogsmainjson2=[
     {
         id:1,
         image:Network,
-        date:"date: 21 Dec 2021",
+        date:" 21 Dec 2021",
         heading:"Winning Strategy For Team",
         details:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",        
         blog:"Read Blog",
@@ -26,7 +26,7 @@ export const Blogsmainjson2=[
     {
         id:2,
         image:digital,
-        date:"date: 21 Dec 2021",
+        date:" 21 Dec 2021",
         heading:"Digital Marketplace",
         details:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",        
         blog:"Read Blog",
@@ -34,7 +34,7 @@ export const Blogsmainjson2=[
     {
         id:3,
         image:micro,
-        date:"date: 21 Dec 2021",
+        date:" 21 Dec 2021",
         heading:"Micro-influencers",
         details:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",        
         blog:"Read Blog",

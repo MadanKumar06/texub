@@ -25,7 +25,7 @@ export const Training = () => {
                 </div>
                 <div className='training_description'>
                     {Termstext.map((item) =>
-                        <li key={item.id} className='training_text'>
+                        <li key={item.id} className='training_text1'>
                             {item.description}
                         </li>
                     )
@@ -33,7 +33,7 @@ export const Training = () => {
                 </div>
                 <div className='training_description'>
                     {Termstext.map((item) =>
-                        <li key={item.id} className='training_text'>
+                        <li key={item.id} className='training_text1'>
                             {item.description}
                         </li>
                     )

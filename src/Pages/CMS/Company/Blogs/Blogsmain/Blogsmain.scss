@@ -30,20 +30,30 @@
                     padding: 25px 0 0 0 !important;
                     .blogs_date{
                         color: #002D56;
-                        font-size: large;
+                        font-size: 14px;
+                        font-weight: 600;
                         opacity: 1;
+                    }
+                    .date_heading{
+                        font-size: 14px;
+                        color: #002D56;
+                        font-weight: 500;
                     }
                     .blogs_queue_heading{
                         color: #DDB363;
-                        font-size: xx-large;
-                        letter-spacing: 1px;
+                        font-size:30px;
+                        letter-spacing: 1.5px;
                     }
                     .blogs_q_text{
-                        font-size: large;
+                        font-size: 18px;
+                        color: #333333;
+                        letter-spacing: 0.54px;
                     }
                     .blogs_readblog{
                         color: #002D56;
+                        font-family: "Source Sans Pro";
                         font-weight: 600;
+                        font-size: 18px;
                     }
                 }
             }
@@ -67,48 +77,53 @@
                 justify-content: space-between;
                 .Blogs_heading1{
                     color: #DDB363;
-                    font-size: xxx-large;
-                    letter-spacing: 1.5px;
+                    font-size: 50px;
+                    letter-spacing: 0.9px;
+                    font-family: "Source Sans Pro";
+                }
+                .date_heading{
+                    font-size: 14px;
+                    color: #002D56;
+                    font-weight: 500;
                 }
                 .Blogs_date{
                     color: #002D56;
-                    font-size: large;
+                    font-size: 14px;
                     opacity: 1;
-                    margin-top: 25px;
+                    margin-top: 27px;
+                    font-weight: 600;
                 }
             }
             .Blogs_description{
                 .description{
-                    font-family: "Source Sans Pro";
                     letter-spacing: 0.54px;
                     color: #333333;
                     font-size: 18px;
                 }
                 .Blogs_blog{
-                    width:20%;
                     padding:10px 60px;
                     text-decoration: none !important;
                     min-width: 126px !important;
-                    border-radius: 45px !important;
+                    border-radius: 25px !important;
                     border: none !important;
                     background: linear-gradient(180deg, #20639B 0%, #002D56 100%);
                     color: #ffffff !important;
                     cursor: pointer;
+                    opacity: 1;
                     box-shadow: 0px 3px 6px #00000029;
                     margin-right: 8px !important;
-                    font-weight: 600 !important;
-                    letter-spacing: 1px;
+                    font-weight: 600;
                     text-transform: capitalize !important;
-                    font-size:large;
+                    font-size:18px;
                 }
             }
         }
     }
  .blogs_popular_main{
     background-color: #FFFFFF;
-    padding: 0px 40px 30px 50px !important;
+    padding: 1px 40px 30px 50px !important;
     .mainheading{
-        font-size: xxx-large;
+        font-size: 50px;
         color: #333333;
         opacity: 1;
         font-weight: bold;
@@ -139,13 +154,20 @@
             padding: 55px 0 0 0 !important;
             .blogs_date{
                 color: #002D56;
-                font-size: large;
+                font-size: 14px;
+                font-weight: 600;
                 opacity: 1;
+            }
+            .date_heading{
+                font-size: 14px;
+                color: #002D56;
+                font-weight: 500;
             }
             .blogs_queue_heading{
                 color: #DDB363;
-                font-size: xx-large;
-                letter-spacing: 1px;
+                font-size: 30px;
+                letter-spacing: 0.9px;
+                font-family: "Source Sans Pro";
             }
             .blogs_q_text{
                     font-family: "Source Sans Pro";
@@ -162,6 +184,18 @@
   }
 }
 }
+}
+
+@media (max-width:1550px){
+    .Blogsmain_main .Blogs_list .Blogs_details .Blogs_heading .Blogs_heading1{
+        font-size: 47px;
+    }
+    .Blogsmain_main .Blogs_list .Blogs_details .Blogs_heading .Blogs_date{
+        margin-top: 22px;
+    }
+    .Blogsmain_main .blogs_popular_main .blogs_popular .blogs_queue_section .blogs_q_img_section .blogs_queue_text{
+        padding: 48px 0 0 0 !important;
+    }
 }
 
 @media (max-width:1440px) {
@@ -235,7 +269,7 @@
                     padding: 4px 0 0 0 !important;
                     gap: 4px !important;
                     .blogs_queue_heading{
-                        font-size: 22px;
+                        font-size: 21px;
                     }
                     .blogs_q_text{
                         font-size: medium;

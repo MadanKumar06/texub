@@ -4,9 +4,11 @@
         position: relative;
         .faqs_heading{
             position: absolute;
-            font-size: xxx-large;
+            font-size: 50px;
+            font-weight: 600;
             top: 22%;
-            left: 31%;
+             left: 31%;
+            // text-align: center;
             color: #002D56;
             opacity: 1;
             letter-spacing: 1.5px;
@@ -21,9 +23,10 @@
         height: auto;
         padding: 20px 50px 40px 50px;
         .faqs_table_heading{
-            font-size: 25px;
-            letter-spacing: 1px;
+            font-size: 30px;
             color: #4E4E4E;
+            font-weight: 600;
+            opacity: 1;
         }
       .faqs_hr1{
           border: 1px solid goldenrod;
@@ -43,10 +46,14 @@
           padding: 20px 0 20px 20px;
        .faq_qns_heading{
            color: #4E4E4E;
+           font-size: 25px;
+           opacity: 1;
+           font-weight: 600;
        }   
       .faqs_plus_img{
-          height: 40px;
-          margin-top: -6px;
+          height: 50px;
+          margin-top: -12px;
+          
       }
     }
     .faqs_horizental{
@@ -55,13 +62,13 @@
     }
     .faqs_description{
         display: flex;
-        font-size: large;
+        font-size: 20px;
         font-weight: 500;
         padding-left:15%;
         padding-top: 10px;
         gap: 20px;
         color: #4E4E4E;
-        letter-spacing: 0.45px;
+        letter-spacing: 0.5px;
         .v1{
             border: 1px solid goldenrod;
             
@@ -73,6 +80,13 @@
 
 // @media
   
+@media (max-width:1550px){
+    .faqs_main .faqs_heading_section .faqs_heading{
+        top: 18%;
+        left: 22%;
+    }
+}
+
 @media (max-width:1440px) {
       .faqs_main{
           .faqs_heading_section{
@@ -81,7 +95,7 @@
               }
               .faqs_heading{
                 top: 18% !important;
-                left: 23% !important;
+                left: 21% !important;
               }
           }
       }
@@ -102,7 +116,7 @@
     .faqs_main{
         .faqs_heading_section{
         .faqs_heading{
-            left: 13% !important;
+            left: 9% !important;
         }
       } 
     }
@@ -114,7 +128,7 @@
         padding: 1% 1% 5% 1%;
         .faqs_heading_section{
         .faqs_heading{
-            left: 17% !important;
+            left: 13% !important;
             font-size: xx-large;
         }
         .faqs_heading_img{
@@ -132,7 +146,8 @@
     .faqs_main{
         .faqs_heading_section{
         .faqs_heading{
-            left: 7% !important;
+            
+            text-align: center;
         }
       } 
       .faqs_table_section{

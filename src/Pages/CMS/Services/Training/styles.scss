@@ -8,13 +8,18 @@
         flex-direction: column;
         gap: 20px;
         .training_description{
+            .training_text1,
             .training_text{
                 list-style: none;
-                font-size: 20px;
+                font-size: 22px;
                 text-align: center;
-                letter-spacing: 0.45px;
-                font-family: 'Source Sans Pro';
+                letter-spacing: 0.6px;
                 color: #333333;
+            }
+            .training_text::first-letter{
+                font-size: 200%;
+                color: #333333;
+                font-weight: bold;
             }
         }
     .training_Heading_section{
@@ -25,7 +30,7 @@
             font-size: 50px;
             color: #DDB363;
             letter-spacing: 1.5px;
-            font-family: 'Source Sans Pro';
+            font-weight: 600;
             margin: 0;
         }
     }

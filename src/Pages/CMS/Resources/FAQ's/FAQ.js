@@ -4,11 +4,35 @@ import img from '../../../../Assets/Career/Group 765.png'
 import { TextareaAutosize } from '@mui/material';
 import { withStyles } from "@mui/styles";
 import styles from './styles';
-import FAQs from './FAQs';
+import IMG from '../../../../Assets/Career/plus.svg'
+import IMG2 from '../../../../Assets/Career/decrease.svg'
 
 
 const FAQ = ({ classes }) => {
+
   const [description, setdescription] = useState(false)
+  const [description2, setdescription2] = useState(false)
+  const [toggle, settoggle] = useState(true)
+  const [toggle1, settoggle1] = useState(true)
+
+  const FAQs = [
+    {
+      id: 1,
+      image: IMG,
+      image1: IMG2,
+      heading: "How can I order in Bulk?",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam maecenas ultricies mi eget mauris pharetra et. Vel eros donec ac odio tempor orci dapibus. Purus sit amet luctus venenatis lectus magna fringilla urna. Enim nunc faucibus a pellentesque sit amet. Auctor neque vitae tempus quam pellentesque nec nam aliquam sem.",
+    },
+  ]
+  const FAQs1 = [
+    {
+      id: 1,
+      image: IMG,
+      image1: IMG2,
+      heading: "How can I order in Bulk 2",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam maecenas ultricies mi eget mauris pharetra et. Vel eros donec ac odio tempor orci dapibus. Purus sit amet luctus venenatis lectus magna fringilla urna. Enim nunc faucibus a pellentesque sit amet. Auctor neque vitae tempus quam pellentesque nec nam aliquam sem.",
+    },
+  ]
   return (
     <div className='faqs_main'>
       <div className='faqs_heading_section'>
@@ -21,13 +45,37 @@ const FAQ = ({ classes }) => {
         <hr className='faqs_hr1'></hr>
         {FAQs.map((item) =>
           <li key={item.id} className='faqs_table_adding'>
-            <div onClick={() =>
-              setdescription(!(description))} className='faqs_qns_section'>
-              <img src={item.image}  alt='' className='faqs_plus_img'></img><span className='faq_qns_heading'>{item.heading}</span>
-        
+            <div className='faqs_qns_section'>
+              <img src={toggle ? item.image : item.image1} alt=''
+                onClick={() => {
+                  settoggle(!(toggle))
+                  setdescription(!(description))
+                }}
+                className='faqs_plus_img'></img><span className='faq_qns_heading'>{item.heading}</span>
+
             </div>
 
             {description &&
+              <div className='faqs_description'>
+                <div className='v1'></div>
+                {item.description}
+              </div>}
+            <hr className='faqs_horizental'></hr>
+          </li>
+        )
+        }
+
+        {FAQs1.map((item) =>
+          <li key={item.id} className='faqs_table_adding'>
+            <div className='faqs_qns_section'>
+              <img src={toggle1 ? item.image : item.image1} alt=''
+                onClick={() => {
+                  settoggle1(!toggle1)
+                  setdescription2(!description2)
+                }}
+                className='faqs_plus_img'></img><span className='faq_qns_heading'>{item.heading}</span>
+            </div>
+            {description2 &&
               <div className='faqs_description'>
                 <div className='v1'></div>
                 {item.description}
@@ -45,7 +93,7 @@ const FAQ = ({ classes }) => {
           </span>
         </div>
       </div>
-    </div >
+    </div>
 
   )
 };
