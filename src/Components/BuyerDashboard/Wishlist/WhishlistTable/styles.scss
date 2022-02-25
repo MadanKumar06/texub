@@ -2,6 +2,33 @@
   gap: 18px;
   display: flex;
   flex-direction: column;
+  margin: 3em 2em 0 0;
+  .whishlist_table_header {
+    height: 70px;
+    background: #002d56;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2em;
+    .header_title {
+      font-size: 26px;
+      margin: 0;
+      font-weight: 600;
+      color: #ffffff;
+    }
+    .header_link {
+      display: flex;
+      gap: 30px;
+      p {
+        margin: 0;
+        color: #ddb363;
+        text-decoration: underline;
+        font-size: 22px;
+        font-weight: 600;
+      }
+    }
+  }
   .table_block {
     display: flex;
     background-color: #f5f5f5;
@@ -40,6 +67,9 @@
         }
       }
       .rating_block {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         .rating {
           display: flex;
           align-items: center;
@@ -59,7 +89,7 @@
         }
         .seller_id {
           padding: 5px 10px;
-          margin-top: 20px;
+          margin-top: 20px !important;
           margin: 0;
           background: #f8f0e0;
           width: max-content;
@@ -77,62 +107,88 @@
 
     .Hub__quantity__block {
       .Hub__quantity__sub_block {
-        .hub_info {
-          p {
-            padding: 11px 9px;
-            margin: 0;
-            color: #5c6369;
-            font-size: 20px;
-            font-weight: 600;
-            background: #ffffff;
-            border: 1px solid #d6d8d9;
-            border-radius: 24px;
-            min-width: 139px;
-            text-align: center;
-          }
+        span {
+          font-size: 16px;
+          color: #002d56;
         }
-        .quantity_info {
-          .qty_change {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border: 1px solid #d6d8d9;
-            background: #ffffff;
-            width: 100%;
-            padding: 2px;
-            border-radius: 25px;
+        .content {
+          display: flex;
+          align-items: center;
+          gap: 20px;
 
-            .item_decrease {
-              width: 45px;
-              height: 45px;
-              background-color: #eaeaea;
-              border: none;
-              fill: #ffffff !important;
-              border-radius: 50%;
-              font-weight: bolder;
-              font-size: 0;
-              cursor: pointer;
-            }
-            .item_increase {
-              width: 45px;
-              height: 45px;
-              background-color: #002d56;
-              border: none;
-              fill: #ffffff !important;
-              border-radius: 50%;
-              font-weight: bolder;
-              font-size: 0;
-              cursor: pointer;
-            }
-            .input_text {
-              width: 84px;
-              text-align: center;
-              font-size: 24px;
-              color: #333c42;
+          .hub_info {
+            p {
+              padding: 11px 9px;
+              margin: 0;
+              color: #5c6369;
+              font-size: 20px;
               font-weight: 600;
+              background: #ffffff;
+              border: 1px solid #d6d8d9;
+              border-radius: 24px;
+              min-width: 139px;
+              text-align: center;
+            }
+          }
+          .quantity_info {
+            .qty_change {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              border: 1px solid #d6d8d9;
+              background: #ffffff;
+              width: 100%;
+              padding: 2px;
+              border-radius: 25px;
+
+              .item_decrease {
+                width: 45px;
+                height: 45px;
+                background-color: #eaeaea;
+                border: none;
+                fill: #ffffff !important;
+                border-radius: 50%;
+                font-weight: bolder;
+                font-size: 0;
+                cursor: pointer;
+              }
+              .item_increase {
+                width: 45px;
+                height: 45px;
+                background-color: #002d56;
+                border: none;
+                fill: #ffffff !important;
+                border-radius: 50%;
+                font-weight: bolder;
+                font-size: 0;
+                cursor: pointer;
+              }
+              .input_text {
+                width: 84px;
+                text-align: center;
+                font-size: 24px;
+                color: #333c42;
+                font-weight: 600;
+              }
             }
           }
         }
+      }
+      .pending-invoice-btn {
+        text-decoration: none !important;
+        border-radius: 45px !important;
+        border: none !important;
+        background: linear-gradient(180deg, #20639b 0%, #002d56 100%);
+        color: #ffffff !important;
+        cursor: pointer;
+        box-shadow: 0px 3px 6px #00000029;
+        font-weight: 600 !important;
+        letter-spacing: 0.54px !important;
+        text-transform: capitalize !important;
+        width: 100% !important;
+        font-size: 18px !important;
+        padding: 12px !important;
+        margin-top: 21px !important;
       }
     }
   }

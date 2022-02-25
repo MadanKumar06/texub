@@ -1,13 +1,19 @@
 import React from "react";
 import "./styles.scss";
 
-import { Rating } from "@mui/material";
+import { Rating, Button } from "@mui/material";
 import { Remove, Add } from "@mui/icons-material";
 
-const WhislistTable = ({ tableData }) => {
-  debugger;
+const WhislistTable = ({ tableData, tableDataHeader }) => {
   return (
     <div className="wishlist_table_container">
+      <div className="whishlist_table_header">
+        <p className="header_title">{tableDataHeader}</p>
+        <div className="header_link">
+          <p>Add All To Cart</p>
+          <p>Delete List</p>
+        </div>
+      </div>
       {tableData?.map((itm, index) => (
         <div className="table_block">
           <div className="product_info_block">
@@ -74,7 +80,11 @@ const WhislistTable = ({ tableData }) => {
                 </div>
               </div>
             </div>
-            <div></div>
+            <div>
+              <Button className="pending-invoice-btn">
+                <span> Add to Pending Invoice</span>
+              </Button>
+            </div>
           </div>
         </div>
       ))}

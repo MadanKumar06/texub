@@ -9,7 +9,10 @@ const Whislist = () => {
     <div className="wishlist_main_container">
       <div>
         {WhishlistTableData?.map((itm) => (
-          <WhislistTable tableData={itm} />
+          <WhislistTable
+            tableData={itm?.Product_details}
+            tableDataHeader={itm?.Top_product}
+          />
         ))}
       </div>
     </div>
