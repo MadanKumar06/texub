@@ -9,7 +9,7 @@
   .aboutus__topbanner,
   .aboutus__mission {
     max-width: 1920px;
-    width: 100%;
+    width:fit-content;
     position: relative;
 
     img {
@@ -305,6 +305,7 @@
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+        left: 80px;
 
         .list {
           position: relative;
@@ -313,7 +314,7 @@
             position: absolute;
             color: white;
             font-size: 30px;
-            left: 18px;
+            left: 29px;
             top: 0;
             bottom: 0;
             display: flex;
@@ -329,33 +330,33 @@
 
 @media (max-width: 1920px){
   .aboutus .aboutus__worldwide .tag1 {
-    left: 30.9em;
-    top: 13.5em;
+    left: 31em;
+    top: 13em;
   }
 
   .aboutus .aboutus__worldwide .tag2 {
     top: 21.6em;
-    left: 50.99em;
+    left: 51em;
   }
 
   .aboutus .aboutus__worldwide .tag3 {
     top: 9.5em;
-    right: 56.35em;
+    right: 56.4em;
   }
 
   .aboutus .aboutus__worldwide .tag4 {
-    top: 22.2em;
-    right: 44.3em;
+    top: 22em;
+    right: 44.5em;
   }
 
   .aboutus .aboutus__worldwide .tag5 {
-    top: 25.5em;
-    right: 36.2em;
+    top: 25.2em;
+    right: 36em;
   }
 
   .aboutus .aboutus__worldwide .tag6 {
-    top: 31em;
-    right: 15.35em;
+    top: 30.9em;
+    right: 15.1em;
   }
 }
 
@@ -435,6 +436,33 @@
   }
 }
 
+@media (max-width: 1550px){
+  .aboutus .aboutus__worldwide .tag1 {
+    left: 24.75em;
+    top: 12.2em;
+}
+.aboutus .aboutus__worldwide .tag2 {
+  top: 18.7em;
+  left: 41em;
+}
+.aboutus .aboutus__worldwide .tag3 {
+  top: 9.3em;
+  right: 45.3em;
+}
+.aboutus .aboutus__worldwide .tag4 {
+  top: 19.4em;
+  right: 35.5em;
+}
+.aboutus .aboutus__worldwide .tag5 {
+  top: 21.9em;
+  right: 28.9em;
+}
+.aboutus .aboutus__worldwide .tag6 {
+  top: 26.4em;
+  right: 12em;
+}
+}
+
 @media (max-width: 1533px){
   .aboutus .aboutus__worldwide .tag1 {
     left: 24.5em;
@@ -488,11 +516,11 @@
   }
 
   .aboutus .aboutus__highlights ul li:nth-child(odd) .dimagecontent {
-    right: 10em;
+    right: 9.3em;
   }
 
   .aboutus .aboutus__highlights ul li:nth-child(even) .dimagecontent {
-    left: 10em;
+    left: 9.3em;
   }
 
   .aboutus .aboutus__worldwide .tag1 {
@@ -547,70 +575,104 @@
   }
 
   .aboutus .aboutus__worldwide .tag1 {
-    left: 22em;
+    left: 21.5em;
+    top: 11.7em;
     width: 2em;
   }
 
-  .aboutus .aboutus__worldwide .tag2 {
-    top: 17.75em;
-    left: 36.25em;
-    width: 2em;
-  }
-
-  .aboutus .aboutus__worldwide .tag3 {
-    top: 9.5em;
-    right: 40em;
-    width: 2em;
-  }
-
-  .aboutus .aboutus__worldwide .tag4 {
-    right: 31.5em;
-    width: 2em;
-  }
-
-  .aboutus .aboutus__worldwide .tag5 {
-    top: 20.5em;
-    right: 25.5em;
-    width: 2em;
-  }
-
-  .aboutus .aboutus__worldwide .tag6 {
-    top: 24.5em;
-    right: 10.75em;
-    width: 2em;
-  }
-}
-
-@media (max-width: 1330px){
-  .aboutus .aboutus__worldwide .tag1 {
-    left: 21.4em;
-    width: 2em;
-  }
   .aboutus .aboutus__worldwide .tag2 {
     top: 17.3em;
-    left: 35.25em;
+    left: 35.4em;
     width: 2em;
   }
+
   .aboutus .aboutus__worldwide .tag3 {
-    top: 9.5em;
-    right: 39em;
+    
+    right: 39.2em;
     width: 2em;
   }
+
   .aboutus .aboutus__worldwide .tag4 {
-    right: 30.6em;
-    width: 2em;
+    right: 30.8em;
     top: 18em;
-  }
-  .aboutus .aboutus__worldwide .tag5 {
-    top: 20em;
-    right: 25em;
     width: 2em;
   }
+
+  .aboutus .aboutus__worldwide .tag5 {
+    top: 20.1em;
+    right: 25.1em;
+    width: 2em;
+  }
+
   .aboutus .aboutus__worldwide .tag6 {
     top: 24em;
     right: 10.4em;
     width: 2em;
   }
+}
+
+// @media (max-width: 1330px){
+//   .aboutus .aboutus__worldwide .tag1 {
+//     left: 21.4em;
+//     width: 2em;
+//   }
+//   .aboutus .aboutus__worldwide .tag2 {
+//     top: 17.3em;
+//     left: 35.25em;
+//     width: 2em;
+//   }
+//   .aboutus .aboutus__worldwide .tag3 {
+//     top: 9.5em;
+//     right: 39em;
+//     width: 2em;
+//   }
+//   .aboutus .aboutus__worldwide .tag4 {
+//     right: 30.6em;
+//     width: 2em;
+//     top: 18em;
+//   }
+//   .aboutus .aboutus__worldwide .tag5 {
+//     top: 20em;
+//     right: 25em;
+//     width: 2em;
+//   }
+//   .aboutus .aboutus__worldwide .tag6 {
+//     top: 24em;
+//     right: 10.4em;
+//     width: 2em;
+//   }
+// }
+@media  (max-width:1240px) {
+  .aboutus .aboutus__highlights ul li:nth-child(even) .dimagecontent {
+    left: 8.8em;
+  }
+  .aboutus .aboutus__highlights ul li:nth-child(odd) .dimagecontent{
+    right: 8.8em;
+  }
+  .aboutus .aboutus__worldwide .tag1 {
+    left: 19.9em;
+    top: 11.3em;
+  }
+  .aboutus .aboutus__worldwide .tag2 {
+    top: 16.6em;
+    left: 32.8em;
+  }
+  .aboutus .aboutus__worldwide .tag3 {
+    top: 9.1em;
+    right: 36.3em;
+  }
+  .aboutus .aboutus__worldwide .tag4 {
+    right: 28.6em;
+    top: 17.1em;
+ }  
+ .aboutus .aboutus__worldwide .tag5 {
+  top: 19.1em;
+  right: 23.2em;
+ }
+ .aboutus .aboutus__worldwide .tag6 {
+  top: 22.7em;
+  right: 9.6em;
+ }
 }
 
 @media (max-width: 1200px) {
@@ -998,6 +1060,10 @@
   }
   .aboutus .aboutus__worldwide .aboutus__worldwide__content .aboutus__ww__country{
     gap: 3px;
+    left: 40px;
+  }
+  .aboutus .aboutus__worldwide .aboutus__worldwide__content .aboutus__ww__country .list span{
+    left: 15px;
   }
 }
 @media (max-width: 580px){
@@ -1096,6 +1162,9 @@
     top: 15em;
     right: 4.5em;
     width: 0.85em;
+  }
+  .aboutus .aboutus__worldwide .aboutus__worldwide__content .aboutus__ww__country{
+    left: 30px;
   }
 }
 
@@ -1287,6 +1356,7 @@
     .list
     span {
     font-size: 12px;
+    left: 10px;
   }
   .aboutus .aboutus__worldwide .aboutus__worldwide__content .aboutus__ww__country{
     gap: 3px;
