@@ -6,43 +6,51 @@ const WhishlistTableData = [
   [
     {
       products: {
-        products_name: "INR 17,999",
+        products_price: "17,999",
         products_img: image_for_printer_1,
-        products_price:
+        products_hub: "Mumbai",
+        products_quantity: 30,
+        products_name:
           "Epson EB-675Wi Ultra-Short Throw Interactive Classroom Projector",
+        seller_id: "220052",
       },
-      seller_id: "220052",
     },
     {
       products: {
-        products_name: "INR 17,999",
+        products_price: "17,999",
         products_img: image_for_printer_2,
-        products_price:
+        products_hub: "Mumbai",
+        products_quantity: 30,
+        products_name:
           "Epson EB-675Wi Ultra-Short Throw Interactive Classroom Projector",
+        seller_id: "220052",
       },
-      seller_id: "220052",
     },
   ],
   [
     {
       products: {
-        products_name: "INR 17,999",
+        products_price: "17,999",
         products_img: image_for_mobile,
-        products_price:
+        products_quantity: 30,
+        products_hub: "Mumbai",
+        products_name:
           "Epson EB-675Wi Ultra-Short Throw Interactive Classroom Projector",
+        seller_id: "220052",
       },
-      seller_id: "220052",
     },
   ],
   [
     {
       products: {
-        products_name: "INR 17,999",
+        products_price: "17,999",
         products_img: image_for_tablet,
-        products_price:
+        products_hub: "Mumbai",
+        products_quantity: 30,
+        products_name:
           "Epson EB-675Wi Ultra-Short Throw Interactive Classroom Projector",
+        seller_id: "220052",
       },
-      seller_id: "220052",
     },
   ],
 ];
