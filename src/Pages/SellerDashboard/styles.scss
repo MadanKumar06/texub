@@ -79,7 +79,7 @@
       position: absolute;
       z-index: 99;
       left: calc(-376px - 3%);
-      transition: left ease-out 1s;
+      transition: left ease-out 500ms;
       max-height: 75vh;
       overflow-y: scroll;
     }
@@ -88,7 +88,7 @@
       position: absolute;
       z-index: 99;
       left: 0;
-      transition: left ease-out 1s;
+      transition: left ease-out 500ms;
       max-height: 75vh;
       overflow-y: scroll;
     }

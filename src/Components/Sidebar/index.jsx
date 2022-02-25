@@ -55,8 +55,8 @@ function Index({ selectmenu, setcurrentmenu, currentmenu, currenttab, color, bar
         </p>
         <ul>
             {color === "yellow" && <>
-            {list.map((data, i) => <li className={`${currenttab === data.url && "sellerdashboard__currentselection" && color === 'yellow' && 'sellerbg' 
-            || currenttab === data.url && "sellerdashboard__currentselection" && color === 'blue' && 'buyerbg'} `} key={i} onClick={() => selectmenu(data.url)}>
+            {list.map((data, i) => <li className={`${(currenttab === data.url && "sellerdashboard__currentselection" && color === 'yellow' && 'sellerbg' )
+            || (currenttab === data.url && "sellerdashboard__currentselection" && color === 'blue' && 'buyerbg')} `} key={i} onClick={() => selectmenu(data.url)}>
                 <img src={currentmenu === data.name ? data.image1  : data.image} alt="" />
                 {data.name}
                 </li>)}
@@ -66,8 +66,8 @@ function Index({ selectmenu, setcurrentmenu, currentmenu, currenttab, color, bar
                 </li>
             </>}
             {color === "blue" && <>
-            {list1.map((data, i) => <li className={`${currenttab === data.url && "sellerdashboard__currentselection" && color === 'yellow' && 'sellerbg' 
-            || currenttab === data.url && "sellerdashboard__currentselection" && color === 'blue' && 'buyerbg'} `} key={i} onClick={() => selectmenu(data.url)}>
+            {list1.map((data, i) => <li className={`${(currenttab === data.url && "sellerdashboard__currentselection" && color === 'yellow' && 'sellerbg') 
+            || (currenttab === data.url && "sellerdashboard__currentselection" && color === 'blue' && 'buyerbg')} `} key={i} onClick={() => selectmenu(data.url)}>
                 <img src={currentmenu === data.name ? data.image1  : data.image} alt="" />
                 {data.name}
                 </li>)}
