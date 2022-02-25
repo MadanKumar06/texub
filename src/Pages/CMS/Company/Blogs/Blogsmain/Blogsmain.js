@@ -18,7 +18,7 @@ const Blogsmain = () => {
                             </div>
                             <div className='Blogs_heading'>
                                <span className='Blogs_heading1'> {id.heading}</span>
-                               <span className='Blogs_date'> {id.date} </span>
+                               <span className='Blogs_date'><span className='date_heading'>Date :</span> {id.date} </span>
                             </div>
                             <div className='Blogs_description'>
                                 <span className='description'>{id.description}</span>
@@ -38,7 +38,7 @@ const Blogsmain = () => {
                             <div className='blogs_q_img_section'>
                                 <img src={id.image} alt='' className='blogs_q' />
                                 <div className='blogs_queue_text'>
-                                    <span className='blogs_date'>{id.date}</span>
+                                    <span className='blogs_date'><span className='date_heading'> Date :</span> {id.date}</span>
                                     <span className='blogs_queue_heading'>{id.heading}</span>
                                     <span className='blogs_q_text'>{id.details}</span>
                                     <Link to='/'>
@@ -59,7 +59,7 @@ const Blogsmain = () => {
                             <div className='blogs_q_img_section'>
                                 <img src={id.image} alt='' className='blogs_q' />
                                 <div className='blogs_queue_text'>
-                                    <span className='blogs_date'>{id.date}</span>
+                                    <span className='blogs_date'> <span className='date_heading'> Date :</span>{id.date}</span>
                                     <span className='blogs_queue_heading'>{id.heading}</span>
                                     <span className='blogs_q_text'>{id.details}</span>
                                     <Link to='/blogsdetails'>
