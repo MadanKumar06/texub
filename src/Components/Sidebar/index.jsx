@@ -12,7 +12,7 @@ import user from '../../Assets/sellerdashboard/user.png'
 import training from '../../Assets/sellerdashboard/training.png'
 import logout from '../../Assets/sellerdashboard/logout.png'
 
-function Index({ selectmenu, setcurrentmenu, currentmenu, currenttab, color }) {
+function Index({ selectmenu, setcurrentmenu, currentmenu, currenttab, color, barstate, setbarstate }) {
     
     useEffect(() => {
         setcurrentmenu(list[0].name)
@@ -42,8 +42,10 @@ function Index({ selectmenu, setcurrentmenu, currentmenu, currenttab, color }) {
         { image: training, name: 'Merge Carts', url: 'mergecarts' },
         { image: training, name: 'Sub-Account Orders', url: 'subaccountorders' },
     ]
+
   return (
-    <div className='sellerdashboard__sidebar'>
+    <div className={`${barstate ? 'sidebaropen' : "sellerdashboard__sidebar"}`}>
+        <p className='sidebar__close' onClick={() => setbarstate(false)}></p>
          <p>
             <span className='sellerlabel'>
                 {color === 'yellow' && "Seller ID"}
@@ -53,8 +55,8 @@ function Index({ selectmenu, setcurrentmenu, currentmenu, currenttab, color }) {
         </p>
         <ul>
             {color === "yellow" && <>
-            {list.map((data, i) => <li className={`${currenttab === data.url && "sellerdashboard__currentselection" && color === 'yellow' && 'sellerbg' 
-            || currenttab === data.url && "sellerdashboard__currentselection" && color === 'blue' && 'buyerbg'} `} key={i} onClick={() => selectmenu(data.url)}>
+            {list.map((data, i) => <li className={`${(currenttab === data.url && "sellerdashboard__currentselection" && color === 'yellow' && 'sellerbg' )
+            || (currenttab === data.url && "sellerdashboard__currentselection" && color === 'blue' && 'buyerbg')} `} key={i} onClick={() => selectmenu(data.url)}>
                 <img src={currentmenu === data.name ? data.image1  : data.image} alt="" />
                 {data.name}
                 </li>)}
@@ -64,8 +66,8 @@ function Index({ selectmenu, setcurrentmenu, currentmenu, currenttab, color }) {
                 </li>
             </>}
             {color === "blue" && <>
-            {list1.map((data, i) => <li className={`${currenttab === data.url && "sellerdashboard__currentselection" && color === 'yellow' && 'sellerbg' 
-            || currenttab === data.url && "sellerdashboard__currentselection" && color === 'blue' && 'buyerbg'} `} key={i} onClick={() => selectmenu(data.url)}>
+            {list1.map((data, i) => <li className={`${(currenttab === data.url && "sellerdashboard__currentselection" && color === 'yellow' && 'sellerbg') 
+            || (currenttab === data.url && "sellerdashboard__currentselection" && color === 'blue' && 'buyerbg')} `} key={i} onClick={() => selectmenu(data.url)}>
                 <img src={currentmenu === data.name ? data.image1  : data.image} alt="" />
                 {data.name}
                 </li>)}

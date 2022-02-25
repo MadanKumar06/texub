@@ -62,3 +62,72 @@
   height: 100%;
   z-index: -1;
 }
+
+@media (max-width: 1024px) {
+  .sellerdashboard .sellerdashboard__maintab {
+    padding: 2em 10px;
+  }
+
+  .sellerdashboard .sellerboard__bg {
+    margin: 2%;
+  }
+
+  .sellerboard__bg {
+    position: relative;
+
+    .sellerdashboard__sidebar {
+      position: absolute;
+      z-index: 99;
+      left: calc(-376px - 3%);
+      transition: left ease-out 500ms;
+      max-height: 75vh;
+      overflow-y: scroll;
+    }
+
+    .sidebaropen {
+      position: absolute;
+      z-index: 99;
+      left: 0;
+      transition: left ease-out 500ms;
+      max-height: 75vh;
+      overflow-y: scroll;
+    }
+  }
+
+  .sellerdashboard {
+    position: relative;
+
+    .sidebarhide {
+      display: block;
+      position: relative;
+      top: 0;
+      left: 30px;
+      width: 30px;
+
+      &::before {
+        content: "";
+        height: 30px;
+        width: 30px;
+        background-color: transparent;
+        position: absolute;
+        left: -2em;
+        top: 12px;
+        box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
+        z-index: 99;
+      }
+
+      &::after {
+        content: "";
+        height: 10px;
+        width: 10px;
+        position: absolute;
+        left: -22px;
+        border-top: 2px solid black;
+        border-right: 2px solid black;
+        transform: rotate(45deg);
+        top: 22px;
+        z-index: 99;
+      }
+    }
+  }
+}
