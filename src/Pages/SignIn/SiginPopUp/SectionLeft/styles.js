@@ -68,7 +68,7 @@ const styles = (theme) => ({
   info_text_lineNote_one: {
     color: "#333333",
     fontSize: "20px",
-    marginBottom: "0",
+    margin: "0",
     "& small": {
       color: "#FF0000",
       fontSize: "18px",
@@ -77,6 +77,7 @@ const styles = (theme) => ({
   info_text_lineNote_two: {
     color: "#333333",
     fontSize: "20px",
+    padding: "12px 0",
     margin: "0",
   },
   input_fields: {
@@ -121,6 +122,7 @@ const styles = (theme) => ({
   checkbox_label: {
     "& .MuiTypography-root": {
       color: "#5C6369",
+      fontSize: "20px",
     },
   },
   button_signin: {
@@ -134,6 +136,8 @@ const styles = (theme) => ({
     letterSpacing: "1px !important",
     textTransform: "capitalize !important",
     transition: "transform .2s !important",
+    padding: "12px !important",
+    fontSize: "18px !important",
     width: "80%",
   },
   forgot_password: {

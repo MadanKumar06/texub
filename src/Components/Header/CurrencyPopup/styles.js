@@ -9,6 +9,7 @@ const styles = (theme) => ({
       fontWeight: "600",
       fontSize: "20px",
       padding: "0",
+      letterSpacing: "0.6px !important",
       color: "#5C6369 !important",
       "@media (max-width:1300px)": {
         fontSize: "16px !important",
