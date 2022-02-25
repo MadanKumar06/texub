@@ -1,10 +1,22 @@
-import React from 'react'
-import './styles.scss'
+import React from "react";
+import "./styles.scss";
 
-function Index() {
+import WhishlistTableData from "./whishlistJson";
+import WhislistTable from "./WhishlistTable";
+
+const Whislist = () => {
   return (
-    <div>wishlist</div>
-  )
-}
+    <div className="wishlist_main_container">
+      <div>
+        {WhishlistTableData?.map((itm) => (
+          <WhislistTable
+            tableData={itm?.Product_details}
+            tableDataHeader={itm?.Top_product}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
 
-export default Index
+export default Whislist;
