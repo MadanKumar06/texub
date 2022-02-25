@@ -11,7 +11,7 @@
     career_joinus_Check1: { 
         display: "flex",
         flexDirection: "column",
-        gap: "15px",
+        gap: "25px",
       "@media (max-width:480px)":{
         career_joinus_Check1:{
             justifyContent: "center",
@@ -22,7 +22,7 @@
         "& .MuiCheckbox-root":{
             "& .MuiSvgIcon-root": {
                 color:'goldenrod',
-                fontSize:'25px'
+                fontSize:'35px'
             },
         }
     }

@@ -43,7 +43,7 @@ export const Footer = () => {
           <div className="Footer_box_col_234">
             <h2 className="Footer_Col_Heading">Company</h2>
             <ul className="Footer_col_list">
-            <Link to="/rrpolicy" className="to_CMS">
+            <Link to="/aboutus" className="to_CMS">
               <li>About Us</li>
               </Link>
               <Link to="/termsofuse" className="to_CMS">
@@ -74,6 +74,9 @@ export const Footer = () => {
               </Link>
               <Link to="/career" className="to_CMS">
               <li>Career</li>
+              </Link>
+              <Link to="/rrpolicy" className="to_CMS">
+              <li>Return & Refund policy</li>
               </Link>
             </ul>
           </div>
