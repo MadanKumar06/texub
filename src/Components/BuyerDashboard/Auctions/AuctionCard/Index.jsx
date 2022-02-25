@@ -12,8 +12,6 @@ function Index({ data }) {
     setbid(parseFloat(data?.yourbid))
   }, [])
 
-  console.log(bid)
-
   return (
     <div className='auctioncard'>
       <div className='auctioncard__detail'>
