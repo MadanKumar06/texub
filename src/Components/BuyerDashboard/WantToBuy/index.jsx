@@ -1,12 +1,13 @@
 import React from "react";
-import { TextField, Autocomplete, Button } from "@mui/material";
 import "./styles.scss";
 
+import { TextField, Autocomplete, Button } from "@mui/material";
 import { LocalizationProvider, DesktopDatePicker } from "@mui/lab";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import { Link } from "react-router-dom";
-function WantToBuy() {
+
+const WantToBuy = () => {
   const [dateChange, setDateChange] = React.useState(new Date());
 
   const handleChange = (newValue) => {
@@ -210,6 +211,6 @@ function WantToBuy() {
       </div>
     </div>
   );
-}
+};
 
 export default WantToBuy;
