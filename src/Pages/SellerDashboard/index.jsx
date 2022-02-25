@@ -25,6 +25,7 @@ function SellerDashboard() {
         setcurrentmenu(value)
         navigate(`/sellerdashboard/${value}`)
         setshowregister(false)
+        setbarstate(false)
     }
 
     const {currenttab} = useParams()
@@ -49,11 +50,26 @@ function SellerDashboard() {
     const [updatesuccess] = useState('You have updated the product details successfully.')
     const [addsuccess] = useState('You have added the product successfully.')
 
+    const [barstate, setbarstate] = useState(false)
+
+    const sidebarstate = () => {
+        setbarstate(true)
+    }
+
   return (
     <div className='sellerdashboard'>
         <img src={bg} alt="" />
+        {!barstate && <p className='sidebarhide' onClick={sidebarstate}></p>} 
         <div className='sellerboard__bg'>
-            <Sidebar color="yellow" selectmenu={selectmenu} setcurrentmenu={setcurrentmenu} currentmenu={setcurrentmenu} currenttab={currenttab} />
+            <Sidebar
+                setbarstate={setbarstate}
+                barstate={barstate}
+                color="yellow"
+                selectmenu={selectmenu}
+                setcurrentmenu={setcurrentmenu}
+                currentmenu={setcurrentmenu}
+                currenttab={currenttab}
+            />
             <div className='sellerdashboard__maintab'>
                 {showregister === false && <div className='sellerdashboard__search'>
                     <Paper className='sellerdashboard__searchinput'  component="form"

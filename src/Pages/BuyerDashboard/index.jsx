@@ -26,20 +26,29 @@ function Index() {
   const selectmenu = (value) => {
     setcurrentmenu(value);
     navigate(`/buyerdashboard/${value}`);
-    // setshowregister(false)
+    setbarstate(false)
   };
+
+  const [barstate, setbarstate] = useState(false)
+
+    const sidebarstate = () => {
+        setbarstate(true)
+    }
 
   const { currenttab } = useParams();
   return (
     <div className="buyerdashboard">
       <img src={bg} alt="" />
+      {!barstate && <p className='sidebarhide' onClick={sidebarstate}></p>} 
       <div className="buyerboard__bg">
         <Sidebar
           color="blue"
           selectmenu={selectmenu}
           setcurrentmenu={setcurrentmenu}
-          currentmenu={setcurrentmenu}
+          currentmenu={currentmenu}
           currenttab={currenttab}
+          setbarstate={setbarstate}
+          barstate={barstate}
         />
         <div className="buyerdashboard__main">
           <div className="buyerdashboard__search">
