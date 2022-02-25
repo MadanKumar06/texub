@@ -12,14 +12,21 @@
             flex-direction: column;
             gap: 36px;
                 .Blogs_heading,
-                .Blogs_date{
+                .Blogs_date {
                     text-align: center;
-
                 }
                 .Blogs_date{
+                    .date{
                     color: #002D56;
                     opacity: 1;
                     font-size: 20px;
+                    text-align: center;
+                    font-weight: 600;
+                  } 
+                  .date_heading{
+                      font-weight: 500;
+
+                  }
                 }
                 .Blogs_heading{
                     color: #DDB363;
@@ -113,6 +120,10 @@
                     color: #002D56;
                     font-size: 16px;
                     opacity: 1;
+                    font-weight: 600;
+                }
+                .date_heading{
+                    font-weight: 500;
                 }
                 .blogs_queue_heading{
                     color: #DDB363;
@@ -130,6 +141,7 @@
                 .blogs_readblog{
                     color: #002D56;
                     font-weight: 600;
+                    font-size: 18px;
                 }
             }
         }
@@ -172,6 +184,7 @@
                     color: #002D56;
                     font-size: 14px;
                     opacity: 1;
+                    font-weight: 600;
                  
                 }
                 .blogs_queue_heading{

@@ -12,7 +12,7 @@ import micro from '../../../../Assets/Blogs/businessman-working-tablet-cafe.png'
  export  const Blogjson = [
     {
         id:1,
-        date:"date: 21 Dec 2021",
+        date:"21 Dec 2021",
         heading:"Financial & Legal Marketers",
         arial:Arial,
         meet:Meet,
@@ -29,7 +29,7 @@ export  const Queue=[
     {
         id:1,
         image:Network,
-        date:"date: 21 Dec 2021",
+        date:" 21 Dec 2021",
         mainheading:"Next In The Queue",
         heading:"Winning Strategy For Team",
         details:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam maecenas ultricies mi eget mauris pharetra et. Enim nunc faucibus a pellentesque sit amet. Auctor neque vitae tempus quam pellentesque nec nam aliquam sem.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam maecenas ultricies mi eget mauris pharetra et. Vel eros donec ac odio tempor orci dapibus. Purus sit amet luctus venenatis lectus magna fringilla urna. Enim nunc faucibus a pellentesque sit amet. Auctor neque vitae tempus quam pellentesque nec nam aliquam sem",        
@@ -42,7 +42,7 @@ export  const Popularblog =[
     {
         id:1,
         image:Network,
-        date:"date: 21 Dec 2021",
+        date:" 21 Dec 2021",
         mainheading:"Popular Blogs",
         heading:"Winning Strategy For Team",
         details:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",        
@@ -51,7 +51,7 @@ export  const Popularblog =[
     {
         id:2,
         image:digital,
-        date:"date: 21 Dec 2021",
+        date:" 21 Dec 2021",
         heading:"Digital Marketplace",
         details:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",        
         blog:"Read Blog",
@@ -59,7 +59,7 @@ export  const Popularblog =[
     {
         id:3,
         image:micro,
-        date:"date: 21 Dec 2021",
+        date:" 21 Dec 2021",
         heading:"Micro-influencers",
         details:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",        
         blog:"Read Blog",
@@ -67,7 +67,7 @@ export  const Popularblog =[
     {
         id:4,
         image:Network,
-        date:"date: 21 Dec 2021",
+        date:" 21 Dec 2021",
         heading:"Winning Strategy For Team",
         details:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",        
         blog:"Read Blog",
