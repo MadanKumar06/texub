@@ -1,12 +1,13 @@
 .gdpr_main{
     background-color: #FBFBFB;
-    padding:2% 5% 2% 5%;
+
     .gdpr_heading{
         display: flex;
         background-color: #FFFFFF;
-        padding:20px 30px 20px 30px;
+        padding:20px 40px 20px 40px;
         flex-direction: column;
         gap: 30px;
+        margin: 1% 3%;
 
         .gdpr_heading_list{
             list-style: none;

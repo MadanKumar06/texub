@@ -12,7 +12,6 @@ const FAQ = ({ classes }) => {
   const [description2, setdescription2] = useState(false);
   const [toggle, settoggle] = useState(true);
   const [toggle1, settoggle1] = useState(true);
-
   const FAQs = [
     {
       id: 1,
@@ -69,7 +68,6 @@ const FAQ = ({ classes }) => {
             <hr className="faqs_horizental"></hr>
           </li>
         ))}
-
         {FAQs1.map((item) => (
           <li key={item.id} className="faqs_table_adding">
             <div className="faqs_qns_section">
@@ -105,6 +103,7 @@ const FAQ = ({ classes }) => {
         </div>
       </div>
     </div>
-  );
+
+  )
 };
 export default withStyles(styles)(FAQ);

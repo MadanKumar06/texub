@@ -67,9 +67,11 @@
         padding-left:15%;
         padding-top: 10px;
         gap: 20px;
+        overflow: hidden;
         color: #4E4E4E;
         letter-spacing: 0.5px;
-        .v1{
+        transition:  3s ease-in-out;
+                .v1{
             border: 1px solid goldenrod;
             
             
