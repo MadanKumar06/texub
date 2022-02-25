@@ -170,3 +170,27 @@
     }
   }
 }
+
+@media (max-width: 1024px) {
+  .dashboard .dashboard__top {
+    justify-content: unset;
+
+    div {
+      width: 30%;
+
+      img {
+        width: 100%;
+        object-fit: contain;
+      }
+    }
+  }
+
+  .dashboard
+    .dashboard__middle
+    .dashboard__pricelist
+    .pricelist__header
+    p
+    .pricelist__headertime {
+    margin-left: 1em;
+  }
+}
