@@ -30,15 +30,19 @@
                     padding: 25px 0 0 0 !important;
                     .blogs_date{
                         color: #002D56;
-                        font-size: 18px;
+                        font-size: 14px;
                         font-weight: 600;
                         opacity: 1;
+                    }
+                    .date_heading{
+                        font-size: 14px;
+                        color: #002D56;
+                        font-weight: 500;
                     }
                     .blogs_queue_heading{
                         color: #DDB363;
                         font-size:30px;
                         letter-spacing: 1.5px;
-                        font-family: "Source Sans Pro";
                     }
                     .blogs_q_text{
                         font-size: 18px;
@@ -77,9 +81,14 @@
                     letter-spacing: 0.9px;
                     font-family: "Source Sans Pro";
                 }
+                .date_heading{
+                    font-size: 14px;
+                    color: #002D56;
+                    font-weight: 500;
+                }
                 .Blogs_date{
                     color: #002D56;
-                    font-size: 18px;
+                    font-size: 14px;
                     opacity: 1;
                     margin-top: 27px;
                     font-weight: 600;
@@ -87,7 +96,6 @@
             }
             .Blogs_description{
                 .description{
-                    font-family: "Source Sans Pro";
                     letter-spacing: 0.54px;
                     color: #333333;
                     font-size: 18px;
@@ -104,7 +112,7 @@
                     opacity: 1;
                     box-shadow: 0px 3px 6px #00000029;
                     margin-right: 8px !important;
-                    // font-weight: 600 !important;
+                    font-weight: 600;
                     text-transform: capitalize !important;
                     font-size:18px;
                 }
@@ -146,9 +154,14 @@
             padding: 55px 0 0 0 !important;
             .blogs_date{
                 color: #002D56;
-                font-size: 18px;
+                font-size: 14px;
                 font-weight: 600;
                 opacity: 1;
+            }
+            .date_heading{
+                font-size: 14px;
+                color: #002D56;
+                font-weight: 500;
             }
             .blogs_queue_heading{
                 color: #DDB363;

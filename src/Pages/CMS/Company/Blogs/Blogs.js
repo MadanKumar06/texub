@@ -10,7 +10,7 @@ const Blogs = () => {
         <div key={id.id} className="Blogs_list">
           <div className='Blogs_details'>
             <div className='Blogs_date'>
-              {id.date}
+              <span className='date'><span className='date_heading'>Date : </span>{id.date}</span>
             </div>
             <div className='Blogs_heading'>
               {id.heading}
@@ -47,7 +47,7 @@ const Blogs = () => {
           <div className='blogs_q_img_section'>
                <img src={id.image} alt='' className='blogs_q' />
             <div className='blogs_queue_text'>
-             <span className='blogs_date'>{id.date}</span> 
+             <span className='blogs_date'><span className='date_heading'>Date :</span>{id.date}</span> 
              <span className='blogs_queue_heading'>{id.heading}</span> 
              <span className='blogs_q_text'>{id.details}</span>
              <Link to='/'> 
@@ -66,7 +66,7 @@ const Blogs = () => {
           <div className='blogs_q_img_section'>
                <img src={id.image} alt='' className='blogs_q' />
             <div className='blogs_queue_text'>
-             <span className='blogs_date'>{id.date}</span> 
+             <span className='blogs_date'><span className='date_heading'>Date : </span> {id.date}</span> 
              <span className='blogs_queue_heading'>{id.heading}</span> 
              <span className='blogs_q_text'>{id.details}</span>
              <Link to='/'> 
