@@ -95,8 +95,12 @@
                 border: none;
                 border-radius: 25px;
                 padding: 10px 50px;
-                font-size: large;
+                font-size: 18px;
+                font-weight: 600;
                 color: #FFFFFF;
+                letter-spacing: 0.54px;
+                text-shadow: 0px 3px 6px #00000029;
+                box-shadow: 0px 3px 6px #00000029;
             }
             .asterisk{
                 color: red;
@@ -108,28 +112,58 @@
         .inputfield{
             background-color: #FFFFFF;
             border-radius: none;
-            .css-n1ubvy-MuiFormLabel-root-MuiInputLabel-root{
-                transform: translate(13px, -15px) scale(0.75);
-                font-size: 26px;
-                color: rgba(0, 0, 0, 2.6);
+            .MuiInputLabel-root{
+                color: rgba(0, 0, 0, 3.6) !important;
+                font-size: 18px !important;
+                font-weight: 600 !important;
+                transform: translate(15px, -10px) scale(0.7) !important;
             }
-            .css-md26zr-MuiInputBase-root-MuiOutlinedInput-root{
-                border-radius: 0px !important;
-                height: 60px;
-                font-size: larger;
+            .MuiOutlinedInput-notchedOutline{
+                margin-inline-start: 0px !important;
+                margin-inline-end: 0px !important;
+                padding-block-start: 0.35em !important;
+                padding-inline-start: 0.75em !important;
+                padding-inline-end: 0.75em !important;
+                padding-block-end: 0.625em !important;
             }
+            // .css-n1ubvy-MuiFormLabel-root-MuiInputLabel-root{
+            //     transform: translate(13px, -10px) scale(0.9) !important;
+            //     font-size: 26px;
+            //     color: rgba(0, 0, 0, 2.6);
+            // }
+            // .css-md26zr-MuiInputBase-root-MuiOutlinedInput-root{
+            //     border-radius: 0px !important;
+            //     height: 60px;
+            //     font-size: larger;
+            // }
         }
         .inputfield1{
             background-color: #FFFFFF;
-            .css-n1ubvy-MuiFormLabel-root-MuiInputLabel-root{
-                transform: translate(13px, -15px) scale(0.75);
-                font-size: 26px;
-                color: rgba(0, 0, 0, 2.6);
+            // border: 1px solid #CDD5DD;
+            // border-radius: 4px;
+            .MuiInputLabel-root{
+                color: rgba(0, 0, 0, 3.6) !important;
+                font-size: 18px !important;
+                font-weight: 600 !important;
+                transform: translate(15px, -10px) scale(0.7) !important;
             }
-            .css-md26zr-MuiInputBase-root-MuiOutlinedInput-root{
-                border-radius: 0px !important;
-                height: 200px;
-             }
+            .MuiOutlinedInput-notchedOutline{
+                margin-inline-start: 0px !important;
+                margin-inline-end: 0px !important;
+                padding-block-start: 0.35em !important;
+                padding-inline-start: 0.75em !important;
+                padding-inline-end: 0.75em !important;
+                padding-block-end: 0.625em !important;
+            }
+            // .css-n1ubvy-MuiFormLabel-root-MuiInputLabel-root{
+            //     transform: translate(13px, -15px) scale(0.75);
+            //     font-size: 26px;
+            //     color: rgba(0, 0, 0, 2.6);
+            // }
+            // .css-md26zr-MuiInputBase-root-MuiOutlinedInput-root{
+            //     border-radius: 0px !important;
+            //     height: 200px;
+            //  }
         }
         
         
@@ -146,7 +180,7 @@
         top: 27rem;
     }
     .contactus_main .contactus_form_section{
-        min-height: 762px;
+        min-height: 662px;
         padding: 112px 43px 0 0;
      
     }
@@ -179,7 +213,7 @@
         left: 2rem;
     }
     .contactus_main .contactus_form_section{
-        min-height: 722px;
+        min-height: 624px;
         padding: 112px 43px 0 0;
      
     }
@@ -205,7 +239,7 @@
 @media only screen and (max-width:768px){
     .contactus_main .contactus_form_section{
         flex-direction: column;
-        height: 87rem;
+        height: 70rem;
         padding: 87px 0px 0 0;
     }
     .contactus_main .contactus_img_section{
@@ -241,6 +275,9 @@
     .contactus_main .contactus_form_section .contactus_details_section {
         width: 89%;
     }
+    .contactus_main .contactus_form_section{
+        height: 68rem;
+    }
     
 }
 @media only screen and (max-width:480px){
@@ -253,18 +290,22 @@
         font-size:25px ;
     }
     .contactus_main .contactus_form_section{
-        height: 89rem;
+        height: 71rem;
     }
     .contactus_main .contactus_form_section .contactus_details_section 
     .contactus_tag{
         font-size: 31px;
     }
+    
 }
 
 @media only screen and (max-width:425px){
     .contactus_main .contactus_form_section .contactus_details_section{
         left: 23px;
         padding-left: 10px;
+    }
+    .contactus_main .contactus_form_section{
+        height: 69rem;
     }
 }
 
@@ -307,6 +348,9 @@
     .contactus_main .contactus_form_section .contactus_details_section .contactus_details .contactus_office_list 
     .contactus_office_address .contactus_office_number{
         font-size: 23px;
+    }
+    .contactus_main .contactus_form_section{
+        height: 77rem;
     }
 }
 
