@@ -1,5 +1,6 @@
 import React from "react";
 import "./styles.scss";
+
 import {
   TextField,
   InputLabel,
@@ -9,11 +10,12 @@ import {
   InputAdornment,
   Box,
 } from "@mui/material";
+import { Tune, Search } from "@mui/icons-material";
+
 import Icon2 from "../../../Assets/Productlist/Deals_Icon.png";
 import Icon3 from "../../../Assets/Productlist/Downloader.png";
 import Icon4 from "../../../Assets/Productlist/Up_arrow.png";
 import Icon5 from "../../../Assets/Productlist/Download_icon.png";
-import { Tune, Search } from "@mui/icons-material";
 const Productlists = () => {
   const [age, setAge] = React.useState("");
 

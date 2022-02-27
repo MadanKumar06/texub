@@ -4,7 +4,7 @@ const styles = (theme) => ({
       width: "50%",
       background: "linear-gradient(180deg, #ffd788 0%, #ad7c20 100%)",
       color: "#002d56",
-      fontSize: "18px",
+      fontSize: "16px",
       fontWeight: "600",
       textTransform:"capitalize"
     },
@@ -25,7 +25,7 @@ const styles = (theme) => ({
     },
     "& .MuiTypography-root": {
       fontWeight: "600",
-      fontSize: "16px",
+      fontSize: "14px",
     },
     "& .MuiBox-root ": {
       padding: "12px",
@@ -59,7 +59,7 @@ const styles = (theme) => ({
     },
     "& .MuiTypography-root": {
       fontWeight: "600",
-      fontSize: "16px",
+      fontSize: "14px",
     },
     "& .MuiSvgIcon-root": {
       color: "#5C6369",

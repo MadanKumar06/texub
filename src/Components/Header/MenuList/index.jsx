@@ -1,9 +1,10 @@
 import React from "react";
+import styles from "./styles";
+
 import { Drawer, Button } from "@mui/material";
 import { withStyles } from "@mui/styles";
 import { Menu } from "@mui/icons-material";
 import MenuListAccountTab from "./MenuListAccountTab";
-import styles from "./styles";
 
 const MenuListDrawer = ({ classes }) => {
   const [sideBar, setSideBar] = React.useState({

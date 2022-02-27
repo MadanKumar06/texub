@@ -1,5 +1,11 @@
 import React, { useState } from "react";
 import "./styles.scss";
+
+import { ArrowBackIosNew, ArrowForwardIos } from "@mui/icons-material";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
+
 import hpcolor from "../../../Assets/Productlist/hp_color.png";
 import hp from "../../../Assets/Productlist/hp_icon.png";
 import dell from "../../../Assets/Productlist/dell_icon.png";
@@ -8,11 +14,6 @@ import acer from "../../../Assets/Productlist/acer_icon.png";
 import windows from "../../../Assets/Productlist/windows_icon.png";
 import samsung from "../../../Assets/Productlist/samsung_icon.png";
 import Laptops from "../../Laptops";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import Slider from "react-slick";
-import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 const Slides = () =>
   [
@@ -38,7 +39,7 @@ const Productsbrands = () => {
       props.type === "next" ? "Carosal_nextArrow" : "Carosal_prevArrow";
     className += " arrow";
     const char =
-      props.type === "next" ? <ArrowForwardIosIcon /> : <ArrowBackIosNewIcon />;
+      props.type === "next" ? <ArrowForwardIos /> : <ArrowBackIosNew />;
     return (
       <span className={className} onClick={props.onClick}>
         {char}

@@ -1,6 +1,10 @@
-import React,{ useState } from "react";
-import "./Footer.scss";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import "./styles.scss";
+
+import MobileFooterAccordions from "./FooterForMobile";
+import Cookiespermission from "../../Pages/CMS/Resources/Cookiespermission";
+
 import logo from "../../Assets/Homepage Assets/Group.png";
 import Fb from "../../Assets/Homepage Assets/facebook.png";
 import Yt from "../../Assets/Homepage Assets/youtube.png";
@@ -10,16 +14,10 @@ import User from "../../Assets/Homepage Assets/user.png";
 import Like from "../../Assets/Homepage Assets/like.png";
 import Home from "../../Assets/Homepage Assets/home.png";
 import Shopping from "../../Assets/Homepage Assets/Shoppingbag.png";
-import MobileFooterAccordions from "./FooterForMobile";
-// import Selleradvantage from "../../Pages/CMS/Selleradvantage/Selleradvantage";
-import Cookiespermission from '../../Pages/CMS/Resources/Cookiespermission'
-export const Footer = () => {
-  const [isCookies, setisCookies] = useState(false)
 
-  // const  isclik=()=> {
-  //    setisCookies(!isCookies)
-    
-  // }
+export const Footer = () => {
+  const [isCookies, setisCookies] = useState(false);
+
   return (
     <div className="Footer">
       <div className="Footer_box">
@@ -43,20 +41,20 @@ export const Footer = () => {
           <div className="Footer_box_col_234">
             <h2 className="Footer_Col_Heading">Company</h2>
             <ul className="Footer_col_list">
-            <Link to="/aboutus" className="to_CMS">
-              <li>About Us</li>
+              <Link to="/aboutus" className="to_CMS">
+                <li>About Us</li>
               </Link>
               <Link to="/termsofuse" className="to_CMS">
-              <li>Terms Of Use</li>
+                <li>Terms Of Use</li>
               </Link>
               <Link to="/privacypolicy" className="to_CMS">
-              <li>Privacy Policy</li>
+                <li>Privacy Policy</li>
               </Link>
-              <Link to='/contactus' className="to_CMS" >
-              <li>Contact Us</li>
+              <Link to="/contactus" className="to_CMS">
+                <li>Contact Us</li>
               </Link>
-              <Link to='/blogsmain' className="to_CMS" >
-              <li>Blogs</li>
+              <Link to="/blogsmain" className="to_CMS">
+                <li>Blogs</li>
               </Link>
             </ul>
           </div>
@@ -64,40 +62,44 @@ export const Footer = () => {
             <h2 className="Footer_Col_Heading">Services</h2>
             <ul className="Footer_col_list">
               <Link to="/training" className="to_CMS">
-              <li>Training</li>
+                <li>Training</li>
               </Link>
-             <Link to="/seller_advantage" className="to_CMS"> 
-              <li>Seller Advantage</li>
-               </Link> 
-               <Link to="/buyer_advantage" className="to_CMS">
-              <li>Buyer Advantage</li>
+              <Link to="/seller_advantage" className="to_CMS">
+                <li>Seller Advantage</li>
+              </Link>
+              <Link to="/buyer_advantage" className="to_CMS">
+                <li>Buyer Advantage</li>
               </Link>
               <Link to="/career" className="to_CMS">
-              <li>Career</li>
+                <li>Career</li>
               </Link>
               <Link to="/rrpolicy" className="to_CMS">
-              <li>Return & Refund policy</li>
+                <li>Return & Refund policy</li>
               </Link>
             </ul>
           </div>
           <div className="Footer_box_col_234">
             <h2 className="Footer_Col_Heading">Resources</h2>
             <ul className="Footer_col_list">
-            <Link to="/legal" className="to_CMS">
-              <li>Legal</li>
+              <Link to="/legal" className="to_CMS">
+                <li>Legal</li>
               </Link>
-              <li onClick={()=>{
-                setisCookies(true);
-              }} >Cookies Permission</li>
+              <li
+                onClick={() => {
+                  setisCookies(true);
+                }}
+              >
+                Cookies Permission
+              </li>
               <Link to="/gdpr" className="to_CMS">
-              <li>GDPR</li>
+                <li>GDPR</li>
               </Link>
               <Link to="/Faqs" className="to_CMS">
-              <li>FAQs</li>
+                <li>FAQs</li>
               </Link>
             </ul>
           </div>
-          {isCookies && <Cookiespermission closePOPup={setisCookies}/>}
+          {isCookies && <Cookiespermission closePOPup={setisCookies} />}
         </div>
       </div>
       <div className="footer_mobile_view">

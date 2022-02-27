@@ -11,7 +11,14 @@
   align-items: center;
 }
 .Logo_img {
-  min-width: 100%;
+  width: 100%;
+}
+.whishlist_image {
+  width: 35px;
+  height: 35px;
+}
+.whishlist_image img {
+  width: 100%;
 }
 .Userdetails_List {
   display: flex;
@@ -78,6 +85,10 @@
   color: #5c6369;
 }
 .badge_user span {
+  color: #5c6369;
+  min-width: 26px !important;
+  height: 26px !important;
+  border-radius: 26px !important;
   background-color: #ffffff;
   box-shadow: -2px -2px 8px -6px rgba(0, 0, 0, 0.75);
   -webkit-box-shadow: -2px -2px 8px -6px rgba(0, 0, 0, 0.75);
@@ -116,6 +127,57 @@
   font-family: "Source Sans Pro";
   font-weight: bold;
   opacity: 0.8;
+}
+
+@media only screen and (max-width: 1200px) {
+  .Logo {
+    width: 220px;
+  }
+}
+
+@media (max-width: 1600px) {
+  .User_Wishlist {
+    font-size: 18px !important;
+  }
+  .whishlist_image {
+    width: 30px;
+    height: 30px;
+  }
+  .badge_user span {
+    min-width: 21px !important;
+    height: 21px !important;
+  }
+}
+@media (max-width: 1300px) {
+  .User_Wishlist {
+    font-size: 16px !important;
+  }
+  .whishlist_image {
+    width: 26px;
+    height: 26px;
+  }
+  .badge_user span {
+    min-width: 19px !important;
+    height: 19px !important;
+  }
+}
+@media (max-width: 1080px) {
+  .User_Wishlist {
+    font-size: 14px !important;
+  }
+  .whishlist_image {
+    width: 24px;
+    height: 24px;
+  }
+  .badge_user span {
+    min-width: 18px !important;
+    height: 18px !important;
+  }
+}
+@media (max-width: 850px) {
+  .User_Wishlist {
+    font-size: 12px !important;
+  }
 }
 
 @media only screen and (max-width: 768px) {

@@ -20,11 +20,17 @@ const styles = (theme) => ({
       fontWeight: "600",
       fontSize: "20px",
       color: "#ffffff",
+      "@media(max-width:480px)": {
+        fontSize: "18px",
+      },
     },
     "& .MuiCollapse-root ": {
       "& .MuiAccordionDetails-root .MuiTypography-root": {
         fontSize: "18px !important",
         fontWeight: "400",
+        "@media(max-width:480px)": {
+          fontSize: "16px !important",
+        },
       },
     },
     "& .MuiButtonBase-root": {
