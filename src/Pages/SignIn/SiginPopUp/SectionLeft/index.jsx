@@ -158,7 +158,7 @@ const TransitionsModal = ({ classes, openPopUp }) => {
         <div className={sections}>
           <div className={section_left}>
             <p className={info_text_lineNote_one}>
-              <small>*</small> Texhub doesn’t sell or ship to consumers.
+              <small>*</small> Texub doesn’t sell or ship to consumers.
             </p>
             <p className={info_text_lineNote_two}>
               To keep connected please login here

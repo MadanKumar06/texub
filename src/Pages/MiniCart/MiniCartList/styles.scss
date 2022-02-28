@@ -222,6 +222,9 @@
     }
     .minicart_btn {
       padding: 2% 3%;
+      a {
+        text-decoration: none;
+      }
       .minicart_bottom_button_cart {
         text-decoration: none;
         width: 100% !important;

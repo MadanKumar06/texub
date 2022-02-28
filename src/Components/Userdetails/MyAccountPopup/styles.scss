@@ -33,7 +33,7 @@
     margin: 0 30px;
     .MuiMenuItem-root {
       gap: 24px;
-      padding: 13px 50px 13px 0px;
+      padding: 13px 13px 13px 0px;
       border-bottom: 1px solid #e6e6e6;
       color: #5c6369;
       font-size: 22px;
@@ -61,7 +61,7 @@
     height: 21px !important;
   }
   .menulist_items .MuiList-root .MuiMenuItem-root {
-    font-size: 20px;
+    font-size: 18px;
   }
 }
 @media (max-width: 1300px) {
@@ -69,7 +69,7 @@
     font-size: 16px !important;
   }
   .menulist_items .MuiList-root .MuiMenuItem-root {
-    font-size: 18px;
+    font-size: 16px;
   }
   .myAccount_popup_header_dropdown .account_circle_image {
     width: 26px;
@@ -85,7 +85,7 @@
     font-size: 14px !important;
   }
   .menulist_items .MuiList-root .MuiMenuItem-root {
-    font-size: 16px;
+    font-size: 14px;
   }
   .myAccount_popup_header_dropdown .account_circle_image {
     width: 24px;

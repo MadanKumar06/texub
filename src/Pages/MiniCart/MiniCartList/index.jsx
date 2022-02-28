@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import "./styles.scss";
+
+import { Link } from "react-router-dom";
 import { Clear } from "@mui/icons-material";
 import { Button } from "@mui/material";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
 import brand_logo from "../../../Assets/Productlist/Brand_icon.png";
 import { Rating } from "@mui/material";
-import index from "../../CMS/Resources/GDPR/index";
+
 const MiniCartList = ({ handleSideBarClose }) => {
   const [value, setValue] = React.useState(4);
   const [isCartData, setIsCartData] = useState(0);
@@ -139,12 +141,19 @@ const MiniCartList = ({ handleSideBarClose }) => {
           </p>
         </div>
         <div className="minicart_btn">
-          <Button className="minicart_bottom_button_cart">
-            <span>Go To Cart</span>
-          </Button>
-          <Button className="minicart_bottom_button_pending_invoice">
-            <span>Add To Pending Invoice</span>
-          </Button>
+          <Link to="/mycart" onClick={() => handleSideBarClose("right", false)}>
+            <Button className="minicart_bottom_button_cart">
+              <span>Go To Cart</span>
+            </Button>
+          </Link>
+          <Link
+            to="/pending-invoice"
+            onClick={() => handleSideBarClose("right", false)}
+          >
+            <Button className="minicart_bottom_button_pending_invoice">
+              <span>Add To Pending Invoice</span>
+            </Button>
+          </Link>
         </div>
       </footer>
     </div>

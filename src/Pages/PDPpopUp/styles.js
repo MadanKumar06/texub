@@ -55,7 +55,7 @@ const styles = (theme) => ({
     borderBottom: "1px solid #cccccc",
     "& span": {
       fontSize: "16px",
-      "@media (max-width:1110px) and (min-width:320px)": {
+      "@media (max-width:1110px)": {
         fontSize: "12px",
       },
     },
@@ -69,6 +69,10 @@ const styles = (theme) => ({
     alignItems: "center",
     gap: "10px",
     cursor: "pointer",
+    "& span": {
+      color: "#333C42",
+      letterSpacing: "0.48px",
+    },
   },
   modal_bottom_container: {
     display: "flex",
@@ -77,7 +81,7 @@ const styles = (theme) => ({
     padding: "29px",
     width: "85%",
     margin: "auto",
-    "@media (max-width:1110px) and (min-width:768px)": {
+    "@media (max-width:1110px)": {
       width: "100%",
       gap: "5px",
     },
@@ -96,17 +100,17 @@ const styles = (theme) => ({
     fontSize: "18px",
     color: "#002D56",
     fontWeight: "600",
-    "@media (max-width:1599px) and (min-width:1440px)": {
+    "@media (max-width:1599px)": {
       fontSize: "16px",
     },
-    "@media (max-width:1439px) and (min-width:320px)": {
+    "@media (max-width:1439px)": {
       fontSize: "14px",
     },
   },
   modal_bottom_button_main: {
     display: "flex",
     gap: "31px",
-    "@media (max-width:1110px) and (min-width:320px)": {
+    "@media (max-width:1110px)": {
       gap: "10px",
     },
     "@media (max-width:425px)": {
@@ -127,16 +131,17 @@ const styles = (theme) => ({
     letterSpacing: "1px",
     textTransform: "capitalize !important",
     gap: "8px",
+    padding: "10px 68px !important",
     "& span": {
       fontSize: "18px",
-      "@media (max-width:1599px) and (min-width:1440px)": {
+      "@media (max-width:1599px)": {
         fontSize: "16px",
       },
-      "@media (max-width:1439px) and (min-width:320px)": {
+      "@media (max-width:1439px)": {
         fontSize: "12px",
       },
     },
-    "@media (max-width:1140px) and (min-width:320px)": {
+    "@media (max-width:1140px)": {
       minWidth: "195px !important",
     },
     "@media (max-width:425px)": {
@@ -157,20 +162,21 @@ const styles = (theme) => ({
     letterSpacing: "1px !important",
     textTransform: "capitalize !important",
     gap: "8px",
+    padding: "10px 68px !important",
     "@media (max-width:425)": {
       width: "100%",
       marginLeft: "0 !important",
     },
     "& span": {
       fontSize: "18px",
-      "@media (max-width:1599px) and (min-width:1440px)": {
+      "@media (max-width:1599px)": {
         fontSize: "16px",
       },
-      "@media (max-width:1439px) and (min-width:320px)": {
+      "@media (max-width:1439px)": {
         fontSize: "12px",
       },
     },
-    "@media (max-width:1140px) and (min-width:320px)": {
+    "@media (max-width:1140px)": {
       minWidth: "126px !important",
     },
   },
@@ -193,10 +199,10 @@ const styles = (theme) => ({
   pdp_footer_model_info: {
     fontSize: "20px",
     color: "#20639B",
-    "@media (max-width:1599px) and (min-width:1440px)": {
+    "@media (max-width:1599px)": {
       fontSize: "18px",
     },
-    "@media (max-width:1439px) and (min-width:320px)": {
+    "@media (max-width:1439px)": {
       fontSize: "16px",
     },
   },
@@ -204,10 +210,10 @@ const styles = (theme) => ({
     color: "#002D56",
     fontSize: "24px",
     fontWeight: "500",
-    "@media (max-width:1599px) and (min-width:1440px)": {
+    "@media (max-width:1599px)": {
       fontSize: "20px",
     },
-    "@media (max-width:1439px) and (min-width:320px)": {
+    "@media (max-width:1439px)": {
       fontSize: "18px",
     },
   },

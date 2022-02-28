@@ -33,6 +33,7 @@ const styles = () => ({
     textTransform: "capitalize",
     padding: "10px 0px",
     fontSize: "20px",
+    fontWeight: "600",
     "@media (max-width:1599px) and (min-width:1439px)": {
       fontSize: "16px",
     },
@@ -44,7 +45,7 @@ const styles = () => ({
     listStyleType: "none",
     margin: "0",
     paddingLeft: "0",
-    height: "50vh",
+    height: "60vh",
     overflowX: "auto",
     "&::-webkit-scrollbar": {
       width: "10px",
@@ -114,6 +115,10 @@ const styles = () => ({
     width: "4%",
     padding: "10px 5px",
     fontSize: "20px",
+    "& .MuiSvgIcon-root": {
+      width: "1.2em",
+      height: "1.2em",
+    },
     "@media (max-width:1599px) and (min-width:1439px)": {
       fontSize: "16px",
     },
@@ -149,6 +154,10 @@ const styles = () => ({
     letterSpacing: "0.59px",
     color: "#5C6369",
     fontSize: "20px",
+    "& span a": {
+      color: "#002D56",
+      fontSize: "21px",
+    },
     "@media (max-width:1599px) and (min-width:1439px)": {
       fontSize: "16px",
     },
@@ -239,6 +248,7 @@ const styles = () => ({
   },
   seller_stock_value: {
     fontSize: "24px",
+    letterSpacing: "0.72px",
     "@media (max-width:1599px) and (min-width:1439px)": {
       fontSize: "18px",
     },
@@ -248,6 +258,7 @@ const styles = () => ({
   },
   seller_eta_value: {
     fontSize: "24px",
+    letterSpacing: "0.72px",
     "@media (max-width:1599px) and (min-width:1439px)": {
       fontSize: "18px",
     },
@@ -309,10 +320,9 @@ const styles = () => ({
   price_list_hubblk: {
     border: "1px solid #D6D8D9",
     borderRadius: "25px",
-    padding: "4px",
     textAlign: "center",
     cursor: "pointer",
-
+    padding: "14px",
     "@media (max-width:767px)": {
       border: "none",
       textAlign: "left",
@@ -327,7 +337,10 @@ const styles = () => ({
     width: "100%",
     padding: "1px 1px",
     borderRadius: "25px",
-
+    "& .MuiSvgIcon-root ": {
+      width: "2em",
+      height: "2em",
+    },
     "@media (max-width:767px)": {
       maxWidth: "35%",
     },
@@ -398,6 +411,8 @@ const styles = () => ({
   },
   price_indicator: {
     fontSize: "20px",
+    fontWeight: "600",
+    letterSpacing: "0.6px",
     marginRight: "5px",
     "@media (max-width:1599px) and (min-width:1439px)": {
       fontSize: "16px",
@@ -408,6 +423,7 @@ const styles = () => ({
   },
   price_value: {
     fontSize: "30px",
+    letterSpacing: "0.9px",
     "@media (max-width:1599px) and (min-width:1439px)": {
       fontSize: "16px",
     },

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Radio,
   RadioGroup,
@@ -12,7 +12,7 @@ import { withStyles } from "@mui/styles";
 import styles from "./styles";
 import buyer_img from "../../../../Assets/CommonImage/RegisterPopup/user_select_buyer.png";
 import seller_img from "../../../../Assets/CommonImage/RegisterPopup/user_select_seller.png";
-const SectionRight = ({ classes, handleClose }) => {
+const SectionRight = ({ classes, handleClose, handleClassChange }) => {
   let {
     radio_btn_container,
     select_text,
@@ -22,6 +22,9 @@ const SectionRight = ({ classes, handleClose }) => {
     btn_link,
   } = classes;
   const [userDescription, setUserDescription] = useState(true);
+  const handleChange = (event) => {
+    handleClassChange(event);
+  };
   return (
     <FormControl component="fieldset" className={radio_btn_container}>
       <FormLabel component="legend" className={select_text}>
@@ -44,7 +47,10 @@ const SectionRight = ({ classes, handleClose }) => {
             </>
           }
           labelPlacement="top"
-          onClick={() => setUserDescription(true)}
+          onClick={() => {
+            handleChange("buyer");
+            setUserDescription(true);
+          }}
         />
         <FormControlLabel
           value="seller"
@@ -56,7 +62,10 @@ const SectionRight = ({ classes, handleClose }) => {
             </>
           }
           labelPlacement="top"
-          onClick={() => setUserDescription(false)}
+          onClick={() => {
+            handleChange("seller");
+            setUserDescription(false);
+          }}
         />
       </RadioGroup>
       {userDescription ? (
@@ -78,7 +87,10 @@ const SectionRight = ({ classes, handleClose }) => {
           sadipscing elitr, sed diam nonumy eirmod tempor.
         </div>
       )}
-      <Link to={`/register${userDescription ? "/buyer" : "/seller"}`} className={btn_link}>
+      <Link
+        to={`/register${userDescription ? "/buyer" : "/seller"}`}
+        className={btn_link}
+      >
         <Button
           variant="contained"
           className={btn_user}
