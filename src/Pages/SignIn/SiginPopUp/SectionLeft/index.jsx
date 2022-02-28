@@ -8,24 +8,21 @@ import {
   Button,
   Box,
   Backdrop,
+  InputLabel,
 } from "@mui/material";
+import { isEmailValid, isPasswordValid } from "../../../../utilities";
 import { withStyles } from "@mui/styles";
 import { Clear } from "@mui/icons-material";
 import SectionRight from "../SectionRight";
 
 const TransitionsModal = ({ classes, openPopUp }) => {
-  const [open, setOpen] = useState(true);
-  const [signInData, setSignInData] = useState({
-    email_address: "",
-    password: "",
-    keep_me_logged_in: "",
-  });
   let {
     section_main,
     modal,
     sections,
     section_left,
     section_right,
+    button_box,
     header_section,
     clear_btn,
     info_text,
@@ -35,8 +32,20 @@ const TransitionsModal = ({ classes, openPopUp }) => {
     checkbox_label,
     button_signin,
     forgot_password,
+    validation_error,
     asterisk,
   } = classes;
+
+  const [open, setOpen] = useState(true);
+  const [signInData, setSignInData] = useState({
+    email_address: "",
+    password: "",
+    keep_me_logged_in: false,
+  });
+  const [inputValidation, setInputValidation] = useState({
+    email_address: "",
+    password: "",
+  });
 
   const handleClose = () => {
     setOpen(false);
@@ -48,14 +57,87 @@ const TransitionsModal = ({ classes, openPopUp }) => {
         ...prevState,
         [event.target.name]: event.target.checked,
       }));
+      setInputValidation("");
+      handleSwitchCase([event.target.name], event.target.value);
     } else {
       setSignInData((prevState) => ({
         ...prevState,
         [event.target.name]: event.target.value,
       }));
+      setInputValidation("");
+      handleSwitchCase([event.target.name], event.target.value);
     }
   };
-
+  const handleSwitchCase = (fieldName, value) => {
+    switch (fieldName[0]) {
+      case "email_address":
+        if (!value) {
+          setInputValidation((prevState) => ({
+            ...prevState,
+            email_address: "Please enter the e-mail.",
+          }));
+        } else if (!isEmailValid(value)) {
+          setInputValidation((prevState) => ({
+            ...prevState,
+            email_address: "Please enter the valid e-mail.",
+          }));
+        }
+        break;
+      case "password":
+        if (!value) {
+          setInputValidation((prevState) => ({
+            ...prevState,
+            password: "Please enter your password.",
+          }));
+        } else if (!isPasswordValid(value)) {
+          setInputValidation((prevState) => ({
+            ...prevState,
+            password:
+              "Minimum 8 characters at least 1 Alphabet, 1 Number and 1 Special Character.",
+          }));
+        }
+        break;
+      default:
+        break;
+    }
+  };
+  const handleClickValidation = (event) => {
+    var errorHandle = false;
+    if (!signInData?.email_address) {
+      document.getElementById("email_address")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        email_address: "Please enter the e-mail.",
+      }));
+      errorHandle = true;
+    } else if (!isEmailValid(signInData?.email_address)) {
+      document.getElementById("email_address")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        email_address: "Please enter the valid e-mail.",
+      }));
+      errorHandle = true;
+    }
+    if (!signInData?.password) {
+      document.getElementById("password")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        password: "Please enter your password.",
+      }));
+      errorHandle = true;
+    } else if (!isPasswordValid(signInData?.password)) {
+      document.getElementById("password")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        password:
+          "Minimum 8 characters at least 1 Alphabet, 1 Number and 1 Special Character.",
+      }));
+      errorHandle = true;
+    }
+    if (!errorHandle) {
+      // Apicall fuction
+    }
+  };
   return (
     <Modal
       aria-labelledby="transition-modal-title"
@@ -90,6 +172,8 @@ const TransitionsModal = ({ classes, openPopUp }) => {
                 placeholder="E-mail Address"
                 fullWidth
                 autoFocus={true}
+                autoComplete="off"
+                value={signInData?.email_address}
                 InputLabelProps={{
                   shrink: true,
                   required: true,
@@ -100,13 +184,18 @@ const TransitionsModal = ({ classes, openPopUp }) => {
                 onChange={handleChangeInput}
                 variant="outlined"
               />
+              <InputLabel className={validation_error}>
+                {inputValidation?.email_address}
+              </InputLabel>
               <TextField
                 id="password"
                 name="password"
                 label="Password"
                 fullWidth
                 type="password"
+                autoComplete="new-password"
                 placeholder="Password"
+                value={signInData?.password}
                 InputLabelProps={{
                   shrink: true,
                   required: true,
@@ -117,9 +206,11 @@ const TransitionsModal = ({ classes, openPopUp }) => {
                 onChange={handleChangeInput}
                 variant="outlined"
               />
-
+              <InputLabel className={validation_error}>
+                {inputValidation?.password}
+              </InputLabel>
               <FormControlLabel
-                value="yes"
+                value={signInData?.keep_me_logged_in}
                 control={<Checkbox color="color_third" />}
                 label="Keep me signed in."
                 labelPlacement="end"
@@ -127,8 +218,13 @@ const TransitionsModal = ({ classes, openPopUp }) => {
                 name="keep_me_logged_in"
                 onClick={(event) => handleChangeInput(event)}
               />
-              <Box textAlign="center">
-                <Button className={button_signin}>Sign In</Button>
+              <Box className={button_box}>
+                <Button
+                  onClick={() => handleClickValidation()}
+                  className={button_signin}
+                >
+                  Sign In
+                </Button>
               </Box>
               <p className={forgot_password}>Forgot Password?</p>
             </div>
