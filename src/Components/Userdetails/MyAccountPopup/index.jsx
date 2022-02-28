@@ -1,13 +1,12 @@
 import React from "react";
 import { Menu, MenuItem, Button, Badge } from "@mui/material";
-import { AccountCircle } from "@mui/icons-material";
-import { withStyles } from "@mui/styles";
-import styles from "./styles";
+import './styles.scss'
 import dashboardLogo from "../../../Assets/CommonImage/MyAccountMegamenu/menu.png";
 import myOrderLogo from "../../../Assets/CommonImage/MyAccountMegamenu/shopping-bag.png";
 import auctionsLogo from "../../../Assets/CommonImage/MyAccountMegamenu/auction.png";
 import logoutLogo from "../../../Assets/CommonImage/MyAccountMegamenu/logout.png";
-const MyAccountPopup = ({ classes }) => {
+import account_circle from "../../../Assets/User/user (3).png";
+const MyAccountPopup = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
@@ -17,14 +16,16 @@ const MyAccountPopup = ({ classes }) => {
     setAnchorEl(null);
   };
   return (
-    <div className={classes.header_dropdown}>
+    <div className="myAccount_popup_header_dropdown">
       <Button
         aria-controls="simple-menu"
         aria-haspopup="true"
         onClick={handleClick}
       >
         <Badge badgeContent={1} className="badge_user">
-          <AccountCircle />
+          <div className="account_circle_image">
+            <img src={account_circle} alt="" />
+          </div>
         </Badge>
         <li className="User_account_Wishlist_cart">My Account</li>
       </Button>
@@ -35,14 +36,13 @@ const MyAccountPopup = ({ classes }) => {
         keepMounted
         open={Boolean(anchorEl)}
         onClose={handleClose}
-        className={classes.menulist_items}
+        className="menulist_items"
       >
         <MenuItem>
           <img src={dashboardLogo} alt="" />
           Dashboard
         </MenuItem>
         <MenuItem>
-          {" "}
           <img src={myOrderLogo} alt="" />
           My Orders
         </MenuItem>
@@ -60,4 +60,4 @@ const MyAccountPopup = ({ classes }) => {
     </div>
   );
 };
-export default withStyles(styles)(MyAccountPopup);
+export default MyAccountPopup;

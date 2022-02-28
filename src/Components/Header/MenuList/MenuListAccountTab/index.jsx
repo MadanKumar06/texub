@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import styles from "./styles";
+
 import PropTypes from "prop-types";
 import {
   Tabs,
@@ -13,8 +16,6 @@ import {
   Stack,
   ListItemButton
 } from "@mui/material";
-import Departments from "./DepartmentJson";
-
 import { withStyles } from "@mui/styles";
 import {
   ExpandMore,
@@ -25,10 +26,10 @@ import {
   AppRegistration,
   ExitToApp,
 } from "@mui/icons-material";
+
+import Departments from "./DepartmentJson";
 import RegiterPopup from "../../../../Pages/Register/RegisterPopup/SectionLeft";
 
-import { Link } from "react-router-dom";
-import styles from "./styles";
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 

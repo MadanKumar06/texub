@@ -1,4 +1,6 @@
 import React from "react";
+import styles from "./style";
+
 import {
   AccordionSummary,
   AccordionDetails,
@@ -7,7 +9,6 @@ import {
 } from "@mui/material";
 import { withStyles } from "@mui/styles";
 import { ExpandMore } from "@mui/icons-material";
-import styles from "./style";
 
 const MobileFooterAccordions = ({ classes }) => {
   const [expanded, setExpanded] = React.useState(false);

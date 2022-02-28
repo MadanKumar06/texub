@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Drawer, Button, Badge } from "@mui/material";
-import { Link } from "react-router-dom";
-import { ShoppingBag } from "@mui/icons-material";
 import "./styles.scss";
+import { Link } from "react-router-dom";
+
+import { Drawer, Button, Badge } from "@mui/material";
 import MiniCartList from "./MiniCartList";
+
+import mycart_image from '../../Assets/User/shopping-bag (2).png'
 
 const MiniCartDrawer = () => {
   const [sideBar, setSideBar] = React.useState({
@@ -48,7 +50,9 @@ const MiniCartDrawer = () => {
         <Button onClick={toggleDrawer("right", true)}>
           <Link to="/mycart">
             <Badge badgeContent={1} className="badge">
-              <ShoppingBag />
+            <div className="mycart_image">
+            <img src={mycart_image} alt="" />
+          </div>
             </Badge>
             <li className="mini_cart_head">My Cart</li>
           </Link>

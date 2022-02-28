@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import styles from "./styles";
 import {
   Modal,
   TextField,
@@ -7,19 +8,21 @@ import {
   Button,
   Box,
   Backdrop,
+  InputLabel,
 } from "@mui/material";
+import { isEmailValid, isPasswordValid } from "../../../../utilities";
 import { withStyles } from "@mui/styles";
-import styles from "./styles";
 import { Clear } from "@mui/icons-material";
 import SectionRight from "../SectionRight";
+
 const TransitionsModal = ({ classes, openPopUp }) => {
-  const [open, setOpen] = React.useState(true);
   let {
     section_main,
     modal,
     sections,
     section_left,
     section_right,
+    button_box,
     header_section,
     clear_btn,
     info_text,
@@ -29,12 +32,111 @@ const TransitionsModal = ({ classes, openPopUp }) => {
     checkbox_label,
     button_signin,
     forgot_password,
+    validation_error,
     asterisk,
   } = classes;
+
+  const [open, setOpen] = useState(true);
+  const [signInData, setSignInData] = useState({
+    email_address: "",
+    password: "",
+    keep_me_logged_in: false,
+  });
+  const [inputValidation, setInputValidation] = useState({
+    email_address: "",
+    password: "",
+  });
 
   const handleClose = () => {
     setOpen(false);
     openPopUp(false);
+  };
+  const handleChangeInput = (event) => {
+    if (event?.target?.name === "keep_me_logged_in") {
+      setSignInData((prevState) => ({
+        ...prevState,
+        [event.target.name]: event.target.checked,
+      }));
+      setInputValidation("");
+      handleSwitchCase([event.target.name], event.target.value);
+    } else {
+      setSignInData((prevState) => ({
+        ...prevState,
+        [event.target.name]: event.target.value,
+      }));
+      setInputValidation("");
+      handleSwitchCase([event.target.name], event.target.value);
+    }
+  };
+  const handleSwitchCase = (fieldName, value) => {
+    switch (fieldName[0]) {
+      case "email_address":
+        if (!value) {
+          setInputValidation((prevState) => ({
+            ...prevState,
+            email_address: "Please enter the e-mail.",
+          }));
+        } else if (!isEmailValid(value)) {
+          setInputValidation((prevState) => ({
+            ...prevState,
+            email_address: "Please enter the valid e-mail.",
+          }));
+        }
+        break;
+      case "password":
+        if (!value) {
+          setInputValidation((prevState) => ({
+            ...prevState,
+            password: "Please enter your password.",
+          }));
+        } else if (!isPasswordValid(value)) {
+          setInputValidation((prevState) => ({
+            ...prevState,
+            password:
+              "Minimum 8 characters at least 1 Alphabet, 1 Number and 1 Special Character.",
+          }));
+        }
+        break;
+      default:
+        break;
+    }
+  };
+  const handleClickValidation = (event) => {
+    var errorHandle = false;
+    if (!signInData?.email_address) {
+      document.getElementById("email_address")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        email_address: "Please enter the e-mail.",
+      }));
+      errorHandle = true;
+    } else if (!isEmailValid(signInData?.email_address)) {
+      document.getElementById("email_address")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        email_address: "Please enter the valid e-mail.",
+      }));
+      errorHandle = true;
+    }
+    if (!signInData?.password) {
+      document.getElementById("password")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        password: "Please enter your password.",
+      }));
+      errorHandle = true;
+    } else if (!isPasswordValid(signInData?.password)) {
+      document.getElementById("password")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        password:
+          "Minimum 8 characters at least 1 Alphabet, 1 Number and 1 Special Character.",
+      }));
+      errorHandle = true;
+    }
+    if (!errorHandle) {
+      // Apicall fuction
+    }
   };
   return (
     <Modal
@@ -64,10 +166,14 @@ const TransitionsModal = ({ classes, openPopUp }) => {
             <div className={info_text}>Sign-In</div>
             <div className={input_fields}>
               <TextField
-                id="outlined-textarea"
+                id="email_address"
+                name="email_address"
                 label="E-mail Address"
                 placeholder="E-mail Address"
                 fullWidth
+                autoFocus={true}
+                autoComplete="off"
+                value={signInData?.email_address}
                 InputLabelProps={{
                   shrink: true,
                   required: true,
@@ -75,14 +181,21 @@ const TransitionsModal = ({ classes, openPopUp }) => {
                     asterisk: asterisk,
                   },
                 }}
+                onChange={handleChangeInput}
                 variant="outlined"
               />
+              <InputLabel className={validation_error}>
+                {inputValidation?.email_address}
+              </InputLabel>
               <TextField
-                id="outlined-textarea"
+                id="password"
+                name="password"
                 label="Password"
                 fullWidth
                 type="password"
+                autoComplete="new-password"
                 placeholder="Password"
+                value={signInData?.password}
                 InputLabelProps={{
                   shrink: true,
                   required: true,
@@ -90,18 +203,28 @@ const TransitionsModal = ({ classes, openPopUp }) => {
                     asterisk: asterisk,
                   },
                 }}
+                onChange={handleChangeInput}
                 variant="outlined"
               />
-
+              <InputLabel className={validation_error}>
+                {inputValidation?.password}
+              </InputLabel>
               <FormControlLabel
-                value="yes"
+                value={signInData?.keep_me_logged_in}
                 control={<Checkbox color="color_third" />}
                 label="Keep me signed in."
                 labelPlacement="end"
                 className={checkbox_label}
+                name="keep_me_logged_in"
+                onClick={(event) => handleChangeInput(event)}
               />
-              <Box textAlign="center">
-                <Button className={button_signin}>Sign In</Button>
+              <Box className={button_box}>
+                <Button
+                  onClick={() => handleClickValidation()}
+                  className={button_signin}
+                >
+                  Sign In
+                </Button>
               </Box>
               <p className={forgot_password}>Forgot Password?</p>
             </div>

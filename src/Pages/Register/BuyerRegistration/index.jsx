@@ -12,7 +12,7 @@ import { Link, useParams } from "react-router-dom";
 import { withStyles } from "@mui/styles";
 import styles from "./styles";
 const BuyerRegistration = ({ classes }) => {
-  let {type} = useParams();
+  let { type } = useParams();
   let {
     main_container,
     input_fields,

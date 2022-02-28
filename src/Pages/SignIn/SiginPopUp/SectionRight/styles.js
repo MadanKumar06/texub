@@ -4,33 +4,61 @@ const styles = (theme) => ({
   },
   info_text_lineNote: {
     color: "#333333",
-    fontSize: "16px",
+    fontSize: "20px",
+    opacity: "1",
     marginBottom: "0",
+    "@media(max-width:1600px)": {
+      fontSize: "18px",
+    },
   },
   info_text_guest: {
     color: "#20639B",
     padding: "20px 0px 13px",
-    fontSize: "24px",
+    fontSize: "30px",
     fontWeight: "600",
+    "@media(max-width:1600px)": {
+      fontSize: "28px",
+    },
+    "@media(max-width:1440px)": {
+      fontSize: "26px",
+    },
     "@media (max-width:767px)": {
       textAlign: "center",
     },
   },
+  validation_error: {
+    whiteSpace: "unset !important",
+    marginLeft: "4px !important",
+    fontSize: "14px !important",
+    color: "#FF0000 !important",
+  },
   input_fields: {
     width: "100%",
-    padding: "10% 5%",
+    padding: "0 3em",
+    paddingBottom: "2em",
     boxShadow: "0px 3px 6px #00000029",
     borderRadius: "4px",
     backgroundColor: "#ffffff",
+    "@media(max-width:1440px)": {
+      padding: "0 2em",
+      paddingBottom: "1em",
+    },
     "& .MuiFormControl-root": {
-      "& ::placeholder": {
-        textTransform: "capitalize",
-        fontSize: "12px",
+      marginTop: "3em",
+      "@media(max-width:1440px)": {
+        marginTop: "2em",
       },
-      marginBottom: "38px",
+      "& ::placeholder": {
+        fontSize: "20px",
+        color: "#CDD5DD",
+        opacity: "1",
+        "@media(max-width:1440px)": {
+          fontSize: "18px",
+        },
+      },
       "& .MuiInputLabel-root": {
         fontWeight: "600",
-        fontSize: "1.2rem",
+        fontSize: "18px",
         "& .MuiInputLabel-asterisk": {},
       },
     },
@@ -41,7 +69,7 @@ const styles = (theme) => ({
       },
       "& fieldset": {
         "& legend": {
-          fontSize: "0.9em",
+          fontSize: "1em",
         },
       },
     },
@@ -50,10 +78,30 @@ const styles = (theme) => ({
     },
   },
   checkbox_label: {
+    marginTop: "20px",
     width: "100%",
     "& .MuiTypography-root": {
       color: "#5C6369",
+      fontSize: "20px",
+      "@media(max-width:1600px)": {
+        fontSize: "18px",
+      },
+      "@media(max-width:1440px)": {
+        fontSize: "16px",
+      },
     },
+    "& svg": {
+      width: "1.3em",
+      height: "1.3em",
+      "@media(max-width:1440px)": {
+        width: "1em",
+        height: "1em",
+      },
+    },
+  },
+  button_box: {
+    margin: "20px 0px",
+    textAlign: "center",
   },
   button_guest: {
     borderRadius: "25px !important",
@@ -64,8 +112,16 @@ const styles = (theme) => ({
     transition: "transform .2s !important",
     fontWeight: "600 !important",
     textTransform: "capitalize !important",
-    marginTop: "20px !important",
     width: "80%",
+    padding: "12px !important",
+    fontSize: "18px !important",
+    "@media(max-width:1600px)": {
+      padding: "10px !important",
+    },
+    "@media(max-width:1440px)": {
+      padding: "6px !important",
+      fontSize: "16px !important",
+    },
   },
   asterisk: {
     color: "red",

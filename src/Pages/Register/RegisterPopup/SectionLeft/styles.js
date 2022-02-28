@@ -1,17 +1,27 @@
 const styles = (theme) => ({
   section_main: {
-    height: "80vh",
-    backgroundImage: "url('/Images/user_selection_bg.png')",
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "center",
-    backgroundSize: "cover",
+    height: "81vh",
     zIndex: "1",
     display: "flex",
     width: "100%",
+    overflow: "auto",
+    gap: "6em",
     "@media (max-width:767px)": {
       flexDirection: "column",
       overflowY: "scroll",
     },
+  },
+  section_main_buyer: {
+    backgroundImage: "url('/Images/user_selection_bg.png')",
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "center",
+    backgroundSize: "cover",
+  },
+  section_main_seller: {
+    backgroundImage: "url('/Images/buyer_regirtration_bg.png')",
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "center",
+    backgroundSize: "cover",
   },
   modal: {
     display: "flex",
@@ -27,7 +37,7 @@ const styles = (theme) => ({
     padding: "3.5%",
     margin: "1.5%",
     width: "45%",
-    height: "76vh",
+    height: "max-content",
     backgroundImage: "url('/Images/user_selection_leftbg.png')",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
@@ -60,13 +70,12 @@ const styles = (theme) => ({
     justifyContent: "flex-end",
     width: "50%",
     "& img": {
-      height: "auto",
-      maxWidth: "100%",
+      width: "100%",
     },
   },
   tagline_text: {
     color: "#DDB363",
-    fontSize: "20px",
+    fontSize: "24px",
     lineHeight: "30px",
     letterSpacing: "0.72px",
     fontWeight: "600",
@@ -122,6 +131,7 @@ const styles = (theme) => ({
   section_right: {
     width: "55%",
     padding: "4% 2% 2%",
+    position: "relative",
     "@media (max-width:767px)": {
       width: "100%",
       padding: "4%",

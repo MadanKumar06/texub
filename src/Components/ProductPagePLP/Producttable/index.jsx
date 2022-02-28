@@ -1,14 +1,16 @@
 import React, { useState } from "react";
+import styles from "./styles";
+
+import { withStyles } from "@mui/styles";
+import MUIDataTable from "mui-datatables";
+import PDPpopUp from "../../../Pages/PDPpopUp";
+
 import HP from "./../../../Assets/Productlist/hp_td_icon.png";
 import Acer from "../../../Assets/Productlist/acer_icon_td.png";
 import Apple from "../../../Assets/Productlist/apple_icon_td.png";
 import Lenovo from "../../../Assets/Productlist/lenovo_icon_td.png";
 import Samsung from "../../../Assets/Productlist/samsung_icon.png";
 import shopping_cart from "../../../Assets/CommonImage/shopping-cart.png";
-import { withStyles } from "@mui/styles";
-import styles from "./styles";
-import MUIDataTable from "mui-datatables";
-import PDPpopUp from "../../../Pages/PDPpopUp";
 const Productstable = ({ classes }) => {
   let {
     producttable,

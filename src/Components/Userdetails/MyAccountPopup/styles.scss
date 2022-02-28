@@ -1,0 +1,106 @@
+.myAccount_popup_header_dropdown {
+  .MuiButton-text {
+    text-transform: capitalize;
+  }
+  .MuiButton-root {
+    font-weight: 600;
+    display: flex;
+    gap: 15px;
+    font-size: 20px;
+    padding: "0";
+    .badge_user {
+      span {
+        color: #5c6369;
+        min-width: 26px !important;
+        height: 26px !important;
+        border-radius: 26px !important;
+      }
+    }
+  }
+  .MuiButton-label {
+    color: #5c6369;
+  }
+  .account_circle_image {
+    width: 35px;
+    height: 35px;
+    img {
+      width: 100%;
+    }
+  }
+}
+.menulist_items {
+  .MuiList-root {
+    margin: 0 30px;
+    .MuiMenuItem-root {
+      gap: 24px;
+      padding: 13px 50px 13px 0px;
+      border-bottom: 1px solid #e6e6e6;
+      color: #5c6369;
+      font-size: 22px;
+      letter-spacing: 0.66px;
+    }
+    .MuiMenuItem-root:last-child {
+      border: none;
+    }
+  }
+}
+
+@media (max-width: 1600px) {
+  .myAccount_popup_header_dropdown .MuiButton-root {
+    font-size: 18px !important;
+  }
+  .myAccount_popup_header_dropdown .account_circle_image {
+    width: 30px;
+    height: 30px;
+    img {
+      width: 100%;
+    }
+  }
+  .myAccount_popup_header_dropdown .MuiButton-root .badge_user span {
+    min-width: 21px !important;
+    height: 21px !important;
+  }
+  .menulist_items .MuiList-root .MuiMenuItem-root {
+    font-size: 20px;
+  }
+}
+@media (max-width: 1300px) {
+  .myAccount_popup_header_dropdown .MuiButton-root {
+    font-size: 16px !important;
+  }
+  .menulist_items .MuiList-root .MuiMenuItem-root {
+    font-size: 18px;
+  }
+  .myAccount_popup_header_dropdown .account_circle_image {
+    width: 26px;
+    height: 26px;
+  }
+  .myAccount_popup_header_dropdown .MuiButton-root .badge_user span {
+    min-width: 19px !important;
+    height: 19px !important;
+  }
+}
+@media (max-width: 1080px) {
+  .myAccount_popup_header_dropdown .MuiButton-root {
+    font-size: 14px !important;
+  }
+  .menulist_items .MuiList-root .MuiMenuItem-root {
+    font-size: 16px;
+  }
+  .myAccount_popup_header_dropdown .account_circle_image {
+    width: 24px;
+    height: 24px;
+  }
+  .myAccount_popup_header_dropdown .MuiButton-root .badge_user span {
+    min-width: 18px !important;
+    height: 18px !important;
+  }
+}
+@media (max-width: 850px) {
+  .myAccount_popup_header_dropdown .MuiButton-root {
+    font-size: 12px !important;
+  }
+  .menulist_items .MuiList-root .MuiMenuItem-root {
+    font-size: 14px;
+  }
+}

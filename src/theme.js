@@ -1,7 +1,7 @@
 import { createTheme } from '@mui/material/styles';
 const theme = createTheme({
   typography: {
-    fontFamily: `Source Sans Pro, Semibold`,
+    fontFamily: `Source Sans Pro`,
   },
   palette: {
     primary: {

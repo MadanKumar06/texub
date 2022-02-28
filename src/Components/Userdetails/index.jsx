@@ -5,8 +5,9 @@ import { Badge } from "@mui/material";
 import { Link } from "react-router-dom";
 import MyAccountPopUP from "./MyAccountPopup";
 
-import { FavoriteBorder, ShoppingBag } from "@mui/icons-material";
+import whishlist_image from '../../Assets/User/Icon.png'
 import MiniCartDrawer from "../../Pages/MiniCart";
+import { FormControlLabel } from '@mui/material/FormControlLabel';
 
 export const Userdetails = () => {
   return (
@@ -31,7 +32,9 @@ export const Userdetails = () => {
           </div>
           <div className="User_Wishlist">
             <Badge badgeContent={1} className="badge_user">
-              <FavoriteBorder />
+            <div className="whishlist_image">
+            <img src={whishlist_image} alt="" />
+          </div>
             </Badge>
             <li className="User_account_Wishlist_cart">My Wishlist</li>
           </div>

@@ -1,8 +1,9 @@
 import React from "react";
+import styles from "./styles";
+
 import { Button, Menu, MenuItem } from "@mui/material";
 import { withStyles } from "@mui/styles";
 import { ExpandMore } from "@mui/icons-material";
-import styles from "./styles";
 
 const Currency = [
   {
@@ -51,6 +52,7 @@ const CurrencyPopup = ({ classes }) => {
         keepMounted
         open={Boolean(anchorEl)}
         onClose={handleClose}
+        className={classes.menulist_item}
       >
         {Currency?.map((item) => (
           <MenuItem
