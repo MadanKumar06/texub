@@ -41,7 +41,7 @@ const PDPTable = ({ classes, tableData }) => {
     seller_stock_value,
     seller_eta_value,
     table_title_container,
-    sub_table_title
+    sub_table_title,
   } = classes;
   const [is_table_one, setIs_table_one] = useState(0);
   const [is_table_two, setIs_table_two] = useState(0);
@@ -144,7 +144,9 @@ const PDPTable = ({ classes, tableData }) => {
                         </div>
                       </div>
                       <div className={price_list_seller}>
-                        <span>{item?.seller_id}</span>
+                        <span>
+                          <a href="/">{item?.seller_id}</a>
+                        </span>
                       </div>
                       <div className={price_list_price}>
                         <span className={price_indicator}>INR</span>
@@ -225,7 +227,9 @@ const PDPTable = ({ classes, tableData }) => {
                         </div>
                       </div>
                       <div className={price_list_seller}>
-                        <span>{item?.seller_id}</span>
+                        <span>
+                          <a href="/">{item?.seller_id}</a>
+                        </span>
                       </div>
                       <div className={price_list_price}>
                         <span className={price_indicator}>INR</span>

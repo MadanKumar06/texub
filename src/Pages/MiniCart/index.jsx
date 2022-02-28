@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./styles.scss";
-import { Link } from "react-router-dom";
+
 
 import { Drawer, Button, Badge } from "@mui/material";
 import MiniCartList from "./MiniCartList";
@@ -48,14 +48,12 @@ const MiniCartDrawer = () => {
     <div className="minicart_drawer_main">
       <React.Fragment key={"right"}>
         <Button onClick={toggleDrawer("right", true)}>
-          <Link to="/mycart">
             <Badge badgeContent={1} className="badge">
             <div className="mycart_image">
             <img src={mycart_image} alt="" />
           </div>
             </Badge>
             <li className="mini_cart_head">My Cart</li>
-          </Link>
         </Button>
         <Drawer
           anchor={"right"}

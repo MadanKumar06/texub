@@ -20,7 +20,7 @@ const styles = (theme) => ({
   },
   select_text: {
     color: "#333C42",
-    fontSize: "22px",
+    fontSize: "24px",
     fontWeight: "600",
     display: "flex",
     alignItems: "center",
@@ -51,18 +51,21 @@ const styles = (theme) => ({
   user_signin: {
     display: "flex",
     gap: "34px",
+    alignItems: "center",
     "& p": {
       fontSize: "18px",
       color: "#333C42",
       margin: "0",
-      fontWeight: "400",
+      fontWeight: "600",
       "@media (max-width:1440px) and (min-width:768px)": {
         fontSize: "16px",
       },
     },
     "& span": {
-      fontSize: "18px",
+      fontSize: "22px",
       color: "#20639B",
+      cursor: "pointer",
+      fontWeight: "600",
       textDecoration: "underline",
       "@media (max-width:1440px) and (min-width:768px)": {
         fontSize: "16px",
@@ -82,9 +85,9 @@ const styles = (theme) => ({
     },
   },
   clicking_user: {
-    boxShadow: "0px 0px 5px 6px rgba(32,99,155,0.49)",
-    WebkitBoxShadow: "0px 0px 5px 6px rgba(32,99,155,0.49)",
-    MozBoxShadow: "0px 0px 5px 6px rgba(32,99,155,0.49)",
+    boxShadow: "0px 0px 5px 2px rgba(32,99,155,0.49)",
+    WebkitBoxShadow: "0px 0px 5px 2px rgba(32,99,155,0.49)",
+    MozBoxShadow: "0px 0px 5px 2px rgba(32,99,155,0.49)",
   },
   radio_group: {
     flexWrap: "nowrap !important",
@@ -98,9 +101,18 @@ const styles = (theme) => ({
         width: "100%",
       },
       "& p": {
+        fontSize: "26px",
         position: "absolute",
-        bottom: "0px",
-        left: "47px",
+        left: "35px",
+        bottom: "-15px",
+        "@media (max-width:1600px)": {
+          fontSize: "22px",
+          left: "42px",
+          bottom: "-6px",
+        },
+        "@media (max-width:1024px)": {
+          fontSize: "20px",
+        },
       },
       "& .MuiRadio-root": {
         display: "none",

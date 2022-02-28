@@ -6,9 +6,12 @@ const styles = (theme) => ({
     width: "100%",
     overflow: "auto",
     gap: "6em",
-    "@media (max-width:767px)": {
+    "@media (max-width:768px)": {
       flexDirection: "column",
       overflowY: "scroll",
+    },
+    "@media (max-width:1080px)": {
+      gap: "0em",
     },
   },
   section_main_buyer: {
@@ -28,7 +31,7 @@ const styles = (theme) => ({
     alignItems: "center",
     justifyContent: "center",
     margin: "8%",
-    "@media (max-width:767px)": {
+    "@media (max-width:768px)": {
       margin: "1%",
     },
   },
@@ -42,9 +45,9 @@ const styles = (theme) => ({
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
     backgroundSize: "cover",
-    "@media (max-width:767px)": {
+    "@media (max-width:768px)": {
       width: "97%",
-      height: "80vh",
+      height: "max-content",
     },
   },
   welcome_column: {
@@ -58,11 +61,11 @@ const styles = (theme) => ({
     width: "50%",
     flex: "1",
     display: "flex",
-    "@media (max-width:1190px) and (min-width:768px)": {
-      fontSize: "18px",
-    },
-    "@media (max-width:390px)": {
+    "@media (max-width:1190px)": {
       fontSize: "22px",
+    },
+    "@media (max-width:768px)": {
+      fontSize:"28px"
     },
   },
   welcome_texub_logo: {
@@ -71,6 +74,12 @@ const styles = (theme) => ({
     width: "50%",
     "& img": {
       width: "100%",
+    },
+    "@media (max-width:768px)": {
+      width: "30%",
+    },
+    "@media (max-width:580px)": {
+      width: "45%",
     },
   },
   tagline_text: {
@@ -81,8 +90,12 @@ const styles = (theme) => ({
     fontWeight: "600",
     marginTop: "4%",
     marginBottom: "6%",
-    "@media (max-width:1190px) and (min-width:768px)": {
+    "@media (max-width:1190px)": {
       fontSize: "16px",
+    },
+    "@media (max-width:768px)": {
+      marginTop: "2%",
+      fontSize: "20px",
     },
     "@media (max-width:390px)": {
       fontSize: "18px",
@@ -104,11 +117,14 @@ const styles = (theme) => ({
   },
   arrow_image: {
     width: "22px",
-    height: "18px",
     verticalAlign: "middle",
     marginLeft: "8px",
-    "@media (max-width:1190px) and (min-width:768px)": {
+    "& img": {
+      width: "100%",
+    },
+    "@media (max-width:1200px)": {
       marginLeft: "0px",
+      width: "18px",
     },
   },
   point_info_text: {
@@ -116,11 +132,14 @@ const styles = (theme) => ({
     lineHeight: "38px",
     color: "#ffffff",
     marginLeft: "2%",
-    "@media (max-width:1190px) and (min-width:980px)": {
+    "@media (max-width:1190px)": {
       fontSize: "12px",
     },
-    "@media (max-width:980px) and (min-width:768px)": {
-      fontSize: "10px",
+    "@media (max-width:980px)": {
+      fontSize: "11px",
+    },
+    "@media (max-width:768px)": {
+      fontSize: "16px",
     },
     "@media (max-width:390px)": {
       fontSize: "12px",
@@ -132,7 +151,7 @@ const styles = (theme) => ({
     width: "55%",
     padding: "4% 2% 2%",
     position: "relative",
-    "@media (max-width:767px)": {
+    "@media (max-width:768px)": {
       width: "100%",
       padding: "4%",
     },

@@ -1,5 +1,3 @@
-import { height } from "@mui/system";
-
 const styles = (theme) => ({
   section_main: {
     minHeight: "70vh",
@@ -25,8 +23,17 @@ const styles = (theme) => ({
     background: "#333C42",
     minHeight: "94px",
     position: "relative",
+    "@media (max-width:1600px)": {
+      minHeight: "84px",
+    },
     "@media(max-width:1440px)": {
-      minHeight: "78px",
+      minHeight: "74px",
+    },
+    "@media(max-width:1024px)": {
+      minHeight: "64px",
+    },
+    "@media (max-width:767px)": {
+      minHeight: "54px",
     },
     "& p": {
       margin: "0",
@@ -39,11 +46,20 @@ const styles = (theme) => ({
       fontWeight: "600",
       color: "#FFFFFF",
       "@media(max-width:1600px)": {
-        fontSize: "36px",
+        minHeight: "84px",
+        fontSize: "34px",
       },
       "@media(max-width:1440px)": {
-        minHeight: "78px",
+        minHeight: "74px",
         fontSize: "30px",
+      },
+      "@media(max-width:1024px)": {
+        minHeight: "64px",
+        fontSize: "26px",
+      },
+      "@media (max-width:767px)": {
+        minHeight: "54px",
+        fontSize: "22px",
       },
     },
     "& svg": {
@@ -63,6 +79,18 @@ const styles = (theme) => ({
     background: "#DDB363",
     cursor: "pointer",
     borderRadius: "3px",
+    "@media(max-width:1600px)": {
+      top: "24px",
+    },
+    "@media(max-width:1440px)": {
+      top: "28px",
+    },
+    "@media(max-width:1024px)": {
+      top: "21px",
+    },
+    "@media (max-width:767px)": {
+      top: "16px",
+    },
   },
 
   sections: {
@@ -80,13 +108,19 @@ const styles = (theme) => ({
     "@media (max-width:767px)": {
       width: "100%",
     },
+    "@media(max-width:767px)": {
+      padding: "1em 1.5em",
+    },
+    "@media(max-width:425px)": {
+      padding: "1em 0.7em",
+    },
   },
 
   info_text: {
     fontSize: "30px",
     color: "#20639B",
     fontWeight: "600",
-    padding: "20px 0px 16px",
+    padding: "20px 0 16px",
     "@media(max-width:1600px)": {
       fontSize: "28px",
     },
@@ -95,6 +129,8 @@ const styles = (theme) => ({
     },
     "@media (max-width:767px)": {
       textAlign: "center",
+      fontSize: "22px",
+      padding: "0 0 16px",
     },
   },
   info_text_lineNote_one: {
@@ -104,9 +140,15 @@ const styles = (theme) => ({
     "& small": {
       color: "#FF0000",
       fontSize: "18px",
+      "@media(max-width:767px)": {
+        fontSize: "14px",
+      },
     },
     "@media(max-width:1600px)": {
       fontSize: "18px",
+    },
+    "@media(max-width:767px)": {
+      fontSize: "14px",
     },
   },
   info_text_lineNote_two: {
@@ -116,6 +158,9 @@ const styles = (theme) => ({
     margin: "0",
     "@media(max-width:1600px)": {
       fontSize: "18px",
+    },
+    "@media(max-width:767px)": {
+      fontSize: "14px",
     },
   },
   validation_error: {
@@ -136,14 +181,15 @@ const styles = (theme) => ({
       paddingBottom: "3em",
     },
     "@media (max-width:767px)": {
-      padding: "7% 5%",
       marginBottom: "30px",
+      paddingBottom: "1em !important",
+    },
+    "@media(max-width:425px)": {
+      padding: "0 1em",
+      paddingBottom: "1em !important",
     },
     "& .MuiFormControl-root": {
-      marginTop: "3em",
-      "@media(max-width:1440px)": {
-        marginTop: "2em",
-      },
+      marginTop: "2em",
       "& ::placeholder": {
         textTransform: "capitalize",
         fontSize: "20px",
@@ -151,6 +197,9 @@ const styles = (theme) => ({
         opacity: "1",
         "@media(max-width:1440px)": {
           fontSize: "18px",
+        },
+        "@media (max-width:767px)": {
+          fontSize: "16px",
         },
       },
       "& .MuiInputLabel-root": {
@@ -163,6 +212,9 @@ const styles = (theme) => ({
       "& input": {
         padding: "12px",
         font: "unset",
+        // "@media (max-width:767px)": {
+        //   padding: "8px",
+        // },
       },
       "& fieldset": {
         "& legend": {
@@ -196,11 +248,18 @@ const styles = (theme) => ({
         width: "1em",
         height: "1em",
       },
+      "@media(max-width:425px)": {
+        width: "0.9em",
+        height: "0.9em",
+      },
     },
   },
   button_box: {
     margin: "20px 0px",
     textAlign: "center",
+    "@media(max-width:425px)": {
+      margin: "6px 0px",
+    },
   },
   button_signin: {
     borderRadius: "45px !important",
@@ -217,11 +276,15 @@ const styles = (theme) => ({
     fontSize: "18px !important",
     width: "80%",
     "@media(max-width:1600px)": {
-      padding: "10px !important",
+      padding: "8px !important",
     },
     "@media(max-width:1440px)": {
       padding: "6px !important",
       fontSize: "16px !important",
+    },
+    "@media (max-width:767px)": {
+      padding: "3px !important",
+      fontSize: "14px !important",
     },
   },
   forgot_password: {
@@ -233,7 +296,7 @@ const styles = (theme) => ({
     cursor: "pointer",
     textDecoration: "underline",
     "@media(max-width:1600px)": {
-      fontSize: "18px",
+      fontSize: "16px",
     },
   },
   // section rigth css
@@ -244,6 +307,10 @@ const styles = (theme) => ({
     height: "fit-content",
     "@media (max-width:767px)": {
       width: "100%",
+      padding: "1em 1.5em",
+    },
+    "@media(max-width:425px)": {
+      padding: "1em 0.7em",
     },
   },
 });

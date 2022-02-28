@@ -50,11 +50,14 @@ export const Footer = () => {
               <Link to="/privacypolicy" className="to_CMS">
                 <li>Privacy Policy</li>
               </Link>
+              <Link to="/rrpolicy" className="to_CMS">
+                <li>Refund Policy</li>
+              </Link>
+              <Link to="/" className="to_CMS">
+                <li> Product Listing Policy</li>
+              </Link>
               <Link to="/contactus" className="to_CMS">
                 <li>Contact Us</li>
-              </Link>
-              <Link to="/blogsmain" className="to_CMS">
-                <li>Blogs</li>
               </Link>
             </ul>
           </div>
@@ -73,8 +76,8 @@ export const Footer = () => {
               <Link to="/career" className="to_CMS">
                 <li>Career</li>
               </Link>
-              <Link to="/rrpolicy" className="to_CMS">
-                <li>Return & Refund policy</li>
+              <Link to="/" className="to_CMS">
+                <li>How Its Works</li>
               </Link>
             </ul>
           </div>
@@ -96,6 +99,9 @@ export const Footer = () => {
               </Link>
               <Link to="/Faqs" className="to_CMS">
                 <li>FAQs</li>
+              </Link>
+              <Link to="/blogsmain" className="to_CMS">
+                <li>Blogs</li>
               </Link>
             </ul>
           </div>
