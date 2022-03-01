@@ -3,14 +3,14 @@ const styles = (theme) => ({
     width: "calc(100% - 105px)",
     marginLeft: "105px",
     display: "flex",
-    "@media (max-width:767px)": {
+    "@media (max-width:768px)": {
       width: "100%",
       marginLeft: "0",
       flexDirection: "column",
     },
   },
   pdp_page_brands_images_container: {
-    "@media (max-width:767px)": {
+    "@media (max-width:768px)": {
       display: "flex",
       width: "100%",
       justifyContent: "center",
@@ -30,7 +30,7 @@ const styles = (theme) => ({
     display: "flex",
     position: "relative",
     alignItems: "end",
-    "@media (max-width:767px)": {
+    "@media (max-width:768px)": {
       width: "unset",
       height: "unset",
       margin: "15px 0",
@@ -67,11 +67,14 @@ const styles = (theme) => ({
     "& span": {
       fontWeight: "600",
     },
-    "@media (max-width:1600px) and (min-width:1439px)": {
+    "@media (max-width:1600px)": {
       fontSize: "16px",
     },
-    "@media (max-width:1439px) and (min-width:320px)": {
+    "@media (max-width:1439px)": {
       fontSize: "14px",
+    },
+    "@media (max-width:767px)": {
+      padding: "10px 12px",
     },
   },
   pdp_top_header_products: {
@@ -82,7 +85,7 @@ const styles = (theme) => ({
     "@media (max-width:1439px)": {
       flexDirection: "column",
     },
-    "@media (max-width:767px)": {
+    "@media (max-width:768px)": {
       width: "100%",
     },
   },
@@ -92,12 +95,6 @@ const styles = (theme) => ({
     padding: "11px 0px",
     color: "#333C42",
     letterSpacing: "0.78px",
-    "@media (max-width:1599px) and (min-width:1439px)": {
-      fontSize: "24px",
-    },
-    "@media (max-width:1439px) and (min-width:320px)": {
-      fontSize: "20px",
-    },
   },
   pdp_top_header_rating_reviews_container: {
     display: "flex",
@@ -131,12 +128,6 @@ const styles = (theme) => ({
     "@media (max-width:1439px)": {
       width: "100%",
     },
-    "@media (max-width:1599px) and (min-width:1439px)": {
-      fontSize: "16px",
-    },
-    "@media (max-width:1439px) and (min-width:320px)": {
-      fontSize: "14px",
-    },
   },
   toggle_switch_sub_one: {
     alignItems: "center",
@@ -154,7 +145,7 @@ const styles = (theme) => ({
     fontWeight: "600",
     color: "#5C6369",
     letterSpacing: "0.54px",
-    "@media (max-width:1439px) and (min-width:320px)": {
+    "@media (max-width:1439px)": {
       fontSize: "14px",
     },
   },

@@ -46,6 +46,7 @@
       letter-spacing: 1px !important;
       text-transform: capitalize !important;
       gap: 8px;
+      padding: 12px !important;
     }
     .my_cart_bottom_button_pending_invoice {
       text-decoration: none !important;
@@ -61,21 +62,38 @@
       letter-spacing: 1px;
       text-transform: capitalize !important;
       gap: 8px;
+      padding: 12px !important;
     }
   }
 }
-@media (max-width: "1600px") and (min-width: "1200px") {
+@media (max-width: "1600px") {
   .my_cart_main .my_cart_image_block p {
     font-size: 42px !important;
   }
+  .my_cart_main .my_cart_footer .my_cart_bottom_button_shopping {
+    padding: 8px !important;
+  }
+  .my_cart_main .my_cart_footer .my_cart_bottom_button_pending_invoice {
+    padding: 8px !important;
+  }
 }
-@media (max-width: "1199px") and (min-width: "768px") {
+@media (max-width: "1440px") {
+  .my_cart_main .my_cart_footer .my_cart_bottom_button_shopping {
+    padding: 6px !important;
+    font-size: 16px !important;
+  }
+  .my_cart_main .my_cart_footer .my_cart_bottom_button_pending_invoice {
+    padding: 6px !important;
+    font-size: 16px !important;
+  }
+}
+@media (max-width: "1200px") {
   .my_cart_main .my_cart_image_block p {
     font-size: 30px !important;
   }
   .my_cart_main .my_cart_breadcrumbs .MuiTypography-root {
     font-size: 18px;
-}
+  }
 }
 @media (max-width: "767px") {
   .my_cart_main .my_cart_image_block p {
@@ -83,20 +101,24 @@
   }
   .my_cart_main .my_cart_breadcrumbs .MuiTypography-root {
     font-size: 15px;
-}
+  }
   .my_cart_main .my_cart_footer {
     flex-direction: column !important;
   }
   .my_cart_main .my_cart_footer .my_cart_bottom_button_shopping,
   .my_cart_main .my_cart_footer .my_cart_bottom_button_pending_invoice {
-    margin: 20px 20px 0px 0px;
-    width: 100% !important;
+    padding: 8px !important;
+    width: 80% !important;
     span {
       font-size: 16px !important;
     }
   }
   .my_cart_main .my_cart_footer {
-    margin-bottom: 16px;
+    display: flex;
+    gap: 23px;
+    width: 100%;
+    align-items: center;
+    margin: 16px 0;
   }
 }
 @media (max-width: "475px") {
@@ -105,5 +127,5 @@
   }
   .my_cart_main .my_cart_breadcrumbs .MuiTypography-root {
     font-size: 12px;
-}
+  }
 }

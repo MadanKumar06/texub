@@ -1,6 +1,7 @@
 import React from "react";
 import "./styles.scss";
-import { Stack, Link, Breadcrumbs, Typography, Button } from "@mui/material";
+import { Link } from "react-router-dom";
+import { Stack, Breadcrumbs, Typography, Button } from "@mui/material";
 import pending_invoice_image from "../../Assets/PendingInvoice/Group 1051.png";
 import PendingInvoiceTable from "./PendingInvoiceTable";
 import { TextField, Autocomplete, FormControlLabel } from "@mui/material";
@@ -162,7 +163,9 @@ const PendingInvoice = () => {
               </p>
             </div>
           </div>
-          <Button className="proceed_btn">Proceed To Checkout</Button>
+          <Link to="/checkout">
+            <Button className="proceed_btn">Proceed To Checkout</Button>
+          </Link>
         </div>
       </div>
     </div>

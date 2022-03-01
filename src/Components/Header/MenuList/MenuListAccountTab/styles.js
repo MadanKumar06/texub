@@ -6,7 +6,7 @@ const styles = (theme) => ({
       color: "#002d56",
       fontSize: "16px",
       fontWeight: "600",
-      textTransform:"capitalize"
+      textTransform: "capitalize",
     },
     "& .Mui-selected": {
       background: "linear-gradient(180deg, #20639B 0%, #002D56 100%)",
@@ -18,6 +18,13 @@ const styles = (theme) => ({
     color: "#5C6369",
   },
   sub_tab_conatainer: {
+    "& .MuiListItemButton-root": {
+      display: "flex",
+      gap: "10px",
+      "& img": {
+        width: "27px",
+      },
+    },
     "& .MuiListItem-button": {
       gap: "12px",
       background: "#ebdec6",
@@ -70,6 +77,11 @@ const styles = (theme) => ({
       background: "#fbecd0",
       borderBottom: "1px solid #ffffff",
       paddingLeft: "50px",
+      display: "flex",
+      gap: "20px",
+      "& img": {
+        width: "24px",
+      },
     },
     "& .MuiTypography-root": {
       fontWeight: "400",

@@ -7,7 +7,6 @@ import MyAccountPopUP from "./MyAccountPopup";
 
 import whishlist_image from '../../Assets/User/Icon.png'
 import MiniCartDrawer from "../../Pages/MiniCart";
-import { FormControlLabel } from '@mui/material/FormControlLabel';
 
 export const Userdetails = () => {
   return (

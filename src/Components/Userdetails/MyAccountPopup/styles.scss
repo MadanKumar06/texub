@@ -8,6 +8,9 @@
     gap: 15px;
     font-size: 20px;
     padding: "0";
+    &:hover {
+      background-color: unset;
+    }
     .badge_user {
       span {
         color: #5c6369;
