@@ -14,6 +14,7 @@ import UpdateProduct from '../../Components/SellerDashboard/Inventory/UpdateProd
 import Orders from '../../Components/SellerDashboard/Orders'
 import UserMgmt from '../../Components/SellerDashboard/UserMgmt/Index'
 import Sidebar from '../../Components/Sidebar'
+import Sellerservices from '../../Components/SellerDashboard/Sellerservices'
 
 function SellerDashboard() {
 
@@ -107,6 +108,8 @@ function SellerDashboard() {
                 {currenttab === 'orders' && <Orders />}
 
                 {currenttab === 'usermgmt' && <UserMgmt setuserform={setuserform} userform={userform} />}
+
+                {currenttab === 'sellerservices' && <Sellerservices />}
 
             </div>
         </div>

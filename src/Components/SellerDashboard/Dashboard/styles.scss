@@ -75,3 +75,10 @@
     width: calc(100% / 2 - 20px);
   }
 }
+
+@media (max-width: 480px) {
+  .dashboard .dashboard__status .dashboard__status1 {
+    min-width: unset;
+    border: 0;
+  }
+}
