@@ -129,3 +129,13 @@
     }
   }
 }
+
+@media (max-width: 480px) {
+  .orders .orders__buttons {
+    flex-direction: column;
+  }
+
+  .orders__table .MuiTable-root .MuiTableBody-root .MuiTableCell-root {
+    align-items: center;
+  }
+}

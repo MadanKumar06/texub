@@ -6,7 +6,7 @@ import {
   Button,
   Box,
 } from "@mui/material";
-// import ReCAPTCHA from "react-google-recaptcha";
+import ReCAPTCHA from "react-google-recaptcha";
 import Autocomplete from "@mui/material/Autocomplete";
 import { Link, useParams } from "react-router-dom";
 import { withStyles } from "@mui/styles";
@@ -202,9 +202,9 @@ const BuyerRegistration = ({ classes }) => {
             labelPlacement="end"
             className={checkbox_label}
           />
-          {/* <ReCAPTCHA
+          <ReCAPTCHA
             sitekey="6Le0EGYeAAAAAL8aEIUjrumsRsPKU56I_of9fQli"
-          /> */}
+          />
         </div>
 
         <Box className={button_box} fullWidth>
