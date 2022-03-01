@@ -367,6 +367,12 @@
     .footer_content .footer_sub_title {
       font-size: 14px;
     }
+    .footer_content {
+      .MuiSvgIcon-root {
+        width: 0.8em !important;
+        height: 0.8em !important;
+      }
+    }
     .footer_content .footer_value {
       span {
         font-size: 14px;

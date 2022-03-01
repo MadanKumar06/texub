@@ -3,6 +3,7 @@ import { RadioGroup, FormControlLabel } from "@mui/material";
 
 import { withStyles } from "@mui/styles";
 import styles from "./styles";
+import SignIn from "../../Pages/SignIn/SiginPopUp/SectionLeft";
 import BuyerRegistration from "./BuyerRegistration";
 import SellerRegistration from "./SellerRegistration";
 import buyer_img from "../../Assets/CommonImage/RegisterPopup/user_select_buyer.png";
@@ -23,7 +24,10 @@ const Registration = ({ classes }) => {
     clicking_user_para,
   } = classes;
   const [clicked, setClicked] = useState("buyer");
-
+  const [isSignin, setIsSignin] = useState(false);
+  const SigninPopUP = (event) => {
+    setIsSignin(event);
+  };
   const handleChange = (event) => {
     setClicked(event);
   };
@@ -42,7 +46,8 @@ const Registration = ({ classes }) => {
         <div className={left_area}>
           <h6>Create An Account</h6>
           <p className={user_signin}>
-            <p>Already a user?</p> <span>Sign In</span>
+            <p>Already a user?</p>
+            <span onClick={() => setIsSignin(true)}>Sign In</span>
           </p>
         </div>
         <div className={right_area}>
@@ -95,7 +100,7 @@ const Registration = ({ classes }) => {
           </RadioGroup>
         </div>
       </div>
-
+      {isSignin && <SignIn openPopUp={SigninPopUP} />}
       {clicked === "buyer" ? <BuyerRegistration /> : <SellerRegistration />}
     </div>
   );

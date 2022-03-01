@@ -8,7 +8,7 @@ const styles = (theme) => ({
     opacity: "1",
     lineHeight: "31px",
     marginBottom: "4%",
-    "@media (max-width:1190px) and (min-width:768px)": {
+    "@media (max-width:1190px)": {
       fontSize: "18px !important",
     },
   },
@@ -20,7 +20,7 @@ const styles = (theme) => ({
     textAlign: "justify",
     marginBottom: "30px",
     opacity: "1",
-    "@media (max-width:1190px) and (min-width:768px)": {
+    "@media (max-width:1190px)": {
       fontSize: "14px",
     },
   },
@@ -28,7 +28,10 @@ const styles = (theme) => ({
     textDecoration: "none",
     color: "#ffffff",
     width: "100%",
-    marginTop: "3em",
+    "@media (max-width:580px)": {
+      display: "flex",
+      justifyContent: "center",
+    },
   },
   btn_user: {
     fontSize: "18px !important",
@@ -49,9 +52,18 @@ const styles = (theme) => ({
     "@media (max-width:767px)": {
       flexWrap: "wrap !important",
     },
+    "@media (max-width:425px)": {
+      justifyContent: "center",
+    },
+    "@media (max-width:1200px)": {
+      gap: "1em",
+      justifyContent: "space-around",
+    },
     "& .MuiFormControlLabel-root": {
-      // width: "130px",
-      // height: "179px",
+      "@media (max-width:1440px)": {
+        width: "130px",
+        height: "179px",
+      },
 
       "& .MuiTypography-root": {
         position: "relative",
@@ -68,6 +80,16 @@ const styles = (theme) => ({
           fontWeight: "600",
           letterSpacing: "0.72px",
           margin: "0",
+          "@media (max-width:1600px)": {
+            bottom: "24px",
+            left: "63px",
+            fontSize: "20px",
+          },
+          "@media (max-width:1440px)": {
+            bottom: "18px",
+            left: "40px",
+            fontSize: "20px",
+          },
         },
       },
     },
