@@ -131,3 +131,21 @@
     }
   }
 }
+
+@media (max-width: 480px) {
+  .sellerdashboard .sellerdashboard__maintab .sellerdashboard__search {
+    .sellerdashboard__searchinput {
+      margin: 1em;
+      height: 48px;
+    }
+    span {
+      display: none;
+    }
+
+    .sellerdashboard__notiIcon {
+      margin: 0;
+      width: 36px;
+      height: 36px;
+    }
+  }
+}

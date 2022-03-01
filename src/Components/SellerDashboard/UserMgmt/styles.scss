@@ -132,3 +132,35 @@
     }
   }
 }
+
+@media (max-width: 926px) {
+  .usermgmt__table {
+    .MuiTable-root {
+      .MuiTableHead-root {
+        display: none;
+      }
+
+      .MuiTableBody-root {
+        .MuiTableCell-root {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .usermgmt__table .MuiTable-root .MuiTableBody-root .MuiTableCell-root {
+    align-items: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .usermgmt__action {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

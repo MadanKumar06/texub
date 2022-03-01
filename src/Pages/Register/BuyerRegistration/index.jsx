@@ -9,7 +9,6 @@ import {
   InputLabel,
   Box,
 } from "@mui/material";
-
 import ReCAPTCHA from "react-google-recaptcha";
 import { isEmailValid, isPasswordValid } from "../../../utilities";
 import Autocomplete from "@mui/material/Autocomplete";
