@@ -161,6 +161,7 @@ const WantToBuy = () => {
               <DesktopDatePicker
                 label="Closing Date"
                 inputFormat="MM/dd/yyyy"
+                minDate={new Date()}
                 value={dateChange}
                 onChange={handleChange}
                 renderInput={(params) => (

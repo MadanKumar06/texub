@@ -12,12 +12,12 @@ const MiniCartDrawer = () => {
     left: false,
   });
   const [matches, setMatches] = useState(
-    window.matchMedia("(min-width: 767px)").matches
+    window.matchMedia("(min-width: 580px)").matches
   );
 
   useEffect(() => {
     window
-      .matchMedia("(min-width: 767px)")
+      .matchMedia("(min-width: 580px)")
       .addEventListener("change", (e) => setMatches(e.matches));
   }, []);
 
@@ -62,7 +62,7 @@ const MiniCartDrawer = () => {
           className="miniCart_drawer"
           PaperProps={
             matches
-              ? { style: { height: "87.5vh", width: "600px" } }
+              ? { style: { height: "87.5vh", width: "min-content" } }
               : { style: { height: "87.5vh", width: "100%" } }
           }
         >

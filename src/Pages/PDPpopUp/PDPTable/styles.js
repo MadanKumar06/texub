@@ -5,7 +5,7 @@ const styles = () => ({
   pdp_middle_wapper: {
     width: "85%",
     margin: "auto",
-    "@media (max-width:1110px) and (min-width:320px)": {
+    "@media (max-width:1110px)": {
       width: "100%",
     },
   },
@@ -34,12 +34,6 @@ const styles = () => ({
     padding: "10px 0px",
     fontSize: "20px",
     fontWeight: "600",
-    "@media (max-width:1599px) and (min-width:1439px)": {
-      fontSize: "16px",
-    },
-    "@media (max-width:1439px) and (min-width:320px)": {
-      fontSize: "14px",
-    },
   },
   seller_price_list_view: {
     listStyleType: "none",
@@ -71,12 +65,6 @@ const styles = () => ({
     fontFamily: "'source sans pro'",
     fontWeight: "600",
     color: "#5C6369",
-    "@media (max-width:1599px) and (min-width:1439px)": {
-      fontSize: "16px",
-    },
-    "@media (max-width:1439px) and (min-width:320px)": {
-      fontSize: "14px",
-    },
   },
   price_list: {
     position: "inherit",
@@ -118,12 +106,10 @@ const styles = () => ({
     "& .MuiSvgIcon-root": {
       width: "1.2em",
       height: "1.2em",
-    },
-    "@media (max-width:1599px) and (min-width:1439px)": {
-      fontSize: "16px",
-    },
-    "@media (max-width:1439px) and (min-width:320px)": {
-      fontSize: "14px",
+      "@media (max-width:1440px)": {
+        width: "1em",
+        height: "1em",
+      },
     },
     "@media (max-width:767px)": {
       maxWidth: "100%",
@@ -139,11 +125,11 @@ const styles = () => ({
     letterSpacing: "0px",
     color: "#333C42 !important",
     textTransform: "capitalize",
-    "@media (max-width:1599px) and (min-width:1439px)": {
-      fontSize: "16px",
+    "@media (max-width:1200px)": {
+      fontSize: "18px !important",
     },
-    "@media (max-width:1439px) and (min-width:320px)": {
-      fontSize: "14px",
+    "@media (max-width:926px)": {
+      fontSize: "16px !important",
     },
   },
   price_list_seller: {
@@ -154,20 +140,22 @@ const styles = () => ({
     letterSpacing: "0.59px",
     color: "#5C6369",
     fontSize: "20px",
+
     "& span a": {
       color: "#002D56",
       fontSize: "21px",
-    },
-    "@media (max-width:1599px) and (min-width:1439px)": {
-      fontSize: "16px",
-    },
-    "@media (max-width:1439px) and (min-width:320px)": {
-      fontSize: "14px",
+      "@media (max-width:1200px)": {
+        fontSize: "19px",
+      },
+      "@media (max-width:926px)": {
+        fontSize: "17px !important",
+      },
     },
     "@media (max-width:767px)": {
       maxWidth: "100%",
       wordBreak: "break-all",
       width: "100%",
+      fontSize: "17px",
       "&::before": {
         content: '"Seller ID : "',
         fontWeight: "800",
@@ -182,16 +170,12 @@ const styles = () => ({
     letterSpacing: "0.59px",
     color: "#5C6369",
     fontSize: "20px",
-    "@media (max-width:1599px) and (min-width:1439px)": {
-      fontSize: "16px",
-    },
-    "@media (max-width:1439px) and (min-width:320px)": {
-      fontSize: "14px",
-    },
+
     "@media (max-width:767px)": {
       maxWidth: "100%",
       wordBreak: "break-all",
       width: "100%",
+      fontSize: "17px",
       "&::before": {
         content: '"ETA : "',
         fontWeight: "800",
@@ -206,16 +190,11 @@ const styles = () => ({
     letterSpacing: "0.59px",
     color: "#5C6369",
     fontSize: "20px",
-    "@media (max-width:1599px) and (min-width:1439px)": {
-      fontSize: "16px",
-    },
-    "@media (max-width:1439px) and (min-width:320px)": {
-      fontSize: "14px",
-    },
     "@media (max-width:767px)": {
       maxWidth: "100%",
       wordBreak: "break-all",
       width: "100%",
+      fontSize: "17px",
       "&::before": {
         content: '"Price/Unit : "',
         fontWeight: "800",
@@ -230,15 +209,10 @@ const styles = () => ({
     letterSpacing: "0.59px",
     color: "#5C6369",
     fontSize: "20px",
-    "@media (max-width:1599px) and (min-width:1439px)": {
-      fontSize: "16px",
-    },
-    "@media (max-width:1439px) and (min-width:320px)": {
-      fontSize: "14px",
-    },
     "@media (max-width:767px)": {
       maxWidth: "100%",
       wordBreak: "break-all",
+      fontSize: "17px",
       width: "100%",
       "&::before": {
         content: '"InStock : "',
@@ -249,21 +223,27 @@ const styles = () => ({
   seller_stock_value: {
     fontSize: "24px",
     letterSpacing: "0.72px",
-    "@media (max-width:1599px) and (min-width:1439px)": {
-      fontSize: "18px",
+    "@media (max-width:1440px)": {
+      fontSize: "22px",
     },
-    "@media (max-width:1439px) and (min-width:320px)": {
-      fontSize: "16px",
+    "@media (max-width:1200px)": {
+      fontSize: "20px",
+    },
+    "@media (max-width:926px)": {
+      fontSize: "18px",
     },
   },
   seller_eta_value: {
     fontSize: "24px",
     letterSpacing: "0.72px",
-    "@media (max-width:1599px) and (min-width:1439px)": {
-      fontSize: "18px",
+    "@media (max-width:1440px)": {
+      fontSize: "22px",
     },
-    "@media (max-width:1439px) and (min-width:320px)": {
-      fontSize: "16px",
+    "@media (max-width:1200px)": {
+      fontSize: "20px",
+    },
+    "@media (max-width:926px)": {
+      fontSize: "18px",
     },
   },
   price_list_hub: {
@@ -274,17 +254,18 @@ const styles = () => ({
     letterSpacing: "0.59px",
     color: "#5C6369",
     fontSize: "20px",
-    "@media (max-width:1599px) and (min-width:1439px)": {
-      fontSize: "16px",
+    "@media (max-width:1200px)": {
+      fontSize: "18px",
     },
-    "@media (max-width:1439px) and (min-width:320px)": {
-      fontSize: "14px",
+    "@media (max-width:926px)": {
+      fontSize: "18px",
     },
     "@media (max-width:767px)": {
       maxWidth: "100%",
       alignItems: "center",
       display: "flex",
       width: "100%",
+      fontSize: "17px",
       wordBreak: "break-all",
       "&::before": {
         content: '"Hub : "',
@@ -299,16 +280,11 @@ const styles = () => ({
     width: "15%",
     padding: "5px",
     fontSize: "20px",
-    "@media (max-width:1599px) and (min-width:1439px)": {
-      fontSize: "16px",
-    },
-    "@media (max-width:1439px) and (min-width:320px)": {
-      fontSize: "14px",
-    },
     "@media (max-width:767px)": {
       alignItems: "center",
       display: "flex",
       width: "100%",
+      fontSize: "17px",
       wordBreak: "break-all",
       "&::before": {
         content: '"MOQ : "',
@@ -323,6 +299,15 @@ const styles = () => ({
     textAlign: "center",
     cursor: "pointer",
     padding: "14px",
+    "@media (max-width:1600px)": {
+      padding: "8px",
+    },
+    "@media (max-width:1200px)": {
+      padding: "6px",
+    },
+    "@media (max-width:926px)": {
+      padding: "3px",
+    },
     "@media (max-width:767px)": {
       border: "none",
       textAlign: "left",
@@ -340,6 +325,18 @@ const styles = () => ({
     "& .MuiSvgIcon-root ": {
       width: "2em",
       height: "2em",
+      "@media (max-width:1600px)": {
+        width: "1.6em",
+        height: "1.6em",
+      },
+      "@media (max-width:1200px)": {
+        width: "1.4em",
+        height: "1.4em",
+      },
+      "@media (max-width:926px)": {
+        width: "1em",
+        height: "1em",
+      },
     },
     "@media (max-width:767px)": {
       maxWidth: "35%",
@@ -375,14 +372,12 @@ const styles = () => ({
     textAlign: "center",
     fontSize: "24px",
     fontWeight: "600",
-    "@media (max-width:1599px) and (min-width:1439px)": {
-      fontSize: "18px",
-    },
-    "@media (max-width:1439px) and (min-width:320px)": {
-      fontSize: "16px",
-    },
-    "@media (max-width:1200px) and (min-width:320px)": {
+    "@media (max-width:1200px)": {
       width: "38px",
+      fontSize: "22px",
+    },
+    "@media (max-width:926px)": {
+      fontSize: "19px",
     },
   },
   radio_btn_group: {
@@ -414,21 +409,27 @@ const styles = () => ({
     fontWeight: "600",
     letterSpacing: "0.6px",
     marginRight: "5px",
-    "@media (max-width:1599px) and (min-width:1439px)": {
+    "@media (max-width:1440px)": {
+      fontSize: "18px",
+    },
+    "@media (max-width:1200px)": {
       fontSize: "16px",
     },
-    "@media (max-width:1439px) and (min-width:320px)": {
-      fontSize: "14px",
+    "@media (max-width:926px)": {
+      fontSize: "14px ",
     },
   },
   price_value: {
     fontSize: "30px",
     letterSpacing: "0.9px",
-    "@media (max-width:1599px) and (min-width:1439px)": {
-      fontSize: "16px",
+    "@media (max-width:1440px)": {
+      fontSize: "28px",
     },
-    "@media (max-width:1439px) and (min-width:320px)": {
-      fontSize: "14px",
+    "@media (max-width:1200px)": {
+      fontSize: "26px",
+    },
+    "@media (max-width:926px)": {
+      fontSize: "24px",
     },
   },
 });

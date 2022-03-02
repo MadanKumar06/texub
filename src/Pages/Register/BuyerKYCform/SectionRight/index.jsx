@@ -25,7 +25,7 @@ const BuyerKYCformSectionRight = ({ classes, handleClose }) => {
   return (
     <div className={section_right_container}>
       <div className={section_left_bank_details}>
-        <p className={info_text_lineNote_one}>3. Office Address</p>
+        <p className={info_text_lineNote_one}>Office Address</p>
         <div className={input_fields}>
           <TextField
             id="outlined-textarea"
@@ -127,7 +127,7 @@ const BuyerKYCformSectionRight = ({ classes, handleClose }) => {
         </div>
       </div>
       <div className={section_left_bank_details}>
-        <p className={info_text_lineNote_two}>4. Categories</p>
+        <p className={info_text_lineNote_two}>Categories</p>
         <div className={input_fields}>
           <Autocomplete
             value={value}
