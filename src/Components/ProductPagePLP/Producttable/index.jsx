@@ -34,7 +34,7 @@ const Productstable = ({ classes }) => {
   const columns = [
     {
       name: "BRANDNAME",
-      label: "BRANDNAME",
+      label: "BRAND NAME",
       options: {
         filter: false,
         customBodyRender: (value) => {
@@ -48,11 +48,11 @@ const Productstable = ({ classes }) => {
     },
     {
       name: "MODELNAME",
-      label: "MODELNAME",
+      label: "MODEL NAME",
     },
     {
       name: "PARTNUMBER",
-      label: "PARTNUMBER",
+      label: "PART NUMBER",
     },
     {
       name: "DESCRIPTION",

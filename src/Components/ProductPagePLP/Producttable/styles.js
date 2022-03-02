@@ -35,6 +35,7 @@ const styles = () => ({
         color: "#FFFFFF",
         fontWeight: "600",
         textAlign: "center",
+        whiteSpace: "nowrap",
         fontSize: "18px",
       },
     },
