@@ -10,7 +10,8 @@ import {
   InputAdornment,
   Box,
 } from "@mui/material";
-import { Tune, Search } from "@mui/icons-material";
+import {Search } from "@mui/icons-material";
+import ProductFilterDrawer from './ProductFilter'
 
 import Icon2 from "../../../Assets/Productlist/Deals_Icon.png";
 import Icon3 from "../../../Assets/Productlist/Downloader.png";
@@ -26,11 +27,12 @@ const Productlists = () => {
   return (
     <div className="productlist">
       <div className="sidebar-toggle">
-        <Tune className="product_menu_filter" />
+        <ProductFilterDrawer/>
       </div>
       <div className="productlist__deal">
         <div className="productlist__deal__image">
           <img src={Icon2} alt="" />
+         
         </div>
         <span className="productlist__todaytext">Today's Deal</span>
       </div>

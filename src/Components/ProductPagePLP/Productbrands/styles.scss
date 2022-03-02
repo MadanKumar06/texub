@@ -4,6 +4,14 @@
   gap: 40px;
   box-shadow: 0px 3px 6px #00000029;
   padding: 22px 4%;
+
+  .slick-slider {
+    .slick-list {
+      overflow: hidden;
+      overflow-x: clip !important;
+      overflow-y: inherit;
+    }
+  }
   .arrow {
     color: #ffffff;
     background: #002d56;

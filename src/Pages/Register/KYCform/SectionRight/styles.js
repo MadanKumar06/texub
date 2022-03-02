@@ -3,6 +3,9 @@ const styles = (theme) => ({
     "& .MuiOutlinedInput-root": {
       padding: "5px !important",
     },
+    "& .MuiAutocomplete-input": {
+      padding: "11.5px 4px 11.5px 6px !important",
+    },
   },
   section_right_container: {
     width: "100%",
@@ -29,16 +32,18 @@ const styles = (theme) => ({
   },
   info_text_lineNote_one: {
     color: "#333333",
-    fontSize: "22px",
+    fontSize: "36px",
     marginBottom: "37px",
     fontWeight: "600",
+    letterSpacing: "1.08px",
     "@media (max-width:767px)": {
       marginBottom: "0px",
     },
   },
   info_text_lineNote_two: {
     color: "#333333",
-    fontSize: "22px",
+    letterSpacing: "1.08px",
+    fontSize: "36px",
     margin: "25px 0px 20px",
     fontWeight: "600",
   },
@@ -51,17 +56,19 @@ const styles = (theme) => ({
     "& .MuiFormControl-root": {
       marginBottom: "20px",
       "& ::placeholder": {
-        textTransform: "capitalize",
-        fontSize: "12px",
+        fontSize: "20px",
+        color: "#CDD5DD",
+        opacity: "1",
       },
       "& .MuiInputLabel-root": {
+        fontSize: "18px",
         fontWeight: "600",
-        fontSize: "1.2rem",
+        color: "#3E3E3E",
       },
     },
     "& .MuiOutlinedInput-root": {
       "& input": {
-        padding: "12px",
+        // padding: "12px",
         font: "unset",
       },
       "& fieldset": {
@@ -75,7 +82,7 @@ const styles = (theme) => ({
     },
   },
   button_guest: {
-    borderRadius: "25px !important",
+    borderRadius: "30px !important",
     background: "linear-gradient(180deg, #20639B 0%, #002D56 100%)",
     boxShadow: "0px 3px 6px #00000029 !important",
     borderWidth: "0px",
@@ -85,6 +92,8 @@ const styles = (theme) => ({
     textTransform: "capitalize !important",
     marginTop: "20px !important",
     width: "100% !important",
+    padding: "16px !important",
+    fontSize:"18px !important"
   },
   button_box: {
     paddingBottom: "30px",

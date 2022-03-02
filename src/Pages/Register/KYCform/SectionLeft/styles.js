@@ -22,8 +22,8 @@ const styles = (theme) => ({
     position: "relative",
     "& p": {
       color: "#333C42",
-      fontSize: "34px",
-      fontWeight: "600",
+      fontSize: "50px",
+      fontWeight: "700",
       paddingLeft: "22px",
       margin: "0",
       height: "74px",
@@ -39,6 +39,9 @@ const styles = (theme) => ({
     color: "#ffffff",
     background: "#002D56",
     borderRadius: "3px",
+    cursor: "pointer",
+    width: "1.5em !important",
+    height: "1.5em !important",
   },
 
   sections: {
@@ -54,9 +57,17 @@ const styles = (theme) => ({
       padding: "5px !important",
     },
   },
+  validation_error: {
+    whiteSpace: "unset !important",
+    marginLeft: "4px !important",
+    fontSize: "14px !important",
+    color: "#FF0000 !important",
+    width: "100%",
+    minHeight: "20px",
+  },
   input_div: {
-    display: "flex",
-    gap: "20px",
+    // display: "flex",
+    // gap: "20px",
   },
   // section left css
   section_left: {
@@ -81,43 +92,47 @@ const styles = (theme) => ({
   },
   info_text_lineNote_one: {
     color: "#333333",
-    fontSize: "22px",
+    fontSize: "36px",
     marginBottom: "37px",
     marginTop: "0",
     fontWeight: "600",
+    letterSpacing: "1.08px",
   },
   info_text_lineNote_two: {
     color: "#333333",
-    fontSize: "22px",
+    fontSize: "36px",
     marginBottom: "37px",
     fontWeight: "600",
+    letterSpacing: "1.08px",
   },
   input_fields: {
     width: "100%",
-    padding: "10% 0%",
+    padding: "2% 0%",
     borderRadius: "4px",
     "@media (max-width:767px)": {
-      padding: "7% 5%",
+      padding: "2% 5%",
     },
     "& .MuiFormControl-root": {
-      marginBottom: "20px",
+      marginTop: "1.5em",
       "& ::placeholder": {
-        textTransform: "capitalize",
-        fontSize: "12px",
+        fontSize: "20px",
+        color: "#CDD5DD",
+        opacity: "1",
       },
       "& .MuiInputLabel-root": {
+        fontSize: "18px",
         fontWeight: "600",
-        fontSize: "1.2rem",
+        color: "#3E3E3E",
       },
     },
     "& .MuiOutlinedInput-root": {
       "& input": {
-        padding: "12px",
+        // padding: "12px",
         font: "unset",
       },
       "& fieldset": {
         "& legend": {
-          fontSize: "0.9em",
+          fontSize: "1em",
         },
       },
     },
@@ -131,12 +146,18 @@ const styles = (theme) => ({
   checkbox_label: {
     "& .MuiTypography-root": {
       color: "#5C6369",
+      fontWeight: "600",
+      fontSize: "20px",
+    },
+    "& .MuiSvgIcon-root ": {
+      width: "1.4em",
+      height: "1.4em",
     },
   },
   media_upload: {
     display: "flex",
     flexDirection: "row",
-    marginTop: "5px",
+    marginTop: "16px",
     marginBottom: "20px",
     "@media (max-width:767px)": {
       flexDirection: "column",
@@ -146,6 +167,7 @@ const styles = (theme) => ({
     width: "50%",
     "& small": {
       color: "#272727",
+      fontSize: "14px",
     },
     "@media (max-width:767px)": {
       width: "100%",
@@ -158,6 +180,9 @@ const styles = (theme) => ({
     "& p": {
       margin: "0",
       fontSize: "16px",
+      color: "#002D56",
+      fontWeight: "600",
+      letterSpacing: "0.54px",
     },
     "& span": {
       color: "red",
@@ -223,6 +248,7 @@ const styles = (theme) => ({
     textTransform: "capitalize !important",
     transition: "transform .2s !important",
     width: "calc(100%/3)",
+    fontSize: "18px !important",
     "@media (max-width:1040px) and (min-width: 768px)": {
       width: "100%",
     },
@@ -242,6 +268,7 @@ const styles = (theme) => ({
     textTransform: "capitalize !important",
     transition: "transform .2s !important",
     width: "calc(100%/3)",
+    fontSize: "18px !important",
     "@media (max-width:1040px) and (min-width: 768px)": {
       width: "100%",
     },
