@@ -1,11 +1,21 @@
 import React from "react";
-import { TextField, Box, Button } from "@mui/material";
+import { Box, Button } from "@mui/material";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import MenuItem from "@mui/material/MenuItem";
+import ListItemText from "@mui/material/ListItemText";
+import Select from "@mui/material/Select";
+import Checkbox from "@mui/material/Checkbox";
 import { Link, useParams } from "react-router-dom";
 import { withStyles } from "@mui/styles";
 import styles from "./styles";
-import Autocomplete from "@mui/material/Autocomplete";
 import OfficeAddressDetails from "./OfficeAddressDetails";
-const BuyerKYCformSectionRight = ({ classes, handleClose }) => {
+
+const BuyerKYCformSectionRight = ({
+  classes,
+  handleClose,
+  SetFormValues,
+  FormValues,
+}) => {
   let { type } = useParams();
   let {
     section_right_container,
@@ -16,40 +26,67 @@ const BuyerKYCformSectionRight = ({ classes, handleClose }) => {
     button_guest,
   } = classes;
 
-  const options = ["Option 1", "Option 2"];
-  const [value, setValue] = React.useState();
-  const [inputValue, setInputValue] = React.useState("");
+  const ITEM_HEIGHT = 48;
+  const ITEM_PADDING_TOP = 8;
+  const MenuProps = {
+    PaperProps: {
+      style: {
+        maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+        width: 250,
+      },
+    },
+  };
+
+  const names = [
+    "Oliver Hansen",
+    "Van Henry",
+    "April Tucker",
+    "Ralph Hubbard",
+    "Omar Alexander",
+    "Carlos Abbott",
+    "Miriam Wagner",
+    "Bradley Wilkerson",
+    "Virginia Andrews",
+    "Kelly Snyder",
+  ];
+  const [personName, setPersonName] = React.useState([]);
+
+  const handleChange = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setPersonName(
+      // On autofill we get a stringified value.
+      typeof value === "string" ? value.split(",") : value
+    );
+  };
+
   return (
     <div className={section_right_container}>
-      <OfficeAddressDetails />
+      <OfficeAddressDetails
+        SetFormValues={SetFormValues}
+        FormValues={FormValues}
+      />
       <div>
         <p className={info_text_lineNote_two}>Categories</p>
         <div className={input_fields}>
-          <Autocomplete
-            value={value}
-            onChange={(event, newValue) => {
-              setValue(newValue);
-            }}
-            className={auto_complete_input}
-            inputValue={inputValue}
-            onInputChange={(event, newInputValue) => {
-              setInputValue(newInputValue);
-            }}
+          <Select
+            labelId="demo-multiple-checkbox-label"
+            id="demo-multiple-checkbox"
             multiple
-            id="controllable-states-demo"
-            options={options}
-            fullWidth
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                label="Categories"
-                placeholder="Select Categories"
-                InputLabelProps={{
-                  shrink: true,
-                }}
-              />
-            )}
-          />
+            value={personName}
+            onChange={handleChange}
+            input={<OutlinedInput label="Tag" />}
+            renderValue={(selected) => selected.join(", ")}
+            MenuProps={MenuProps}
+          >
+            {names.map((name) => (
+              <MenuItem key={name} value={name}>
+                <Checkbox checked={personName.indexOf(name) > -1} />
+                <ListItemText primary={name} />
+              </MenuItem>
+            ))}
+          </Select>
         </div>
       </div>
       <Box className={button_box} fullWidth>

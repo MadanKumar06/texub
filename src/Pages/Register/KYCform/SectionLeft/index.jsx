@@ -46,6 +46,7 @@ const BuyerKYCformSectionLeft = ({ classes, KYCformPop }) => {
     setDocumentButton(event);
   };
 
+  console.log(kycFormData);
   return (
     <Modal
       aria-labelledby="transition-modal-title"
@@ -100,13 +101,22 @@ const BuyerKYCformSectionLeft = ({ classes, KYCformPop }) => {
             </Box>
             <div className={input_fields}>
               {documentButton === "trade_license" && (
-                <TradeLicenseButton SetFormValues={setKycFormData} />
+                <TradeLicenseButton
+                  SetFormValues={setKycFormData}
+                  FormValues={kycFormData}
+                />
               )}
               {documentButton === "tax_certificate" && (
-                <TaxCertificateButton SetFormValues={setKycFormData} />
+                <TaxCertificateButton
+                  SetFormValues={setKycFormData}
+                  FormValues={kycFormData}
+                />
               )}
               {documentButton === "national_id" && (
-                <NationalIdButton SetFormValues={setKycFormData} />
+                <NationalIdButton
+                  SetFormValues={setKycFormData}
+                  FormValues={kycFormData}
+                />
               )}
 
               <FormControlLabel
@@ -116,11 +126,18 @@ const BuyerKYCformSectionLeft = ({ classes, KYCformPop }) => {
                 labelPlacement="end"
                 className={checkbox_label}
               />
-              <BankDetails />
+              <BankDetails
+                SetFormValues={setKycFormData}
+                FormValues={kycFormData}
+              />
             </div>
           </div>
           <div className={section_right}>
-            <SectionRight handleClose={handleClose} />
+            <SectionRight
+              handleClose={handleClose}
+              SetFormValues={setKycFormData}
+              FormValues={kycFormData}
+            />
           </div>
         </div>
       </div>

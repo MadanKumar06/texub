@@ -6,7 +6,7 @@ import { withStyles } from "@mui/styles";
 import { Clear } from "@mui/icons-material";
 import uploadImage from "../../../../../Assets/CommonImage/KYC Form/Icon.png";
 
-const NationalIdButton = ({ classes }) => {
+const NationalIdButton = ({ classes, SetFormValues, FormValues }) => {
   let {
     media_upload,
     sub_media_upload_container,
@@ -18,21 +18,18 @@ const NationalIdButton = ({ classes }) => {
   } = classes;
 
   const options = ["Option 1", "Option 2"];
-  const [value, setValue] = React.useState();
-  const [inputValue, setInputValue] = React.useState("");
-  return (
+    return (
     <>
       <Autocomplete
-        value={value}
-        onChange={(event, newValue) => {
-          setValue(newValue);
-        }}
+        value={FormValues?.nationality}
         className={auto_complete_input}
-        inputValue={inputValue}
         onInputChange={(event, newInputValue) => {
-          setInputValue(newInputValue);
+          SetFormValues((prevState) => ({
+            ...prevState,
+            nationality: newInputValue,
+          }));
         }}
-        id="controllable-states-demo"
+        id="Nationality"
         options={options}
         fullWidth
         renderInput={(params) => (

@@ -56,6 +56,9 @@ const styles = (theme) => ({
     "& .MuiOutlinedInput-root": {
       padding: "5px !important",
     },
+    "& .MuiAutocomplete-input": {
+      padding: "11.5px 4px 11.5px 6px !important",
+    },
   },
   validation_error: {
     whiteSpace: "unset !important",
@@ -156,7 +159,7 @@ const styles = (theme) => ({
   },
   media_upload: {
     display: "flex",
-    flexDirection: "row",
+    flexDirection: "column",
     marginTop: "16px",
     marginBottom: "20px",
     "@media (max-width:767px)": {
@@ -190,6 +193,7 @@ const styles = (theme) => ({
   },
   sub_media_upload_label: {
     margin: "auto",
+    cursor: "pointer",
     "& input": {
       display: "none",
     },
@@ -198,15 +202,17 @@ const styles = (theme) => ({
     },
   },
   input_image_name: {
-    width: "50%",
-    position: "relative",
-    background: "#E8E8E8",
-    borderRadius: "4px",
+    width: "fit-content",
     display: "flex",
-    flexDirection: "row",
+    position: "relative",
     flexWrap: "wrap",
-    justifyContent: "center",
+    background: "#E8E8E8",
     alignItems: "center",
+    borderRadius: "4px",
+    flexDirection: "row",
+    justifyContent: "center",
+    padding: "13px",
+    marginTop: "24px",
     "& p": {
       margin: "0",
     },

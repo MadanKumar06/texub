@@ -8,7 +8,7 @@ import { LocalizationProvider, DesktopDatePicker } from "@mui/lab";
 import uploadImage from "../../../../../Assets/CommonImage/KYC Form/Icon.png";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 
-const TradeLicenseButton = ({ classes, SetFormValues }) => {
+const TradeLicenseButton = ({ classes, SetFormValues,FormValues }) => {
   let {
     input_div,
     asterisk,
@@ -26,7 +26,6 @@ const TradeLicenseButton = ({ classes, SetFormValues }) => {
   const handleChange = (newValue) => {
     setDateChange(newValue);
     setInputValidation("");
-    debugger;
     handleSwitchCase(["expiration_date"], newValue);
   };
 
@@ -92,6 +91,7 @@ const TradeLicenseButton = ({ classes, SetFormValues }) => {
         label="Business Name"
         placeholder="Business Name"
         fullWidth
+        value={FormValues?.business_name}
         InputLabelProps={{
           shrink: true,
           required: true,
@@ -113,6 +113,7 @@ const TradeLicenseButton = ({ classes, SetFormValues }) => {
           placeholder="Trade LIC Number"
           fullWidth
           name="trade_lic_number"
+          value={FormValues?.trade_lic_number}
           InputLabelProps={{
             shrink: true,
             required: true,

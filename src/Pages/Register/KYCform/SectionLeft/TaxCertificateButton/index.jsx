@@ -1,14 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "../styles";
 
-import { TextField } from "@mui/material";
+import { TextField, InputLabel } from "@mui/material";
 import { withStyles } from "@mui/styles";
 import { Clear } from "@mui/icons-material";
 import { LocalizationProvider, DesktopDatePicker } from "@mui/lab";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import uploadImage from "../../../../../Assets/CommonImage/KYC Form/Icon.png";
 
-const TaxCertificateButton = ({ classes }) => {
+const TaxCertificateButton = ({ classes, SetFormValues, FormValues }) => {
   let {
     input_div,
     asterisk,
@@ -18,18 +18,61 @@ const TaxCertificateButton = ({ classes }) => {
     sub_media_upload_label,
     input_image_name,
     input_image_name_clear_btn,
+    validation_error,
   } = classes;
 
-  const [dateChange, setDateChange] = React.useState(new Date());
-
+  //Date onchange event
+  const [dateChange, setDateChange] = useState(null);
   const handleChange = (newValue) => {
     setDateChange(newValue);
+    setInputValidation("");
+    handleSwitchCase(["expiration_date"], newValue);
   };
+
+  // input state and onchange events
+  const handleFormvalue = (event) => {
+    SetFormValues((prevState) => ({
+      ...prevState,
+      [event.target.name]: event.target.value,
+    }));
+    setInputValidation("");
+    handleSwitchCase([event.target.name], event.target.value);
+  };
+
+  // input validation on onchange
+  const [inputValidation, setInputValidation] = useState({
+    tax_number: "",
+    expiration_date: "",
+  });
+  const handleSwitchCase = (fieldName, value) => {
+    switch (fieldName[0]) {
+      case "tax_number":
+        if (!value) {
+          setInputValidation((prevState) => ({
+            ...prevState,
+            tax_number: "Please enter the tax number.",
+          }));
+        }
+        break;
+
+      case "expiration_date":
+        if (value.toString() === "Invalid Date") {
+          setInputValidation((prevState) => ({
+            ...prevState,
+            expiration_date: "Please select valid date.",
+          }));
+        }
+        break;
+      default:
+        break;
+    }
+  };
+
   return (
     <>
       <div className={input_div}>
         <TextField
-          id="outlined-textarea"
+          id="tax_number"
           label="Tax Number"
           type="number"
           fullWidth
@@ -41,8 +84,14 @@ const TaxCertificateButton = ({ classes }) => {
               asterisk: asterisk,
             },
           }}
+          name="tax_number"
+          value={FormValues?.tax_number}
+          onChange={handleFormvalue}
           variant="outlined"
         />
+        <InputLabel className={validation_error}>
+          {inputValidation?.tax_number}
+        </InputLabel>
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <DesktopDatePicker
             label="Expiration Date"
@@ -55,10 +104,11 @@ const TaxCertificateButton = ({ classes }) => {
               <TextField
                 {...params}
                 fullWidth
+                id="expiration_date"
                 placeholder="MM/YY"
                 InputLabelProps={{
                   shrink: true,
-                  required: true,
+                  required: false,
                   classes: {
                     asterisk: asterisk,
                   },
@@ -67,6 +117,9 @@ const TaxCertificateButton = ({ classes }) => {
             )}
           />
         </LocalizationProvider>
+        <InputLabel className={validation_error}>
+          {inputValidation?.expiration_date}
+        </InputLabel>
       </div>
       <div className={media_upload}>
         <div className={sub_media_upload_container}>

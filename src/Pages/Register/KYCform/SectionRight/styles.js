@@ -16,6 +16,14 @@ const styles = (theme) => ({
       marginTop: "0px",
     },
   },
+  validation_error: {
+    whiteSpace: "unset !important",
+    marginLeft: "4px !important",
+    fontSize: "14px !important",
+    color: "#FF0000 !important",
+    width: "100%",
+    minHeight: "20px",
+  },
   input_div: {
     display: "flex",
     gap: "20px",
