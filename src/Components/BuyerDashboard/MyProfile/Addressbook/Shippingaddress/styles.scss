@@ -1,0 +1,94 @@
+.address_main{
+    display: flex;
+    flex-direction: column;
+    .heading_section{
+        display: flex;
+        gap: 50px;
+    .Account_heading{
+        background-color: #F8F0E0;
+        width: 28%;
+        color: #002D56;
+        font-size: 18px;
+        letter-spacing: 0.54px;
+        font-weight: 600;
+        margin: 0;
+        height: 50px;
+        
+    }
+    .MuiCheckbox-root{
+        color: #DDB363;
+    }
+    .MuiTypography-root{
+        color: #4E4E4E;
+        font-size: 18px;
+        opacity: 1;
+    }
+ }
+    }
+    .company_information{
+      form{
+          display: flex;
+          gap: 20px;
+          flex-direction: column;
+        .inputfield_section{
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            .inputfield{
+                display: flex; 
+                flex-direction: column;
+                p{
+                    color: #272727;
+                    font-size: 18px;
+                    letter-spacing: 0.54px;
+                    margin: 10px;
+                }
+               
+                .MuiOutlinedInput-input{
+                    width: 35rem;
+                }
+                
+            }
+        }
+            .inputfield_btn{
+                display: flex;
+                justify-content: space-around;
+                .MuiOutlinedInput-input{
+                    width: 35rem;
+                }
+                
+            .accountinfo_btn_section{
+                display: flex;
+                gap: 20px;
+                padding-top: 60px;
+            .account_info_cancel {
+                color: #002D56;
+                font-size: 18px;
+                background-color: white;
+                padding: 10px 75px;
+                border-radius: 25px;
+                border: 1px solid #002D56;
+                box-shadow: 0px 3px 6px #00000029;
+                font-weight: 600;
+                letter-spacing: 0.54px;
+                text-shadow: 0px 3px 6px #00000029;
+                cursor: pointer;
+            }
+            .account_info_save {
+                box-shadow: 0px 3px 6px #00000029;
+                border-radius: 25px;
+                opacity: 1;
+                padding: 10px 59px;
+                background: linear-gradient(180deg,#20639B 0%, #002D56 100%);
+                color: #FFFFFF;
+                font-size: 18px;
+                border: none;
+                font-weight: 600;
+                text-shadow: 0px 3px 6px #00000029;
+                cursor: pointer;
+            }
+         }
+        }
+        
+     } 
+    }

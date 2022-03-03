@@ -1,0 +1,80 @@
+.users_main{
+    .users_table_section{
+        .users_table{
+           display: flex;
+           flex-direction: column;
+        //    justify-content: space-around;
+           gap: 10px;
+           tr{
+               display: flex;
+               justify-content: space-between;
+               border-bottom: 1px solid #E6E6E6;
+               padding: 30px;
+               text-align: center;
+               th{
+                   color: #959595;
+                   font-size: 22px;
+                   margin-top: 10px;
+                   text-align: center;
+               }
+               .users_username{
+                   color: #4E4E4E;
+                   font-size: 22px;
+               }
+               .users_status{
+                   border-radius: 25px;
+                   color: #DDB363;
+                   font-size: 22px;
+                   background-color: #F8F0E0;
+                   padding: 3px 25px;
+               }
+               .users_id{
+                   font-size: 22px;
+                   font-weight: 600;
+                   color: #333C42;
+               }
+               .users_date,
+               .users_hub{
+                font-size: 22px;
+                color: #333C42;
+               }
+               .users_auction,
+               .users_forbidden,
+               .users_permission{
+                     color: #002D56;
+                     font-size: 22px;
+                     font-weight: 600;
+                     text-decoration: underline;
+                     opacity: 1;
+               }
+               .user_auctions{
+                   display: flex;
+                   flex-direction: column;
+               }
+           }
+           hr{
+               border: 1px solid #E6E6E6;
+               width: 100%;
+           }
+        }
+    }
+    .user_sub-account{
+        display: flex;
+        justify-content: flex-end;
+        padding-top: 50px;
+        button{
+            box-shadow: 0px 3px 6px #00000029;
+           border-radius: 25px;
+           opacity: 1;
+           padding: 10px 25px;
+           background: linear-gradient( 180deg, #20639B 0%, #002D56 100%);
+           color: #FFFFFF;
+          font-size: 18px;
+          border: none;
+         font-weight: 600;
+          text-shadow: 0px 3px 6px #00000029;
+          letter-spacing: 0.54px;
+          cursor: pointer;
+        }
+    }
+}
