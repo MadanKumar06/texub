@@ -28,11 +28,15 @@
   }
 
   .updateproduct__topform {
-    display: flex;
+    display: grid;
+  }
+
+  .topform__details {
+    display: grid;
+    grid-template-columns: 95% 5%;
     gap: 10px;
     margin-bottom: 3em;
     flex-direction: column;
-    width: 95%;
     position: relative;
   }
   .updateproduct__bgform {
@@ -47,14 +51,16 @@
     }
   }
 
-  .updateproduct__addmore {
-    position: absolute;
-    top: 1.5em;
-    right: -4.5em;
+  .updateproduct__addmore,
+  .updateproduct__delete {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     p {
       display: flex;
       flex-direction: column;
       justify-content: center;
+      align-items: center;
       align-items: center;
       cursor: pointer;
       gap: 8px;
@@ -95,6 +101,10 @@
         color: #20639b;
         font-size: 16px;
         text-decoration: underline;
+
+        svg {
+          color: red;
+        }
       }
     }
   }
