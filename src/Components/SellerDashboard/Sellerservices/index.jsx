@@ -6,6 +6,8 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import ReviewCard from './ReviewCard'
 import RMATable from './RMATable'
+import AuctionTable from './AuctionTable'
+import ResultTable from './ResultTable'
 
 function Index() {
 
@@ -76,8 +78,6 @@ function Index() {
         selectorder(0)
     }, [])
 
-    console.log(type)
-
   return (
       <div className='sellerservices'>
         <div className='sellerservices__buttons'>
@@ -124,6 +124,8 @@ function Index() {
         </div>}
 
         {type === 1 && <RMATable />}
+        {type === 2 && <AuctionTable />}
+        {type === 3 && <ResultTable />}
     </div>
   )
 }

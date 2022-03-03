@@ -1,77 +1,32 @@
 import React, { useState } from 'react'
 import './styles.scss'
-import { Select, MenuItem } from '@mui/material'
 import { Link } from 'react-router-dom'
+import Details from './Details'
 
 function Index({type}) {
 
-    const [test, settest] = useState()
+    const [count, setcount] = useState([0])
+    const [test, settest] = useState(1)
 
-    const handleChange = () => {
-        console.log(test)
+    const countincrease = () => {
+        settest(test + 1)
+        count.push(test)
     }
+
   return (
     <div className='updateproduct'>
         <h1>{type}</h1>
         
         <div className='updateproduct__topform'>
-            <div className='updateproduct__bgform'>
-                <p>
-                    <h5>Hub</h5>
-                    <Select
-                            labelId="demo-simple-select-label"
-                            id="demo-simple-select"
-                            value={test}
-                            label="Age"
-                            onChange={handleChange}
-                        >
-                            <MenuItem value={10}>Ten</MenuItem>
-                            <MenuItem value={20}>Twenty</MenuItem>
-                            <MenuItem value={30}>Thirty</MenuItem>
-                        </Select>
-                </p>
-                <p>
-                    <h5>Price USD</h5>
-                    <input placeholder="$" />
-                </p>
-                <p>
-                    <h5>Price Base Currency</h5>
-                    <input placeholder="INR" />
-                </p>
-                <p>
-                    <h5>In Stock</h5>
-                    <input placeholder="250" />
-                </p>
-                <p>
-                    <h5>ETA</h5>
-                    <input placeholder="90 Days" />
-                </p>
-                <p>
-                    <h5>MOQ</h5>
-                    <input placeholder="MOQ" />
-                </p>
-            </div>
-            <div className='updateproduct__addmore'>
-                <p>
-                    <span className='addmore__plus'></span>
-                    <span className='addmore__text'>Add More</span>
-                </p>
-            </div>
-        </div>
-
-        <div className='updateproduct__gst'>
-            <p>
-                <h5>CGST%</h5>
-                <input placeholder='18' />
-            </p>
-            <p>
-                <h5>IGST%</h5>
-                <input placeholder='18' />
-            </p>
-            <p>
-                <h5>SGST%</h5>
-                <input placeholder='18' />
-            </p>
+            {count.map((data, i) => <><Details key={i} /> 
+                 <div className='updateproduct__addmore'>
+                    <p onClick={countincrease}>
+                        <span className='addmore__plus'></span>
+                        <span className='addmore__text' >Add More</span>
+                    </p>
+                </div>
+                </>
+            )}
         </div>
 
         <div className='updateproduct__specifications'>
