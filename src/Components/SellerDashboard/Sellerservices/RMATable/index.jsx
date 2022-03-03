@@ -1,8 +1,16 @@
 import React from 'react'
 import './styles.scss'
 import MUIDataTable from "mui-datatables";
+import { useNavigate } from "react-router-dom";
 
 function Index() {
+
+    const history = useNavigate()
+    
+    const back = () => {
+        history('/')
+    }
+
     const options = {
         filter: false,
         filterType: "dropdown",
@@ -21,6 +29,7 @@ function Index() {
               orderdate: '11/09/21',
               returnreqdate: '23/09/21',
               pdetails: 'HP Business Laptop',
+              warranty: '25 Days Left',
               buyercode: 'BU201200',
               returnqty: '56',
               action: ""
@@ -30,6 +39,7 @@ function Index() {
             orderdate: '09/05/21',
             returnreqdate: '25/05/21',
             pdetails: 'Apple Macbook Pro',
+            warranty: '8 Days Left',
             buyercode: 'BU201201',
             returnqty: '60',
             action: ""
@@ -52,7 +62,8 @@ function Index() {
             customBodyRender: (value) => {
                 return (
                     <div className='rmatable__pdetails'>
-                        {value}
+                        <span className='label'>Warranty: 22 Days Left</span>
+                        <span className='value'>{value}</span>
                     </div>
                 )}
             }
@@ -94,8 +105,11 @@ function Index() {
             data={table}
             columns={columns}
             options={options}
-            className="orders__table"
         />
+
+        {/* <div className='rmatable__submit'>
+            <span className='rmatable__back' onClick={back}>Back</span>
+        </div> */}
     </div>
   )
 }
