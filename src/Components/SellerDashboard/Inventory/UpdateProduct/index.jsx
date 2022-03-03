@@ -13,20 +13,29 @@ function Index({type}) {
         count.push(test)
     }
 
+    const deleterow = (i) => {
+        console.log(i)
+        // let dummy = [...count]
+        // dummy.splice(i, 1)
+        // setcount(dummy)
+        setcount(count.filter(item => item !== i))
+    }
+
+    console.log(count)
+
+
   return (
     <div className='updateproduct'>
         <h1>{type}</h1>
         
         <div className='updateproduct__topform'>
-            {count.map((data, i) => <><Details key={i} /> 
-                 <div className='updateproduct__addmore'>
-                    <p onClick={countincrease}>
-                        <span className='addmore__plus'></span>
-                        <span className='addmore__text' >Add More</span>
-                    </p>
-                </div>
-                </>
-            )}
+            
+        {count.map((data, i) => 
+        <div className='topform__details'>
+            <Details key={i} countincrease={countincrease} i={i} deleterow={deleterow} /> 
+            </div>
+        )}
+            
         </div>
 
         <div className='updateproduct__specifications'>

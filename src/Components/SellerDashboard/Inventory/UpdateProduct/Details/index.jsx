@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import './styles.scss'
 import { Select, MenuItem } from '@mui/material'
+import DeleteIcon from '@mui/icons-material/Delete';
 
-function Index({ checkselection }) {
+function Index({ checkselection, countincrease, i, deleterow }) {
 
     const [test, settest] = useState()
 
@@ -50,6 +51,24 @@ function Index({ checkselection }) {
                 <input placeholder="MOQ" />
             </p>
         </div>
+
+        {i === 0 ? <div className='updateproduct__addmore'>
+            <p onClick={countincrease}>
+                <span className='addmore__plus'></span>
+                <span className='addmore__text' >Add More</span>
+            </p>
+        </div>
+        :
+            <div className='updateproduct__delete'>
+                <p onClick={() => deleterow(i)}>
+                    {/* <span className='addmore__plus'></span> */}
+                    <span className='addmore__text' >
+                        <DeleteIcon />
+                    </span>
+                </p>
+            </div>
+        }
+
         {checkmumbai === 10 && <div className='updateproduct__gst'>
             <p>
                 <h5>CGST%</h5>
