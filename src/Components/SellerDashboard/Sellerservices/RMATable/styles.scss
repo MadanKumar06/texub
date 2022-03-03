@@ -28,6 +28,26 @@
     font-weight: 500;
   }
 
+  .rmatable__pdetails {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    align-items: flex-end;
+    .label {
+      background-color: #f8f0e0;
+      font-size: 14px;
+      color: #002d56;
+      padding: 4px;
+      width: max-content;
+      margin-right: 0;
+      border-radius: 4px;
+    }
+    .value {
+      color: #333c42;
+      font-weight: 500;
+    }
+  }
+
   .rmatable__buyercode,
   .rmatable__returnqty {
     padding: 0.3em 1.2em;
@@ -54,6 +74,32 @@
         right: 0;
         border-right: 1px solid black;
         height: 32px;
+      }
+    }
+  }
+
+  .rmatable__submit {
+    margin-top: 2em;
+
+    .rmatable__back {
+      position: relative;
+      font-size: 20px;
+      color: #002d56;
+      text-decoration: none;
+      margin-left: 1em;
+      cursor: pointer;
+
+      &::before {
+        content: "";
+        border-left: 2px solid black;
+        border-top: 2px solid black;
+        transform: rotate(315deg);
+        width: 0.5em;
+        height: 0.5em;
+        position: absolute;
+        left: -1em;
+        top: 6px;
+        color: #002d56;
       }
     }
   }

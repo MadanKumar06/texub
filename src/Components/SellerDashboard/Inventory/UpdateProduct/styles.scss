@@ -30,8 +30,10 @@
   .updateproduct__topform {
     display: flex;
     gap: 10px;
-    align-items: center;
     margin-bottom: 3em;
+    flex-direction: column;
+    width: 95%;
+    position: relative;
   }
   .updateproduct__bgform {
     display: flex;
@@ -46,6 +48,9 @@
   }
 
   .updateproduct__addmore {
+    position: absolute;
+    top: 1.5em;
+    right: -4.5em;
     p {
       display: flex;
       flex-direction: column;

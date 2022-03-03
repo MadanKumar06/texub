@@ -7,10 +7,11 @@
 
 .aboutus {
   .aboutus__topbanner,
-  .aboutus__mission {
+   .aboutus__mission {
     max-width: 1920px;
     width:fit-content;
     position: relative;
+    
 
     img {
       width: 100%;
@@ -38,6 +39,7 @@
       }
     }
   }
+
   .aboutus__mission__content {
     .aboutus__mission__left {
       position: absolute;

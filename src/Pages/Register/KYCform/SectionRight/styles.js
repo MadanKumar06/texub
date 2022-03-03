@@ -4,16 +4,22 @@ const styles = (theme) => ({
       padding: "5px !important",
     },
     "& .MuiAutocomplete-input": {
-      padding: "11.5px 4px 11.5px 6px !important",
+      padding: "7.5px 4px 7.5px 6px !important",
     },
   },
   section_right_container: {
     width: "100%",
     height: "max-content",
     marginTop: "40px",
+    padding: "2% 5%",
     "@media (max-width:767px)": {
       width: "100%",
       marginTop: "0px",
+    },
+  },
+  category_select_option: {
+    "& .MuiSelect-select ": {
+      padding: "12.5px 14px",
     },
   },
   validation_error: {
@@ -22,7 +28,9 @@ const styles = (theme) => ({
     fontSize: "14px !important",
     color: "#FF0000 !important",
     width: "100%",
-    minHeight: "20px",
+  },
+  textFlied_separate: {
+    width: "100%",
   },
   input_div: {
     display: "flex",
@@ -41,9 +49,15 @@ const styles = (theme) => ({
   info_text_lineNote_one: {
     color: "#333333",
     fontSize: "36px",
-    marginBottom: "37px",
+    margin: "0",
     fontWeight: "600",
     letterSpacing: "1.08px",
+    "@media (max-width:1600px)": {
+      fontSize: "30px",
+    },
+    "@media (max-width:1440px)": {
+      fontSize: "26px",
+    },
     "@media (max-width:767px)": {
       marginBottom: "0px",
     },
@@ -52,21 +66,30 @@ const styles = (theme) => ({
     color: "#333333",
     letterSpacing: "1.08px",
     fontSize: "36px",
-    margin: "25px 0px 20px",
+    margin: "1.5em 0 1em 0",
     fontWeight: "600",
+    "@media (max-width:1600px)": {
+      fontSize: "30px",
+    },
+    "@media (max-width:1440px)": {
+      fontSize: "26px",
+    },
   },
   input_fields: {
     width: "100%",
     borderRadius: "4px",
-    "@media (max-width:767px)": {
-      padding: "7% 5% 0%",
-    },
     "& .MuiFormControl-root": {
-      marginBottom: "20px",
+      marginTop: "2.5em",
       "& ::placeholder": {
         fontSize: "20px",
         color: "#CDD5DD",
         opacity: "1",
+        "@media(max-width:1440px)": {
+          fontSize: "18px",
+        },
+        "@media (max-width:767px)": {
+          fontSize: "16px",
+        },
       },
       "& .MuiInputLabel-root": {
         fontSize: "18px",
@@ -76,12 +99,12 @@ const styles = (theme) => ({
     },
     "& .MuiOutlinedInput-root": {
       "& input": {
-        // padding: "12px",
+        padding: "12.5px 14px",
         font: "unset",
       },
       "& fieldset": {
         "& legend": {
-          fontSize: "0.9em",
+          fontSize: "1em",
         },
       },
     },
@@ -98,10 +121,13 @@ const styles = (theme) => ({
     transition: "transform .2s !important",
     fontWeight: "600 !important",
     textTransform: "capitalize !important",
-    marginTop: "20px !important",
+    marginTop: "60px !important",
     width: "100% !important",
-    padding: "16px !important",
-    fontSize:"18px !important"
+    padding: "14px !important",
+    fontSize: "18px !important",
+    "@media (max-width:1600px)": {
+      padding: "8px !important",
+    },
   },
   button_box: {
     paddingBottom: "30px",

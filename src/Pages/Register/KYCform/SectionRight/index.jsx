@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Button } from "@mui/material";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import MenuItem from "@mui/material/MenuItem";
@@ -9,6 +9,8 @@ import { Link, useParams } from "react-router-dom";
 import { withStyles } from "@mui/styles";
 import styles from "./styles";
 import OfficeAddressDetails from "./OfficeAddressDetails";
+import Validation from "../ValidationForKycForm";
+import ValidationForKycForm from "../ValidationForKycForm";
 
 const BuyerKYCformSectionRight = ({
   classes,
@@ -20,7 +22,7 @@ const BuyerKYCformSectionRight = ({
   let {
     section_right_container,
     info_text_lineNote_two,
-    auto_complete_input,
+    category_select_option,
     input_fields,
     button_box,
     button_guest,
@@ -36,7 +38,10 @@ const BuyerKYCformSectionRight = ({
       },
     },
   };
-
+  
+  const handleCallValidation = (event) => {
+    debugger;
+  };
   const names = [
     "Oliver Hansen",
     "Van Henry",
@@ -74,10 +79,14 @@ const BuyerKYCformSectionRight = ({
             labelId="demo-multiple-checkbox-label"
             id="demo-multiple-checkbox"
             multiple
+            fullWidth
+            className={category_select_option}
             value={personName}
             onChange={handleChange}
-            input={<OutlinedInput label="Tag" />}
-            renderValue={(selected) => selected.join(", ")}
+            input={<OutlinedInput />}
+            renderValue={(selected) => {
+              return selected.join(", ");
+            }}
             MenuProps={MenuProps}
           >
             {names.map((name) => (
@@ -89,13 +98,10 @@ const BuyerKYCformSectionRight = ({
           </Select>
         </div>
       </div>
-      <Box className={button_box} fullWidth>
-        <Link to={`/thankyou/${type}`}>
-          <Button className={button_guest} onClick={() => handleClose()}>
-            <span>Submit</span>
-          </Button>
-        </Link>
-      </Box>
+      <ValidationForKycForm
+        values={FormValues}
+        handleCallValidation={handleCallValidation}
+      />
     </div>
   );
 };

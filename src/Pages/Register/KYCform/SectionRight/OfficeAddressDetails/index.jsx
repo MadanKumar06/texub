@@ -12,6 +12,7 @@ const OfficeAddressDetails = ({ classes, SetFormValues, FormValues }) => {
     input_div,
     input_fields,
     validation_error,
+    textFlied_separate,
   } = classes;
 
   // input state and onchange events
@@ -57,14 +58,14 @@ const OfficeAddressDetails = ({ classes, SetFormValues, FormValues }) => {
           }));
         }
         break;
-        case "country":
-          if (!value) {
-            setInputValidation((prevState) => ({
-              ...prevState,
-              country: "Please select the country.",
-            }));
-          }
-          break;
+      case "country":
+        if (!value) {
+          setInputValidation((prevState) => ({
+            ...prevState,
+            country: "Please select the country.",
+          }));
+        }
+        break;
       default:
         break;
     }
@@ -109,46 +110,50 @@ const OfficeAddressDetails = ({ classes, SetFormValues, FormValues }) => {
           value={FormValues?.address_line_two}
         />
         <div className={input_div}>
-          <TextField
-            id="pin_zip_code"
-            label="PIN/ZIP Code"
-            placeholder="PIN/ZIP Code"
-            fullWidth
-            InputLabelProps={{
-              shrink: true,
-              required: true,
-              classes: {
-                asterisk: asterisk,
-              },
-            }}
-            name="pin_zip_code"
-            onChange={handleFormvalue}
-            value={FormValues?.pin_zip_code}
-            variant="outlined"
-          />
-          <InputLabel className={validation_error}>
-            {inputValidation?.pin_zip_code}
-          </InputLabel>
-          <TextField
-            id="city"
-            label="City"
-            placeholder="City"
-            fullWidth
-            InputLabelProps={{
-              shrink: true,
-              required: true,
-              classes: {
-                asterisk: asterisk,
-              },
-            }}
-            name="city"
-            onChange={handleFormvalue}
-            value={FormValues?.city}
-            variant="outlined"
-          />
-          <InputLabel className={validation_error}>
-            {inputValidation?.city}
-          </InputLabel>
+          <div className={textFlied_separate}>
+            <TextField
+              id="pin_zip_code"
+              label="PIN/ZIP Code"
+              placeholder="PIN/ZIP Code"
+              fullWidth
+              InputLabelProps={{
+                shrink: true,
+                required: true,
+                classes: {
+                  asterisk: asterisk,
+                },
+              }}
+              name="pin_zip_code"
+              onChange={handleFormvalue}
+              value={FormValues?.pin_zip_code}
+              variant="outlined"
+            />
+            <InputLabel className={validation_error}>
+              {inputValidation?.pin_zip_code}
+            </InputLabel>
+          </div>
+          <div className={textFlied_separate}>
+            <TextField
+              id="city"
+              label="City"
+              placeholder="City"
+              fullWidth
+              InputLabelProps={{
+                shrink: true,
+                required: true,
+                classes: {
+                  asterisk: asterisk,
+                },
+              }}
+              name="city"
+              onChange={handleFormvalue}
+              value={FormValues?.city}
+              variant="outlined"
+            />
+            <InputLabel className={validation_error}>
+              {inputValidation?.city}
+            </InputLabel>
+          </div>
         </div>
         <Autocomplete
           value={FormValues?.country}

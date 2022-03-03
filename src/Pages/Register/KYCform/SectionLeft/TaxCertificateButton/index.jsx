@@ -43,7 +43,18 @@ const TaxCertificateButton = ({ classes, SetFormValues, FormValues }) => {
   const [inputValidation, setInputValidation] = useState({
     tax_number: "",
     expiration_date: "",
+    tax_image: "",
   });
+  // input state and onchange events
+  const handleImageChange = (event) => {
+    SetFormValues((prevState) => ({
+      ...prevState,
+      [event.target.name]: event.target.files[0],
+    }));
+    setInputValidation("");
+    handleSwitchCase([event.target.name], event.target?.files[0]?.name);
+  };
+
   const handleSwitchCase = (fieldName, value) => {
     switch (fieldName[0]) {
       case "tax_number":
@@ -60,6 +71,14 @@ const TaxCertificateButton = ({ classes, SetFormValues, FormValues }) => {
           setInputValidation((prevState) => ({
             ...prevState,
             expiration_date: "Please select valid date.",
+          }));
+        }
+        break;
+      case "tax_image":
+        if (!value) {
+          setInputValidation((prevState) => ({
+            ...prevState,
+            tax: "Please attatch certificate.",
           }));
         }
         break;
@@ -124,13 +143,19 @@ const TaxCertificateButton = ({ classes, SetFormValues, FormValues }) => {
       <div className={media_upload}>
         <div className={sub_media_upload_container}>
           <div className={sub_media_upload_part}>
-            <p>Attatch National ID</p>
+            <p>Attatch Certificate</p>
             <span>*</span>
             <label
               className={sub_media_upload_label}
               htmlFor="icon-button-file"
             >
-              <input accept="image/*" id="icon-button-file" type="file" />
+              <input
+                accept="image/*"
+                id="icon-button-file"
+                type="file"
+                name="tax_image"
+                onChange={handleImageChange}
+              />
               <img
                 src={uploadImage}
                 alt="auth"
@@ -142,13 +167,20 @@ const TaxCertificateButton = ({ classes, SetFormValues, FormValues }) => {
 
           <small>(Supported format : .jpg/.png/.pdf)</small>
         </div>
-        <div className={input_image_name}>
-          <p>Adhaar_20456.Jpg</p>
-          <Clear
-            className={input_image_name_clear_btn}
-            // onClick={() => handleClose()}
-          />
-        </div>
+        {FormValues?.tax_image && (
+          <div className={input_image_name}>
+            <p>{FormValues?.tax_image?.name}</p>
+            <Clear
+              className={input_image_name_clear_btn}
+              onClick={() =>
+                SetFormValues((prevState) => ({
+                  ...prevState,
+                  tax_image: "",
+                }))
+              }
+            />
+          </div>
+        )}
       </div>
     </>
   );

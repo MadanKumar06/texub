@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "../styles";
 
-import { TextField, Autocomplete } from "@mui/material";
+import { TextField, Autocomplete, InputLabel } from "@mui/material";
 import { withStyles } from "@mui/styles";
 import { Clear } from "@mui/icons-material";
 import uploadImage from "../../../../../Assets/CommonImage/KYC Form/Icon.png";
@@ -15,10 +15,37 @@ const NationalIdButton = ({ classes, SetFormValues, FormValues }) => {
     input_image_name,
     input_image_name_clear_btn,
     auto_complete_input,
+    validation_error,
   } = classes;
 
   const options = ["Option 1", "Option 2"];
-    return (
+  const handleImageChange = (event) => {
+    SetFormValues((prevState) => ({
+      ...prevState,
+      [event.target.name]: event.target.files[0],
+    }));
+    setInputValidation("");
+    handleSwitchCase([event.target.name], event.target?.files[0]?.name);
+  };
+  // input validation on onchange
+  const [inputValidation, setInputValidation] = useState({
+    national_id_image: "",
+  });
+  const handleSwitchCase = (fieldName, value) => {
+    switch (fieldName[0]) {
+      case "national_id_image":
+        if (!value) {
+          setInputValidation((prevState) => ({
+            ...prevState,
+            national_id_image: "Please attach National id details.",
+          }));
+        }
+        break;
+      default:
+        break;
+    }
+  };
+  return (
     <>
       <Autocomplete
         value={FormValues?.nationality}
@@ -52,7 +79,13 @@ const NationalIdButton = ({ classes, SetFormValues, FormValues }) => {
               className={sub_media_upload_label}
               htmlFor="icon-button-file"
             >
-              <input accept="image/*" id="icon-button-file" type="file" />
+              <input
+                accept="image/*"
+                id="icon-button-file"
+                type="file"
+                name="national_id_image"
+                onChange={handleImageChange}
+              />
               <img
                 src={uploadImage}
                 alt="auth"
@@ -63,14 +96,26 @@ const NationalIdButton = ({ classes, SetFormValues, FormValues }) => {
           </div>
 
           <small>(Supported format : .jpg/.png/.pdf)</small>
+          <InputLabel className={validation_error}>
+            {inputValidation?.national_id_image}
+          </InputLabel>
         </div>
-        <div className={input_image_name}>
-          <p>Adhaar_20456.Jpg</p>
-          <Clear
-            className={input_image_name_clear_btn}
-            // onClick={() => handleClose()}
-          />
-        </div>
+        {FormValues?.national_id_image?.name && (
+          <div className={input_image_name}>
+            <div className={input_image_name}>
+              <p>{FormValues?.national_id_image?.name}</p>
+              <Clear
+                className={input_image_name_clear_btn}
+                onClick={() =>
+                  SetFormValues((prevState) => ({
+                    ...prevState,
+                    national_id_image: "",
+                  }))
+                }
+              />
+            </div>
+          </div>
+        )}
       </div>
     </>
   );

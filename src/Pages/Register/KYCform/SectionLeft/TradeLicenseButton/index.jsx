@@ -8,7 +8,7 @@ import { LocalizationProvider, DesktopDatePicker } from "@mui/lab";
 import uploadImage from "../../../../../Assets/CommonImage/KYC Form/Icon.png";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 
-const TradeLicenseButton = ({ classes, SetFormValues,FormValues }) => {
+const TradeLicenseButton = ({ classes, SetFormValues, FormValues }) => {
   let {
     input_div,
     asterisk,
@@ -26,7 +26,7 @@ const TradeLicenseButton = ({ classes, SetFormValues,FormValues }) => {
   const handleChange = (newValue) => {
     setDateChange(newValue);
     setInputValidation("");
-    handleSwitchCase(["expiration_date"], newValue);
+    handleSwitchCase(["trade_expiration_date"], newValue);
   };
 
   // input state and onchange events
@@ -39,15 +39,24 @@ const TradeLicenseButton = ({ classes, SetFormValues,FormValues }) => {
     handleSwitchCase([event.target.name], event.target.value);
   };
 
+  const handleImageChange = (event) => {
+    SetFormValues((prevState) => ({
+      ...prevState,
+      [event.target.name]: event.target.files[0],
+    }));
+    setInputValidation("");
+    handleSwitchCase([event.target.name], event.target?.files[0]?.name);
+  };
+
   // input validation on onchange
   const [inputValidation, setInputValidation] = useState({
     business_name: "",
     trade_lic_number: "",
-    expiration_date: "",
+    trade_expiration_date: "",
+    trade_image: "",
   });
 
   const handleSwitchCase = (fieldName, value) => {
-    debugger;
     switch (fieldName[0]) {
       case "business_name":
         if (!value) {
@@ -66,16 +75,24 @@ const TradeLicenseButton = ({ classes, SetFormValues,FormValues }) => {
         }
         break;
 
-      case "expiration_date":
+      case "trade_expiration_date":
         if (!value) {
           setInputValidation((prevState) => ({
             ...prevState,
-            expiration_date: "Please select expiration date.",
+            trade_expiration_date: "Please select expiration date.",
           }));
         } else if (value.toString() === "Invalid Date") {
           setInputValidation((prevState) => ({
             ...prevState,
-            expiration_date: "Please select valid date.",
+            trade_expiration_date: "Please select valid date.",
+          }));
+        }
+        break;
+      case "trade_image":
+        if (!value) {
+          setInputValidation((prevState) => ({
+            ...prevState,
+            trade_image: "Please attach the License details.",
           }));
         }
         break;
@@ -139,7 +156,7 @@ const TradeLicenseButton = ({ classes, SetFormValues,FormValues }) => {
               <TextField
                 {...params}
                 fullWidth
-                id="expiration_date"
+                id="trade_expiration_date"
                 placeholder="MM/YY"
                 InputLabelProps={{
                   shrink: true,
@@ -153,19 +170,25 @@ const TradeLicenseButton = ({ classes, SetFormValues,FormValues }) => {
           />
         </LocalizationProvider>
         <InputLabel className={validation_error}>
-          {inputValidation?.expiration_date}
+          {inputValidation?.trade_expiration_date}
         </InputLabel>
       </div>
       <div className={media_upload}>
         <div className={sub_media_upload_container}>
           <div className={sub_media_upload_part}>
-            <p>Attatch National ID</p>
+            <p>Attatch License</p>
             <span>*</span>
             <label
               className={sub_media_upload_label}
               htmlFor="icon-button-file"
             >
-              <input accept="image/*" id="icon-button-file" type="file" />
+              <input
+                accept="image/*"
+                id="icon-button-file"
+                type="file"
+                name="trade_image"
+                onChange={handleImageChange}
+              />
               <img
                 src={uploadImage}
                 alt="auth"
@@ -176,14 +199,24 @@ const TradeLicenseButton = ({ classes, SetFormValues,FormValues }) => {
           </div>
 
           <small>(Supported format : .jpg/.png/.pdf)</small>
+          <InputLabel className={validation_error}>
+            {inputValidation?.trade_image}
+          </InputLabel>
         </div>
-        <div className={input_image_name}>
-          <p>Adhaar_20456.Jpg</p>
-          <Clear
-            className={input_image_name_clear_btn}
-            // onClick={() => handleClose()}
-          />
-        </div>
+        {FormValues?.trade_image && (
+          <div className={input_image_name}>
+            <p>{FormValues?.trade_image?.name}</p>
+            <Clear
+              className={input_image_name_clear_btn}
+              onClick={() =>
+                SetFormValues((prevState) => ({
+                  ...prevState,
+                  trade_image: "",
+                }))
+              }
+            />
+          </div>
+        )}
       </div>
     </div>
   );
