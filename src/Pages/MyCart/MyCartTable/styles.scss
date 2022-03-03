@@ -1,5 +1,8 @@
 .mycart_table_main_container {
   padding: 0 3%;
+  .MuiPaper-root {
+    box-shadow: none;
+  }
   .mycart_table_mui_datatable_main {
     .MuiTableHead-root {
       .MuiTableCell-root {
@@ -31,7 +34,7 @@
         font-weight: 600;
       }
     }
-    .mycart_table_hub_block{
+    .mycart_table_hub_block {
       span {
         font-weight: 600;
       }
@@ -126,7 +129,7 @@
           color: #333c42;
           max-width: fit-content;
           letter-spacing: 0.54px;
-          text-transform: uppercase
+          text-transform: uppercase;
         }
         .my_cart_product_description {
           padding-top: 10px;

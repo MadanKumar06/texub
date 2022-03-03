@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { Modal, Button,Backdrop } from "@mui/material";
+import { Modal, Button, Backdrop } from "@mui/material";
 import { withStyles } from "@mui/styles";
 import styles from "./styles";
 import { Clear } from "@mui/icons-material";
+import PDPTopHeader from "./PDPTopHeader";
+import PDPTable from "./PDPTable";
+import { Link } from "react-router-dom";
+import { table_one_data, table_two_data } from "./PDPTable/TableData";
+
 import header_bottom_image_1 from "../../Assets/Productlist/warranty.png";
 import header_bottom_image_2 from "../../Assets/Productlist/Delivery.png";
 import header_bottom_image_3 from "../../Assets/Productlist/Retail.png";
 import more_offer_image from "../../Assets/Productlist/Discount.png";
 import add_whishlist from "../../Assets/CommonImage/add_wishlist.png";
 import shopping_cart from "../../Assets/CommonImage/shopping-cart.png";
-import PDPTopHeader from "./PDPTopHeader";
 import invoice_image from "../../Assets/CommonImage/invoice.png";
-import PDPTable from "./PDPTable";
-import { table_one_data, table_two_data } from "./PDPTable/TableData";
 
 const PdpPopup = ({ classes, PDPPopUP }) => {
   const [open, setOpen] = useState(true);
@@ -111,14 +113,18 @@ const PdpPopup = ({ classes, PDPPopUP }) => {
               <span>Add to Wishlist</span>
             </div>
             <div className={modal_bottom_button_main}>
-              <Button className={modal_bottom_button_add_to_cart}>
-                <img src={shopping_cart} alt="" />
-                <span>Add to Cart</span>
-              </Button>
-              <Button className={modal_bottom_button_pending_invoice}>
-                <img width="21px" src={invoice_image} alt="" />
-                <span> Add to Pending Invoice</span>
-              </Button>
+              <Link to="/mycart">
+                <Button className={modal_bottom_button_add_to_cart}>
+                  <img src={shopping_cart} alt="" />
+                  <span>Add to Cart</span>
+                </Button>
+              </Link>
+              <Link to="/pending-invoice">
+                <Button className={modal_bottom_button_pending_invoice}>
+                  <img width="21px" src={invoice_image} alt="" />
+                  <span> Add to Pending Invoice</span>
+                </Button>
+              </Link>
             </div>
           </div>
           <div className={pdp_modal_footer}>

@@ -38,6 +38,7 @@ import Legal from "./Pages/CMS/Resources/Legal";
 import GDPR from "./Pages/CMS/Resources/GDPR";
 import Privacypolicy from "./Pages/CMS/Company/Privacypolicy";
 import RRpolicy from "./Pages/CMS/Company/RRpolicy";
+import Accountinfo from './Components/BuyerDashboard/MyProfile/Accountinfo'
 
 const App = () => {
   return (
@@ -83,7 +84,8 @@ const App = () => {
             <Route path="/checkout" element={ <> <Checkout /> <Footer /> </> } exact />
             <Route path="/mycart" element={ <> <Mycart /> <Footer /> </> } exact />
             <Route path="/thankyou/:type" element={ <> <ThankYouPage /> <Footer /> </> } exact ></Route>
-
+            <Route path="/edit" element={ <> <Accountinfo /> <Footer /> </> } exact />
+            
 
           </Routes>
         </BrowserRouter>

@@ -1,4 +1,14 @@
 .minicart_drawer_main {
+  .MuiButton-root {
+    font-weight: 600;
+    display: flex;
+    gap: 15px;
+    font-size: 20px;
+    padding: "0";
+    &:hover {
+      background-color: unset;
+    }
+  }
   .mini_cart_head {
     color: #5c6369;
     text-transform: capitalize;
