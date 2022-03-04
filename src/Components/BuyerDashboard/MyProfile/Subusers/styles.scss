@@ -78,3 +78,103 @@
         }
     }
 }
+
+@media only screen and (max-width:580px){
+    .users_main .users_table_section .users_table{
+        flex-direction: row;
+    }
+    .users_main .users_table_section .users_table tr{
+        flex-direction: column;
+        text-align: left;
+        gap: 10px;
+        padding: 20px;
+    }
+    .users_main .users_table_section .users_table tbody {
+        display: flex;
+    }
+    .users_main .users_table_section .users_table tr th{
+        text-align: left;
+    }
+    .users_main .users_table_section .users_table tr .user_auctions{
+        flex-direction: row;
+    }
+}
+
+@media only screen and (max-width:480px){
+    .users_main .users_table_section .users_table{
+        justify-content: center;
+    }
+    .users_main .users_table_section .users_table  thead {
+        display: none;
+   }
+   .users_main .users_table_section .users_table tr{
+       padding: 0;
+       text-align: center;
+       align-items: center;
+   }
+   .users_main .users_table_section .users_table tbody{
+       gap: 20px;
+   }
+   .users_main .user_sub-account {
+       display: flex;
+       justify-content: center;
+       padding-top: 50px;
+   }
+}
+
+@media only screen and (max-width:425px){
+    .users_main .users_table_section .users_table  thead {
+        display: none;
+   }
+   .users_main .users_table_section .users_table tr{
+       padding: 0;
+       text-align: center;
+       align-items: center;
+   }
+   .users_main .users_table_section .users_table tbody{
+       gap: 20px;
+   }
+   .users_main .user_sub-account {
+       display: flex;
+       justify-content: center;
+       padding-top: 50px;
+   }
+}
+
+@media only screen and (max-width:375px){
+    .users_main .users_table_section .users_table  thead {
+        display: none;
+   }
+   .users_main .users_table_section .users_table tr{
+       padding: 0;
+       text-align: center;
+       align-items: center;
+   }
+   .users_main .users_table_section .users_table tbody{
+       gap: 20px;
+   }
+   .users_main .user_sub-account {
+       display: flex;
+       justify-content: center;
+       padding-top: 50px;
+   }
+}
+
+@media only screen and (max-width:320px){
+    .users_main .users_table_section .users_table  thead {
+         display: none;
+    }
+    .users_main .users_table_section .users_table tr{
+        padding: 0;
+        text-align: center;
+        align-items: center;
+    }
+    .users_main .users_table_section .users_table tbody{
+        gap: 3px;
+    }
+    .users_main .user_sub-account {
+        display: flex;
+        justify-content: center;
+        padding-top: 50px;
+    }
+}

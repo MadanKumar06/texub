@@ -3,20 +3,11 @@ import './styles.scss'
 import TextField from '@mui/material/TextField';
 import Autocomplete from "@mui/material/Autocomplete";
 import { useParams } from "react-router-dom";
-import { Clear } from "@mui/icons-material";
-import uploadImage from "../../../../../Assets/CommonImage/KYC Form/Icon.png";
-import styles from '../../../../../Pages/Register/BuyerKYCform/SectionLeft/styles'
+
+
 
 const Index = (classes) => {
-  // let {
-  //   auto_complete_input,
-  //   media_upload,
-  //   sub_media_upload_container,
-  //   sub_media_upload_part,
-  //   sub_media_upload_label,
-  //   input_image_name,
-  //   input_image_name_clear_btn,
-  // } = classes;
+  
   let { type } = useParams();
   let {
     auto_complete_input,
@@ -128,39 +119,7 @@ const Index = (classes) => {
               <label >Upload Documents <span> (Sopported format:.jpg/.png/.pdf)</span></label>
               <input type="file" name="myfile" ></input>
             </div> 
-            {/* <div className={media_upload}>
-                <div className={sub_media_upload_container}>
-                  <div className={sub_media_upload_part}>
-                    <p>Attatch National ID</p>
-                    <span>*</span>
-                    <label
-                      className={sub_media_upload_label}
-                      htmlFor="icon-button-file"
-                    >
-                      <input
-                        accept="image/*"
-                        id="icon-button-file"
-                        type="file"
-                      />
-                      <img
-                        src={uploadImage}
-                        alt="auth"
-                        aria-label="upload picture"
-                        component="span"
-                      />
-                    </label>
-                  </div>
-
-                  <small>(Supported format : .jpg/.png/.pdf)</small>
-                </div>
-                <div className={input_image_name}>
-                  <p>Adhaar_20456.Jpg</p>
-                  <Clear
-                    className={input_image_name_clear_btn}
-                    // onClick={() => handleClose()}
-                  />
-                </div> */}
-              {/* </div> */}
+            
             <div className='accountinfo_btn_section'>
               <button className='account_info_cancel'>Cancel</button>
               <button className='account_info_save'>Save Changes</button>

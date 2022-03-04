@@ -65,12 +65,14 @@ const Index = (classes) => {
       id="country-select-demo"
       options={List}
       autoHighlight
+      
       getOptionLabel={(option) => option.title}
       renderInput={(params) => (
         <TextField
           {...params}
           
           inputProps={{
+            
             ...params.inputProps,
             autoComplete: 'new-password', // disable autocomplete and autofill
           }}
@@ -92,7 +94,7 @@ const Index = (classes) => {
       
       aria-label="empty textarea"
       style={{height:100,
-              width: 1300}}
+              width:"100%",}}
     />
     </div>
     <div className='users_active_section'>

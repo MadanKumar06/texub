@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import './styles.scss'
-import acinfo from './json'
+import {acinfo,acinfo1} from './json'
 import { ArrowBackIosNew } from "@mui/icons-material";
 import EditIcon from '@mui/icons-material/Edit';
 import Accountinfo from './Accountinfo'
 import Addressbook from './Addressbook'
 import Companyinfo from './Accountinfo/Companyinfo'
 import Subusers from './Subusers'
-// const MyContext = React.createContext('');
+ 
 const Index = () => {
   const [isAccountinfo, setisAccountinfo] = useState(true)
   const Acinfo = () => {
@@ -26,6 +26,7 @@ const Index = () => {
     setisEdit(false)
     setisCompany(false)
     setisUser(false)
+    console.log(isAddress)
   }
   const [isUser, setisUser] = useState(false)
   const Subuser = () =>{
@@ -57,9 +58,8 @@ const Index = () => {
         <button className='My_profile_btn' onClick={Address1}>Address Book</button>
         <button className='My_profile_btn'onClick={Subuser}>Sub-Users</button>
       </div>
-      {/* <MyContext.Provider value={isAddress}> */}
       {isAddress && <Addressbook open={Address1} />}
-      {/* </MyContext.Provider> */}
+    
       {isUser && <Subusers/>}
       {isAccountinfo && 
         <div className='My_profile_ac' >
@@ -109,8 +109,8 @@ const Index = () => {
               </thead>
               
               <tbody>
-                {acinfo.map((user) => (
-                  <tr key={user.id}>
+                {acinfo1.map((user) => (
+                  <tr >
                     <td className='my_profile_details'>{user.organizationname}</td>
                     <td className='my_profile_details'>{user.organizationtype}</td>
                     <td className='my_profile_details'>{user.gstnumber}</td>

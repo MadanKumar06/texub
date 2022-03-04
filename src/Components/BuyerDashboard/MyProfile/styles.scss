@@ -1,5 +1,5 @@
 .My_profile_main{
-    margin: 50px 20px 20px 20px;
+    margin: 50px 0px 0px 0px;
     display: flex;
     flex-direction: column;
     gap: 50px;
@@ -56,6 +56,8 @@
             min-height: 150px;
             padding: 50px 10px 50px 35px;
             gap: 10px;
+           
+            
             .my_profile_edit{
                 display: flex;
                 justify-content: center;
@@ -100,4 +102,137 @@
     }
 
  }
+ @media only screen and(max-width:1440px){
+    .My_profile_main .my_profile_company .My_profile_main_heading, .My_profile_main .My_profile_ac .My_profile_main_heading{
+        width: 25%;
+    }
+ }
 
+@media only screen and(max-width:1336px) {
+    .My_profile_main .My_profile_ac .My_profile_main_heading {
+        width: 28%;
+    }
+    .My_profile_main .my_profile_heading{
+        font-size: 15px;
+    }
+}
+
+@media only screen and(max-width:768px){
+    .My_profile_main .My_profile_ac .My_profile_ac_table{
+        display: flex;
+    }
+    .My_profile_main .My_profile_ac .My_profile_ac_table tr{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .My_profile_main .My_profile_ac .My_profile_ac_table tr .my_profile_edit{
+        position: absolute;
+        right: 5%;
+    }
+    .My_profile_main .my_profile_heading{
+        font-size: 18px;
+    }
+    .My_profile_main .my_profile_details{
+        font-size: 19px;
+    }
+}
+
+@media only screen and(max-width:580px){
+    .My_profile_main .My_profile_btn_section{
+        flex-direction: column;
+        justify-content: center;
+        gap: 20px;
+        margin: 0 10px;
+    }
+    .My_profile_main .My_profile_btn_section .My_profile_btn {
+        width: 100%;
+        padding: 15px 25px;
+    }
+    .My_profile_main .My_profile_ac .My_profile_main_heading{
+        width: 100%;
+    }
+    .My_profile_main .My_profile_ac .My_profile_ac_table tr .my_profile_edit{
+        right: 2%;
+    }
+}
+@media only screen and(max-width:480px){
+    .My_profile_main .my_profile_company .My_profile_ac_table{
+        padding: 20px 0px 20px 0px;
+        gap: 2px;
+    }
+    .My_profile_main .My_profile_ac .My_profile_ac_table {
+        padding: 20px 0px 20px 0px;
+    }
+    .My_profile_main .my_profile_company{
+        margin-top: 17px;
+
+    }
+    .My_profile_main .my_profile_heading{
+        font-size: 15px;
+    }
+    .My_profile_main .my_profile_details{
+        font-size: 15px;
+    }
+}
+
+@media only screen and(max-width:425px){
+    .My_profile_main .my_profile_company .My_profile_ac_table{
+        padding: 20px 0px 20px 0px;
+        gap: 2px;
+    }
+    .My_profile_main .My_profile_ac .My_profile_ac_table {
+        padding: 20px 0px 20px 0px;
+    }
+    .My_profile_main .my_profile_company{
+        margin-top: 17px;
+
+    }
+    .My_profile_main .my_profile_heading{
+        font-size: 15px;
+    }
+    .My_profile_main .my_profile_details{
+        font-size: 15px;
+    }
+}
+
+@media only screen and(max-width:375px){
+    .My_profile_main .my_profile_company .My_profile_ac_table{
+        padding: 20px 0px 20px 0px;
+        gap: 2px;
+    }
+    .My_profile_main .My_profile_ac .My_profile_ac_table {
+        padding: 20px 0px 20px 0px;
+    }
+    .My_profile_main .my_profile_company{
+        margin-top: 17px;
+
+    }
+    .My_profile_main .my_profile_heading{
+        font-size: 15px;
+    }
+    .My_profile_main .my_profile_details{
+        font-size: 15px;
+    }
+}
+
+@media only screen and(max-width:320px){
+    .My_profile_main .my_profile_company .My_profile_ac_table{
+        padding: 20px 0px 20px 0px;
+        gap: 2px;
+    }
+    .My_profile_main .My_profile_ac .My_profile_ac_table {
+        padding: 20px 0px 20px 0px;
+    }
+    .My_profile_main .my_profile_company{
+        margin-top: 17px;
+
+    }
+    .My_profile_main .my_profile_heading{
+        font-size: 15px;
+    }
+    .My_profile_main .my_profile_details{
+        font-size: 15px;
+    }
+}

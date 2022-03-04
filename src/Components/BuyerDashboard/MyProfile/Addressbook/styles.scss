@@ -84,3 +84,43 @@
         }
     }
 }
+
+@media only screen and (max-width:580px){
+    .Address_main .heading {
+        width: 100%;
+    }
+    .Address_main .Address_map{
+        flex-direction: column;
+    }
+    .Address_main .Address_map .vl{
+        display: none;
+    }
+    
+    .Address_main .Address_map .Address_Billing{
+        justify-content: space-around;
+    }
+    .Address_main .Address_map .Address_Shipping{
+        justify-content: space-around;
+    }
+}
+
+@media only screen and (max-width:480px){
+    .Address_main .Address_map ul{
+        padding: 2px;
+    }
+}
+@media only screen and (max-width:425px){
+    .Address_main .Address_map ul{
+        padding: 2px;
+    }
+}
+@media only screen and (max-width:375px){
+    .Address_main .Address_map ul{
+        padding: 2px;
+    }
+}
+@media only screen and (max-width:320px){
+    .Address_main .Address_map ul{
+        padding: 2px;
+    }
+}

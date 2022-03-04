@@ -4,25 +4,23 @@ import EditIcon from '@mui/icons-material/Edit';
 import Billingaddress from './Billingaddress'
 import Shippingadress from './Shippingaddress'
 
- const Index = (open) => {
+
+ const Index = () => {
     const [isBilling, setisBilling] = useState(false)
     const Billaddress = () => {
         setisBilling(true)
-        setisShipping(false)
+        setisShipping(false)   
+        setisAddress(false)
         
-
-       
-    
-        
-
      }
     const [isShipping,setisShipping] =useState(false)
     const Shipadress=()=>{
         setisShipping(!isShipping)
-        setisBilling(false)
-        
-        
+        setisBilling(false) 
+        setisAddress(false)
     }
+    const [isAddress,setisAddress]=useState(true)
+    
     // const [isClose, setisClose]=useState(false)
     // const Addressclose=()=>{
     //     setisClose(!isClose)
@@ -54,6 +52,8 @@ import Shippingadress from './Shippingaddress'
   
   
   return (
+      <>
+      {isAddress && 
     <div className='Address_main'>
         <span className='heading'><p className='heading'>OFFICE ADDRESS</p></span>
         <div className='Address_map'>
@@ -99,11 +99,12 @@ import Shippingadress from './Shippingaddress'
          </div> 
           
         </div> 
-
-         {isBilling && <Billingaddress   />} 
-         {isShipping && <Shippingadress/>}
-         
     </div>
+    }
+    {isBilling && <Billingaddress   />} 
+    {isShipping && <Shippingadress/>}
+        
+    </>
   )
 }
 export default Index;
