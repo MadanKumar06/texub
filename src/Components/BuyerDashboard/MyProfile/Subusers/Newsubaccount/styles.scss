@@ -9,6 +9,9 @@
         display: flex;
         gap: 30px;
         justify-content: space-between;
+        .MuiInputLabel-root{
+            color: red;
+        }
         p{
             color: #272727;
             font-size: 18px;
@@ -30,6 +33,9 @@
          }
     }
     .user_input{
+        .MuiInputLabel-root{
+            color: red;
+        }
     p{
         color: #272727;
         font-size: 18px;
@@ -52,6 +58,10 @@
  }
   }
   .user_permision{
+    .MuiInputLabel-root{
+        color: red;
+    }
+
     p{
         color: #272727;
         font-size: 18px;
@@ -63,6 +73,9 @@
     }
   }
   .users_active_section{
+    .MuiInputLabel-root{
+        color: red;
+    }
       p{
         color: #272727;
         font-size: 18px;

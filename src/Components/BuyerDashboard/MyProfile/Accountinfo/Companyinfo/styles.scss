@@ -11,7 +11,7 @@
     }
  .company_information{
 
-    form{
+    .form{
         display: flex;
         gap: 20px;
         flex-direction: column;
@@ -98,7 +98,7 @@
 
 
 @media only screen and (max-width:1600px){
-    .companyinfo_main .company_information form .inputfield_section .inputfield .MuiOutlinedInput-root {
+    .companyinfo_main .company_information .form .inputfield_section .inputfield .MuiOutlinedInput-root {
         width: 30rem;
     }
     .companyinfo_main .company_information .accountinfo_btn .accountinfo_btn_section .account_info_save{
@@ -110,7 +110,7 @@
     }
 }
 @media only screen and (max-width:1440px) {
-    .companyinfo_main .company_information form .inputfield_section .inputfield .MuiOutlinedInput-root{
+    .companyinfo_main .company_information .form .inputfield_section .inputfield .MuiOutlinedInput-root{
         width: 26rem;
     }
     .companyinfo_main .company_information .accountinfo_btn .accountinfo_btn_section .account_info_save{
@@ -121,7 +121,7 @@
     }
 }
 @media only screen and(max-width:1336px){
-    .companyinfo_main .company_information form .inputfield_section .inputfield .MuiOutlinedInput-root{
+    .companyinfo_main .company_information .form .inputfield_section .inputfield .MuiOutlinedInput-root{
     width: 24rem;
  }
  .companyinfo_main .company_information .accountinfo_btn .accountinfo_btn_section {
@@ -130,19 +130,19 @@
 }
 
 @media only screen and (max-width: 1024px){
-.companyinfo_main .company_information form .inputfield_section .inputfield .MuiOutlinedInput-root {
+.companyinfo_main .company_information .form .inputfield_section .inputfield .MuiOutlinedInput-root {
     width: 28rem;
 }
 }
 
 @media only screen and (max-width: 768px){
-    .companyinfo_main .company_information form .inputfield_section {
+    .companyinfo_main .company_information .form .inputfield_section {
         flex-direction: column;
     }
     .companyinfo_main .company_information .accountinfo_btn{
         flex-direction: column;
     }
-    .companyinfo_main .company_information form .inputfield_section .inputfield .MuiOutlinedInput-root{
+    .companyinfo_main .company_information .form .inputfield_section .inputfield .MuiOutlinedInput-root{
         width: 44rem;
     }
     .companyinfo_main .company_information .accountinfo_btn .accountinfo_btn_section .account_info_cancel{
@@ -159,7 +159,7 @@
     .companyinfo_main .Account_heading{
         padding-left: 23px;
     }
-    .companyinfo_main .company_information form .inputfield_section .inputfield .MuiOutlinedInput-root{
+    .companyinfo_main .company_information .form .inputfield_section .inputfield .MuiOutlinedInput-root{
         width: 32rem;
     }
     .companyinfo_main .company_information .accountinfo_btn .accountinfo_btn_section{
@@ -176,7 +176,7 @@
 }
 
 @media only screen and (max-width: 480px){
-    .companyinfo_main .company_information form .inputfield_section .inputfield .MuiOutlinedInput-root {
+    .companyinfo_main .company_information .form .inputfield_section .inputfield .MuiOutlinedInput-root {
         width: 28rem;
     }
     .companyinfo_main .company_information .accountinfo_btn .accountinfo_btn_section .account_info_cancel{
@@ -185,12 +185,12 @@
     .MuiFormControl-root {
         width: 17rem !important;
     }
-    .companyinfo_main .company_information form {
+    .companyinfo_main .company_information .form {
         padding: 20px 7px;
     }
 }
 @media only screen and (max-width: 425px){
-    .companyinfo_main .company_information form .inputfield_section .inputfield .MuiOutlinedInput-root {
+    .companyinfo_main .company_information .form .inputfield_section .inputfield .MuiOutlinedInput-root {
         width: 24.5rem;
     }
     .companyinfo_main .company_information .accountinfo_btn .accountinfo_btn_section .account_info_cancel{
@@ -199,12 +199,12 @@
     .MuiFormControl-root {
         width: 17rem !important;
     }
-    .companyinfo_main .company_information form {
+    .companyinfo_main .company_information .form {
         padding: 20px 7px;
     }
 }
 @media only screen and (max-width: 375px){
-    .companyinfo_main .company_information form .inputfield_section .inputfield .MuiOutlinedInput-root {
+    .companyinfo_main .company_information .form .inputfield_section .inputfield .MuiOutlinedInput-root {
         width: 21.5rem;
     }
     .companyinfo_main .company_information .accountinfo_btn .accountinfo_btn_section .account_info_cancel{
@@ -213,13 +213,13 @@
     .MuiFormControl-root {
         width: 17rem !important;
     }
-    .companyinfo_main .company_information form {
+    .companyinfo_main .company_information .form {
         padding: 20px 7px;
     }
 }
 
 @media only screen and (max-width: 320px){
-    .companyinfo_main .company_information form .inputfield_section .inputfield .MuiOutlinedInput-root {
+    .companyinfo_main .company_information .form .inputfield_section .inputfield .MuiOutlinedInput-root {
         width: 18rem;
     }
     .companyinfo_main .company_information .accountinfo_btn .accountinfo_btn_section .account_info_cancel{
@@ -228,7 +228,7 @@
     .MuiFormControl-root {
         width: 17rem !important;
     }
-    .companyinfo_main .company_information form {
+    .companyinfo_main .company_information .form {
         padding: 20px 7px;
     }
 }

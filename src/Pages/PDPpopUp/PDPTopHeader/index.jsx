@@ -111,7 +111,9 @@ const PdpHeader = ({ classes, PDPPopUP }) => {
       </div>
       <div className={pdp_top_header_sub_container}>
         <div className={pdp_top_header_product_details}>
-          <p className={pdp_top_header_seller_id}>Seller ID : 220012</p>
+          <p className={pdp_top_header_seller_id}>
+            Seller ID :<span> 220012</span>
+          </p>
           <div className={pdp_top_header_products}>
             <p className={pdp_top_header_product_name}>
               PAVILION MODEL14-DV0054TU
@@ -130,8 +132,6 @@ const PdpHeader = ({ classes, PDPPopUP }) => {
           </div>
 
           <p className={pdp_top_header_model_details}>
-            Hp 14-Dv0054Tu Pavilion Laptop (11Th Gen Intel Core I5-1135G7/…512Gb
-            Sdd/Intel Iris Xe Graphics/Windows 10/Mso/Fhd), 35.56 Cm (14 Inch)
             Hp 14-Dv0054Tu Pavilion Laptop (11Th Gen Intel Core I5-1135G7/…512Gb
             Sdd/Intel Iris Xe Graphics/Windows 10/Mso/Fhd), 35.56 Cm (14 Inch)
           </p>

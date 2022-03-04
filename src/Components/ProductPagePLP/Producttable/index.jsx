@@ -4,6 +4,7 @@ import styles from "./styles";
 import { withStyles } from "@mui/styles";
 import MUIDataTable from "mui-datatables";
 import PDPpopUp from "../../../Pages/PDPpopUp";
+import { Link } from "react-router-dom";
 
 import HP from "./../../../Assets/Productlist/hp_td_icon.png";
 import Acer from "../../../Assets/Productlist/acer_icon_td.png";
@@ -25,10 +26,15 @@ const Productstable = ({ classes }) => {
   const PDPPopUP = (event) => {
     setIsPDPpopUP(event);
   };
+  const onRowHandleClick = (rowData, rowState, rowMeta) => {
+    if (rowState?.colIndex !== 9) {
+      setIsPDPpopUP(true);
+    }
+  };
   const columns = [
     {
       name: "BRANDNAME",
-      label: "BRANDNAME",
+      label: "BRAND NAME",
       options: {
         filter: false,
         customBodyRender: (value) => {
@@ -42,11 +48,11 @@ const Productstable = ({ classes }) => {
     },
     {
       name: "MODELNAME",
-      label: "MODELNAME",
+      label: "MODEL NAME",
     },
     {
       name: "PARTNUMBER",
-      label: "PARTNUMBER",
+      label: "PART NUMBER",
     },
     {
       name: "DESCRIPTION",
@@ -95,10 +101,12 @@ const Productstable = ({ classes }) => {
       options: {
         customBodyRender: (value) => {
           return (
-            <p className={producttable_add_to_cart}>
-              <img src={shopping_cart} alt="" />
-              Add to Cart
-            </p>
+            <Link to="/mycart">
+              <p className={producttable_add_to_cart}>
+                <img src={shopping_cart} alt="" />
+                Add to Cart
+              </p>
+            </Link>
           );
         },
       },
@@ -229,11 +237,9 @@ const Productstable = ({ classes }) => {
       CONDITION: "New",
     },
   ];
-  const onRowHandleClick = (event) => {
-    setIsPDPpopUP(true);
-  };
+
   const options = {
-    filter: true,
+    filter: false,
     filterType: "dropdown",
     responsive: "vertical",
     selectableRows: "none",
@@ -241,8 +247,8 @@ const Productstable = ({ classes }) => {
     print: false,
     sort: false,
     viewColumns: false,
+    onCellClick: onRowHandleClick,
     search: false,
-    onRowClick: onRowHandleClick,
   };
 
   return (

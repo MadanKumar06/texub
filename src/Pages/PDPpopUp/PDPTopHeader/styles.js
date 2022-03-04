@@ -3,14 +3,14 @@ const styles = (theme) => ({
     width: "calc(100% - 105px)",
     marginLeft: "105px",
     display: "flex",
-    "@media (max-width:767px)": {
+    "@media (max-width:768px)": {
       width: "100%",
       marginLeft: "0",
       flexDirection: "column",
     },
   },
   pdp_page_brands_images_container: {
-    "@media (max-width:767px)": {
+    "@media (max-width:768px)": {
       display: "flex",
       width: "100%",
       justifyContent: "center",
@@ -30,7 +30,7 @@ const styles = (theme) => ({
     display: "flex",
     position: "relative",
     alignItems: "end",
-    "@media (max-width:767px)": {
+    "@media (max-width:768px)": {
       width: "unset",
       height: "unset",
       margin: "15px 0",
@@ -59,16 +59,22 @@ const styles = (theme) => ({
   },
   pdp_top_header_seller_id: {
     background: "#F8F0E0",
-    padding: "4px 19px",
+    padding: "10px 67px",
     width: "fit-content",
     color: "#002D56",
     margin: "0",
     fontSize: "18px",
-    "@media (max-width:1600px) and (min-width:1439px)": {
+    "& span": {
+      fontWeight: "600",
+    },
+    "@media (max-width:1600px)": {
       fontSize: "16px",
     },
-    "@media (max-width:1439px) and (min-width:320px)": {
+    "@media (max-width:1439px)": {
       fontSize: "14px",
+    },
+    "@media (max-width:767px)": {
+      padding: "10px 12px",
     },
   },
   pdp_top_header_products: {
@@ -79,7 +85,7 @@ const styles = (theme) => ({
     "@media (max-width:1439px)": {
       flexDirection: "column",
     },
-    "@media (max-width:767px)": {
+    "@media (max-width:768px)": {
       width: "100%",
     },
   },
@@ -87,13 +93,8 @@ const styles = (theme) => ({
     fontSize: "26px",
     margin: "0",
     padding: "11px 0px",
-    letterSpacing: "1px",
-    "@media (max-width:1599px) and (min-width:1439px)": {
-      fontSize: "24px",
-    },
-    "@media (max-width:1439px) and (min-width:320px)": {
-      fontSize: "20px",
-    },
+    color: "#333C42",
+    letterSpacing: "0.78px",
   },
   pdp_top_header_rating_reviews_container: {
     display: "flex",
@@ -108,6 +109,7 @@ const styles = (theme) => ({
   reviews: {
     fontSize: "18px",
     color: "#DDB363",
+    letterSpacing: "0.43px",
     margin: "auto !important",
     textDecoration: "underline",
     "@media (max-width:1439px)": {
@@ -121,16 +123,10 @@ const styles = (theme) => ({
     color: "#333C42",
     width: "80%",
     fontWeight: "600",
-    letterSpacing: "1px",
+    letterSpacing: "0.6px",
     fontSize: "20px",
     "@media (max-width:1439px)": {
       width: "100%",
-    },
-    "@media (max-width:1599px) and (min-width:1439px)": {
-      fontSize: "16px",
-    },
-    "@media (max-width:1439px) and (min-width:320px)": {
-      fontSize: "14px",
     },
   },
   toggle_switch_sub_one: {
@@ -147,13 +143,16 @@ const styles = (theme) => ({
   toggle_notification: {
     fontSize: "18px",
     fontWeight: "600",
-    "@media (max-width:1439px) and (min-width:320px)": {
+    color: "#5C6369",
+    letterSpacing: "0.54px",
+    "@media (max-width:1439px)": {
       fontSize: "14px",
     },
   },
   toggle_switch_sub_two: {
     fontSize: "12px",
     color: "#858A8E",
+    letterSpacing: "0.24px",
     "& p": {
       "@media (max-width:1439px)": {
         margin: "0 !important",

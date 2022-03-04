@@ -71,8 +71,8 @@
       margin-left: 1em;
       &::before {
         content: "";
-        border-left: 1px solid black;
-        border-top: 1px solid black;
+        border-left: 2px solid black;
+        border-top: 2px solid black;
         transform: rotate(315deg);
         width: 0.5em;
         height: 0.5em;

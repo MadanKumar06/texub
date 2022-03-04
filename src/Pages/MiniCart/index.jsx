@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./styles.scss";
-import { Link } from "react-router-dom";
+
 
 import { Drawer, Button, Badge } from "@mui/material";
 import MiniCartList from "./MiniCartList";
@@ -12,12 +12,12 @@ const MiniCartDrawer = () => {
     left: false,
   });
   const [matches, setMatches] = useState(
-    window.matchMedia("(min-width: 767px)").matches
+    window.matchMedia("(min-width: 580px)").matches
   );
 
   useEffect(() => {
     window
-      .matchMedia("(min-width: 767px)")
+      .matchMedia("(min-width: 580px)")
       .addEventListener("change", (e) => setMatches(e.matches));
   }, []);
 
@@ -48,14 +48,12 @@ const MiniCartDrawer = () => {
     <div className="minicart_drawer_main">
       <React.Fragment key={"right"}>
         <Button onClick={toggleDrawer("right", true)}>
-          <Link to="/mycart">
             <Badge badgeContent={1} className="badge">
             <div className="mycart_image">
             <img src={mycart_image} alt="" />
           </div>
             </Badge>
             <li className="mini_cart_head">My Cart</li>
-          </Link>
         </Button>
         <Drawer
           anchor={"right"}
@@ -64,7 +62,7 @@ const MiniCartDrawer = () => {
           className="miniCart_drawer"
           PaperProps={
             matches
-              ? { style: { height: "87.5vh", width: "600px" } }
+              ? { style: { height: "87.5vh", width: "min-content" } }
               : { style: { height: "87.5vh", width: "100%" } }
           }
         >

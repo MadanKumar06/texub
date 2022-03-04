@@ -1,6 +1,7 @@
-import React from "react";
-import { Modal,Backdrop } from "@mui/material";
+import React, { useState } from "react";
+import { Modal, Backdrop } from "@mui/material";
 import { withStyles } from "@mui/styles";
+import clsx from "clsx";
 import styles from "./styles";
 import logo from "../../../../Assets/CommonImage/Logo/texub_logo_user_selection.svg";
 import Register_section_Logo_one from "../../../../Assets/CommonImage/RegisterPopup/trade_and_auctions.png";
@@ -11,13 +12,16 @@ import Register_section_Logo_five from "../../../../Assets/CommonImage/RegisterP
 import Register_section_Logo_arrow from "../../../../Assets/CommonImage/RegisterPopup/right_arrow_white.png";
 import SectionRight from "../SectionRight";
 const TransitionsModal = ({ classes, openPopUp }) => {
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = useState(true);
+  const [clicked, setClicked] = useState("buyer");
   let {
     section_main,
     section_left,
     welcome_column,
     welcome_text,
     welcome_texub_logo,
+    section_main_buyer,
+    section_main_seller,
     modal,
     tagline_text,
     section_right,
@@ -57,6 +61,9 @@ const TransitionsModal = ({ classes, openPopUp }) => {
     setOpen(false);
     openPopUp(false);
   };
+  const handleClassChange = (event) => {
+    setClicked(event);
+  };
   return (
     <Modal
       aria-labelledby="transition-modal-title"
@@ -70,7 +77,12 @@ const TransitionsModal = ({ classes, openPopUp }) => {
         timeout: 500,
       }}
     >
-      <div className={section_main}>
+      <div
+        className={clsx(
+          section_main,
+          `${clicked === "buyer" ? section_main_buyer : section_main_seller}`
+        )}
+      >
         <div className={section_left}>
           <div className={welcome_column}>
             <div className={welcome_text}>Welcome to</div>
@@ -94,7 +106,10 @@ const TransitionsModal = ({ classes, openPopUp }) => {
           ))}
         </div>
         <div className={section_right}>
-          <SectionRight handleClose={handleClose} />
+          <SectionRight
+            handleClose={handleClose}
+            handleClassChange={handleClassChange}
+          />
         </div>
       </div>
     </Modal>

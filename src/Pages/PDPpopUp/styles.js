@@ -31,6 +31,7 @@ const styles = (theme) => ({
     position: "absolute",
     top: "-37px",
     right: "-42px",
+    cursor: "pointer",
     background: "#ffffff",
     color: "#002D56",
     borderRadius: "3px",
@@ -55,9 +56,6 @@ const styles = (theme) => ({
     borderBottom: "1px solid #cccccc",
     "& span": {
       fontSize: "16px",
-      "@media (max-width:1110px) and (min-width:320px)": {
-        fontSize: "12px",
-      },
     },
     "@media (max-width: 767px)": {
       gap: "15px",
@@ -68,7 +66,10 @@ const styles = (theme) => ({
     display: "flex",
     alignItems: "center",
     gap: "10px",
-    cursor: "pointer",
+    "& span": {
+      color: "#333C42",
+      letterSpacing: "0.48px",
+    },
   },
   modal_bottom_container: {
     display: "flex",
@@ -77,15 +78,27 @@ const styles = (theme) => ({
     padding: "29px",
     width: "85%",
     margin: "auto",
-    "@media (max-width:1110px) and (min-width:768px)": {
+    "& span": {
+      cursor: "pointer",
+    },
+    "@media(max-width:1300px)": {
       width: "100%",
-      gap: "5px",
+    },
+    "@media(max-width:1080px)": {
+      gap: "20px",
+    },
+    "@media(max-width:965px)": {
+      flexDirection: "column",
+      alignItems: "center",
     },
     "@media (max-width: 767px)": {
       justifyContent: "center",
       flexWrap: "wrap",
       gap: "16px",
       width: "100%",
+    },
+    "@media(max-width:425px)": {
+      padding: "10px",
     },
   },
   modal_bottom_image_container: {
@@ -96,26 +109,25 @@ const styles = (theme) => ({
     fontSize: "18px",
     color: "#002D56",
     fontWeight: "600",
-    "@media (max-width:1599px) and (min-width:1440px)": {
+    "@media(max-width:926px)": {
       fontSize: "16px",
-    },
-    "@media (max-width:1439px) and (min-width:320px)": {
-      fontSize: "14px",
     },
   },
   modal_bottom_button_main: {
     display: "flex",
-    gap: "31px",
-    "@media (max-width:1110px) and (min-width:320px)": {
-      gap: "10px",
+    gap: "32px",
+    "& a": {
+      textDecoration: "none",
     },
-    "@media (max-width:425px)": {
+    "@media(max-width:1080px)": {
+      gap: "20px",
+    },
+    "@media (max-width:767px)": {
       flexDirection: "column",
       width: "100%",
     },
   },
   modal_bottom_button_pending_invoice: {
-    textDecoration: "none !important",
     minWidth: "245px !important",
     borderRadius: "45px !important",
     border: "none !important",
@@ -125,27 +137,35 @@ const styles = (theme) => ({
     boxShadow: "0px 3px 6px #00000029",
     fontWeight: "600 !important",
     letterSpacing: "1px",
+    gap: "5px",
     textTransform: "capitalize !important",
-    gap: "8px",
+    padding: "8px 68px !important",
     "& span": {
       fontSize: "18px",
-      "@media (max-width:1599px) and (min-width:1440px)": {
+      "@media(max-width:1440px)": {
         fontSize: "16px",
       },
-      "@media (max-width:1439px) and (min-width:320px)": {
-        fontSize: "12px",
+      "@media(max-width:425px)": {
+        fontSize: "14px",
       },
     },
-    "@media (max-width:1140px) and (min-width:320px)": {
+    "@media(max-width:1440px)": {
+      padding: "6px 40px !important",
+      fontSize: "16px !important",
+    },
+    "@media(max-width:1300px)": {
+      padding: "4px 23px !important",
+    },
+    "@media (max-width:1140px)": {
       minWidth: "195px !important",
     },
-    "@media (max-width:425px)": {
+    "@media(max-width:425px)": {
+      minWidth: "min-content !important",
       width: "100%",
       marginRight: "0 !important",
     },
   },
   modal_bottom_button_add_to_cart: {
-    textDecoration: "none",
     minWidth: "173px !important",
     borderRadius: "45px !important",
     border: "none !important",
@@ -156,22 +176,34 @@ const styles = (theme) => ({
     fontWeight: "600 !important",
     letterSpacing: "1px !important",
     textTransform: "capitalize !important",
-    gap: "8px",
+    gap: "5px",
+    padding: "8px 68px !important",
     "@media (max-width:425)": {
       width: "100%",
       marginLeft: "0 !important",
     },
     "& span": {
       fontSize: "18px",
-      "@media (max-width:1599px) and (min-width:1440px)": {
+      "@media(max-width:1440px)": {
         fontSize: "16px",
       },
-      "@media (max-width:1439px) and (min-width:320px)": {
-        fontSize: "12px",
+      "@media(max-width:425px)": {
+        fontSize: "14px",
       },
     },
-    "@media (max-width:1140px) and (min-width:320px)": {
+    "@media(max-width:1440px)": {
+      padding: "6px 40px !important",
+    },
+    "@media(max-width:1300px)": {
+      padding: "4px 23px !important",
+    },
+    "@media (max-width:1140px)": {
       minWidth: "126px !important",
+    },
+    "@media(max-width:425px)": {
+      minWidth: "min-content !important",
+      width: "100%",
+      marginRight: "0 !important",
     },
   },
   pdp_modal_footer: {
@@ -193,22 +225,18 @@ const styles = (theme) => ({
   pdp_footer_model_info: {
     fontSize: "20px",
     color: "#20639B",
-    "@media (max-width:1599px) and (min-width:1440px)": {
+    letterSpacing: "0.6px",
+    "@media (max-width:767px)": {
       fontSize: "18px",
-    },
-    "@media (max-width:1439px) and (min-width:320px)": {
-      fontSize: "16px",
     },
   },
   pdp_footer_model_info_detail: {
     color: "#002D56",
     fontSize: "24px",
-    fontWeight: "500",
-    "@media (max-width:1599px) and (min-width:1440px)": {
+    fontWeight: "600",
+    letterSpacing: "0.72px",
+    "@media (max-width:767px)": {
       fontSize: "20px",
-    },
-    "@media (max-width:1439px) and (min-width:320px)": {
-      fontSize: "18px",
     },
   },
 });

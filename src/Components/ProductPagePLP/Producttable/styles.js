@@ -3,7 +3,7 @@ const styles = () => ({
     margin: "15px 3% 4.5%",
   },
   mui_datatable_main: {
-    "& .MUIDataTable-responsiveBase-5": {
+    "& .MuiTableCell-root ": {
       zIndex: "1",
     },
     "& .MuiToolbar-root": {
@@ -35,10 +35,12 @@ const styles = () => ({
         color: "#FFFFFF",
         fontWeight: "600",
         textAlign: "center",
+        whiteSpace: "nowrap",
         fontSize: "18px",
       },
     },
     "& .MuiTableBody-root": {
+      cursor: "pointer",
       "& .MuiTableRow-root:nth-child(odd)": {
         background: "#F5F5F5",
       },
@@ -49,6 +51,9 @@ const styles = () => ({
       "& .MuiTableCell-root ": {
         textAlign: "center",
         fontSize: "18px",
+        "& a": {
+          textDecoration: "none",
+        },
         "@media (max-width:900px)": {
           display: "block !important",
         },

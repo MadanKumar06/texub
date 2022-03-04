@@ -1,8 +1,8 @@
-import React,{useState} from 'react'
-import './styles.scss'
-import EditIcon from '@mui/icons-material/Edit';
-import Billingaddress from './Billingaddress'
-import Shippingadress from './Shippingaddress'
+import React, { useState } from "react";
+import "./styles.scss";
+import EditIcon from "@mui/icons-material/Edit";
+import Billingaddress from "./Billingaddress";
+import Shippingadress from "./Shippingaddress";
 
 
  const Index = () => {

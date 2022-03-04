@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styles from "./styles";
 import {
   Modal,
   TextField,
@@ -6,14 +7,15 @@ import {
   FormControlLabel,
   Button,
   Box,
-  Backdrop
+  Backdrop,
 } from "@mui/material";
 import { withStyles } from "@mui/styles";
-import styles from "./styles";
 import { Clear } from "@mui/icons-material";
 import Autocomplete from "@mui/material/Autocomplete";
-import uploadImage from "../../../../Assets/CommonImage/KYC Form/Icon.png";
 import SectionRight from "../SectionRight";
+
+import uploadImage from "../../../../Assets/CommonImage/KYC Form/Icon.png";
+
 const BuyerKYCformSectionLeft = ({ classes, KYCformPop }) => {
   const [open, setOpen] = React.useState(true);
   const [documentButton, setDocumentButton] = useState("trade_license");
@@ -73,7 +75,7 @@ const BuyerKYCformSectionLeft = ({ classes, KYCformPop }) => {
         </header>
         <div className={sections}>
           <div className={section_left}>
-            <p className={info_text_lineNote_one}>1. Required Documents</p>
+            <p className={info_text_lineNote_one}>Required Documents</p>
             <Box className={box}>
               <Button
                 className={`${
@@ -153,6 +155,39 @@ const BuyerKYCformSectionLeft = ({ classes, KYCformPop }) => {
                       variant="outlined"
                     />
                   </div>
+                  <div className={media_upload}>
+                    <div className={sub_media_upload_container}>
+                      <div className={sub_media_upload_part}>
+                        <p>Attatch National ID</p>
+                        <span>*</span>
+                        <label
+                          className={sub_media_upload_label}
+                          htmlFor="icon-button-file"
+                        >
+                          <input
+                            accept="image/*"
+                            id="icon-button-file"
+                            type="file"
+                          />
+                          <img
+                            src={uploadImage}
+                            alt="auth"
+                            aria-label="upload picture"
+                            component="span"
+                          />
+                        </label>
+                      </div>
+
+                      <small>(Supported format : .jpg/.png/.pdf)</small>
+                    </div>
+                    <div className={input_image_name}>
+                      <p>Adhaar_20456.Jpg</p>
+                      <Clear
+                        className={input_image_name_clear_btn}
+                        // onClick={() => handleClose()}
+                      />
+                    </div>
+                  </div>
                 </>
               )}
               {documentButton === "tax_certificate" && (
@@ -187,67 +222,103 @@ const BuyerKYCformSectionLeft = ({ classes, KYCformPop }) => {
                       variant="outlined"
                     />
                   </div>
+                  <div className={media_upload}>
+                    <div className={sub_media_upload_container}>
+                      <div className={sub_media_upload_part}>
+                        <p>Attatch National ID</p>
+                        <span>*</span>
+                        <label
+                          className={sub_media_upload_label}
+                          htmlFor="icon-button-file"
+                        >
+                          <input
+                            accept="image/*"
+                            id="icon-button-file"
+                            type="file"
+                          />
+                          <img
+                            src={uploadImage}
+                            alt="auth"
+                            aria-label="upload picture"
+                            component="span"
+                          />
+                        </label>
+                      </div>
+
+                      <small>(Supported format : .jpg/.png/.pdf)</small>
+                    </div>
+                    <div className={input_image_name}>
+                      <p>Adhaar_20456.Jpg</p>
+                      <Clear
+                        className={input_image_name_clear_btn}
+                        // onClick={() => handleClose()}
+                      />
+                    </div>
+                  </div>
                 </>
               )}
               {documentButton === "national_id" && (
-                <Autocomplete
-                  value={value}
-                  onChange={(event, newValue) => {
-                    setValue(newValue);
-                  }}
-                  className={auto_complete_input}
-                  inputValue={inputValue}
-                  onInputChange={(event, newInputValue) => {
-                    setInputValue(newInputValue);
-                  }}
-                  id="controllable-states-demo"
-                  options={options}
-                  fullWidth
-                  renderInput={(params) => (
-                    <TextField
-                      {...params}
-                      label="Nationality"
-                      placeholder="Nationality"
-                      InputLabelProps={{
-                        shrink: true,
-                      }}
-                    />
-                  )}
-                />
-              )}
-              <div className={media_upload}>
-                <div className={sub_media_upload_container}>
-                  <div className={sub_media_upload_part}>
-                    <p>Attatch National ID</p>
-                    <span>*</span>
-                    <label
-                      className={sub_media_upload_label}
-                      htmlFor="icon-button-file"
-                    >
-                      <input
-                        accept="image/*"
-                        id="icon-button-file"
-                        type="file"
+                <>
+                  <Autocomplete
+                    value={value}
+                    onChange={(event, newValue) => {
+                      setValue(newValue);
+                    }}
+                    className={auto_complete_input}
+                    inputValue={inputValue}
+                    onInputChange={(event, newInputValue) => {
+                      setInputValue(newInputValue);
+                    }}
+                    id="controllable-states-demo"
+                    options={options}
+                    fullWidth
+                    renderInput={(params) => (
+                      <TextField
+                        {...params}
+                        label="Nationality"
+                        placeholder="Nationality"
+                        InputLabelProps={{
+                          shrink: true,
+                        }}
                       />
-                      <img
-                        src={uploadImage}
-                        alt="auth"
-                        aria-label="upload picture"
-                        component="span"
-                      />
-                    </label>
-                  </div>
-
-                  <small>(Supported format : .jpg/.png/.pdf)</small>
-                </div>
-                <div className={input_image_name}>
-                  <p>Adhaar_20456.Jpg</p>
-                  <Clear
-                    className={input_image_name_clear_btn}
-                    // onClick={() => handleClose()}
+                    )}
                   />
-                </div>
-              </div>
+                  <div className={media_upload}>
+                    <div className={sub_media_upload_container}>
+                      <div className={sub_media_upload_part}>
+                        <p>Attatch National ID</p>
+                        <span>*</span>
+                        <label
+                          className={sub_media_upload_label}
+                          htmlFor="icon-button-file"
+                        >
+                          <input
+                            accept="image/*"
+                            id="icon-button-file"
+                            type="file"
+                          />
+                          <img
+                            src={uploadImage}
+                            alt="auth"
+                            aria-label="upload picture"
+                            component="span"
+                          />
+                        </label>
+                      </div>
+
+                      <small>(Supported format : .jpg/.png/.pdf)</small>
+                    </div>
+                    <div className={input_image_name}>
+                      <p>Adhaar_20456.Jpg</p>
+                      <Clear
+                        className={input_image_name_clear_btn}
+                        // onClick={() => handleClose()}
+                      />
+                    </div>
+                  </div>
+                </>
+              )}
+
               <FormControlLabel
                 value="yes"
                 control={<Checkbox color="color_third" />}
@@ -257,7 +328,7 @@ const BuyerKYCformSectionLeft = ({ classes, KYCformPop }) => {
               />
 
               <div className={section_left_bank_details}>
-                <p className={info_text_lineNote_two}>2. Bank Details</p>
+                <p className={info_text_lineNote_two}>Bank Details</p>
                 <TextField
                   id="outlined-textarea"
                   label="Account No."
@@ -302,7 +373,7 @@ const BuyerKYCformSectionLeft = ({ classes, KYCformPop }) => {
             </div>
           </div>
           <div className={section_right}>
-            <SectionRight handleClose={handleClose}/>
+            <SectionRight handleClose={handleClose} />
           </div>
         </div>
       </div>

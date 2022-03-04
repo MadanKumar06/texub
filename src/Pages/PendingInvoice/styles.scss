@@ -108,6 +108,7 @@
     }
     .section_left_container_footer {
       padding: 20px;
+
       .MuiFormGroup-root {
         display: flex;
         flex-direction: row;
@@ -149,6 +150,9 @@
   .section_right_container {
     width: 35%;
     margin-left: 3%;
+    a {
+      text-decoration: none;
+    }
     .section_right_sub_container {
       background: #f8f0e0;
       padding: 2em 4em;
@@ -366,6 +370,12 @@
     }
     .footer_content .footer_sub_title {
       font-size: 14px;
+    }
+    .footer_content {
+      .MuiSvgIcon-root {
+        width: 0.8em !important;
+        height: 0.8em !important;
+      }
     }
     .footer_content .footer_value {
       span {
