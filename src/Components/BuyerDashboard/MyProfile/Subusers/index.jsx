@@ -5,7 +5,9 @@ import Newsubaccount from './Newsubaccount'
    const [isSub,setisSub]=useState(false)
    const Newsubacc=()=>{
     setisSub(!isSub)
+    setisSubusers(false)
    }
+   const [isSubusers,setisSubusers]=useState(true)
    const Users =[
      {
        id:1,
@@ -35,6 +37,8 @@ import Newsubaccount from './Newsubaccount'
     }
    ]
   return (
+    <>
+    {isSubusers &&
     <div className='users_main'>
       <div className='users_table_section'>
       <hr></hr>
@@ -76,8 +80,11 @@ import Newsubaccount from './Newsubaccount'
       <div className='user_sub-account'>
         <button onClick={Newsubacc}>Add New Sub-Account</button>
       </div>
-      {isSub && <Newsubaccount/>}
+      
     </div>
+    }
+    {isSub && <Newsubaccount/>}
+    </>
   )
 }
 export default Index;
