@@ -1,6 +1,6 @@
-import React from 'react'
+import React,{useState} from 'react'
 import './styles.scss'
-import{ TextField,TextareaAutosize }from '@mui/material';
+import{ TextField,TextareaAutosize,InputLabel }from '@mui/material';
 import Autocomplete from "@mui/material/Autocomplete";
 import { useParams } from "react-router-dom";
 const Index = (classes) => {
@@ -19,17 +19,72 @@ const Index = (classes) => {
         options: List,
         getOptionLabel: (option) => option.title,
       };
-    //   const flatProps = {
-    //     options: List.map((option) => option.title),
-    //   };
       
     let { type } = useParams();
   let {
     auto_complete_input,
+    validation_error,
   } = classes;
    const options = ["Option 1", "Option 2"];
   const [value, setValue] = React.useState();
   const [inputValue, setInputValue] = React.useState("");
+  const [NewSubAccountData, setNewSubAccountData] = useState({
+    first_name: "",
+    last_name: "",
+    e_mail: "",
+    allowed_permissions: "",
+    active: "", 
+  });
+  const [inputValidation, setInputValidation] = useState({
+    first_name: "",
+    last_name: "",
+    e_mail: "",
+    allowed_permissions: "",
+    active: "",
+  });
+  const handleClickValidation = (event) => {
+    var errorHandle = false;
+    if (!NewSubAccountData?.first_name) {
+      document.getElementById("first_name")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        first_name: "Please enter the first name.",
+      }));
+     errorHandle = true;
+  }
+  if (!NewSubAccountData?.last_name) {
+    document.getElementById("last_name")?.focus();
+    setInputValidation((prevState) => ({
+      ...prevState,
+      last_name: "Please enter the last name.",
+    }));
+   errorHandle = true;
+}
+if (!NewSubAccountData?.e_mail) {
+  document.getElementById("e_mail")?.focus();
+  setInputValidation((prevState) => ({
+    ...prevState,
+    e_mail: "Please enter your email.",
+  }));
+ errorHandle = true;
+}
+if (!NewSubAccountData?.allowed_permissions) {
+  document.getElementById("allowed_permissions")?.focus();
+  setInputValidation((prevState) => ({
+    ...prevState,
+    allowed_permissions: "Please allow permissions.",
+  }));
+ errorHandle = true;
+}
+if (!NewSubAccountData?.active) {
+  document.getElementById("active")?.focus();
+  setInputValidation((prevState) => ({
+    ...prevState,
+    active: "Please select status.",
+  }));
+ errorHandle = true;
+}
+}
   return (
     <div className='subaccount_main'>
     <p className='sub_heading'>Add New Sub-Account</p>
@@ -38,26 +93,35 @@ const Index = (classes) => {
         <p>First Name</p>
               <TextField
               fullWidth
-                id="outlined-error"
-                defaultValue="Ayush"
+                id="first_name"
+                name='first_name'
               />
+               <InputLabel className={validation_error}>
+              {inputValidation?.first_name}
+            </InputLabel>
         </div>
         <div>
         <p>Last Name</p>
               <TextField
               fullWidth
-                id="outlined-error"
-                defaultValue="Raj"
+                id="last_name"
+                name='last_name'
               />
+              <InputLabel className={validation_error}>
+              {inputValidation?.last_name}
+            </InputLabel>
         </div>
     </div>
     <div className='user_input'>
     <p>Email Address</p>
               <TextField
               fullWidth
-                id="outlined-error"
-                defaultValue="ayush@ymail.com"
+                id="e_mail"
+                name="e_mail"
               />
+              <InputLabel className={validation_error}>
+              {inputValidation?.e_mail}
+            </InputLabel>
     </div>
     <div className='user_permision'>
         <p>Allowed Permission</p>
@@ -65,18 +129,25 @@ const Index = (classes) => {
       id="country-select-demo"
       options={List}
       autoHighlight
+      
       getOptionLabel={(option) => option.title}
       renderInput={(params) => (
         <TextField
+           
           {...params}
-          
+          id="allowed_permissions"
+          name='allowed_permissions'
           inputProps={{
+            
             ...params.inputProps,
             autoComplete: 'new-password', // disable autocomplete and autofill
           }}
         />
       )}
     /> 
+    <InputLabel className={validation_error}>
+              {inputValidation?.allowed_permissions}
+            </InputLabel>
     {/* <Autocomplete
         {...defaultProps}
         id="disable-close-on-select"
@@ -92,7 +163,7 @@ const Index = (classes) => {
       
       aria-label="empty textarea"
       style={{height:100,
-              width: 1300}}
+              width:"100%",}}
     />
     </div>
     <div className='users_active_section'>
@@ -112,6 +183,8 @@ const Index = (classes) => {
             renderInput={(params) => (
               <TextField
                 {...params}
+                id="active"
+                name="active"
                 placeholder="Yes"
                 InputLabelProps={{
                   shrink: true,
@@ -121,9 +194,12 @@ const Index = (classes) => {
               />
             )}
           />
+          <InputLabel className={validation_error}>
+              {inputValidation?.active}
+            </InputLabel>
     </div>
     <div className='user_btn_section'>
-        <button>Save Sub-Account</button>
+        <button  onClick={() => handleClickValidation()}>Save Sub-Account</button>
     </div>
     </div>
   )

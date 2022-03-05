@@ -1,41 +1,107 @@
-import React from 'react'
+import React,{useState} from 'react'
 import './styles.scss'
-import TextField from '@mui/material/TextField';
+import {TextField,InputLabel} from '@mui/material';
 import Autocomplete from "@mui/material/Autocomplete";
 import { useParams } from "react-router-dom";
-import { Clear } from "@mui/icons-material";
-import uploadImage from "../../../../../Assets/CommonImage/KYC Form/Icon.png";
-// import styles from '../../../../../Pages/Register/BuyerKYCform/SectionLeft/styles'
 
 const Index = (classes) => {
-  // let {
-  //   auto_complete_input,
-  //   media_upload,
-  //   sub_media_upload_container,
-  //   sub_media_upload_part,
-  //   sub_media_upload_label,
-  //   input_image_name,
-  //   input_image_name_clear_btn,
-  // } = classes;
+  
   let { type } = useParams();
   let {
     auto_complete_input,
+    validation_error,
   } = classes;
   const options = ["Option 1", "Option 2"];
   const [value, setValue] = React.useState();
   const [inputValue, setInputValue] = React.useState("");
+  
+  const [CompanyInfoData, setCompanyInfoData] = useState({
+    organization_name: "",
+    organization_type: "",
+    gst_number: "",
+    speciality: "",
+    no_of_branches: "",
+    average_revenue: "",
+
+    
+
+  });
+  const [inputValidation, setInputValidation] = useState({
+    organization_name: "",
+    organization_type:"",
+    gst_number:"",
+    speciality:"",
+    no_of_branches:"",
+    average_revenue:"",
+  });
+  const handleClickValidation = (event) => {
+    var errorHandle = false;
+    if (!CompanyInfoData?.organization_name) {
+      document.getElementById("organization_name")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        organization_name: "Please enter the organization name.",
+      }));
+     errorHandle = true;
+  }
+  if (!CompanyInfoData?.organization_type) {
+    document.getElementById("organization_type")?.focus();
+    setInputValidation((prevState) => ({
+      ...prevState,
+      organization_type: "Please select the organization type.",
+    }));
+   errorHandle = true;
+}
+if (!CompanyInfoData?.gst_number) {
+  document.getElementById("gst_number")?.focus();
+  setInputValidation((prevState) => ({
+    ...prevState,
+    gst_number: "Please enter the gst number.",
+  }));
+ errorHandle = true;
+}
+if (!CompanyInfoData?.speciality) {
+  document.getElementById("speciality")?.focus();
+  setInputValidation((prevState) => ({
+    ...prevState,
+    speciality: "Please select the speciality.",
+  }));
+ errorHandle = true;
+}
+if (!CompanyInfoData?.no_of_branches) {
+  document.getElementById("no_of_branches")?.focus();
+  setInputValidation((prevState) => ({
+    ...prevState,
+    no_of_branches: "Please enter no of branches.",
+  }));
+ errorHandle = true;
+}
+if (!CompanyInfoData?.average_revenue) {
+  document.getElementById("average_revenue")?.focus();
+  setInputValidation((prevState) => ({
+    ...prevState,
+    average_revenue: "Please enter the average revenue.",
+  }));
+ errorHandle = true;
+}
+};
+
   return (
     <div className='companyinfo_main'>
       <span className='Account_heading'> <p >EDIT COMPANY INFORMATION</p></span>
       <div className='company_information'>
-        <form>
+        <div className='form'>
           <div className='inputfield_section'>
             <div className='inputfield'>
               <p>Organization Name</p>
               <TextField
-                id="outlined-error"
+                id="organization_name"
+                name='organization_name'
                 defaultValue="Organization Name"
               />
+              <InputLabel className={validation_error}>
+              {inputValidation?.organization_name}
+            </InputLabel>
             </div>
             <div className='inputfield'>
 
@@ -56,8 +122,9 @@ const Index = (classes) => {
                 renderInput={(params) => (
                   <TextField
                     {...params}
-
-                    placeholder="Country"
+                   id="organization_type"
+                   name='organization_type'
+                    placeholder="Organization Type"
                     InputLabelProps={{
                       shrink: true,
                       required: true,
@@ -66,15 +133,21 @@ const Index = (classes) => {
                   />
                 )}
               />
+              <InputLabel className={validation_error}>
+              {inputValidation?.organization_type}
+            </InputLabel>
             </div>
           </div>
           <div className='inputfield_section'>
             <div className='inputfield'>
               <p>GST Number</p>
               <TextField
-                id="outlined-error"
-                defaultValue="29Aabcu9604R1Zj"
+                id="gst_number"
+                name="gst_number"
               />
+              <InputLabel className={validation_error}>
+              {inputValidation?.gst_number}
+            </InputLabel>
             </div>
             <div className='inputfield'>
               
@@ -95,7 +168,8 @@ const Index = (classes) => {
                 renderInput={(params) => (
                   <TextField
                     {...params}
-
+                    id="speciality"
+                    name='speciality'
                     placeholder="Speciality"
                     InputLabelProps={{
                       shrink: true,
@@ -105,22 +179,31 @@ const Index = (classes) => {
                   />
                 )}
               />
+              <InputLabel className={validation_error}>
+              {inputValidation?.speciality}
+            </InputLabel>
             </div>
           </div>
           <div className='inputfield_section'>
             <div className='inputfield'>
               <p>Number Of Branches & Department</p>
               <TextField
-                id="outlined-error"
-                defaultValue="00"
+                id="no_of_branches"
+                name='no_of_branches'
               />
+              <InputLabel className={validation_error}>
+              {inputValidation?.no_of_branches}
+            </InputLabel>
             </div>
             <div className='inputfield'>
               <p>Average Revenue</p>
               <TextField
-                id="outlined-error"
-                defaultValue="12030596"
+                id="average_revenue"
+                name='average_revenue'
               />
+              <InputLabel className={validation_error}>
+              {inputValidation?.average_revenue}
+            </InputLabel>
             </div>
           </div>
           <div className='accountinfo_btn'>
@@ -128,45 +211,13 @@ const Index = (classes) => {
               <label >Upload Documents <span> (Sopported format:.jpg/.png/.pdf)</span></label>
               <input type="file" name="myfile" ></input>
             </div> 
-            {/* <div className={media_upload}>
-                <div className={sub_media_upload_container}>
-                  <div className={sub_media_upload_part}>
-                    <p>Attatch National ID</p>
-                    <span>*</span>
-                    <label
-                      className={sub_media_upload_label}
-                      htmlFor="icon-button-file"
-                    >
-                      <input
-                        accept="image/*"
-                        id="icon-button-file"
-                        type="file"
-                      />
-                      <img
-                        src={uploadImage}
-                        alt="auth"
-                        aria-label="upload picture"
-                        component="span"
-                      />
-                    </label>
-                  </div>
-
-                  <small>(Supported format : .jpg/.png/.pdf)</small>
-                </div>
-                <div className={input_image_name}>
-                  <p>Adhaar_20456.Jpg</p>
-                  <Clear
-                    className={input_image_name_clear_btn}
-                    // onClick={() => handleClose()}
-                  />
-                </div> */}
-              {/* </div> */}
+            
             <div className='accountinfo_btn_section'>
               <button className='account_info_cancel'>Cancel</button>
-              <button className='account_info_save'>Save Changes</button>
+              <button className='account_info_save' onClick={() => handleClickValidation()}>Save Changes</button>
             </div>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   )
