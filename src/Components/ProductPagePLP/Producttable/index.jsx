@@ -103,8 +103,7 @@ const Productstable = ({ classes }) => {
           return (
             <Link to="/mycart">
               <p className={producttable_add_to_cart}>
-                <img src={shopping_cart} alt="" />
-                Add to Cart
+                View Product
               </p>
             </Link>
           );

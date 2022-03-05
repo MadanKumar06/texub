@@ -4,7 +4,7 @@ import styles from "./styles";
 import thanksLogo from "../../../Assets/Productlist/gratitude_icon.png";
 import { Button, Box } from "@mui/material";
 import { useParams } from "react-router-dom";
-import BuyerKYCform from "../BuyerKYCform/SectionLeft";
+import BuyerKYCform from "../KYCform/SectionLeft";
 
 const ThankyouPage = ({ classes }) => {
   const { type } = useParams();
