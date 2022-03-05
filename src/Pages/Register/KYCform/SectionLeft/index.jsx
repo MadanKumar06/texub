@@ -21,6 +21,7 @@ const BuyerKYCformSectionLeft = ({ classes, KYCformPop }) => {
   const [open, setOpen] = React.useState(true);
   const [documentButton, setDocumentButton] = useState("trade_license");
   const [kycFormData, setKycFormData] = useState({});
+  const [validationFieldMessage, setValidationFieldMessage] = useState();
   let {
     buyer_kyc_section_left_container,
     modal,
@@ -104,18 +105,24 @@ const BuyerKYCformSectionLeft = ({ classes, KYCformPop }) => {
                 <TradeLicenseButton
                   SetFormValues={setKycFormData}
                   FormValues={kycFormData}
+                  validationFieldMessage={validationFieldMessage}
+                  setValidationFieldMessage={setValidationFieldMessage}
                 />
               )}
               {documentButton === "tax_certificate" && (
                 <TaxCertificateButton
                   SetFormValues={setKycFormData}
                   FormValues={kycFormData}
+                  validationFieldMessage={validationFieldMessage}
+                  setValidationFieldMessage={setValidationFieldMessage}
                 />
               )}
               {documentButton === "national_id" && (
                 <NationalIdButton
                   SetFormValues={setKycFormData}
                   FormValues={kycFormData}
+                  validationFieldMessage={validationFieldMessage}
+                  setValidationFieldMessage={setValidationFieldMessage}
                 />
               )}
 
@@ -137,6 +144,8 @@ const BuyerKYCformSectionLeft = ({ classes, KYCformPop }) => {
               handleClose={handleClose}
               SetFormValues={setKycFormData}
               FormValues={kycFormData}
+              validationFieldMessage={validationFieldMessage}
+              setValidationFieldMessage={setValidationFieldMessage}
             />
           </div>
         </div>

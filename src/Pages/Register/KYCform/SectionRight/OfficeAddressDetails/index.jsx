@@ -1,10 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { TextField, InputLabel } from "@mui/material";
 import { withStyles } from "@mui/styles";
 import styles from "../styles";
 import Autocomplete from "@mui/material/Autocomplete";
 
-const OfficeAddressDetails = ({ classes, SetFormValues, FormValues }) => {
+const OfficeAddressDetails = ({
+  classes,
+  SetFormValues,
+  FormValues,
+  validationFieldMessage,
+  setValidationFieldMessage,
+}) => {
   let {
     info_text_lineNote_one,
     auto_complete_input,
@@ -15,6 +21,9 @@ const OfficeAddressDetails = ({ classes, SetFormValues, FormValues }) => {
     textFlied_separate,
   } = classes;
 
+  useEffect(() => {
+    setInputValidation({ ...validationFieldMessage });
+  }, [validationFieldMessage]);
   // input state and onchange events
   const handleFormvalue = (event) => {
     SetFormValues((prevState) => ({

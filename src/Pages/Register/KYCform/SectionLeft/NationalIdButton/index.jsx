@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "../styles";
 
 import { TextField, Autocomplete, InputLabel } from "@mui/material";
@@ -6,7 +6,15 @@ import { withStyles } from "@mui/styles";
 import { Clear } from "@mui/icons-material";
 import uploadImage from "../../../../../Assets/CommonImage/KYC Form/Icon.png";
 
-const NationalIdButton = ({ classes, SetFormValues, FormValues }) => {
+const NationalIdButton = ({
+  classes,
+  SetFormValues,
+  FormValues,
+  validationFieldMessage,
+}) => {
+  useEffect(() => {
+    setInputValidation({ ...validationFieldMessage });
+  }, [validationFieldMessage]);
   let {
     media_upload,
     sub_media_upload_container,

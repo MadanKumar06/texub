@@ -1,0 +1,224 @@
+.filterView_list_main {
+  .clear_btn {
+    top: 6px;
+    color: #ffffff;
+    right: 6px;
+    width: 1.3em !important;
+    cursor: pointer;
+    height: 1.3em !important;
+    position: absolute;
+    background: #002d56;
+    border-radius: 3px;
+  }
+  .sub_filter_view_cards {
+    padding: 4em 3em;
+
+    .filter_option_block {
+      margin-bottom: 3em;
+      .seemore {
+        margin: 0;
+        padding-top: 18px;
+        font-size: 18px;
+        text-decoration: underline;
+        color: #002d56;
+        font-weight: 600;
+      }
+      .filter_title {
+        margin: 0;
+        font-size: 30px;
+        font-weight: 600;
+        color: #333c42;
+        letter-spacing: 0.9px;
+        text-transform: capitalize;
+        position: relative;
+        padding-bottom: 5px;
+        &::before {
+          height: 2px;
+          width: 90px;
+          content: "";
+          position: absolute;
+          bottom: 0;
+          background-color: #333c42;
+          left: 0;
+        }
+      }
+      .accordion_filter {
+        border-bottom: 1px solid #cdd5dd;
+        box-shadow: none;
+        flex-direction: column;
+        .MuiPaper-root {
+          background-color: unset;
+        }
+        .MuiCheckbox-root {
+          .MuiSvgIcon-root {
+            font-size: 1.8em;
+          }
+        }
+        .MuiCheckbox-root.Mui-checked {
+          color: #ddb363 !important;
+        }
+        .MuiTypography-root {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+        .MuiButtonBase-root.Mui-expanded {
+          min-height: 0px;
+        }
+        .MuiButtonBase-root {
+          padding: 0;
+          .MuiAccordionSummary-content {
+            margin: 0;
+            padding: 16px 24px 9px 8px;
+          }
+        }
+        .MuiAccordionDetails-root {
+          .MuiTypography-root {
+            font-weight: 600;
+            font-size: 16px;
+            color: #5c6369;
+            padding-top: 10px;
+          }
+        }
+      }
+      .map_container {
+        display: flex;
+        align-items: center;
+        // padding: 16px 24px 0px 0;
+        gap: 5px;
+        border-bottom: 1px solid #cdd5dd;
+        .MuiCheckbox-root {
+          .MuiSvgIcon-root {
+            font-size: 1.8em;
+          }
+        }
+        .MuiCheckbox-root.Mui-checked {
+          color: #ddb363 !important;
+        }
+      }
+      .filter_info {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        gap: 4em;
+
+        p {
+          margin: 0;
+          color: #5c6369;
+          font-size: 20px;
+          font-weight: 600;
+          letter-spacing: 0.6px;
+          text-transform: capitalize;
+          opacity: 1;
+        }
+      }
+      .filter_amount {
+        display: flex;
+        justify-content: space-between;
+        color: #333c42;
+        font-size: 23px;
+        font-weight: 600;
+        span {
+          font-size: 14px;
+          margin-right: 5px;
+        }
+      }
+    }
+    .filter_by_price {
+      .MuiBox-root {
+        padding-top: 30px;
+        .MuiSlider-rail {
+          height: 10px;
+        }
+        .MuiSlider-track {
+          height: 10px;
+          background: linear-gradient(180deg, #20639b 0%, #002d56 100%);
+        }
+        .MuiSlider-thumbColorPrimary {
+          background: linear-gradient(180deg, #20639b 0%, #002d56 100%);
+          width: 27px;
+          height: 27px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1600px) {
+  .filterView_list_main
+    .sub_filter_view_cards
+    .filter_option_block
+    .filter_title {
+    font-size: 26px;
+  }
+  .filterView_list_main
+    .sub_filter_view_cards
+    .filter_option_block
+    .filter_info
+    p {
+    font-size: 18px;
+  }
+  .filterView_list_main {
+    .clear_btn {
+      width: 1.1em !important;
+      height: 1.1em !important;
+    }
+  }
+  .filterView_list_main
+    .sub_filter_view_cards
+    .filter_option_block
+    .map_container
+    .MuiCheckbox-root
+    .MuiSvgIcon-root {
+    font-size: 1.5em;
+  }
+}
+@media (max-width: 1600px) {
+  .filterView_list_main
+    .sub_filter_view_cards
+    .filter_option_block
+    .filter_title {
+    font-size: 24px;
+  }
+  .filterView_list_main
+    .sub_filter_view_cards
+    .filter_option_block
+    .filter_info
+    p {
+    font-size: 16px;
+  }
+  .filterView_list_main .sub_filter_view_cards .filter_option_block .seemore {
+    font-size: 16px;
+  }
+  .filterView_list_main
+    .sub_filter_view_cards
+    .filter_by_price
+    .MuiBox-root
+    .MuiSlider-thumbColorPrimary {
+    width: 22px;
+    height: 22px;
+  }
+}
+@media (max-width: 768px) {
+  .filterView_list_main
+    .sub_filter_view_cards
+    .filter_option_block
+    .filter_title {
+    font-size: 20px;
+  }
+  .filterView_list_main
+    .sub_filter_view_cards
+    .filter_option_block
+    .filter_info
+    p {
+    font-size: 14px;
+  }
+  .filterView_list_main .sub_filter_view_cards .filter_option_block .seemore {
+    font-size: 14px;
+  }
+}
+@media (max-width: 580px) {
+  .filterView_list_main .sub_filter_view_cards {
+    padding: 3em 2em;
+  }
+}

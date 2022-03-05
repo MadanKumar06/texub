@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "../styles";
 
 import { TextField, InputLabel } from "@mui/material";
@@ -8,7 +8,15 @@ import { LocalizationProvider, DesktopDatePicker } from "@mui/lab";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import uploadImage from "../../../../../Assets/CommonImage/KYC Form/Icon.png";
 
-const TaxCertificateButton = ({ classes, SetFormValues, FormValues }) => {
+const TaxCertificateButton = ({
+  classes,
+  SetFormValues,
+  FormValues,
+  validationFieldMessage,
+}) => {
+  useEffect(() => {
+    setInputValidation({ ...validationFieldMessage });
+  }, [validationFieldMessage]);
   let {
     input_div,
     asterisk,
@@ -26,7 +34,7 @@ const TaxCertificateButton = ({ classes, SetFormValues, FormValues }) => {
   const handleChange = (newValue) => {
     setDateChange(newValue);
     setInputValidation("");
-    handleSwitchCase(["expiration_date"], newValue);
+    handleSwitchCase(["tax_expiration_date"], newValue);
   };
 
   // input state and onchange events
@@ -42,7 +50,7 @@ const TaxCertificateButton = ({ classes, SetFormValues, FormValues }) => {
   // input validation on onchange
   const [inputValidation, setInputValidation] = useState({
     tax_number: "",
-    expiration_date: "",
+    tax_expiration_date: "",
     tax_image: "",
   });
   // input state and onchange events
@@ -66,11 +74,16 @@ const TaxCertificateButton = ({ classes, SetFormValues, FormValues }) => {
         }
         break;
 
-      case "expiration_date":
-        if (value.toString() === "Invalid Date") {
+      case "tax_expiration_date":
+        if (!value) {
           setInputValidation((prevState) => ({
             ...prevState,
-            expiration_date: "Please select valid date.",
+            tax_expiration_date: "Please select expiration date.",
+          }));
+        } else if (value.toString() === "Invalid Date") {
+          setInputValidation((prevState) => ({
+            ...prevState,
+            tax_expiration_date: "Please select valid date.",
           }));
         }
         break;
@@ -78,7 +91,7 @@ const TaxCertificateButton = ({ classes, SetFormValues, FormValues }) => {
         if (!value) {
           setInputValidation((prevState) => ({
             ...prevState,
-            tax: "Please attatch certificate.",
+            tax_image: "Please attatch certificate.",
           }));
         }
         break;
@@ -123,7 +136,7 @@ const TaxCertificateButton = ({ classes, SetFormValues, FormValues }) => {
               <TextField
                 {...params}
                 fullWidth
-                id="expiration_date"
+                id="tax_expiration_date"
                 placeholder="MM/YY"
                 InputLabelProps={{
                   shrink: true,
@@ -137,7 +150,7 @@ const TaxCertificateButton = ({ classes, SetFormValues, FormValues }) => {
           />
         </LocalizationProvider>
         <InputLabel className={validation_error}>
-          {inputValidation?.expiration_date}
+          {inputValidation?.tax_expiration_date}
         </InputLabel>
       </div>
       <div className={media_upload}>
@@ -166,6 +179,9 @@ const TaxCertificateButton = ({ classes, SetFormValues, FormValues }) => {
           </div>
 
           <small>(Supported format : .jpg/.png/.pdf)</small>
+          <InputLabel className={validation_error}>
+            {inputValidation?.tax_image}
+          </InputLabel>
         </div>
         {FormValues?.tax_image && (
           <div className={input_image_name}>

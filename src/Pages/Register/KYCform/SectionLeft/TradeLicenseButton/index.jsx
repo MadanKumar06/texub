@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "../styles";
 
 import { TextField, InputLabel } from "@mui/material";
@@ -8,7 +8,15 @@ import { LocalizationProvider, DesktopDatePicker } from "@mui/lab";
 import uploadImage from "../../../../../Assets/CommonImage/KYC Form/Icon.png";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 
-const TradeLicenseButton = ({ classes, SetFormValues, FormValues }) => {
+const TradeLicenseButton = ({
+  classes,
+  SetFormValues,
+  FormValues,
+  validationFieldMessage,
+}) => {
+  useEffect(() => {
+    setInputValidation({ ...validationFieldMessage });
+  }, [validationFieldMessage]);
   let {
     input_div,
     asterisk,

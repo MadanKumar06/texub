@@ -1,15 +1,13 @@
-import React, { useState } from "react";
-import { Box, Button } from "@mui/material";
+import React from "react";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import MenuItem from "@mui/material/MenuItem";
 import ListItemText from "@mui/material/ListItemText";
 import Select from "@mui/material/Select";
 import Checkbox from "@mui/material/Checkbox";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { withStyles } from "@mui/styles";
 import styles from "./styles";
 import OfficeAddressDetails from "./OfficeAddressDetails";
-import Validation from "../ValidationForKycForm";
 import ValidationForKycForm from "../ValidationForKycForm";
 
 const BuyerKYCformSectionRight = ({
@@ -17,6 +15,8 @@ const BuyerKYCformSectionRight = ({
   handleClose,
   SetFormValues,
   FormValues,
+  validationFieldMessage,
+  setValidationFieldMessage,
 }) => {
   let { type } = useParams();
   let {
@@ -24,8 +24,6 @@ const BuyerKYCformSectionRight = ({
     info_text_lineNote_two,
     category_select_option,
     input_fields,
-    button_box,
-    button_guest,
   } = classes;
 
   const ITEM_HEIGHT = 48;
@@ -38,9 +36,10 @@ const BuyerKYCformSectionRight = ({
       },
     },
   };
-  
+
   const handleCallValidation = (event) => {
     debugger;
+    setValidationFieldMessage(event);
   };
   const names = [
     "Oliver Hansen",
@@ -71,6 +70,7 @@ const BuyerKYCformSectionRight = ({
       <OfficeAddressDetails
         SetFormValues={SetFormValues}
         FormValues={FormValues}
+        validationFieldMessage={validationFieldMessage}
       />
       <div>
         <p className={info_text_lineNote_two}>Categories</p>
