@@ -13,16 +13,9 @@ function Index({type}) {
         count.push(test)
     }
 
-    const deleterow = (i) => {
-        console.log(i)
-        // let dummy = [...count]
-        // dummy.splice(i, 1)
-        // setcount(dummy)
-        setcount(count.filter(item => item !== i))
+    const deleterow = (value) => {
+        setcount(count.filter((item, i) => i !== value))
     }
-
-    console.log(count)
-
 
   return (
     <div className='updateproduct'>
