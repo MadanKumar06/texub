@@ -3,6 +3,7 @@ const styles = () => ({
     margin: "15px 3% 4.5%",
   },
   mui_datatable_main: {
+    boxShadow: "unset !important",
     "& .MuiTableCell-root ": {
       zIndex: "1",
     },

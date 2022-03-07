@@ -2,7 +2,7 @@ import React from 'react'
 import './styles.scss'
 import TextField from '@mui/material/TextField';
 import Autocomplete from "@mui/material/Autocomplete";
-import { useParams } from "react-router-dom";
+import { useParams } from "react-router-dom"; 
 
 const Index = (classes) => {
   let { type } = useParams();

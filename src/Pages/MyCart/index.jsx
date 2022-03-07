@@ -1,7 +1,8 @@
 import React from "react";
 import "./styles.scss";
-import { Stack, Button, Link, Breadcrumbs, Typography } from "@mui/material";
+import { Stack, Button, Breadcrumbs, Typography } from "@mui/material";
 import MyCartTable from "./MyCartTable";
+import { Link } from "react-router-dom";
 import shopping_image from "../../Assets/MyCart/Group 956.png";
 
 const Mycart = () => {
