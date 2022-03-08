@@ -1,0 +1,38 @@
+.updateproduct__bgform {
+  .autocomplete_input {
+    min-width: 18%;
+  }
+  .updateproduct_info_form {
+    width: 100%;
+    .MuiInputLabel-root {
+      font-size: 18px;
+      font-weight: 600;
+      color: #272727;
+      margin-top: 0.5em;
+    }
+    .MuiFormControl-root {
+      & ::placeholder {
+        text-transform: capitalize;
+        font-size: 20px;
+        color: #cdd5dd;
+        opacity: 1;
+      }
+      .MuiOutlinedInput-root {
+        background-color: #ffffff;
+        input {
+          // padding: 12.5px 14px;
+          font: unset;
+        }
+        fieldset {
+          legend {
+            font-size: 1em;
+          }
+        }
+      }
+
+      .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+        border: 1px solid #ddb363;
+      }
+    }
+  }
+}

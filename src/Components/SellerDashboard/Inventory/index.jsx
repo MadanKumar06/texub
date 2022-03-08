@@ -1,11 +1,11 @@
-import React from 'react'
+import React from "react";
 import MUIDataTable from "mui-datatables";
-import './styles.scss'
+import "./styles.scss";
 
-import hp from '../../../Assets/sellerdashboard/inventory/hp.png'
+import hp from "../../../Assets/sellerdashboard/inventory/hp.png";
+import { Button } from "@mui/material";
 
-function index({registerproduct}) {
-
+function index({ registerproduct }) {
   const options = {
     filter: false,
     filterType: "dropdown",
@@ -20,153 +20,143 @@ function index({registerproduct}) {
 
   const columns = [
     {
-      name: 'logo',
-      label: ' ',
+      name: "logo",
+      label: " ",
+      options: {
+        customBodyRender: (value) => {
+          return <img src={value} alt="" />;
+        },
+      },
+    },
+    {
+      name: "pname",
+      label: "PRODUCT NAME",
+    },
+    {
+      name: "category",
+      label: "CATEGORY",
+    },
+    {
+      name: "sku",
+      label: "SKU",
+    },
+    {
+      name: "instock",
+      label: "IN STOCK",
+      options: {
+        customBodyRender: (value) => {
+          return <div className="inventory__instock">{value}</div>;
+        },
+      },
+    },
+
+    {
+      name: "moq",
+      label: "MOQ",
+      options: {
+        customBodyRender: (value) => {
+          return <div className="inventory__moq">{value}</div>;
+        },
+      },
+    },
+    {
+      name: "myprice",
+      label: "MY PRICE",
       options: {
         customBodyRender: (value) => {
           return (
-            <img src={value} alt="" />
-          )
-        }
-      }
-    },
-    {
-      name: 'pname',
-      label: 'PRODUCT NAME'
-    },
-    {
-      name: 'category',
-      label: 'CATEGORY'
-    },
-    {
-      name: 'sku',
-      label: 'SKU'
-    },
-    {
-      name: 'instock',
-      label: 'IN STOCK',
-      options: {
-        customBodyRender: (value) => {
-          return (
-            <div className='inventory__instock'>
-              {value}
-            </div>
-          )
-        }
-      }
-    },
-    
-    {
-      name: 'moq',
-      label: 'MOQ',
-      options: {
-        customBodyRender: (value) => {
-          return (
-            <div className='inventory__moq'>
-              {value}
-            </div>
-          )
-        }
-      }
-      
-    },
-    {
-      name: 'myprice',
-      label: 'MY PRICE',
-      options: {
-        customBodyRender: (value) => {
-          return (
-            <div className='inventory__myprice'>
+            <div className="inventory__myprice">
               <p>
-              <span className='label'>INR</span>
-                <span className='value'>{value}</span>
+                <span className="label">INR</span>
+                <span className="value">{value}</span>
               </p>
             </div>
-          )
-        }
-      }
-      
+          );
+        },
+      },
     },
     {
-      name: 'lowestprice',
-      label: 'LOWEST PRICE',
+      name: "lowestprice",
+      label: "LOWEST PRICE",
       options: {
         customBodyRender: (value) => {
           return (
-            <div className='inventory__lowestprice'>
+            <div className="inventory__lowestprice">
               <p>
-                <span className='label'>INR</span>
-                <span className='value'>{value}</span>
+                <span className="label">INR</span>
+                <span className="value">{value}</span>
               </p>
             </div>
-          )
-        }
-      }
-      
+          );
+        },
+      },
     },
     {
-      name: 'hub',
-      label: 'HUB'
+      name: "hub",
+      label: "HUB",
     },
     {
-      name: 'rank',
-      label: 'RANK',
+      name: "rank",
+      label: "RANK",
       options: {
         customBodyRender: (value) => {
           return (
-            <div className='inventory__rank'>
+            <div className="inventory__rank">
               {value}
+              <p>th</p>
             </div>
-          )
-        }
-      }
+          );
+        },
+      },
     },
     {
-      name: 'action',
-      label: 'ACTION',
+      name: "action",
+      label: "ACTION",
       options: {
         customBodyRender: (value) => {
           return (
-            <div className='inventory__action' onClick={() => registerproduct('updateproduct')}>
+            <div
+              className="inventory__action"
+              onClick={() => registerproduct("updateproduct")}
+            >
               {value}
             </div>
-          )
-        }
-      }
-      
+          );
+        },
+      },
     },
-  ]
+  ];
 
   const table = [
     {
       logo: hp,
-      pname: 'pname1',
-      category: 'cat1',
-      sku: 'sku1',
+      pname: "pname1",
+      category: "cat1",
+      sku: "sku1",
       instock: 100,
       moq: 30,
       myprice: 500,
       lowestprice: 450,
       hub: "Chennai",
-      rank: '6th',
-      action: 'Update'
+      rank: "6",
+      action: "Update",
     },
     {
       logo: hp,
-      pname: 'pname2',
-      category: 'cat2',
-      sku: 'sku2',
+      pname: "pname2",
+      category: "cat2",
+      sku: "sku2",
       instock: 500,
       moq: 100,
       myprice: 5000,
       lowestprice: 4050,
       hub: "Hydrebad",
-      rank: '13th',
-      action: 'Update'
+      rank: "13",
+      action: "Update",
     },
-  ]
+  ];
   return (
-    <div className='inventory'>
+    <div className="inventory">
       <MUIDataTable
         title={""}
         data={table}
@@ -174,15 +164,33 @@ function index({registerproduct}) {
         options={options}
         className="inventory__table"
       />
-      <div className='inventory__products'>
-        <span className='inventory__back'>Back</span>
-        <div class="inventory__buttons">
-          <p className='inventory_register' onClick={() => registerproduct('registerproduct')}>Register New Product</p>
-          <p className='inventory_adddetails' onClick={() => registerproduct('addproduct')}>Add Product Details</p>
+      <div className="inventory__products">
+        <span className="inventory__back">Back</span>
+        {/* <div class="inventory__buttons">
+          <p
+            className="inventory_register"
+            onClick={() => registerproduct("registerproduct")}
+          >
+            Register New Product
+          </p>
+          <p
+            className="inventory_adddetails"
+            onClick={() => registerproduct("addproduct")}
+          >
+            Add Product Details
+          </p>
+        </div> */}
+        <div className="inventory__buttons">
+          <Button
+            className="inventory_register"
+            onClick={() => registerproduct("registerproduct")}
+          >
+            Register New Product
+          </Button>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default index
+export default index;
