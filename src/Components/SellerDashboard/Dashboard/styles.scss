@@ -1,5 +1,4 @@
 .dashboard > * {
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   margin-bottom: 2em;
 }
 .dashboard {
@@ -13,6 +12,7 @@
     justify-content: center;
     align-items: center;
     gap: 10px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 
     .dasboard__dataiamge {
       width: calc(100% / 3 - 20px);
@@ -27,6 +27,7 @@
     display: flex;
     gap: 40px;
     align-items: center;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 
     .dashboard__statusoffer {
       max-width: 274px;
@@ -57,6 +58,69 @@
         color: #ddb363;
         margin: 0;
       }
+    }
+  }
+
+  .dashboard__chart {
+    display: grid;
+    height: 100%;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 2em;
+
+    .chart__pie {
+      display: flex;
+      height: 100%;
+      gap: 20px;
+      box-shadow: 0px 3px 18px #00000029;
+      padding: 10px;
+
+      .pie__graph {
+        display: flex;
+        gap: 20px;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        width: calc(50% - 10px);
+
+        .graph__header {
+          display: flex;
+          gap: 10px;
+          justify-content: flex-start;
+        }
+      }
+
+      .pie__table {
+        display: flex;
+        flex-direction: column;
+        width: calc(50% - 10px);
+
+        p {
+          margin: 0;
+          padding: 1em 10px;
+        }
+      }
+
+      .table__header,
+      .table__cell {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .table__header {
+        background-color: #f8f0e0;
+      }
+
+      .table__cell {
+        background-color: #f4f9ff;
+      }
+    }
+
+    .chart__line {
+      background-color: #cdd5dd;
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-end;
     }
   }
 }

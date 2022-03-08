@@ -20,14 +20,13 @@ import { withStyles } from "@mui/styles";
 import {
   ExpandMore,
   ExpandLess,
-  AccountCircle,
-  Favorite,
-  ShoppingBag,
   AppRegistration,
   ExitToApp,
 } from "@mui/icons-material";
 
 import Departments from "./DepartmentJson";
+import mycart_image from "../../../../Assets/User/shopping-bag (2).png";
+import whishlist_image from "../../../../Assets/User/Icon.png";
 import RegiterPopup from "../../../../Pages/Register/RegisterPopup/SectionLeft";
 import dashboardLogo from "../../../../Assets/CommonImage/MyAccountMegamenu/menu.png";
 import myOrderLogo from "../../../../Assets/CommonImage/MyAccountMegamenu/shopping-bag.png";
@@ -134,18 +133,46 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
             ))}
           </List>
         </Collapse>
-        <Link className={classes.link_in_tab} to="/">
+        <Link
+          className={classes.link_in_tab}
+          to="/"
+          onClick={() => handleSideBarClose("left", false)}
+        >
           <ListItem button>
-            <Favorite />
+            <img src={whishlist_image} alt="" />
             <ListItemText primary={"My Wishlist"} />
           </ListItem>
         </Link>
-        <Link className={classes.link_in_tab} to="/">
+        <Link
+          className={classes.link_in_tab}
+          to="/mycart"
+          onClick={() => handleSideBarClose("left", false)}
+        >
           <ListItem button>
-            <ShoppingBag />
+            <img src={mycart_image} alt="" />
             <ListItemText primary={"My Cart"} />
           </ListItem>
         </Link>
+        <Stack direction="row" spacing={2} className={classes.stackmenu_button}>
+          <Button
+            variant="contained"
+            startIcon={<AppRegistration />}
+            className={classes.menuButton}
+            onClick={() => {
+              setRegisterPopUp(true);
+              // handleSideBarClose("left", false);
+            }}
+          >
+            Register
+          </Button>
+          <Button
+            variant="contained"
+            endIcon={<ExitToApp />}
+            className={classes.menuButton}
+          >
+            SignIn
+          </Button>
+        </Stack>
       </TabPanel>
       <TabPanel value={value} index={1} className={classes.sub_tab_conatainer}>
         <List className={classes.dropdowm_list_menu}>
@@ -207,27 +234,6 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
             </ListItem>
           </Link>
         </List>
-
-        <Stack direction="row" spacing={2} className={classes.stackmenu_button}>
-          <Button
-            variant="contained"
-            startIcon={<AppRegistration />}
-            className={classes.menuButton}
-            onClick={() => {
-              setRegisterPopUp(true);
-              // handleSideBarClose("left", false);
-            }}
-          >
-            Register
-          </Button>
-          <Button
-            variant="contained"
-            endIcon={<ExitToApp />}
-            className={classes.menuButton}
-          >
-            SignIn
-          </Button>
-        </Stack>
       </TabPanel>
       {registerPopUp && <RegiterPopup openPopUp={RegistrationPop} />}
     </Box>

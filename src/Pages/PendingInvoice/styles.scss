@@ -18,6 +18,11 @@
   }
   .pending_invoice_breadcrumbs {
     padding: 1.5% 3%;
+    a {
+      text-decoration: none;
+      font-size: 20px;
+      color: #878787;
+    }
     .MuiTypography-root {
       font-size: 20px;
       font-weight: 600;

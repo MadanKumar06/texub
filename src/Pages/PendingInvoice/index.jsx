@@ -22,7 +22,7 @@ const PendingInvoice = () => {
         <Stack spacing={2}>
           <Breadcrumbs separator="››" aria-label="breadcrumb">
             <Link to="/">Home</Link>
-            <Link to="/">Cart</Link>
+            <Link to="/mycart">Cart</Link>
             <Typography key="3" color="#002D56">
               Pending Invoice
             </Typography>

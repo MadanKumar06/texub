@@ -1,55 +1,45 @@
 .registerproduct {
-  .boxsizingBorder {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-  }
   h1 {
     color: #ddb363;
     font-size: 30px;
     margin: 0;
+    letter-spacing: 0.9px;
   }
   .registerproducts__form {
-    display: flex;
-    flex-direction: column;
-
-    h5 {
-      color: #272727;
-      font-size: 18px;
-      font-weight: 500;
-      margin: 0;
-      margin-bottom: 5px;
-    }
-
-    input {
-      border: 1px solid #cdd5dd;
-
-      width: calc(94%);
-      padding: 0.675em 1em;
-      border-radius: 24px;
-      outline: 0;
-      font-size: 20px;
-
-      &::placeholder {
-        color: #cdd5dd;
-      }
-    }
-
-    textarea {
-      width: 94%;
-    }
-
-    .registerproduct__formflex {
+    .input_separator {
       display: flex;
-      flex-wrap: wrap;
-
-      & > * {
-        width: calc(100% / 2 - 20px);
+      gap: 2em;
+    }
+    .registerproducts_inputfields {
+      width: 100%;
+      .MuiInputLabel-root {
+        font-size: 18px;
+        font-weight: 600;
+        color: #272727;
+        margin-top: 2em;
       }
+      .MuiFormControl-root {
+        & ::placeholder {
+          text-transform: capitalize;
+          font-size: 20px;
+          color: #cdd5dd;
+          opacity: 1;
+        }
+        .MuiOutlinedInput-root {
+          input {
+            // padding: 12.5px 14px;
+            font: unset;
+          }
+          fieldset {
+            legend {
+              font-size: 1em;
+            }
+          }
+        }
 
-      .MuiOutlinedInput-root {
-        width: calc(94% - 6px);
-        border-radius: 24px;
+        .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+          border: 1px solid #ddb363;
+        }
       }
     }
   }
@@ -57,17 +47,18 @@
   .registerproduct__submit {
     display: flex;
     justify-content: space-between;
-
+    margin-top: 2em;
     & > * {
       cursor: pointer;
     }
-
+    a {
+      text-decoration: none;
+    }
     .registerproduct__back {
       position: relative;
       font-size: 20px;
       color: #002d56;
-      text-decoration: none;
-
+      font-weight: 600;
       margin-left: 1em;
       &::before {
         content: "";

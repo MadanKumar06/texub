@@ -1,0 +1,163 @@
+.request {
+  h2 {
+    color: #ddb363;
+    font-size: 30px;
+  }
+
+  .request__form {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+
+    .form__name,
+    .form__decsription {
+      width: calc(90% - 30px);
+    }
+
+    .form__decsription {
+      textarea {
+        outline: none;
+      }
+    }
+
+    .form__image {
+      width: calc(90% - 30px);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      label {
+        display: flex;
+        gap: 20px;
+
+        & > span {
+          display: flex;
+          gap: 20px;
+
+          label {
+            cursor: pointer;
+          }
+        }
+      }
+
+      .image__file {
+        width: calc(50% - 15px);
+        background-color: #e8e8e8;
+        font-size: 20px;
+        color: #4e4e4e;
+        font-weight: 500;
+        position: relative;
+        height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &::after {
+          content: "";
+          background-color: #ffd788;
+          position: absolute;
+          top: -8px;
+          right: -8px;
+          padding: 12px;
+          border-radius: 100%;
+          cursor: pointer;
+        }
+
+        & > span {
+          width: 100%;
+          text-align: center;
+
+          &::after {
+            content: "";
+            position: absolute;
+            border-right: 2px solid white;
+            top: -3px;
+            right: 2px;
+            height: 12px;
+            z-index: 9;
+            transform: rotate(315deg);
+            cursor: pointer;
+          }
+
+          &::before {
+            content: "";
+            position: absolute;
+            border-top: 2px solid white;
+            top: 2px;
+            right: -2px;
+            width: 12px;
+            z-index: 9;
+            transform: rotate(315deg);
+          }
+        }
+      }
+
+      & > div {
+        width: calc(50% - 15px);
+      }
+
+      input {
+        display: none;
+      }
+    }
+
+    .form__brand,
+    .form__modelnumber,
+    .form__startdate,
+    .form__enddate,
+    .form__qty,
+    .form__price {
+      width: calc(90% / 2 - 30px);
+    }
+
+    .MuiOutlinedInput-root {
+      width: 100%;
+    }
+
+    .form__startdate,
+    .form__enddate {
+      .MuiFormControl-root {
+        width: 100%;
+      }
+    }
+  }
+
+  .request__submit {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2em;
+    position: relative;
+
+    .request__back {
+      position: relative;
+      font-size: 20px;
+      color: #002d56;
+      text-decoration: none;
+      margin-left: 1em;
+      cursor: pointer;
+
+      &::before {
+        content: "";
+        border-left: 1px solid #002d56;
+        border-top: 1px solid #002d56;
+        transform: rotate(315deg);
+        width: 0.5em;
+        height: 0.5em;
+        position: absolute;
+        left: -1em;
+        top: 6px;
+        color: #002d56;
+      }
+    }
+
+    .request__save {
+      background: linear-gradient(#20639b, #002d56);
+      color: white;
+      padding: 0.5em 4.5em;
+      border-radius: 24px;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+  }
+}

@@ -22,14 +22,20 @@ const styles = (theme) => ({
     position: "relative",
     "& p": {
       color: "#333C42",
-      fontSize: "34px",
-      fontWeight: "600",
+      fontSize: "50px",
+      fontWeight: "700",
       paddingLeft: "22px",
       margin: "0",
       height: "74px",
       display: "flex",
       flexDirection: "row",
       alignItems: "center",
+      "@media (max-width:1600px)": {
+        fontSize: "42px",
+      },
+      "@media (max-width:1440px)": {
+        fontSize: "38px",
+      },
     },
   },
   clear_btn: {
@@ -39,6 +45,17 @@ const styles = (theme) => ({
     color: "#ffffff",
     background: "#002D56",
     borderRadius: "3px",
+    cursor: "pointer",
+    width: "1.5em !important",
+    height: "1.5em !important",
+    "@media (max-width:1600px)": {
+      width: "1.3em !important",
+    height: "1.3em !important",
+    },
+    "@media (max-width:1440px)": {
+      width: "1em !important",
+    height: "1em !important",
+    },
   },
 
   sections: {
@@ -53,17 +70,27 @@ const styles = (theme) => ({
     "& .MuiOutlinedInput-root": {
       padding: "5px !important",
     },
+    "& .MuiAutocomplete-input": {
+      padding: "7.5px 4px 7.5px 6px !important",
+    },
+  },
+  validation_error: {
+    whiteSpace: "unset !important",
+    marginLeft: "4px !important",
+    fontSize: "14px !important",
+    color: "#FF0000 !important",
+    width: "100%",
   },
   input_div: {
-    display: "flex",
-    gap: "20px",
+    // display: "flex",
+    // gap: "20px",
   },
   // section left css
   section_left: {
     width: "50%",
     borderRight: "1px solid #E8E8E8",
     height: "max-content",
-    marginTop: "40px",
+    margin: "40px 0",
     padding: "0px 3%",
     "@media (max-width:767px)": {
       width: "100%",
@@ -81,43 +108,66 @@ const styles = (theme) => ({
   },
   info_text_lineNote_one: {
     color: "#333333",
-    fontSize: "22px",
+    fontSize: "36px",
     marginBottom: "37px",
     marginTop: "0",
     fontWeight: "600",
+    letterSpacing: "1.08px",
+    "@media (max-width:1600px)": {
+      fontSize: "30px",
+    },
+    "@media (max-width:1440px)": {
+      fontSize: "26px",
+    },
   },
   info_text_lineNote_two: {
     color: "#333333",
-    fontSize: "22px",
-    marginBottom: "37px",
+    fontSize: "36px",
+    margin: "0",
+    marginTop: "17px",
     fontWeight: "600",
+    letterSpacing: "1.08px",
+    "@media (max-width:1600px)": {
+      fontSize: "30px",
+    },
+    "@media (max-width:1440px)": {
+      fontSize: "26px",
+    },
   },
   input_fields: {
     width: "100%",
-    padding: "10% 0%",
+    padding: "2% 0%",
     borderRadius: "4px",
     "@media (max-width:767px)": {
-      padding: "7% 5%",
+      padding: "2% 5%",
     },
     "& .MuiFormControl-root": {
-      marginBottom: "20px",
+      marginTop: "2.5em",
       "& ::placeholder": {
-        textTransform: "capitalize",
-        fontSize: "12px",
+        fontSize: "20px",
+        color: "#CDD5DD",
+        opacity: "1",
+        "@media(max-width:1440px)": {
+          fontSize: "18px",
+        },
+        "@media (max-width:767px)": {
+          fontSize: "16px",
+        },
       },
       "& .MuiInputLabel-root": {
+        fontSize: "18px",
         fontWeight: "600",
-        fontSize: "1.2rem",
+        color: "#3E3E3E",
       },
     },
     "& .MuiOutlinedInput-root": {
       "& input": {
-        padding: "12px",
+        // padding: "12.5px 14px",
         font: "unset",
       },
       "& fieldset": {
         "& legend": {
-          fontSize: "0.9em",
+          fontSize: "1em",
         },
       },
     },
@@ -131,12 +181,25 @@ const styles = (theme) => ({
   checkbox_label: {
     "& .MuiTypography-root": {
       color: "#5C6369",
+      fontWeight: "600",
+      fontSize: "20px",
+      "@media (max-width:1600px)": {
+        fontSize: "18px",
+      },
+    },
+    "& .MuiSvgIcon-root ": {
+      width: "1.2em",
+      height: "1.2em",
+      "@media (max-width:1600px)": {
+        width: "1em",
+        height: "1em",
+      },
     },
   },
   media_upload: {
     display: "flex",
-    flexDirection: "row",
-    marginTop: "5px",
+    flexDirection: "column",
+    marginTop: "16px",
     marginBottom: "20px",
     "@media (max-width:767px)": {
       flexDirection: "column",
@@ -146,6 +209,7 @@ const styles = (theme) => ({
     width: "50%",
     "& small": {
       color: "#272727",
+      fontSize: "14px",
     },
     "@media (max-width:767px)": {
       width: "100%",
@@ -158,6 +222,9 @@ const styles = (theme) => ({
     "& p": {
       margin: "0",
       fontSize: "16px",
+      color: "#002D56",
+      fontWeight: "600",
+      letterSpacing: "0.54px",
     },
     "& span": {
       color: "red",
@@ -165,6 +232,7 @@ const styles = (theme) => ({
   },
   sub_media_upload_label: {
     margin: "auto",
+    cursor: "pointer",
     "& input": {
       display: "none",
     },
@@ -173,15 +241,17 @@ const styles = (theme) => ({
     },
   },
   input_image_name: {
-    width: "50%",
-    position: "relative",
-    background: "#E8E8E8",
-    borderRadius: "4px",
+    width: "fit-content",
     display: "flex",
-    flexDirection: "row",
+    position: "relative",
     flexWrap: "wrap",
-    justifyContent: "center",
+    background: "#E8E8E8",
     alignItems: "center",
+    borderRadius: "4px",
+    flexDirection: "row",
+    justifyContent: "center",
+    padding: "13px",
+    marginTop: "24px",
     "& p": {
       margin: "0",
     },
@@ -223,6 +293,13 @@ const styles = (theme) => ({
     textTransform: "capitalize !important",
     transition: "transform .2s !important",
     width: "calc(100%/3)",
+    fontSize: "18px !important",
+    "@media (max-width:1600px)": {
+      fontSize: "16px !important",
+    },
+    "@media (max-width:1440px)": {
+      fontSize: "14px !important",
+    },
     "@media (max-width:1040px) and (min-width: 768px)": {
       width: "100%",
     },
@@ -242,6 +319,13 @@ const styles = (theme) => ({
     textTransform: "capitalize !important",
     transition: "transform .2s !important",
     width: "calc(100%/3)",
+    fontSize: "18px !important",
+    "@media (max-width:1600px)": {
+      fontSize: "16px !important",
+    },
+    "@media (max-width:1440px)": {
+      fontSize: "14px !important",
+    },
     "@media (max-width:1040px) and (min-width: 768px)": {
       width: "100%",
     },

@@ -46,11 +46,19 @@
           cursor: pointer;
           color: #002d56;
           font-size: 22px;
+          font-weight: 600;
+          letter-spacing: 0.66px;
         }
 
         .inventory__rank {
           font-size: 22px;
           color: #20639b;
+          display: flex;
+          p {
+            margin: 0;
+            vertical-align: super;
+            font-size: smaller;
+          }
         }
 
         .MuiTableCell-root {
@@ -95,21 +103,36 @@
     }
 
     .inventory__buttons {
-      display: flex;
-      gap: 1em;
+      // display: flex;
+      // gap: 1em;
 
-      p {
-        margin: 0;
-        font-size: 18px;
-        border-radius: 20px;
-        padding: 0.5em 1em;
-        border: 1px solid #002d56;
-        font-weight: 500;
-      }
+      // p {
+      //   margin: 0;
+      //   font-size: 18px;
+      //   border-radius: 20px;
+      //   padding: 0.5em 1em;
+      //   border: 1px solid #002d56;
+      //   font-weight: 500;
+      // }
 
-      .inventory_adddetails {
-        color: white;
-        background-color: #002d56;
+      // .inventory_adddetails {
+      //   color: white;
+      //   background-color: #002d56;
+      // }
+      .inventory_register {
+        text-decoration: none !important;
+        font-size: 18px !important;
+        letter-spacing: 0.54px !important;
+        min-width: 245px !important;
+        border-radius: 45px !important;
+        border: none !important;
+        background: linear-gradient(180deg, #20639b 0%, #002d56 100%);
+        color: #ffffff !important;
+        cursor: pointer;
+        box-shadow: 0px 3px 6px #00000029;
+        font-weight: 600 !important;
+        padding: 10px !important;
+        text-transform: capitalize !important;
       }
     }
   }

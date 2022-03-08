@@ -1,11 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './styles.scss'
 import MUIDataTable from "mui-datatables";
 import { useNavigate } from "react-router-dom";
+import hp from '../../../../Assets/sellerdashboard/inventory/hp.png'
 
-function Index() {
+function Index({ setrequestform, setformtype }) {
 
     const history = useNavigate()
+
+    const showformnew = () => {
+        setrequestform(true)
+        setformtype('New')
+    }
+
+    const showformupdate = () => {
+        setrequestform(true)
+        setformtype('Update')
+    }
     
     const back = () => {
         history('/')
@@ -68,8 +79,17 @@ function Index() {
             customBodyRender: (value) => {
                 return (
                     <div className='auctiontable__pdetails'>
-                        {value.title}
-                        {value.content}
+                        <div className='pdetails__image'>
+                            <img src={hp} alt="" />
+                        </div>
+                        <div className='pdetails__details'>
+                            <div className='details__title'>
+                                {value.title}
+                            </div>
+                            <div className='details__content'>
+                                {value.content}
+                            </div>
+                        </div>
                     </div>
                 )}
             }
@@ -98,7 +118,7 @@ function Index() {
         { name: 'Action', label: 'Action', options: {
             customBodyRender: (value) => {
                 return (
-                    <div className='auctiontable__action'>
+                    <div className='auctiontable__action' onClick={showformupdate}>
                         {value}
                     </div>
                 )}
@@ -108,16 +128,18 @@ function Index() {
 
   return (
     <div className='auctiontable'>
-        <MUIDataTable
-            title={""}
-            data={table}
-            columns={columns}
-            options={options}
-        />
+            <MUIDataTable
+                title={""}
+                data={table}
+                columns={columns}
+                options={options}
+            />
 
         <div className='auctiontable__submit'>
             <span className='auctiontable__back' onClick={back}>Back</span>
-            <p className='submit__new'>Create New Request</p>
+            <p
+                onClick={showformnew}
+                className='submit__new'>Create New Request</p>
         </div>
     </div>
   )
