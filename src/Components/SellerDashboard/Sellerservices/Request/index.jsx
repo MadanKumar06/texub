@@ -98,7 +98,7 @@ function Index({ setrequestform, formtype, classes }) {
               </span>
               <span>(Supported format : .jpg/.png/.pdf)</span>
             </InputLabel>
-            <span className='image__file'>Image</span>
+            <span className='image__file'><span>Image</span></span>
           </p>
           <p className='form__startdate'>
             <InputLabel>
