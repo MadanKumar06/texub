@@ -8,6 +8,7 @@ import ReviewCard from './ReviewCard'
 import RMATable from './RMATable'
 import AuctionTable from './AuctionTable'
 import ResultTable from './ResultTable'
+import Request from './Request'
 
 function Index() {
 
@@ -74,21 +75,26 @@ function Index() {
         setAge(event.target.value);
     };
 
+    const [requestform, setrequestform] = useState(false)
+    const [formtype, setformtype] = useState()
+
     useEffect(() => {
         selectorder(0)
     }, [])
 
   return (
       <div className='sellerservices'>
-        <div className='sellerservices__buttons'>
-            {sellerservicestype.map((data, i) => 
-                <p className={`sellerservicestypes ${type === i && "sellerservices__selected"}`}
-                key={i} onClick={() => selectorder(i)}
-                >
-                    {data.name}
-                </p>
-            )}
-        </div>
+          {requestform === false &&
+            <div className='sellerservices__buttons'>
+                {sellerservicestype.map((data, i) => 
+                    <p className={`sellerservicestypes ${type === i && "sellerservices__selected"}`}
+                    key={i} onClick={() => selectorder(i)}
+                    >
+                        {data.name}
+                    </p>
+                )}
+            </div>
+          }
 
         {type === 0 && <div className='sellerservices__review'>
             <div className='sellerservices__dropdown'>
@@ -124,7 +130,10 @@ function Index() {
         </div>}
 
         {type === 1 && <RMATable />}
-        {type === 2 && <AuctionTable />}
+
+        {type === 2 && requestform === false && <AuctionTable setrequestform={setrequestform} setformtype={setformtype} />}
+        {type === 2 && requestform === true && <Request setrequestform={setrequestform} formtype={formtype}  />}
+
         {type === 3 && <ResultTable />}
     </div>
   )

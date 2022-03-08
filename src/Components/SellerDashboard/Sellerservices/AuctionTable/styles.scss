@@ -29,6 +29,9 @@
 
     .auctiontable__price {
       color: #878787;
+      display: flex;
+      align-items: flex-end;
+      gap: 4px;
 
       .label {
         font-size: 10px;
@@ -48,7 +51,7 @@
         height: 8px;
         width: 8px;
         top: 8px;
-        right: calc(2em + 6px);
+        right: calc(2em + -8px);
         border-radius: 100%;
       }
     }
@@ -58,6 +61,31 @@
       font-size: 22px;
       font-weight: 500;
       text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .auctiontable__pdetails {
+      color: #333c42;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      max-width: 24em;
+
+      .pdetails__details {
+        flex-direction: column;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        text-align: left;
+
+        .details__title {
+          font-size: 16px;
+        }
+
+        .details__content {
+          font-size: 12px;
+        }
+      }
     }
   }
 

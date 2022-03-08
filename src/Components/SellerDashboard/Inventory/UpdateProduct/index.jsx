@@ -20,8 +20,6 @@ function Index({ type }) {
     // setcount(dummy)
     setcount(count.filter((item) => item !== i));
   };
-
-  console.log(count);
   const options = ["Option 1", "Option 2"];
   return (
     <div className="updateproduct">
