@@ -4,8 +4,10 @@ import MUIDataTable from "mui-datatables";
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
 import { ArrowBackIosNew } from "@mui/icons-material";
+import Pagination from "../../Pagination";
 
 function RMA() {
+  const [tableData, setTableData] = useState([]);
   const ordertype = [
     { name: "All RMA" },
     { name: "Open RMA" },
@@ -147,7 +149,9 @@ function RMA() {
       },
     },
   ];
-
+  const PaginateDataSplit = (event) => {
+    setTableData(event);
+  };
   return (
     <div className="rma_container">
       <div className="rma__buttons">
@@ -166,12 +170,16 @@ function RMA() {
 
       <MUIDataTable
         title={""}
-        data={table}
+        data={tableData}
         columns={columns}
         options={options}
         className="rma__table"
       />
-
+      <Pagination
+        PaginateData={PaginateDataSplit}
+        DataList={table}
+        PagePerRow={10}
+      />
       <div className="rma__footer">
         <div className="rma__container">
           <Link to="/buyerdashboard/dashboard">

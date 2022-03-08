@@ -7,6 +7,7 @@ import Details from "./Details";
 function Index({ type }) {
   const [count, setcount] = useState([0]);
   const [test, settest] = useState(1);
+  const [openTextbox, setOpenTextbox] = useState(false);
 
   const countincrease = () => {
     settest(test + 1);
@@ -69,9 +70,9 @@ function Index({ type }) {
               <Autocomplete
                 //   value={value}
                 name=""
-                //   onChange={(event, newValue) => {
-                //     setValue(newValue);
-                //   }}
+                onChange={(event, newValue) => {
+                  setOpenTextbox(true);
+                }}
                 //   className={auto_complete_input}
                 //   inputValue={inputValue}
                 //   onInputChange={(event, newInputValue) => {
@@ -92,6 +93,36 @@ function Index({ type }) {
               />
             </div>
           </div>
+          {openTextbox && (
+            <div className="input_separator country_selection">
+              <div className="updateproduct_inputfields ">
+                <Autocomplete
+                  //   value={value}
+                  name=""
+                  //   onChange={(event, newValue) => {
+                  //     setValue(newValue);
+                  //   }}
+                  //   className={auto_complete_input}
+                  //   inputValue={inputValue}
+                  //   onInputChange={(event, newInputValue) => {
+                  //     setInputValue(newInputValue);
+                  //   }}
+                  id="controllable-states-demo"
+                  options={options}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      placeholder="Select countries"
+                      fullWidth
+                      InputLabelProps={{
+                        shrink: false,
+                      }}
+                    />
+                  )}
+                />
+              </div>
+            </div>
+          )}
           <div className="input_separator">
             <div className="updateproduct_inputfields info">
               <InputLabel>Warranty Days</InputLabel>
