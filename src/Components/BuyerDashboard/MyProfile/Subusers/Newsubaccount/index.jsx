@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import './styles.scss'
 import{ TextField,TextareaAutosize,InputLabel }from '@mui/material';
+import {isEmailValid} from "../../../../../utilities";
 import Autocomplete from "@mui/material/Autocomplete";
 import { useParams } from "react-router-dom";
 const Index = (classes) => {
@@ -42,6 +43,66 @@ const Index = (classes) => {
     allowed_permissions: "",
     active: "",
   });
+  const handleChangeInput = (event) => {
+    
+    setNewSubAccountData((prevState) => ({
+      ...prevState,
+      [event.target.name]: event.target.value,
+    }));
+    setInputValidation("");
+    handleSwitchCase([event.target.name], event.target.value);
+};
+const handleSwitchCase = (fieldName, value) => {
+  switch (fieldName[0]) {
+    case "first_name":
+      if (!value) {
+        setInputValidation((prevState) => ({
+          ...prevState,
+          first_name: "Please enter the first name.",
+        }));
+      } 
+      break;
+    case "last_name":
+      if (!value) {
+        setInputValidation((prevState) => ({
+          ...prevState,
+          last_name: "Please enter your last name.",
+        }));
+      } 
+      break;
+      case "allowed_permissions":
+      if (!value) {
+        setInputValidation((prevState) => ({
+          ...prevState,
+          allowed_permissions: "Please allow permissions.",
+        }));
+      }
+      break;
+      case "e_mail":
+      if (!value) {
+        setInputValidation((prevState) => ({
+          ...prevState,
+          e_mail: "Please enter your e-mail",
+        }));
+      }else if (!isEmailValid(value)) {
+        setInputValidation((prevState) => ({
+          ...prevState,
+          e_mail: "Please enter the valid e-mail.",
+        }));
+      }
+      break;
+      case "active":
+      if (!value) {
+        setInputValidation((prevState) => ({
+          ...prevState,
+          new_password: "Please select your status",
+        }));
+      }
+      break; 
+    default:
+      break;
+  }
+};
   const handleClickValidation = (event) => {
     var errorHandle = false;
     if (!NewSubAccountData?.first_name) {
@@ -95,6 +156,11 @@ if (!NewSubAccountData?.active) {
               fullWidth
                 id="first_name"
                 name='first_name'
+                InputLabelProps={{
+                  shrink:false,
+                }}
+                value={NewSubAccountData?.first_name}
+                onChange={handleChangeInput}
               />
                <InputLabel className={validation_error}>
               {inputValidation?.first_name}
@@ -106,6 +172,11 @@ if (!NewSubAccountData?.active) {
               fullWidth
                 id="last_name"
                 name='last_name'
+                InputLabelProps={{
+                  shrink:false,
+                }}
+                value={NewSubAccountData?.last_name}
+                onChange={handleChangeInput}
               />
               <InputLabel className={validation_error}>
               {inputValidation?.last_name}
@@ -118,6 +189,11 @@ if (!NewSubAccountData?.active) {
               fullWidth
                 id="e_mail"
                 name="e_mail"
+                InputLabelProps={{
+                  shrink:false,
+                }}
+                value={NewSubAccountData?.e_mail}
+                onChange={handleChangeInput}
               />
               <InputLabel className={validation_error}>
               {inputValidation?.e_mail}
@@ -137,6 +213,11 @@ if (!NewSubAccountData?.active) {
           {...params}
           id="allowed_permissions"
           name='allowed_permissions'
+          InputLabelProps={{
+            shrink:false,
+          }}
+          value={NewSubAccountData?.allowed_permissions}
+          onChange={handleChangeInput}
           inputProps={{
             
             ...params.inputProps,
@@ -187,10 +268,10 @@ if (!NewSubAccountData?.active) {
                 name="active"
                 placeholder="Yes"
                 InputLabelProps={{
-                  shrink: true,
-                  required: true,
-                 
+                  shrink:false,                 
                 }}
+                value={NewSubAccountData?.active}
+                onChange={handleChangeInput}
               />
             )}
           />

@@ -6,3 +6,7 @@ export const isEmailValid = (email) =>
 
 export const isPasswordValid = (password) =>
   password.match(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,99}$/);
+
+   
+
+

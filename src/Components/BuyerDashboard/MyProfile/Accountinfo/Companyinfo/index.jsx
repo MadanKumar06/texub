@@ -36,6 +36,7 @@ const Index = (classes) => {
     no_of_branches:"",
     average_revenue:"",
   });
+  
   const handleClickValidation = (event) => {
     var errorHandle = false;
     if (!CompanyInfoData?.organization_name) {
@@ -99,7 +100,8 @@ if (!CompanyInfoData?.average_revenue) {
               <TextField
                 id="organization_name"
                 name='organization_name'
-                defaultValue="Organization Name"
+                placeholder='Organization Name'
+                value={CompanyInfoData?.organization_name}
               />
               <InputLabel className={validation_error}>
               {inputValidation?.organization_name}
@@ -127,6 +129,7 @@ if (!CompanyInfoData?.average_revenue) {
                    id="organization_type"
                    name='organization_type'
                     placeholder="Organization Type"
+                    value={CompanyInfoData?.organization_type}
                     InputLabelProps={{
                       shrink: true,
                       required: true,
@@ -146,6 +149,8 @@ if (!CompanyInfoData?.average_revenue) {
               <TextField
                 id="gst_number"
                 name="gst_number"
+                placeholder='GST Number'
+                value={CompanyInfoData?.gst_number}
               />
               <InputLabel className={validation_error}>
               {inputValidation?.gst_number}
@@ -173,6 +178,7 @@ if (!CompanyInfoData?.average_revenue) {
                     id="speciality"
                     name='speciality'
                     placeholder="Speciality"
+                    value={CompanyInfoData?.speciality}
                     InputLabelProps={{
                       shrink: true,
                       required: true,
@@ -192,6 +198,8 @@ if (!CompanyInfoData?.average_revenue) {
               <TextField
                 id="no_of_branches"
                 name='no_of_branches'
+                placeholder='Number Of Branches & Departments'
+                value={CompanyInfoData?.no_of_branches}
               />
               <InputLabel className={validation_error}>
               {inputValidation?.no_of_branches}
@@ -202,6 +210,8 @@ if (!CompanyInfoData?.average_revenue) {
               <TextField
                 id="average_revenue"
                 name='average_revenue'
+                placeholder='Average Revenue'
+                value={CompanyInfoData?.average_revenue}
               />
               <InputLabel className={validation_error}>
               {inputValidation?.average_revenue}
