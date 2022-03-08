@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './styles.scss'
 import { TextField,InputLabel }from '@mui/material';
+import {isPasswordValid,isEmailValid} from "../../../../utilities";
 const Index = (classes) => {
   let {
     validation_error
@@ -25,7 +26,91 @@ const Index = (classes) => {
     new_password: "",
     new_confrim_password: "",
   });
-
+  const handleChangeInput = (event) => {
+    
+      setAccountInfoData((prevState) => ({
+        ...prevState,
+        [event.target.name]: event.target.value,
+      }));
+      setInputValidation("");
+      handleSwitchCase([event.target.name], event.target.value);
+  };
+  const handleSwitchCase = (fieldName, value) => {
+    switch (fieldName[0]) {
+      case "first_name":
+        if (!value) {
+          setInputValidation((prevState) => ({
+            ...prevState,
+            first_name: "Please enter the first name.",
+          }));
+        } else if (!isEmailValid(value)) {
+          setInputValidation((prevState) => ({
+            ...prevState,
+            email_address: "Please enter the valid e-mail.",
+          }));
+        }
+        break;
+      case "last_name":
+        if (!value) {
+          setInputValidation((prevState) => ({
+            ...prevState,
+            last_name: "Please enter your last name.",
+          }));
+        } 
+        break;
+        case "mobile_number":
+        if (!value) {
+          setInputValidation((prevState) => ({
+            ...prevState,
+            mobile_number: "Please enter your mobile number.",
+          }));
+        }
+        break;
+        case "email_address":
+        if (!value) {
+          setInputValidation((prevState) => ({
+            ...prevState,
+            email_address: "Please enter your e-mail",
+          }));
+        }else if (!isEmailValid(value)) {
+          setInputValidation((prevState) => ({
+            ...prevState,
+            email_address: "Please enter the valid e-mail.",
+          }));
+        }
+        break;
+        case "new_password":
+        if (!value) {
+          setInputValidation((prevState) => ({
+            ...prevState,
+            new_password: "Please enter your new password",
+          }));
+        }else if (!isPasswordValid(value)) {
+          setInputValidation((prevState) => ({
+            ...prevState,
+            new_password:
+              "Minimum 8 characters at least 1 Alphabet, 1 Number and 1 Special Character.",
+          }));
+        }
+        break;
+        case "new_confrim_password":
+        if (!value) {
+          setInputValidation((prevState) => ({
+            ...prevState,
+            new_confrim_password: "Please enter confirm new password",
+          }));
+        }else if (!isPasswordValid(value)) {
+          setInputValidation((prevState) => ({
+            ...prevState,
+            new_confrim_password:
+              "Minimum 8 characters at least 1 Alphabet, 1 Number and 1 Special Character.",
+          }));
+        }
+        break; 
+      default:
+        break;
+    }
+  };
 const handleClickValidation = (event) => {
   var errorHandle = false;
   if (!AccountInfoData?.first_name) {
@@ -99,9 +184,10 @@ return (
               name="first_name"
                value={AccountInfoData?.first_name}
                InputLabelProps={{
-                shrink: true,
-                required: true,
+                shrink:false,
+          
               }}
+              onChange={handleChangeInput}
             />
            <InputLabel className={validation_error}
             >
@@ -118,6 +204,7 @@ return (
                 shrink: true,
                 required: true,
               }}
+              onChange={handleChangeInput}
             />
             <InputLabel className={validation_error}>
               {inputValidation?.last_name}
@@ -135,6 +222,7 @@ return (
                 shrink: true,
                 required: true,
               }}
+              onChange={handleChangeInput}
             />
             <InputLabel className={validation_error}>
               {inputValidation?.mobile_number}
@@ -150,6 +238,7 @@ return (
                 shrink: true,
                 required: true,
               }}
+              onChange={handleChangeInput}
             />
             <InputLabel className={validation_error}>
               {inputValidation?.email_address}
@@ -167,6 +256,7 @@ return (
                 shrink: true,
                 required: true,
               }}
+              onChange={handleChangeInput}
             />
              <InputLabel className={validation_error}>
               {inputValidation?.new_password}
@@ -183,13 +273,11 @@ return (
                 shrink: true,
                 required: true,
               }}
+              onChange={handleChangeInput}
             />
              <InputLabel className={validation_error}>
               {inputValidation?.new_confrim_password}
             </InputLabel>
-            {/* <InputLabel className={validation_error}>
-              {inputValidation?.first_name}
-            </InputLabel> */}
           </div>
 
         </div>

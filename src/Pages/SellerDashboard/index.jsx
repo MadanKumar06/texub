@@ -16,6 +16,7 @@ import UserMgmt from '../../Components/SellerDashboard/UserMgmt/Index'
 import Sidebar from '../../Components/Sidebar'
 import Sellerservices from '../../Components/SellerDashboard/Sellerservices'
 import Directenqueries from '../../Components/SellerDashboard/Directenqueries'
+import Paymentmethods from '../../Components/SellerDashboard/Paymentmethods'
 
 function SellerDashboard() {
 
@@ -113,6 +114,8 @@ function SellerDashboard() {
                 {currenttab === 'sellerservices' && <Sellerservices />}
 
                 {currenttab === 'directenquiries' && <Directenqueries/>}
+                {currenttab === 'paymentmethods' && <Paymentmethods/>}
+
 
             </div>
         </div>

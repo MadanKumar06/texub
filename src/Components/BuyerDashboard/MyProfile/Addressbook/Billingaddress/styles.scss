@@ -1,241 +1,241 @@
-// .address_main{
-//     display: flex;
-//     flex-direction: column;
-//     .Account_heading{
-//         background-color: #F8F0E0;
-//         width: 28%;
-//         color: #002D56;
-//         font-size: 18px;
-//         letter-spacing: 0.54px;
-//         font-weight: 600;
-//         margin: 0;
-//         text-align: center;
-//         height: 50px;
+.address_main{
+    display: flex;
+    flex-direction: column;
+    .Account_heading{
+        background-color: #F8F0E0;
+        width: 28%;
+        color: #002D56;
+        font-size: 18px;
+        letter-spacing: 0.54px;
+        font-weight: 600;
+        margin: 0;
+        text-align: center;
+        height: 50px;
         
-//     }
+    }
     
-//     .company_information{
-//       form{
-//           display: flex;
-//           gap: 20px;
-//           flex-direction: column;
-//         .inputfield_section{
-//             display: flex;
-//             justify-content: center;
-//             gap: 30px;
-//             .inputfield{
-//                 display: flex; 
-//                 flex-direction: column;
+    .company_information{
+      form{
+          display: flex;
+          gap: 20px;
+          flex-direction: column;
+        .inputfield_section{
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            .inputfield{
+                display: flex; 
+                flex-direction: column;
                
-//                 .MuiOutlinedInput-input{
-//                     width: 35rem;
+                .MuiOutlinedInput-input{
+                    width: 35rem;
                     
-//                 }
-//                 .MuiOutlinedInput-root{
-//                     padding-right: 6px;
-//                 }
+                }
+                .MuiOutlinedInput-root{
+                    padding-right: 6px;
+                }
                 
-//             }
-//         }
+            }
+        }
     
-//             .inputfield_btn{
-//                 display: flex;
-//                 justify-content: space-around;
-//                 .MuiOutlinedInput-input{
-//                     width: 35rem;
-//                 }
-//                 .MuiOutlinedInput-root{
-//                     padding-right: 5px;
-//                 }
+            .inputfield_btn{
+                display: flex;
+                justify-content: space-around;
+                .MuiOutlinedInput-input{
+                    width: 35rem;
+                }
+                .MuiOutlinedInput-root{
+                    padding-right: 5px;
+                }
                 
-//             .accountinfo_btn_section{
-//                 display: flex;
-//                 gap: 20px;
-//                 padding-top: 60px;
-//             .account_info_cancel {
-//                 color: #002D56;
-//                 font-size: 18px;
-//                 background-color: white;
-//                 padding: 10px 75px;
-//                 border-radius: 25px;
-//                 border: 1px solid #002D56;
-//                 box-shadow: 0px 3px 6px #00000029;
-//                 font-weight: 600;
-//                 letter-spacing: 0.54px;
-//                 text-shadow: 0px 3px 6px #00000029;
-//                 cursor: pointer;
-//             }
-//             .account_info_save {
-//                 box-shadow: 0px 3px 6px #00000029;
-//                 border-radius: 25px;
-//                 opacity: 1;
-//                 padding: 10px 59px;
-//                 background: linear-gradient(180deg,#20639B 0%, #002D56 100%);
-//                 color: #FFFFFF;
-//                 font-size: 18px;
-//                 border: none;
-//                 font-weight: 600;
-//                 text-shadow: 0px 3px 6px #00000029;
-//                 cursor: pointer;
-//             }
-//           }
-//         }
-//     }
-//  }
-// }
-// @media only screen and (max-width:1600px) {
-//         .company_information form .inputfield_section .inputfield .MuiOutlinedInput-input{
-//             width: 30rem !important;
-//         }
-//         .MuiFormControl-root{
-//             width: 32rem;
-//         }
-//         .company_information form .inputfield_section{
-//             justify-content: space-between;
-//         }
-//         // .company_information form .inputfield_btn .accountinfo_btn_section .account_info_save{
-//         //     padding: 10px 56px;
-//         // }
-//         // .company_information form .inputfield_btn .accountinfo_btn_section .account_info_cancel{
-//         //     padding: 10px 71px;
-//         // }
-//     }
+            .accountinfo_btn_section{
+                display: flex;
+                gap: 20px;
+                padding-top: 60px;
+            .account_info_cancel {
+                color: #002D56;
+                font-size: 18px;
+                background-color: white;
+                padding: 10px 75px;
+                border-radius: 25px;
+                border: 1px solid #002D56;
+                box-shadow: 0px 3px 6px #00000029;
+                font-weight: 600;
+                letter-spacing: 0.54px;
+                text-shadow: 0px 3px 6px #00000029;
+                cursor: pointer;
+            }
+            .account_info_save {
+                box-shadow: 0px 3px 6px #00000029;
+                border-radius: 25px;
+                opacity: 1;
+                padding: 10px 59px;
+                background: linear-gradient(180deg,#20639B 0%, #002D56 100%);
+                color: #FFFFFF;
+                font-size: 18px;
+                border: none;
+                font-weight: 600;
+                text-shadow: 0px 3px 6px #00000029;
+                cursor: pointer;
+            }
+          }
+        }
+    }
+ }
+}
+@media only screen and (max-width:1600px) {
+        .company_information form .inputfield_section .inputfield .MuiOutlinedInput-input{
+            width: 30rem !important;
+        }
+        .MuiFormControl-root{
+            width: 32rem;
+        }
+        .company_information form .inputfield_section{
+            justify-content: space-between;
+        }
+        // .company_information form .inputfield_btn .accountinfo_btn_section .account_info_save{
+        //     padding: 10px 56px;
+        // }
+        // .company_information form .inputfield_btn .accountinfo_btn_section .account_info_cancel{
+        //     padding: 10px 71px;
+        // }
+    }
 
-// @media only screen and (max-width:1550px){
-//         .company_information form .inputfield_section .inputfield .MuiOutlinedInput-input{
-//             width: 34rem !important;
-//         }
-//         .MuiFormControl-root{
-//             width: 28rem !important;
-//         }
-//         .address_main .heading_section .Account_heading{
-//             width: 36%;
-//         }
-//         .company_information form .inputfield_btn .accountinfo_btn_section .account_info_save{
-//             padding: 10px 49px;
-//         }
-//         .company_information form .inputfield_btn .accountinfo_btn_section .account_info_cancel{
-//             padding: 10px 68px;
-//         }
-// }
+@media only screen and (max-width:1550px){
+        .company_information form .inputfield_section .inputfield .MuiOutlinedInput-input{
+            width: 34rem !important;
+        }
+        .MuiFormControl-root{
+            width: 28rem !important;
+        }
+        .address_main .heading_section .Account_heading{
+            width: 36%;
+        }
+        .company_information form .inputfield_btn .accountinfo_btn_section .account_info_save{
+            padding: 10px 49px;
+        }
+        .company_information form .inputfield_btn .accountinfo_btn_section .account_info_cancel{
+            padding: 10px 68px;
+        }
+}
 
-// @media only screen and (max-width:1440px){
-//         .company_information form .inputfield_section .inputfield .MuiOutlinedInput-input{
-//             width: 26rem !important;
-//         }
-//         .MuiFormControl-root{
-//             width: 28rem !important;
-//         }
-//         .address_main .heading_section .Account_heading{
-//             width: 36%;
-//         }
-//     }
-//  @media only screen and (max-width:768px){
-//         .company_information form .inputfield_section {
-//             flex-direction: column;
-//         }
-//         .company_information form .inputfield_btn {
-//             flex-direction: column;
-//         }
-//         .address_main{
-//             padding-left: 10px;
-//         }
-//         .address_main .Account_heading{
-//             width: 47%;
-//         }
-//         .company_information form .inputfield_section .inputfield .MuiOutlinedInput-root{
-//             width: 45rem;
-//         }
-//         .company_information form .inputfield_btn .MuiOutlinedInput-root{
-//             width: 45rem;
-//         }
-//         .company_information form .inputfield_btn .accountinfo_btn_section .account_info_cancel{
-//             width: 50%;
-//         }
-//         .company_information form .inputfield_btn .accountinfo_btn_section .account_info_save{
-//             width: 50%;
-//         }
-//         .company_information form .inputfield_btn .accountinfo_btn_section {
-//             justify-content: center;
-//         }
-//     }
+@media only screen and (max-width:1440px){
+        .company_information form .inputfield_section .inputfield .MuiOutlinedInput-input{
+            width: 26rem !important;
+        }
+        .MuiFormControl-root{
+            width: 28rem !important;
+        }
+        .address_main .heading_section .Account_heading{
+            width: 36%;
+        }
+    }
+ @media only screen and (max-width:768px){
+        .company_information form .inputfield_section {
+            flex-direction: column;
+        }
+        .company_information form .inputfield_btn {
+            flex-direction: column;
+        }
+        .address_main{
+            padding-left: 10px;
+        }
+        .address_main .Account_heading{
+            width: 47%;
+        }
+        .company_information form .inputfield_section .inputfield .MuiOutlinedInput-root{
+            width: 45rem;
+        }
+        .company_information form .inputfield_btn .MuiOutlinedInput-root{
+            width: 45rem;
+        }
+        .company_information form .inputfield_btn .accountinfo_btn_section .account_info_cancel{
+            width: 50%;
+        }
+        .company_information form .inputfield_btn .accountinfo_btn_section .account_info_save{
+            width: 50%;
+        }
+        .company_information form .inputfield_btn .accountinfo_btn_section {
+            justify-content: center;
+        }
+    }
 
-//     @media only screen and (max-width:580px){
-//         .address_main .Account_heading{
-//             width: 100%;
-//             padding-left: 10px;
-//         }
-//         .address_main .Account_heading{
-//             text-align: left;
-//         }
-//         .company_information form .inputfield_section .inputfield .MuiOutlinedInput-root {
-//             width: 33.5rem;
-//         }
-//         .company_information form .inputfield_btn .MuiOutlinedInput-root{
-//             width: 33.5rem;
-//         }
-//         .company_information form .inputfield_btn .accountinfo_btn_section{
-//             flex-direction: column;
-//             align-items: center;
-//             margin-right: 10px;
-//         }
-//         .company_information form .inputfield_btn .accountinfo_btn_section .account_info_cancel{
-//             width: 100%;
-//             padding: 15px 25px;
-//         }
-//         .company_information form .inputfield_btn .accountinfo_btn_section .account_info_save{
-//             width: 100%;
-//             padding: 15px 25px;
-//         }
+    @media only screen and (max-width:580px){
+        .address_main .Account_heading{
+            width: 100%;
+            padding-left: 10px;
+        }
+        .address_main .Account_heading{
+            text-align: left;
+        }
+        .company_information form .inputfield_section .inputfield .MuiOutlinedInput-root {
+            width: 33.5rem;
+        }
+        .company_information form .inputfield_btn .MuiOutlinedInput-root{
+            width: 33.5rem;
+        }
+        .company_information form .inputfield_btn .accountinfo_btn_section{
+            flex-direction: column;
+            align-items: center;
+            margin-right: 10px;
+        }
+        .company_information form .inputfield_btn .accountinfo_btn_section .account_info_cancel{
+            width: 100%;
+            padding: 15px 25px;
+        }
+        .company_information form .inputfield_btn .accountinfo_btn_section .account_info_save{
+            width: 100%;
+            padding: 15px 25px;
+        }
         
-//     }    
+    }    
 
-//     @media only screen and (max-width:480px){
-//         .company_information form .inputfield_section .inputfield .MuiOutlinedInput-root {
-//             width: 27rem;
-//         }
+    @media only screen and (max-width:480px){
+        .company_information form .inputfield_section .inputfield .MuiOutlinedInput-root {
+            width: 27rem;
+        }
     
-//     .company_information form .inputfield_btn .MuiOutlinedInput-root {
-//         width: 27rem;
-//     }
-//     .address_main .company_information form .inputfield_section{
-//         gap: 10px;
-//     }
-// }
-// @media only screen and (max-width:425px){
-//     .company_information form .inputfield_section .inputfield .MuiOutlinedInput-root {
-//         width: 24rem;
-//     }
+    .company_information form .inputfield_btn .MuiOutlinedInput-root {
+        width: 27rem;
+    }
+    .address_main .company_information form .inputfield_section{
+        gap: 10px;
+    }
+}
+@media only screen and (max-width:425px){
+    .company_information form .inputfield_section .inputfield .MuiOutlinedInput-root {
+        width: 24rem;
+    }
 
-// .company_information form .inputfield_btn .MuiOutlinedInput-root {
-//     width: 24rem;
-// }
-// .address_main .company_information form .inputfield_section{
-//     gap: 10px;
-// }
-// }
-// @media only screen and (max-width:375px){
-//     .company_information form .inputfield_section .inputfield .MuiOutlinedInput-root {
-//         width: 21rem;
-//     }
+.company_information form .inputfield_btn .MuiOutlinedInput-root {
+    width: 24rem;
+}
+.address_main .company_information form .inputfield_section{
+    gap: 10px;
+}
+}
+@media only screen and (max-width:375px){
+    .company_information form .inputfield_section .inputfield .MuiOutlinedInput-root {
+        width: 21rem;
+    }
 
-// .company_information form .inputfield_btn .MuiOutlinedInput-root {
-//     width: 21rem;
-// }
-// .address_main .company_information form .inputfield_section{
-//     gap: 10px;
-// }
-// }
+.company_information form .inputfield_btn .MuiOutlinedInput-root {
+    width: 21rem;
+}
+.address_main .company_information form .inputfield_section{
+    gap: 10px;
+}
+}
 
-//     @media only screen and (max-width:320px){
-//         .company_information form .inputfield_section .inputfield .MuiOutlinedInput-root {
-//             width: 18rem;
-//         }
+    @media only screen and (max-width:320px){
+        .company_information form .inputfield_section .inputfield .MuiOutlinedInput-root {
+            width: 18rem;
+        }
     
-//     .company_information form .inputfield_btn .MuiOutlinedInput-root {
-//         width: 18rem;
-//     }
-//     .address_main .company_information form .inputfield_section{
-//         gap: 10px;
-//     }
-// }
+    .company_information form .inputfield_btn .MuiOutlinedInput-root {
+        width: 18rem;
+    }
+    .address_main .company_information form .inputfield_section{
+        gap: 10px;
+    }
+}
