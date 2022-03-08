@@ -1,7 +1,7 @@
 import React from "react";
 import "./styles.scss";
 import MUIDataTable from "mui-datatables";
-import { Button } from "@mui/material";
+import { Button, Pagination } from "@mui/material";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 

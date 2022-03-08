@@ -18,11 +18,16 @@ const styles = (theme) => ({
     color: "#5C6369",
   },
   sub_tab_conatainer: {
+    "& img": {
+      width: "24px",
+    },
     "& .MuiListItemButton-root": {
       display: "flex",
       gap: "10px",
+      background: "#ebdec6",
+      borderBottom: "1px solid #ffffff",
       "& img": {
-        width: "27px",
+        width: "24px",
       },
     },
     "& .MuiListItem-button": {
@@ -33,6 +38,7 @@ const styles = (theme) => ({
     "& .MuiTypography-root": {
       fontWeight: "600",
       fontSize: "14px",
+      color: "#5C6369",
     },
     "& .MuiBox-root ": {
       padding: "12px",

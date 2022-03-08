@@ -162,7 +162,7 @@ const styles = (theme) => ({
     },
     "& .MuiOutlinedInput-root": {
       "& input": {
-        padding: "12.5px 14px",
+        // padding: "12.5px 14px",
         font: "unset",
       },
       "& fieldset": {
