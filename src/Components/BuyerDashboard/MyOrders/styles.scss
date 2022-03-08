@@ -1,0 +1,126 @@
+.myorders {
+  .myorders__buttons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+    margin-top: 3em;
+
+    p {
+      margin: 0;
+      padding: 0.5em 1.2em;
+      background-color: #f0f0f0;
+      color: #333c42;
+      font-size: 18px;
+      border-radius: 25px;
+      cursor: pointer;
+    }
+
+    .ordertype__selected {
+      background: linear-gradient(#ffd788, #cc9b3e);
+      color: white;
+    }
+  }
+
+  .myorders__table {
+    margin-top: 3em;
+
+    .MuiTableHead-root {
+      .MuiTableCell-root {
+        font-size: 26px;
+        color: #959595;
+        text-align: center;
+      }
+    }
+
+    .MuiTableBody-root {
+      .MuiTableCell-root {
+        font-size: 22px;
+        text-align: center;
+        color: #333c42;
+      }
+
+      .myorders__orderid {
+        font-weight: 600;
+      }
+
+      .myorders__sellercode {
+        border: 1px solid gray;
+        border-radius: 24px;
+        padding: 0.3em 1.2em;
+      }
+
+      .myorders__ordertotal {
+        .currency {
+          font-size: 16px;
+        }
+        .price {
+          font-weight: 600;
+        }
+      }
+
+      .myorders__action {
+        text-decoration: underline;
+        color: #002d56;
+        font-size: 22px;
+        cursor: pointer;
+      }
+
+      .myorders__pending {
+        color: #dd9b63;
+        font-weight: 600;
+        padding: 0.3em 1.2em;
+        background-color: #fff4eb;
+        border-radius: 24px;
+      }
+
+      .myorders__confirm {
+        color: #20639b;
+        font-weight: 600;
+        padding: 0.3em 1.2em;
+        background-color: #d5ecff;
+        border-radius: 24px;
+      }
+
+      .myorders__delivered {
+        color: #00b91c;
+        font-weight: 600;
+        padding: 0.3em 1.2em;
+        background-color: #e6ffea;
+        border-radius: 24px;
+      }
+
+      .myorders__dispatched {
+        color: #d9ad59;
+        font-weight: 600;
+        padding: 0.3em 1.2em;
+        background-color: #fff6e5;
+        border-radius: 24px;
+      }
+    }
+  }
+  .my_orders__footer {
+    width: 100%;
+    padding: 2em 0;
+    .my_orders__container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      a {
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        .MuiSvgIcon-root {
+          color: #002d56;
+        }
+        span {
+          font-size: 20px;
+          color: #002d56;
+          font-weight: 600;
+          margin-left: 0.6em;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,278 @@
+.subaccount_main{
+    padding-right: 50px;
+    .sub_heading{
+        color: #DDB363;
+        font-size: 30px;
+        letter-spacing: 0.9px;
+    }
+    .input_sections{
+        display: flex;
+        gap: 30px;
+        justify-content: space-between;
+        .MuiInputLabel-root{
+            color: red;
+        }
+        p{
+            color: #272727;
+            font-size: 18px;
+            letter-spacing: 0.54px;
+        }
+        p::after{
+            content: "*";
+            color: red;
+        }
+         .MuiOutlinedInput-root{
+               width: 37rem;
+               border-radius: 33px;
+         }
+         .MuiOutlinedInput-input{
+            font-size: 20px;
+            color: #4E4E4E;
+            letter-spacing: 0.54px;
+            opacity: 1;
+         }
+    }
+    .user_input{
+        .MuiInputLabel-root{
+            color: red;
+        }
+    p{
+        color: #272727;
+        font-size: 18px;
+        letter-spacing: 0.54px;
+    }
+    p::after{
+        content: "*";
+        color: red;
+    }
+    .MuiOutlinedInput-root{
+        // width: 62rem;
+        border-radius: 33px;
+  }
+  .MuiOutlinedInput-input{
+    font-size: 20px;
+    color: #4E4E4E;
+    letter-spacing: 0.54px;
+    opacity: 1;
+
+ }
+  }
+  .user_permision{
+    .MuiInputLabel-root{
+        color: red;
+    }
+
+    p{
+        color: #272727;
+        font-size: 18px;
+        letter-spacing: 0.54px;
+    }
+    p::after{
+        content: "*";
+        color: red;
+    }
+  }
+  .users_active_section{
+    .MuiInputLabel-root{
+        color: red;
+    }
+      p{
+        color: #272727;
+        font-size: 18px;
+        letter-spacing: 0.54px;
+      }
+      p::after{
+        content: "*";
+        color: red;
+    }
+    .MuiOutlinedInput-input{
+        font-size: 20px;
+        color: #4E4E4E;
+        letter-spacing: 0.54px;
+        opacity: 1;
+    
+     }
+     .MuiOutlinedInput-root{
+         border-radius: 33px;
+     }
+  }
+  .user_btn_section{
+      display: flex;
+      justify-content: flex-end;
+      padding: 30px;
+      button{
+        box-shadow: 0px 3px 6px #00000029;
+        border-radius: 25px;
+        opacity: 1;
+        padding: 10px 50px;
+        background: linear-gradient(180deg, #20639B 0%, #002D56 100%);
+        color: #FFFFFF;
+        font-size: 18px;
+        border: none;
+        font-weight: 600;
+        text-shadow: 0px 3px 6px #00000029;
+        letter-spacing: 0.54px;
+        cursor: pointer;
+      }
+  }
+}
+
+@media only screen and (max-width:1600px) {
+    .subaccount_main .input_sections .MuiOutlinedInput-root{
+        width: 30rem;
+    }
+}
+
+@media only screen and (max-width:1550px){
+    .subaccount_main .input_sections .MuiOutlinedInput-root {
+        width: 28rem;
+    }
+    .subaccount_main .user_input .MuiOutlinedInput-root{
+        width: 61rem;
+    }
+    .subaccount_main .MuiOutlinedInput-root{
+        width: 61rem;
+    }
+}
+
+@media only screen and (max-width:1440px){
+    .subaccount_main .input_sections .MuiOutlinedInput-root {
+        width: 28rem;
+    }
+    .subaccount_main .user_input .MuiOutlinedInput-root{
+        width: 58rem;
+    }
+    .subaccount_main .MuiOutlinedInput-root{
+        width: 58rem;
+    }
+    .subaccount_main{
+        margin: 10px;
+    }
+}
+
+@media only screen and (max-width:768px){
+    .subaccount_main .input_sections .MuiOutlinedInput-root {
+        width: 28rem;
+    }
+    .subaccount_main .user_input .MuiOutlinedInput-root{
+        width: 45rem;
+    }
+    .subaccount_main .MuiOutlinedInput-root{
+        width: 45rem;
+    }
+    .subaccount_main{
+        margin: 10px;
+        padding: 0;
+    }
+    .subaccount_main .input_sections{
+        flex-direction: column;
+        gap: 0;
+    }
+    .subaccount_main .input_sections .MuiOutlinedInput-root{
+        width: 45rem;
+    }
+}
+
+@media only screen and (max-width:580px){
+    .subaccount_main .input_sections .MuiOutlinedInput-root{
+        width: 33rem;
+    }
+    .subaccount_main .user_input .MuiOutlinedInput-root{
+        width: 33rem;
+    }
+
+    .subaccount_main .MuiOutlinedInput-root{
+        width: 33rem;
+    }
+
+    .subaccount_main .user_btn_section{
+        justify-content: center;
+    }
+    .subaccount_main textarea{
+        width: 33rem;
+    }
+    .subaccount_main {
+        padding-right: 0px;
+    }
+    .subaccount_main .user_btn_section button{
+        padding: 15px 25px;
+    }
+}
+
+@media only screen and (max-width:480px){
+    .subaccount_main .input_sections .MuiOutlinedInput-root {
+        width: 27rem;
+    }
+    .subaccount_main .user_input .MuiOutlinedInput-root {
+        width: 27rem;
+    }
+    .subaccount_main .MuiOutlinedInput-root {
+        width: 27rem;
+    }
+    .users_main .user_sub-account button{
+        width: 100%;
+    }
+    .subaccount_main .sub_heading{
+        font-size: 30px;
+        margin-bottom: 10px;
+    }
+}
+
+@media only screen and (max-width:425px){
+    .subaccount_main .input_sections .MuiOutlinedInput-root {
+        width: 24rem;
+    }
+    .subaccount_main .user_input .MuiOutlinedInput-root {
+        width: 24rem;
+    }
+    .subaccount_main .MuiOutlinedInput-root {
+        width: 24rem;
+    }
+    .users_main .user_sub-account button{
+        width: 100%;
+    }
+    .subaccount_main .sub_heading{
+        font-size: 29px;
+        margin-bottom: 10px;
+    }
+}
+
+@media only screen and (max-width:375px){
+    .subaccount_main .input_sections .MuiOutlinedInput-root {
+        width: 21rem;
+    }
+    .subaccount_main .user_input .MuiOutlinedInput-root {
+        width: 21rem;
+    }
+    .subaccount_main .MuiOutlinedInput-root {
+        width: 21rem;
+    }
+    .users_main .user_sub-account button{
+        width: 100%;
+    }
+    .subaccount_main .sub_heading{
+        font-size: 29px;
+        margin-bottom: 10px;
+    }
+}
+
+@media only screen and (max-width:320px){
+    .subaccount_main .input_sections .MuiOutlinedInput-root {
+        width: 18rem;
+    }
+    .subaccount_main .user_input .MuiOutlinedInput-root {
+        width: 18rem;
+    }
+    .subaccount_main .MuiOutlinedInput-root {
+        width: 18rem;
+    }
+    .users_main .user_sub-account button{
+        width: 100%;
+    }
+    .subaccount_main .sub_heading{
+        font-size: 29px;
+        margin-bottom: 10px;
+    }
+}
+
+

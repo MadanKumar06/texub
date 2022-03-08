@@ -1,0 +1,86 @@
+.minicart_drawer_main {
+  .MuiButton-root {
+    font-weight: 600;
+    display: flex;
+    gap: 15px;
+    font-size: 20px;
+    padding: "0";
+    &:hover {
+      background-color: unset;
+    }
+  }
+  .mini_cart_head {
+    color: #5c6369;
+    text-transform: capitalize;
+    font-weight: 600;
+    font-size: 20px;
+    opacity: 0.8;
+  }
+  .badge {
+    color: #5c6369;
+    .mycart_image {
+      width: 35px;
+      height: 35px;
+      img {
+        width: 100%;
+      }
+    }
+    span {
+      color: #5c6369;
+      min-width: 26px !important;
+      height: 26px !important;
+      border-radius: 26px !important;
+      background-color: #ffffff;
+      box-shadow: -2px -2px 8px -6px rgba(0, 0, 0, 0.75);
+      -webkit-box-shadow: -2px -2px 8px -6px rgba(0, 0, 0, 0.75);
+      -moz-box-shadow: -2px -2px 8px -6px rgba(0, 0, 0, 0.75);
+    }
+  }
+  .miniCart_drawer {
+    height: 87vh !important;
+  }
+}
+@media (max-width: 1600px) {
+  .minicart_drawer_main .mini_cart_head {
+    font-size: 18px !important;
+  }
+  .minicart_drawer_main .badge .mycart_image {
+    width: 30px;
+    height: 30px;
+  }
+  .minicart_drawer_main .badge span {
+    min-width: 21px !important;
+    height: 21px !important;
+  }
+}
+@media (max-width: 1300px) {
+  .minicart_drawer_main .mini_cart_head {
+    font-size: 16px !important;
+  }
+  .minicart_drawer_main .badge .mycart_image {
+    width: 26px;
+    height: 26px;
+  }
+  .minicart_drawer_main .badge span {
+    min-width: 19px !important;
+    height: 19px !important;
+  }
+}
+@media (max-width: 1080px) {
+  .minicart_drawer_main .mini_cart_head {
+    font-size: 14px !important;
+  }
+  .minicart_drawer_main .badge .mycart_image {
+    width: 24px;
+    height: 24px;
+  }
+  .minicart_drawer_main .badge span {
+    min-width: 18px !important;
+    height: 18px !important;
+  }
+}
+@media (max-width: 850px) {
+  .minicart_drawer_main .mini_cart_head {
+    font-size: 12px !important;
+  }
+}

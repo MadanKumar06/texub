@@ -1,0 +1,85 @@
+.registerproduct {
+  h1 {
+    color: #ddb363;
+    font-size: 30px;
+    margin: 0;
+    letter-spacing: 0.9px;
+  }
+  .registerproducts__form {
+    .input_separator {
+      display: flex;
+      gap: 2em;
+    }
+    .registerproducts_inputfields {
+      width: 100%;
+      .MuiInputLabel-root {
+        font-size: 18px;
+        font-weight: 600;
+        color: #272727;
+        margin-top: 2em;
+      }
+      .MuiFormControl-root {
+        & ::placeholder {
+          text-transform: capitalize;
+          font-size: 20px;
+          color: #cdd5dd;
+          opacity: 1;
+        }
+        .MuiOutlinedInput-root {
+          input {
+            // padding: 12.5px 14px;
+            font: unset;
+          }
+          fieldset {
+            legend {
+              font-size: 1em;
+            }
+          }
+        }
+
+        .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+          border: 1px solid #ddb363;
+        }
+      }
+    }
+  }
+
+  .registerproduct__submit {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2em;
+    & > * {
+      cursor: pointer;
+    }
+    a {
+      text-decoration: none;
+    }
+    .registerproduct__back {
+      position: relative;
+      font-size: 20px;
+      color: #002d56;
+      font-weight: 600;
+      margin-left: 1em;
+      &::before {
+        content: "";
+        border-left: 2px solid black;
+        border-top: 2px solid black;
+        transform: rotate(315deg);
+        width: 0.5em;
+        height: 0.5em;
+        position: absolute;
+        left: -1em;
+        top: 6px;
+        color: #002d56;
+      }
+    }
+
+    .registerproduct__submitbutton {
+      font-size: 18px;
+      padding: 0.6em 7.2em;
+      background: linear-gradient(#20639b, #002d56);
+      color: white;
+      border-radius: 24px;
+    }
+  }
+}

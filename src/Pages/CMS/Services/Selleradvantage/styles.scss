@@ -1,0 +1,367 @@
+// .Selleradvantage_main{
+//   display: flex;
+//   justify-content: center;
+//   margin: 70px;
+//   .Selleradvantage_img_section{
+//       position: relative;
+//       display: flex;
+//       .Selleradvantage_Heading{
+//           position: absolute;
+//           left: 40%;
+//           text-align: center;
+//          color: #DDB363;
+//          font-size:40px;
+//         letter-spacing: 2px;
+//         font-family: 'Source Sans Pro';
+//       }
+//   }
+//   .Selleradvantage_business_section,
+//   .Selleradvantage_clock_section,
+//   .Selleradvantage_network_section,
+//   .Selleradvantage_Buyer_section{
+//       position: absolute;
+//       display: flex;
+//       flex-direction: column;
+//       .Selleradvantage_business_Heading,
+//       .Selleradvantage_clock_Heading,
+//       .Selleradvantage_network_Heading,
+//       .Selleradvantage_Buyer_Heading{
+//           color: #002D56;
+//           font-size:x-large;
+//           opacity: 1;
+//           letter-spacing: 1px;
+//           margin: 0;
+//          font-weight: 600;
+//          font-size: xx-large;
+//       }
+//       .Selleradvantage_business_tag,
+//       .Selleradvantage_clock_Tag,
+//       .Selleradvantage_network_tag,
+//       .Selleradvantage_Buyer_tag{
+//           color: #333C42;
+//           letter-spacing: 1px;
+//           margin-top: 5px;
+          
+//       }
+//   }
+//   .Selleradvantage_tailor_section{
+//       left: -25%;
+//       top: 26%;
+//       text-align: right;
+//   }
+//   .Selleradvantage_secure_section{
+//       left: -15%;
+//       top: 74%;
+//       text-align: right;
+//   }
+//   .Selleradvantage_confidence_section{
+//       right: -20%;
+//       top: 26%;
+//   }
+//   .Selleradvantage_Seller_section{
+//       right: -5%;
+//       top: 74%;
+//   }
+// }
+
+
+
+
+ .Selleradvantage_main {
+  padding: 50px 0 50px 0;
+  margin:10px 50px 50px 50px;
+  background-color: #FFFFFF;
+   .Selleradvantage_img_section{
+     position: relative;
+     margin: 30px auto 0;
+     max-width: 980px;
+     width: 100%;
+    .Selleradvantage_Heading{
+      position: absolute;
+      left: 40%;
+      text-align: center;
+      color: #DDB363;
+      font-size:40px;
+      letter-spacing: 2px;
+      font-family: 'Source Sans Pro';
+      margin: 0;
+    } 
+   .Selleradvantage_img{
+      height: 100%;
+      width: 100%;
+      object-fit: contain;
+   }
+  }
+  .Selleradvantage_business_section,
+  .Selleradvantage_clock_section,
+  .Selleradvantage_network_section,
+  .Selleradvantage_Buyer_section{
+    position: absolute;
+    .Selleradvantage_business_Heading,
+    .Selleradvantage_clock_Heading,
+    .Selleradvantage_network_Heading,
+    .Selleradvantage_Buyer_Heading{
+       color: #002D56;
+       font-size:30px;
+       opacity: 1;
+       letter-spacing: 0.9px;
+       margin: 0;
+       text-transform: capitalize;
+       font-weight: 600;
+    }
+     .Selleradvantage_business_Heading{
+       text-align: right;
+     }
+    .Selleradvantage_business_tag,
+    .Selleradvantage_clock_Tag,
+    .Selleradvantage_network_tag,
+    .Selleradvantage_Buyer_tag{
+      color: #333C42;
+      letter-spacing: 0.6px;
+      margin-top: 5px;
+      font-size: 20px;
+      opacity: 1;
+    }
+  }
+  .Selleradvantage_business_section{
+    left: -38%;
+    top: 26%;
+  }
+  .Selleradvantage_clock_section{
+    left: -15px;
+    top: 80%;
+  }
+  .Selleradvantage_network_section{
+    right: -26%;
+    top: 26%;
+  }
+  .Selleradvantage_Buyer_section{
+    right: -4%;
+    top: 80%;
+  }
+}
+
+     /* @Media */
+
+@media (max-width:1660px){
+  .Selleradvantage_main .Selleradvantage_business_section{
+    left: -24%;
+    top: -6%;
+  }
+  .Selleradvantage_main .Selleradvantage_network_section {
+    right: -20%;
+    top: -6%;
+}
+ }
+
+@media (max-width:1440px){
+  .Selleradvantage_main{
+  .Selleradvantage_img_section{
+    max-width: 823px !important;
+  }
+  .Selleradvantage_business_Heading,
+    .Selleradvantage_clock_Heading,
+    .Selleradvantage_network_Heading,
+    .Selleradvantage_Buyer_Heading{
+      font-size: x-large !important;
+    }
+    .Selleradvantage_business_section{
+        left: -29%;
+    }
+     .Selleradvantage_network_section {
+      right: -23%;
+      top: -6%;
+    }
+     .Selleradvantage_Buyer_section {
+      right: -11%;
+      top: 80%;
+    }
+    .Selleradvantage_clock_section{
+        left: 7px;
+    }
+}
+}
+
+@media (max-width:1336px){
+  .Selleradvantage_main .Selleradvantage_business_section{
+    left: -23%;
+    top: -13%;
+  }
+}
+
+@media (max-width:1024px){
+  .Selleradvantage_main{
+    .Selleradvantage_img_section{
+      max-width: 528px !important;
+      .Selleradvantage_Heading{
+        font-size: 30px;
+        left: 34%;
+        top: -22%;
+      }
+      .Selleradvantage_business_tag,
+      .Selleradvantage_clock_Tag,
+      .Selleradvantage_network_tag,
+      .Selleradvantage_Buyer_tag{
+        display: none;
+      }
+    }
+    .Selleradvantage_business_section{
+      left: -165px;
+      top: -5px;
+    }
+    .Selleradvantage_clock_section{
+        left: -55px;
+    }
+    .Selleradvantage_network_section{
+      right: -141px;
+    }
+     .Selleradvantage_Buyer_section{
+         right: -69px;
+     }
+  }
+}
+
+ @media (max-width:768px){
+   .Selleradvantage_main{
+    padding: 50px 0 50px 0;
+    margin: 10px 17px 17px 17px;
+     .Selleradvantage_img_section{
+        max-width: 540px !important;
+        .Selleradvantage_Heading{
+          left: 35% !important;
+       }
+        .Selleradvantage_business_Heading,
+        .Selleradvantage_clock_Heading,
+        .Selleradvantage_network_Heading,
+        .Selleradvantage_Buyer_Heading{
+               font-size: 24px !important;   
+        }
+        .Selleradvantage_business_tag,
+        .Selleradvantage_clock_Tag,
+        .Selleradvantage_network_tag,
+        .Selleradvantage_Buyer_tag{
+           font-size: xx-small;
+        }
+     }
+     .Selleradvantage_business_section{
+      left: -93px;
+      top: -32px;
+    }
+    .Selleradvantage_clock_section{
+       left: -28px;
+    }
+    .Selleradvantage_Buyer_section{
+       right: -34px;
+    }
+    .Selleradvantage_network_section{
+       right: -85px;
+    }
+   }
+ }
+  
+ @media (max-width:480px){
+    .Selleradvantage_main{
+      padding: 20px 0 20px 0 !important;
+      margin: 4px 2px 4px 2px;
+      .Selleradvantage_img_section{
+        max-width: 200px !important;
+        .Selleradvantage_Heading{
+          left: 26% !important;
+          font-size: 15px;
+
+        }
+        .Selleradvantage_business_Heading,
+        .Selleradvantage_clock_Heading,
+       .Selleradvantage_network_Heading,
+       .Selleradvantage_Buyer_Heading{
+           font-size: 20px !important;
+       }
+        .Selleradvantage_business_section{
+          left: -138px;
+        }
+        .Selleradvantage_clock_section{
+          left: -95px;
+        }
+        .Selleradvantage_Buyer_section{
+           right: -79px;
+           top: 82%;
+        }
+        .Selleradvantage_network_section{
+          right: -117px;
+          top: -26%;
+        }
+      }
+    }
+ }
+
+ @media (max-width:425px){
+    .Selleradvantage_main{
+      .Selleradvantage_img_section{
+      .Selleradvantage_business_Heading,
+      .Selleradvantage_clock_Heading,
+      .Selleradvantage_network_Heading,
+      .Selleradvantage_Buyer_Heading{
+        font-size:13px !important;
+      }
+      .Selleradvantage_business_section{
+        left: -111px;
+        top: 38%;
+      }
+      .Selleradvantage_clock_section{
+         left: -63px;
+      }
+      .Selleradvantage_network_section{
+        right: -103px;
+        top: 38%;
+      }
+      .Selleradvantage_Buyer_section{
+        right: -61px;
+      }
+    }
+    }
+ }
+
+ @media (max-width:375px){
+       .Selleradvantage_main{
+         padding: 10px 0 10px 0 !important;
+        .Selleradvantage_img_section{
+          max-width: 200px !important;
+          .Selleradvantage_business_Heading,
+          .Selleradvantage_clock_Heading,
+          .Selleradvantage_network_Heading,
+          .Selleradvantage_Buyer_Heading{
+             font-size:13px !important;
+      }
+      .Selleradvantage_business_section{
+        left: -83px;
+        top: 45%;
+      }
+      .Selleradvantage_network_section{
+        right: -84px;
+        top: 41%;
+      }
+        }
+       }
+ }
+
+ @media (max-width:320px) {
+  .Selleradvantage_main 
+   .Selleradvantage_img_section {
+    max-width: 142px !important;
+    .Selleradvantage_Heading{
+      font-size: 8px;
+    }
+    .Selleradvantage_business_section{
+      left: -89px;
+      top: -22%;
+    }
+    .Selleradvantage_network_section{
+      top: -21%;
+    }
+  }
+   
+ }
+ 
+  
+
+   

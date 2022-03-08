@@ -1,0 +1,106 @@
+.rmatable {
+  margin-top: 3em;
+
+  .MuiPaper-root {
+    box-shadow: none;
+  }
+
+  .MuiTableHead-root {
+    .MuiTableCell-root {
+      color: #959595;
+      font-size: 26px;
+      font-weight: 500;
+      text-align: center;
+    }
+  }
+
+  .MuiTableBody-root {
+    .MuiTableCell-root {
+      font-size: 22px;
+      color: #333c42;
+      text-align: center;
+    }
+  }
+
+  .rmatable__orderid {
+    text-decoration: underline;
+    color: #002d56;
+    font-weight: 500;
+  }
+
+  .rmatable__pdetails {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    align-items: flex-end;
+    .label {
+      background-color: #f8f0e0;
+      font-size: 14px;
+      color: #002d56;
+      padding: 4px;
+      width: max-content;
+      margin-right: 0;
+      border-radius: 4px;
+    }
+    .value {
+      color: #333c42;
+      font-weight: 500;
+    }
+  }
+
+  .rmatable__buyercode,
+  .rmatable__returnqty {
+    padding: 0.3em 1.2em;
+    border: 1px solid #cecece;
+    border-radius: 24px;
+  }
+
+  .rmatable__action {
+    display: flex;
+    align-items: center;
+
+    span {
+      text-decoration: underline;
+      color: #002d56;
+      padding: 0.3em;
+    }
+
+    .accept {
+      position: relative;
+
+      &::after {
+        position: absolute;
+        content: "";
+        right: 0;
+        border-right: 1px solid black;
+        height: 32px;
+      }
+    }
+  }
+
+  .rmatable__submit {
+    margin-top: 2em;
+
+    .rmatable__back {
+      position: relative;
+      font-size: 20px;
+      color: #002d56;
+      text-decoration: none;
+      margin-left: 1em;
+      cursor: pointer;
+
+      &::before {
+        content: "";
+        border-left: 2px solid black;
+        border-top: 2px solid black;
+        transform: rotate(315deg);
+        width: 0.5em;
+        height: 0.5em;
+        position: absolute;
+        left: -1em;
+        top: 6px;
+        color: #002d56;
+      }
+    }
+  }
+}

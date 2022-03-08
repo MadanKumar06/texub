@@ -1,0 +1,73 @@
+.training_main{
+    background-color: #FBFBFB;
+    .training_description_section{
+        background-color: #FFFFFF;
+        padding: 20px 40px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        margin: 1% 3%;
+        .training_description{
+            .training_text1,
+            .training_text{
+                list-style: none;
+                font-size: 22px;
+                text-align: center;
+                letter-spacing: 0.6px;
+                color: #333333;
+            }
+            .training_text::first-letter{
+                font-size: 200%;
+                color: #333333;
+                font-weight: bold;
+            }
+        }
+    .training_Heading_section{
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        .training_Heading{
+            font-size: 50px;
+            color: #DDB363;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+            margin: 0;
+        }
+    }
+  }
+}
+
+@media only screen and (max-width:1920px){
+    .training_main .training_description_section .training_Heading_section .training_certificate {
+        height: 74px;
+    }
+}
+
+
+@media only screen and (max-width:580px) {
+    .training_main .training_description_section .training_Heading_section{
+        gap: 1px;
+    }
+    .training_main .training_description_section .training_description .training_text{
+        font-size: 15px;
+    }
+}
+
+@media only screen and (max-width:480px){
+    .training_main .training_description_section .training_Heading_section .training_certificate {
+        height: 90px;
+    }
+.training_main .training_description_section .training_Heading_section .training_Heading{
+   margin-top: 10px;
+     }
+}
+
+@media only screen and (max-width:375px){
+    .training_main .training_description_section .training_Heading_section .training_certificate {
+             height: 90px;
+    }
+    // .training_main .training_description_section .training_Heading_section .training_Heading{
+    //     font-size: xx-large;
+    //     margin-top: 10px;
+    // }
+}

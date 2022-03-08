@@ -1,0 +1,723 @@
+.checkout_main_container {
+  display: flex;
+  flex-direction: row;
+  margin: 0 3%;
+  gap: 100px;
+  padding: 2em;
+  background-color: #ffffff;
+  .section_left {
+    width: calc(65% - 100px);
+
+    .block_A {
+      position: relative;
+      list-style-type: none;
+      .delivery_address_img {
+        position: absolute;
+        left: -49px;
+        top: 0;
+      }
+      // list-style-image: url("");
+      &:after {
+        content: "";
+        position: absolute;
+        border-left: 2px dashed #ddb363;
+        top: 63px;
+        bottom: 0;
+        left: -18px;
+      }
+      .delivery_address_title {
+        margin: 0;
+        font-size: 22px;
+        color: #5c6369;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 66px;
+        padding-left: 1.4em;
+      }
+      .aside_block {
+        .aside_block_A {
+          width: 100%;
+          .delivery_address_list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(50%, 1fr));
+            .delivery_address_content {
+              border: 2px solid #ddb363;
+              padding: 1em;
+              min-height: 245px;
+              margin: 2em;
+              box-shadow: 0px 3px 6px #00000029;
+              .item_address {
+                margin: 0;
+                color: #959595;
+                font-size: 20px;
+                letter-spacing: 0.5px;
+                max-width: 80%;
+              }
+              .billing_title {
+                // position: relative;
+                display: flex;
+                align-items: unset;
+                justify-content: space-between;
+                p {
+                  margin: 0;
+                  color: #ddb363;
+                  font-size: 22px;
+                }
+                .edit_address {
+                  // position: absolute;
+                  // right: 0;
+                  // top: -5px;
+                  height: 0;
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  span {
+                    text-decoration: underline;
+                    font-size: 14px;
+                    color: #002d56;
+                  }
+                }
+              }
+              .user_name {
+                margin: 0;
+                font-size: 24px;
+                color: #858a8e;
+                padding-top: 0.575em;
+                padding-bottom: 0.475em;
+                font-style: italic;
+                max-width: 82%;
+              }
+            }
+          }
+        }
+        .aside_block_B {
+          width: 100%;
+          .delivery_address_add {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 245px;
+            background: #f5f5f5;
+            margin: 2em;
+            border-radius: 4px;
+            gap: 15px;
+            .add_icon {
+              border-radius: 50%;
+              background: #ffffff;
+              color: #002d56;
+              width: 2em !important;
+              height: 2em !important;
+            }
+            span {
+              text-decoration: underline;
+              font-size: 21px;
+              color: #002d56;
+            }
+          }
+        }
+      }
+    }
+    .block_B {
+      position: relative;
+      list-style-type: none;
+      .payment_image {
+        position: absolute;
+        left: -49px;
+        top: 4px;
+      }
+      .payment_title {
+        margin: 0;
+        font-size: 22px;
+        color: #5c6369;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 66px;
+        padding-left: 1.4em;
+      }
+    }
+    .payment_info {
+      padding: 2em 0;
+
+      .MuiFormGroup-root {
+        gap: 4em;
+        .payment_footer_block_1 {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          width: 85%;
+          .footer_main {
+            padding-left: 0 6px;
+
+            .footer_content {
+              display: flex;
+              align-items: center;
+              gap: 19px;
+              height: 55px;
+              width: max-content;
+              img {
+                width: 60%;
+              }
+              .MuiFormControlLabel-root {
+                margin: 0;
+                .MuiRadio-root {
+                  .MuiSvgIcon-root {
+                    color: #002d56;
+                    width: 34px !important;
+                    height: 34px !important;
+                  }
+                }
+              }
+              .footer_title {
+                margin: 0;
+                color: #002d56;
+                font-size: 22px;
+                font-weight: 600;
+                letter-spacing: 0.66px;
+              }
+            }
+          }
+        }
+        .payment_footer_block_2 {
+          .footer_main {
+            padding-left: 0 6px;
+
+            .footer_content {
+              display: flex;
+              align-items: center;
+              gap: 19px;
+              height: 55px;
+              width: max-content;
+              img {
+                width: 60%;
+              }
+              .MuiFormControlLabel-root {
+                margin: 0;
+                .MuiRadio-root {
+                  .MuiSvgIcon-root {
+                    color: #002d56;
+                    width: 34px !important;
+                    height: 34px !important;
+                  }
+                }
+              }
+              .footer_title {
+                margin: 0;
+                color: #002d56;
+                font-size: 22px;
+                font-weight: 600;
+                letter-spacing: 0.66px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .section_right {
+    width: 35%;
+    margin-top: 7em;
+    .order_details_main {
+      padding: 4% 9% 9% 9%;
+      border-top: 6px solid #ddb363;
+      background: #f8f0e0;
+      .order_details {
+        .order_note {
+          margin: 0;
+          font-size: 14px;
+          color: #5c6369;
+          padding-left: 43px;
+        }
+        .order_details_title {
+          margin: 0;
+          padding: 20px 0;
+          font-size: 30px;
+          font-weight: 600;
+          color: #002d56;
+          border-bottom: 1px solid #ffffff;
+        }
+        .orders {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          gap: 2em;
+          border-bottom: 2px dashed #20639b;
+          .order_info {
+            p {
+              margin: 0;
+              letter-spacing: 0.66px;
+              color: #878787;
+              font-size: 22px;
+              font-weight: 600;
+              padding: 22px 0;
+            }
+          }
+          .order_info_details {
+            p {
+              margin: 0;
+              padding: 15px 0;
+              letter-spacing: 0.66px;
+              color: #5c6369;
+              font-size: 31px;
+              letter-spacing: 0.93px;
+              font-weight: 600;
+              span {
+                font-size: 22px;
+                letter-spacing: 0.6px;
+              }
+            }
+          }
+        }
+
+        .order_total {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          .order_total_title {
+            font-size: 30px;
+            color: #002d56;
+            font-weight: 600;
+            margin: 0;
+            padding-top: 24px;
+          }
+          .order_total_info {
+            margin: 0;
+            padding-top: 6px;
+            p {
+              margin: 0;
+              padding: 15px 0;
+              letter-spacing: 0.66px;
+              color: #5c6369;
+              font-size: 31px;
+              letter-spacing: 0.93px;
+              font-weight: 600;
+              span {
+                font-size: 22px;
+                letter-spacing: 0.6px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: "1600px") {
+  .checkout_main_container {
+    .section_left {
+      .block_A {
+        .delivery_address_title {
+          font-size: 20px;
+        }
+        .aside_block {
+          .aside_block_A {
+            .delivery_address_list {
+              .delivery_address_content {
+                .item_address {
+                  font-size: 18px;
+                }
+                .billing_title {
+                  p {
+                    font-size: 20px;
+                  }
+                  .edit_address {
+                    span {
+                      font-size: 14px;
+                    }
+                  }
+                }
+                .user_name {
+                  font-size: 22px;
+                }
+              }
+            }
+          }
+          .aside_block_B {
+            .delivery_address_add {
+              span {
+                font-size: 19px;
+              }
+            }
+          }
+        }
+      }
+      .block_B {
+        .payment_title {
+          font-size: 20px;
+        }
+      }
+      .payment_info {
+        .MuiFormGroup-root {
+          .payment_footer_block_1 {
+            .footer_main {
+              .footer_content {
+                .MuiFormControlLabel-root {
+                  .MuiRadio-root {
+                    .MuiSvgIcon-root {
+                      width: 30px !important;
+                      height: 30px !important;
+                    }
+                  }
+                }
+                .footer_title {
+                  font-size: 18px;
+                }
+              }
+            }
+          }
+          .payment_footer_block_2 {
+            .footer_main {
+              .footer_content {
+                .MuiFormControlLabel-root {
+                  .MuiRadio-root {
+                    .MuiSvgIcon-root {
+                      width: 30px !important;
+                      height: 30px !important;
+                    }
+                  }
+                }
+                .footer_title {
+                  font-size: 20px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .section_right {
+      .order_details_main {
+        .order_details {
+          .order_details_title {
+            font-size: 28px;
+          }
+          .orders {
+            .order_info {
+              p {
+                font-size: 18px;
+              }
+            }
+            .order_info_details {
+              p {
+                font-size: 28px;
+
+                span {
+                  font-size: 18px;
+                }
+              }
+            }
+          }
+
+          .order_total {
+            .order_total_title {
+              font-size: 28px;
+            }
+            .order_total_info {
+              p {
+                font-size: 28px;
+
+                span {
+                  font-size: 18px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: "1440px") {
+  .checkout_main_container {
+    gap: 30px;
+  }
+  .checkout_main_container .section_left {
+    width: calc(65% - 30px);
+  }
+  .checkout_main_container
+    .section_left
+    .block_A
+    .aside_block
+    .aside_block_A
+    .delivery_address_list
+    .delivery_address_content
+    .item_address {
+    max-width: 100%;
+  }
+  .checkout_main_container
+    .section_left
+    .block_A
+    .aside_block
+    .aside_block_A
+    .delivery_address_list {
+    grid-template-columns: none;
+  }
+}
+
+@media (max-width: "1200px") {
+  .checkout_main_container {
+    flex-direction: column;
+    gap: 0;
+  }
+  .checkout_main_container
+    .section_left
+    .block_A
+    .aside_block
+    .aside_block_A
+    .delivery_address_list {
+    grid-template-columns: repeat(auto-fill, minmax(50%, 1fr));
+  }
+  .checkout_main_container .section_left {
+    width: 100%;
+  }
+  .checkout_main_container .section_right {
+    width: 100%;
+    margin-top: 2em;
+  }
+}
+
+@media (max-width: "900px") {
+  .checkout_main_container
+    .section_left
+    .block_A
+    .aside_block
+    .aside_block_A
+    .delivery_address_list {
+    grid-template-columns: none;
+  }
+}
+
+@media (max-width: "767px") {
+  .checkout_main_container {
+    .section_left {
+      .block_A {
+        .delivery_address_title {
+          font-size: 18px;
+        }
+        .aside_block {
+          .aside_block_A {
+            .delivery_address_list {
+              .delivery_address_content {
+                .item_address {
+                  font-size: 16px;
+                }
+                .billing_title {
+                  p {
+                    font-size: 18px;
+                  }
+                  .edit_address {
+                    span {
+                      font-size: 12px;
+                    }
+                  }
+                }
+                .user_name {
+                  font-size: 20px;
+                }
+              }
+            }
+          }
+          .aside_block_B {
+            .delivery_address_add {
+              span {
+                font-size: 17px;
+              }
+            }
+          }
+        }
+      }
+      .block_B {
+        .payment_title {
+          font-size: 18px;
+        }
+      }
+      .payment_info {
+        .MuiFormGroup-root {
+          .payment_footer_block_1 {
+            .footer_main {
+              .footer_content {
+                .MuiFormControlLabel-root {
+                  .MuiRadio-root {
+                    .MuiSvgIcon-root {
+                      width: 24px !important;
+                      height: 24px !important;
+                    }
+                  }
+                }
+                .footer_title {
+                  font-size: 16px;
+                }
+              }
+            }
+          }
+          .payment_footer_block_2 {
+            .footer_main {
+              .footer_content {
+                .MuiFormControlLabel-root {
+                  .MuiRadio-root {
+                    .MuiSvgIcon-root {
+                      width: 24px !important;
+                      height: 24px !important;
+                    }
+                  }
+                }
+                .footer_title {
+                  font-size: 18px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .section_right {
+      .order_details_main {
+        .order_details {
+          .order_details_title {
+            font-size: 24px;
+          }
+          .orders {
+            .order_info {
+              p {
+                font-size: 12px;
+              }
+            }
+            .order_info_details {
+              p {
+                font-size: 24px;
+
+                span {
+                  font-size: 16px;
+                }
+              }
+            }
+          }
+
+          .order_total {
+            .order_total_title {
+              font-size: 24px;
+            }
+            .order_total_info {
+              p {
+                font-size: 24px;
+
+                span {
+                  font-size: 16px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .checkout_main_container .section_left .payment_info {
+    padding: 0;
+  }
+  .checkout_main_container
+    .section_left
+    .payment_info
+    .MuiFormGroup-root
+    .payment_footer_block_1
+    .footer_main
+    .footer_content
+    img {
+    width: 50%;
+  }
+  .checkout_main_container
+    .section_left
+    .payment_info
+    .MuiFormGroup-root
+    .payment_footer_block_2
+    .footer_main
+    .footer_content
+    img {
+    width: 50%;
+  }
+  .checkout_main_container .section_left .payment_info .MuiFormGroup-root {
+    gap: 2em;
+  }
+}
+
+@media (max-width: 580px) {
+  .checkout_main_container {
+    padding: 1em;
+  }
+  .checkout_main_container .section_left .block_A .delivery_address_img {
+    width: 44px;
+    left: -39px;
+  }
+  .checkout_main_container .section_left .block_A:after {
+    top: 50px;
+  }
+  .checkout_main_container .section_left .block_B .payment_image {
+    width: 44px;
+    left: -39px;
+  }
+  .checkout_main_container .section_left .block_A .delivery_address_title,
+  .checkout_main_container .section_left .block_B .payment_title {
+    height: 44px;
+  }
+  .checkout_main_container
+    .section_left
+    .payment_info
+    .MuiFormGroup-root
+    .payment_footer_block_1 {
+    flex-direction: column;
+    width: 100%;
+    align-items: baseline;
+    gap: 1em;
+  }
+  .checkout_main_container
+    .section_left
+    .payment_info
+    .MuiFormGroup-root
+    .payment_footer_block_1
+    .footer_main
+    .footer_content,
+  .checkout_main_container
+    .section_left
+    .payment_info
+    .MuiFormGroup-root
+    .payment_footer_block_2
+    .footer_main
+    .footer_content {
+    width: auto;
+  }
+  .checkout_main_container
+    .section_left
+    .block_A
+    .aside_block
+    .aside_block_A
+    .delivery_address_list
+    .delivery_address_content
+    .billing_title
+    .edit_address {
+    img {
+      width: 34px;
+    }
+  }
+  .checkout_main_container .section_left .payment_info .MuiFormGroup-root {
+    gap: 1em !important;
+  }
+  .checkout_main_container
+    .section_left
+    .block_A
+    .aside_block
+    .aside_block_A
+    .delivery_address_list
+    .delivery_address_content {
+    margin: 1em 0;
+  }
+  .checkout_main_container
+    .section_left
+    .block_A
+    .aside_block
+    .aside_block_B
+    .delivery_address_add {
+    margin: 1em 0;
+  }
+}

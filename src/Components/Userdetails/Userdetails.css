@@ -1,0 +1,193 @@
+.Userdetails {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin: auto 3%;
+  height: 90px;
+}
+
+.Logo {
+  display: flex;
+  align-items: center;
+}
+.Logo_img {
+  width: 100%;
+}
+.whishlist_image {
+  width: 35px;
+  height: 35px;
+}
+.whishlist_image img {
+  width: 100%;
+}
+.Userdetails_List {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 100%;
+}
+.Userdetails_List_Content {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+  padding: 0;
+}
+.User_Call {
+  display: flex;
+  flex-direction: column;
+}
+.User_Call_tag {
+  margin: 0px 0px 0px 43px;
+  color: #5c6369;
+  font-family: "Source Sans Pro";
+  opacity: 0.8;
+}
+.Call_us {
+  color: #333c42;
+  font-family: "Source Sans Pro";
+  font-weight: bold;
+  opacity: 1;
+  font-size: 18px;
+}
+.wishlist {
+  visibility: hidden;
+}
+.Icon {
+  height: 17px;
+  margin-top: 3px;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+.User_Account {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+.User_Account svg {
+  color: #5c6369;
+}
+.User_Wishlist {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  font-size: 20px;
+}
+.User_Wishlist svg {
+  color: #5c6369;
+}
+.User_cart a svg {
+  color: #5c6369;
+}
+.badge_user {
+  color: #5c6369;
+}
+.badge_user span {
+  color: #5c6369;
+  min-width: 26px !important;
+  height: 26px !important;
+  border-radius: 26px !important;
+  background-color: #ffffff;
+  box-shadow: -2px -2px 8px -6px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: -2px -2px 8px -6px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -2px -2px 8px -6px rgba(0, 0, 0, 0.75);
+}
+.User_cart {
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+}
+.User_cart a {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+.My_account {
+  display: flex;
+  height: 30px;
+  letter-spacing: 0.9px;
+  color: #333c42;
+  opacity: 1;
+  margin-top: 3px;
+}
+.My_account_user {
+  display: flex;
+  height: 30px;
+  letter-spacing: 0.9px;
+  color: #333c42;
+  opacity: 1;
+  margin-top: 10px;
+}
+.User_account_Wishlist_cart {
+  color: #5c6369;
+  font-family: "Source Sans Pro";
+  font-weight: bold;
+  opacity: 0.8;
+}
+
+@media only screen and (max-width: 1200px) {
+  .Logo {
+    width: 220px;
+  }
+}
+
+@media (max-width: 1600px) {
+  .User_Wishlist {
+    font-size: 18px !important;
+  }
+  .whishlist_image {
+    width: 30px;
+    height: 30px;
+  }
+  .badge_user span {
+    min-width: 21px !important;
+    height: 21px !important;
+  }
+}
+@media (max-width: 1300px) {
+  .User_Wishlist {
+    font-size: 16px !important;
+  }
+  .whishlist_image {
+    width: 26px;
+    height: 26px;
+  }
+  .badge_user span {
+    min-width: 19px !important;
+    height: 19px !important;
+  }
+}
+@media (max-width: 1080px) {
+  .User_Wishlist {
+    font-size: 14px !important;
+  }
+  .whishlist_image {
+    width: 24px;
+    height: 24px;
+  }
+  .badge_user span {
+    min-width: 18px !important;
+    height: 18px !important;
+  }
+}
+@media (max-width: 850px) {
+  .User_Wishlist {
+    font-size: 12px !important;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .Userdetails {
+    display: none;
+  }
+  .Logo {
+    display: none;
+  }
+  .Userdetails_List {
+    display: none;
+  }
+}
