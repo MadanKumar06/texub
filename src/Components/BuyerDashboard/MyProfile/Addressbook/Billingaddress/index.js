@@ -14,9 +14,9 @@ const Index = (classes) => {
   const [inputValue, setInputValue] = React.useState("");
   
   return (
-    <div className='address_main'>
-      <span className='Account_heading'> <p >EDIT DEFAULT BILLING ADDRESS</p></span>
-      <div className='company_information'>
+    <div className='Billingaddress_main'>
+      <span className='Billingaddress_Account_heading'> <p >EDIT DEFAULT BILLING ADDRESS</p></span>
+      <div className='Billingaddress_information'>
         <form>
           <div className='inputfield_section'>
             <div className='inputfield'>
@@ -148,9 +148,9 @@ const Index = (classes) => {
             )}
           />
             </div>
-            <div className='accountinfo_btn_section'>
-              <button className='account_info_cancel'>Cancel</button>
-              <button className='account_info_save'>Save Changes</button>
+            <div className='Billingaddress_btn_section'>
+              <button className='Billingaddress_info_cancel'>Cancel</button>
+              <button className='Billingaddress_info_save'>Save Changes</button>
             </div>
           </div>
         </form>
