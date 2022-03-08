@@ -19,7 +19,7 @@ const styles = (theme) => ({
   },
   category_select_option: {
     "& .MuiSelect-select ": {
-      padding: "12.5px 14px",
+      // padding: "12.5px 14px",
     },
   },
   validation_error: {
@@ -99,7 +99,7 @@ const styles = (theme) => ({
     },
     "& .MuiOutlinedInput-root": {
       "& input": {
-        padding: "12.5px 14px",
+        // padding: "12.5px 14px",
         font: "unset",
       },
       "& fieldset": {

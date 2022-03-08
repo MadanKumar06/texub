@@ -1,90 +1,189 @@
-import React, { useState } from 'react'
-import './styles.scss'
-import { Select, MenuItem } from '@mui/material'
-import DeleteIcon from '@mui/icons-material/Delete';
+import React, { useState } from "react";
+import "./styles.scss";
+
+import DeleteIcon from "@mui/icons-material/Delete";
+import { InputLabel, TextField, Autocomplete } from "@mui/material";
 
 function Index({ checkselection, countincrease, i, deleterow }) {
+  const [test, settest] = useState();
 
-    const [test, settest] = useState()
+  const [checkmumbai, setcheckmumbai] = useState();
 
-    const [checkmumbai, setcheckmumbai] = useState()
-
-    const handleChange = (value) => {
-        setcheckmumbai(value)
-    }
+  const handleChange = (value) => {
+    setcheckmumbai(value);
+  };
+  const options = ["Option 1", "Option 2"];
 
   return (
-      <>
-        <div className='updateproduct__bgform'>
-            <p>
-                <h5>Hub</h5>
-                <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        value={test}
-                        label="Age"
-                        onChange={(e) => handleChange(e.target.value)}
-                    >
-                        <MenuItem value={10}>Ten</MenuItem>
-                        <MenuItem value={20}>Twenty</MenuItem>
-                        <MenuItem value={30}>Thirty</MenuItem>
-                    </Select>
-            </p>
-            <p>
-                <h5>Price USD</h5>
-                <input placeholder="$" />
-            </p>
-            <p>
-                <h5>Price Base Currency</h5>
-                <input placeholder="INR" />
-            </p>
-            <p>
-                <h5>In Stock</h5>
-                <input placeholder="250" />
-            </p>
-            <p>
-                <h5>ETA</h5>
-                <input placeholder="90 Days" />
-            </p>
-            <p>
-                <h5>MOQ</h5>
-                <input placeholder="MOQ" />
-            </p>
+    <>
+      <div className="updateproduct__bgform">
+        <div className="updateproduct_info_form autocomplete_input">
+          <InputLabel>Hub</InputLabel>
+          <Autocomplete
+            value={test}
+            name=""
+            onChange={(event, newValue) => handleChange(newValue)}
+            //   className={auto_complete_input}
+            //   inputValue={inputValue}
+            //   onInputChange={(event, newInputValue) => {
+            //     setInputValue(newInputValue);
+            //   }}
+            id="controllable-states-demo"
+            options={options}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                fullWidth
+                placeholder="Select Hub"
+                InputLabelProps={{
+                  shrink: false,
+                }}
+              />
+            )}
+          />
         </div>
-
-        {i === 0 ? <div className='updateproduct__addmore'>
-            <p onClick={countincrease}>
-                <span className='addmore__plus'></span>
-                <span className='addmore__text' >Add More</span>
-            </p>
+        <div className="updateproduct_info_form">
+          <InputLabel>Price</InputLabel>
+          <TextField
+            id="part_number"
+            name="part_nymber"
+            placeholder="60,500"
+            fullWidth
+            autoFocus={true}
+            autoComplete="off"
+            // value={signInData?.email_address}
+            InputLabelProps={{
+              shrink: false,
+            }}
+            // onChange={handleChangeInput}
+            variant="outlined"
+          />
         </div>
-        :
-            <div className='updateproduct__delete'>
-                <p onClick={() => deleterow(i)}>
-                    {/* <span className='addmore__plus'></span> */}
-                    <span className='addmore__text' >
-                        <DeleteIcon />
-                    </span>
-                </p>
-            </div>
-        }
+        <div className="updateproduct_info_form">
+          <InputLabel>In Stock</InputLabel>
+          <TextField
+            id="part_number"
+            name="part_nymber"
+            placeholder="280"
+            fullWidth
+            autoFocus={true}
+            autoComplete="off"
+            // value={signInData?.email_address}
+            InputLabelProps={{
+              shrink: false,
+            }}
+            // onChange={handleChangeInput}
+            variant="outlined"
+          />
+        </div>
+        <div className="updateproduct_info_form">
+          <InputLabel>ETA</InputLabel>
+          <TextField
+            id="part_number"
+            name="part_nymber"
+            placeholder="05 Days"
+            fullWidth
+            autoFocus={true}
+            autoComplete="off"
+            // value={signInData?.email_address}
+            InputLabelProps={{
+              shrink: false,
+            }}
+            // onChange={handleChangeInput}
+            variant="outlined"
+          />
+        </div>
+        <div className="updateproduct_info_form">
+          <InputLabel>MOQ</InputLabel>
+          <TextField
+            id="part_number"
+            name="part_nymber"
+            placeholder="50"
+            fullWidth
+            autoFocus={true}
+            autoComplete="off"
+            // value={signInData?.email_address}
+            InputLabelProps={{
+              shrink: false,
+            }}
+            // onChange={handleChangeInput}
+            variant="outlined"
+          />
+        </div>
+      </div>
 
-        {checkmumbai === 10 && <div className='updateproduct__gst'>
-            <p>
-                <h5>CGST%</h5>
-                <input placeholder='18' />
-            </p>
-            <p>
-                <h5>IGST%</h5>
-                <input placeholder='18' />
-            </p>
-            <p>
-                <h5>SGST%</h5>
-                <input placeholder='18' />
-            </p>
-        </div>}
+      {i === 0 ? (
+        <div className="updateproduct__addmore">
+          <p onClick={countincrease}>
+            <span className="addmore__plus"></span>
+            <span className="addmore__text">Add More</span>
+          </p>
+        </div>
+      ) : (
+        <div className="updateproduct__delete">
+          <p onClick={() => deleterow(i)}>
+            {/* <span className='addmore__plus'></span> */}
+            <span className="addmore__text">
+              <DeleteIcon />
+            </span>
+          </p>
+        </div>
+      )}
+
+      {checkmumbai === "Option 1" && (
+        <div className="updateproduct__gst">
+          <div className="updateproduct_info_form">
+            <InputLabel>GST %</InputLabel>
+            <TextField
+              id="gst"
+              name="gst"
+              placeholder="18"
+              fullWidth
+              autoComplete="off"
+              // value={signInData?.email_address}
+              InputLabelProps={{
+                shrink: false,
+              }}
+              // onChange={handleChangeInput}
+              variant="outlined"
+            />
+          </div>
+          <div className="updateproduct_info_form">
+            <InputLabel>IGST %</InputLabel>
+            <TextField
+              id="igst"
+              name="igst"
+              placeholder="18"
+              fullWidth
+              autoComplete="off"
+              // value={signInData?.email_address}
+              InputLabelProps={{
+                shrink: false,
+              }}
+              // onChange={handleChangeInput}
+              variant="outlined"
+            />
+          </div>
+          <div className="updateproduct_info_form">
+            <InputLabel>SGST %</InputLabel>
+            <TextField
+              id="sgst"
+              name="sgst"
+              placeholder="18"
+              fullWidth
+              autoComplete="off"
+              // value={signInData?.email_address}
+              InputLabelProps={{
+                shrink: false,
+              }}
+              // onChange={handleChangeInput}
+              variant="outlined"
+            />
+          </div>
+        </div>
+      )}
     </>
-  )
+  );
 }
 
-export default Index
+export default Index;
