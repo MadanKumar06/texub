@@ -76,7 +76,7 @@
         text-decoration: underline;
 
         svg {
-          color: red;
+          color: #ce5050;
         }
       }
     }
@@ -94,6 +94,14 @@
   }
   .info {
     width: 100%;
+  }
+  .country_selection {
+    justify-content: flex-end;
+    padding-left: 2em;
+    padding-top: 2em;
+    .updateproduct_inputfields {
+      width: 50%;
+    }
   }
   .updateproduct__gst .updateproduct_info_form,
   .updateproduct__specifications

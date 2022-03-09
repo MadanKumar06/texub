@@ -20,6 +20,14 @@
       gap: 10px;
       align-items: center;
       padding: 1em 10px 0;
+      .MuiPaper-root {
+        box-shadow: none;
+        .MuiInputBase-root {
+          & ::placeholder {
+            opacity: 1;
+          }
+        }
+      }
       .buyerdashboard__notiIcon {
         height: 41px;
         width: 41px;
@@ -36,11 +44,10 @@
       }
 
       .buyerdashboard__searchinput {
-        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        border: 1px solid #d6d8d9;
         max-width: 1070px;
         flex: 1;
         height: 68px;
-
         .buyerdashboard__input {
           color: #858a8e;
           font-size: 20px;

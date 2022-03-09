@@ -86,27 +86,27 @@
     }
   }
 
-  .orders__back {
-    margin-top: 3em;
-    cursor: pointer;
-
-    span {
-      position: relative;
-      font-size: 20px;
-      color: #002d56;
-      margin-left: 1em;
-
-      &::before {
-        content: "";
-        border-left: 1px solid black;
-        border-top: 1px solid black;
-        transform: rotate(315deg);
-        width: 0.5em;
-        height: 0.5em;
-        position: absolute;
-        left: -1em;
-        top: 6px;
-        color: #002d56;
+  .orders__back__footer {
+    width: 100%;
+    padding: 2em 0;
+    .orders__back__container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      a {
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        .MuiSvgIcon-root {
+          color: #002d56;
+        }
+        span {
+          font-size: 20px;
+          color: #002d56;
+          font-weight: 600;
+          margin-left: 0.6em;
+        }
       }
     }
   }

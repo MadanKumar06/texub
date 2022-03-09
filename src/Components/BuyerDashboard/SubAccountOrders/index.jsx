@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import "./styles.scss";
 import MUIDataTable from "mui-datatables";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import { Link } from "react-router-dom";
-
+import Pagination from "../../Pagination";
 function SubAccountOrders() {
+  const [tableData, setTableData] = useState([]);
   const table = [
     {
       user_name: "Srikant Verma",
@@ -109,15 +110,22 @@ function SubAccountOrders() {
     viewColumns: false,
     search: false,
   };
-
+  const PaginateDataSplit = (event) => {
+    setTableData(event);
+  };
   return (
     <div className="subaccount__orders">
       <MUIDataTable
         title={""}
-        data={table}
+        data={tableData}
         columns={columns}
         options={options}
         className="subaccount__orders__table"
+      />
+      <Pagination
+        PaginateData={PaginateDataSplit}
+        DataList={table}
+        PagePerRow={10}
       />
 
       <div className="subaccount__orders__back">

@@ -33,4 +33,28 @@
       }
     }
   }
+  .auctions__footer {
+    width: 100%;
+    padding: 2em 0;
+    .auctions__container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      a {
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        .MuiSvgIcon-root {
+          color: #002d56;
+        }
+        span {
+          font-size: 20px;
+          color: #002d56;
+          font-weight: 600;
+          margin-left: 0.6em;
+        }
+      }
+    }
+  }
 }
