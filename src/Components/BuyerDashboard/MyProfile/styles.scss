@@ -99,7 +99,7 @@
                 box-shadow: rgb(0 0 0 / 15%) 0px 5px 15px 0px;
                 width: 100%;
                 min-height: 150px;
-                padding: 50px 10px 50px 35px;
+                padding: 12px 10px 50px 9px;
                 gap: 10px;
                
                 
@@ -189,6 +189,10 @@
  @media only screen and(max-width:1440px){
     .My_profile_main .my_profile_company .My_profile_main_heading, .My_profile_main .My_profile_ac .My_profile_main_heading{
         width: 25%;
+    }
+    .My_profile_main .My_profile_ac .my_profile_company .My_profile_ac_table .my_profile_table .my_profile_data1{
+        gap: 6rem;
+       padding: 0 22px;
     }
  }
 
