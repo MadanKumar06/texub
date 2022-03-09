@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import Pagination from "../../Pagination";
 function Index({ registerproduct }) {
   const [tableData, setTableData] = useState([]);
+
   const options = {
     filter: false,
     filterType: "dropdown",
@@ -164,7 +165,7 @@ function Index({ registerproduct }) {
     <div className="inventory">
       <MUIDataTable
         title={""}
-        data={table}
+        data={tableData}
         columns={columns}
         options={options}
         className="inventory__table"

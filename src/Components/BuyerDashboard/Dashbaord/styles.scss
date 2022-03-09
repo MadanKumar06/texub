@@ -1,12 +1,16 @@
 .dashboard {
   .dashboard__top {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
+    box-shadow: 0px 3px 25px #0000000f;
 
     div {
       max-width: 360px;
       width: calc(100% / 3 - 20px);
+      img {
+        width: 100%;
+      }
     }
   }
 
@@ -16,7 +20,7 @@
     box-shadow: none;
 
     & > * {
-      width: calc(100% / 2 - 20px);
+      width: calc(100% / 2 - 5px);
     }
 
     .dashboard__images {
@@ -54,7 +58,6 @@
     }
 
     .dashboard__pricelist {
-      max-width: 600px;
       box-shadow: rgb(99 99 99 / 20%) 0px 2px 8px 0px;
       padding: 0 26px;
       .pricelist__header {
@@ -68,6 +71,7 @@
             color: #5c6369;
             font-size: 28px;
             letter-spacing: 1px;
+            text-transform: uppercase;
           }
 
           .pricelist__headertime {
@@ -94,11 +98,15 @@
                 font-size: 18px;
                 height: 44px;
                 width: 44px;
+                font-weight: 600;
+                letter-spacing: 0.9px;
               }
 
               .label {
                 color: #002d56;
                 font-size: 10px;
+                font-weight: 600;
+                letter-spacing: 0.5px;
               }
             }
           }
@@ -109,6 +117,7 @@
             background-color: #002d56;
             border-radius: 4px;
             position: relative;
+            cursor: pointer;
             &::before {
               position: absolute;
               content: "";
@@ -153,13 +162,15 @@
               text-align: left;
               margin-left: 1em;
               font-size: 18px;
+              color: #333c42;
+              font-weight: 600;
             }
 
             .price {
               flex: 1;
               text-align: right;
               font-size: 22px;
-
+              font-weight: 600;
               & > span {
                 font-size: 16px;
               }
