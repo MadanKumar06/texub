@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import "./styles.scss";
 import MUIDataTable from "mui-datatables";
 import { Button } from "@mui/material";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import { Link } from "react-router-dom";
-
+import Pagination from "../../Pagination";
 function MergeCarts() {
+  const [tableData, setTableData] = useState([]);
   const table = [
     {
       user_name: "Srikant Verma",
@@ -104,6 +105,9 @@ function MergeCarts() {
     search: false,
   };
 
+  const PaginateDataSplit = (event) => {
+    setTableData(event);
+  };
   return (
     <div className="mergecarts">
       <MUIDataTable
@@ -112,6 +116,11 @@ function MergeCarts() {
         columns={columns}
         options={options}
         className="mergecarts__table"
+      />
+      <Pagination
+        PaginateData={PaginateDataSplit}
+        DataList={table}
+        PagePerRow={10}
       />
 
       <div className="mergecarts__footer">
