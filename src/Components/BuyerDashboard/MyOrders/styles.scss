@@ -24,7 +24,12 @@
 
   .myorders__table {
     margin-top: 3em;
-
+    box-shadow: none;
+    .MuiTable-root {
+      .MuiTableFooter-root {
+        display: none;
+      }
+    }
     .MuiTableHead-root {
       .MuiTableCell-root {
         font-size: 26px;

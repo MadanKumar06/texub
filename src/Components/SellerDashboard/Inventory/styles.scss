@@ -1,6 +1,8 @@
 .inventory {
   .inventory__table {
+    box-shadow: unset;
     margin-top: 3em;
+
     .MuiTable-root {
       .MuiTableHead-root {
         .MuiTableRow-root {
@@ -11,6 +13,9 @@
             font-weight: 600;
           }
         }
+      }
+      .MuiTableFooter-root {
+        display: none;
       }
 
       .MuiTableBody-root {
