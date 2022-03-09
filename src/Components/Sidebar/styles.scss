@@ -1,5 +1,5 @@
 .sellerdashboard__sidebar {
-  padding: 2em 0;
+  padding-bottom: 2em;
   min-width: 372px;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
   background-color: white;
@@ -10,7 +10,13 @@
   .sidebar__close {
     display: none;
   }
-
+  .sidebar_head_title {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 2em 0;
+    background: linear-gradient(180deg, #f4f9ff 0%, #ffffff 100%);
+  }
   ul {
     padding: 0;
     list-style: none;
@@ -22,11 +28,13 @@
       padding-left: 70px;
       align-items: center;
       gap: 10px;
+      font-weight: 600;
+      letter-spacing: 0.66px;
       font-size: 22px;
       color: #858a8e;
+      margin-left: 7px;
       min-height: 70px;
       cursor: pointer;
-
       &:last-child {
         margin-top: 20px;
       }
@@ -40,6 +48,8 @@
     .sellerlabel {
       color: #5c6369;
       font-size: 26px;
+      font-weight: 600;
+      letter-spacing: 0.96px;
     }
 
     .sellervalue {
@@ -47,6 +57,7 @@
       color: #5c6369;
       font-size: 32px;
       padding: 0.3em 1em;
+      box-shadow: rgb(99 99 99 / 20%) 0px 2px 8px 0px;
     }
   }
 
@@ -60,10 +71,26 @@
 
   .sellerbg {
     background-image: linear-gradient(#ffd788, #cc9b3e);
+    color: #ffffff;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
   }
 
   .buyerbg {
     background-image: linear-gradient(#20639b, #002d56);
+    color: #ffffff;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+    position: relative;
+    & ::before {
+      border: 1px solid #d1cccc;
+      content: "";
+      position: absolute;
+      width: 5px;
+      height: 68px;
+      left: -7px;
+      top: 0;
+      background-color: #ffffff;
+      box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+    }
   }
 }
 
