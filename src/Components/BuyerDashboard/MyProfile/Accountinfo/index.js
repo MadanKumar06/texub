@@ -2,10 +2,11 @@ import React, { useState } from 'react'
 import './styles.scss'
 import { TextField,InputLabel }from '@mui/material';
 import {isPasswordValid,isEmailValid} from "../../../../utilities";
+// import MuiPhoneNumber from 'material-ui-phone-number';
 const Index = (classes) => {
   let {
     validation_error
-  }=classes;
+  }= classes;
   const [AccountInfoData, setAccountInfoData] = useState({
     first_name: "",
     last_name: "",
@@ -15,6 +16,7 @@ const Index = (classes) => {
     new_confrim_password: "",
 
   });
+  console.log(AccountInfoData)
   
   // const [value, setValue] = React.useState();
   // const [inputValue, setInputValue] = React.useState("");
@@ -35,6 +37,7 @@ const Index = (classes) => {
       setInputValidation("");
       handleSwitchCase([event.target.name], event.target.value);
   };
+  
   const handleSwitchCase = (fieldName, value) => {
     switch (fieldName[0]) {
       case "first_name":
@@ -99,13 +102,24 @@ const Index = (classes) => {
             ...prevState,
             new_confrim_password: "Please enter confirm new password",
           }));
-        }else if (!isPasswordValid(value)) {
+        }else if (!(AccountInfoData?.new_password === value)) {
           setInputValidation((prevState) => ({
             ...prevState,
-            new_confrim_password:
-              "Minimum 8 characters at least 1 Alphabet, 1 Number and 1 Special Character.",
+            new_confrim_password: "Password and confirm password does not match",
           }));
         }
+        // }else if (!isPasswordValid(value)) {
+        //   setInputValidation((prevState) => ({
+        //     ...prevState,
+        //     new_confrim_password:
+        //       "Minimum 8 characters at least 1 Alphabet, 1 Number and 1 Special Character.",
+        //   }));
+        // }
+        // else if (!(AccountInfoData?.new_password === value)) {
+        //   setInputValidation((prevState) => ({
+        //     ...prevState,
+        //     new_confrim_password: "New Password and confirm password does not match",
+        //   }));
         break; 
       default:
         break;
@@ -168,6 +182,12 @@ const handleClickValidation = (event) => {
     }));
    errorHandle = true;
   }
+  
+  
+  // setConfirmpassword(event.target.value);
+  // if (!(AccountInfoData)?.new_password === new_confrim_password){
+  //   new_confrim_password:"password and confirm password does not match"
+  // }
 }; 
 
 return (
@@ -201,8 +221,7 @@ return (
               name="last_name"
               value={AccountInfoData?.last_name}
               InputLabelProps={{
-                shrink: true,
-                required: true,
+                shrink: false,
               }}
               onChange={handleChangeInput}
             />
@@ -218,9 +237,10 @@ return (
               id="mobile_number"
               name="mobile_number"
               value={AccountInfoData?.mobile_number}
+              defaultValue="+91"
+              type="number"
               InputLabelProps={{
-                shrink: true,
-                required: true,
+                shrink: false,
               }}
               onChange={handleChangeInput}
             />
@@ -235,8 +255,7 @@ return (
               name="email_address"
               value={AccountInfoData?.email_address}
               InputLabelProps={{
-                shrink: true,
-                required: true,
+                shrink: false,
               }}
               onChange={handleChangeInput}
             />
@@ -252,9 +271,9 @@ return (
               id="new_password"
               name="new_password"
               value={AccountInfoData?.new_password}
+              type="password"
               InputLabelProps={{
-                shrink: true,
-                required: true,
+                shrink: false,
               }}
               onChange={handleChangeInput}
             />
@@ -269,9 +288,9 @@ return (
               id="new_confrim_password"
               name="new_confrim_password"
               value={AccountInfoData?.new_confrim_password}
+              type="password"
               InputLabelProps={{
-                shrink: true,
-                required: true,
+                shrink: false,
               }}
               onChange={handleChangeInput}
             />
