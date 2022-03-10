@@ -2,7 +2,8 @@
   position: relative;
   max-width: 100%;
   width: 100%;
-  padding: 1em 0;
+  padding: 1px 0;
+  background: url("../../Assets/buyerdashboard/bg.png");
 
   .buyerboard__bg {
     background-color: white;
@@ -61,12 +62,12 @@
   }
 }
 
-.buyerdashboard > img {
-  position: absolute;
-  z-index: -1;
-  height: 100%;
-  width: 100%;
-}
+// .buyerdashboard > img {
+//   position: absolute;
+//   z-index: -1;
+//   height: 100%;
+//   width: 100%;
+// }
 
 @media (max-width: 1533px) {
   .buyerdashboard .buyerboard__bg {

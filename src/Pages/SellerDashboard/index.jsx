@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./styles.scss";
 import { useNavigate, useParams } from "react-router-dom";
 
-import bg from "../../Assets/sellerdashboard/bg.png";
+// import bg from "../../Assets/sellerdashboard/bg.png";
 import notification from "../../Assets/sellerdashboard/notification.png";
 import { IconButton, InputBase, Paper } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
@@ -68,7 +68,7 @@ function SellerDashboard() {
 
   return (
     <div className="sellerdashboard">
-      <img src={bg} alt="" />
+      {/* <img src={bg} alt="" /> */}
       {!barstate && <p className="sidebarhide" onClick={sidebarstate}></p>}
       <div className="sellerboard__bg">
         <Sidebar
