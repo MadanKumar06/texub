@@ -21,11 +21,11 @@ const Whislist = () => {
           />
         ))}
       </div>
-      <Pagination
+      {/* <Pagination
         PaginateData={PaginateDataSplit}
         // DataList={table}
         PagePerRow={10}
-      />
+      /> */}
 
       <div className="wishlist__footer">
         <div className="wishlist__container">

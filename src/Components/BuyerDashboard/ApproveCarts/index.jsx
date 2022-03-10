@@ -4,7 +4,7 @@ import { Button } from "@mui/material";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import Pagination from "../../Pagination";
-import MUITable from '../../../Components/MUITable'
+import MUITable from "../../../Components/MUITable";
 
 function ApproveCart() {
   const [tableData, setTableData] = useState([]);
@@ -244,7 +244,12 @@ function ApproveCart() {
   };
   return (
     <div className="approve__cart">
-      <MUITable columns={columns} table={tableData} options={options} className="approve__cart__table" />
+      <MUITable
+        columns={columns}
+        table={tableData}
+        options={options}
+        className="approve__cart__table"
+      />
       {/* <MUIDataTable
         title={""}
         data={tableData}
@@ -252,7 +257,11 @@ function ApproveCart() {
         options={options}
         className="approve__cart__table"
       /> */}
-      <Pagination PaginateData={PaginateDataSplit} DataList={table} PagePerRow={10}/>
+      <Pagination
+        PaginateData={PaginateDataSplit}
+        DataList={table}
+        PagePerRow={10}
+      />
 
       <div className="approve__cart__footer">
         <div className="approve__cart__container">
