@@ -19,10 +19,16 @@ const PaginationControlled = ({ PaginateData, DataList, PagePerRow }) => {
 
   useEffect(() => {
     PaginateData(DataList?.slice(0, pageSize));
-    var RoundedValue = Math.round(DataList?.length / PagePerRow);
-    var JumpToPageOptionValues = Array(RoundedValue === 0 ? 1 : RoundedValue)
+    let RoundedValue = DataList?.length / PagePerRow;
+    console.log(
+      RoundedValue % 1 === 0 ? RoundedValue : parseInt(RoundedValue + 1)
+    );
+    let Rounded =
+      RoundedValue % 1 === 0 ? RoundedValue : parseInt(RoundedValue + 1);
+    var JumpToPageOptionValues = Array(Rounded === 0 ? 1 : Rounded)
       ?.fill(1)
       ?.map((item, idx) => (idx + 1).toString());
+
     setPage((prevState) => ({
       ...prevState,
       option: JumpToPageOptionValues,
