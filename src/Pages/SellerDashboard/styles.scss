@@ -2,13 +2,14 @@
   position: relative;
   max-width: 100%;
   width: 100%;
-  padding: 1em 0;
+  padding: 1px 0;
+  background: url("../../Assets/sellerdashboard/bg.png");
 
   .sellerboard__bg {
     background-color: white;
     display: flex;
     gap: 20px;
-    margin: 3%;
+    margin: 2%;
   }
 
   .sellerdashboard__maintab {
@@ -38,10 +39,16 @@
       }
 
       .sellerdashboard__searchinput {
-        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        box-shadow: unset;
+        border: 1px solid #d6d8d9;
         max-width: 1070px;
         flex: 1;
         height: 68px;
+        .MuiInputBase-root {
+          & ::placeholder {
+            opacity: 1;
+          }
+        }
 
         .sellerdashboard__input {
           color: #858a8e;
@@ -56,12 +63,12 @@
   }
 }
 
-.sellerdashboard > img {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-}
+// .sellerdashboard > img {
+//   position: absolute;
+//   width: 100%;
+//   height: 100%;
+//   z-index: -1;
+// }
 
 @media (max-width: 1024px) {
   .sellerdashboard .sellerdashboard__maintab {
@@ -86,10 +93,10 @@
 
     .sidebaropen {
       position: absolute;
-      z-index: 99;
+      z-index: 111;
       left: 0;
       transition: left ease-out 500ms;
-      max-height: 75vh;
+      height: 100vh;
       overflow-y: scroll;
     }
   }

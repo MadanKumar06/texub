@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./styles";
 
 import { withStyles } from "@mui/styles";
-import MUIDataTable from "mui-datatables";
+import MUITable from '../../MUITable'
 import PDPpopUp from "../../../Pages/PDPpopUp";
 import { Link } from "react-router-dom";
 
@@ -252,13 +252,14 @@ const Productstable = ({ classes }) => {
 
   return (
     <div className={producttable}>
-      <MUIDataTable
+      {/* <MUIDataTable
         title={""}
         data={Productstablelist}
         columns={columns}
         options={options}
         className={mui_datatable_main}
-      />
+      /> */}
+      <MUITable columns={columns} table={Productstablelist} options={options} className={mui_datatable_main} />
       {isPDPpopUP && <PDPpopUp PDPPopUP={PDPPopUP} />}
     </div>
   );

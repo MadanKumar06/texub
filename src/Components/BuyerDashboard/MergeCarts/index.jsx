@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import "./styles.scss";
-import MUIDataTable from "mui-datatables";
 import { Button } from "@mui/material";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import Pagination from "../../Pagination";
+import MUITable from '../../../Components/MUITable'
+
 function MergeCarts() {
   const [tableData, setTableData] = useState([]);
   const table = [
@@ -93,6 +94,7 @@ function MergeCarts() {
       },
     },
   ];
+  
   const options = {
     filter: false,
     filterType: "dropdown",
@@ -110,13 +112,7 @@ function MergeCarts() {
   };
   return (
     <div className="mergecarts">
-      <MUIDataTable
-        title={""}
-        data={table}
-        columns={columns}
-        options={options}
-        className="mergecarts__table"
-      />
+      <MUITable columns={columns} table={table} options={options} className="sellerprofile__table" />
       <Pagination
         PaginateData={PaginateDataSplit}
         DataList={table}

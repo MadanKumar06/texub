@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./styles.scss";
-import MUIDataTable from "mui-datatables";
+import MUITable from '../../MUITable'
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
 import { ArrowBackIosNew } from "@mui/icons-material";
@@ -167,14 +167,7 @@ function RMA() {
           </div>
         ))}
       </div>
-
-      <MUIDataTable
-        title={""}
-        data={tableData}
-        columns={columns}
-        options={options}
-        className="rma__table"
-      />
+      <MUITable columns={columns} table={tableData} className="rma__table" />
       <Pagination
         PaginateData={PaginateDataSplit}
         DataList={table}

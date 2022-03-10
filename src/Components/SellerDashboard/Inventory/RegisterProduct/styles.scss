@@ -48,6 +48,7 @@
     display: flex;
     justify-content: space-between;
     margin-top: 2em;
+    align-items: center;
     & > * {
       cursor: pointer;
     }
@@ -62,8 +63,8 @@
       margin-left: 1em;
       &::before {
         content: "";
-        border-left: 2px solid black;
-        border-top: 2px solid black;
+        border-left: 2px solid #002d56;
+        border-top: 2px solid #002d56;
         transform: rotate(315deg);
         width: 0.5em;
         height: 0.5em;
@@ -81,5 +82,19 @@
       color: white;
       border-radius: 24px;
     }
+  }
+}
+
+@media (max-width: 767px) {
+  .registerproduct .registerproducts__form .input_separator {
+    flex-direction: column;
+    gap: unset;
+  }
+  .registerproduct .registerproduct__submit {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+  .registerproduct .registerproduct__submit .registerproduct__submitbutton {
+    padding: 0.6em 4.2em;
   }
 }

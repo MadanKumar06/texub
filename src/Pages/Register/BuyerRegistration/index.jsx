@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "./styles";
+import './styles.scss'
 
 import {
   TextField,
@@ -549,7 +550,7 @@ const BuyerRegistration = ({ classes }) => {
             className={checkbox_label}
           />
           <ReCAPTCHA
-            className={recaptcha_info}
+            className="recaptcha_info"
             sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
           />
         </div>

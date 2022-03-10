@@ -162,20 +162,64 @@ function Index({ type }) {
           <div className="input_separator">
             <div className="updateproduct_inputfields info">
               <InputLabel>Dimensions</InputLabel>
-              <TextField
-                id="hsn_code"
-                name="hsn_code"
-                placeholder="Length | Width | Height | Weight"
-                fullWidth
-                autoFocus={true}
-                autoComplete="off"
-                // value={signInData?.email_address}
-                InputLabelProps={{
-                  shrink: false,
-                }}
-                // onChange={handleChangeInput}
-                variant="outlined"
-              />
+              <div className="dimensions_input">
+                <TextField
+                  id="hsn_code"
+                  name="hsn_code"
+                  placeholder="Length"
+                  className="length_field"
+                  fullWidth
+                  autoComplete="off"
+                  // value={signInData?.email_address}
+                  InputLabelProps={{
+                    shrink: false,
+                  }}
+                  // onChange={handleChangeInput}
+                  variant="outlined"
+                />
+                <TextField
+                  id="hsn_code"
+                  name="hsn_code"
+                  placeholder=" Width"
+                  fullWidth
+                  autoComplete="off"
+                  className="width_field"
+                  // value={signInData?.email_address}
+                  InputLabelProps={{
+                    shrink: false,
+                  }}
+                  // onChange={handleChangeInput}
+                  variant="outlined"
+                />
+                <TextField
+                  id="hsn_code"
+                  name="hsn_code"
+                  placeholder="Height"
+                  className="height_field"
+                  fullWidth
+                  autoComplete="off"
+                  // value={signInData?.email_address}
+                  InputLabelProps={{
+                    shrink: false,
+                  }}
+                  // onChange={handleChangeInput}
+                  variant="outlined"
+                />
+                <TextField
+                  id="hsn_code"
+                  name="hsn_code"
+                  placeholder="Weight"
+                  className="weight_field"
+                  fullWidth
+                  autoComplete="off"
+                  // value={signInData?.email_address}
+                  InputLabelProps={{
+                    shrink: false,
+                  }}
+                  // onChange={handleChangeInput}
+                  variant="outlined"
+                />
+              </div>
             </div>
             <div className="updateproduct_inputfields info">
               <InputLabel>Restrictions</InputLabel>

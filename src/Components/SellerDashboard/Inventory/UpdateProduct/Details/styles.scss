@@ -34,5 +34,37 @@
         border: 1px solid #ddb363;
       }
     }
+    .price_customize {
+      display: flex;
+      position: relative;
+      .MuiAutocomplete-root {
+        position: absolute;
+        top: 6px;
+        z-index: 1;
+        left: 1px;
+        .MuiFormControl-root .MuiOutlinedInput-root {
+          padding-right: 22px;
+          input {
+            padding: 0;
+            min-width: 38px;
+          }
+          fieldset {
+            border: none;
+          }
+          .MuiAutocomplete-endAdornment {
+            right: 0px;
+            .MuiButtonBase-root.MuiAutocomplete-clearIndicator {
+              display: none;
+            }
+          }
+        }
+      }
+      .price_textbox {
+        .MuiOutlinedInput-root {
+          padding-left: 60px;
+        }
+      }
+    }
+    
   }
 }

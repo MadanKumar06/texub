@@ -94,6 +94,37 @@
   }
 }
 
+@media (max-width: 1600px) {
+  .sellerdashboard__sidebar {
+    min-width: 20%;
+  }
+  .sellerdashboard__sidebar p .sellerlabel {
+    font-size: 22px;
+  }
+  .sellerdashboard__sidebar p .sellervalue {
+    font-size: 28px;
+  }
+  .sellerdashboard__sidebar ul li {
+    font-size: 20px;
+    padding-left: 43px;
+  }
+}
+
+@media (max-width: 1533px) {
+  .sellerdashboard__sidebar {
+    min-width: 23%;
+  }
+}
+@media (max-width: 1375px) {
+  .sellerdashboard__sidebar {
+    min-width: 25%;
+  }
+}
+@media (max-width: 1375px) {
+  .sellerdashboard__sidebar {
+    min-width: 28%;
+  }
+}
 @media (max-width: 1024px) {
   .sidebaropen {
     padding: 2em 0;

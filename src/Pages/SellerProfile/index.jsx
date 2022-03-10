@@ -1,11 +1,11 @@
 import React from 'react'
 import './styles.scss'
 import bg from '../../Assets/sellerdashboard/bg.png'
-import MUIDataTable from "mui-datatables";
 import { Paper, IconButton, InputBase } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import notification from '../../Assets/sellerdashboard/notification.png'
 import hp from '../../Assets/sellerdashboard/inventory/hp.png'
+import MUITable from '../../Components/MUITable'
 
 function Index() {
     const sidemenu = [
@@ -13,18 +13,6 @@ function Index() {
         { label: 'Seller Country', value: 'INDIA' },
         { label: 'Completed Orders', value: 118 },
     ]
-
-    const options = {
-        filter: false,
-        filterType: "dropdown",
-        responsive: "vertical",
-        selectableRows: "none",
-        download: false,
-        print: false,
-        sort: false,
-        viewColumns: false,
-        search: false,
-      };
 
 
       const columns = [
@@ -103,10 +91,22 @@ function Index() {
             rank: '4th'
         },
       ]
+
+      const options = {
+        filter: false,
+        filterType: "dropdown",
+        responsive: "vertical",
+        selectableRows: "none",
+        download: false,
+        print: false,
+        sort: false,
+        viewColumns: false,
+        search: false,
+        };
     
   return (
     <div className='sellerprofile'>
-        <img src={bg} alt="" />
+        {/* <img src={bg} alt="" /> */}
         <div className='sellerprofile__bg'>
             <div className='sellerprofile__sidebar'>
                 <ul>
@@ -141,13 +141,7 @@ function Index() {
                     </div>
                     <span>Notification</span>
                 </div>
-                <MUIDataTable
-                    title={""}
-                    data={table}
-                    columns={columns}
-                    options={options}
-                    className="sellerprofile__table"
-                />
+                <MUITable columns={columns} table={table} options={options} className="sellerprofile__table" />
             </div>
         </div>
         

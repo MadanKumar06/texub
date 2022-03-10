@@ -24,7 +24,12 @@
 
   .myorders__table {
     margin-top: 3em;
-
+    box-shadow: none;
+    .MuiTable-root {
+      .MuiTableFooter-root {
+        display: none;
+      }
+    }
     .MuiTableHead-root {
       .MuiTableCell-root {
         font-size: 26px;
@@ -51,11 +56,12 @@
       }
 
       .myorders__ordertotal {
+        font-weight: 600;
         .currency {
           font-size: 16px;
         }
         .price {
-          font-weight: 600;
+         
         }
       }
 
@@ -63,6 +69,7 @@
         text-decoration: underline;
         color: #002d56;
         font-size: 22px;
+        font-weight: 600;
         cursor: pointer;
       }
 

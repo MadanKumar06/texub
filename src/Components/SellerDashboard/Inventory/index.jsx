@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./styles.scss";
-import MUIDataTable from "mui-datatables";
+import MUITable from '../../MUITable'
 import { Button } from "@mui/material";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import hp from "../../../Assets/sellerdashboard/inventory/hp.png";
@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import Pagination from "../../Pagination";
 function Index({ registerproduct }) {
   const [tableData, setTableData] = useState([]);
+
   const options = {
     filter: false,
     filterType: "dropdown",
@@ -162,13 +163,7 @@ function Index({ registerproduct }) {
   };
   return (
     <div className="inventory">
-      <MUIDataTable
-        title={""}
-        data={table}
-        columns={columns}
-        options={options}
-        className="inventory__table"
-      />
+      <MUITable columns={columns} table={tableData} options={options} className="inventory__table" />
       <Pagination
         PaginateData={PaginateDataSplit}
         DataList={table}
