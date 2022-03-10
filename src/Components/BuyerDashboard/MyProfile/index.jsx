@@ -132,17 +132,13 @@ const Index = () => {
               </div>
             </div>
           </div>
-        </div>
+          <div className='my_profile_back'>
+        <ArrowBackIosNew /><span><p className='back'>Back</p></span>
+      </div>
+        </div>   
       }
       {isEdit && <Accountinfo />}
       {isCompany && <Companyinfo />}
-
-      <div className='my_profile_back'>
-        {/* <Link to="/buyerdashboard/dashboard"> */}
-        <ArrowBackIosNew /><span><p className='back'>Back</p></span>
-        {/* </Link> */}
-      </div>
-
     </div>
   )
 }

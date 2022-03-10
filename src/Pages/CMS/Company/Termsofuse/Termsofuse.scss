@@ -51,6 +51,7 @@
         border-radius: 0px 0px 4px 4px;
         opacity: 1;
 
+
         .Termsofuse_btn_download{
             display: flex;
             gap: 10px;
@@ -60,6 +61,7 @@
                 opacity: 1;
                 font-size: 18px;
                 font-weight: 600;
+                cursor: pointer;
             }
         }
         .Termsofuse_decline{
@@ -73,6 +75,7 @@
             letter-spacing: 0.45px;
             box-shadow: 0px 3px 6px #00000029;
             opacity: 1;
+            cursor: pointer;
         }
         .Termsofuse_accept{
             background: linear-gradient(180deg, #20639B 0%, #002D56 100%);
@@ -84,6 +87,7 @@
             letter-spacing: 0.45px;
             box-shadow: 0px 3px 6px #00000029;
             opacity: 1;
+            cursor: pointer;
         }
     
     }
