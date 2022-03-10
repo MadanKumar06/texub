@@ -19,7 +19,6 @@ import {
     Tooltip,
     Legend } from 'chart.js';
 import { Line, Pie } from 'react-chartjs-2';
-import { height } from '@mui/system'
 
 ChartJS.register(
     ArcElement,
