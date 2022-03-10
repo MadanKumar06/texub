@@ -156,6 +156,11 @@ function Index() {
               ))}
             </div>
           </div>
+          <Pagination
+            PaginateData={PaginateDataSplit}
+            DataList={reviewcarddata}
+            PagePerRow={6}
+          />
         </div>
       )}
 
@@ -173,11 +178,6 @@ function Index() {
 
       {type === 3 && <ResultTable />}
 
-      <Pagination
-        PaginateData={PaginateDataSplit}
-        DataList={reviewcarddata}
-        PagePerRow={6}
-      />
       <div className="approve__cart__footer">
         <div className="approve__cart__container">
           <Link to="/sellerdashboard/dashboard">

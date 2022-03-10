@@ -56,11 +56,12 @@
       }
 
       .myorders__ordertotal {
+        font-weight: 600;
         .currency {
           font-size: 16px;
         }
         .price {
-          font-weight: 600;
+         
         }
       }
 
@@ -68,6 +69,7 @@
         text-decoration: underline;
         color: #002d56;
         font-size: 22px;
+        font-weight: 600;
         cursor: pointer;
       }
 
