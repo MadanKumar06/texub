@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import "./styles.scss";
-import MUIDataTable from "mui-datatables";
+import React, { useState } from 'react'
+import './styles.scss'
+import MUITable from '../../../MUITable'
 import { useNavigate } from "react-router-dom";
 import hp from "../../../../Assets/sellerdashboard/inventory/hp.png";
 import Pagination from "../../../Pagination";
@@ -129,12 +129,7 @@ function Index() {
 
   return (
     <div className="resulttable">
-      <MUIDataTable
-        title={""}
-        data={tableData}
-        columns={columns}
-        options={options}
-      />
+      <MUITable columns={columns} table={tableData} options={options}  />
       <Pagination
         PaginateData={PaginateDataSplit}
         DataList={table}

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import "./styles.scss";
-import MUIDataTable from "mui-datatables";
 import { Button } from "@mui/material";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import Pagination from "../../Pagination";
+import MUITable from '../../../Components/MUITable'
 
 function ApproveCart() {
   const [tableData, setTableData] = useState([]);
@@ -244,13 +244,14 @@ function ApproveCart() {
   };
   return (
     <div className="approve__cart">
-      <MUIDataTable
+      <MUITable columns={columns} table={tableData} options={options} className="approve__cart__table" />
+      {/* <MUIDataTable
         title={""}
         data={tableData}
         columns={columns}
         options={options}
         className="approve__cart__table"
-      />
+      /> */}
       <Pagination PaginateData={PaginateDataSplit} DataList={table} PagePerRow={10}/>
 
       <div className="approve__cart__footer">

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import HP from "./../../../Assets/Productlist/hp_td_icon.png";
 import Acer from "../../../Assets/Productlist/acer_icon_td.png";
 import "./styles.scss";
-import MUIDataTable from "mui-datatables";
+import MUITable from '../../../Components/MUITable'
 
 const PendingInvoiceTable = () => {
   const [is_table_quantity, setIs_table_quantity] = useState(0);
@@ -164,13 +164,7 @@ const PendingInvoiceTable = () => {
   return (
     <div className="pending_invoice_table_main_container">
       {is_table_quantity?.length && (
-        <MUIDataTable
-          title={""}
-          data={is_table_quantity}
-          columns={columns}
-          options={options}
-          className="pending_invoice_table_mui_datatable_main"
-        />
+        <MUITable columns={columns} table={is_table_quantity} options={options} className="pending_invoice_table_mui_datatable_main" />
       )}
     </div>
   );

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./styles.scss";
-import MUIDataTable from "mui-datatables";
+import MUITable from '../../MUITable'
 import { Link } from "react-router-dom";
 import Pagination from "../../Pagination";
 import { ArrowBackIosNew } from "@mui/icons-material";
@@ -124,13 +124,8 @@ function Index() {
         ))}
       </div>
 
-      <MUIDataTable
-        title={""}
-        data={tableData}
-        columns={columns}
-        options={options}
-        className="orders__table"
-      />
+      <MUITable columns={columns} table={tableData} options={options} className="orders__table" />
+
       <Pagination
         PaginateData={PaginateDataSplit}
         DataList={table}
