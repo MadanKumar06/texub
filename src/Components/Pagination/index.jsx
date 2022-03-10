@@ -9,6 +9,7 @@ const PaginationControlled = ({ PaginateData, DataList, PagePerRow }) => {
 
   useEffect(() => {
     PaginateData(DataList?.slice(0, pageSize));
+    // var temp = DataList?.length >= 10
   }, [pageSize]);
 
   const handleChange = (event, value) => {
@@ -41,11 +42,11 @@ const PaginationControlled = ({ PaginateData, DataList, PagePerRow }) => {
       <div className="jump_to_page">
         <p>Jump to page :</p>
         <Autocomplete
-        //   value={pageSize}
+          //   value={pageSize}
           name="jump_to_page"
-        //   onChange={(event, newValue) => {
-        //     handleJumpToPage(event, newValue);
-        //   }}
+          //   onChange={(event, newValue) => {
+          //     handleJumpToPage(event, newValue);
+          //   }}
           id="controllable-states-demo"
           options={options}
           renderInput={(params) => (
