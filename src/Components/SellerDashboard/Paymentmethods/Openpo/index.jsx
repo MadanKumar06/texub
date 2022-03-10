@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './styles.scss'
-import MUIDataTable from "mui-datatables";
+import MUITable from '../../../MUITable'
 import { Link } from "react-router-dom";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import Enquirydetails from '../../SellerDashboard/Directenqueries/Enquirydetails'
@@ -174,14 +174,7 @@ const Index = () => {
         ))}
       </div> */}
 
-      <MUIDataTable
-        
-        title={""}
-        data={table}
-        columns={columns}
-        options={options}
-        className="po__table"
-      />
+      <MUITable columns={columns} table={table} options={options} className="po__table" />
       {isUopup && <Enquirydetails closePOPup={setisUopup}/> }
 
       <div className="po__footer">

@@ -1,6 +1,6 @@
 import React from 'react'
 import './styles.scss'
-import MUIDataTable from "mui-datatables";
+import MUITable from '../../../MUITable'
 import { useNavigate } from "react-router-dom";
 
 function Index() {
@@ -100,13 +100,8 @@ function Index() {
 
   return (
     <div className='rmatable'>
-        <MUIDataTable
-            title={""}
-            data={table}
-            columns={columns}
-            options={options}
-        />
 
+        <MUITable columns={columns} table={table} options={options} />
         {/* <div className='rmatable__submit'>
             <span className='rmatable__back' onClick={back}>Back</span>
         </div> */}

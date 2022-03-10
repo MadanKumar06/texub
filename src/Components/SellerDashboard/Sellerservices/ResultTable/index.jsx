@@ -1,6 +1,6 @@
 import React from 'react'
 import './styles.scss'
-import MUIDataTable from "mui-datatables";
+import MUITable from '../../../MUITable'
 import { useNavigate } from "react-router-dom";
 import hp from '../../../../Assets/sellerdashboard/inventory/hp.png'
 
@@ -112,13 +112,7 @@ function Index() {
 
   return (
     <div className='resulttable'>
-        <MUIDataTable
-            title={""}
-            data={table}
-            columns={columns}
-            options={options}
-        />
-
+        <MUITable columns={columns} table={table} options={options}  />
         <div className='resulttable__submit'>
             <span className='resulttable__back' onClick={back}>Back</span>
             <p className='submit__new'>Create New Request</p>

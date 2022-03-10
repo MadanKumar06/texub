@@ -3,7 +3,7 @@ import HP from "./../../../Assets/Productlist/hp_td_icon.png";
 import Acer from "../../../Assets/Productlist/acer_icon_td.png";
 import { Link } from "react-router-dom";
 import "./styles.scss";
-import MUIDataTable from "mui-datatables";
+import MUITable from '../../../Components/MUITable'
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
 const MyCartTable = () => {
@@ -311,13 +311,7 @@ const MyCartTable = () => {
   return (
     <div className="mycart_table_main_container">
       {is_table_quantity?.length && (
-        <MUIDataTable
-          title={""}
-          data={is_table_quantity}
-          columns={columns}
-          options={options}
-          className="mycart_table_mui_datatable_main"
-        />
+        <MUITable columns={columns} table={is_table_quantity} options={options} className="mycart_table_mui_datatable_main" />
       )}
     </div>
   );
