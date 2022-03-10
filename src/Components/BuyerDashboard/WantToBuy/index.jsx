@@ -1,29 +1,109 @@
-import React from "react";
+import React, { useState } from "react";
 import "./styles.scss";
 
-import { TextField, Autocomplete, Button } from "@mui/material";
+import { TextField, InputLabel, Autocomplete, Button } from "@mui/material";
 import { LocalizationProvider, DesktopDatePicker } from "@mui/lab";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 
 const WantToBuy = () => {
-  const [dateChange, setDateChange] = React.useState(new Date());
-
+  const [wantTobuyData, setWantToBuyData] = useState({
+    part_number: "",
+    model_name_number: "",
+    product_description: "",
+    quantity: "",
+    notes: "",
+    hub: "",
+    main_category: "",
+  });
+  const [dateChange, setDateChange] = useState(new Date());
   const handleChange = (newValue) => {
     setDateChange(newValue);
   };
+
+  // input state and onchange events
+  const handleFormvalue = (event) => {
+    setWantToBuyData((prevState) => ({
+      ...prevState,
+      [event.target.name]: event.target.value,
+    }));
+    setInputValidation("");
+    handleSwitchCase([event.target.name], event.target.value);
+  };
+  // input validation on onchange
+  const [inputValidation, setInputValidation] = useState({
+    part_number: "",
+    model_name_number: "",
+    quantity: "",
+    main_category: "",
+    closing_date: "",
+  });
+
   const options = ["Option 1", "Option 2"];
-  const [value, setValue] = React.useState();
-  const [inputValue, setInputValue] = React.useState("");
+  const [value, setValue] = useState();
+  const [inputValue, setInputValue] = useState("");
+  const handleSwitchCase = (fieldName, value) => {
+    switch (fieldName[0]) {
+      case "part_number":
+        if (!value) {
+          setInputValidation((prevState) => ({
+            ...prevState,
+            part_number: "Please enter the part number.",
+          }));
+        }
+        break;
+      case "model_name_number":
+        if (!value) {
+          setInputValidation((prevState) => ({
+            ...prevState,
+            model_name_number: "Please enter the model name/ number number.",
+          }));
+        }
+        break;
+
+      case "closing_date":
+        if (!value) {
+          setInputValidation((prevState) => ({
+            ...prevState,
+            closing_date: "Please select closing date.",
+          }));
+        } else if (value.toString() === "Invalid Date") {
+          setInputValidation((prevState) => ({
+            ...prevState,
+            closing_date: "Please select valid date.",
+          }));
+        }
+        break;
+      case "quantity":
+        if (!value) {
+          setInputValidation((prevState) => ({
+            ...prevState,
+            quantity: "Please select the quantity.",
+          }));
+        }
+        break;
+      case "main_category":
+        if (!value) {
+          setInputValidation((prevState) => ({
+            ...prevState,
+            main_category: "Please select the main category.",
+          }));
+        }
+        break;
+      default:
+        break;
+    }
+  };
   return (
     <div className="want_to_buy__container">
       <div className="want_to_buy__sub_container">
         <div className="block_1 input_block">
           <TextField
-            id="outlined-textarea_1"
+            id="part_number"
             label="Part number"
             fullWidth
+            name="part_number"
             placeholder="R7-5700U"
             InputLabelProps={{
               shrink: true,
@@ -32,13 +112,18 @@ const WantToBuy = () => {
                 asterisk: "asterisk",
               },
             }}
+            onChange={handleFormvalue}
+            value={wantTobuyData?.part_number}
             variant="outlined"
           />
-
+          <InputLabel className="validation_error">
+            {inputValidation?.part_number}
+          </InputLabel>
           <TextField
-            id="outlined-textarea_2"
+            id="model_name_number"
             label="Model Name/Number"
             fullWidth
+            name="model_name_number"
             placeholder="Lenovo Dpin Yoga 6 Dpin"
             InputLabelProps={{
               shrink: true,
@@ -47,15 +132,21 @@ const WantToBuy = () => {
                 asterisk: "asterisk",
               },
             }}
+            value={wantTobuyData?.model_name_number}
+            onChange={handleFormvalue}
             variant="outlined"
           />
+          <InputLabel className="validation_error">
+            {inputValidation?.model_name_number}
+          </InputLabel>
         </div>
         <div className="block_2 input_block">
           <TextField
-            id="outlined-multiline-static_1"
+            id="product_description"
             label="Product Description"
             fullWidth
             multiline
+            name="product_description"
             rows={5}
             placeholder="Product Description"
             InputLabelProps={{
@@ -65,6 +156,8 @@ const WantToBuy = () => {
                 // asterisk: "asterisk",
               },
             }}
+            value={wantTobuyData?.product_description}
+            onChange={handleFormvalue}
             variant="outlined"
           />
         </div>
@@ -98,6 +191,9 @@ const WantToBuy = () => {
                 />
               )}
             />
+            <InputLabel className="validation_error">
+              {inputValidation?.main_category}
+            </InputLabel>
             <Autocomplete
               value={value}
               onChange={(event, newValue) => {
@@ -126,6 +222,9 @@ const WantToBuy = () => {
                 />
               )}
             />
+            <InputLabel className="validation_error">
+              {inputValidation?.quantity}
+            </InputLabel>
           </div>
 
           <div className="input_field">
@@ -180,16 +279,20 @@ const WantToBuy = () => {
                 )}
               />
             </LocalizationProvider>
+            <InputLabel className="validation_error">
+              {inputValidation?.closing_date}
+            </InputLabel>
           </div>
         </div>
         <div className="block_4 input_block">
           <TextField
-            id="outlined-multiline-static_2"
+            id="notes"
             label="Notes"
             fullWidth
             placeholder="Notes"
             multiline
             rows={5}
+            value={wantTobuyData?.notes}
             InputLabelProps={{
               shrink: true,
               // required: true,
@@ -197,6 +300,8 @@ const WantToBuy = () => {
                 // asterisk: "asterisk",
               },
             }}
+            onChange={handleFormvalue}
+            name="notes"
             variant="outlined"
           />
         </div>
