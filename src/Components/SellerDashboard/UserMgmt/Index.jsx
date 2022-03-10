@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./styles.scss";
-import MUIDataTable from "mui-datatables";
+import MUITable from '../../MUITable'
 import { Button } from "@mui/material";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import { Link } from "react-router-dom";
@@ -154,13 +154,8 @@ function Index({ setuserform, userform }) {
         </div>
       ) : (
         <>
-          <MUIDataTable
-            title={""}
-            data={table}
-            columns={columns}
-            options={options}
-            className="usermgmt__table"
-          />
+
+          <MUITable columns={columns} table={table} options={options} className="usermgmt__table" />
 
           <Pagination
             PaginateData={PaginateDataSplit}
