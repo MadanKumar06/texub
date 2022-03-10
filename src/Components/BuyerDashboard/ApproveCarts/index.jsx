@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import "./styles.scss";
 import MUIDataTable from "mui-datatables";
-import { Button, Pagination } from "@mui/material";
+import { Button } from "@mui/material";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import { Link } from "react-router-dom";
+import Pagination from "../../Pagination";
 
 function ApproveCart() {
+  const [tableData, setTableData] = useState([]);
   const table = [
     {
       user_name: "Srikant Verma",
@@ -15,6 +17,139 @@ function ApproveCart() {
       hub: "Delhi",
       item_qty: 60,
       status: "Delivered",
+    },
+    {
+      user_name: "Ravi Malhotra",
+      order_id: "000000006",
+      date: "05/05/2022",
+      sub_total: "₹ 3200.0",
+      hub: "Pune",
+      item_qty: 30,
+      ordertotal: 75112,
+      status: "Confirm",
+    },
+    {
+      user_name: "Ranga",
+      order_id: "000000006",
+      date: "02/04/2022",
+      sub_total: " ₹ 3200.0",
+      hub: "Delhi",
+      item_qty: 60,
+      status: "Pending",
+    },
+    {
+      user_name: "Ravi Malhotra",
+      order_id: "000000006",
+      date: "05/05/2022",
+      sub_total: "₹ 3200.0",
+      hub: "Pune",
+      item_qty: 30,
+      ordertotal: 75112,
+      status: "Confirm",
+    },
+    {
+      user_name: "Ranga",
+      order_id: "000000006",
+      date: "02/04/2022",
+      sub_total: " ₹ 3200.0",
+      hub: "Delhi",
+      item_qty: 60,
+      status: "Pending",
+    },
+    {
+      user_name: "Ravi Malhotra",
+      order_id: "000000006",
+      date: "05/05/2022",
+      sub_total: "₹ 3200.0",
+      hub: "Pune",
+      item_qty: 30,
+      ordertotal: 75112,
+      status: "Confirm",
+    },
+    {
+      user_name: "Ranga",
+      order_id: "000000006",
+      date: "02/04/2022",
+      sub_total: " ₹ 3200.0",
+      hub: "Delhi",
+      item_qty: 60,
+      status: "Pending",
+    },
+    {
+      user_name: "Ravi Malhotra",
+      order_id: "000000006",
+      date: "05/05/2022",
+      sub_total: "₹ 3200.0",
+      hub: "Pune",
+      item_qty: 30,
+      ordertotal: 75112,
+      status: "Confirm",
+    },
+    {
+      user_name: "Ranga",
+      order_id: "000000006",
+      date: "02/04/2022",
+      sub_total: " ₹ 3200.0",
+      hub: "Delhi",
+      item_qty: 60,
+      status: "Pending",
+    },
+    {
+      user_name: "Ravi Malhotra",
+      order_id: "000000006",
+      date: "05/05/2022",
+      sub_total: "₹ 3200.0",
+      hub: "Pune",
+      item_qty: 30,
+      ordertotal: 75112,
+      status: "Confirm",
+    },
+    {
+      user_name: "Ranga",
+      order_id: "000000006",
+      date: "02/04/2022",
+      sub_total: " ₹ 3200.0",
+      hub: "Delhi",
+      item_qty: 60,
+      status: "Pending",
+    },
+    {
+      user_name: "Ravi Malhotra",
+      order_id: "000000006",
+      date: "05/05/2022",
+      sub_total: "₹ 3200.0",
+      hub: "Pune",
+      item_qty: 30,
+      ordertotal: 75112,
+      status: "Confirm",
+    },
+    {
+      user_name: "Ranga",
+      order_id: "000000006",
+      date: "02/04/2022",
+      sub_total: " ₹ 3200.0",
+      hub: "Delhi",
+      item_qty: 60,
+      status: "Pending",
+    },
+    {
+      user_name: "Ravi Malhotra",
+      order_id: "000000006",
+      date: "05/05/2022",
+      sub_total: "₹ 3200.0",
+      hub: "Pune",
+      item_qty: 30,
+      ordertotal: 75112,
+      status: "Confirm",
+    },
+    {
+      user_name: "Ranga",
+      order_id: "000000006",
+      date: "02/04/2022",
+      sub_total: " ₹ 3200.0",
+      hub: "Delhi",
+      item_qty: 60,
+      status: "Pending",
     },
     {
       user_name: "Ravi Malhotra",
@@ -104,15 +239,19 @@ function ApproveCart() {
     search: false,
   };
 
+  const PaginateDataSplit = (event) => {
+    setTableData(event);
+  };
   return (
     <div className="approve__cart">
       <MUIDataTable
         title={""}
-        data={table}
+        data={tableData}
         columns={columns}
         options={options}
         className="approve__cart__table"
       />
+      <Pagination PaginateData={PaginateDataSplit} DataList={table} PagePerRow={10}/>
 
       <div className="approve__cart__footer">
         <div className="approve__cart__container">

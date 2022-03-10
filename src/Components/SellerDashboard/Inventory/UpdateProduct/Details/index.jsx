@@ -44,20 +44,46 @@ function Index({ checkselection, countincrease, i, deleterow }) {
         </div>
         <div className="updateproduct_info_form">
           <InputLabel>Price</InputLabel>
-          <TextField
-            id="part_number"
-            name="part_nymber"
-            placeholder="60,500"
-            fullWidth
-            autoFocus={true}
-            autoComplete="off"
-            // value={signInData?.email_address}
-            InputLabelProps={{
-              shrink: false,
-            }}
-            // onChange={handleChangeInput}
-            variant="outlined"
-          />
+          <div className="price_customize">
+            <Autocomplete
+              value={test}
+              name=""
+              onChange={(event, newValue) => handleChange(newValue)}
+              //   className={auto_complete_input}
+              //   inputValue={inputValue}
+              //   onInputChange={(event, newInputValue) => {
+              //     setInputValue(newInputValue);
+              //   }}
+              id="controllable-states-demo"
+              options={options}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  fullWidth
+                  placeholder="INR"
+                  InputLabelProps={{
+                    shrink: false,
+                  }}
+                />
+              )}
+            />
+            <TextField
+              id="part_number"
+              name="part_nymber"
+              placeholder="60,500"
+              fullWidth
+              type="number"
+              autoFocus={true}
+              className="price_textbox"
+              autoComplete="off"
+              // value={signInData?.email_address}
+              InputLabelProps={{
+                shrink: false,
+              }}
+              // onChange={handleChangeInput}
+              variant="outlined"
+            />
+          </div>
         </div>
         <div className="updateproduct_info_form">
           <InputLabel>In Stock</InputLabel>

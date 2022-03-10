@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./styles.scss";
-import EditIcon from "@mui/icons-material/Edit";
 import Billingaddress from "./Billingaddress";
 import Shippingadress from "./Shippingaddress";
+import Edit_image from "../../../../Assets/CheckoutPage/Group 913.png";
 
 
  const Index = () => {
@@ -73,7 +73,7 @@ import Shippingadress from "./Shippingaddress";
             )
             )}
             <div className='edit_section'>
-             <EditIcon/><p className='profile_edit' onClick={()=>Billaddress()} >Edit</p>
+            <img src={Edit_image} alt=""   style={{height:"34px"}}/><p className='profile_edit' onClick={()=>Billaddress()} >Edit</p>
              </div>
              </div>
              <div class="vl"></div>
@@ -93,7 +93,7 @@ import Shippingadress from "./Shippingaddress";
             )
             )}
             <div className='edit_section'>
-            <EditIcon/><p className='profile_edit' onClick={()=>Shipadress()} >Edit</p>
+            <img src={Edit_image} alt="" style={{height:"34px"}} /><p className='profile_edit' onClick={()=>Shipadress()} >Edit</p>
             </div>
             
          </div> 

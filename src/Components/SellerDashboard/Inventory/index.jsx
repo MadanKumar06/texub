@@ -1,11 +1,14 @@
-import React from "react";
-import MUIDataTable from "mui-datatables";
+import React, { useState } from "react";
 import "./styles.scss";
-
-import hp from "../../../Assets/sellerdashboard/inventory/hp.png";
+import MUIDataTable from "mui-datatables";
 import { Button } from "@mui/material";
+import { ArrowBackIosNew } from "@mui/icons-material";
+import hp from "../../../Assets/sellerdashboard/inventory/hp.png";
+import { Link } from "react-router-dom";
+import Pagination from "../../Pagination";
+function Index({ registerproduct }) {
+  const [tableData, setTableData] = useState([]);
 
-function index({ registerproduct }) {
   const options = {
     filter: false,
     filterType: "dropdown",
@@ -155,18 +158,33 @@ function index({ registerproduct }) {
       action: "Update",
     },
   ];
+  const PaginateDataSplit = (event) => {
+    setTableData(event);
+  };
   return (
     <div className="inventory">
       <MUIDataTable
         title={""}
-        data={table}
+        data={tableData}
         columns={columns}
         options={options}
         className="inventory__table"
       />
-      <div className="inventory__products">
-        <span className="inventory__back">Back</span>
-        {/* <div class="inventory__buttons">
+      <Pagination
+        PaginateData={PaginateDataSplit}
+        DataList={table}
+        PagePerRow={10}
+      />
+
+      <div className="inventory__products__footer">
+        <div className="inventory__products__container">
+          <Link to="/sellerdashboard/dashboard">
+            <ArrowBackIosNew />
+            <span>Back</span>
+          </Link>
+          <div className="inventory__button">
+            {/* <Button className="inventory_register">Approve</Button> */}
+            {/* <div class="inventory__buttons">
           <p
             className="inventory_register"
             onClick={() => registerproduct("registerproduct")}
@@ -180,17 +198,17 @@ function index({ registerproduct }) {
             Add Product Details
           </p>
         </div> */}
-        <div className="inventory__buttons">
-          <Button
-            className="inventory_register"
-            onClick={() => registerproduct("registerproduct")}
-          >
-            Register New Product
-          </Button>
+            <Button
+              className="inventory_register"
+              onClick={() => registerproduct("registerproduct")}
+            >
+              Register New Product
+            </Button>
+          </div>
         </div>
       </div>
     </div>
   );
 }
 
-export default index;
+export default Index;

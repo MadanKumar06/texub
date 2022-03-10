@@ -38,6 +38,16 @@ const styles = (theme) => ({
   },
   recaptcha_info: {
     width: "100%",
+
+    "& div div": {
+      width: "100% !important",
+    },
+    "& iframe": {
+      width: "100%",
+    },
+    "& #rc-anchor-container": {
+      width: "100%",
+    },
   },
   button_box: {
     textAlign: "end",

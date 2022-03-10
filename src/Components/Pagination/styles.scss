@@ -1,0 +1,54 @@
+.pagination_top_container {
+  display: flex;
+  align-items: center;
+  padding: 1em 2em;
+  background: #f8f0e0;
+  border: 1px solid #cdd5dd;
+  margin-top: 6em;
+  justify-content: space-between;
+  .pagination_sub_container {
+    display: flex;
+    align-items: center;
+    .MuiTypography-root {
+      font-size: 18px;
+      color: #858a8e;
+      font-weight: 600;
+    }
+    .MuiPagination-root {
+      .MuiButtonBase-root {
+        min-width: 25px;
+        height: 25px;
+        color: #20639b;
+        font-size: 18px;
+      }
+      .MuiButtonBase-root.MuiPaginationItem-root.Mui-selected {
+        background-color: unset;
+        color: #002d56;
+        font-size: 18px;
+        font-weight: 600;
+      }
+    }
+  }
+  .jump_to_page {
+    display: flex;
+    align-items: center;
+    p {
+      font-size: 16px;
+      color: #858a8e;
+      font-weight: 600;
+    }
+    .MuiAutocomplete-root {
+      margin-left: 10px;
+      .MuiFormControl-root {
+        .MuiOutlinedInput-root {
+          padding-right: 30px;
+        }
+      }
+    }
+    .MuiAutocomplete-endAdornment {
+      .MuiAutocomplete-clearIndicator {
+        display: none;
+      }
+    }
+  }
+}

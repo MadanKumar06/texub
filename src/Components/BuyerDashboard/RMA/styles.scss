@@ -113,12 +113,8 @@
     }
   }
   .rma__footer {
-    cursor: pointer;
-    position: absolute;
-    align-items: center;
-    bottom: 51px;
     width: 100%;
-    padding: 0 2em;
+    padding: 2em 0;
     .rma__container {
       display: flex;
       justify-content: space-between;

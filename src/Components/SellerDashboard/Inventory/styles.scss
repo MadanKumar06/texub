@@ -1,6 +1,8 @@
 .inventory {
   .inventory__table {
+    box-shadow: unset;
     margin-top: 3em;
+
     .MuiTable-root {
       .MuiTableHead-root {
         .MuiTableRow-root {
@@ -11,6 +13,9 @@
             font-weight: 600;
           }
         }
+      }
+      .MuiTableFooter-root {
+        display: none;
       }
 
       .MuiTableBody-root {
@@ -133,6 +138,49 @@
         font-weight: 600 !important;
         padding: 10px !important;
         text-transform: capitalize !important;
+      }
+    }
+  }
+  .inventory__products__footer {
+    width: 100%;
+    padding: 2em 0;
+    .inventory__products__container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      a {
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        .MuiSvgIcon-root {
+          color: #002d56;
+        }
+        span {
+          font-size: 20px;
+          color: #002d56;
+          font-weight: 600;
+          margin-left: 0.6em;
+        }
+      }
+      .inventory__button {
+        display: flex;
+        gap: 32px;
+        .inventory_register {
+          text-decoration: none !important;
+          font-size: 18px !important;
+          letter-spacing: 0.54px !important;
+          min-width: 245px !important;
+          border-radius: 45px !important;
+          border: none !important;
+          background: linear-gradient(180deg, #20639b 0%, #002d56 100%);
+          color: #ffffff !important;
+          cursor: pointer;
+          box-shadow: 0px 3px 6px #00000029;
+          font-weight: 600 !important;
+          padding: 10px !important;
+          text-transform: capitalize !important;
+        }
       }
     }
   }

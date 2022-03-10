@@ -120,12 +120,8 @@
   }
 
   .approve__cart__footer {
-    cursor: pointer;
-    position: absolute;
-    align-items: center;
-    bottom: 51px;
     width: 100%;
-    padding: 0 2em;
+    padding: 2em 0;
     .approve__cart__container {
       display: flex;
       justify-content: space-between;
@@ -134,6 +130,7 @@
         text-decoration: none;
         display: flex;
         align-items: center;
+        cursor: pointer;
         .MuiSvgIcon-root {
           color: #002d56;
         }

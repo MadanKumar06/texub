@@ -10,7 +10,7 @@
 
   .topform__details {
     display: grid;
-    grid-template-columns: 95% 5%;
+    grid-template-columns: 90% 10%;
     gap: 10px;
     margin-bottom: 1em;
     flex-direction: column;
@@ -72,11 +72,12 @@
 
       .addmore__text {
         color: #20639b;
-        font-size: 16px;
+        font-size: 20px;
         text-decoration: underline;
-
+        white-space: nowrap;
+        font-weight: 600;
         svg {
-          color: red;
+          color: #ce5050;
         }
       }
     }
@@ -94,6 +95,14 @@
   }
   .info {
     width: 100%;
+  }
+  .country_selection {
+    justify-content: flex-end;
+    padding-left: 2em;
+    padding-top: 2em;
+    .updateproduct_inputfields {
+      width: 50%;
+    }
   }
   .updateproduct__gst .updateproduct_info_form,
   .updateproduct__specifications
@@ -128,6 +137,93 @@
         border: 1px solid #ddb363;
       }
     }
+
+    .dimensions_input {
+      display: flex;
+
+      .length_field {
+        .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+          border: 1px solid #c4c4c4;
+          border-right: unset;
+        }
+        .MuiOutlinedInput-root {
+          position: relative;
+          fieldset {
+            border-radius: 4px 0px 0px 4px;
+            border-right: unset;
+            & ::before {
+              position: absolute;
+              content: "";
+              width: 10px;
+              height: 36px;
+              top: 14px;
+              right: -10px;
+              border-left: 1px solid #cdd5dd;
+            }
+          }
+        }
+      }
+      .width_field {
+        .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+          border: 1px solid #c4c4c4;
+          border-right: unset;
+          border-left: unset;
+        }
+        .MuiOutlinedInput-root {
+          position: relative;
+          fieldset {
+            border-radius: 0px;
+            border-right: unset;
+            border-left: unset;
+            & ::before {
+              position: absolute;
+              content: "";
+              width: 10px;
+              height: 36px;
+              top: 14px;
+              right: -10px;
+              border-left: 1px solid #cdd5dd;
+            }
+          }
+        }
+      }
+      .weight_field {
+        .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+          border: 1px solid #c4c4c4;
+          border-left: unset;
+        }
+        .MuiOutlinedInput-root {
+          fieldset {
+            border-radius: 0px 4px 4px 0px;
+            border-left: unset;
+          }
+        }
+      }
+      .height_field {
+        .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+          border: 1px solid #c4c4c4;
+          border-right: unset;
+          border-left: unset;
+        }
+        .MuiOutlinedInput-root {
+          position: relative;
+          fieldset {
+            border-radius: 0px;
+            border-right: unset;
+            border-left: unset;
+            & ::before {
+              position: absolute;
+              content: "";
+              width: 10px;
+              height: 36px;
+              top: 14px;
+              right: -10px;
+              border-left: 1px solid #cdd5dd;
+            }
+          }
+        }
+      }
+    }
   }
   .updateproduct__specifications {
     .updateproduct__form {
@@ -143,20 +239,25 @@
     display: flex;
     justify-content: space-between;
     margin-top: 2em;
+    align-items: center;
     & > * {
       cursor: pointer;
+    }
+    a {
+      text-decoration: none;
     }
     .updateproduct__back {
       position: relative;
       font-size: 20px;
       color: #002d56;
-      text-decoration: none;
+      font-weight: 600;
+      margin-left: 1em;
 
       margin-left: 1em;
       &::before {
         content: "";
-        border-left: 1px solid #002d56;
-        border-top: 1px solid #002d56;
+        border-left: 2px solid #002d56;
+        border-top: 2px solid #002d56;
         transform: rotate(315deg);
         width: 0.5em;
         height: 0.5em;
