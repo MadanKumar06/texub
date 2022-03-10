@@ -4,6 +4,7 @@ import{ TextField,TextareaAutosize,InputLabel }from '@mui/material';
 import {isEmailValid} from "../../../../../utilities";
 import Autocomplete from "@mui/material/Autocomplete";
 import { useParams } from "react-router-dom";
+import { ArrowBackIosNew } from "@mui/icons-material";
 const Index = (classes) => {
     const List =[
         {title:"Cart Approval Required",},
@@ -282,6 +283,9 @@ if (!NewSubAccountData?.active) {
     <div className='user_btn_section'>
         <button  onClick={() => handleClickValidation()}>Save Sub-Account</button>
     </div>
+    <div className='my_profile_back'>
+        <ArrowBackIosNew /><span><p className='back'>Back</p></span>
+      </div>
     </div>
   )
 }
