@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./styles.scss";
 import { useNavigate, useParams } from "react-router-dom";
-import bg from "../../Assets/buyerdashboard/bg.png";
+// import bg from "../../Assets/buyerdashboard/bg.png";
 import { IconButton, InputBase, Paper } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import notification from "../../Assets/sellerdashboard/notification.png";
@@ -38,7 +38,7 @@ function Index() {
   const { currenttab } = useParams();
   return (
     <div className="buyerdashboard">
-      <img src={bg} alt="" />
+      {/* <img src={bg} alt="" /> */}
       {!barstate && <p className='sidebarhide' onClick={sidebarstate}></p>} 
       <div className="buyerboard__bg">
         <Sidebar

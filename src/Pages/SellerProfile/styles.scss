@@ -1,6 +1,7 @@
 .sellerprofile {
   position: relative;
-  padding: 3% 0;
+  padding: 1px 0;
+  background: url("../../Assets/sellerdashboard/bg.png");
 
   .sellerprofile__bg {
     display: flex;
@@ -154,12 +155,12 @@
   }
 }
 
-.sellerprofile > img {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-}
+// .sellerprofile > img {
+//   position: absolute;
+//   width: 100%;
+//   height: 100%;
+//   z-index: -1;
+// }
 
 @media (max-width: 926px) {
   .sellerprofile__table {
