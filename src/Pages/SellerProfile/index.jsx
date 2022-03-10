@@ -106,7 +106,7 @@ function Index() {
     
   return (
     <div className='sellerprofile'>
-        <img src={bg} alt="" />
+        {/* <img src={bg} alt="" /> */}
         <div className='sellerprofile__bg'>
             <div className='sellerprofile__sidebar'>
                 <ul>
