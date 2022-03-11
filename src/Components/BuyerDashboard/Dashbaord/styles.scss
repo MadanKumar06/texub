@@ -20,7 +20,7 @@
     box-shadow: none;
 
     & > * {
-      width: calc(100% / 2 - 5px);
+      width: calc(100% / 2 - 0px);
     }
 
     .dashboard__images {
@@ -185,7 +185,7 @@
     display: grid;
     height: 100%;
     grid-template-columns: repeat(2, 1fr);
-    grid-gap: 1em;
+    grid-gap: 1.6em;
 
     .chart__pie {
       display: flex;

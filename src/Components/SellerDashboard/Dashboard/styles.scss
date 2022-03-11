@@ -4,7 +4,7 @@
 .dashboard {
   margin-top: 1em;
   background-color: white;
-  padding: 10px;
+  padding-top: 15px;
 
   .dashboard__data {
     display: flex;
@@ -65,7 +65,7 @@
     display: grid;
     height: 100%;
     grid-template-columns: repeat(2, 1fr);
-    grid-gap: 2em;
+    grid-gap: 1.6em;
 
     .chart__pie {
       display: flex;
