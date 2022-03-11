@@ -13,7 +13,7 @@ const PaginationControlled = ({ PaginateData, DataList, PagePerRow }) => {
   const [pageSize, setPageSize] = useState(PagePerRow);
   const [page, setPage] = useState({
     page: "1",
-    jumptopage: [],
+    jumptopage: "",
     option: [],
   });
 

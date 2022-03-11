@@ -17,12 +17,12 @@
   .buyerdashboard__main {
     flex: 1;
     position: relative;
+    padding: 20px;
 
     .buyerdashboard__search {
       display: flex;
       gap: 10px;
       align-items: center;
-      padding: 1em 10px 0;
       .MuiPaper-root {
         box-shadow: none;
         .MuiInputBase-root {
