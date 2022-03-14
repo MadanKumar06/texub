@@ -203,7 +203,16 @@
         left: 5rem;
     }
 }
-
+@media only screen and (max-width: 1080px){
+  .contactus_main .contactus_form_section {
+    min-height: 661px;
+    padding: 110px 16px 0 0;
+  }
+  .contactus_main .contactus_form_section .contactus_details_section {
+    top: 17rem;
+    left: 4rem;
+  }
+}
 @media only screen and (max-width:1024px) {
     .contactus_main{
         padding: 10px 17px 20px 17px;
@@ -236,6 +245,40 @@
     }
 }
 
+@media only screen and (max-width:900px){
+    .contactus_main .contactus_form_section{
+        flex-direction: column;
+        height: 70rem;
+        padding: 87px 0px 0 0;
+    }
+    .contactus_main .contactus_img_section{
+        height: 330px;
+    }
+    .contactus_main .contactus_form_section .contactus_form{
+        width: 100%;
+    }
+    .contactus_main .contactus_form_section 
+    .contactus_details_section .contactus_tag {
+        font-size: xx-large;
+    }
+    .contactus_main .contactus_form_section .contactus_details_section .contactus_details .contactus_office_list
+     .contactus_office_address .contactus_office_number{
+         font-size: 26px;
+     }
+    .contactus_main .contactus_form_section .contactus_details_section 
+    .contactus_heading h3{
+        font-size: 55px;
+    }
+    .contactus_main .contactus_form_section .contactus_details_section .contactus_details .contactus_office_list 
+    .contactus_office_address .contactus_office_heading{
+        font-size: 19px;
+    }
+    .contactus_main .contactus_form_section .contactus_details_section{
+        top: 18rem;
+        left: 35px;
+        width: 92%;
+    }
+}
 @media only screen and (max-width:768px){
     .contactus_main .contactus_form_section{
         flex-direction: column;
@@ -279,6 +322,12 @@
         height: 68rem;
     }
     
+}
+
+@media only screen and (max-width: 540px){
+    .contactus_main .contactus_form_section {
+    height: 71rem;
+   }
 }
 @media only screen and (max-width:480px){
     .contactus_main .contactus_form_section .contactus_details_section {

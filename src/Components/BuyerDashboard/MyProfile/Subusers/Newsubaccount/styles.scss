@@ -1,5 +1,4 @@
 .subaccount_main{
-    padding-right: 50px;
     .sub_heading{
         color: #DDB363;
         font-size: 30px;
@@ -22,7 +21,7 @@
             color: red;
         }
          .MuiOutlinedInput-root{
-               width: 37rem;
+               width: 100%;
                border-radius: 33px;
          }
          .MuiOutlinedInput-input{
@@ -96,10 +95,13 @@
          border-radius: 33px;
      }
   }
+  .my_profile_btns{
+      display: flex;
+      justify-content: space-between;
+      padding-top: 30px;
   .user_btn_section{
       display: flex;
       justify-content: flex-end;
-      padding: 30px;
       button{
         box-shadow: 0px 3px 6px #00000029;
         border-radius: 25px;
@@ -115,6 +117,7 @@
         cursor: pointer;
       }
   }
+ }
 }
 
 @media only screen and (max-width:1600px) {
@@ -146,19 +149,19 @@
         width: 58rem;
     }
     .subaccount_main{
-        margin: 10px;
+        margin:  10px auto;
     }
 }
 
-@media only screen and (max-width:768px){
+@media only screen and (max-width:960px){
     .subaccount_main .input_sections .MuiOutlinedInput-root {
-        width: 28rem;
+        width: 20rem;
     }
     .subaccount_main .user_input .MuiOutlinedInput-root{
-        width: 45rem;
+        width: 43rem;
     }
     .subaccount_main .MuiOutlinedInput-root{
-        width: 45rem;
+        width: 43rem;
     }
     .subaccount_main{
         margin: 10px;
@@ -169,20 +172,48 @@
         gap: 0;
     }
     .subaccount_main .input_sections .MuiOutlinedInput-root{
-        width: 45rem;
+        width: 43rem;
+    }
+}
+@media only screen and (max-width:768px){
+    .subaccount_main .input_sections .MuiOutlinedInput-root {
+        width: 20rem;
+    }
+    .subaccount_main .user_input .MuiOutlinedInput-root{
+        width: 43rem;
+    }
+    .subaccount_main .MuiOutlinedInput-root{
+        width: 43rem;
+    }
+    .subaccount_main{
+        margin: 10px;
+        padding: 0;
+    }
+    .subaccount_main .input_sections{
+        flex-direction: column;
+        gap: 0;
+    }
+    .subaccount_main .input_sections .MuiOutlinedInput-root{
+        width: 43rem;
     }
 }
 
 @media only screen and (max-width:580px){
+    .subaccount_main .my_profile_btns .user_btn_section{
+        justify-content: center;
+    }
+    .subaccount_main .my_profile_btns{
+        flex-direction: column;
+    }
     .subaccount_main .input_sections .MuiOutlinedInput-root{
-        width: 33rem;
+        width: 31rem;
     }
     .subaccount_main .user_input .MuiOutlinedInput-root{
-        width: 33rem;
+        width: 31rem;
     }
 
     .subaccount_main .MuiOutlinedInput-root{
-        width: 33rem;
+        width: 31rem;
     }
 
     .subaccount_main .user_btn_section{
@@ -201,13 +232,13 @@
 
 @media only screen and (max-width:480px){
     .subaccount_main .input_sections .MuiOutlinedInput-root {
-        width: 27rem;
+        width: 25rem;
     }
     .subaccount_main .user_input .MuiOutlinedInput-root {
-        width: 27rem;
+        width: 25rem;
     }
     .subaccount_main .MuiOutlinedInput-root {
-        width: 27rem;
+        width: 25rem;
     }
     .users_main .user_sub-account button{
         width: 100%;
@@ -220,13 +251,13 @@
 
 @media only screen and (max-width:425px){
     .subaccount_main .input_sections .MuiOutlinedInput-root {
-        width: 24rem;
+        width: 22rem;
     }
     .subaccount_main .user_input .MuiOutlinedInput-root {
-        width: 24rem;
+        width: 22rem;
     }
     .subaccount_main .MuiOutlinedInput-root {
-        width: 24rem;
+        width: 22rem;
     }
     .users_main .user_sub-account button{
         width: 100%;
@@ -239,13 +270,13 @@
 
 @media only screen and (max-width:375px){
     .subaccount_main .input_sections .MuiOutlinedInput-root {
-        width: 21rem;
+        width: 19rem;
     }
     .subaccount_main .user_input .MuiOutlinedInput-root {
-        width: 21rem;
+        width: 19rem;
     }
     .subaccount_main .MuiOutlinedInput-root {
-        width: 21rem;
+        width: 19rem;
     }
     .users_main .user_sub-account button{
         width: 100%;
@@ -258,13 +289,13 @@
 
 @media only screen and (max-width:320px){
     .subaccount_main .input_sections .MuiOutlinedInput-root {
-        width: 18rem;
+        width: 16rem;
     }
     .subaccount_main .user_input .MuiOutlinedInput-root {
-        width: 18rem;
+        width: 16rem;
     }
     .subaccount_main .MuiOutlinedInput-root {
-        width: 18rem;
+        width: 16rem;
     }
     .users_main .user_sub-account button{
         width: 100%;

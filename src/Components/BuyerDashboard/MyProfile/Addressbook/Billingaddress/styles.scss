@@ -26,11 +26,12 @@
             .inputfield{
                 display: flex; 
                 flex-direction: column;
+                width: 50%;
                
-                .MuiOutlinedInput-input{
-                    width: 35rem;
+                // .MuiOutlinedInput-input{
+                //     width: 35rem;
                     
-                }
+                // }
                 .MuiOutlinedInput-root{
                     padding-right: 6px;
                 }
@@ -40,23 +41,28 @@
     
             .inputfield_btn{
                 display: flex;
-                justify-content: space-around;
-                .MuiOutlinedInput-input{
-                    width: 35rem;
-                }
+                justify-content: space-between;
+                gap: 30px;
+                // .MuiOutlinedInput-input{
+                //     width: 35rem;
+                // }
                 .MuiOutlinedInput-root{
                     padding-right: 5px;
+                }
+                .inputfield{
+                    width: 49%;
                 }
                 
             .Billingaddress_btn_section{
                 display: flex;
                 gap: 20px;
                 padding-top: 60px;
+                justify-content: center;
             .Billingaddress_info_cancel {
                 color: #002D56;
                 font-size: 18px;
                 background-color: white;
-                padding: 10px 75px;
+                padding: 10px 50px;
                 border-radius: 25px;
                 border: 1px solid #002D56;
                 box-shadow: 0px 3px 6px #00000029;
@@ -69,7 +75,7 @@
                 box-shadow: 0px 3px 6px #00000029;
                 border-radius: 25px;
                 opacity: 1;
-                padding: 10px 59px;
+                padding: 10px 25px;
                 background: linear-gradient(180deg,#20639B 0%, #002D56 100%);
                 color: #FFFFFF;
                 font-size: 18px;
@@ -84,12 +90,12 @@
  }
 }
 @media only screen and (max-width:1600px) {
-        .Billingaddress_information form .inputfield_section .inputfield .MuiOutlinedInput-input{
-            width: 30rem !important;
-        }
-        .Billingaddress_information .MuiFormControl-root{
-            width: 32rem;
-        }
+        // .Billingaddress_information form .inputfield_section .inputfield .MuiOutlinedInput-input{
+        //     width: 30rem !important;
+        // }
+        // .Billingaddress_information .MuiFormControl-root{
+        //     width: 32rem;
+        // }
         .Billingaddress_information form .inputfield_section{
             justify-content: space-between;
         }
@@ -102,12 +108,12 @@
     }
 
 @media only screen and (max-width:1550px){
-        .Billingaddress_information form .inputfield_section .inputfield .MuiOutlinedInput-input{
-            width: 34rem !important;
-        }
-        .Billingaddress_main .Billingaddress_information form .inputfield_section .inputfield .MuiFormControl-root{
-            width: 28rem !important;
-        }
+        // .Billingaddress_information form .inputfield_section .inputfield .MuiOutlinedInput-input{
+        //     width: 34rem !important;
+        // }
+        // .Billingaddress_main .Billingaddress_information form .inputfield_section .inputfield .MuiFormControl-root{
+        //     width: 28rem !important;
+        // }
         .Billingaddress_main .heading_section .Billingaddress_Account_heading{
             width: 36%;
         }
@@ -120,19 +126,69 @@
 }
 
 @media only screen and (max-width:1440px){
-        .Billingaddress_information form .inputfield_section .inputfield .MuiOutlinedInput-input{
-            width: 26rem !important;
-        }
-        .Billingaddress_main .Billingaddress_information form .inputfield_section .inputfield .MuiFormControl-root{
-            width: 28rem !important;
-        }
+        // .Billingaddress_information form .inputfield_section .inputfield .MuiOutlinedInput-input{
+        //     width: 26rem !important;
+        // }
+        // .Billingaddress_main .Billingaddress_information form .inputfield_section .inputfield .MuiFormControl-root{
+        //     width: 28rem !important;
+        // }
         .Billingaddress_main .heading_section .Billingaddress_Account_heading{
             width: 36%;
         }
+        // .Billingaddress_information .MuiFormControl-root {
+        //     width: 27rem;
+        // }
     }
+@media only screen and (max-width:1240px){
+    .Billingaddress_main .Billingaddress_Account_heading{
+        width: 38%;
+    }
+    }
+@media only screen and (max-width:960px){
+    .Billingaddress_main .Billingaddress_information form .inputfield_btn .Billingaddress_btn_section{
+        width: 100%;
+    }
+   
+    .Billingaddress_main{
+        padding-left: 10px;
+    }
+    .Billingaddress_information form .inputfield_section .inputfield .MuiOutlinedInput-root{
+        width: 43rem;
+    }
+    .Billingaddress_information form .inputfield_btn .MuiOutlinedInput-root{
+        width: 43rem;
+    }
+   .Billingaddress_main .Billingaddress_information form .inputfield_btn .Billingaddress_btn_section .Billingaddress_info_cancel{
+      width: 50%;
+    }
+    .Billingaddress_information form .inputfield_btn .Billingaddress_btn_section .Billingaddress_info_save{
+        width: 50%;
+    }
+    .Billingaddress_information form .inputfield_btn .Billingaddress_btn_section {
+        justify-content: center;
+    }
+    .Billingaddress_information .MuiFormControl-root {
+        width: 16rem;
+    }
+        .Billingaddress_information form .inputfield_section {
+            flex-direction: column;
+            justify-content: center;
+        }
+        .Billingaddress_information form .inputfield_btn {
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+       .Billingaddress_main .Billingaddress_Account_heading{
+           width: 100%;
+       }
+    }  
  @media only screen and (max-width:768px){
         .Billingaddress_information form .inputfield_section {
             flex-direction: column;
+        }
+        .Billingaddress_main .Billingaddress_information form .inputfield_btn .Billingaddress_btn_section{
+            width: 100%;
         }
         .Billingaddress_information form .inputfield_btn {
             flex-direction: column;
@@ -141,16 +197,21 @@
             padding-left: 10px;
         }
         .Billingaddress_main .Billingaddress_Account_heading{
-            width: 47%;
+            width: 100%;
         }
         .Billingaddress_information form .inputfield_section .inputfield .MuiOutlinedInput-root{
-            width: 45rem;
+            width: 43rem;
         }
         .Billingaddress_information form .inputfield_btn .MuiOutlinedInput-root{
-            width: 45rem;
+            width: 43rem;
         }
-        .Billingaddress_information form .inputfield_btn .Billingaddress_accountinfo_btn_section .Billingaddress_info_cancel{
-            width: 50%;
+        // .Billingaddress_information form .inputfield_btn .Billingaddress_accountinfo_btn_section .Billingaddress_info_cancel{
+        //     width: 50%;
+        // }
+        
+
+       .Billingaddress_main .Billingaddress_information form .inputfield_btn .Billingaddress_btn_section .Billingaddress_info_cancel{
+          width: 50%;
         }
         .Billingaddress_information form .inputfield_btn .Billingaddress_btn_section .Billingaddress_info_save{
             width: 50%;
@@ -158,9 +219,12 @@
         .Billingaddress_information form .inputfield_btn .Billingaddress_btn_section {
             justify-content: center;
         }
+        .Billingaddress_information .MuiFormControl-root {
+            width: 16rem;
+        }
     }
 
-    @media only screen and (max-width:580px){
+ @media only screen and (max-width:580px){
         .Billingaddress_main .Billingaddress_Account_heading{
             width: 100%;
             padding-left: 10px;
@@ -169,79 +233,102 @@
             text-align: left;
         }
         .Billingaddress_information form .inputfield_section .inputfield .MuiOutlinedInput-root {
-            width: 33.5rem;
+            width: 31rem;
         }
         .Billingaddress_information form .inputfield_btn .MuiOutlinedInput-root{
-            width: 33.5rem;
+            width: 31rem;
         }
         .Billingaddress_information form .inputfield_btn .Billingaddress_btn_section{
             flex-direction: column;
             align-items: center;
             margin-right: 10px;
         }
-        .Billingaddress_information form .inputfield_btn .Billingaddress_btn_section .Billingaddress_info_cancel{
+        // .Billingaddress_information form .inputfield_btn .Billingaddress_btn_section .Billingaddress_info_cancel{
+        //     width: 100%;
+        //     padding: 15px 25px;
+        // }
+        .Billingaddress_main .Billingaddress_information form .inputfield_btn .Billingaddress_btn_section .Billingaddress_info_cancel {
             width: 100%;
-            padding: 15px 25px;
         }
         .Billingaddress_information form .inputfield_btn .Billingaddress_btn_section .Billingaddress_info_save{
             width: 100%;
             padding: 15px 25px;
         }
+        .Billingaddress_information .MuiFormControl-root {
+            width: 16rem;
+        }
         
     }    
 
-    @media only screen and (max-width:480px){
+@media only screen and (max-width:480px){
         .Billingaddress_information form .inputfield_section .inputfield .MuiOutlinedInput-root {
-            width: 27rem;
+            width: 25rem;
         }
     
     .Billingaddress_information form .inputfield_btn .MuiOutlinedInput-root {
-        width: 27rem;
+        width: 25rem;
     }
     .Billingaddress_main .Billingaddress_information form .inputfield_section{
         gap: 10px;
     }
+    .Billingaddress_information .MuiFormControl-root {
+        width: 16rem;
+    }
 }
 @media only screen and (max-width:425px){
     .Billingaddress_information form .inputfield_section .inputfield .MuiOutlinedInput-root {
-        width: 24rem;
+        width: 22rem;
     }
     .Billingaddress_main .Billingaddress_information form .inputfield_section .inputfield .MuiFormControl-root {
-        width: 24rem !important;
+        width: 22rem !important;
     }
 .Billingaddress_information form .inputfield_btn .MuiOutlinedInput-root {
-    width: 24rem;
+    width: 22rem;
 }
 .Billingaddress_main .Billingaddress_information form .inputfield_section{
     gap: 10px;
+}
+.Billingaddress_information .MuiFormControl-root {
+    width: 16rem;
 }
 }
 @media only screen and (max-width:375px){
     .Billingaddress_information form .inputfield_section .inputfield .MuiOutlinedInput-root {
-        width: 21rem;
+        width: 19rem;
     }
     .Billingaddress_main .Billingaddress_information form .inputfield_section .inputfield .MuiFormControl-root {
-        width: 21rem !important;
+        width: 19rem !important;
     }
 
 .Billingaddress_information form .inputfield_btn .MuiOutlinedInput-root {
-    width: 21rem;
+    width: 19rem;
 }
 .Billingaddress_main .Billingaddress_information form .inputfield_section{
     gap: 10px;
 }
+.Billingaddress_information .MuiFormControl-root {
+    width: 16rem;
+}
 }
 
-    @media only screen and (max-width:320px){
+@media only screen and (max-width:320px){
         .Billingaddress_information form .inputfield_section .inputfield .MuiOutlinedInput-root {
-            width: 18rem;
+            width: 16rem;
         }
         .Billingaddress_main .Billingaddress_information form .inputfield_section .inputfield .MuiFormControl-root {
-            width: 18rem !important;
+            width: 16rem !important;
         }
+        .Billingaddress_information .MuiFormControl-root {
+            width: 16rem;
+        }
+        
+
+.Billingaddress_main .Billingaddress_Account_heading{
+    font-size: 16px;
+}
     
     .Billingaddress_information form .inputfield_btn .MuiOutlinedInput-root {
-        width: 18rem;
+        width: 16rem;
     }
     .Billingaddress_main .company_information form .inputfield_section{
         gap: 10px;

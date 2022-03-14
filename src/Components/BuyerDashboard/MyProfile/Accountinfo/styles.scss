@@ -117,13 +117,42 @@
     }
 }
 
+@media only screen and (max-width: 1336px){
+    .account_ifo_main .account_info_edit .form .inputfield_section .MuiOutlinedInput-root {
+        width: 24rem;
+    }
+    }
+@media only screen and (max-width: 1240px){
+.account_ifo_main .account_info_edit .form .inputfield_section .MuiOutlinedInput-root {
+    width: 22rem;
+}
+}
+
 @media only screen and (max-width:1024px){
            .My_profile_main{
             margin: 50px 0px 20px 0px;
            }
            .account_ifo_main .account_info_edit .form .inputfield_section .MuiOutlinedInput-root {
-            width: 28rem;
+            width: 26rem;
         }
+}
+@media only screen and (max-width:960px){
+    .account_ifo_main .account_info_edit .form .inputfield_section{
+        flex-direction: column;
+    }
+    .account_ifo_main .account_info_edit .form .inputfield_section .MuiOutlinedInput-root {
+        width: 45rem;
+    }
+    
+.account_ifo_main .account_info_edit .accountinfo_btn {
+    justify-content: center;
+}
+.account_ifo_main .account_info_edit .accountinfo_btn .account_info_cancel{
+    width: 40%;
+}
+.account_ifo_main .account_info_edit .accountinfo_btn .account_info_save{
+    width: 40%;
+}
 }
 
 @media only screen and (max-width:768px){
@@ -137,7 +166,7 @@
         justify-content: flex-start;
     }
     .account_ifo_main .account_info_edit .form .inputfield_section .MuiOutlinedInput-root {
-        width: 44rem;
+        width: 42rem;
     }
     .account_ifo_main .account_info_edit .accountinfo_btn .account_info_save{
         width: 50%;
@@ -152,7 +181,7 @@
 
 @media only screen and (max-width:580px){
     .account_ifo_main .account_info_edit .form .inputfield_section .MuiOutlinedInput-root{
-        width: 32rem;
+        width: 30rem;
     }
     .account_ifo_main .Account_heading{
         padding-left: 23px;
@@ -173,7 +202,7 @@
 
 @media only screen and (max-width:480px){
     .account_ifo_main .account_info_edit .form .inputfield_section .MuiOutlinedInput-root {
-        width: 28rem;
+        width: 26rem;
     }
     .account_ifo_main .account_info_edit .form .inputfield_section{
         gap: 10px;
@@ -189,7 +218,7 @@
 
 @media only screen and (max-width:425px){
     .account_ifo_main .account_info_edit .form .inputfield_section .MuiOutlinedInput-root {
-        width: 24rem;
+        width: 22rem;
     }
     .account_ifo_main .account_info_edit .form .inputfield_section{
         gap: 10px;
@@ -206,7 +235,7 @@
 
 @media only screen and (max-width:375px){
     .account_ifo_main .account_info_edit .form .inputfield_section .MuiOutlinedInput-root {
-        width: 21rem;
+        width: 19rem;
     }
     .account_ifo_main .account_info_edit .form .inputfield_section{
         gap: 10px;
@@ -221,7 +250,7 @@
 }
 @media only screen and (max-width:320px){
     .account_ifo_main .account_info_edit .form .inputfield_section .MuiOutlinedInput-root {
-        width: 18rem;
+        width: 16rem;
     }
     .account_ifo_main .account_info_edit .form .inputfield_section{
         gap: 10px;

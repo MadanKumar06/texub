@@ -71,7 +71,11 @@
 //   height: 100%;
 //   z-index: -1;
 // }
-
+// @media (max-width: 1366px){
+//   .sellerdashboard .sellerdashboard__maintab{
+//      width: 71%;
+//   }
+// }
 @media (max-width: 1024px) {
   .sellerdashboard .sellerdashboard__maintab {
     padding: 2em 10px;
