@@ -3,6 +3,8 @@ import "./Departments.scss";
 import Departments1 from "../../Data";
 import Apple from "../../../Assets/Homepage Assets/Placement Area [ASSEThero][SIZEDefault][STATEDEFAULT].png";
 import Best from "../../../Assets/Homepage Assets/Group 705.png";
+import { IconButton, InputBase, Paper } from "@mui/material";
+import { Menu, Search } from "@mui/icons-material";
 
 export const Departments = () => {
   const [isActive, setIsActive] = useState(true);
@@ -13,11 +15,9 @@ export const Departments = () => {
           <div
             className="Departments_Body_Down_Pannel_btn"
             onClick={(e) => setIsActive(!isActive)}
-           >
-            <i className="fa fa-reorder  button_Icon2"></i>
-            <i className="fa fa-search Search_Icon2"></i>
+          >
             <p className="Department_heading">
-              <i className="fa fa-reorder  button_Icon"> </i> DEPARTMENTS
+              <Menu className="button_Icon" /> DEPARTMENTS
             </p>
           </div>
           <div className="Departments_Dropdown_list">
@@ -32,17 +32,22 @@ export const Departments = () => {
             )}
           </div>
         </div>
-        <div className="Search_bar">
-          <div>
-            <form className="form">
-              <input
-                className="Body__search_bar"
-                type="search"
-                name="search"
-                placeholder="Search entire Store here.."
+        <div className="search_bar">
+          <div className="body__search_bar">
+            <Paper
+              className="search_bar_paper"
+              component="form"
+              sx={{ p: "2px 4px", display: "flex", alignItems: "center" }}
+            >
+              <IconButton type="submit" sx={{ p: "10px" }} aria-label="search">
+                <Search />
+              </IconButton>
+              <InputBase
+                sx={{ ml: 1, flex: 1 }}
+                placeholder="Search Entire Store Here…"
+                inputProps={{ "aria-label": "search google maps" }}
               />
-              <i className="fa fa-search Search_Icon"></i>
-            </form>
+            </Paper>
           </div>
           <div className="Body_Searchbar_Down_images">
             <div className="Body_Searchbar_Down_img1_div">

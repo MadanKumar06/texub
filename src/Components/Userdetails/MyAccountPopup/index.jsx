@@ -5,7 +5,7 @@ import dashboardLogo from "../../../Assets/CommonImage/MyAccountMegamenu/menu.pn
 import myOrderLogo from "../../../Assets/CommonImage/MyAccountMegamenu/shopping-bag.png";
 import auctionsLogo from "../../../Assets/CommonImage/MyAccountMegamenu/auction.png";
 import logoutLogo from "../../../Assets/CommonImage/MyAccountMegamenu/logout.png";
-import account_circle from "../../../Assets/User/user (3).png";
+import account_circle from "../../../Assets/CommonImage/My Account.png";
 const MyAccountPopup = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -22,11 +22,11 @@ const MyAccountPopup = () => {
         aria-haspopup="true"
         onClick={handleClick}
       >
-        <Badge badgeContent={1} className="badge_user">
+        {/* <Badge badgeContent={1} className="badge_user"> */}
           <div className="account_circle_image">
             <img src={account_circle} alt="" />
           </div>
-        </Badge>
+        {/* </Badge> */}
         <li className="user_account">My Account</li>
       </Button>
 

@@ -48,7 +48,7 @@ const MiniCartDrawer = () => {
     <div className="minicart_drawer_main">
       <React.Fragment key={"right"}>
         <Button onClick={toggleDrawer("right", true)}>
-            <Badge badgeContent={1} className="badge">
+            <Badge badgeContent={0} className="badge">
             <div className="mycart_image">
             <img src={mycart_image} alt="" />
           </div>

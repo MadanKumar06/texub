@@ -11,6 +11,9 @@ const styles = (theme) => ({
       padding: "0",
       letterSpacing: "0.6px !important",
       color: "#5C6369 !important",
+      display: "flex",
+      alignItems: "center",
+      gap: "6px",
       "@media (max-width:1600px)": {
         fontSize: "18px !important",
       },
@@ -33,12 +36,16 @@ const styles = (theme) => ({
   },
   menulist_item: {
     "& .MuiList-root ": {
+      padding: "15px",
       "& .MuiMenuItem-root ": {
         padding: "15px",
         borderBottom: "1px solid #e6e6e6",
         color: "#5c6369",
         fontSize: "22px",
         letterSpacing: "0.66px",
+        display: "flex",
+        alignItems: "center",
+        gap: "6px",
         "@media (max-width:1600px)": {
           fontSize: "20px !important",
         },

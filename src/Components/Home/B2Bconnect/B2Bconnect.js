@@ -19,11 +19,11 @@ export const B2Bconnect = () => {
         </div>
         <div className="B2B_Images">
           <img src={Card2} alt="" className="Card" />
-          <p className="Card_Paragraph">Avail Cash back and Great Benifits </p>
+          <p className="Card_Paragraph">Avail Cashback and Great Benefits </p>
         </div>
         <div className="B2B_Images">
           <img src={Card3} alt="" className="Card" />
-          <p className="Card_Paragraph">Get Logistic and Insurance support</p>
+          <p className="Card_Paragraph">Get Logistic and insurance support</p>
         </div>
       </div>
     </div>
