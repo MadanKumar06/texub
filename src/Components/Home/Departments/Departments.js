@@ -13,7 +13,7 @@ export const Departments = () => {
           <div
             className="Departments_Body_Down_Pannel_btn"
             onClick={(e) => setIsActive(!isActive)}
-           >
+          >
             <i className="fa fa-reorder  button_Icon2"></i>
             <i className="fa fa-search Search_Icon2"></i>
             <p className="Department_heading">

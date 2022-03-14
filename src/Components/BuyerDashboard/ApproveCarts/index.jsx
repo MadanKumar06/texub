@@ -245,13 +245,7 @@ function ApproveCart() {
   return (
     <div className="approve__cart">
       <MUITable columns={columns} table={tableData} options={options} className="approve__cart__table" />
-      {/* <MUIDataTable
-        title={""}
-        data={tableData}
-        columns={columns}
-        options={options}
-        className="approve__cart__table"
-      /> */}
+
       <Pagination PaginateData={PaginateDataSplit} DataList={table} PagePerRow={10}/>
 
       <div className="approve__cart__footer">

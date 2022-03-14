@@ -190,14 +190,15 @@ function Index() {
 
 
         <div className='dashboard__chart'>
+          <div className='pie'>
+            <div className='graph__header'>
+                {piebgcolor.map((data, i) => 
+                    <p style={{ ...piestyle, backgroundColor: `${data}` }}>
+                    </p>
+                )}
+            </div>
             <div className='chart__pie'>
                 <div className='pie__graph'>
-                    <div className='graph__header'>
-                        {piebgcolor.map((data, i) => 
-                            <p style={{ ...piestyle, backgroundColor: `${data}` }}>
-                            </p>
-                        )}
-                    </div>
                     <Pie data={piedata} style={{ height: '100%' }} />
                 </div>
                 <div className='pie__table'>
@@ -212,10 +213,11 @@ function Index() {
                         </p>
                     )}
                 </div>
+              </div>
             </div>
-            <div className='chart__line'>
-                <Line options={options} data={data} style={{ ...linestyle }} />
-            </div>
+          <div className='chart__line'>
+              <Line options={options} data={data} style={{ ...linestyle }} />
+          </div>
         </div>
     </div>
   )

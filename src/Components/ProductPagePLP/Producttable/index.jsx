@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./styles";
 
 import { withStyles } from "@mui/styles";
@@ -22,6 +22,24 @@ const Productstable = ({ classes }) => {
     producttable_add_to_cart,
     producttable_price_block,
   } = classes;
+
+  function truncate(str, n) {
+    return str?.length > n ? str.substr(0, n - 1) + "..." : str;
+  }
+  const [textsize, settextsize] = useState(30)
+
+  useEffect(() => {
+    if (window.innerWidth <= 1440) {
+      settextsize(22)
+    }
+    if (window.innerWidth <= 1366) {
+      settextsize(12)
+    }
+    if (window.innerWidth > 1440) {
+      settextsize(30)
+    }
+  }, [])
+  
   const [isPDPpopUP, setIsPDPpopUP] = useState(false);
   const PDPPopUP = (event) => {
     setIsPDPpopUP(event);
@@ -59,7 +77,7 @@ const Productstable = ({ classes }) => {
       label: "DESCRIPTION",
       options: {
         customBodyRender: (value) => {
-          return <div className={producttable_description}>{value}</div>;
+          return <div className={producttable_description}>{truncate(value, textsize)}</div>;
         },
       },
     },
@@ -252,13 +270,6 @@ const Productstable = ({ classes }) => {
 
   return (
     <div className={producttable}>
-      {/* <MUIDataTable
-        title={""}
-        data={Productstablelist}
-        columns={columns}
-        options={options}
-        className={mui_datatable_main}
-      /> */}
       <MUITable columns={columns} table={Productstablelist} options={options} className={mui_datatable_main} />
       {isPDPpopUP && <PDPpopUp PDPPopUP={PDPPopUP} />}
     </div>

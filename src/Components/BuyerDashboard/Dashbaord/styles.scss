@@ -184,14 +184,26 @@
   .dashboard__chart {
     display: grid;
     height: 100%;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 50%);
     grid-gap: 1em;
+
+    .pie {
+      box-shadow: 0px 3px 18px #00000029;
+      background-color: white;
+
+      .graph__header {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 10px;
+        margin-left: 10px;
+      }
+    }
 
     .chart__pie {
       display: flex;
       height: 100%;
       gap: 20px;
-      box-shadow: 0px 3px 18px #00000029;
       padding: 10px;
 
       .pie__graph {
