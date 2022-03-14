@@ -14,80 +14,82 @@ const WhislistTable = ({ tableData, tableDataHeader }) => {
           <p>Delete List</p>
         </div>
       </div>
-      {tableData?.map((itm, index) => (
-        <div className="table_block">
-          <div className="product_info_block">
-            <div className="product_image">
-              <img src={itm?.products?.products_img} alt="" />
-            </div>
-            <div className="products_info">
-              <p className="product_name">{itm?.products?.products_name}</p>
-              <p className="product_price">
-                <span>INR</span>
-                {itm?.products?.products_price}
-              </p>
-            </div>
-            <div className="rating_block">
-              <div className="rating">
-                <Rating
-                  className="ratings"
-                  name="simple-controlled"
-                  value={3}
-                  onChange={(event, newValue) => {
-                    //   setValue(newValue);
-                  }}
-                />
-                <p className="reviews"> 543 Reviews</p>
+      <div className="table_boby_block">
+        {tableData?.map((itm, index) => (
+          <div className="table_block">
+            <div className="product_info_block">
+              <div className="product_image">
+                <img src={itm?.products?.products_img} alt="" />
               </div>
-              <p className="seller_id">
-                <span>Seller ID :</span>
-                {itm?.products?.seller_id}
-              </p>
-            </div>
-          </div>
-
-          <div className="Hub__quantity__block">
-            <div className="Hub__quantity__sub_block">
-              <span>Hub</span>
-              <div className="content">
-                <div className="hub_info">
-                  <p>{itm?.products?.products_hub}</p>
+              <div className="products_info">
+                <p className="product_name">{itm?.products?.products_name}</p>
+                <p className="product_price">
+                  <span>INR</span>
+                  {itm?.products?.products_price}
+                </p>
+              </div>
+              <div className="rating_block">
+                <div className="rating">
+                  <Rating
+                    className="ratings"
+                    name="simple-controlled"
+                    value={3}
+                    onChange={(event, newValue) => {
+                      //   setValue(newValue);
+                    }}
+                  />
+                  <p className="reviews"> 543 Reviews</p>
                 </div>
-                <div className="quantity_info">
-                  <div className="qty_change">
-                    <Remove
-                      className="item_decrease"
-                      // onClick={() =>
-                      //   handleChange(
-                      //     parseInt(itm?.quantity) >= 2
-                      //       ? parseInt(itm?.quantity) - 1
-                      //       : 1,
-                      //     index
-                      //   )
-                      // }
-                    />
-                    <span className="input_text">
-                      {" "}
-                      {itm?.products?.products_quantity}
-                    </span>
-                    <Add
-                      className="item_increase"
-                      // onClick={() =>
-                      //   handleChange(parseInt(itm?.quantity) + 1, index)
-                      // }
-                    />
+                <p className="seller_id">
+                  <span>Seller ID :</span>
+                  {itm?.products?.seller_id}
+                </p>
+              </div>
+            </div>
+
+            <div className="Hub__quantity__block">
+              <div className="Hub__quantity__sub_block">
+                <span>Hub</span>
+                <div className="content">
+                  <div className="hub_info">
+                    <p>{itm?.products?.products_hub}</p>
+                  </div>
+                  <div className="quantity_info">
+                    <div className="qty_change">
+                      <Remove
+                        className="item_decrease"
+                        // onClick={() =>
+                        //   handleChange(
+                        //     parseInt(itm?.quantity) >= 2
+                        //       ? parseInt(itm?.quantity) - 1
+                        //       : 1,
+                        //     index
+                        //   )
+                        // }
+                      />
+                      <span className="input_text">
+                        {" "}
+                        {itm?.products?.products_quantity}
+                      </span>
+                      <Add
+                        className="item_increase"
+                        // onClick={() =>
+                        //   handleChange(parseInt(itm?.quantity) + 1, index)
+                        // }
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div>
-              <Button className="pending-invoice-btn">
-                <span> Add to Pending Invoice</span>
-              </Button>
+              <div>
+                <Button className="pending-invoice-btn">
+                  <span> Add to Pending Invoice</span>
+                </Button>
+              </div>
             </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };

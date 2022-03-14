@@ -14,18 +14,19 @@ const Whislist = () => {
   return (
     <div className="wishlist_main_container">
       <div>
-        {WhishlistTableData?.map((itm) => (
-          <WhislistTable
-            tableData={itm?.Product_details}
-            tableDataHeader={itm?.Top_product}
-          />
-        ))}
+        {tableData?.length &&
+          tableData?.map((itm) => (
+            <WhislistTable
+              tableData={itm?.Product_details}
+              tableDataHeader={itm?.Top_product}
+            />
+          ))}
       </div>
-      {/* <Pagination
+      <Pagination
         PaginateData={PaginateDataSplit}
-        // DataList={table}
-        PagePerRow={10}
-      /> */}
+        DataList={WhishlistTableData}
+        PagePerRow={2}
+      />
 
       <div className="wishlist__footer">
         <div className="wishlist__container">
