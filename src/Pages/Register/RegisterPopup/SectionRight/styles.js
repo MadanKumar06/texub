@@ -47,7 +47,7 @@ const styles = (theme) => ({
   },
   radio_group: {
     display: "flex",
-    gap: "5em",
+    gap: "1em",
     flexWrap: "nowrap !important",
     "@media (max-width:767px)": {
       flexWrap: "wrap !important",
