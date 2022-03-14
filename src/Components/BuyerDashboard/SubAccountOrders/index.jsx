@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./styles.scss";
-import MUITable from '../../MUITable'
+import MUITable from "../../MUITable";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import Pagination from "../../Pagination";
@@ -115,7 +115,12 @@ function SubAccountOrders() {
   };
   return (
     <div className="subaccount__orders">
-      <MUITable columns={columns} table={tableData} className="subaccount__orders__table" />
+      <MUITable
+        columns={columns}
+        table={tableData}
+        options={options}
+        className="subaccount__orders__table"
+      />
       <Pagination
         PaginateData={PaginateDataSplit}
         DataList={table}

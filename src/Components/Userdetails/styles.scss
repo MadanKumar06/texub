@@ -1,0 +1,163 @@
+.user_details_main_container {
+  display: flex;
+  gap: 10px;
+  margin: auto 3%;
+  height: 90px;
+  .logo {
+    display: flex;
+    align-items: center;
+    img {
+      width: 100%;
+    }
+  }
+  .user_details_list {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    .user_details_content {
+      list-style-type: none;
+      display: flex;
+      gap: 50px;
+    }
+    .user_account {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      svg {
+        color: #5c6369;
+      }
+    }
+    .user_wishlist {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 20px;
+      svg {
+        color: #5c6369;
+      }
+      .badge_user {
+        color: #5c6369;
+        span {
+          color: #5c6369;
+          min-width: 26px !important;
+          height: 26px !important;
+          border-radius: 26px !important;
+          background-color: #ffffff;
+          box-shadow: -2px -2px 8px -6px rgba(0, 0, 0, 0.75);
+          -webkit-box-shadow: -2px -2px 8px -6px rgba(0, 0, 0, 0.75);
+          -moz-box-shadow: -2px -2px 8px -6px rgba(0, 0, 0, 0.75);
+        }
+        .whishlist_image {
+          width: 35px;
+          height: 35px;
+          img {
+            width: 100%;
+          }
+        }
+      }
+      .user_account_wishlist_cart {
+        color: #5c6369;
+        font-weight: 600;
+        opacity: 0.8;
+      }
+    }
+    .user_cart {
+      display: flex;
+      align-items: center;
+      font-size: 20px;
+      a {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 8px;
+        text-decoration: none;
+        svg {
+          color: #5c6369;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1600px) {
+  .user_details_main_container .user_details_list .user_wishlist {
+    font-size: 18px !important;
+  }
+  .user_details_main_container
+    .user_details_list
+    .user_wishlist
+    .badge_user
+    .whishlist_image {
+    width: 30px;
+    height: 30px;
+  }
+  .user_details_main_container
+    .user_details_list
+    .user_wishlist
+    .badge_user
+    span {
+    min-width: 21px !important;
+    height: 21px !important;
+  }
+}
+
+@media (max-width: 1300px) {
+  .user_details_main_container .user_details_list .user_wishlist {
+    font-size: 16px !important;
+  }
+  .user_details_main_container
+    .user_details_list
+    .user_wishlist
+    .badge_user
+    .whishlist_image {
+    width: 26px;
+    height: 26px;
+  }
+  .user_details_main_container
+    .user_details_list
+    .user_wishlist
+    .badge_user
+    span {
+    min-width: 19px !important;
+    height: 19px !important;
+  }
+}
+
+@media (max-width: 1080px) {
+  .user_details_main_container .user_details_list .user_wishlist {
+    font-size: 14px !important;
+  }
+  .user_details_main_container
+    .user_details_list
+    .user_wishlist
+    .badge_user
+    .whishlist_image {
+    width: 24px;
+    height: 24px;
+  }
+  .user_details_main_container
+    .user_details_list
+    .user_wishlist
+    .badge_user
+    span {
+    min-width: 18px !important;
+    height: 18px !important;
+  }
+}
+
+@media (max-width: 850px) {
+  .user_details_main_container .user_details_list .user_wishlist {
+    font-size: 12px !important;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .user_details_main_container {
+    display: none;
+  }
+  .user_details_main_container .logo {
+    display: none;
+  }
+  .user_details_main_container .user_details_list {
+    display: none;
+  }
+}

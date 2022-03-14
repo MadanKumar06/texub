@@ -1,4 +1,9 @@
 .myAccount_popup_header_dropdown {
+  .user_account {
+    color: #5c6369;
+    font-weight: 600;
+    opacity: 0.8;
+  }
   .MuiButton-text {
     text-transform: capitalize;
   }
@@ -11,12 +16,16 @@
     &:hover {
       background-color: unset;
     }
-    .badge_user {
+    .MuiBadge-root {
       span {
         color: #5c6369;
         min-width: 26px !important;
         height: 26px !important;
         border-radius: 26px !important;
+        background-color: #ffffff;
+        box-shadow: -2px -2px 8px -6px rgba(0, 0, 0, 0.75);
+        -webkit-box-shadow: -2px -2px 8px -6px rgba(0, 0, 0, 0.75);
+        -moz-box-shadow: -2px -2px 8px -6px rgba(0, 0, 0, 0.75);
       }
     }
   }
