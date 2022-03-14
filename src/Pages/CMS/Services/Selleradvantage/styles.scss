@@ -68,9 +68,9 @@
 
 
  .Selleradvantage_main {
-  padding: 50px 0 50px 0;
-  margin:10px 50px 50px 50px;
+  margin: 10px 3%;
   background-color: #FFFFFF;
+  padding: 60px;
    .Selleradvantage_img_section{
      position: relative;
      margin: 30px auto 0;
@@ -188,7 +188,16 @@
     top: -13%;
   }
 }
-
+@media (max-width:1199px){
+  .Selleradvantage_main .Selleradvantage_business_section {
+    left: -18%;
+    top: -13%;
+  }
+  .Selleradvantage_main .Selleradvantage_network_section {
+    right: -14%;
+    top: -11%;
+ }
+}
 @media (max-width:1024px){
   .Selleradvantage_main{
     .Selleradvantage_img_section{
@@ -220,7 +229,81 @@
      }
   }
 }
+@media (max-width:900px){
+  .Selleradvantage_main{
+   padding: 50px 0 50px 0;
+   margin: 10px 17px 17px 17px;
+    .Selleradvantage_img_section{
+       max-width: 540px !important;
+       .Selleradvantage_Heading{
+         left: 35% !important;
+      }
+       .Selleradvantage_business_Heading,
+       .Selleradvantage_clock_Heading,
+       .Selleradvantage_network_Heading,
+       .Selleradvantage_Buyer_Heading{
+              font-size: 24px !important;   
+       }
+       .Selleradvantage_business_tag,
+       .Selleradvantage_clock_Tag,
+       .Selleradvantage_network_tag,
+       .Selleradvantage_Buyer_tag{
+          font-size: xx-small;
+       }
+    }
+    .Selleradvantage_main .Selleradvantage_business_section {
+      left: -139px;
+      top: -14px;
+  }
+   .Selleradvantage_clock_section{
+      left: -28px;
+   }
+   .Selleradvantage_Buyer_section{
+      right: -34px;
+   }
+   .Selleradvantage_network_section{
+      right: -85px;
+   }
+  }
+}
 
+@media (max-width:850px){
+  .Selleradvantage_main{
+   padding: 50px 0 50px 0;
+   margin: 10px 17px 17px 17px;
+    .Selleradvantage_img_section{
+       max-width: 540px !important;
+       .Selleradvantage_Heading{
+         left: 35% !important;
+      }
+       .Selleradvantage_business_Heading,
+       .Selleradvantage_clock_Heading,
+       .Selleradvantage_network_Heading,
+       .Selleradvantage_Buyer_Heading{
+              font-size: 24px !important;   
+       }
+       .Selleradvantage_business_tag,
+       .Selleradvantage_clock_Tag,
+       .Selleradvantage_network_tag,
+       .Selleradvantage_Buyer_tag{
+          font-size: xx-small;
+       }
+    }
+    .Selleradvantage_business_section{
+     left: -93px;
+     top: -32px;
+   }
+   .Selleradvantage_clock_section{
+      left: -28px;
+   }
+   .Selleradvantage_Buyer_section{
+      right: -34px;
+   }
+   .Selleradvantage_network_section{
+      right: -85px;
+   }
+  }
+}
  @media (max-width:768px){
    .Selleradvantage_main{
     padding: 50px 0 50px 0;

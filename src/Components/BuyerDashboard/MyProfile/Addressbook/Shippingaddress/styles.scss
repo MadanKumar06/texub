@@ -187,11 +187,11 @@
                 .inputfield{
                     display: flex; 
                     flex-direction: column;
-                   
-                    .MuiOutlinedInput-input{
-                        width: 35rem;
+                   width: 50%;
+                    // .MuiOutlinedInput-input{
+                    //     width: 35rem;
                         
-                    }
+                    // }
                     .MuiOutlinedInput-root{
                         padding-right: 6px;
                     }
@@ -201,9 +201,12 @@
         
                 .inputfield_btn{
                     display: flex;
-                    justify-content: space-around;
-                    .MuiOutlinedInput-input{
-                        width: 35rem;
+                    justify-content: space-between;
+                    // .MuiOutlinedInput-input{
+                    //     width: 35rem;
+                    // }
+                    .inputfield{
+                        width: 49%;
                     }
                     .MuiOutlinedInput-root{
                         padding-right: 5px;
@@ -244,27 +247,27 @@
         }
      }
     }
-    @media only screen and (max-width:1600px) {
-            .Shippingaddress_information form .inputfield_section .inputfield .MuiOutlinedInput-input{
-                width: 30rem !important;
-            }
+@media only screen and (max-width:1600px) {
+            // .Shippingaddress_information form .inputfield_section .inputfield .MuiOutlinedInput-input{
+            //     width: 30rem !important;
+            // }
             
-            .Shippingaddress_main .Shippingaddress_information form .inputfield_section .inputfield .MuiFormControl-root{
-                width: 32rem;
-            }
+            // .Shippingaddress_main .Shippingaddress_information form .inputfield_section .inputfield .MuiFormControl-root{
+            //     width: 32rem;
+            // }
             //  .Shippingaddress_main .Shippingaddress_information form .inputfield_section{
             //     justify-content: space-between;
             // }
             
         }
     
-    @media only screen and (max-width:1550px){
-            .Shippingaddress_main .Shippingaddress_information form .inputfield_section .inputfield .MuiOutlinedInput-input{
-                width: 34rem !important;
-            }
-            .Shippingaddress_main .Shippingaddress_information form .inputfield_section .inputfield .MuiFormControl-root{
-                width: 28rem !important;
-            }
+@media only screen and (max-width:1550px){
+            // .Shippingaddress_main .Shippingaddress_information form .inputfield_section .inputfield .MuiOutlinedInput-input{
+            //     width: 34rem !important;
+            // }
+            // .Shippingaddress_main .Shippingaddress_information form .inputfield_section .inputfield .MuiFormControl-root{
+            //     width: 28rem !important;
+            // }
             .Shippingaddress_main .heading_section .Shippingaddress_Account_heading{
                 width: 36%;
             }
@@ -276,21 +279,56 @@
             }
     }
     
-    @media only screen and (max-width:1440px){
-            .Shippingaddress_main .Shippingaddress_information form .inputfield_section .inputfield .MuiOutlinedInput-input{
-                width: 26rem !important;
-            }
-            .Shippingaddress_main .Shippingaddress_information form .inputfield_section .inputfield .MuiFormControl-root{
-                width: 28rem !important;
-            }
+@media only screen and (max-width:1440px){
+            // .Shippingaddress_main .Shippingaddress_information form .inputfield_section .inputfield .MuiOutlinedInput-input{
+            //     width: 26rem !important;
+            // }
+            // .Shippingaddress_main .Shippingaddress_information form .inputfield_section .inputfield .MuiFormControl-root{
+            //     width: 28rem !important;
+            // }
             .Shippingaddress_main .Shippingaddress_heading_section .Shippingaddress_Account_heading{
                 width: 36%;
             }
-            .Shippingaddress_main .Shippingaddress_information form .inputfield_btn .inputfield .MuiFormControl-root {
-                  width: 28rem;
-            }
+            // .Shippingaddress_main .Shippingaddress_information form .inputfield_btn .inputfield .MuiFormControl-root {
+            //       width: 28rem;
+            // }
         }
-     @media only screen and (max-width:768px){
+@media only screen and (max-width:960px){
+            .Shippingaddress_main .Shippingaddress_heading_section{
+                flex-direction: column;
+            }
+            .Shippingaddress_main .Shippingaddress_information form .inputfield_section {
+                flex-direction: column;
+            }
+            .Shippingaddress_main .Shippingaddress_information form .inputfield_btn {
+                flex-direction: column;
+            }
+                .Shippingaddress_main{
+                    padding-left: 10px;
+                }
+                .Shippingaddress_main .Shippingaddress_heading_section .Shippingaddress_Account_heading{
+                    width: 100%;
+                }
+                .Shippingaddress_main .Shippingaddress_information form .inputfield_section .inputfield {
+                    width: 100%;
+                }
+                .Shippingaddress_main .Shippingaddress_information form .inputfield_btn .inputfield {
+                    width: 100%;
+                }
+                .Shippingaddress_main .Shippingaddress_information form .inputfield_btn .Shippingaddress_btn_section .Shippingaddress_info_cancel{
+                    width: 50%;
+                }
+                .Shippingaddress_main .Shippingaddress_information form .inputfield_btn .Shippingaddress_btn_section .Shippingaddress_info_save{
+                    width: 50%;
+                }
+                .Shippingaddress_main .Shippingaddress_information form .inputfield_btn .Shippingaddress_btn_section {
+                    justify-content: center;
+                }
+        }        
+@media only screen and (max-width:768px){
+        .Shippingaddress_main .Shippingaddress_heading_section{
+            flex-direction: column;
+        }
             .Shippingaddress_main .Shippingaddress_information form .inputfield_section {
                 flex-direction: column;
             }
@@ -301,14 +339,20 @@
                 padding-left: 10px;
             }
             .Shippingaddress_main .Shippingaddress_heading_section .Shippingaddress_Account_heading{
-                width: 47%;
+                width: 100%;
             }
-            .Shippingaddress_main .Shippingaddress_information form .inputfield_section .inputfield .MuiOutlinedInput-root{
-                width: 45rem;
+            .Shippingaddress_main .Shippingaddress_information form .inputfield_section .inputfield {
+                width: 100%;
             }
-            .Shippingaddress_main .Shippingaddress_information form .inputfield_btn .MuiOutlinedInput-root{
-                width: 45rem;
+            .Shippingaddress_main .Shippingaddress_information form .inputfield_btn .inputfield {
+                width: 100%;
             }
+            // .Shippingaddress_main .Shippingaddress_information form .inputfield_section .inputfield .MuiOutlinedInput-root{
+            //     width: 43rem;
+            // }
+            // .Shippingaddress_main .Shippingaddress_information form .inputfield_btn .MuiOutlinedInput-root{
+            //     width: 43rem;
+            // }
             .Shippingaddress_main .Shippingaddress_information form .inputfield_btn .Shippingaddress_btn_section .Shippingaddress_info_cancel{
                 width: 50%;
             }
@@ -320,7 +364,7 @@
             }
         }
     
-        @media only screen and (max-width:580px){
+@media only screen and (max-width:580px){
             .Shippingaddress_main .Shippingaddress_heading_section{
                 flex-direction: column;
             }
@@ -332,10 +376,10 @@
                 text-align: left;
             }
             .Shippingaddress_main .Shippingaddress_information form .inputfield_section .inputfield .MuiOutlinedInput-root {
-                width: 33.5rem;
+                width: 30.5rem;
             }
             .Shippingaddress_main .Shippingaddress_information form .inputfield_btn .MuiOutlinedInput-root{
-                width: 33.5rem;
+                width: 30.5rem;
             }
             .Shippingaddress_main .Shippingaddress_information form .inputfield_btn .Shippingaddress_btn_section{
                 flex-direction: column;
@@ -353,80 +397,82 @@
             
         }    
     
-        @media only screen and (max-width:480px){
+@media only screen and (max-width:480px){
             .Shippingaddress_main .Shippingaddress_information form .inputfield_section .inputfield .MuiOutlinedInput-root {
-                width: 27rem;
+                width: 25rem;
             }
         
         .Shippingaddress_main .Shippingaddress_information form .inputfield_btn .MuiOutlinedInput-root {
-            width: 27rem;
+            width: 25rem;
         }
         .Shippingaddress_main .Shippingaddress_main .Shippingaddress_information form .inputfield_section{
             gap: 10px;
         }
     }
-    @media only screen and (max-width:425px){
+@media only screen and (max-width:425px){
         .Shippingaddress_main .Shippingaddress_information form .inputfield_section .inputfield .MuiOutlinedInput-root {
-            width: 24rem !important;
+            width: 22rem !important;
         }
         .Shippingaddress_main .Shippingaddress_information form .inputfield_section .inputfield .MuiOutlinedInput-input{
-            width: 24rem !important;
+            width: 22rem !important;
         }
         .Shippingaddress_main .Shippingaddress_information form .inputfield_section .inputfield .MuiFormControl-root {
-            width: 24rem !important;
+            width: 22rem !important;
         }
         .Shippingaddress_main .Shippingaddress_information form .inputfield_section .inputfield .MuiAutocomplete-root{
-            width: 24rem !important;
+            width: 22rem !important;
         }
     
          .Shippingaddress_main .Shippingaddress_information form .inputfield_btn .MuiOutlinedInput-root {
-        width: 24rem !important;
+        width: 22rem !important;
     }
     .Shippingaddress_main .Shippingaddress_information form .inputfield_section{
         gap: 10px;
     }
     .Shippingaddress_main .Shippingaddress_information form .inputfield_btn .inputfield .MuiFormControl-root {
-        width: 24rem;
+        width: 22rem;
     }
     }
-    @media only screen and (max-width:375px){
+@media only screen and (max-width:375px){
         .Shippingaddress_main .Shippingaddress_information form .inputfield_section .inputfield .MuiOutlinedInput-root {
-            width: 21rem !important;
+            width: 19rem !important;
         }
     
     .Shippingaddress_main .Shippingaddress_information form .inputfield_btn .MuiOutlinedInput-root {
-        width: 21rem !important;
+        width: 19rem !important;
     }
     .Shippingaddress_main .Shippingaddress_information form .inputfield_section .inputfield .MuiAutocomplete-root{
-        width: 21rem !important;
+        width: 19rem !important;
     }
     .Shippingaddress_main .Shippingaddress_information form .inputfield_btn .inputfield .MuiFormControl-root {
-        width: 21rem;
+        width: 19rem;
     }
     .Shippingaddress_main .Shippingaddress_information form .inputfield_section{
         gap: 10px;
     }
     .Shippingaddress_main .Shippingaddress_information form .inputfield_section .inputfield .MuiFormControl-root {
-        width: 21rem !important;
+        width: 19rem !important;
     }
     }
-    
-        @media only screen and (max-width:320px){
+@media only screen and (max-width:320px){
+    .Shippingaddress_main .Shippingaddress_heading_section .Shippingaddress_Account_heading{
+        font-size: 16px;
+    }
             .Shippingaddress_main .Shippingaddress_information form .inputfield_section .inputfield .MuiOutlinedInput-root {
-                width: 18rem !important;
+                width: 16rem !important;
             }
             .Shippingaddress_main .Shippingaddress_information form .inputfield_btn .inputfield .MuiFormControl-root {
-                width: 18rem;
+                width: 16rem;
             }
             .Shippingaddress_main .Shippingaddress_information form .inputfield_section .inputfield .MuiFormControl-root {
-                width: 18rem !important;
+                width: 16rem !important;
             }
             .Shippingaddress_main .Shippingaddress_information form .inputfield_section .inputfield .MuiAutocomplete-root{
-                width: 18rem !important;
+                width: 16rem !important;
             }
         
         .Shippingaddress_main .Shippingaddress_information form .inputfield_btn .MuiOutlinedInput-root {
-            width: 18rem !important;
+            width: 16rem !important;
         }
         .Shippingaddress_main .Shippingaddress_information form .inputfield_section{
             gap: 10px;

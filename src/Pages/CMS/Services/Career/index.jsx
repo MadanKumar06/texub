@@ -20,7 +20,7 @@ import c6 from "../../../../Assets/Career/c6.png";
 import styles from "./styles";
 import   '../../../../Pages/Aboutus/styles.scss'
 
-import wwbg from "../../../../Assets/Aboutus/wwbg.png";
+import wwbg from "../../../../Assets/Aboutus/Worldwide_Office.png";
 import usa from "../../../../Assets/Aboutus/usa.png";
 import nigeria from "../../../../Assets/Aboutus/nigeria.png";
 import nether from "../../../../Assets/Aboutus/nether.png";
@@ -271,12 +271,12 @@ const Career = ({ classes }) => {
             ))}
           </div>
         </div>
-        <img src={texhub} alt="" className="tag1" />
+        {/* <img src={texhub} alt="" className="tag1" />
         <img src={texhub} alt="" className="tag2" />
         <img src={texhub} alt="" className="tag3" />
         <img src={texhub} alt="" className="tag4" />
         <img src={texhub} alt="" className="tag5" />
-        <img src={texhub} alt="" className="tag6" />
+        <img src={texhub} alt="" className="tag6" /> */}
       </div>
       </div>
     </div>

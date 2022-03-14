@@ -1,14 +1,22 @@
 .recaptcha_info {
   width: 100%;
+    //  transform:scale(0.77) !important;
+    // -webkit-transform:scale(0.77) !important;
+    // transform-origin: 0 0 !important;
+    // -webkit-transform-origin:0 0 !important;
 
   div div {
     width: 100% !important;
   }
   iframe {
-    width: 100%;
-    #rc-anchor-container,
-    .rc-anchor-light.rc-anchor-normal {
-      width: 100%;
+    width: 100% !important;
+    #rc-anchor-container .rc-anchor-light .rc-anchor-normal {
+      width: 100% !important;
     }
+    .rc-anchor-normal {
+      height: 74px;
+      width: 100% !important; 
   }
+  }
+  
 }

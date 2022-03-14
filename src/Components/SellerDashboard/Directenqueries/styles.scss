@@ -187,6 +187,9 @@
       flex-direction: column;
       gap: 30px;
     }
+    .directenquiries_container .directenquiries__buttons .directenquiries__btton_content{
+      width: 56%;
+    }
   }
 
   @media (max-width: 768px){
@@ -203,6 +206,22 @@
     .directenquiries_container .MUIDataTableBodyCell-stackedCommon-72{
       width: 100%;
       font-size: 28px;
+    }
+    .directenquiries__table {
+      .MuiTable-root {
+        .MuiTableHead-root {
+          display: none;
+        }
+  
+        .MuiTableBody-root {
+          .MuiTableCell-root {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+          }
+        }
+      }
     }
   }
 
