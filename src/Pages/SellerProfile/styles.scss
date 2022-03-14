@@ -7,7 +7,6 @@
 
   .sellerprofile__bg {
     display: flex;
-    gap: 20px;
     justify-content: center;
     margin: 3%;
     background-color: white;
@@ -20,7 +19,7 @@
       justify-content: center;
 
       ul {
-        padding: 0;
+        padding: 102px 0;
 
         li {
           list-style: none;
@@ -68,17 +67,24 @@
 
     .sellerprofile__main {
       flex: 1;
-
+      padding: 20px 28px;
       .sellerprofile__table {
         margin-top: 3em;
+        box-shadow: none;
+        .MuiTable-root {
+          .MuiTableFooter-root {
+            display: none;
+          }
+        }
         .MuiTableHead-root {
           .MuiTableRow-root {
             .MuiTableCell-root {
               background-color: #002d56;
               color: white;
-              font-size: 18px;
-              font-weight: 500;
               text-align: center;
+              font-size: 18px;
+              font-weight: 600;
+              letter-spacing: 0.54px;
             }
           }
         }
@@ -96,6 +102,7 @@
               font-size: 16px;
               color: #333c42;
               text-align: center;
+              letter-spacing: 0.48px;
             }
           }
         }
@@ -107,6 +114,8 @@
           padding: 0.3em 1.2em;
           color: #333c42;
           font-size: 16px;
+          font-weight: 600;
+          letter-spacing: 0.48px;
           border-radius: 24px;
           background-color: white;
         }
@@ -114,7 +123,13 @@
         .sellerprofile__rank {
           font-size: 22px;
           color: #20639b;
-          font-weight: 500;
+          font-weight: 600;
+          display: flex;
+          p {
+            margin: 0;
+            vertical-align: super;
+            font-size: smaller;
+          }
         }
       }
 
@@ -138,7 +153,8 @@
         }
 
         .sellerprofile__searchinput {
-          box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+          box-shadow: none;
+          border: 1px solid #d6d8d9;
           max-width: 1070px;
           flex: 1;
           height: 68px;
@@ -146,6 +162,9 @@
           .sellerprofile__input {
             color: #858a8e;
             font-size: 20px;
+            & ::placeholder {
+              opacity: 1;
+            }
           }
         }
 

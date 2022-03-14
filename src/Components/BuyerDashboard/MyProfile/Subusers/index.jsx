@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import './styles.scss'
 import Newsubaccount from './Newsubaccount'
+import { ArrowBackIosNew } from "@mui/icons-material";
  const Index = () => {
    const [isSub,setisSub]=useState(false)
    const Newsubacc=()=>{
@@ -80,7 +81,9 @@ import Newsubaccount from './Newsubaccount'
       <div className='user_sub-account'>
         <button onClick={Newsubacc}>Add New Sub-Account</button>
       </div>
-      
+      <div className='my_profile_back'>
+        <ArrowBackIosNew /><span><p className='back'>Back</p></span>
+      </div>
     </div>
     }
     {isSub && <Newsubaccount/>}

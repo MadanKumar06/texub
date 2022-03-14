@@ -4,7 +4,7 @@
   padding: 1em 2em;
   background: #f8f0e0;
   border: 1px solid #cdd5dd;
-  margin-top: 6em;
+  margin-top: 5em;
   justify-content: space-between;
   .pagination_sub_container {
     display: flex;
@@ -42,6 +42,7 @@
       .MuiFormControl-root {
         .MuiOutlinedInput-root {
           padding-right: 30px;
+          background-color: #ffffff;
         }
       }
     }

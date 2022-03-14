@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import './styles.scss'
 import { TextField,InputLabel }from '@mui/material';
 import {isPasswordValid,isEmailValid} from "../../../../utilities";
-// import MuiPhoneNumber from 'material-ui-phone-number';
+import MuiPhoneNumber from 'material-ui-phone-number';
+import { ArrowBackIosNew } from "@mui/icons-material";
 const Index = (classes) => {
   let {
     validation_error
@@ -92,7 +93,7 @@ const Index = (classes) => {
           setInputValidation((prevState) => ({
             ...prevState,
             new_password:
-              "Minimum 8 characters at least 1 Alphabet, 1 Number and 1 Special Character.",
+              "Minimum 8 characters and 1 Alphabet, 1 Number & 1 Special Character.",
           }));
         }
         break;
@@ -108,18 +109,6 @@ const Index = (classes) => {
             new_confrim_password: "Password and confirm password does not match",
           }));
         }
-        // }else if (!isPasswordValid(value)) {
-        //   setInputValidation((prevState) => ({
-        //     ...prevState,
-        //     new_confrim_password:
-        //       "Minimum 8 characters at least 1 Alphabet, 1 Number and 1 Special Character.",
-        //   }));
-        // }
-        // else if (!(AccountInfoData?.new_password === value)) {
-        //   setInputValidation((prevState) => ({
-        //     ...prevState,
-        //     new_confrim_password: "New Password and confirm password does not match",
-        //   }));
         break; 
       default:
         break;
@@ -233,17 +222,28 @@ return (
         <div className='inputfield_section'>
           <div className='inputfield'>
             <p>Mobile Number</p>
-            <TextField
+            <MuiPhoneNumber 
+            fullwidth
+            preferredCountries={["india"]}
+            defaultCountry={'in'} 
+            id="mobile_number"
+            name="mobile_number"
+            value={AccountInfoData?.mobile_number}
+            InputLabelProps={{
+              shrink: false,
+            }}
+            onChange={handleChangeInput}
+            variant="outlined"
+            />
+            {/* <TextField
               id="mobile_number"
               name="mobile_number"
               value={AccountInfoData?.mobile_number}
-              defaultValue="+91"
-              type="number"
               InputLabelProps={{
                 shrink: false,
               }}
               onChange={handleChangeInput}
-            />
+            /> */}
             <InputLabel className={validation_error}>
               {inputValidation?.mobile_number}
             </InputLabel>
@@ -304,7 +304,9 @@ return (
           <button className='account_info_cancel'>Cancel</button>
           <button className='account_info_save' onClick={() => handleClickValidation()}>Save Changes</button>
         </div>
-      {/* </form> */}
+        <div className='my_profile_back'>
+        <ArrowBackIosNew /><span><p className='back'>Back</p></span>
+      </div>
       </div>
     </div>
   </div>

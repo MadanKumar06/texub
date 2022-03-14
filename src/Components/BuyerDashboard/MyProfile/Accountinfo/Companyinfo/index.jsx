@@ -3,6 +3,7 @@ import './styles.scss'
 import {TextField,InputLabel} from '@mui/material';
 import Autocomplete from "@mui/material/Autocomplete";
 import { useParams } from "react-router-dom";
+import { ArrowBackIosNew } from "@mui/icons-material";
 
 const Index = (classes) => {
   
@@ -228,6 +229,9 @@ if (!CompanyInfoData?.average_revenue) {
             </div>
           </div>
         </div>
+      </div>
+      <div className='my_profile_back'>
+        <ArrowBackIosNew /><span><p className='back'>Back</p></span>
       </div>
     </div>
   )

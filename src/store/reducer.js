@@ -1,13 +1,14 @@
 export const initialState = {
-  cart: [],
+  paginationData: [],
 };
 
 const reducer = (state, action) => {
+  debugger
   switch (action.type) {
-    case "SET_CART":
+    case "SET_PAGINATION":
       return {
         ...state,
-        cart: action,
+        paginationData: action.data,
       };
     default:
       return state;

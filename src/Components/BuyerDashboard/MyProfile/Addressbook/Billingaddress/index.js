@@ -3,6 +3,7 @@ import './styles.scss'
 import TextField from '@mui/material/TextField';
 import Autocomplete from "@mui/material/Autocomplete";
 import { useParams } from "react-router-dom"; 
+import { ArrowBackIosNew } from "@mui/icons-material";
 
 const Index = (classes) => {
   let { type } = useParams();
@@ -154,6 +155,9 @@ const Index = (classes) => {
             </div>
           </div>
         </form>
+      </div>
+      <div className='my_profile_back'>
+        <ArrowBackIosNew /><span><p className='back'>Back</p></span>
       </div>
     </div>
   )

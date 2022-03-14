@@ -27,7 +27,7 @@ const MyAccountPopup = () => {
             <img src={account_circle} alt="" />
           </div>
         </Badge>
-        <li className="User_account_Wishlist_cart">My Account</li>
+        <li className="user_account">My Account</li>
       </Button>
 
       <Menu

@@ -3,6 +3,7 @@ import "./styles.scss";
 import Billingaddress from "./Billingaddress";
 import Shippingadress from "./Shippingaddress";
 import Edit_image from "../../../../Assets/CheckoutPage/Group 913.png";
+import { ArrowBackIosNew } from "@mui/icons-material";
 
 
  const Index = () => {
@@ -99,6 +100,9 @@ import Edit_image from "../../../../Assets/CheckoutPage/Group 913.png";
          </div> 
           
         </div> 
+        <div className='my_profile_back'>
+        <ArrowBackIosNew /><span><p className='back'>Back</p></span>
+      </div>
     </div>
     }
     {isBilling && <Billingaddress   />} 
