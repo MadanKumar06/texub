@@ -212,6 +212,7 @@ if (!NewSubAccountData?.active) {
         <TextField
            
           {...params}
+          fullWidth
           id="allowed_permissions"
           name='allowed_permissions'
           InputLabelProps={{
@@ -265,6 +266,7 @@ if (!NewSubAccountData?.active) {
             renderInput={(params) => (
               <TextField
                 {...params}
+                fullWidth
                 id="active"
                 name="active"
                 placeholder="Yes"
@@ -280,12 +282,14 @@ if (!NewSubAccountData?.active) {
               {inputValidation?.active}
             </InputLabel>
     </div>
-    <div className='user_btn_section'>
-        <button  onClick={() => handleClickValidation()}>Save Sub-Account</button>
-    </div>
+    <div className='my_profile_btns'>
     <div className='my_profile_back'>
         <ArrowBackIosNew /><span><p className='back'>Back</p></span>
       </div>
+    <div className='user_btn_section'>
+        <button  onClick={() => handleClickValidation()}>Save Sub-Account</button>
+    </div>
+    </div>
     </div>
   )
 }
