@@ -50,7 +50,7 @@ const styles = (theme) => ({
   },
   pdp_header_bottom_container: {
     display: "flex",
-    gap: "20px",
+    gap: "15px",
     justifyContent: "center",
     padding: "30px 0px",
     borderBottom: "1px solid #cccccc",

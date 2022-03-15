@@ -550,8 +550,9 @@ const BuyerRegistration = ({ classes }) => {
             className={checkbox_label}
           />
           <ReCAPTCHA
-            className="recaptcha_info"
+            className="recaptcha_info1"
             sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+           
           />
         </div>
 

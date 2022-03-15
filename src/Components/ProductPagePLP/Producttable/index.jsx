@@ -12,6 +12,10 @@ import Apple from "../../../Assets/Productlist/apple_icon_td.png";
 import Lenovo from "../../../Assets/Productlist/lenovo_icon_td.png";
 import Samsung from "../../../Assets/Productlist/samsung_icon.png";
 import shopping_cart from "../../../Assets/CommonImage/shopping-cart.png";
+import ListOutlinedIcon from '@mui/icons-material/ListOutlined';
+import ZoomOutMapOutlinedIcon from '@mui/icons-material/ZoomOutMapOutlined';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+// import ViewListIcon from '@mui/icons-material/ViewList';
 const Productstable = ({ classes }) => {
   let {
     producttable,
@@ -21,6 +25,7 @@ const Productstable = ({ classes }) => {
     producttable_price,
     producttable_add_to_cart,
     producttable_price_block,
+    producttable_heading_icon,
   } = classes;
   const [isPDPpopUP, setIsPDPpopUP] = useState(false);
   const PDPPopUP = (event) => {
@@ -97,7 +102,10 @@ const Productstable = ({ classes }) => {
     },
     {
       name: "CONDITION",
-      label: " ",
+      label:<div className={producttable_heading_icon}>
+      <ListOutlinedIcon/>
+      <ZoomOutMapOutlinedIcon/>
+      </div>,
       options: {
         customBodyRender: (value) => {
           return (
