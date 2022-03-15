@@ -83,10 +83,15 @@ const styles = () => ({
     display: "flex",
     justifyContent: "center",
   },
-  producttable_heading_icon:{
+  producttable_heading_icon: {
+    gap: "1em",
     display: "flex",
-    gap:"5px",
-    justifyContent: "center",
+    justifyContent: "flex-end",
+    "& img": {
+      width: "40px",
+      height: "40px",
+      cursor: "pointer",
+    },
   },
   producttable_add_to_cart: {
     display: "flex",

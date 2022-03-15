@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import { withStyles } from "@mui/styles";
-import { Clear } from "@mui/icons-material";
+
 import styles from "./styles";
 import buyer_img from "../../../../Assets/CommonImage/RegisterPopup/user_select_buyer.png";
 import seller_img from "../../../../Assets/CommonImage/RegisterPopup/user_select_seller.png";
@@ -21,7 +21,6 @@ const SectionRight = ({ classes, handleClose, handleClassChange }) => {
     btn_user,
     radio_group,
     btn_link,
-    clear_btn,
   } = classes;
   const [userDescription, setUserDescription] = useState(true);
   const handleChange = (event) => {
@@ -32,7 +31,6 @@ const SectionRight = ({ classes, handleClose, handleClassChange }) => {
       <FormLabel component="legend" className={select_text}>
         Select User Type
       </FormLabel>
-      <Clear className={clear_btn} onClick={() => handleClose()} />
       <RadioGroup
         row
         aria-label="position"

@@ -19,6 +19,7 @@ const styles = (theme) => ({
     color: "#333C42",
     textAlign: "justify",
     marginBottom: "30px",
+    width: "95%",
     opacity: "1",
     "@media (max-width:1190px)": {
       fontSize: "14px",
