@@ -14,17 +14,44 @@ const styles = (theme) => ({
       gap: "0em",
     },
   },
+  clear_btn: {
+    position: "absolute",
+    top: "13px",
+    right: "13px",
+    color: "#ffffff",
+    borderRadius: "3px",
+    zIndex: "2",
+    cursor: "pointer",
+    width: "1.5em !important",
+    height: "1.5em !important",
+    "@media (max-width:1600px)": {
+      width: "1.3em !important",
+      height: "1.3em !important",
+    },
+    "@media (max-width:1440px)": {
+      width: "1em !important",
+      height: "1em !important",
+    },
+  },
+  clearbuyer: {
+    background: "#002D56",
+  },
+  clearseller: {
+    background: "#DDB363",
+  },
   section_main_buyer: {
     backgroundImage: "url('/Images/user_selection_bg.png')",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
     backgroundSize: "cover",
+    position: "relative",
   },
   section_main_seller: {
     backgroundImage: "url('/Images/buyer_regirtration_bg.png')",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
     backgroundSize: "cover",
+    position: "relative",
   },
   modal: {
     display: "flex",
@@ -65,7 +92,7 @@ const styles = (theme) => ({
       fontSize: "22px",
     },
     "@media (max-width:768px)": {
-      fontSize:"28px"
+      fontSize: "28px",
     },
   },
   welcome_texub_logo: {
