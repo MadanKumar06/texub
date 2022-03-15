@@ -40,6 +40,9 @@ import Privacypolicy from "./Pages/CMS/Company/Privacypolicy";
 import RRpolicy from "./Pages/CMS/Company/RRpolicy";
 import Accountinfo from './Components/BuyerDashboard/MyProfile/Accountinfo'
 
+//popup component
+import KYCformSectionLeft from './Pages/Register/KYCform/SectionLeft'
+
 const App = () => {
   return (
     <div className="App">
@@ -86,8 +89,12 @@ const App = () => {
             <Route path="/thankyou/:type" element={ <> <ThankYouPage /> <Footer /> </> } exact ></Route>
             <Route path="/edit" element={ <> <Accountinfo /> <Footer /> </> } exact />
             
-
           </Routes>
+
+           {/* Popup component using context api */}
+          <KYCformSectionLeft/>
+
+          
         </BrowserRouter>
       </ThemeProvider>
     </div>

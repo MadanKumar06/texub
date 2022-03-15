@@ -11,6 +11,16 @@ const styles = (theme) => ({
     right: "32%",
     fontSize: "6.5rem !important",
   },
+  // main_container: :after  {
+  //   content: " ",
+  //   position: "absolute",
+  //   right: "30px",
+  //   top: "-15px",
+  //   bordertop: "none",
+  //   borderright: "15px solid transparent",
+  //   borderleft: "15px solid transparent",
+  //   borderbottom: "15px solid black";
+  // },
   validation_error: {
     whiteSpace: "unset !important",
     marginLeft: "4px !important",
