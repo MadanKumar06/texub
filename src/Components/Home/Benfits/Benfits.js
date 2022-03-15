@@ -22,7 +22,7 @@ export const Benfits = () => {
       <div className="Benfits_2nd_div">
         <img className="Benfits_img" src={Learn} alt="" />
         <div className="Benfits__floatingcontent">
-          <h2 className="Benfits_Offer">Sava Up to 60%</h2>
+          <h2 className="Benfits_Offer">Save Up to 60%</h2>
           <h5 className="Benfits_Offer_tag">On all gaming products</h5>
         </div>
       </div>

@@ -9,6 +9,9 @@ import fb from '../../Assets/Homepage Assets/facebook.png'
 import IN from '../../Assets/Homepage Assets/linkedin.png'
 import yt from '../../Assets/Homepage Assets/youtube.png'
 import wt from '../../Assets/Homepage Assets/whatsapp.png'
+import contact1 from '../../Assets/Contactus/76825.png'
+import location from '../../Assets/Contactus/placeholder (2).png'
+
 
 
 
@@ -32,11 +35,36 @@ export const Contactus = () => {
         },
     ]
     const social = [
-        { id:1, facebook:fb, linkedin:IN, youtube:yt, whatsapp:wt,}
-       
+        { id: 1, facebook: fb, linkedin: IN, youtube: yt, whatsapp: wt, }
+
     ]
     const working = [
-        {id:1, heading: "Call Us", time:"Mon - Fri, 9 Am To 5 Pm GST" }
+        { id: 1, heading: "Call Us", time: "Mon - Fri, 9 Am To 5 Pm GST" }
+    ]
+    const location1 = [
+        {
+            id: 1, image: location, address: "16 Timber Ridge Road, Sacramento, California United States", contact: "+1 917-334-7841",
+        }
+    ]
+    const location2 = [
+        {
+            id: 1, image: location, address: "#427, 3rd cross, 18th main, Electronic City Bangalore, Karnataka India", contact: "+91 917-334-7841",
+        }
+    ]
+    const location3 = [
+        {
+            id: 1, image: location, address: "84 Redhill Lane, West Venue, Singapore", contact: "65-91072453",
+        }
+    ]
+    const location4 = [
+        {
+            id: 1, image: location, address: "Willibrorduslaan 31, Waalre, Noord-Brabant Netherlands", contact: "06-77400897",
+        }
+    ]
+    const location5 = [
+        {
+            id: 1, image: location, address: "Blk 16 Rabiatu Thompson Street, Lagos Nigeria", contact: "234-8082705564",
+        }
     ]
     return (
         <div className='contactus_main'>
@@ -47,22 +75,22 @@ export const Contactus = () => {
             <div className='contactus_form_section'>
                 <div className='contactus_details_section'>
                     <div>
-                    <span className='contactus_tag'><p>Want To Hear From Us ?</p></span>
-                    <span className='contactus_heading' ><h3>Contact Us</h3></span>
+                        <span className='contactus_tag'><p>Want To Hear From Us ?</p></span>
+                        <span className='contactus_heading' ><h3>Contact Us</h3></span>
                     </div>
                     <div className='contactus_details'>
                         {office.map((item) =>
                             <li key={item.id} className="contactus_office_list">
                                 <div className='contactus_office'>
-                                   <img src={item.icon} alt="" className='' />
+                                    <img src={item.icon} alt="" className='' />
                                 </div>
                                 <div className='contactus_office_address'>
-                                   <span className='contactus_office_heading'> {item.heading}</span>
-                                   <span className='contactus_office_number'>{item.number}</span> 
-                                   <span className='contactus_office_number'>{item.landmark}</span> 
-                                   
-                                </div>               
-                            </li>    
+                                    <span className='contactus_office_heading'> {item.heading}</span>
+                                    <span className='contactus_office_number'>{item.number}</span>
+                                    <span className='contactus_office_number'>{item.landmark}</span>
+
+                                </div>
+                            </li>
                         )
                         }
                     </div>
@@ -70,13 +98,13 @@ export const Contactus = () => {
                         {mail.map((item) =>
                             <li key={item.id} className="contactus_office_list">
                                 <div className='contactus_office'>
-                                   <img src={item.icon} alt="" className='' />
+                                    <img src={item.icon} alt="" className='' />
                                 </div>
                                 <div className='contactus_office_address'>
-                                   <span className='contactus_office_heading'> {item.heading}</span>
-                                   <span className='contactus_office_number'>{item.mail}</span> 
-                                </div>               
-                            </li>    
+                                    <span className='contactus_office_heading'> {item.heading}</span>
+                                    <span className='contactus_office_number'>{item.mail}</span>
+                                </div>
+                            </li>
                         )
                         }
                     </div>
@@ -84,14 +112,14 @@ export const Contactus = () => {
                         {telephone.map((item) =>
                             <li key={item.id} className="contactus_office_list">
                                 <div className='contactus_office'>
-                                   <img src={item.icon} alt="" className='' />
+                                    <img src={item.icon} alt="" className='' />
                                 </div>
                                 <div className='contactus_office_address'>
-                                   <span className='contactus_office_heading'> {item.heading}</span>
-                                   <span className='contactus_office_number'>{item.number}</span> 
-                                   <span className='contactus_office_number'>{item.number2}</span> 
-                                </div>               
-                            </li>    
+                                    <span className='contactus_office_heading'> {item.heading}</span>
+                                    <span className='contactus_office_number'>{item.number}</span>
+                                    <span className='contactus_office_number'>{item.number2}</span>
+                                </div>
+                            </li>
                         )
                         }
                     </div>
@@ -99,13 +127,13 @@ export const Contactus = () => {
                         {social.map((item) =>
                             <li key={item.id} className="contactus_office_list">
                                 <div className='contactus_social_media'>
-                                  <span><img src={item.facebook} alt="" className='' /></span> 
-                                  <span><img src={item.youtube} alt="" className='' /></span> 
-                                  <span><img src={item.linkedin} alt="" className='' /></span> 
-                                  <span><img src={item.whatsapp} alt="" className='' /></span> 
+                                    <span><img src={item.facebook} alt="" className='' /></span>
+                                    <span><img src={item.youtube} alt="" className='' /></span>
+                                    <span><img src={item.linkedin} alt="" className='' /></span>
+                                    <span><img src={item.whatsapp} alt="" className='' /></span>
                                 </div>
-                                               
-                            </li>    
+
+                            </li>
                         )
                         }
                     </div>
@@ -113,18 +141,18 @@ export const Contactus = () => {
                         {working.map((item) =>
                             <li key={item.id} className="contactus_office_list">
                                 <div className='contactus_office_address'>
-                                <span className='contactus_office_heading'>{item.heading}</span>
-                                <span className='contactus_office_number'> {item.time}</span>
+                                    <span className='contactus_office_heading'>{item.heading}</span>
+                                    <span className='contactus_office_number'> {item.time}</span>
                                 </div>
-                                               
-                            </li>    
+
+                            </li>
                         )
                         }
                     </div>
 
                 </div>
                 <div className='contactus_form'>
-                    <TextField 
+                    <TextField
                         className='inputfield'
                         label="Your Name"
                         placeholder="Your Name"
@@ -134,10 +162,10 @@ export const Contactus = () => {
                             required: true,
                             classes: {
                                 asterisk: "asterisk",
-                              },
+                            },
                         }}
                         variant="outlined"
-                        
+
                     />
                     <TextField
                         className='inputfield'
@@ -149,7 +177,7 @@ export const Contactus = () => {
                             required: true,
                             classes: {
                                 asterisk: "asterisk",
-                              },
+                            },
                         }}
                         variant="outlined"
                     />
@@ -173,12 +201,12 @@ export const Contactus = () => {
                             required: true,
                             classes: {
                                 asterisk: "asterisk",
-                              },
-                               
+                            },
+
                         }}
                         variant="outlined"
                     />
-                     {/* <TextareaAutosize 
+                    {/* <TextareaAutosize 
                        label="Your Message"
                        placeholder="Your Message"
                        InputLabelProps={{
@@ -196,7 +224,75 @@ export const Contactus = () => {
                 </div>
             </div>
             <div className='contactus_map_section'>
-                <img src={contact} alt='/' className='contactus_map_img' />
+                {/* <img src={contact1} alt='/' className='contactus_map_img' /> */}
+                <p className='contactus_map_heading'>Our Other Locations</p>
+                <div className="contactus_locations">
+                    
+                    <div className='contactus_location1'>
+                        {location1.map((item) =>
+                            <li key={item.id} className="contactus_location_list">
+                                <div className='contactus_locations_1'>
+                                    <img src={item.image} className="location_image"></img>
+                                    <span> {item.address}</span>
+                                    <span>{item.contact}</span>
+                                </div>
+                            </li>
+                        )
+                        }
+                    </div>
+                    <div className='contactus_location1'>
+                        {location2.map((item) =>
+                            <li key={item.id} className="contactus_location_list">
+                                <div className='contactus_locations_1'>
+                                    <img src={item.image} className="location_image"></img>
+                                    <span> {item.address}</span>
+                                    <span>{item.contact}</span>
+                                </div>
+                            </li>
+                        )
+                        }
+                    </div>
+                    <div className='contactus_location1'>
+                        {location3.map((item) =>
+                            <li key={item.id} className="contactus_location_list">
+                                <div className='contactus_locations_1'>
+                                    <img src={item.image} className="location_image"></img>
+                                    <span> {item.address}</span>
+                                    <span>{item.contact}</span>
+                                </div>
+                            </li>
+                        )
+                        }
+                    </div>
+                    
+                    
+                    <div className='contactus_location1'>
+                        {location4.map((item) =>
+                            <li key={item.id} className="contactus_location_list">
+                                <div className='contactus_locations_1'>
+                                    <img src={item.image} className="location_image"></img>
+                                    <span> {item.address}</span>
+                                    <span>{item.contact}</span>
+                                </div>
+                            </li>
+                        )
+                        }
+                    </div>
+                    <div className='contactus_location1'>
+                        {location5.map((item) =>
+                            <li key={item.id} className="contactus_location_list">
+                                <div className='contactus_locations_1'>
+                                    <img src={item.image} className="location_image"></img>
+                                    <span> {item.address}</span>
+                                    <span>{item.contact}</span>
+                                </div>
+                            </li>
+                        )
+                        }
+                    </div>
+                
+
+                </div>
             </div>
         </div>
     )

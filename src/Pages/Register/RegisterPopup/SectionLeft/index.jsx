@@ -11,6 +11,7 @@ import Register_section_Logo_four from "../../../../Assets/CommonImage/RegisterP
 import Register_section_Logo_five from "../../../../Assets/CommonImage/RegisterPopup/product_upload.png";
 import Register_section_Logo_arrow from "../../../../Assets/CommonImage/RegisterPopup/right_arrow_white.png";
 import SectionRight from "../SectionRight";
+import { Clear } from "@mui/icons-material";
 const TransitionsModal = ({ classes, openPopUp }) => {
   const [open, setOpen] = useState(true);
   const [clicked, setClicked] = useState("buyer");
@@ -29,6 +30,9 @@ const TransitionsModal = ({ classes, openPopUp }) => {
     thumb_image,
     arrow_image,
     point_info_text,
+    clear_btn,
+    clearbuyer,
+    clearseller,
   } = classes;
   const Images = [
     {
@@ -83,6 +87,13 @@ const TransitionsModal = ({ classes, openPopUp }) => {
           `${clicked === "buyer" ? section_main_buyer : section_main_seller}`
         )}
       >
+        <Clear
+          className={clsx(
+            clear_btn,
+            `${clicked === "buyer" ? clearbuyer : clearseller}`
+          )}
+          onClick={() => handleClose()}
+        />
         <div className={section_left}>
           <div className={welcome_column}>
             <div className={welcome_text}>Welcome to</div>

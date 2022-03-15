@@ -200,16 +200,9 @@ const PDPTable = ({ classes, tableData }) => {
                     </div>
                   </li>
                 ))}
-            </RadioGroup>
-            <div className={seller_price_title}>
-              <span>From The Nearest Hub</span>
-            </div>
-            <RadioGroup
-              aria-labelledby="demo-radio-buttons-group-label"
-              defaultValue={""}
-              name="radio-buttons-group"
-              className={radio_btn_group}
-            >
+              <div className={seller_price_title}>
+                <span>From The Nearest Hub</span>
+              </div>
               {is_table_two?.length > 0 &&
                 is_table_two?.map((item, index) => (
                   <li

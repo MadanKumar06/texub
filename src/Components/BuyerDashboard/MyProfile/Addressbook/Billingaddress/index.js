@@ -2,7 +2,7 @@ import React from 'react'
 import './styles.scss'
 import TextField from '@mui/material/TextField';
 import Autocomplete from "@mui/material/Autocomplete";
-import { useParams } from "react-router-dom"; 
+import { useParams } from "react-router-dom";
 import { ArrowBackIosNew } from "@mui/icons-material";
 
 const Index = (classes) => {
@@ -13,7 +13,7 @@ const Index = (classes) => {
   const options = ["Option 1", "Option 2"];
   const [value, setValue] = React.useState();
   const [inputValue, setInputValue] = React.useState("");
-  
+
   return (
     <div className='Billingaddress_main'>
       <span className='Billingaddress_Account_heading'> <p >EDIT DEFAULT BILLING ADDRESS</p></span>
@@ -21,17 +21,17 @@ const Index = (classes) => {
         <form>
           <div className='inputfield_section'>
             <div className='inputfield'>
-            <p>Organization Name</p>
+              <p>Organization Name</p>
               <TextField
-              fullWidth
+                fullWidth
                 id="outlined-error"
                 defaultValue="Organization Name"
               />
             </div>
             <div className='inputfield'>
-            <p>Address Line 1</p>
+              <p>Address Line 1</p>
               <TextField
-              fullWidth
+                fullWidth
                 id="outlined-error"
                 defaultValue="Flat/Building/Block"
               />
@@ -39,18 +39,18 @@ const Index = (classes) => {
           </div>
           <div className='inputfield_section'>
             <div className='inputfield'>
-            <p>Address Line 2</p>
+              <p>Address Line 2</p>
               <TextField
-              fullWidth
+                fullWidth
                 id="outlined-error"
                 defaultValue="Sub-urb/Town"
               />
             </div>
             <div className='inputfield'>
-              
+
               <p>Pincode</p>
               <TextField
-              fullWidth
+                fullWidth
                 id="outlined-error"
                 defaultValue="Pincode"
               />
@@ -58,96 +58,96 @@ const Index = (classes) => {
           </div>
           <div className='inputfield_section'>
             <div className='inputfield'>
-            
-            <p>City</p>
-            <Autocomplete
-            value={value}
-            onChange={(event, newValue) => {
-              setValue(newValue);
-            }}
-            inputValue={inputValue}
-            onInputChange={(event, newInputValue) => {
-              setInputValue(newInputValue);
-            }}
-            id="controllable-states-demo"
-            options={options}
-            
-            className={auto_complete_input}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                
-                placeholder="City"
-                InputLabelProps={{
-                  shrink: true,
-                  required: true,
-                 
+
+              <p>City</p>
+              <Autocomplete
+                value={value}
+                onChange={(event, newValue) => {
+                  setValue(newValue);
                 }}
+                inputValue={inputValue}
+                onInputChange={(event, newInputValue) => {
+                  setInputValue(newInputValue);
+                }}
+                id="controllable-states-demo"
+                options={options}
+
+                className={auto_complete_input}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+
+                    placeholder="City"
+                    InputLabelProps={{
+                      shrink: true,
+                      required: true,
+
+                    }}
+                  />
+                )}
               />
-            )}
-          />
             </div>
             <div className='inputfield'>
-            
-            <p>State</p>
-            <Autocomplete
-            value={value}
-            onChange={(event, newValue) => {
-              setValue(newValue);
-            }}
-            inputValue={inputValue}
-            onInputChange={(event, newInputValue) => {
-              setInputValue(newInputValue);
-            }}
-            id="controllable-states-demo"
-            options={options}
-        
-            className={auto_complete_input}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                
-                placeholder="state"
-                InputLabelProps={{
-                  shrink: true,
-                  required: true,
-                 
+
+              <p>State</p>
+              <Autocomplete
+                value={value}
+                onChange={(event, newValue) => {
+                  setValue(newValue);
                 }}
+                inputValue={inputValue}
+                onInputChange={(event, newInputValue) => {
+                  setInputValue(newInputValue);
+                }}
+                id="controllable-states-demo"
+                options={options}
+
+                className={auto_complete_input}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+
+                    placeholder="state"
+                    InputLabelProps={{
+                      shrink: true,
+                      required: true,
+
+                    }}
+                  />
+                )}
               />
-            )}
-          />
             </div>
           </div>
           <div className='inputfield_btn'>
             <div className='inputfield'>
-          
-            <p>Country</p>
-            <Autocomplete
-            value={value}
-            onChange={(event, newValue) => {
-              setValue(newValue);
-            }}
-            inputValue={inputValue}
-            onInputChange={(event, newInputValue) => {
-              setInputValue(newInputValue);
-            }}
-            id="controllable-states-demo"
-            options={options}
-            
-            className={auto_complete_input}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                
-                placeholder="Country"
-                InputLabelProps={{
-                  shrink: true,
-                  required: true,
-                 
+
+              <p>Country</p>
+              <Autocomplete
+                value={value}
+                onChange={(event, newValue) => {
+                  setValue(newValue);
                 }}
+                inputValue={inputValue}
+                onInputChange={(event, newInputValue) => {
+                  setInputValue(newInputValue);
+                }}
+                id="controllable-states-demo"
+                options={options}
+
+                className={auto_complete_input}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    fullWidth
+                    placeholder="Country"
+                    InputLabelProps={{
+                      shrink: true,
+                      required: true,
+
+                    }}
+                  />
+                )}
               />
-            )}
-          />
             </div>
             <div className='Billingaddress_btn_section'>
               <button className='Billingaddress_info_cancel'>Cancel</button>

@@ -43,10 +43,13 @@ const styles = (theme) => ({
       width: "100% !important",
     },
     "& iframe": {
-      width: "100%",
+      width: "100% !important",
     },
     "& #rc-anchor-container": {
-      width: "100%",
+      width:"100% !important",
+    },
+    "& #rc-anchor-normal":{
+         with:"100% !important",
     },
   },
   button_box: {
@@ -156,8 +159,8 @@ const styles = (theme) => ({
       fontSize: "16px !important",
     },
     "@media (max-width:767px)": {
-      padding: "3px !important",
-      fontSize: "14px !important",
+      padding: "10px !important",
+      fontSize: "16px !important",
     },
   },
   asterisk: {

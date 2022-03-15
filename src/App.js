@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
+import { useStateValue } from "./store/state";
 import "./App.css";
 
 //Header section
@@ -40,7 +41,11 @@ import Privacypolicy from "./Pages/CMS/Company/Privacypolicy";
 import RRpolicy from "./Pages/CMS/Company/RRpolicy";
 import Accountinfo from './Components/BuyerDashboard/MyProfile/Accountinfo'
 
+//popup component
+import KYCformSectionLeft from './Pages/Register/KYCform/SectionLeft'
+
 const App = () => {
+  const [{kycOpenClose}, dispatch] = useStateValue();
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
@@ -86,8 +91,12 @@ const App = () => {
             <Route path="/thankyou/:type" element={ <> <ThankYouPage /> <Footer /> </> } exact ></Route>
             <Route path="/edit" element={ <> <Accountinfo /> <Footer /> </> } exact />
             
-
           </Routes>
+
+           {/* Popup component using context api */}
+          {kycOpenClose && <KYCformSectionLeft/>} 
+
+      
         </BrowserRouter>
       </ThemeProvider>
     </div>

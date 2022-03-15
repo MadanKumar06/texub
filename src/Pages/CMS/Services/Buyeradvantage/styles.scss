@@ -2,7 +2,7 @@
        display: flex;
        justify-content: center;
        padding: 50px 0 50px 0;
-       margin: 10px 40px 10px;
+       margin: 10px 3%;
        background-color: #FFFFFF;
     .Buyeradvantage_img_section{
         position: relative;
@@ -110,7 +110,16 @@
      }
     
 }
-
+@media (max-width: 1199px){
+ .buyeradvantage_main .Buyeradvantage_tailor_section {
+    left: -19%;
+    top: -8%;
+  }
+  .buyeradvantage_main .Buyeradvantage_confidence_section {
+    right: -18%;
+    top: -9%;
+  }
+}
 @media (max-width:1024px) {
     .buyeradvantage_main{
         .Buyeradvantage_img_section{
@@ -147,7 +156,16 @@
         }
     }   
 }
-
+@media (max-width: 1024px){
+.buyeradvantage_main .Buyeradvantage_img_section .Buyeradvantage_tailor_section {
+    left: -13%;
+    top: -4%;
+    }
+    .buyeradvantage_main .Buyeradvantage_img_section .Buyeradvantage_confidence_section {
+        right: -15%;
+        top: -7%;
+    }
+}
 @media (max-width:768px) {
     .buyeradvantage_main{
         .Buyeradvantage_img_section{

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./styles";
 
 import { withStyles } from "@mui/styles";
-import MUITable from '../../MUITable'
+import MUITable from "../../MUITable";
 import PDPpopUp from "../../../Pages/PDPpopUp";
 import { Link } from "react-router-dom";
 
@@ -11,7 +11,12 @@ import Acer from "../../../Assets/Productlist/acer_icon_td.png";
 import Apple from "../../../Assets/Productlist/apple_icon_td.png";
 import Lenovo from "../../../Assets/Productlist/lenovo_icon_td.png";
 import Samsung from "../../../Assets/Productlist/samsung_icon.png";
-import shopping_cart from "../../../Assets/CommonImage/shopping-cart.png";
+
+//Basic Need
+import shortExpand_active_icon from "../../../Assets/BasicNeeded/PLPIcons/Group 1175.png";
+import shortExpand_inactive_icon from "../../../Assets/BasicNeeded/PLPIcons/Group 1177.png";
+import longExpand_active_icon from "../../../Assets/BasicNeeded/PLPIcons/Group 1178.png";
+import longExpand_inactive_icon from "../../../Assets/BasicNeeded/PLPIcons/Group 1176.png";
 const Productstable = ({ classes }) => {
   let {
     producttable,
@@ -21,33 +26,59 @@ const Productstable = ({ classes }) => {
     producttable_price,
     producttable_add_to_cart,
     producttable_price_block,
+    producttable_heading_icon,
   } = classes;
 
   function truncate(str, n) {
     return str?.length > n ? str.substr(0, n - 1) + "..." : str;
   }
-  const [textsize, settextsize] = useState(30)
+  // const [textsize, settextsize] = useState(30)
 
-  useEffect(() => {
-    if (window.innerWidth <= 1440) {
-      settextsize(22)
-    }
-    if (window.innerWidth <= 1366) {
-      settextsize(12)
-    }
-    if (window.innerWidth > 1440) {
-      settextsize(30)
-    }
-  }, [])
+  // useEffect(() => {
+  //   if (window.innerWidth <= 1440) {
+  //     settextsize(22)
+  //   }
+  //   if (window.innerWidth <= 1366) {
+  //     settextsize(12)
+  //   }
+  //   if (window.innerWidth > 1440) {
+  //     settextsize(30)
+  //   }
+  // }, [])
   
   const [isPDPpopUP, setIsPDPpopUP] = useState(false);
   const PDPPopUP = (event) => {
     setIsPDPpopUP(event);
   };
   const onRowHandleClick = (rowData, rowState, rowMeta) => {
-    if (rowState?.colIndex !== 9) {
-      setIsPDPpopUP(true);
-    }
+    setIsPDPpopUP(true);
+  };
+
+  function truncate(str, n) {
+    return str?.length > n ? str.substr(0, n - 1) + "..." : str;
+  }
+  const [textsize, settextsize] = useState({
+    size: 30,
+    long_expand_view: true,
+    short_expand_view: false,
+    short_image: shortExpand_active_icon,
+    long_image: longExpand_inactive_icon,
+  });
+  const descriptionChangeView = (event) => {
+    settextsize((prevState) => ({
+      ...prevState,
+      size: event?.value,
+      long_expand_view: event?.long,
+      short_expand_view: event?.short,
+      short_image:
+        event?.short === true
+          ? shortExpand_active_icon
+          : shortExpand_inactive_icon,
+      long_image:
+        event?.long === true
+          ? longExpand_active_icon
+          : longExpand_inactive_icon,
+    }));
   };
   const columns = [
     {
@@ -77,7 +108,11 @@ const Productstable = ({ classes }) => {
       label: "DESCRIPTION",
       options: {
         customBodyRender: (value) => {
-          return <div className={producttable_description}>{truncate(value, textsize)}</div>;
+          return (
+            <div className={producttable_description}>
+              {truncate(value, textsize?.size)}
+            </div>
+          );
         },
       },
     },
@@ -115,16 +150,27 @@ const Productstable = ({ classes }) => {
     },
     {
       name: "CONDITION",
-      label: " ",
+      label: (
+        <div className={producttable_heading_icon}>
+          <img
+            src={textsize?.short_image}
+            alt="short description"
+            onClick={() =>
+              descriptionChangeView({ short: true, long: false, value: 30 })
+            }
+          />
+          <img
+            src={textsize?.long_image}
+            alt="long description"
+            onClick={() =>
+              descriptionChangeView({ short: false, long: true, value: 10000 })
+            }
+          />
+        </div>
+      ),
       options: {
         customBodyRender: (value) => {
-          return (
-            <Link to="/mycart">
-              <p className={producttable_add_to_cart}>
-                View Product
-              </p>
-            </Link>
-          );
+          return <p className={producttable_add_to_cart}>View Product</p>;
         },
       },
     },
@@ -270,7 +316,19 @@ const Productstable = ({ classes }) => {
 
   return (
     <div className={producttable}>
-      <MUITable columns={columns} table={Productstablelist} options={options} className={mui_datatable_main} />
+      {/* <MUIDataTable
+        title={""}
+        data={Productstablelist}
+        columns={columns}
+        options={options}
+        className={mui_datatable_main}
+      /> */}
+      <MUITable
+        columns={columns}
+        table={Productstablelist}
+        options={options}
+        className={mui_datatable_main}
+      />
       {isPDPpopUP && <PDPpopUp PDPPopUP={PDPPopUP} />}
     </div>
   );

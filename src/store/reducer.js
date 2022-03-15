@@ -1,14 +1,13 @@
 export const initialState = {
-  paginationData: [],
+  kycOpenClose: false,
 };
 
 const reducer = (state, action) => {
-  debugger
   switch (action.type) {
-    case "SET_PAGINATION":
+    case "SET_KYC_OPEN_CLOSE":
       return {
         ...state,
-        paginationData: action.data,
+        kycOpenClose: action.value,
       };
     default:
       return state;

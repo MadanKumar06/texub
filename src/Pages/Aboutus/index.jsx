@@ -19,14 +19,14 @@ import preserverence from "../../Assets/Aboutus/preserverence.png";
 import resilence from "../../Assets/Aboutus/resilence.png";
 import action from "../../Assets/Aboutus/action.png";
 
-import wwbg from "../../Assets/Aboutus/wwbg.png";
+import wwbg from "../../Assets/Aboutus/Worldwide_Office.png";
 import usa from "../../Assets/Aboutus/usa.png";
 import nigeria from "../../Assets/Aboutus/nigeria.png";
 import nether from "../../Assets/Aboutus/nether.png";
 import uae from "../../Assets/Aboutus/uae.png";
 import india from "../../Assets/Aboutus/india.png";
 import sg from "../../Assets/Aboutus/sg.png";
-import texhub from "../../Assets/Aboutus/texhub.png";
+// import texhub from "../../Assets/Aboutus/texhub.png";
 
 const Aboutus = () => {
   const country = [
@@ -155,12 +155,12 @@ const Aboutus = () => {
             ))}
           </div>
         </div>
-        <img src={texhub} alt="" className="tag1" />
+        {/* <img src={texhub} alt="" className="tag1" />
         <img src={texhub} alt="" className="tag2" />
         <img src={texhub} alt="" className="tag3" />
         <img src={texhub} alt="" className="tag4" />
         <img src={texhub} alt="" className="tag5" />
-        <img src={texhub} alt="" className="tag6" />
+        <img src={texhub} alt="" className="tag6" /> */}
       </div>
     </div>
   );

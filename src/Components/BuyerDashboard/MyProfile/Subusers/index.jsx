@@ -78,11 +78,13 @@ import { ArrowBackIosNew } from "@mui/icons-material";
             </tbody>
           </table>
       </div>
+      <div className='my_profile_btns'>
+      <div className='my_profile_back'>
+        <ArrowBackIosNew /><span><p className='back'>Back</p></span>
+      </div>
       <div className='user_sub-account'>
         <button onClick={Newsubacc}>Add New Sub-Account</button>
       </div>
-      <div className='my_profile_back'>
-        <ArrowBackIosNew /><span><p className='back'>Back</p></span>
       </div>
     </div>
     }

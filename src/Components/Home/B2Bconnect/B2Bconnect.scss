@@ -9,41 +9,48 @@
   background-repeat: no-repeat;
   background-size: cover;
   .Heading {
-    justify-content: center;
-    font-size: 25px;
+    font-size: 50px;
     padding-top: 17px;
     font-family: revert;
     opacity: 1;
-    display: flex;
+    text-align: center;
+    margin: 0;
+    padding: 40px;
+    color: #333333;
   }
   .Heading_tag {
     text-align: center;
-    font-size: 17px;
-    font-family: "Source Sans Pro";
+    font-size: 20px;
     opacity: 0.8;
-    font-weight: bold;
+    font-weight: 600;
     color: #333333;
+    margin-top: 0;
+    margin-bottom: 30px;
   }
   .B2B_Images_Section {
     display: flex;
-    flex-direction: row;
-    height: auto;
-    justify-content: space-evenly;
+    justify-content: center;
+    max-width: 90%;
+    gap: 5em;
+    margin: 0 auto;
     .B2B_Images {
       display: flex;
       flex-direction: column;
-      /* justify-content: center; */
+      width: calc(100% / 3);
       .Card {
-        width: 88%;
+        width: 100%;
       }
       .Card_Paragraph {
-        /* text-align: center; */
-        font-size: 17px;
-        font-family: "Source Sans Pro";
+        font-size: 30px;
         opacity: 0.9;
-        font-weight: bold;
-        color: #333333;
+        color: #333c42;
         padding-left: 10px;
+        margin: 0;
+        margin-top: 10px !important;
+        width: 78%;
+        text-align: center;
+        text-transform: capitalize;
+        margin: 0 auto;
       }
     }
   }
@@ -95,8 +102,7 @@
 }
 
 @media (max-width: 480px) {
-
- .WhyTexub .B2B_Images_Section {
+  .WhyTexub .B2B_Images_Section {
     flex-direction: column;
   }
 

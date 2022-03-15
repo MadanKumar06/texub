@@ -6,6 +6,9 @@
 }
 
 .aboutus {
+  .aboutus__topbanner {
+    margin: 0 3%;
+  }
   .aboutus__topbanner,
   .aboutus__mission {
     max-width: 1920px;
@@ -303,10 +306,11 @@
 
       .aboutus__ww__country {
         position: absolute;
-        bottom: 0;
+        bottom: 8px;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+        gap: 2px;
 
         .list {
           position: relative;
@@ -1090,7 +1094,6 @@
     .aboutus__worldwide__content
     .aboutus__ww__country {
     gap: 3px;
-    left: 40px;
   }
   .aboutus
     .aboutus__worldwide
@@ -1197,12 +1200,9 @@
     right: 4.5em;
     width: 0.85em;
   }
-  .aboutus
-    .aboutus__worldwide
-    .aboutus__worldwide__content
-    .aboutus__ww__country {
-    left: 30px;
-  }
+  // .aboutus .aboutus__worldwide .aboutus__worldwide__content .aboutus__ww__country{
+  //   left: 30px;
+  // }
 }
 
 @media (max-width: 540px) {
@@ -1524,7 +1524,7 @@
 }
 @media (max-width: 425px) {
   .aboutus .aboutus__worldwide h1 {
-    font-size: 36px;
+    font-size: 33px;
   }
   .aboutus .aboutus__worldwide .tag1 {
     left: 6.9em;

@@ -13,9 +13,11 @@ import { ArrowDropUp } from "@mui/icons-material";
 import Autocomplete from "@mui/material/Autocomplete";
 import { withStyles } from "@mui/styles";
 import { Link, useParams } from "react-router-dom";
+import { useStateValue } from "../../../store/state";
 import styles from "./styles";
 const BuyerRegistration = ({ classes }) => {
   let { type } = useParams();
+  const [{}, dispatch] = useStateValue();
   let {
     main_container,
     input_fields,
@@ -319,6 +321,10 @@ const BuyerRegistration = ({ classes }) => {
     }
     if (!errorHandle) {
       // Apicall fuction
+      dispatch({
+        type: "SET_KYC_OPEN_CLOSE",
+        value: true,
+      });
     }
   };
   return (
@@ -570,40 +576,6 @@ const BuyerRegistration = ({ classes }) => {
           <div className={text_field_container}>
             <Autocomplete
               value={value}
-              name="country"
-              onChange={(event, newValue) => {
-                setValue(newValue);
-              }}
-              className={auto_complete_input}
-              inputValue={inputValue}
-              onInputChange={(event, newInputValue) => {
-                setInputValue(newInputValue);
-              }}
-              id="controllable-states-demo"
-              options={options}
-              fullWidth
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  label="Country"
-                  placeholder="Country"
-                  InputLabelProps={{
-                    shrink: true,
-                    required: true,
-                    classes: {
-                      asterisk: asterisk,
-                    },
-                  }}
-                />
-              )}
-            />
-            <InputLabel className={validation_error}>
-              {inputValidation?.country}
-            </InputLabel>
-          </div>
-          <div className={text_field_container}>
-            <Autocomplete
-              value={value}
               name="region"
               onChange={(event, newValue) => {
                 setValue(newValue);
@@ -633,6 +605,40 @@ const BuyerRegistration = ({ classes }) => {
             />
             <InputLabel className={validation_error}>
               {inputValidation?.region}
+            </InputLabel>
+          </div>
+          <div className={text_field_container}>
+            <Autocomplete
+              value={value}
+              name="country"
+              onChange={(event, newValue) => {
+                setValue(newValue);
+              }}
+              className={auto_complete_input}
+              inputValue={inputValue}
+              onInputChange={(event, newInputValue) => {
+                setInputValue(newInputValue);
+              }}
+              id="controllable-states-demo"
+              options={options}
+              fullWidth
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  label="Country"
+                  placeholder="Country"
+                  InputLabelProps={{
+                    shrink: true,
+                    required: true,
+                    classes: {
+                      asterisk: asterisk,
+                    },
+                  }}
+                />
+              )}
+            />
+            <InputLabel className={validation_error}>
+              {inputValidation?.country}
             </InputLabel>
           </div>
         </div>

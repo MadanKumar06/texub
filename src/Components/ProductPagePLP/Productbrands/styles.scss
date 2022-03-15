@@ -57,7 +57,8 @@
         letter-spacing: 0px;
         color: #5c6369;
         width: 98px;
-        font-size: 16px;
+        background: #FFFFFF;
+        font-size: 18px;
         -webkit-transform: none !important;
         -moz-transform: none !important;
         -ms-transform: none !important;
@@ -65,6 +66,9 @@
         transform: none !important;
       }
       .Productbrands_btn_content_list:hover {
+        background: linear-gradient(#ffd788, #cc9b3e);
+      }
+      .Productbrands_btn_content_list:focus {
         background: linear-gradient(#ffd788, #cc9b3e);
       }
       .Productbrands_btn_Laptops_Dropdown {

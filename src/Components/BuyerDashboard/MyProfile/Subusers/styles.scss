@@ -3,7 +3,6 @@
         .users_table{
            display: flex;
            flex-direction: column;
-        //    justify-content: space-around;
            gap: 10px;
            tr{
                display: flex;
@@ -61,7 +60,6 @@
     .user_sub-account{
         display: flex;
         justify-content: flex-end;
-        padding-top: 50px;
         button{
             box-shadow: 0px 3px 6px #00000029;
            border-radius: 25px;
@@ -77,9 +75,27 @@
           cursor: pointer;
         }
     }
+   .my_profile_btns{
+       display: flex;
+       justify-content: space-between;
+       padding-top: 30px;
+    }
 }
 
 @media only screen and (max-width:580px){
+    .users_main .my_profile_btns {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .My_profile_main .my_profile_back{
+        justify-content: center;
+        order: 2;
+    }
+    
+    .users_main .user_sub-account{
+        justify-content: center;
+    }
     .users_main .users_table_section .users_table{
         flex-direction: row;
     }
@@ -96,7 +112,7 @@
         text-align: left;
     }
     .users_main .users_table_section .users_table tr .user_auctions{
-        flex-direction: row;
+        flex-direction: column;
     }
 }
 

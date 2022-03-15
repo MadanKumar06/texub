@@ -20,7 +20,6 @@
         cursor: pointer;
         margin: 0px;
         padding-left: 10px;
-        font-family: "Source Sans Pro";
         opacity: 1;
         font-size: 22px;
         font-weight: bold;
@@ -30,14 +29,14 @@
           letter-spacing: 1px;
           font-size: 22px;
           opacity: 0.9;
+          display: flex;
+          align-items: center;
+          gap: 10px;
           .button_Icon {
             margin-right: 5px;
-            padding: 5px;
+            width: 1.5em !important;
+            height: 1.5em !important;
           }
-        }
-        .button_Icon2,
-        .Search_Icon2 {
-          display: none;
         }
       }
       .Departments_Dropdown_list {
@@ -66,47 +65,30 @@
         }
       }
     }
-    .Search_bar {
+    .search_bar {
       display: flex;
       flex-direction: column;
       width: 100%;
       gap: 1em;
-      // form {
-      //   display: flex;
-      //   flex-wrap: wrap;
-      //   width: 100%;
-      //   position: relative;
-      //  }
-      .Body__search_bar {
-        border: 1px solid #d6d8d9;
-        flex-wrap: wrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        flex-wrap: nowrap;
-        padding: 0.35em 0.75em;
-        text-decoration: none;
+      .body__search_bar {
         line-height: normal;
         max-height: 5em;
-        display: flex;
         width: 100%;
         height: 60px;
-        font: normal normal 14px/25px Source Sans Pro;
         position: relative;
-        padding-left: 3.5em;
         font-size: 20px;
         color: #858a8e;
-      }
-      .Body__search_bar:focus {
-        letter-spacing: 0.1em;
-        transition: background 400ms ease-in-out;
-        outline: none;
-      }
-      .Search_Icon {
-        position: absolute;
-        color: #5c6369;
-        font-size: 1.5em;
-        left: 1.25em;
-        top: 16px;
+        .search_bar_paper {
+          border: 1px solid #d6d8d9;
+          box-shadow: none;
+          ::placeholder {
+            color: #858a8e;
+            opacity: 1;
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: capitalize;
+          }
+        }
       }
     }
     .Body_Searchbar_Down_images {
@@ -235,14 +217,15 @@
 
   .Departments
     .Departments_Body_Search
+    .Departments_Body_Down_Pannel
     .Body_Searchbar_Down_images
     .Body_Searchbar_Down_img1_div
     .Offers {
-    left: 3.5% !important;
+    left: 3.5%;
   }
 }
 
-@media (max-width: 1080px) {
+@media (max-width: 1024px) {
   .Departments
     .Departments_Body_Search
     .Body_Searchbar_Down_images
@@ -250,30 +233,9 @@
     .Offers
     .Offers_buttons
     .Learn_more_btn {
-    font-size: 12px;
+    padding: 0.5em 1.2em;
+    font-size: 15px;
   }
-
-  .Departments
-    .Departments_Body_Search
-    .Body_Searchbar_Down_images
-    .Body_Searchbar_Down_img1_div
-    .Offers
-    .Products_offer_per {
-    font-size: 40px;
-  }
-
-  .Departments
-    .Departments_Body_Search
-    .Body_Searchbar_Down_images
-    .Body_Searchbar_Down_img1_div
-    .Offers {
-    left: 8px;
-    right: 8px;
-    padding: 1em;
-  }
-}
-
-@media (max-width: 1024px) {
   .Departments
     .Departments_Body_Search
     .Body_Searchbar_Down_images
