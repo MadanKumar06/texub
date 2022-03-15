@@ -4,11 +4,10 @@ import styles from "./styles";
 import thanksLogo from "../../../Assets/Productlist/gratitude_icon.png";
 import { Button, Box } from "@mui/material";
 import { useParams } from "react-router-dom";
-import BuyerKYCform from "../KYCform/SectionLeft";
-
+import { useStateValue } from "../../../store/state";
 const ThankyouPage = ({ classes }) => {
   const { type } = useParams();
-  const [openKYCform, setOpenKYCform] = useState("");
+  const [{}, dispatch] = useStateValue();
   let {
     thankyou_container_seller,
     thankyou_container_buyer,
@@ -22,15 +21,12 @@ const ThankyouPage = ({ classes }) => {
     thankyou_logo,
   } = classes;
 
-  const handleChange = () => {
-    setOpenKYCform(type);
-  };
-  const KYCformPop = () => {
-    setOpenKYCform("");
-  };
   useEffect(() => {
-    setOpenKYCform(type);
-  }, [type]);
+    dispatch({
+      type: "SET_KYC_OPEN_CLOSE",
+      value: true,
+    });
+  }, []);
   return (
     <div
       className={`${
@@ -48,16 +44,10 @@ const ThankyouPage = ({ classes }) => {
           into your account to complete the KYC.
         </p>
         <Box className={thankyou_button_box} fullWidth>
-          <Button
-            className={thankyou_button_signin}
-            onClick={() => handleChange()}
-          >
-            SignIn
-          </Button>
+          <Button className={thankyou_button_signin}>SignIn</Button>
         </Box>
         <p className={thankyou_backto_home}>Back To Homepage</p>
       </div>
-      {openKYCform && <BuyerKYCform KYCformPop={KYCformPop} />}
     </div>
   );
 };
