@@ -19,6 +19,7 @@
       margin: 0;
       width: 100%;
       bottom: 2.25em;
+      cursor: pointer;
     }
   }
   .Todaysdeal_Collections1_2nd_div {
@@ -37,15 +38,15 @@
       flex-direction: column;
       gap: 1em;
       max-width: 512px;
-       h3 {
+      h3 {
         font-size: 50px;
         margin: 0;
       }
-       p {
+      p {
         font-size: 20px;
         margin: 0;
       }
-       button {
+      button {
         background: linear-gradient(#20639b, #002d56);
         color: white;
         border-radius: 25px;
@@ -56,7 +57,6 @@
         cursor: pointer;
       }
     }
-    
   }
 }
 
@@ -126,7 +126,9 @@
 // }
 
 @media (max-width: 1440px) {
-  .Todaysdeal_Collections .Todaysdeal_Collections1_2nd_div .Todaysdeal__floatingcontent {
+  .Todaysdeal_Collections
+    .Todaysdeal_Collections1_2nd_div
+    .Todaysdeal__floatingcontent {
     left: 8em;
     max-width: 416px;
   }
@@ -139,13 +141,17 @@
 }
 
 @media (max-width: 1200px) {
-  .Todaysdeal_Collections .Todaysdeal_Collections1_2nd_div .Todaysdeal__floatingcontent {
+  .Todaysdeal_Collections
+    .Todaysdeal_Collections1_2nd_div
+    .Todaysdeal__floatingcontent {
     left: 3em;
   }
 }
 
 @media (max-width: 1024px) {
-  .Todaysdeal_Collections .Todaysdeal_Collections1_2nd_div .Todaysdeal__floatingcontent {
+  .Todaysdeal_Collections
+    .Todaysdeal_Collections1_2nd_div
+    .Todaysdeal__floatingcontent {
     max-width: 366px;
   }
 
@@ -163,13 +169,17 @@
     gap: 10px;
   }
 
-  .Todaysdeal_Collections .Todaysdeal_Collections1_2nd_div .Todaysdeal__floatingcontent {
+  .Todaysdeal_Collections
+    .Todaysdeal_Collections1_2nd_div
+    .Todaysdeal__floatingcontent {
     left: 1em;
     top: 0.5em;
     max-width: 320px;
   }
 
-  .Todaysdeal_Collections .Todaysdeal_Collections1_1st_div .Todaysdeal_View_collection {
+  .Todaysdeal_Collections
+    .Todaysdeal_Collections1_1st_div
+    .Todaysdeal_View_collection {
     font-size: 17px;
   }
 }
@@ -182,31 +192,48 @@
     max-width: 100%;
   }
 
-  .Todaysdeal_Collections .Todaysdeal_Collections1_1st_div .Todaysdeal_View_collection {
+  .Todaysdeal_Collections
+    .Todaysdeal_Collections1_1st_div
+    .Todaysdeal_View_collection {
     font-size: 40px;
   }
 
-  .Todaysdeal_Collections .Todaysdeal_Collections1_2nd_div .Todaysdeal__floatingcontent h3 {
+  .Todaysdeal_Collections
+    .Todaysdeal_Collections1_2nd_div
+    .Todaysdeal__floatingcontent
+    h3 {
     font-size: 24px;
   }
-  .Todaysdeal_Collections .Todaysdeal_Collections1_2nd_div .Todaysdeal__floatingcontent p {
+  .Todaysdeal_Collections
+    .Todaysdeal_Collections1_2nd_div
+    .Todaysdeal__floatingcontent
+    p {
     font-size: 14px;
   }
-  .Todaysdeal_Collections .Todaysdeal_Collections1_2nd_div .Todaysdeal__floatingcontent button {
+  .Todaysdeal_Collections
+    .Todaysdeal_Collections1_2nd_div
+    .Todaysdeal__floatingcontent
+    button {
     font-size: 12px;
   }
-  .Todaysdeal_Collections .Todaysdeal_Collections1_2nd_div .Todaysdeal__floatingcontent {
+  .Todaysdeal_Collections
+    .Todaysdeal_Collections1_2nd_div
+    .Todaysdeal__floatingcontent {
     gap: 3px;
     top: 0px;
   }
 }
 
 @media (max-width: 375px) {
-  .Todaysdeal_Collections .Todaysdeal_Collections1_1st_div .Todaysdeal_View_collection {
+  .Todaysdeal_Collections
+    .Todaysdeal_Collections1_1st_div
+    .Todaysdeal_View_collection {
     font-size: 34px;
   }
 
-  .Todaysdeal_Collections .Todaysdeal_Collections1_2nd_div .Todaysdeal_Collections1_2nd_img {
+  .Todaysdeal_Collections
+    .Todaysdeal_Collections1_2nd_div
+    .Todaysdeal_Collections1_2nd_img {
     height: 8em;
   }
 
@@ -216,7 +243,9 @@
 }
 
 @media (max-width: 320px) {
-  .Todaysdeal_Collections .Todaysdeal_Collections1_1st_div .Todaysdeal_View_collection {
+  .Todaysdeal_Collections
+    .Todaysdeal_Collections1_1st_div
+    .Todaysdeal_View_collection {
     font-size: 29px;
   }
 }

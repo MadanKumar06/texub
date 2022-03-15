@@ -1,7 +1,7 @@
 .buyer_dashboard {
   .dashboard__top {
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: center;
     box-shadow: 0px 3px 25px #0000000f;
     padding-top: 8px;
@@ -12,6 +12,7 @@
       width: calc(100% / 3 - 20px);
       img {
         width: 100%;
+        object-fit: contain;
       }
     }
   }
@@ -187,8 +188,25 @@
   .dashboard__chart {
     display: grid;
     height: 100%;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 50%);
     grid-gap: 1.6em;
+
+    .pie {
+      box-shadow: 0px 3px 18px #00000029;
+      background-color: white;
+
+      .graph__header {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 10px;
+        margin-left: 10px;
+
+        p {
+          margin: 0;
+        }
+      }
+    }
 
     .chart__pie {
       display: flex;
@@ -240,6 +258,7 @@
           padding: 1em 10px;
         }
         .chart_info {
+          max-width: 40%;
           width: 100%;
         }
       }
@@ -265,6 +284,166 @@
       display: flex;
       justify-content: flex-end;
       align-items: flex-end;
+      position: relative;
+
+      .line__received {
+        position: absolute;
+        top: 3.5em;
+        left: 7em;
+        color: rgba(255, 99, 132, 0.5);
+        font-weight: 600;
+
+        &::before {
+          content: "";
+          width: 12px;
+          height: 12px;
+          border-radius: 100%;
+          position: absolute;
+          top: 4px;
+          left: -1em;
+          background-color: rgba(255, 99, 132, 0.5);
+        }
+      }
+
+      .line__placed {
+        position: absolute;
+        top: 3.5em;
+        right: 7em;
+        color: rgba(53, 162, 235, 0.5);
+        font-weight: 600;
+
+        &::before {
+          content: "";
+          width: 12px;
+          height: 12px;
+          border-radius: 100%;
+          position: absolute;
+          top: 4px;
+          left: -1em;
+          background-color: rgba(53, 162, 235, 0.5);
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1660px) {
+  .buyer_dashboard
+    .dashboard__middle
+    .dashboard__pricelist
+    .pricelist__header
+    .pricelist_info {
+    h2 {
+      font-size: 24px;
+    }
+    .pricelist__headertime {
+      margin-left: 5em;
+    }
+  }
+
+  .buyer_dashboard .dashboard__chart {
+    grid-gap: 8px;
+
+    & > * {
+      width: 100%;
+    }
+  }
+}
+@media (max-width: 1600px) {
+  .buyer_dashboard .dashboard__chart .chart__pie .pie__graph .graph__header {
+    gap: 22px;
+  }
+}
+
+@media (max-width: 1533px) {
+  .buyer_dashboard .dashboard__chart .chart__pie .pie__table {
+    gap: 2em;
+  }
+}
+
+@media (max-width: 1440px) {
+  .buyer_dashboard
+    .dashboard__middle
+    .dashboard__pricelist
+    .pricelist__header
+    .pricelist_info
+    .pricelist__headertime {
+    margin-left: 2em;
+  }
+
+  .buyer_dashboard .dashboard__chart .chart__pie .pie__graph .graph__header {
+    gap: 12px;
+  }
+}
+
+@media (max-width: 1366px) {
+  .buyer_dashboard
+    .dashboard__middle
+    .dashboard__pricelist
+    .pricelist__header
+    .pricelist_info {
+    h2 {
+      font-size: 20px;
+    }
+    .pricelist__headertime {
+      margin-left: 1em;
+    }
+  }
+}
+
+@media (max-width: 1300px) {
+  .buyer_dashboard
+    .dashboard__middle
+    .dashboard__pricelist
+    .pricelist__header
+    .pricelist_info
+    h2 {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 1240px) {
+  .buyer_dashboard
+    .dashboard__middle
+    .dashboard__pricelist
+    .pricelist__header
+    .pricelist_info {
+    .pricelist__headertime {
+      margin-left: 0em;
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .buyer_dashboard .dashboard__chart {
+    grid-template-columns: 100%;
+    grid-gap: 1em;
+  }
+
+  .buyer_dashboard
+    .dashboard__middle
+    .dashboard__pricelist
+    .pricelist__header
+    .pricelist_info {
+    ul li .name {
+      margin-left: 0em;
+    }
+    h2 {
+      font-size: 28px;
+    }
+    .pricelist__headertime {
+      margin-left: 8em;
+    }
+  }
+
+  .buyer_dashboard .dashboard__middle {
+    flex-direction: column;
+    & > * {
+      width: 100%;
+    }
+    .dashboard__images {
+      grid-template-columns: repeat(2, 50%);
+      margin-bottom: 2em;
     }
   }
 }
@@ -290,5 +469,93 @@
     p
     .pricelist__headertime {
     margin-left: 1em;
+  }
+}
+
+@media (max-width: 926px) {
+  .buyer_dashboard .dashboard__chart .chart__pie .pie__table {
+    gap: 5em;
+  }
+  .buyer_dashboard .dashboard__chart .chart__pie .pie__graph .graph__header {
+    gap: 3em;
+  }
+}
+
+// @media (max-width: 820px) {
+//   .buyer_dashboard .dashboard__chart .chart__pie .pie__table {
+//     gap: 1em;
+//   }
+// }
+
+// @media (max-width: 768px) {
+//   .buyer_dashboard .dashboard__chart .chart__pie .pie__table .pie__chart {
+//     width: calc(41% - 10px);
+//   }
+// }
+
+@media (max-width: 580px) {
+  .buyer_dashboard .dashboard__middle .dashboard__pricelist .pricelist__header {
+    ul li .name {
+      font-size: 16px;
+      margin-left: 0;
+    }
+
+    .pricelist_info {
+      flex-direction: column;
+
+      .pricelist__headertime {
+        margin-left: 0em;
+      }
+    }
+  }
+
+  .buyer_dashboard .dashboard__chart .chart__pie .pie__table {
+    flex-direction: column;
+    align-items: center;
+
+    .pie__chart {
+      width: calc(90% - 10px);
+    }
+
+    .chart_info {
+      max-width: calc(90% - 10px);
+    }
+  }
+
+  .buyer_dashboard .dashboard__chart .chart__pie .pie__graph .graph__header {
+    gap: 1em;
+    flex-wrap: wrap;
+    margin-top: 8px;
+
+    p {
+      margin: 0;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .buyer_dashboard
+    .dashboard__middle
+    .dashboard__pricelist
+    .pricelist__header
+    ul
+    li
+    .price {
+    font-size: 16px;
+  }
+
+  .buyer_dashboard .dashboard__top {
+    flex-direction: column;
+
+    & > div {
+      width: 100%;
+    }
+  }
+
+  .buyer_dashboard .dashboard__middle .dashboard__images {
+    grid-template-columns: 100%;
+  }
+  .buyerdashboard .buyerdashboard__main .buyerdashboard__search span {
+    display: none;
   }
 }

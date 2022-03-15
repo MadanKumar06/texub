@@ -28,6 +28,24 @@ const Productstable = ({ classes }) => {
     producttable_price_block,
     producttable_heading_icon,
   } = classes;
+
+  function truncate(str, n) {
+    return str?.length > n ? str.substr(0, n - 1) + "..." : str;
+  }
+  // const [textsize, settextsize] = useState(30)
+
+  // useEffect(() => {
+  //   if (window.innerWidth <= 1440) {
+  //     settextsize(22)
+  //   }
+  //   if (window.innerWidth <= 1366) {
+  //     settextsize(12)
+  //   }
+  //   if (window.innerWidth > 1440) {
+  //     settextsize(30)
+  //   }
+  // }, [])
+  
   const [isPDPpopUP, setIsPDPpopUP] = useState(false);
   const PDPPopUP = (event) => {
     setIsPDPpopUP(event);

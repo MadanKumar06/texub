@@ -131,8 +131,8 @@ const BuyerDashboard = () => {
     backgroundColor: "white",
     width: "80%",
     textAlign: "right",
-    height: "75% !important",
     marginBottom: "2em",
+    height: "100%"
   };
 
   const tablebody = [
@@ -250,7 +250,9 @@ const BuyerDashboard = () => {
           </div>
         </div>
         <div className="chart__line">
+          <p className="line__received">Order Received</p>
           <Line options={options} data={data} style={{ ...linestyle }} />
+          <p className="line__placed">Order Placed</p>
         </div>
       </div>
     </div>
