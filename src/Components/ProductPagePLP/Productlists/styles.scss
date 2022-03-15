@@ -156,3 +156,22 @@
     gap: 1em;
   }
 }
+
+@media (max-width: 480px) {
+  .productlist__search {
+    min-width: 100% !important;
+    .MuiFormControl-root {
+      width: 100%;
+    }
+  }
+
+  // .productlist {
+  //   justify-content: initial;
+  // }
+}
+
+@media (max-width) {
+  .productlist {
+    justify-content: space-between !important;
+  }
+}
