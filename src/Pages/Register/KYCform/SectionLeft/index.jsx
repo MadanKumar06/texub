@@ -16,12 +16,14 @@ import TradeLicenseButton from "./TradeLicenseButton";
 import BankDetails from "./BankDetails";
 import TaxCertificateButton from "./TaxCertificateButton";
 import NationalIdButton from "./NationalIdButton";
+import { useStateValue } from "../../../../store/state";
 
-const BuyerKYCformSectionLeft = ({ classes, KYCformPop }) => {
+const BuyerKYCformSectionLeft = ({ classes }) => {
   const [open, setOpen] = React.useState(true);
   const [documentButton, setDocumentButton] = useState("trade_license");
   const [kycFormData, setKycFormData] = useState({});
   const [validationFieldMessage, setValidationFieldMessage] = useState();
+  const [{}, dispatch] = useStateValue();
   let {
     buyer_kyc_section_left_container,
     modal,
@@ -40,7 +42,10 @@ const BuyerKYCformSectionLeft = ({ classes, KYCformPop }) => {
 
   const handleClose = () => {
     setOpen(false);
-    KYCformPop("");
+    dispatch({
+      type: "SET_KYC_OPEN_CLOSE",
+      value: false,
+    });
   };
 
   const handleChangeButton = (event) => {

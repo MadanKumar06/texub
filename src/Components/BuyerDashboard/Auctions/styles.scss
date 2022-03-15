@@ -16,6 +16,9 @@
       font-size: 18px;
       border-radius: 25px;
       cursor: pointer;
+      width: calc(100% / 4);
+      font-weight: 600;
+      text-align: center;
     }
 
     .auctions__selected {

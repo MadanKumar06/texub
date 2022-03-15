@@ -30,7 +30,7 @@ export const Userdetails = () => {
             <MyAccountPopUP />
           </div>
           <div className="user_wishlist">
-            <Badge badgeContent={1} className="badge_user">
+            <Badge badgeContent={0} className="badge_user">
               <div className="whishlist_image">
                 <img src={whishlist_image} alt="" />
               </div>

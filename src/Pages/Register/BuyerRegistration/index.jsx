@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./styles";
-import './styles.scss'
+import "./styles.scss";
 
 import {
   TextField,
@@ -537,18 +537,28 @@ const BuyerRegistration = ({ classes }) => {
           </div>
         </div>
         <div className={input_textField}>
-          <FormControlLabel
-            value="yes"
-            control={<Checkbox color="color_third" />}
-            label={
-              <p>
-                By using this form you agree with the <span>Terms of Use</span>
-                and <span>Privacy Policy</span> by this website.
-              </p>
-            }
-            labelPlacement="end"
-            className={checkbox_label}
-          />
+          <div style={{ width: "100%" }}>
+            <FormControlLabel
+              value="yes"
+              control={<Checkbox color="color_third" />}
+              label="Remember Me"
+              labelPlacement="end"
+              className={checkbox_label}
+            />
+            <FormControlLabel
+              value="yes"
+              control={<Checkbox color="color_third" />}
+              label={
+                <p>
+                  By using this form you agree with the{" "}
+                  <span>Terms of Use</span>
+                  and <span>Privacy Policy</span> by this website.
+                </p>
+              }
+              labelPlacement="end"
+              className={checkbox_label}
+            />
+          </div>
           <ReCAPTCHA
             className="recaptcha_info1"
             sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
