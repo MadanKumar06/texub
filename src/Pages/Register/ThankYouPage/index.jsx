@@ -4,10 +4,8 @@ import styles from "./styles";
 import thanksLogo from "../../../Assets/Productlist/gratitude_icon.png";
 import { Button, Box } from "@mui/material";
 import { useParams } from "react-router-dom";
-import { useStateValue } from "../../../store/state";
 const ThankyouPage = ({ classes }) => {
   const { type } = useParams();
-  const [{}, dispatch] = useStateValue();
   let {
     thankyou_container_seller,
     thankyou_container_buyer,
@@ -21,12 +19,6 @@ const ThankyouPage = ({ classes }) => {
     thankyou_logo,
   } = classes;
 
-  useEffect(() => {
-    dispatch({
-      type: "SET_KYC_OPEN_CLOSE",
-      value: true,
-    });
-  }, []);
   return (
     <div
       className={`${
