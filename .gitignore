@@ -15,6 +15,7 @@
 /.firebaserc
 /firebase.json
 /.firebase
+/.gitignore
 # misc
 .DS_Store
 .env.local
