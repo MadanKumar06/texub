@@ -21,7 +21,8 @@
     }
     .enquirydetails_box{
         background-color: #F8F0E0;
-        width: 665px;
+        max-width: 665px;
+        width: 100%;
         box-shadow: 0px 3px 16px #0000001C;
         
     .enquirydetails_heading{
@@ -122,10 +123,10 @@
 
 @media (max-width:580px) {
     .enquirydetails_main{
-           position: absolute;
-           max-height: 90vh;
-           width: 30vh;
-           top: 5%;
+        //    position:fixed;
+           max-height: 50vh;
+           height: 100%;
+           width: 100%;
           
            
               

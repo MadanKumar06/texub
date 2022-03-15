@@ -2,11 +2,23 @@ import React,{useState} from 'react'
 import './styles.scss'
 import Newsubaccount from './Newsubaccount'
 import { ArrowBackIosNew } from "@mui/icons-material";
+import Allowedpermissions from '../Subusers/Popups/Allowedpermissions'
+import Forbidden from '../Subusers/Popups/Forbidden'
  const Index = () => {
    const [isSub,setisSub]=useState(false)
    const Newsubacc=()=>{
     setisSub(!isSub)
     setisSubusers(false)
+   }
+   const [isPermissions,setisPermissions]=useState(false)
+   const permission = () =>{
+    setisPermissions(true)
+    setisForbidden(false)
+   }
+   const [isForbidden,setisForbidden]=useState(false)
+   const forbidden = () =>{
+    setisForbidden(true)
+    setisPermissions(false)
    }
    const [isSubusers,setisSubusers]=useState(true)
    const Users =[
@@ -45,7 +57,7 @@ import { ArrowBackIosNew } from "@mui/icons-material";
       <hr></hr>
       <table className='users_table'>
             <thead>
-              <tr>
+              <tr className='trh'>
                 <th className='users_heading'>User Name</th>
                 <th className='users_heading'>Status</th>
                 <th className='users_heading'>Order ID</th>
@@ -59,14 +71,14 @@ import { ArrowBackIosNew } from "@mui/icons-material";
             
             <tbody>
               {Users.map((user) => (
-                <tr key={user.id}>
+                <tr key={user.id} className="tr">
                   <td className='users_username'>{user.username}</td>
                   <span><td className='users_status'>{user.status}</td></span>
                   <td className='users_id'>{user.orderid}</td>
                   <td className='users_hub'>{user.hub}</td>
                   <td className='users_date'>{user.date}</td>
-                  <td className='users_permission'>{user.Permissions}</td>
-                  <td className='users_forbidden'>{user.forbidden}</td>
+                  <td className='users_permission' onClick={permission}>{user.Permissions}</td>
+                  <td className='users_forbidden' onClick={forbidden}>{user.forbidden}</td>
                   <div className='user_auctions'>
                   <td className='users_auction'>{user.auction}</td>
                   <td className='users_auction'>{user.auction2}</td>
@@ -89,6 +101,8 @@ import { ArrowBackIosNew } from "@mui/icons-material";
     </div>
     }
     {isSub && <Newsubaccount/>}
+    { isPermissions && <Allowedpermissions closePOPup={setisPermissions}/>}
+    {isForbidden && <Forbidden closePOPup={setisForbidden}/>}
     </>
   )
 }

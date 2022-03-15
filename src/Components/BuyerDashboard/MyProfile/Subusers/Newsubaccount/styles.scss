@@ -8,6 +8,9 @@
         display: flex;
         gap: 30px;
         justify-content: space-between;
+        .input_sections1{
+            width: 50%;
+        }
         .MuiInputLabel-root{
             color: red;
         }
@@ -121,33 +124,61 @@
 }
 
 @media only screen and (max-width:1600px) {
-    .subaccount_main .input_sections .MuiOutlinedInput-root{
-        width: 30rem;
-    }
+    // .subaccount_main .input_sections .MuiOutlinedInput-root{
+    //     width: 30rem;
+    // }
 }
 
 @media only screen and (max-width:1550px){
-    .subaccount_main .input_sections .MuiOutlinedInput-root {
-        width: 28rem;
-    }
-    .subaccount_main .user_input .MuiOutlinedInput-root{
-        width: 61rem;
-    }
-    .subaccount_main .MuiOutlinedInput-root{
-        width: 61rem;
-    }
+    // .subaccount_main .input_sections .MuiOutlinedInput-root {
+    //     width: 28rem;
+    // }
+    // .subaccount_main .user_input .MuiOutlinedInput-root{
+    //     width: 61rem;
+    // }
+    // .subaccount_main .MuiOutlinedInput-root{
+    //     width: 61rem;
+    // }
 }
 
 @media only screen and (max-width:1440px){
-    .subaccount_main .input_sections .MuiOutlinedInput-root {
-        width: 28rem;
+    // .subaccount_main .input_sections .MuiOutlinedInput-root {
+    //     width: 28rem;
+    // }
+    // .subaccount_main .user_input .MuiOutlinedInput-root{
+    //     width: 58rem;
+    // }
+    // .subaccount_main .MuiOutlinedInput-root{
+    //     width: 58rem;
+    // }
+    .subaccount_main{
+        margin:  10px auto;
     }
-    .subaccount_main .user_input .MuiOutlinedInput-root{
-        width: 58rem;
+}
+@media only screen and (max-width:1360px){
+    // .subaccount_main .input_sections .MuiOutlinedInput-root {
+    //     width: 24rem;
+    // }
+    // .subaccount_main .user_input .MuiOutlinedInput-root{
+    //     width: 54rem;
+    // }
+    // .subaccount_main .MuiOutlinedInput-root{
+    //     width: 54rem;
+    // }
+    .subaccount_main{
+        margin:  10px auto;
     }
-    .subaccount_main .MuiOutlinedInput-root{
-        width: 58rem;
-    }
+}
+@media only screen and (max-width:1240px){
+    // .subaccount_main .input_sections .MuiOutlinedInput-root {
+    //     width: 24rem;
+    // }
+    // .subaccount_main .user_input .MuiOutlinedInput-root{
+    //     width: 50rem;
+    // }
+    // .subaccount_main .MuiOutlinedInput-root{
+    //     width: 50rem;
+    // }
     .subaccount_main{
         margin:  10px auto;
     }
