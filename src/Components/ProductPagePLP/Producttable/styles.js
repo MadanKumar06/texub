@@ -83,6 +83,11 @@ const styles = () => ({
     display: "flex",
     justifyContent: "center",
   },
+  producttable_heading_icon:{
+    display: "flex",
+    gap:"5px",
+    justifyContent: "center",
+  },
   producttable_add_to_cart: {
     display: "flex",
     flexDirection: "row",
