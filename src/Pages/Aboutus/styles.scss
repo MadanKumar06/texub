@@ -6,15 +6,14 @@
 }
 
 .aboutus {
-  .aboutus__topbanner{
+  .aboutus__topbanner {
     margin: 0 3%;
   }
   .aboutus__topbanner,
-   .aboutus__mission {
+  .aboutus__mission {
     max-width: 1920px;
-    width:fit-content;
+    width: fit-content;
     position: relative;
-    
 
     img {
       width: 100%;
@@ -256,7 +255,7 @@
     }
 
     .tag1 {
-      left: 29.75em;
+      left: 27.25em;
       top: 13em;
     }
 
@@ -334,71 +333,103 @@
   }
 }
 
-@media (max-width: 1920px){
+@media (max-width: 1920px) {
   .aboutus .aboutus__worldwide .tag1 {
-    left: 31em;
+    left: 29em;
     top: 13em;
   }
 
   .aboutus .aboutus__worldwide .tag2 {
-    top: 21.6em;
-    left: 51em;
+    top: 20.5em;
+    left: 48em;
   }
 
   .aboutus .aboutus__worldwide .tag3 {
-    top: 9.5em;
-    right: 56.4em;
+    top: 9.75em;
+    right: 53em;
   }
 
   .aboutus .aboutus__worldwide .tag4 {
-    top: 22em;
-    right: 44.5em;
+    top: 21.5em;
+    right: 41.5em;
   }
 
   .aboutus .aboutus__worldwide .tag5 {
-    top: 25.2em;
-    right: 36em;
+    top: 24.5em;
+    right: 34em;
   }
 
   .aboutus .aboutus__worldwide .tag6 {
-    top: 30.9em;
-    right: 15.1em;
+    top: 29.9em;
+    right: 14.1em;
   }
 }
 
-@media (max-width: 1850px){
+@media (max-width: 1850px) {
   .aboutus .aboutus__worldwide .tag1 {
-    left: 29.9em;
-    top: 13.5em;
+    left: 28em;
+    top: 13em;
   }
 
   .aboutus .aboutus__worldwide .tag2 {
-    top: 20.9em;
-    left: 48.99em;
+    top: 20.5em;
+    left: 46em;
   }
 
   .aboutus .aboutus__worldwide .tag3 {
     top: 9.5em;
-    right: 54.35em;
+    right: 51em;
   }
 
   .aboutus .aboutus__worldwide .tag4 {
-    top: 22.1em;
-    right: 42.9em;
+    top: 21em;
+    right: 40em;
   }
 
   .aboutus .aboutus__worldwide .tag5 {
-    top: 24.9em;
-    right: 34.7em;
+    top: 24em;
+    right: 32.5em;
   }
 
   .aboutus .aboutus__worldwide .tag6 {
-    top: 30.2em;
-    right: 14.5em;
+    top: 29em;
+    right: 13.5em;
   }
 }
 
-@media (max-width: 1800px){
+@media (max-width: 1810px) {
+  .aboutus .aboutus__worldwide .tag1 {
+    left: 27.5em;
+    top: 13em;
+  }
+
+  .aboutus .aboutus__worldwide .tag2 {
+    top: 20em;
+    left: 45.25em;
+  }
+
+  .aboutus .aboutus__worldwide .tag3 {
+    top: 9.5em;
+    right: 50em;
+  }
+
+  .aboutus .aboutus__worldwide .tag4 {
+    top: 20.5em;
+    right: 39.25em;
+  }
+
+  .aboutus .aboutus__worldwide .tag5 {
+    top: 23.5em;
+    right: 31.75em;
+  }
+
+  .aboutus .aboutus__worldwide .tag6 {
+    top: 28.25em;
+    right: 13em;
+  }
+}
+
+@media (max-width: 1800px) {
   .aboutus .aboutus__worldwide .tag1 {
     left: 28.9em;
     top: 13em;
@@ -469,34 +500,34 @@
   }
 }
 
-@media (max-width: 1550px){
+@media (max-width: 1550px) {
   .aboutus .aboutus__worldwide .tag1 {
     left: 24.75em;
     top: 12.2em;
-}
-.aboutus .aboutus__worldwide .tag2 {
-  top: 18.7em;
-  left: 41em;
-}
-.aboutus .aboutus__worldwide .tag3 {
-  top: 9.3em;
-  right: 45.3em;
-}
-.aboutus .aboutus__worldwide .tag4 {
-  top: 19.4em;
-  right: 35.5em;
-}
-.aboutus .aboutus__worldwide .tag5 {
-  top: 21.9em;
-  right: 28.9em;
-}
-.aboutus .aboutus__worldwide .tag6 {
-  top: 26.4em;
-  right: 12em;
-}
+  }
+  .aboutus .aboutus__worldwide .tag2 {
+    top: 18.7em;
+    left: 41em;
+  }
+  .aboutus .aboutus__worldwide .tag3 {
+    top: 9.3em;
+    right: 45.3em;
+  }
+  .aboutus .aboutus__worldwide .tag4 {
+    top: 19.4em;
+    right: 35.5em;
+  }
+  .aboutus .aboutus__worldwide .tag5 {
+    top: 21.9em;
+    right: 28.9em;
+  }
+  .aboutus .aboutus__worldwide .tag6 {
+    top: 26.4em;
+    right: 12em;
+  }
 }
 
-@media (max-width: 1533px){
+@media (max-width: 1533px) {
   .aboutus .aboutus__worldwide .tag1 {
     left: 24.5em;
     top: 12.1em;
@@ -620,7 +651,6 @@
   }
 
   .aboutus .aboutus__worldwide .tag3 {
-    
     right: 39.2em;
     width: 2em;
   }
@@ -644,11 +674,11 @@
   }
 }
 
-@media  (max-width:1240px) {
+@media (max-width: 1240px) {
   .aboutus .aboutus__highlights ul li:nth-child(even) .dimagecontent {
     left: 8.8em;
   }
-  .aboutus .aboutus__highlights ul li:nth-child(odd) .dimagecontent{
+  .aboutus .aboutus__highlights ul li:nth-child(odd) .dimagecontent {
     right: 8.8em;
   }
   .aboutus .aboutus__worldwide .tag1 {
@@ -666,15 +696,15 @@
   .aboutus .aboutus__worldwide .tag4 {
     right: 28.6em;
     top: 17.1em;
- }  
- .aboutus .aboutus__worldwide .tag5 {
-  top: 19.1em;
-  right: 23.2em;
- }
- .aboutus .aboutus__worldwide .tag6 {
-  top: 22.7em;
-  right: 9.6em;
- }
+  }
+  .aboutus .aboutus__worldwide .tag5 {
+    top: 19.1em;
+    right: 23.2em;
+  }
+  .aboutus .aboutus__worldwide .tag6 {
+    top: 22.7em;
+    right: 9.6em;
+  }
 }
 
 @media (max-width: 1200px) {
@@ -1018,11 +1048,10 @@
 }
 
 @media (max-width: 768px) {
-  .aboutus .aboutus__highlights ul li .dimagecontent span{
+  .aboutus .aboutus__highlights ul li .dimagecontent span {
     font-size: 16px;
   }
-  .aboutus
-  .aboutus__worldwide{
+  .aboutus .aboutus__worldwide {
     padding-bottom: 5px;
   }
   .aboutus .aboutus__worldwide .tag1 {
@@ -1060,14 +1089,22 @@
     right: 6em;
     width: 1.15em;
   }
-  .aboutus .aboutus__worldwide .aboutus__worldwide__content .aboutus__ww__country{
+  .aboutus
+    .aboutus__worldwide
+    .aboutus__worldwide__content
+    .aboutus__ww__country {
     gap: 3px;
   }
-  .aboutus .aboutus__worldwide .aboutus__worldwide__content .aboutus__ww__country .list span{
+  .aboutus
+    .aboutus__worldwide
+    .aboutus__worldwide__content
+    .aboutus__ww__country
+    .list
+    span {
     left: 15px;
   }
 }
-@media (max-width: 580px){
+@media (max-width: 580px) {
   .aboutus__topbanner__floatingtext {
     .topbanner__text1 {
       font-size: 16px !important;
@@ -1108,8 +1145,7 @@
   .aboutus .aboutus__highlights ul {
     margin: 0;
   }
-  .aboutus
-  .aboutus__worldwide{
+  .aboutus .aboutus__worldwide {
     padding-bottom: 5px;
   }
   .aboutus
@@ -1359,7 +1395,10 @@
     font-size: 12px;
     left: 10px;
   }
-  .aboutus .aboutus__worldwide .aboutus__worldwide__content .aboutus__ww__country{
+  .aboutus
+    .aboutus__worldwide
+    .aboutus__worldwide__content
+    .aboutus__ww__country {
     gap: 3px;
   }
 }
@@ -1409,7 +1448,7 @@
 @media (max-width: 320px) {
   .aboutus__topbanner__floatingtext .topbanner__text2 {
     font-size: 26px !important;
-}
+  }
   .aboutus
     .aboutus__mission__content
     .aboutus__mission__right
@@ -1541,4 +1580,3 @@
     font-size: 8px;
   }
 }
-

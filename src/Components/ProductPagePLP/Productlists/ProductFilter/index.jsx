@@ -5,6 +5,8 @@ import { Drawer, Button } from "@mui/material";
 import { Tune } from "@mui/icons-material";
 import FilterViewList from "./FilterViewList";
 
+//basic need
+import filter_option from "../../../../Assets/BasicNeeded/PLPIcons/filter.png";
 const ProductFilterDrawer = () => {
   const [sideBar, setSideBar] = React.useState({
     left: false,
@@ -36,9 +38,12 @@ const ProductFilterDrawer = () => {
   return (
     <div className="filter_drawer_main">
       <React.Fragment key={"left"}>
-        <Button onClick={toggleDrawer("left", true)}>
-          <Tune className="product_menu_filter" />
-        </Button>
+        <img
+          src={filter_option}
+          alt="filter"
+          className="product_menu_filter"
+          onClick={toggleDrawer("left", true)}
+        />
         <Drawer
           anchor={"left"}
           open={sideBar["left"]}
