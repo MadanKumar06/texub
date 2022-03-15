@@ -1,4 +1,4 @@
-.recaptcha_info {
+.recaptcha_info1 {
   width: 100%;
     //  transform:scale(0.77) !important;
     // -webkit-transform:scale(0.77) !important;
@@ -16,7 +16,13 @@
     .rc-anchor-normal {
       height: 74px;
       width: 100% !important; 
+      transform:scale(1.77);
+      transform-origin:0 0;
   }
+  // .g-recaptcha {
+  //   transform:scale(1.77);
+  //   transform-origin:0 0;
+
   }
   
 }

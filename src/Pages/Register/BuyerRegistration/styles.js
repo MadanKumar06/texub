@@ -159,8 +159,8 @@ const styles = (theme) => ({
       fontSize: "16px !important",
     },
     "@media (max-width:767px)": {
-      padding: "3px !important",
-      fontSize: "14px !important",
+      padding: "10px !important",
+      fontSize: "16px !important",
     },
   },
   asterisk: {
