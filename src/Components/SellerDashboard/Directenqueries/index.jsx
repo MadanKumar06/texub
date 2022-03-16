@@ -153,15 +153,6 @@ const Index = () => {
     {
       name: "hub",
       label: "Hub",
-      //   options: {
-      //     customBodyRender: (value) => {
-      //       return (
-      //         <div className="return_quantity">
-      //           <span className="value">{value}</span>
-      //         </div>
-      //       );
-      //     },
-      //   },
     },
     {
       name: "status",
@@ -198,26 +189,7 @@ const Index = () => {
           );
         },
       },
-    },
-      // options: {
-      //   customBodyRender: (value) => {
-      //     return (
-      //       <div
-      //         className={`${value === "Completed"
-      //             ? "rma__completed"
-      //             : value === "Accepted"
-      //               ? "rma__accepted"
-      //               : value === "Rejected"
-      //                 ? "rma__rejected"
-      //                 : value === "Pending" && "rma__pending"
-      //           } `}
-      //       >
-      //         {value}
-      //       </div>
-      //     );
-      //   },
-      // },
-    
+    },    
   ];
 
   return (
