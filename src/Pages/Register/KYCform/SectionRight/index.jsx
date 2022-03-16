@@ -38,7 +38,6 @@ const BuyerKYCformSectionRight = ({
   };
 
   const handleCallValidation = (event) => {
-    debugger;
     setValidationFieldMessage(event);
   };
   const names = [
