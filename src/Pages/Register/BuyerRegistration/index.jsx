@@ -280,7 +280,7 @@ const BuyerRegistration = ({ classes }) => {
       }));
       errorHandle = true;
     }
-    if (!buyerRegistrationData?.country) {
+    if (!value) {
       document.getElementById("last_name")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
@@ -513,6 +513,7 @@ const BuyerRegistration = ({ classes }) => {
               name="country"
               onChange={(event, newValue) => {
                 setValue(newValue);
+                setInputValidation("");
               }}
               className={auto_complete_input}
               inputValue={inputValue}
@@ -582,7 +583,7 @@ const BuyerRegistration = ({ classes }) => {
           {/* </Link> */}
         </Box>
       </div>
-       {/* <ArrowDropUp className={arrow_icon} />  */}
+      {/* <ArrowDropUp className={arrow_icon} />  */}
     </div>
   );
 };

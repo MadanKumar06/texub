@@ -3,7 +3,6 @@ export const initialState = {
 };
 
 const reducer = (state, action) => {
-  debugger;
   switch (action.type) {
     case "SET_KYC_OPEN_CLOSE":
       return {
