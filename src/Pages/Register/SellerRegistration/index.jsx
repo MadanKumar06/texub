@@ -321,11 +321,11 @@ const BuyerRegistration = ({ classes }) => {
     }
     if (!errorHandle) {
       // Apicall fuction
-      dispatch({
-        type: "SET_KYC_OPEN_CLOSE",
-        value: true,
-      });
     }
+    dispatch({
+      type: "SET_KYC_OPEN_CLOSE",
+      value: true,
+    });
   };
   return (
     <div className={main_container}>
@@ -541,14 +541,14 @@ const BuyerRegistration = ({ classes }) => {
             <Autocomplete
               value={value}
               name="role"
-              onChange={(event, newValue) => {
-                setValue(newValue);
-              }}
+              // onChange={(event, newValue) => {
+              //   setValue(newValue);
+              // }}
               className={auto_complete_input}
               inputValue={inputValue}
-              onInputChange={(event, newInputValue) => {
-                setInputValue(newInputValue);
-              }}
+              // onInputChange={(event, newInputValue) => {
+              //   setInputValue(newInputValue);
+              // }}
               id="controllable-states-demo"
               options={options}
               fullWidth
@@ -577,14 +577,14 @@ const BuyerRegistration = ({ classes }) => {
             <Autocomplete
               value={value}
               name="region"
-              onChange={(event, newValue) => {
-                setValue(newValue);
-              }}
+              // onChange={(event, newValue) => {
+              //   setValue(newValue);
+              // }}
               className={auto_complete_input}
               inputValue={inputValue}
-              onInputChange={(event, newInputValue) => {
-                setInputValue(newInputValue);
-              }}
+              // onInputChange={(event, newInputValue) => {
+              //   setInputValue(newInputValue);
+              // }}
               id="controllable-states-demo"
               options={options}
               fullWidth
@@ -611,14 +611,14 @@ const BuyerRegistration = ({ classes }) => {
             <Autocomplete
               value={value}
               name="country"
-              onChange={(event, newValue) => {
-                setValue(newValue);
-              }}
+              // onChange={(event, newValue) => {
+              //   setValue(newValue);
+              // }}
               className={auto_complete_input}
               inputValue={inputValue}
-              onInputChange={(event, newInputValue) => {
-                setInputValue(newInputValue);
-              }}
+              // onInputChange={(event, newInputValue) => {
+              //   setInputValue(newInputValue);
+              // }}
               id="controllable-states-demo"
               options={options}
               fullWidth

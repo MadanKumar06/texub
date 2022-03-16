@@ -91,6 +91,7 @@ const styles = (theme) => ({
   },
   radio_group: {
     flexWrap: "nowrap !important",
+    position: "relative",
     "& .MuiFormControlLabel-root": {
       width: "130px",
       position: "relative",
@@ -121,6 +122,18 @@ const styles = (theme) => ({
         display: "none",
       },
     },
+    // "&::after": {
+    //   left: "73px",
+    //   width: "0px",
+    //   height: "0px",
+    //   content: '""',
+    //   position: "absolute",
+    //   transform: "rotate(90deg)",
+    //   borderTop: "23px solid transparent",
+    //   borderRight: "23px solid #000000",
+    //   borderBottom: "23px solid transparent",
+    //   bottom: "-43px",
+    // },
   },
   clicking_user_para: {
     color: "#20639B",
