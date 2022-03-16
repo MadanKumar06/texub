@@ -582,7 +582,7 @@ const BuyerRegistration = ({ classes }) => {
           {/* </Link> */}
         </Box>
       </div>
-      {/* <ArrowDropUp className={arrow_icon} /> */}
+       {/* <ArrowDropUp className={arrow_icon} />  */}
     </div>
   );
 };
