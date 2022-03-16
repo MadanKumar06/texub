@@ -64,6 +64,7 @@ const Productstable = ({ classes }) => {
     short_image: shortExpand_active_icon,
     long_image: longExpand_inactive_icon,
   });
+
   const descriptionChangeView = (event) => {
     settextsize((prevState) => ({
       ...prevState,
@@ -80,6 +81,7 @@ const Productstable = ({ classes }) => {
           : longExpand_inactive_icon,
     }));
   };
+
   const columns = [
     {
       name: "BRANDNAME",
