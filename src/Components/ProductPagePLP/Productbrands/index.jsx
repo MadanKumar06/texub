@@ -13,7 +13,7 @@ import apple from "../../../Assets/Productlist/apple_icon.png";
 import acer from "../../../Assets/Productlist/acer_icon.png";
 import windows from "../../../Assets/Productlist/windows_icon.png";
 import samsung from "../../../Assets/Productlist/samsung_icon.png";
-import { Laptops,Notebook,Desktop,Tablet,Printer,Scanner,Mobile,Monitor,Convertible,Chromebook } from "../../Laptops";
+import { Laptops, Notebook, Desktop, Tablet, Printer, Scanner, Mobile, Monitor, Convertible, Chromebook } from "../../Laptops";
 // import { Notebook } from "../../Laptops";
 
 const Slides = () =>
@@ -35,7 +35,7 @@ const Slides = () =>
 
 const Productsbrands = () => {
   const [isLaptops, setisLaptops] = useState(false);
-  const Laptop =() =>{
+  const Laptop = () => {
     setisLaptops(!isLaptops)
     setisNotebooks(false)
     setisDesktop(false)
@@ -48,7 +48,7 @@ const Productsbrands = () => {
     setisChromebook(false)
   }
   const [isNotebooks, setisNotebooks] = useState(false);
-  const Notebooks =() =>{
+  const Notebooks = () => {
     setisNotebooks(!isNotebooks)
     setisLaptops(false)
     setisDesktop(false)
@@ -61,7 +61,7 @@ const Productsbrands = () => {
     setisChromebook(false)
   }
   const [isDesktop, setisDesktop] = useState(false);
-  const desktop =() =>{
+  const desktop = () => {
     setisDesktop(!isDesktop)
     setisLaptops(false)
     setisNotebooks(false)
@@ -74,7 +74,7 @@ const Productsbrands = () => {
     setisChromebook(false)
   }
   const [isTablets, setisTablets] = useState(false);
-  const tablet =() =>{
+  const tablet = () => {
     setisTablets(!isTablets)
     setisDesktop(false)
     setisLaptops(false)
@@ -87,7 +87,7 @@ const Productsbrands = () => {
     setisChromebook(false)
   }
   const [isPrinters, setisPrinters] = useState(false);
-  const printer =() =>{
+  const printer = () => {
     setisPrinters(!isPrinters)
     setisDesktop(false)
     setisLaptops(false)
@@ -100,7 +100,7 @@ const Productsbrands = () => {
     setisChromebook(false)
   }
   const [isScanners, setisScanners] = useState(false);
-  const scanner =() =>{
+  const scanner = () => {
     setisScanners(!isScanners)
     setisPrinters(false)
     setisDesktop(false)
@@ -113,7 +113,7 @@ const Productsbrands = () => {
     setisChromebook(false)
   }
   const [isMobiles, setisMobiles] = useState(false);
-  const mobile =() =>{
+  const mobile = () => {
     setisMobiles(!isMobiles)
     setisPrinters(false)
     setisDesktop(false)
@@ -126,7 +126,7 @@ const Productsbrands = () => {
     setisChromebook(false)
   }
   const [isMonitors, setisMonitors] = useState(false);
-  const monitor =() =>{
+  const monitor = () => {
     setisMonitors(!isMonitors)
     setisPrinters(false)
     setisDesktop(false)
@@ -139,7 +139,7 @@ const Productsbrands = () => {
     setisChromebook(false)
   }
   const [isConvertibles, setisConvertibles] = useState(false);
-  const convertible =() =>{
+  const convertible = () => {
     setisConvertibles(!isConvertibles)
     setisPrinters(false)
     setisDesktop(false)
@@ -152,7 +152,7 @@ const Productsbrands = () => {
     setisChromebook(false)
   }
   const [isChromebook, setisChromebook] = useState(false);
-  const chromebook =() =>{
+  const chromebook = () => {
     setisChromebook(!isChromebook)
     setisConvertibles(false)
     setisPrinters(false)
@@ -164,7 +164,7 @@ const Productsbrands = () => {
     setisMobiles(false)
     setisMonitors(false)
   }
-  
+
   function Arrow(props) {
     let className =
       props.type === "next" ? "Carosal_nextArrow" : "Carosal_prevArrow";
@@ -318,7 +318,7 @@ const Productsbrands = () => {
         <div className="Productbrands_Laptops_btn">
           <button
             className="Productbrands_btn_content_list"
-            onClick={() =>Laptop()}
+            onClick={() => Laptop()}
             type="button"
           >
             Laptops
@@ -339,9 +339,9 @@ const Productsbrands = () => {
         </div>
 
         <div className="Productbrands_Laptops_btn">
-          <button className="Productbrands_btn_content_list" 
-          onClick={() => Notebooks()}
-          type="button">
+          <button className="Productbrands_btn_content_list"
+            onClick={() => Notebooks()}
+            type="button">
             Notebook
           </button>
           {isNotebooks && (
@@ -359,9 +359,9 @@ const Productsbrands = () => {
           )}
         </div>
         <div className="Productbrands_Laptops_btn">
-          <button className="Productbrands_btn_content_list" 
-          onClick={()=>desktop()}
-          type="button">
+          <button className="Productbrands_btn_content_list"
+            onClick={() => desktop()}
+            type="button">
             Desktop
           </button>
           {isDesktop && (
@@ -379,9 +379,9 @@ const Productsbrands = () => {
           )}
         </div>
         <div className="Productbrands_Laptops_btn">
-          <button className="Productbrands_btn_content_list" 
-           onClick={()=>tablet()}
-          type="button">
+          <button className="Productbrands_btn_content_list"
+            onClick={() => tablet()}
+            type="button">
             Tablets
           </button>
           {isTablets && (
@@ -400,8 +400,8 @@ const Productsbrands = () => {
         </div>
         <div className="Productbrands_Laptops_btn">
           <button className="Productbrands_btn_content_list"
-           onClick={()=>printer()} 
-          type="button">
+            onClick={() => printer()}
+            type="button">
             Printers
           </button>
           {isPrinters && (
@@ -419,9 +419,9 @@ const Productsbrands = () => {
           )}
         </div>
         <div className="Productbrands_Laptops_btn">
-          <button className="Productbrands_btn_content_list" 
-           onClick={()=>scanner()}
-          type="button">
+          <button className="Productbrands_btn_content_list"
+            onClick={() => scanner()}
+            type="button">
             Scanners
           </button>
           {isScanners && (
@@ -439,8 +439,8 @@ const Productsbrands = () => {
           )}
         </div>
         <div className="Productbrands_Laptops_btn">
-          <button className="Productbrands_btn_content_list"  onClick={()=>mobile()}
-           type="button">
+          <button className="Productbrands_btn_content_list" onClick={() => mobile()}
+            type="button">
             Mobiles
           </button>
           {isMobiles && (
@@ -458,8 +458,8 @@ const Productsbrands = () => {
           )}
         </div>
         <div className="Productbrands_Laptops_btn">
-          <button className="Productbrands_btn_content_list"  onClick={()=>monitor()}
-          type="button">
+          <button className="Productbrands_btn_content_list" onClick={() => monitor()}
+            type="button">
             Monitors
           </button>
           {isMonitors && (
@@ -477,8 +477,8 @@ const Productsbrands = () => {
           )}
         </div>
         <div className="Productbrands_Laptops_btn">
-          <button className="Productbrands_btn_content_list"  onClick={()=>convertible()}
-          type="button">
+          <button className="Productbrands_btn_content_list" onClick={() => convertible()}
+            type="button">
             Convertibles
           </button>
           {isConvertibles && (
@@ -496,8 +496,8 @@ const Productsbrands = () => {
           )}
         </div>
         <div className="Productbrands_Laptops_btn">
-          <button className="Productbrands_btn_content_list"   onClick={()=>chromebook()}
-          type="button">
+          <button className="Productbrands_btn_content_list" onClick={() => chromebook()}
+            type="button">
             Chromebook
           </button>
           {isChromebook && (

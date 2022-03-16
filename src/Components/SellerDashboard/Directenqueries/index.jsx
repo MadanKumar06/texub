@@ -138,15 +138,6 @@ const Index = () => {
     {
       name: "hub",
       label: "Hub",
-      //   options: {
-      //     customBodyRender: (value) => {
-      //       return (
-      //         <div className="return_quantity">
-      //           <span className="value">{value}</span>
-      //         </div>
-      //       );
-      //     },
-      //   },
     },
     {
       name: "status",
