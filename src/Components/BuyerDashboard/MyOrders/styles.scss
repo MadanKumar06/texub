@@ -77,13 +77,6 @@
         cursor: pointer;
       }
 
-      .myorders__pending {
-        color: #dd9b63;
-        font-weight: 600;
-        padding: 0.3em 1.2em;
-        background-color: #fff4eb;
-        border-radius: 24px;
-      }
 
       .myorders__confirm {
         color: #20639b;
@@ -98,6 +91,14 @@
         font-weight: 600;
         padding: 0.3em 1.2em;
         background-color: #e6ffea;
+        border-radius: 24px;
+      }
+
+      .myorders__pending {
+        color: #dd9b63;
+        font-weight: 600;
+        padding: 0.3em 1.2em;
+        background-color: #fff4eb;
         border-radius: 24px;
       }
 

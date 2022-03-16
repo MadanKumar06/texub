@@ -7,6 +7,7 @@ import PDPTopHeader from "./PDPTopHeader";
 import PDPTable from "./PDPTable";
 import { Link } from "react-router-dom";
 import { table_one_data, table_two_data } from "./PDPTable/TableData";
+import { useStateValue } from "../../store/state";
 
 import header_bottom_image_1 from "../../Assets/Productlist/warranty.png";
 import header_bottom_image_2 from "../../Assets/Productlist/Delivery.png";
@@ -16,8 +17,9 @@ import add_whishlist from "../../Assets/CommonImage/add_wishlist.png";
 import shopping_cart from "../../Assets/CommonImage/shopping-cart.png";
 import invoice_image from "../../Assets/CommonImage/invoice.png";
 
-const PdpPopup = ({ classes, PDPPopUP }) => {
+const PdpPopup = ({ classes }) => {
   const [open, setOpen] = useState(true);
+  const [{}, dispatch] = useStateValue();
   const [moreOffers, setMoreOffers] = useState({ tableone: 3, tabletwo: 3 });
   const [tableData, setTableData] = useState({
     tableone: "",
@@ -45,7 +47,10 @@ const PdpPopup = ({ classes, PDPPopUP }) => {
 
   const handleClose = () => {
     setOpen(false);
-    PDPPopUP(false);
+    dispatch({
+      type: "SET_PDP_POPUP_OPEN_CLOSE",
+      value: false,
+    });
   };
   useEffect(() => {
     let tempTable_one = table_one_data?.slice(0, moreOffers?.tableone);
