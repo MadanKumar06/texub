@@ -4,13 +4,6 @@ const styles = (theme) => ({
     maxHeight: "max-content",
     position: "relative",
   },
-  arrow_icon: {
-    fill: "#ffffff !important",
-    position: "absolute",
-    top: "-62px",
-    right: "32%",
-    fontSize: "6.5rem !important",
-  },
   validation_error: {
     whiteSpace: "unset !important",
     marginLeft: "4px !important",
@@ -46,10 +39,10 @@ const styles = (theme) => ({
       width: "100% !important",
     },
     "& #rc-anchor-container": {
-      width:"100% !important",
+      width: "100% !important",
     },
-    "& #rc-anchor-normal":{
-         with:"100% !important",
+    "& #rc-anchor-normal": {
+      with: "100% !important",
     },
   },
   button_box: {

@@ -20,7 +20,7 @@ const Currency = [
   },
   {
     name: "AED",
-    image: aed,
+    image: usd,
   },
 ];
 
