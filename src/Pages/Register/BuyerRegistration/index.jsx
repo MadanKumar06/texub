@@ -290,11 +290,11 @@ const BuyerRegistration = ({ classes }) => {
     }
     if (!errorHandle) {
       // Apicall fuction
-      dispatch({
-        type: "SET_KYC_OPEN_CLOSE",
-        value: true,
-      });
     }
+    dispatch({
+      type: "SET_KYC_OPEN_CLOSE",
+      value: true,
+    });
   };
   return (
     <div className={main_container}>
@@ -568,7 +568,6 @@ const BuyerRegistration = ({ classes }) => {
           <ReCAPTCHA
             className="recaptcha_info1"
             sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
-           
           />
         </div>
 
@@ -583,7 +582,7 @@ const BuyerRegistration = ({ classes }) => {
           {/* </Link> */}
         </Box>
       </div>
-      {/* <ArrowDropUp className={arrow_icon} /> */}
+       {/* <ArrowDropUp className={arrow_icon} />  */}
     </div>
   );
 };

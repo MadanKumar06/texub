@@ -93,7 +93,7 @@ const App = () => {
             
           </Routes>
 
-           {/* Popup component using context api */}
+           {/* Popup component using context api */}          
           {kycOpenClose && <KYCformSectionLeft/>} 
 
       

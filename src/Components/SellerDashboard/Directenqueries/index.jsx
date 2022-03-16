@@ -11,7 +11,6 @@ const Index = () => {
   const [isUopup,setisUopup] = useState(false)
   const Popup =() =>{
     setisUopup(true)
-    console.log(isUopup)
 
   }
   const ordertype = [

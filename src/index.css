@@ -10,7 +10,7 @@ body {
   box-sizing: border-box;
   font-family: "Source Sans Pro";
 }
-
+/* firefox */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;

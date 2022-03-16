@@ -21,6 +21,7 @@ const Registration = ({ classes }) => {
     area_container,
     user_signin,
     clicking_user,
+    arrow_up,
     clicking_user_para,
   } = classes;
   const [clicked, setClicked] = useState("buyer");

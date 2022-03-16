@@ -151,7 +151,7 @@ if (!NewSubAccountData?.active) {
     <div className='subaccount_main'>
     <p className='sub_heading'>Add New Sub-Account</p>
     <div className='input_sections'>
-        <div>
+        <div className='input_sections1'>
         <p>First Name</p>
               <TextField
               fullWidth
@@ -167,7 +167,7 @@ if (!NewSubAccountData?.active) {
               {inputValidation?.first_name}
             </InputLabel>
         </div>
-        <div>
+        <div className='input_sections1'>
         <p>Last Name</p>
               <TextField
               fullWidth

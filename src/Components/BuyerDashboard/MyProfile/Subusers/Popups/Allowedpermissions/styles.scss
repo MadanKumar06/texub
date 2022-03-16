@@ -1,0 +1,76 @@
+.permissions_main{
+    position: fixed;
+    bottom: 100px;
+    width: 100%;
+    height: 100vh;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9;
+    flex-direction: column;
+    // padding: 20px 0px;
+    // padding: 20% 0px;
+    .permissions_block{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        .clear{
+            background-color: #002D56;
+            color: #FFFFFF;
+            align-self: flex-end;
+        }
+        .heading{
+            margin: 0;
+            font-size: 18px;
+            color: #272727;
+            letter-spacing: 0.54px;
+            margin-left: 30px;
+        }
+    }
+    .permissions_popup{
+        background-color: #FFFFFF;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        border: 1px #707070;
+        max-width: 1126px;
+        width: 100%;
+        .permissions_list{
+            border: 1px solid #CDD5DD;
+            padding: 20px;
+            border-radius: 4px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 0 30px;
+        .permissions_list_content{
+            list-style: none;
+            span {
+               color: #878787;
+               font-size: 20px;
+               letter-spacing: 0.6px;
+               width: 100%;
+               font-weight: 600;
+            }
+            span:hover{
+                background-color: #DDB363;
+                border-radius: 2px;
+                width: 100%;
+                color: #FFFFFF;
+                letter-spacing: 0.6px;
+            }
+            span:focus{
+                background-color: #DDB363;
+                border-radius: 2px;
+                width: 100%;
+                color: #FFFFFF;
+                letter-spacing: 0.6px;
+            }
+        }
+      }
+    }
+}
