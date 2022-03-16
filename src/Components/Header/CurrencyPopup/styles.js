@@ -14,6 +14,10 @@ const styles = (theme) => ({
       display: "flex",
       alignItems: "center",
       gap: "6px",
+      "& img": {
+        width: "30px",
+        height: "30px",
+      },
       "@media (max-width:1600px)": {
         fontSize: "18px !important",
       },
@@ -46,6 +50,10 @@ const styles = (theme) => ({
         display: "flex",
         alignItems: "center",
         gap: "6px",
+        "& img": {
+          width: "30px",
+          height: "30px",
+        },
         "@media (max-width:1600px)": {
           fontSize: "20px !important",
         },

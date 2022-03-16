@@ -3,8 +3,7 @@ import styles from "./styles";
 
 import { withStyles } from "@mui/styles";
 import MUITable from "../../MUITable";
-import PDPpopUp from "../../../Pages/PDPpopUp";
-import { Link } from "react-router-dom";
+import { useStateValue } from "../../../store/state";
 
 import HP from "./../../../Assets/Productlist/hp_td_icon.png";
 import Acer from "../../../Assets/Productlist/acer_icon_td.png";
@@ -18,6 +17,7 @@ import shortExpand_inactive_icon from "../../../Assets/BasicNeeded/PLPIcons/Grou
 import longExpand_active_icon from "../../../Assets/BasicNeeded/PLPIcons/Group 1178.png";
 import longExpand_inactive_icon from "../../../Assets/BasicNeeded/PLPIcons/Group 1176.png";
 const Productstable = ({ classes }) => {
+  const [{}, dispatch] = useStateValue();
   let {
     producttable,
     mui_datatable_main,
@@ -29,29 +29,11 @@ const Productstable = ({ classes }) => {
     producttable_heading_icon,
   } = classes;
 
-  function truncate(str, n) {
-    return str?.length > n ? str.substr(0, n - 1) + "..." : str;
-  }
-  // const [textsize, settextsize] = useState(30)
-
-  // useEffect(() => {
-  //   if (window.innerWidth <= 1440) {
-  //     settextsize(22)
-  //   }
-  //   if (window.innerWidth <= 1366) {
-  //     settextsize(12)
-  //   }
-  //   if (window.innerWidth > 1440) {
-  //     settextsize(30)
-  //   }
-  // }, [])
-  
-  const [isPDPpopUP, setIsPDPpopUP] = useState(false);
-  const PDPPopUP = (event) => {
-    setIsPDPpopUP(event);
-  };
   const onRowHandleClick = (rowData, rowState, rowMeta) => {
-    setIsPDPpopUP(true);
+    dispatch({
+      type: "SET_PDP_POPUP_OPEN_CLOSE",
+      value: true,
+    });
   };
 
   function truncate(str, n) {
@@ -195,7 +177,8 @@ const Productstable = ({ classes }) => {
       BRANDNAME: Acer,
       MODELNAME: "Acer Model14",
       PARTNUMBER: "1135G7",
-      DESCRIPTION: "Acer Laptop 14-ec0036AU,AMD Acer Laptop 14-ec0036AU,AMD Acer Laptop 14-ec0036AU,AMD",
+      DESCRIPTION:
+        "Acer Laptop 14-ec0036AU,AMD Acer Laptop 14-ec0036AU,AMD Acer Laptop 14-ec0036AU,AMD",
       HUB: "Dubai",
       MOQ: "50",
       PRICE: "66,999",
@@ -207,7 +190,8 @@ const Productstable = ({ classes }) => {
       BRANDNAME: Apple,
       MODELNAME: "Apple Model14",
       PARTNUMBER: "1135G7",
-      DESCRIPTION: "Apple Macbook 14-ec0036AU,AMD Apple Macbook 14-ec0036AU,AMD Apple Macbook 14-ec0036AU,AMD",
+      DESCRIPTION:
+        "Apple Macbook 14-ec0036AU,AMD Apple Macbook 14-ec0036AU,AMD Apple Macbook 14-ec0036AU,AMD",
       HUB: "Dubai",
       MOQ: "50",
       PRICE: "1,10,999",
@@ -219,7 +203,8 @@ const Productstable = ({ classes }) => {
       BRANDNAME: Lenovo,
       MODELNAME: " Lenovo Model14",
       PARTNUMBER: "1135G7",
-      DESCRIPTION: "Lenovo Laptop 14-ec0036AU,AMD Lenovo Laptop 14-ec0036AU,AMD Lenovo Laptop 14-ec0036AU,AMD",
+      DESCRIPTION:
+        "Lenovo Laptop 14-ec0036AU,AMD Lenovo Laptop 14-ec0036AU,AMD Lenovo Laptop 14-ec0036AU,AMD",
       HUB: "Dubai",
       MOQ: "50",
       PRICE: "66,999",
@@ -329,7 +314,6 @@ const Productstable = ({ classes }) => {
         options={options}
         className={mui_datatable_main}
       />
-      {isPDPpopUP && <PDPpopUp PDPPopUP={PDPPopUP} />}
     </div>
   );
 };

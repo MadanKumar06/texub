@@ -1,5 +1,6 @@
 import React from "react";
 import "./styles.scss";
+import clsx from "clsx";
 import MUIDataTable from "mui-datatables";
 
 function Index({ table, columns, options, className, title }) {
@@ -9,7 +10,7 @@ function Index({ table, columns, options, className, title }) {
       data={table}
       columns={columns}
       options={options}
-      className={className && className}
+      className={clsx(className && className, "default_appearance")}
     />
   );
 }

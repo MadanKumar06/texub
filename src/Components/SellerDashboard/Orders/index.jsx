@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./styles.scss";
-import MUITable from '../../MUITable'
+import MUITable from "../../MUITable";
 import { Link } from "react-router-dom";
 import Pagination from "../../Pagination";
 import { ArrowBackIosNew } from "@mui/icons-material";
@@ -13,7 +13,7 @@ function Index() {
     { name: "Cancelled Orders" },
   ];
 
-  const [type, settype] = useState();
+  const [type, settype] = useState(0);
 
   const selectorder = (value) => {
     settype(value);
@@ -53,10 +53,36 @@ function Index() {
       status: "Confirm",
       action: "View Order",
     },
+    {
+      order: "#000000006",
+      date: "02/04/2022",
+      buyercode: 220120,
+      hub: "Delhi",
+      ordertotal: 67999,
+      status: "Pending",
+      action: "View Order",
+    },
+    {
+      order: "#000000007",
+      date: "05/05/2022",
+      buyercode: 220145,
+      hub: "Pune",
+      ordertotal: 75112,
+      status: "Delivered",
+      action: "View Order",
+    },
   ];
 
   const columns = [
-    { name: "order", label: "Order" },
+    {
+      name: "order",
+      label: "Order #",
+      options: {
+        customBodyRender: (value) => {
+          return <div className="orders__code">{value}</div>;
+        },
+      },
+    },
     { name: "date", label: "Date" },
     {
       name: "buyercode",
@@ -89,9 +115,12 @@ function Index() {
         customBodyRender: (value) => {
           return (
             <div
-              className={`${value === "Dispatched" && "orders__dispatched"} ${
-                value === "Confirm" && "orders__confirmed"
-              }`}
+              className={`
+              ${value === "Pending" && "orders__pending"}
+              ${value === "Confirm" && "orders__confirmed"}
+              ${value === "Delivered" && "orders__delivered"}
+              ${value === "Dispatched" && "orders__dispatched"}
+              `}
             >
               {value}
             </div>
@@ -124,7 +153,12 @@ function Index() {
         ))}
       </div>
 
-      <MUITable columns={columns} table={tableData} options={options} className="orders__table" />
+      <MUITable
+        columns={columns}
+        table={tableData}
+        options={options}
+        className="orders__table"
+      />
 
       <Pagination
         PaginateData={PaginateDataSplit}

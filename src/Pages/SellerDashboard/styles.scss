@@ -11,15 +11,14 @@
     background-color: white;
     display: flex;
     gap: 20px;
-    margin: 2%;
+    margin: 3%;
+    border: 1px solid #e6e6e6;
   }
 
   .sellerdashboard__maintab {
     background-color: white;
     flex: 1;
-    // border: 1px solid #e6e6e6;
-    padding: 1em;
-    box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
+    padding: 1.2em;
 
     .sellerdashboard__search {
       display: flex;
