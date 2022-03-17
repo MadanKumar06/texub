@@ -73,7 +73,7 @@ const styles = (theme) => ({
   },
   modal_bottom_container: {
     display: "flex",
-    justifyContent: "end",
+    justifyContent: " flex-end",
     gap: "32px",
     padding: "29px",
     width: "85%",
