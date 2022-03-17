@@ -1,0 +1,12 @@
+.default_appearance {
+  box-shadow: none !important;
+  margin-top: 3em;
+  .MuiTable-root {
+    // .MuiTableCell-root {
+    //   white-space: nowrap;
+    // }
+    .MuiTableFooter-root {
+      display: none;
+    }
+  }
+}

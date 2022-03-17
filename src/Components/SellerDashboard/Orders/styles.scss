@@ -8,16 +8,20 @@
 
     p {
       margin: 0;
-      padding: 0.5em 1.2em;
+      padding: 0.8em 1.2em;
       background-color: #f0f0f0;
       color: #333c42;
       font-size: 18px;
       border-radius: 25px;
+      text-align: center;
+      font-weight: 600;
       cursor: pointer;
+      text-transform: capitalize;
+      width: calc(100% / 4);
     }
 
     .ordertype__selected {
-      background: linear-gradient(#ffd788, #cc9b3e);
+      background: linear-gradient(180deg, #ffd788 0%, #cc9b3e 100%);
       color: white;
     }
   }
@@ -30,6 +34,7 @@
         font-size: 26px;
         color: #959595;
         text-align: center;
+        font-weight: 600;
       }
     }
 
@@ -39,7 +44,9 @@
         text-align: center;
         color: #333c42;
       }
-
+      .orders__code {
+        font-weight: 600;
+      }
       .orders__buyercode {
         border: 1px solid #cecece;
         border-radius: 24px;
@@ -48,10 +55,10 @@
 
       .orders__ordertotal {
         display: flex;
-        align-items: center;
+        align-items: baseline;
         justify-content: center;
         gap: 8px;
-
+        font-weight: 600;
         .label {
           font-size: 16px;
         }
@@ -67,14 +74,30 @@
         color: #002d56;
         font-size: 22px;
         cursor: pointer;
+        font-weight: 600;
+      }
+      .orders__delivered {
+        color: #00b91c;
+        font-weight: 600;
+        padding: 0.3em 1.2em;
+        background-color: #e6ffea;
+        border-radius: 24px;
       }
 
+      .orders__pending {
+        color: #dd9b63;
+        font-weight: 600;
+        padding: 0.3em 1.2em;
+        background-color: #fff4eb;
+        border-radius: 24px;
+      }
       .orders__dispatched {
         color: #d9ad59;
         font-size: 22px;
         background-color: #fff6e5;
         padding: 0.3em 0.9em;
         border-radius: 24px;
+        font-weight: 600;
       }
       .orders__confirmed {
         color: #20639b;
@@ -82,6 +105,7 @@
         background-color: #d5ecff;
         padding: 0.3em 0.9em;
         border-radius: 24px;
+        font-weight: 600;
       }
     }
   }
