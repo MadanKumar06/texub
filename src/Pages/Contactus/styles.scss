@@ -193,11 +193,12 @@
         }
         .contactus_locations{
             display: flex;
-            gap: 5em;
+            gap: 2em;
             // position: absolute;
             justify-content: center;
             flex-wrap: wrap;
             align-items: center;
+            margin: 0 103px;
         .contactus_location1{
             .contactus_location_list{
                 list-style: none;
@@ -251,7 +252,9 @@
     .contactus_main .contactus_form_section{
         min-height: 661px;
         padding: 112px 43px 0 0;
-     
+    }
+    .contactus_main .contactus_map_section .contactus_locations{
+        margin: 0 30px;
     }
 }
 
@@ -259,6 +262,9 @@
     .contactus_main .contactus_form_section .contactus_details_section{
         top: 23rem;
         left: 5rem;
+    }
+    .contactus_main .contactus_map_section .contactus_locations{
+        margin: 0 7px;
     }
 }
 @media only screen and (max-width: 1080px){
@@ -269,6 +275,9 @@
   .contactus_main .contactus_form_section .contactus_details_section {
     top: 17rem;
     left: 4rem;
+  }
+  .contactus_main .contactus_map_section .contactus_locations{
+      margin: 0 50px;
   }
 }
 @media only screen and (max-width:1024px) {

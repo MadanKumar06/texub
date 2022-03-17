@@ -44,6 +44,23 @@
         height: 40px;
       }
     }
+      .Slider_brands{
+        list-style: none;
+        font-size: 18px;
+        border-radius: 25px;
+        border: 1px solid #D6D8D9;
+        cursor: pointer;
+        box-shadow: 0px 3px 6px #00000029;
+        padding: 10px 25px;
+        text-align: center;
+        width: auto !important;
+        
+      }
+      .Slider_brands:hover{
+        background: transparent linear-gradient(180deg, #FFD788 0%, #CC9B3E 100%);
+        color: #FFFFFF;
+      }
+    
     .Productbrands_Laptops_btn {
       .Productbrands_btn_content_list {
         display: flex;
@@ -90,6 +107,18 @@
         cursor: pointer;
         box-shadow: 0px 3px 6px #00000029;
         font-family: "Source Sans Pro";
+      }
+    }
+    .slide_brands{
+      display: block;
+      
+      .slide_brands_list{
+        list-style: none;
+        font-size: 18px;
+        border-radius: 25px;
+        border: 1px solid #D6D8D9;
+        cursor: pointer;
+        box-shadow: 0px 3px 6px #00000029;
       }
     }
   }

@@ -156,7 +156,7 @@
             gap: 50px;
         .Shippingaddress_Account_heading{
             background-color: #F8F0E0;
-            width: 28%;
+            width: 50%;
             color: #002D56;
             font-size: 18px;
             letter-spacing: 0.54px;
@@ -205,8 +205,9 @@
                     // .MuiOutlinedInput-input{
                     //     width: 35rem;
                     // }
+                    gap: 40px;
                     .inputfield{
-                        width: 49%;
+                        width: 50%;
                     }
                     .MuiOutlinedInput-root{
                         padding-right: 5px;
@@ -216,6 +217,8 @@
                     display: flex;
                     gap: 20px;
                     padding-top: 60px;
+                    width: 50%;
+                    justify-content: space-between;
                 .Shippingaddress_info_cancel {
                     color: #002D56;
                     font-size: 18px;
@@ -269,7 +272,7 @@
             //     width: 28rem !important;
             // }
             .Shippingaddress_main .heading_section .Shippingaddress_Account_heading{
-                width: 36%;
+                width: 50%;
             }
             .Shippingaddress_main .Shippingaddress_information form .inputfield_btn .Shippingaddress_btn_section .Shippingaddress_info_save{
                 padding: 10px 49px;
@@ -286,9 +289,9 @@
             // .Shippingaddress_main .Shippingaddress_information form .inputfield_section .inputfield .MuiFormControl-root{
             //     width: 28rem !important;
             // }
-            .Shippingaddress_main .Shippingaddress_heading_section .Shippingaddress_Account_heading{
-                width: 36%;
-            }
+            // .Shippingaddress_main .Shippingaddress_heading_section .Shippingaddress_Account_heading{
+            //     width: 40%;
+            // }
             // .Shippingaddress_main .Shippingaddress_information form .inputfield_btn .inputfield .MuiFormControl-root {
             //       width: 28rem;
             // }
@@ -323,6 +326,7 @@
                 }
                 .Shippingaddress_main .Shippingaddress_information form .inputfield_btn .Shippingaddress_btn_section {
                     justify-content: center;
+                    width: 100%;
                 }
         }        
 @media only screen and (max-width:768px){

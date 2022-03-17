@@ -152,7 +152,7 @@
     //     width: 58rem;
     // }
     .subaccount_main{
-        margin:  10px auto;
+        margin:  10px ;
     }
 }
 @media only screen and (max-width:1360px){
@@ -166,7 +166,7 @@
     //     width: 54rem;
     // }
     .subaccount_main{
-        margin:  10px auto;
+        margin:  10px;
     }
 }
 @media only screen and (max-width:1240px){
@@ -180,20 +180,20 @@
     //     width: 50rem;
     // }
     .subaccount_main{
-        margin:  10px auto;
+        margin:  10px;
     }
 }
 
 @media only screen and (max-width:960px){
-    .subaccount_main .input_sections .MuiOutlinedInput-root {
-        width: 20rem;
-    }
-    .subaccount_main .user_input .MuiOutlinedInput-root{
-        width: 43rem;
-    }
-    .subaccount_main .MuiOutlinedInput-root{
-        width: 43rem;
-    }
+    // .subaccount_main .input_sections .MuiOutlinedInput-root {
+    //     width: 20rem;
+    // }
+    // .subaccount_main .user_input .MuiOutlinedInput-root{
+    //     width: 43rem;
+    // }
+    // .subaccount_main .MuiOutlinedInput-root{
+    //     width: 43rem;
+    // }
     .subaccount_main{
         margin: 10px;
         padding: 0;
@@ -202,20 +202,23 @@
         flex-direction: column;
         gap: 0;
     }
-    .subaccount_main .input_sections .MuiOutlinedInput-root{
-        width: 43rem;
+    .subaccount_main .input_sections .input_sections1 {
+        width: 100%;
     }
+    // .subaccount_main .input_sections .MuiOutlinedInput-root{
+    //     width: 43rem;
+    // }
 }
 @media only screen and (max-width:768px){
-    .subaccount_main .input_sections .MuiOutlinedInput-root {
-        width: 20rem;
-    }
-    .subaccount_main .user_input .MuiOutlinedInput-root{
-        width: 43rem;
-    }
-    .subaccount_main .MuiOutlinedInput-root{
-        width: 43rem;
-    }
+    // .subaccount_main .input_sections .MuiOutlinedInput-root {
+    //     width: 20rem;
+    // }
+    // .subaccount_main .user_input .MuiOutlinedInput-root{
+    //     width: 43rem;
+    // }
+    // .subaccount_main .MuiOutlinedInput-root{
+    //     width: 43rem;
+    // }
     .subaccount_main{
         margin: 10px;
         padding: 0;
@@ -224,9 +227,9 @@
         flex-direction: column;
         gap: 0;
     }
-    .subaccount_main .input_sections .MuiOutlinedInput-root{
-        width: 43rem;
-    }
+    // .subaccount_main .input_sections .MuiOutlinedInput-root{
+    //     width: 43rem;
+    // }
 }
 
 @media only screen and (max-width:580px){
@@ -236,23 +239,23 @@
     .subaccount_main .my_profile_btns{
         flex-direction: column;
     }
-    .subaccount_main .input_sections .MuiOutlinedInput-root{
-        width: 31rem;
-    }
-    .subaccount_main .user_input .MuiOutlinedInput-root{
-        width: 31rem;
-    }
+    // .subaccount_main .input_sections .MuiOutlinedInput-root{
+    //     width: 31rem;
+    // }
+    // .subaccount_main .user_input .MuiOutlinedInput-root{
+    //     width: 31rem;
+    // }
 
-    .subaccount_main .MuiOutlinedInput-root{
-        width: 31rem;
-    }
+    // .subaccount_main .MuiOutlinedInput-root{
+    //     width: 31rem;
+    // }
 
     .subaccount_main .user_btn_section{
         justify-content: center;
     }
-    .subaccount_main textarea{
-        width: 33rem;
-    }
+    // .subaccount_main textarea{
+    //     width: 33rem;
+    // }
     .subaccount_main {
         padding-right: 0px;
     }
@@ -262,15 +265,15 @@
 }
 
 @media only screen and (max-width:480px){
-    .subaccount_main .input_sections .MuiOutlinedInput-root {
-        width: 25rem;
-    }
-    .subaccount_main .user_input .MuiOutlinedInput-root {
-        width: 25rem;
-    }
-    .subaccount_main .MuiOutlinedInput-root {
-        width: 25rem;
-    }
+    // .subaccount_main .input_sections .MuiOutlinedInput-root {
+    //     width: 25rem;
+    // }
+    // .subaccount_main .user_input .MuiOutlinedInput-root {
+    //     width: 25rem;
+    // }
+    // .subaccount_main .MuiOutlinedInput-root {
+    //     width: 25rem;
+    // }
     .users_main .user_sub-account button{
         width: 100%;
     }
@@ -281,15 +284,15 @@
 }
 
 @media only screen and (max-width:425px){
-    .subaccount_main .input_sections .MuiOutlinedInput-root {
-        width: 22rem;
-    }
-    .subaccount_main .user_input .MuiOutlinedInput-root {
-        width: 22rem;
-    }
-    .subaccount_main .MuiOutlinedInput-root {
-        width: 22rem;
-    }
+    // .subaccount_main .input_sections .MuiOutlinedInput-root {
+    //     width: 22rem;
+    // }
+    // .subaccount_main .user_input .MuiOutlinedInput-root {
+    //     width: 22rem;
+    // }
+    // .subaccount_main .MuiOutlinedInput-root {
+    //     width: 22rem;
+    // }
     .users_main .user_sub-account button{
         width: 100%;
     }
@@ -300,15 +303,15 @@
 }
 
 @media only screen and (max-width:375px){
-    .subaccount_main .input_sections .MuiOutlinedInput-root {
-        width: 19rem;
-    }
-    .subaccount_main .user_input .MuiOutlinedInput-root {
-        width: 19rem;
-    }
-    .subaccount_main .MuiOutlinedInput-root {
-        width: 19rem;
-    }
+    // .subaccount_main .input_sections .MuiOutlinedInput-root {
+    //     width: 19rem;
+    // }
+    // .subaccount_main .user_input .MuiOutlinedInput-root {
+    //     width: 19rem;
+    // }
+    // .subaccount_main .MuiOutlinedInput-root {
+    //     width: 19rem;
+    // }
     .users_main .user_sub-account button{
         width: 100%;
     }
@@ -319,15 +322,15 @@
 }
 
 @media only screen and (max-width:320px){
-    .subaccount_main .input_sections .MuiOutlinedInput-root {
-        width: 16rem;
-    }
-    .subaccount_main .user_input .MuiOutlinedInput-root {
-        width: 16rem;
-    }
-    .subaccount_main .MuiOutlinedInput-root {
-        width: 16rem;
-    }
+    // .subaccount_main .input_sections .MuiOutlinedInput-root {
+    //     width: 16rem;
+    // }
+    // .subaccount_main .user_input .MuiOutlinedInput-root {
+    //     width: 16rem;
+    // }
+    // .subaccount_main .MuiOutlinedInput-root {
+    //     width: 16rem;
+    // }
     .users_main .user_sub-account button{
         width: 100%;
     }

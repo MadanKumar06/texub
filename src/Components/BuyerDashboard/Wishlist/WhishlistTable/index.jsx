@@ -58,14 +58,14 @@ const WhislistTable = ({ tableData, tableDataHeader }) => {
                     <div className="qty_change">
                       <Remove
                         className="item_decrease"
-                        // onClick={() =>
-                        //   handleChange(
-                        //     parseInt(itm?.quantity) >= 2
-                        //       ? parseInt(itm?.quantity) - 1
-                        //       : 1,
-                        //     index
-                        //   )
-                        // }
+                      // onClick={() =>
+                      //   handleChange(
+                      //     parseInt(itm?.quantity) >= 2
+                      //       ? parseInt(itm?.quantity) - 1
+                      //       : 1,
+                      //     index
+                      //   )
+                      // }
                       />
                       <span className="input_text">
                         {" "}
@@ -73,9 +73,9 @@ const WhislistTable = ({ tableData, tableDataHeader }) => {
                       </span>
                       <Add
                         className="item_increase"
-                        // onClick={() =>
-                        //   handleChange(parseInt(itm?.quantity) + 1, index)
-                        // }
+                      // onClick={() =>
+                      //   handleChange(parseInt(itm?.quantity) + 1, index)
+                      // }
                       />
                     </div>
                   </div>
