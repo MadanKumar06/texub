@@ -26,33 +26,7 @@
   }
 }
 
-// .Favorites_Sections {
-//   display: flex;
-//   flex-direction: row;
-//   align-items: center;
-//   justify-content: center;
-//   width: calc(100% / 5 - 0px);
-//   position: relative;
-// }
-
-// .Favorites_Images {
-//   width: 100%;
-// }
-// .Favorites_Images2 {
-//   position: relative;
-//   width: 100%;
-//   padding-bottom: 6px;
-// }
-
-// .Favorites_Deals {
-//   position: absolute;
-//   color: #ffffff;
-//   font-size: 34px;
-//   top: 4.5em;
-//   margin: 0;
-// }
-
-@media (max-width: 1600px) {
+@media (max-width: 1660px) {
   .Favorites .Favorites_Sections .Favorites_Deals {
     top: 4em;
   }
@@ -60,27 +34,27 @@
 
 @media (max-width: 1533px) {
   .Favorites .Favorites_Sections .Favorites_Deals {
-    top: 3.5em;
-  }
-}
-
-@media (max-width: 1440px) {
-  .Favorites .Favorites_Sections .Favorites_Deals {
     top: 5em;
     font-size: 24px;
   }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1366px) {
   .Favorites .Favorites_Sections .Favorites_Deals {
-    top: 5.5em;
+    top: 4.5em;
+  }
+}
+
+@media (max-width: 1240px) {
+  .Favorites .Favorites_Sections .Favorites_Deals {
+    top: 4.25em;
     font-size: 20px;
   }
 }
 
 @media (max-width: 1200px) {
   .Favorites .Favorites_Sections .Favorites_Deals {
-    top: 4.5em;
+    top: 5em;
   }
   .Favorites {
     gap: 0;
@@ -105,7 +79,7 @@
     flex-direction: column;
   }
 
-  .Favorites  .Favorites_Sections {
+  .Favorites .Favorites_Sections {
     width: 100%;
   }
 
