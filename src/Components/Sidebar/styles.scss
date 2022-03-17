@@ -117,14 +117,21 @@
 }
 @media (max-width: 1375px) {
   .sellerdashboard__sidebar {
-    min-width: 25%;
-  }
-}
-@media (max-width: 1375px) {
-  .sellerdashboard__sidebar {
     min-width: 28%;
   }
 }
+@media (max-width: 1366px) {
+  .sellerdashboard__sidebar {
+    min-width: 25%;
+  }
+}
+
+@media (max-width: 1240px) {
+  .sellerdashboard__sidebar ul li {
+    font-size: 18px;
+  }
+}
+
 @media (max-width: 1024px) {
   .sidebaropen {
     padding: 2em 0;
