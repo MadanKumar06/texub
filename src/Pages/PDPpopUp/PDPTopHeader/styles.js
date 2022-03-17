@@ -29,7 +29,7 @@ const styles = (theme) => ({
     height: "128px",
     display: "flex",
     position: "relative",
-    alignItems: "end",
+    alignItems: " flex-end",
     "@media (max-width:768px)": {
       width: "unset",
       height: "unset",
