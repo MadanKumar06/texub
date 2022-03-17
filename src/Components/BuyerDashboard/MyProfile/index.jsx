@@ -27,7 +27,6 @@ const Index = () => {
     setisEdit(false)
     setisCompany(false)
     setisUser(false)
-    console.log(isAddress)
   }
   const [isUser, setisUser] = useState(false)
   const Subuser = () => {

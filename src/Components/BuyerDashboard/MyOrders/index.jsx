@@ -5,6 +5,7 @@ import { ArrowBackIosNew } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import Pagination from "../../Pagination";
 import "./styles.scss";
+import Vieworders from '../MyOrders/Vieworders'
 
 function Index() {
   const [tableData, setTableData] = useState([]);
@@ -24,6 +25,12 @@ function Index() {
   const PaginateDataSplit = (event) => {
     setTableData(event);
   };
+  const [isVieworders, setisVieworders] = useState(false)
+  const orders = () => {
+    setisVieworders(true)
+    setisOrders(false)
+  }
+  const [isOrders, setisOrders] = useState(true)
 
   const options = {
     filter: false,
@@ -136,31 +143,40 @@ function Index() {
       label: "Action",
       options: {
         customBodyRender: (value) => {
-          return <div className="myorders__action">{value}</div>;
+          return <div className="myorders__action" onClick={orders}>{value}</div>;
         },
       },
     },
   ];
-  return (
-    <div className="myorders">
-      <div className="myorders__buttons">
-        {ordertype.map((data, i) => (
-          <p
-            className={`ordertypes ${type === i && "ordertype__selected"}`}
-            key={i}
-            onClick={() => selectorder(i)}
-          >
-            {data.name}
-          </p>
-        ))}
-      </div>
 
-      <MUITable columns={columns} table={tableData} options={options} className="myorders__table" />
-      <Pagination
-        PaginateData={PaginateDataSplit}
-        DataList={table}
-        PagePerRow={10}
-      />
+  return (
+
+    <div className="myorders">
+
+
+      {isOrders &&
+        <>
+          <div className="myorders__buttons">
+            {ordertype.map((data, i) => (
+              <p
+                className={`ordertypes ${type === i && "ordertype__selected"}`}
+                key={i}
+                onClick={() => selectorder(i)}
+              >
+                {data.name}
+              </p>
+            ))}
+          </div>
+          <MUITable columns={columns} table={tableData} options={options} className="myorders__table" />
+          <Pagination
+            PaginateData={PaginateDataSplit}
+            DataList={table}
+            PagePerRow={10}
+          />
+        </>
+
+      }
+      {isVieworders && <Vieworders />}
 
       <div className="my_orders__footer">
         <div className="my_orders__container">
@@ -171,6 +187,8 @@ function Index() {
         </div>
       </div>
     </div>
+
+
   );
 }
 
