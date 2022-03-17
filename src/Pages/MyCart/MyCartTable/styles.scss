@@ -112,7 +112,7 @@
         .mycart_right_section_block {
           display: flex;
           justify-content: space-between;
-          align-items: end;
+          align-items:  flex-end;
           .mycart_product_eta {
             padding: 6px 9px;
             color: #002d56;

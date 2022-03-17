@@ -5,7 +5,7 @@ import { Button, Menu, MenuItem } from "@mui/material";
 import { withStyles } from "@mui/styles";
 import { ExpandMore } from "@mui/icons-material";
 
-import aed from "../../../Assets/CommonImage/Currency switcher/Mask Group 3.png";
+import aed from "../../../Assets/CommonImage/Currency switcher/DH.png";
 import usd from "../../../Assets/CommonImage/Currency switcher/dollar-symbol.png";
 import inr from "../../../Assets/CommonImage/Currency switcher/Group 1132.png";
 

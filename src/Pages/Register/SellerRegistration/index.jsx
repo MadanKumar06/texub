@@ -33,8 +33,11 @@ const BuyerRegistration = ({ classes }) => {
     auto_complete_input,
   } = classes;
   const options = ["Option 1", "Option 2"];
-  const [value, setValue] = useState();
-  const [inputValue, setInputValue] = useState("");
+  const [value, setValue] = useState({
+    role: "",
+    region: "",
+    country: "",
+  });
   const [sellerRegistrationData, setsellerRegistrationData] = useState({
     first_name: "",
     last_name: "",
@@ -295,7 +298,7 @@ const BuyerRegistration = ({ classes }) => {
       }));
       errorHandle = true;
     }
-    if (!sellerRegistrationData?.country) {
+    if (!value?.country) {
       document.getElementById("last_name")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
@@ -303,7 +306,7 @@ const BuyerRegistration = ({ classes }) => {
       }));
       errorHandle = true;
     }
-    if (!sellerRegistrationData?.role) {
+    if (!value?.role) {
       document.getElementById("role")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
@@ -311,7 +314,7 @@ const BuyerRegistration = ({ classes }) => {
       }));
       errorHandle = true;
     }
-    if (!sellerRegistrationData?.region) {
+    if (!value?.region) {
       document.getElementById("region")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
@@ -321,11 +324,11 @@ const BuyerRegistration = ({ classes }) => {
     }
     if (!errorHandle) {
       // Apicall fuction
-      dispatch({
-        type: "SET_KYC_OPEN_CLOSE",
-        value: true,
-      });
     }
+    dispatch({
+      type: "SET_KYC_OPEN_CLOSE",
+      value: true,
+    });
   };
   return (
     <div className={main_container}>
@@ -539,18 +542,17 @@ const BuyerRegistration = ({ classes }) => {
           </div>
           <div className={text_field_container}>
             <Autocomplete
-              value={value}
+              options={options}
+              value={value?.role}
               name="role"
               onChange={(event, newValue) => {
-                setValue(newValue);
+                setValue((prevState) => ({
+                  ...prevState,
+                  role: newValue,
+                }));
+                setInputValidation("");
               }}
               className={auto_complete_input}
-              inputValue={inputValue}
-              onInputChange={(event, newInputValue) => {
-                setInputValue(newInputValue);
-              }}
-              id="controllable-states-demo"
-              options={options}
               fullWidth
               renderInput={(params) => (
                 <TextField
@@ -575,17 +577,16 @@ const BuyerRegistration = ({ classes }) => {
         <div className={input_textField}>
           <div className={text_field_container}>
             <Autocomplete
-              value={value}
+              value={value?.region}
               name="region"
               onChange={(event, newValue) => {
-                setValue(newValue);
+                setValue((prevState) => ({
+                  ...prevState,
+                  region: newValue,
+                }));
+                setInputValidation("");
               }}
               className={auto_complete_input}
-              inputValue={inputValue}
-              onInputChange={(event, newInputValue) => {
-                setInputValue(newInputValue);
-              }}
-              id="controllable-states-demo"
               options={options}
               fullWidth
               renderInput={(params) => (
@@ -609,17 +610,16 @@ const BuyerRegistration = ({ classes }) => {
           </div>
           <div className={text_field_container}>
             <Autocomplete
-              value={value}
+              value={value?.country}
               name="country"
               onChange={(event, newValue) => {
-                setValue(newValue);
+                setValue((prevState) => ({
+                  ...prevState,
+                  country: newValue,
+                }));
+                setInputValidation("");
               }}
               className={auto_complete_input}
-              inputValue={inputValue}
-              onInputChange={(event, newInputValue) => {
-                setInputValue(newInputValue);
-              }}
-              id="controllable-states-demo"
               options={options}
               fullWidth
               renderInput={(params) => (

@@ -280,7 +280,7 @@ const BuyerRegistration = ({ classes }) => {
       }));
       errorHandle = true;
     }
-    if (!buyerRegistrationData?.country) {
+    if (!value) {
       document.getElementById("last_name")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
@@ -290,11 +290,11 @@ const BuyerRegistration = ({ classes }) => {
     }
     if (!errorHandle) {
       // Apicall fuction
-      dispatch({
-        type: "SET_KYC_OPEN_CLOSE",
-        value: true,
-      });
     }
+    dispatch({
+      type: "SET_KYC_OPEN_CLOSE",
+      value: true,
+    });
   };
   return (
     <div className={main_container}>
@@ -513,6 +513,7 @@ const BuyerRegistration = ({ classes }) => {
               name="country"
               onChange={(event, newValue) => {
                 setValue(newValue);
+                setInputValidation("");
               }}
               className={auto_complete_input}
               inputValue={inputValue}
@@ -568,7 +569,6 @@ const BuyerRegistration = ({ classes }) => {
           <ReCAPTCHA
             className="recaptcha_info1"
             sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
-           
           />
         </div>
 
@@ -583,7 +583,7 @@ const BuyerRegistration = ({ classes }) => {
           {/* </Link> */}
         </Box>
       </div>
-       {/* <ArrowDropUp className={arrow_icon} />  */}
+      {/* <ArrowDropUp className={arrow_icon} />  */}
     </div>
   );
 };

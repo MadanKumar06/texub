@@ -1,6 +1,7 @@
 .auctioncard {
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 69% 29%;
+  align-items: flex-end;
   box-shadow: 0px 3px 18px #0000001d;
   padding: 10px;
   gap: 20px;
@@ -13,7 +14,6 @@
   }
 
   .auctioncard__detail {
-    flex: 1;
     display: flex;
     flex-direction: column;
 
@@ -59,12 +59,14 @@
       color: white;
       display: flex;
       align-items: center;
+      justify-content: space-between;
 
       & > div {
         width: max-content;
         padding: 0 30px;
         border-right: 1px solid white;
         margin: 10px 0;
+        text-align: center;
 
         &:last-child {
           border-right: none;
@@ -89,7 +91,7 @@
   }
 
   .auctioncard__bid {
-    width: 385px;
+    // width: 385px;
     min-height: 250px;
     background-color: #f8f0e0;
     box-shadow: 0px 3px 6px #00000029;
@@ -207,10 +209,6 @@
 @media (max-width: 1533px) {
   .auctioncard {
     gap: 10px;
-
-    .auctioncard__bid {
-      width: 368px;
-    }
   }
 }
 
@@ -223,8 +221,6 @@
   // }
 
   .auctioncard .auctioncard__detail {
-    max-width: 572px;
-
     .auctioncard__productdetails p {
       font-size: 16px;
     }
@@ -236,13 +232,15 @@
 }
 
 @media (max-width: 1366px) {
-  .auctioncard .auctioncard__detail .auctioncard__info > div {
-    padding: 0 18px;
+  .auctioncard {
+    grid-template-columns: 64% 34%;
+
+    .auctioncard__detail .auctioncard__info > div {
+      padding: 0 18px;
+    }
   }
 
   .auctioncard .auctioncard__bid {
-    max-width: 317px;
-
     input,
     .bid__yettostart {
       font-size: 16px;
@@ -252,7 +250,7 @@
 
 @media (max-width: 1200px) {
   .auctioncard {
-    flex-direction: column;
+    grid-template-columns: 100%;
     .auctioncard__detail .auctioncard__info {
       justify-content: center;
     }

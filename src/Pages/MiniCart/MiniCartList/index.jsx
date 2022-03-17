@@ -8,8 +8,10 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
 import brand_logo from "../../../Assets/Productlist/Brand_icon.png";
 import { Rating } from "@mui/material";
+import { useStateValue } from "../../../store/state";
 
 const MiniCartList = ({ handleSideBarClose }) => {
+  const [{}, dispatch] = useStateValue();
   const [value, setValue] = React.useState(4);
   const [isCartData, setIsCartData] = useState(0);
   useEffect(() => {
@@ -28,6 +30,16 @@ const MiniCartList = ({ handleSideBarClose }) => {
         }
       })
     );
+  };
+
+  const onCLickDetailsLink = () => {
+    handleSideBarClose("right", false);
+    setTimeout(() => {
+      dispatch({
+        type: "SET_PDP_POPUP_OPEN_CLOSE",
+        value: true,
+      });
+    }, 1000/2);
   };
   const minicartListJson = [
     {
@@ -93,7 +105,9 @@ const MiniCartList = ({ handleSideBarClose }) => {
                   />
                   <p className="reviews"> 543 Reviews</p>
                 </div>
-                <p className="detail_link">Details</p>
+                <p className="detail_link" onClick={() => onCLickDetailsLink()}>
+                  Details
+                </p>
                 <div className="price_block">
                   <p className="price">
                     <span>INR</span>

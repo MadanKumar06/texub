@@ -43,9 +43,10 @@ import Accountinfo from './Components/BuyerDashboard/MyProfile/Accountinfo'
 
 //popup component
 import KYCformSectionLeft from './Pages/Register/KYCform/SectionLeft'
+import PDPpopUp from "./Pages/PDPpopUp";
 
 const App = () => {
-  const [{kycOpenClose}, dispatch] = useStateValue();
+  const [{kycOpenClose,pdpPopUpOpenClose}, dispatch] = useStateValue();
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
@@ -95,6 +96,7 @@ const App = () => {
 
            {/* Popup component using context api */}          
           {kycOpenClose && <KYCformSectionLeft/>} 
+          {pdpPopUpOpenClose && <PDPpopUp/>}
 
       
         </BrowserRouter>

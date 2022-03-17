@@ -1,15 +1,19 @@
 .Auctions {
   display: flex;
-  flex-direction: row;
-  gap: 2em;
+  gap: 30px;
   margin-top: 3em;
+  max-height: 30em;
+  align-items: flex-start;
   .Auctions_div1 {
     display: flex;
-    min-width: 316px;
+    max-width: 310px;
     position: relative;
     .Auctions_div1_img {
       display: flex;
-      width: 100%;
+      position: relative;
+      height: auto;
+      max-width: 100%;
+      object-fit: contain;
     }
     .View_collection {
       position: absolute;
@@ -25,9 +29,11 @@
   .Auctions_div2 {
     display: flex;
     position: relative;
-    width: 100%;
+    flex: 1;
     .Auctions_div2_img {
-      width: 100%;
+      height: auto;
+      max-width: 100%;
+      object-fit: contain;
     }
     .Auctions__floatingcontent {
       position: absolute;
@@ -61,99 +67,88 @@
   }
 }
 
-// .Auctions_div1 {
-//   display: flex;
-//   min-width: 316px;
-//   position: relative;
-// }
+@media (max-width: 1850px) {
+  .Auctions .Auctions_div1 {
+    max-width: 298px;
+  }
+}
 
-// .Body_Collections_2_1 {
-//   display: flex;
-//   position: relative;
-//   width: 100%;
-// }
-// .View_collection {
-//   position: absolute;
-//   color: white;
-//   font-size: 28px;
-//   text-align: center;
-//   margin: 0;
-//   width: 100%;
-//   bottom: 2.25em;
-// }
+@media (max-width: 1800px) {
+  .Auctions .Auctions_div1 {
+    max-width: 290px;
+  }
+}
 
-// .Auctions_div1_img {
-//   display: flex;
-//   width: 100%;
-// }
+@media (max-width: 1660px) {
+  .Auctions .Auctions_div1 {
+    max-width: 266px;
+  }
+}
 
-// .Auctions_div2 {
-//   display: flex;
-//   position: relative;
-//   width: 100%;
-// }
+@media (max-width: 1600px) {
+  .Auctions .Auctions_div1 {
+    max-width: 257px;
+  }
+}
 
-// .Auctions_div2_img {
-//   width: 100%;
-// }
-
-// .Auctions__floatingcontent {
-//   position: absolute;
-//   left: 12em;
-//   top: 6em;
-//   color: #333333;
-//   display: flex;
-//   flex-direction: column;
-//   grid-gap: 1em;
-//   gap: 1em;
-//   max-width: 512px;
-// }
-
-// .Auctions__floatingcontent h3 {
-//   font-size: 50px;
-//   margin: 0;
-// }
-
-// .Auctions__floatingcontent p {
-//   font-size: 20px;
-//   margin: 0;
-// }
-
-// .Auctions__floatingcontent button {
-//   background: linear-gradient(#20639b, #002d56);
-//   color: white;
-//   border-radius: 25px;
-//   padding: 0.5em 3em;
-//   width: max-content;
-//   font-size: 18px;
-//   border: 0;
-//   cursor: pointer;
-// }
-
-// .Body_Collections_1_2_img_2deal {
-//   position: absolute;
-// }
+@media (max-width: 1533px) {
+  .Auctions .Auctions_div1 {
+    max-width: 246px;
+  }
+}
 
 @media (max-width: 1440px) {
+  .Auctions .Auctions_div1 {
+    max-width: 231px;
+
+    .View_collection {
+      bottom: 1.5em;
+    }
+  }
   .Auctions .Auctions_div2 .Auctions__floatingcontent {
     left: 8em;
     max-width: 416px;
+    top: 3em;
   }
 }
 
 @media (max-width: 1366px) {
+  .Auctions .Auctions_div1 {
+    max-width: 219px;
+  }
   .Auctions {
     margin-top: 2em;
   }
 }
 
+@media (max-width: 1240px) {
+  .Auctions .Auctions_div1 {
+    max-width: 198px;
+
+    .View_collection {
+      font-size: 20px;
+      bottom: 2em;
+    }
+  }
+
+  .Auctions .Auctions_div2 .Auctions__floatingcontent {
+    top: 2em;
+  }
+}
+
 @media (max-width: 1200px) {
+  .Auctions .Auctions_div1 {
+    max-width: 192px;
+  }
   .Auctions .Auctions_div2 .Auctions__floatingcontent {
     left: 3em;
   }
 }
 
 @media (max-width: 1024px) {
+  .Auctions .Auctions_div1 {
+    max-width: 166px;
+  }
   .Auctions .Auctions_div2 .Auctions__floatingcontent {
     max-width: 366px;
   }

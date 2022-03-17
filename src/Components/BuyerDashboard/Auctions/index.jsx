@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./styles.scss";
 import AuctionCard from "./AuctionCard/Index";
 import { Button } from "@mui/material";
@@ -133,6 +133,10 @@ function Index() {
   const selectorder = (value) => {
     settype(value);
   };
+
+  useEffect(() => {
+    selectorder(0)
+  }, [])
   return (
     <div className="auctions">
       <div className="auctions__buttons">
