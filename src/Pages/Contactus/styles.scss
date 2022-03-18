@@ -16,9 +16,9 @@
          display: flex;
          gap: 50px;
          justify-content:flex-end;
-         padding-top: 144px;
-             padding-right: 200px;
-             height: 39rem;
+         padding-top: 50px;
+         padding-right: 200px;
+         height: 39rem;
              
          .contactus_details_section{
              background-color: #f8f0e0b3;
@@ -90,6 +90,9 @@
             gap: 40px;
             flex-direction: column;
             width: 45%;
+            .MuiInputLabel-root{
+                color: red;
+            }
             .contactus_msg_btn{
                 background: linear-gradient(180deg, #20639B 0%, #002D56 100%);
                 border: none;
@@ -126,6 +129,9 @@
                 padding-inline-end: 0.75em !important;
                 padding-block-end: 0.625em !important;
             }
+            // .MuiOutlinedInput-root{
+            //     height: 120px;
+            // }
             // .css-n1ubvy-MuiFormLabel-root-MuiInputLabel-root{
             //     transform: translate(13px, -10px) scale(0.9) !important;
             //     font-size: 26px;
@@ -203,7 +209,6 @@
             .contactus_location_list{
                 list-style: none;
                 display: flex;
-                
                 .contactus_locations_1{
                     display: flex;
                     flex-direction: column;
@@ -290,7 +295,7 @@
     }
     .contactus_main .contactus_form_section{
         min-height: 624px;
-        padding: 112px 43px 0 0;
+        padding: 33px 43px 0 0;
      
     }
     .contactus_main .contactus_form_section .contactus_details_section 
@@ -315,7 +320,7 @@
 @media only screen and (max-width:900px){
     .contactus_main .contactus_form_section{
         flex-direction: column;
-        height: 70rem;
+        height: 77rem;
         padding: 87px 0px 0 0;
     }
     .contactus_main .contactus_img_section{
@@ -352,7 +357,7 @@
 @media only screen and (max-width:768px){
     .contactus_main .contactus_form_section{
         flex-direction: column;
-        height: 70rem;
+        height: 76rem;
         padding: 87px 0px 0 0;
     }
     .contactus_main .contactus_img_section{
@@ -395,15 +400,15 @@
         width: 89%;
     }
     .contactus_main .contactus_form_section{
-        height: 68rem;
+        height: 75rem;
     }
     
 }
 
 @media only screen and (max-width: 540px){
-    .contactus_main .contactus_form_section {
-    height: 71rem;
-   }
+//     .contactus_main .contactus_form_section {
+//     height: 75rem;
+//    }
 }
 @media only screen and (max-width:480px){
     .contactus_main .contactus_form_section .contactus_details_section {
@@ -414,9 +419,9 @@
     .contactus_office_number{
         font-size:25px ;
     }
-    .contactus_main .contactus_form_section{
-        height: 71rem;
-    }
+    // .contactus_main .contactus_form_section{
+    //     height: 71rem;
+    // }
     .contactus_main .contactus_form_section .contactus_details_section 
     .contactus_tag{
         font-size: 31px;
@@ -432,9 +437,9 @@
         left: 23px;
         padding-left: 10px;
     }
-    .contactus_main .contactus_form_section{
-        height: 69rem;
-    }
+    // .contactus_main .contactus_form_section{
+    //     height: 69rem;
+    // }
     .contactus_main .contactus_map_section{
         gap: 2em;
     }
@@ -488,7 +493,7 @@
         font-size: 23px;
     }
     .contactus_main .contactus_form_section{
-        height: 77rem;
+        height: 80rem;
     }
 }
 
