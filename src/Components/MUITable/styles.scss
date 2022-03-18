@@ -2,9 +2,15 @@
   box-shadow: none !important;
   margin-top: 3em;
   .MuiTable-root {
-    // .MuiTableCell-root {
-    //   white-space: nowrap;
-    // }
+    .MuiTableHead-root {
+      white-space: nowrap;
+    }
+    .MuiTableCell-root {
+      position: unset;
+      &:last-child {
+        white-space: nowrap;
+      }
+    }
     .MuiTableFooter-root {
       display: none;
     }

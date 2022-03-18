@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./styles.scss";
-import MUITable from '../../MUITable'
+import MUITable from "../../MUITable";
 import { Button } from "@mui/material";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import hp from "../../../Assets/sellerdashboard/inventory/hp.png";
@@ -157,13 +157,174 @@ function Index({ registerproduct }) {
       rank: "13",
       action: "Update",
     },
+    {
+      logo: hp,
+      pname: "pname2",
+      category: "cat2",
+      sku: "sku2",
+      instock: 500,
+      moq: 100,
+      myprice: 5000,
+      lowestprice: 4050,
+      hub: "Hydrebad",
+      rank: "13",
+      action: "Update",
+    },
+    {
+      logo: hp,
+      pname: "pname2",
+      category: "cat2",
+      sku: "sku2",
+      instock: 500,
+      moq: 100,
+      myprice: 5000,
+      lowestprice: 4050,
+      hub: "Hydrebad",
+      rank: "13",
+      action: "Update",
+    },
+    {
+      logo: hp,
+      pname: "pname2",
+      category: "cat2",
+      sku: "sku2",
+      instock: 500,
+      moq: 100,
+      myprice: 5000,
+      lowestprice: 4050,
+      hub: "Hydrebad",
+      rank: "13",
+      action: "Update",
+    },
+    {
+      logo: hp,
+      pname: "pname2",
+      category: "cat2",
+      sku: "sku2",
+      instock: 500,
+      moq: 100,
+      myprice: 5000,
+      lowestprice: 4050,
+      hub: "Hydrebad",
+      rank: "13",
+      action: "Update",
+    },
+    {
+      logo: hp,
+      pname: "pname2",
+      category: "cat2",
+      sku: "sku2",
+      instock: 500,
+      moq: 100,
+      myprice: 5000,
+      lowestprice: 4050,
+      hub: "Hydrebad",
+      rank: "13",
+      action: "Update",
+    },
+    {
+      logo: hp,
+      pname: "pname2",
+      category: "cat2",
+      sku: "sku2",
+      instock: 500,
+      moq: 100,
+      myprice: 5000,
+      lowestprice: 4050,
+      hub: "Hydrebad",
+      rank: "13",
+      action: "Update",
+    },
+    {
+      logo: hp,
+      pname: "pname2",
+      category: "cat2",
+      sku: "sku2",
+      instock: 500,
+      moq: 100,
+      myprice: 5000,
+      lowestprice: 4050,
+      hub: "Hydrebad",
+      rank: "13",
+      action: "Update",
+    },
+    {
+      logo: hp,
+      pname: "pname2",
+      category: "cat2",
+      sku: "sku2",
+      instock: 500,
+      moq: 100,
+      myprice: 5000,
+      lowestprice: 4050,
+      hub: "Hydrebad",
+      rank: "13",
+      action: "Update",
+    },
+    {
+      logo: hp,
+      pname: "pname2",
+      category: "cat2",
+      sku: "sku2",
+      instock: 500,
+      moq: 100,
+      myprice: 5000,
+      lowestprice: 4050,
+      hub: "Hydrebad",
+      rank: "13",
+      action: "Update",
+    },
+    {
+      logo: hp,
+      pname: "pname2",
+      category: "cat2",
+      sku: "sku2",
+      instock: 500,
+      moq: 100,
+      myprice: 5000,
+      lowestprice: 4050,
+      hub: "Hydrebad",
+      rank: "13",
+      action: "Update",
+    },
+    {
+      logo: hp,
+      pname: "pname2",
+      category: "cat2",
+      sku: "sku2",
+      instock: 500,
+      moq: 100,
+      myprice: 5000,
+      lowestprice: 4050,
+      hub: "Hydrebad",
+      rank: "13",
+      action: "Update",
+    },
+    {
+      logo: hp,
+      pname: "pname2",
+      category: "cat2",
+      sku: "sku2",
+      instock: 500,
+      moq: 100,
+      myprice: 5000,
+      lowestprice: 4050,
+      hub: "Hydrebad",
+      rank: "13",
+      action: "Update",
+    },
   ];
   const PaginateDataSplit = (event) => {
     setTableData(event);
   };
   return (
     <div className="inventory">
-      <MUITable columns={columns} table={tableData} options={options} className="inventory__table" />
+      <MUITable
+        columns={columns}
+        table={tableData}
+        options={options}
+        className="inventory__table"
+      />
       <Pagination
         PaginateData={PaginateDataSplit}
         DataList={table}

@@ -19,7 +19,7 @@
     background-color: white;
     flex: 1;
     padding: 1.2em;
-
+    width: calc(100% - 392px);
     .sellerdashboard__search {
       display: flex;
       gap: 10px;
@@ -75,6 +75,28 @@
 //      width: 71%;
 //   }
 // }
+@media (max-width: 1600px) {
+  .sellerdashboard .sellerdashboard__maintab {
+    width: calc(100% - 22%);
+  }
+}
+
+@media (max-width: 1533px) {
+  .sellerdashboard .sellerdashboard__maintab {
+    width: calc(100% - 25%);
+  }
+}
+@media (max-width: 1375px) {
+  .sellerdashboard .sellerdashboard__maintab {
+    width: calc(100% - 30%);
+  }
+}
+@media (max-width: 1366px) {
+  .sellerdashboard .sellerdashboard__maintab {
+    width: calc(100% - 27%);
+  }
+}
+
 @media (max-width: 1024px) {
   .sellerdashboard .sellerdashboard__maintab {
     padding: 2em 10px;
