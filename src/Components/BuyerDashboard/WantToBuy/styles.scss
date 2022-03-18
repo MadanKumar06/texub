@@ -12,13 +12,22 @@
       gap: 2em;
     }
     .auto_complete_input {
+      display: flex;
+      flex-direction: column;
       .MuiOutlinedInput-root {
         padding: 0px !important;
       }
+      
     }
     .input_block {
+      .block_1_input{
+        width: 50%;
+      }
       .asterisk {
         color: #ff0000;
+      }
+      .MuiInputLabel-root{
+        color: red;
       }
       .MuiFormControl-root {
         & ::placeholder {
@@ -61,7 +70,6 @@
   }
   .want_to_buy__footer {
     cursor: pointer;
-    position: absolute;
     align-items: center;
     bottom: 51px;
     width: 100%;
@@ -102,4 +110,15 @@
       }
     }
   }
+}
+
+@media only screen and(max-width:580px) {
+  .want_to_buy__container .want_to_buy__sub_container .block_3 .input_field,
+  .want_to_buy__container .want_to_buy__sub_container .block_1{
+    flex-direction: column;
+  }
+  .want_to_buy__container .want_to_buy__sub_container .input_block .block_1_input {
+    width: 100%;
+  }
+  
 }

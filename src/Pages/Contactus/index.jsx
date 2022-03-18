@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import contact from '../../Assets/Career/Group 982.png'
 import './styles.scss'
-import { TextField, Box } from '@mui/material'
+import { TextField, Box  } from '@mui/material'
+import {InputLabel  } from '@mui/material'
+import {isEmailValid} from "./Utilities";
 import officeicon from '../../Assets/Contactus/office.png'
 import mailicon from '../../Assets/Contactus/mail (2).png'
 import telephoneicon from '../../Assets/Contactus/telephone.png'
@@ -16,9 +18,87 @@ import location from '../../Assets/Contactus/placeholder (2).png'
 
 
 export const Contactus = () => {
-    // let {
-    //     asterisk
-    // }=classes
+    const [contactusData, setcontactusData] = useState({
+        your_name: "",
+        e_mail: "",
+        your_message: "",
+    });
+    const [inputValidation, setInputValidation] = useState({
+        your_name: "",
+        e_mail: "",
+        your_message: "",
+    });
+    const handleFormvalue = (event) => {
+        setcontactusData((prevState) => ({
+            ...prevState,
+            [event.target.name]: event.target.value,
+        }));
+        setInputValidation("");
+        handleSwitchCase([event.target.name], event.target.value);
+    };
+    const handleSwitchCase = (fieldName, value) => {
+        switch (fieldName[0]) {
+            case "your_name":
+                if (!value) {
+                    setInputValidation((prevState) => ({
+                        ...prevState,
+                        your_name: "Please enter your name.",
+                    }));
+                }
+                break;
+            case "e_mail":
+                if (!value) {
+                    setInputValidation((prevState) => ({
+                        ...prevState,
+                        e_mail: "Please enter your e-mail",
+                    }));
+                } else if (!isEmailValid(value)) {
+                    setInputValidation((prevState) => ({
+                        ...prevState,
+                        e_mail: "Please enter the valid e-mail.",
+                    }));
+                }
+                break;
+
+            case "your_message":
+                if (!value) {
+                    setInputValidation((prevState) => ({
+                        ...prevState,
+                        your_message: "Please enter the message.",
+                    }));
+                }
+                break;
+            default:
+                break;
+        }
+    };
+    const handleClickValidation = (event) => {
+        var errorHandle = false;
+        if (!contactusData?.your_name) {
+            document.getElementById("your_name")?.focus();
+            setInputValidation((prevState) => ({
+                ...prevState,
+                your_name: "Please enter your name.",
+            }));
+            errorHandle = true;
+        }
+        if (!contactusData?.e_mail) {
+            document.getElementById("e_mail")?.focus();
+            setInputValidation((prevState) => ({
+                ...prevState,
+                e_mail: "Please enter your e-mail",
+            }));
+            errorHandle = true;
+        }
+        if (!contactusData?.your_message) {
+            document.getElementById("your_message")?.focus();
+            setInputValidation((prevState) => ({
+                ...prevState,
+                your_message: "Please enter your message.",
+            }));
+            errorHandle = true;
+        }
+    };
     const office = [
         {
             id: 1, icon: officeicon, heading: "Office Address", number: "23/1160,G Block,",
@@ -152,10 +232,13 @@ export const Contactus = () => {
 
                 </div>
                 <div className='contactus_form'>
+                    <div>
                     <TextField
                         className='inputfield'
                         label="Your Name"
                         placeholder="Your Name"
+                        name="your_name"
+                        id="your_name"
                         fullWidth
                         InputLabelProps={{
                             shrink: true,
@@ -164,14 +247,23 @@ export const Contactus = () => {
                                 asterisk: "asterisk",
                             },
                         }}
+                        onChange={handleFormvalue}
+                        value={contactusData?.your_name}
                         variant="outlined"
 
                     />
+                    <InputLabel className="validation_error">
+                        {inputValidation?.your_name}
+                    </InputLabel>
+                    </div>
+                    <div>
                     <TextField
                         className='inputfield'
                         label="E-mail Address"
                         placeholder="E-mail Address"
                         fullWidth
+                        name="e_mail"
+                        id="e_mail"
                         InputLabelProps={{
                             shrink: true,
                             required: true,
@@ -179,8 +271,15 @@ export const Contactus = () => {
                                 asterisk: "asterisk",
                             },
                         }}
+                        onChange={handleFormvalue}
+                        value={contactusData?.e_mail}
                         variant="outlined"
                     />
+                    <InputLabel className="validation_error">
+                        {inputValidation?.e_mail}
+                    </InputLabel>
+                    </div>
+                    <div>
                     <TextField
                         className='inputfield'
                         label="Subject"
@@ -192,20 +291,34 @@ export const Contactus = () => {
                         }}
                         variant="outlined"
                     />
+                    </div>
+                    <div>
                     <TextField
                         className='inputfield1'
                         label="Your Message"
                         fullWidth
+                        placeholder="Type your message"
+                        name="your_message"
+                        id="your_message"
+                        multiline
+                        rows={3}
+                        maxRows={10}
                         InputLabelProps={{
                             shrink: true,
                             required: true,
                             classes: {
                                 asterisk: "asterisk",
                             },
-
                         }}
+                        onChange={handleFormvalue}
+                        value={contactusData?.your_message}
                         variant="outlined"
                     />
+                   
+                    <InputLabel className="validation_error">
+                        {inputValidation?.your_message}
+                    </InputLabel>
+                    </div>
                     {/* <TextareaAutosize 
                        label="Your Message"
                        placeholder="Your Message"
@@ -218,16 +331,15 @@ export const Contactus = () => {
                     }}
                      minRows={6} /> */}
                     <Box textAlign="right">
-                        <button className='contactus_msg_btn'>Send Your Message</button>
+                        <button className='contactus_msg_btn' onClick={() => handleClickValidation()}>Send Your Message</button>
                     </Box>
 
                 </div>
             </div>
             <div className='contactus_map_section'>
-                {/* <img src={contact1} alt='/' className='contactus_map_img' /> */}
                 <p className='contactus_map_heading'>Our Other Locations</p>
                 <div className="contactus_locations">
-                    
+
                     <div className='contactus_location1'>
                         {location1.map((item) =>
                             <li key={item.id} className="contactus_location_list">
@@ -264,8 +376,8 @@ export const Contactus = () => {
                         )
                         }
                     </div>
-                    
-                    
+
+
                     <div className='contactus_location1'>
                         {location4.map((item) =>
                             <li key={item.id} className="contactus_location_list">
@@ -290,7 +402,7 @@ export const Contactus = () => {
                         )
                         }
                     </div>
-                
+
 
                 </div>
             </div>
