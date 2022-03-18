@@ -95,50 +95,97 @@ const WantToBuy = () => {
         break;
     }
   };
+  const handleClickValidation = (event) => {
+    var errorHandle = false;
+    if (!wantTobuyData?.part_number) {
+      document.getElementById("part_number")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        part_number: "Please enter the part number.",
+      }));
+      errorHandle = true;
+    }
+    if (!wantTobuyData?.model_name_number) {
+      document.getElementById("model_name_number")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        model_name_number: "Please enter the model number",
+      }));
+      errorHandle = true;
+    }
+    if (!wantTobuyData?.quantity) {
+      document.getElementById("quantity")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        quantity: "Please select quantity.",
+      }));
+      errorHandle = true;
+    }
+    if (!wantTobuyData?.main_category) {
+      document.getElementById("main_category")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        main_category: "Please select category.",
+      }));
+      errorHandle = true;
+    }
+    if (!wantTobuyData?.closing_date) {
+      document.getElementById("closing_date")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        closing_date: "Please select date.",
+      }));
+      errorHandle = true;
+    }
+  };
   return (
     <div className="want_to_buy__container">
       <div className="want_to_buy__sub_container">
         <div className="block_1 input_block">
-          <TextField
-            id="part_number"
-            label="Part number"
-            fullWidth
-            name="part_number"
-            placeholder="R7-5700U"
-            InputLabelProps={{
-              shrink: true,
-              required: true,
-              classes: {
-                asterisk: "asterisk",
-              },
-            }}
-            onChange={handleFormvalue}
-            value={wantTobuyData?.part_number}
-            variant="outlined"
-          />
-          <InputLabel className="validation_error">
-            {inputValidation?.part_number}
-          </InputLabel>
-          <TextField
-            id="model_name_number"
-            label="Model Name/Number"
-            fullWidth
-            name="model_name_number"
-            placeholder="Lenovo Dpin Yoga 6 Dpin"
-            InputLabelProps={{
-              shrink: true,
-              required: true,
-              classes: {
-                asterisk: "asterisk",
-              },
-            }}
-            value={wantTobuyData?.model_name_number}
-            onChange={handleFormvalue}
-            variant="outlined"
-          />
-          <InputLabel className="validation_error">
-            {inputValidation?.model_name_number}
-          </InputLabel>
+          <div className="block_1_input">
+            <TextField
+              id="part_number"
+              label="Part number"
+              fullWidth
+              name="part_number"
+              placeholder="R7-5700U"
+              InputLabelProps={{
+                shrink: true,
+                required: true,
+                classes: {
+                  asterisk: "asterisk",
+                },
+              }}
+              onChange={handleFormvalue}
+              value={wantTobuyData?.part_number}
+              variant="outlined"
+            />
+            <InputLabel className="validation_error">
+              {inputValidation?.part_number}
+            </InputLabel>
+          </div>
+          <div className="block_1_input">
+            <TextField
+              id="model_name_number"
+              label="Model Name/Number"
+              fullWidth
+              name="model_name_number"
+              placeholder="Lenovo Dpin Yoga 6 Dpin"
+              InputLabelProps={{
+                shrink: true,
+                required: true,
+                classes: {
+                  asterisk: "asterisk",
+                },
+              }}
+              value={wantTobuyData?.model_name_number}
+              onChange={handleFormvalue}
+              variant="outlined"
+            />
+            <InputLabel className="validation_error">
+              {inputValidation?.model_name_number}
+            </InputLabel>
+          </div>
         </div>
         <div className="block_2 input_block">
           <TextField
@@ -163,111 +210,25 @@ const WantToBuy = () => {
         </div>
         <div className="block_3 input_block">
           <div className="input_field">
-            <Autocomplete
-              value={value}
-              onChange={(event, newValue) => {
-                setValue(newValue);
-              }}
-              inputValue={inputValue}
-              onInputChange={(event, newInputValue) => {
-                setInputValue(newInputValue);
-              }}
-              id="controllable-states-demo"
-              options={options}
-              fullWidth
-              className="auto_complete_input"
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  label="Main Category"
-                  placeholder="Main Category"
-                  InputLabelProps={{
-                    shrink: true,
-                    required: true,
-                    classes: {
-                      asterisk: "asterisk",
-                    },
-                  }}
-                />
-              )}
-            />
-            <InputLabel className="validation_error">
-              {inputValidation?.main_category}
-            </InputLabel>
-            <Autocomplete
-              value={value}
-              onChange={(event, newValue) => {
-                setValue(newValue);
-              }}
-              inputValue={inputValue}
-              onInputChange={(event, newInputValue) => {
-                setInputValue(newInputValue);
-              }}
-              id="controllable-states-demo"
-              options={options}
-              fullWidth
-              className="auto_complete_input"
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  label="Quantity"
-                  placeholder="Select Quantity"
-                  InputLabelProps={{
-                    shrink: true,
-                    required: true,
-                    classes: {
-                      asterisk: "asterisk",
-                    },
-                  }}
-                />
-              )}
-            />
-            <InputLabel className="validation_error">
-              {inputValidation?.quantity}
-            </InputLabel>
-          </div>
-
-          <div className="input_field">
-            <Autocomplete
-              value={value}
-              onChange={(event, newValue) => {
-                setValue(newValue);
-              }}
-              inputValue={inputValue}
-              onInputChange={(event, newInputValue) => {
-                setInputValue(newInputValue);
-              }}
-              id="controllable-states-demo"
-              options={options}
-              fullWidth
-              className="auto_complete_input"
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  label="Hub"
-                  placeholder="Select Hub"
-                  InputLabelProps={{
-                    shrink: true,
-                    // required: true,
-                    classes: {
-                      // asterisk: "asterisk",
-                    },
-                  }}
-                />
-              )}
-            />
-            <LocalizationProvider dateAdapter={AdapterDateFns}>
-              <DesktopDatePicker
-                label="Closing Date"
-                inputFormat="MM/dd/yyyy"
-                minDate={new Date()}
-                value={dateChange}
-                onChange={handleChange}
+            <div className="block_1_input">
+              <Autocomplete
+                value={value}
+                onChange={(event, newValue) => {
+                  setValue(newValue);
+                }}
+                inputValue={inputValue}
+                onInputChange={(event, newInputValue) => {
+                  setInputValue(newInputValue);
+                }}
+                id="controllable-states-demo"
+                options={options}
+                fullWidth
+                className="auto_complete_input"
                 renderInput={(params) => (
                   <TextField
                     {...params}
-                    fullWidth
-                    placeholder="Select Closing Date"
+                    label="Main Category"
+                    placeholder="Main Category"
                     InputLabelProps={{
                       shrink: true,
                       required: true,
@@ -278,10 +239,105 @@ const WantToBuy = () => {
                   />
                 )}
               />
-            </LocalizationProvider>
-            <InputLabel className="validation_error">
-              {inputValidation?.closing_date}
-            </InputLabel>
+              <InputLabel className="validation_error">
+                {inputValidation?.main_category}
+              </InputLabel>
+            </div>
+            <div className="block_1_input">
+              <Autocomplete
+                value={value}
+                onChange={(event, newValue) => {
+                  setValue(newValue);
+                }}
+                inputValue={inputValue}
+                onInputChange={(event, newInputValue) => {
+                  setInputValue(newInputValue);
+                }}
+                id="controllable-states-demo"
+                options={options}
+                fullWidth
+                className="auto_complete_input"
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    label="Quantity"
+                    placeholder="Select Quantity"
+                    InputLabelProps={{
+                      shrink: true,
+                      required: true,
+                      classes: {
+                        asterisk: "asterisk",
+                      },
+                    }}
+                  />
+                )}
+              />
+
+              <InputLabel className="validation_error">
+                {inputValidation?.quantity}
+              </InputLabel>
+            </div>
+          </div>
+
+          <div className="input_field">
+            <div className="block_1_input">
+              <Autocomplete
+                value={value}
+                onChange={(event, newValue) => {
+                  setValue(newValue);
+                }}
+                inputValue={inputValue}
+                onInputChange={(event, newInputValue) => {
+                  setInputValue(newInputValue);
+                }}
+                id="controllable-states-demo"
+                options={options}
+                fullWidth
+                className="auto_complete_input"
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    label="Hub"
+                    placeholder="Select Hub"
+                    InputLabelProps={{
+                      shrink: true,
+                      // required: true,
+                      classes: {
+                        // asterisk: "asterisk",
+                      },
+                    }}
+                  />
+                )}
+              />
+            </div>
+            <div className="block_1_input">
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <DesktopDatePicker
+                  label="Closing Date"
+                  inputFormat="MM/dd/yyyy"
+                  minDate={new Date()}
+                  value={dateChange}
+                  onChange={handleChange}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      fullWidth
+                      placeholder="Select Closing Date"
+                      InputLabelProps={{
+                        shrink: true,
+                        required: true,
+                        classes: {
+                          asterisk: "asterisk",
+                        },
+                      }}
+                    />
+                  )}
+                />
+              </LocalizationProvider>
+              <InputLabel className="validation_error">
+                {inputValidation?.closing_date}
+              </InputLabel>
+            </div>
           </div>
         </div>
         <div className="block_4 input_block">
@@ -312,7 +368,7 @@ const WantToBuy = () => {
             <ArrowBackIosNew />
             <span>Back</span>
           </Link>
-          <Button className="want_to_buy_btn">Submit</Button>
+          <Button className="want_to_buy_btn" onClick={() => handleClickValidation()}>Submit</Button>
         </div>
       </div>
     </div>

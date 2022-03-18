@@ -160,7 +160,10 @@ const Index = () => {
                             <hr className='hr'></hr>
                             {totalamount.map((item) => (
                                 <li key={item.id} className="vieworders_list">
-                                   <span className='total_heading'> {item.subtotal}</span>
+                                   <div className='taxes'>
+                                   <span className='total_amount_heading'> {item.subtotal} </span>
+                                     <span className='gst'>(incl.GST)</span>
+                                     </div> 
                                     <span className='total_amount'><span className='currency'>INR</span>{item.amount}</span>
                                     <br></br>
                                     <br></br>

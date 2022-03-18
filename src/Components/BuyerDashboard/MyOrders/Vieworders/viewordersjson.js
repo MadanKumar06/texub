@@ -23,6 +23,6 @@ export const total=[
 ]
 
 export const totalamount=[
-    {id:1,subtotal:"Totalamount",amount:"33,49,950",},
+    {id:1,subtotal:"Total Amount",amount:"33,49,950",},
 ]
 
