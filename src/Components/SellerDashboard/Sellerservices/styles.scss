@@ -7,6 +7,8 @@
     margin-top: 3em;
 
     p {
+      width: calc(100% / 4);
+      text-align: center;
       margin: 0;
       padding: 0.5em 1.2em;
       background-color: #f0f0f0;
@@ -43,6 +45,7 @@
         padding: 0.4em 1.5em;
         font-size: 18px;
         color: #878787;
+        font-weight: 600;
       }
     }
 
@@ -69,7 +72,7 @@
 
           &::after {
             content: "";
-            border-top: 1px solid #878787;
+            border-top: 1px solid #e6e6e6;
             position: absolute;
             top: 10px;
             left: 10em;
