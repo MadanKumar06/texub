@@ -3,12 +3,13 @@ import { RadioGroup, FormControlLabel } from "@mui/material";
 
 import { withStyles } from "@mui/styles";
 import styles from "./styles";
-import SignIn from "../../Pages/SignIn/SiginPopUp/SectionLeft";
 import BuyerRegistration from "./BuyerRegistration";
 import SellerRegistration from "./SellerRegistration";
 import buyer_img from "../../Assets/CommonImage/RegisterPopup/user_select_buyer.png";
 import seller_img from "../../Assets/CommonImage/RegisterPopup/user_select_seller.png";
 import { useParams } from "react-router-dom";
+import { useStateValue } from "../../store/state";
+
 const Registration = ({ classes }) => {
   const { type } = useParams();
   let {
@@ -24,10 +25,13 @@ const Registration = ({ classes }) => {
     arrow_up,
     clicking_user_para,
   } = classes;
+  const [{}, dispatch] = useStateValue();
   const [clicked, setClicked] = useState("buyer");
-  const [isSignin, setIsSignin] = useState(false);
   const SigninPopUP = (event) => {
-    setIsSignin(event);
+    dispatch({
+      type: "SET_SIGNIN_OPEN_CLOSE",
+      value: true,
+    });
   };
   const handleChange = (event) => {
     setClicked(event);
@@ -48,7 +52,7 @@ const Registration = ({ classes }) => {
           <h6>Create An Account</h6>
           <p className={user_signin}>
             <p>Already a user?</p>
-            <span onClick={() => setIsSignin(true)}>Sign In</span>
+            <span onClick={() => SigninPopUP()}>Sign In</span>
           </p>
         </div>
         <div className={right_area}>
@@ -101,7 +105,6 @@ const Registration = ({ classes }) => {
           </RadioGroup>
         </div>
       </div>
-      {isSignin && <SignIn openPopUp={SigninPopUP} />}
       {clicked === "buyer" ? <BuyerRegistration /> : <SellerRegistration />}
     </div>
   );

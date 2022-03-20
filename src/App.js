@@ -44,9 +44,12 @@ import ComingSoon from './Pages/ComingSoon'
 //popup component
 import KYCformSectionLeft from './Pages/Register/KYCform/SectionLeft'
 import PDPpopUp from "./Pages/PDPpopUp";
+import SignIn from './Pages/SignIn/SiginPopUp/SectionLeft'
+import RegisterPopup from './Pages/Register/RegisterPopup/SectionLeft'
 
 const App = () => {
-  const [{kycOpenClose,pdpPopUpOpenClose}, dispatch] = useStateValue();
+  const [{kycOpenClose,pdpPopUpOpenClose,registerOpenClose,
+    signInOpenClose}, dispatch] = useStateValue();
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
@@ -96,7 +99,8 @@ const App = () => {
            {/* Popup component using context api */}          
           {kycOpenClose && <KYCformSectionLeft/>} 
           {pdpPopUpOpenClose && <PDPpopUp/>}
-
+          {signInOpenClose && <SignIn />}
+          {registerOpenClose && <RegisterPopup/>}
       
         </BrowserRouter>
       </ThemeProvider>

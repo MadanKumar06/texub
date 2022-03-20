@@ -5,20 +5,26 @@ import styles from "./styles";
 import { AppBar, Toolbar, Typography, Button } from "@mui/material";
 import { withStyles } from "@mui/styles";
 import CurrencyPopup from "./CurrencyPopup";
-import SignIn from "../../Pages/SignIn/SiginPopUp/SectionLeft";
-import RegiterPopup from "../../Pages/Register/RegisterPopup/SectionLeft";
 import MenuList from "./MenuList";
+import { useStateValue } from "../../store/state";
 
 import logo from "../../Assets/Homepage Assets/Group.png";
 
 const Header = ({ classes }) => {
-  const [isSignin, setIsSignin] = useState(false);
-  const [registerPopUp, setRegisterPopUp] = useState(false);
-  const SigninPopUP = (event) => {
-    setIsSignin(event);
+  const [{}, dispatch] = useStateValue();
+
+  const SigninPopUP = () => {
+    dispatch({
+      type: "SET_SIGNIN_OPEN_CLOSE",
+      value: true,
+    });
   };
-  const RegistrationPop = (event) => {
-    setRegisterPopUp(event);
+
+  const RegistrationPop = () => {
+    dispatch({
+      type: "SET_REGISTER_OPEN_CLOSE",
+      value: true,
+    });
   };
   return (
     <div className={classes.header_main}>
@@ -55,14 +61,14 @@ const Header = ({ classes }) => {
           <div className={classes.header_button_main}>
             <Button
               className={classes.header_button_register}
-              onClick={() => setRegisterPopUp(true)}
+              onClick={() => RegistrationPop()}
             >
               {/* <Link to="/register"> Register </Link> */}
               Register
             </Button>
             <Button
               className={classes.header_button_signin}
-              onClick={() => setIsSignin(true)}
+              onClick={() => SigninPopUP()}
             >
               Sign In
             </Button>
@@ -70,8 +76,6 @@ const Header = ({ classes }) => {
           <CurrencyPopup />
         </Toolbar>
       </AppBar>
-      {isSignin && <SignIn openPopUp={SigninPopUP} />}
-      {registerPopUp && <RegiterPopup openPopUp={RegistrationPop} />}
     </div>
   );
 };

@@ -2,6 +2,8 @@ export const initialState = {
   kycOpenClose: false,
   pdpPopUpOpenClose: false,
   miniCartOpenClose: false,
+  signInOpenClose: false,
+  registerOpenClose: false,
 };
 
 const reducer = (state, action) => {
@@ -20,6 +22,16 @@ const reducer = (state, action) => {
       return {
         ...state,
         miniCartOpenClose: action.value,
+      };
+    case "SET_SIGNIN_OPEN_CLOSE":
+      return {
+        ...state,
+        signInOpenClose: action.value,
+      };
+    case "SET_REGISTER_OPEN_CLOSE":
+      return {
+        ...state,
+        registerOpenClose: action.value,
       };
     default:
       return state;
