@@ -1,6 +1,7 @@
 import React from 'react'
-import legal from '../../../../Assets/Career/privacy-policy.png'
 import './styles.scss'
+
+import legal from '../../../../Assets/Career/privacy-policy.png'
 
 const index = () => {
    const Legal = [

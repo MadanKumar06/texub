@@ -40,10 +40,10 @@ const Header = ({ classes }) => {
               <span>New</span>
             </Typography>
             <Typography variant="h6" className={classes.title}>
-              <Link to="/Sellontexhub"> Sell On TEXUB </Link>
+              <Link to="/coming-soon"> Sell On TEXUB </Link>
             </Typography>
             <Typography variant="h6" className={classes.title}>
-              <Link to="/Buyontexhub"> Buy On TEXUB </Link>
+              <Link to="/coming-soon"> Buy On TEXUB </Link>
             </Typography>
             <Typography variant="h6" className={classes.title}>
               <Link to="/Faqs"> FAQ</Link>

@@ -14,7 +14,7 @@ const Mycart = () => {
       </div>
       <div className="my_cart_breadcrumbs">
         <Stack spacing={2}>
-          <Breadcrumbs separator="››" aria-label="breadcrumb">
+          <Breadcrumbs separator=">>" aria-label="breadcrumb">
             <Link to="/">Home</Link>
             <Typography key="4" color="#002D56">
               Cart

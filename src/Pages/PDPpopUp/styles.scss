@@ -1,0 +1,307 @@
+.pdp_modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 8%;
+  .section_main_container {
+    background: #ffffff;
+    z-index: 1;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    position: relative;
+    height: 80vh;
+    .clear_btn {
+      position: absolute;
+      top: -37px;
+      right: -42px;
+      cursor: pointer;
+      background: #ffffff;
+      color: #002d56;
+      border-radius: 3px;
+      width: 1.5em !important;
+      height: 1.5em !important;
+    }
+    .section_main_sub {
+      height: 80vh;
+      overflow-x: auto;
+      .section_main_sub_container {
+        background-image: url("../../Assets/PDP/Group 87.png");
+        background-repeat: no-repeat;
+        padding: 29px 29px 0;
+        .pdp_header_bottom_container {
+          display: flex;
+          gap: 15px;
+          justify-content: center;
+          padding: 30px 0px;
+          border-bottom: 1px solid #cccccc;
+          span {
+            font-size: 16px;
+          }
+          .header_bottom_image_container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            span {
+              color: #333c42;
+              letter-spacing: 0.48px;
+            }
+          }
+        }
+      }
+      .modal_bottom_container {
+        display: flex;
+        justify-content: flex-end;
+        gap: 32px;
+        padding: 29px;
+        width: 85%;
+        margin: auto;
+        span {
+          cursor: pointer;
+        }
+        .modal_bottom_image_container {
+          text-decoration: underline;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          font-size: 18px;
+          color: #002d56;
+          font-weight: 600;
+        }
+        .modal_bottom_button_main {
+          display: flex;
+          gap: 32px;
+          a {
+            text-decoration: none;
+          }
+          .modal_bottom_button_add_to_cart {
+            min-width: 173px !important;
+            border-radius: 45px !important;
+            border: none !important;
+            background: linear-gradient(180deg, #ffd788 0%, #ad7c20 100%);
+            color: #ffffff !important;
+            cursor: pointer;
+            box-shadow: 0px 3px 6px #00000029 !important;
+            font-weight: 600 !important;
+            letter-spacing: 1px !important;
+            text-transform: capitalize !important;
+            gap: 5px;
+            padding: 8px 68px !important;
+            span {
+              font-size: 18px;
+            }
+          }
+          .modal_bottom_button_pending_invoice {
+            min-width: 245px !important;
+            border-radius: 45px !important;
+            border: none !important;
+            background: linear-gradient(180deg, #20639b 0%, #002d56 100%);
+            color: #ffffff !important;
+            cursor: pointer;
+            box-shadow: 0px 3px 6px #00000029;
+            font-weight: 600 !important;
+            letter-spacing: 1px;
+            gap: 5px;
+            text-transform: capitalize !important;
+            padding: 8px 68px !important;
+            span {
+              font-size: 18px;
+            }
+          }
+        }
+      }
+      .pdp_modal_footer {
+        gap: 30px;
+        width: 100%;
+        display: flex;
+        padding: 14px 29px 14px;
+        justify-content: space-around;
+        background: #cdd5dd;
+        .pdp_footer_model_details {
+          display: flex;
+          flex-direction: column;
+          .pdp_footer_model_info {
+            font-size: 20px;
+            color: #20639b;
+            letter-spacing: 0.6px;
+          }
+          .pdp_footer_model_info_detail {
+            color: #002d56;
+            font-size: 24px;
+            font-weight: 600;
+            letter-spacing: 0.72px;
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 1440px) {
+  .pdp_modal .section_main_container .clear_btn {
+    top: -28px;
+    right: -33px;
+    width: 1em !important;
+    height: 1em !important;
+  }
+  .pdp_modal
+    .section_main_container
+    .section_main_sub
+    .modal_bottom_container
+    .modal_bottom_button_main {
+    .modal_bottom_button_add_to_cart {
+      padding: 6px 40px !important;
+      span {
+        font-size: 14px;
+      }
+    }
+    .modal_bottom_button_pending_invoice {
+      padding: 6px 40px !important;
+      font-size: 16px !important;
+      span {
+        font-size: 16px;
+      }
+    }
+  }
+}
+@media (max-width: 1300px) {
+  .pdp_modal .section_main_container .section_main_sub .modal_bottom_container {
+    width: 100%;
+  }
+  .pdp_modal
+    .section_main_container
+    .section_main_sub
+    .modal_bottom_container
+    .modal_bottom_button_main {
+    .modal_bottom_button_add_to_cart {
+      padding: 4px 23px !important;
+    }
+    .modal_bottom_button_pending_invoice {
+      padding: 4px 23px !important;
+    }
+  }
+}
+@media (max-width: 1080px) {
+  .pdp_modal .section_main_container .section_main_sub .modal_bottom_container {
+    gap: 20px;
+  }
+  .pdp_modal
+    .section_main_container
+    .section_main_sub
+    .modal_bottom_container
+    .modal_bottom_button_main {
+    gap: 20px;
+  }
+}
+@media (max-width: 1140px) {
+  .pdp_modal
+    .section_main_container
+    .section_main_sub
+    .modal_bottom_container
+    .modal_bottom_button_main {
+    .modal_bottom_button_add_to_cart {
+      min-width: 126px !important;
+    }
+    .modal_bottom_button_pending_invoice {
+      min-width: 195px !important;
+    }
+  }
+}
+@media (max-width: 965px) {
+  .pdp_modal .section_main_container .section_main_sub .modal_bottom_container {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+@media (max-width: 926px) {
+  .pdp_modal
+    .section_main_container
+    .section_main_sub
+    .modal_bottom_container
+    .modal_bottom_image_container {
+    font-size: 16px;
+  }
+}
+@media (max-width: 767px) {
+  .pdp_modal
+    .section_main_container
+    .section_main_sub
+    .section_main_sub_container {
+    background-image: none;
+    padding: 29px 18px 0;
+  }
+  .pdp_modal
+    .section_main_container
+    .section_main_sub
+    .section_main_sub_container
+    .pdp_header_bottom_container {
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+  .pdp_modal .section_main_container .section_main_sub .modal_bottom_container {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    width: 100%;
+  }
+  .pdp_modal
+    .section_main_container
+    .section_main_sub
+    .modal_bottom_container
+    .modal_bottom_button_main {
+    flex-direction: column;
+    width: 100%;
+  }
+  .pdp_modal .section_main_container .section_main_sub .pdp_modal_footer {
+    flex-wrap: wrap;
+    justify-content: initial;
+  }
+  .pdp_modal
+    .section_main_container
+    .section_main_sub
+    .pdp_modal_footer
+    .pdp_footer_model_details
+    .pdp_footer_model_info {
+    font-size: 18px;
+  }
+  .pdp_modal
+    .section_main_container
+    .section_main_sub
+    .pdp_modal_footer
+    .pdp_footer_model_details
+    .pdp_footer_model_info_detail {
+    font-size: 20px;
+  }
+}
+@media (max-width: 480px) {
+  .pdp_modal .section_main_container .clear_btn {
+    top: -26px;
+    right: -22px;
+  }
+}
+@media (max-width: 425px) {
+  .pdp_modal .section_main_container .section_main_sub .modal_bottom_container {
+    padding: 10px;
+  }
+  .pdp_modal
+    .section_main_container
+    .section_main_sub
+    .modal_bottom_container
+    .modal_bottom_button_main {
+    .modal_bottom_button_add_to_cart {
+      width: 100%;
+      margin-left: 0 !important;
+      min-width: min-content !important;
+      span {
+        font-size: 14px;
+      }
+    }
+    .modal_bottom_button_pending_invoice {
+      min-width: min-content !important;
+      width: 100%;
+      margin-right: 0 !important;
+      span {
+        font-size: 14px;
+      }
+    }
+  }
+}

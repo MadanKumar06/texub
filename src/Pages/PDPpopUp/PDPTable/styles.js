@@ -298,15 +298,15 @@ const styles = () => ({
     borderRadius: "25px",
     textAlign: "center",
     cursor: "pointer",
-    padding: "14px",
+    padding: "10px",
     "@media (max-width:1600px)": {
-      padding: "8px",
-    },
-    "@media (max-width:1200px)": {
       padding: "6px",
     },
+    "@media (max-width:1200px)": {
+      padding: "4px",
+    },
     "@media (max-width:926px)": {
-      padding: "3px",
+      padding: "2px",
     },
     "@media (max-width:767px)": {
       border: "none",
@@ -323,15 +323,15 @@ const styles = () => ({
     padding: "1px 1px",
     borderRadius: "25px",
     "& .MuiSvgIcon-root ": {
-      width: "2em",
-      height: "2em",
+      width: "1.8em",
+      height: "1.8em",
       "@media (max-width:1600px)": {
-        width: "1.6em",
-        height: "1.6em",
-      },
-      "@media (max-width:1200px)": {
         width: "1.4em",
         height: "1.4em",
+      },
+      "@media (max-width:1200px)": {
+        width: "1.2em",
+        height: "1.2em",
       },
       "@media (max-width:926px)": {
         width: "1em",

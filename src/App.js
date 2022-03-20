@@ -11,9 +11,7 @@ import { Home } from "./Pages/Home";
 import { Footer } from "./Components/Footer";
 import Aboutus from "./Pages/Aboutus";
 import { Products } from "./Pages/Products";
-import { BuyonTexhub } from "./Pages/BuyonTexhub";
-import { SellonTexhub } from "./Pages/SellonTexhub";
-import { Contactus } from "./Pages/Contactus";
+import { Contactus } from "./Pages/CMS/Company/Contactus";
 import Registration from "./Pages/Register";
 import FAQ from "./Pages/CMS/Resources/FAQ's/FAQ";
 import ThankYouPage from "./Pages/Register/ThankYouPage";
@@ -28,8 +26,8 @@ import PendingInvoice from "./Pages/PendingInvoice";
 import Checkout from "./Pages/Checkout";
 
 //Footer section page
-import { Selleradvantage } from "./Pages/CMS/Services/Selleradvantage";
-import { Buyeradvantage } from "./Pages/CMS/Services/Buyeradvantage";
+import Selleradvantage from "./Pages/CMS/Services/Selleradvantage";
+import Buyeradvantage  from "./Pages/CMS/Services/Buyeradvantage";
 import Career from "./Pages/CMS/Services/Career";
 import { Training } from "./Pages/CMS/Services/Training";
 import { Termsofuse } from "./Pages/CMS/Company/Termsofuse/Termsofuse";
@@ -41,6 +39,8 @@ import Privacypolicy from "./Pages/CMS/Company/Privacypolicy";
 import RRpolicy from "./Pages/CMS/Company/RRpolicy";
 import Accountinfo from './Components/BuyerDashboard/MyProfile/Accountinfo'
 
+//coming soon page
+import ComingSoon from './Pages/ComingSoon'
 //popup component
 import KYCformSectionLeft from './Pages/Register/KYCform/SectionLeft'
 import PDPpopUp from "./Pages/PDPpopUp";
@@ -60,8 +60,7 @@ const App = () => {
             <Route path="/register/:type" element={ <> <Registration /> <Footer /></> } exact />
             <Route path="/Products" element={ <> <Products /> <Footer /> </> } exact />
             <Route path="/Aboutus" element={ <> <Aboutus /> <Footer /></> } exact />
-            <Route path="/Buyontexhub" element={<BuyonTexhub />} exact />
-            <Route path="/Sellontexhub" element={<SellonTexhub />} exact />
+            <Route path="/coming-soon" element={<><ComingSoon />  <Footer /></>} exact />
          
 
 
