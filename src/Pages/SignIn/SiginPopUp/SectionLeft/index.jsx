@@ -14,8 +14,10 @@ import { isEmailValid, isPasswordValid } from "../../../../utilities";
 import { withStyles } from "@mui/styles";
 import { Clear } from "@mui/icons-material";
 import SectionRight from "../SectionRight";
+import { useStateValue } from "../../../../store/state";
 
 const TransitionsModal = ({ classes, openPopUp }) => {
+  const [{}, dispatch] = useStateValue();
   let {
     section_main,
     modal,
@@ -49,7 +51,10 @@ const TransitionsModal = ({ classes, openPopUp }) => {
 
   const handleClose = () => {
     setOpen(false);
-    openPopUp(false);
+    dispatch({
+      type: "SET_SIGNIN_OPEN_CLOSE",
+      value: false,
+    });
   };
   const handleChangeInput = (event) => {
     if (event?.target?.name === "keep_me_logged_in") {

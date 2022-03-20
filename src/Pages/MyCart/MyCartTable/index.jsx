@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from "react";
-import HP from "./../../../Assets/Productlist/hp_td_icon.png";
-import Acer from "../../../Assets/Productlist/acer_icon_td.png";
 import { Link } from "react-router-dom";
 import "./styles.scss";
-import MUITable from '../../../Components/MUITable'
+import MUITable from "../../../Components/MUITable";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
+
+import HP from "./../../../Assets/Productlist/hp_td_icon.png";
+import Acer from "../../../Assets/Productlist/acer_icon_td.png";
+
 const MyCartTable = () => {
   const [is_table_quantity, setIs_table_quantity] = useState(0);
+
   useEffect(() => {
     setIs_table_quantity(Productstablelist);
   }, []);
+
   const handleChangeValueTable = (event, index) => {
     setIs_table_quantity(
       is_table_quantity?.map((item, ind) => {
@@ -311,7 +315,12 @@ const MyCartTable = () => {
   return (
     <div className="mycart_table_main_container">
       {is_table_quantity?.length && (
-        <MUITable columns={columns} table={is_table_quantity} options={options} className="mycart_table_mui_datatable_main" />
+        <MUITable
+          columns={columns}
+          table={is_table_quantity}
+          options={options}
+          className="mycart_table_mui_datatable_main"
+        />
       )}
     </div>
   );

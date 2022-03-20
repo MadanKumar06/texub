@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./styles.scss";
-
-
 import { Drawer, Button, Badge } from "@mui/material";
 import MiniCartList from "./MiniCartList";
 
@@ -62,8 +60,8 @@ const MiniCartDrawer = () => {
           className="miniCart_drawer"
           PaperProps={
             matches
-              ? { style: { height: "87.5vh", width: "min-content" } }
-              : { style: { height: "87.5vh", width: "100%" } }
+              ? { style: { height: "100vh", width: "min-content" } }
+              : { style: { height: "100vh", width: "100%" } }
           }
         >
           {list("right")}

@@ -11,6 +11,7 @@ import acer from "../../../Assets/buyerdashboard/dashboard/acer.png";
 import hp from "../../../Assets/buyerdashboard/dashboard/hp.png";
 
 import DashboardMapSection from "../../DashboardMapSection";
+import DashboardChart from "../../DashboardChartSection";
 
 const BuyerDashboard = () => {
   const pricelist = [
@@ -84,7 +85,8 @@ const BuyerDashboard = () => {
         </div>
       </div>
 
-      <DashboardMapSection />
+      {/* <DashboardMapSection /> */}
+      <DashboardChart />
     </div>
   );
 };

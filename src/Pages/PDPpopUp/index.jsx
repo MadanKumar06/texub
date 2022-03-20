@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Modal, Button, Backdrop } from "@mui/material";
-import { withStyles } from "@mui/styles";
-import styles from "./styles";
+import "./styles.scss";
 import { Clear } from "@mui/icons-material";
 import PDPTopHeader from "./PDPTopHeader";
 import PDPTable from "./PDPTable";
@@ -17,7 +16,7 @@ import add_whishlist from "../../Assets/CommonImage/add_wishlist.png";
 import shopping_cart from "../../Assets/CommonImage/shopping-cart.png";
 import invoice_image from "../../Assets/CommonImage/invoice.png";
 
-const PdpPopup = ({ classes }) => {
+const PdpPopup = () => {
   const [open, setOpen] = useState(true);
   const [{}, dispatch] = useStateValue();
   const [moreOffers, setMoreOffers] = useState({ tableone: 3, tabletwo: 3 });
@@ -25,26 +24,6 @@ const PdpPopup = ({ classes }) => {
     tableone: "",
     tabletwo: "",
   });
-  let {
-    section_main_container,
-    section_main_sub_container,
-    modal,
-    clear_btn,
-    pdp_header_bottom_container,
-    header_bottom_image_container,
-    modal_bottom_container,
-    modal_bottom_image_container,
-    modal_bottom_button_main,
-    modal_bottom_button_add_to_cart,
-    modal_bottom_button_pending_invoice,
-    pdp_modal_footer,
-    pdp_footer_model_details,
-    pdp_footer_model_info,
-    pdp_footer_model_info_detail,
-    pdp_table_container,
-    section_main_sub,
-  } = classes;
-
   const handleClose = () => {
     setOpen(false);
     dispatch({
@@ -70,7 +49,7 @@ const PdpPopup = ({ classes }) => {
     <Modal
       aria-labelledby="transition-modal-title"
       aria-describedby="transition-modal-description"
-      className={modal}
+      className="pdp_modal"
       open={open}
       closeAfterTransition
       BackdropComponent={Backdrop}
@@ -78,34 +57,34 @@ const PdpPopup = ({ classes }) => {
         timeout: 500,
       }}
     >
-      <div className={section_main_container}>
-        <Clear className={clear_btn} onClick={() => handleClose()} />
+      <div className="section_main_container">
+        <Clear className="clear_btn" onClick={() => handleClose()} />
 
-        <div className={section_main_sub}>
-          <div className={section_main_sub_container}>
+        <div className="section_main_sub">
+          <div className="section_main_sub_container">
             <PDPTopHeader />
-            <div className={pdp_header_bottom_container}>
-              <div className={header_bottom_image_container}>
+            <div className="pdp_header_bottom_container">
+              <div className="header_bottom_image_container">
                 <img src={header_bottom_image_1} alt="" />
                 <span>Vendor Warranty For 30 Days</span>
               </div>
-              <div className={header_bottom_image_container}>
+              <div className="header_bottom_image_container">
                 <img src={header_bottom_image_2} alt="" />
                 <span>Delivers In 5-7 Business Days</span>
               </div>
-              <div className={header_bottom_image_container}>
+              <div className="header_bottom_image_container">
                 <img src={header_bottom_image_3} alt="" />
                 <span>Retail Box Packaging</span>
               </div>
             </div>
           </div>
-          <div className={pdp_table_container}>
+          <div className="pdp_table_container">
             {tableData && <PDPTable tableData={tableData} />}
           </div>
-          <div className={modal_bottom_container}>
+          <div className="modal_bottom_container">
             {(table_one_data?.length > 3 || table_two_data?.length > 3) && (
               <div
-                className={modal_bottom_image_container}
+                className="modal_bottom_image_container"
                 onClick={() => MoreOfferChange()}
               >
                 <img src={more_offer_image} alt="" />
@@ -113,43 +92,43 @@ const PdpPopup = ({ classes }) => {
               </div>
             )}
 
-            <div className={modal_bottom_image_container}>
+            <div className="modal_bottom_image_container">
               <img src={add_whishlist} alt="" />
               <span>Add to Wishlist</span>
             </div>
-            <div className={modal_bottom_button_main}>
+            <div className="modal_bottom_button_main">
               <Link to="/mycart">
-                <Button className={modal_bottom_button_add_to_cart}>
+                <Button className="modal_bottom_button_add_to_cart">
                   <img src={shopping_cart} alt="" />
                   <span>Add to Cart</span>
                 </Button>
               </Link>
               <Link to="/pending-invoice">
-                <Button className={modal_bottom_button_pending_invoice}>
+                <Button className="modal_bottom_button_pending_invoice">
                   <img width="21px" src={invoice_image} alt="" />
                   <span> Add to Pending Invoice</span>
                 </Button>
               </Link>
             </div>
           </div>
-          <div className={pdp_modal_footer}>
-            <div className={pdp_footer_model_details}>
-              <span className={pdp_footer_model_info}>MODEL NAME</span>
-              <span className={pdp_footer_model_info_detail}>
+          <div className="pdp_modal_footer">
+            <div className="pdp_footer_model_details">
+              <span className="pdp_footer_model_info">MODEL NAME</span>
+              <span className="pdp_footer_model_info_detail">
                 Pavilion Model14-Dv0054Tu
               </span>
             </div>
-            <div className={pdp_footer_model_details}>
-              <span className={pdp_footer_model_info}>PART NUMBER</span>
-              <span className={pdp_footer_model_info_detail}>1135G7</span>
+            <div className="pdp_footer_model_details">
+              <span className="pdp_footer_model_info">PART NUMBER</span>
+              <span className="pdp_footer_model_info_detail">1135G7</span>
             </div>
-            <div className={pdp_footer_model_details}>
-              <span className={pdp_footer_model_info}>CONDITION</span>
-              <span className={pdp_footer_model_info_detail}>New</span>
+            <div className="pdp_footer_model_details">
+              <span className="pdp_footer_model_info">CONDITION</span>
+              <span className="pdp_footer_model_info_detail">New</span>
             </div>
-            <div className={pdp_footer_model_details}>
-              <span className={pdp_footer_model_info}>OTHER INFO</span>
-              <span className={pdp_footer_model_info_detail}>
+            <div className="pdp_footer_model_details">
+              <span className="pdp_footer_model_info">OTHER INFO</span>
+              <span className="pdp_footer_model_info_detail">
                 Not Available
               </span>
             </div>
@@ -159,4 +138,4 @@ const PdpPopup = ({ classes }) => {
     </Modal>
   );
 };
-export default withStyles(styles)(PdpPopup);
+export default PdpPopup;

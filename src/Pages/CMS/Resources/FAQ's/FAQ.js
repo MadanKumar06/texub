@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import "./FAQ.scss";
-import img from "../../../../Assets/Career/Group 765.png";
+
 import { TextareaAutosize } from "@mui/material";
 import { withStyles } from "@mui/styles";
 import styles from "./styles";
+
 import IMG from "../../../../Assets/Career/plus.svg";
+import img from "../../../../Assets/Career/Group 765.png";
 import IMG2 from "../../../../Assets/Career/decrease.svg";
 
 const FAQ = ({ classes }) => {
@@ -103,7 +105,6 @@ const FAQ = ({ classes }) => {
         </div>
       </div>
     </div>
-
-  )
+  );
 };
 export default withStyles(styles)(FAQ);

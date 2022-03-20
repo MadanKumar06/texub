@@ -7,6 +7,9 @@
   gap: 2em;
   width: 100%;
   justify-content: space-between;
+  .product_based_deals {
+    display: flex;
+  }
   .product_menu_filter {
     width: 100%;
     cursor: pointer;
@@ -24,7 +27,10 @@
     flex-direction: column;
     gap: 6px;
     cursor: pointer;
-    width: 60px;
+    width: 100px;
+    .image_opactity {
+      opacity: 0.5;
+    }
     .image {
       width: 40px;
       height: 40px;
@@ -72,6 +78,9 @@
       font-size: 20px;
     }
     .MuiOutlinedInput-root {
+      .MuiSelect-select {
+        color: #ffffff;
+      }
       .MuiOutlinedInput-notchedOutline {
         border-color: #ffffff;
       }
@@ -89,6 +98,9 @@
       font-size: 20px;
     }
     .MuiOutlinedInput-root {
+      .MuiSelect-select {
+        color: #ffffff;
+      }
       .MuiOutlinedInput-notchedOutline {
         border-color: #ffffff;
       }
@@ -107,6 +119,9 @@
       font-size: 20px;
     }
     .MuiOutlinedInput-root {
+      .MuiSelect-select {
+        color: #ffffff;
+      }
       .MuiOutlinedInput-notchedOutline {
         border-color: #ffffff;
       }
