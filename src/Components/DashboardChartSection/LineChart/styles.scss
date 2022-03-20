@@ -1,0 +1,62 @@
+.linechart {
+  padding: 23px 0 60px 60px;
+  background: #f8f0e0;
+  width: calc(100% / 2 - 10px);
+  .order_volume {
+    margin: 0;
+    font-size: 30px;
+    color: #5c6369;
+    font-weight: 600;
+  }
+  .order_info {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    .order_received {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      span {
+        padding: 8px;
+        border-radius: 100%;
+        background: #20639b;
+      }
+    }
+    .order_placed {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      span {
+        padding: 8px;
+        border-radius: 100%;
+        background: #ddb363;
+      }
+    }
+  }
+
+  .recharts-wrapper {
+    .recharts-surface {
+      background-color: #ffffff;
+      //   height: 370px;
+      .recharts-cartesian-grid {
+        line {
+          stroke: unset;
+        }
+      }
+      .recharts-layer.firstData {
+        circle {
+          r: 6;
+          stroke-width: 2;
+          fill: rgb(204, 155, 62);
+        }
+      }
+      .recharts-layer.secondData {
+        circle {
+          r: 6;
+          stroke-width: 2;
+          fill: rgb(32, 99, 155);
+        }
+      }
+    }
+  }
+}

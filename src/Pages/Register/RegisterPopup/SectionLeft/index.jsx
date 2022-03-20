@@ -80,7 +80,7 @@ const TransitionsModal = ({ classes, openPopUp }) => {
       aria-describedby="transition-modal-description"
       className={modal}
       open={open}
-      onClose={handleClose}
+      // onClose={handleClose}
       closeAfterTransition
       BackdropComponent={Backdrop}
       BackdropProps={{

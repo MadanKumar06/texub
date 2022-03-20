@@ -1,0 +1,57 @@
+.piechart_container {
+  box-shadow: 0 3px 18px #00000029;
+  padding: 20px;
+  width: calc(100% / 2 - 10px);
+  .title {
+    text-transform: uppercase;
+    color: #5c6369;
+    font-size: 30px;
+    margin: 0%;
+    font-weight: 600;
+  }
+  .month {
+    display: flex;
+    margin: 0;
+    align-items: center;
+    gap: 9px;
+    p {
+      font-size: 20px;
+    }
+  }
+  span {
+    border-radius: 100%;
+    padding: 10px;
+  }
+  .piechart {
+    .recharts-layer {
+      text {
+        fill: #000000;
+        text-anchor: middle;
+      }
+    }
+  }
+  .chart_table_container {
+    display: flex;
+    margin-top: 2em;
+  }
+  .chart_info {
+    .table__header {
+      margin: 0;
+      background: #f8f0e0;
+      padding: 10px;
+      color: #002d56;
+      font-size: 20px;
+      font-weight: 600;
+    }
+    .table__cell {
+      background-color: #f4f9ff;
+      display: flex;
+      align-items: center;
+      padding: 0 10px;
+      justify-content: space-between;
+      margin: 0%;
+      font-size: 20px;
+      text-transform: uppercase;
+    }
+  }
+}
