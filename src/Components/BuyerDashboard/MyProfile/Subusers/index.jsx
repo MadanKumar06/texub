@@ -4,7 +4,7 @@ import Newsubaccount from './Newsubaccount'
 import { ArrowBackIosNew } from "@mui/icons-material";
 import Allowedpermissions from '../Subusers/Popups/Allowedpermissions'
 import Forbidden from '../Subusers/Popups/Forbidden'
-import  MUITable  from '../../../MUITable'
+import  MUITable  from '../../../Common/MUITable'
 const Index = () => {
   const [isSub, setisSub] = useState(false)
   const Newsubacc = () => {

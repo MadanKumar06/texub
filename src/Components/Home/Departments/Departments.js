@@ -17,19 +17,21 @@ export const Departments = () => {
             onClick={(e) => setIsActive(!isActive)}
           >
             <p className="Department_heading">
-              <Menu className="button_Icon" /> DEPARTMENTS
+              <Menu className="button_Icon" /> CATEGORIES
             </p>
           </div>
           <div className="Departments_Dropdown_list">
-            {isActive && (
-              <ul className="Body_Down_Pannel_btn_content">
-                {Departments1.map((item) => (
-                  <li href={item.path} className="Body_Down_Pannel_btn_items">
-                    {item.display}
-                  </li>
-                ))}
-              </ul>
-            )}
+            <ul
+              className={` ${!isActive && "Body_Down_Pannel_btn_content"} ${
+                isActive && "Body_Down_Pannel_btn_content__show"
+              }`}
+            >
+              {Departments1.map((item) => (
+                <li href={item.path} className="Body_Down_Pannel_btn_items">
+                  {item.display}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
         <div className="search_bar">

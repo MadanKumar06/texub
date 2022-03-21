@@ -1,7 +1,7 @@
 import React from 'react'
 import './styles.scss'
-import MUITable from '../../../MUITable'
-import image from '../../../../Assets/buyerdashboard/auctions/hp.png'
+import MUITable from '../../Common/MUITable'
+import image from '../../../Assets/buyerdashboard/auctions/hp.png'
 import { shippingaddress, billingaddress, total ,totalamount} from './viewordersjson'
 const options = {
     filter: false,
@@ -16,11 +16,10 @@ const options = {
 };
 const table = [
     {
-          productname: {
-              
-              modal:"Pavilion Model14-Dv0054Tu",
-              content:"Hp 14-Dv0054Tu Pavilion Laptop (11Th Gen Intel Core I5-1135G7/…512Gb Sdd/Intel Iris Xe Graphics/Windows 10/Mso/Fhd), 35.56 Cm (14 Inch)",
-          },
+        productname: {
+            modal:"Pavilion Model14-Dv0054Tu",
+            content:"Hp 14-Dv0054Tu Pavilion Laptop (11Th Gen Intel Core I5-1135G7/…512Gb Sdd/Intel Iris Xe Graphics/Windows 10/Mso/Fhd), 35.56 Cm (14 Inch)",
+        },
         sku: "SK-3102",
         quantity: "50",
         unitprice: "66,999/",
@@ -40,8 +39,6 @@ const columns = [
                         <div className="product">
                             <span className='modal_name'>{value?.modal}</span>
                             <span className='modal_content'>{value?.content}</span>
-                            
-                           
                         </div>
                         
                     </div>
@@ -74,7 +71,7 @@ const columns = [
             customBodyRender: (value) => {
                 return <div className="vieworders_price">
                     <span className='inr'>INR</span>
-                    <span className='price'>{value}</span>
+                    <span className='price'> {value} </span>
                     <span className='inr'>unit</span>
                 </div>;
             },
@@ -87,7 +84,7 @@ const columns = [
             customBodyRender: (value) => {
                 return <div className="vieworders_total">
                     <span className='inr'>INR</span>
-                    <span className='price'>{value}</span>
+                    <span className='price'> {value} </span>
                     <span className='inr'>unit</span>
                 </div>;
             },
@@ -105,8 +102,9 @@ const Index = () => {
             <MUITable columns={columns} table={table}
                 options={options}
                 className="vieworders__table" />
-            {/* <hr></hr>     */}
-            <div className='vieworders_detail_section'>
+            <div className='vieworders__detailscontainer'>
+                <p className='vieworders__bg'></p>
+                <div className='vieworders_detail_section'>
                 <p className='heading'>Order Details</p>
                 <div className='details'>
                     <div className='hr_line'>
@@ -151,10 +149,7 @@ const Index = () => {
                             {total.map((item) => (
                                 <li key={item.id} className="vieworders_list">
                                    <span className='total_heading'> {item.subtotal}</span>
-                                    <span className='total_amount'><span className='currency'>INR</span>{item.amount}</span>
-                                    <br></br>
-                                    <br></br>
-                                    <br></br>
+                                    <span className='total_amount'><span className='currency'>INR</span> {item.amount}</span>
                                 </li>
                             ))}
                             <hr className='hr'></hr>
@@ -164,15 +159,13 @@ const Index = () => {
                                    <span className='total_amount_heading'> {item.subtotal} </span>
                                      <span className='gst'>(incl.GST)</span>
                                      </div> 
-                                    <span className='total_amount'><span className='currency'>INR</span>{item.amount}</span>
-                                    <br></br>
-                                    <br></br>
-                                    <br></br>
+                                    <span className='total_amount'><span className='currency'>INR</span> {item.amount}</span>
                                 </li>
                             ))}
 
                         </div>
                     </div>
+                </div>
                 </div>
             </div>
         </div>

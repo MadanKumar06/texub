@@ -1,6 +1,6 @@
 import React from "react";
 import "./styles.scss";
-import MUITable from "../../MUITable";
+import MUITable from "../../Common/MUITable";
 import { Button } from "@mui/material";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import payment_type from "../../../Assets/buyerdashboard/paymentMethods/visa (1).png";
