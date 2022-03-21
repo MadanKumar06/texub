@@ -235,6 +235,7 @@
               color: #333c42;
               font-size: 26px;
               letter-spacing: 0.78px;
+              text-align: right;
               font-weight: bold;
               .currency {
                 font-size: 17px;
@@ -254,6 +255,51 @@
   }
 }
 
+@media (max-width: 1366px) {
+  .vieworders_main {
+    .vieworders__table .MuiTableBody-root {
+      .productname .product .modal_content,
+      .vieworders_price .inr,
+      .vieworders_total .inr {
+        font-size: 16px;
+      }
+
+      .productname .product .modal_name,
+      .vieworders_price .price,
+      .vieworders_total .price {
+        font-size: 18px;
+      }
+    }
+
+    .vieworders_detail_section .details .vieworder_address {
+      grid-template-columns: 53% 45%;
+      .vieworders_total .vieworders_list {
+        .taxes .total_amount_heading,
+        .vieworders_shippingaddress_section
+          .vieworders_shippingaddress
+          .vieworders_list
+          .name {
+          font-size: 22px;
+        }
+        .total_amount,
+        .address {
+          font-size: 20px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .vieworders_main
+    .vieworders_detail_section
+    .details
+    .vieworder_address
+    .vieworders_shippingaddress_section {
+    flex-direction: column;
+  }
+}
+
 @media only screen and (max-width: 960px) {
   .vieworders_main
     .vieworders_detail_section
@@ -266,6 +312,16 @@
     justify-content: center;
   }
 }
+
+@media (max-width: 768px) {
+  .vieworders_main .vieworders_detail_section .details .vieworder_address {
+    grid-template-columns: 100%;
+    .vieworders_total .vieworders_list .taxes .gst {
+      text-align: left;
+    }
+  }
+}
+
 @media only screen and (max-width: 580px) {
   .vieworders_main
     .vieworders__table

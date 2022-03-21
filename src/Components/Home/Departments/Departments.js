@@ -21,17 +21,15 @@ export const Departments = () => {
             </p>
           </div>
           <div className="Departments_Dropdown_list">
-            <ul
-              className={` ${!isActive && "Body_Down_Pannel_btn_content"} ${
-                isActive && "Body_Down_Pannel_btn_content__show"
-              }`}
-            >
-              {Departments1.map((item) => (
-                <li href={item.path} className="Body_Down_Pannel_btn_items">
-                  {item.display}
-                </li>
-              ))}
-            </ul>
+            {isActive && (
+              <ul className="Body_Down_Pannel_btn_content">
+                {Departments1.map((item) => (
+                  <li href={item.path} className="Body_Down_Pannel_btn_items">
+                    {item.display}
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         </div>
         <div className="search_bar">

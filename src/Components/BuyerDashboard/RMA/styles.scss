@@ -5,7 +5,7 @@
     justify-content: flex-start;
     gap: 20px;
     margin-top: 3em;
-    padding: 0 3em;
+    // padding: 0 3em;
     .rma__btton_content {
       width: calc(100% / 4);
       text-align: center;
@@ -114,7 +114,7 @@
   }
   .rma__footer {
     width: 100%;
-    padding: 2em 0;
+    padding: 2em 0 0;
     .rma__container {
       display: flex;
       justify-content: space-between;
