@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import "./styles.scss";
-import MUITable from "../../MUITable";
+import MUITable from "../../Common/MUITable";
 import { Link } from "react-router-dom";
 import Pagination from "../../Pagination";
 import { ArrowBackIosNew } from "@mui/icons-material";
+import ViewOrder from '../../Common/Vieworders'
 function Index() {
   const [tableData, setTableData] = useState([]);
   const ordertype = [
@@ -21,6 +22,10 @@ function Index() {
   const PaginateDataSplit = (event) => {
     setTableData(event);
   };
+  const [vieworder, setvieworder] = useState(false)
+  const showorder = () => {
+    setvieworder(true)
+  }
 
   const options = {
     filter: false,
@@ -133,7 +138,7 @@ function Index() {
       label: "Action",
       options: {
         customBodyRender: (value) => {
-          return <div className="orders__action">{value}</div>;
+          return <div className="orders__action" onClick={showorder}>{value}</div>;
         },
       },
     },
@@ -141,39 +146,43 @@ function Index() {
 
   return (
     <div className="orders">
-      <div className="orders__buttons">
-        {ordertype.map((data, i) => (
-          <p
-            className={`ordertypes ${type === i && "ordertype__selected"}`}
-            key={i}
-            onClick={() => selectorder(i)}
-          >
-            {data.name}
-          </p>
-        ))}
-      </div>
-
-      <MUITable
-        columns={columns}
-        table={tableData}
-        options={options}
-        className="orders__table"
-      />
-
-      <Pagination
-        PaginateData={PaginateDataSplit}
-        DataList={table}
-        PagePerRow={10}
-      />
-
-      <div className="orders__back__footer">
-        <div className="orders__back__container">
-          <Link to="/buyerdashboard/dashboard">
-            <ArrowBackIosNew />
-            <span>Back</span>
-          </Link>
+      {!vieworder ? <>
+        <div className="orders__back__footer">
+          <div className="orders__back__container">
+            <Link to="/buyerdashboard/dashboard">
+              <ArrowBackIosNew />
+              <span>Back</span>
+            </Link>
+          </div>
         </div>
-      </div>
+        
+        <div className="orders__buttons">
+          {ordertype.map((data, i) => (
+            <p
+              className={`ordertypes ${type === i && "ordertype__selected"}`}
+              key={i}
+              onClick={() => selectorder(i)}
+            >
+              {data.name}
+            </p>
+          ))}
+        </div>
+
+        <MUITable
+          columns={columns}
+          table={tableData}
+          options={options}
+          className="orders__table"
+        />
+
+        <Pagination
+          PaginateData={PaginateDataSplit}
+          DataList={table}
+          PagePerRow={10}
+        />
+
+        </> : <ViewOrder />}
+      
     </div>
   );
 }

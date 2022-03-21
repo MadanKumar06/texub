@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './styles.scss'
-import MUITable from '../../MUITable'
+import MUITable from '../../Common/MUITable'
 import { Link } from "react-router-dom";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import Enquirydetails from '../../SellerDashboard/Directenqueries/Enquirydetails'
@@ -195,6 +195,16 @@ const Index = () => {
 
   return (
     <div className="paymentmethod_container">
+      <div className="paymentmethod__footer">
+        <div className="paymentmethod__container">
+          <Link to="/sellerdashboard/dashboard">
+            <ArrowBackIosNew />
+            <span>Back</span>
+          </Link>
+          {/* <Button className="rma_btn">Request RMA</Button> */}
+        </div>
+      </div>
+      
       <div className="paymentmethod__buttons">
         {ordertype.map((data, i) => (
           <div className="paymentmethod__btton_content">
@@ -214,15 +224,7 @@ const Index = () => {
       <MUITable columns={columns} table={table} options={options} className="paymentmethod__table" />
       {isUopup && <Enquirydetails closePOPup={setisUopup}/> }
 
-      <div className="paymentmethod__footer">
-        <div className="paymentmethod__container">
-          <Link to="/sellerdashboard/dashboard">
-            <ArrowBackIosNew />
-            <span>Back</span>
-          </Link>
-          {/* <Button className="rma_btn">Request RMA</Button> */}
-        </div>
-      </div>
+      
     </div>
   );
 }

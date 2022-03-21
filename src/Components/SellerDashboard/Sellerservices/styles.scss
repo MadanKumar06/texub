@@ -112,6 +112,12 @@
   }
 }
 
+.approve__cart__container a {
+  display: flex;
+  align-items: center;
+  padding: 2em 0 0;
+}
+
 @media (max-width: 768px) {
   .sellerservices .sellerservices__review .reviewbox__card {
     gap: 20px;

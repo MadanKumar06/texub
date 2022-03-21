@@ -40,7 +40,25 @@
         }
       }
       .Departments_Dropdown_list {
+        position: relative;
         .Body_Down_Pannel_btn_content {
+          display: none;
+          transition: top 1000ms ease-in;
+          position: absolute;
+          top: -4em;
+          left: 0;
+          right: 0;
+        }
+        .Body_Down_Pannel_btn_content__show {
+          display: block;
+          top: 0;
+          left: 0;
+          right: 0;
+          transition: top 1000ms ease-in;
+          position: absolute;
+        }
+        .Body_Down_Pannel_btn_content,
+        .Body_Down_Pannel_btn_content__show {
           background-color: white;
           border: 1px solid #00000012;
           padding: 0;

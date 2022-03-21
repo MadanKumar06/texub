@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./styles.scss";
-import MUITable from "../../MUITable";
+import MUITable from "../../Common/MUITable";
 import { Button } from "@mui/material";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import hp from "../../../Assets/sellerdashboard/inventory/hp.png";
@@ -319,18 +319,6 @@ function Index({ registerproduct }) {
   };
   return (
     <div className="inventory">
-      <MUITable
-        columns={columns}
-        table={tableData}
-        options={options}
-        className="inventory__table"
-      />
-      <Pagination
-        PaginateData={PaginateDataSplit}
-        DataList={table}
-        PagePerRow={10}
-      />
-
       <div className="inventory__products__footer">
         <div className="inventory__products__container">
           <Link to="/sellerdashboard/dashboard">
@@ -338,21 +326,6 @@ function Index({ registerproduct }) {
             <span>Back</span>
           </Link>
           <div className="inventory__button">
-            {/* <Button className="inventory_register">Approve</Button> */}
-            {/* <div class="inventory__buttons">
-          <p
-            className="inventory_register"
-            onClick={() => registerproduct("registerproduct")}
-          >
-            Register New Product
-          </p>
-          <p
-            className="inventory_adddetails"
-            onClick={() => registerproduct("addproduct")}
-          >
-            Add Product Details
-          </p>
-        </div> */}
             <Button
               className="inventory_register"
               onClick={() => registerproduct("registerproduct")}
@@ -362,6 +335,19 @@ function Index({ registerproduct }) {
           </div>
         </div>
       </div>
+
+      <MUITable
+        columns={columns}
+        table={tableData}
+        options={options}
+        className="inventory__table"
+      />
+      
+      <Pagination
+        PaginateData={PaginateDataSplit}
+        DataList={table}
+        PagePerRow={10}
+      />
     </div>
   );
 }
