@@ -157,6 +157,7 @@ if (!NewSubAccountData?.active) {
               fullWidth
                 id="first_name"
                 name='first_name'
+                placeholder='First Name'
                 InputLabelProps={{
                   shrink:false,
                 }}
@@ -173,6 +174,7 @@ if (!NewSubAccountData?.active) {
               fullWidth
                 id="last_name"
                 name='last_name'
+                placeholder='Last Name'
                 InputLabelProps={{
                   shrink:false,
                 }}
@@ -190,6 +192,7 @@ if (!NewSubAccountData?.active) {
               fullWidth
                 id="e_mail"
                 name="e_mail"
+                placeholder='E-Mail Address'
                 InputLabelProps={{
                   shrink:false,
                 }}
@@ -215,6 +218,7 @@ if (!NewSubAccountData?.active) {
           fullWidth
           id="allowed_permissions"
           name='allowed_permissions'
+          placeholder='Allow Permissions'
           InputLabelProps={{
             shrink:false,
           }}
@@ -243,7 +247,7 @@ if (!NewSubAccountData?.active) {
     <div>
     <p>Fobidden Access</p>
     <TextareaAutosize
-      
+      placeholder='Access'
       aria-label="empty textarea"
       style={{height:100,
               width:"100%",}}

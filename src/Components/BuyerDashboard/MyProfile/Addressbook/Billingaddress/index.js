@@ -25,7 +25,7 @@ const Index = (classes) => {
               <TextField
                 fullWidth
                 id="outlined-error"
-                defaultValue="Organization Name"
+              placeholder="Organization Name"
               />
             </div>
             <div className='inputfield'>
@@ -33,7 +33,7 @@ const Index = (classes) => {
               <TextField
                 fullWidth
                 id="outlined-error"
-                defaultValue="Flat/Building/Block"
+                placeholder="Flat/Building/Block"
               />
             </div>
           </div>
@@ -43,7 +43,7 @@ const Index = (classes) => {
               <TextField
                 fullWidth
                 id="outlined-error"
-                defaultValue="Sub-urb/Town"
+                placeholder="Sub-urb/Town"
               />
             </div>
             <div className='inputfield'>
@@ -53,6 +53,8 @@ const Index = (classes) => {
                 fullWidth
                 id="outlined-error"
                 defaultValue="Pincode"
+                type="number"
+                placeholder='Pin Code'
               />
             </div>
           </div>

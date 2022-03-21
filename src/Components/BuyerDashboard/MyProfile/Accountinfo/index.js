@@ -8,6 +8,7 @@ const Index = (classes) => {
   let {
     validation_error
   }= classes;
+
   const [AccountInfoData, setAccountInfoData] = useState({
     first_name: "",
     last_name: "",
@@ -30,13 +31,18 @@ const Index = (classes) => {
     new_confrim_password: "",
   });
   const handleChangeInput = (event) => {
-    
+    console.log('#################################',event)
       setAccountInfoData((prevState) => ({
         ...prevState,
         [event.target.name]: event.target.value,
       }));
       setInputValidation("");
       handleSwitchCase([event.target.name], event.target.value);
+  };
+  const handleChangeInput1 = (event) => {
+    console.log('#################################',event)
+      setInputValidation("");
+      handleSwitchCase(event.target.value);
   };
   
   const handleSwitchCase = (fieldName, value) => {
@@ -47,12 +53,7 @@ const Index = (classes) => {
             ...prevState,
             first_name: "Please enter the first name.",
           }));
-        } else if (!isEmailValid(value)) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            email_address: "Please enter the valid e-mail.",
-          }));
-        }
+        } 
         break;
       case "last_name":
         if (!value) {
@@ -133,7 +134,7 @@ const handleClickValidation = (event) => {
    errorHandle = true;
   }
   if (!AccountInfoData?.mobile_number) {
-    document.getElementById("mobile_number")?.focus();
+    document.getElementById("root")?.focus();
     setInputValidation((prevState) => ({
       ...prevState,
       mobile_number: "Please enter the mobile number.",
@@ -191,10 +192,10 @@ return (
             <TextField
               id="first_name"
               name="first_name"
+              placeholder='First Name'
                value={AccountInfoData?.first_name}
                InputLabelProps={{
                 shrink:false,
-          
               }}
               onChange={handleChangeInput}
             />
@@ -208,6 +209,7 @@ return (
             <TextField
               id="last_name"
               name="last_name"
+              placeholder='Last Name'
               value={AccountInfoData?.last_name}
               InputLabelProps={{
                 shrink: false,
@@ -228,6 +230,7 @@ return (
             defaultCountry={'in'} 
             id="mobile_number"
             name="mobile_number"
+            placeholder='8796878788'
             value={AccountInfoData?.mobile_number}
             InputLabelProps={{
               shrink: false,
@@ -253,6 +256,7 @@ return (
             <TextField
               id="email_address"
               name="email_address"
+              placeholder='E-Mail Address'
               value={AccountInfoData?.email_address}
               InputLabelProps={{
                 shrink: false,
@@ -266,12 +270,13 @@ return (
         </div>
         <div className='inputfield_section'>
           <div className='inputfield'>
-            <p>New password</p>
+            <p>New Password</p>
             <TextField
               id="new_password"
               name="new_password"
               value={AccountInfoData?.new_password}
               type="password"
+              placeholder='New Password'
               InputLabelProps={{
                 shrink: false,
               }}
@@ -283,10 +288,11 @@ return (
             
           </div>
           <div className='inputfield'>
-            <p>Confirm New password</p>
+            <p>Confirm New Password</p>
             <TextField
               id="new_confrim_password"
               name="new_confrim_password"
+              placeholder='New Confirm Password'
               value={AccountInfoData?.new_confrim_password}
               type="password"
               InputLabelProps={{

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import styles from "../styles";
-
 import { TextField, Autocomplete, InputLabel } from "@mui/material";
 import { withStyles } from "@mui/styles";
 import { Clear } from "@mui/icons-material";
@@ -35,7 +34,6 @@ const NationalIdButton = ({
     setInputValidation("");
     handleSwitchCase([event.target.name], event.target?.files[0]?.name);
   };
-  // input validation on onchange
   const [inputValidation, setInputValidation] = useState({
     national_id_image: "",
   });

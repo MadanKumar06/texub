@@ -49,6 +49,7 @@
                 display: flex;
                 justify-content: flex-end;
                 gap: 10px;
+                align-items: center;
                 .profile_edit{
                     margin: 0;
                     font-size: 22px;
@@ -69,6 +70,7 @@
                     font-weight: 600;
                     font-family: "Source Sans Pro";
                     text-align: start;
+                    margin: 0;
                 }
                 .my_profile_data_section_tag{
                     text-align: start;
@@ -76,6 +78,8 @@
                     letter-spacing: 0.66px;
                     opacity: 1;
                     font-weight: 600;
+                    font-size: 22px;
+                    margin: 0;
                 }
             }
         }
@@ -107,6 +111,7 @@
                     display: flex;
                     justify-content: flex-end;
                     gap: 10px;
+                    align-items: center;
                     .profile_edit{
                         margin: 0;
                         font-size: 22px;
@@ -132,6 +137,7 @@
                                 font-weight: 600;
                                 font-family: "Source Sans Pro";
                                 text-align: start;
+                                margin: 0;
                             }
                             .my_profile_data_section_tag{
                                 text-align: start;
@@ -139,13 +145,15 @@
                                 letter-spacing: 0.66px;
                                 opacity: 1;
                                 font-weight: 600;
+                                font-size: 22px;
+                                margin: 0;
                             }
                         }
                     }
                     .my_profile_data1{
                         display: flex;
-                        gap: 12rem;
-                        padding: 0 77px;
+                        gap: 7.5rem;
+                        padding: 0 61px;
                        
                         .my_profile_data_section_heading{
                             color: #8B8B8B;
@@ -154,6 +162,7 @@
                             font-weight: 600;
                             font-family: "Source Sans Pro";
                             text-align: start;
+                            margin: 0;
                         }
                         .my_profile_data_section_tag{
                             text-align: start;
@@ -161,6 +170,8 @@
                             letter-spacing: 0.66px;
                             opacity: 1;
                             font-weight: 600;
+                            font-size: 22px;
+                            margin: 0;
                         }
                     }
                 }        
@@ -184,7 +195,12 @@
 }
    
 
-
+@media only screen and(max-width:1530px){
+    .My_profile_main .My_profile_ac .my_profile_company .My_profile_ac_table .my_profile_table .my_profile_data1{
+        gap: 7.5rem;
+        padding: 0 38px;
+    }
+}
 
  
  @media only screen and(max-width:1440px){

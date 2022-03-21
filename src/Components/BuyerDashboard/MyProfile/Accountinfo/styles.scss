@@ -8,6 +8,7 @@
         font-size: 18px;
         letter-spacing: 0.54px;
         font-weight: 600;
+        width: 46%;
     }
     .account_info_edit{
         display: flex;
@@ -190,6 +191,7 @@
     // }
     .account_ifo_main .Account_heading{
         padding-left: 23px;
+        width: 100%;
     }
     .account_ifo_main .account_info_edit .accountinfo_btn{
         flex-direction: column;
@@ -203,6 +205,7 @@
         width: 100%;
         padding: 15px 25px;
     }
+    
 }
 
 @media only screen and (max-width:480px){

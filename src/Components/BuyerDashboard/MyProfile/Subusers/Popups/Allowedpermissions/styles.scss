@@ -1,3 +1,4 @@
+.modal{
 .permissions_main{
     position: fixed;
     bottom: 100px;
@@ -11,12 +12,12 @@
     align-items: center;
     z-index: 9;
     flex-direction: column;
-    // padding: 20px 0px;
-    // padding: 20% 0px;
+
     .permissions_block{
         display: flex;
         flex-direction: column;
         gap: 10px;
+
         .clear{
             background-color: #002D56;
             color: #FFFFFF;
@@ -39,6 +40,8 @@
         border: 1px #707070;
         max-width: 1126px;
         width: 100%;
+        height: 400px;
+        
         .permissions_list{
             border: 1px solid #CDD5DD;
             padding: 20px;
@@ -46,7 +49,8 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
-            margin: 0 30px;
+            margin: 0 30px 30px 30px;
+            overflow-y: scroll;
         .permissions_list_content{
             list-style: none;
             span {
@@ -73,4 +77,5 @@
         }
       }
     }
+  }
 }
