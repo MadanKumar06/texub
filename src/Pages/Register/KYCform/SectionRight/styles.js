@@ -30,7 +30,10 @@ const styles = (theme) => ({
     fontSize: "22px",
     letterSpacing: "0.66px",
     textTransform: "capitalize",
-    fontWeight:"600"
+    fontWeight: "600",
+    "@media (max-width:1660px)": {
+      fontSize: "16px",
+    },
   },
   validation_error: {
     whiteSpace: "unset !important",
@@ -62,11 +65,8 @@ const styles = (theme) => ({
     margin: "0",
     fontWeight: "600",
     letterSpacing: "1.08px",
-    "@media (max-width:1600px)": {
-      fontSize: "30px",
-    },
-    "@media (max-width:1440px)": {
-      fontSize: "26px",
+    "@media (max-width:1660px)": {
+      fontSize: "22px",
     },
     "@media (max-width:767px)": {
       marginBottom: "0px",
@@ -78,11 +78,8 @@ const styles = (theme) => ({
     fontSize: "36px",
     margin: "1.5em 0 1em 0",
     fontWeight: "600",
-    "@media (max-width:1600px)": {
-      fontSize: "30px",
-    },
-    "@media (max-width:1440px)": {
-      fontSize: "26px",
+    "@media (max-width:1660px)": {
+      fontSize: "22px",
     },
   },
   input_fields: {
@@ -121,6 +118,9 @@ const styles = (theme) => ({
     "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
       border: "1px solid #DDB363",
     },
+    "& .MuiSelect-select ": {
+      padding: "12.5px 14px",
+    },
   },
   button_guest: {
     borderRadius: "30px !important",
@@ -135,7 +135,8 @@ const styles = (theme) => ({
     width: "100% !important",
     padding: "14px !important",
     fontSize: "18px !important",
-    "@media (max-width:1600px)": {
+    "@media (max-width:1660px)": {
+      fontSize: "16px !important",
       padding: "8px !important",
     },
   },

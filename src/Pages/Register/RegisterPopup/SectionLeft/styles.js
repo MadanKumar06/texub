@@ -24,11 +24,7 @@ const styles = (theme) => ({
     cursor: "pointer",
     width: "1.5em !important",
     height: "1.5em !important",
-    "@media (max-width:1600px)": {
-      width: "1.3em !important",
-      height: "1.3em !important",
-    },
-    "@media (max-width:1440px)": {
+    "@media (max-width:1660px)": {
       width: "1em !important",
       height: "1em !important",
     },

@@ -199,10 +199,12 @@ const TradeLicenseButton = ({
           </div>
 
           <small>(Supported format : .jpg/.png/.pdf)</small>
+        </div>
+        {inputValidation?.trade_image && (
           <InputLabel className={validation_error}>
             {inputValidation?.trade_image}
           </InputLabel>
-        </div>
+        )}
         {FormValues?.trade_image && (
           <div className={input_image_name}>
             <p>{FormValues?.trade_image?.name}</p>

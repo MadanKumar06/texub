@@ -171,10 +171,10 @@ const TaxCertificateButton = ({
           </div>
 
           <small>(Supported format : .jpg/.png/.pdf)</small>
+        </div>
           <InputLabel className={validation_error}>
             {inputValidation?.tax_image}
           </InputLabel>
-        </div>
         {FormValues?.tax_image && (
           <div className={input_image_name}>
             <p>{FormValues?.tax_image?.name}</p>

@@ -64,10 +64,10 @@ const NationalIdButton = ({
           </div>
 
           <small>(Supported format : .jpg/.png/.pdf)</small>
-          <InputLabel className={validation_error}>
-            {inputValidation?.national_id_image}
-          </InputLabel>
         </div>
+        <InputLabel className={validation_error}>
+          {inputValidation?.national_id_image}
+        </InputLabel>
         {FormValues?.national_id_image?.name && (
           <div className={input_image_name}>
             <p>{FormValues?.national_id_image?.name}</p>

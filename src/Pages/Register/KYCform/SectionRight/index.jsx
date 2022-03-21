@@ -5,6 +5,8 @@ import {
   MenuItem,
   ListItemText,
   Checkbox,
+  InputLabel,
+  FormControl,
   Select,
 } from "@mui/material";
 import { withStyles } from "@mui/styles";
@@ -81,7 +83,7 @@ const BuyerKYCformSectionRight = ({
         FormValues={FormValues}
         validationFieldMessage={validationFieldMessage}
       />
-      <div>
+      <>
         <p className={info_text_lineNote_two}>Categories</p>
         <div className={input_fields}>
           <Select
@@ -92,13 +94,12 @@ const BuyerKYCformSectionRight = ({
             className={category_select_option}
             value={categorylist}
             onChange={handleChange}
-            input={<OutlinedInput />}
             renderValue={(selected) => {
               return selected.join(", ");
             }}
             MenuProps={MenuProps}
           >
-            {names.map((name) => (
+            {names?.map((name) => (
               <MenuItem key={name} value={name}>
                 <Checkbox checked={categorylist?.indexOf(name) > -1} />
                 <ListItemText primary={name} />
@@ -123,7 +124,7 @@ const BuyerKYCformSectionRight = ({
             />
           </div>
         )}
-      </div>
+      </>
       <p className={download_link}>Click Here To Download Agreement</p>
       <ValidationForKycForm
         values={FormValues}
