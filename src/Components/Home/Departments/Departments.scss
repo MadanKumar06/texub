@@ -282,7 +282,7 @@
     .Departments_Dropdown_list
     .Body_Down_Pannel_btn_content
     li {
-    height: 38.9px !important;
+    height: 39px !important;
     font-size: 18px !important;
   }
 
@@ -318,7 +318,7 @@
     .Body_Searchbar_Down_images
     .Body_Searchbar_Down_img1_div
     .Offers {
-    left: 4%;
+    left: 2%;
   }
 
   .Departments
@@ -354,6 +354,21 @@
     .Body_Searchbar_Down_img1_div
     .Offers {
     left: 3.5%;
+  }
+  .Departments
+    .Departments_Body_Search
+    .Departments_Body_Down_Pannel
+    .Departments_Dropdown_list
+    .Body_Down_Pannel_btn_content
+    li {
+    height: 34.9px !important;
+  }
+
+  .Departments
+    .Departments_Body_Search
+    .Departments_Body_Down_Pannel
+    .Departments_Body_Down_Pannel_btn {
+    min-height: 48px;
   }
 }
 
