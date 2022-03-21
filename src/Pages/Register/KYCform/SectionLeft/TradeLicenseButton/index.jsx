@@ -66,22 +66,22 @@ const TradeLicenseButton = ({
 
   const handleSwitchCase = (fieldName, value) => {
     switch (fieldName[0]) {
-      case "business_name":
-        if (!value) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            business_name: "Please enter the business name.",
-          }));
-        }
-        break;
-      case "trade_lic_number":
-        if (!value) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            trade_lic_number: "Please enter the trade lic number.",
-          }));
-        }
-        break;
+      // case "business_name":
+      //   if (!value) {
+      //     setInputValidation((prevState) => ({
+      //       ...prevState,
+      //       business_name: "Please enter the business name.",
+      //     }));
+      //   }
+      //   break;
+      // case "trade_lic_number":
+      //   if (!value) {
+      //     setInputValidation((prevState) => ({
+      //       ...prevState,
+      //       trade_lic_number: "Please enter the trade lic number.",
+      //     }));
+      //   }
+      //   break;
 
       case "trade_expiration_date":
         if (!value) {
@@ -93,14 +93,6 @@ const TradeLicenseButton = ({
           setInputValidation((prevState) => ({
             ...prevState,
             trade_expiration_date: "Please select valid date.",
-          }));
-        }
-        break;
-      case "trade_image":
-        if (!value) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            trade_image: "Please attach the License details.",
           }));
         }
         break;

@@ -22,6 +22,16 @@ const styles = (theme) => ({
       // padding: "12.5px 14px",
     },
   },
+  download_link: {
+    textAlign: "center",
+    marginTop: "3em",
+    color: "#002D56",
+    textDecoration: "underline",
+    fontSize: "22px",
+    letterSpacing: "0.66px",
+    textTransform: "capitalize",
+    fontWeight:"600"
+  },
   validation_error: {
     whiteSpace: "unset !important",
     marginLeft: "4px !important",
@@ -121,7 +131,7 @@ const styles = (theme) => ({
     transition: "transform .2s !important",
     fontWeight: "600 !important",
     textTransform: "capitalize !important",
-    marginTop: "60px !important",
+    marginTop: "30px !important",
     width: "100% !important",
     padding: "14px !important",
     fontSize: "18px !important",

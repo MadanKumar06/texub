@@ -65,14 +65,14 @@ const TaxCertificateButton = ({
 
   const handleSwitchCase = (fieldName, value) => {
     switch (fieldName[0]) {
-      case "tax_number":
-        if (!value) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            tax_number: "Please enter the tax number.",
-          }));
-        }
-        break;
+      // case "tax_number":
+      //   if (!value) {
+      //     setInputValidation((prevState) => ({
+      //       ...prevState,
+      //       tax_number: "Please enter the tax number.",
+      //     }));
+      //   }
+      //   break;
 
       case "tax_expiration_date":
         if (!value) {
@@ -84,14 +84,6 @@ const TaxCertificateButton = ({
           setInputValidation((prevState) => ({
             ...prevState,
             tax_expiration_date: "Please select valid date.",
-          }));
-        }
-        break;
-      case "tax_image":
-        if (!value) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            tax_image: "Please attatch certificate.",
           }));
         }
         break;
