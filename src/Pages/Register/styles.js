@@ -25,8 +25,8 @@ const styles = (theme) => ({
     display: "flex",
     alignItems: "center",
     paddingRight: "4%",
-    "@media (max-width:1440px) and (min-width:768px)": {
-      fontSize: "18px",
+    "@media (max-width:1660px)": {
+      fontSize: "20px",
     },
   },
   left_area: {
@@ -37,7 +37,7 @@ const styles = (theme) => ({
       marginBottom: "7px",
       marginTop: "7%",
       fontWeight: "600",
-      "@media (max-width:1440px) and (min-width:768px)": {
+      "@media (max-width:1660px)": {
         fontSize: "24px",
       },
     },
@@ -57,7 +57,7 @@ const styles = (theme) => ({
       color: "#333C42",
       margin: "0",
       fontWeight: "600",
-      "@media (max-width:1440px) and (min-width:768px)": {
+      "@media (max-width:1660px)": {
         fontSize: "16px",
       },
     },
@@ -67,8 +67,8 @@ const styles = (theme) => ({
       cursor: "pointer",
       fontWeight: "600",
       textDecoration: "underline",
-      "@media (max-width:1440px) and (min-width:768px)": {
-        fontSize: "16px",
+      "@media (max-width:1660px)": {
+        fontSize: "18px",
       },
     },
   },
@@ -106,13 +106,10 @@ const styles = (theme) => ({
         position: "absolute",
         left: "35px",
         bottom: "-15px",
-        "@media (max-width:1600px)": {
-          fontSize: "22px",
+        "@media (max-width:1660px)": {
+          fontSize: "18px",
           left: "42px",
           bottom: "-6px",
-        },
-        "@media (max-width:1024px)": {
-          fontSize: "20px",
         },
       },
       "& .MuiRadio-root": {

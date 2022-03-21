@@ -56,34 +56,22 @@ const TransitionsModal = ({ classes }) => {
   };
   const handleSwitchCase = (fieldName, value) => {
     switch (fieldName[0]) {
-      case "name":
-        if (!value) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            name: "Please enter the name.",
-          }));
-        }
-        break;
-      case "confrim_password":
-        if (!value) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            confrim_password: "Please enter your confrim password.",
-          }));
-        } else if (!(guestData?.password === value)) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            confrim_password: "Password and confirm password does not match",
-          }));
-        }
-        break;
+      // case "name":
+      //   if (!value) {
+      //     setInputValidation((prevState) => ({
+      //       ...prevState,
+      //       name: "Please enter the name.",
+      //     }));
+      //   }
+      //   break;
       case "email_address":
-        if (!value) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            email_address: "Please enter the e-mail.",
-          }));
-        } else if (!isEmailValid(value)) {
+        // if (!value) {
+        //   setInputValidation((prevState) => ({
+        //     ...prevState,
+        //     email_address: "Please enter the e-mail.",
+        //   }));
+        // } else
+        if (!isEmailValid(value)) {
           setInputValidation((prevState) => ({
             ...prevState,
             email_address: "Please enter the valid e-mail.",
@@ -91,16 +79,31 @@ const TransitionsModal = ({ classes }) => {
         }
         break;
       case "password":
-        if (!value) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            password: "Please enter your password.",
-          }));
-        } else if (!isPasswordValid(value)) {
+        // if (!value) {
+        //   setInputValidation((prevState) => ({
+        //     ...prevState,
+        //     password: "Please enter your password.",
+        //   }));
+        // } else
+        if (!isPasswordValid(value)) {
           setInputValidation((prevState) => ({
             ...prevState,
             password:
               "Minimum 8 characters at least 1 Alphabet, 1 Number and 1 Special Character.",
+          }));
+        }
+        break;
+      case "confrim_password":
+        // if (!value) {
+        //   setInputValidation((prevState) => ({
+        //     ...prevState,
+        //     confrim_password: "Please enter your confrim password.",
+        //   }));
+        // } else
+        if (!(guestData?.password === value)) {
+          setInputValidation((prevState) => ({
+            ...prevState,
+            confrim_password: "Password and confirm password does not match",
           }));
         }
         break;
@@ -270,7 +273,7 @@ const TransitionsModal = ({ classes }) => {
         </InputLabel>
         <FormControlLabel
           value={guestData?.checkbox_confrim}
-          control={<Checkbox color="color_third" />}
+          control={<Checkbox color="secondary" />}
           label="I confirm that I am a wholesale buyer, and not a consumer or end user."
           labelPlacement="end"
           className={checkbox_label}
