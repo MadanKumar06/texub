@@ -139,6 +139,14 @@ function Index() {
   }, [])
   return (
     <div className="auctions">
+      <div className="auctions__footer">
+        <div className="auctions__container">
+          <Link to="/buyerdashboard/dashboard">
+            <ArrowBackIosNew />
+            <span>Back</span>
+          </Link>
+        </div>
+      </div>
       <div className="auctions__buttons">
         {auctiontype.map((data, i) => (
           <p
@@ -166,15 +174,6 @@ function Index() {
         DataList={auctiondata}
         PagePerRow={5}
       />
-
-      <div className="auctions__footer">
-        <div className="auctions__container">
-          <Link to="/buyerdashboard/dashboard">
-            <ArrowBackIosNew />
-            <span>Back</span>
-          </Link>
-        </div>
-      </div>
     </div>
   );
 }

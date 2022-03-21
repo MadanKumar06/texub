@@ -244,13 +244,6 @@ function ApproveCart() {
   };
   return (
     <div className="approve__cart">
-      <MUITable columns={columns} table={tableData} options={options} className="approve__cart__table" />
-      <Pagination
-        PaginateData={PaginateDataSplit}
-        DataList={table}
-        PagePerRow={10}
-      />
-
       <div className="approve__cart__footer">
         <div className="approve__cart__container">
           <Link to="/buyerdashboard/dashboard">
@@ -263,6 +256,12 @@ function ApproveCart() {
           </div>
         </div>
       </div>
+      <MUITable columns={columns} table={tableData} options={options} className="approve__cart__table" />
+      <Pagination
+        PaginateData={PaginateDataSplit}
+        DataList={table}
+        PagePerRow={10}
+      />
     </div>
   );
 }
