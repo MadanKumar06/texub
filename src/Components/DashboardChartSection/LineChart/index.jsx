@@ -15,33 +15,33 @@ import {
 const pdata = [
   {
     name: "Mar",
-    value: 11,
-    fees: 120,
+    value: 12,
+    fees: 0,
   },
   {
     name: "Apr",
-    value: 15,
-    fees: 12,
+    value: 40,
+    fees: 60,
   },
   {
     name: "May",
-    value: 5,
+    value: 55,
     fees: 10,
   },
   {
     name: "Jun",
-    value: 10,
-    fees: 5,
+    value: 0,
+    fees: 120,
   },
   {
     name: "Jul",
-    value: 9,
-    fees: 4,
+    value: 120,
+    fees: 60,
   },
   {
     name: "Aug",
-    value: 10,
-    fees: 8,
+    value: 110,
+    fees: 30,
   },
 ];
 
