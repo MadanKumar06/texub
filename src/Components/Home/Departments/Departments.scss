@@ -23,12 +23,12 @@
         opacity: 1;
         font-size: 22px;
         font-weight: bold;
-        min-height: 68px;
+        min-height: 60px;
         .Department_heading {
           margin: 0;
-          letter-spacing: 0.66px;
+          letter-spacing: 1px;
           font-size: 22px;
-          opacity: 1;
+          opacity: 0.9;
           display: flex;
           align-items: center;
           gap: 10px;
@@ -40,25 +40,7 @@
         }
       }
       .Departments_Dropdown_list {
-        position: relative;
         .Body_Down_Pannel_btn_content {
-          display: none;
-          transition: top 1000ms ease-in;
-          position: absolute;
-          top: -4em;
-          left: 0;
-          right: 0;
-        }
-        .Body_Down_Pannel_btn_content__show {
-          display: block;
-          top: 0;
-          left: 0;
-          right: 0;
-          transition: top 1000ms ease-in;
-          position: absolute;
-        }
-        .Body_Down_Pannel_btn_content,
-        .Body_Down_Pannel_btn_content__show {
           background-color: white;
           border: 1px solid #00000012;
           padding: 0;
@@ -67,6 +49,7 @@
           .Body_Down_Pannel_btn_items {
             cursor: pointer;
             border-bottom: 1px solid #efefef;
+            font-family: "Source Sans Pro";
             font-weight: 700;
             letter-spacing: 0.5px;
             font-size: 20px;
@@ -86,7 +69,7 @@
       display: flex;
       flex-direction: column;
       width: 100%;
-      gap: 2em;
+      gap: 1em;
       .body__search_bar {
         line-height: normal;
         max-height: 5em;
@@ -98,7 +81,6 @@
         .search_bar_paper {
           border: 1px solid #d6d8d9;
           box-shadow: none;
-          min-height: 68px;
           ::placeholder {
             color: #858a8e;
             opacity: 1;
@@ -230,19 +212,6 @@
     li {
     height: 49.2px !important;
   }
-  .Departments
-    .Departments_Body_Search
-    .Departments_Body_Down_Pannel
-    .Departments_Body_Down_Pannel_btn {
-    min-height: 60px;
-  }
-  .Departments
-    .Departments_Body_Search
-    .search_bar
-    .body__search_bar
-    .search_bar_paper {
-    min-height: 60px;
-  }
 }
 
 @media (max-width: 1600px) {
@@ -275,25 +244,6 @@
     .Body_Down_Pannel_btn_content
     li {
     height: 44.85px !important;
-  }
-  .Departments
-    .Departments_Body_Search
-    .Departments_Body_Down_Pannel
-    .Departments_Body_Down_Pannel_btn
-    .Department_heading {
-    font-size: 20px;
-    .button_Icon {
-      width: 1.3em !important;
-      height: 1.3em !important;
-    }
-  }
-  .Departments
-    .Departments_Body_Search
-    .Departments_Body_Down_Pannel
-    .Departments_Dropdown_list
-    .Body_Down_Pannel_btn_content
-    .Body_Down_Pannel_btn_items {
-    font-size: 18px;
   }
 }
 

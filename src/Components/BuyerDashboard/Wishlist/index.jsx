@@ -13,6 +13,15 @@ const Whislist = () => {
   };
   return (
     <div className="wishlist_main_container">
+      <div className="wishlist__footer">
+        <div className="wishlist__container">
+          <Link to="/buyerdashboard/dashboard">
+            <ArrowBackIosNew />
+            <span>Back</span>
+          </Link>
+        </div>
+      </div>
+      
       <div>
         {tableData?.length &&
           tableData?.map((itm) => (
@@ -28,14 +37,6 @@ const Whislist = () => {
         PagePerRow={2}
       />
 
-      <div className="wishlist__footer">
-        <div className="wishlist__container">
-          <Link to="/buyerdashboard/dashboard">
-            <ArrowBackIosNew />
-            <span>Back</span>
-          </Link>
-        </div>
-      </div>
     </div>
   );
 };
