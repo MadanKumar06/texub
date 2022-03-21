@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./styles.scss";
-import MUITable from "../../MUITable";
+import MUITable from "../../Common/MUITable";
 import { Link } from "react-router-dom";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import Enquirydetails from "../../SellerDashboard/Directenqueries/Enquirydetails";
@@ -179,6 +179,16 @@ const Index = () => {
 
   return (
     <div className="directenquiries_container">
+      <div className="directenquiries__footer">
+        <div className="directenquiries__container">
+          <Link to="/sellerdashboard/dashboard">
+            <ArrowBackIosNew />
+            <span>Back</span>
+          </Link>
+          {/* <Button className="rma_btn">Request RMA</Button> */}
+        </div>
+      </div>
+      
       <div className="directenquiries__buttons">
         {ordertype.map((data, i) => (
           <div className="directenquiries__btton_content">
@@ -202,16 +212,6 @@ const Index = () => {
         className="directenquiries__table"
       />
       {isUopup && <Enquirydetails closePOPup={setisUopup} />}
-
-      <div className="directenquiries__footer">
-        <div className="directenquiries__container">
-          <Link to="/sellerdashboard/dashboard">
-            <ArrowBackIosNew />
-            <span>Back</span>
-          </Link>
-          {/* <Button className="rma_btn">Request RMA</Button> */}
-        </div>
-      </div>
     </div>
   );
 };

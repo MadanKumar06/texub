@@ -5,7 +5,7 @@ import { Paper, IconButton, InputBase } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import notification from "../../Assets/sellerdashboard/notification.png";
 import hp from "../../Assets/sellerdashboard/inventory/hp.png";
-import MUITable from "../../Components/MUITable";
+import MUITable from "../../Components/Common/MUITable";
 import Pagination from "../../Components/Pagination";
 
 function Index() {

@@ -4,7 +4,7 @@ import { Button } from "@mui/material";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import Pagination from "../../Pagination";
-import MUITable from "../../../Components/MUITable";
+import MUITable from "../../../Components/Common/MUITable";
 
 function MergeCarts() {
   const [tableData, setTableData] = useState([]);
