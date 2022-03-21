@@ -65,6 +65,11 @@
         }
       }
     }
-    
+  }
+}
+
+@media (max-width: 767px) {
+  .updateproduct .updateproduct__bgform {
+    flex-direction: column;
   }
 }

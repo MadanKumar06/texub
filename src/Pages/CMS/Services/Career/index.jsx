@@ -8,6 +8,9 @@ import {
 } from "@mui/material";
 import "./styles.scss";
 import { withStyles } from "@mui/styles";
+import "../../../../Pages/Aboutus/styles.scss";
+import styles from "./styles";
+
 import Rightarrow from "../../../../Assets/Career/Group 773.svg";
 import Mask from "../../../../Assets/Career/Mask Group 2.png";
 import Key from "../../../../Assets/Career/Group 1034@2x.png";
@@ -17,9 +20,6 @@ import c3 from "../../../../Assets/Career/c3.png";
 import c4 from "../../../../Assets/Career/c4.png";
 import c5 from "../../../../Assets/Career/c5.png";
 import c6 from "../../../../Assets/Career/c6.png";
-import styles from "./styles";
-import   '../../../../Pages/Aboutus/styles.scss'
-
 import wwbg from "../../../../Assets/Aboutus/Worldwide_Office.png";
 import usa from "../../../../Assets/Aboutus/usa.png";
 import nigeria from "../../../../Assets/Aboutus/nigeria.png";
@@ -27,7 +27,6 @@ import nether from "../../../../Assets/Aboutus/nether.png";
 import uae from "../../../../Assets/Aboutus/uae.png";
 import india from "../../../../Assets/Aboutus/india.png";
 import sg from "../../../../Assets/Aboutus/sg.png";
-import texhub from "../../../../Assets/Aboutus/texhub.png";
 
 const Career = ({ classes }) => {
   const country = [
@@ -51,27 +50,6 @@ const Career = ({ classes }) => {
       <div className="career_joinus_section">
         <h1 className="career_joinus_heading">Why Join Us</h1>
         <div className="career_joinus_Check">
-          {/* <div className='career_joinus_Check1'>
-               <input type="checkbox"/>
-               <label for=""> I have a bike</label><br/>
-               <input type="checkbox"/>
-               <label for=""> I have a bike</label><br/>
-               <input type="checkbox"/>
-               <label for=""> I have a bike</label><br/>
-               <input type="checkbox"/>
-               <label for=""> I have a bike</label><br/>
-               </div>
-               <div className='career_joinus_Check1'>
-               <input type="checkbox"/>
-               <label for=""> I have a bike</label><br/>
-               <input type="checkbox"/>
-               <label for=""> I have a bike</label><br/>
-               <input type="checkbox"/>
-               <label for=""> I have a bike</label><br/>
-               <input type="checkbox"/>
-               <label for=""> I have a bike</label><br/>
-               </div> */}
-
           <div className={classes.career_joinus_Check1}>
             <FormControlLabel
               control={<Checkbox defaultChecked />}
@@ -198,7 +176,10 @@ const Career = ({ classes }) => {
       </div>
       <div className="career_CultureValues">
         <p className="career_CultureValues_Click">
-          Want To Know More About The Company ? <a href=""><span className="Link">CLICK HERE</span></a>
+          Want To Know More About The Company ?{" "}
+          <a href="">
+            <span className="Link">CLICK HERE</span>
+          </a>
         </p>
         <h2 className="career_CultureValues_heading">Our Culture & Values</h2>
         <p className="career_CultureValues_tag">
@@ -212,12 +193,12 @@ const Career = ({ classes }) => {
           Duo
         </p>
         <Box sx={{ flexGrow: 1 }} className={classes.img_box}>
-           <Grid
+          <Grid
             container
             spacing={{ xs: 2, md: 3 }}
             columns={{ xs: 4, sm: 8, md: 12 }}
-          > 
-            <Grid item xs={2} sm={4} md={4}> 
+          >
+            <Grid item xs={2} sm={4} md={4}>
               <div className="career_CultureValues_imgs1">
                 <img
                   src={c1}
@@ -252,32 +233,26 @@ const Career = ({ classes }) => {
                   className="career_to_texub_developers_arrow"
                 />
               </div>
-            </Grid> 
-          </Grid> 
+            </Grid>
+          </Grid>
         </Box>
       </div>
       <div className="aboutus">
-      <div className="aboutus__worldwide">
-        <h1>Our Worldwide Office</h1>
-        <div className="aboutus__worldwide__content">
-          <img src={wwbg} alt="" />
+        <div className="aboutus__worldwide">
+          <h1>Our Worldwide Office</h1>
+          <div className="aboutus__worldwide__content">
+            <img src={wwbg} alt="" />
 
-          <div className="aboutus__ww__country">
-            {country.map((data, i) => (
-              <div className="list" key={i}>
-                <img src={data.image} alt="" />
-                <span>{data.content}</span>
-              </div>
-            ))}
+            <div className="aboutus__ww__country">
+              {country.map((data, i) => (
+                <div className="list" key={i}>
+                  <img src={data.image} alt="" />
+                  <span>{data.content}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-        {/* <img src={texhub} alt="" className="tag1" />
-        <img src={texhub} alt="" className="tag2" />
-        <img src={texhub} alt="" className="tag3" />
-        <img src={texhub} alt="" className="tag4" />
-        <img src={texhub} alt="" className="tag5" />
-        <img src={texhub} alt="" className="tag6" /> */}
-      </div>
       </div>
     </div>
   );

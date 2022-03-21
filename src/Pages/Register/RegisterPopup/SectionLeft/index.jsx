@@ -12,9 +12,12 @@ import Register_section_Logo_five from "../../../../Assets/CommonImage/RegisterP
 import Register_section_Logo_arrow from "../../../../Assets/CommonImage/RegisterPopup/right_arrow_white.png";
 import SectionRight from "../SectionRight";
 import { Clear } from "@mui/icons-material";
+import { useStateValue } from "../../../../store/state";
+
 const TransitionsModal = ({ classes, openPopUp }) => {
   const [open, setOpen] = useState(true);
   const [clicked, setClicked] = useState("buyer");
+  const [{}, dispatch] = useStateValue();
   let {
     section_main,
     section_left,
@@ -63,7 +66,10 @@ const TransitionsModal = ({ classes, openPopUp }) => {
   ];
   const handleClose = () => {
     setOpen(false);
-    openPopUp(false);
+    dispatch({
+      type: "SET_REGISTER_OPEN_CLOSE",
+      value: false,
+    });
   };
   const handleClassChange = (event) => {
     setClicked(event);
@@ -74,7 +80,7 @@ const TransitionsModal = ({ classes, openPopUp }) => {
       aria-describedby="transition-modal-description"
       className={modal}
       open={open}
-      onClose={handleClose}
+      // onClose={handleClose}
       closeAfterTransition
       BackdropComponent={Backdrop}
       BackdropProps={{

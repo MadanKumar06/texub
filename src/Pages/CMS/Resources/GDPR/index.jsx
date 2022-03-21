@@ -1,6 +1,7 @@
 import React from 'react'
-import gdpr from '../../../../Assets/Career/folder.png'
 import './styles.scss'
+
+import gdpr from '../../../../Assets/Career/folder.png'
 
 const index = () => {
     const GDPR = [

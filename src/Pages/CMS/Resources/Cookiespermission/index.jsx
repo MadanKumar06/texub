@@ -1,8 +1,9 @@
 import React from 'react'
+import './styles.scss'
+
 import bgimage from '../../../../Assets/Career/Rectangle 1277.svg'
 import icon from '../../../../Assets/Career/Group 930.png'
 import close from '../../../../Assets/Career/Group 55.svg'
-import './styles.scss'
 
 const index = ({closePOPup}) => {
     // const Cookies = [

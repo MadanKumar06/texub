@@ -1,0 +1,31 @@
+.coming_soon_container {
+  background-image: url("../../Assets/buyerdashboard/bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  .coming_soon_sub_container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    padding: 5em;
+    .company_logo {
+      width: 250px;
+      img {
+        width: 100%;
+      }
+    }
+    .title {
+      margin: 2em 0 1em 0;
+      font-size: 50px;
+      font-style: italic;
+    }
+    .coming_soon_text {
+      margin: 0;
+      font-size: 80px;
+      color: #ddb363;
+      font-weight: 700;
+    }
+  }
+}

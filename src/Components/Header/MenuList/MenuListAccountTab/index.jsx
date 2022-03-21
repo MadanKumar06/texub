@@ -27,12 +27,12 @@ import {
 import Departments from "./DepartmentJson";
 import mycart_image from "../../../../Assets/User/shopping-bag (2).png";
 import whishlist_image from "../../../../Assets/User/Icon.png";
-import RegiterPopup from "../../../../Pages/Register/RegisterPopup/SectionLeft";
 import dashboardLogo from "../../../../Assets/CommonImage/MyAccountMegamenu/menu.png";
 import myOrderLogo from "../../../../Assets/CommonImage/MyAccountMegamenu/shopping-bag.png";
 import auctionsLogo from "../../../../Assets/CommonImage/MyAccountMegamenu/auction.png";
 import logoutLogo from "../../../../Assets/CommonImage/MyAccountMegamenu/logout.png";
 import account_circle from "../../../../Assets/User/user (3).png";
+import { useStateValue } from "../../../../store/state";
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -61,10 +61,26 @@ TabPanel.propTypes = {
 
 const BasicTabs = ({ classes, handleSideBarClose }) => {
   const [value, setValue] = React.useState(0);
+  const [{}, dispatch] = useStateValue();
   const [open, setOpen] = useState(false);
-  const [registerPopUp, setRegisterPopUp] = useState(false);
   const RegistrationPop = (event) => {
-    setRegisterPopUp(event);
+    handleSideBarClose("left", false);
+    setTimeout(() => {
+      dispatch({
+        type: "SET_REGISTER_OPEN_CLOSE",
+        value: true,
+      });
+    }, 1000 / 2);
+  };
+
+  const SigninPopUP = () => {
+    handleSideBarClose("left", false);
+    setTimeout(() => {
+      dispatch({
+        type: "SET_SIGNIN_OPEN_CLOSE",
+        value: true,
+      });
+    }, 1000 / 2);
   };
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -158,10 +174,7 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
             variant="contained"
             startIcon={<AppRegistration />}
             className={classes.menuButton}
-            onClick={() => {
-              setRegisterPopUp(true);
-              // handleSideBarClose("left", false);
-            }}
+            onClick={() => RegistrationPop()}
           >
             Register
           </Button>
@@ -169,6 +182,7 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
             variant="contained"
             endIcon={<ExitToApp />}
             className={classes.menuButton}
+            onClick={() => SigninPopUP()}
           >
             SignIn
           </Button>
@@ -235,7 +249,6 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
           </Link>
         </List>
       </TabPanel>
-      {registerPopUp && <RegiterPopup openPopUp={RegistrationPop} />}
     </Box>
   );
 };

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import HP from "./../../../Assets/Productlist/hp_td_icon.png";
-import Acer from "../../../Assets/Productlist/acer_icon_td.png";
 import "./styles.scss";
 import MUITable from '../../../Components/MUITable'
+
+import HP from "./../../../Assets/Productlist/hp_td_icon.png";
+import Acer from "../../../Assets/Productlist/acer_icon_td.png";
 
 const PendingInvoiceTable = () => {
   const [is_table_quantity, setIs_table_quantity] = useState(0);

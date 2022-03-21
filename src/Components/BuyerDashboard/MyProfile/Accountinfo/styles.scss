@@ -17,11 +17,12 @@
             gap: 20px;
             flex-direction: column;
             padding: 20px 20px;
+            width: 100%;
        .inputfield_section{
         display: flex;
         gap: 40px;
         .MuiOutlinedInput-root{
-            width: 35rem;
+            width: 100%;
         }
         .inputfield{
             display: flex;
@@ -68,8 +69,11 @@
       .accountinfo_btn{
           display: flex;
           justify-content: flex-end;
-          gap: 35px;
-          
+          gap: 40px;
+          .inputfield{
+              width: 50%;
+          }
+           
           .account_info_cancel{
               color: #002D56;
               font-size: 18px;
@@ -78,11 +82,11 @@
               border-radius: 25px;
               border: 1px solid #002D56;
               box-shadow: 0px 3px 6px #00000029;
-              width: 22%;
               font-weight: 600;
               letter-spacing: 0.54px;
               text-shadow: 0px 3px 6px #00000029;
               cursor: pointer;
+              width: 22%;
           }
           .account_info_save{
             box-shadow: 0px 3px 6px #00000029;
@@ -98,6 +102,7 @@
             text-shadow: 0px 3px 6px #00000029;
             cursor: pointer;
           }
+         
         }
       
     }
@@ -106,43 +111,43 @@
 
 
 
-@media only screen and (max-width:1600px){
-    .account_ifo_main .account_info_edit .form .inputfield_section .MuiOutlinedInput-root{
-        width: 30rem;
-    }
-}
-@media only screen and (max-width:1440px) {
-    .account_ifo_main .account_info_edit .form .inputfield_section .MuiOutlinedInput-root{
-        width: 28rem;
-    }
-}
+// @media only screen and (max-width:1600px){
+//     .account_ifo_main .account_info_edit .form .inputfield_section .MuiOutlinedInput-root{
+//         width: 30rem;
+//     }
+// }
+// @media only screen and (max-width:1440px) {
+//     .account_ifo_main .account_info_edit .form .inputfield_section .MuiOutlinedInput-root{
+//         width: 28rem;
+//     }
+// }
 
-@media only screen and (max-width: 1336px){
-    .account_ifo_main .account_info_edit .form .inputfield_section .MuiOutlinedInput-root {
-        width: 24rem;
-    }
-    }
-@media only screen and (max-width: 1240px){
-.account_ifo_main .account_info_edit .form .inputfield_section .MuiOutlinedInput-root {
-    width: 22rem;
-}
-}
+// @media only screen and (max-width: 1336px){
+//     .account_ifo_main .account_info_edit .form .inputfield_section .MuiOutlinedInput-root {
+//         width: 24rem;
+//     }
+//     }
+// @media only screen and (max-width: 1240px){
+// .account_ifo_main .account_info_edit .form .inputfield_section .MuiOutlinedInput-root {
+//     width: 22rem;
+// }
+// }
 
-@media only screen and (max-width:1024px){
-           .My_profile_main{
-            margin: 50px 0px 20px 0px;
-           }
-           .account_ifo_main .account_info_edit .form .inputfield_section .MuiOutlinedInput-root {
-            width: 26rem;
-        }
-}
+// @media only screen and (max-width:1024px){
+//            .My_profile_main{
+//             margin: 50px 0px 20px 0px;
+//            }
+//            .account_ifo_main .account_info_edit .form .inputfield_section .MuiOutlinedInput-root {
+//             width: 26rem;
+//         }
+// }
 @media only screen and (max-width:960px){
     .account_ifo_main .account_info_edit .form .inputfield_section{
         flex-direction: column;
     }
-    .account_ifo_main .account_info_edit .form .inputfield_section .MuiOutlinedInput-root {
-        width: 45rem;
-    }
+    // .account_ifo_main .account_info_edit .form .inputfield_section .MuiOutlinedInput-root {
+    //     width: 45rem;
+    // }
     
 .account_ifo_main .account_info_edit .accountinfo_btn {
     justify-content: center;
@@ -165,9 +170,9 @@
     .account_ifo_main .account_info_edit{
         justify-content: flex-start;
     }
-    .account_ifo_main .account_info_edit .form .inputfield_section .MuiOutlinedInput-root {
-        width: 42rem;
-    }
+    // .account_ifo_main .account_info_edit .form .inputfield_section .MuiOutlinedInput-root {
+    //     width: 42rem;
+    // }
     .account_ifo_main .account_info_edit .accountinfo_btn .account_info_save{
         width: 50%;
     }
@@ -180,9 +185,9 @@
 }
 
 @media only screen and (max-width:580px){
-    .account_ifo_main .account_info_edit .form .inputfield_section .MuiOutlinedInput-root{
-        width: 30rem;
-    }
+    // .account_ifo_main .account_info_edit .form .inputfield_section .MuiOutlinedInput-root{
+    //     width: 30rem;
+    // }
     .account_ifo_main .Account_heading{
         padding-left: 23px;
     }
@@ -201,32 +206,32 @@
 }
 
 @media only screen and (max-width:480px){
-    .account_ifo_main .account_info_edit .form .inputfield_section .MuiOutlinedInput-root {
-        width: 26rem;
-    }
+    // .account_ifo_main .account_info_edit .form .inputfield_section .MuiOutlinedInput-root {
+    //     width: 26rem;
+    // }
     .account_ifo_main .account_info_edit .form .inputfield_section{
         gap: 10px;
     }
     
-    .account_ifo_main .account_info_edit .form .inputfield_section  .MuiFormControl-root{
-        width: 16rem !important;
-    }
+    // .account_ifo_main .account_info_edit .form .inputfield_section  .MuiFormControl-root{
+    //     width: 16rem !important;
+    // }
     .account_ifo_main .account_info_edit .form{
         padding: 20px 7px;
     }
 }
 
 @media only screen and (max-width:425px){
-    .account_ifo_main .account_info_edit .form .inputfield_section .MuiOutlinedInput-root {
-        width: 22rem;
-    }
+    // .account_ifo_main .account_info_edit .form .inputfield_section .MuiOutlinedInput-root {
+    //     width: 22rem;
+    // }
     .account_ifo_main .account_info_edit .form .inputfield_section{
         gap: 10px;
     }
     
-    .account_ifo_main .account_info_edit .form .inputfield_section  .MuiFormControl-root{
-        width: 16rem !important;
-    }
+    // .account_ifo_main .account_info_edit .form .inputfield_section  .MuiFormControl-root{
+    //     width: 16rem !important;
+    // }
     .account_ifo_main .account_info_edit .form{
         padding: 20px 7px;
     }
@@ -234,31 +239,31 @@
 
 
 @media only screen and (max-width:375px){
-    .account_ifo_main .account_info_edit .form .inputfield_section .MuiOutlinedInput-root {
-        width: 19rem;
-    }
+    // .account_ifo_main .account_info_edit .form .inputfield_section .MuiOutlinedInput-root {
+    //     width: 19rem;
+    // }
     .account_ifo_main .account_info_edit .form .inputfield_section{
         gap: 10px;
     }
     
-    .account_ifo_main .account_info_edit .form .inputfield_section  .MuiFormControl-root{
-        width: 16rem !important;
-    }
+    // .account_ifo_main .account_info_edit .form .inputfield_section  .MuiFormControl-root{
+    //     width: 16rem !important;
+    // }
     .account_ifo_main .account_info_edit .form{
         padding: 20px 7px;
     }
 }
 @media only screen and (max-width:320px){
-    .account_ifo_main .account_info_edit .form .inputfield_section .MuiOutlinedInput-root {
-        width: 16rem;
-    }
+    // .account_ifo_main .account_info_edit .form .inputfield_section .MuiOutlinedInput-root {
+    //     width: 16rem;
+    // }
     .account_ifo_main .account_info_edit .form .inputfield_section{
         gap: 10px;
     }
     
-    .account_ifo_main .account_info_edit .form .inputfield_section  .MuiFormControl-root{
-        width: 16rem !important;
-    }
+    // .account_ifo_main .account_info_edit .form .inputfield_section  .MuiFormControl-root{
+    //     width: 16rem !important;
+    // }
     .account_ifo_main .account_info_edit .form{
         padding: 20px 7px;
     }

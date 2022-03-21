@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import "./styles.scss";
 import { useNavigate, useParams } from "react-router-dom";
-// import bg from "../../Assets/buyerdashboard/bg.png";
 import { IconButton, InputBase, Paper } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import notification from "../../Assets/sellerdashboard/notification.png";
 
 import Sidebar from "../../Components/Sidebar";
 import Dashboard from "../../Components/BuyerDashboard/Dashbaord";
@@ -19,27 +17,29 @@ import MergeCarts from "../../Components/BuyerDashboard/MergeCarts";
 import ApproveCarts from "../../Components/BuyerDashboard/ApproveCarts";
 import SubAccountOrders from "../../Components/BuyerDashboard/SubAccountOrders";
 
-function Index() {
+//assets
+import notification from "../../Assets/sellerdashboard/notification.png";
+
+const Index = () => {
   const [currentmenu, setcurrentmenu] = useState();
   let navigate = useNavigate();
 
   const selectmenu = (value) => {
     setcurrentmenu(value);
     navigate(`/buyerdashboard/${value}`);
-    setbarstate(false)
+    setbarstate(false);
   };
 
-  const [barstate, setbarstate] = useState(false)
+  const [barstate, setbarstate] = useState(false);
 
-    const sidebarstate = () => {
-        setbarstate(true)
-    }
+  const sidebarstate = () => {
+    setbarstate(true);
+  };
 
   const { currenttab } = useParams();
   return (
     <div className="buyerdashboard">
-      {/* <img src={bg} alt="" /> */}
-      {!barstate && <p className='sidebarhide' onClick={sidebarstate}></p>} 
+      {!barstate && <p className="sidebarhide" onClick={sidebarstate}></p>}
       <div className="buyerboard__bg">
         <Sidebar
           color="blue"
@@ -87,6 +87,6 @@ function Index() {
       </div>
     </div>
   );
-}
+};
 
 export default Index;
