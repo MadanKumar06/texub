@@ -56,7 +56,7 @@
             color: #5c6369;
             display: flex;
             align-items: center;
-            height: 52.7px;
+            height: 52.8px;
             padding-left: 10px;
           }
           .Body_Down_Pannel_btn_items:hover {
@@ -78,6 +78,9 @@
         position: relative;
         font-size: 20px;
         color: #858a8e;
+        .MuiPaper-root {
+          height: 100%;
+        }
         .search_bar_paper {
           border: 1px solid #d6d8d9;
           box-shadow: none;
@@ -199,18 +202,11 @@
 
 @media (max-width: 1660px) {
   .Departments .Departments_Body_Search .Departments_Body_Down_Pannel {
-    width: 300px;
-  }
-}
+    width: 320px;
 
-@media (max-width: 1660px) {
-  .Departments
-    .Departments_Body_Search
-    .Departments_Body_Down_Pannel
-    .Departments_Dropdown_list
-    .Body_Down_Pannel_btn_content
-    li {
-    height: 49.2px !important;
+    .Departments_Dropdown_list .Body_Down_Pannel_btn_content li {
+      height: 48.8px !important;
+    }
   }
 }
 
@@ -221,7 +217,7 @@
     .Departments_Dropdown_list
     .Body_Down_Pannel_btn_content
     li {
-    height: 47px !important;
+    height: 46.7px !important;
   }
 }
 
@@ -232,7 +228,7 @@
     .Departments_Dropdown_list
     .Body_Down_Pannel_btn_content
     li {
-    height: 45.35px !important;
+    height: 45px !important;
   }
 }
 
@@ -243,51 +239,59 @@
     .Departments_Dropdown_list
     .Body_Down_Pannel_btn_content
     li {
-    height: 44.85px !important;
+    height: 44.4px !important;
   }
 }
 
 @media (max-width: 1440px) {
-  .Departments
-    .Departments_Body_Search
+  .Departments .Departments_Body_Search {
     .Departments_Body_Down_Pannel
-    .Departments_Dropdown_list
-    .Body_Down_Pannel_btn_content
-    li {
-    height: 41.7px !important;
-  }
+      .Departments_Dropdown_list
+      .Body_Down_Pannel_btn_content
+      li {
+      height: 41.25px !important;
+    }
 
-  .Departments
-    .Departments_Body_Search
-    .Body_Searchbar_Down_images
-    .Body_Searchbar_Down_img1_div
-    .Offers {
-    top: 8%;
+    .Body_Searchbar_Down_images .Body_Searchbar_Down_img1_div .Offers {
+      top: 8%;
+    }
   }
 }
 
 @media (max-width: 1366px) {
-  .Departments
-    .Departments_Body_Search
-    .Departments_Body_Down_Pannel
-    .Body_Searchbar_Down_images
-    .Body_Searchbar_Down_img1_div
-    .Offers {
-    left: 3%;
-  }
+  .Departments .Departments_Body_Search .Departments_Body_Down_Pannel {
+    min-width: 240px;
 
+    .Body_Searchbar_Down_images .Body_Searchbar_Down_img1_div .Offers {
+      left: 3%;
+    }
+
+    .Departments_Dropdown_list .Body_Down_Pannel_btn_content li {
+      height: 38.65px !important;
+      font-size: 18px !important;
+    }
+  }
+}
+
+@media (max-width: 1360px) {
   .Departments
     .Departments_Body_Search
     .Departments_Body_Down_Pannel
     .Departments_Dropdown_list
     .Body_Down_Pannel_btn_content
     li {
-    height: 39px !important;
-    font-size: 18px !important;
+    height: 38.45px !important;
   }
+}
 
-  .Departments .Departments_Body_Search .Departments_Body_Down_Pannel {
-    min-width: 240px;
+@media (max-width: 1330px) {
+  .Departments
+    .Departments_Body_Search
+    .Departments_Body_Down_Pannel
+    .Departments_Dropdown_list
+    .Body_Down_Pannel_btn_content
+    li {
+    height: 37.45px !important;
   }
 }
 
@@ -298,39 +302,28 @@
     .Departments_Dropdown_list
     .Body_Down_Pannel_btn_content
     li {
-    height: 36.5px !important;
+    height: 36.45px !important;
     font-size: 16px !important;
   }
 }
 
 @media (max-width: 1240px) {
-  .Departments
-    .Departments_Body_Search
+  .Departments .Departments_Body_Search {
     .Departments_Body_Down_Pannel
-    .Departments_Dropdown_list
-    .Body_Down_Pannel_btn_content
-    li {
-    height: 34.5px !important;
-  }
-
-  .Departments
-    .Departments_Body_Search
-    .Body_Searchbar_Down_images
-    .Body_Searchbar_Down_img1_div
-    .Offers {
-    left: 2%;
-  }
-
-  .Departments
-    .Departments_Body_Search
-    .Body_Searchbar_Down_images
-    .Body_Searchbar_Down_img1_div
-    .Offers {
-    .Products_offer_per {
-      font-size: 40px;
+      .Departments_Dropdown_list
+      .Body_Down_Pannel_btn_content
+      li {
+      height: 34.35px !important;
     }
-    .Products_offer_per_graph {
-      font-size: 16px;
+
+    .Body_Searchbar_Down_images .Body_Searchbar_Down_img1_div .Offers {
+      left: 2%;
+      .Products_offer_per {
+        font-size: 40px;
+      }
+      .Products_offer_per_graph {
+        font-size: 16px;
+      }
     }
   }
 }
@@ -338,115 +331,134 @@
 @media (max-width: 1200px) {
   .Departments .Departments_Body_Search {
     gap: 16px;
-  }
 
+    .Departments_Body_Down_Pannel {
+      .Departments_Dropdown_list .Body_Down_Pannel_btn_content li {
+        height: 33.65px !important;
+      }
+
+      .Departments_Body_Down_Pannel_btn .Department_heading {
+        font-size: 18px;
+      }
+
+      .Body_Searchbar_Down_images {
+        gap: 8px;
+
+        .Body_Searchbar_Down_img1_div .Offers {
+          left: 3.5%;
+        }
+      }
+
+      .Departments_Dropdown_list .Body_Down_Pannel_btn_content li {
+        height: 34.65px !important;
+      }
+
+      .Departments_Body_Down_Pannel_btn {
+        min-height: 48px;
+      }
+    }
+
+    .search_bar .body__search_bar {
+      height: 48px;
+    }
+  }
+}
+
+@media (max-width: 1140px) {
+  .Departments .Departments_Body_Search {
+    .Body_Searchbar_Down_images .Body_Searchbar_Down_img1_div .Offers {
+      top: 5%;
+      bottom: 5%;
+      right: 7%;
+      left: 3%;
+
+      .Products_offer_per {
+        font-size: 32px;
+      }
+
+      .Offers_buttons .Learn_more_btn {
+        padding: 0.5em 1em;
+      }
+    }
+    .Departments_Body_Down_Pannel
+      .Departments_Dropdown_list
+      .Body_Down_Pannel_btn_content
+      li {
+      height: 31.5px !important;
+    }
+  }
+}
+
+@media (max-width: 1080px) {
   .Departments
     .Departments_Body_Search
-    .Departments_Body_Down_Pannel
-    .Body_Searchbar_Down_images {
-    gap: 8px;
-  }
-
-  .Departments
-    .Departments_Body_Search
-    .Departments_Body_Down_Pannel
     .Body_Searchbar_Down_images
     .Body_Searchbar_Down_img1_div
     .Offers {
-    left: 3.5%;
+    padding: 1em;
   }
+
   .Departments
     .Departments_Body_Search
     .Departments_Body_Down_Pannel
     .Departments_Dropdown_list
     .Body_Down_Pannel_btn_content
     li {
-    height: 34.9px !important;
-  }
-
-  .Departments
-    .Departments_Body_Search
-    .Departments_Body_Down_Pannel
-    .Departments_Body_Down_Pannel_btn {
-    min-height: 48px;
+    height: 29.25px;
   }
 }
 
 @media (max-width: 1024px) {
-  .Departments
-    .Departments_Body_Search
-    .Body_Searchbar_Down_images
-    .Body_Searchbar_Down_img1_div
-    .Offers
-    .Offers_buttons
-    .Learn_more_btn {
-    padding: 0.5em 1.2em;
-    font-size: 15px;
-  }
-  .Departments
-    .Departments_Body_Search
-    .Body_Searchbar_Down_images
-    .Body_Searchbar_Down_img1_div
-    .Offers
-    .Offers_buttons
-    .Get_started_btn {
-    padding: 0.5em 1.2em;
-    font-size: 15px;
-  }
+  .Departments .Departments_Body_Search {
+    .Body_Searchbar_Down_images {
+      min-height: 372px;
 
-  .Departments
-    .Departments_Body_Search
-    .Body_Searchbar_Down_images
-    .Body_Searchbar_Down_img1_div
-    .Offers
-    .Products_offer_per {
-    font-size: 32px;
-  }
+      .Body_Searchbar_Down_img1_div .Offers {
+        left: 3%;
+        max-width: 372px;
 
-  .Departments
-    .Departments_Body_Search
-    .Body_Searchbar_Down_images
-    .Body_Searchbar_Down_img1_div
-    .Offers {
-    left: 3%;
-    max-width: 372px;
-  }
-  .Departments
-    .Departments_Body_Search
-    .Departments_Body_Down_Pannel
-    .Departments_Dropdown_list
-    .Body_Down_Pannel_btn_content {
-    min-height: 372px;
-  }
-  .Departments .Departments_Body_Search .Body_Searchbar_Down_images {
-    min-height: 372px;
-  }
+        .Offers_buttons {
+          .Learn_more_btn {
+            padding: 0.5em 1.2em;
+            font-size: 15px;
+          }
+          .Get_started_btn {
+            padding: 0.5em 1.2em;
+            font-size: 15px;
+          }
+        }
 
-  .Departments .Departments_Body_Search .Departments_Body_Down_Pannel {
-    min-width: 192px;
-    height: unset;
-  }
+        .Products_offer_per {
+          font-size: 32px;
+        }
+      }
+    }
 
-  .Departments
-    .Departments_Body_Search
-    .Departments_Body_Down_Pannel
-    .Departments_Dropdown_list
-    .Body_Down_Pannel_btn_content
-    .Body_Down_Pannel_btn_items {
-    height: 37.5px;
-    font-size: 16px;
-  }
+    .Departments_Body_Down_Pannel {
+      min-width: 192px;
+      height: unset;
 
-  .Departments
-    .Departments_Body_Search
-    .Departments_Body_Down_Pannel
-    .Departments_Body_Down_Pannel_btn
-    .Department_heading {
-    font-size: 18px;
+      .Departments_Dropdown_list .Body_Down_Pannel_btn_content {
+        min-height: 372px;
+
+        .Body_Down_Pannel_btn_items {
+          height: 37.5px;
+          font-size: 16px;
+        }
+      }
+
+      .Departments_Body_Down_Pannel_btn .Department_heading {
+        font-size: 18px;
+      }
+    }
   }
 }
 
 @media (max-width: 768px) {
+  .Departments .Departments_Body_Search .Body_Searchbar_Down_images {
+    min-height: unset !important;
+  }
+
   .Departments
     .Departments_Body_Search
     .Departments_Body_Down_Pannel
@@ -463,6 +475,29 @@
 
   .Departments .Departments_Body_Search .Body_Searchbar_Down_images {
     min-height: 372px;
+  }
+}
+
+@media (max-width: 580px) {
+  .Departments
+    .Departments_Body_Search
+    .Body_Searchbar_Down_images
+    .Body_Searchbar_Down_img1_div
+    .Offers {
+    .Products_offer,
+    .Products_offer_per_graph {
+      font-size: 12px;
+    }
+    .Products_offer_per {
+      font-size: 18px;
+    }
+
+    .Offers_buttons {
+      .Learn_more_btn,
+      .Get_started_btn {
+        font-size: 12px;
+      }
+    }
   }
 }
 

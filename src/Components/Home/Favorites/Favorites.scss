@@ -74,6 +74,13 @@
   }
 }
 
+@media (max-width: 580px) {
+  .Favorites .Favorites_Sections .Favorites_Deals {
+    font-size: 14px;
+    top: 3.5em;
+  }
+}
+
 @media (max-width: 480px) {
   .Favorites {
     flex-direction: column;
