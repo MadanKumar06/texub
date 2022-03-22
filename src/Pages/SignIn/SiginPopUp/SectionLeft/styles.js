@@ -236,7 +236,7 @@ const styles = (theme) => ({
     transition: "transform .2s !important",
     padding: "12px !important",
     fontSize: "18px !important",
-    width: "80%",
+    width: "100%",
     "@media(max-width:1660px)": {
       padding: "8px !important",
       fontSize: "16px !important",

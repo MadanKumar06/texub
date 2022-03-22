@@ -16,7 +16,7 @@ const reducer = (state, action) => {
     case "SET_PDP_POPUP_OPEN_CLOSE":
       return {
         ...state,
-        pdpPopUpOpenClose: action.value,
+        pdpPopUpOpenClose: { openClose: action.value, data: action.data },
       };
     case "SET_MINICART_OPEN_CLOSE":
       return {

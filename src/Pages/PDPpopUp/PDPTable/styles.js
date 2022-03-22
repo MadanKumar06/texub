@@ -34,12 +34,15 @@ const styles = () => ({
     padding: "10px 0px",
     fontSize: "20px",
     fontWeight: "600",
+    "@media (max-width:1660px)": {
+      fontSize: "18px",
+    }
   },
   seller_price_list_view: {
     listStyleType: "none",
     margin: "0",
     paddingLeft: "0",
-    height: "60vh",
+    height: "53vh",
     overflowX: "auto",
     "&::-webkit-scrollbar": {
       width: "10px",
@@ -106,7 +109,7 @@ const styles = () => ({
     "& .MuiSvgIcon-root": {
       width: "1.2em",
       height: "1.2em",
-      "@media (max-width:1440px)": {
+      "@media (max-width:1660px)": {
         width: "1em",
         height: "1em",
       },
@@ -125,10 +128,7 @@ const styles = () => ({
     letterSpacing: "0px",
     color: "#333C42 !important",
     textTransform: "capitalize",
-    "@media (max-width:1200px)": {
-      fontSize: "18px !important",
-    },
-    "@media (max-width:926px)": {
+    "@media (max-width:1660px)": {
       fontSize: "16px !important",
     },
   },
@@ -144,11 +144,8 @@ const styles = () => ({
     "& span a": {
       color: "#002D56",
       fontSize: "21px",
-      "@media (max-width:1200px)": {
-        fontSize: "19px",
-      },
-      "@media (max-width:926px)": {
-        fontSize: "17px !important",
+      "@media (max-width:1660px)": {
+        fontSize: "18px",
       },
     },
     "@media (max-width:767px)": {
@@ -223,26 +220,14 @@ const styles = () => ({
   seller_stock_value: {
     fontSize: "24px",
     letterSpacing: "0.72px",
-    "@media (max-width:1440px)": {
-      fontSize: "22px",
-    },
-    "@media (max-width:1200px)": {
-      fontSize: "20px",
-    },
-    "@media (max-width:926px)": {
+    "@media (max-width:1660px)": {
       fontSize: "18px",
     },
   },
   seller_eta_value: {
     fontSize: "24px",
     letterSpacing: "0.72px",
-    "@media (max-width:1440px)": {
-      fontSize: "22px",
-    },
-    "@media (max-width:1200px)": {
-      fontSize: "20px",
-    },
-    "@media (max-width:926px)": {
+    "@media (max-width:1660px)": {
       fontSize: "18px",
     },
   },
@@ -254,18 +239,14 @@ const styles = () => ({
     letterSpacing: "0.59px",
     color: "#5C6369",
     fontSize: "20px",
-    "@media (max-width:1200px)": {
-      fontSize: "18px",
-    },
-    "@media (max-width:926px)": {
-      fontSize: "18px",
+    "@media (max-width:1660px)": {
+      fontSize: "16px",
     },
     "@media (max-width:767px)": {
       maxWidth: "100%",
       alignItems: "center",
       display: "flex",
       width: "100%",
-      fontSize: "17px",
       wordBreak: "break-all",
       "&::before": {
         content: '"Hub : "',
@@ -325,17 +306,9 @@ const styles = () => ({
     "& .MuiSvgIcon-root ": {
       width: "1.8em",
       height: "1.8em",
-      "@media (max-width:1600px)": {
-        width: "1.4em",
-        height: "1.4em",
-      },
-      "@media (max-width:1200px)": {
+      "@media (max-width:1660px)": {
         width: "1.2em",
         height: "1.2em",
-      },
-      "@media (max-width:926px)": {
-        width: "1em",
-        height: "1em",
       },
     },
     "@media (max-width:767px)": {
@@ -372,12 +345,9 @@ const styles = () => ({
     textAlign: "center",
     fontSize: "24px",
     fontWeight: "600",
-    "@media (max-width:1200px)": {
+    "@media (max-width:1660px)": {
       width: "38px",
-      fontSize: "22px",
-    },
-    "@media (max-width:926px)": {
-      fontSize: "19px",
+      fontSize: "18px",
     },
   },
   radio_btn_group: {
@@ -409,27 +379,15 @@ const styles = () => ({
     fontWeight: "600",
     letterSpacing: "0.6px",
     marginRight: "5px",
-    "@media (max-width:1440px)": {
-      fontSize: "18px",
-    },
-    "@media (max-width:1200px)": {
+    "@media (max-width:1660px)": {
       fontSize: "16px",
-    },
-    "@media (max-width:926px)": {
-      fontSize: "14px ",
     },
   },
   price_value: {
     fontSize: "30px",
     letterSpacing: "0.9px",
-    "@media (max-width:1440px)": {
-      fontSize: "28px",
-    },
-    "@media (max-width:1200px)": {
-      fontSize: "26px",
-    },
-    "@media (max-width:926px)": {
-      fontSize: "24px",
+    "@media (max-width:1660px)": {
+      fontSize: "22px",
     },
   },
 });

@@ -24,6 +24,7 @@ const PdpPopup = () => {
     tableone: "",
     tabletwo: "",
   });
+  const [pdpSellerData, setPdpSellerData] = useState({});
   const handleClose = () => {
     setOpen(false);
     dispatch({
@@ -62,7 +63,10 @@ const PdpPopup = () => {
 
         <div className="section_main_sub">
           <div className="section_main_sub_container">
-            <PDPTopHeader />
+            <PDPTopHeader
+              setPdpSellerData={setPdpSellerData}
+              pdpSellerData={pdpSellerData}
+            />
             <div className="pdp_header_bottom_container">
               <div className="header_bottom_image_container">
                 <img src={header_bottom_image_1} alt="" />
@@ -79,7 +83,13 @@ const PdpPopup = () => {
             </div>
           </div>
           <div className="pdp_table_container">
-            {tableData && <PDPTable tableData={tableData} />}
+            {tableData && (
+              <PDPTable
+                tableData={tableData}
+                pdpSellerData={pdpSellerData}
+                setPdpSellerData={setPdpSellerData}
+              />
+            )}
           </div>
           <div className="modal_bottom_container">
             {(table_one_data?.length > 3 || table_two_data?.length > 3) && (
