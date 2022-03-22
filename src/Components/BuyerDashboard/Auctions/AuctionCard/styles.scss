@@ -19,7 +19,6 @@
 
     .auctioncard__productdetails {
       display: flex;
-      align-items: center;
       position: relative;
       height: 154px;
       gap: 10px;
@@ -50,6 +49,11 @@
       .auction__text {
         span {
           cursor: pointer;
+        }
+      }
+      .auctioncard__image{
+        img{
+          width: 100%;
         }
       }
     }
@@ -197,11 +201,17 @@
   }
 }
 
-@media (max-width: 1600px) {
+@media (max-width: 1660px) {
   .auctioncard .auctioncard__detail .auctioncard__info .label {
     font-size: 14px;
   }
   .auctioncard .auctioncard__detail .auctioncard__info .value {
+    font-size: 16px;
+  }
+  .auctioncard .auctioncard__detail .auctioncard__productdetails h4 {
+    font-size: 18px;
+  }
+  .auctioncard .auctioncard__detail .auctioncard__productdetails p {
     font-size: 16px;
   }
 }
@@ -213,13 +223,6 @@
 }
 
 @media (max-width: 1440px) {
-  // .auctioncard {
-  //   flex-direction: column;
-  //   .auctioncard__detail .auctioncard__info {
-  //     justify-content: center;
-  //   }
-  // }
-
   .auctioncard .auctioncard__detail {
     .auctioncard__productdetails p {
       font-size: 16px;

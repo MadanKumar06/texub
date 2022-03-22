@@ -141,7 +141,7 @@ const PDPTable = ({ classes, tableData, setPdpSellerData, pdpSellerData }) => {
                       <div className={price_list_action}>
                         <div className={list_action_input}>
                           <FormControlLabel
-                            value={item?.seller_radio}
+                            value={item?.seller_id}
                             control={
                               <Radio
                                 className={radio_button}
@@ -224,7 +224,7 @@ const PDPTable = ({ classes, tableData, setPdpSellerData, pdpSellerData }) => {
                       <div className={price_list_action}>
                         <div className={list_action_input}>
                           <FormControlLabel
-                            value={item?.seller_radio}
+                            value={item?.seller_id}
                             control={
                               <Radio
                                 className={radio_button}

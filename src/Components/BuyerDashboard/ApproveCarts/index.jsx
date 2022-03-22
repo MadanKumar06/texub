@@ -5,9 +5,19 @@ import { ArrowBackIosNew } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import Pagination from "../../Pagination";
 import MUITable from "../../../Components/Common/MUITable";
+import { useStateValue } from "../../../store/state";
 
 function ApproveCart() {
+  const [{}, dispatch] = useStateValue();
   const [tableData, setTableData] = useState([]);
+
+  const handleViewChange = () => {
+    dispatch({
+      type: "SET_MINICART_OPEN_CLOSE",
+      value: true,
+      open: true,
+    });
+  };
   const table = [
     {
       user_name: "Srikant Verma",
@@ -208,7 +218,14 @@ function ApproveCart() {
       label: "Items",
       options: {
         customBodyRender: (value) => {
-          return <div className="approve__cart__item">View</div>;
+          return (
+            <div
+              className="approve__cart__item"
+              onClick={() => handleViewChange()}
+            >
+              View
+            </div>
+          );
         },
       },
     },
@@ -256,7 +273,12 @@ function ApproveCart() {
           </div>
         </div>
       </div>
-      <MUITable columns={columns} table={tableData} options={options} className="approve__cart__table" />
+      <MUITable
+        columns={columns}
+        table={tableData}
+        options={options}
+        className="approve__cart__table"
+      />
       <Pagination
         PaginateData={PaginateDataSplit}
         DataList={table}

@@ -3,17 +3,19 @@
   .vieworders_heading_section {
     display: flex;
     gap: 20px;
+    align-items: center;
     .id_heading {
       color: #858a8e;
       font-size: 30px;
       letter-spacing: 0.9px;
-      margin-top: 6px;
+      margin: 0;
     }
     .id {
       color: #ddb363;
       font-size: 30px;
       font-weight: 600;
       margin-top: 6px;
+      margin: 0;
     }
     .status {
       font-size: 12px;
@@ -22,6 +24,7 @@
       border-radius: 25px;
       padding: 7px 25px;
       text-align: center;
+      margin: 0;
     }
   }
   .vieworders__table {
@@ -82,6 +85,10 @@
       }
       .vieworders_price {
         width: max-content;
+        .inr {
+          font-size: 20px;
+          font-weight: 700;
+        }
         .price {
           color: #5c6369;
           font-size: 28px;
@@ -95,6 +102,11 @@
       .vieworders_total {
         gap: 5px;
         width: max-content;
+
+        .inr {
+          font-size: 20px;
+          font-weight: 700;
+        }
         .price {
           color: #5c6369;
           font-size: 28px;
@@ -150,7 +162,6 @@
                 color: #20639b;
                 font-weight: 600;
                 opacity: 1;
-                font-family: "Source Sans Pro";
               }
               .name {
                 color: #858a8e;
@@ -159,13 +170,11 @@
                 font-style: italic;
                 font-weight: 600;
                 opacity: 1;
-                font-family: "Source Sans Pro";
               }
               .address {
                 color: #959595;
                 font-size: 24px;
                 letter-spacing: 0.6px;
-                font-family: "Source Sans Pro";
                 white-space: wrap;
               }
             }
@@ -181,21 +190,21 @@
               color: #20639b;
               font-weight: 600;
               opacity: 1;
-              font-family: "Source Sans Pro";
             }
             .payment_type {
               margin: 0;
               color: #959595;
               font-size: 24px;
               letter-spacing: 0.6px;
-              font-family: "Source Sans Pro";
+              font-style: italic;
+              font-weight: 600;
             }
           }
         }
         .vieworders_total {
           background-color: #ffffff;
           padding: 30px;
-          // width: 40%;
+          height: max-content;
           display: flex;
           flex-direction: column;
           gap: 20px;
@@ -255,37 +264,104 @@
   }
 }
 
-@media (max-width: 1366px) {
-  .vieworders_main {
-    .vieworders__table .MuiTableBody-root {
-      .productname .product .modal_content,
-      .vieworders_price .inr,
-      .vieworders_total .inr {
-        font-size: 16px;
-      }
-
-      .productname .product .modal_name,
-      .vieworders_price .price,
-      .vieworders_total .price {
+@media (max-width: 1660px) {
+  .vieworders_main .vieworders_heading_section .id_heading,
+  .vieworders_main .vieworders_heading_section .id {
+    font-size: 22px;
+  }
+  .vieworders_main .vieworders_heading_section .status {
+    padding: 5px 25px;
+  }
+  .vieworders_main
+    .vieworders__table
+    .MuiTableBody-root
+    .productname
+    .product
+    .modal_name {
+    font-size: 18px;
+  }
+  .vieworders_main
+    .vieworders__table
+    .MuiTableBody-root
+    .productname
+    .product
+    .modal_content {
+    font-size: 16px;
+  }
+  .vieworders_main .vieworders__table .MuiTableBody-root .vieworders_price,
+  .vieworders_main .vieworders__table .MuiTableBody-root .vieworders_total {
+    .inr {
+      font-size: 14px;
+    }
+    .price {
+      font-size: 22px;
+    }
+  }
+  .vieworders_main .vieworders_detail_section .heading {
+    font-size: 22px;
+  }
+  .vieworders_main
+    .vieworders_detail_section
+    .details
+    .vieworder_address
+    .vieworders_shippingaddress_section {
+    .vieworders_payment_section .payment_heading,
+    .vieworders_shippingaddress .vieworders_list {
+      .address,
+      .heading,
+      .name {
         font-size: 18px;
       }
     }
+  }
+  .vieworders_main
+    .vieworders_detail_section
+    .details
+    .vieworder_address
+    .vieworders_shippingaddress_section
+    .vieworders_payment_section
+    .payment_heading {
+    font-size: 18px;
+  }
+  .vieworders_main .vieworders_detail_section .details .vieworder_address {
+    .vieworders_shippingaddress_section
+      .vieworders_payment_section
+      .payment_type,
+    .vieworders_total .vieworders_list .total_heading {
+      font-size: 18px;
+    }
+  }
 
+  .vieworders_main .vieworders_detail_section {
+    gap: unset;
+  }
+  .vieworders_main
+    .vieworders_detail_section
+    .details
+    .vieworder_address
+    .vieworders_total
+    .vieworders_list
+    .total_amount {
+    .currency {
+      font-size: 14px;
+    }
+    font-size: 20px;
+  }
+  .vieworders_main
+    .vieworders_detail_section
+    .details
+    .vieworder_address
+    .vieworders_total
+    .vieworders_list
+    .taxes
+    .total_amount_heading {
+    font-size: 20px;
+  }
+}
+@media (max-width: 1366px) {
+  .vieworders_main {
     .vieworders_detail_section .details .vieworder_address {
       grid-template-columns: 53% 45%;
-      .vieworders_total .vieworders_list {
-        .taxes .total_amount_heading,
-        .vieworders_shippingaddress_section
-          .vieworders_shippingaddress
-          .vieworders_list
-          .name {
-          font-size: 22px;
-        }
-        .total_amount,
-        .address {
-          font-size: 20px;
-        }
-      }
     }
   }
 }
@@ -311,6 +387,14 @@
   .vieworders_main .vieworders_detail_section .details .vieworder_address {
     justify-content: center;
   }
+  .vieworders_main
+    .vieworders_detail_section
+    .details
+    .vieworder_address
+    .vieworders_total
+    .hr {
+    border: 1px dashed #20639b;
+  }
 }
 
 @media (max-width: 768px) {
@@ -323,14 +407,6 @@
 }
 
 @media only screen and (max-width: 580px) {
-  .vieworders_main
-    .vieworders__table
-    .MuiTableBody-root
-    .productname
-    .product
-    .modal_content {
-    display: none;
-  }
   .vieworders_main
     .vieworders_detail_section
     .details
@@ -356,10 +432,6 @@
     flex-direction: column;
     align-items: center;
   }
-  .vieworders_main .vieworders_heading_section .id,
-  .vieworders_main .vieworders_heading_section .id_heading {
-    margin: 0;
-  }
   .vieworders_main
     .vieworders_detail_section
     .details
@@ -367,29 +439,6 @@
     .vieworders_total
     .vieworders_list {
     flex-direction: column;
-    gap: 0;
-  }
-  .vieworders_main
-    .vieworders_detail_section
-    .details
-    .vieworder_address
-    .vieworders_total,
-  .vieworders_main
-    .vieworders_detail_section
-    .details
-    .vieworder_address
-    .vieworders_total
-    .vieworders_list
-    .taxes {
-    gap: 0;
-  }
-  .vieworders_main
-    .vieworders_detail_section
-    .details
-    .vieworder_address
-    .vieworders_total {
-    width: 100%;
-    padding-left: 30px;
   }
   .vieworders_main
     .vieworders_detail_section

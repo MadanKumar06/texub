@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./styles.scss";
 import AuctionCard from "./AuctionCard/Index";
-import { Button } from "@mui/material";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import Pagination from "../../Pagination";
@@ -44,42 +43,6 @@ function Index() {
       bid: true,
       status: "InActive",
       lot: "Lot # AC-355",
-    },
-    {
-      name: "Pavilion Model14-Dv0054Tu",
-      content:
-        "Hp 14-Dv0054Tu Pavilion Laptop (11Th Gen Intel Core I5-1135G7/…512Gb Sdd/Intel Iris Xe Graphics/Windows 10/Mso/Fhd), 35.56 Cm (14 Inch)",
-      auctionstart: "25 Dec 21 / 09:00 am",
-      auctionend: "05 Jan 22 / 09:00 am",
-      active: 0,
-      current: "68,999",
-      bid: false,
-      status: "Yet to Start",
-      lot: "Lot # AC-234",
-    },
-    {
-      name: "Pavilion Model14-Dv0054Tu",
-      content:
-        "Hp 14-Dv0054Tu Pavilion Laptop (11Th Gen Intel Core I5-1135G7/…512Gb Sdd/Intel Iris Xe Graphics/Windows 10/Mso/Fhd), 35.56 Cm (14 Inch)",
-      auctionstart: "25 Dec 21 / 09:00 am",
-      auctionend: "05 Jan 22 / 09:00 am",
-      active: 0,
-      current: "68,999",
-      bid: false,
-      status: "Yet to Start",
-      lot: "Lot # AC-234",
-    },
-    {
-      name: "Pavilion Model14-Dv0054Tu",
-      content:
-        "Hp 14-Dv0054Tu Pavilion Laptop (11Th Gen Intel Core I5-1135G7/…512Gb Sdd/Intel Iris Xe Graphics/Windows 10/Mso/Fhd), 35.56 Cm (14 Inch)",
-      auctionstart: "25 Dec 21 / 09:00 am",
-      auctionend: "05 Jan 22 / 09:00 am",
-      active: 0,
-      current: "68,999",
-      bid: false,
-      status: "Yet to Start",
-      lot: "Lot # AC-234",
     },
     {
       name: "Pavilion Model14-Dv0054Tu",
@@ -172,7 +135,7 @@ function Index() {
       <Pagination
         PaginateData={PaginateDataSplit}
         DataList={auctiondata}
-        PagePerRow={5}
+        PagePerRow={3}
       />
     </div>
   );

@@ -5,9 +5,18 @@ import { ArrowBackIosNew } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import Pagination from "../../Pagination";
 import MUITable from "../../../Components/Common/MUITable";
+import { useStateValue } from "../../../store/state";
 
 function MergeCarts() {
+  const [{}, dispatch] = useStateValue();
   const [tableData, setTableData] = useState([]);
+  const handleViewChange = () => {
+    dispatch({
+      type: "SET_MINICART_OPEN_CLOSE",
+      value: true,
+      open: true,
+    });
+  };
   const table = [
     {
       user_name: "Srikant Verma",
@@ -75,7 +84,14 @@ function MergeCarts() {
       label: "Items",
       options: {
         customBodyRender: (value) => {
-          return <div className="mergecarts__item">View</div>;
+          return (
+            <div
+              className="mergecarts__item"
+              onClick={() => handleViewChange()}
+            >
+              View
+            </div>
+          );
         },
       },
     },
