@@ -120,7 +120,7 @@ const styles = (theme) => ({
     transition: "transform .2s !important",
     fontWeight: "600 !important",
     textTransform: "capitalize !important",
-    width: "80%",
+    width: "100%",
     padding: "12px !important",
     fontSize: "18px !important",
     "@media(max-width:1660px)": {

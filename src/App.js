@@ -98,7 +98,7 @@ const App = () => {
 
            {/* Popup component using context api */}          
           {kycOpenClose && <KYCformSectionLeft/>} 
-          {pdpPopUpOpenClose && <PDPpopUp/>}
+          {pdpPopUpOpenClose?.openClose && <PDPpopUp/>}
           {signInOpenClose && <SignIn />}
           {registerOpenClose && <RegisterPopup/>}
       
