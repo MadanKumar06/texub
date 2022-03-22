@@ -1,7 +1,7 @@
 export const initialState = {
   kycOpenClose: false,
-  pdpPopUpOpenClose: false,
-  miniCartOpenClose: false,
+  pdpPopUpOpenClose: { openClose: false, data: [] },
+  miniCartOpenClose: { openClose: false, open: false },
   signInOpenClose: false,
   registerOpenClose: false,
 };
@@ -21,7 +21,7 @@ const reducer = (state, action) => {
     case "SET_MINICART_OPEN_CLOSE":
       return {
         ...state,
-        miniCartOpenClose: action.value,
+        miniCartOpenClose: { open: action.open, openClose: action.value },
       };
     case "SET_SIGNIN_OPEN_CLOSE":
       return {

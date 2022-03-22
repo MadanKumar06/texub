@@ -10,7 +10,6 @@ import apple from "../../../Assets/buyerdashboard/dashboard/apple.png";
 import acer from "../../../Assets/buyerdashboard/dashboard/acer.png";
 import hp from "../../../Assets/buyerdashboard/dashboard/hp.png";
 
-import DashboardMapSection from "../../DashboardMapSection";
 import DashboardChart from "../../DashboardChartSection";
 
 const BuyerDashboard = () => {
@@ -23,13 +22,13 @@ const BuyerDashboard = () => {
   return (
     <div className="buyer_dashboard">
       <div className="dashboard__top">
-        <div>
+        <div className="overview_image">
           <img src={red} alt="" />
         </div>
-        <div>
+        <div className="overview_image">
           <img src={blue} alt="" />
         </div>
-        <div>
+        <div className="overview_image">
           <img src={green} alt="" />
         </div>
       </div>
@@ -84,8 +83,6 @@ const BuyerDashboard = () => {
           </div>
         </div>
       </div>
-
-      {/* <DashboardMapSection /> */}
       <DashboardChart />
     </div>
   );

@@ -60,3 +60,16 @@
     }
   }
 }
+
+@media (max-width: 1660px) {
+  .linechart .order_volume {
+    font-size: 20px;
+  }
+  .linechart .order_info .order_received,
+  .linechart .order_info .order_placed {
+    font-size: 16px;
+    span {
+      padding: 6px;
+    }
+  }
+}

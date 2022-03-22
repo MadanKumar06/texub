@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styles from "./styles";
-import "./styles.scss";
 
 import {
   TextField,
@@ -14,10 +13,9 @@ import { useStateValue } from "../../../store/state";
 import ReCAPTCHA from "react-google-recaptcha";
 import { isEmailValid, isPasswordValid } from "../../../utilities";
 import Autocomplete from "@mui/material/Autocomplete";
-import { Link, useParams } from "react-router-dom";
 import { withStyles } from "@mui/styles";
+
 const BuyerRegistration = ({ classes }) => {
-  let { type } = useParams();
   const [{}, dispatch] = useStateValue();
   let {
     main_container,
