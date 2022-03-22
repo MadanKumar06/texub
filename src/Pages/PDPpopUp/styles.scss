@@ -136,7 +136,7 @@
     }
   }
 }
-@media (max-width: 1440px) {
+@media (max-width: 1660px) {
   .pdp_modal .section_main_container .clear_btn {
     top: -28px;
     right: -33px;
@@ -147,11 +147,18 @@
     .section_main_container
     .section_main_sub
     .modal_bottom_container
+    .modal_bottom_image_container {
+    font-size: 16px;
+  }
+  .pdp_modal
+    .section_main_container
+    .section_main_sub
+    .modal_bottom_container
     .modal_bottom_button_main {
     .modal_bottom_button_add_to_cart {
       padding: 6px 40px !important;
       span {
-        font-size: 14px;
+        font-size: 16px;
       }
     }
     .modal_bottom_button_pending_invoice {
@@ -162,7 +169,24 @@
       }
     }
   }
+  .pdp_modal
+    .section_main_container
+    .section_main_sub
+    .pdp_modal_footer
+    .pdp_footer_model_details
+    .pdp_footer_model_info {
+    font-size: 16px;
+  }
+  .pdp_modal
+    .section_main_container
+    .section_main_sub
+    .pdp_modal_footer
+    .pdp_footer_model_details
+    .pdp_footer_model_info_detail {
+    font-size: 18px;
+  }
 }
+
 @media (max-width: 1300px) {
   .pdp_modal .section_main_container .section_main_sub .modal_bottom_container {
     width: 100%;
@@ -212,15 +236,6 @@
     align-items: center;
   }
 }
-@media (max-width: 926px) {
-  .pdp_modal
-    .section_main_container
-    .section_main_sub
-    .modal_bottom_container
-    .modal_bottom_image_container {
-    font-size: 16px;
-  }
-}
 @media (max-width: 767px) {
   .pdp_modal
     .section_main_container
@@ -250,6 +265,7 @@
     .modal_bottom_button_main {
     flex-direction: column;
     width: 100%;
+    align-items: center;
   }
   .pdp_modal .section_main_container .section_main_sub .pdp_modal_footer {
     flex-wrap: wrap;

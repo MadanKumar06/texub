@@ -1,3 +1,6 @@
 .App {
   background: #fbfbfb;
 }
+.MuiOutlinedInput-root input {
+  padding: 12px;
+}

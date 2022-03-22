@@ -59,7 +59,7 @@ const styles = (theme) => ({
   },
   pdp_top_header_seller_id: {
     background: "#F8F0E0",
-    padding: "10px 67px",
+    padding: "10px 18px",
     width: "fit-content",
     color: "#002D56",
     margin: "0",
@@ -67,14 +67,8 @@ const styles = (theme) => ({
     "& span": {
       fontWeight: "600",
     },
-    "@media (max-width:1600px)": {
+    "@media (max-width:1660px)": {
       fontSize: "16px",
-    },
-    "@media (max-width:1439px)": {
-      fontSize: "14px",
-    },
-    "@media (max-width:767px)": {
-      padding: "10px 12px",
     },
   },
   pdp_top_header_products: {
@@ -95,6 +89,9 @@ const styles = (theme) => ({
     padding: "11px 0px",
     color: "#333C42",
     letterSpacing: "0.78px",
+    "@media (max-width:1660px)": {
+      fontSize: "22px",
+    },
   },
   pdp_top_header_rating_reviews_container: {
     display: "flex",
@@ -102,6 +99,9 @@ const styles = (theme) => ({
   },
   ratings: {
     alignItems: "center",
+    "@media (max-width:1660px)": {
+      fontSize: "1.1rem !important",
+    },
     "& label": {
       color: "#DDB363",
     },
@@ -116,6 +116,9 @@ const styles = (theme) => ({
       margin: "0 !important",
       padding: "5px",
     },
+    "@media (max-width:1660px)": {
+      fontSize: "14px",
+    },
   },
   pdp_top_header_model_details: {
     margin: "0",
@@ -125,6 +128,9 @@ const styles = (theme) => ({
     fontWeight: "600",
     letterSpacing: "0.6px",
     fontSize: "20px",
+    "@media (max-width:1660px)": {
+      fontSize: "16px",
+    },
     "@media (max-width:1439px)": {
       width: "100%",
     },

@@ -80,30 +80,31 @@ const BuyerRegistration = ({ classes }) => {
   };
   const handleSwitchCase = (fieldName, value) => {
     switch (fieldName[0]) {
-      case "first_name":
-        if (!value) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            first_name: "Please enter the first name.",
-          }));
-        }
-        break;
-      case "last_name":
-        if (!value) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            last_name: "Please enter the last name.",
-          }));
-        }
-        break;
+      // case "first_name":
+      //   if (!value) {
+      //     setInputValidation((prevState) => ({
+      //       ...prevState,
+      //       first_name: "Please enter the first name.",
+      //     }));
+      //   }
+      //   break;
+      // case "last_name":
+      //   if (!value) {
+      //     setInputValidation((prevState) => ({
+      //       ...prevState,
+      //       last_name: "Please enter the last name.",
+      //     }));
+      //   }
+      //   break;
       case "mobile_number":
-        if (!value) {
-          document.getElementById("mobile_number")?.focus();
-          setInputValidation((prevState) => ({
-            ...prevState,
-            mobile_number: "Please enter the mobile number.",
-          }));
-        } else if (value?.length !== 15) {
+        // if (!value) {
+        //   document.getElementById("mobile_number")?.focus();
+        //   setInputValidation((prevState) => ({
+        //     ...prevState,
+        //     mobile_number: "Please enter the mobile number.",
+        //   }));
+        // } else
+        if (value?.length !== 10) {
           document.getElementById("mobile_number")?.focus();
 
           setInputValidation((prevState) => ({
@@ -113,12 +114,13 @@ const BuyerRegistration = ({ classes }) => {
         }
         break;
       case "confrim_password":
-        if (!value) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            confrim_password: "Please enter your confrim password.",
-          }));
-        } else if (!(buyerRegistrationData?.password === value)) {
+        // if (!value) {
+        //   setInputValidation((prevState) => ({
+        //     ...prevState,
+        //     confrim_password: "Please enter your confrim password.",
+        //   }));
+        // } else
+        if (!(buyerRegistrationData?.password === value)) {
           setInputValidation((prevState) => ({
             ...prevState,
             confrim_password: "Password and confirm password does not match",
@@ -126,12 +128,13 @@ const BuyerRegistration = ({ classes }) => {
         }
         break;
       case "email_address":
-        if (!value) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            email_address: "Please enter the e-mail.",
-          }));
-        } else if (!isEmailValid(value)) {
+        // if (!value) {
+        //   setInputValidation((prevState) => ({
+        //     ...prevState,
+        //     email_address: "Please enter the e-mail.",
+        //   }));
+        // } else
+        if (!isEmailValid(value)) {
           setInputValidation((prevState) => ({
             ...prevState,
             email_address: "Please enter the valid e-mail.",
@@ -139,12 +142,13 @@ const BuyerRegistration = ({ classes }) => {
         }
         break;
       case "password":
-        if (!value) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            password: "Please enter your password.",
-          }));
-        } else if (!isPasswordValid(value)) {
+        // if (!value) {
+        //   setInputValidation((prevState) => ({
+        //     ...prevState,
+        //     password: "Please enter your password.",
+        //   }));
+        // } else
+        if (!isPasswordValid(value)) {
           setInputValidation((prevState) => ({
             ...prevState,
             password:
@@ -152,30 +156,30 @@ const BuyerRegistration = ({ classes }) => {
           }));
         }
         break;
-      case "company":
-        if (!value) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            company: "Please enter the company.",
-          }));
-        }
-        break;
-      case "designation":
-        if (!value) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            designation: "Please enter the designation.",
-          }));
-        }
-        break;
-      case "country":
-        if (!value) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            country: "Please select the country.",
-          }));
-        }
-        break;
+      // case "company":
+      //   if (!value) {
+      //     setInputValidation((prevState) => ({
+      //       ...prevState,
+      //       company: "Please enter the company.",
+      //     }));
+      //   }
+      //   break;
+      // case "designation":
+      //   if (!value) {
+      //     setInputValidation((prevState) => ({
+      //       ...prevState,
+      //       designation: "Please enter the designation.",
+      //     }));
+      //   }
+      //   break;
+      // case "country":
+      //   if (!value) {
+      //     setInputValidation((prevState) => ({
+      //       ...prevState,
+      //       country: "Please select the country.",
+      //     }));
+      //   }
+      //   break;
       default:
         break;
     }
@@ -547,14 +551,14 @@ const BuyerRegistration = ({ classes }) => {
           <div style={{ width: "100%" }}>
             <FormControlLabel
               value="yes"
-              control={<Checkbox color="color_third" />}
+              control={<Checkbox color="secondary" />}
               label="Remember Me"
               labelPlacement="end"
               className={checkbox_label}
             />
             <FormControlLabel
               value="yes"
-              control={<Checkbox color="color_third" />}
+              control={<Checkbox color="secondary" />}
               label={
                 <p>
                   By using this form you agree with the{" "}

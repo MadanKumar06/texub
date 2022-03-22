@@ -1,12 +1,17 @@
 import React from "react";
-import OutlinedInput from "@mui/material/OutlinedInput";
-import MenuItem from "@mui/material/MenuItem";
-import ListItemText from "@mui/material/ListItemText";
-import Select from "@mui/material/Select";
-import Checkbox from "@mui/material/Checkbox";
-import { useParams } from "react-router-dom";
+import {
+  OutlinedInput,
+  TextField,
+  MenuItem,
+  ListItemText,
+  Checkbox,
+  InputLabel,
+  FormControl,
+  Select,
+} from "@mui/material";
 import { withStyles } from "@mui/styles";
 import styles from "./styles";
+import clsx from "clsx";
 import OfficeAddressDetails from "./OfficeAddressDetails";
 import ValidationForKycForm from "../ValidationForKycForm";
 
@@ -18,12 +23,12 @@ const BuyerKYCformSectionRight = ({
   validationFieldMessage,
   setValidationFieldMessage,
 }) => {
-  let { type } = useParams();
   let {
     section_right_container,
     info_text_lineNote_two,
     category_select_option,
     input_fields,
+    download_link,
   } = classes;
 
   const ITEM_HEIGHT = 48;
@@ -51,19 +56,26 @@ const BuyerKYCformSectionRight = ({
     "Bradley Wilkerson",
     "Virginia Andrews",
     "Kelly Snyder",
+    "other",
   ];
-  const [personName, setPersonName] = React.useState([]);
+  const [categorylist, setCategorylist] = React.useState([]);
 
   const handleChange = (event) => {
     const {
       target: { value },
     } = event;
-    setPersonName(
+    setCategorylist(
       // On autofill we get a stringified value.
       typeof value === "string" ? value.split(",") : value
     );
   };
 
+  const handleFormvalue = (event) => {
+    SetFormValues((prevState) => ({
+      ...prevState,
+      [event.target.name]: event.target.value,
+    }));
+  };
   return (
     <div className={section_right_container}>
       <OfficeAddressDetails
@@ -71,7 +83,7 @@ const BuyerKYCformSectionRight = ({
         FormValues={FormValues}
         validationFieldMessage={validationFieldMessage}
       />
-      <div>
+      <>
         <p className={info_text_lineNote_two}>Categories</p>
         <div className={input_fields}>
           <Select
@@ -80,23 +92,40 @@ const BuyerKYCformSectionRight = ({
             multiple
             fullWidth
             className={category_select_option}
-            value={personName}
+            value={categorylist}
             onChange={handleChange}
-            input={<OutlinedInput />}
             renderValue={(selected) => {
               return selected.join(", ");
             }}
             MenuProps={MenuProps}
           >
-            {names.map((name) => (
+            {names?.map((name) => (
               <MenuItem key={name} value={name}>
-                <Checkbox checked={personName.indexOf(name) > -1} />
+                <Checkbox checked={categorylist?.indexOf(name) > -1} />
                 <ListItemText primary={name} />
               </MenuItem>
             ))}
           </Select>
         </div>
-      </div>
+        {categorylist?.includes("other") && (
+          <div className={clsx(input_fields)}>
+            <TextField
+              id="other category"
+              label="Other Category"
+              fullWidth
+              placeholder="other category"
+              InputLabelProps={{
+                shrink: true,
+              }}
+              name="other_category"
+              value={FormValues?.other_category}
+              onChange={handleFormvalue}
+              variant="outlined"
+            />
+          </div>
+        )}
+      </>
+      <p className={download_link}>Click Here To Download Agreement</p>
       <ValidationForKycForm
         values={FormValues}
         handleCallValidation={handleCallValidation}
