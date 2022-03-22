@@ -59,14 +59,50 @@
 }
 
 @media (max-width: 1533px) {
-  .WhyTexub .B2B_Images_Section .B2B_Images .Card_Paragraph {
-    font-size: 24px;
+  .WhyTexub {
+    .Heading {
+      padding: 20px;
+      font-size: 36px;
+    }
+
+    .Heading_tag {
+      font-size: 18px;
+    }
+
+    .B2B_Images_Section .B2B_Images .Card_Paragraph {
+      font-size: 18px;
+    }
   }
 }
 
 @media (max-width: 1366px) {
   .WhyTexub {
     margin: 2em 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .WhyTexub .B2B_Images_Section {
+    gap: 1em;
+  }
+}
+
+@media (max-width: 580px) {
+  .WhyTexub {
+    .Heading_tag {
+      padding: 0 10px;
+    }
+    .B2B_Images_Section {
+      flex-direction: column;
+
+      .B2B_Images {
+        width: 100%;
+
+        .Card_Paragraph {
+          font-weight: 600;
+        }
+      }
+    }
   }
 }
 
