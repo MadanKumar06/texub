@@ -193,9 +193,11 @@
 @media (max-width: 480px) {
   .Todaysdeal_Collections {
     flex-direction: column;
+    max-height: unset;
   }
   .Todaysdeal_Collections .Todaysdeal_Collections1_1st_div {
     max-width: 100%;
+    margin: 0 auto;
   }
 
   .Todaysdeal_Collections
