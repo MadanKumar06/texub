@@ -7,7 +7,7 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
-const PDPTable = ({ classes, tableData }) => {
+const PDPTable = ({ classes, tableData, setPdpSellerData, pdpSellerData }) => {
   let {
     table_container,
     pdp_middle_wapper,
@@ -77,7 +77,11 @@ const PDPTable = ({ classes, tableData }) => {
       })
     );
   };
-
+  const handleRadioGroupChange = (event) => {
+    setPdpSellerData((prevState) => ({
+      seller_id: event,
+    }));
+  };
   return (
     <div className={table_container}>
       <div className={pdp_middle_wapper}>
@@ -138,7 +142,14 @@ const PDPTable = ({ classes, tableData }) => {
                         <div className={list_action_input}>
                           <FormControlLabel
                             value={item?.seller_radio}
-                            control={<Radio className={radio_button} />}
+                            control={
+                              <Radio
+                                className={radio_button}
+                                onClick={() =>
+                                  handleRadioGroupChange(item?.seller_id)
+                                }
+                              />
+                            }
                             label={""}
                           />
                         </div>
@@ -214,7 +225,14 @@ const PDPTable = ({ classes, tableData }) => {
                         <div className={list_action_input}>
                           <FormControlLabel
                             value={item?.seller_radio}
-                            control={<Radio className={radio_button} />}
+                            control={
+                              <Radio
+                                className={radio_button}
+                                onClick={() =>
+                                  handleRadioGroupChange(item?.seller_id)
+                                }
+                              />
+                            }
                             label={""}
                           />
                         </div>

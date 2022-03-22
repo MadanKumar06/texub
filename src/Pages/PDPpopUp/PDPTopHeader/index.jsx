@@ -9,7 +9,7 @@ import SwitchUnstyled, {
 } from "@mui/base/SwitchUnstyled";
 import { styled } from "@mui/system";
 
-const PdpHeader = ({ classes, PDPPopUP }) => {
+const PdpHeader = ({ classes, setPdpSellerData, pdpSellerData }) => {
   const label = { componentsProps: { input: { "aria-label": "Demo switch" } } };
   const [value, setValue] = React.useState(2);
   let {
@@ -111,9 +111,11 @@ const PdpHeader = ({ classes, PDPPopUP }) => {
       </div>
       <div className={pdp_top_header_sub_container}>
         <div className={pdp_top_header_product_details}>
-          <p className={pdp_top_header_seller_id}>
-            Seller ID :<span> 220012</span>
-          </p>
+          {pdpSellerData?.seller_id && (
+            <p className={pdp_top_header_seller_id}>
+              Seller ID :<span>{pdpSellerData?.seller_id} </span>
+            </p>
+          )}
           <div className={pdp_top_header_products}>
             <p className={pdp_top_header_product_name}>
               PAVILION MODEL14-DV0054TU
