@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./styles.scss";
-import MUITable from '../../MUITable'
+import MUITable from '../../Common/MUITable'
 import { Button } from "@mui/material";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import { Link } from "react-router-dom";
@@ -154,15 +154,6 @@ function Index({ setuserform, userform }) {
         </div>
       ) : (
         <>
-
-          <MUITable columns={columns} table={table} options={options} className="usermgmt__table" />
-
-          <Pagination
-            PaginateData={PaginateDataSplit}
-            DataList={table}
-            PagePerRow={10}
-          />
-
           <div className="user_mgnt__footer">
             <div className="user_mgnt__container">
               <Link to="/sellerdashboard/dashboard">
@@ -176,6 +167,14 @@ function Index({ setuserform, userform }) {
               </div>
             </div>
           </div>
+          
+          <MUITable columns={columns} table={table} options={options} className="usermgmt__table" />
+
+          <Pagination
+            PaginateData={PaginateDataSplit}
+            DataList={table}
+            PagePerRow={10}
+          />
         </>
       )}
     </div>

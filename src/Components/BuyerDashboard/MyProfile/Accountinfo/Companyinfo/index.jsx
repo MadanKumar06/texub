@@ -8,6 +8,7 @@ import { ArrowBackIosNew } from "@mui/icons-material";
 import uploadImage from "../../../../../Assets/CommonImage/KYC Form/Icon.png";
 import { Clear } from "@mui/icons-material";
 import { InputLabel } from "@mui/material";
+import { Link } from "react-router-dom";
 
 
 const Index = ({classes}) => {
@@ -308,7 +309,9 @@ const Index = ({classes}) => {
         </div>
       </div>
       <div className='my_profile_back'>
+      <Link to="/buyerdashboard/dashboard" className="link">
         <ArrowBackIosNew /><span><p className='back'>Back</p></span>
+          </Link>
       </div>
     </div>
   )

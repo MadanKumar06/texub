@@ -1,13 +1,12 @@
-import React, { useState,Link } from 'react'
+import React, { useState} from 'react'
 import './styles.scss'
-import { acinfo, acinfo1 } from './json'
 import { ArrowBackIosNew } from "@mui/icons-material";
-import EditIcon from '@mui/icons-material/Edit';
 import Accountinfo from './Accountinfo'
 import Addressbook from './Addressbook'
 import Companyinfo from './Accountinfo/Companyinfo'
 import Subusers from './Subusers'
 import Edit_image from "../../../Assets/CheckoutPage/Group 913.png";
+import { Link } from "react-router-dom";
 
 const Index = () => {
   const [isAccountinfo, setisAccountinfo] = useState(true)
@@ -132,7 +131,9 @@ const Index = () => {
             </div>
           </div>
           <div className='my_profile_back'>
+        <Link to="/buyerdashboard/dashboard" className='link'>
         <ArrowBackIosNew /><span><p className='back'>Back</p></span>
+          </Link>
       </div>
         </div>   
       }

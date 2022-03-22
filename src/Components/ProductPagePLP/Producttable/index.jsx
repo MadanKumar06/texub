@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./styles";
 
 import { withStyles } from "@mui/styles";
-import MUITable from "../../MUITable";
+import MUITable from "../../Common/MUITable";
 import { useStateValue } from "../../../store/state";
 
 import HP from "./../../../Assets/Productlist/hp_td_icon.png";

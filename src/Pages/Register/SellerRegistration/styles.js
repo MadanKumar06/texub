@@ -105,23 +105,16 @@ const styles = (theme) => ({
           margin: "0 4px",
         },
       },
-      "@media(max-width:1600px)": {
-        fontSize: "18px",
-      },
-      "@media(max-width:1440px)": {
+      "@media(max-width:1660px)": {
         fontSize: "16px",
       },
     },
     "& svg": {
       width: "1.3em",
       height: "1.3em",
-      "@media(max-width:1440px)": {
+      "@media(max-width:1660px)": {
         width: "1em",
         height: "1em",
-      },
-      "@media(max-width:425px)": {
-        width: "0.9em",
-        height: "0.9em",
       },
     },
   },
@@ -138,15 +131,8 @@ const styles = (theme) => ({
     width: "46% !important",
     fontSize: "18px !important",
     padding: "12px 0 !important",
-    "@media(max-width:1600px)": {
+    "@media(max-width:1660px)": {
       padding: "8px !important",
-    },
-    "@media(max-width:1440px)": {
-      padding: "6px !important",
-      fontSize: "16px !important",
-    },
-    "@media (max-width:767px)": {
-      padding: "10px !important",
       fontSize: "16px !important",
     },
   },

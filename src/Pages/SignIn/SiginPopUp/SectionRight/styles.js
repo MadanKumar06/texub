@@ -7,28 +7,23 @@ const styles = (theme) => ({
     fontSize: "20px",
     opacity: "1",
     marginBottom: "0",
-    "@media(max-width:1600px)": {
-      fontSize: "18px",
+    "@media(max-width:1660px)": {
+      fontSize: "16px",
     },
     "@media(max-width:767px)": {
-      fontSize: "14px",
       margin: "0",
     },
   },
   info_text_guest: {
     color: "#20639B",
-    padding: "20px 0px 13px",
+    padding: "16px 0px",
     fontSize: "30px",
     fontWeight: "600",
-    "@media(max-width:1600px)": {
-      fontSize: "28px",
-    },
-    "@media(max-width:1440px)": {
-      fontSize: "26px",
+    "@media(max-width:1660px)": {
+      fontSize: "22px",
     },
     "@media (max-width:767px)": {
       textAlign: "center",
-      fontSize: "22px",
     },
   },
   validation_error: {
@@ -71,6 +66,7 @@ const styles = (theme) => ({
       "& .MuiInputLabel-root": {
         fontWeight: "600",
         fontSize: "18px",
+        color:"#3E3E3E",
         "& .MuiInputLabel-asterisk": {},
       },
     },
@@ -95,26 +91,16 @@ const styles = (theme) => ({
     "& .MuiTypography-root": {
       color: "#5C6369",
       fontSize: "20px",
-      "@media(max-width:1600px)": {
-        fontSize: "18px",
-      },
-      "@media(max-width:1440px)": {
+      "@media(max-width:1660px)": {
         fontSize: "16px",
-      },
-      "@media(max-width:767px)": {
-        fontSize: "14px",
       },
     },
     "& svg": {
       width: "1.3em",
       height: "1.3em",
-      "@media(max-width:1440px)": {
+      "@media(max-width:1660px)": {
         width: "1em",
         height: "1em",
-      },
-      "@media(max-width:425px)": {
-        width: "0.9em",
-        height: "0.9em",
       },
     },
   },
@@ -137,16 +123,9 @@ const styles = (theme) => ({
     width: "80%",
     padding: "12px !important",
     fontSize: "18px !important",
-    "@media(max-width:1600px)": {
+    "@media(max-width:1660px)": {
       padding: "8px !important",
-    },
-    "@media(max-width:1440px)": {
-      padding: "6px !important",
       fontSize: "16px !important",
-    },
-    "@media (max-width:767px)": {
-      padding: "3px !important",
-      fontSize: "14px !important",
     },
   },
   asterisk: {

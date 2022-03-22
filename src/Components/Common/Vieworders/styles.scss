@@ -1,0 +1,404 @@
+.vieworders_main {
+  padding-top: 30px;
+  .vieworders_heading_section {
+    display: flex;
+    gap: 20px;
+    .id_heading {
+      color: #858a8e;
+      font-size: 30px;
+      letter-spacing: 0.9px;
+      margin-top: 6px;
+    }
+    .id {
+      color: #ddb363;
+      font-size: 30px;
+      font-weight: 600;
+      margin-top: 6px;
+    }
+    .status {
+      font-size: 12px;
+      color: #20639b;
+      background-color: #d5ecff;
+      border-radius: 25px;
+      padding: 7px 25px;
+      text-align: center;
+    }
+  }
+  .vieworders__table {
+    margin-top: 3em;
+    box-shadow: unset;
+    .MuiTypography-root {
+      font-size: 20px;
+      letter-spacing: 0.75px;
+    }
+    .MuiTableHead-root {
+      .MuiTableCell-root {
+        font-size: 18px;
+        color: #ffffff;
+        text-align: center;
+        letter-spacing: 0.54px;
+        font-weight: 600;
+        z-index: 9;
+        background-color: #002d56;
+      }
+    }
+    .MuiTable-root {
+      .MuiTableFooter-root {
+        display: none;
+      }
+    }
+    .MuiTableBody-root {
+      .MuiTableCell-root {
+        font-size: 18px;
+        text-align: center;
+        color: #333c42;
+        letter-spacing: 0.54px;
+      }
+      .productname {
+        display: flex;
+        gap: 10px;
+
+        .image {
+          height: 50px;
+        }
+        .product {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          .modal_name {
+            color: #333c42;
+            font-size: 20px;
+            letter-spacing: 0.6px;
+            font-weight: 600;
+            text-align: left;
+          }
+          .modal_content {
+            color: #333c42;
+            font-size: 18px;
+            letter-spacing: 0.54px;
+            text-align: left;
+          }
+        }
+      }
+      .vieworders_price {
+        width: max-content;
+        .price {
+          color: #5c6369;
+          font-size: 28px;
+          letter-spacing: 0.84px;
+          font-weight: 600;
+        }
+      }
+      .vieworers_sky {
+        width: max-content;
+      }
+      .vieworders_total {
+        gap: 5px;
+        width: max-content;
+        .price {
+          color: #5c6369;
+          font-size: 28px;
+          letter-spacing: 0.84px;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+  .vieworders_detail_section {
+    background-color: #f5f5f5;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    .heading {
+      color: #002d56;
+      font-size: 30px;
+      font-weight: 600;
+      margin: 0;
+    }
+    .details {
+      display: flex;
+      justify-content: flex-start;
+      gap: 20px;
+      flex-direction: column;
+      .hr_line {
+        width: 56%;
+        hr {
+          border: 1px solid #ddb363;
+        }
+      }
+      .vieworder_address {
+        display: grid;
+        grid-template-columns: 64% 34%;
+        grid-gap: 2%;
+        .address_section {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+        }
+        .vieworders_shippingaddress_section {
+          display: flex;
+          gap: 40px;
+          .vieworders_shippingaddress {
+            .vieworders_list {
+              list-style: none;
+              display: flex;
+              flex-direction: column;
+              gap: 10px;
+              .heading {
+                font-size: 22px;
+                color: #20639b;
+                font-weight: 600;
+                opacity: 1;
+                font-family: "Source Sans Pro";
+              }
+              .name {
+                color: #858a8e;
+                font-size: 24px;
+                letter-spacing: 0.72px;
+                font-style: italic;
+                font-weight: 600;
+                opacity: 1;
+                font-family: "Source Sans Pro";
+              }
+              .address {
+                color: #959595;
+                font-size: 24px;
+                letter-spacing: 0.6px;
+                font-family: "Source Sans Pro";
+                white-space: wrap;
+              }
+            }
+          }
+          .vieworders_payment_section {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+            .payment_heading {
+              margin: 0;
+              font-size: 22px;
+              color: #20639b;
+              font-weight: 600;
+              opacity: 1;
+              font-family: "Source Sans Pro";
+            }
+            .payment_type {
+              margin: 0;
+              color: #959595;
+              font-size: 24px;
+              letter-spacing: 0.6px;
+              font-family: "Source Sans Pro";
+            }
+          }
+        }
+        .vieworders_total {
+          background-color: #ffffff;
+          padding: 30px;
+          // width: 40%;
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+          .hr {
+            border: 2px dashed #20639b;
+            width: 100%;
+          }
+          .vieworders_list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 1em;
+            .taxes {
+              display: flex;
+              flex-direction: column;
+              gap: 10px;
+              .total_amount_heading {
+                font-size: 30px;
+                color: #002d56;
+                font-weight: 600;
+              }
+              .gst {
+                font-size: 14px;
+                color: #5c6369;
+                text-align: center;
+              }
+            }
+            .total_heading {
+              color: #878787;
+              font-size: 22px;
+              letter-spacing: 0.66px;
+              font-weight: 600;
+              border: 1px #00000000;
+              text-align: left;
+            }
+            .total_amount {
+              color: #333c42;
+              font-size: 26px;
+              letter-spacing: 0.78px;
+              text-align: right;
+              font-weight: bold;
+              .currency {
+                font-size: 17px;
+                letter-spacing: 0.51px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .vieworders__bg {
+    margin: 0;
+    height: 8px;
+    background-color: lightgrey;
+  }
+}
+
+@media (max-width: 1366px) {
+  .vieworders_main {
+    .vieworders__table .MuiTableBody-root {
+      .productname .product .modal_content,
+      .vieworders_price .inr,
+      .vieworders_total .inr {
+        font-size: 16px;
+      }
+
+      .productname .product .modal_name,
+      .vieworders_price .price,
+      .vieworders_total .price {
+        font-size: 18px;
+      }
+    }
+
+    .vieworders_detail_section .details .vieworder_address {
+      grid-template-columns: 53% 45%;
+      .vieworders_total .vieworders_list {
+        .taxes .total_amount_heading,
+        .vieworders_shippingaddress_section
+          .vieworders_shippingaddress
+          .vieworders_list
+          .name {
+          font-size: 22px;
+        }
+        .total_amount,
+        .address {
+          font-size: 20px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .vieworders_main
+    .vieworders_detail_section
+    .details
+    .vieworder_address
+    .vieworders_shippingaddress_section {
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 960px) {
+  .vieworders_main
+    .vieworders_detail_section
+    .details
+    .vieworder_address
+    .address_section {
+    width: 100%;
+  }
+  .vieworders_main .vieworders_detail_section .details .vieworder_address {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .vieworders_main .vieworders_detail_section .details .vieworder_address {
+    grid-template-columns: 100%;
+    .vieworders_total .vieworders_list .taxes .gst {
+      text-align: left;
+    }
+  }
+}
+
+@media only screen and (max-width: 580px) {
+  .vieworders_main
+    .vieworders__table
+    .MuiTableBody-root
+    .productname
+    .product
+    .modal_content {
+    display: none;
+  }
+  .vieworders_main
+    .vieworders_detail_section
+    .details
+    .vieworder_address
+    .vieworders_shippingaddress_section {
+    flex-direction: column;
+  }
+  .vieworders_main .vieworders_detail_section {
+    padding: 20px 10px;
+  }
+  .vieworders_main
+    .vieworders_detail_section
+    .details
+    .vieworder_address
+    .vieworders_total {
+    padding: 10px;
+    margin: 0 10px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .vieworders_main .vieworders_heading_section {
+    flex-direction: column;
+    align-items: center;
+  }
+  .vieworders_main .vieworders_heading_section .id,
+  .vieworders_main .vieworders_heading_section .id_heading {
+    margin: 0;
+  }
+  .vieworders_main
+    .vieworders_detail_section
+    .details
+    .vieworder_address
+    .vieworders_total
+    .vieworders_list {
+    flex-direction: column;
+    gap: 0;
+  }
+  .vieworders_main
+    .vieworders_detail_section
+    .details
+    .vieworder_address
+    .vieworders_total,
+  .vieworders_main
+    .vieworders_detail_section
+    .details
+    .vieworder_address
+    .vieworders_total
+    .vieworders_list
+    .taxes {
+    gap: 0;
+  }
+  .vieworders_main
+    .vieworders_detail_section
+    .details
+    .vieworder_address
+    .vieworders_total {
+    width: 100%;
+    padding-left: 30px;
+  }
+  .vieworders_main
+    .vieworders_detail_section
+    .details
+    .vieworder_address
+    .vieworders_total
+    .vieworders_list
+    .taxes
+    .gst {
+    text-align: left;
+  }
+}

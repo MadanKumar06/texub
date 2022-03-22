@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./styles.scss";
-import MUITable from "../../MUITable";
+import MUITable from "../../Common/MUITable";
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
 import { ArrowBackIosNew } from "@mui/icons-material";
@@ -154,6 +154,16 @@ function RMA() {
   };
   return (
     <div className="rma_container">
+      <div className="rma__footer">
+        <div className="rma__container">
+          <Link to="/buyerdashboard/dashboard">
+            <ArrowBackIosNew />
+            <span>Back</span>
+          </Link>
+          <Button className="rma_btn">Request RMA</Button>
+        </div>
+      </div>
+      
       <div className="rma__buttons">
         {ordertype.map((data, i) => (
           <div className="rma__btton_content">
@@ -178,15 +188,7 @@ function RMA() {
         DataList={table}
         PagePerRow={10}
       />
-      <div className="rma__footer">
-        <div className="rma__container">
-          <Link to="/buyerdashboard/dashboard">
-            <ArrowBackIosNew />
-            <span>Back</span>
-          </Link>
-          <Button className="rma_btn">Request RMA</Button>
-        </div>
-      </div>
+      
     </div>
   );
 }

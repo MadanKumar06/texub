@@ -76,12 +76,13 @@ const TransitionsModal = ({ classes, openPopUp }) => {
   const handleSwitchCase = (fieldName, value) => {
     switch (fieldName[0]) {
       case "email_address":
-        if (!value) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            email_address: "Please enter the e-mail.",
-          }));
-        } else if (!isEmailValid(value)) {
+        // if (!value) {
+        //   setInputValidation((prevState) => ({
+        //     ...prevState,
+        //     email_address: "Please enter the e-mail.",
+        //   }));
+        // } else
+        if (!isEmailValid(value)) {
           setInputValidation((prevState) => ({
             ...prevState,
             email_address: "Please enter the valid e-mail.",
@@ -89,12 +90,13 @@ const TransitionsModal = ({ classes, openPopUp }) => {
         }
         break;
       case "password":
-        if (!value) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            password: "Please enter your password.",
-          }));
-        } else if (!isPasswordValid(value)) {
+        // if (!value) {
+        //   setInputValidation((prevState) => ({
+        //     ...prevState,
+        //     password: "Please enter your password.",
+        //   }));
+        // } else
+        if (!isPasswordValid(value)) {
           setInputValidation((prevState) => ({
             ...prevState,
             password:

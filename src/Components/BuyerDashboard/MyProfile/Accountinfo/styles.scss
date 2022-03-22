@@ -13,6 +13,7 @@
     .account_info_edit{
         display: flex;
         justify-content: center;
+        flex-direction: column;
         .form{
             display: flex;
             gap: 20px;
@@ -22,6 +23,7 @@
        .inputfield_section{
         display: flex;
         gap: 40px;
+        
         .MuiOutlinedInput-root{
             width: 100%;
         }
@@ -67,6 +69,10 @@
         }
        }
     }
+    // .inputfield_section{
+    //     display: flex;
+    //     flex-direction: column;
+    // }
       .accountinfo_btn{
           display: flex;
           justify-content: flex-end;

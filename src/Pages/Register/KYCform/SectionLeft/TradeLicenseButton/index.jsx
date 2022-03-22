@@ -66,22 +66,22 @@ const TradeLicenseButton = ({
 
   const handleSwitchCase = (fieldName, value) => {
     switch (fieldName[0]) {
-      case "business_name":
-        if (!value) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            business_name: "Please enter the business name.",
-          }));
-        }
-        break;
-      case "trade_lic_number":
-        if (!value) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            trade_lic_number: "Please enter the trade lic number.",
-          }));
-        }
-        break;
+      // case "business_name":
+      //   if (!value) {
+      //     setInputValidation((prevState) => ({
+      //       ...prevState,
+      //       business_name: "Please enter the business name.",
+      //     }));
+      //   }
+      //   break;
+      // case "trade_lic_number":
+      //   if (!value) {
+      //     setInputValidation((prevState) => ({
+      //       ...prevState,
+      //       trade_lic_number: "Please enter the trade lic number.",
+      //     }));
+      //   }
+      //   break;
 
       case "trade_expiration_date":
         if (!value) {
@@ -93,14 +93,6 @@ const TradeLicenseButton = ({
           setInputValidation((prevState) => ({
             ...prevState,
             trade_expiration_date: "Please select valid date.",
-          }));
-        }
-        break;
-      case "trade_image":
-        if (!value) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            trade_image: "Please attach the License details.",
           }));
         }
         break;
@@ -207,10 +199,12 @@ const TradeLicenseButton = ({
           </div>
 
           <small>(Supported format : .jpg/.png/.pdf)</small>
+        </div>
+        {inputValidation?.trade_image && (
           <InputLabel className={validation_error}>
             {inputValidation?.trade_image}
           </InputLabel>
-        </div>
+        )}
         {FormValues?.trade_image && (
           <div className={input_image_name}>
             <p>{FormValues?.trade_image?.name}</p>

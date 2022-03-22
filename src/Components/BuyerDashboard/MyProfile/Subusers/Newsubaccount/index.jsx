@@ -5,6 +5,7 @@ import {isEmailValid} from "../../../../../utilities";
 import Autocomplete from "@mui/material/Autocomplete";
 import { useParams } from "react-router-dom";
 import { ArrowBackIosNew } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 const Index = (classes) => {
     const List =[
         {title:"Cart Approval Required",},
@@ -288,7 +289,9 @@ if (!NewSubAccountData?.active) {
     </div>
     <div className='my_profile_btns'>
     <div className='my_profile_back'>
+    <Link to="/buyerdashboard/dashboard" className="link">
         <ArrowBackIosNew /><span><p className='back'>Back</p></span>
+          </Link>
       </div>
     <div className='user_btn_section'>
         <button  onClick={() => handleClickValidation()}>Save Sub-Account</button>

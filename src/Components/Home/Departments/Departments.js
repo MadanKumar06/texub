@@ -17,7 +17,7 @@ export const Departments = () => {
             onClick={(e) => setIsActive(!isActive)}
           >
             <p className="Department_heading">
-              <Menu className="button_Icon" /> DEPARTMENTS
+              <Menu className="button_Icon" /> CATEGORIES
             </p>
           </div>
           <div className="Departments_Dropdown_list">

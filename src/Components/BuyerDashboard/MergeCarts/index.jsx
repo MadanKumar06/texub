@@ -4,7 +4,7 @@ import { Button } from "@mui/material";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import Pagination from "../../Pagination";
-import MUITable from "../../../Components/MUITable";
+import MUITable from "../../../Components/Common/MUITable";
 
 function MergeCarts() {
   const [tableData, setTableData] = useState([]);
@@ -112,18 +112,6 @@ function MergeCarts() {
   };
   return (
     <div className="mergecarts">
-      <MUITable
-        columns={columns}
-        table={tableData}
-        options={options}
-        className="sellerprofile__table"
-      />
-      <Pagination
-        PaginateData={PaginateDataSplit}
-        DataList={table}
-        PagePerRow={10}
-      />
-
       <div className="mergecarts__footer">
         <div className="mergecarts__container">
           <Link to="/buyerdashboard/dashboard">
@@ -136,6 +124,17 @@ function MergeCarts() {
           </div>
         </div>
       </div>
+      <MUITable
+        columns={columns}
+        table={tableData}
+        options={options}
+        className="sellerprofile__table"
+      />
+      <Pagination
+        PaginateData={PaginateDataSplit}
+        DataList={table}
+        PagePerRow={10}
+      />
     </div>
   );
 }

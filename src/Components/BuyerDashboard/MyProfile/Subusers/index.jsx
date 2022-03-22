@@ -4,7 +4,8 @@ import Newsubaccount from './Newsubaccount'
 import { ArrowBackIosNew } from "@mui/icons-material";
 import Allowedpermissions from '../Subusers/Popups/Allowedpermissions'
 import Forbidden from '../Subusers/Popups/Forbidden'
-import  MUITable  from '../../../MUITable'
+import  MUITable  from '../../../Common/MUITable'
+import { Link } from "react-router-dom";
 const Index = () => {
   const [isSub, setisSub] = useState(false)
   const Newsubacc = () => {
@@ -232,7 +233,9 @@ const Index = () => {
           </div> */}
           <div className='my_profile_btns'>
             <div className='my_profile_back'>
-              <ArrowBackIosNew /><span><p className='back'>Back</p></span>
+            <Link to="/buyerdashboard/dashboard" className="link">
+        <ArrowBackIosNew /><span><p className='back'>Back</p></span>
+          </Link>
             </div>
             <div className='user_sub-account'>
               <button onClick={Newsubacc}>Add New Sub-Account</button>

@@ -4,6 +4,7 @@ import Billingaddress from "./Billingaddress";
 import Shippingadress from "./Shippingaddress";
 import Edit_image from "../../../../Assets/CheckoutPage/Group 913.png";
 import { ArrowBackIosNew } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 
 
 const Index = () => {
@@ -101,7 +102,9 @@ const Index = () => {
 
                     </div>
                     <div className='my_profile_back'>
-                        <ArrowBackIosNew /><span><p className='back'>Back</p></span>
+                        <Link to="/buyerdashboard/dashboard" className="link">
+                            <ArrowBackIosNew /><span><p className='back'>Back</p></span>
+                        </Link>
                     </div>
                 </div>
             }

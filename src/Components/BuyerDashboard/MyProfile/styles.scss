@@ -182,6 +182,12 @@
                 display: flex;
                 gap: 20px;
                 margin-top: 30px;
+                .link{
+                    display: flex;
+                    text-decoration: none;
+                    gap: 10px;
+                    color: #002D56;
+                    
                 .back{
                     color: #002D56;
                     font-size: 20px;
@@ -190,6 +196,7 @@
                     font-weight: 600;
                     cursor: pointer;
                 }
+            }
             }
 
 }

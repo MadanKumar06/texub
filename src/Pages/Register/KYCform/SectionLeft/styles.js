@@ -30,11 +30,12 @@ const styles = (theme) => ({
       display: "flex",
       flexDirection: "row",
       alignItems: "center",
-      "@media (max-width:1600px)": {
-        fontSize: "42px",
+      "@media (max-width:1800px)": {
+        fontSize: "40px",
       },
-      "@media (max-width:1440px)": {
-        fontSize: "38px",
+      "@media (max-width:1660px)": {
+        fontSize: "30px",
+        height: "54px",
       },
     },
   },
@@ -48,13 +49,10 @@ const styles = (theme) => ({
     cursor: "pointer",
     width: "1.5em !important",
     height: "1.5em !important",
-    "@media (max-width:1600px)": {
-      width: "1.3em !important",
-    height: "1.3em !important",
-    },
-    "@media (max-width:1440px)": {
+    "@media (max-width:1660px)": {
       width: "1em !important",
-    height: "1em !important",
+      height: "1em !important",
+      top: "16px",
     },
   },
 
@@ -109,15 +107,12 @@ const styles = (theme) => ({
   info_text_lineNote_one: {
     color: "#333333",
     fontSize: "36px",
-    marginBottom: "37px",
+    marginBottom: "1.2em",
     marginTop: "0",
     fontWeight: "600",
     letterSpacing: "1.08px",
-    "@media (max-width:1600px)": {
-      fontSize: "30px",
-    },
-    "@media (max-width:1440px)": {
-      fontSize: "26px",
+    "@media (max-width:1660px)": {
+      fontSize: "22px",
     },
   },
   info_text_lineNote_two: {
@@ -127,11 +122,8 @@ const styles = (theme) => ({
     marginTop: "17px",
     fontWeight: "600",
     letterSpacing: "1.08px",
-    "@media (max-width:1600px)": {
-      fontSize: "30px",
-    },
-    "@media (max-width:1440px)": {
-      fontSize: "26px",
+    "@media (max-width:1660px)": {
+      fontSize: "22px",
     },
   },
   input_fields: {
@@ -183,8 +175,8 @@ const styles = (theme) => ({
       color: "#5C6369",
       fontWeight: "600",
       fontSize: "20px",
-      "@media (max-width:1600px)": {
-        fontSize: "18px",
+      "@media (max-width:1660px)": {
+        fontSize: "16px",
       },
     },
     "& .MuiSvgIcon-root ": {
@@ -199,39 +191,52 @@ const styles = (theme) => ({
   media_upload: {
     display: "flex",
     flexDirection: "column",
-    marginTop: "16px",
-    marginBottom: "20px",
+    marginTop: "2em",
     "@media (max-width:767px)": {
       flexDirection: "column",
     },
+    "@media (max-width:1023px)": {
+      marginTop: "1em",
+    },
   },
   sub_media_upload_container: {
-    width: "50%",
+    width: "100%",
+    display: "flex",
+    gap: "1em",
     "& small": {
       color: "#272727",
       fontSize: "14px",
+      whiteSpace: "nowrap",
     },
-    "@media (max-width:767px)": {
-      width: "100%",
+    "@media (max-width:1023px and min-width:767px)": {
+      flexDirection: "column",
+      gap: "0",
+    },
+    "@media (max-width:580px)": {
+      flexDirection: "column",
+      gap: "0",
     },
   },
   sub_media_upload_part: {
     display: "flex",
     flexDirection: "row",
-    width: "100%",
+    width: "max-content",
     "& p": {
       margin: "0",
       fontSize: "16px",
       color: "#002D56",
       fontWeight: "600",
       letterSpacing: "0.54px",
+      "@media (max-width:1660px)": {
+        fontSize: "14px",
+      },
     },
     "& span": {
       color: "red",
     },
   },
   sub_media_upload_label: {
-    margin: "auto",
+    marginLeft: "1em",
     cursor: "pointer",
     "& input": {
       display: "none",
@@ -241,7 +246,7 @@ const styles = (theme) => ({
     },
   },
   input_image_name: {
-    width: "fit-content",
+    width: "100%",
     display: "flex",
     position: "relative",
     flexWrap: "wrap",
@@ -251,7 +256,7 @@ const styles = (theme) => ({
     flexDirection: "row",
     justifyContent: "center",
     padding: "13px",
-    marginTop: "24px",
+    marginTop: "12px",
     "& p": {
       margin: "0",
     },
@@ -269,6 +274,7 @@ const styles = (theme) => ({
     background: "#DDB363",
     color: "#ffffff",
     borderRadius: "14px",
+    cursor: "pointer",
   },
   box: {
     display: "flex",
@@ -294,10 +300,7 @@ const styles = (theme) => ({
     transition: "transform .2s !important",
     width: "calc(100%/3)",
     fontSize: "18px !important",
-    "@media (max-width:1600px)": {
-      fontSize: "16px !important",
-    },
-    "@media (max-width:1440px)": {
+    "@media (max-width:1660px)": {
       fontSize: "14px !important",
     },
     "@media (max-width:1040px) and (min-width: 768px)": {
@@ -320,10 +323,7 @@ const styles = (theme) => ({
     transition: "transform .2s !important",
     width: "calc(100%/3)",
     fontSize: "18px !important",
-    "@media (max-width:1600px)": {
-      fontSize: "16px !important",
-    },
-    "@media (max-width:1440px)": {
+    "@media (max-width:1660px)": {
       fontSize: "14px !important",
     },
     "@media (max-width:1040px) and (min-width: 768px)": {
@@ -338,7 +338,7 @@ const styles = (theme) => ({
   section_right: {
     width: "50%",
     height: "max-content",
-    padding: "0px 3%",
+    padding: "0px 1%",
     "@media (max-width:767px)": {
       width: "100%",
     },

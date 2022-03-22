@@ -45,6 +45,9 @@ const styles = (theme) => ({
     padding: "12px 0",
     width: "60%",
     textTransform: "capitalize !important",
+    "@media (max-width:1660px)": {
+      fontSize: "16px !important",
+    },
   },
   radio_group: {
     display: "flex",

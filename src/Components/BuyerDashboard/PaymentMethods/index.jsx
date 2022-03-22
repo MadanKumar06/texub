@@ -1,6 +1,6 @@
 import React from "react";
 import "./styles.scss";
-import MUITable from "../../MUITable";
+import MUITable from "../../Common/MUITable";
 import { Button } from "@mui/material";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import payment_type from "../../../Assets/buyerdashboard/paymentMethods/visa (1).png";
@@ -61,21 +61,6 @@ function PaymentMethod() {
 
   return (
     <div className="payment_method">
-      {/* <MUIDataTable
-        title={"STORED PAYMENT METHODS"}
-        data={table}
-        columns={columns}
-        options={options}
-        className="payment_method__table"
-      /> */}
-      <MUITable
-        title={"STORED PAYMENT METHODS"}
-        options={options}
-        columns={columns}
-        table={table}
-        className="payment_method__table"
-      />
-
       <div className="payment_method__footer">
         <div className="payment_method__container">
           <Link to="/buyerdashboard/dashboard">
@@ -85,6 +70,14 @@ function PaymentMethod() {
           <Button className="payment_method_btn">Add New Payment Method</Button>
         </div>
       </div>
+      <MUITable
+        title={"STORED PAYMENT METHODS"}
+        options={options}
+        columns={columns}
+        table={table}
+        className="payment_method__table"
+      />
+
     </div>
   );
 }

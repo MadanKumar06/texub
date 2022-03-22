@@ -4,6 +4,7 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from "@mui/material/Autocomplete";
 import { useParams } from "react-router-dom";
 import { ArrowBackIosNew } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 
 const Index = (classes) => {
   let { type } = useParams();
@@ -159,7 +160,9 @@ const Index = (classes) => {
         </form>
       </div>
       <div className='my_profile_back'>
+      <Link to="/buyerdashboard/dashboard" className="link">
         <ArrowBackIosNew /><span><p className='back'>Back</p></span>
+          </Link>
       </div>
     </div>
   )

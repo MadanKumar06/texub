@@ -1,7 +1,7 @@
 const styles = (theme) => ({
   section_main: {
     minHeight: "70vh",
-    height: "77vh",
+    height: "87vh",
     backgroundImage: "url('/Images/Group 76.png')",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
@@ -10,30 +10,30 @@ const styles = (theme) => ({
     display: "flex",
     width: "100%",
     flexDirection: "column",
+    borderRadius: "3px",
   },
   modal: {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    margin: "8%",
+    margin: "0 22%",
+    "@media (max-width:1440px)": {
+      margin: "0 15%",
+    },
+    "@media (max-width:580px)": {
+      margin: "0 2%",
+    },
+
   },
   // header section  css
   header_section: {
+    borderRadius: "3px",
     width: "100%",
     background: "#333C42",
     minHeight: "94px",
     position: "relative",
-    "@media (max-width:1600px)": {
-      minHeight: "84px",
-    },
-    "@media(max-width:1440px)": {
-      minHeight: "74px",
-    },
-    "@media(max-width:1024px)": {
-      minHeight: "64px",
-    },
-    "@media (max-width:767px)": {
-      minHeight: "54px",
+    "@media (max-width:1660px)": {
+      minHeight: "58px",
     },
     "& p": {
       margin: "0",
@@ -45,27 +45,15 @@ const styles = (theme) => ({
       opacity: "1",
       fontWeight: "600",
       color: "#FFFFFF",
-      "@media(max-width:1600px)": {
-        minHeight: "84px",
-        fontSize: "34px",
-      },
-      "@media(max-width:1440px)": {
-        minHeight: "74px",
-        fontSize: "30px",
-      },
-      "@media(max-width:1024px)": {
-        minHeight: "64px",
-        fontSize: "26px",
-      },
-      "@media (max-width:767px)": {
-        minHeight: "54px",
-        fontSize: "22px",
+      "@media(max-width:1660px)": {
+        minHeight: "58px",
+        fontSize: "24px",
       },
     },
     "& svg": {
       width: "1.5em",
       height: "1.5em",
-      "@media(max-width:1440px)": {
+      "@media(max-width:1660px)": {
         width: "1em",
         height: "1em",
       },
@@ -79,16 +67,7 @@ const styles = (theme) => ({
     background: "#DDB363",
     cursor: "pointer",
     borderRadius: "3px",
-    "@media(max-width:1600px)": {
-      top: "24px",
-    },
-    "@media(max-width:1440px)": {
-      top: "28px",
-    },
-    "@media(max-width:1024px)": {
-      top: "21px",
-    },
-    "@media (max-width:767px)": {
+    "@media(max-width:1660px)": {
       top: "16px",
     },
   },
@@ -96,7 +75,7 @@ const styles = (theme) => ({
   sections: {
     display: "flex",
     flexDirection: "row",
-    overflowY: "scroll",
+    overflowY: "auto",
     "@media (max-width:767px)": {
       flexDirection: "column",
     },
@@ -104,15 +83,9 @@ const styles = (theme) => ({
   // section left css
   section_left: {
     width: "50%",
-    padding: "2em 1.5em",
+    padding: "1.2em",
     "@media (max-width:767px)": {
       width: "100%",
-    },
-    "@media(max-width:767px)": {
-      padding: "1em 1.5em",
-    },
-    "@media(max-width:425px)": {
-      padding: "1em 0.7em",
     },
   },
 
@@ -120,16 +93,12 @@ const styles = (theme) => ({
     fontSize: "30px",
     color: "#20639B",
     fontWeight: "600",
-    padding: "20px 0 16px",
+    padding: "16px 0",
     "@media(max-width:1600px)": {
-      fontSize: "28px",
-    },
-    "@media(max-width:1440px)": {
-      fontSize: "26px",
+      fontSize: "22px",
     },
     "@media (max-width:767px)": {
       textAlign: "center",
-      fontSize: "22px",
       padding: "0 0 16px",
     },
   },
@@ -144,8 +113,8 @@ const styles = (theme) => ({
         fontSize: "14px",
       },
     },
-    "@media(max-width:1600px)": {
-      fontSize: "18px",
+    "@media(max-width:1660px)": {
+      fontSize: "16px",
     },
     "@media(max-width:767px)": {
       fontSize: "14px",
@@ -156,8 +125,8 @@ const styles = (theme) => ({
     fontSize: "20px",
     padding: "12px 0",
     margin: "0",
-    "@media(max-width:1600px)": {
-      fontSize: "18px",
+    "@media(max-width:1660px)": {
+      fontSize: "16px",
     },
     "@media(max-width:767px)": {
       fontSize: "14px",
@@ -234,23 +203,16 @@ const styles = (theme) => ({
     "& .MuiTypography-root": {
       color: "#5C6369",
       fontSize: "20px",
-      "@media(max-width:1600px)": {
-        fontSize: "18px",
-      },
-      "@media(max-width:1440px)": {
+      "@media(max-width:1660px)": {
         fontSize: "16px",
       },
     },
     "& svg": {
       width: "1.3em",
       height: "1.3em",
-      "@media(max-width:1440px)": {
+      "@media(max-width:1660px)": {
         width: "1em",
         height: "1em",
-      },
-      "@media(max-width:425px)": {
-        width: "0.9em",
-        height: "0.9em",
       },
     },
   },
@@ -275,16 +237,9 @@ const styles = (theme) => ({
     padding: "12px !important",
     fontSize: "18px !important",
     width: "80%",
-    "@media(max-width:1600px)": {
+    "@media(max-width:1660px)": {
       padding: "8px !important",
-    },
-    "@media(max-width:1440px)": {
-      padding: "6px !important",
       fontSize: "16px !important",
-    },
-    "@media (max-width:767px)": {
-      padding: "3px !important",
-      fontSize: "14px !important",
     },
   },
   forgot_password: {
@@ -295,8 +250,8 @@ const styles = (theme) => ({
     margin: "20px 0px",
     cursor: "pointer",
     textDecoration: "underline",
-    "@media(max-width:1600px)": {
-      fontSize: "16px",
+    "@media(max-width:1660px)": {
+      fontSize: "14px",
     },
   },
   // section rigth css

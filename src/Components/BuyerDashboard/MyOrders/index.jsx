@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import MUITable from '../../../Components/MUITable'
+import React, { useState, useEffect } from "react";
+import MUITable from '../../../Components/Common/MUITable'
 import { Button } from "@mui/material";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import Pagination from "../../Pagination";
 import "./styles.scss";
-import Vieworders from '../MyOrders/Vieworders'
+import Vieworders from '../../Common/Vieworders'
 
 function Index() {
   const [tableData, setTableData] = useState([]);
@@ -22,9 +22,15 @@ function Index() {
   const selectorder = (value) => {
     settype(value);
   };
+  
+  useEffect(() => {
+    selectorder(0)
+  }, [])
+
   const PaginateDataSplit = (event) => {
     setTableData(event);
   };
+
   const [isVieworders, setisVieworders] = useState(false)
   const orders = () => {
     setisVieworders(true)
@@ -152,8 +158,14 @@ function Index() {
   return (
 
     <div className="myorders">
-
-
+      <div className="my_orders__footer">
+        <div className="my_orders__container">
+          <Link to="/buyerdashboard/dashboard">
+            <ArrowBackIosNew />
+            <span>Back</span>
+          </Link>
+        </div>
+      </div>
       {isOrders &&
         <>
           <div className="myorders__buttons">
@@ -177,18 +189,7 @@ function Index() {
 
       }
       {isVieworders && <Vieworders />}
-
-      <div className="my_orders__footer">
-        <div className="my_orders__container">
-          <Link to="/buyerdashboard/dashboard">
-            <ArrowBackIosNew />
-            <span>Back</span>
-          </Link>
-        </div>
-      </div>
     </div>
-
-
   );
 }
 
