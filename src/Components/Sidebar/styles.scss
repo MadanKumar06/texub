@@ -94,48 +94,38 @@
   }
 }
 
-@media (max-width: 1600px) {
+@media (max-width: 1660px) {
   .sellerdashboard__sidebar {
     min-width: 20%;
   }
   .sellerdashboard__sidebar p .sellerlabel {
-    font-size: 22px;
+    font-size: 18px;
   }
   .sellerdashboard__sidebar p .sellervalue {
-    font-size: 28px;
+    font-size: 22px;
   }
   .sellerdashboard__sidebar ul li {
-    font-size: 20px;
-    padding-left: 43px;
+    font-size: 18px;
+    padding-left: 20px;
   }
-}
-
-@media (max-width: 1533px) {
-  .sellerdashboard__sidebar {
-    min-width: 23%;
+  .sellerdashboard__sidebar .sidebar_head_title {
+    padding: 1em 0;
+  }
+  .sellerdashboard__sidebar ul li {
+    min-height: 60px;
+  }
+  .sellerdashboard__sidebar .buyerbg ::before {
+    height: 60px;
   }
 }
 @media (max-width: 1375px) {
   .sellerdashboard__sidebar {
-    min-width: 28%;
-  }
-}
-@media (max-width: 1366px) {
-  .sellerdashboard__sidebar {
     min-width: 25%;
   }
 }
-
-@media (max-width: 1240px) {
-  .sellerdashboard__sidebar ul li {
-    font-size: 18px;
-  }
-}
-
 @media (max-width: 1024px) {
   .sidebaropen {
-    padding: 2em 0;
-    min-width: 372px;
+    min-width: 298px;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
     background-color: white;
     display: flex;
@@ -143,7 +133,13 @@
     align-items: center;
     z-index: 1;
     position: relative;
-
+    position: relative;
+    .sidebar_head_title {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      background: linear-gradient(180deg, #f4f9ff 0%, #ffffff 100%);
+    }
     ul {
       padding: 0;
       list-style: none;
@@ -152,13 +148,16 @@
       li {
         display: flex;
         justify-content: flex-start;
-        padding-left: 70px;
+        padding-left: 20px;
         align-items: center;
         gap: 10px;
-        font-size: 22px;
+        font-size: 18px;
         color: #858a8e;
-        min-height: 70px;
+        min-height: 60px;
         cursor: pointer;
+        font-weight: 600;
+        letter-spacing: 0.66px;
+        margin-left: 7px;
 
         &:last-child {
           margin-top: 20px;
@@ -172,14 +171,17 @@
       gap: 10px;
       .sellerlabel {
         color: #5c6369;
-        font-size: 26px;
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: 0.96px;
       }
 
       .sellervalue {
         background-color: #f8f0e0;
         color: #5c6369;
-        font-size: 32px;
+        font-size: 22px;
         padding: 0.3em 1em;
+        box-shadow: rgb(99 99 99 / 20%) 0px 2px 8px 0px;
       }
     }
 
@@ -193,44 +195,26 @@
 
     .sellerbg {
       background-image: linear-gradient(#ffd788, #cc9b3e);
+      color: #ffffff;
+      box-shadow: rgb(0 0 0 / 15%) 0px 5px 15px 0px;
     }
 
     .buyerbg {
       background-image: linear-gradient(#20639b, #002d56);
+      color: #ffffff;
+      box-shadow: rgb(0 0 0 / 15%) 0px 5px 15px 0px;
     }
 
     .sidebar__close {
-      display: block;
       position: absolute;
-      top: 0;
-      right: 10px;
-
-      &::before {
-        content: "";
-        width: 16px;
-        height: 16px;
-        border-right: 3px solid black;
-        position: absolute;
-        transform: rotate(45deg);
-        right: 8px;
-        top: -11px;
-      }
-
-      &::after {
-        content: "";
-        width: 16px;
-        height: 16px;
-        border-right: 3px solid black;
-        position: absolute;
-        transform: rotate(315deg);
-        right: 8px;
-      }
+      top: 7px;
+      right: 2px;
+      cursor: pointer;
+      background: #002d56;
+      color: #ffffff;
+      border-radius: 3px;
+      width: 1em !important;
+      height: 1em !important;
     }
-  }
-}
-
-@media (max-width: 480px) {
-  .sidebaropen {
-    min-width: 100%;
   }
 }

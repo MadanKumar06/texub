@@ -32,7 +32,7 @@
   }
   .chart_table_container {
     display: flex;
-    margin-top: 2em;
+    // margin-top: 2em;
   }
   .chart_info {
     .table__header {
@@ -54,4 +54,17 @@
       text-transform: uppercase;
     }
   }
+}
+@media (max-width: 1660px) {
+  .piechart_container .title {
+    font-size: 20px;
+  }
+  .piechart_container .month p,
+  .piechart_container .chart_info .table__header,
+  .piechart_container .chart_info .table__cell {
+    font-size: 16px;
+  }
+  .piechart_container span {
+    padding: 6px;
+}
 }

@@ -7,6 +7,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
+    position: sticky;
+    top: 0;
+    z-index: 1;
+
     .clear_btn {
       top: 22px;
       color: #ffffff;
@@ -261,17 +266,17 @@
   }
 }
 
-@media (max-width: 1600px) {
+@media (max-width: 1660px) {
   .minicart_list_main {
     .minicart_header {
-      height: 60px;
+      height: 52px;
       h6 {
-        font-size: 26px;
+        font-size: 24px;
       }
       .clear_btn {
-        top: 17px;
-        width: 26px !important;
-        height: 26px !important;
+        top: 14px;
+        width: 24px !important;
+        height: 24px !important;
       }
     }
   }
@@ -290,7 +295,10 @@
       font-size: 16px;
     }
     .price_block .price {
-      font-size: 26px;
+      span {
+        font-size: 16px;
+      }
+      font-size: 24px;
     }
     .price_block .quantity .qty_change {
       .item_decrease,
@@ -300,21 +308,35 @@
       }
     }
     .total_block p {
-      font-size: 26px;
+      span {
+        font-size: 16px;
+      }
+      font-size: 24px;
     }
   }
   .minicart_list_main .minicart_footer .minicart_total {
     .title_total {
-      font-size: 20px;
+      font-size: 18px;
     }
     .total_price {
-      font-size: 34px;
+      span {
+        font-size: 18px;
+      }
+      font-size: 28px;
     }
+  }
+  .minicart_list_main
+    .minicart_footer
+    .minicart_btn
+    .minicart_bottom_button_cart {
+    padding: 8px !important;
+    font-size: 16px !important;
   }
   .minicart_list_main .minicart_footer .minicart_btn {
     .minicart_bottom_button_cart,
     .minicart_bottom_button_pending_invoice {
       padding: 8px !important;
+      font-size: 16px !important;
     }
   }
 }
@@ -338,12 +360,6 @@
             font-size: 14px;
           }
           .price_block {
-            .price {
-              font-size: 26px;
-              span {
-                font-size: 16px;
-              }
-            }
             .quantity {
               .qty_change {
                 .input_text {
@@ -352,50 +368,12 @@
               }
             }
           }
-          .total_block {
-            span {
-              font-size: 16px;
-            }
-            p {
-              font-size: 26px;
-              span {
-                font-size: 16px;
-              }
-            }
-          }
-        }
-      }
-    }
-    .minicart_footer {
-      .minicart_total {
-        .title_total {
-          font-size: 20px;
-        }
-        .total_price {
-          font-size: 28px;
-          span {
-            font-size: 20px;
-            padding-right: 5px;
-          }
         }
       }
     }
   }
 }
 @media (max-width: 1366px) {
-  .minicart_list_main {
-    .minicart_header {
-      height: 52px;
-      h6 {
-        font-size: 22px;
-      }
-      .clear_btn {
-        top: 15px;
-        width: 22px !important;
-        height: 22px !important;
-      }
-    }
-  }
   .minicart_list_main
     .minicart_list_content
     .minicart_section_container
@@ -409,32 +387,12 @@
     .detail_link {
       font-size: 16px;
     }
-    .price_block .price {
-      font-size: 24px;
-    }
     .price_block .quantity .qty_change {
       .item_decrease,
       .item_increase {
         width: 28px;
         height: 28px;
       }
-    }
-    .total_block p {
-      font-size: 24px;
-    }
-  }
-  .minicart_list_main .minicart_footer .minicart_total {
-    .title_total {
-      font-size: 18px;
-    }
-    .total_price {
-      font-size: 30px;
-    }
-  }
-  .minicart_list_main .minicart_footer .minicart_btn {
-    .minicart_bottom_button_cart,
-    .minicart_bottom_button_pending_invoice {
-      padding: 6px !important;
     }
   }
 }
@@ -465,7 +423,6 @@
     .minicart_btn
     .minicart_bottom_button_pending_invoice {
     padding: 4px !important;
-    font-size: 16px;
   }
   .minicart_list_main
     .minicart_list_content
@@ -483,21 +440,17 @@
     p {
     font-size: 22px;
   }
-  .minicart_list_main .minicart_list_content .minicart_section_container .section_right .price_block .price {
+  .minicart_list_main
+    .minicart_list_content
+    .minicart_section_container
+    .section_right
+    .price_block
+    .price {
     font-size: 22px;
-}
-  .minicart_list_main .minicart_footer .minicart_total .total_price {
-    font-size: 28px;
   }
 }
 @media (max-width: 480px) {
   .minicart_list_main {
-    .minicart_header {
-      height: 57px;
-      .clear_btn {
-        top: 15px;
-      }
-    }
     .minicart_list_content .minicart_section_container {
       flex-direction: column;
       .section_left {
