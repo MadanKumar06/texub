@@ -61,19 +61,19 @@
                font-weight: 600;
             }
             span:hover{
-                background-color: #DDB363;
+                background: #DDB363;
                 border-radius: 2px;
                 width: 100%;
                 color: #FFFFFF;
                 letter-spacing: 0.6px;
             }
-            span:focus{
-                background-color: #DDB363;
+            .permissions_list_content:hover{
+                background: #DDB363;
                 border-radius: 2px;
                 width: 100%;
                 color: #FFFFFF;
                 letter-spacing: 0.6px;
-            }
+            }   
         }
       }
     }

@@ -25,7 +25,6 @@
         }
          .MuiOutlinedInput-root{
                width: 100%;
-               border-radius: 33px;
          }
          .MuiOutlinedInput-input{
             font-size: 20px;
@@ -47,10 +46,10 @@
         content: "*";
         color: red;
     }
-    .MuiOutlinedInput-root{
-        // width: 62rem;
-        border-radius: 33px;
-  }
+//     .MuiOutlinedInput-root{
+//         // width: 62rem;
+//         border-radius: 33px;
+//   }
   .MuiOutlinedInput-input{
     font-size: 20px;
     color: #4E4E4E;
@@ -94,9 +93,9 @@
         opacity: 1;
     
      }
-     .MuiOutlinedInput-root{
-         border-radius: 33px;
-     }
+    //  .MuiOutlinedInput-root{
+    //      border-radius: 33px;
+    //  }
   }
   .my_profile_btns{
       display: flex;
@@ -118,6 +117,7 @@
         text-shadow: 0px 3px 6px #00000029;
         letter-spacing: 0.54px;
         cursor: pointer;
+      
       }
   }
  }

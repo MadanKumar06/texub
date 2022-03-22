@@ -11,7 +11,7 @@
             border-radius: 25px;
             border: none;
             padding: 10px 25px;
-            width: 29%;
+            width: 30%;
             color: #333C42;
             font-size: 18px;
             font-weight: 600;
@@ -61,8 +61,9 @@
             }
             .my_profile_data{
                 display: flex;
-                justify-content: space-around;
-                width: 90%;
+                gap: 4em;
+                flex-wrap: wrap;
+                padding: 0 61px;
                 .my_profile_data_section_heading{
                     color: #8B8B8B;
                     font-size: 18px;
@@ -124,11 +125,12 @@
                 .my_profile_table{
                     display: flex;
                      flex-direction: column;
-                    gap: 30px;
+                    gap: 40px;
                     .my_profile_data{
                         display: flex;
-                        justify-content: space-around;
-                        width: 90%;
+                        gap: 4em;
+                        padding: 0 61px;
+                        flex-wrap: wrap;
                         .my_profile_data_section{
                             .my_profile_data_section_heading{
                                 color: #8B8B8B;
@@ -152,8 +154,9 @@
                     }
                     .my_profile_data1{
                         display: flex;
-                        gap: 7.5rem;
+                        gap: 4em;
                         padding: 0 61px;
+                        flex-wrap: wrap;
                        
                         .my_profile_data_section_heading{
                             color: #8B8B8B;
@@ -204,8 +207,8 @@
 
 @media only screen and(max-width:1530px){
     .My_profile_main .My_profile_ac .my_profile_company .My_profile_ac_table .my_profile_table .my_profile_data1{
-        gap: 7.5rem;
-        padding: 0 38px;
+        gap: 4em;
+        
     }
 }
 
@@ -214,10 +217,7 @@
     .My_profile_main .my_profile_company .My_profile_main_heading, .My_profile_main .My_profile_ac .My_profile_main_heading{
         width: 25%;
     }
-    .My_profile_main .My_profile_ac .my_profile_company .My_profile_ac_table .my_profile_table .my_profile_data1{
-        gap: 6rem;
-       padding: 0 22px;
-    }
+    
  }
 
 @media only screen and(max-width:1336px) {
@@ -234,10 +234,13 @@
         display: flex;
         flex-direction: column;
     }
+    .My_profile_main .My_profile_btn_section .My_profile_btn{
+        width: 32%;
+    }
     
 .My_profile_main .My_profile_ac .my_profile_company .My_profile_ac_table .my_profile_table .my_profile_data{
     width: 100%;
-    padding-left: 23px;
+   
 }
     
     .My_profile_main .My_profile_ac .My_profile_ac_table tr{
@@ -265,6 +268,9 @@
         width: 100%;
         gap: 20px;
     }
+    .My_profile_main .My_profile_ac .my_profile_company .My_profile_ac_table .my_profile_table .my_profile_data{
+        gap: 1em;
+    }
     .My_profile_main .My_profile_ac .My_profile_ac_table .my_profile_data .my_profile_data_section{
         display: flex;
         flex-direction: column;
@@ -277,13 +283,14 @@
     .My_profile_main .My_profile_ac .My_profile_ac_table .my_profile_data .my_profile_data_section_tag {
         margin: 0;
     }
-    .My_profile_main .My_profile_ac .My_profile_ac_table {
-        padding: 20px 0px 20px 22px;
-    }
+    // .My_profile_main .My_profile_ac .My_profile_ac_table {
+    //     padding: 20px 0px 20px 22px;
+    // }
     .My_profile_main .My_profile_ac .my_profile_company .My_profile_ac_table .my_profile_table .my_profile_data1{
         flex-direction: column;
         width: 100%;
-        gap: 20px;
+        gap: 1em;
+        // padding: 0 22px;
     }
     .My_profile_main .My_profile_ac .my_profile_company .My_profile_ac_table .my_profile_table .my_profile_data1 .my_profile_data_section{
          display: flex;
@@ -300,7 +307,7 @@
         width: 100%;
     }
     .My_profile_main .My_profile_ac .my_profile_company .My_profile_ac_table .my_profile_table{
-        gap: 20px;
+        gap: 1em;
     }
     .My_profile_main .My_profile_btn_section{
         flex-direction: column;
@@ -336,6 +343,12 @@
     }
     .My_profile_main .my_profile_details{
         font-size: 15px;
+    }
+    .My_profile_main .My_profile_ac .My_profile_ac_table .my_profile_data{
+        padding: 0 10px !important;
+    }
+    .My_profile_main .My_profile_ac .my_profile_company .My_profile_ac_table .my_profile_table .my_profile_data1{
+        padding: 0 10px !important;
     }
 }
 
@@ -387,12 +400,18 @@
         // padding: 20px 0px 20px 0px;
         gap: 2px;
     }
+    .My_profile_main .My_profile_ac .my_profile_company .My_profile_ac_table .my_profile_table .my_profile_data{
+        padding-left: 5px;
+    }
     // .My_profile_main .My_profile_ac .My_profile_ac_table {
     //     padding: 20px 0px 20px 0px;
     // }
     .My_profile_main .my_profile_company{
         margin-top: 17px;
 
+    }
+    .My_profile_main .My_profile_ac .my_profile_company .My_profile_ac_table .my_profile_table .my_profile_data1{
+        padding:0 7px ;
     }
     .My_profile_main .my_profile_heading{
         font-size: 15px;
