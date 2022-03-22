@@ -5,6 +5,7 @@ import { Checkbox, FormControlLabel } from '@mui/material';
 import Autocomplete from "@mui/material/Autocomplete";
 import { useParams } from "react-router-dom";
 import { ArrowBackIosNew } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 
 const Index = (classes) => {
   let { type } = useParams();
@@ -18,7 +19,7 @@ const Index = (classes) => {
     <div className='Shippingaddress_main'>
       <div className='Shippingaddress_heading_section'>
         <span className='Shippingaddress_Account_heading'> <p >EDIT DEFAULT SHIPPING ADDRESS</p></span>
-        <FormControlLabel control={<Checkbox defaultChecked />} label="Same As Billing Adress" />
+        <FormControlLabel control={<Checkbox defaultValue={false} />} label="Same As Billing Adress" />
       </div>
       <div className='Shippingaddress_information'>
         <form>
@@ -27,14 +28,15 @@ const Index = (classes) => {
               <p>Organization Name</p>
               <TextField
                 id="outlined-error"
-                defaultValue="Organization Name"
+                placeholder="Organization Name"
+
               />
             </div>
             <div className='inputfield'>
               <p>Address Line 1</p>
               <TextField
                 id="outlined-error"
-                defaultValue="Flat/Building/Block"
+              placeholder="Flat/Building/Block"
               />
             </div>
           </div>
@@ -43,7 +45,7 @@ const Index = (classes) => {
               <p>Address Line 2</p>
               <TextField
                 id="outlined-error"
-                defaultValue="Sub-urb/Town"
+                placeholder="Sub-urb/Town"
               />
             </div>
             <div className='inputfield'>
@@ -51,7 +53,8 @@ const Index = (classes) => {
               <p>Pincode</p>
               <TextField
                 id="outlined-error"
-                defaultValue="Pincode"
+                placeholder="Pincode"
+                type="number"
               />
             </div>
           </div>
@@ -156,7 +159,9 @@ const Index = (classes) => {
         </form>
       </div>
       <div className='my_profile_back'>
+      <Link to="/buyerdashboard/dashboard" className="link">
         <ArrowBackIosNew /><span><p className='back'>Back</p></span>
+          </Link>
       </div>
     </div>
   )

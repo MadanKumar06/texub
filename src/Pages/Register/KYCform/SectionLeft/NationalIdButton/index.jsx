@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "../styles";
-
-import { InputLabel } from "@mui/material";
+import { TextField, Autocomplete, InputLabel } from "@mui/material";
 import { withStyles } from "@mui/styles";
 import { Clear } from "@mui/icons-material";
 import uploadImage from "../../../../../Assets/CommonImage/KYC Form/Icon.png";
@@ -32,7 +31,6 @@ const NationalIdButton = ({
     }));
     setInputValidation("");
   };
-  // input validation on onchange
   const [inputValidation, setInputValidation] = useState({
     national_id_image: "",
   });

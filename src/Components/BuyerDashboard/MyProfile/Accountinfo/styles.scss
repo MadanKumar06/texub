@@ -8,10 +8,12 @@
         font-size: 18px;
         letter-spacing: 0.54px;
         font-weight: 600;
+        width: 46%;
     }
     .account_info_edit{
         display: flex;
         justify-content: center;
+        flex-direction: column;
         .form{
             display: flex;
             gap: 20px;
@@ -21,6 +23,7 @@
        .inputfield_section{
         display: flex;
         gap: 40px;
+        
         .MuiOutlinedInput-root{
             width: 100%;
         }
@@ -66,6 +69,10 @@
         }
        }
     }
+    // .inputfield_section{
+    //     display: flex;
+    //     flex-direction: column;
+    // }
       .accountinfo_btn{
           display: flex;
           justify-content: flex-end;
@@ -190,6 +197,7 @@
     // }
     .account_ifo_main .Account_heading{
         padding-left: 23px;
+        width: 100%;
     }
     .account_ifo_main .account_info_edit .accountinfo_btn{
         flex-direction: column;
@@ -203,6 +211,7 @@
         width: 100%;
         padding: 15px 25px;
     }
+    
 }
 
 @media only screen and (max-width:480px){
