@@ -22,6 +22,8 @@ const BuyerKYCformSectionRight = ({
   FormValues,
   validationFieldMessage,
   setValidationFieldMessage,
+  documentButton,
+  setDocumentButton,
 }) => {
   let {
     section_right_container,
@@ -129,6 +131,8 @@ const BuyerKYCformSectionRight = ({
       <ValidationForKycForm
         values={FormValues}
         handleCallValidation={handleCallValidation}
+        setDocumentButton={setDocumentButton}
+        documentButton={documentButton}
       />
     </div>
   );

@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter as  Router, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
 import { useStateValue } from "./store/state";
@@ -54,7 +54,7 @@ const App = () => {
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
-        <BrowserRouter>
+        <Router>
           <Header />
           <Userdetails />
           <Routes>
@@ -104,7 +104,7 @@ const App = () => {
           {registerOpenClose && <RegisterPopup/>}
          { miniCartOpenClose?.openClose && <MiniCartList/>}
       
-        </BrowserRouter>
+        </Router>
       </ThemeProvider>
     </div>
   );

@@ -3,7 +3,13 @@ import { Box, Button } from "@mui/material";
 import styles from "../SectionRight/styles";
 import { withStyles } from "@mui/styles";
 
-function ValidationForKycForm({ classes, values, handleCallValidation }) {
+function ValidationForKycForm({
+  classes,
+  values,
+  handleCallValidation,
+  documentButton,
+  setDocumentButton,
+}) {
   let { button_box, button_guest } = classes;
   const [valid, setValid] = useState(null);
 
@@ -30,7 +36,7 @@ function ValidationForKycForm({ classes, values, handleCallValidation }) {
     if (!values?.trade_expiration_date) {
       setValid((prevState) => ({
         ...prevState,
-        trade_expiration_date: "Please enter the trade lic number.",
+        trade_expiration_date: "Please select expiration date .",
       }));
     } else if (values.toString() === "Invalid Date") {
       setValid((prevState) => ({
@@ -101,12 +107,25 @@ function ValidationForKycForm({ classes, values, handleCallValidation }) {
   return (
     <>
       <Box className={button_box} fullWidth>
-        <Button
-          className={button_guest}
-          onClick={() => handleValidationClick()}
-        >
-          <span>Submit</span>
-        </Button>
+        {documentButton === "national_id" ? (
+          <Button
+            className={button_guest}
+            onClick={() => handleValidationClick()}
+          >
+            <span>Submit</span>
+          </Button>
+        ) : (
+          <Button
+            className={button_guest}
+            onClick={() =>
+              documentButton === "trade_license"
+                ? setDocumentButton("tax_certificate")
+                : setDocumentButton("national_id")
+            }
+          >
+            <span>Continue</span>
+          </Button>
+        )}
       </Box>
     </>
   );

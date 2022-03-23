@@ -38,9 +38,25 @@
             height: 1.5em !important;
           }
         }
+        z-index: 2;
       }
       .Departments_Dropdown_list {
+        position: relative;
+        .Body_Down_Pannel_btn_content1 {
+          position: absolute;
+          top: -5em;
+          transition: top 1s ease-in-out, opacity 2s ease-in;
+          .Body_Down_Pannel_btn_items {
+            display: none;
+          }
+        }
         .Body_Down_Pannel_btn_content {
+          display: block;
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          transition: top 1s ease-in-out, opacity 2s ease-in;
           background-color: white;
           border: 1px solid #00000012;
           padding: 0;
