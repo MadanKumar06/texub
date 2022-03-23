@@ -14,19 +14,23 @@
     .auto_complete_input {
       display: flex;
       flex-direction: column;
+      .MuiFormControl-root {
+        .MuiOutlinedInput-input {
+          padding: 12px !important;
+        }
+      }
       .MuiOutlinedInput-root {
         padding: 0px !important;
       }
-      
     }
     .input_block {
-      .block_1_input{
+      .block_1_input {
         width: 50%;
       }
       .asterisk {
         color: #ff0000;
       }
-      .MuiInputLabel-root{
+      .MuiInputLabel-root {
         color: red;
       }
       .MuiFormControl-root {
@@ -43,7 +47,6 @@
       }
       .MuiOutlinedInput-root {
         input {
-          padding: 17px 12px;
           font: unset;
         }
         fieldset {
@@ -78,6 +81,7 @@
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
+      margin-top: 2em;
       a {
         text-decoration: none;
         display: flex;
@@ -112,13 +116,42 @@
   }
 }
 
-@media only screen and(max-width:580px) {
+@media (max-width: 1660px) {
+  .want_to_buy__container
+    .want_to_buy__footer
+    .want_to_buy__container
+    a
+    .MuiSvgIcon-root {
+    width: 0.6em;
+    height: 0.6em;
+  }
+  .want_to_buy__container .want_to_buy__footer .want_to_buy__container a span {
+    font-size: 18px;
+  }
+  .want_to_buy__container
+    .want_to_buy__footer
+    .want_to_buy__container
+    .want_to_buy_btn {
+    width: 23% !important;
+    font-size: 16px !important;
+    padding: 8px !important;
+  }
+}
+@media (max-width: 580px) {
   .want_to_buy__container .want_to_buy__sub_container .block_3 .input_field,
-  .want_to_buy__container .want_to_buy__sub_container .block_1{
+  .want_to_buy__container .want_to_buy__sub_container .block_1 {
     flex-direction: column;
   }
-  .want_to_buy__container .want_to_buy__sub_container .input_block .block_1_input {
+  .want_to_buy__container
+    .want_to_buy__sub_container
+    .input_block
+    .block_1_input {
     width: 100%;
   }
-  
+  .want_to_buy__container .want_to_buy__sub_container {
+    gap: 2em;
+    .block_3 {
+      gap: 2em;
+    }
+  }
 }

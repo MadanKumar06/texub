@@ -45,52 +45,53 @@ const WantToBuy = () => {
   const [inputValue, setInputValue] = useState("");
   const handleSwitchCase = (fieldName, value) => {
     switch (fieldName[0]) {
-      case "part_number":
-        if (!value) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            part_number: "Please enter the part number.",
-          }));
-        }
-        break;
-      case "model_name_number":
-        if (!value) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            model_name_number: "Please enter the model name/ number number.",
-          }));
-        }
-        break;
+      // case "part_number":
+      //   if (!value) {
+      //     setInputValidation((prevState) => ({
+      //       ...prevState,
+      //       part_number: "Please enter the part number.",
+      //     }));
+      //   }
+      //   break;
+      // case "model_name_number":
+      //   if (!value) {
+      //     setInputValidation((prevState) => ({
+      //       ...prevState,
+      //       model_name_number: "Please enter the model name/ number number.",
+      //     }));
+      //   }
+      //   break;
 
       case "closing_date":
-        if (!value) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            closing_date: "Please select closing date.",
-          }));
-        } else if (value.toString() === "Invalid Date") {
+        // if (!value) {
+        //   setInputValidation((prevState) => ({
+        //     ...prevState,
+        //     closing_date: "Please select closing date.",
+        //   }));
+        // } else
+        if (value.toString() === "Invalid Date") {
           setInputValidation((prevState) => ({
             ...prevState,
             closing_date: "Please select valid date.",
           }));
         }
         break;
-      case "quantity":
-        if (!value) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            quantity: "Please select the quantity.",
-          }));
-        }
-        break;
-      case "main_category":
-        if (!value) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            main_category: "Please select the main category.",
-          }));
-        }
-        break;
+      // case "quantity":
+      //   if (!value) {
+      //     setInputValidation((prevState) => ({
+      //       ...prevState,
+      //       quantity: "Please select the quantity.",
+      //     }));
+      //   }
+      //   break;
+      // case "main_category":
+      //   if (!value) {
+      //     setInputValidation((prevState) => ({
+      //       ...prevState,
+      //       main_category: "Please select the main category.",
+      //     }));
+      //   }
+      //   break;
       default:
         break;
     }
@@ -368,7 +369,12 @@ const WantToBuy = () => {
             <ArrowBackIosNew />
             <span>Back</span>
           </Link>
-          <Button className="want_to_buy_btn" onClick={() => handleClickValidation()}>Submit</Button>
+          <Button
+            className="want_to_buy_btn"
+            onClick={() => handleClickValidation()}
+          >
+            Submit
+          </Button>
         </div>
       </div>
     </div>

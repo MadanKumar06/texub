@@ -1,14 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import "./styles.scss";
 
-import { Rating, Button } from "@mui/material";
+import { Rating, Button, Menu, MenuItem } from "@mui/material";
 import { Remove, Add } from "@mui/icons-material";
+import { MoreVert } from "@mui/icons-material";
 
 const WhislistTable = ({ tableData, tableDataHeader }) => {
+  //open more option at resolution 767px and below
+  const [openMoreOPtion, setOpenMoreOption] = useState(null);
+  const handleClickForOpenMoreOption = (event) => {
+    setOpenMoreOption(event.currentTarget);
+  };
+  const handleCloseForOpenMoreOption = () => {
+    setOpenMoreOption(null);
+  };
+
   return (
     <div className="wishlist_table_container">
       <div className="whishlist_table_header">
         <p className="header_title">{tableDataHeader}</p>
+        <MoreVert
+          className="more_option"
+          onClick={handleClickForOpenMoreOption}
+        />
+        <Menu
+          id="simple-menu"
+          anchorEl={openMoreOPtion}
+          keepMounted
+          open={Boolean(openMoreOPtion)}
+          onClose={handleCloseForOpenMoreOption}
+          className="menulist_item"
+        >
+          <MenuItem>Add All To Cart</MenuItem>
+          <MenuItem>Delete List</MenuItem>
+        </Menu>
         <div className="header_link">
           <p>Add All To Cart</p>
           <p>Delete List</p>
@@ -58,14 +83,14 @@ const WhislistTable = ({ tableData, tableDataHeader }) => {
                     <div className="qty_change">
                       <Remove
                         className="item_decrease"
-                      // onClick={() =>
-                      //   handleChange(
-                      //     parseInt(itm?.quantity) >= 2
-                      //       ? parseInt(itm?.quantity) - 1
-                      //       : 1,
-                      //     index
-                      //   )
-                      // }
+                        // onClick={() =>
+                        //   handleChange(
+                        //     parseInt(itm?.quantity) >= 2
+                        //       ? parseInt(itm?.quantity) - 1
+                        //       : 1,
+                        //     index
+                        //   )
+                        // }
                       />
                       <span className="input_text">
                         {" "}
@@ -73,9 +98,9 @@ const WhislistTable = ({ tableData, tableDataHeader }) => {
                       </span>
                       <Add
                         className="item_increase"
-                      // onClick={() =>
-                      //   handleChange(parseInt(itm?.quantity) + 1, index)
-                      // }
+                        // onClick={() =>
+                        //   handleChange(parseInt(itm?.quantity) + 1, index)
+                        // }
                       />
                     </div>
                   </div>
