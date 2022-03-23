@@ -23,7 +23,6 @@ const styles = (theme) => ({
     "@media (max-width:580px)": {
       margin: "0 2%",
     },
-
   },
   // header section  css
   header_section: {
@@ -267,6 +266,77 @@ const styles = (theme) => ({
     "@media(max-width:425px)": {
       padding: "1em 0.7em",
     },
+  },
+
+  // forgot password
+  forgotpassword: {
+    backgroundColor: "White",
+    minWidth: "60%",
+    "@media (max-width: 768px)": {
+      minWidth: "100%",
+    },
+  },
+
+  forgotpassword__title: {
+    fontSize: "40px",
+    fontWeight: "600",
+    backgroundColor: "#333C42",
+    color: "white",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "2em",
+    position: "relative",
+  },
+
+  forgotpassword__clearbtn: {
+    position: "absolute",
+    right: "16px",
+    top: "16px",
+    color: "#ffffff",
+    background: "#DDB363",
+    cursor: "pointer",
+    borderRadius: "3px",
+  },
+
+  forgotpassword__container: {
+    backgroundImage: "url('/Images/Group 76.png')",
+    padding: "2em",
+  },
+
+  forgotpassword__content: {
+    padding: "4em 2em",
+    display: "flex",
+    alignItems: "center",
+    backgroundColor: "white",
+  },
+
+  forgotpassword__email: {
+    width: "54%",
+    display: "flex",
+    flexDirection: "column",
+    gap: "2em",
+    padding: "2em",
+  },
+
+  forgotpassword__image: {
+    width: "45%",
+  },
+
+  forgotpassword__para: {
+    color: "#333333",
+    fontSize: "20px",
+  },
+
+  forgotpassword__submit: {
+    background: "linear-gradient(#20639B, #002D56)",
+    boxShadow: "0px 3px 6px #00000029",
+    color: "white",
+    padding: "1em 1.5em",
+    fontSize: "18px",
+    fontWeight: "600",
+    borderRadius: "25px",
+    cursor: "pointer",
   },
 });
 export default styles;
