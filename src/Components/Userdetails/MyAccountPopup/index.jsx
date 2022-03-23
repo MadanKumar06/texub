@@ -43,7 +43,7 @@ const MyAccountPopup = () => {
         <MenuItem>
           <Link to="/buyerdashboard/dashboard">
             <img src={dashboardLogo} alt="" />
-           Buyer Dashboard
+            Buyer Dashboard
           </Link>
         </MenuItem>
         <MenuItem>

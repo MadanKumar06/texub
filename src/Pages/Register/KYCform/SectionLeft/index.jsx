@@ -151,6 +151,8 @@ const BuyerKYCformSectionLeft = ({ classes }) => {
               FormValues={kycFormData}
               validationFieldMessage={validationFieldMessage}
               setValidationFieldMessage={setValidationFieldMessage}
+              setDocumentButton={setDocumentButton}
+              documentButton={documentButton}
             />
           </div>
         </div>

@@ -144,7 +144,7 @@ function MergeCarts() {
         columns={columns}
         table={tableData}
         options={options}
-        className="sellerprofile__table"
+        className="mergecarts__table"
       />
       <Pagination
         PaginateData={PaginateDataSplit}

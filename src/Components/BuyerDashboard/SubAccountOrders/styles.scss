@@ -132,21 +132,32 @@
     }
   }
 }
-
-@media (max-width: 926px) {
-  .subaccount__orders__table {
-    .MuiTable-root {
-      .MuiTableHead-root {
-        display: none;
-      }
-
-      .MuiTableBody-root {
-        .MuiTableCell-root {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-        }
-      }
+@media (max-width: 1660px) {
+  .subaccount__orders .subaccount__orders__back a .MuiSvgIcon-root {
+    width: 0.6em;
+    height: 0.6em;
+  }
+  .subaccount__orders .subaccount__orders__back a span {
+    font-size: 18px;
+  }
+  .subaccount__orders
+    .subaccount__orders__table
+    .MuiTableHead-root
+    .MuiTableCell-root {
+    font-size: 20px;
+  }
+  .subaccount__orders
+    .subaccount__orders__table
+    .MuiTableBody-root
+    .MuiTableCell-root {
+    font-size: 18px;
+  }
+  .subaccount__orders .subaccount__orders__table .MuiTableBody-root {
+    .subaccount__orders__delivered,
+    .subaccount__orders__confirmed,
+    .subaccount__orders__pending,
+    .subaccount__orders__action {
+      font-size: 18px;
     }
   }
 }
