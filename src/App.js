@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
 import { useStateValue } from "./store/state";
@@ -27,7 +27,7 @@ import Checkout from "./Pages/Checkout";
 
 //Footer section page
 import Selleradvantage from "./Pages/CMS/Services/Selleradvantage";
-import Buyeradvantage  from "./Pages/CMS/Services/Buyeradvantage";
+import Buyeradvantage from "./Pages/CMS/Services/Buyeradvantage";
 import Career from "./Pages/CMS/Services/Career";
 import { Training } from "./Pages/CMS/Services/Training";
 import { Termsofuse } from "./Pages/CMS/Company/Termsofuse/Termsofuse";
@@ -37,72 +37,310 @@ import Legal from "./Pages/CMS/Resources/Legal";
 import GDPR from "./Pages/CMS/Resources/GDPR";
 import Privacypolicy from "./Pages/CMS/Company/Privacypolicy";
 import RRpolicy from "./Pages/CMS/Company/RRpolicy";
-import Accountinfo from './Components/BuyerDashboard/MyProfile/Accountinfo'
+import Accountinfo from "./Components/BuyerDashboard/MyProfile/Accountinfo";
 
 //coming soon page
-import ComingSoon from './Pages/ComingSoon'
+import ComingSoon from "./Pages/ComingSoon";
 //popup component
-import KYCformSectionLeft from './Pages/Register/KYCform/SectionLeft'
+import KYCformSectionLeft from "./Pages/Register/KYCform/SectionLeft";
 import PDPpopUp from "./Pages/PDPpopUp";
-import SignIn from './Pages/SignIn/SiginPopUp/SectionLeft'
-import RegisterPopup from './Pages/Register/RegisterPopup/SectionLeft'
+import SignIn from "./Pages/SignIn/SiginPopUp/SectionLeft";
+import RegisterPopup from "./Pages/Register/RegisterPopup/SectionLeft";
 
 const App = () => {
-  const [{kycOpenClose,pdpPopUpOpenClose,registerOpenClose,
-    signInOpenClose}, dispatch] = useStateValue();
+  const [
+    { kycOpenClose, pdpPopUpOpenClose, registerOpenClose, signInOpenClose },
+    dispatch,
+  ] = useStateValue();
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
-        <BrowserRouter>
+        <Router>
           <Header />
           <Userdetails />
           <Routes>
-
             {/* header section */}
-            <Route path="/" element={ <> <Home /> <Footer /> </> } exact />
-            <Route path="/register/:type" element={ <> <Registration /> <Footer /></> } exact />
-            <Route path="/Products" element={ <> <Products /> <Footer /> </> } exact />
-            <Route path="/Aboutus" element={ <> <Aboutus /> <Footer /></> } exact />
-            <Route path="/coming-soon" element={<><ComingSoon />  <Footer /></>} exact />
-         
-
+            <Route
+              path="/"
+              element={
+                <>
+                  {" "}
+                  <Home /> <Footer />{" "}
+                </>
+              }
+              exact
+            />
+            <Route
+              path="/register/:type"
+              element={
+                <>
+                  {" "}
+                  <Registration /> <Footer />
+                </>
+              }
+              exact
+            />
+            <Route
+              path="/Products"
+              element={
+                <>
+                  {" "}
+                  <Products /> <Footer />{" "}
+                </>
+              }
+              exact
+            />
+            <Route
+              path="/Aboutus"
+              element={
+                <>
+                  {" "}
+                  <Aboutus /> <Footer />
+                </>
+              }
+              exact
+            />
+            <Route
+              path="/coming-soon"
+              element={
+                <>
+                  <ComingSoon /> <Footer />
+                </>
+              }
+              exact
+            />
 
             {/* Footer section */}
-            <Route path="/legal" element={ <> <Legal /> <Footer /></> } exact />
-            <Route path="/gdpr" element={ <> <GDPR /> <Footer /></> } exact />
-            <Route path="/Faqs" element={ <> <FAQ /> <Footer /></> } exact />
-            <Route path="/Contactus" element={ <> <Contactus /> <Footer /> </> } exact />
-            <Route path="/privacypolicy" element={ <> <Privacypolicy /> <Footer /> </> } exact />
-            <Route path="/termsofuse" element={ <>  <Termsofuse /> <Footer /> </> } exact />
-            <Route path="/rrpolicy" element={ <> <RRpolicy /> <Footer /> </> } exact />
-            <Route path="/training" element={ <> <Training /> <Footer /> </> } exact />
-            <Route path="/seller_advantage" element={ <> <Selleradvantage /> <Footer /></> } exact />
-            <Route path="/buyer_advantage" element={ <> <Buyeradvantage /> <Footer /></> } exact ></Route>
-            <Route path="/career" element={ <> <Career /> <Footer /> </> } exact ></Route>
-            <Route path="/blogsmain" element={ <> <Blogsmain /> <Footer /></> } exact />
-            <Route path="/blogsdetails" element={ <> <Blogs /> <Footer /> </> } exact />
-            <Route path="/faqs" element={ <>  <FAQ /> <Footer /> </> } exact />
-           
+            <Route
+              path="/legal"
+              element={
+                <>
+                  {" "}
+                  <Legal /> <Footer />
+                </>
+              }
+              exact
+            />
+            <Route
+              path="/gdpr"
+              element={
+                <>
+                  {" "}
+                  <GDPR /> <Footer />
+                </>
+              }
+              exact
+            />
+            <Route
+              path="/Faqs"
+              element={
+                <>
+                  {" "}
+                  <FAQ /> <Footer />
+                </>
+              }
+              exact
+            />
+            <Route
+              path="/Contactus"
+              element={
+                <>
+                  {" "}
+                  <Contactus /> <Footer />{" "}
+                </>
+              }
+              exact
+            />
+            <Route
+              path="/privacypolicy"
+              element={
+                <>
+                  {" "}
+                  <Privacypolicy /> <Footer />{" "}
+                </>
+              }
+              exact
+            />
+            <Route
+              path="/termsofuse"
+              element={
+                <>
+                  {" "}
+                  <Termsofuse /> <Footer />{" "}
+                </>
+              }
+              exact
+            />
+            <Route
+              path="/rrpolicy"
+              element={
+                <>
+                  {" "}
+                  <RRpolicy /> <Footer />{" "}
+                </>
+              }
+              exact
+            />
+            <Route
+              path="/training"
+              element={
+                <>
+                  {" "}
+                  <Training /> <Footer />{" "}
+                </>
+              }
+              exact
+            />
+            <Route
+              path="/seller_advantage"
+              element={
+                <>
+                  {" "}
+                  <Selleradvantage /> <Footer />
+                </>
+              }
+              exact
+            />
+            <Route
+              path="/buyer_advantage"
+              element={
+                <>
+                  {" "}
+                  <Buyeradvantage /> <Footer />
+                </>
+              }
+              exact
+            ></Route>
+            <Route
+              path="/career"
+              element={
+                <>
+                  {" "}
+                  <Career /> <Footer />{" "}
+                </>
+              }
+              exact
+            ></Route>
+            <Route
+              path="/blogsmain"
+              element={
+                <>
+                  {" "}
+                  <Blogsmain /> <Footer />
+                </>
+              }
+              exact
+            />
+            <Route
+              path="/blogsdetails"
+              element={
+                <>
+                  {" "}
+                  <Blogs /> <Footer />{" "}
+                </>
+              }
+              exact
+            />
+            <Route
+              path="/faqs"
+              element={
+                <>
+                  {" "}
+                  <FAQ /> <Footer />{" "}
+                </>
+              }
+              exact
+            />
 
             {/* user section */}
-            <Route path="/sellerdashboard/:currenttab" element={ <> <SellerDashboard /> <Footer /></> } exact />
-            <Route path="/buyerdashboard/:currenttab" element={ <> <BuyerDashboard /> <Footer /> </> } exact />
-            <Route path="/sellerprofile" element={ <> <SellerProfile /> <Footer /></> } exact />
-            <Route path="/pending-invoice" element={ <> <PendingInvoice /> <Footer /> </> } exact />
-            <Route path="/checkout" element={ <> <Checkout /> <Footer /> </> } exact />
-            <Route path="/mycart" element={ <> <Mycart /> <Footer /> </> } exact />
-            <Route path="/thankyou/:type" element={ <> <ThankYouPage /> <Footer /> </> } exact ></Route>
-            <Route path="/edit" element={ <> <Accountinfo /> <Footer /> </> } exact />
-            
+            <Route
+              path="/sellerdashboard/:currenttab"
+              element={
+                <>
+                  {" "}
+                  <SellerDashboard /> <Footer />
+                </>
+              }
+              exact
+            />
+            <Route
+              path="/buyerdashboard/:currenttab"
+              element={
+                <>
+                  {" "}
+                  <BuyerDashboard /> <Footer />{" "}
+                </>
+              }
+              exact
+            />
+            <Route
+              path="/sellerprofile"
+              element={
+                <>
+                  {" "}
+                  <SellerProfile /> <Footer />
+                </>
+              }
+              exact
+            />
+            <Route
+              path="/pending-invoice"
+              element={
+                <>
+                  {" "}
+                  <PendingInvoice /> <Footer />{" "}
+                </>
+              }
+              exact
+            />
+            <Route
+              path="/checkout"
+              element={
+                <>
+                  {" "}
+                  <Checkout /> <Footer />{" "}
+                </>
+              }
+              exact
+            />
+            <Route
+              path="/mycart"
+              element={
+                <>
+                  {" "}
+                  <Mycart /> <Footer />{" "}
+                </>
+              }
+              exact
+            />
+            <Route
+              path="/thankyou/:type"
+              element={
+                <>
+                  {" "}
+                  <ThankYouPage /> <Footer />{" "}
+                </>
+              }
+              exact
+            ></Route>
+            <Route
+              path="/edit"
+              element={
+                <>
+                  {" "}
+                  <Accountinfo /> <Footer />{" "}
+                </>
+              }
+              exact
+            />
           </Routes>
 
-           {/* Popup component using context api */}          
-          {kycOpenClose && <KYCformSectionLeft/>} 
-          {pdpPopUpOpenClose?.openClose && <PDPpopUp/>}
+          {/* Popup component using context api */}
+          {kycOpenClose && <KYCformSectionLeft />}
+          {pdpPopUpOpenClose?.openClose && <PDPpopUp />}
           {signInOpenClose && <SignIn />}
-          {registerOpenClose && <RegisterPopup/>}
-      
-        </BrowserRouter>
+          {registerOpenClose && <RegisterPopup />}
+        </Router>
       </ThemeProvider>
     </div>
   );
