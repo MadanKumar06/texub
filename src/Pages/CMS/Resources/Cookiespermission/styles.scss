@@ -1,16 +1,3 @@
-// .cookies_main::before{
-//     position:absolute;
-//     top : 0;
-//     left: 0;
-//     // width: 100%;
-//     // height: 100%;
-//     background-color: black;
-//     content:"";
-//     pointer-events: none;
-//     opacity: 1
-// }
-// .container{
-//     filter: brightness(0.5);
 .cookies_main{
     position: fixed;
     top: 0;
@@ -37,6 +24,7 @@
         right: -3rem;
         top: -2.7rem;
         height: 50px;
+        cursor: pointer;
     }
     .cookies_description,
     .cookies_btn,
