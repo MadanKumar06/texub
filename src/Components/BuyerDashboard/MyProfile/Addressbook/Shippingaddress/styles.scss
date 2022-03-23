@@ -192,6 +192,9 @@
                     //     width: 35rem;
                         
                     // }
+                    .MuiAutocomplete-input{
+                        padding:1.5px 4px 7.5px 6px;
+                      }
                     .MuiOutlinedInput-root{
                         padding-right: 6px;
                     }
@@ -208,6 +211,9 @@
                     gap: 40px;
                     .inputfield{
                         width: 50%;
+                        .MuiAutocomplete-input{
+                            padding:1.5px 4px 7.5px 6px;
+                          }
                     }
                     .MuiOutlinedInput-root{
                         padding-right: 5px;

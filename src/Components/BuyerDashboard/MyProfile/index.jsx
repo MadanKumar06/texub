@@ -32,6 +32,8 @@ const Index = () => {
     setisUser(true)
     setisAddress(false)
     setisAccountinfo(false)
+    setisEdit(false)
+    setisCompany(false)
   }
 
   const [isEdit, setisEdit] = useState(false)
@@ -40,6 +42,7 @@ const Index = () => {
     setisEdit(true)
     setisCompany(false)
     setisUser(false)
+    setisAddress(false)
 
   }
   const [isCompany, setisCompany] = useState(false)
@@ -48,6 +51,7 @@ const Index = () => {
     setisAccountinfo(false)
     setisEdit(false)
     setisUser(false)
+    setisAddress(false)
   }
 
   return (

@@ -79,7 +79,7 @@ const Index = (classes) => {
                 renderInput={(params) => (
                   <TextField
                     {...params}
-
+                    className='text'
                     placeholder="City"
                     InputLabelProps={{
                       shrink: true,
@@ -109,7 +109,7 @@ const Index = (classes) => {
                 renderInput={(params) => (
                   <TextField
                     {...params}
-
+                    className='text'
                     placeholder="state"
                     InputLabelProps={{
                       shrink: true,
@@ -143,6 +143,7 @@ const Index = (classes) => {
                     {...params}
                     fullWidth
                     placeholder="Country"
+                    className='text'
                     InputLabelProps={{
                       shrink: true,
                       required: true,
