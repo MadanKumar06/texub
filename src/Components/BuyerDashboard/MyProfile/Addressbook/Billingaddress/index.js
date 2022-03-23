@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 
-const Index = (classes) => {
+const Index = (classes, props) => {
   let { type } = useParams();
   let {
     auto_complete_input,
