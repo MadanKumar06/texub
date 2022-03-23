@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import "./styles.scss";
-
 import { ArrowBackIosNew, ArrowForwardIos } from "@mui/icons-material";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-
 import hpcolor from "../../../Assets/Productlist/hp_color.png";
 import hp from "../../../Assets/Productlist/hp_icon.png";
 import dell from "../../../Assets/Productlist/dell_icon.png";
@@ -32,7 +30,7 @@ const Slides = () =>
     </div>
   ));
 const Productsbrands = () => {
-  const [isChange, setisChange] = useState()
+  const [isChange, setisChange] = useState(false)
   const brand = (value) => {
     setisChange(value)
   }
@@ -191,6 +189,7 @@ const Productsbrands = () => {
               key={item.id}
               className="Slider_brands">
               <span onMouseOver={() => brand(item.id)}
+                    onMouseOut={() => brand(false)}
               >{item.brand}</span>
               {isChange &&
                 (

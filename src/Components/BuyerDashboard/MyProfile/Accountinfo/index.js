@@ -284,6 +284,7 @@ const Index = (classes) => {
               <TextField
                 id="email_address"
                 name="email_address"
+                placeholder="E-Mail"
                 value={AccountInfoData?.email_address}
                 InputLabelProps={{
                   shrink: false,

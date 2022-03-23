@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState}from 'react'
 import TextField from '@mui/material/TextField';
 import './styles.scss'
 import { Checkbox, FormControlLabel } from '@mui/material';
@@ -7,19 +7,18 @@ import { useParams } from "react-router-dom";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 
-const Index = (classes) => {
+const Index = ({address}) => {
+  console.log("shipping address details",address)  
   let { type } = useParams();
-  let {
-    auto_complete_input,
-  } = classes;
   const options = ["Option 1", "Option 2"];
   const [value, setValue] = React.useState();
   const [inputValue, setInputValue] = React.useState("");
+  const [billing, setbilling] = useState(false)
   return (
     <div className='Shippingaddress_main'>
       <div className='Shippingaddress_heading_section'>
         <span className='Shippingaddress_Account_heading'> <p >EDIT DEFAULT SHIPPING ADDRESS</p></span>
-        <FormControlLabel control={<Checkbox defaultValue={false} />} label="Same As Billing Adress" />
+        <FormControlLabel control={<Checkbox defaultValue={false} onClick={()=>setbilling(!billing)} />} label="Same As Billing Adress" />
       </div>
       <div className='Shippingaddress_information'>
         <form>
@@ -29,7 +28,7 @@ const Index = (classes) => {
               <TextField
                 id="outlined-error"
                 placeholder="Organization Name"
-
+                value={billing? address[0].organization:""}
               />
             </div>
             <div className='inputfield'>
@@ -37,6 +36,7 @@ const Index = (classes) => {
               <TextField
                 id="outlined-error"
               placeholder="Flat/Building/Block"
+              value={billing? address[0].no:""}
               />
             </div>
           </div>
@@ -46,6 +46,7 @@ const Index = (classes) => {
               <TextField
                 id="outlined-error"
                 placeholder="Sub-urb/Town"
+                value={billing? address[0].block:""}
               />
             </div>
             <div className='inputfield'>
@@ -55,6 +56,7 @@ const Index = (classes) => {
                 id="outlined-error"
                 placeholder="Pincode"
                 type="number"
+                value={billing? address[0].pin:""}
               />
             </div>
           </div>
@@ -74,11 +76,11 @@ const Index = (classes) => {
                 id="controllable-states-demo"
                 options={options}
 
-                className={auto_complete_input}
+                // className={auto_complete_input}
                 renderInput={(params) => (
                   <TextField
                     {...params}
-
+                    value={billing? address[0].location:""}
                     placeholder="City"
                     InputLabelProps={{
                       shrink: true,
@@ -103,12 +105,10 @@ const Index = (classes) => {
                 }}
                 id="controllable-states-demo"
                 options={options}
-
-                className={auto_complete_input}
                 renderInput={(params) => (
                   <TextField
                     {...params}
-
+                    value={billing? address[0].location:""}
                     placeholder="State"
                     InputLabelProps={{
                       shrink: true,
@@ -136,7 +136,7 @@ const Index = (classes) => {
                 id="controllable-states-demo"
                 options={options}
 
-                className={auto_complete_input}
+                // className={auto_complete_input}
                 renderInput={(params) => (
                   <TextField
                     {...params}
