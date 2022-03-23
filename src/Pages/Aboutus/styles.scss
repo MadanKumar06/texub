@@ -267,6 +267,7 @@
         position: absolute;
         width: 100%;
         bottom: 3em;
+        min-width: max-content;
         .list {
           position: relative;
           padding: 30px;
@@ -378,7 +379,7 @@
     top: 1.7em;
   }
   .aboutus .aboutus__worldwide .aboutus__worldwide__content img {
-    width: 70%;
+    width: 80%;
     max-width: 100%;
   }
   .aboutus
@@ -398,36 +399,10 @@
         font-size: 20px;
       }
     }
-    .usa {
-      width: 7%;
-    }
-    .nigeria {
-      width: 10%;
-    }
-    .netherland {
-      width: 13%;
-    }
-    .uae {
-      width: 16%;
-    }
-    .india {
-      width: 19%;
-    }
-    .singapore {
-      width: 22%;
-    }
   }
 }
 
 @media (max-width: 1440px) {
-  .aboutus .aboutus__mission__content .aboutus__mission__left h1 {
-    font-size: 42px;
-  }
-
-  .aboutus .aboutus__mission__content .aboutus__mission__left p {
-    font-size: 22px;
-  }
-
   .aboutus .aboutus__mission__content .aboutus__mission__right {
     top: 1em;
     right: 3em;
@@ -451,10 +426,6 @@
     top: 1.5em;
     right: 2.5em;
   }
-
-  .aboutus .aboutus__highlights ul li .dimagecontent span {
-    font-size: 24px;
-  }
 }
 
 @media (max-width: 1240px) {
@@ -470,31 +441,6 @@
   .aboutus__topbanner__floatingtext {
     bottom: 5.5em !important;
   }
-
-  .aboutus .aboutus__mission__content .aboutus__mission__left h1 {
-    font-size: 32px;
-  }
-
-  .aboutus .aboutus__mission__content .aboutus__mission__left p {
-    font-size: 18px;
-  }
-
-  .aboutus
-    .aboutus__mission__content
-    .aboutus__mission__right
-    .aboutus__righttext
-    h1 {
-    font-size: 36px;
-  }
-
-  .aboutus
-    .aboutus__mission__content
-    .aboutus__mission__right
-    .aboutus__righttext
-    p {
-    font-size: 20px;
-  }
-
   .aboutus .aboutus__mission__content .aboutus__mission__right {
     right: 1.5em;
   }
@@ -515,24 +461,52 @@
   .aboutus .aboutus__highlights ul li .dimagecontent {
     top: -1.5em;
   }
+  .aboutus
+    .aboutus__topbanner
+    .aboutus__topbanner__floatingtext
+    .topbanner__text2 {
+    font-size: 35px;
+  }
+  .aboutus
+    .aboutus__topbanner
+    .aboutus__topbanner__floatingtext
+    .topbanner__text1 {
+    font-size: 20px;
+  }
+  .aboutus .aboutus__mission__content .aboutus__mission__left p,
+  .aboutus
+    .aboutus__mission__content
+    .aboutus__mission__right
+    .aboutus__righttext
+    p {
+    font-size: 16px;
+  }
+  .aboutus .aboutus__mission__content .aboutus__mission__left h1,
+  .aboutus
+    .aboutus__mission__content
+    .aboutus__mission__right
+    .aboutus__righttext
+    h1 {
+    font-size: 20px;
+  }
+  .aboutus
+    .aboutus__worldwide
+    .aboutus__worldwide__content
+    .aboutus__ww__country
+    .list
+    span {
+    font-size: 16px;
+  }
+  .aboutus
+    .aboutus__worldwide
+    .aboutus__worldwide__content
+    .aboutus__ww__country
+    .list {
+    padding: 17px;
+  }
 }
 
 @media (max-width: 1024px) {
-  .topbanner__text1 {
-    font-size: 32px !important;
-  }
-  .topbanner__text2 {
-    font-size: 64px !important;
-  }
-
-  .aboutus .aboutus__mission__content .aboutus__mission__left {
-    top: 0;
-
-    p {
-      font-size: 16px;
-    }
-  }
-
   .aboutus .aboutus__mission__content .aboutus__mission__right,
   .aboutus
     .aboutus__mission__content
@@ -540,17 +514,8 @@
     .aboutus__righttext {
     top: 1em;
   }
-
-  .aboutus
-    .aboutus__mission__content
-    .aboutus__mission__right
-    .aboutus__righttext
-    h1 {
-    font-size: 32px;
-  }
-
-  .aboutus .aboutus__highlights ul li .dimagecontent span {
-    font-size: 20px;
+  .aboutus .aboutus__mission__content .aboutus__mission__left {
+    top: 0.5em;
   }
 }
 
@@ -579,10 +544,6 @@
     margin-top: 20em;
   }
 
-  .aboutus .aboutus__highlights ul li .dimagecontent span {
-    font-size: 18px;
-  }
-
   .dimage {
     width: 5em;
   }
@@ -603,27 +564,11 @@
     > img {
     width: 70%;
   }
-
-  .aboutus
-    .aboutus__worldwide
-    .aboutus__worldwide__content
-    .aboutus__ww__country
-    .list
-    span {
-    font-size: 22px;
-  }
 }
 
 @media (max-width: 820px) {
   .aboutus__topbanner__floatingtext {
     bottom: 4em !important;
-
-    .topbanner__text1 {
-      font-size: 24px !important;
-    }
-    .topbanner__text2 {
-      font-size: 48px !important;
-    }
   }
 
   .aboutus .aboutus__highlights ul li .dimagecontent {
@@ -632,10 +577,6 @@
 
   .aboutus .aboutus__highlights ul li .dimagecontent {
     gap: 2px;
-  }
-
-  .aboutus .aboutus__highlights ul p {
-    font-size: 32px;
   }
 
   .aboutus .aboutus__highlights ul li:nth-child(odd)::before,
@@ -667,12 +608,22 @@
   .aboutus .aboutus__highlights ul li:nth-child(odd) .dimagecontent {
     right: 6em;
   }
+  .aboutus
+    .aboutus__worldwide
+    .aboutus__worldwide__content
+    .aboutus__ww__country {
+    .list {
+      margin-top: 2px;
+      padding: 12px;
+
+      span {
+        font-size: 14px;
+      }
+    }
+  }
 }
 
 @media (max-width: 768px) {
-  .aboutus .aboutus__highlights ul li .dimagecontent span {
-    font-size: 16px;
-  }
   .aboutus .aboutus__worldwide {
     padding-bottom: 5px;
   }
@@ -692,23 +643,6 @@
   }
 }
 @media (max-width: 580px) {
-  .aboutus__topbanner__floatingtext {
-    .topbanner__text1 {
-      font-size: 16px !important;
-    }
-    .topbanner__text2 {
-      font-size: 32px !important;
-    }
-  }
-
-  .aboutus .aboutus__mission__content .aboutus__mission__left h1 {
-    font-size: 24px;
-  }
-
-  .aboutus .aboutus__mission__content .aboutus__mission__left p {
-    font-size: 12px;
-  }
-
   .aboutus .aboutus__mission__content .aboutus__mission__right {
     right: 0;
     top: 2em;
@@ -743,35 +677,9 @@
     > img {
     width: 50%;
   }
-
-  .aboutus
-    .aboutus__worldwide
-    .aboutus__worldwide__content
-    .aboutus__ww__country
-    .list
-    span {
-    font-size: 15px;
-  }
 }
 
 @media (max-width: 540px) {
-  .aboutus__topbanner__floatingtext {
-    .topbanner__text1 {
-      font-size: 16px !important;
-    }
-    .topbanner__text2 {
-      font-size: 32px !important;
-    }
-  }
-
-  .aboutus .aboutus__mission__content .aboutus__mission__left h1 {
-    font-size: 24px;
-  }
-
-  .aboutus .aboutus__mission__content .aboutus__mission__left p {
-    font-size: 12px;
-  }
-
   .aboutus .aboutus__mission__content .aboutus__mission__right {
     right: 0;
     top: 2em;
@@ -804,15 +712,6 @@
     > img {
     width: 50%;
   }
-
-  .aboutus
-    .aboutus__worldwide
-    .aboutus__worldwide__content
-    .aboutus__ww__country
-    .list
-    span {
-    font-size: 15px;
-  }
 }
 
 @media (max-width: 480px) {
@@ -827,21 +726,6 @@
     .aboutus__righttext {
     top: 1em;
   }
-  .aboutus
-    .aboutus__mission__content
-    .aboutus__mission__right
-    .aboutus__righttext
-    h1 {
-    font-size: 24px;
-  }
-
-  .aboutus
-    .aboutus__mission__content
-    .aboutus__mission__right
-    .aboutus__righttext
-    p {
-    font-size: 16px;
-  }
 
   .aboutus .aboutus__highlights ul li:nth-child(even) .dimagecontent {
     left: 4em;
@@ -851,9 +735,6 @@
     right: 4em;
   }
 
-  .aboutus .aboutus__highlights ul li .dimagecontent span {
-    font-size: 16px;
-  }
   .aboutus
     .aboutus__worldwide
     .aboutus__worldwide__content
@@ -869,7 +750,6 @@
     .aboutus__ww__country
     .list
     span {
-    font-size: 12px;
     left: 10px;
   }
   .aboutus
@@ -880,34 +760,7 @@
   }
 }
 
-@media (max-width: 375px) {
-  .aboutus .aboutus__worldwide h1 {
-    font-size: 36px;
-  }
-}
-
 @media (max-width: 320px) {
-  .aboutus__topbanner__floatingtext .topbanner__text2 {
-    font-size: 26px !important;
-  }
-  .aboutus
-    .aboutus__mission__content
-    .aboutus__mission__right
-    .aboutus__righttext
-    h1 {
-    font-size: 20px;
-  }
-  .aboutus
-    .aboutus__mission__content
-    .aboutus__mission__right
-    .aboutus__righttext
-    p {
-    font-size: 12px;
-  }
-
-  .aboutus .aboutus__highlights ul li .dimagecontent span {
-    font-size: 14px;
-  }
   .aboutus
     .aboutus__worldwide
     .aboutus__worldwide__content
@@ -915,15 +768,6 @@
     > .list
     > img {
     width: 32%;
-  }
-
-  .aboutus
-    .aboutus__worldwide
-    .aboutus__worldwide__content
-    .aboutus__ww__country
-    .list
-    span {
-    font-size: 8px;
   }
 }
 @media (max-width: 425px) {
@@ -937,14 +781,5 @@
     > .list
     > img {
     width: 32%;
-  }
-
-  .aboutus
-    .aboutus__worldwide
-    .aboutus__worldwide__content
-    .aboutus__ww__country
-    .list
-    span {
-    font-size: 8px;
   }
 }
