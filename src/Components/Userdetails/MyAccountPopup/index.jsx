@@ -1,6 +1,7 @@
 import React from "react";
 import { Menu, MenuItem, Button, Badge } from "@mui/material";
 import "./styles.scss";
+import { Link } from "react-router-dom";
 import dashboardLogo from "../../../Assets/CommonImage/MyAccountMegamenu/menu.png";
 import myOrderLogo from "../../../Assets/CommonImage/MyAccountMegamenu/shopping-bag.png";
 import auctionsLogo from "../../../Assets/CommonImage/MyAccountMegamenu/auction.png";
@@ -23,10 +24,10 @@ const MyAccountPopup = () => {
         onClick={handleClick}
       >
         {/* <Badge badgeContent={1} className="badge_user"> */}
-          <div className="account_circle_image">
-            <img src={account_circle} alt="" />
-          </div>
-        
+        <div className="account_circle_image">
+          <img src={account_circle} alt="" />
+        </div>
+
         {/* </Badge> */}
         <li className="user_account">My Account</li>
       </Button>
@@ -40,8 +41,16 @@ const MyAccountPopup = () => {
         className="menulist_items"
       >
         <MenuItem>
-          <img src={dashboardLogo} alt="" />
-          Dashboard
+          <Link to="/buyerdashboard/dashboard">
+            <img src={dashboardLogo} alt="" />
+           Buyer Dashboard
+          </Link>
+        </MenuItem>
+        <MenuItem>
+          <Link to="/sellerdashboard/dashboard">
+            <img src={dashboardLogo} alt="" />
+            Seller Dashboard
+          </Link>
         </MenuItem>
         <MenuItem>
           <img src={myOrderLogo} alt="" />

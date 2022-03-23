@@ -44,6 +44,13 @@
   .MuiList-root {
     margin: 0 30px;
     .MuiMenuItem-root {
+      a{
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: #5c6369;
+        gap: 24px;
+      }
       gap: 24px;
       padding: 13px 13px 13px 0px;
       border-bottom: 1px solid #e6e6e6;
