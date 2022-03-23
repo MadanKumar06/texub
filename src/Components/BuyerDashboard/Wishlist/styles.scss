@@ -24,3 +24,17 @@
     }
   }
 }
+
+@media (max-width: 1660px) {
+  .wishlist_main_container
+    .wishlist__footer
+    .wishlist__container
+    a
+    .MuiSvgIcon-root {
+    width: 0.6em;
+    height: 0.6em;
+  }
+  .wishlist_main_container .wishlist__footer .wishlist__container a span {
+    font-size: 18px;
+  }
+}

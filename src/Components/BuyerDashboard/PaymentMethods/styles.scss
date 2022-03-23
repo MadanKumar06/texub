@@ -99,6 +99,48 @@
   }
 }
 
+@media (max-width: 1660px) {
+  .payment_method
+    .payment_method__footer
+    .payment_method__container
+    a
+    .MuiSvgIcon-root {
+    width: 0.6em;
+    height: 0.6em;
+  }
+  .payment_method .payment_method__footer .payment_method__container a span {
+    font-size: 18px;
+  }
+  .payment_method
+    .payment_method__footer
+    .payment_method__container
+    .payment_method_btn {
+    width: 23% !important;
+    font-size: 16px !important;
+    padding: 8px !important;
+  }
+  .payment_method .payment_method__table .MuiToolbar-root .MuiTypography-root {
+    font-size: 18px;
+  }
+  .payment_method .payment_method__table .MuiToolbar-root {
+    min-height: 43px;
+    .MuiTableHead-root {
+      .MuiTableCell-root {
+        font-size: 20px;
+      }
+    }
+  }
+  .payment_method .payment_method__table .MuiTableBody-root .MuiTableCell-root,
+  .payment_method
+    .payment_method__table
+    .MuiTableBody-root
+    .payment_method__action {
+    font-size: 18px;
+  }
+  .payment_method .payment_method__table table {
+    margin: 1em 0;
+  }
+}
 @media (max-width: 926px) {
   .payment_method__table {
     .MuiTable-root {
