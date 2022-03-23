@@ -4,8 +4,16 @@ import MUITable from "../../Common/MUITable";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import Pagination from "../../Pagination";
+import Vieworders from "../../Common/Vieworders";
+
 function SubAccountOrders() {
   const [tableData, setTableData] = useState([]);
+  const [isOrders, setisOrders] = useState(true);
+  const [isVieworders, setisVieworders] = useState(false);
+  const orders = () => {
+    setisVieworders(true);
+    setisOrders(false);
+  };
   const table = [
     {
       user_name: "Srikant Verma",
@@ -94,7 +102,14 @@ function SubAccountOrders() {
       label: "Action",
       options: {
         customBodyRender: (value) => {
-          return <div className="subaccount__orders__action">{value}</div>;
+          return (
+            <div
+              className="subaccount__orders__action"
+              onClick={() => orders()}
+            >
+              {value}
+            </div>
+          );
         },
       },
     },
@@ -122,18 +137,23 @@ function SubAccountOrders() {
         </Link>
       </div>
 
-      <MUITable
-        columns={columns}
-        table={tableData}
-        options={options}
-        className="subaccount__orders__table"
-      />
-      
-      <Pagination
-        PaginateData={PaginateDataSplit}
-        DataList={table}
-        PagePerRow={10}
-      />
+      {isOrders && (
+        <>
+          <MUITable
+            columns={columns}
+            table={tableData}
+            options={options}
+            className="subaccount__orders__table"
+          />
+
+          <Pagination
+            PaginateData={PaginateDataSplit}
+            DataList={table}
+            PagePerRow={10}
+          />
+        </>
+      )}
+      {isVieworders && <Vieworders />}
     </div>
   );
 }
