@@ -54,7 +54,7 @@ const table_two_data = [
   {
     id: 1,
     seller_radio: "data1",
-    seller_id: "2200121",
+    seller_id: "3200121",
     seller_eta: "3-5 Days",
     seller_price: "66,780",
     seller_in_stock: 100,
@@ -64,7 +64,7 @@ const table_two_data = [
   {
     id: 2,
     seller_radio: "data2",
-    seller_id: "2200123",
+    seller_id: "3200123",
     seller_eta: "3-5 Days",
     seller_price: "66,719",
     seller_in_stock: 100,
@@ -74,7 +74,7 @@ const table_two_data = [
   {
     id: 3,
     seller_radio: "data3",
-    seller_id: "2200124",
+    seller_id: "3200124",
     seller_eta: "3-5 Days",
     seller_price: "66,729",
     seller_in_stock: 100,
@@ -84,7 +84,7 @@ const table_two_data = [
   {
     id: 4,
     seller_radio: "data4",
-    seller_id: "2200123",
+    seller_id: "3200123",
     seller_eta: "3-5 Days",
     seller_price: "66,719",
     seller_in_stock: 100,
@@ -94,7 +94,7 @@ const table_two_data = [
   {
     id: 5,
     seller_radio: "data5",
-    seller_id: "2200124",
+    seller_id: "3200124",
     seller_eta: "3-5 Days",
     seller_price: "66,729",
     seller_in_stock: 100,
@@ -104,7 +104,7 @@ const table_two_data = [
   {
     id: 1,
     seller_radio: "data6",
-    seller_id: "2200121",
+    seller_id: "3200121",
     seller_eta: "3-5 Days",
     seller_price: "66,780",
     seller_in_stock: 100,
@@ -114,7 +114,7 @@ const table_two_data = [
   {
     id: 2,
     seller_radio: "data7",
-    seller_id: "2200123",
+    seller_id: "3200123",
     seller_eta: "3-5 Days",
     seller_price: "66,719",
     seller_in_stock: 100,
@@ -124,7 +124,7 @@ const table_two_data = [
   {
     id: 3,
     seller_radio: "data8",
-    seller_id: "2200124",
+    seller_id: "3200124",
     seller_eta: "3-5 Days",
     seller_price: "66,729",
     seller_in_stock: 100,
@@ -134,7 +134,7 @@ const table_two_data = [
   {
     id: 4,
     seller_radio: "data9",
-    seller_id: "2200123",
+    seller_id: "3200123",
     seller_eta: "3-5 Days",
     seller_price: "66,719",
     seller_in_stock: 100,
@@ -144,7 +144,7 @@ const table_two_data = [
   {
     id: 5,
     seller_radio: "data10",
-    seller_id: "2200124",
+    seller_id: "3200124",
     seller_eta: "3-5 Days",
     seller_price: "66,729",
     seller_in_stock: 100,

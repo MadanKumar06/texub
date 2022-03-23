@@ -4,6 +4,7 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from "@mui/material/Autocomplete";
 import { useParams } from "react-router-dom";
 import { ArrowBackIosNew } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 
 const Index = (classes) => {
   let { type } = useParams();
@@ -25,7 +26,7 @@ const Index = (classes) => {
               <TextField
                 fullWidth
                 id="outlined-error"
-                defaultValue="Organization Name"
+              placeholder="Organization Name"
               />
             </div>
             <div className='inputfield'>
@@ -33,7 +34,7 @@ const Index = (classes) => {
               <TextField
                 fullWidth
                 id="outlined-error"
-                defaultValue="Flat/Building/Block"
+                placeholder="Flat/Building/Block"
               />
             </div>
           </div>
@@ -43,7 +44,7 @@ const Index = (classes) => {
               <TextField
                 fullWidth
                 id="outlined-error"
-                defaultValue="Sub-urb/Town"
+                placeholder="Sub-urb/Town"
               />
             </div>
             <div className='inputfield'>
@@ -53,6 +54,8 @@ const Index = (classes) => {
                 fullWidth
                 id="outlined-error"
                 defaultValue="Pincode"
+                type="number"
+                placeholder='Pin Code'
               />
             </div>
           </div>
@@ -76,7 +79,7 @@ const Index = (classes) => {
                 renderInput={(params) => (
                   <TextField
                     {...params}
-
+                    className='text'
                     placeholder="City"
                     InputLabelProps={{
                       shrink: true,
@@ -106,7 +109,7 @@ const Index = (classes) => {
                 renderInput={(params) => (
                   <TextField
                     {...params}
-
+                    className='text'
                     placeholder="state"
                     InputLabelProps={{
                       shrink: true,
@@ -140,6 +143,7 @@ const Index = (classes) => {
                     {...params}
                     fullWidth
                     placeholder="Country"
+                    className='text'
                     InputLabelProps={{
                       shrink: true,
                       required: true,
@@ -157,7 +161,9 @@ const Index = (classes) => {
         </form>
       </div>
       <div className='my_profile_back'>
+      <Link to="/buyerdashboard/dashboard" className="link">
         <ArrowBackIosNew /><span><p className='back'>Back</p></span>
+          </Link>
       </div>
     </div>
   )

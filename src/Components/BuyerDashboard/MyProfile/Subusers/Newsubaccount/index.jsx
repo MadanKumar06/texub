@@ -5,6 +5,7 @@ import {isEmailValid} from "../../../../../utilities";
 import Autocomplete from "@mui/material/Autocomplete";
 import { useParams } from "react-router-dom";
 import { ArrowBackIosNew } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 const Index = (classes) => {
     const List =[
         {title:"Cart Approval Required",},
@@ -157,6 +158,7 @@ if (!NewSubAccountData?.active) {
               fullWidth
                 id="first_name"
                 name='first_name'
+                placeholder='First Name'
                 InputLabelProps={{
                   shrink:false,
                 }}
@@ -173,6 +175,7 @@ if (!NewSubAccountData?.active) {
               fullWidth
                 id="last_name"
                 name='last_name'
+                placeholder='Last Name'
                 InputLabelProps={{
                   shrink:false,
                 }}
@@ -190,6 +193,7 @@ if (!NewSubAccountData?.active) {
               fullWidth
                 id="e_mail"
                 name="e_mail"
+                placeholder='E-Mail Address'
                 InputLabelProps={{
                   shrink:false,
                 }}
@@ -215,6 +219,7 @@ if (!NewSubAccountData?.active) {
           fullWidth
           id="allowed_permissions"
           name='allowed_permissions'
+          placeholder='Allow Permissions'
           InputLabelProps={{
             shrink:false,
           }}
@@ -243,7 +248,7 @@ if (!NewSubAccountData?.active) {
     <div>
     <p>Fobidden Access</p>
     <TextareaAutosize
-      
+      placeholder='Access'
       aria-label="empty textarea"
       style={{height:100,
               width:"100%",}}
@@ -284,7 +289,9 @@ if (!NewSubAccountData?.active) {
     </div>
     <div className='my_profile_btns'>
     <div className='my_profile_back'>
+    <Link to="/buyerdashboard/dashboard" className="link">
         <ArrowBackIosNew /><span><p className='back'>Back</p></span>
+          </Link>
       </div>
     <div className='user_btn_section'>
         <button  onClick={() => handleClickValidation()}>Save Sub-Account</button>

@@ -1,9 +1,12 @@
-import React from 'react'
+import React ,{useState}from 'react'
 import { Clear } from "@mui/icons-material";
 import './styles.scss'
+import {Modal,Backdrop } from "@mui/material";
 // import Modal from '@mui/material/Modal';
 
 const Index = ({ closePOPup }) => {
+    const [open, setOpen] = useState(true);
+   
     const list = [
         { id: 1, list: "Cart Approval Required" },
         { id: 2, list: "Can Merge Own Cart To Main Cart" },
@@ -26,11 +29,17 @@ const Index = ({ closePOPup }) => {
 
     ]
     return (
-        // <Modal
-        //     aria-labelledby="modal-modal-title"
-        //     aria-describedby="modal-modal-description"
-        //     className="permissions_main"
-        // >
+        <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        open={open}
+        className="modal"
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
         <div  className="permissions_main">
             <div className='permissions_popup'>
                 <div className='permissions_block'>
@@ -46,7 +55,7 @@ const Index = ({ closePOPup }) => {
                 </div>
             </div>
             </div>
-        // </Modal >
+         </Modal >
     )
 }
 export default Index;

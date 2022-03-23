@@ -1,12 +1,13 @@
 const styles = (theme) => ({
   section_main: {
-    height: "81vh",
+    // height: "81vh",
     zIndex: "1",
     display: "flex",
     width: "100%",
-    overflow: "auto",
+    // overflow: "auto",
     gap: "6em",
     "@media (max-width:768px)": {
+      height: "81vh",
       flexDirection: "column",
       overflowY: "scroll",
     },

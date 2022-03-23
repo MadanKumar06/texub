@@ -8,6 +8,7 @@
         font-size: 18px;
         letter-spacing: 0.54px;
         font-weight: 600;
+        width: 46%;
     }
  .company_information{
 
@@ -25,6 +26,12 @@
             flex-direction: column;
             gap: 5px;
             width: 50%;
+            .MuiAutocomplete-input{
+                padding: 12px;
+            }
+            .MuiOutlinedInput-root{
+                padding: 0 8px 0 0;
+            }
             .downarrow{
                 position: absolute;
                 margin-top: 74px;
@@ -57,18 +64,78 @@
         display: flex;
         justify-content: space-between;
         gap: 40px;
-        .documents{
+        .media_upload{
             display: flex;
             flex-direction: column;
-            justify-content: flex-start;
-            gap: 10px;
-            width: 50%;
+            margin-top: 16px;
+            margin-bottom: 20px;
+            .sub_media_upload_container{
+                .sub_media_upload_part{
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                    .heading{
+                        display: flex;
+                        gap: 10px;
+                        p{
+                            margin:0;
+                        }
+                        small{
+                            margin-top: 3px;
+                        }
+                    }
+                    .label_section{
+                        display: flex;
+                        gap: 10px;
+                        p{
+                            color: #002D56;
+                            font-size: 18px;
+                            letter-spacing: 0.54px;
+                            font-weight: 600;
+                            margin: 6px 0 0 0;
+                        }
+                        .sub_media_upload_label{
+                            margin: auto;
+                            cursor: pointer;
+                            input {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+            }
+            .input_image_name{
+                width: fit-content;
+                display: flex;
+                position: relative;
+                flex-wrap: wrap;
+                background: #E8E8E8;
+                align-items: center;
+                border-radius: 4px;
+                flex-direction: row;
+                justify-content: center;
+                padding: 13px;
+                margin-top: 24px;
+                p {
+                    margin: 0,
+                   }
+                   .input_image_name_clear_btn {
+                    position: absolute;
+                    top: -6px;
+                    font-size: 17px !important;
+                    right: -6px;
+                    background: #DDB363;
+                    color: #ffffff;
+                    border-radius: 14px,
+                  }
+            }
         }
         .accountinfo_btn_section{
             display: flex;
             gap: 50px;
             justify-content: space-between;
-            width: 50%;
+            width: 48%;
+            padding-top: 46px;
             
             .account_info_cancel{
                 color: #002D56;
@@ -83,6 +150,7 @@
                 text-shadow: 0px 3px 6px #00000029;
                 cursor: pointer;
                 width: 44%;
+                height: 53px;
             }
             .account_info_save{
                 box-shadow: 0px 3px 6px #00000029;
@@ -97,6 +165,7 @@
                 font-weight: 600;
                 text-shadow: 0px 3px 6px #00000029;
                 cursor: pointer;
+                height: 53px;
             }
         }
     }
@@ -201,6 +270,7 @@
     // }
     .companyinfo_main .company_information .accountinfo_btn .accountinfo_btn_section{
         flex-direction: column;
+        padding-top: 10px;
     }
     .companyinfo_main .company_information .accountinfo_btn .accountinfo_btn_section .account_info_cancel{
         width: 100%;
@@ -209,6 +279,9 @@
     .companyinfo_main .company_information .accountinfo_btn .accountinfo_btn_section .account_info_save{
         width: 100%;
         padding: 15px 25px;
+    }
+    .companyinfo_main .company_information .accountinfo_btn .media_upload .sub_media_upload_container .sub_media_upload_part .label_section {
+        flex-direction: column;
     }
 }
 

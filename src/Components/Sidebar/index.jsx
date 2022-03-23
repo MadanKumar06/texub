@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./styles.scss";
+import { Clear } from "@mui/icons-material";
 
 import { SellerList, BuyerList } from "./image";
 import logout from "../../Assets/sellerdashboard/InactiveDashboardPng/logout.png";
@@ -19,7 +20,7 @@ function Index({
 
   return (
     <div className={`${barstate ? "sidebaropen" : "sellerdashboard__sidebar"}`}>
-      <p className="sidebar__close" onClick={() => setbarstate(false)}></p>
+      <Clear className="sidebar__close" onClick={() => setbarstate(false)} />
       <div className="sidebar_head_title">
         <p>
           <span className="sellerlabel">

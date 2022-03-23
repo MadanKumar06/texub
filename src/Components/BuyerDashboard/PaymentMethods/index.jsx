@@ -33,7 +33,11 @@ function PaymentMethod() {
       label: "Type",
       options: {
         customBodyRender: (value) => {
-          return <img src={value} alt="" />;
+          return (
+            <div>
+              <img src={value} alt="" />
+            </div>
+          );
         },
       },
     },
@@ -77,7 +81,6 @@ function PaymentMethod() {
         table={table}
         className="payment_method__table"
       />
-
     </div>
   );
 }

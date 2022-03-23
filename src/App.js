@@ -44,14 +44,13 @@ import ComingSoon from "./Pages/ComingSoon";
 //popup component
 import KYCformSectionLeft from "./Pages/Register/KYCform/SectionLeft";
 import PDPpopUp from "./Pages/PDPpopUp";
-import SignIn from "./Pages/SignIn/SiginPopUp/SectionLeft";
-import RegisterPopup from "./Pages/Register/RegisterPopup/SectionLeft";
+import SignIn from './Pages/SignIn/SiginPopUp/SectionLeft'
+import RegisterPopup from './Pages/Register/RegisterPopup/SectionLeft'
+import MiniCartList from "./Pages/MiniCart/MiniCartList";
 
 const App = () => {
-  const [
-    { kycOpenClose, pdpPopUpOpenClose, registerOpenClose, signInOpenClose },
-    dispatch,
-  ] = useStateValue();
+  const [{kycOpenClose,pdpPopUpOpenClose,registerOpenClose,miniCartOpenClose,
+    signInOpenClose}, dispatch] = useStateValue();
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
@@ -339,8 +338,10 @@ const App = () => {
           {kycOpenClose && <KYCformSectionLeft />}
           {pdpPopUpOpenClose?.openClose && <PDPpopUp />}
           {signInOpenClose && <SignIn />}
-          {registerOpenClose && <RegisterPopup />}
-        </Router>
+          {registerOpenClose && <RegisterPopup/>}
+         { miniCartOpenClose?.openClose && <MiniCartList/>}
+      
+        </BrowserRouter>
       </ThemeProvider>
     </div>
   );

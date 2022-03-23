@@ -54,6 +54,7 @@
         padding: 10px 25px;
         text-align: center;
         width: auto !important;
+        position: relative;
         
       }
       .Slider_brands:hover{
@@ -109,17 +110,98 @@
         font-family: "Source Sans Pro";
       }
     }
-    .slide_brands{
-      display: block;
+    // .Slide_brands{
+    //   display: block;
+    //   position: relative;
+    //   .slide_brands_list{
+    //     list-style: none;
+    //     font-size: 18px;
+    //     border-radius: 25px;
+    //     border: 1px solid #D6D8D9;
+    //     cursor: pointer;
+    //     box-shadow: 0px 3px 6px #00000029;
+    //   }
+    // }
+  }
+  // .list{
+  //   display: flex;
+  //   width: 300px;
+  //   background-color: #FFFFFF;
+  //   padding: 10px;
+  //   box-shadow: 0px 3px 18px #00000022;
+  //   border-radius: 4px;
+  //   overflow: hidden;
+  //   // z-index: 9;
+  //   // position: absolute;
+  //   left: -30px;
+  //   .list_content{
+  //     list-style: none;
+  //     width: 100%;
+  //     span{
+  //       display: flex;
+  //       gap: 15px;
+  //       flex-direction: column;
+  //     .content{
+  //       display: flex;
+  //       justify-content: space-between;
+  //       span{
+  //         background: #F8F0E0;
+  //         display: flex;
+  //         flex-direction: inherit;
+  //         width: 100%;
+  //         border-radius: 4px;
+  //         justify-content: space-between;
+  //         p{
+  //           margin: 10px;
+  //           font-size: 18px;
+  //           letter-spacing: 0.54px;
+  //           font-weight: 600px;
+  //         }
+  //       }
+  //     }
+  //    }
+  //   }
+  // }
+}
+.list{
+  display: flex;
+  width: 300px;
+  background-color: #FFFFFF;
+  // padding: 10px;
+  box-shadow: 0px 3px 18px #00000022;
+  border-radius: 4px;
+  z-index: 9;
+  position: absolute;
+  top: 45px;
+  .list_content{
+    list-style: none;
+    width: 100%;
+    span{
+      display: flex;
+      flex-direction: column;
+    .content{
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
       
-      .slide_brands_list{
-        list-style: none;
-        font-size: 18px;
-        border-radius: 25px;
-        border: 1px solid #D6D8D9;
-        cursor: pointer;
-        box-shadow: 0px 3px 6px #00000029;
+      span{
+        background: #F8F0E0;
+        display: flex;
+        flex-direction: inherit;
+        width: 100%;
+        border-radius: 4px;
+        justify-content: space-between;
+        p{
+          margin: 10px;
+          font-size: 18px;
+          letter-spacing: 0.54px;
+          font-weight: 600;
+          color: #333C42;
+          opacity: 1;
+          border: 1px #00000000;
+        }
       }
     }
+   }
   }
 }
