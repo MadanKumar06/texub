@@ -178,21 +178,63 @@
     }
   }
 }
-
-@media (max-width: 926px) {
-  .approve__cart__table {
-    .MuiTable-root {
-      .MuiTableHead-root {
-        display: none;
-      }
-
-      .MuiTableBody-root {
-        .MuiTableCell-root {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-        }
-      }
+@media (max-width: 1660px) {
+  .approve__cart
+    .approve__cart__footer
+    .approve__cart__container
+    a
+    .MuiSvgIcon-root {
+    width: 0.6em;
+    height: 0.6em;
+  }
+  .approve__cart .approve__cart__footer .approve__cart__container a span {
+    font-size: 18px;
+  }
+  .approve__cart
+    .approve__cart__footer
+    .approve__cart__container
+    .approve__cart_button {
+    .approve__cart_btn,
+    .Delete_btn {
+      font-size: 16px !important;
+      padding: 8px !important;
+      min-width: 170px !important;
+    }
+  }
+  .approve__cart .approve__cart__table .MuiTableHead-root .MuiTableCell-root {
+    font-size: 20px;
+    .MuiSvgIcon-root {
+      width: 24px;
+      height: 24px;
+    }
+  }
+  .approve__cart .approve__cart__table .MuiTableBody-root {
+    .approve__cart__item,
+    .MuiTableCell-root,
+    .approve__cart__action_main .approve__cart__action {
+      font-size: 18px;
+    }
+    .MuiTableCell-root .MuiSvgIcon-root {
+      width: 24px;
+      height: 24px;
     }
   }
 }
+
+// @media (max-width: 926px) {
+//   .approve__cart__table {
+//     .MuiTable-root {
+//       .MuiTableHead-root {
+//         display: none;
+//       }
+
+//       .MuiTableBody-root {
+//         .MuiTableCell-root {
+//           display: flex;
+//           flex-direction: column;
+//           justify-content: center;
+//         }
+//       }
+//     }
+//   }
+// }

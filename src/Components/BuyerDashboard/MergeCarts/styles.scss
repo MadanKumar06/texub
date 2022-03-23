@@ -178,20 +178,43 @@
   }
 }
 
-@media (max-width: 926px) {
-  .mergecarts__table {
-    .MuiTable-root {
-      .MuiTableHead-root {
-        display: none;
-      }
-
-      .MuiTableBody-root {
-        .MuiTableCell-root {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-        }
-      }
+@media (max-width: 1660px) {
+  .mergecarts .mergecarts__footer .mergecarts__container a .MuiSvgIcon-root {
+    width: 0.6em;
+    height: 0.6em;
+  }
+  .mergecarts .mergecarts__footer .mergecarts__container a span {
+    font-size: 18px;
+  }
+  .mergecarts .mergecarts__footer .mergecarts__container .merge__cart_button {
+    .merge_btn,
+    .Delete_btn {
+      font-size: 16px !important;
+      padding: 8px !important;
+      min-width: 170px !important;
     }
   }
+  .mergecarts .mergecarts__table .MuiTableHead-root .MuiTableCell-root {
+    font-size: 20px;
+    .MuiSvgIcon-root {
+      width: 24px;
+      height: 24px;
+    }
+  }
+  .mergecarts .mergecarts__table .MuiTableBody-root {
+    .MuiTableCell-root,
+    .mergecarts__item,
+    .mergecart__action_main .mergecarts__action {
+      font-size: 18px;
+    }
+    .MuiTableCell-root .MuiSvgIcon-root {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}
+@media(max-width:580px){
+  .mergecarts .mergecarts__footer .mergecarts__container .merge__cart_button {
+    flex-direction: column;
+}
 }
