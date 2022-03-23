@@ -43,6 +43,13 @@ const Index = (classes) => {
     setInputValidation("");
     handleSwitchCase([event.target.name], event.target.value);
   };
+  const handleMobileChangeInput = (event) => {
+    setAccountInfoData((prevState) => ({
+      ...prevState,
+      mobile_number : event
+    }));
+    setInputValidation("");
+  };
   // const handleChangeInput1 = (e) => {
   //   setValue((prevState) => ({
   //     ...prevState,
@@ -256,7 +263,7 @@ const Index = (classes) => {
                 InputLabelProps={{
                   shrink: false,
                 }}
-                onChange={handleChangeInput}
+                onChange={handleMobileChangeInput}
                 variant="outlined"
               />
               {/* <TextField
