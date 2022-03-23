@@ -9,7 +9,7 @@ const styles = (theme) => ({
       backgroundColor: "#F6F6F8",
       padding: "0 3%",
       height: "84px",
-      "@media (max-width:1600px)": {
+      "@media (max-width:1660px)": {
         height: "74px",
       },
     },
@@ -18,7 +18,7 @@ const styles = (theme) => ({
     },
     "& .MuiToolbar-regular": {
       minHeight: "84px",
-      "@media (max-width:1600px)": {
+      "@media (max-width:1660px)": {
         minHeight: "74px",
       },
     },
@@ -72,13 +72,13 @@ const styles = (theme) => ({
       color: "#ffffff",
       top: "-13px",
       right: "-14px",
-      "@media (max-width:1080px)": {
+      "@media (max-width:1660px)": {
         top: "-11px",
-        fontSize: "8px",
+        fontSize: "10px",
       },
     },
-    "@media (max-width:1600px)": {
-      fontSize: "18px !important",
+    "@media (max-width:1660px)": {
+      fontSize: "16px !important",
       marginRight: "8px",
     },
     "@media (max-width:1300px)": {
@@ -124,7 +124,7 @@ const styles = (theme) => ({
       textDecoration: "none",
       color: "#ffffff",
     },
-    "@media (max-width:1600px)": {
+    "@media (max-width:1660px)": {
       fontSize: "16px !important",
     },
     "@media (max-width:1300px)": {
@@ -148,7 +148,7 @@ const styles = (theme) => ({
     letterSpacing: "1px !important",
     textTransform: "capitalize !important",
     fontSize: "18px !important",
-    "@media (max-width:1600px)": {
+    "@media (max-width:1660px)": {
       fontSize: "16px !important",
     },
     "@media (max-width:1300px)": {

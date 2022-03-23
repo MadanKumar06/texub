@@ -641,6 +641,25 @@
     span {
     left: 15px;
   }
+  .aboutus
+    .aboutus__topbanner
+    .aboutus__topbanner__floatingtext
+    .topbanner__text2 {
+    font-size: 26px;
+  }
+  .aboutus
+    .aboutus__topbanner
+    .aboutus__topbanner__floatingtext
+    .topbanner__text1 {
+    font-size: 16px;
+  }
+  .aboutus .aboutus__topbanner .aboutus__topbanner__floatingtext,
+  .aboutus .aboutus__mission .aboutus__topbanner__floatingtext {
+    left: 2em;
+  }
+  .aboutus__topbanner__floatingtext {
+    bottom: 2em !important;
+  }
 }
 @media (max-width: 580px) {
   .aboutus .aboutus__mission__content .aboutus__mission__right {
