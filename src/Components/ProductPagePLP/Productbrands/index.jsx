@@ -31,8 +31,13 @@ const Slides = () =>
   ));
 const Productsbrands = () => {
   const [isChange, setisChange] = useState(false)
+  const [isChange1, setisChange1] = useState(false)
+
+  console.log(isChange)
   const brand = (value) => {
     setisChange(value)
+    setisChange1(true)
+    console.log(isChange1)
   }
   function Arrow(props) {
     let className =
@@ -189,17 +194,18 @@ const Productsbrands = () => {
               key={item.id}
               className="Slider_brands">
               <span onMouseOver={() => brand(item.id)}
-                    onMouseOut={() => brand(false)}
+                    onClick={()=>setisChange1(false)}
               >{item.brand}</span>
-              {isChange &&
+              {isChange && isChange1 &&
                 (
                   <div className="list">
-                    <li className="list_content">
+                    <li className="list_content" >
                       <span>{item.id === isChange && item.categiries.map(e =>
                         <div className="content">
                           <span>
-                            <p>{e.display}</p>
+                            <p >{e.display}</p>
                             <p>{e.count}</p>
+                            
                           </span>
                         </div>
                       )}
