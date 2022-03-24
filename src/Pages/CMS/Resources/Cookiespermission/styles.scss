@@ -1,4 +1,6 @@
-.cookies_main{
+.modal{
+ .cookies_main{   
+.cookies_main1{
     position: fixed;
     top: 0;
     left: 0;
@@ -9,15 +11,17 @@
     justify-content: center;
     align-items: center;
     z-index: 9;
-    
+    // overflow-x: scroll;
     .cookies_bgimage_section{
         position: relative;
         display: flex;
         justify-content: center;
         top: 5%;
+        background-image:  linear-gradient(to right,#efd8a9, #FFFFFF);;
+        width: 604px;
+        height: 381px;
     .cookies_bgimage{
         width: 100%;
-        height: fit-content;
     }
     .cookies_close{
         position: absolute;
@@ -46,6 +50,7 @@
         margin-left: 50px;
         margin-right: 50px;
         opacity: 1;
+        line-height: 40px;
     }
     .cookies_policies{
         top: 54%; 
@@ -60,7 +65,7 @@
     }
     .cookies_btn{
         top: 78%;
-        padding:15px 60px;
+        padding:15px 25px;
         text-decoration: none !important;
         min-width: 126px !important;
         border-radius: 45px !important;
@@ -74,7 +79,39 @@
         letter-spacing: 0.54px;
         text-transform: capitalize !important;
         font-size:18px;
+        width: 45%;
     }
 }
+}
+}
+}
 
+@media  only screen  and(max-width:700px){
+    .modal .cookies_main .cookies_main1 .cookies_bgimage_section{
+        margin: 60px;
+    }
+}
+@media  only screen  and(max-width:580px) {
+    .modal .cookies_main .cookies_main1 .cookies_bgimage_section{
+        margin: 30px;
+        height: 300px;
+    }
+    .modal .cookies_main .cookies_main1 .cookies_bgimage_section .cookies_close{
+        height: 30px;
+        right: -1.7rem;
+        top: -1.6rem;
+    } 
+    .modal .cookies_main .cookies_main1 .cookies_bgimage_section .cookies_icon{
+        top: -18%;
+        height: 100px;
+    }
+    .modal .cookies_main .cookies_main1 .cookies_bgimage_section .cookies_description{
+        line-height: 28px;
+        top: 10%;
+        margin: 20px;
+    }
+    .modal .cookies_main .cookies_main1 .cookies_bgimage_section .cookies_btn{
+        padding: 15px 25px;
+        width: auto;
+    }
 }
