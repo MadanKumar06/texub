@@ -3,7 +3,7 @@ import { BrowserRouter as  Router, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
 import { useStateValue } from "./store/state";
-import "./App.css";
+import "./App.scss";
 
 //Header section
 import Header from "./Components/Header";
@@ -11,7 +11,7 @@ import { Home } from "./Pages/Home";
 import { Footer } from "./Components/Footer";
 import Aboutus from "./Pages/Aboutus";
 import { Products } from "./Pages/Products";
-import { Contactus } from "./Pages/CMS/Company/Contactus";
+import Contactus from "./Pages/CMS/Company/Contactus";
 import Registration from "./Pages/Register";
 import FAQ from "./Pages/CMS/Resources/FAQ's/FAQ";
 import ThankYouPage from "./Pages/Register/ThankYouPage";

@@ -1,0 +1,76 @@
+.App {
+  background: #fbfbfb;
+}
+.MuiOutlinedInput-root input {
+  padding: 12px;
+}
+
+//common scss for all required components
+
+// Buttons
+.button-box-container {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+}
+
+.button-text {
+  border-radius: 45px !important;
+  border: none !important;
+  cursor: pointer;
+  box-shadow: 0px 3px 6px #00000029 !important;
+  font-weight: 600 !important;
+  letter-spacing: 1px !important;
+  text-transform: capitalize !important;
+  transition: transform 0.2s !important;
+  font-size: 18px !important;
+}
+.btn-primary {
+  background: linear-gradient(180deg #ffd788 0% #ad7c20 100%);
+  color: #ffffff !important;
+  max-width: calc(100% / 4);
+}
+.btn-secondary {
+  background: linear-gradient(180deg, #20639b 0%, #002d56 100%);
+  color: #ffffff !important;
+  min-width: calc(100% / 3) !important;
+}
+.btn-ternary {
+  background: linear-gradient(180deg #f0f0f0 0% #f0f0f0 100%);
+  color: #333c42 !important;
+}
+
+// material ui textbox
+
+.inputfield-box {
+  margin-top: 2em !important;
+  & ::placeholder {
+    text-transform: capitalize !important;
+    font-size: 20px !important;
+    color: #cdd5dd !important;
+    opacity: 1 !important;
+  }
+  .MuiInputLabel-root {
+    font-weight: 600 !important;
+    font-size: 18px !important;
+    color: #3e3e3e !important;
+  }
+  .MuiOutlinedInput-root {
+    input {
+      font: unset !important;
+    }
+    fieldset {
+      legend {
+        font-size: 1em !important;
+      }
+    }
+  }
+  .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+    border: 1px solid #ddb363;
+  }
+}
+@media (max-width: 1660px) {
+  .button-text {
+    font-size: 16px !important;
+  }
+}
