@@ -1,7 +1,7 @@
 import React, {useState}from 'react'
 import TextField from '@mui/material/TextField';
 import './styles.scss'
-import { useStateValue } from "../../../../../../src/store/state";
+// import { useStateValue } from "../../../../../../src/store/state";
 import { Checkbox, FormControlLabel } from '@mui/material';
 import Autocomplete from "@mui/material/Autocomplete";
 import { useParams } from "react-router-dom";
@@ -9,13 +9,18 @@ import { ArrowBackIosNew } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 
 const Index = ({address}) => {  
-  const [{}, dispatch] = useStateValue();
+  // const [{}, dispatch] = useStateValue();
   let { type } = useParams();
   const city = ["Banglore", "Chennai","Hyderabad",];
   const state = ["Karnataka", "Tamilnadu","Telangana"];
   const country = ["India", "USA","Dubai"];
-  const [value, setValue] = React.useState(city[0]);
-  const [inputValue, setInputValue] = React.useState("");
+  const [Value, setValue] = React.useState({
+    city:"",
+    state:"",
+    country:"",
+  });
+  
+  // const [inputValue, setInputValue] = React.useState("");
   const [billing, setbilling] = useState(false)
   const [shippingAddressdata, setshippingAddressdata] = useState({
     organization_name: "",
@@ -32,26 +37,26 @@ const Index = ({address}) => {
       [event.target.name]: event.target.value, 
     }));
   };
-  const handleChangeCityInput = (event) => {
-    setshippingAddressdata((prevState) => ({
-      ...prevState,
-      city: event
-    }));
-    console.log(city)
-  };
+  // const handleChangeCityInput = (event) => {
+  //   setshippingAddressdata((prevState) => ({
+  //     ...prevState,
+  //     city: event
+  //   }));
+  //   console.log(city)
+  // };
 
-  const handleChangeStateInput = (event) => {
-    setshippingAddressdata((prevState) => ({
-      ...prevState,
-      state: event  
-    }));
-  };
-  const handleChangeCountryInput = (event) => {
-    setshippingAddressdata((prevState) => ({
-      ...prevState,
-      country: event 
-    }));
-  };
+  // const handleChangeStateInput = (event) => {
+  //   setshippingAddressdata((prevState) => ({
+  //     ...prevState,
+  //     state: event  
+  //   }));
+  // };
+  // const handleChangeCountryInput = (event) => {
+  //   setshippingAddressdata((prevState) => ({
+  //     ...prevState,
+  //     country: event 
+  //   }));
+  // };
   
   return (
     <div className='Shippingaddress_main'>
@@ -112,25 +117,24 @@ const Index = ({address}) => {
 
               <p>City</p>
               <Autocomplete
-                value={value}              
-                inputValue={inputValue}
-                name='city'
-                onInputChange={(event, newInputValue) => {
-                  setInputValue(newInputValue);
-                }}
+              name='city'
+               options={city}
+                value={Value?.city}              
                 onChange={(event, newValue) => {
-                  setValue(newValue);
+                  setValue((prevState) => ({
+                    ...prevState,
+                    city: newValue,
+                  }));
                 }}
                 id="controllable-states-demo"
-                options={city}
+               
                 renderInput={(params) => (
                   <TextField
                     {...params}
                     placeholder="City"
                     name='city'
                     id='city'
-                    value={billing? address[0].city:""}
-                    onChange={handleChangeCityInput}
+                    // onChange={handleChangeCityInput}
                     InputLabelProps={{
                       shrink: true,
                       required: true,
@@ -144,23 +148,21 @@ const Index = ({address}) => {
 
               <p>State</p>
               <Autocomplete
-                value={value}
+                value={Value?.state}
+                options={state}
+                name='state'
                 onChange={(event, newValue) => {
-                  setValue(newValue);
-                }}
-                inputValue={inputValue}
-                onInputChange={(event, newInputValue) => {
-                  setInputValue(newInputValue);
+                  setValue((prevState) => ({
+                    ...prevState,
+                    state: newValue,
+                  }));
                 }}
                 id="controllable-states-demo"
-                options={state}
                 renderInput={(params) => (
                   <TextField
                     {...params}
                     id='state'
                     name='state'
-                    value={billing? address[0].location:""}
-                    onChange={handleChangeStateInput}
                     placeholder="State"
                     InputLabelProps={{
                       shrink: true,
@@ -177,16 +179,17 @@ const Index = ({address}) => {
 
               <p>Country</p>
               <Autocomplete
-                value={value}
+               name='country'
+               options={country}
+                value={Value?.country}
                 onChange={(event, newValue) => {
-                  setValue(newValue);
-                }}
-                inputValue={inputValue}
-                onInputChange={(event, newInputValue) => {
-                  setInputValue(newInputValue);
+                  setValue((prevState) => ({
+                    ...prevState,
+                    country: newValue,
+                  }));
                 }}
                 id="controllable-states-demo"
-                options={country}
+               
 
                 // className={auto_complete_input}
                 renderInput={(params) => (
@@ -195,7 +198,7 @@ const Index = ({address}) => {
                      id='country'
                      name='country'
                     placeholder="State"
-                    onChange={handleChangeCountryInput}
+                    // onChange={handleChangeCountryInput}
                     InputLabelProps={{
                       shrink: true,
                       required: true,
