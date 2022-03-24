@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./styles.scss";
-import { TextField, Box } from "@mui/material";
-import { InputLabel } from "@mui/material";
+
+import { TextField, Box, Button, InputLabel } from "@mui/material";
 import { isEmailValid } from "../../../../utilities";
 
 import contact from "../../../../Assets/Career/Group 982.png";
@@ -14,7 +14,7 @@ import yt from "../../../../Assets/Homepage Assets/youtube.png";
 import wt from "../../../../Assets/Homepage Assets/whatsapp.png";
 import location from "../../../../Assets/Contactus/placeholder (2).png";
 
-export const Contactus = () => {
+const Contactus = () => {
   const [contactusData, setcontactusData] = useState({
     your_name: "",
     e_mail: "",
@@ -35,21 +35,22 @@ export const Contactus = () => {
   };
   const handleSwitchCase = (fieldName, value) => {
     switch (fieldName[0]) {
-      case "your_name":
-        if (!value) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            your_name: "Please enter your name.",
-          }));
-        }
-        break;
+      // case "your_name":
+      //   if (!value) {
+      //     setInputValidation((prevState) => ({
+      //       ...prevState,
+      //       your_name: "Please enter your name.",
+      //     }));
+      //   }
+      //   break;
       case "e_mail":
-        if (!value) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            e_mail: "Please enter your e-mail",
-          }));
-        } else if (!isEmailValid(value)) {
+        // if (!value) {
+        //   setInputValidation((prevState) => ({
+        //     ...prevState,
+        //     e_mail: "Please enter your e-mail",
+        //   }));
+        // } else
+        if (!isEmailValid(value)) {
           setInputValidation((prevState) => ({
             ...prevState,
             e_mail: "Please enter the valid e-mail.",
@@ -57,14 +58,14 @@ export const Contactus = () => {
         }
         break;
 
-      case "your_message":
-        if (!value) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            your_message: "Please enter the message.",
-          }));
-        }
-        break;
+      // case "your_message":
+      //   if (!value) {
+      //     setInputValidation((prevState) => ({
+      //       ...prevState,
+      //       your_message: "Please enter the message.",
+      //     }));
+      //   }
+      //   break;
       default:
         break;
     }
@@ -121,7 +122,7 @@ export const Contactus = () => {
     { id: 1, facebook: fb, linkedin: IN, youtube: yt, whatsapp: wt },
   ];
   const working = [
-    { id: 1, heading: "Call Us", time: "Mon - Fri, 9 Am To 5 Pm GST" },
+    { id: 1, heading: "Working Hours", time: "Mon - Fri, 9 Am To 5 Pm GST" },
   ];
   const location1 = [
     {
@@ -270,12 +271,12 @@ export const Contactus = () => {
         <div className="contactus_form">
           <div>
             <TextField
-              className="inputfield"
               label="Your Name"
               placeholder="Your Name"
               name="your_name"
               id="your_name"
               fullWidth
+              className="inputfield-box"
               InputLabelProps={{
                 shrink: true,
                 required: true,
@@ -293,7 +294,7 @@ export const Contactus = () => {
           </div>
           <div>
             <TextField
-              className="inputfield"
+              className="inputfield-box"
               label="E-mail Address"
               placeholder="E-mail Address"
               fullWidth
@@ -316,7 +317,7 @@ export const Contactus = () => {
           </div>
           <div>
             <TextField
-              className="inputfield"
+              className="inputfield-box"
               label="Subject"
               placeholder="Subject"
               fullWidth
@@ -328,15 +329,14 @@ export const Contactus = () => {
           </div>
           <div>
             <TextField
-              className="inputfield1"
+              className="inputfield-box"
               label="Your Message"
               fullWidth
               placeholder="Type your message"
               name="your_message"
               id="your_message"
               multiline
-              rows={3}
-              maxRows={10}
+              rows={5}
               InputLabelProps={{
                 shrink: true,
                 required: true,
@@ -353,24 +353,13 @@ export const Contactus = () => {
               {inputValidation?.your_message}
             </InputLabel>
           </div>
-          {/* <TextareaAutosize 
-                       label="Your Message"
-                       placeholder="Your Message"
-                       InputLabelProps={{
-                        shrink: true,
-                        required: true,
-                        classes: {
-                            asterisk: "asterisk",
-                          },
-                    }}
-                     minRows={6} /> */}
-          <Box textAlign="right">
-            <button
-              className="contactus_msg_btn"
+          <Box className="box-content">
+            <Button
+              className="button-text btn-secondary"
               onClick={() => handleClickValidation()}
             >
               Send Your Message
-            </button>
+            </Button>
           </Box>
         </div>
       </div>
@@ -438,3 +427,5 @@ export const Contactus = () => {
     </div>
   );
 };
+
+export default Contactus;
