@@ -99,6 +99,12 @@ const BuyerList = [
     url: "myorder",
   },
   {
+    image_Inactive: order_Inactive,
+    image_Active: "",
+    name: "Invoices List",
+    url: "invoiceslist",
+  },
+  {
     image_Inactive: auction_Inactive,
     image_Active: "",
     name: "Auctions",

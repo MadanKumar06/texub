@@ -13,10 +13,10 @@ import PaymentMethod from "../../Components/BuyerDashboard/PaymentMethods";
 import MyProfile from "../../Components/BuyerDashboard/MyProfile";
 import Wishlist from "../../Components/BuyerDashboard/Wishlist";
 import RMA from "../../Components/BuyerDashboard/RMA";
+import InvoicesList from "../../Components/BuyerDashboard/InvoicesList";
 import MergeCarts from "../../Components/BuyerDashboard/MergeCarts";
 import ApproveCarts from "../../Components/BuyerDashboard/ApproveCarts";
 import SubAccountOrders from "../../Components/BuyerDashboard/SubAccountOrders";
-
 //assets
 import notification from "../../Assets/sellerdashboard/notification.png";
 
@@ -74,6 +74,7 @@ const Index = () => {
           </div>
           {currenttab === "dashboard" && <Dashboard />}
           {currenttab === "myorder" && <MyOrders />}
+          {currenttab === "invoiceslist" && <InvoicesList />}
           {currenttab === "auctions" && <Auctions />}
           {currenttab === "wanttobuy" && <WantToBuy />}
           {currenttab === "payment" && <PaymentMethod />}
