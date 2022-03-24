@@ -1,5 +1,5 @@
 .linechart {
-  padding: 23px 0 60px 60px;
+  padding: 2% 0 2% 1%;
   background: #f8f0e0;
   width: calc(100% / 2 - 10px);
   .order_volume {
@@ -62,8 +62,11 @@
 }
 
 @media (max-width: 1660px) {
-  .linechart .order_volume {
-    font-size: 20px;
+  .linechart {
+    padding: 2% 0 1% 1%;
+    .order_volume {
+      font-size: 20px;
+    }
   }
   .linechart .order_info .order_received,
   .linechart .order_info .order_placed {
