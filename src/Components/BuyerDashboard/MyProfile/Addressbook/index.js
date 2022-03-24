@@ -33,30 +33,14 @@ const Index = () => {
         setisBilling(true)
         setisShipping(false)
         setisAddress(false)
-
     }
     const [isShipping, setisShipping] = useState(false)
     const Shipadress = () => {
         setisShipping(!isShipping)
         setisBilling(false)
         setisAddress(false)
-        // setisshipping({
-        //     ...isshipping,
-        //     id: 1,
-        //     heading: "Default Billing Adress",
-        //     name: "Ayush Raj",
-        //     no: "302/1160,Tech World",
-        //     block: "B-Block, HSR Layout",
-        //     location: "Bangalore-Karnataka",
-        //     pin: "560102",
-        // })
     }
     const [isAddress, setisAddress] = useState(true)
-
-    // const [isClose, setisClose]=useState(false)
-    // const Addressclose=()=>{
-    //     setisClose(!isClose)
-    // }
     const BillingAdderess = [
         {
             id: 1,
@@ -67,8 +51,6 @@ const Index = () => {
             location: "Bangalore-Karnataka",
             pin: "560102",
         },
-
-
     ]
     const ShippingAddress = [
         {
@@ -82,8 +64,6 @@ const Index = () => {
             pin: "560102",
         }
     ]
-
-
     return (
         <>
             {isAddress &&

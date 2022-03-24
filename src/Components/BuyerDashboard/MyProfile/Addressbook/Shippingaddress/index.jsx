@@ -1,19 +1,58 @@
 import React, {useState}from 'react'
 import TextField from '@mui/material/TextField';
 import './styles.scss'
+import { useStateValue } from "../../../../../../src/store/state";
 import { Checkbox, FormControlLabel } from '@mui/material';
 import Autocomplete from "@mui/material/Autocomplete";
 import { useParams } from "react-router-dom";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 
-const Index = ({address}) => {
-  console.log("shipping address details",address)  
+const Index = ({address}) => {  
+  const [{}, dispatch] = useStateValue();
   let { type } = useParams();
-  const options = ["Option 1", "Option 2"];
-  const [value, setValue] = React.useState();
+  const city = ["Banglore", "Chennai","Hyderabad",];
+  const state = ["Karnataka", "Tamilnadu","Telangana"];
+  const country = ["India", "USA","Dubai"];
+  const [value, setValue] = React.useState(city[0]);
   const [inputValue, setInputValue] = React.useState("");
   const [billing, setbilling] = useState(false)
+  const [shippingAddressdata, setshippingAddressdata] = useState({
+    organization_name: "",
+    address_line_1: "",
+    address_line_2: "",
+    pincode: "",
+    city: "",
+    state: "",
+    country: "",
+  });
+  const handleChangeInput = (event) => {
+    setshippingAddressdata((prevState) => ({
+      ...prevState,
+      [event.target.name]: event.target.value, 
+    }));
+  };
+  const handleChangeCityInput = (event) => {
+    setshippingAddressdata((prevState) => ({
+      ...prevState,
+      city: event
+    }));
+    console.log(city)
+  };
+
+  const handleChangeStateInput = (event) => {
+    setshippingAddressdata((prevState) => ({
+      ...prevState,
+      state: event  
+    }));
+  };
+  const handleChangeCountryInput = (event) => {
+    setshippingAddressdata((prevState) => ({
+      ...prevState,
+      country: event 
+    }));
+  };
+  
   return (
     <div className='Shippingaddress_main'>
       <div className='Shippingaddress_heading_section'>
@@ -26,17 +65,21 @@ const Index = ({address}) => {
             <div className='inputfield'>
               <p>Organization Name</p>
               <TextField
-                id="outlined-error"
+                id="organization_name"
+                name="organization_name"
+                onChange={handleChangeInput}
                 placeholder="Organization Name"
-                value={billing? address[0].organization:""}
+                value={billing? address[0].organization:shippingAddressdata?.organization_name}
               />
             </div>
             <div className='inputfield'>
               <p>Address Line 1</p>
               <TextField
-                id="outlined-error"
+                id="address_line_1"
+                name='address_line_1'
               placeholder="Flat/Building/Block"
-              value={billing? address[0].no:""}
+              value={billing? address[0].no:shippingAddressdata?.address_line_1}
+              onChange={handleChangeInput}
               />
             </div>
           </div>
@@ -44,19 +87,23 @@ const Index = ({address}) => {
             <div className='inputfield'>
               <p>Address Line 2</p>
               <TextField
-                id="outlined-error"
+                id="address_line_2"
+                name='address_line_2'
                 placeholder="Sub-urb/Town"
-                value={billing? address[0].block:""}
+                value={billing? address[0].block:shippingAddressdata?.address_line_2}
+                onChange={handleChangeInput}
               />
             </div>
             <div className='inputfield'>
 
               <p>Pincode</p>
               <TextField
-                id="outlined-error"
+                id="pincode"
+                name='pincode'
                 placeholder="Pincode"
                 type="number"
-                value={billing? address[0].pin:""}
+                value={billing? address[0].pin:shippingAddressdata?.pincode}
+                onChange={handleChangeInput}
               />
             </div>
           </div>
@@ -65,23 +112,25 @@ const Index = ({address}) => {
 
               <p>City</p>
               <Autocomplete
-                value={value}
-                onChange={(event, newValue) => {
-                  setValue(newValue);
-                }}
+                value={value}              
                 inputValue={inputValue}
+                name='city'
                 onInputChange={(event, newInputValue) => {
                   setInputValue(newInputValue);
                 }}
+                onChange={(event, newValue) => {
+                  setValue(newValue);
+                }}
                 id="controllable-states-demo"
-                options={options}
-
-                // className={auto_complete_input}
+                options={city}
                 renderInput={(params) => (
                   <TextField
                     {...params}
-                    value={billing? address[0].location:""}
                     placeholder="City"
+                    name='city'
+                    id='city'
+                    value={billing? address[0].city:""}
+                    onChange={handleChangeCityInput}
                     InputLabelProps={{
                       shrink: true,
                       required: true,
@@ -104,11 +153,14 @@ const Index = ({address}) => {
                   setInputValue(newInputValue);
                 }}
                 id="controllable-states-demo"
-                options={options}
+                options={state}
                 renderInput={(params) => (
                   <TextField
                     {...params}
+                    id='state'
+                    name='state'
                     value={billing? address[0].location:""}
+                    onChange={handleChangeStateInput}
                     placeholder="State"
                     InputLabelProps={{
                       shrink: true,
@@ -134,14 +186,16 @@ const Index = ({address}) => {
                   setInputValue(newInputValue);
                 }}
                 id="controllable-states-demo"
-                options={options}
+                options={country}
 
                 // className={auto_complete_input}
                 renderInput={(params) => (
                   <TextField
                     {...params}
-
+                     id='country'
+                     name='country'
                     placeholder="State"
+                    onChange={handleChangeCountryInput}
                     InputLabelProps={{
                       shrink: true,
                       required: true,
