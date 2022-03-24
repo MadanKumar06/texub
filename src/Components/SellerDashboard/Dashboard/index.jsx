@@ -8,7 +8,7 @@ import orange from "../../../Assets/sellerdashboard/dashboard/orange.png";
 import green from "../../../Assets/sellerdashboard/dashboard/green.png";
 import exchangeoffer from "../../../Assets/sellerdashboard/dashboard/exchangeoffer.png";
 
-import DashboardMapSection from "../../DashboardMapSection";
+import DashboardChartSection from "../../DashboardChartSection";
 
 function Dashboard() {
   const dashboarddata = [
@@ -43,7 +43,7 @@ function Dashboard() {
           <p>My KPI</p>
         </div>
       </div>
-      <DashboardMapSection />
+      <DashboardChartSection />
     </div>
   );
 }
