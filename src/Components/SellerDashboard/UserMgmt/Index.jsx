@@ -6,13 +6,24 @@ import { ArrowBackIosNew } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import Pagination from "../../Pagination";
 import { MenuItem, Select } from "@mui/material";
+import Allowedpermissions from '../../SellerDashboard/UserMgmt/PopUps/Allowedpermissions'
+import Forbidden from '../../SellerDashboard/UserMgmt/PopUps/Forbidden'
 
 function Index({ setuserform, userform }) {
   const [tableData, setTableData] = useState([]);
   const edituser = () => {
     setuserform(true);
   };
-
+  const [isPermissions, setisPermissions] = useState(false)
+  const permission = () => {
+    setisPermissions(true)
+    setisForbidden(false)
+  }
+  const [isForbidden, setisForbidden] = useState(false)
+  const forbidden = () => {
+    setisForbidden(true)
+    setisPermissions(false)
+  }
   const options = {
     filter: false,
     filterType: "dropdown",
@@ -65,7 +76,7 @@ function Index({ setuserform, userform }) {
       label: "Permissions",
       options: {
         customBodyRender: (value) => {
-          return <div className="usermgmt__permissions">{value}</div>;
+          return <div className="usermgmt__permissions" onClick={permission}>{value}</div>;
         },
       },
     },
@@ -74,7 +85,7 @@ function Index({ setuserform, userform }) {
       label: "Forbidden",
       options: {
         customBodyRender: (value) => {
-          return <div className="usermgmt__forbidden">{value}</div>;
+          return <div className="usermgmt__forbidden" onClick={forbidden}>{value}</div>;
         },
       },
     },
@@ -177,6 +188,8 @@ function Index({ setuserform, userform }) {
           />
         </>
       )}
+      {isPermissions && <Allowedpermissions closePOPup={setisPermissions} />}
+      {isForbidden && <Forbidden closePOPup={setisForbidden} />}
     </div>
   );
 }

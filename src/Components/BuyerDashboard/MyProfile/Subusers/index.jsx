@@ -194,43 +194,6 @@ const Index = () => {
       {isSubusers &&
         <div className='users_main'>
         <MUITable columns={columns} table={table} options={options} className="subusers__table" />
-          {/* <div className='users_table_section'>
-            <hr></hr>
-            <table className='users_table'>
-              <thead>
-                <tr className='trh'>
-                  <th className='users_heading'>User Name</th>
-                  <th className='users_heading'>Status</th>
-                  <th className='users_heading'>Order ID</th>
-                  <th className='users_heading'>Hub</th>
-                  <th className='users_heading'>Date</th>
-                  <th className='users_heading'>Permissions</th>
-                  <th className='users_heading'>Forbidden</th>
-                  <th className='users_heading'>Action</th>
-                </tr>
-              </thead>
-
-              <tbody>
-                {Users.map((user) => (
-                  <tr key={user.id} className="tr">
-                    <td className='users_username'>{user.username}</td>
-                    <span><td className='users_status'>{user.status}</td></span>
-                    <td className='users_id'>{user.orderid}</td>
-                    <td className='users_hub'>{user.hub}</td>
-                    <td className='users_date'>{user.date}</td>
-                    <td className='users_permission' onClick={permission}>{user.Permissions}</td>
-                    <td className='users_forbidden' onClick={forbidden}>{user.forbidden}</td>
-                    <div className='user_auctions'>
-                      <td className='users_auction'>{user.auction}</td>
-                      <td className='users_auction'>{user.auction2}</td>
-                      <td className='users_auction'>{user.auction3}</td>
-                    </div>
-                  </tr>
-                ))}
-
-              </tbody>
-            </table>
-          </div> */}
           <div className='my_profile_btns'>
             <div className='my_profile_back'>
             <Link to="/buyerdashboard/dashboard" className="link">

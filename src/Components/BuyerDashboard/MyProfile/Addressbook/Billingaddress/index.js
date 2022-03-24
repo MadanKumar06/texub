@@ -6,15 +6,19 @@ import { useParams } from "react-router-dom";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 
-const Index = (classes) => {
+const Index = (classes, props) => {
   let { type } = useParams();
   let {
     auto_complete_input,
   } = classes;
-  const options = ["Option 1", "Option 2"];
-  const [value, setValue] = React.useState();
-  const [inputValue, setInputValue] = React.useState("");
-
+  const city = ["Banglore", "Chennai","Hyderabad",];
+  const state = ["Karnataka", "Tamilnadu","Telangana"];
+  const country = ["India", "USA","Dubai"];
+  const [Value, setValue] = React.useState({
+    city:"",
+    state:"",
+    country:"",
+  });
   return (
     <div className='Billingaddress_main'>
       <span className='Billingaddress_Account_heading'> <p >EDIT DEFAULT BILLING ADDRESS</p></span>
@@ -64,52 +68,44 @@ const Index = (classes) => {
 
               <p>City</p>
               <Autocomplete
-                value={value}
+                name='city'
+                options={city}
+                value={Value?.city}
                 onChange={(event, newValue) => {
-                  setValue(newValue);
-                }}
-                inputValue={inputValue}
-                onInputChange={(event, newInputValue) => {
-                  setInputValue(newInputValue);
+                  setValue((prevState) => ({
+                    ...prevState,
+                    city: newValue,
+                  }));
                 }}
                 id="controllable-states-demo"
-                options={options}
-
-                className={auto_complete_input}
                 renderInput={(params) => (
                   <TextField
                     {...params}
-                    className='text'
                     placeholder="City"
                     InputLabelProps={{
                       shrink: true,
                       required: true,
-
                     }}
                   />
                 )}
               />
             </div>
             <div className='inputfield'>
-
               <p>State</p>
               <Autocomplete
-                value={value}
+              name='state'
+              value={Value?.state}
+                options={state}
                 onChange={(event, newValue) => {
-                  setValue(newValue);
-                }}
-                inputValue={inputValue}
-                onInputChange={(event, newInputValue) => {
-                  setInputValue(newInputValue);
+                  setValue((prevState) => ({
+                    ...prevState,
+                    state: newValue,
+                  }));
                 }}
                 id="controllable-states-demo"
-                options={options}
-
-                className={auto_complete_input}
                 renderInput={(params) => (
                   <TextField
                     {...params}
-                    className='text'
                     placeholder="state"
                     InputLabelProps={{
                       shrink: true,
@@ -123,21 +119,18 @@ const Index = (classes) => {
           </div>
           <div className='inputfield_btn'>
             <div className='inputfield'>
-
               <p>Country</p>
               <Autocomplete
-                value={value}
+              name='country'
+                value={Value?.country}
+                options={country}
                 onChange={(event, newValue) => {
-                  setValue(newValue);
-                }}
-                inputValue={inputValue}
-                onInputChange={(event, newInputValue) => {
-                  setInputValue(newInputValue);
+                  setValue((prevState) => ({
+                    ...prevState,
+                    country: newValue,
+                  }));
                 }}
                 id="controllable-states-demo"
-                options={options}
-
-                className={auto_complete_input}
                 renderInput={(params) => (
                   <TextField
                     {...params}

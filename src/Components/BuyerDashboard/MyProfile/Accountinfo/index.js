@@ -18,7 +18,6 @@ const Index = (classes) => {
     new_password: "",
     new_confrim_password: "",
   });
-  console.log(AccountInfoData);
 
   //  const [value, setValue] = React.useState({
   //   mobile_number:"",
@@ -40,7 +39,6 @@ const Index = (classes) => {
       ...prevState,
       [event.target.name]: event.target.value,
     }));
-    setInputValidation("");
     handleSwitchCase([event.target.name], event.target.value);
   };
   const handleMobileChangeInput = (event) => {
@@ -284,6 +282,7 @@ const Index = (classes) => {
               <TextField
                 id="email_address"
                 name="email_address"
+                placeholder="E-Mail"
                 value={AccountInfoData?.email_address}
                 InputLabelProps={{
                   shrink: false,

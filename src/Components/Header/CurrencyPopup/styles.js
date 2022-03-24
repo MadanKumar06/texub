@@ -18,20 +18,8 @@ const styles = (theme) => ({
         width: "30px",
         height: "30px",
       },
-      "@media (max-width:1600px)": {
-        fontSize: "18px !important",
-      },
-      "@media (max-width:1300px)": {
+      "@media (max-width:1660px)": {
         fontSize: "16px !important",
-      },
-      "@media (max-width:1080px)": {
-        fontSize: "14px !important",
-      },
-      "@media (max-width:768px)": {
-        fontSize: "14px !important",
-      },
-      "@media (max-width:380px)": {
-        fontSize: "12px  !important",
       },
     },
     "& .MuiButton-label": {
@@ -45,7 +33,7 @@ const styles = (theme) => ({
         padding: "15px",
         borderBottom: "1px solid #e6e6e6",
         color: "#5c6369",
-        fontSize: "22px",
+        fontSize: "20px",
         letterSpacing: "0.66px",
         display: "flex",
         alignItems: "center",
@@ -54,13 +42,7 @@ const styles = (theme) => ({
           width: "30px",
           height: "30px",
         },
-        "@media (max-width:1600px)": {
-          fontSize: "20px !important",
-        },
-        "@media (max-width:1300px)": {
-          fontSize: "18px !important",
-        },
-        "@media (max-width:1080px)": {
+        "@media (max-width:1660px)": {
           fontSize: "16px !important",
         },
       },
