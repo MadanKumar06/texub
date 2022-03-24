@@ -1,5 +1,6 @@
 import React from "react";
 import "./styles.scss";
+
 import topbanner from "../../Assets/Aboutus/Group 765@2x.png";
 import missionbg from "../../Assets/Aboutus/missionbg.png";
 import missionstate from "../../Assets/Aboutus/missionstate.png";
@@ -26,16 +27,15 @@ import nether from "../../Assets/Aboutus/nether.png";
 import uae from "../../Assets/Aboutus/uae.png";
 import india from "../../Assets/Aboutus/india.png";
 import sg from "../../Assets/Aboutus/sg.png";
-// import texhub from "../../Assets/Aboutus/texhub.png";
 
 const Aboutus = () => {
   const country = [
-    { content: "USA", image: usa },
-    { content: "NIGERIA", image: nigeria },
-    { content: "NETHERLAND", image: nether },
-    { content: "UAE", image: uae },
-    { content: "INDIA", image: india },
-    { content: "SINGAPORE", image: sg },
+    { content: "USA", image: usa, style: "usa" },
+    { content: "NIGERIA", image: nigeria, style: "nigeria" },
+    { content: "NETHERLAND", image: nether, style: "netherland" },
+    { content: "UAE", image: uae, style: "uae" },
+    { content: "INDIA", image: india, style: "india" },
+    { content: "SINGAPORE", image: sg, style: "singapore" },
   ];
 
   const assets = [
@@ -148,19 +148,12 @@ const Aboutus = () => {
 
           <div className="aboutus__ww__country">
             {country.map((data, i) => (
-              <div className="list" key={i}>
-                <img src={data.image} alt="" />
+              <div className={`list ${data?.style}`} key={i}>
                 <span>{data.content}</span>
               </div>
             ))}
           </div>
         </div>
-        {/* <img src={texhub} alt="" className="tag1" />
-        <img src={texhub} alt="" className="tag2" />
-        <img src={texhub} alt="" className="tag3" />
-        <img src={texhub} alt="" className="tag4" />
-        <img src={texhub} alt="" className="tag5" />
-        <img src={texhub} alt="" className="tag6" /> */}
       </div>
     </div>
   );
