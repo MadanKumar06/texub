@@ -9,6 +9,7 @@
     position: relative;
     .contactus_img {
       width: 100%;
+      height: auto;
     }
   }
   .contactus_form_section {
@@ -17,7 +18,7 @@
     justify-content: flex-end;
     padding-top: 50px;
     padding-right: 200px;
-    height: 39rem;
+    position: relative;
 
     .contactus_details_section {
       background-color: #f8f0e0b3;
@@ -27,7 +28,7 @@
       gap: 26px;
       left: 12%;
       position: absolute;
-      top: 33rem;
+      top: -16em;
       box-shadow: 0px 3px 6px #00000029;
 
       .contactus_heading {
@@ -194,9 +195,8 @@
     .contactus_heading {
     font-size: 45px;
   }
-
   .contactus_main .contactus_form_section .contactus_details_section {
-    top: 29rem;
+    top: -12em;
   }
   .contactus_main
     .contactus_form_section
@@ -245,38 +245,76 @@
       font-size: 18px;
     }
   }
+  .contactus_main .contactus_map_section {
+    gap: 2em;
+  }
 }
 
-@media only screen and (max-width: 1440px) {
+@media (max-width: 1530px) {
   .contactus_main .contactus_map_section .contactus_locations {
     margin: 0 30px;
   }
-}
-
-@media only screen and (max-width: 1366px) {
-  .contactus_main .contactus_map_section .contactus_locations {
-    margin: 0 7px;
-  }
-}
-@media only screen and (max-width: 1080px) {
-  .contactus_main .contactus_map_section .contactus_locations {
-    margin: 0 50px;
-  }
-}
-@media (max-width: 1024px) {
   .contactus_main .contactus_form_section {
-    min-height: 624px;
-    padding: 33px 43px 0 0;
+    padding: 2em 2em 0 0;
+  }
+  .contactus_main .contactus_map_section .contactus_locations {
+    gap: 2em;
+  }
+  .contactus_main .contactus_form_section .contactus_details_section {
+    padding: 25px 35px 35px 35px;
+    left: 3%;
   }
 }
 
-@media only screen and (max-width: 900px) {
+@media (max-width: 1200px) {
+  .contactus_main .contactus_map_section .contactus_locations {
+    margin: 0;
+  }
+  .contactus_main .contactus_form_section .contactus_details_section {
+    top: -9em;
+    .contactus_tag {
+      font-size: 16px;
+    }
+    .contactus_heading {
+      font-size: 30px;
+    }
+  }
+  .contactus_main
+    .contactus_form_section
+    .contactus_details_section
+    .contactus_details
+    .contactus_office_list
+    .contactus_office_address {
+    .contactus_office_heading {
+      font-size: 14px;
+    }
+    .contactus_office_number {
+      font-size: 14px;
+    }
+  }
+}
+@media (max-width: 926px) {
+  .contactus_main .contactus_form_section {
+    padding: 0em;
+    justify-content: center;
+  }
+  .contactus_main .contactus_form_section .contactus_details_section {
+    position: unset;
+  }
+}
+@media (max-width: 580px) {
+  .contactus_main {
+    padding: 1em;
+  }
   .contactus_main .contactus_form_section {
     flex-direction: column;
-    height: 77rem;
-    padding: 87px 0 0;
+    justify-content: center;
+    align-items: center;
+    .contactus_form {
+      width: 100%;
+    }
   }
-  .contactus_main .contactus_form_section .contactus_form {
-    width: 100%;
+  .contactus_main .contactus_map_section {
+    padding: 10px;
   }
 }
