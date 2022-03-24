@@ -32,9 +32,12 @@
   }
   .chart_table_container {
     display: flex;
+    align-items: center;
     // margin-top: 2em;
   }
   .chart_info {
+    width: 100%;
+
     .table__header {
       margin: 0;
       background: #f8f0e0;
@@ -66,5 +69,5 @@
   }
   .piechart_container span {
     padding: 6px;
-}
+  }
 }
