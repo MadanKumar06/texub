@@ -23,7 +23,7 @@
         opacity: 1;
         font-size: 22px;
         font-weight: bold;
-        min-height: 60px;
+        height: 60px;
         .Department_heading {
           margin: 0;
           letter-spacing: 1px;
@@ -102,7 +102,7 @@
           box-shadow: none;
           ::placeholder {
             color: #858a8e;
-            opacity: 1;
+            opacity: 0.8;
             font-size: 16px;
             font-weight: 600;
             text-transform: capitalize;
@@ -247,6 +247,13 @@
     .button_Icon {
     width: 1.2em !important;
     height: 1.2em !important;
+  }
+  .Departments
+    .Departments_Body_Search
+    .Departments_Body_Down_Pannel
+    .Departments_Body_Down_Pannel_btn,
+  .Departments .Departments_Body_Search .search_bar .body__search_bar {
+    height: 50px;
   }
 }
 
@@ -394,7 +401,7 @@
       }
 
       .Departments_Body_Down_Pannel_btn {
-        min-height: 48px;
+        height: 48px;
       }
     }
 
