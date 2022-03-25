@@ -287,6 +287,9 @@ const styles = (theme) => ({
     alignItems: "center",
     height: "2em",
     position: "relative",
+    "@media (max-width: 1660px)": {
+      fontSize: "24px",
+    },
   },
 
   forgotpassword__clearbtn: {
@@ -309,13 +312,13 @@ const styles = (theme) => ({
     display: "flex",
     alignItems: "center",
     backgroundColor: "white",
+    boxShadow: "0px 3px 6px #00000029",
   },
 
   forgotpassword__email: {
     width: "54%",
     display: "flex",
     flexDirection: "column",
-    gap: "2em",
     padding: "2em",
   },
 
@@ -329,14 +332,9 @@ const styles = (theme) => ({
   },
 
   forgotpassword__submit: {
-    background: "linear-gradient(#20639B, #002D56)",
-    boxShadow: "0px 3px 6px #00000029",
-    color: "white",
-    padding: "1em 1.5em",
-    fontSize: "18px",
-    fontWeight: "600",
-    borderRadius: "25px",
-    cursor: "pointer",
+    marginTop: "2em !important",
+    width: "100% !important",
+    padding: "0.5em !important",
   },
 });
 export default styles;

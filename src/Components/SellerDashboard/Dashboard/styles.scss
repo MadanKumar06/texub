@@ -9,14 +9,16 @@
   .dashboard__data {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
-    gap: 10px;
     box-shadow: 0px 3px 25px #0000000f;
+    padding-top: 8px;
     .dasboard__dataiamge {
+      max-width: 360px;
       width: calc(100% / 3 - 20px);
       img {
         width: 100%;
+        object-fit: contain;
       }
     }
   }
@@ -60,9 +62,20 @@
   }
 }
 
-@media (max-width: 1600px) {
+@media (max-width: 1660px) {
   .seller_dashboard .dashboard__status .dashboard__status1 {
     min-width: 285px;
+  }
+  .seller_dashboard .dashboard__data .dasboard__dataiamge {
+    max-width: 273px;
+  }
+  .seller_dashboard .dashboard__status .dashboard__status1 {
+    h2 {
+      font-size: 30px;
+    }
+    p {
+      font-size: 24px;
+    }
   }
 }
 @media (max-width: 1200px) {
@@ -80,9 +93,3 @@
   }
 }
 
-@media (max-width: 480px) {
-  .seller_dashboard .dashboard__status .dashboard__status1 {
-    min-width: unset;
-    border: 0;
-  }
-}

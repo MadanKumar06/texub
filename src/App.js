@@ -15,6 +15,7 @@ import Contactus from "./Pages/CMS/Company/Contactus";
 import Registration from "./Pages/Register";
 import FAQ from "./Pages/CMS/Resources/FAQ's/FAQ";
 import ThankYouPage from "./Pages/Register/ThankYouPage";
+import ScrollToTop from "./Components/ScrollToTop";
 
 //User Route
 import Mycart from "./Pages/MyCart";
@@ -55,45 +56,46 @@ const App = () => {
     <div className="App">
       <ThemeProvider theme={theme}>
         <Router>
+          <ScrollToTop/>
           <Header />
           <Userdetails />
           <Routes>
 
             {/* header section */}
-            <Route path="/" element={ <> <Home /> <Footer /> </> } exact />
-            <Route path="/register/:type" element={ <> <Registration /> <Footer /></> } exact />
-            <Route path="/Products" element={ <> <Products /> <Footer /> </> } exact />
-            <Route path="/Aboutus" element={ <> <Aboutus /> <Footer /></> } exact />
-            <Route path="/coming-soon" element={<><ComingSoon />  <Footer /></>} exact />
+            <Route path="/" element={ <> <Home />  <ScrollToTop/> <Footer /> </> } exact />
+            <Route path="/register/:type" element={ <> <Registration /> <ScrollToTop/> <Footer /></> } exact />
+            <Route path="/Products" element={ <> <Products />  <ScrollToTop/> <Footer /> </> } exact />
+            <Route path="/Aboutus" element={ <> <Aboutus /> <ScrollToTop/> <Footer /></> } exact />
+            <Route path="/coming-soon" element={<><ComingSoon />  <ScrollToTop/> <Footer /></>} exact />
          
 
 
             {/* Footer section */}
-            <Route path="/legal" element={ <> <Legal /> <Footer /></> } exact />
-            <Route path="/gdpr" element={ <> <GDPR /> <Footer /></> } exact />
-            <Route path="/Faqs" element={ <> <FAQ /> <Footer /></> } exact />
-            <Route path="/Contactus" element={ <> <Contactus /> <Footer /> </> } exact />
-            <Route path="/privacypolicy" element={ <> <Privacypolicy /> <Footer /> </> } exact />
-            <Route path="/termsofuse" element={ <>  <Termsofuse /> <Footer /> </> } exact />
-            <Route path="/rrpolicy" element={ <> <RRpolicy /> <Footer /> </> } exact />
-            <Route path="/training" element={ <> <Training /> <Footer /> </> } exact />
-            <Route path="/seller_advantage" element={ <> <Selleradvantage /> <Footer /></> } exact />
-            <Route path="/buyer_advantage" element={ <> <Buyeradvantage /> <Footer /></> } exact ></Route>
-            <Route path="/career" element={ <> <Career /> <Footer /> </> } exact ></Route>
-            <Route path="/blogsmain" element={ <> <Blogsmain /> <Footer /></> } exact />
-            <Route path="/blogsdetails" element={ <> <Blogs /> <Footer /> </> } exact />
-            <Route path="/faqs" element={ <>  <FAQ /> <Footer /> </> } exact />
+            <Route path="/legal" element={ <> <Legal /> <ScrollToTop/> <Footer /></> } exact />
+            <Route path="/gdpr" element={ <> <GDPR /> <ScrollToTop/> <Footer /></> } exact />
+            <Route path="/Faqs" element={ <> <FAQ /> <ScrollToTop/> <Footer /></> } exact />
+            <Route path="/Contactus" element={ <> <Contactus /> <ScrollToTop/> <Footer /> </> } exact />
+            <Route path="/privacypolicy" element={ <> <Privacypolicy /> <ScrollToTop/> <Footer /> </> } exact />
+            <Route path="/termsofuse" element={ <>  <Termsofuse /> <ScrollToTop/> <Footer /> </> } exact />
+            <Route path="/rrpolicy" element={ <> <RRpolicy /> <ScrollToTop/> <Footer /> </> } exact />
+            <Route path="/training" element={ <> <Training /> <ScrollToTop/> <Footer /> </> } exact />
+            <Route path="/seller_advantage" element={ <> <Selleradvantage /> <ScrollToTop/> <Footer /></> } exact />
+            <Route path="/buyer_advantage" element={ <> <Buyeradvantage /> <ScrollToTop/> <Footer /></> } exact ></Route>
+            <Route path="/career" element={ <> <Career /> <ScrollToTop/> <Footer /> </> } exact ></Route>
+            <Route path="/blogsmain" element={ <> <Blogsmain /> <ScrollToTop/> <Footer /></> } exact />
+            <Route path="/blogsdetails" element={ <> <Blogs />  <ScrollToTop/><Footer /> </> } exact />
+            <Route path="/faqs" element={ <>  <FAQ /> <ScrollToTop/> <Footer /> </> } exact />
            
 
             {/* user section */}
-            <Route path="/sellerdashboard/:currenttab" element={ <> <SellerDashboard /> <Footer /></> } exact />
-            <Route path="/buyerdashboard/:currenttab" element={ <> <BuyerDashboard /> <Footer /> </> } exact />
-            <Route path="/sellerprofile" element={ <> <SellerProfile /> <Footer /></> } exact />
-            <Route path="/pending-invoice" element={ <> <PendingInvoice /> <Footer /> </> } exact />
-            <Route path="/checkout" element={ <> <Checkout /> <Footer /> </> } exact />
-            <Route path="/mycart" element={ <> <Mycart /> <Footer /> </> } exact />
-            <Route path="/thankyou/:type" element={ <> <ThankYouPage /> <Footer /> </> } exact ></Route>
-            <Route path="/edit" element={ <> <Accountinfo /> <Footer /> </> } exact />
+            <Route path="/sellerdashboard/:currenttab" element={ <> <SellerDashboard /> <ScrollToTop/> <Footer /></> } exact />
+            <Route path="/buyerdashboard/:currenttab" element={ <> <BuyerDashboard />  <ScrollToTop/><Footer /> </> } exact />
+            <Route path="/sellerprofile" element={ <> <SellerProfile /> <ScrollToTop/> <Footer /></> } exact />
+            <Route path="/pending-invoice" element={ <> <PendingInvoice /> <ScrollToTop/> <Footer /> </> } exact />
+            <Route path="/checkout" element={ <> <Checkout /> <ScrollToTop/> <Footer /> </> } exact />
+            <Route path="/mycart" element={ <> <Mycart /> <ScrollToTop/> <Footer /> </> } exact />
+            <Route path="/thankyou/:type" element={ <> <ThankYouPage />  <ScrollToTop/><Footer /> </> } exact ></Route>
+            <Route path="/edit" element={ <> <Accountinfo /> <ScrollToTop/> <Footer /> </> } exact />
             
           </Routes>
 
