@@ -32,12 +32,10 @@ const Slides = () =>
 const Productsbrands = () => {
   const [isChange, setisChange] = useState(false)
   const [isChange1, setisChange1] = useState(false)
-
-  console.log(isChange)
   const brand = (value) => {
     setisChange(value)
     setisChange1(true)
-    console.log(isChange1)
+    
   }
   function Arrow(props) {
     let className =

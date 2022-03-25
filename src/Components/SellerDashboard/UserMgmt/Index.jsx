@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./styles.scss";
 import MUITable from '../../Common/MUITable'
-import { Button } from "@mui/material";
+import { Button } from "@mui/material"; 
 import { ArrowBackIosNew } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import Pagination from "../../Pagination";

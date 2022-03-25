@@ -1,33 +1,32 @@
-import React, { useState} from "react";
+import React, { useState, useEffect } from "react";
 import "./styles.scss";
 import Billingaddress from "./Billingaddress";
 import Shippingadress from "./Shippingaddress";
 import Edit_image from "../../../../Assets/CheckoutPage/Group 913.png";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import { Link } from "react-router-dom";
-// import axios from "axios";
+import axios from "axios";
 
 
 const Index = () => {
-    // useEffect (()=>{
-    //    axios.get('https://jsonplaceholder.typicode.com/todos/')
-    //    .then(
-    //        response => setData(response.data)    
-    //    )
-    // },[])
-    // const [data,setData]=useState([]);
-    // console.log('$$$$$$$$$$$$',data)
-    // const [isshipping,setisshipping]=useState({
-    //         id: 1,
-    //         heading: "Default Billing Adress",
-    //         name: "Ayush Raj",
-    //         no: "302/1160,Tech World",
-    //         block: "B-Block, HSR Layout",
-    //         location: "Bangalore-Karnataka",
-    //         pin: "560102",
-    // })
-      
-    
+    useEffect(() => {
+        axios.get('https://jsonplaceholder.typicode.com/posts/1/comments')
+            .then(
+                res => {
+                    setData(res.data)
+                    console.log(res.data)
+                })
+         .catch(err => console.log (err));        
+    }, [])
+    const [data, setData] = useState([]);
+    // const arr = data.map((data)=>{
+    //     return(
+    //         <>
+    //        <p> {data.title}</p>
+    //        <p> {data.body}</p>
+    //        </>
+    //     )
+    // })   
     const [isBilling, setisBilling] = useState(false)
     const Billaddress = () => {
         setisBilling(true)
@@ -55,7 +54,7 @@ const Index = () => {
     const ShippingAddress = [
         {
             id: 1,
-            organization:"Tech World",
+            organization: "Tech World",
             heading: "Default Shipping Adress",
             name: "Ayush Raj",
             no: "302/1160,Tech World",
@@ -71,8 +70,15 @@ const Index = () => {
                     <span className='heading'><p className='heading'>OFFICE ADDRESS</p></span>
                     <div className='Address_map'>
                         <div className='Address_Billing' >
-                            
-                            {BillingAdderess.map((user) => (
+                            <div>
+                            <p>Billing Address</p>
+                            {data.map(d => (
+                                <>
+                                <p>{d.name}</p>
+                                </>
+                            ))}
+                            </div>
+                            {/* {BillingAdderess.map((user) => (
                                 <ul key={user.id}>
                                     <li className='address_type'>{user.heading}</li>
                                     <li className='address_name' >{user.name}</li>
@@ -85,8 +91,8 @@ const Index = () => {
 
                                 </ul>
                             )
-                            )}
-            
+                            )} */}
+
                             <div className='edit_section'>
                                 <img src={Edit_image} alt="" style={{ height: "34px" }} /><p className='profile_edit' onClick={() => Billaddress()} >Edit</p>
                             </div>
@@ -121,8 +127,8 @@ const Index = () => {
                     </div>
                 </div>
             }
-            {isBilling && <Billingaddress  />}
-            {isShipping && <Shippingadress address = {ShippingAddress} />}
+            {isBilling && <Billingaddress />}
+            {isShipping && <Shippingadress address={ShippingAddress} />}
 
         </>
     )

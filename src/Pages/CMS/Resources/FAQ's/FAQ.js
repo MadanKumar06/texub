@@ -5,35 +5,58 @@ import { TextareaAutosize } from "@mui/material";
 import { withStyles } from "@mui/styles";
 import styles from "./styles";
 
-import IMG from "../../../../Assets/Career/plus.svg";
+import IMG from "../../../../Assets/FAQ/group7.svg";
 import img from "../../../../Assets/Career/Group 765.png";
-import IMG2 from "../../../../Assets/Career/decrease.svg";
+import IMG2 from "../../../../Assets/FAQ/group 6.svg";
 
 const FAQ = ({ classes }) => {
   const [description, setdescription] = useState(false);
-  const [description2, setdescription2] = useState(false);
+  // const [description2, setdescription2] = useState(false);
   const [toggle, settoggle] = useState(true);
-  const [toggle1, settoggle1] = useState(true);
+  const text = (value) => {
+    setdescription(value)
+    settoggle(false)
+    console.log(description)
+  }
+  // const [toggle1, settoggle1] = useState(true);
   const FAQs = [
     {
       id: 1,
       image: IMG,
       image1: IMG2,
       heading: "How can I order in Bulk?",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam maecenas ultricies mi eget mauris pharetra et. Vel eros donec ac odio tempor orci dapibus. Purus sit amet luctus venenatis lectus magna fringilla urna. Enim nunc faucibus a pellentesque sit amet. Auctor neque vitae tempus quam pellentesque nec nam aliquam sem.",
+      script:
+      [{text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam maecenas ultricies mi eget mauris pharetra et. Vel eros donec ac odio tempor orci dapibus. Purus sit amet luctus venenatis lectus magna fringilla urna. Enim nunc faucibus a pellentesque sit amet. Auctor neque vitae tempus quam pellentesque nec nam aliquam sem.",}]  
     },
-  ];
-  const FAQs1 = [
     {
-      id: 1,
+      id: 2,
       image: IMG,
       image1: IMG2,
-      heading: "How can I order in Bulk 2",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam maecenas ultricies mi eget mauris pharetra et. Vel eros donec ac odio tempor orci dapibus. Purus sit amet luctus venenatis lectus magna fringilla urna. Enim nunc faucibus a pellentesque sit amet. Auctor neque vitae tempus quam pellentesque nec nam aliquam sem.",
+      heading: "How can I order in Bulk?",
+      script:
+      [{text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam maecenas ultricies mi eget mauris pharetra et. Vel eros donec ac odio tempor orci dapibus. Purus sit amet luctus venenatis lectus magna fringilla urna. Enim nunc faucibus a pellentesque sit amet. Auctor neque vitae tempus quam pellentesque nec nam aliquam sem.",}]
+    },
+    {
+      id: 3,
+      image: IMG,
+      image1: IMG2,
+      heading: "How can I order in Bulk?",
+      script:
+      [
+        {text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam maecenas ultricies mi eget mauris pharetra et. Vel eros donec ac odio tempor orci dapibus. Purus sit amet luctus venenatis lectus magna fringilla urna. Enim nunc faucibus a pellentesque sit amet. Auctor neque vitae tempus quam pellentesque nec nam aliquam sem.",}
+      ]
     },
   ];
+  // const FAQs1 = [
+  //   {
+  //     id: 1,
+  //     image: IMG,
+  //     image1: IMG2,
+  //     heading: "How can I order in Bulk 2",
+  //     description:
+  //       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam maecenas ultricies mi eget mauris pharetra et. Vel eros donec ac odio tempor orci dapibus. Purus sit amet luctus venenatis lectus magna fringilla urna. Enim nunc faucibus a pellentesque sit amet. Auctor neque vitae tempus quam pellentesque nec nam aliquam sem.",
+  //   },
+  // ];
   return (
     <div className="faqs_main">
       <div className="faqs_heading_section">
@@ -47,53 +70,43 @@ const FAQ = ({ classes }) => {
         </h3>
         <hr className="faqs_hr1"></hr>
         {FAQs.map((item) => (
-          <li key={item.id} className="faqs_table_adding">
+          <li className="faqs_table_adding">
             <div className="faqs_qns_section">
               <img
                 src={toggle ? item.image : item.image1}
                 alt=""
-                onClick={() => {
-                  settoggle(!toggle);
-                  setdescription(!description);
-                }}
+                onClick={() => text(item.id)
+                   } 
                 className="faqs_plus_img"
               ></img>
-              <span className="faq_qns_heading">{item.heading}</span>
+              <span className="faq_qns_heading">{item.heading}</span>  
             </div>
-
             {description && (
+              <span>{item.id ===  description && item.script.map(e =>
+                <div className="faqs_description">
+                <div className="content">
+                 <div className="v1"></div>
+                 {e.text}
+                 </div>
+                 </div>
+              )}
+              
+                </span>
+           )}
+            {/* {description && (
               <div className="faqs_description">
-                <div className="v1"></div>
-                {item.description}
-              </div>
-            )}
+                <span>{item.id === description && item.description.map(e =>
+                  <div className="content">
+                   <div className="v1"></div>
+                   {item.description}
+                   </div>
+                )}
+                  </span>
+               </div>
+            )} */}
             <hr className="faqs_horizental"></hr>
           </li>
         ))}
-        {FAQs1.map((item) => (
-          <li key={item.id} className="faqs_table_adding">
-            <div className="faqs_qns_section">
-              <img
-                src={toggle1 ? item.image : item.image1}
-                alt=""
-                onClick={() => {
-                  settoggle1(!toggle1);
-                  setdescription2(!description2);
-                }}
-                className="faqs_plus_img"
-              ></img>
-              <span className="faq_qns_heading">{item.heading}</span>
-            </div>
-            {description2 && (
-              <div className="faqs_description">
-                <div className="v1"></div>
-                {item.description}
-              </div>
-            )}
-            <hr className="faqs_horizental"></hr>
-          </li>
-        ))}
-
         <div className={classes.faqs_table}>
           <p className={classes.faqs_text_heading}>
             Have a Question ? Type here and submit
