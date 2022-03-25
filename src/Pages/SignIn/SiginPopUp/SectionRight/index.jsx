@@ -10,8 +10,12 @@ import {
 import { withStyles } from "@mui/styles";
 import styles from "./styles";
 import { isEmailValid, isPasswordValid } from "../../../../utilities";
+import { useNavigate } from "react-router-dom";
+import { useStateValue } from "../../../../store/state";
 
 const TransitionsModal = ({ classes }) => {
+
+  const [{}, dispatch] = useStateValue();
   let {
     section_right,
     info_text_lineNote,
@@ -178,6 +182,11 @@ const TransitionsModal = ({ classes }) => {
     }
     if (!errorHandle) {
       // Apicall fuction
+      // dispatch({
+      //   type: "SET_SIGNIN_OPEN_CLOSE",
+      //   value: false,
+      // });
+   
     }
   };
 

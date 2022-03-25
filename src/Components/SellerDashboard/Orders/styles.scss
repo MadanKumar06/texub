@@ -2,13 +2,15 @@
   .orders__buttons {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-around;
     gap: 20px;
     margin-top: 3em;
+    flex-wrap: wrap;
 
     p {
       margin: 0;
-      padding: 0.8em 1.2em;
+      padding: 0.7em 1.2em;
+      white-space: nowrap;
       background-color: #f0f0f0;
       color: #333c42;
       font-size: 18px;
@@ -17,7 +19,8 @@
       font-weight: 600;
       cursor: pointer;
       text-transform: capitalize;
-      width: calc(100% / 4);
+      min-width: 200px;
+      width: calc(90% / 4);
     }
 
     .ordertype__selected {
@@ -93,7 +96,6 @@
       }
       .orders__dispatched {
         color: #d9ad59;
-        font-size: 22px;
         background-color: #fff6e5;
         padding: 0.3em 0.9em;
         border-radius: 24px;
@@ -101,7 +103,6 @@
       }
       .orders__confirmed {
         color: #20639b;
-        font-size: 22px;
         background-color: #d5ecff;
         padding: 0.3em 0.9em;
         border-radius: 24px;
@@ -131,6 +132,44 @@
           font-weight: 600;
           margin-left: 0.6em;
         }
+      }
+    }
+  }
+}
+@media (max-width: 1660px) {
+  .orders .orders__back__footer .orders__back__container a span {
+    font-size: 16px;
+  }
+  .orders .orders__back__footer .orders__back__container a .MuiSvgIcon-root {
+    width: 0.6em;
+    height: 0.6em;
+  }
+  .orders .orders__buttons p {
+    padding: 0.5em 1.2em;
+    font-size: 16px;
+  }
+  .orders .orders__table {
+    .MuiTableHead-root .MuiTableCell-root {
+      font-size: 20px;
+    }
+
+    .MuiTableBody-root {
+      .orders__action {
+        font-size: 16px;
+      }
+      .orders__ordertotal {
+        .value {
+          font-size: 20px;
+        }
+
+        .label {
+          font-size: 14px;
+        }
+      }
+
+      .MuiTableCell-root,
+      .orders__action {
+        font-size: 18px;
       }
     }
   }

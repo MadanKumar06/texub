@@ -18,6 +18,13 @@
         color: #272727;
         margin-top: 2em;
       }
+      .MuiAutocomplete-root {
+        .MuiFormControl-root {
+          .MuiOutlinedInput-root {
+            padding: 4px;
+          }
+        }
+      }
       .MuiFormControl-root {
         & ::placeholder {
           text-transform: capitalize;
@@ -78,13 +85,28 @@
     .registerproduct__submitbutton {
       font-size: 18px;
       padding: 0.6em 7.2em;
-      background: linear-gradient(#20639b, #002d56);
-      color: white;
-      border-radius: 24px;
     }
   }
 }
 
+@media (max-width: 1660px) {
+  .registerproduct h1 {
+    font-size: 20px;
+  }
+  .registerproduct
+    .registerproducts__form
+    .registerproducts_inputfields
+    .MuiInputLabel-root {
+    font-size: 12px;
+  }
+  .registerproduct .registerproduct__submit .registerproduct__back {
+    font-size: 16px;
+  }
+  .registerproduct .registerproduct__submit .registerproduct__submitbutton {
+    font-size: 16px;
+    padding: 0.4em 7.2em;
+}
+}
 @media (max-width: 767px) {
   .registerproduct .registerproducts__form .input_separator {
     flex-direction: column;
