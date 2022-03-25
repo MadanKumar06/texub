@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { InputLabel, TextField, Autocomplete } from "@mui/material";
+import {
+  InputLabel,
+  TextField,
+  Autocomplete,
+  Box,
+  Button,
+} from "@mui/material";
 import "./styles.scss";
 
 function RegisterProduct() {
@@ -234,9 +240,13 @@ function RegisterProduct() {
         <Link to="/sellerdashboard/inventory">
           <span className="registerproduct__back">Back</span>
         </Link>
-        <Link to="/sellerdashboard/registersuccess">
-          <p className="registerproduct__submitbutton">Submit</p>
-        </Link>
+        <Box>
+          <Link to="/sellerdashboard/registersuccess">
+            <Button className="button-text btn-secondary registerproduct__submitbutton">
+              Submit
+            </Button>
+          </Link>
+        </Box>
       </div>
     </div>
   );
