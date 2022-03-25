@@ -2,5 +2,10 @@
   display: flex;
   width: 100%;
   gap: 20px;
-  // flex-direction: column;
+}
+
+@media (max-width: 1240px) {
+  .dashboard_charts {
+    flex-direction: column;
+  }
 }

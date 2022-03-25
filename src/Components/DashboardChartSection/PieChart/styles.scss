@@ -71,3 +71,17 @@
     padding: 6px;
   }
 }
+
+@media (max-width: 1240px) {
+  .piechart_container {
+    width: 100%;
+  }
+}
+
+@media (max-width: 580px) {
+  .piechart_container {
+    .chart_table_container {
+      flex-direction: column;
+    }
+  }
+}

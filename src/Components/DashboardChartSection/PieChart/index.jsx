@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./styles.scss";
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 
@@ -47,6 +47,56 @@ const renderCustomizedLabel = ({
 };
 
 const Charts = () => {
+  const [currentwidth, setcurrentwidth] = useState(375)
+  const [currentheight, setcurrentheight] = useState(375)
+
+  useEffect(() => {
+    if(window.innerWidth <= 1800) {
+      setcurrentwidth(360)
+      setcurrentheight(360)
+    }
+    if(window.innerWidth <= 1660) {
+      setcurrentwidth(340)
+      setcurrentheight(340)
+    }
+    if(window.innerWidth <= 1533) {
+      setcurrentwidth(320)
+      setcurrentheight(320)
+    }
+    if(window.innerWidth <= 1440) {
+      setcurrentwidth(300)
+      setcurrentheight(300)
+    }
+    if(window.innerWidth <= 1366) {
+      setcurrentwidth(250)
+      setcurrentheight(250)
+    }
+    if(window.innerWidth <= 1240) {
+      setcurrentwidth(512)
+      setcurrentheight(320)
+    }
+    if(window.innerWidth <= 1140) {
+      setcurrentwidth(448)
+    }
+    if(window.innerWidth <= 1024) {
+      setcurrentwidth(512)
+    }
+    if(window.innerWidth <= 768) {
+      setcurrentwidth(448)
+    }
+    if(window.innerWidth <= 580) {
+      setcurrentwidth(448)
+    }
+    if(window.innerWidth <= 480) {
+      setcurrentwidth(364)
+    }
+    if(window.innerWidth <= 375) {
+      setcurrentwidth(308)
+    }
+    if(window.innerWidth <= 320) {
+      setcurrentwidth(295)
+    }
+  }, [])
   return (
     <div className="piechart_container">
       <p className="title">Order Chart</p>
@@ -63,8 +113,8 @@ const Charts = () => {
       </div>
       <div className="chart_table_container">
         <div className="pie">
-        <ResponsiveContainer width="100%" height="100%" aspect={1}>
-          <PieChart width={320} height={320} className="piechart">
+        {/* <ResponsiveContainer width="100%" height="100%" aspect={1}> */}
+          <PieChart width={currentwidth} height={currentheight} className="piechart">
             <Pie
               data={data}
               cx="50%"
@@ -84,7 +134,7 @@ const Charts = () => {
                 ))}
             </Pie>
           </PieChart>
-          </ResponsiveContainer>
+          {/* </ResponsiveContainer> */}
         </div>
         <div className="chart_info">
           <p className="table__header">

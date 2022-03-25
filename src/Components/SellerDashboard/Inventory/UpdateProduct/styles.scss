@@ -277,3 +277,19 @@
     }
   }
 }
+
+@media (max-width: 1660px) {
+  .updateproduct h1 {
+    font-size: 22px;
+  }
+  .updateproduct
+    .updateproduct__specifications
+    .updateproduct__form
+    .updateproduct_inputfields
+    .MuiInputLabel-root {
+    font-size: 12px;
+  }
+  .updateproduct .updateproduct__buttons .updateproduct__back {
+    font-size: 16px;
+  }
+}
