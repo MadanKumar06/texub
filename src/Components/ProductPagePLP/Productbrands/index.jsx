@@ -202,8 +202,7 @@ const Productsbrands = () => {
                         <div className="content">
                           <span>
                             <p >{e.display}</p>
-                            <p>{e.count}</p>
-                            
+                            <p>{e.count}</p> 
                           </span>
                         </div>
                       )}

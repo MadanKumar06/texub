@@ -9,16 +9,15 @@ import axios from "axios";
 
 
 const Index = () => {
+    const [data, setData] = useState([]);
     useEffect(() => {
         axios.get('https://jsonplaceholder.typicode.com/posts/1/comments')
             .then(
                 res => {
                     setData(res.data)
-                    console.log(res.data)
                 })
-         .catch(err => console.log (err));        
+            .catch(err => console.log(err));
     }, [])
-    const [data, setData] = useState([]);
     // const arr = data.map((data)=>{
     //     return(
     //         <>
@@ -71,12 +70,14 @@ const Index = () => {
                     <div className='Address_map'>
                         <div className='Address_Billing' >
                             <div>
-                            <p>Billing Address</p>
-                            {data.map(d => (
-                                <>
-                                <p>{d.name}</p>
-                                </>
-                            ))}
+                                <p>Default Billing Address</p>
+                                {data.map(d => (
+                                    <>
+                                        <ul key={d.id}>
+                                            <li className='address_block'>{d.name}</li>
+                                        </ul>
+                                    </>
+                                ))}
                             </div>
                             {/* {BillingAdderess.map((user) => (
                                 <ul key={user.id}>

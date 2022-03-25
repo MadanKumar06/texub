@@ -11,14 +11,13 @@ import IMG2 from "../../../../Assets/FAQ/group 6.svg";
 
 const FAQ = ({ classes }) => {
   const [description, setdescription] = useState(false);
-  // const [description2, setdescription2] = useState(false);
-  const [toggle, settoggle] = useState(true);
+  const [toggle, settoggle] = useState(true);  
   const text = (value) => {
     setdescription(value)
     settoggle(false)
-    console.log(description)
+     console.log(toggle)
+
   }
-  // const [toggle1, settoggle1] = useState(true);
   const FAQs = [
     {
       id: 1,
@@ -26,7 +25,7 @@ const FAQ = ({ classes }) => {
       image1: IMG2,
       heading: "How can I order in Bulk?",
       script:
-      [{text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam maecenas ultricies mi eget mauris pharetra et. Vel eros donec ac odio tempor orci dapibus. Purus sit amet luctus venenatis lectus magna fringilla urna. Enim nunc faucibus a pellentesque sit amet. Auctor neque vitae tempus quam pellentesque nec nam aliquam sem.",}]  
+        [{ text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam maecenas ultricies mi eget mauris pharetra et. Vel eros donec ac odio tempor orci dapibus. Purus sit amet luctus venenatis lectus magna fringilla urna. Enim nunc faucibus a pellentesque sit amet. Auctor neque vitae tempus quam pellentesque nec nam aliquam sem.", }]
     },
     {
       id: 2,
@@ -34,7 +33,7 @@ const FAQ = ({ classes }) => {
       image1: IMG2,
       heading: "How can I order in Bulk?",
       script:
-      [{text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam maecenas ultricies mi eget mauris pharetra et. Vel eros donec ac odio tempor orci dapibus. Purus sit amet luctus venenatis lectus magna fringilla urna. Enim nunc faucibus a pellentesque sit amet. Auctor neque vitae tempus quam pellentesque nec nam aliquam sem.",}]
+        [{ text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam maecenas ultricies mi eget mauris pharetra et. Vel eros donec ac odio tempor orci dapibus. Purus sit amet luctus venenatis lectus magna fringilla urna. Enim nunc faucibus a pellentesque sit amet. Auctor neque vitae tempus quam pellentesque nec nam aliquam sem.", }]
     },
     {
       id: 3,
@@ -42,21 +41,11 @@ const FAQ = ({ classes }) => {
       image1: IMG2,
       heading: "How can I order in Bulk?",
       script:
-      [
-        {text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam maecenas ultricies mi eget mauris pharetra et. Vel eros donec ac odio tempor orci dapibus. Purus sit amet luctus venenatis lectus magna fringilla urna. Enim nunc faucibus a pellentesque sit amet. Auctor neque vitae tempus quam pellentesque nec nam aliquam sem.",}
-      ]
+        [
+          { text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam maecenas ultricies mi eget mauris pharetra et. Vel eros donec ac odio tempor orci dapibus. Purus sit amet luctus venenatis lectus magna fringilla urna. Enim nunc faucibus a pellentesque sit amet. Auctor neque vitae tempus quam pellentesque nec nam aliquam sem.", }
+        ]
     },
   ];
-  // const FAQs1 = [
-  //   {
-  //     id: 1,
-  //     image: IMG,
-  //     image1: IMG2,
-  //     heading: "How can I order in Bulk 2",
-  //     description:
-  //       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam maecenas ultricies mi eget mauris pharetra et. Vel eros donec ac odio tempor orci dapibus. Purus sit amet luctus venenatis lectus magna fringilla urna. Enim nunc faucibus a pellentesque sit amet. Auctor neque vitae tempus quam pellentesque nec nam aliquam sem.",
-  //   },
-  // ];
   return (
     <div className="faqs_main">
       <div className="faqs_heading_section">
@@ -70,40 +59,30 @@ const FAQ = ({ classes }) => {
         </h3>
         <hr className="faqs_hr1"></hr>
         {FAQs.map((item) => (
-          <li className="faqs_table_adding">
+          <li key= {item.id} className="faqs_table_adding">
             <div className="faqs_qns_section">
               <img
-                src={toggle ? item.image : item.image1}
+                src={toggle ? item.image : item.image1 }
                 alt=""
                 onClick={() => text(item.id)
-                   } 
+                }
                 className="faqs_plus_img"
               ></img>
-              <span className="faq_qns_heading">{item.heading}</span>  
+              <span className="faq_qns_heading">{item.heading}</span>
             </div>
             {description && (
-              <span>{item.id ===  description && item.script.map(e =>
-                <div className="faqs_description">
-                <div className="content">
-                 <div className="v1"></div>
-                 {e.text}
-                 </div>
-                 </div>
-              )}
-              
-                </span>
-           )}
-            {/* {description && (
-              <div className="faqs_description">
-                <span>{item.id === description && item.description.map(e =>
-                  <div className="content">
-                   <div className="v1"></div>
-                   {item.description}
-                   </div>
+              <>
+                <span>{item.id === description && item.script.map(e =>
+                  <div className="faqs_description">
+                    <div className="content">
+                      <div className="v1"></div>
+                      {e.text}
+                    </div>
+                  </div>
                 )}
-                  </span>
-               </div>
-            )} */}
+                </span>
+              </>
+            )}
             <hr className="faqs_horizental"></hr>
           </li>
         ))}
