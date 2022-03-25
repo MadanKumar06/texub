@@ -57,8 +57,8 @@ function LineCharts() {
           <span></span>Order Placed
         </p>
       </div>
-      <ResponsiveContainer width="100%" aspect={1.5}>
-        <LineChart data={pdata} margin={{ right: 50 }}>
+      <ResponsiveContainer width="100%" height="100%" aspect={1.9}>
+        <LineChart data={pdata} margin={{ right: 50, top: 20 }}>
           <CartesianGrid />
           <XAxis dataKey="name" interval={"preserveStartEnd"} />
           <YAxis></YAxis>
@@ -69,12 +69,14 @@ function LineCharts() {
             stroke="#CC9B3E"
             activeDot={{ r: 8 }}
             className="firstData"
+            // type="monotone"
           />
           <Line
             dataKey="fees"
             stroke="#20639B"
             activeDot={{ r: 8 }}
             className="secondData"
+            // type="monotone"
           />
         </LineChart>
       </ResponsiveContainer>

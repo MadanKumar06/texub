@@ -24,6 +24,14 @@
       display: flex;
       gap: 10px;
       align-items: center;
+      .MuiPaper-root {
+        box-shadow: none;
+        .MuiInputBase-root {
+          & ::placeholder {
+            opacity: 1;
+          }
+        }
+      }
       .sellerdashboard__notiIcon {
         height: 41px;
         width: 41px;
@@ -37,6 +45,7 @@
       span {
         color: #5c6369;
         font-size: 20px;
+        font-weight: 600;
       }
 
       .sellerdashboard__searchinput {
@@ -75,25 +84,46 @@
 //      width: 71%;
 //   }
 // }
-@media (max-width: 1600px) {
+@media (max-width: 1660px) {
   .sellerdashboard .sellerdashboard__maintab {
-    width: calc(100% - 22%);
+    width: calc(100% - 20%);
+  }
+  .sellerdashboard .sellerdashboard__maintab .sellerdashboard__search {
+    .sellerdashboard__searchinput {
+      height: 45px;
+    }
+    .MuiPaper-root {
+      box-shadow: none;
+      .MuiInputBase-root {
+        & ::placeholder {
+          opacity: 1;
+          font-size: 16px;
+        }
+      }
+    }
+    .sellerdashboard__notiIcon {
+      height: 30px;
+      width: 30px;
+    }
+    span {
+      font-size: 18px;
+    }
   }
 }
 
 @media (max-width: 1533px) {
   .sellerdashboard .sellerdashboard__maintab {
-    width: calc(100% - 25%);
+    width: calc(100% - 23%);
   }
 }
 @media (max-width: 1375px) {
   .sellerdashboard .sellerdashboard__maintab {
-    width: calc(100% - 30%);
+    width: calc(100% - 28%);
   }
 }
 @media (max-width: 1366px) {
   .sellerdashboard .sellerdashboard__maintab {
-    width: calc(100% - 27%);
+    width: calc(100% - 25%);
   }
 }
 
