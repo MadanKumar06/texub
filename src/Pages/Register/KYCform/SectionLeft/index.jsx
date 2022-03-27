@@ -1,13 +1,6 @@
 import React, { useState } from "react";
 import styles from "./styles";
-import {
-  Modal,
-  Checkbox,
-  FormControlLabel,
-  Button,
-  Box,
-  Backdrop,
-} from "@mui/material";
+import { Modal, Button, Box, Backdrop } from "@mui/material";
 import { withStyles } from "@mui/styles";
 import { Clear } from "@mui/icons-material";
 import SectionRight from "../SectionRight";
@@ -21,7 +14,7 @@ import { useStateValue } from "../../../../store/state";
 const BuyerKYCformSectionLeft = ({ classes }) => {
   const [open, setOpen] = React.useState(true);
   const [documentButton, setDocumentButton] = useState("trade_license");
-  const [kycFormData, setKycFormData] = useState({});
+  const [kycFormData, setKycFormData] = useState({ expiry_checkbox: false });
   const [validationFieldMessage, setValidationFieldMessage] = useState();
   const [{}, dispatch] = useStateValue();
   let {
@@ -34,7 +27,6 @@ const BuyerKYCformSectionLeft = ({ classes }) => {
     clear_btn,
     info_text_lineNote_one,
     input_fields,
-    checkbox_label,
     box,
     button_selected,
     button_notselected,
@@ -130,14 +122,6 @@ const BuyerKYCformSectionLeft = ({ classes }) => {
                   setValidationFieldMessage={setValidationFieldMessage}
                 />
               )}
-
-              <FormControlLabel
-                value="yes"
-                control={<Checkbox color="color_third" />}
-                label="Automated Reminder on Expiry."
-                labelPlacement="end"
-                className={checkbox_label}
-              />
               <BankDetails
                 SetFormValues={setKycFormData}
                 FormValues={kycFormData}

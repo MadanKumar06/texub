@@ -14,6 +14,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 import { isEmailValid, isPasswordValid } from "../../../utilities";
 import Autocomplete from "@mui/material/Autocomplete";
 import { withStyles } from "@mui/styles";
+import MuiPhoneNumber from "material-ui-phone-number";
 
 const BuyerRegistration = ({ classes }) => {
   const [{}, dispatch] = useStateValue();
@@ -59,6 +60,13 @@ const BuyerRegistration = ({ classes }) => {
     country: "",
     confrim_password: "",
   });
+  const handleMobileChangeInput = (event) => {
+    setbuyerRegistrationData((prevState) => ({
+      ...prevState,
+      mobile_number: event,
+    }));
+    setInputValidation("");
+  };
   const handleChangeInput = (event) => {
     if (event?.target?.name === "remember_me") {
       setbuyerRegistrationData((prevState) => ({
@@ -373,7 +381,26 @@ const BuyerRegistration = ({ classes }) => {
           </div>
 
           <div className={text_field_container}>
-            <TextField
+            <MuiPhoneNumber
+              preferredCountries={["india"]}
+              defaultCountry={"in"}
+              id="mobile_number"
+              fullWidth
+              label="Mobile Number"
+              name="mobile_number"
+              placeholder="8796878788"
+              value={buyerRegistrationData?.mobile_number}
+              InputLabelProps={{
+                shrink: true,
+                required: true,
+                classes: {
+                  asterisk: asterisk,
+                },
+              }}
+              onChange={handleMobileChangeInput}
+              variant="outlined"
+            />
+            {/* <TextField
               id="mobile_number"
               label="Mobile Number"
               fullWidth
@@ -390,7 +417,7 @@ const BuyerRegistration = ({ classes }) => {
               name="mobile_number"
               onChange={handleChangeInput}
               variant="outlined"
-            />
+            /> */}
             <InputLabel className={validation_error}>
               {inputValidation?.mobile_number}
             </InputLabel>

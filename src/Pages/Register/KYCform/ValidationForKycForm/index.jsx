@@ -26,10 +26,10 @@ function ValidationForKycForm({
   const handleValidationClick = () => {
     let endPoint = false;
     setValid("");
-    if (!values?.business_name) {
+    if (!values?.company_name) {
       setValid((prevState) => ({
         ...prevState,
-        business_name: "Please enter the business name.",
+        company_name: "Please enter the Company name.",
       }));
       endPoint = true;
     }

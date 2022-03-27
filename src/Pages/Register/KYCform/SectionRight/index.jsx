@@ -1,12 +1,10 @@
 import React from "react";
 import {
-  OutlinedInput,
   TextField,
   MenuItem,
   ListItemText,
   Checkbox,
-  InputLabel,
-  FormControl,
+  FormControlLabel,
   Select,
 } from "@mui/material";
 import { withStyles } from "@mui/styles";
@@ -24,6 +22,7 @@ const BuyerKYCformSectionRight = ({
   setValidationFieldMessage,
   documentButton,
   setDocumentButton,
+  checkbox_label,
 }) => {
   let {
     section_right_container,
@@ -127,7 +126,13 @@ const BuyerKYCformSectionRight = ({
           </div>
         )}
       </>
-      <p className={download_link}>Click Here To Download Agreement</p>
+      <FormControlLabel
+        value="yes"
+        control={<Checkbox color="secondary" />}
+        label="By clicking here, I state that I have read and understood the terms of agreement"
+        labelPlacement="end"
+        className={download_link}
+      />
       <ValidationForKycForm
         values={FormValues}
         handleCallValidation={handleCallValidation}

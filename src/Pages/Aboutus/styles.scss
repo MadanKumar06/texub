@@ -246,11 +246,11 @@
     align-items: center;
     flex-direction: column;
     position: relative;
-    margin: 0 3% 4em 3%;
+    margin: 0 3% 1em 3%;
     h1 {
       color: #333333;
       font-size: 50px;
-      margin: 2em 0;
+      margin: 1em 0;
     }
 
     .aboutus__worldwide__content {
@@ -266,7 +266,7 @@
       .aboutus__ww__country {
         position: absolute;
         width: 100%;
-        bottom: 3em;
+        bottom: 1em;
         min-width: max-content;
         .list {
           position: relative;
@@ -287,27 +287,27 @@
           }
         }
         .usa {
-          width: 10%;
+          width: 134px;
           background: #f7942c;
         }
         .nigeria {
-          width: 13%;
+          width: 187px;
           background: #e5422f;
         }
         .netherland {
-          width: 16%;
+          width: 228px;
           background: #4eaa67;
         }
         .uae {
-          width: 19%;
+          width: 264px;
           background: #2a3c93;
         }
         .india {
-          width: 22%;
+          width: 296px;
           background: #5d3373;
         }
         .singapore {
-          width: 25%;
+          width: 323px;
           background: #1f2c54;
         }
       }
@@ -387,7 +387,7 @@
     .aboutus__worldwide__content
     .aboutus__ww__country
     .list {
-    padding: 24px;
+    padding: 14px;
   }
 
   .aboutus
@@ -396,8 +396,26 @@
     .aboutus__ww__country {
     .list {
       span {
-        font-size: 20px;
+        font-size: 16px;
       }
+    }
+    .usa {
+      width: 83px;
+    }
+    .nigeria {
+      width: 105px;
+    }
+    .netherland {
+      width: 131px;
+    }
+    .uae {
+      width: 150px;
+    }
+    .india {
+      width: 165px;
+    }
+    .singapore {
+      width: 180px;
     }
   }
 }
@@ -516,6 +534,17 @@
   }
   .aboutus .aboutus__mission__content .aboutus__mission__left {
     top: 0.5em;
+  }
+  .aboutus
+    .aboutus__worldwide
+    .aboutus__worldwide__content
+    .aboutus__ww__country
+    .list {
+    padding: 10px;
+    margin-top: 3px;
+    span {
+      font-size: 12px;
+    }
   }
 }
 
@@ -791,7 +820,7 @@
 }
 @media (max-width: 425px) {
   .aboutus .aboutus__worldwide h1 {
-    font-size: 33px;
+    font-size: 24px;
   }
   .aboutus
     .aboutus__worldwide
@@ -800,5 +829,39 @@
     > .list
     > img {
     width: 32%;
+  }
+  .aboutus
+    .aboutus__worldwide
+    .aboutus__worldwide__content
+    .aboutus__ww__country
+    .list
+    span {
+    font-size: 10px;
+  }
+  .aboutus
+    .aboutus__worldwide
+    .aboutus__worldwide__content
+    .aboutus__ww__country {
+    .list {
+      padding: 5px;
+    }
+    .usa {
+      width: 43px;
+    }
+    .nigeria {
+      width: 65px;
+    }
+    .netherland {
+      width: 81px;
+    }
+    .uae {
+      width: 110px;
+    }
+    .india {
+      width: 125px;
+    }
+    .singapore {
+      width: 140px;
+    }
   }
 }

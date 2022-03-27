@@ -5,9 +5,11 @@ import {
   FormControlLabel,
   Checkbox,
   Typography,
+  Button,
 } from "@mui/material";
 import "./styles.scss";
 import { withStyles } from "@mui/styles";
+import { KeyboardDoubleArrowRight } from "@mui/icons-material";
 import "../../../../Pages/Aboutus/styles.scss";
 import styles from "./styles";
 
@@ -30,21 +32,26 @@ import sg from "../../../../Assets/Aboutus/sg.png";
 
 const Career = ({ classes }) => {
   const country = [
-    { content: "USA", image: usa },
-    { content: "NIGERIA", image: nigeria },
-    { content: "NETHERLAND", image: nether },
-    { content: "UAE", image: uae },
-    { content: "INDIA", image: india },
-    { content: "SINGAPORE", image: sg },
+    { content: "USA", image: usa, style: "usa" },
+    { content: "NIGERIA", image: nigeria, style: "nigeria" },
+    { content: "NETHERLAND", image: nether, style: "netherland" },
+    { content: "UAE", image: uae, style: "uae" },
+    { content: "INDIA", image: india, style: "india" },
+    { content: "SINGAPORE", image: sg, style: "singapore" },
   ];
   return (
-    <div className="career_main">
+    <div className="career_main_container">
       <div className="career_team_section">
         <p className="career_team_ready">Ready To Make An Impact</p>
         <p className="career_team_join">Join The Team</p>
-        <button type="button" className="career_team_join_btn">
-          View Openings
-        </button>
+        <Box>
+          <Button
+            type="button"
+            className="button-text btn-secondary career_team_join_btn"
+          >
+            View Openings
+          </Button>
+        </Box>
         <img src={Key} alt="" className="career_team_img" />
       </div>
       <div className="career_joinus_section">
@@ -118,8 +125,9 @@ const Career = ({ classes }) => {
               }
             />
           </div>
-
-          <img src={Mask} alt="" className="career_joinus_img" />
+          <div className="career_joinus_img">
+            <img src={Mask} alt="" />
+          </div>
         </div>
       </div>
       <div className="career_to_texub">
@@ -132,52 +140,52 @@ const Career = ({ classes }) => {
           <h1 className="career_to_texub_developers_designation">
             Front End Developer
           </h1>
-          <h1 className="career_to_texub_developers_location">
-            Banglore, Full Time
-          </h1>
-          <span className="career_to_texub_developers_arrow">
-            <img src={Rightarrow} alt="" />
-          </span>
+          <div className="career_to_texub_developers_arrow">
+            <h1 className="career_to_texub_developers_location">
+              Banglore, Full Time
+            </h1>
+            <KeyboardDoubleArrowRight />
+          </div>
         </div>
         <div className="career_to_texub_developers2">
           <h1 className="career_to_texub_developers_designation">
             Android Developer
           </h1>
-          <h1 className="career_to_texub_developers_location">
-            Bangalore, Remote
-          </h1>
-          <span className="career_to_texub_developers_arrow">
-            <img src={Rightarrow} alt="" />
-          </span>
+          <div className="career_to_texub_developers_arrow">
+            <h1 className="career_to_texub_developers_location">
+              Bangalore, Remote
+            </h1>
+            <KeyboardDoubleArrowRight />
+          </div>
         </div>
         <div className="career_to_texub_developers">
           <h1 className="career_to_texub_developers_designation">
             Full Stack Developer
           </h1>
-          <h1 className="career_to_texub_developers_location">
-            Dubai, Full Time
-          </h1>
-          <span className="career_to_texub_developers_arrow">
-            <img src={Rightarrow} alt="" />
-          </span>
+          <div className="career_to_texub_developers_arrow">
+            <h1 className="career_to_texub_developers_location">
+              Dubai, Full Time
+            </h1>
+            <KeyboardDoubleArrowRight />
+          </div>
         </div>
         <div className="career_to_texub_developers2">
           <h1 className="career_to_texub_developers_designation">
             UX Designer
           </h1>
 
-          <h1 className="career_to_texub_developers_location">
-            Bangalore, Full Time
-          </h1>
-          <span className="career_to_texub_developers_arrow">
-            <img src={Rightarrow} alt="" />
-          </span>
+          <div className="career_to_texub_developers_arrow">
+            <h1 className="career_to_texub_developers_location">
+              Bangalore, Full Time
+            </h1>
+            <KeyboardDoubleArrowRight />
+          </div>
         </div>
       </div>
       <div className="career_CultureValues">
         <p className="career_CultureValues_Click">
           Want To Know More About The Company ?{" "}
-          <a href="">
+          <a href="/">
             <span className="Link">CLICK HERE</span>
           </a>
         </p>
@@ -245,8 +253,7 @@ const Career = ({ classes }) => {
 
             <div className="aboutus__ww__country">
               {country.map((data, i) => (
-                <div className="list" key={i}>
-                  <img src={data.image} alt="" />
+                <div className={`list ${data?.style}`} key={i}>
                   <span>{data.content}</span>
                 </div>
               ))}

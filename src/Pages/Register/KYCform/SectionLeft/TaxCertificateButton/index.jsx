@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
 import styles from "../styles";
 
-import { TextField, InputLabel } from "@mui/material";
+import {
+  TextField,
+  InputLabel,
+  FormControlLabel,
+  Checkbox,
+} from "@mui/material";
 import { withStyles } from "@mui/styles";
 import { Clear } from "@mui/icons-material";
 import { LocalizationProvider, DesktopDatePicker } from "@mui/lab";
@@ -27,6 +32,7 @@ const TaxCertificateButton = ({
     input_image_name,
     input_image_name_clear_btn,
     validation_error,
+    checkbox_label,
   } = classes;
 
   //Date onchange event
@@ -172,9 +178,9 @@ const TaxCertificateButton = ({
 
           <small>(Supported format : .jpg/.png/.pdf)</small>
         </div>
-          <InputLabel className={validation_error}>
-            {inputValidation?.tax_image}
-          </InputLabel>
+        <InputLabel className={validation_error}>
+          {inputValidation?.tax_image}
+        </InputLabel>
         {FormValues?.tax_image && (
           <div className={input_image_name}>
             <p>{FormValues?.tax_image?.name}</p>
@@ -190,6 +196,15 @@ const TaxCertificateButton = ({
           </div>
         )}
       </div>
+      {FormValues?.expiry_checkbox && (
+        <FormControlLabel
+          value="yes"
+          control={<Checkbox color="color_third" />}
+          label="Automated Reminder on Expiry."
+          labelPlacement="end"
+          className={checkbox_label}
+        />
+      )}
     </>
   );
 };

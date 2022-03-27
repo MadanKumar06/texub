@@ -25,6 +25,7 @@
     .auctiontable__auctionid {
       color: #002d56;
       text-decoration: underline;
+      font-weight: 600;
     }
 
     .auctiontable__price {
@@ -43,6 +44,7 @@
       padding: 0.4em 2em;
       border-radius: 24px;
       position: relative;
+      font-weight: 600;
 
       .status__active {
         content: "";
@@ -59,7 +61,7 @@
     .auctiontable__action {
       color: #002d56;
       font-size: 22px;
-      font-weight: 500;
+      font-weight: 600;
       text-decoration: underline;
       cursor: pointer;
     }
@@ -79,11 +81,11 @@
         text-align: left;
 
         .details__title {
-          font-size: 16px;
+          font-size: 18px;
         }
 
         .details__content {
-          font-size: 12px;
+          font-size: 14px;
         }
       }
     }
@@ -125,5 +127,11 @@
         color: #002d56;
       }
     }
+  }
+}
+
+@media (max-width: 1660px) {
+  .auctiontable .MuiPaper-root .auctiontable__action {
+    font-size: 18px;
   }
 }
