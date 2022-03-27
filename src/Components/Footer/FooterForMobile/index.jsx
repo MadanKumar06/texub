@@ -1,16 +1,15 @@
 import React from "react";
-import styles from "./style";
-
+import "./styles.scss";
+import { Link } from "react-router-dom";
 import {
   AccordionSummary,
   AccordionDetails,
   Accordion,
   Typography,
 } from "@mui/material";
-import { withStyles } from "@mui/styles";
 import { ExpandMore } from "@mui/icons-material";
 
-const MobileFooterAccordions = ({ classes }) => {
+const MobileFooterAccordions = () => {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleChange = (panel) => (event, isExpanded) => {
@@ -18,7 +17,7 @@ const MobileFooterAccordions = ({ classes }) => {
   };
 
   return (
-    <div className={classes.mobile_view_accordion_container}>
+    <div className="mobile_view_accordion_container">
       <Accordion
         expanded={expanded === "panel1"}
         onChange={handleChange("panel1")}
@@ -30,16 +29,30 @@ const MobileFooterAccordions = ({ classes }) => {
         >
           <Typography
             sx={{ width: "33%", flexShrink: 0 }}
-            className={classes.heading_accordion}
+            className="heading_accordion"
           >
             Company
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>About Us</Typography>
-          <Typography>Terms Of Use</Typography>
-          <Typography>Privacy Policy</Typography>
-          <Typography>Contact Us</Typography>
+          <Link to="/aboutus" className="link">
+            <Typography>About Us</Typography>
+          </Link>
+          <Link to="/termsofuse" className="link">
+            <Typography>Terms Of Use</Typography>
+          </Link>
+          <Link to="/privacypolicy" className="link">
+            <Typography>Privacy Policy</Typography>
+          </Link>
+          <Link to="/rrpolicy" className="link">
+            <Typography>Refund Policy</Typography>
+          </Link>
+          <Link to="/" className="link">
+            <Typography>Product Listing Policy</Typography>
+          </Link>
+          <Link to="/contactus" className="link">
+            <Typography>Contact Us</Typography>
+          </Link>
         </AccordionDetails>
       </Accordion>
       <Accordion
@@ -53,16 +66,27 @@ const MobileFooterAccordions = ({ classes }) => {
         >
           <Typography
             sx={{ width: "33%", flexShrink: 0 }}
-            className={classes.heading_accordion}
+            className="heading_accordion"
           >
             Services
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>Training</Typography>
-          <Typography>Seller Advantage</Typography>
-          <Typography>Buyer Advantage</Typography>
-          <Typography>Career</Typography>
+          <Link to="/training" className="link">
+            <Typography>Training</Typography>
+          </Link>
+          <Link to="/seller_advantage" className="link">
+            <Typography>Seller Advantage</Typography>
+          </Link>
+          <Link to="/buyer_advantage" className="link">
+            <Typography>Buyer Advantage</Typography>
+          </Link>
+          <Link to="/career" className="link">
+            <Typography>Career</Typography>
+          </Link>
+          <Link to="/" className="link">
+            <Typography>How Its Works</Typography>
+          </Link>
         </AccordionDetails>
       </Accordion>
       <Accordion
@@ -76,20 +100,29 @@ const MobileFooterAccordions = ({ classes }) => {
         >
           <Typography
             sx={{ width: "33%", flexShrink: 0 }}
-            className={classes.heading_accordion}
+            className="heading_accordion"
           >
             Resources
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>Legal </Typography>
+          <Link to="/legal" className="link">
+            <Typography>Legal </Typography>
+          </Link>
           <Typography>Cookies Permission </Typography>
-          <Typography>GDPR </Typography>
-          <Typography>FAQs </Typography>
+          <Link to="/gdpr" className="link">
+            <Typography>GDPR </Typography>
+          </Link>
+          <Link to="/Faqs" className="link">
+            <Typography>FAQs </Typography>
+          </Link>
+          <Link to="/blogsmain" className="link">
+            <Typography>Blogs</Typography>
+          </Link>
         </AccordionDetails>
       </Accordion>
     </div>
   );
 };
 
-export default withStyles(styles)(MobileFooterAccordions);
+export default MobileFooterAccordions;

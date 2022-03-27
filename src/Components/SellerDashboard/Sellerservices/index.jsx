@@ -104,8 +104,8 @@ function Index() {
 
   return (
     <div className="sellerservices">
-      <div className="approve__cart__footer">
-        <div className="approve__cart__container">
+      <div className="sellerservices__footer">
+        <div className="sellerservices__container">
           <Link to="/sellerdashboard/dashboard">
             <ArrowBackIosNew />
             <span>Back</span>

@@ -25,7 +25,7 @@
   .rmatable__orderid {
     text-decoration: underline;
     color: #002d56;
-    font-weight: 500;
+    font-weight: 600;
   }
 
   .rmatable__pdetails {
@@ -44,7 +44,7 @@
     }
     .value {
       color: #333c42;
-      font-weight: 500;
+      font-weight: 600;
     }
   }
 
@@ -63,6 +63,8 @@
       text-decoration: underline;
       color: #002d56;
       padding: 0.3em;
+      font-size: 22px;
+      font-weight: 600;
     }
 
     .accept {
@@ -102,5 +104,26 @@
         color: #002d56;
       }
     }
+  }
+}
+
+@media (max-width: 1660px) {
+  .rmatable {
+    .MuiTableHead-root .MuiTableCell-root {
+      font-size: 20px;
+    }
+
+    .MuiTableBody-root {
+      .myorders__action {
+        font-size: 16px;
+      }
+
+      .MuiTableCell-root {
+        font-size: 18px;
+      }
+    }
+  }
+  .rmatable .rmatable__action span {
+    font-size: 18px;
   }
 }

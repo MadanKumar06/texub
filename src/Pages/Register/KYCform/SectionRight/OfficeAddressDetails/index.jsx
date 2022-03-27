@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { TextField, InputLabel } from "@mui/material";
 import { withStyles } from "@mui/styles";
 import styles from "../styles";
-import Autocomplete from "@mui/material/Autocomplete";
 
 const OfficeAddressDetails = ({
   classes,
@@ -13,7 +12,6 @@ const OfficeAddressDetails = ({
 }) => {
   let {
     info_text_lineNote_one,
-    auto_complete_input,
     asterisk,
     input_div,
     input_fields,
@@ -42,36 +40,11 @@ const OfficeAddressDetails = ({
   });
   const handleSwitchCase = (fieldName, value) => {
     switch (fieldName[0]) {
-      case "address_line_one":
-        if (!value) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            address_line_one: "Please enter the address line one.",
-          }));
-        }
-        break;
-
       case "pin_zip_code":
-        if (!value) {
+        if (value !== 6) {
           setInputValidation((prevState) => ({
             ...prevState,
-            pin_zip_code: "Please enter the pincode.",
-          }));
-        }
-        break;
-      case "city":
-        if (!value) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            city: "Please enter the city.",
-          }));
-        }
-        break;
-      case "country":
-        if (!value) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            country: "Please select the country.",
+            pin_zip_code: "Please enter 6 digit pincode.",
           }));
         }
         break;
@@ -79,8 +52,6 @@ const OfficeAddressDetails = ({
         break;
     }
   };
-
-  const options = ["Option 1", "Option 2"];
   return (
     <div>
       <p className={info_text_lineNote_one}>Office Address</p>
@@ -164,34 +135,23 @@ const OfficeAddressDetails = ({
             </InputLabel>
           </div>
         </div>
-        <Autocomplete
-          value={FormValues?.country}
-          className={auto_complete_input}
-          onInputChange={(event, newInputValue) => {
-            SetFormValues((prevState) => ({
-              ...prevState,
-              country: newInputValue,
-            }));
-            setInputValidation("");
-            handleSwitchCase(["country"], newInputValue);
-          }}
+        <TextField
           id="country"
-          options={options}
+          label="Country"
+          placeholder="Country"
           fullWidth
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              label="Country"
-              placeholder="Country"
-              InputLabelProps={{
-                shrink: true,
-                required: true,
-                classes: {
-                  asterisk: asterisk,
-                },
-              }}
-            />
-          )}
+          disabled
+          InputLabelProps={{
+            shrink: true,
+            required: true,
+            classes: {
+              asterisk: asterisk,
+            },
+          }}
+          name="country"
+          onChange={handleFormvalue}
+          value={FormValues?.country}
+          variant="outlined"
         />
         <InputLabel className={validation_error}>
           {inputValidation?.country}
