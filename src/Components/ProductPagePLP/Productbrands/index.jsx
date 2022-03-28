@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "./styles.scss";
 import { ArrowBackIosNew, ArrowForwardIos } from "@mui/icons-material";
 import "slick-carousel/slick/slick.css";
@@ -29,14 +29,18 @@ const Slides = () =>
       <img src={num.Image} alt=" " className="Slider_icons" />
     </div>
   ));
+  
 const Productsbrands = () => {
   const [isChange, setisChange] = useState(false)
-  const [isChange1, setisChange1] = useState(false)
   const brand = (value) => {
     setisChange(value)
-    setisChange1(true)
-    
   }
+  useEffect(() => {
+    document.addEventListener("mousedown", () =>{
+      setisChange(false)
+    })
+  })
+  
   function Arrow(props) {
     let className =
       props.type === "next" ? "Carosal_nextArrow" : "Carosal_prevArrow";
@@ -192,9 +196,8 @@ const Productsbrands = () => {
               key={item.id}
               className="Slider_brands">
               <span onMouseOver={() => brand(item.id)}
-                    onClick={()=>setisChange1(false)}
               >{item.brand}</span>
-              {isChange && isChange1 &&
+              {isChange && 
                 (
                   <div className="list">
                     <li className="list_content" >
@@ -215,12 +218,7 @@ const Productsbrands = () => {
           ))}
         </Slider>
       </div>
-
     </div>
-
-
-
-
   );
 };
 export default Productsbrands;
