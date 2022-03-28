@@ -66,7 +66,7 @@ const styles = (theme) => ({
       "& .MuiInputLabel-root": {
         fontWeight: "600",
         fontSize: "18px",
-        color:"#3E3E3E",
+        color: "#3E3E3E",
         "& .MuiInputLabel-asterisk": {},
       },
     },
@@ -130,6 +130,6 @@ const styles = (theme) => ({
   },
   asterisk: {
     color: "red",
-  },
+  }
 });
 export default styles;
