@@ -61,6 +61,7 @@ const OfficeAddressDetails = ({
           label="Address Line 1"
           placeholder="Address Line 1"
           fullWidth
+          className="inputfield-box"
           InputLabelProps={{
             shrink: true,
             required: true,
@@ -85,6 +86,7 @@ const OfficeAddressDetails = ({
             shrink: true,
           }}
           variant="outlined"
+          className="inputfield-box"
           name="address_line_two"
           onChange={handleFormvalue}
           value={FormValues?.address_line_two}
@@ -96,6 +98,7 @@ const OfficeAddressDetails = ({
               label="PIN/ZIP Code"
               placeholder="PIN/ZIP Code"
               fullWidth
+              className="inputfield-box"
               InputLabelProps={{
                 shrink: true,
                 required: true,
@@ -117,6 +120,7 @@ const OfficeAddressDetails = ({
               id="city"
               label="City"
               placeholder="City"
+              className="inputfield-box"
               fullWidth
               InputLabelProps={{
                 shrink: true,
@@ -141,6 +145,7 @@ const OfficeAddressDetails = ({
           placeholder="Country"
           fullWidth
           disabled
+          className="inputfield-box"
           InputLabelProps={{
             shrink: true,
             required: true,

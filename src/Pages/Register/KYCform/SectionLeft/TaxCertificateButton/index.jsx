@@ -107,6 +107,7 @@ const TaxCertificateButton = ({
           type="number"
           fullWidth
           placeholder="Tax Number"
+          className="inputfield-box"
           InputLabelProps={{
             shrink: true,
             required: true,
@@ -134,6 +135,7 @@ const TaxCertificateButton = ({
               <TextField
                 {...params}
                 fullWidth
+                className="inputfield-box"
                 id="tax_expiration_date"
                 placeholder="MM/YY"
                 InputLabelProps={{

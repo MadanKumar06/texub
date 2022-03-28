@@ -316,6 +316,7 @@ const BuyerRegistration = ({ classes }) => {
               label="First Name"
               placeholder="First Name"
               fullWidth
+              className="inputfield-box"
               InputLabelProps={{
                 shrink: true,
                 required: true,
@@ -335,6 +336,7 @@ const BuyerRegistration = ({ classes }) => {
           <div className={text_field_container}>
             <TextField
               id="last_name"
+              className="inputfield-box"
               label="Last Name"
               fullWidth
               placeholder="Last Name"
@@ -361,6 +363,7 @@ const BuyerRegistration = ({ classes }) => {
               id="email_address"
               label="E-mail Address"
               autoComplete="off"
+              className="inputfield-box"
               placeholder="E-mail Address"
               fullWidth
               InputLabelProps={{
@@ -387,6 +390,7 @@ const BuyerRegistration = ({ classes }) => {
               id="mobile_number"
               fullWidth
               label="Mobile Number"
+              className="inputfield-box"
               name="mobile_number"
               placeholder="8796878788"
               value={buyerRegistrationData?.mobile_number}
@@ -428,6 +432,7 @@ const BuyerRegistration = ({ classes }) => {
             <TextField
               id="password"
               label="Password"
+              className="inputfield-box"
               fullWidth
               type="password"
               autoComplete="new-password"
@@ -453,6 +458,7 @@ const BuyerRegistration = ({ classes }) => {
               id="confrim_password"
               label="Confrim Password"
               fullWidth
+              className="inputfield-box"
               type="password"
               placeholder="Confrim Password"
               InputLabelProps={{
@@ -477,6 +483,7 @@ const BuyerRegistration = ({ classes }) => {
             <TextField
               id="landline_number"
               label="Landline Number"
+              className="inputfield-box"
               fullWidth
               type="number"
               placeholder="Landline Number"
@@ -495,6 +502,7 @@ const BuyerRegistration = ({ classes }) => {
               label="Company Name"
               fullWidth
               placeholder="Company Name"
+              className="inputfield-box"
               InputLabelProps={{
                 shrink: true,
                 required: true,
@@ -516,6 +524,7 @@ const BuyerRegistration = ({ classes }) => {
           <div className={text_field_container}>
             <TextField
               id="designation"
+              className="inputfield-box"
               label="Designation"
               placeholder="Designation"
               fullWidth
@@ -556,6 +565,7 @@ const BuyerRegistration = ({ classes }) => {
                 <TextField
                   {...params}
                   label="Country"
+                  className="inputfield-box"
                   placeholder="Country"
                   InputLabelProps={{
                     shrink: true,

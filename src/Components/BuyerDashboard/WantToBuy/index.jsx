@@ -157,6 +157,7 @@ const WantToBuy = () => {
                   asterisk: "asterisk",
                 },
               }}
+              className="inputfield-box"
               onChange={handleFormvalue}
               value={wantTobuyData?.part_number}
               variant="outlined"
@@ -179,6 +180,7 @@ const WantToBuy = () => {
                   asterisk: "asterisk",
                 },
               }}
+              className="inputfield-box"
               value={wantTobuyData?.model_name_number}
               onChange={handleFormvalue}
               variant="outlined"
@@ -197,6 +199,7 @@ const WantToBuy = () => {
             name="product_description"
             rows={5}
             placeholder="Product Description"
+            className="inputfield-box"
             InputLabelProps={{
               shrink: true,
               // required: true,
@@ -224,7 +227,7 @@ const WantToBuy = () => {
                 id="controllable-states-demo"
                 options={options}
                 fullWidth
-                className="auto_complete_input"
+                className="inputfield-box auto_complete_input"
                 renderInput={(params) => (
                   <TextField
                     {...params}
@@ -257,7 +260,7 @@ const WantToBuy = () => {
                 id="controllable-states-demo"
                 options={options}
                 fullWidth
-                className="auto_complete_input"
+                className="inputfield-box auto_complete_input"
                 renderInput={(params) => (
                   <TextField
                     {...params}
@@ -294,7 +297,7 @@ const WantToBuy = () => {
                 id="controllable-states-demo"
                 options={options}
                 fullWidth
-                className="auto_complete_input"
+                className="inputfield-box auto_complete_input"
                 renderInput={(params) => (
                   <TextField
                     {...params}
@@ -323,6 +326,7 @@ const WantToBuy = () => {
                     <TextField
                       {...params}
                       fullWidth
+                      className="inputfield-box"
                       placeholder="Select Closing Date"
                       InputLabelProps={{
                         shrink: true,
@@ -349,6 +353,7 @@ const WantToBuy = () => {
             placeholder="Notes"
             multiline
             rows={5}
+            className="inputfield-box"
             value={wantTobuyData?.notes}
             InputLabelProps={{
               shrink: true,

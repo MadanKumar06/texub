@@ -114,6 +114,7 @@ const BuyerKYCformSectionRight = ({
               id="other category"
               label="Other Category"
               fullWidth
+              className="inputfield-box"
               placeholder="other category"
               InputLabelProps={{
                 shrink: true,

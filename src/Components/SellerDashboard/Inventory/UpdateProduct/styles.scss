@@ -114,30 +114,14 @@
       color: #272727;
       margin-top: 1.5em;
     }
-    .MuiFormControl-root {
-      & ::placeholder {
-        text-transform: capitalize;
-        font-size: 20px;
-        color: #cdd5dd;
-        opacity: 1;
-      }
-      .MuiOutlinedInput-root {
-        input {
-          // padding: 12.5px 14px;
-          font: unset;
+    .MuiAutocomplete-root {
+      .MuiFormControl-root {
+        .MuiOutlinedInput-root {
+          padding: 4px !important;
         }
-        fieldset {
-          legend {
-            font-size: 1em;
-          }
-        }
-      }
-
-      .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
-        border: 1px solid #ddb363;
       }
     }
-
+    
     .dimensions_input {
       display: flex;
 

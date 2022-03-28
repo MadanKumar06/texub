@@ -126,6 +126,7 @@ const TradeLicenseButton = ({
         fullWidth
         disabled
         value={FormValues?.company_name}
+        className="inputfield-box"
         InputLabelProps={{
           shrink: true,
           required: true,
@@ -146,6 +147,7 @@ const TradeLicenseButton = ({
           label="Trade LIC Number"
           placeholder="Trade LIC Number"
           fullWidth
+          className="inputfield-box"
           name="trade_lic_number"
           value={FormValues?.trade_lic_number}
           InputLabelProps={{
@@ -173,6 +175,7 @@ const TradeLicenseButton = ({
               <TextField
                 {...params}
                 fullWidth
+                className="inputfield-box"
                 id="trade_expiration_date"
                 placeholder="MM/YY"
                 InputLabelProps={{
