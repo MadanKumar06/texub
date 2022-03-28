@@ -200,7 +200,7 @@ const Career = ({ classes }) => {
           Dolore Magna Aliquyam Erat, Sed Diam Voluptua. At Vero Eos Et Et Justo
           Duo
         </p>
-        <Box sx={{ flexGrow: 1 }} className={classes.img_box}>
+        <Box sx={{ flexGrow: 1 }} className="career_grid_box">
           <Grid
             container
             spacing={{ xs: 2, md: 3 }}

@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import './styles.scss'
 import Newsubaccount from './Newsubaccount'
 import { ArrowBackIosNew } from "@mui/icons-material";
-import Allowedpermissions from '../Subusers/Popups/Allowedpermissions'
-import Forbidden from '../Subusers/Popups/Forbidden'
+import Allowedpermissions from './Popups/Allowedpermissions'
+import Forbidden from './Popups/Forbidden'
 import  MUITable  from '../../../Common/MUITable'
 import { Link } from "react-router-dom";
 const Index = () => {

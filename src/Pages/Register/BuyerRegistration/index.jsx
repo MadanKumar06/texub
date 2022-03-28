@@ -595,11 +595,11 @@ const BuyerRegistration = ({ classes }) => {
               value="yes"
               control={<Checkbox color="secondary" />}
               label={
-                <p>
+                <div>
                   By using this form you agree with the{" "}
                   <span>Terms of Use</span>
                   and <span>Privacy Policy</span> by this website.
-                </p>
+                </div>
               }
               labelPlacement="end"
               className={checkbox_label}

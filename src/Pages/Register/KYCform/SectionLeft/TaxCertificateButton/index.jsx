@@ -198,7 +198,6 @@ const TaxCertificateButton = ({
           </div>
         )}
       </div>
-      {FormValues?.expiry_checkbox && (
         <FormControlLabel
           value="yes"
           control={<Checkbox color="color_third" />}
@@ -206,7 +205,6 @@ const TaxCertificateButton = ({
           labelPlacement="end"
           className={checkbox_label}
         />
-      )}
     </>
   );
 };

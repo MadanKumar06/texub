@@ -218,12 +218,12 @@ const WantToBuy = () => {
               <Autocomplete
                 value={value}
                 onChange={(event, newValue) => {
-                  setValue(newValue);
+                  setWantToBuyData((prevState) => ({
+                    ...prevState,
+                    main_category: newValue,
+                  }));
                 }}
                 inputValue={inputValue}
-                onInputChange={(event, newInputValue) => {
-                  setInputValue(newInputValue);
-                }}
                 id="controllable-states-demo"
                 options={options}
                 fullWidth
@@ -251,12 +251,12 @@ const WantToBuy = () => {
               <Autocomplete
                 value={value}
                 onChange={(event, newValue) => {
-                  setValue(newValue);
+                  setWantToBuyData((prevState) => ({
+                    ...prevState,
+                    quantity: newValue,
+                  }));
                 }}
                 inputValue={inputValue}
-                onInputChange={(event, newInputValue) => {
-                  setInputValue(newInputValue);
-                }}
                 id="controllable-states-demo"
                 options={options}
                 fullWidth
@@ -288,12 +288,12 @@ const WantToBuy = () => {
               <Autocomplete
                 value={value}
                 onChange={(event, newValue) => {
-                  setValue(newValue);
+                  setWantToBuyData((prevState) => ({
+                    ...prevState,
+                    hub: newValue,
+                  }));
                 }}
                 inputValue={inputValue}
-                onInputChange={(event, newInputValue) => {
-                  setInputValue(newInputValue);
-                }}
                 id="controllable-states-demo"
                 options={options}
                 fullWidth
