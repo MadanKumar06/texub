@@ -5,11 +5,11 @@ import { isPasswordValid, isEmailValid } from "../../../../utilities";
 import MuiPhoneNumber from "material-ui-phone-number";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import { Link } from "react-router-dom";
+// import { useForm } from "react-hook-form";
 const Index = (classes) => {
   let {
     validation_error
   } = classes;
-
   const [AccountInfoData, setAccountInfoData] = useState({
     first_name: "",
     last_name: "",
@@ -18,13 +18,6 @@ const Index = (classes) => {
     new_password: "",
     new_confrim_password: "",
   });
-
-  //  const [value, setValue] = React.useState({
-  //   mobile_number:"",
-  //  });
-  //  const [inputValue, setInputValue] = React.useState({
-  //   mobile_number:"",
-  //  });
   const [inputValidation, setInputValidation] = useState({
     first_name: "",
     last_name: "",
@@ -33,7 +26,8 @@ const Index = (classes) => {
     new_password: "",
     new_confrim_password: "",
   });
-
+  // const { register, handleSubmit } = useForm();
+  const onSubmit = data => console.log(data); 
   const handleChangeInput = (event) => {
     setAccountInfoData((prevState) => ({
       ...prevState,
@@ -48,28 +42,6 @@ const Index = (classes) => {
     }));
     setInputValidation("");
   };
-  // const handleChangeInput1 = (e) => {
-  //   setValue((prevState) => ({
-  //     ...prevState,
-  //     [e.target.name]: e.target.value,
-  //   }));
-  //   setInputValue("");
-  //     handleSwitchCase1(e.target.value);
-  // };
-  // const handleSwitchCase1 = (fieldName, value) => {
-  //   switch (fieldName[0]) {
-  //     case "mobile_number":
-  //       if (!value) {
-  //         setInputValue((prevState) => ({
-  //           ...prevState,
-  //           mobile_number: "Please enter the first name.",
-  //         }));
-  //       } 
-  //       break;
-  //       default:
-  //       break;
-  //   }
-  // };
   const handleSwitchCase = (fieldName, value) => {
     switch (fieldName[0]) {
       case "first_name":
@@ -210,12 +182,13 @@ const Index = (classes) => {
     <div className='account_ifo_main'>
       <span className='Account_heading'> <p>EDIT PROFILE INFORMATION</p></span>
       <div className='account_info_edit' >
-        {/* <form> */}
-        <div className='form'>
+        <form className='form' >
+        {/* <div className='form'> */}
           <div className='inputfield_section'>
             <div className='inputfield'>
               <p>First Name</p>
               <TextField
+                // {...register("first_name")}
                 id="first_name"
                 name="first_name"
                 placeholder='First Name'
@@ -233,6 +206,7 @@ const Index = (classes) => {
             <div className='inputfield'>
               <p>Last Name</p>
               <TextField
+              // {...register("last_name")}
                 id="last_name"
                 name="last_name"
                 placeholder='Last Name'
@@ -251,7 +225,7 @@ const Index = (classes) => {
             <div className='inputfield'>
               <p>Mobile Number</p>
               <MuiPhoneNumber
-                fullwidth
+              // {...register("mobile_number")}
                 preferredCountries={["india"]}
                 defaultCountry={'in'}
                 id="mobile_number"
@@ -271,6 +245,7 @@ const Index = (classes) => {
             <div className="inputfield">
               <p>Email Address</p>
               <TextField
+              // {...register("email_address")}
                 id="email_address"
                 name="email_address"
                 placeholder="E-Mail"
@@ -290,6 +265,7 @@ const Index = (classes) => {
           <div className='inputfield'>
             <p>New Password</p>
             <TextField
+            // {...register("new_password")}
               id="new_password"
               name="new_password"
               value={AccountInfoData?.new_password}
@@ -308,6 +284,7 @@ const Index = (classes) => {
           <div className='inputfield'>
             <p>Confirm New Password</p>
             <TextField
+            // {...register("new_confrim_password")}
               id="new_confrim_password"
               name="new_confrim_password"
               placeholder='New Confirm Password'
@@ -326,9 +303,10 @@ const Index = (classes) => {
         </div>
         <div className='accountinfo_btn'>
           <button className='account_info_cancel'>Cancel</button>
-          <button className='account_info_save' onClick={() => handleClickValidation()}>Save Changes</button>
+          <button className='account_info_save' onClick={() => handleClickValidation()} >Save Changes</button>
         </div>
-        </div>
+        </form>
+        {/* </div> */}
         <div className='my_profile_back'>
         <Link to="/buyerdashboard/dashboard" className="link">
         <ArrowBackIosNew /><span><p className='back'>Back</p></span>
