@@ -264,15 +264,6 @@ const Index = (classes) => {
                 onChange={handleMobileChangeInput}
                 variant="outlined"
               />
-              {/* <TextField
-              id="mobile_number"
-              name="mobile_number"
-              value={AccountInfoData?.mobile_number}
-              InputLabelProps={{
-                shrink: false,
-              }}
-              onChange={handleChangeInput}
-            /> */}
               <InputLabel className={validation_error}>
                 {inputValidation?.mobile_number}
               </InputLabel>
