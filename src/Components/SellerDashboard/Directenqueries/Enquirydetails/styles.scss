@@ -1,8 +1,9 @@
+.modal{
 .enquirydetails_main{
     position: fixed;
     bottom: 100px;
     width: 100%;
-    height: 100vh;
+    top: 0;
     left: 0;
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.6);
@@ -120,7 +121,17 @@
   }
 
 }
+}
 
+@media only screen and(max-width:900px){
+    .modal .enquirydetails_main .enquirydetails_box .enquirydetails_section{
+    height: 63vh;
+    overflow-y: scroll;
+ }
+ .modal .enquirydetails_main{
+     margin: 10em 0;
+ }
+}
 @media (max-width:580px) {
     .enquirydetails_main{
         //    position:fixed;

@@ -19,6 +19,7 @@ import user_active from "../../Assets/sellerdashboard/ActiveDashboardPng/add-gro
 
 //buyer inactive image
 import order_Inactive from "../../Assets/buyerdashboard/InActiveDashboardPng/shopping-bag.png";
+import invoices_Inactive from "../../Assets/buyerdashboard/InActiveDashboardPng/bill (1).png";
 import auction_Inactive from "../../Assets/buyerdashboard/InActiveDashboardPng/auction .png";
 import wantToBuy_Inactive from "../../Assets/buyerdashboard/InActiveDashboardPng/shopping.png";
 import payment_method_Inactive from "../../Assets/buyerdashboard/InActiveDashboardPng/credit-card.png";
@@ -99,7 +100,7 @@ const BuyerList = [
     url: "myorder",
   },
   {
-    image_Inactive: order_Inactive,
+    image_Inactive: invoices_Inactive,
     image_Active: "",
     name: "Invoices List",
     url: "invoiceslist",
