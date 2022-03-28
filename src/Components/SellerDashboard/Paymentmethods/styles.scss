@@ -2,15 +2,16 @@
   .paymentmethod__buttons {
     display: flex;
     align-items: center;
-    justify-content: space-around !important;
+    justify-content: space-around;
     gap: 20px;
     margin-top: 3em;
-    padding: 0 3em;
+    flex-wrap: wrap;
     .paymentmethod__btton_content {
-      width: calc(100% / 4);
-      text-align: center;
-
       p {
+        width: calc(90% / 4);
+        text-align: center;
+        white-space: nowrap;
+        min-width: 250px;
         margin: 0;
         padding: 0.7em 1.2em;
         background-color: #f0f0f0;
@@ -162,6 +163,48 @@
         font-weight: 600 !important;
         padding: 10px !important;
         text-transform: capitalize !important;
+      }
+    }
+  }
+}
+@media (max-width: 1660px) {
+  .paymentmethod_container
+    .paymentmethod__footer
+    .paymentmethod__container
+    a
+    span {
+    font-size: 16px;
+  }
+  .paymentmethod_container
+    .paymentmethod__footer
+    .paymentmethod__container
+    a
+    .MuiSvgIcon-root {
+    width: 0.6em;
+    height: 0.6em;
+  }
+  .paymentmethod_container
+    .paymentmethod__buttons
+    .paymentmethod__btton_content
+    p {
+    font-size: 16px;
+    padding: 0.5em 1.2em;
+  }
+  .paymentmethod_container .paymentmethod__table {
+    .MuiTableHead-root .MuiTableCell-root {
+      font-size: 20px;
+    }
+
+    .MuiTableBody-root {
+      .actions {
+        font-size: 16px;
+      }
+
+      .MuiTableCell-root,
+      .paymentmethod__pending,
+      .paymentmethod__failed,
+      .paymentmethod__success {
+        font-size: 18px;
       }
     }
   }

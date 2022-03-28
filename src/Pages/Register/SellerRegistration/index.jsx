@@ -15,6 +15,7 @@ import { withStyles } from "@mui/styles";
 import { Link, useParams } from "react-router-dom";
 import { useStateValue } from "../../../store/state";
 import styles from "./styles";
+import MuiPhoneNumber from "material-ui-phone-number";
 const BuyerRegistration = ({ classes }) => {
   let { type } = useParams();
   const [{}, dispatch] = useStateValue();
@@ -63,6 +64,7 @@ const BuyerRegistration = ({ classes }) => {
     country: "",
     confrim_password: "",
   });
+
   const handleChangeInput = (event) => {
     if (event?.target?.name === "remember_me") {
       setsellerRegistrationData((prevState) => ({
@@ -334,6 +336,13 @@ const BuyerRegistration = ({ classes }) => {
       value: true,
     });
   };
+  const handleMobileChangeInput = (event) => {
+    setsellerRegistrationData((prevState) => ({
+      ...prevState,
+      mobile_number: event,
+    }));
+    setInputValidation("");
+  };
   return (
     <div className={main_container}>
       <div className={input_fields}>
@@ -408,7 +417,26 @@ const BuyerRegistration = ({ classes }) => {
             </InputLabel>
           </div>
           <div className={text_field_container}>
-            <TextField
+            <MuiPhoneNumber
+              preferredCountries={["india"]}
+              defaultCountry={"in"}
+              id="mobile_number"
+              fullWidth
+              label="Mobile Number"
+              name="mobile_number"
+              placeholder="8796878788"
+              value={sellerRegistrationData?.mobile_number}
+              InputLabelProps={{
+                shrink: true,
+                required: true,
+                classes: {
+                  asterisk: asterisk,
+                },
+              }}
+              onChange={handleMobileChangeInput}
+              variant="outlined"
+            />
+            {/* <TextField
               id="mobile_number"
               label="Mobile Number"
               fullWidth
@@ -425,7 +453,7 @@ const BuyerRegistration = ({ classes }) => {
               name="mobile_number"
               onChange={handleChangeInput}
               variant="outlined"
-            />
+            /> */}
             <InputLabel className={validation_error}>
               {inputValidation?.mobile_number}
             </InputLabel>

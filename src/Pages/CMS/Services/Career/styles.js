@@ -4,7 +4,8 @@
     checkbox_label: {
         fontSize:'30px !important',
         letterSpacing: "0.6px",
-        "@media (max-width:1024px)":{
+        textTransform: "capitalize",
+        "@media (max-width:1660px)":{
           fontSize:'20px !important',
         },
         },  
@@ -22,7 +23,10 @@
         "& .MuiCheckbox-root":{
             "& .MuiSvgIcon-root": {
                 color:'goldenrod',
-                fontSize:'35px'
+                fontSize:'35px',
+                "@media (max-width:1660px)":{
+                  fontSize:'25px',
+                },
             },
         }
     }

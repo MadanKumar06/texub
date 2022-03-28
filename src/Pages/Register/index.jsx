@@ -56,8 +56,10 @@ const Registration = ({ classes }) => {
           </p>
         </div>
         <div className={right_area}>
-          <p className={select_text}>Select User Type</p>
-          <RadioGroup
+          <p className={select_text}>
+            {clicked === "buyer" ? "Buyer Registration" : "Seller Registration"}
+          </p>
+          {/* <RadioGroup
             row
             aria-label="position"
             name="position"
@@ -102,7 +104,7 @@ const Registration = ({ classes }) => {
               labelPlacement="top"
               onClick={() => handleChange("seller")}
             />
-          </RadioGroup>
+          </RadioGroup> */}
         </div>
       </div>
       {clicked === "buyer" ? <BuyerRegistration /> : <SellerRegistration />}

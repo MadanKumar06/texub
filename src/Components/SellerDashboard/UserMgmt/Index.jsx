@@ -1,29 +1,29 @@
 import React, { useState } from "react";
 import "./styles.scss";
-import MUITable from '../../Common/MUITable'
-import { Button } from "@mui/material"; 
+import MUITable from "../../Common/MUITable";
+import { Button, Box } from "@mui/material";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import Pagination from "../../Pagination";
 import { MenuItem, Select } from "@mui/material";
-import Allowedpermissions from '../../SellerDashboard/UserMgmt/PopUps/Allowedpermissions'
-import Forbidden from '../../SellerDashboard/UserMgmt/PopUps/Forbidden'
+import Allowedpermissions from "../../SellerDashboard/UserMgmt/PopUps/Allowedpermissions";
+import Forbidden from "../../SellerDashboard/UserMgmt/PopUps/Forbidden";
 
 function Index({ setuserform, userform }) {
   const [tableData, setTableData] = useState([]);
   const edituser = () => {
     setuserform(true);
   };
-  const [isPermissions, setisPermissions] = useState(false)
+  const [isPermissions, setisPermissions] = useState(false);
   const permission = () => {
-    setisPermissions(true)
-    setisForbidden(false)
-  }
-  const [isForbidden, setisForbidden] = useState(false)
+    setisPermissions(true);
+    setisForbidden(false);
+  };
+  const [isForbidden, setisForbidden] = useState(false);
   const forbidden = () => {
-    setisForbidden(true)
-    setisPermissions(false)
-  }
+    setisForbidden(true);
+    setisPermissions(false);
+  };
   const options = {
     filter: false,
     filterType: "dropdown",
@@ -76,7 +76,11 @@ function Index({ setuserform, userform }) {
       label: "Permissions",
       options: {
         customBodyRender: (value) => {
-          return <div className="usermgmt__permissions" onClick={permission}>{value}</div>;
+          return (
+            <div className="usermgmt__permissions" onClick={permission}>
+              {value}
+            </div>
+          );
         },
       },
     },
@@ -85,7 +89,11 @@ function Index({ setuserform, userform }) {
       label: "Forbidden",
       options: {
         customBodyRender: (value) => {
-          return <div className="usermgmt__forbidden" onClick={forbidden}>{value}</div>;
+          return (
+            <div className="usermgmt__forbidden" onClick={forbidden}>
+              {value}
+            </div>
+          );
         },
       },
     },
@@ -99,7 +107,8 @@ function Index({ setuserform, userform }) {
           return (
             <div className="usermgmt__action">
               <p>Login</p>
-              <p onClick={edituser}>Edit</p>
+              {/* onClick={edituser} */}
+              <p>Edit</p>
               <p>Delete</p>
             </div>
           );
@@ -171,15 +180,20 @@ function Index({ setuserform, userform }) {
                 <ArrowBackIosNew />
                 <span>Back</span>
               </Link>
-              <div className="user_mgnt_button">
-                <Button className="add_new_account_btn">
+              <Box className="user_mgnt_button">
+                <Button className="btn-secondary button-text add_new_account_btn">
                   Add New Sub-Account
                 </Button>
-              </div>
+              </Box>
             </div>
           </div>
-          
-          <MUITable columns={columns} table={table} options={options} className="usermgmt__table" />
+
+          <MUITable
+            columns={columns}
+            table={table}
+            options={options}
+            className="usermgmt__table"
+          />
 
           <Pagination
             PaginateData={PaginateDataSplit}
