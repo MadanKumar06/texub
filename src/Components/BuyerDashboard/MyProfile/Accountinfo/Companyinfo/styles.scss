@@ -3,12 +3,12 @@
     flex-direction: column;
     .Account_heading{
         background-color: #F8F0E0;
-        padding-left: 50px;
+        padding-left: 20px;
         color: #002D56;
         font-size: 18px;
         letter-spacing: 0.54px;
         font-weight: 600;
-        width: 46%;
+        
     }
  .company_information{
 
@@ -16,7 +16,7 @@
         display: flex;
         gap: 20px;
         flex-direction: column;
-        padding: 20px 20px;
+        padding: 20px 40px;
         .inputfield_section{
          display: flex;
          justify-content: center;
@@ -42,6 +42,7 @@
                 font-size: 18px;
                 letter-spacing: 0.54px;
                 opacity: 1;
+                margin: 5px
             }
             // .MuiOutlinedInput-root{
             //     width: 35rem;
@@ -178,24 +179,24 @@
     // .companyinfo_main .company_information .form .inputfield_section .inputfield .MuiOutlinedInput-root {
     //     width: 30rem;
     // }
-    .companyinfo_main .company_information .accountinfo_btn .accountinfo_btn_section .account_info_save{
-        padding: 10px 48px;
+    // .companyinfo_main .company_information .accountinfo_btn .accountinfo_btn_section .account_info_save{
+    //     padding: 10px 48px;
     
-    }
-    .companyinfo_main .company_information .accountinfo_btn .accountinfo_btn_section .account_info_cancel{
-        padding: 10px 50px;
-    }
+    // }
+    // .companyinfo_main .company_information .accountinfo_btn .accountinfo_btn_section .account_info_cancel{
+    //     padding: 10px 50px;
+    // }
 }
 @media only screen and (max-width:1440px) {
     // .companyinfo_main .company_information .form .inputfield_section .inputfield .MuiOutlinedInput-root{
     //     width: 26rem;
     // }
-    .companyinfo_main .company_information .accountinfo_btn .accountinfo_btn_section .account_info_save{
-        padding: 10px 42px;
-    }
-    .companyinfo_main .company_information .accountinfo_btn .accountinfo_btn_section .account_info_cancel{
-        padding: 10px 50px;
-    }
+    // .companyinfo_main .company_information .accountinfo_btn .accountinfo_btn_section .account_info_save{
+    //     padding: 10px 42px;
+    // }
+    // .companyinfo_main .company_information .accountinfo_btn .accountinfo_btn_section .account_info_cancel{
+    //     padding: 10px 50px;
+    // }
 }
 @media only screen and(max-width:1336px){
 //     .companyinfo_main .company_information .form .inputfield_section .inputfield .MuiOutlinedInput-root{
