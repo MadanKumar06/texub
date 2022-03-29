@@ -72,14 +72,6 @@ const TradeLicenseButton = ({
 
   const handleSwitchCase = (fieldName, value) => {
     switch (fieldName[0]) {
-      // case "company_name":
-      //   if (!value) {
-      //     setInputValidation((prevState) => ({
-      //       ...prevState,
-      //       company_name: "Please enter the business name.",
-      //     }));
-      //   }
-      //   break;
       // case "trade_lic_number":
       //   if (!value) {
       //     setInputValidation((prevState) => ({
@@ -135,12 +127,8 @@ const TradeLicenseButton = ({
           },
         }}
         name="company_name"
-        onChange={handleFormvalue}
         variant="outlined"
       />
-      <InputLabel className={validation_error}>
-        {inputValidation?.company_name}
-      </InputLabel>
       <div className={input_div}>
         <TextField
           id="trade_lic_number"
