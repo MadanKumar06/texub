@@ -18,18 +18,17 @@
     .View_collection {
       position: absolute;
       color: white;
-      font-size: 28px;
+      font-size: 22px;
       text-align: center;
       margin: 0;
       width: 100%;
-      bottom: 2.25em;
+      bottom: 3.25em;
       cursor: pointer;
     }
   }
   .Auctions_div2 {
     display: flex;
     position: relative;
-    flex: 1;
     .Auctions_div2_img {
       height: auto;
       max-width: 100%;
@@ -46,7 +45,7 @@
       gap: 1em;
       max-width: 512px;
       h3 {
-        font-size: 50px;
+        font-size: 30px;
         margin: 0;
       }
       p {
@@ -83,6 +82,10 @@
   .Auctions .Auctions_div1 {
     max-width: 266px;
   }
+  .Auctions .Auctions_div1 .View_collection {
+    font-size: 22px;
+    bottom: 2.25em;
+   }
 }
 
 @media (max-width: 1600px) {
@@ -167,9 +170,10 @@
   }
   .Auctions .Auctions_div2 .Auctions__floatingcontent {
     max-width: 366px;
+    top: 0em;
 
     h3 {
-      font-size: 32px;
+      font-size: 26px;
     }
     p {
       font-size: 16px;
@@ -190,6 +194,9 @@
 @media (max-width: 768px) {
   .Auctions {
     gap: 10px;
+  }
+  .Auctions .Auctions_div2 .Auctions__floatingcontent h3{
+    font-size: 24px;
   }
 
   .Auctions .Auctions_div1 {
@@ -227,7 +234,8 @@
 
 @media (max-width: 480px) {
   .Auctions .Auctions_div1 .View_collection {
-    font-size: 40px;
+    font-size: 24px;
+    bottom: 2.75em;
   }
 
   .Auctions .Auctions_div2 .Auctions__floatingcontent h3 {
@@ -259,6 +267,9 @@
 
 @media (max-width: 320px) {
   .Auctions .Auctions_div1 .View_collection {
-    font-size: 29px;
+    font-size: 24px;
+  }
+  .Auctions .Auctions_div2 .Auctions__floatingcontent h3{
+    font-size: 20px;
   }
 }

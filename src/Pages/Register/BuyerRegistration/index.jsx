@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./styles";
 
 import {
@@ -16,6 +16,8 @@ import Autocomplete from "@mui/material/Autocomplete";
 import { withStyles } from "@mui/styles";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/material.css";
+import axios from "axios";
+import baseUrl from "../../../Constant";
 
 const BuyerRegistration = ({ classes }) => {
   const [{}, dispatch] = useStateValue();
@@ -36,6 +38,7 @@ const BuyerRegistration = ({ classes }) => {
   const options = ["Option 1", "Option 2"];
   const [value, setValue] = React.useState();
   const [inputValue, setInputValue] = React.useState("");
+  const [countryList, setCountryList] = useState([]);
   const [buyerRegistrationData, setbuyerRegistrationData] = useState({
     first_name: "",
     last_name: "",
@@ -308,6 +311,24 @@ const BuyerRegistration = ({ classes }) => {
       });
     }
   };
+
+  //API for fetch dropdown values
+  useEffect(() => {
+    const fetchCountryData = () => {
+      axios
+        .get(baseUrl + "/getCountryList", {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => {
+          setCountryList(res?.data);
+        })
+        .catch((err) => {});
+    };
+    fetchCountryData();
+  }, []);
+
   return (
     <div className={main_container}>
       <div className={input_fields}>
@@ -411,37 +432,16 @@ const BuyerRegistration = ({ classes }) => {
               id="mobile_number"
               fullWidth
               label="Mobile Number"
-              className="inputfield-box"
+              className="inputfield-box mobile_input"
               name="mobile_number"
               value={buyerRegistrationData?.mobile_number}
-              InputLabelProps={{
-                shrink: true,
-                required: true,
-                classes: {
-                  asterisk: asterisk,
-                },
-              }}
+              // inputProps={{
+              //   name: "Mobile Number",
+              //   required: true,
+              // }}
               onChange={handleMobileChangeInput}
               variant="outlined"
             />
-            {/* <TextField
-              id="mobile_number"
-              label="Mobile Number"
-              fullWidth
-              type="number"
-              placeholder="Mobile Number"
-              InputLabelProps={{
-                shrink: true,
-                required: true,
-                classes: {
-                  asterisk: asterisk,
-                },
-              }}
-              value={buyerRegistrationData?.mobile_number}
-              name="mobile_number"
-              onChange={handleChangeInput}
-              variant="outlined"
-            /> */}
             <InputLabel className={validation_error}>
               {inputValidation?.mobile_number}
             </InputLabel>
@@ -567,19 +567,18 @@ const BuyerRegistration = ({ classes }) => {
 
           <div className={text_field_container}>
             <Autocomplete
-              value={value}
+              value={buyerRegistrationData?.country}
               name="country"
               onChange={(event, newValue) => {
-                setValue(newValue);
+                setbuyerRegistrationData((prevState) => ({
+                  ...prevState,
+                  country: newValue,
+                }));
                 setInputValidation("");
               }}
               className={auto_complete_input}
-              inputValue={inputValue}
-              onInputChange={(event, newInputValue) => {
-                setInputValue(newInputValue);
-              }}
               id="controllable-states-demo"
-              options={options}
+              options={countryList}
               fullWidth
               renderInput={(params) => (
                 <TextField
