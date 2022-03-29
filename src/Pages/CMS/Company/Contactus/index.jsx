@@ -102,67 +102,99 @@ const Contactus = () => {
       id: 1,
       icon: officeicon,
       heading: "Office Address",
-      number: "23/1160,G Block,",
-      landmark: "Jabel Ali Industrial Area, Dubai",
+      number: "Texub Technology LLC,",
+      number2: "1401, Al Manara Building,",
+      number3: "Business Bay, Dubai,",
+      landmark: "United Arab Emirates",
     },
   ];
   const mail = [
-    { id: 1, icon: mailicon, heading: "E-Mail Address", mail: "abc@texub.com" },
+    { id: 1, icon: mailicon, heading: "E-Mail Address", mail: "info@texub.com" },
   ];
   const telephone = [
     {
       id: 1,
       icon: telephoneicon,
       heading: "Call Us",
-      number: "+9714-343 4089",
-      number2: "+9714-127 5572",
+      number: "+9714 2227300",
+      number2: "+9714 2227279",
     },
   ];
   const social = [
     { id: 1, facebook: fb, linkedin: IN, youtube: yt, whatsapp: wt },
   ];
   const working = [
-    { id: 1, heading: "Working Hours", time: "Mon - Fri, 9 Am To 5 Pm GST" },
+    { id: 1, heading: "Working Hours", time: "Mon - Fri, 10 AM To 7 PM GST" },
   ];
   const location1 = [
     {
       id: 1,
       image: location,
-      address: "16 Timber Ridge Road, Sacramento, California United States",
-      contact: "+1 917-334-7841",
+      address: "Texub Inc,",
+      address2: "Spaces Galleria At Post Oak,",
+      address3: "1980 Post Oak Blvd, Suite 200",
+      address4: "Houston TX 77056",
+      address5: "United States",
+      contact: "+1 888-866-9799",
     },
   ];
   const location2 = [
     {
       id: 1,
       image: location,
-      address:
-        "#427, 3rd cross, 18th main, Electronic City Bangalore, Karnataka India",
-      contact: "+91 917-334-7841",
+      address: "Texub FZCO,",
+      address2: "S31208 South Zone, Jebel Ali",
+      address3: "Free Zone, Dubai,",
+      address4: "United Arab Emirates",
+      contact: "+9714 2227300",
+      contact2: "+9714 2227279",
     },
   ];
   const location3 = [
     {
       id: 1,
       image: location,
-      address: "84 Redhill Lane, West Venue, Singapore",
-      contact: "65-91072453",
+      address: "Texub Technology LLC,",
+      address2: "1401, Al Manara Building,",
+      address3: "Business Bay, Dubai,",
+      address4: "United Arab Emirates",
+      contact: "+9714 2227300",
+      contact2: "+9714 2227279",
     },
   ];
   const location4 = [
     {
       id: 1,
       image: location,
-      address: "Willibrorduslaan 31, Waalre, Noord-Brabant Netherlands",
-      contact: "06-77400897",
+      address: "Texub Infotech Private Ltd.,",
+      address2: "304, S.No 19 Cts 876/113,",
+      address3: "Sai Crystal, Dp Shah, Vishal",
+      address4: "Nagar, Pimple, Pune,",
+      address5: "Maharashtra, India 411027",
     },
   ];
   const location5 = [
     {
       id: 1,
       image: location,
-      address: "Blk 16 Rabiatu Thompson Street, Lagos Nigeria",
-      contact: "234-8082705564",
+      address: "Texub Infotech Private Ltd.,",
+      address2: "Mumbai",
+    },
+  ];
+  const location6 = [
+    {
+      id: 1,
+      image: location,
+      address: "Texub Infotech Private Ltd.,",
+      address2: "Singapore",
+    },
+  ];
+  const location7 = [
+    {
+      id: 1,
+      image: location,
+      address: "Texub Infotech Private Ltd.,",
+      address2: "Amsterdam",
     },
   ];
   return (
@@ -193,6 +225,8 @@ const Contactus = () => {
                     {item.heading}
                   </span>
                   <span className="contactus_office_number">{item.number}</span>
+                  <span className="contactus_office_number">{item.number2}</span>
+                  <span className="contactus_office_number">{item.number3}</span>
                   <span className="contactus_office_number">
                     {item.landmark}
                   </span>
@@ -276,7 +310,7 @@ const Contactus = () => {
               name="your_name"
               id="your_name"
               fullWidth
-              className="inputfield-box"
+              className="inputfield-box contact-form-inputfieldbox"
               InputLabelProps={{
                 shrink: true,
                 required: true,
@@ -294,7 +328,7 @@ const Contactus = () => {
           </div>
           <div>
             <TextField
-              className="inputfield-box"
+              className="inputfield-box contact-form-inputfieldbox"
               label="E-mail Address"
               placeholder="E-mail Address"
               fullWidth
@@ -317,7 +351,7 @@ const Contactus = () => {
           </div>
           <div>
             <TextField
-              className="inputfield-box"
+              className="inputfield-box contact-form-inputfieldbox"
               label="Subject"
               placeholder="Subject"
               fullWidth
@@ -329,7 +363,7 @@ const Contactus = () => {
           </div>
           <div>
             <TextField
-              className="inputfield-box"
+              className="inputfield-box contact-form-inputfieldbox"
               label="Your Message"
               fullWidth
               placeholder="Type your message"
@@ -371,8 +405,16 @@ const Contactus = () => {
               <li key={item.id} className="contactus_location_list">
                 <div className="contactus_locations_1">
                   <img src={item.image} className="location_image" alt=""></img>
-                  <span> {item.address}</span>
-                  <span>{item.contact}</span>
+                  <div class="address-info-box">
+                    <span> {item.address}</span>
+                    <span> {item.address2}</span>
+                    <span> {item.address3}</span>
+                    <span> {item.address4}</span>
+                    <span> {item.address5}</span>
+                  </div>
+                  <div class="address-phone-box">
+                    <span>{item.contact}</span>
+                  </div>
                 </div>
               </li>
             ))}
@@ -382,8 +424,17 @@ const Contactus = () => {
               <li key={item.id} className="contactus_location_list">
                 <div className="contactus_locations_1">
                   <img src={item.image} className="location_image" alt=""></img>
-                  <span> {item.address}</span>
-                  <span>{item.contact}</span>
+                  <div class="address-info-box">
+                    <span> {item.address}</span>
+                    <span> {item.address2}</span>
+                    <span> {item.address3}</span>
+                    <span> {item.address4}</span>
+                    <span> {item.address5}</span>
+                  </div>
+                  <div class="address-phone-box">
+                    <span>{item.contact}</span>
+                    <span>{item.contact2}</span>
+                  </div>
                 </div>
               </li>
             ))}
@@ -393,20 +444,33 @@ const Contactus = () => {
               <li key={item.id} className="contactus_location_list">
                 <div className="contactus_locations_1">
                   <img src={item.image} className="location_image" alt=""></img>
-                  <span> {item.address}</span>
-                  <span>{item.contact}</span>
+                  <div class="address-info-box">
+                    <span> {item.address}</span>
+                    <span> {item.address2}</span>
+                    <span> {item.address3}</span>
+                    <span> {item.address4}</span>
+                    <span> {item.address5}</span>
+                  </div>
+                  <div class="address-phone-box">
+                    <span>{item.contact}</span>
+                    <span>{item.contact2}</span>
+                  </div>
                 </div>
               </li>
             ))}
           </div>
-
           <div className="contactus_location1">
             {location4.map((item) => (
               <li key={item.id} className="contactus_location_list">
                 <div className="contactus_locations_1">
                   <img src={item.image} className="location_image" alt=""></img>
-                  <span> {item.address}</span>
-                  <span>{item.contact}</span>
+                  <div class="address-info-box">
+                    <span> {item.address}</span>
+                    <span> {item.address2}</span>
+                    <span> {item.address3}</span>
+                    <span> {item.address4}</span>
+                    <span> {item.address5}</span>
+                  </div>
                 </div>
               </li>
             ))}
@@ -416,8 +480,37 @@ const Contactus = () => {
               <li key={item.id} className="contactus_location_list">
                 <div className="contactus_locations_1">
                   <img src={item.image} className="location_image" alt=""></img>
-                  <span> {item.address}</span>
-                  <span>{item.contact}</span>
+                  <div class="address-info-box">
+                    <span> {item.address}</span>
+                    <span> {item.address2}</span>
+                  </div>
+                </div>
+              </li>
+            ))}
+          </div>
+
+          <div className="contactus_location1">
+            {location6.map((item) => (
+              <li key={item.id} className="contactus_location_list">
+                <div className="contactus_locations_1">
+                  <img src={item.image} className="location_image" alt=""></img>
+                  <div class="address-info-box">
+                    <span> {item.address}</span>
+                    <span> {item.address2}</span>
+                  </div>
+                </div>
+              </li>
+            ))}
+          </div>
+          <div className="contactus_location1">
+            {location7.map((item) => (
+              <li key={item.id} className="contactus_location_list">
+                <div className="contactus_locations_1">
+                  <img src={item.image} className="location_image" alt=""></img>
+                  <div class="address-info-box">
+                    <span> {item.address}</span>
+                    <span> {item.address2}</span>
+                  </div>
                 </div>
               </li>
             ))}

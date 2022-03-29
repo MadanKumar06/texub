@@ -26,13 +26,13 @@
       flex-direction: column;
       padding: 36px 50px 50px 50px;
       gap: 26px;
-      left: 12%;
+      left: 10%;
       position: absolute;
-      top: -16em;
+      top: -15em;
       box-shadow: 0px 3px 6px #00000029;
 
       .contactus_heading {
-        font-size: 70px;
+        font-size: 50px;
         color: #002d56;
         opacity: 1;
         letter-spacing: 2.1px;
@@ -83,7 +83,7 @@
               letter-spacing: 1px;
               font-weight: 600;
               color: #5c6369;
-              font-size: 24px;
+              font-size: 20px;
               letter-spacing: 0.72px;
             }
           }
@@ -95,9 +95,13 @@
       gap: 10px;
       flex-direction: column;
       width: 45%;
+      .contact-form-inputfieldbox{
+        margin-bottom: 20px;
+      }
       .box-content {
         text-align: right;
-        margin-top: 2em;
+        margin-top: 4em;
+        margin-bottom: 4em;
       }
       .contactus_msg_btn {
         background: linear-gradient(180deg, #20639b 0%, #002d56 100%);
@@ -129,16 +133,17 @@
     background-image: url("../../../../Assets/Contactus/76825.png");
     width: 100%;
     background-repeat: no-repeat;
-    padding: 30px;
+    padding: 3em 1em;
     gap: 5em;
     background-size: cover;
+    padding-bottom: 4em;
     .contactus_map_img {
       width: 100%;
     }
     .contactus_map_heading {
       margin: 0;
       top: 20px;
-      font-size: 50px;
+      font-size: 34px;
       color: #333333;
       font-weight: bold;
     }
@@ -148,7 +153,7 @@
       justify-content: center;
       flex-wrap: wrap;
       align-items: center;
-      margin: 0 103px;
+      margin: 0 auto;
       .contactus_location1 {
         .contactus_location_list {
           list-style: none;
@@ -163,15 +168,27 @@
             height: 100%;
             align-items: center;
             gap: 20px;
-            padding: 50px;
+            padding: 10px;
+            justify-content: center;
             // width: calc(75% - 20px);
             .location_image {
               height: 80px;
               width: 80px;
             }
+            .address-info-box{
+              display: flex;
+              flex-direction: column;
+            }
+            .address-phone-box{
+              display: inline-flex;
+              flex-direction: column;
+            }
+            .address-phone-box span{
+              font-weight: 600;
+            }
             span {
               text-align: center;
-              font-size: 24px;
+              font-size: 20px;
               letter-spacing: 0.72px;
               color: #5c6369;
             }
@@ -236,7 +253,7 @@
     .contactus_locations_1 {
     width: 266px;
     min-height: 260px;
-    padding: 18px;
+    padding: 15px 10px;
     .location_image {
       height: 40px;
       width: 40px;
