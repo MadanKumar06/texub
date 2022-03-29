@@ -26,6 +26,7 @@ function RegisterProduct() {
             autoFocus={true}
             autoComplete="off"
             // value={signInData?.email_address}
+            className="inputfield-box"
             InputLabelProps={{
               shrink: false,
             }}
@@ -53,6 +54,7 @@ function RegisterProduct() {
                 <TextField
                   {...params}
                   fullWidth
+                  className="inputfield-box"
                   placeholder="Select Main Category"
                   InputLabelProps={{
                     shrink: false,
@@ -79,6 +81,7 @@ function RegisterProduct() {
               renderInput={(params) => (
                 <TextField
                   {...params}
+                  className="inputfield-box"
                   placeholder="Select Sub-Catrgory"
                   fullWidth
                   InputLabelProps={{
@@ -109,6 +112,7 @@ function RegisterProduct() {
               renderInput={(params) => (
                 <TextField
                   {...params}
+                  className="inputfield-box"
                   placeholder="Brand"
                   InputLabelProps={{
                     shrink: false,
@@ -136,6 +140,7 @@ function RegisterProduct() {
               renderInput={(params) => (
                 <TextField
                   {...params}
+                  className="inputfield-box"
                   placeholder="Select Model Number"
                   InputLabelProps={{
                     shrink: false,
@@ -154,6 +159,7 @@ function RegisterProduct() {
               placeholder="DE-B-0089"
               fullWidth
               autoFocus={true}
+              className="inputfield-box"
               autoComplete="off"
               // value={signInData?.email_address}
               InputLabelProps={{
@@ -172,6 +178,7 @@ function RegisterProduct() {
               fullWidth
               autoFocus={true}
               autoComplete="off"
+              className="inputfield-box"
               // value={signInData?.email_address}
               InputLabelProps={{
                 shrink: false,
@@ -191,6 +198,7 @@ function RegisterProduct() {
               fullWidth
               autoFocus={true}
               autoComplete="off"
+              className="inputfield-box"
               // value={signInData?.email_address}
               InputLabelProps={{
                 shrink: false,
@@ -209,6 +217,7 @@ function RegisterProduct() {
               autoFocus={true}
               autoComplete="off"
               // value={signInData?.email_address}
+              className="inputfield-box"
               InputLabelProps={{
                 shrink: false,
               }}
@@ -224,6 +233,7 @@ function RegisterProduct() {
             fullWidth
             multiline
             rows={5}
+            className="inputfield-box"
             InputLabelProps={{
               shrink: false,
               // required: true,

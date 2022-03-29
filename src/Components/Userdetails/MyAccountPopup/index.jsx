@@ -40,29 +40,27 @@ const MyAccountPopup = () => {
         onClose={handleClose}
         className="menulist_items"
       >
-        <MenuItem>
+        <MenuItem onClick={() => handleClose()}>
           <Link to="/buyerdashboard/dashboard">
             <img src={dashboardLogo} alt="" />
             Buyer Dashboard
           </Link>
         </MenuItem>
-        <MenuItem>
+        <MenuItem onClick={() => handleClose()}>
           <Link to="/sellerdashboard/dashboard">
             <img src={dashboardLogo} alt="" />
             Seller Dashboard
           </Link>
         </MenuItem>
-        <MenuItem>
+        <MenuItem onClick={() => handleClose()}>
           <img src={myOrderLogo} alt="" />
           My Orders
         </MenuItem>
-        <MenuItem>
-          {" "}
+        <MenuItem onClick={() => handleClose()}>
           <img src={auctionsLogo} alt="" />
           Auctions
         </MenuItem>
-        <MenuItem>
-          {" "}
+        <MenuItem onClick={() => handleClose()}>
           <img src={logoutLogo} alt="" />
           Logout
         </MenuItem>

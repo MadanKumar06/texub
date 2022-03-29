@@ -107,6 +107,7 @@ const TaxCertificateButton = ({
           type="number"
           fullWidth
           placeholder="Tax Number"
+          className="inputfield-box"
           InputLabelProps={{
             shrink: true,
             required: true,
@@ -134,6 +135,7 @@ const TaxCertificateButton = ({
               <TextField
                 {...params}
                 fullWidth
+                className="inputfield-box"
                 id="tax_expiration_date"
                 placeholder="MM/YY"
                 InputLabelProps={{
@@ -196,7 +198,6 @@ const TaxCertificateButton = ({
           </div>
         )}
       </div>
-      {FormValues?.expiry_checkbox && (
         <FormControlLabel
           value="yes"
           control={<Checkbox color="color_third" />}
@@ -204,7 +205,6 @@ const TaxCertificateButton = ({
           labelPlacement="end"
           className={checkbox_label}
         />
-      )}
     </>
   );
 };
