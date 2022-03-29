@@ -30,33 +30,8 @@
       .asterisk {
         color: #ff0000;
       }
-      .MuiInputLabel-root {
-        color: red;
-      }
       .MuiFormControl-root {
-        & ::placeholder {
-          text-transform: capitalize;
-          font-size: 20px;
-          color: #cdd5dd;
-        }
-        .MuiInputLabel-root {
-          font-weight: 600;
-          font-size: 18px;
-          color: #3e3e3e;
-        }
-      }
-      .MuiOutlinedInput-root {
-        input {
-          font: unset;
-        }
-        fieldset {
-          legend {
-            font-size: 0.9em;
-          }
-        }
-      }
-      .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
-        border: 1px solid #ddb363;
+        margin-top: 2em;
       }
     }
     .block_3 {

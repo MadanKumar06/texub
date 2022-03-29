@@ -56,6 +56,7 @@ function Index({ type }) {
                 renderInput={(params) => (
                   <TextField
                     {...params}
+                    className="inputfield-box"
                     fullWidth
                     placeholder="Select Condition"
                     InputLabelProps={{
@@ -83,6 +84,7 @@ function Index({ type }) {
                 renderInput={(params) => (
                   <TextField
                     {...params}
+                    className="inputfield-box"
                     placeholder="Select Warranty Type"
                     fullWidth
                     InputLabelProps={{
@@ -112,6 +114,7 @@ function Index({ type }) {
                   renderInput={(params) => (
                     <TextField
                       {...params}
+                      className="inputfield-box"
                       placeholder="Select countries"
                       fullWidth
                       InputLabelProps={{
@@ -133,6 +136,7 @@ function Index({ type }) {
                 fullWidth
                 autoFocus={true}
                 autoComplete="off"
+                className="inputfield-box"
                 // value={signInData?.email_address}
                 InputLabelProps={{
                   shrink: false,
@@ -154,6 +158,7 @@ function Index({ type }) {
                 InputLabelProps={{
                   shrink: false,
                 }}
+                className="inputfield-box"
                 // onChange={handleChangeInput}
                 variant="outlined"
               />
@@ -167,10 +172,10 @@ function Index({ type }) {
                   id="hsn_code"
                   name="hsn_code"
                   placeholder="Length"
-                  className="length_field"
                   fullWidth
                   autoComplete="off"
                   // value={signInData?.email_address}
+                  className="inputfield-box length_field"
                   InputLabelProps={{
                     shrink: false,
                   }}
@@ -183,7 +188,7 @@ function Index({ type }) {
                   placeholder=" Width"
                   fullWidth
                   autoComplete="off"
-                  className="width_field"
+                  className="inputfield-box width_field"
                   // value={signInData?.email_address}
                   InputLabelProps={{
                     shrink: false,
@@ -195,9 +200,9 @@ function Index({ type }) {
                   id="hsn_code"
                   name="hsn_code"
                   placeholder="Height"
-                  className="height_field"
                   fullWidth
                   autoComplete="off"
+                  className="inputfield-box height_field"
                   // value={signInData?.email_address}
                   InputLabelProps={{
                     shrink: false,
@@ -209,7 +214,7 @@ function Index({ type }) {
                   id="hsn_code"
                   name="hsn_code"
                   placeholder="Weight"
-                  className="weight_field"
+                  className="inputfield-box weight_field"
                   fullWidth
                   autoComplete="off"
                   // value={signInData?.email_address}
@@ -229,6 +234,7 @@ function Index({ type }) {
                 placeholder="Yes"
                 fullWidth
                 autoFocus={true}
+                className="inputfield-box"
                 autoComplete="off"
                 // value={signInData?.email_address}
                 InputLabelProps={{
@@ -258,6 +264,7 @@ function Index({ type }) {
                 renderInput={(params) => (
                   <TextField
                     {...params}
+                    className="inputfield-box"
                     fullWidth
                     placeholder="Select Region"
                     InputLabelProps={{
@@ -285,6 +292,7 @@ function Index({ type }) {
                 renderInput={(params) => (
                   <TextField
                     {...params}
+                    className="inputfield-box"
                     placeholder="Select Country"
                     fullWidth
                     InputLabelProps={{
@@ -302,6 +310,7 @@ function Index({ type }) {
               fullWidth
               multiline
               rows={5}
+              className="inputfield-box"
               InputLabelProps={{
                 shrink: false,
                 // required: true,

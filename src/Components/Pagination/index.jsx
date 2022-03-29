@@ -83,6 +83,7 @@ const PaginationControlled = ({ PaginateData, DataList, PagePerRow }) => {
             <TextField
               type="number"
               placeholder="1"
+              className="inputfield-box"
               {...params}
               InputLabelProps={{
                 shrink: false,

@@ -23,6 +23,7 @@ function BankDetails({ classes, SetFormValues, FormValues }) {
         type="number"
         placeholder="Account Number"
         fullWidth
+        className="inputfield-box"
         InputLabelProps={{
           shrink: true,
         }}
@@ -36,6 +37,7 @@ function BankDetails({ classes, SetFormValues, FormValues }) {
         label="Bank Name"
         placeholder="Bank Name"
         fullWidth
+        className="inputfield-box"
         InputLabelProps={{
           shrink: true,
         }}
@@ -49,6 +51,7 @@ function BankDetails({ classes, SetFormValues, FormValues }) {
         label="Account Holder’s Name"
         placeholder="Account Holder’s Name"
         fullWidth
+        className="inputfield-box"
         InputLabelProps={{
           shrink: true,
         }}
@@ -62,6 +65,7 @@ function BankDetails({ classes, SetFormValues, FormValues }) {
         label="Additional Info"
         placeholder="Additional Info"
         fullWidth
+        className="inputfield-box"
         InputLabelProps={{
           shrink: true,
         }}
