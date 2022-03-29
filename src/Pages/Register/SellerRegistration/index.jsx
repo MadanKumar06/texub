@@ -330,11 +330,11 @@ const BuyerRegistration = ({ classes }) => {
     }
     if (!errorHandle) {
       // Apicall fuction
+      dispatch({
+        type: "SET_KYC_OPEN_CLOSE",
+        value: true,
+      });
     }
-    dispatch({
-      type: "SET_KYC_OPEN_CLOSE",
-      value: true,
-    });
   };
   const handleMobileChangeInput = (event) => {
     setsellerRegistrationData((prevState) => ({
