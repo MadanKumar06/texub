@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "./styles";
+import axios from "axios";
 
 import {
   Modal,
@@ -167,6 +168,19 @@ const TransitionsModal = ({ classes, openPopUp }) => {
     }
   };
 
+  const getDummyList = () => {
+    axios
+      .get("https://texub.uat.a2zportals.co.in/rest/V1/Texub/getRegionList", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        console.log();
+      })
+      .catch((err) => {});
+  };
+
   //// Forgor Password ///
   const [passopen, setpassopen] = useState(false);
   const forgotpass = () => {
@@ -319,7 +333,7 @@ const TransitionsModal = ({ classes, openPopUp }) => {
                   />
                   <Box className={button_box}>
                     <Button
-                      onClick={() => handleClickValidation()}
+                      onClick={() => getDummyList()}
                       className={button_signin}
                     >
                       Sign In

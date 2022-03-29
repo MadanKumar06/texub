@@ -14,7 +14,8 @@ import ReCAPTCHA from "react-google-recaptcha";
 import { isEmailValid, isPasswordValid } from "../../../utilities";
 import Autocomplete from "@mui/material/Autocomplete";
 import { withStyles } from "@mui/styles";
-import MuiPhoneNumber from "material-ui-phone-number";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/material.css";
 
 const BuyerRegistration = ({ classes }) => {
   const [{}, dispatch] = useStateValue();
@@ -63,7 +64,7 @@ const BuyerRegistration = ({ classes }) => {
   const handleMobileChangeInput = (event) => {
     setbuyerRegistrationData((prevState) => ({
       ...prevState,
-      mobile_number: event,
+      mobile_number: event.split(" "),
     }));
     setInputValidation("");
   };
@@ -230,7 +231,8 @@ const BuyerRegistration = ({ classes }) => {
         mobile_number: "Please enter the mobile number.",
       }));
       errorHandle = true;
-    } else if (buyerRegistrationData?.mobile_number?.length !== 10) {
+    } else if (buyerRegistrationData?.mobile_number[1]?.length !== 10) {
+      debugger;
       document.getElementById("mobile_number")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
@@ -300,11 +302,11 @@ const BuyerRegistration = ({ classes }) => {
     }
     if (!errorHandle) {
       // Apicall fuction
+      dispatch({
+        type: "SET_KYC_OPEN_CLOSE",
+        value: true,
+      });
     }
-    dispatch({
-      type: "SET_KYC_OPEN_CLOSE",
-      value: true,
-    });
   };
   return (
     <div className={main_container}>
@@ -384,7 +386,7 @@ const BuyerRegistration = ({ classes }) => {
           </div>
 
           <div className={text_field_container}>
-            <MuiPhoneNumber
+            {/* <MuiPhoneNumber
               preferredCountries={["india"]}
               defaultCountry={"in"}
               id="mobile_number"
@@ -393,6 +395,24 @@ const BuyerRegistration = ({ classes }) => {
               className="inputfield-box"
               name="mobile_number"
               placeholder="8796878788"
+              value={buyerRegistrationData?.mobile_number}
+              InputLabelProps={{
+                shrink: true,
+                required: true,
+                classes: {
+                  asterisk: asterisk,
+                },
+              }}
+              onChange={handleMobileChangeInput}
+              variant="outlined"
+            /> */}
+            <PhoneInput
+              country={"in"}
+              id="mobile_number"
+              fullWidth
+              label="Mobile Number"
+              className="inputfield-box"
+              name="mobile_number"
               value={buyerRegistrationData?.mobile_number}
               InputLabelProps={{
                 shrink: true,
