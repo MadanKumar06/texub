@@ -216,7 +216,7 @@ const styles = (theme) => ({
     cursor: "pointer",
     textDecoration: "underline",
     "@media(max-width:1660px)": {
-      fontSize: "18px",
+      fontSize: "14px",
     },
   },
   // section rigth css
