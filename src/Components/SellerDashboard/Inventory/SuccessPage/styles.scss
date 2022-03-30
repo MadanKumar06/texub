@@ -1,3 +1,8 @@
+.successpagemain{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 .successpage {
   max-width: 900px;
   display: flex;
@@ -5,7 +10,7 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  margin: 0 auto;
+  margin: auto 3em;
 
   & > * {
     margin: 0;
@@ -14,15 +19,17 @@
 
   h3 {
     color: #5c6369;
-    font-size: 50px;
+    font-size: 34px;
+    font-style: italic;
   }
   h4 {
     color: #5c6369;
-    font-size: 40px;
+    font-size: 28px;
+    font-style: italic;
   }
   h5 {
     color: #333c42;
-    font-size: 26px;
+    font-size: 20px;
   }
 
   p {
@@ -32,6 +39,7 @@
     font-weight: 600;
     cursor: pointer;
   }
+}
 }
 
 @media (max-width: 1660px) {

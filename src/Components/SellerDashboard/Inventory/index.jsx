@@ -39,6 +39,11 @@ function Index({ registerproduct }) {
     {
       name: "pname",
       label: "PRODUCT NAME",
+      options: {
+        customBodyRender: (value) => {
+          return <div className="inventory-product-grid-info">{value} </div>;
+        },
+      },
     },
     {
       name: "category",
@@ -138,7 +143,7 @@ function Index({ registerproduct }) {
   const table = [
     {
       logo: hp,
-      pname: "pname1",
+      pname: "pname1pname1pname1 pname1pname1pname1",
       category: "cat1",
       sku: "sku1",
       instock: 100,
@@ -345,7 +350,7 @@ function Index({ registerproduct }) {
                 inputProps={{ "aria-label": "search google maps" }}
               />
             </Paper>
-            <Box className="button-box-container ">
+            <Box className="button-box-container inventory-hedaer-btn">
               <Button
                 className="button-text btn-secondary inventory_register"
                 onClick={() => registerproduct("registerproduct")}
