@@ -59,6 +59,7 @@ const styles = (theme) => ({
     },
     "@media (max-width:425px)": {
       justifyContent: "center",
+      gap: "1em !important",
     },
     "@media (max-width:1200px)": {
       gap: "4em",

@@ -26,7 +26,7 @@ const styles = (theme) => ({
     alignItems: "center",
     paddingRight: "4%",
     "@media (max-width:1660px)": {
-      fontSize: "20px",
+      fontSize: "24px",
     },
   },
   left_area: {
