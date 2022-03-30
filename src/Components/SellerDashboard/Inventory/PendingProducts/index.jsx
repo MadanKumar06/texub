@@ -59,7 +59,6 @@ function Index({ registerproduct }) {
       label: "ACTION",
       options: {
         customBodyRender: (value, tablemeta) => {
-          debugger;
           var data = tablemeta?.rowData[4];
           return (
             <div
