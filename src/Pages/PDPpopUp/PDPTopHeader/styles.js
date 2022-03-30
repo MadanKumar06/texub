@@ -56,6 +56,9 @@ const styles = (theme) => ({
   },
   pdp_top_header_product_details: {
     padding: "0px 22px",
+    "@media (max-width:925px)": {
+      padding: "0px 10px"
+    },
   },
   pdp_top_header_seller_id: {
     background: "#F8F0E0",
@@ -84,13 +87,13 @@ const styles = (theme) => ({
     },
   },
   pdp_top_header_product_name: {
-    fontSize: "26px",
+    fontSize: "24px",
     margin: "0",
     padding: "11px 0px",
     color: "#333C42",
     letterSpacing: "0.78px",
     "@media (max-width:1660px)": {
-      fontSize: "22px",
+      fontSize: "20px",
     },
   },
   pdp_top_header_rating_reviews_container: {
