@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./styles";
 import "./popupstyle.scss";
 
@@ -12,7 +12,11 @@ import {
 } from "@mui/material";
 import { useStateValue } from "../../../store/state";
 import ReCAPTCHA from "react-google-recaptcha";
-import { isEmailValid, isPasswordValid } from "../../../utilities";
+import {
+  isEmailValid,
+  isPasswordValid,
+  isFirstAndLastNameValid,
+} from "../../../utilities";
 import Autocomplete from "@mui/material/Autocomplete";
 import { withStyles } from "@mui/styles";
 import PhoneInput from "react-phone-input-2";
@@ -33,13 +37,10 @@ const BuyerRegistration = ({ classes }) => {
     auto_complete_input,
     validation_error,
     text_field_container,
-    recaptcha_info,
-    arrow_icon,
     button_box,
+    mobile_input,
   } = classes;
-  const options = ["Option 1", "Option 2"];
-  const [value, setValue] = React.useState();
-  const [inputValue, setInputValue] = React.useState("");
+  const [countryList, setCountryList] = useState([]);
   const [buyerRegistrationData, setbuyerRegistrationData] = useState({
     first_name: "",
     last_name: "",
@@ -51,6 +52,7 @@ const BuyerRegistration = ({ classes }) => {
     designation: "",
     country: "",
     confrim_password: "",
+    mobile_valid: "",
     remember_me: false,
   });
   const [inputValidation, setInputValidation] = useState({
@@ -65,12 +67,14 @@ const BuyerRegistration = ({ classes }) => {
     country: "",
     confrim_password: "",
   });
-  const handleMobileChangeInput = (event) => {
+  const handleMobileChangeInput = (value, data, event, formattedValue) => {
     setbuyerRegistrationData((prevState) => ({
       ...prevState,
-      mobile_number: event.split(" "),
+      mobile_number: value,
+      mobile_valid: value?.slice(data?.dialCode?.length),
     }));
     setInputValidation("");
+    handleSwitchCase(["mobile_number"], value?.slice(data?.dialCode?.length));
   };
   const handleChangeInput = (event) => {
     if (event?.target?.name === "remember_me") {
@@ -91,46 +95,33 @@ const BuyerRegistration = ({ classes }) => {
   };
   const handleSwitchCase = (fieldName, value) => {
     switch (fieldName[0]) {
-      // case "first_name":
-      //   if (!value) {
-      //     setInputValidation((prevState) => ({
-      //       ...prevState,
-      //       first_name: "Please enter the first name.",
-      //     }));
-      //   }
-      //   break;
-      // case "last_name":
-      //   if (!value) {
-      //     setInputValidation((prevState) => ({
-      //       ...prevState,
-      //       last_name: "Please enter the last name.",
-      //     }));
-      //   }
-      //   break;
-      case "mobile_number":
-        // if (!value) {
-        //   document.getElementById("mobile_number")?.focus();
-        //   setInputValidation((prevState) => ({
-        //     ...prevState,
-        //     mobile_number: "Please enter the mobile number.",
-        //   }));
-        // } else
-        if (value?.length !== 10) {
-          document.getElementById("mobile_number")?.focus();
-
+      case "first_name":
+        if (!isFirstAndLastNameValid(value)) {
           setInputValidation((prevState) => ({
             ...prevState,
-            mobile_number: "Please enter 10 digit mobile number.",
+            first_name: "Please enter alphabet.",
+          }));
+        }
+        break;
+      case "last_name":
+        if (!isFirstAndLastNameValid(value)) {
+          setInputValidation((prevState) => ({
+            ...prevState,
+            last_name: "Please enter alphabet.",
+          }));
+        }
+        break;
+      case "mobile_number":
+        if (value?.length < 6 || value?.length > 15) {
+          document.getElementById("mobile_number")?.focus();
+          setInputValidation((prevState) => ({
+            ...prevState,
+            mobile_number:
+              "Please enter more than 6 and less than 16 digit mobile number.",
           }));
         }
         break;
       case "confrim_password":
-        // if (!value) {
-        //   setInputValidation((prevState) => ({
-        //     ...prevState,
-        //     confrim_password: "Please enter your confrim password.",
-        //   }));
-        // } else
         if (!(buyerRegistrationData?.password === value)) {
           setInputValidation((prevState) => ({
             ...prevState,
@@ -139,12 +130,6 @@ const BuyerRegistration = ({ classes }) => {
         }
         break;
       case "email_address":
-        // if (!value) {
-        //   setInputValidation((prevState) => ({
-        //     ...prevState,
-        //     email_address: "Please enter the e-mail.",
-        //   }));
-        // } else
         if (!isEmailValid(value)) {
           setInputValidation((prevState) => ({
             ...prevState,
@@ -153,12 +138,6 @@ const BuyerRegistration = ({ classes }) => {
         }
         break;
       case "password":
-        // if (!value) {
-        //   setInputValidation((prevState) => ({
-        //     ...prevState,
-        //     password: "Please enter your password.",
-        //   }));
-        // } else
         if (!isPasswordValid(value)) {
           setInputValidation((prevState) => ({
             ...prevState,
@@ -296,7 +275,7 @@ const BuyerRegistration = ({ classes }) => {
       }));
       errorHandle = true;
     }
-    if (!value) {
+    if (!buyerRegistrationData) {
       document.getElementById("last_name")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
@@ -312,6 +291,24 @@ const BuyerRegistration = ({ classes }) => {
       });
     }
   };
+
+  //API for fetch dropdown values
+  useEffect(() => {
+    const fetchCountryData = () => {
+      axios
+        .get(baseUrl + "/getCountryList", {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => {
+          setCountryList(res?.data);
+        })
+        .catch((err) => {});
+    };
+    fetchCountryData();
+  }, []);
+
   return (
     <div className={main_container}>
       <div className={input_fields}>
@@ -390,62 +387,22 @@ const BuyerRegistration = ({ classes }) => {
           </div>
 
           <div className={text_field_container}>
-            {/* <MuiPhoneNumber
-              preferredCountries={["india"]}
-              defaultCountry={"in"}
-              id="mobile_number"
-              fullWidth
-              label="Mobile Number"
-              className="inputfield-box"
-              name="mobile_number"
-              placeholder="8796878788"
-              value={buyerRegistrationData?.mobile_number}
-              InputLabelProps={{
-                shrink: true,
-                required: true,
-                classes: {
-                  asterisk: asterisk,
-                },
-              }}
-              onChange={handleMobileChangeInput}
-              variant="outlined"
-            /> */}
             <PhoneInput
               country={"in"}
               id="mobile_number"
               fullWidth
               label="Mobile Number"
-              className="inputfield-box"
+              className={mobile_input}
               name="mobile_number"
+              placeholder="Mobile number"
               value={buyerRegistrationData?.mobile_number}
-              InputLabelProps={{
-                shrink: true,
+              inputProps={{
+                label: "Mobile Number",
                 required: true,
-                classes: {
-                  asterisk: asterisk,
-                },
               }}
               onChange={handleMobileChangeInput}
               variant="outlined"
             />
-            {/* <TextField
-              id="mobile_number"
-              label="Mobile Number"
-              fullWidth
-              type="number"
-              placeholder="Mobile Number"
-              InputLabelProps={{
-                shrink: true,
-                required: true,
-                classes: {
-                  asterisk: asterisk,
-                },
-              }}
-              value={buyerRegistrationData?.mobile_number}
-              name="mobile_number"
-              onChange={handleChangeInput}
-              variant="outlined"
-            /> */}
             <InputLabel className={validation_error}>
               {inputValidation?.mobile_number}
             </InputLabel>
@@ -571,19 +528,18 @@ const BuyerRegistration = ({ classes }) => {
 
           <div className={text_field_container}>
             <Autocomplete
-              value={value}
+              value={buyerRegistrationData?.country}
               name="country"
               onChange={(event, newValue) => {
-                setValue(newValue);
+                setbuyerRegistrationData((prevState) => ({
+                  ...prevState,
+                  country: newValue,
+                }));
                 setInputValidation("");
               }}
               className={auto_complete_input}
-              inputValue={inputValue}
-              onInputChange={(event, newInputValue) => {
-                setInputValue(newInputValue);
-              }}
               id="controllable-states-demo"
-              options={options}
+              options={countryList}
               fullWidth
               renderInput={(params) => (
                 <TextField
