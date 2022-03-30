@@ -48,18 +48,26 @@
             font-size: 16px;
           }
         }
+        .inventory-product-grid-info{
+          display: -webkit-box;
+          -webkit-line-clamp: 1;
+          -webkit-box-orient: vertical;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: initial;
+        }
 
         .inventory__action {
           text-decoration: underline;
           cursor: pointer;
           color: #002d56;
-          font-size: 22px;
+          font-size: 18px;
           font-weight: 600;
           letter-spacing: 0.66px;
         }
 
         .inventory__rank {
-          font-size: 22px;
+          font-size: 18px;
           color: #20639b;
           display: flex;
           font-weight: 600;
@@ -76,6 +84,7 @@
         .MuiTableCell-root {
           background-color: #f1f1f1;
           text-align: center;
+          width: 10%;
 
           & > * {
             font-size: 16px;
@@ -141,17 +150,22 @@
         display: flex;
         gap: 32px;
         width: 100%;
+        .inventory-hedaer-btn{
+          justify-content: end;
+        }
         .paper_search {
-          width: 100%;
+          width: 60%;
           box-shadow: unset;
           border: 1px solid #d6d8d9;
         }
         .inventory_register {
+          width: 100%;
         }
         .inventory_product_upload {
+          width: 100%;
         }
         .inventory_register {
-          padding: 0.6em 1.3em !important;
+          padding: 10px 15px !important;
         }
       }
     }
@@ -164,6 +178,21 @@
     .inventory__instock {
     padding: 0.3em 1em;
   }
+}
+.inventory-page-back{
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+.inventory-page-back .MuiSvgIcon-root{
+  width: 0.6em;
+  height: 0.6em;
+  color: #002d56;
+}
+.inventory-page-back span{
+  color: #002d56;
+  font-weight: 600;
+  margin-left: 0.6em;
 }
 @media (max-width: 1660px) {
   .inventory
@@ -202,8 +231,47 @@
     .inventory_register {
     padding: 0.4em 1.3em !important;
   }
+  .inventory .inventory__products__footer .inventory__products__container .inventory__button .paper_search{
+    width: 45%;
+  }
+  .inventory .inventory__products__footer .inventory__products__container .inventory__button .inventory_register{
+   font-size: 14px !important;
+  }
+  .inventory .inventory__products__footer .inventory__products__container .inventory__button .inventory_product_upload{
+    font-size: 14px !important;
+  }
+}
+
+@media (max-width: 1099px) {
+  .inventory .inventory__products__footer .inventory__products__container .inventory__button .paper_search{
+    width: 50%;
+  }
+}
+@media (max-width: 930px) {
+  .inventory .inventory__table .MuiTable-root .MuiTableBody-root .MuiTableCell-root{
+    width: 100%;
+  }
+}
+@media (max-width: 780px) {
+  .inventory .inventory__products__footer .inventory__products__container .inventory__button{
+    flex-direction: column;
+  }
+  .inventory .inventory__products__footer .inventory__products__container .inventory__button .paper_search{
+    width: 100%;
+  }
+  .inventory .inventory__products__footer .inventory__products__container .inventory__button .inventory_register{
+    padding: 10px 1em !important;
+  }
+  .inventory .inventory__products__footer .inventory__products__container .inventory__button .inventory_product_upload{
+    padding: 10px 1em !important;
+  }
 }
 @media (max-width: 540px) {
+
+  .inventory .inventory__products__footer .inventory__products__container .inventory__button .inventory-hedaer-btn{
+    flex-direction: column;
+  }
+
   .inventory__table {
     .MuiTable-root {
       .MuiTableHead-root {
@@ -213,11 +281,17 @@
       .MuiTableBody-root {
         .MuiTableCell-root {
           display: flex;
-          flex-direction: column;
+          flex-direction: row;
           justify-content: center;
           align-items: center;
         }
       }
     }
+  }
+  .inventory .inventory__products__footer .inventory__products__container .inventory__button .inventory_register{
+    padding: 5px 1em !important;
+  }
+  .inventory .inventory__products__footer .inventory__products__container .inventory__button .inventory_product_upload{
+    padding: 5px 1em !important;
   }
 }

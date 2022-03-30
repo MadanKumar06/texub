@@ -5,6 +5,7 @@
   background: #f8f0e0;
   border: 1px solid #cdd5dd;
   margin-top: 5em;
+  margin-bottom: 2em;
   justify-content: space-between;
   .pagination_sub_container {
     display: flex;
@@ -57,5 +58,10 @@
 @media (max-width: 1660px) {
   .pagination_top_container {
     padding: 0.5em 2em;
+  }
+}
+@media (max-width: 567px) {
+  .pagination_top_container {
+    padding: 0.5em 10px;
   }
 }

@@ -113,6 +113,7 @@
       font-weight: 600;
       color: #272727;
       margin-top: 1.5em;
+      margin-bottom: 10px;
     }
     .MuiAutocomplete-root {
       .MuiFormControl-root {
@@ -139,8 +140,8 @@
               position: absolute;
               content: "";
               width: 10px;
-              height: 36px;
-              top: 14px;
+              height: 45px;
+              top: 5px;
               right: -10px;
               border-left: 1px solid #cdd5dd;
             }
@@ -163,8 +164,8 @@
               position: absolute;
               content: "";
               width: 10px;
-              height: 36px;
-              top: 14px;
+              height: 45px;
+              top: 5px;
               right: -10px;
               border-left: 1px solid #cdd5dd;
             }
@@ -199,8 +200,8 @@
               position: absolute;
               content: "";
               width: 10px;
-              height: 36px;
-              top: 14px;
+              height: 45px;
+              top: 5px;
               right: -10px;
               border-left: 1px solid #cdd5dd;
             }
@@ -261,7 +262,9 @@
     }
   }
 }
-
+.updateproduct__gst .updateproduct_info_form .MuiInputLabel-root{
+  margin-top: 10px !important;
+}
 @media (max-width: 1660px) {
   .updateproduct h1 {
     font-size: 22px;
@@ -275,5 +278,34 @@
   }
   .updateproduct .updateproduct__buttons .updateproduct__back {
     font-size: 16px;
+  }
+}
+@media (max-width: 780px) {
+  .updateproduct .updateproduct__bgform{
+    flex-wrap: wrap;
+    flex-direction: row !important;
+  }
+  .updateproduct .updateproduct__bgform .updateproduct_info_form{
+    width: 48%;
+  }
+  .updateproduct .updateproduct__gst > * {
+    width: calc(33.666667% - 20px);
+  }
+  .updateproduct .updateproduct__specifications .updateproduct__form {
+    padding: 10px 8px;
+  }
+}
+@media (max-width: 567px) {
+  .updateproduct .updateproduct__bgform .updateproduct_info_form{
+    width: 100%;
+  }
+  .updateproduct .topform__details{
+    grid-template-columns:80% 20%;
+  }
+  .updateproduct .updateproduct__specifications .updateproduct__form .input_separator{
+    flex-direction: column;
+  }
+  .updateproduct .updateproduct__buttons{
+    flex-direction: column;
   }
 }
