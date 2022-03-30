@@ -13,7 +13,7 @@ import {
 import { Search } from "@mui/icons-material";
 import ProductFilterDrawer from "./ProductFilter";
 import axios from "axios";
-import baseUrl from "../../../Constant";
+import Constant from "../../../Constant";
 
 //Basic need
 import todays_deal_active from "../../../Assets/BasicNeeded/PLPIcons/today_deal.png";
@@ -74,7 +74,7 @@ const Productlists = () => {
       };
 
       axios
-        .post(baseUrl + "/getSearchItemsInPlp", data, {
+        .post(Constant.baseUrl() + "/getSearchItemsInPlp", data, {
           headers: {
             "Content-Type": "application/json",
           },
@@ -175,11 +175,13 @@ const Productlists = () => {
             name="hub"
             onChange={handleChange}
           >
-            {console.log(productlistdropdown)}
-            {productlistdropdown?.hub &&
+            {productlistdropdown?.hub?.length ? (
               productlistdropdown?.hub?.map((itm) => (
                 <MenuItem value={itm?.hub_id}>{itm?.hub_name}</MenuItem>
-              ))}
+              ))
+            ) : (
+              <MenuItem>No option</MenuItem>
+            )}
           </Select>
         </FormControl>
       </Box>
@@ -194,10 +196,13 @@ const Productlists = () => {
             name="conditions"
             onChange={handleChange}
           >
-            {productlistdropdown?.conditions &&
+            {productlistdropdown?.conditions?.length ? (
               productlistdropdown?.conditions?.map((itm) => (
                 <MenuItem value={itm?.value}>{itm?.label}</MenuItem>
-              ))}
+              ))
+            ) : (
+              <MenuItem>No option</MenuItem>
+            )}
           </Select>
         </FormControl>
       </Box>
@@ -212,10 +217,13 @@ const Productlists = () => {
             name="eta"
             onChange={handleChange}
           >
-            {productlistdropdown?.eta &&
+            {productlistdropdown?.eta?.length ? (
               productlistdropdown?.eta?.map((itm) => (
                 <MenuItem value={itm}>{itm}</MenuItem>
-              ))}
+              ))
+            ) : (
+              <MenuItem>No option</MenuItem>
+            )}
           </Select>
         </FormControl>
       </Box>
