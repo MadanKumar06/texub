@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./styles.scss";
 import { TextField, InputLabel } from "@mui/material";
 import { isPasswordValid, isEmailValid } from "../../../../utilities";
-import MuiPhoneNumber from "material-ui-phone-number";
+// import MuiPhoneNumber from "material-ui-phone-number";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import { Link } from "react-router-dom";
+import PhoneInput from "react-phone-input-2";
 // import { useForm } from "react-hook-form";
+import axios from "axios"
+import baseUrl from '../../../../../src/Constant'
 const Index = (classes) => {
   let {
     validation_error
@@ -18,6 +21,7 @@ const Index = (classes) => {
     new_password: "",
     new_confrim_password: "",
   });
+  const [CountryDropdown, setCountryDropdown] = useState(null)
   const [inputValidation, setInputValidation] = useState({
     first_name: "",
     last_name: "",
@@ -26,8 +30,7 @@ const Index = (classes) => {
     new_password: "",
     new_confrim_password: "",
   });
-  // const { register, handleSubmit } = useForm();
-  const onSubmit = data => console.log(data); 
+
   const handleChangeInput = (event) => {
     setAccountInfoData((prevState) => ({
       ...prevState,
@@ -38,7 +41,7 @@ const Index = (classes) => {
   const handleMobileChangeInput = (event) => {
     setAccountInfoData((prevState) => ({
       ...prevState,
-      mobile_number : event
+      mobile_number: event
     }));
     setInputValidation("");
   };
@@ -65,6 +68,12 @@ const Index = (classes) => {
           setInputValidation((prevState) => ({
             ...prevState,
             mobile_number: "Please enter your mobile number.",
+          }));
+        } else if (AccountInfoData?.mobile_number[0]?.length !== 1) {
+          document.getElementById("mobile_number")?.focus();
+          setInputValidation((prevState) => ({
+            ...prevState,
+            mobile_number: "Please enter 10 digit mobile number.",
           }));
         }
         break;
@@ -131,14 +140,14 @@ const Index = (classes) => {
       }));
       errorHandle = true;
     }
-    if (!AccountInfoData?.mobile_number) {
+    if (!AccountInfoData?.mobile_number?.length > 10) {
       document.getElementById("root")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
         mobile_number: "Please enter the mobile number.",
       }));
       errorHandle = true;
-    } else if (AccountInfoData?.mobile_number?.length !== 10) {
+    } else if (AccountInfoData?.mobile_number?.length > 10) {
       document.getElementById("mobile_number")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
@@ -170,63 +179,88 @@ const Index = (classes) => {
       }));
       errorHandle = true;
     }
-
-
-    // setConfirmpassword(event.target.value);
-    // if (!(AccountInfoData)?.new_password === new_confrim_password){
-    //   new_confrim_password:"password and confirm password does not match"
-    // }
   };
+  //Api
+  useEffect(() => {
+    const fetchCountryList = () => {
+      axios
+        .get(baseUrl + "/getCountryList", {
+          headers: {
+            "Content-type": "application/json",
+          },
+        })
+        .then((response) => {
+          console.log('$%$%$%$%',response)
+          setCountryDropdown(response?.data);
+        })
+        .catch((error) => { });
+    }
+   fetchCountryList();
+}, []);
 
-  return (
-    <div className='account_ifo_main'>
-      <span className='Account_heading'> <p>EDIT PROFILE INFORMATION</p></span>
-      <div className='account_info_edit' >
-        <form className='form' >
-        {/* <div className='form'> */}
-          <div className='inputfield_section'>
-            <div className='inputfield'>
-              <p>First Name</p>
-              <TextField
-                // {...register("first_name")}
-                id="first_name"
-                name="first_name"
-                placeholder='First Name'
-                value={AccountInfoData?.first_name}
-                InputLabelProps={{
-                  shrink: false,
-                }}
-                onChange={handleChangeInput}
-              />
-              <InputLabel className={validation_error}
-              >
-                {inputValidation?.first_name}
-              </InputLabel>
-            </div>
-            <div className='inputfield'>
-              <p>Last Name</p>
-              <TextField
-              // {...register("last_name")}
-                id="last_name"
-                name="last_name"
-                placeholder='Last Name'
-                value={AccountInfoData?.last_name}
-                InputLabelProps={{
-                  shrink: false,
-                }}
-                onChange={handleChangeInput}
-              />
-              <InputLabel className={validation_error}>
-                {inputValidation?.last_name}
-              </InputLabel>
-            </div>
+
+return (
+  <div className='account_ifo_main'>
+    <span className='Account_heading'> <p>EDIT PROFILE INFORMATION</p></span>
+    <div className='account_info_edit' >
+      {/* <form className='form' > */}
+      <div className='form'>
+        <div className='inputfield_section'>
+          <div className='inputfield'>
+            <p>First Name</p>
+            <TextField
+
+              id="first_name"
+              name="first_name"
+              placeholder='First Name'
+              value={AccountInfoData?.first_name}
+              InputLabelProps={{
+                shrink: false,
+              }}
+              onChange={handleChangeInput}
+            />
+            <InputLabel className={validation_error}
+            >
+              {inputValidation?.first_name}
+            </InputLabel>
           </div>
-          <div className='inputfield_section'>
-            <div className='inputfield'>
-              <p>Mobile Number</p>
-              <MuiPhoneNumber
-              // {...register("mobile_number")}
-                preferredCountries={["india"]}
+          <div className='inputfield'>
+            <p>Last Name</p>
+            <TextField
+              id="last_name"
+              name="last_name"
+              placeholder='Last Name'
+              value={AccountInfoData?.last_name}
+              InputLabelProps={{
+                shrink: false,
+              }}
+              onChange={handleChangeInput}
+            />
+            <InputLabel className={validation_error}>
+              {inputValidation?.last_name}
+            </InputLabel>
+          </div>
+        </div>
+        <div className='inputfield_section'>
+          <div className='inputfield'>
+            <p>Mobile Number</p>
+            <PhoneInput
+              country={"in"}
+              id="mobile_number"
+              fullWidth="true"
+              className="inputfield-box"
+              name="mobile_number"
+              value={AccountInfoData?.mobile_number}
+              InputLabelProps={{
+                shrink: true,
+                required: true,
+              }}
+              onChange={handleMobileChangeInput}
+                
+              variant="outlined"
+            />
+            {/* <MuiPhoneNumber
+                // preferredCountries={["india"]}
                 defaultCountry={'in'}
                 id="mobile_number"
                 name="mobile_number"
@@ -237,35 +271,32 @@ const Index = (classes) => {
                 }}
                 onChange={handleMobileChangeInput}
                 variant="outlined"
-              />
-              <InputLabel className={validation_error}>
-                {inputValidation?.mobile_number}
-              </InputLabel>
-            </div>
-            <div className="inputfield">
-              <p>Email Address</p>
-              <TextField
-              // {...register("email_address")}
-                id="email_address"
-                name="email_address"
-                placeholder="E-Mail"
-                value={AccountInfoData?.email_address}
-                InputLabelProps={{
-                  shrink: false,
-                }}
-                onChange={handleChangeInput}
-              />
-              <InputLabel className={validation_error}>
-                {inputValidation?.email_address}
-              </InputLabel>
-            </div>
+              /> */}
+            <InputLabel className={validation_error}>
+              {inputValidation?.mobile_number}
+            </InputLabel>
           </div>
-        
+          <div className="inputfield">
+            <p>Email Address</p>
+            <TextField
+              id="email_address"
+              name="email_address"
+              placeholder="E-Mail"
+              value={AccountInfoData?.email_address}
+              InputLabelProps={{
+                shrink: false,
+              }}
+              onChange={handleChangeInput}
+            />
+            <InputLabel className={validation_error}>
+              {inputValidation?.email_address}
+            </InputLabel>
+          </div>
+        </div>
         <div className='inputfield_section'>
           <div className='inputfield'>
             <p>New Password</p>
             <TextField
-            // {...register("new_password")}
               id="new_password"
               name="new_password"
               value={AccountInfoData?.new_password}
@@ -284,7 +315,6 @@ const Index = (classes) => {
           <div className='inputfield'>
             <p>Confirm New Password</p>
             <TextField
-            // {...register("new_confrim_password")}
               id="new_confrim_password"
               name="new_confrim_password"
               placeholder='New Confirm Password'
@@ -305,16 +335,16 @@ const Index = (classes) => {
           <button className='account_info_cancel'>Cancel</button>
           <button className='account_info_save' onClick={() => handleClickValidation()} >Save Changes</button>
         </div>
-        </form>
-        {/* </div> */}
-        <div className='my_profile_back'>
+        {/* </form> */}
+      </div>
+      <div className='my_profile_back'>
         <Link to="/buyerdashboard/dashboard" className="link">
-        <ArrowBackIosNew /><span><p className='back'>Back</p></span>
-          </Link>
-         
-        </div>
+          <ArrowBackIosNew /><span><p className='back'>Back</p></span>
+        </Link>
+
       </div>
     </div>
-  );
+  </div>
+);
 };
 export default Index;
