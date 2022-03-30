@@ -239,6 +239,9 @@
     flex-direction: column;
     align-items: center;
   }
+  .pdp_modal .section_main_container .section_main_sub .section_main_sub_container{
+    padding: 29px 10px 0;
+  }
 }
 @media (max-width: 767px) {
   .pdp_modal
