@@ -52,6 +52,7 @@ const OfficeAddressDetails = ({
         break;
     }
   };
+
   return (
     <div>
       <p className={info_text_lineNote_one}>Office Address</p>

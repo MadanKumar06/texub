@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./styles.scss";
 
 import {
@@ -12,6 +12,8 @@ import {
 } from "@mui/material";
 import { Search } from "@mui/icons-material";
 import ProductFilterDrawer from "./ProductFilter";
+import axios from "axios";
+import baseUrl from "../../../Constant";
 
 //Basic need
 import todays_deal_active from "../../../Assets/BasicNeeded/PLPIcons/today_deal.png";
@@ -22,10 +24,15 @@ import just_launch_active from "../../../Assets/BasicNeeded/PLPIcons/just_launch
 import just_launch_inactive from "../../../Assets/BasicNeeded/PLPIcons/just_launch_inactive.png";
 
 const Productlists = () => {
-  const [productlistdropdown, setProductlistdropdown] = React.useState({
+  const [productlistdata, setProductlistdata] = useState({
     hub: "",
-    condition: "",
-    price: "",
+    conditions: "",
+    eta: "",
+  });
+  const [productlistdropdown, setProductlistdropdown] = useState({
+    hub: [],
+    conditions: [],
+    eta: [],
   });
   const [filterHeaderImage, setFilterHeaderImage] = useState({
     today_deal: true,
@@ -36,12 +43,11 @@ const Productlists = () => {
     price_drop_image: price_drop_inactive,
   });
   const handleChange = (event) => {
-    setProductlistdropdown((prevState) => ({
+    setProductlistdata((prevState) => ({
       ...prevState,
       [event.target.name]: event.target.value,
     }));
   };
-
   const handleImageChange = (event) => {
     setFilterHeaderImage((prevState) => ({
       ...prevState,
@@ -59,7 +65,30 @@ const Productlists = () => {
         : price_drop_inactive,
     }));
   };
-  console.log(productlistdropdown);
+
+  //API for fetch dropdown values
+  useEffect(() => {
+    const fetchProductListDropDownData = () => {
+      let data = {
+        currency_id: 3,
+      };
+
+      axios
+        .post(baseUrl + "/getSearchItemsInPlp", data, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => {
+          if (res?.data?.length) {
+            var object = Object.assign({}, ...res?.data);
+            setProductlistdropdown(object);
+          }
+        })
+        .catch((err) => {});
+    };
+    fetchProductListDropDownData();
+  }, []);
 
   return (
     <div className="productlist">
@@ -141,14 +170,16 @@ const Productlists = () => {
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={productlistdropdown?.hub}
-            label="Age"
+            value={productlistdata?.hub}
+            label="Hub"
             name="hub"
             onChange={handleChange}
           >
-            <MenuItem value={10}>sample hub 1</MenuItem>
-            <MenuItem value={20}>sample hub 2</MenuItem>
-            <MenuItem value={30}>sample hub 3</MenuItem>
+            {console.log(productlistdropdown)}
+            {productlistdropdown?.hub &&
+              productlistdropdown?.hub?.map((itm) => (
+                <MenuItem value={itm?.hub_id}>{itm?.hub_name}</MenuItem>
+              ))}
           </Select>
         </FormControl>
       </Box>
@@ -158,31 +189,33 @@ const Productlists = () => {
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={productlistdropdown?.condition}
+            value={productlistdata?.conditions}
             label="Age"
-            name="condition"
+            name="conditions"
             onChange={handleChange}
           >
-            <MenuItem value={10}>sample condition 1</MenuItem>
-            <MenuItem value={20}>sample condtion 2</MenuItem>
-            <MenuItem value={30}>sample condition 3</MenuItem>
+            {productlistdropdown?.conditions &&
+              productlistdropdown?.conditions?.map((itm) => (
+                <MenuItem value={itm?.value}>{itm?.label}</MenuItem>
+              ))}
           </Select>
         </FormControl>
       </Box>
       <Box sx={{ minWidth: 200 }}>
         <FormControl fullWidth className="product_dropdown_price">
-          <InputLabel id="demo-simple-select-label">Price</InputLabel>
+          <InputLabel id="demo-simple-select-label">ETA</InputLabel>
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={productlistdropdown?.price}
-            label="Age"
-            name="price"
+            value={productlistdata?.eta}
+            label="ETA"
+            name="eta"
             onChange={handleChange}
           >
-            <MenuItem value={10}>sample price 1</MenuItem>
-            <MenuItem value={20}>sample price 2</MenuItem>
-            <MenuItem value={30}>sample price 3</MenuItem>
+            {productlistdropdown?.eta &&
+              productlistdropdown?.eta?.map((itm) => (
+                <MenuItem value={itm}>{itm}</MenuItem>
+              ))}
           </Select>
         </FormControl>
       </Box>

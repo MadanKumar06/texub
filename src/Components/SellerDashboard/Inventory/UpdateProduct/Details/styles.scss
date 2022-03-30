@@ -76,13 +76,14 @@
 }
 @media (max-width: 1660px) {
   .updateproduct__bgform .updateproduct_info_form .MuiInputLabel-root {
-    font-size: 12px;
+    font-size: 16px;
+    margin-bottom: 10px;
   }
   .updateproduct .updateproduct__addmore p .addmore__text {
     font-size: 16px;
   }
   .updateproduct .updateproduct__gst .updateproduct_info_form .MuiInputLabel-root, .updateproduct .updateproduct__specifications .updateproduct__form .updateproduct_inputfields .MuiInputLabel-root {
-    font-size: 12px;
+    font-size: 16px;
 }
 }
 @media (max-width: 767px) {

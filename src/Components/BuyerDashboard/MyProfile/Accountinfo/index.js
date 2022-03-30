@@ -6,7 +6,6 @@ import { isPasswordValid, isEmailValid } from "../../../../utilities";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import PhoneInput from "react-phone-input-2";
-// import { useForm } from "react-hook-form";
 import axios from "axios"
 import baseUrl from '../../../../../src/Constant'
 const Index = (classes) => {
@@ -69,7 +68,7 @@ const Index = (classes) => {
             ...prevState,
             mobile_number: "Please enter your mobile number.",
           }));
-        } else if (AccountInfoData?.mobile_number[0]?.length !== 1) {
+        } else if (AccountInfoData?.mobile_number?.length > 10) {
           document.getElementById("mobile_number")?.focus();
           setInputValidation((prevState) => ({
             ...prevState,
@@ -140,14 +139,14 @@ const Index = (classes) => {
       }));
       errorHandle = true;
     }
-    if (!AccountInfoData?.mobile_number?.length > 10) {
+    if (!AccountInfoData?.mobile_number) {
       document.getElementById("root")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
         mobile_number: "Please enter the mobile number.",
       }));
       errorHandle = true;
-    } else if (AccountInfoData?.mobile_number?.length > 10) {
+    } else if (AccountInfoData?.mobile_number?.length < 10) {
       document.getElementById("mobile_number")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
@@ -197,7 +196,7 @@ const Index = (classes) => {
     }
    fetchCountryList();
 }, []);
-
+{}
 
 return (
   <div className='account_ifo_main'>
@@ -245,9 +244,11 @@ return (
           <div className='inputfield'>
             <p>Mobile Number</p>
             <PhoneInput
-              country={"in"}
+              country={'in'}
               id="mobile_number"
-              fullWidth="true"
+              fullWidth
+              enableSearch={true}
+              countryCodeEditable={false}
               className="inputfield-box"
               name="mobile_number"
               value={AccountInfoData?.mobile_number}
@@ -255,8 +256,7 @@ return (
                 shrink: true,
                 required: true,
               }}
-              onChange={handleMobileChangeInput}
-                
+              onChange={handleMobileChangeInput} 
               variant="outlined"
             />
             {/* <MuiPhoneNumber
