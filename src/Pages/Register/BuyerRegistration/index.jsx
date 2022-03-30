@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./styles";
+import "./popupstyle.scss";
 
 import {
   TextField,
@@ -585,7 +586,7 @@ const BuyerRegistration = ({ classes }) => {
             />
           </div>
           <ReCAPTCHA
-            className="recaptcha_info1"
+            className="recaptcha_info1 buyer-recaptcha_info"
             sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
           />
         </div>
