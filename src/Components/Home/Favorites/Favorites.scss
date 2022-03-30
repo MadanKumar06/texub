@@ -14,8 +14,8 @@
     .Favorites_Deals {
       position: absolute;
       color: #ffffff;
-      font-size: 34px;
-      top: 4.5em;
+      font-size: 24px;
+      top: 6em;
       margin: 0;
     }
     .Favorites_Images2 {
@@ -28,7 +28,8 @@
 
 @media (max-width: 1660px) {
   .Favorites .Favorites_Sections .Favorites_Deals {
-    top: 4em;
+    top: 5em;
+    font-size: 24px;
   }
 }
 
@@ -48,7 +49,7 @@
 @media (max-width: 1240px) {
   .Favorites .Favorites_Sections .Favorites_Deals {
     top: 4.25em;
-    font-size: 20px;
+    font-size: 24px;
   }
 }
 
@@ -64,19 +65,30 @@
 @media (max-width: 1024px) {
   .Favorites .Favorites_Sections .Favorites_Deals {
     top: 4em;
+    font-size: 20px;
+  }
+}
+@media (max-width: 780px) {
+  .Favorites{
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+  }
+  .Favorites .Favorites_Sections{
+    width: 33.33%;
   }
 }
 
 @media (max-width: 768px) {
   .Favorites .Favorites_Sections .Favorites_Deals {
-    font-size: 16px;
-    top: 4em;
+    font-size: 22px;
+    top: 4.5em;
   }
 }
 
 @media (max-width: 580px) {
   .Favorites .Favorites_Sections .Favorites_Deals {
-    font-size: 14px;
+    font-size: 22px;
     top: 3.5em;
   }
 }
@@ -89,9 +101,14 @@
   .Favorites .Favorites_Sections {
     width: 100%;
   }
-
+  .Favorites .Favorites_Sections .Favorites_Images{
+    width: initial;
+  }
+  .Favorites .Favorites_Sections .Favorites_Images2{
+    width: initial;
+  }
   .Favorites .Favorites_Sections .Favorites_Deals {
-    font-size: 32px;
+    font-size: 24px;
     top: 6em;
   }
 }
@@ -100,10 +117,16 @@
   .Favorites .Favorites_Sections .Favorites_Deals {
     top: 5em;
   }
+  .Favorites .Favorites_Sections .Favorites_Images{
+    width: 100%;
+  }
+  .Favorites .Favorites_Sections .Favorites_Images2{
+    width: 100%;
+  }
 }
 
 @media (max-width: 320px) {
   .Favorites .Favorites_Sections .Favorites_Deals {
-    top: 4em;
+    top: 5em;
   }
 }

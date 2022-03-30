@@ -52,37 +52,6 @@ const styles = (theme) => ({
     },
     "& .MuiFormControl-root": {
       marginTop: "2em",
-      "& ::placeholder": {
-        fontSize: "20px",
-        color: "#CDD5DD",
-        opacity: "1",
-        "@media(max-width:1440px)": {
-          fontSize: "18px",
-        },
-        "@media (max-width:767px)": {
-          fontSize: "16px",
-        },
-      },
-      "& .MuiInputLabel-root": {
-        fontWeight: "600",
-        fontSize: "18px",
-        color:"#3E3E3E",
-        "& .MuiInputLabel-asterisk": {},
-      },
-    },
-    "& .MuiOutlinedInput-root": {
-      "& input": {
-        // padding: "12.5px 14px",
-        font: "unset",
-      },
-      "& fieldset": {
-        "& legend": {
-          fontSize: "1em",
-        },
-      },
-    },
-    "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
-      border: "1px solid #DDB363",
     },
   },
   checkbox_label: {

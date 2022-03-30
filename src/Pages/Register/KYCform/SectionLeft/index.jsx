@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import styles from "./styles";
-import { Modal, Button, Box, Backdrop } from "@mui/material";
+import {
+  Modal,
+  Button,
+  Box,
+  Backdrop,
+} from "@mui/material";
 import { withStyles } from "@mui/styles";
 import { Clear } from "@mui/icons-material";
 import SectionRight from "../SectionRight";
@@ -14,7 +19,7 @@ import { useStateValue } from "../../../../store/state";
 const BuyerKYCformSectionLeft = ({ classes }) => {
   const [open, setOpen] = React.useState(true);
   const [documentButton, setDocumentButton] = useState("trade_license");
-  const [kycFormData, setKycFormData] = useState({ expiry_checkbox: false });
+  const [kycFormData, setKycFormData] = useState({});
   const [validationFieldMessage, setValidationFieldMessage] = useState();
   const [{}, dispatch] = useStateValue();
   let {

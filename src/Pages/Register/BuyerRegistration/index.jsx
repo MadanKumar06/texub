@@ -14,7 +14,8 @@ import ReCAPTCHA from "react-google-recaptcha";
 import { isEmailValid, isPasswordValid } from "../../../utilities";
 import Autocomplete from "@mui/material/Autocomplete";
 import { withStyles } from "@mui/styles";
-import MuiPhoneNumber from "material-ui-phone-number";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/material.css";
 
 const BuyerRegistration = ({ classes }) => {
   const [{}, dispatch] = useStateValue();
@@ -63,7 +64,7 @@ const BuyerRegistration = ({ classes }) => {
   const handleMobileChangeInput = (event) => {
     setbuyerRegistrationData((prevState) => ({
       ...prevState,
-      mobile_number: event,
+      mobile_number: event.split(" "),
     }));
     setInputValidation("");
   };
@@ -230,7 +231,8 @@ const BuyerRegistration = ({ classes }) => {
         mobile_number: "Please enter the mobile number.",
       }));
       errorHandle = true;
-    } else if (buyerRegistrationData?.mobile_number?.length !== 10) {
+    } else if (buyerRegistrationData?.mobile_number[1]?.length !== 10) {
+      debugger;
       document.getElementById("mobile_number")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
@@ -300,11 +302,11 @@ const BuyerRegistration = ({ classes }) => {
     }
     if (!errorHandle) {
       // Apicall fuction
+      dispatch({
+        type: "SET_KYC_OPEN_CLOSE",
+        value: true,
+      });
     }
-    dispatch({
-      type: "SET_KYC_OPEN_CLOSE",
-      value: true,
-    });
   };
   return (
     <div className={main_container}>
@@ -316,6 +318,7 @@ const BuyerRegistration = ({ classes }) => {
               label="First Name"
               placeholder="First Name"
               fullWidth
+              className="inputfield-box"
               InputLabelProps={{
                 shrink: true,
                 required: true,
@@ -335,6 +338,7 @@ const BuyerRegistration = ({ classes }) => {
           <div className={text_field_container}>
             <TextField
               id="last_name"
+              className="inputfield-box"
               label="Last Name"
               fullWidth
               placeholder="Last Name"
@@ -361,6 +365,7 @@ const BuyerRegistration = ({ classes }) => {
               id="email_address"
               label="E-mail Address"
               autoComplete="off"
+              className="inputfield-box"
               placeholder="E-mail Address"
               fullWidth
               InputLabelProps={{
@@ -381,14 +386,33 @@ const BuyerRegistration = ({ classes }) => {
           </div>
 
           <div className={text_field_container}>
-            <MuiPhoneNumber
+            {/* <MuiPhoneNumber
               preferredCountries={["india"]}
               defaultCountry={"in"}
               id="mobile_number"
               fullWidth
               label="Mobile Number"
+              className="inputfield-box"
               name="mobile_number"
               placeholder="8796878788"
+              value={buyerRegistrationData?.mobile_number}
+              InputLabelProps={{
+                shrink: true,
+                required: true,
+                classes: {
+                  asterisk: asterisk,
+                },
+              }}
+              onChange={handleMobileChangeInput}
+              variant="outlined"
+            /> */}
+            <PhoneInput
+              country={"in"}
+              id="mobile_number"
+              fullWidth
+              label="Mobile Number"
+              className="inputfield-box"
+              name="mobile_number"
               value={buyerRegistrationData?.mobile_number}
               InputLabelProps={{
                 shrink: true,
@@ -428,6 +452,7 @@ const BuyerRegistration = ({ classes }) => {
             <TextField
               id="password"
               label="Password"
+              className="inputfield-box"
               fullWidth
               type="password"
               autoComplete="new-password"
@@ -453,6 +478,7 @@ const BuyerRegistration = ({ classes }) => {
               id="confrim_password"
               label="Confrim Password"
               fullWidth
+              className="inputfield-box"
               type="password"
               placeholder="Confrim Password"
               InputLabelProps={{
@@ -477,6 +503,7 @@ const BuyerRegistration = ({ classes }) => {
             <TextField
               id="landline_number"
               label="Landline Number"
+              className="inputfield-box"
               fullWidth
               type="number"
               placeholder="Landline Number"
@@ -495,6 +522,7 @@ const BuyerRegistration = ({ classes }) => {
               label="Company Name"
               fullWidth
               placeholder="Company Name"
+              className="inputfield-box"
               InputLabelProps={{
                 shrink: true,
                 required: true,
@@ -516,6 +544,7 @@ const BuyerRegistration = ({ classes }) => {
           <div className={text_field_container}>
             <TextField
               id="designation"
+              className="inputfield-box"
               label="Designation"
               placeholder="Designation"
               fullWidth
@@ -556,6 +585,7 @@ const BuyerRegistration = ({ classes }) => {
                 <TextField
                   {...params}
                   label="Country"
+                  className="inputfield-box"
                   placeholder="Country"
                   InputLabelProps={{
                     shrink: true,
@@ -585,11 +615,11 @@ const BuyerRegistration = ({ classes }) => {
               value="yes"
               control={<Checkbox color="secondary" />}
               label={
-                <p>
+                <div>
                   By using this form you agree with the{" "}
                   <span>Terms of Use</span>
                   and <span>Privacy Policy</span> by this website.
-                </p>
+                </div>
               }
               labelPlacement="end"
               className={checkbox_label}

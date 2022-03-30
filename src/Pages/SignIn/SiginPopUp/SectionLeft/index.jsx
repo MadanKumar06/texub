@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import styles from "./styles";
+import axios from "axios";
+
 import {
   Modal,
   TextField,
@@ -11,11 +13,14 @@ import {
   InputLabel,
 } from "@mui/material";
 import clsx from "clsx";
-import { isEmailValid, isPasswordValid } from "../../../../utilities";
 import { withStyles } from "@mui/styles";
 import { Clear } from "@mui/icons-material";
+
+import { isEmailValid, isPasswordValid } from "../../../../utilities";
 import SectionRight from "../SectionRight";
 import { useStateValue } from "../../../../store/state";
+
+//Assets
 import forgot from "../../../../Assets/Home/forgotpassword.svg";
 
 const TransitionsModal = ({ classes, openPopUp }) => {
@@ -163,6 +168,19 @@ const TransitionsModal = ({ classes, openPopUp }) => {
     }
   };
 
+  const getDummyList = () => {
+    axios
+      .get("https://texub.uat.a2zportals.co.in/rest/V1/Texub/getRegionList", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        console.log();
+      })
+      .catch((err) => {});
+  };
+
   //// Forgor Password ///
   const [passopen, setpassopen] = useState(false);
   const forgotpass = () => {
@@ -267,6 +285,7 @@ const TransitionsModal = ({ classes, openPopUp }) => {
                     autoFocus={true}
                     autoComplete="off"
                     value={signInData?.email_address}
+                    className="inputfield-box"
                     InputLabelProps={{
                       shrink: true,
                       required: true,
@@ -289,6 +308,7 @@ const TransitionsModal = ({ classes, openPopUp }) => {
                     autoComplete="new-password"
                     placeholder="Password"
                     value={signInData?.password}
+                    className="inputfield-box"
                     InputLabelProps={{
                       shrink: true,
                       required: true,
@@ -313,7 +333,7 @@ const TransitionsModal = ({ classes, openPopUp }) => {
                   />
                   <Box className={button_box}>
                     <Button
-                      onClick={() => handleClickValidation()}
+                      onClick={() => getDummyList()}
                       className={button_signin}
                     >
                       Sign In

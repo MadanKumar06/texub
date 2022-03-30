@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./styles.scss";
 import MUITable from "../../Common/MUITable";
-import { Button,Box } from "@mui/material";
+import { Button, Box } from "@mui/material";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import hp from "../../../Assets/sellerdashboard/inventory/hp.png";
 import { Link } from "react-router-dom";
@@ -326,16 +326,20 @@ function Index({ registerproduct }) {
             <span>Back</span>
           </Link>
           <div className="inventory__button">
-            <Box>
-
-          
-            <Button
-              className="button-text btn-secondary inventory_register"
-              onClick={() => registerproduct("registerproduct")}
-            >
-              Register New Product
-            </Button>
-            </Box>
+            {/* <Box className="button-box-container "> */}
+              <Button
+                className="button-text btn-secondary inventory_register"
+                onClick={() => registerproduct("registerproduct")}
+              >
+                Register New Product
+              </Button>
+              {/* <Button className="button-text btn-secondary inventory_register">
+                Pending Products
+              </Button>
+              <Button className="button-text btn-secondary inventory_register">
+                Bulk Upload
+              </Button> */}
+            {/* </Box> */}
           </div>
         </div>
       </div>
@@ -346,7 +350,7 @@ function Index({ registerproduct }) {
         options={options}
         className="inventory__table"
       />
-      
+
       <Pagination
         PaginateData={PaginateDataSplit}
         DataList={table}

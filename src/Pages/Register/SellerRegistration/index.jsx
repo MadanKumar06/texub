@@ -330,11 +330,11 @@ const BuyerRegistration = ({ classes }) => {
     }
     if (!errorHandle) {
       // Apicall fuction
+      dispatch({
+        type: "SET_KYC_OPEN_CLOSE",
+        value: true,
+      });
     }
-    dispatch({
-      type: "SET_KYC_OPEN_CLOSE",
-      value: true,
-    });
   };
   const handleMobileChangeInput = (event) => {
     setsellerRegistrationData((prevState) => ({
@@ -352,6 +352,7 @@ const BuyerRegistration = ({ classes }) => {
               id="first_name"
               label="First Name"
               placeholder="First Name"
+              className="inputfield-box"
               fullWidth
               InputLabelProps={{
                 shrink: true,
@@ -375,6 +376,7 @@ const BuyerRegistration = ({ classes }) => {
               label="Last Name"
               fullWidth
               placeholder="Last Name"
+              className="inputfield-box"
               InputLabelProps={{
                 shrink: true,
                 required: true,
@@ -399,6 +401,7 @@ const BuyerRegistration = ({ classes }) => {
               label="E-mail Address"
               autoComplete="off"
               placeholder="E-mail Address"
+              className="inputfield-box"
               fullWidth
               InputLabelProps={{
                 shrink: true,
@@ -423,6 +426,7 @@ const BuyerRegistration = ({ classes }) => {
               id="mobile_number"
               fullWidth
               label="Mobile Number"
+              className="inputfield-box"
               name="mobile_number"
               placeholder="8796878788"
               value={sellerRegistrationData?.mobile_number}
@@ -466,6 +470,7 @@ const BuyerRegistration = ({ classes }) => {
               label="Password"
               fullWidth
               type="password"
+              className="inputfield-box"
               autoComplete="new-password"
               placeholder="Password"
               InputLabelProps={{
@@ -490,6 +495,7 @@ const BuyerRegistration = ({ classes }) => {
               label="Confrim Password"
               fullWidth
               type="password"
+              className="inputfield-box"
               placeholder="Confrim Password"
               InputLabelProps={{
                 shrink: true,
@@ -514,6 +520,7 @@ const BuyerRegistration = ({ classes }) => {
               id="landline_number"
               label="Landline Number"
               fullWidth
+              className="inputfield-box"
               type="number"
               placeholder="Landline Number"
               InputLabelProps={{
@@ -532,6 +539,7 @@ const BuyerRegistration = ({ classes }) => {
               label="Company Name"
               fullWidth
               placeholder="Company Name"
+              className="inputfield-box"
               InputLabelProps={{
                 shrink: true,
                 required: true,
@@ -555,6 +563,7 @@ const BuyerRegistration = ({ classes }) => {
               id="designation"
               label="Designation"
               placeholder="Designation"
+              className="inputfield-box"
               fullWidth
               InputLabelProps={{
                 shrink: true,
@@ -590,6 +599,7 @@ const BuyerRegistration = ({ classes }) => {
                 <TextField
                   {...params}
                   label="Role"
+                  className="inputfield-box"
                   placeholder="Role"
                   InputLabelProps={{
                     shrink: true,
@@ -626,6 +636,7 @@ const BuyerRegistration = ({ classes }) => {
                   {...params}
                   label="Region"
                   placeholder="Region"
+                  className="inputfield-box"
                   InputLabelProps={{
                     shrink: true,
                     required: true,
@@ -659,6 +670,7 @@ const BuyerRegistration = ({ classes }) => {
                   {...params}
                   label="Country"
                   placeholder="Country"
+                  className="inputfield-box"
                   InputLabelProps={{
                     shrink: true,
                     required: true,

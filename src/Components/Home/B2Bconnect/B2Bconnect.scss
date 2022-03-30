@@ -9,7 +9,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   .Heading {
-    font-size: 50px;
+    font-size: 30px;
     padding-top: 17px;
     font-family: revert;
     opacity: 1;
@@ -43,7 +43,7 @@
         object-fit: contain;
       }
       .Card_Paragraph {
-        font-size: 30px;
+        font-size: 24px;
         opacity: 0.9;
         color: #333c42;
         padding-left: 10px;
@@ -67,7 +67,7 @@
   .WhyTexub {
     .Heading {
       padding: 20px;
-      font-size: 36px;
+      font-size: 26px;
     }
 
     .Heading_tag {
@@ -89,6 +89,9 @@
 @media (max-width: 768px) {
   .WhyTexub .B2B_Images_Section {
     gap: 1em;
+  }
+  .WhyTexub .Heading{
+    font-size: 24px;
   }
 }
 
@@ -124,5 +127,8 @@
 @media (max-width: 375px) {
   .WhyTexub {
     margin: 1em 0;
+  }
+  .WhyTexub .Heading{
+    font-size: 20px;
   }
 }

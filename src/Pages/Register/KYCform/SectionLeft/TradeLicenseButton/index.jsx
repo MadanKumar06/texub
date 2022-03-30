@@ -72,14 +72,6 @@ const TradeLicenseButton = ({
 
   const handleSwitchCase = (fieldName, value) => {
     switch (fieldName[0]) {
-      // case "company_name":
-      //   if (!value) {
-      //     setInputValidation((prevState) => ({
-      //       ...prevState,
-      //       company_name: "Please enter the business name.",
-      //     }));
-      //   }
-      //   break;
       // case "trade_lic_number":
       //   if (!value) {
       //     setInputValidation((prevState) => ({
@@ -126,6 +118,7 @@ const TradeLicenseButton = ({
         fullWidth
         disabled
         value={FormValues?.company_name}
+        className="inputfield-box"
         InputLabelProps={{
           shrink: true,
           required: true,
@@ -134,18 +127,15 @@ const TradeLicenseButton = ({
           },
         }}
         name="company_name"
-        onChange={handleFormvalue}
         variant="outlined"
       />
-      <InputLabel className={validation_error}>
-        {inputValidation?.company_name}
-      </InputLabel>
       <div className={input_div}>
         <TextField
           id="trade_lic_number"
           label="Trade LIC Number"
           placeholder="Trade LIC Number"
           fullWidth
+          className="inputfield-box"
           name="trade_lic_number"
           value={FormValues?.trade_lic_number}
           InputLabelProps={{
@@ -173,6 +163,7 @@ const TradeLicenseButton = ({
               <TextField
                 {...params}
                 fullWidth
+                className="inputfield-box"
                 id="trade_expiration_date"
                 placeholder="MM/YY"
                 InputLabelProps={{

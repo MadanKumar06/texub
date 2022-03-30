@@ -52,6 +52,7 @@ const styles = () => ({
       "& .MuiTableCell-root ": {
         textAlign: "center",
         fontSize: "18px",
+        fontWeight: "600",
         "& a": {
           textDecoration: "none",
         },
