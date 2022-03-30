@@ -17,6 +17,7 @@ import Sidebar from "../../Components/Sidebar";
 import Sellerservices from "../../Components/SellerDashboard/Sellerservices";
 import Directenqueries from "../../Components/SellerDashboard/Directenqueries";
 import Paymentmethods from "../../Components/SellerDashboard/Paymentmethods";
+import PendingProduct from '../../Components/SellerDashboard/Inventory/PendingProducts'
 
 function SellerDashboard() {
   const [currentmenu, setcurrentmenu] = useState();
@@ -119,7 +120,9 @@ function SellerDashboard() {
           {currenttab === "registersuccess" && (
             <SuccessPage msg={registersuccess} />
           )}
-
+          {currenttab === "pending-product" && (
+            <PendingProduct registerproduct={registerproduct} />
+          )}
           {currenttab === "updateproduct" && (
             <UpdateProduct type="Update New Product Details" />
           )}

@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import "./styles.scss";
 import MUITable from "../../Common/MUITable";
-import { Button } from "@mui/material";
+import { Button, Box } from "@mui/material";
+import { IconButton, InputBase, Paper } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
+
 import { ArrowBackIosNew } from "@mui/icons-material";
 import hp from "../../../Assets/sellerdashboard/inventory/hp.png";
 import { Link } from "react-router-dom";
 import Pagination from "../../Pagination";
+import ProductGrid from "./ProductGrid";
 function Index({ registerproduct }) {
   const [tableData, setTableData] = useState([]);
+  const [searchList, setSearchList] = useState(false);
 
   const options = {
     filter: false,
@@ -317,37 +322,66 @@ function Index({ registerproduct }) {
   const PaginateDataSplit = (event) => {
     setTableData(event);
   };
+  const handleSearchInput = (event) => {
+    setSearchList(event?.target?.value === "laptop" ? true : false);
+  };
   return (
     <div className="inventory">
       <div className="inventory__products__footer">
         <div className="inventory__products__container">
-          <Link to="/sellerdashboard/dashboard">
-            <ArrowBackIosNew />
-            <span>Back</span>
-          </Link>
           <div className="inventory__button">
-            <Button
-              className="inventory_register"
-              onClick={() => registerproduct("registerproduct")}
+            <Paper
+              component="form"
+              className="paper_search"
+              sx={{ p: "2px 4px", display: "flex", alignItems: "center" }}
             >
-              Register New Product
-            </Button>
+              <IconButton type="submit" sx={{ p: "10px" }} aria-label="search">
+                <SearchIcon />
+              </IconButton>
+              <InputBase
+                sx={{ ml: 1, flex: 1 }}
+                placeholder="Search..."
+                onChange={handleSearchInput}
+                inputProps={{ "aria-label": "search google maps" }}
+              />
+            </Paper>
+            <Box className="button-box-container ">
+              <Button
+                className="button-text btn-secondary inventory_register"
+                onClick={() => registerproduct("registerproduct")}
+              >
+                Register New Product
+              </Button>
+              <Button
+                className="button-text btn-ternary  inventory_product_upload"
+                onClick={() => registerproduct("pending-product")}
+              >
+                Pending Products
+              </Button>
+              <Button className="button-text btn-ternary  inventory_product_upload">
+                Bulk Upload
+              </Button>
+            </Box>
           </div>
         </div>
       </div>
-
+      {searchList && <ProductGrid />}
       <MUITable
         columns={columns}
         table={tableData}
         options={options}
         className="inventory__table"
       />
-      
+
       <Pagination
         PaginateData={PaginateDataSplit}
         DataList={table}
         PagePerRow={10}
       />
+      <Link to="/sellerdashboard/dashboard">
+        <ArrowBackIosNew />
+        <span>Back</span>
+      </Link>
     </div>
   );
 }

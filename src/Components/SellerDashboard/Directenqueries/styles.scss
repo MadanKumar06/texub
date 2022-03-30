@@ -2,16 +2,18 @@
   .directenquiries__buttons {
     display: flex;
     align-items: center;
-    justify-content: space-around !important;
+    justify-content: space-around;
     gap: 20px;
-    margin-top: 3em;
-    padding: 0 3em;
-    .directenquiries__btton_content {
-      width: calc(100% / 4);
-      text-align: center;
+    margin-top: 2em;
+    flex-wrap: wrap;
 
+    .directenquiries__btton_content {
       p {
+        width: calc(90% / 4);
+        text-align: center;
         margin: 0;
+        min-width: 250px;
+        white-space: nowrap;
         padding: 0.7em 1.2em;
         background-color: #f0f0f0;
         color: #333c42;
@@ -193,6 +195,28 @@
     .actions {
       font-size: 18px;
     }
+  }
+  .directenquiries_container
+    .directenquiries__footer
+    .directenquiries__container
+    a
+    span {
+    font-size: 16px;
+  }
+  .directenquiries_container
+    .directenquiries__footer
+    .directenquiries__container
+    a
+    .MuiSvgIcon-root {
+    width: 0.6em;
+    height: 0.6em;
+  }
+  .directenquiries_container
+    .directenquiries__buttons
+    .directenquiries__btton_content
+    p {
+    padding: 0.5em 1.2em;
+    font-size: 16px;
   }
 }
 

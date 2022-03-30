@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { InputLabel, TextField, Autocomplete } from "@mui/material";
+import {
+  InputLabel,
+  TextField,
+  Autocomplete,
+  Box,
+  Button,
+} from "@mui/material";
 import "./styles.scss";
 
 function RegisterProduct() {
@@ -10,22 +16,41 @@ function RegisterProduct() {
       <h1>Register New Product</h1>
 
       <div className="registerproducts__form">
-        <div className="registerproducts_inputfields">
-          <InputLabel>Name</InputLabel>
-          <TextField
-            id="name"
-            name="name"
-            placeholder="Enter Product Name"
-            fullWidth
-            autoFocus={true}
-            autoComplete="off"
-            // value={signInData?.email_address}
-            InputLabelProps={{
-              shrink: false,
-            }}
-            // onChange={handleChangeInput}
-            variant="outlined"
-          />
+        <div className="input_separator">
+          <div className="registerproducts_inputfields">
+            <InputLabel>Model Number</InputLabel>
+            <TextField
+              id="modal_number"
+              name="modal_number"
+              placeholder="3604929017"
+              fullWidth
+              disabled
+              className="inputfield-box"
+              // value={signInData?.email_address}
+              InputLabelProps={{
+                shrink: false,
+              }}
+              // onChange={handleChangeInput}
+              variant="outlined"
+            />
+          </div>
+          <div className="registerproducts_inputfields">
+            <InputLabel>Texub Product ID</InputLabel>
+            <TextField
+              id="product_id"
+              name="product_id"
+              placeholder="11041"
+              fullWidth
+              disabled
+              className="inputfield-box"
+              // value={signInData?.email_address}
+              InputLabelProps={{
+                shrink: false,
+              }}
+              // onChange={handleChangeInput}
+              variant="outlined"
+            />
+          </div>
         </div>
         <div className="input_separator">
           <div className="registerproducts_inputfields">
@@ -47,6 +72,7 @@ function RegisterProduct() {
                 <TextField
                   {...params}
                   fullWidth
+                  className="inputfield-box"
                   placeholder="Select Main Category"
                   InputLabelProps={{
                     shrink: false,
@@ -73,6 +99,7 @@ function RegisterProduct() {
               renderInput={(params) => (
                 <TextField
                   {...params}
+                  className="inputfield-box"
                   placeholder="Select Sub-Catrgory"
                   fullWidth
                   InputLabelProps={{
@@ -103,6 +130,7 @@ function RegisterProduct() {
               renderInput={(params) => (
                 <TextField
                   {...params}
+                  className="inputfield-box"
                   placeholder="Brand"
                   InputLabelProps={{
                     shrink: false,
@@ -112,30 +140,21 @@ function RegisterProduct() {
             />
           </div>
           <div className="registerproducts_inputfields">
-            <InputLabel>Model Number</InputLabel>
-            <Autocomplete
-              //   value={value}
-              name=""
-              //   onChange={(event, newValue) => {
-              //     setValue(newValue);
-              //   }}
-              //   className={auto_complete_input}
-              //   inputValue={inputValue}
-              //   onInputChange={(event, newInputValue) => {
-              //     setInputValue(newInputValue);
-              //   }}
-              id="controllable-states-demo"
-              options={options}
+            <InputLabel>HSN Code</InputLabel>
+            <TextField
+              id="hsn_code"
+              name="hsn_code"
+              placeholder="22348765"
               fullWidth
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  placeholder="Select Model Number"
-                  InputLabelProps={{
-                    shrink: false,
-                  }}
-                />
-              )}
+              autoFocus={true}
+              autoComplete="off"
+              className="inputfield-box"
+              // value={signInData?.email_address}
+              InputLabelProps={{
+                shrink: false,
+              }}
+              // onChange={handleChangeInput}
+              variant="outlined"
             />
           </div>
         </div>
@@ -148,6 +167,7 @@ function RegisterProduct() {
               placeholder="DE-B-0089"
               fullWidth
               autoFocus={true}
+              className="inputfield-box"
               autoComplete="off"
               // value={signInData?.email_address}
               InputLabelProps={{
@@ -166,42 +186,7 @@ function RegisterProduct() {
               fullWidth
               autoFocus={true}
               autoComplete="off"
-              // value={signInData?.email_address}
-              InputLabelProps={{
-                shrink: false,
-              }}
-              // onChange={handleChangeInput}
-              variant="outlined"
-            />
-          </div>
-        </div>
-        <div className="input_separator">
-          <div className="registerproducts_inputfields">
-            <InputLabel>HSN Code</InputLabel>
-            <TextField
-              id="hsn_code"
-              name="hsn_code"
-              placeholder="22348765"
-              fullWidth
-              autoFocus={true}
-              autoComplete="off"
-              // value={signInData?.email_address}
-              InputLabelProps={{
-                shrink: false,
-              }}
-              // onChange={handleChangeInput}
-              variant="outlined"
-            />
-          </div>
-          <div className="registerproducts_inputfields">
-            <InputLabel>GST %</InputLabel>
-            <TextField
-              id="gst"
-              name="gst"
-              placeholder="18"
-              fullWidth
-              autoFocus={true}
-              autoComplete="off"
+              className="inputfield-box"
               // value={signInData?.email_address}
               InputLabelProps={{
                 shrink: false,
@@ -218,6 +203,7 @@ function RegisterProduct() {
             fullWidth
             multiline
             rows={5}
+            className="inputfield-box"
             InputLabelProps={{
               shrink: false,
               // required: true,
@@ -234,9 +220,13 @@ function RegisterProduct() {
         <Link to="/sellerdashboard/inventory">
           <span className="registerproduct__back">Back</span>
         </Link>
-        <Link to="/sellerdashboard/registersuccess">
-          <p className="registerproduct__submitbutton">Submit</p>
-        </Link>
+        <Box>
+          <Link to="/sellerdashboard/registersuccess">
+            <Button className="button-text btn-secondary registerproduct__submitbutton">
+              Submit
+            </Button>
+          </Link>
+        </Box>
       </div>
     </div>
   );

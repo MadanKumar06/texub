@@ -158,20 +158,39 @@
         display: flex;
         gap: 32px;
         .add_new_account_btn {
-          text-decoration: none !important;
-          font-size: 18px !important;
-          letter-spacing: 0.54px !important;
-          min-width: 245px !important;
-          border-radius: 45px !important;
-          border: none !important;
-          background: linear-gradient(180deg, #20639b 0%, #002d56 100%);
-          color: #ffffff !important;
-          cursor: pointer;
-          box-shadow: 0px 3px 6px #00000029;
-          font-weight: 600 !important;
-          padding: 10px !important;
-          text-transform: capitalize !important;
+          padding: 0.7em 2em !important;
         }
+      }
+    }
+  }
+}
+@media (max-width: 1660px) {
+  .usermgmt .user_mgnt__footer .user_mgnt__container a span {
+    font-size: 16px;
+  }
+  .usermgmt .user_mgnt__footer .user_mgnt__container a .MuiSvgIcon-root {
+    width: 0.6em;
+    height: 0.6em;
+  }
+  .usermgmt
+    .user_mgnt__footer
+    .user_mgnt__container
+    .user_mgnt_button
+    .add_new_account_btn {
+    padding: 0.4em 2em !important;
+  }
+  .usermgmt .usermgmt__table {
+    .MuiTableHead-root .MuiTableCell-root {
+      font-size: 20px;
+    }
+
+    .MuiTableBody-root {
+      .myorders__action {
+        font-size: 16px;
+      }
+
+      .MuiTableCell-root {
+        font-size: 18px;
       }
     }
   }

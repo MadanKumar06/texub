@@ -74,9 +74,11 @@
         transition:  3s ease-in-out;
                 .v1{
             border: 1px solid goldenrod;
-            
-            
-        }
+            }
+            .content{
+                display: flex;
+                gap: 20px;
+            }
     }
     }  
 }

@@ -1,8 +1,5 @@
 .inventory {
   .inventory__table {
-    .tss-1cdcmys-MUIDataTable-responsiveBase {
-      border-radius: 3px;
-    }
     .MuiTable-root {
       .MuiTableHead-root {
         white-space: nowrap;
@@ -117,40 +114,6 @@
         color: #002d56;
       }
     }
-
-    .inventory__buttons {
-      // display: flex;
-      // gap: 1em;
-
-      // p {
-      //   margin: 0;
-      //   font-size: 18px;
-      //   border-radius: 20px;
-      //   padding: 0.5em 1em;
-      //   border: 1px solid #002d56;
-      //   font-weight: 500;
-      // }
-
-      // .inventory_adddetails {
-      //   color: white;
-      //   background-color: #002d56;
-      // }
-      .inventory_register {
-        text-decoration: none !important;
-        font-size: 18px !important;
-        letter-spacing: 0.54px !important;
-        min-width: 245px !important;
-        border-radius: 45px !important;
-        border: none !important;
-        background: linear-gradient(180deg, #20639b 0%, #002d56 100%);
-        color: #ffffff !important;
-        cursor: pointer;
-        box-shadow: 0px 3px 6px #00000029;
-        font-weight: 600 !important;
-        padding: 10px !important;
-        text-transform: capitalize !important;
-      }
-    }
   }
   .inventory__products__footer {
     width: 100%;
@@ -177,26 +140,69 @@
       .inventory__button {
         display: flex;
         gap: 32px;
+        width: 100%;
+        .paper_search {
+          width: 100%;
+          box-shadow: unset;
+          border: 1px solid #d6d8d9;
+        }
         .inventory_register {
-          text-decoration: none !important;
-          font-size: 18px !important;
-          letter-spacing: 0.54px !important;
-          min-width: 245px !important;
-          border-radius: 45px !important;
-          border: none !important;
-          background: linear-gradient(180deg, #20639b 0%, #002d56 100%);
-          color: #ffffff !important;
-          cursor: pointer;
-          box-shadow: 0px 3px 6px #00000029;
-          font-weight: 600 !important;
-          padding: 10px !important;
-          text-transform: capitalize !important;
+        }
+        .inventory_product_upload {
+        }
+        .inventory_register {
+          padding: 0.6em 1.3em !important;
         }
       }
     }
   }
-}
 
+  .inventory
+    .inventory__table
+    .MuiTable-root
+    .MuiTableBody-root
+    .inventory__instock {
+    padding: 0.3em 1em;
+  }
+}
+@media (max-width: 1660px) {
+  .inventory
+    .inventory__products__footer
+    .inventory__products__container
+    a
+    .MuiSvgIcon-root {
+    width: 0.6em;
+    height: 0.6em;
+  }
+  .inventory
+    .inventory__products__footer
+    .inventory__products__container
+    a
+    span {
+    font-size: 18px;
+  }
+  .inventory
+    .inventory__table
+    .MuiTable-root
+    .MuiTableBody-root
+    .inventory__rank {
+    font-size: 20px;
+  }
+  .inventory
+    .inventory__table
+    .MuiTable-root
+    .MuiTableBody-root
+    .inventory__action {
+    font-size: 18px;
+  }
+  .inventory
+    .inventory__products__footer
+    .inventory__products__container
+    .inventory__button
+    .inventory_register {
+    padding: 0.4em 1.3em !important;
+  }
+}
 @media (max-width: 540px) {
   .inventory__table {
     .MuiTable-root {

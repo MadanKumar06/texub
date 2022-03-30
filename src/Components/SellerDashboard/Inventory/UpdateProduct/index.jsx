@@ -56,6 +56,7 @@ function Index({ type }) {
                 renderInput={(params) => (
                   <TextField
                     {...params}
+                    className="inputfield-box"
                     fullWidth
                     placeholder="Select Condition"
                     InputLabelProps={{
@@ -83,6 +84,7 @@ function Index({ type }) {
                 renderInput={(params) => (
                   <TextField
                     {...params}
+                    className="inputfield-box"
                     placeholder="Select Warranty Type"
                     fullWidth
                     InputLabelProps={{
@@ -112,6 +114,7 @@ function Index({ type }) {
                   renderInput={(params) => (
                     <TextField
                       {...params}
+                      className="inputfield-box"
                       placeholder="Select countries"
                       fullWidth
                       InputLabelProps={{
@@ -133,6 +136,7 @@ function Index({ type }) {
                 fullWidth
                 autoFocus={true}
                 autoComplete="off"
+                className="inputfield-box"
                 // value={signInData?.email_address}
                 InputLabelProps={{
                   shrink: false,
@@ -154,6 +158,7 @@ function Index({ type }) {
                 InputLabelProps={{
                   shrink: false,
                 }}
+                className="inputfield-box"
                 // onChange={handleChangeInput}
                 variant="outlined"
               />
@@ -167,10 +172,10 @@ function Index({ type }) {
                   id="hsn_code"
                   name="hsn_code"
                   placeholder="Length"
-                  className="length_field"
                   fullWidth
                   autoComplete="off"
                   // value={signInData?.email_address}
+                  className="inputfield-box length_field"
                   InputLabelProps={{
                     shrink: false,
                   }}
@@ -183,7 +188,7 @@ function Index({ type }) {
                   placeholder=" Width"
                   fullWidth
                   autoComplete="off"
-                  className="width_field"
+                  className="inputfield-box width_field"
                   // value={signInData?.email_address}
                   InputLabelProps={{
                     shrink: false,
@@ -195,9 +200,9 @@ function Index({ type }) {
                   id="hsn_code"
                   name="hsn_code"
                   placeholder="Height"
-                  className="height_field"
                   fullWidth
                   autoComplete="off"
+                  className="inputfield-box height_field"
                   // value={signInData?.email_address}
                   InputLabelProps={{
                     shrink: false,
@@ -209,7 +214,7 @@ function Index({ type }) {
                   id="hsn_code"
                   name="hsn_code"
                   placeholder="Weight"
-                  className="weight_field"
+                  className="inputfield-box weight_field"
                   fullWidth
                   autoComplete="off"
                   // value={signInData?.email_address}
@@ -229,6 +234,7 @@ function Index({ type }) {
                 placeholder="Yes"
                 fullWidth
                 autoFocus={true}
+                className="inputfield-box"
                 autoComplete="off"
                 // value={signInData?.email_address}
                 InputLabelProps={{
@@ -239,62 +245,6 @@ function Index({ type }) {
               />
             </div>
           </div>
-          <div className="input_separator">
-            <div className="updateproduct_inputfields info">
-              <InputLabel>Region</InputLabel>
-              <Autocomplete
-                //   value={value}
-                name=""
-                //   onChange={(event, newValue) => {
-                //     setValue(newValue);
-                //   }}
-                //   className={auto_complete_input}
-                //   inputValue={inputValue}
-                //   onInputChange={(event, newInputValue) => {
-                //     setInputValue(newInputValue);
-                //   }}
-                id="controllable-states-demo"
-                options={options}
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    fullWidth
-                    placeholder="Select Region"
-                    InputLabelProps={{
-                      shrink: false,
-                    }}
-                  />
-                )}
-              />
-            </div>
-            <div className="updateproduct_inputfields info">
-              <InputLabel>Country</InputLabel>
-              <Autocomplete
-                //   value={value}
-                name=""
-                //   onChange={(event, newValue) => {
-                //     setValue(newValue);
-                //   }}
-                //   className={auto_complete_input}
-                //   inputValue={inputValue}
-                //   onInputChange={(event, newInputValue) => {
-                //     setInputValue(newInputValue);
-                //   }}
-                id="controllable-states-demo"
-                options={options}
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    placeholder="Select Country"
-                    fullWidth
-                    InputLabelProps={{
-                      shrink: false,
-                    }}
-                  />
-                )}
-              />
-            </div>
-          </div>
           <div className="updateproduct_inputfields info">
             <InputLabel>Special Notes</InputLabel>
             <TextField
@@ -302,6 +252,7 @@ function Index({ type }) {
               fullWidth
               multiline
               rows={5}
+              className="inputfield-box"
               InputLabelProps={{
                 shrink: false,
                 // required: true,

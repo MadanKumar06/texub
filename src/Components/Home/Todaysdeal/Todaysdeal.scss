@@ -18,18 +18,17 @@
     .Todaysdeal_View_collection {
       position: absolute;
       color: white;
-      font-size: 28px;
+      font-size: 22px;
       text-align: center;
       margin: 0;
       width: 100%;
-      bottom: 2.25em;
+      bottom: 3.25em;
       cursor: pointer;
     }
   }
   .Todaysdeal_Collections1_2nd_div {
     display: flex;
     position: relative;
-    flex: 1;
     .Todaysdeal_Collections1_2nd_img {
       height: auto;
       max-width: 100%;
@@ -45,7 +44,7 @@
       gap: 1em;
       max-width: 512px;
       h3 {
-        font-size: 50px;
+        font-size: 30px;
         margin: 0;
       }
       p {
@@ -76,6 +75,10 @@
   .Todaysdeal_Collections .Todaysdeal_Collections1_1st_div {
     max-width: 278px;
   }
+  .Todaysdeal_Collections .Todaysdeal_Collections1_1st_div .Todaysdeal_View_collection {
+    font-size: 22px;
+    bottom: 2.25em;
+   }
 }
 
 @media (max-width: 1600px) {
@@ -185,7 +188,7 @@
     .Todaysdeal_Collections1_2nd_div
     .Todaysdeal__floatingcontent {
     h3 {
-      font-size: 32px;
+      font-size: 26px;
     }
     p {
       font-size: 16px;
@@ -197,9 +200,15 @@
   .Todaysdeal_Collections .Todaysdeal_Collections1_1st_div {
     max-width: 156px;
   }
+  .Todaysdeal_Collections .Todaysdeal_Collections1_2nd_div .Todaysdeal__floatingcontent{
+    top: 1em;
+  }
 }
 
 @media (max-width: 768px) {
+  .Todaysdeal_Collections .Todaysdeal_Collections1_2nd_div .Todaysdeal__floatingcontent h3{
+    font-size: 24px;
+  }
   .Todaysdeal_Collections .Todaysdeal_Collections1_1st_div {
     max-width: 128px;
   }
@@ -247,7 +256,8 @@
   .Todaysdeal_Collections
     .Todaysdeal_Collections1_1st_div
     .Todaysdeal_View_collection {
-    font-size: 40px;
+    font-size: 24px;
+    bottom: 2.75em;
   }
 
   .Todaysdeal_Collections
@@ -298,6 +308,9 @@
   .Todaysdeal_Collections
     .Todaysdeal_Collections1_1st_div
     .Todaysdeal_View_collection {
-    font-size: 29px;
+    font-size: 24px;
+  }
+  .Todaysdeal_Collections .Todaysdeal_Collections1_2nd_div .Todaysdeal__floatingcontent h3{
+    font-size: 20px;
   }
 }

@@ -65,15 +65,14 @@
           .Body_Down_Pannel_btn_items {
             cursor: pointer;
             border-bottom: 1px solid #efefef;
-            font-family: "Source Sans Pro";
-            font-weight: 700;
+            font-weight: 500;
             letter-spacing: 0.5px;
             font-size: 20px;
             color: #5c6369;
             display: flex;
             align-items: center;
             height: 52.8px;
-            padding-left: 10px;
+            padding-left: 20px;
           }
           .Body_Down_Pannel_btn_items:hover {
             background-color: rgb(223, 217, 217);
@@ -145,17 +144,15 @@
             font-weight: 600;
           }
           .Products_offer_per {
-            font-size: 50px;
-            font: "Source Sans Pro";
+            font-size: 30px;
             font-weight: bold;
             margin: 0;
           }
           .Products_offer_per_graph {
             flex-wrap: wrap;
             margin: 0;
-            font: "Source Sans Pro";
             font-size: 18px;
-            opacity: 0.8;
+            opacity: 1;
           }
           .Offers_buttons {
             display: flex;
@@ -166,30 +163,28 @@
             margin-top: 20px !important;
             gap: 8em;
             .Learn_more_btn {
-              padding: 0.5em 3em;
+              padding: 0.5em 2em;
               border-radius: 25px;
               border: none;
               color: #ffffff;
-              font-family: "Source Sans Pro";
               font-weight: 700;
               letter-spacing: 1px;
               box-shadow: 0px 3px 6px #00000029;
               background-image: linear-gradient(#ffd788, #cc9b3e);
-              font-size: 18px;
+              font-size: 16px;
               cursor: pointer;
             }
             .Get_started_btn {
-              padding: 0.5em 3em;
+              padding: 0.5em 2em;
               border-radius: 25px;
               box-shadow: 0px 3px 6px #00000029;
               border: none;
               color: #ffffff;
               cursor: pointer;
-              font-family: "Source Sans Pro";
               letter-spacing: 1px;
               font-weight: 700;
               background-image: linear-gradient(#20639b, #002d56);
-              font-size: 18px;
+              font-size: 16px;
             }
           }
         }
@@ -476,7 +471,7 @@
         }
 
         .Products_offer_per {
-          font-size: 32px;
+          font-size: 26px;
         }
       }
     }
@@ -501,9 +496,19 @@
   }
 }
 
+@media (max-width: 920px) {
+  .Departments .Departments_Body_Search .Body_Searchbar_Down_images{
+    flex-direction: column;
+  }
+
+}
+
 @media (max-width: 768px) {
   .Departments .Departments_Body_Search .Body_Searchbar_Down_images {
     min-height: unset !important;
+  }
+  .Departments .Departments_Body_Search .Body_Searchbar_Down_images{
+    flex-direction: row;
   }
 
   .Departments
@@ -523,6 +528,36 @@
   .Departments .Departments_Body_Search .Body_Searchbar_Down_images {
     min-height: 372px;
   }
+  .Departments .Departments_Body_Search .Body_Searchbar_Down_images .Body_Searchbar_Down_img1_div .Offers .Products_offer_per{
+    font-size: 24px;
+  }
+  .Departments .Departments_Body_Search .Body_Searchbar_Down_images .Body_Searchbar_Down_img1_div .Offers .Offers_buttons{
+    margin-top: 10px !important;
+  }
+  .Departments .Departments_Body_Search .Body_Searchbar_Down_images .Body_Searchbar_Down_img1_div .Offers .Offers_buttons .Learn_more_btn{
+    font-size: 14px;
+  }
+  .Departments .Departments_Body_Search .Body_Searchbar_Down_images .Body_Searchbar_Down_img1_div .Offers .Offers_buttons .Get_started_btn{
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 647px) {
+  .Departments .Departments_Body_Search .Body_Searchbar_Down_images{
+    flex-direction: column;
+  }
+  .Departments .Departments_Body_Search .Body_Searchbar_Down_images .Body_Searchbar_Down_img1_div .Offers{
+    width: 100%;
+    max-width:100%;
+  }
+  .Departments .Departments_Body_Search .Body_Searchbar_Down_images .Body_Searchbar_Down_img2_div{
+    max-width: 100%;
+    width: 100%;
+  }
+  .Departments .Departments_Body_Search .Body_Searchbar_Down_images .Body_Searchbar_Down_img1_div .Offers{
+    justify-content: center;
+  }
+
 }
 
 @media (max-width: 580px) {

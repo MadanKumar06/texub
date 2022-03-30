@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import styles from "./styles";
 import {
   Modal,
-  Checkbox,
-  FormControlLabel,
   Button,
   Box,
   Backdrop,
@@ -34,7 +32,6 @@ const BuyerKYCformSectionLeft = ({ classes }) => {
     clear_btn,
     info_text_lineNote_one,
     input_fields,
-    checkbox_label,
     box,
     button_selected,
     button_notselected,
@@ -130,14 +127,6 @@ const BuyerKYCformSectionLeft = ({ classes }) => {
                   setValidationFieldMessage={setValidationFieldMessage}
                 />
               )}
-
-              <FormControlLabel
-                value="yes"
-                control={<Checkbox color="color_third" />}
-                label="Automated Reminder on Expiry."
-                labelPlacement="end"
-                className={checkbox_label}
-              />
               <BankDetails
                 SetFormValues={setKycFormData}
                 FormValues={kycFormData}

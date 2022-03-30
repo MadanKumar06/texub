@@ -1,7 +1,10 @@
 const styles = () => ({
   table_container: {
     padding: "0 29px 0",
+  "@media (max-width:1110px)": {
+    padding: "0 15px 0",
   },
+},
   pdp_middle_wapper: {
     width: "85%",
     margin: "auto",
@@ -129,7 +132,7 @@ const styles = () => ({
     color: "#333C42 !important",
     textTransform: "capitalize",
     "@media (max-width:1660px)": {
-      fontSize: "16px !important",
+      fontSize: "14px !important",
     },
   },
   price_list_seller: {
@@ -139,13 +142,13 @@ const styles = () => ({
     padding: "5px",
     letterSpacing: "0.59px",
     color: "#5C6369",
-    fontSize: "20px",
+    fontSize: "18px",
 
     "& span a": {
       color: "#002D56",
-      fontSize: "21px",
+      fontSize: "18px",
       "@media (max-width:1660px)": {
-        fontSize: "18px",
+        fontSize: "16px",
       },
     },
     "@media (max-width:767px)": {
@@ -166,7 +169,7 @@ const styles = () => ({
     padding: "5px",
     letterSpacing: "0.59px",
     color: "#5C6369",
-    fontSize: "20px",
+    fontSize: "18px",
 
     "@media (max-width:767px)": {
       maxWidth: "100%",
@@ -205,7 +208,7 @@ const styles = () => ({
     padding: "5px",
     letterSpacing: "0.59px",
     color: "#5C6369",
-    fontSize: "20px",
+    fontSize: "18px",
     "@media (max-width:767px)": {
       maxWidth: "100%",
       wordBreak: "break-all",
@@ -221,14 +224,14 @@ const styles = () => ({
     fontSize: "24px",
     letterSpacing: "0.72px",
     "@media (max-width:1660px)": {
-      fontSize: "18px",
+      fontSize: "16px",
     },
   },
   seller_eta_value: {
     fontSize: "24px",
     letterSpacing: "0.72px",
     "@media (max-width:1660px)": {
-      fontSize: "18px",
+      fontSize: "16px",
     },
   },
   price_list_hub: {
@@ -238,7 +241,7 @@ const styles = () => ({
     padding: "5px",
     letterSpacing: "0.59px",
     color: "#5C6369",
-    fontSize: "20px",
+    fontSize: "18px",
     "@media (max-width:1660px)": {
       fontSize: "16px",
     },
@@ -343,11 +346,11 @@ const styles = () => ({
   input_text: {
     width: "54px",
     textAlign: "center",
-    fontSize: "24px",
+    fontSize: "20px",
     fontWeight: "600",
     "@media (max-width:1660px)": {
       width: "38px",
-      fontSize: "18px",
+      fontSize: "16px",
     },
   },
   radio_btn_group: {
@@ -375,19 +378,19 @@ const styles = () => ({
     },
   },
   price_indicator: {
-    fontSize: "20px",
+    fontSize: "18px",
     fontWeight: "600",
     letterSpacing: "0.6px",
     marginRight: "5px",
     "@media (max-width:1660px)": {
-      fontSize: "16px",
+      fontSize: "14px",
     },
   },
   price_value: {
-    fontSize: "30px",
+    fontSize: "24px",
     letterSpacing: "0.9px",
     "@media (max-width:1660px)": {
-      fontSize: "22px",
+      fontSize: "18px",
     },
   },
 });

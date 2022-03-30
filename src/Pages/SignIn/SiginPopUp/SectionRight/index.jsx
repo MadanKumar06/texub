@@ -10,8 +10,11 @@ import {
 import { withStyles } from "@mui/styles";
 import styles from "./styles";
 import { isEmailValid, isPasswordValid } from "../../../../utilities";
+import { useNavigate } from "react-router-dom";
+import { useStateValue } from "../../../../store/state";
 
 const TransitionsModal = ({ classes }) => {
+  const [{}, dispatch] = useStateValue();
   let {
     section_right,
     info_text_lineNote,
@@ -178,6 +181,10 @@ const TransitionsModal = ({ classes }) => {
     }
     if (!errorHandle) {
       // Apicall fuction
+      // dispatch({
+      //   type: "SET_SIGNIN_OPEN_CLOSE",
+      //   value: false,
+      // });
     }
   };
 
@@ -201,6 +208,7 @@ const TransitionsModal = ({ classes }) => {
               asterisk: asterisk,
             },
           }}
+          className="inputfield-box"
           value={guestData?.name}
           name="name"
           onChange={handleChangeInput}
@@ -221,6 +229,7 @@ const TransitionsModal = ({ classes }) => {
               asterisk: asterisk,
             },
           }}
+          className="inputfield-box"
           value={guestData?.email_address}
           name="email_address"
           onChange={handleChangeInput}
@@ -242,6 +251,7 @@ const TransitionsModal = ({ classes }) => {
               asterisk: asterisk,
             },
           }}
+          className="inputfield-box"
           value={guestData?.password}
           name="password"
           onChange={handleChangeInput}
@@ -263,6 +273,7 @@ const TransitionsModal = ({ classes }) => {
               asterisk: asterisk,
             },
           }}
+          className="inputfield-box"
           value={guestData?.confrim_password}
           name="confrim_password"
           onChange={handleChangeInput}
@@ -273,7 +284,7 @@ const TransitionsModal = ({ classes }) => {
         </InputLabel>
         <FormControlLabel
           value={guestData?.checkbox_confrim}
-          control={<Checkbox color="secondary" />}
+          control={<Checkbox color="color_third" />}
           label="I confirm that I am a wholesale buyer, and not a consumer or end user."
           labelPlacement="end"
           className={checkbox_label}

@@ -58,7 +58,7 @@ const styles = (theme) => ({
     },
   },
   title: {
-    fontSize: "20px !important",
+    fontSize: "18px !important",
     letterSpacing: "0.6px !important",
     fontWeight: "600 !important",
     marginRight: "24px",

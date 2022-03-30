@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "./styles.scss";
 import { ArrowBackIosNew, ArrowForwardIos } from "@mui/icons-material";
 import "slick-carousel/slick/slick.css";
@@ -24,6 +24,17 @@ const Slides = () =>
     { id: 7, Image: dell },
     { id: 8, Image: windows },
     { id: 9, Image: hpcolor },
+    { id: 10, Image: dell },
+    { id: 11, Image: samsung },
+    { id: 12, Image: apple },
+    { id: 13, Image: hp },
+    { id: 14, Image: dell },
+    { id: 15, Image: apple },
+    { id: 16, Image: acer },
+    { id: 17, Image: samsung },
+    { id: 18, Image: hp },
+    { id: 19, Image: dell },
+    { id: 20, Image: apple },
   ].map((num) => (
     <div key={num.id} className="ProductBrand_first_Slider">
       <img src={num.Image} alt=" " className="Slider_icons" />
@@ -31,14 +42,15 @@ const Slides = () =>
   ));
 const Productsbrands = () => {
   const [isChange, setisChange] = useState(false)
-  const [isChange1, setisChange1] = useState(false)
-
-  console.log(isChange)
   const brand = (value) => {
     setisChange(value)
-    setisChange1(true)
-    console.log(isChange1)
   }
+  useEffect(() => {
+    document.addEventListener("mousedown", () =>{
+      setisChange(false)
+    })
+  })
+  
   function Arrow(props) {
     let className =
       props.type === "next" ? "Carosal_nextArrow" : "Carosal_prevArrow";
@@ -60,7 +72,7 @@ const Productsbrands = () => {
       {
         breakpoint: 1921,
         settings: {
-          slidesToShow: 8,
+          slidesToShow: 15,
           slidesToScroll: 2,
           initialSlide: 8,
         },
@@ -124,7 +136,7 @@ const Productsbrands = () => {
       {
         breakpoint: 1921,
         settings: {
-          slidesToShow: 8,
+          slidesToShow: 9,
           slidesToScroll: 2,
           initialSlide: 8,
         },
@@ -188,15 +200,14 @@ const Productsbrands = () => {
         </Slider>
       </div>
       <div className="Slider_Section">
-        <Slider {...Productsbtns} className="slide_Test">
+        <Slider {...Productsbtns} className="slide_Test1">
           {SliderBrands.map((item) => (
             <li
               key={item.id}
               className="Slider_brands">
               <span onMouseOver={() => brand(item.id)}
-                    onClick={()=>setisChange1(false)}
               >{item.brand}</span>
-              {isChange && isChange1 &&
+              {isChange && 
                 (
                   <div className="list">
                     <li className="list_content" >
@@ -204,8 +215,7 @@ const Productsbrands = () => {
                         <div className="content">
                           <span>
                             <p >{e.display}</p>
-                            <p>{e.count}</p>
-                            
+                            <p>{e.count}</p> 
                           </span>
                         </div>
                       )}
@@ -218,12 +228,7 @@ const Productsbrands = () => {
           ))}
         </Slider>
       </div>
-
     </div>
-
-
-
-
   );
 };
 export default Productsbrands;

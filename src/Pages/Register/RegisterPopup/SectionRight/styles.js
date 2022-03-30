@@ -51,19 +51,21 @@ const styles = (theme) => ({
   },
   radio_group: {
     display: "flex",
-    gap: "1em",
+    gap: "4em",
     flexWrap: "nowrap !important",
     "@media (max-width:767px)": {
       flexWrap: "wrap !important",
+      gap: "1em",
     },
     "@media (max-width:425px)": {
       justifyContent: "center",
     },
     "@media (max-width:1200px)": {
-      gap: "1em",
+      gap: "4em",
       justifyContent: "space-around",
     },
     "& .MuiFormControlLabel-root": {
+      margin: "0",
       "@media (max-width:1440px)": {
         width: "130px",
         height: "179px",

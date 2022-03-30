@@ -34,6 +34,7 @@ function Index({ checkselection, countincrease, i, deleterow }) {
               <TextField
                 {...params}
                 fullWidth
+                className="inputfield-box"
                 placeholder="Select Hub"
                 InputLabelProps={{
                   shrink: false,
@@ -59,6 +60,7 @@ function Index({ checkselection, countincrease, i, deleterow }) {
               renderInput={(params) => (
                 <TextField
                   {...params}
+                  className="inputfield-box"
                   fullWidth
                   placeholder="INR"
                   InputLabelProps={{
@@ -74,7 +76,7 @@ function Index({ checkselection, countincrease, i, deleterow }) {
               fullWidth
               type="number"
               autoFocus={true}
-              className="price_textbox"
+              className="inputfield-box price_textbox"
               autoComplete="off"
               // value={signInData?.email_address}
               InputLabelProps={{
@@ -90,6 +92,7 @@ function Index({ checkselection, countincrease, i, deleterow }) {
           <TextField
             id="part_number"
             name="part_nymber"
+            className="inputfield-box"
             placeholder="280"
             fullWidth
             autoFocus={true}
@@ -103,11 +106,12 @@ function Index({ checkselection, countincrease, i, deleterow }) {
           />
         </div>
         <div className="updateproduct_info_form">
-          <InputLabel>ETA</InputLabel>
+          <InputLabel>ETA (Days)</InputLabel>
           <TextField
             id="part_number"
             name="part_nymber"
             placeholder="05 Days"
+            className="inputfield-box"
             fullWidth
             autoFocus={true}
             autoComplete="off"
@@ -124,6 +128,7 @@ function Index({ checkselection, countincrease, i, deleterow }) {
           <TextField
             id="part_number"
             name="part_nymber"
+            className="inputfield-box"
             placeholder="50"
             fullWidth
             autoFocus={true}
@@ -164,6 +169,7 @@ function Index({ checkselection, countincrease, i, deleterow }) {
               id="gst"
               name="gst"
               placeholder="18"
+              className="inputfield-box"
               fullWidth
               autoComplete="off"
               // value={signInData?.email_address}
@@ -181,6 +187,7 @@ function Index({ checkselection, countincrease, i, deleterow }) {
               name="igst"
               placeholder="18"
               fullWidth
+              className="inputfield-box"
               autoComplete="off"
               // value={signInData?.email_address}
               InputLabelProps={{
@@ -198,6 +205,7 @@ function Index({ checkselection, countincrease, i, deleterow }) {
               placeholder="18"
               fullWidth
               autoComplete="off"
+              className="inputfield-box"
               // value={signInData?.email_address}
               InputLabelProps={{
                 shrink: false,

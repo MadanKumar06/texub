@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./styles";
 
 import {
@@ -11,9 +11,17 @@ import {
 } from "@mui/material";
 import { useStateValue } from "../../../store/state";
 import ReCAPTCHA from "react-google-recaptcha";
-import { isEmailValid, isPasswordValid } from "../../../utilities";
+import {
+  isEmailValid,
+  isPasswordValid,
+  isFirstAndLastNameValid,
+} from "../../../utilities";
 import Autocomplete from "@mui/material/Autocomplete";
 import { withStyles } from "@mui/styles";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/material.css";
+import axios from "axios";
+import baseUrl from "../../../Constant";
 
 const BuyerRegistration = ({ classes }) => {
   const [{}, dispatch] = useStateValue();
@@ -27,13 +35,10 @@ const BuyerRegistration = ({ classes }) => {
     auto_complete_input,
     validation_error,
     text_field_container,
-    recaptcha_info,
-    arrow_icon,
     button_box,
+    mobile_input,
   } = classes;
-  const options = ["Option 1", "Option 2"];
-  const [value, setValue] = React.useState();
-  const [inputValue, setInputValue] = React.useState("");
+  const [countryList, setCountryList] = useState([]);
   const [buyerRegistrationData, setbuyerRegistrationData] = useState({
     first_name: "",
     last_name: "",
@@ -45,6 +50,7 @@ const BuyerRegistration = ({ classes }) => {
     designation: "",
     country: "",
     confrim_password: "",
+    mobile_valid: "",
     remember_me: false,
   });
   const [inputValidation, setInputValidation] = useState({
@@ -59,6 +65,15 @@ const BuyerRegistration = ({ classes }) => {
     country: "",
     confrim_password: "",
   });
+  const handleMobileChangeInput = (value, data, event, formattedValue) => {
+    setbuyerRegistrationData((prevState) => ({
+      ...prevState,
+      mobile_number: value,
+      mobile_valid: value?.slice(data?.dialCode?.length),
+    }));
+    setInputValidation("");
+    handleSwitchCase(["mobile_number"], value?.slice(data?.dialCode?.length));
+  };
   const handleChangeInput = (event) => {
     if (event?.target?.name === "remember_me") {
       setbuyerRegistrationData((prevState) => ({
@@ -78,46 +93,33 @@ const BuyerRegistration = ({ classes }) => {
   };
   const handleSwitchCase = (fieldName, value) => {
     switch (fieldName[0]) {
-      // case "first_name":
-      //   if (!value) {
-      //     setInputValidation((prevState) => ({
-      //       ...prevState,
-      //       first_name: "Please enter the first name.",
-      //     }));
-      //   }
-      //   break;
-      // case "last_name":
-      //   if (!value) {
-      //     setInputValidation((prevState) => ({
-      //       ...prevState,
-      //       last_name: "Please enter the last name.",
-      //     }));
-      //   }
-      //   break;
-      case "mobile_number":
-        // if (!value) {
-        //   document.getElementById("mobile_number")?.focus();
-        //   setInputValidation((prevState) => ({
-        //     ...prevState,
-        //     mobile_number: "Please enter the mobile number.",
-        //   }));
-        // } else
-        if (value?.length !== 10) {
-          document.getElementById("mobile_number")?.focus();
-
+      case "first_name":
+        if (!isFirstAndLastNameValid(value)) {
           setInputValidation((prevState) => ({
             ...prevState,
-            mobile_number: "Please enter 10 digit mobile number.",
+            first_name: "Please enter alphabet.",
+          }));
+        }
+        break;
+      case "last_name":
+        if (!isFirstAndLastNameValid(value)) {
+          setInputValidation((prevState) => ({
+            ...prevState,
+            last_name: "Please enter alphabet.",
+          }));
+        }
+        break;
+      case "mobile_number":
+        if (value?.length < 6 || value?.length > 15) {
+          document.getElementById("mobile_number")?.focus();
+          setInputValidation((prevState) => ({
+            ...prevState,
+            mobile_number:
+              "Please enter more than 6 and less than 16 digit mobile number.",
           }));
         }
         break;
       case "confrim_password":
-        // if (!value) {
-        //   setInputValidation((prevState) => ({
-        //     ...prevState,
-        //     confrim_password: "Please enter your confrim password.",
-        //   }));
-        // } else
         if (!(buyerRegistrationData?.password === value)) {
           setInputValidation((prevState) => ({
             ...prevState,
@@ -126,12 +128,6 @@ const BuyerRegistration = ({ classes }) => {
         }
         break;
       case "email_address":
-        // if (!value) {
-        //   setInputValidation((prevState) => ({
-        //     ...prevState,
-        //     email_address: "Please enter the e-mail.",
-        //   }));
-        // } else
         if (!isEmailValid(value)) {
           setInputValidation((prevState) => ({
             ...prevState,
@@ -140,12 +136,6 @@ const BuyerRegistration = ({ classes }) => {
         }
         break;
       case "password":
-        // if (!value) {
-        //   setInputValidation((prevState) => ({
-        //     ...prevState,
-        //     password: "Please enter your password.",
-        //   }));
-        // } else
         if (!isPasswordValid(value)) {
           setInputValidation((prevState) => ({
             ...prevState,
@@ -222,7 +212,8 @@ const BuyerRegistration = ({ classes }) => {
         mobile_number: "Please enter the mobile number.",
       }));
       errorHandle = true;
-    } else if (buyerRegistrationData?.mobile_number?.length !== 10) {
+    } else if (buyerRegistrationData?.mobile_number[1]?.length !== 10) {
+      debugger;
       document.getElementById("mobile_number")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
@@ -282,7 +273,7 @@ const BuyerRegistration = ({ classes }) => {
       }));
       errorHandle = true;
     }
-    if (!value) {
+    if (!buyerRegistrationData) {
       document.getElementById("last_name")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
@@ -292,12 +283,30 @@ const BuyerRegistration = ({ classes }) => {
     }
     if (!errorHandle) {
       // Apicall fuction
+      dispatch({
+        type: "SET_KYC_OPEN_CLOSE",
+        value: true,
+      });
     }
-    dispatch({
-      type: "SET_KYC_OPEN_CLOSE",
-      value: true,
-    });
   };
+
+  //API for fetch dropdown values
+  useEffect(() => {
+    const fetchCountryData = () => {
+      axios
+        .get(baseUrl + "/getCountryList", {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => {
+          setCountryList(res?.data);
+        })
+        .catch((err) => {});
+    };
+    fetchCountryData();
+  }, []);
+
   return (
     <div className={main_container}>
       <div className={input_fields}>
@@ -308,6 +317,7 @@ const BuyerRegistration = ({ classes }) => {
               label="First Name"
               placeholder="First Name"
               fullWidth
+              className="inputfield-box"
               InputLabelProps={{
                 shrink: true,
                 required: true,
@@ -327,6 +337,7 @@ const BuyerRegistration = ({ classes }) => {
           <div className={text_field_container}>
             <TextField
               id="last_name"
+              className="inputfield-box"
               label="Last Name"
               fullWidth
               placeholder="Last Name"
@@ -353,6 +364,7 @@ const BuyerRegistration = ({ classes }) => {
               id="email_address"
               label="E-mail Address"
               autoComplete="off"
+              className="inputfield-box"
               placeholder="E-mail Address"
               fullWidth
               InputLabelProps={{
@@ -373,22 +385,20 @@ const BuyerRegistration = ({ classes }) => {
           </div>
 
           <div className={text_field_container}>
-            <TextField
+            <PhoneInput
+              country={"in"}
               id="mobile_number"
-              label="Mobile Number"
               fullWidth
-              type="number"
-              placeholder="Mobile Number"
-              InputLabelProps={{
-                shrink: true,
-                required: true,
-                classes: {
-                  asterisk: asterisk,
-                },
-              }}
-              value={buyerRegistrationData?.mobile_number}
+              label="Mobile Number"
+              className={mobile_input}
               name="mobile_number"
-              onChange={handleChangeInput}
+              placeholder="Mobile number"
+              value={buyerRegistrationData?.mobile_number}
+              inputProps={{
+                label: "Mobile Number",
+                required: true,
+              }}
+              onChange={handleMobileChangeInput}
               variant="outlined"
             />
             <InputLabel className={validation_error}>
@@ -401,6 +411,7 @@ const BuyerRegistration = ({ classes }) => {
             <TextField
               id="password"
               label="Password"
+              className="inputfield-box"
               fullWidth
               type="password"
               autoComplete="new-password"
@@ -426,6 +437,7 @@ const BuyerRegistration = ({ classes }) => {
               id="confrim_password"
               label="Confrim Password"
               fullWidth
+              className="inputfield-box"
               type="password"
               placeholder="Confrim Password"
               InputLabelProps={{
@@ -450,6 +462,7 @@ const BuyerRegistration = ({ classes }) => {
             <TextField
               id="landline_number"
               label="Landline Number"
+              className="inputfield-box"
               fullWidth
               type="number"
               placeholder="Landline Number"
@@ -468,6 +481,7 @@ const BuyerRegistration = ({ classes }) => {
               label="Company Name"
               fullWidth
               placeholder="Company Name"
+              className="inputfield-box"
               InputLabelProps={{
                 shrink: true,
                 required: true,
@@ -489,6 +503,7 @@ const BuyerRegistration = ({ classes }) => {
           <div className={text_field_container}>
             <TextField
               id="designation"
+              className="inputfield-box"
               label="Designation"
               placeholder="Designation"
               fullWidth
@@ -511,24 +526,24 @@ const BuyerRegistration = ({ classes }) => {
 
           <div className={text_field_container}>
             <Autocomplete
-              value={value}
+              value={buyerRegistrationData?.country}
               name="country"
               onChange={(event, newValue) => {
-                setValue(newValue);
+                setbuyerRegistrationData((prevState) => ({
+                  ...prevState,
+                  country: newValue,
+                }));
                 setInputValidation("");
               }}
               className={auto_complete_input}
-              inputValue={inputValue}
-              onInputChange={(event, newInputValue) => {
-                setInputValue(newInputValue);
-              }}
               id="controllable-states-demo"
-              options={options}
+              options={countryList}
               fullWidth
               renderInput={(params) => (
                 <TextField
                   {...params}
                   label="Country"
+                  className="inputfield-box"
                   placeholder="Country"
                   InputLabelProps={{
                     shrink: true,
@@ -558,11 +573,11 @@ const BuyerRegistration = ({ classes }) => {
               value="yes"
               control={<Checkbox color="secondary" />}
               label={
-                <p>
+                <div>
                   By using this form you agree with the{" "}
                   <span>Terms of Use</span>
                   and <span>Privacy Policy</span> by this website.
-                </p>
+                </div>
               }
               labelPlacement="end"
               className={checkbox_label}

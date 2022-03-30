@@ -22,7 +22,11 @@ import just_launch_active from "../../../Assets/BasicNeeded/PLPIcons/just_launch
 import just_launch_inactive from "../../../Assets/BasicNeeded/PLPIcons/just_launch_inactive.png";
 
 const Productlists = () => {
-  const [age, setAge] = React.useState("");
+  const [productlistdropdown, setProductlistdropdown] = React.useState({
+    hub: "",
+    condition: "",
+    price: "",
+  });
   const [filterHeaderImage, setFilterHeaderImage] = useState({
     today_deal: true,
     today_deal_image: todays_deal_active,
@@ -32,7 +36,10 @@ const Productlists = () => {
     price_drop_image: price_drop_inactive,
   });
   const handleChange = (event) => {
-    setAge(event.target.value);
+    setProductlistdropdown((prevState) => ({
+      ...prevState,
+      [event.target.name]: event.target.value,
+    }));
   };
 
   const handleImageChange = (event) => {
@@ -52,6 +59,7 @@ const Productlists = () => {
         : price_drop_inactive,
     }));
   };
+  console.log(productlistdropdown);
 
   return (
     <div className="productlist">
@@ -133,13 +141,14 @@ const Productlists = () => {
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={age}
+            value={productlistdropdown?.hub}
             label="Age"
+            name="hub"
             onChange={handleChange}
           >
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
+            <MenuItem value={10}>sample hub 1</MenuItem>
+            <MenuItem value={20}>sample hub 2</MenuItem>
+            <MenuItem value={30}>sample hub 3</MenuItem>
           </Select>
         </FormControl>
       </Box>
@@ -149,13 +158,14 @@ const Productlists = () => {
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={age}
+            value={productlistdropdown?.condition}
             label="Age"
+            name="condition"
             onChange={handleChange}
           >
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
+            <MenuItem value={10}>sample condition 1</MenuItem>
+            <MenuItem value={20}>sample condtion 2</MenuItem>
+            <MenuItem value={30}>sample condition 3</MenuItem>
           </Select>
         </FormControl>
       </Box>
@@ -165,13 +175,14 @@ const Productlists = () => {
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={age}
+            value={productlistdropdown?.price}
             label="Age"
+            name="price"
             onChange={handleChange}
           >
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
+            <MenuItem value={10}>sample price 1</MenuItem>
+            <MenuItem value={20}>sample price 2</MenuItem>
+            <MenuItem value={30}>sample price 3</MenuItem>
           </Select>
         </FormControl>
       </Box>

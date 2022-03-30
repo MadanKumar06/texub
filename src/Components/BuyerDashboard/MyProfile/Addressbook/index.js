@@ -9,24 +9,34 @@ import { Link } from "react-router-dom";
 
 
 const Index = () => {
-    // useEffect (()=>{
-    //    axios.get('https://jsonplaceholder.typicode.com/todos/')
-    //    .then(
-    //        response => setData(response.data)    
-    //    )
-    // },[])
-    // const [data,setData]=useState([]);
-    // console.log('$$$$$$$$$$$$',data)
-    // const [isshipping,setisshipping]=useState({
-    //         id: 1,
-    //         heading: "Default Billing Adress",
-    //         name: "Ayush Raj",
-    //         no: "302/1160,Tech World",
-    //         block: "B-Block, HSR Layout",
-    //         location: "Bangalore-Karnataka",
-    //         pin: "560102",
-    // })
-      
+    // data state //storage
+    //  const [data, setData] = useState([]);
+    //  useEffect(() => {
+    //      axios.get('https://jsonplaceholder.typicode.com/posts/1/comments')
+    //         .then(
+    //             res => {
+    //                 setData(res.data)
+    //             })
+    //         .catch(err => console.log(err));
+    //       //loadData();
+    //      // getData();
+    //  }, [])  
+    //  console.log(data)
+    // const loadData=()=>{
+    //     fetch('https://jsonplaceholder.typicode.com/posts/1/comments')
+    //     .then(res=> res.data)
+    //     .then(receivedData => setData(receivedData))
+    // }
+    
+    //  return(
+    //      <>
+    //      {data.map((post)=>
+    //      <div key={post.id}>
+    //         {post.mail}
+    //      </div>
+    //          )}
+    //      </>
+    //  );
     
     const [isBilling, setisBilling] = useState(false)
     const Billaddress = () => {
@@ -41,9 +51,10 @@ const Index = () => {
         setisAddress(false)
     }
     const [isAddress, setisAddress] = useState(true)
-    const BillingAdderess = [
-        {
+    const billingAdderess = [
+        { 
             id: 1,
+            organization: "Tech World",
             heading: "Default Billing Adress",
             name: "Ayush Raj",
             no: "302/1160,Tech World",
@@ -52,10 +63,9 @@ const Index = () => {
             pin: "560102",
         },
     ]
-    const ShippingAddress = [
+    const shippingAddress = [
         {
             id: 1,
-            organization:"Tech World",
             heading: "Default Shipping Adress",
             name: "Ayush Raj",
             no: "302/1160,Tech World",
@@ -71,8 +81,17 @@ const Index = () => {
                     <span className='heading'><p className='heading'>OFFICE ADDRESS</p></span>
                     <div className='Address_map'>
                         <div className='Address_Billing' >
-                            
-                            {BillingAdderess.map((user) => (
+                            {/* <div>
+                                <p>Default Billing Address</p>
+                                {data.map(d => (
+                                    <>
+                                        <ul key={d.id}>
+                                            <li className='address_block'>{d.name}</li>
+                                        </ul>
+                                    </>
+                                ))}
+                            </div> */}
+                            {billingAdderess.map((user) => (
                                 <ul key={user.id}>
                                     <li className='address_type'>{user.heading}</li>
                                     <li className='address_name' >{user.name}</li>
@@ -86,14 +105,14 @@ const Index = () => {
                                 </ul>
                             )
                             )}
-            
+
                             <div className='edit_section'>
                                 <img src={Edit_image} alt="" style={{ height: "34px" }} /><p className='profile_edit' onClick={() => Billaddress()} >Edit</p>
                             </div>
                         </div>
-                        <div class="vl"></div>
+                        <div className="vl"></div>
                         <div className='Address_Shipping'>
-                            {ShippingAddress.map((user) => (
+                            {shippingAddress.map((user) => (
                                 <ul key={user.id}>
                                     <li className='address_type'>{user.heading}</li>
                                     <li className='address_name' >{user.name}</li>
@@ -108,7 +127,8 @@ const Index = () => {
                             )
                             )}
                             <div className='edit_section'>
-                                <img src={Edit_image} alt="" style={{ height: "34px" }} /><p className='profile_edit' onClick={() => Shipadress()} >Edit</p>
+                                <img src={Edit_image} alt="" style={{ height: "34px" }} />
+                                <p className='profile_edit' onClick={() => Shipadress()} >Edit</p>
                             </div>
 
                         </div>
@@ -121,8 +141,8 @@ const Index = () => {
                     </div>
                 </div>
             }
-            {isBilling && <Billingaddress  />}
-            {isShipping && <Shippingadress address = {ShippingAddress} />}
+            {isBilling && <Billingaddress />}
+            {isShipping && <Shippingadress address={billingAdderess} />}
 
         </>
     )

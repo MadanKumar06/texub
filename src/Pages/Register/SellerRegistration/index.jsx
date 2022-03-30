@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   TextField,
   Checkbox,
@@ -9,14 +9,16 @@ import {
 } from "@mui/material";
 import ReCAPTCHA from "react-google-recaptcha";
 import { isEmailValid, isPasswordValid } from "../../../utilities";
-import { ArrowDropUp } from "@mui/icons-material";
 import Autocomplete from "@mui/material/Autocomplete";
 import { withStyles } from "@mui/styles";
-import { Link, useParams } from "react-router-dom";
 import { useStateValue } from "../../../store/state";
 import styles from "./styles";
+import MuiPhoneNumber from "material-ui-phone-number";
+import axios from "axios";
+import baseUrl from "../../../Constant";
+import clsx from "clsx";
+
 const BuyerRegistration = ({ classes }) => {
-  let { type } = useParams();
   const [{}, dispatch] = useStateValue();
   let {
     main_container,
@@ -27,12 +29,16 @@ const BuyerRegistration = ({ classes }) => {
     input_textField,
     validation_error,
     text_field_container,
-    arrow_icon,
     button_box,
     recaptcha_info,
     auto_complete_input,
+    other_textbox,
   } = classes;
-  const options = ["Option 1", "Option 2"];
+  const [dropdownListFromApi, setDropdownListFromApi] = useState({
+    regionList: [],
+    countryList: [],
+    rolesList: [],
+  });
   const [value, setValue] = useState({
     role: "",
     region: "",
@@ -48,8 +54,12 @@ const BuyerRegistration = ({ classes }) => {
     company: "",
     designation: "",
     country: "",
+    roles: "",
+    other_roles: "",
+    region: "",
     confrim_password: "",
     remember_me: false,
+    other_role: false,
   });
   const [inputValidation, setInputValidation] = useState({
     first_name: "",
@@ -63,6 +73,69 @@ const BuyerRegistration = ({ classes }) => {
     country: "",
     confrim_password: "",
   });
+
+  //Api to fetch dropdown values
+  useEffect(() => {
+    const fetchRegionData = () => {
+      axios
+        .get(baseUrl + "/getRegionList", {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => {
+          setDropdownListFromApi((prevState) => ({
+            ...prevState,
+            regionList: res?.data,
+          }));
+        })
+        .catch((err) => {});
+    };
+    fetchRegionData();
+  }, []);
+  useEffect(() => {
+    const fetchRoleData = () => {
+      axios
+        .get(baseUrl + "/getRoleList", {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => {
+          setDropdownListFromApi((prevState) => ({
+            ...prevState,
+            rolesList: res?.data,
+          }));
+        })
+        .catch((err) => {});
+    };
+    fetchRoleData();
+  }, []);
+  useEffect(() => {
+    if (sellerRegistrationData?.region?.region_id) {
+      const fetchRegionBasedCountryData = () => {
+        let data = {
+          region_id: sellerRegistrationData?.region?.region_id,
+        };
+        axios
+          .post(baseUrl + "/getCountryListByRegion", data, {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+          .then((res) => {
+            setDropdownListFromApi((prevState) => ({
+              ...prevState,
+              countryList: res?.data,
+            }));
+          })
+          .catch((err) => {});
+      };
+      fetchRegionBasedCountryData();
+    }
+  }, [sellerRegistrationData?.region]);
+
+  console.log(dropdownListFromApi);
   const handleChangeInput = (event) => {
     if (event?.target?.name === "remember_me") {
       setsellerRegistrationData((prevState) => ({
@@ -82,30 +155,7 @@ const BuyerRegistration = ({ classes }) => {
   };
   const handleSwitchCase = (fieldName, value) => {
     switch (fieldName[0]) {
-      // case "first_name":
-      //   if (!value) {
-      //     setInputValidation((prevState) => ({
-      //       ...prevState,
-      //       first_name: "Please enter the first name.",
-      //     }));
-      //   }
-      //   break;
-      // case "last_name":
-      //   if (!value) {
-      //     setInputValidation((prevState) => ({
-      //       ...prevState,
-      //       last_name: "Please enter the last name.",
-      //     }));
-      //   }
-      //   break;
       case "mobile_number":
-        // if (!value) {
-        //   document.getElementById("mobile_number")?.focus();
-        //   setInputValidation((prevState) => ({
-        //     ...prevState,
-        //     mobile_number: "Please enter the mobile number.",
-        //   }));
-        // } else
         if (value?.length !== 10) {
           document.getElementById("mobile_number")?.focus();
 
@@ -116,12 +166,6 @@ const BuyerRegistration = ({ classes }) => {
         }
         break;
       case "confrim_password":
-        // if (!value) {
-        //   setInputValidation((prevState) => ({
-        //     ...prevState,
-        //     confrim_password: "Please enter your confrim password.",
-        //   }));
-        // } else
         if (!(sellerRegistrationData?.password === value)) {
           setInputValidation((prevState) => ({
             ...prevState,
@@ -130,12 +174,6 @@ const BuyerRegistration = ({ classes }) => {
         }
         break;
       case "email_address":
-        // if (!value) {
-        //   setInputValidation((prevState) => ({
-        //     ...prevState,
-        //     email_address: "Please enter the e-mail.",
-        //   }));
-        // } else
         if (!isEmailValid(value)) {
           setInputValidation((prevState) => ({
             ...prevState,
@@ -144,12 +182,6 @@ const BuyerRegistration = ({ classes }) => {
         }
         break;
       case "password":
-        // if (!value) {
-        //   setInputValidation((prevState) => ({
-        //     ...prevState,
-        //     password: "Please enter your password.",
-        //   }));
-        // } else
         if (!isPasswordValid(value)) {
           setInputValidation((prevState) => ({
             ...prevState,
@@ -158,46 +190,6 @@ const BuyerRegistration = ({ classes }) => {
           }));
         }
         break;
-      // case "company":
-      //   if (!value) {
-      //     setInputValidation((prevState) => ({
-      //       ...prevState,
-      //       company: "Please enter the company.",
-      //     }));
-      //   }
-      //   break;
-      // case "designation":
-      //   if (!value) {
-      //     setInputValidation((prevState) => ({
-      //       ...prevState,
-      //       designation: "Please enter the designation.",
-      //     }));
-      //   }
-      //   break;
-      // case "country":
-      //   if (!value) {
-      //     setInputValidation((prevState) => ({
-      //       ...prevState,
-      //       country: "Please select the country.",
-      //     }));
-      //   }
-      //   break;
-      // case "region":
-      //   if (!value) {
-      //     setInputValidation((prevState) => ({
-      //       ...prevState,
-      //       region: "Please select the region.",
-      //     }));
-      //   }
-      //   break;
-      // case "role":
-      //   if (!value) {
-      //     setInputValidation((prevState) => ({
-      //       ...prevState,
-      //       role: "Please select the role.",
-      //     }));
-      //   }
-      //   break;
       default:
         break;
     }
@@ -328,11 +320,18 @@ const BuyerRegistration = ({ classes }) => {
     }
     if (!errorHandle) {
       // Apicall fuction
+      dispatch({
+        type: "SET_KYC_OPEN_CLOSE",
+        value: true,
+      });
     }
-    dispatch({
-      type: "SET_KYC_OPEN_CLOSE",
-      value: true,
-    });
+  };
+  const handleMobileChangeInput = (event) => {
+    setsellerRegistrationData((prevState) => ({
+      ...prevState,
+      mobile_number: event,
+    }));
+    setInputValidation("");
   };
   return (
     <div className={main_container}>
@@ -343,6 +342,7 @@ const BuyerRegistration = ({ classes }) => {
               id="first_name"
               label="First Name"
               placeholder="First Name"
+              className="inputfield-box"
               fullWidth
               InputLabelProps={{
                 shrink: true,
@@ -366,6 +366,7 @@ const BuyerRegistration = ({ classes }) => {
               label="Last Name"
               fullWidth
               placeholder="Last Name"
+              className="inputfield-box"
               InputLabelProps={{
                 shrink: true,
                 required: true,
@@ -390,6 +391,7 @@ const BuyerRegistration = ({ classes }) => {
               label="E-mail Address"
               autoComplete="off"
               placeholder="E-mail Address"
+              className="inputfield-box"
               fullWidth
               InputLabelProps={{
                 shrink: true,
@@ -408,12 +410,16 @@ const BuyerRegistration = ({ classes }) => {
             </InputLabel>
           </div>
           <div className={text_field_container}>
-            <TextField
+            <MuiPhoneNumber
+              preferredCountries={["india"]}
+              defaultCountry={"in"}
               id="mobile_number"
-              label="Mobile Number"
               fullWidth
-              type="number"
-              placeholder="Mobile Number"
+              label="Mobile Number"
+              className="inputfield-box"
+              name="mobile_number"
+              placeholder="8796878788"
+              value={sellerRegistrationData?.mobile_number}
               InputLabelProps={{
                 shrink: true,
                 required: true,
@@ -421,9 +427,7 @@ const BuyerRegistration = ({ classes }) => {
                   asterisk: asterisk,
                 },
               }}
-              value={sellerRegistrationData?.mobile_number}
-              name="mobile_number"
-              onChange={handleChangeInput}
+              onChange={handleMobileChangeInput}
               variant="outlined"
             />
             <InputLabel className={validation_error}>
@@ -438,6 +442,7 @@ const BuyerRegistration = ({ classes }) => {
               label="Password"
               fullWidth
               type="password"
+              className="inputfield-box"
               autoComplete="new-password"
               placeholder="Password"
               InputLabelProps={{
@@ -462,6 +467,7 @@ const BuyerRegistration = ({ classes }) => {
               label="Confrim Password"
               fullWidth
               type="password"
+              className="inputfield-box"
               placeholder="Confrim Password"
               InputLabelProps={{
                 shrink: true,
@@ -486,6 +492,7 @@ const BuyerRegistration = ({ classes }) => {
               id="landline_number"
               label="Landline Number"
               fullWidth
+              className="inputfield-box"
               type="number"
               placeholder="Landline Number"
               InputLabelProps={{
@@ -504,6 +511,7 @@ const BuyerRegistration = ({ classes }) => {
               label="Company Name"
               fullWidth
               placeholder="Company Name"
+              className="inputfield-box"
               InputLabelProps={{
                 shrink: true,
                 required: true,
@@ -523,81 +531,29 @@ const BuyerRegistration = ({ classes }) => {
         </div>
         <div className={input_textField}>
           <div className={text_field_container}>
-            <TextField
-              id="designation"
-              label="Designation"
-              placeholder="Designation"
-              fullWidth
-              InputLabelProps={{
-                shrink: true,
-                required: true,
-                classes: {
-                  asterisk: asterisk,
-                },
-              }}
-              value={sellerRegistrationData?.designation}
-              name="designation"
-              onChange={handleChangeInput}
-              variant="outlined"
-            />
-            <InputLabel className={validation_error}>
-              {inputValidation?.designation}
-            </InputLabel>
-          </div>
-          <div className={text_field_container}>
             <Autocomplete
-              options={options}
-              value={value?.role}
-              name="role"
-              onChange={(event, newValue) => {
-                setValue((prevState) => ({
-                  ...prevState,
-                  role: newValue,
-                }));
-                setInputValidation("");
-              }}
-              className={auto_complete_input}
-              fullWidth
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  label="Role"
-                  placeholder="Role"
-                  InputLabelProps={{
-                    shrink: true,
-                    required: true,
-                    classes: {
-                      asterisk: asterisk,
-                    },
-                  }}
-                />
-              )}
-            />
-            <InputLabel className={validation_error}>
-              {inputValidation?.role}
-            </InputLabel>
-          </div>
-        </div>
-        <div className={input_textField}>
-          <div className={text_field_container}>
-            <Autocomplete
-              value={value?.region}
+              value={sellerRegistrationData?.region}
               name="region"
               onChange={(event, newValue) => {
-                setValue((prevState) => ({
+                setsellerRegistrationData((prevState) => ({
                   ...prevState,
                   region: newValue,
                 }));
                 setInputValidation("");
               }}
               className={auto_complete_input}
-              options={options}
+              options={dropdownListFromApi?.regionList}
               fullWidth
+              getOptionLabel={(option) =>
+                option.region_name ? option.region_name : ""
+              }
+              filterOptions={(options) => options}
               renderInput={(params) => (
                 <TextField
                   {...params}
                   label="Region"
                   placeholder="Region"
+                  className="inputfield-box"
                   InputLabelProps={{
                     shrink: true,
                     required: true,
@@ -614,23 +570,24 @@ const BuyerRegistration = ({ classes }) => {
           </div>
           <div className={text_field_container}>
             <Autocomplete
-              value={value?.country}
+              value={sellerRegistrationData?.country}
               name="country"
               onChange={(event, newValue) => {
-                setValue((prevState) => ({
+                setsellerRegistrationData((prevState) => ({
                   ...prevState,
                   country: newValue,
                 }));
                 setInputValidation("");
               }}
               className={auto_complete_input}
-              options={options}
+              options={dropdownListFromApi?.countryList}
               fullWidth
               renderInput={(params) => (
                 <TextField
                   {...params}
                   label="Country"
                   placeholder="Country"
+                  className="inputfield-box"
                   InputLabelProps={{
                     shrink: true,
                     required: true,
@@ -643,6 +600,108 @@ const BuyerRegistration = ({ classes }) => {
             />
             <InputLabel className={validation_error}>
               {inputValidation?.country}
+            </InputLabel>
+          </div>
+        </div>
+        <div className={input_textField}>
+          <div className={text_field_container}>
+            <Autocomplete
+              options={dropdownListFromApi?.rolesList}
+              value={sellerRegistrationData?.roles}
+              name="role"
+              onChange={(event, newValue) => {
+                if (newValue?.role_id === "1") {
+                  setsellerRegistrationData((prevState) => ({
+                    ...prevState,
+                    other_role: true,
+                  }));
+                } else {
+                  setsellerRegistrationData((prevState) => ({
+                    ...prevState,
+                    other_role: false,
+                  }));
+                }
+                setsellerRegistrationData((prevState) => ({
+                  ...prevState,
+                  role: newValue,
+                }));
+                setInputValidation("");
+              }}
+              className={auto_complete_input}
+              fullWidth
+              getOptionLabel={(option) =>
+                option.role_name ? option.role_name : ""
+              }
+              filterOptions={(options) => options}
+              // isOptionEqualToValue={(option, value) => {
+              //   debugger;
+              // }}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  label="Role"
+                  className="inputfield-box"
+                  placeholder="Role"
+                  InputLabelProps={{
+                    shrink: true,
+                    required: true,
+                    classes: {
+                      asterisk: asterisk,
+                    },
+                  }}
+                />
+              )}
+            />
+            <InputLabel className={validation_error}>
+              {inputValidation?.role}
+            </InputLabel>
+            {sellerRegistrationData?.other_role && (
+              <div className={clsx(text_field_container, other_textbox)}>
+                <TextField
+                  id="other_roles"
+                  label="Other Roles"
+                  fullWidth
+                  className="inputfield-box"
+                  placeholder="Other Roles"
+                  InputLabelProps={{
+                    shrink: true,
+                    required: true,
+                    classes: {
+                      asterisk: asterisk,
+                    },
+                  }}
+                  value={sellerRegistrationData?.other_roles}
+                  name="other_roles"
+                  onChange={handleChangeInput}
+                  variant="outlined"
+                />
+                <InputLabel className={validation_error}>
+                  {inputValidation?.other_roles}
+                </InputLabel>
+              </div>
+            )}
+          </div>
+          <div className={text_field_container}>
+            <TextField
+              id="designation"
+              label="Designation"
+              placeholder="Designation"
+              className="inputfield-box"
+              fullWidth
+              InputLabelProps={{
+                shrink: true,
+                required: true,
+                classes: {
+                  asterisk: asterisk,
+                },
+              }}
+              value={sellerRegistrationData?.designation}
+              name="designation"
+              onChange={handleChangeInput}
+              variant="outlined"
+            />
+            <InputLabel className={validation_error}>
+              {inputValidation?.designation}
             </InputLabel>
           </div>
         </div>

@@ -1,688 +1,391 @@
-.career_main{ 
-    background-color: #FBFBFB;
-    .career_team_section{
-        position: relative;
-        margin: 0 3%;
-        .career_team_join_btn,
-        .career_team_join,
-        .career_team_ready{
-            position: absolute;
+.career_main_container {
+  background-color: #fbfbfb;
+  .career_team_section {
+    position: relative;
+    margin: 0 3%;
+    .banner_content {
+      position: absolute;
+      left: 33%;
+      top: 42%;
+      text-align: center;
+      .banner_sub_title {
+        color: #20639b;
+        font-size: 30px;
+        font-weight: 600;
+        text-transform: capitalize;
+        margin: 0;
+      }
+      .banner_title {
+        font-weight: 600;
+        text-transform: capitalize;
+        margin: 0;
+        font-size: 90px;
+        color: #002d56;
+      }
+      .banner_btn {
+        margin-top: 2em;
+        .MuiButton-root {
+          padding: 4px 22px;
         }
-        .career_team_img{
-           width: 100%;
-        }
-        .career_team_join_btn{
-            left: 42%;
-           border-radius: 25px;
-           border: none;
-            font-size: 18px;
-           padding: 13px 56px;
-           transition: transform .2s;
-           letter-spacing: 0.54px;
-          top: 72%;
-          color: #FFFFFF;
-          box-shadow: 0 3px;
-          cursor: pointer;
-          background:  transparent linear-gradient(180deg, #20639B 0%, #002D56 100%) 0% 0% no-repeat padding-box;
-        }
-        .career_team_join_btn:hover{
-            transform: scale(1.2);
-        }
-        .career_team_join{
-            left: 37%;
-            top: 37%;
-            font-size: 74px;
-            color: #002D56;
-            letter-spacing: 2.7px;
-        }
-        .career_team_ready{
-            left: 41%;
-            top: 36%;
-            color: #20639B;
-            font-size: 30px;
-            letter-spacing: 0.9px;
-        }
+      }
+    }
+    .career_team_image {
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
   }
-   .career_joinus_section{ 
-        padding: 0 151px 47px 151px;
-       .career_joinus_heading{
-           font-size: 42px;
-           font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-           color: #333333;
-           font-weight: bold;
-           opacity: 1;
-       }
-     .career_joinus_Check{
-        display: flex;
-        justify-content: space-between;
-        .career_joinus_img{
-            height: 232px;
-        }
-       .career_joinus_Check1{
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-       
-     }
+  .why_joinus_section {
+    width: 100%;
+    padding: 2em 7em;
+    .title {
+      margin: 0;
+      color: #333333;
+      font-size: 34px;
+      font-weight: 600;
     }
-   }
-   .career_to_texub{
-       display: flex;
-       flex-direction: column;
-       text-align: center;
-       background-color: white;
-       padding: 51px  213px;
-       gap: 10px;
-       .career_to_texub_heading{
-           font-size: 47px;
-           color: #333333;
-           font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-           opacity: 1;
-           margin: 0;
-       }
-       .career_to_texub_heading_tag{
-           font-size: 20px;
-           letter-spacing: 0.6px;
-           color: #5C6369;
-       }
-       .career_to_texub_developers2{
-           background-color: #FBFBFB;
-       }
-       .career_to_texub_developers{
-           background-color: #F4F9FF;
-       }
-       .career_to_texub_developers2,
-       .career_to_texub_developers{
-           display: flex;
-           
-           padding: 28px 20px 0 20px;
-           min-height: 100px;
-        //    background-color: #F4F9FF;
-        
-        .career_to_texub_developers:nth-child(odd) {background-color: #F4F9FF;}
-           .career_to_texub_developers_designation,
-           .career_to_texub_developers_location{
-               margin: 0;
-               letter-spacing: 1px;
-           }
-           .career_to_texub_developers_designation{
-               opacity: 1;
-               display: flex;
-               justify-content: flex-start;
-               width: 45%;
-               font-size: 30px;
-               color: #333C42;
-           }
-           .career_to_texub_developers_location{
-               color: #858A8E;
-               display: flex;
-               justify-content: flex-start;
-               width: 46%;
-           }
-          .career_to_texub_developers_arrow{
-               height: 23px;
-               margin-top: 10px;
-               display: flex;
-               justify-content: flex-end;
-               width: 4%;
-           }    
-       }
-   }
-   .career_CultureValues{
-       padding: 20px 20px 55px 20px;
-       display: flex;
-       flex-direction: column;
-       gap: 10px;
-       background-color: #FBFBFB;
-       .career_CultureValues_Click,
-       .career_CultureValues_heading,
-       .career_CultureValues_tag{
-            text-align: center;   
-       }
-       .career_CultureValues_tag{
-           margin-top: 0;
-           font-size: 20px;
-           color: #5C6369;
-           letter-spacing: 0.6px;
-       }
-       .career_CultureValues_Click{
-                font-size: 20px;
-                color: #5C6369;
-                letter-spacing: 0.6px;
-                font-weight: 600;
-       }
-       .Link{
-        color: #002D56;
-        letter-spacing: 0.6px;
-        opacity: 1;
-        font-weight: 800;
-    }
-       .career_CultureValues_heading{
-           font-size: 50px;
-           font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-           color: #333333;
-        //    margin-bottom: 10px;
-       }
-       .css-1xgjpwf-MuiGrid-root{
-           display: flex;
-           justify-content: center;
-       .career_CultureValues_imgs2,
-       .career_CultureValues_imgs1{
-           display: flex;
-           gap: 10px;
-        //   padding-left: 32%;
-          justify-content: center;
-          .career_to_texub_developers_arrow{
-            // min-width: 485px;  
-            width: 100%;
+    .information {
+      display: flex;
+      padding: 1em 0;
+      position: relative;
+      .sub_info {
+        width: 100%;
+        .MuiFormControlLabel-root {
+          width: 40%;
+          padding: 0.3em 0;
+          svg {
+            color: #cc9b3e;
+            width: 1.5em;
+            height: 1.5em;
           }
-    
-       }
-       .career_CultureValues_imgs1{
-           margin-bottom: 10px;
-       }
+          p {
+            font-size: 22px;
+            width: max-content;
+            color: #333c42;
+            margin-left: 10px;
+          }
+        }
+      }
+      .why_joinus_image {
+        width: 190px;
+        position: absolute;
+        right: 10%;
+        top: 12%;
+        img {
+          width: 100%;
+          height: auto;
+        }
+      }
     }
-   }
+  }
+  .join_texub {
+    padding: 2em 0;
+    background: #ffffff;
+    .join_texub_title {
+      margin: 0;
+      text-align: center;
+      font-size: 34px;
+      color: #333333;
+      font-weight: 700;
+      margin-bottom: 0.4em;
+    }
+    .join_texub_link {
+      text-align: center;
+      width: 28%;
+      margin: auto;
+      color: #5c6369;
+      font-size: 20px;
+      letter-spacing: 0.6px;
+    }
+    .join_texub_info {
+      margin: 2em 8em;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8em;
+      .info_content:nth-child(odd) {
+        background-color: #f4f9ff;
+      }
+      .info_content:nth-child(even) {
+        background-color: #fbfbfb;
+      }
+      .info_content {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .name {
+          color: #333c42;
+          font-size: 22px;
+          font-weight: 600;
+          width: 65%;
+          padding: 1em;
+        }
+        p {
+          align-items: center;
+          display: flex;
+          gap: 3em;
+          padding: 1em;
+          margin: 0;
+          flex: 1;
+          white-space: nowrap;
+          justify-content: space-between;
+          span {
+            font-size: 22px;
+            font-weight: 600;
+            color: #858a8e;
+          }
+          svg {
+            color: #20639b;
+            width: 1.5em;
+            height: 1.5em;
+          }
+        }
+      }
+    }
+  }
+  .joinus_culture_values {
+    .culture_values {
+      text-align: center;
+      font-size: 20px;
+      color: #5c6369;
+      span {
+        color: #002d56;
+        text-transform: uppercase;
+        text-decoration: underline;
+        margin-left: 5px;
+      }
+    }
+    .joinus_culture_title {
+      text-align: center;
+      font-size: 34px;
+      color: #333333;
+      margin: 0;
+      font-weight: 600;
+      padding: 0.5em 0;
+    }
+    .joinus_culture_info {
+      font-size: 20px;
+      color: #5c6369;
+      letter-spacing: 0.6px;
+      text-transform: capitalize;
+      text-align: center;
+      margin: 0px 8%;
+    }
+    .grid_container {
+      margin: 2em 8em;
+    }
+  }
 }
 
-/*@media*/ 
-// @media (max-width:1533px){
-//    .career_main{
-//        .career_CultureValues{
-//            .career_CultureValues_imgs2,
-//            .career_CultureValues_imgs1{
-//             //    padding-left: 2%;
-//            }
-//        }
-//    }
-// }  
-
-@media (max-width:1440px) {
-    .career_main{
-        .career_team_section{
-            .career_team_ready{
-                font-size: 25px;
-            }
-            .career_team_join{
-                font-size: 62px;
-            }
-            .career_team_join_btn{
-                top: 70%;
-                transition: transform .2s;
-            }
-            .career_team_join_btn:hover{
-                transform: scale(1.2);
-            }
-        }
-        // .career_CultureValues{
-        //     .career_CultureValues_tag{
-        //         padding: 0 83px 0 83px;
-        //     }
-        //     .career_CultureValues_imgs1{
-        //          padding-left: 23%;
-        //         .career_to_texub_developers_arrow{
-        //             min-width: 400px;
-        //         }
-        //     }
-        //    .career_CultureValues_imgs2{
-        //     padding-left: 23%;
-        //     .career_to_texub_developers_arrow{
-        //         min-width: 400px;
-        //     }
-        //    } 
-        // }
-    }
-    
+@media (max-width: 1660px) {
+  .career_main_container .why_joinus_section .title,
+  .career_main_container .join_texub .join_texub_title,
+  .career_main_container .joinus_culture_values .joinus_culture_title {
+    font-size: 26px;
+  }
+  .career_main_container
+    .why_joinus_section
+    .information
+    .sub_info
+    .MuiFormControlLabel-root
+    p,
+  .career_main_container .join_texub .join_texub_info .info_content .name,
+  .career_main_container .join_texub .join_texub_info .info_content p span {
+    font-size: 18px;
+  }
+  .career_main_container
+    .why_joinus_section
+    .information
+    .sub_info
+    .MuiFormControlLabel-root
+    svg,
+  .career_main_container .join_texub .join_texub_info .info_content p svg {
+    width: 1em;
+    height: 1em;
+  }
+  .career_main_container .why_joinus_section .information .why_joinus_image {
+    width: 145px;
+  }
+  .career_main_container .join_texub .join_texub_link,
+  .career_main_container .joinus_culture_values .culture_values,
+  .career_main_container .joinus_culture_values .joinus_culture_info,
+  .career_main_container
+    .career_team_section
+    .banner_content
+    .banner_sub_title {
+    font-size: 18px;
+  }
+  .career_main_container .career_team_section .banner_content .banner_title {
+    font-size: 34px;
+  }
+  .career_main_container .career_team_section .banner_content .banner_btn {
+    margin-top: 1em;
+  }
+  .career_main_container .career_team_section .banner_content {
+    left: 39%;
+    top: 48%;
+  }
 }
 
-// @media (max-width:1330px){
-//     .career_main{
-//         .career_CultureValues{
-//             .career_CultureValues_imgs1,
-//             .career_CultureValues_imgs2{
-//                 // padding-left: 9%;
-//             }
-//         }
-//     }
-// }
-
-@media (max-width:1024px) {
-    .career_main{
-        .career_joinus_section{
-            padding: 0 40px 47px 40px;
-            .career_joinus_Check{
-                .career_joinus_img{
-                    height: 205px;
-                }
-            }
-        }
-        .career_team_section{
-            
-            .career_team_ready{
-                font-size: 22px;
-            }
-            .career_team_join{
-                font-size: 50px;
-            }
-            .career_team_join_btn{
-            padding: 6px 35px;
-            transition: transform .2s;
-          }    
-          .career_team_join_btn:hover{
-            transform: scale(1.2);
-        }
-        }
-        .career_to_texub{
-            padding: 51px 60px;
-        }
-    //     .career_CultureValues{
-    //     //     .career_CultureValues_imgs1{
-    //     //          padding-left: 13%;
-    //     //         .career_to_texub_developers_arrow{
-    //     //             min-width: 280px;
-    //     //         }
-    //     //     }
-    //     //    .career_CultureValues_imgs2{
-    //     //     padding-left: 13%;
-    //     //     .career_to_texub_developers_arrow{
-    //     //         min-width: 280px;
-    //     //     }
-    //     //    } 
-
-    // }
-    }
+@media (max-width: 1440px) {
+  .career_main_container .join_texub .join_texub_link,
+  .career_main_container .joinus_culture_values .culture_values,
+  .career_main_container .joinus_culture_values .joinus_culture_info,
+  .career_main_container
+    .career_team_section
+    .banner_content
+    .banner_sub_title {
+    font-size: 14px;
+  }
+  .career_main_container .career_team_section .banner_content .banner_title {
+    font-size: 40px;
+  }
+  .career_main_container .career_team_section .banner_content .banner_btn {
+    margin-top: 1em;
+  }
+  .career_main_container .career_team_section .banner_content {
+    left: 41%;
+    top: 49%;
+  }
+}
+@media (max-width: 1200px) {
+  .career_main_container .why_joinus_section .information .why_joinus_image {
+    width: 116px;
+  }
+  .career_main_container
+    .why_joinus_section
+    .information
+    .sub_info
+    .MuiFormControlLabel-root
+    p {
+    font-size: 16px;
+  }
+  .career_main_container
+    .why_joinus_section
+    .information
+    .sub_info
+    .MuiFormControlLabel-root {
+    padding: 0;
+  }
+  .career_main_container .join_texub .join_texub_link {
+    width: 50%;
+  }
+  .career_main_container .career_team_section .banner_content {
+    left: 38%;
+    top: 44%;
+  }
 }
 
-@media (max-width:900px) {
-    .career_main{
-        .career_team_section{
-            padding: 14px;
-            .career_team_ready{
-                font-size: larger;
-                left: 37%;
-                top: 28%;
-            }
-            .career_team_join{
-                font-size: 43px;
-                left: 33%;
-                top: 30%;
-            }
-            .career_team_join_btn{
-                font-size: 16px;
-                left: 38%;
-                transition: transform .2s;
-            }
-            .career_team_join_btn:hover{
-                transform: scale(1.2);
-            }
-        }
-        .career_joinus_section{
-            padding: 0 23px 47px 23px;
-            .career_joinus_heading{
-                font-size: 39px;
-            }
-        }
-        .career_to_texub{
-            padding: 21px 34px;
-            .career_to_texub_heading{
-                font-size: 39px;
-            }
-            .career_to_texub_developers{
-                min-height: 84px;
-                .career_to_texub_developers_designation{
-                    font-size: x-large;
-                }
-                .career_to_texub_developers_location{
-                    font-size: x-large;
-                }
-                .career_to_texub_developers_arrow{
-                    height: 16px;
-                    margin-top: 7px;
-                }
-            }
-            .career_to_texub_developers2{
-                min-height: 84px;
-                .career_to_texub_developers_designation{
-                    font-size: x-large;
-                }
-                .career_to_texub_developers_location{
-                    font-size: x-large;
-                }
-                .career_to_texub_developers_arrow{
-                    height: 16px;
-                    margin-top: 7px;
-                }
-            }
-        }
-        .career_CultureValues{
-            .career_CultureValues_imgs1{
-                // padding-left: 2%;
-                .career_to_texub_developers_arrow{
-                    min-width: 225px;
-                }
-            }
-            .career_CultureValues_imgs2{
-                // padding-left: 2%;
-                .career_to_texub_developers_arrow{
-                    min-width: 225px;
-                }
-            }  
-               .career_CultureValues_Click{
-                   font-size: medium;
-               }
-               .career_CultureValues_heading{
-                   font-size: 37px;
-                   margin: 0;
-               }
-                .career_CultureValues_tag{
-                    padding: 0 29px 0 29px;
-                    font-size: inherit;
-                }
-            
-        }
-    }
-}
-@media (max-width:768px) {
-    .career_main{
-        .career_team_section{
-            padding: 14px;
-            .career_team_ready{
-                font-size: larger;
-                left: 37%;
-                top: 28%;
-            }
-            .career_team_join{
-                font-size: 43px;
-                left: 33%;
-                top: 30%;
-            }
-            .career_team_join_btn{
-                font-size: 16px;
-                left: 38%;
-                transition: transform .2s;
-            }
-            .career_team_join_btn:hover{
-                transform: scale(1.2);
-            }
-        }
-        .career_joinus_section{
-            padding: 0 23px 47px 23px;
-            .career_joinus_heading{
-                font-size: 39px;
-            }
-        }
-        .career_to_texub{
-            padding: 21px 34px;
-            .career_to_texub_heading{
-                font-size: 39px;
-            }
-            .career_to_texub_developers{
-                min-height: 84px;
-                .career_to_texub_developers_designation{
-                    font-size: x-large;
-                }
-                .career_to_texub_developers_location{
-                    font-size: x-large;
-                }
-                .career_to_texub_developers_arrow{
-                    height: 16px;
-                    margin-top: 7px;
-                }
-            }
-            .career_to_texub_developers2{
-                min-height: 84px;
-                .career_to_texub_developers_designation{
-                    font-size: x-large;
-                }
-                .career_to_texub_developers_location{
-                    font-size: x-large;
-                }
-                .career_to_texub_developers_arrow{
-                    height: 16px;
-                    margin-top: 7px;
-                }
-            }
-        }
-        .career_CultureValues{
-            .career_CultureValues_imgs1{
-                // padding-left: 2%;
-                .career_to_texub_developers_arrow{
-                    min-width: 225px;
-                }
-            }
-            .career_CultureValues_imgs2{
-                // padding-left: 2%;
-                .career_to_texub_developers_arrow{
-                    min-width: 225px;
-                }
-            }  
-               .career_CultureValues_Click{
-                   font-size: medium;
-               }
-               .career_CultureValues_heading{
-                   font-size: 37px;
-                   margin: 0;
-               }
-                .career_CultureValues_tag{
-                    padding: 0 29px 0 29px;
-                    font-size: inherit;
-                }
-            
-        }
-    }
+@media (max-width: 900px) {
+  .career_main_container .why_joinus_section .information .why_joinus_image {
+    right: 0%;
+  }
+  .career_main_container .career_team_section .banner_content {
+    left: 36%;
+    top: 37%;
+  }
 }
 
-@media (max-width:480px) {
-    .career_main{
-        .career_team_section{
-            padding: 4px;
-            .career_team_ready{
-                font-size:small;
-                left: 36%;
-                top: 26%;
-                display: none;
-            }
-            .career_team_join{
-                font-size: 39px;
-                left: 25%;
-                top: 17%;
-            }
-            .career_team_join_btn{
-                font-size: 17px;
-                left: 31%;
-                top: 64%;
-            }
-            .career_team_img{
-                height: 216px;
-            }
-        }
-        .career_joinus_section{
-            padding: 0 23px 14px 23px;
-            .career_joinus_heading{
-                text-align: center;
-                margin: 0;
-                font-size: xx-large;
-            }
-            .career_joinus_Check{
-                flex-direction: column;
-                .Career-career_joinus_Check1-14{
-                    gap: 0px;
-                }
-                .career_joinus_img{
-                    height: 188px;
-                    width: 200px;
-                    align-self: center;
-                }
-            }
-        }
-        .career_to_texub{
-            padding: 12px 11px;
-            .career_to_texub_heading_tag{
-                margin: 0;
-            }
-            .career_to_texub_heading{
-                font-size: xx-large;
-            }
-            .career_to_texub_developers2,
-            .career_to_texub_developers{
-                min-height: 80px;
-                padding: 20px 20px 0 20px;
-                .career_to_texub_developers_arrow{
-                    height: 13px;
-                    margin-top: 3px;
-                }
-                .career_to_texub_developers_location,
-                .career_to_texub_developers_designation{
-                font-size: inherit;
-            }
-            }
-        }
-        .career_CultureValues{
-            padding: 0px 0 55px 0;
-            .career_CultureValues_tag{
-                padding: 0 10px 0 10px;
-                font-size: small;
-            }
-            .career_CultureValues_Click{
-                font-size: small;
-            }
-            .career_CultureValues_heading{
-                font-size: x-large;
-            }
-            .css-8v0fa4-MuiGrid-root{
-                max-width: fit-content;
-            }
-            .career_CultureValues_imgs1,
-            .career_CultureValues_imgs2{
-                flex-direction: column;
-                // min-width: 473px;
-                gap: 4px;
-                // padding-left: 3%;
-                .career_to_texub_developers_arrow{
-                    height: 249px;
-                    min-width: 466px;
-                }
-            }
-            .career_CultureValues_imgs1{
-                margin-bottom: 4px;
-            }
-        }
-    }
-    
+@media (max-width: 767px) {
+  .career_main_container .why_joinus_section .information .why_joinus_image {
+    position: unset;
+  }
+  .career_main_container .why_joinus_section .information .sub_info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .career_main_container .why_joinus_section .title {
+    text-align: center;
+  }
+  .career_main_container .why_joinus_section .information {
+    flex-direction: column;
+    align-items: center;
+    gap: 2em;
+  }
+  .career_main_container
+    .why_joinus_section
+    .information
+    .sub_info
+    .MuiFormControlLabel-root
+    p {
+    white-space: nowrap;
+  }
+  .career_main_container .why_joinus_section {
+    width: 100%;
+    padding: 2em 0em;
+  }
+  .career_main_container .join_texub .join_texub_info,
+  .career_main_container .joinus_culture_values .grid_container {
+    margin: 2em 3em;
+  }
+  .career_main_container
+    .career_team_section
+    .banner_content
+    .banner_sub_title {
+    font-size: 12px;
+  }
+  .career_main_container .career_team_section .banner_content .banner_title {
+    font-size: 30px;
+  }
 }
 
-@media (max-width:425px) {
-    .career_main{
-        .career_team_section{
-            .career_team_join{
-                left: 27%;
-                top: 18%;
-            }
-            .career_team_join_btn{
-                left: 32%;
-                padding: 6px 27px;
-                font-size: 16px;
-                top: 65%;
-            }
-            .career_team_join{
-                left: 16%;
-            }
-        }
-        .career_CultureValues{
-            gap: 0;
-            .career_CultureValues_imgs2,
-            .career_CultureValues_imgs1{
-                min-width: 418px !important;
-                .career_to_texub_developers_arrow{
-                   min-width: 412px;
-                    height: 200px;
-                }
-            }
-        }
-        .career_to_texub{
-            .career_to_texub_heading_tag{
-                font-size: 15px;
-            }
-        }
+@media (max-width: 580px) {
+  .career_main_container .join_texub .join_texub_link {
+    width: 75%;
+  }
+  .career_main_container .join_texub .join_texub_info .info_content {
+    flex-direction: column;
+  }
+  .career_main_container .join_texub .join_texub_info .info_content .name,
+  .career_main_container .join_texub .join_texub_info .info_content p {
+    width: 100%;
+  }
+  .career_main_container .career_team_section .banner_content .banner_btn {
+    margin-top: 0.2em;
+    .MuiButton-root {
+      padding: 3px 15px;
     }
+  }
+  .career_main_container .career_team_section .banner_content {
+    left: 32%;
+    top: 33%;
+  }
 }
-@media (max-width:375px) {
-     .career_main{
-         .career_team_section{
-             .career_team_join{
-                font-size: 33px;
-                left: 17%;
-                top: 20%;
-             }
-             .career_team_join_btn{
-                left: 29%;
-                top: 61%;
-             }
-         }
-         .career_to_texub{
-             padding: 12px 6px;
-             .career_to_texub_developers2,
-             .career_to_texub_developers{
-                padding: 20px 5px 0 5px;
-             }
-             .career_to_texub_heading_tag{
-                 font-size: 14px;
-             }
-         }
-         .career_CultureValues{
-             .career_CultureValues_imgs2,
-             .career_CultureValues_imgs1{
-                 min-width: 370px !important;
-                 .career_to_texub_developers_arrow{
-                     min-width: 364px;
-                 }
-             }
-         }
-     }
-}
-@media (max-width:320px) {
-    .career_main{
-        .career_team_section{
-            .career_team_join{
-               font-size: 28px;
-               left: 16%;
-            }
-            .career_team_join_btn{
-               left: 28%;
-               top: 61%;
-               font-size: 14px;
-            }
-            .career_team_img{
-                height: 166px;
-            }
-        }
-        .career_joinus_section{
-            .career_joinus_heading{
-                font-size: x-large;
-            }
-        }
-        .career_to_texub{
-            padding: 12px 6px;
-            .career_to_texub_developers2,
-            .career_to_texub_developers{
-               padding: 20px 5px 0 5px;
-            }
-            .career_to_texub_heading{
-                font-size: revert;
-            }
-            .career_to_texub_heading_tag{
-                font-size: 12px;
-            }
-        }
-        .career_CultureValues{
-            .career_CultureValues_imgs2,
-            .career_CultureValues_imgs1{
-                min-width: 316px !important;
-                .career_to_texub_developers_arrow{
-                    min-width: 309px;
-                }
-            }
-        }
+@media (max-width: 475px) {
+  .career_main_container
+    .why_joinus_section
+    .information
+    .sub_info
+    .MuiFormControlLabel-root {
+    width: 60%;
+  }
+  .career_main_container .join_texub .join_texub_info .info_content p {
+    white-space: unset;
+  }
+  .career_main_container .career_team_section .banner_content .banner_btn {
+    margin-top: 0.2em;
+    .MuiButton-root {
+      padding: 0px 15px;
     }
+  }
+  .career_main_container .career_team_section .banner_content {
+    left: 30%;
+    top: 31%;
+  }
+}
 
+@media (max-width: 380px) {
+  .career_main_container .career_team_section .banner_content {
+    left: 24%;
+    top: 18%;
+  }
+}
+@media (max-width: 320px) {
+  .career_main_container .career_team_section .banner_content {
+    left: 20%;
+    top: 12%;
+  }
 }

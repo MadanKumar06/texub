@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
 import styles from "../styles";
 
-import { TextField, InputLabel } from "@mui/material";
+import {
+  TextField,
+  InputLabel,
+  FormControlLabel,
+  Checkbox,
+} from "@mui/material";
 import { withStyles } from "@mui/styles";
 import { Clear } from "@mui/icons-material";
 import { LocalizationProvider, DesktopDatePicker } from "@mui/lab";
@@ -27,6 +32,7 @@ const TradeLicenseButton = ({
     input_image_name,
     input_image_name_clear_btn,
     validation_error,
+    checkbox_label,
   } = classes;
 
   //Data state and onchange event
@@ -58,7 +64,7 @@ const TradeLicenseButton = ({
 
   // input validation on onchange
   const [inputValidation, setInputValidation] = useState({
-    business_name: "",
+    company_name: "",
     trade_lic_number: "",
     trade_expiration_date: "",
     trade_image: "",
@@ -66,14 +72,6 @@ const TradeLicenseButton = ({
 
   const handleSwitchCase = (fieldName, value) => {
     switch (fieldName[0]) {
-      // case "business_name":
-      //   if (!value) {
-      //     setInputValidation((prevState) => ({
-      //       ...prevState,
-      //       business_name: "Please enter the business name.",
-      //     }));
-      //   }
-      //   break;
       // case "trade_lic_number":
       //   if (!value) {
       //     setInputValidation((prevState) => ({
@@ -89,10 +87,20 @@ const TradeLicenseButton = ({
             ...prevState,
             trade_expiration_date: "Please select expiration date.",
           }));
+          SetFormValues((prevState) => ({
+            expiry_checkbox: false,
+          }));
         } else if (value.toString() === "Invalid Date") {
           setInputValidation((prevState) => ({
             ...prevState,
             trade_expiration_date: "Please select valid date.",
+          }));
+          SetFormValues((prevState) => ({
+            expiry_checkbox: false,
+          }));
+        } else if (value.toString() !== "Invalid Date") {
+          SetFormValues((prevState) => ({
+            expiry_checkbox: true,
           }));
         }
         break;
@@ -104,11 +112,13 @@ const TradeLicenseButton = ({
   return (
     <div>
       <TextField
-        id="business_name"
-        label="Business Name"
-        placeholder="Business Name"
+        id="company_name"
+        label="Company Name"
+        placeholder="Company Name"
         fullWidth
-        value={FormValues?.business_name}
+        disabled
+        value={FormValues?.company_name}
+        className="inputfield-box"
         InputLabelProps={{
           shrink: true,
           required: true,
@@ -116,19 +126,16 @@ const TradeLicenseButton = ({
             asterisk: asterisk,
           },
         }}
-        name="business_name"
-        onChange={handleFormvalue}
+        name="company_name"
         variant="outlined"
       />
-      <InputLabel className={validation_error}>
-        {inputValidation?.business_name}
-      </InputLabel>
       <div className={input_div}>
         <TextField
           id="trade_lic_number"
           label="Trade LIC Number"
           placeholder="Trade LIC Number"
           fullWidth
+          className="inputfield-box"
           name="trade_lic_number"
           value={FormValues?.trade_lic_number}
           InputLabelProps={{
@@ -156,6 +163,7 @@ const TradeLicenseButton = ({
               <TextField
                 {...params}
                 fullWidth
+                className="inputfield-box"
                 id="trade_expiration_date"
                 placeholder="MM/YY"
                 InputLabelProps={{
@@ -220,6 +228,15 @@ const TradeLicenseButton = ({
           </div>
         )}
       </div>
+      {FormValues?.expiry_checkbox && (
+        <FormControlLabel
+          value="yes"
+          control={<Checkbox color="color_third" />}
+          label="Automated Reminder on Expiry."
+          labelPlacement="end"
+          className={checkbox_label}
+        />
+      )}
     </div>
   );
 };

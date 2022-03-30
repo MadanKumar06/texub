@@ -5,6 +5,7 @@ import thanksLogo from "../../../Assets/Productlist/gratitude_icon.png";
 import { Button, Box } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useStateValue } from "../../../store/state";
+import { Link } from "react-router-dom";
 const ThankyouPage = ({ classes }) => {
   const { type } = useParams();
   const [{}, dispatch] = useStateValue();
@@ -22,11 +23,17 @@ const ThankyouPage = ({ classes }) => {
   } = classes;
 
   useEffect(() => {
+    // dispatch({
+    //   type: "SET_KYC_OPEN_CLOSE",
+    //   value: true,
+    // });
+  }, []);
+  const handleSignInOpenClose = () => {
     dispatch({
-      type: "SET_KYC_OPEN_CLOSE",
+      type: "SET_SIGNIN_OPEN_CLOSE",
       value: true,
     });
-  }, []);
+  };
   return (
     <div
       className={`${
@@ -39,14 +46,26 @@ const ThankyouPage = ({ classes }) => {
         </div>
         <p className={thankyou_title}>Thank You !</p>
         <p className={thankyou_user}>Dear Nikhil</p>
-        <p className={thankyou_for_register}>
+        {/* <p className={thankyou_for_register}>
           You have submitted the Registration form successfully. Kindly login
           into your account to complete the KYC.
+        </p> */}
+        <p className={thankyou_for_register}>
+          You have submitted the KYC form successfully. And Our team will get
+          back to you after verification. once your account has been approved,
+          you will receive a mail notification.
         </p>
         <Box className={thankyou_button_box} fullWidth>
-          <Button className={thankyou_button_signin}>SignIn</Button>
+          <Button
+            className={thankyou_button_signin}
+            onClick={() => handleSignInOpenClose()}
+          >
+            SignIn
+          </Button>
         </Box>
-        <p className={thankyou_backto_home}>Back To Homepage</p>
+        <Link to="/">
+          <p className={thankyou_backto_home}>Back To Homepage</p>
+        </Link>
       </div>
     </div>
   );

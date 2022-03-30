@@ -10,6 +10,13 @@
       color: #272727;
       margin-top: 0.5em;
     }
+    .MuiAutocomplete-root {
+      .MuiFormControl-root {
+        .MuiOutlinedInput-root {
+          padding: 4px;
+        }
+      }
+    }
     .MuiFormControl-root {
       & ::placeholder {
         text-transform: capitalize;
@@ -67,7 +74,17 @@
     }
   }
 }
-
+@media (max-width: 1660px) {
+  .updateproduct__bgform .updateproduct_info_form .MuiInputLabel-root {
+    font-size: 12px;
+  }
+  .updateproduct .updateproduct__addmore p .addmore__text {
+    font-size: 16px;
+  }
+  .updateproduct .updateproduct__gst .updateproduct_info_form .MuiInputLabel-root, .updateproduct .updateproduct__specifications .updateproduct__form .updateproduct_inputfields .MuiInputLabel-root {
+    font-size: 12px;
+}
+}
 @media (max-width: 767px) {
   .updateproduct .updateproduct__bgform {
     flex-direction: column;

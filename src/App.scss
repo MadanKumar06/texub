@@ -1,9 +1,6 @@
 .App {
   background: #fbfbfb;
 }
-.MuiOutlinedInput-root input {
-  padding: 12px;
-}
 
 //common scss for all required components
 
@@ -37,13 +34,13 @@
 }
 .btn-ternary {
   background: linear-gradient(180deg #f0f0f0 0% #f0f0f0 100%);
-  color: #333c42 !important;
+  color: #002d56 !important;
+  border: 1px solid #002d56 !important;
 }
 
 // material ui textbox
 
 .inputfield-box {
-  margin-top: 2em !important;
   & ::placeholder {
     text-transform: capitalize !important;
     font-size: 20px !important;
@@ -57,7 +54,11 @@
   }
   .MuiOutlinedInput-root {
     input {
+      padding: 12px;
       font: unset !important;
+    }
+    &:hover fieldset {
+      border-color: #ddb363;
     }
     fieldset {
       legend {
@@ -72,5 +73,15 @@
 @media (max-width: 1660px) {
   .button-text {
     font-size: 16px !important;
+  }
+  .inputfield-box {
+    & ::placeholder {
+      font-size: 14px !important;
+    }
+  }
+}
+@media (max-width: 820px) {
+  .button-text {
+    font-size: 12px !important;
   }
 }

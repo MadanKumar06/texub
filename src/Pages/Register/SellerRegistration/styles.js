@@ -43,6 +43,9 @@ const styles = (theme) => ({
       padding: "5px !important",
     },
   },
+  other_textbox: {
+    marginTop: "2em",
+  },
   recaptcha_info: {
     width: "100%",
   },

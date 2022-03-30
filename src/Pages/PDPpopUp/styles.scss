@@ -128,7 +128,7 @@
           }
           .pdp_footer_model_info_detail {
             color: #002d56;
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 600;
             letter-spacing: 0.72px;
           }
@@ -176,7 +176,7 @@
     .pdp_modal_footer
     .pdp_footer_model_details
     .pdp_footer_model_info {
-    font-size: 16px;
+    font-size: 14px;
   }
   .pdp_modal
     .section_main_container
@@ -184,7 +184,7 @@
     .pdp_modal_footer
     .pdp_footer_model_details
     .pdp_footer_model_info_detail {
-    font-size: 18px;
+    font-size: 16px;
   }
 }
 
@@ -232,9 +232,15 @@
   }
 }
 @media (max-width: 965px) {
+  .pdp_modal{
+    margin: 7%;
+  }
   .pdp_modal .section_main_container .section_main_sub .modal_bottom_container {
     flex-direction: column;
     align-items: center;
+  }
+  .pdp_modal .section_main_container .section_main_sub .section_main_sub_container{
+    padding: 29px 10px 0;
   }
 }
 @media (max-width: 767px) {
@@ -252,6 +258,7 @@
     .pdp_header_bottom_container {
     gap: 15px;
     flex-wrap: wrap;
+    justify-content: start;
   }
   .pdp_modal .section_main_container .section_main_sub .modal_bottom_container {
     justify-content: center;
@@ -293,6 +300,13 @@
   .pdp_modal .section_main_container .clear_btn {
     top: -26px;
     right: -22px;
+  }
+  .pdp_modal
+    .section_main_container
+    .section_main_sub
+    .section_main_sub_container {
+    background-image: none;
+    padding: 20px 10px 0;
   }
 }
 @media (max-width: 425px) {

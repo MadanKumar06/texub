@@ -96,7 +96,7 @@ const TransitionsModal = ({ classes, openPopUp }) => {
         <Clear
           className={clsx(
             clear_btn,
-            `${clicked === "buyer" ? clearbuyer : clearseller}`
+            `${clicked === "buyer" ? clearseller : clearseller}`
           )}
           onClick={() => handleClose()}
         />
