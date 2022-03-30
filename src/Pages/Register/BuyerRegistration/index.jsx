@@ -20,6 +20,7 @@ import Autocomplete from "@mui/material/Autocomplete";
 import { withStyles } from "@mui/styles";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/material.css";
+
 import axios from "axios";
 import baseUrl from "../../../Constant";
 
@@ -173,121 +174,121 @@ const BuyerRegistration = ({ classes }) => {
     }
   };
   const handleClickValidation = (event) => {
-    var errorHandle = false;
-    if (!buyerRegistrationData?.first_name) {
-      document.getElementById("first_name")?.focus();
-      setInputValidation((prevState) => ({
-        ...prevState,
-        first_name: "Please enter the first name.",
-      }));
-      errorHandle = true;
-    }
-    if (!buyerRegistrationData?.last_name) {
-      document.getElementById("last_name")?.focus();
-      setInputValidation((prevState) => ({
-        ...prevState,
-        last_name: "Please enter the last name.",
-      }));
-      errorHandle = true;
-    }
-    if (!buyerRegistrationData?.email_address) {
-      document.getElementById("email_address")?.focus();
-      setInputValidation((prevState) => ({
-        ...prevState,
-        email_address: "Please enter the e-mail.",
-      }));
-      errorHandle = true;
-    } else if (!isEmailValid(buyerRegistrationData?.email_address)) {
-      document.getElementById("email_address")?.focus();
-      setInputValidation((prevState) => ({
-        ...prevState,
-        email_address: "Please enter the valid e-mail.",
-      }));
-      errorHandle = true;
-    }
-    if (!buyerRegistrationData?.mobile_number) {
-      document.getElementById("mobile_number")?.focus();
-      setInputValidation((prevState) => ({
-        ...prevState,
-        mobile_number: "Please enter the mobile number.",
-      }));
-      errorHandle = true;
-    } else if (buyerRegistrationData?.mobile_number[1]?.length !== 10) {
-      debugger;
-      document.getElementById("mobile_number")?.focus();
-      setInputValidation((prevState) => ({
-        ...prevState,
-        mobile_number: "Please enter 10 digit mobile number.",
-      }));
-      errorHandle = true;
-    }
-    if (!buyerRegistrationData?.password) {
-      document.getElementById("password")?.focus();
-      setInputValidation((prevState) => ({
-        ...prevState,
-        password: "Please enter your password.",
-      }));
-      errorHandle = true;
-    } else if (!isPasswordValid(buyerRegistrationData?.password)) {
-      document.getElementById("password")?.focus();
-      setInputValidation((prevState) => ({
-        ...prevState,
-        password:
-          "Minimum 8 characters at least 1 Alphabet, 1 Number and 1 Special Character.",
-      }));
-      errorHandle = true;
-    }
-    if (!buyerRegistrationData?.confrim_password) {
-      document.getElementById("confrim_password")?.focus();
-      setInputValidation((prevState) => ({
-        ...prevState,
-        confrim_password: "Please enter your confrim password.",
-      }));
-      errorHandle = true;
-    } else if (
-      !(
-        buyerRegistrationData?.password ===
-        buyerRegistrationData?.confrim_password
-      )
-    ) {
-      document.getElementById("confrim_password")?.focus();
-      setInputValidation((prevState) => ({
-        ...prevState,
-        confrim_password: "Password and confirm password does not match",
-      }));
-      errorHandle = true;
-    }
-    if (!buyerRegistrationData?.company) {
-      document.getElementById("company")?.focus();
-      setInputValidation((prevState) => ({
-        ...prevState,
-        company: "Please enter the company.",
-      }));
-      errorHandle = true;
-    }
-    if (!buyerRegistrationData?.designation) {
-      document.getElementById("designation")?.focus();
-      setInputValidation((prevState) => ({
-        ...prevState,
-        designation: "Please enter the designation.",
-      }));
-      errorHandle = true;
-    }
-    if (!buyerRegistrationData) {
-      document.getElementById("last_name")?.focus();
-      setInputValidation((prevState) => ({
-        ...prevState,
-        country: "Please select the country.",
-      }));
-      errorHandle = true;
-    }
-    if (!errorHandle) {
-      // Apicall fuction
-      dispatch({
-        type: "SET_KYC_OPEN_CLOSE",
-        value: true,
-      });
-    }
+    // var errorHandle = false;
+    // if (!buyerRegistrationData?.first_name) {
+    //   document.getElementById("first_name")?.focus();
+    //   setInputValidation((prevState) => ({
+    //     ...prevState,
+    //     first_name: "Please enter the first name.",
+    //   }));
+    //   errorHandle = true;
+    // }
+    // if (!buyerRegistrationData?.last_name) {
+    //   document.getElementById("last_name")?.focus();
+    //   setInputValidation((prevState) => ({
+    //     ...prevState,
+    //     last_name: "Please enter the last name.",
+    //   }));
+    //   errorHandle = true;
+    // }
+    // if (!buyerRegistrationData?.email_address) {
+    //   document.getElementById("email_address")?.focus();
+    //   setInputValidation((prevState) => ({
+    //     ...prevState,
+    //     email_address: "Please enter the e-mail.",
+    //   }));
+    //   errorHandle = true;
+    // } else if (!isEmailValid(buyerRegistrationData?.email_address)) {
+    //   document.getElementById("email_address")?.focus();
+    //   setInputValidation((prevState) => ({
+    //     ...prevState,
+    //     email_address: "Please enter the valid e-mail.",
+    //   }));
+    //   errorHandle = true;
+    // }
+    // if (!buyerRegistrationData?.mobile_number) {
+    //   document.getElementById("mobile_number")?.focus();
+    //   setInputValidation((prevState) => ({
+    //     ...prevState,
+    //     mobile_number: "Please enter the mobile number.",
+    //   }));
+    //   errorHandle = true;
+    // } else if (buyerRegistrationData?.mobile_number[1]?.length !== 10) {
+    //   debugger;
+    //   document.getElementById("mobile_number")?.focus();
+    //   setInputValidation((prevState) => ({
+    //     ...prevState,
+    //     mobile_number: "Please enter 10 digit mobile number.",
+    //   }));
+    //   errorHandle = true;
+    // }
+    // if (!buyerRegistrationData?.password) {
+    //   document.getElementById("password")?.focus();
+    //   setInputValidation((prevState) => ({
+    //     ...prevState,
+    //     password: "Please enter your password.",
+    //   }));
+    //   errorHandle = true;
+    // } else if (!isPasswordValid(buyerRegistrationData?.password)) {
+    //   document.getElementById("password")?.focus();
+    //   setInputValidation((prevState) => ({
+    //     ...prevState,
+    //     password:
+    //       "Minimum 8 characters at least 1 Alphabet, 1 Number and 1 Special Character.",
+    //   }));
+    //   errorHandle = true;
+    // }
+    // if (!buyerRegistrationData?.confrim_password) {
+    //   document.getElementById("confrim_password")?.focus();
+    //   setInputValidation((prevState) => ({
+    //     ...prevState,
+    //     confrim_password: "Please enter your confrim password.",
+    //   }));
+    //   errorHandle = true;
+    // } else if (
+    //   !(
+    //     buyerRegistrationData?.password ===
+    //     buyerRegistrationData?.confrim_password
+    //   )
+    // ) {
+    //   document.getElementById("confrim_password")?.focus();
+    //   setInputValidation((prevState) => ({
+    //     ...prevState,
+    //     confrim_password: "Password and confirm password does not match",
+    //   }));
+    //   errorHandle = true;
+    // }
+    // if (!buyerRegistrationData?.company) {
+    //   document.getElementById("company")?.focus();
+    //   setInputValidation((prevState) => ({
+    //     ...prevState,
+    //     company: "Please enter the company.",
+    //   }));
+    //   errorHandle = true;
+    // }
+    // if (!buyerRegistrationData?.designation) {
+    //   document.getElementById("designation")?.focus();
+    //   setInputValidation((prevState) => ({
+    //     ...prevState,
+    //     designation: "Please enter the designation.",
+    //   }));
+    //   errorHandle = true;
+    // }
+    // if (!buyerRegistrationData) {
+    //   document.getElementById("last_name")?.focus();
+    //   setInputValidation((prevState) => ({
+    //     ...prevState,
+    //     country: "Please select the country.",
+    //   }));
+    //   errorHandle = true;
+    // }
+    // if (!errorHandle) {
+    //   // Apicall fuction
+    // }
+    dispatch({
+      type: "SET_KYC_OPEN_CLOSE",
+      value: true,
+    });
   };
 
   //API for fetch dropdown values
