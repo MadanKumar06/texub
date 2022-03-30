@@ -16,23 +16,41 @@ function RegisterProduct() {
       <h1>Register New Product</h1>
 
       <div className="registerproducts__form">
-        <div className="registerproducts_inputfields">
-          <InputLabel>Name</InputLabel>
-          <TextField
-            id="name"
-            name="name"
-            placeholder="Enter Product Name"
-            fullWidth
-            autoFocus={true}
-            autoComplete="off"
-            // value={signInData?.email_address}
-            className="inputfield-box"
-            InputLabelProps={{
-              shrink: false,
-            }}
-            // onChange={handleChangeInput}
-            variant="outlined"
-          />
+        <div className="input_separator">
+          <div className="registerproducts_inputfields">
+            <InputLabel>Model Number</InputLabel>
+            <TextField
+              id="modal_number"
+              name="modal_number"
+              placeholder="3604929017"
+              fullWidth
+              disabled
+              className="inputfield-box"
+              // value={signInData?.email_address}
+              InputLabelProps={{
+                shrink: false,
+              }}
+              // onChange={handleChangeInput}
+              variant="outlined"
+            />
+          </div>
+          <div className="registerproducts_inputfields">
+            <InputLabel>Texub Product ID</InputLabel>
+            <TextField
+              id="product_id"
+              name="product_id"
+              placeholder="11041"
+              fullWidth
+              disabled
+              className="inputfield-box"
+              // value={signInData?.email_address}
+              InputLabelProps={{
+                shrink: false,
+              }}
+              // onChange={handleChangeInput}
+              variant="outlined"
+            />
+          </div>
         </div>
         <div className="input_separator">
           <div className="registerproducts_inputfields">
@@ -122,31 +140,21 @@ function RegisterProduct() {
             />
           </div>
           <div className="registerproducts_inputfields">
-            <InputLabel>Model Number</InputLabel>
-            <Autocomplete
-              //   value={value}
-              name=""
-              //   onChange={(event, newValue) => {
-              //     setValue(newValue);
-              //   }}
-              //   className={auto_complete_input}
-              //   inputValue={inputValue}
-              //   onInputChange={(event, newInputValue) => {
-              //     setInputValue(newInputValue);
-              //   }}
-              id="controllable-states-demo"
-              options={options}
+            <InputLabel>HSN Code</InputLabel>
+            <TextField
+              id="hsn_code"
+              name="hsn_code"
+              placeholder="22348765"
               fullWidth
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  className="inputfield-box"
-                  placeholder="Select Model Number"
-                  InputLabelProps={{
-                    shrink: false,
-                  }}
-                />
-              )}
+              autoFocus={true}
+              autoComplete="off"
+              className="inputfield-box"
+              // value={signInData?.email_address}
+              InputLabelProps={{
+                shrink: false,
+              }}
+              // onChange={handleChangeInput}
+              variant="outlined"
             />
           </div>
         </div>
@@ -180,44 +188,6 @@ function RegisterProduct() {
               autoComplete="off"
               className="inputfield-box"
               // value={signInData?.email_address}
-              InputLabelProps={{
-                shrink: false,
-              }}
-              // onChange={handleChangeInput}
-              variant="outlined"
-            />
-          </div>
-        </div>
-        <div className="input_separator">
-          <div className="registerproducts_inputfields">
-            <InputLabel>HSN Code</InputLabel>
-            <TextField
-              id="hsn_code"
-              name="hsn_code"
-              placeholder="22348765"
-              fullWidth
-              autoFocus={true}
-              autoComplete="off"
-              className="inputfield-box"
-              // value={signInData?.email_address}
-              InputLabelProps={{
-                shrink: false,
-              }}
-              // onChange={handleChangeInput}
-              variant="outlined"
-            />
-          </div>
-          <div className="registerproducts_inputfields">
-            <InputLabel>GST %</InputLabel>
-            <TextField
-              id="gst"
-              name="gst"
-              placeholder="18"
-              fullWidth
-              autoFocus={true}
-              autoComplete="off"
-              // value={signInData?.email_address}
-              className="inputfield-box"
               InputLabelProps={{
                 shrink: false,
               }}

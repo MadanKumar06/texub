@@ -245,64 +245,6 @@ function Index({ type }) {
               />
             </div>
           </div>
-          <div className="input_separator">
-            <div className="updateproduct_inputfields info">
-              <InputLabel>Region</InputLabel>
-              <Autocomplete
-                //   value={value}
-                name=""
-                //   onChange={(event, newValue) => {
-                //     setValue(newValue);
-                //   }}
-                //   className={auto_complete_input}
-                //   inputValue={inputValue}
-                //   onInputChange={(event, newInputValue) => {
-                //     setInputValue(newInputValue);
-                //   }}
-                id="controllable-states-demo"
-                options={options}
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    className="inputfield-box"
-                    fullWidth
-                    placeholder="Select Region"
-                    InputLabelProps={{
-                      shrink: false,
-                    }}
-                  />
-                )}
-              />
-            </div>
-            <div className="updateproduct_inputfields info">
-              <InputLabel>Country</InputLabel>
-              <Autocomplete
-                //   value={value}
-                name=""
-                //   onChange={(event, newValue) => {
-                //     setValue(newValue);
-                //   }}
-                //   className={auto_complete_input}
-                //   inputValue={inputValue}
-                //   onInputChange={(event, newInputValue) => {
-                //     setInputValue(newInputValue);
-                //   }}
-                id="controllable-states-demo"
-                options={options}
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    className="inputfield-box"
-                    placeholder="Select Country"
-                    fullWidth
-                    InputLabelProps={{
-                      shrink: false,
-                    }}
-                  />
-                )}
-              />
-            </div>
-          </div>
           <div className="updateproduct_inputfields info">
             <InputLabel>Special Notes</InputLabel>
             <TextField
