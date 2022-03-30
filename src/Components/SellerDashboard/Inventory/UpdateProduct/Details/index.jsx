@@ -106,7 +106,7 @@ function Index({ checkselection, countincrease, i, deleterow }) {
           />
         </div>
         <div className="updateproduct_info_form">
-          <InputLabel>ETA</InputLabel>
+          <InputLabel>ETA (Days)</InputLabel>
           <TextField
             id="part_number"
             name="part_nymber"
