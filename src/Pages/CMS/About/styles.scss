@@ -178,3 +178,15 @@ $black: #333333;
     }
   }
 }
+
+@media (max-width: 1600px) {
+  .aboutus .aboutus__highlights {
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 1375px) {
+  .aboutus .aboutus__highlights {
+    max-width: 100%;
+  }
+}
