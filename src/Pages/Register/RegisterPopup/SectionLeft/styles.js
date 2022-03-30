@@ -3,13 +3,19 @@ const styles = (theme) => ({
     // height: "81vh",
     zIndex: "1",
     display: "flex",
-    width: "100%",
+    width: "90%",
     // overflow: "auto",
     gap: "2em",
+    height: "100%",
+    overflowY: "auto",
+    "@media (max-width:1299px)": {
+      height: "auto",
+    },
     "@media (max-width:768px)": {
       height: "81vh",
       flexDirection: "column",
       overflowY: "scroll",
+      overflowX: "hidden",
     },
     "@media (max-width:1080px)": {
       gap: "0em",
@@ -54,21 +60,30 @@ const styles = (theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    margin: "8%",
-    "@media (max-width:768px)": {
-      margin: "1%",
+    margin: "auto",
+    width: "90%",
+    height: "90vh",
+    "@media (max-width:780px)": {
+      margin: "5% 8%",
     },
   },
   // section one css
   section_left: {
-    padding: "3.5%",
+    padding: "2.5%",
     margin: "1.5%",
-    width: "45%",
+    width: "40%",
     height: "max-content",
     backgroundImage: "url('/Images/user_selection_leftbg.png')",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
     backgroundSize: "cover",
+    height:"auto",
+    "@media (max-width:1400px)": {
+      height:"100%",
+    },
+    "@media (max-width:1299px)": {
+      height:"auto",
+    },
     "@media (max-width:768px)": {
       width: "97%",
       height: "max-content",
@@ -108,7 +123,7 @@ const styles = (theme) => ({
   },
   tagline_text: {
     color: "#DDB363",
-    fontSize: "24px",
+    fontSize: "20px",
     lineHeight: "30px",
     letterSpacing: "0.72px",
     fontWeight: "600",
@@ -131,8 +146,8 @@ const styles = (theme) => ({
     marginTop: "1%",
   },
   thumb_image: {
-    width: "62px",
-    height: "62px",
+    width: "55px",
+    height: "55px",
     margin: "inherit",
     "& img": {
       height: "auto",
@@ -172,9 +187,10 @@ const styles = (theme) => ({
 
   // section two css
   section_right: {
-    width: "55%",
+    width: "60%",
     padding: "4% 2% 2%",
     position: "relative",
+    // left:"3%",
     "@media (max-width:768px)": {
       width: "100%",
       padding: "4%",

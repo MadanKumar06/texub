@@ -383,7 +383,7 @@ function Index({ registerproduct }) {
         DataList={table}
         PagePerRow={10}
       />
-      <Link to="/sellerdashboard/dashboard">
+      <Link className="inventory-page-back" to="/sellerdashboard/dashboard">
         <ArrowBackIosNew />
         <span>Back</span>
       </Link>
