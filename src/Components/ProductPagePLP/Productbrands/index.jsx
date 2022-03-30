@@ -1,56 +1,24 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./styles.scss";
 import { ArrowBackIosNew, ArrowForwardIos } from "@mui/icons-material";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import hpcolor from "../../../Assets/Productlist/hp_color.png";
-import hp from "../../../Assets/Productlist/hp_icon.png";
-import dell from "../../../Assets/Productlist/dell_icon.png";
-import apple from "../../../Assets/Productlist/apple_icon.png";
-import acer from "../../../Assets/Productlist/acer_icon.png";
-import windows from "../../../Assets/Productlist/windows_icon.png";
-import samsung from "../../../Assets/Productlist/samsung_icon.png";
-import { SliderBrands } from "./Sliderjson";
 
-const Slides = () =>
-  [
-    { id: 1, Image: hp },
-    { id: 2, Image: dell },
-    { id: 3, Image: apple },
-    { id: 4, Image: acer },
-    { id: 5, Image: samsung },
-    { id: 6, Image: hpcolor },
-    { id: 7, Image: dell },
-    { id: 8, Image: windows },
-    { id: 9, Image: hpcolor },
-    { id: 10, Image: dell },
-    { id: 11, Image: samsung },
-    { id: 12, Image: apple },
-    { id: 13, Image: hp },
-    { id: 14, Image: dell },
-    { id: 15, Image: apple },
-    { id: 16, Image: acer },
-    { id: 17, Image: samsung },
-    { id: 18, Image: hp },
-    { id: 19, Image: dell },
-    { id: 20, Image: apple },
-  ].map((num) => (
-    <div key={num.id} className="ProductBrand_first_Slider">
-      <img src={num.Image} alt=" " className="Slider_icons" />
-    </div>
-  ));
+import axios from "axios";
+import Constant from "../../../Constant";
+
 const Productsbrands = () => {
-  const [isChange, setisChange] = useState(false)
+  const [isChange, setisChange] = useState(false);
   const brand = (value) => {
-    setisChange(value)
-  }
+    value && setisChange(value);
+  };
   useEffect(() => {
-    document.addEventListener("mousedown", () =>{
-      setisChange(false)
-    })
-  })
-  
+    document.addEventListener("mousedown", () => {
+      setisChange(false);
+    });
+  }, []);
+
   function Arrow(props) {
     let className =
       props.type === "next" ? "Carosal_nextArrow" : "Carosal_prevArrow";
@@ -63,6 +31,47 @@ const Productsbrands = () => {
       </span>
     );
   }
+
+  const [sliderBrandsAndCategories, setSliderBrandsAndCategories] = useState({
+    brands: [],
+    categories: [],
+  });
+  useEffect(() => {
+    const fetchBrandsData = () => {
+      axios
+        .get(Constant.baseUrl() + "/getBrandList", {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => {
+          setSliderBrandsAndCategories((prevState) => ({
+            ...prevState,
+            brands: res?.data,
+          }));
+        })
+        .catch((err) => {});
+    };
+    fetchBrandsData();
+  }, []);
+  useEffect(() => {
+    const fetchCategoryData = () => {
+      axios
+        .get(Constant.baseUrl() + "/getCategoriesList", {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => {
+          setSliderBrandsAndCategories((prevState) => ({
+            ...prevState,
+            categories: res?.data,
+          }));
+        })
+        .catch((err) => {});
+    };
+    fetchCategoryData();
+  }, []);
   const Productsicon = {
     dots: false,
     infinite: true,
@@ -196,36 +205,46 @@ const Productsbrands = () => {
     <div className="Productsbrands">
       <div className="Slider_Section">
         <Slider {...Productsicon} className="slide_Test">
-          {Slides()}
+          {sliderBrandsAndCategories?.brands?.length &&
+            sliderBrandsAndCategories?.brands?.map((itm) => (
+              <div className="ProductBrand_first_Slider">
+                <img
+                  src={`${Constant.imageBaseUrl()}${itm?.image}`}
+                  alt="brands"
+                  className="Slider_icons"
+                />
+              </div>
+            ))}
         </Slider>
       </div>
       <div className="Slider_Section">
-        <Slider {...Productsbtns} className="slide_Test1">
-          {SliderBrands.map((item) => (
-            <li
-              key={item.id}
-              className="Slider_brands">
-              <span onMouseOver={() => brand(item.id)}
-              >{item.brand}</span>
-              {isChange && 
-                (
+        <Slider {...Productsbtns} className="slide_Test">
+          {sliderBrandsAndCategories?.categories?.length &&
+            sliderBrandsAndCategories?.categories?.map((item) => (
+              <li key={item?.category?.id} className="Slider_brands">
+                <span onMouseOver={() => brand(item?.category?.id)}>
+                  {item?.category?.category_name}
+                </span>
+                {isChange && (
                   <div className="list">
-                    <li className="list_content" >
-                      <span>{item.id === isChange && item.categiries.map(e =>
-                        <div className="content">
-                          <span>
-                            <p >{e.display}</p>
-                            <p>{e.count}</p> 
-                          </span>
-                        </div>
-                      )}
+                    <li className="list_content">
+                      <span>
+                        {item.category?.id === isChange &&
+                          item?.subcategories?.length &&
+                          item?.subcategories?.map((e) => (
+                            <div className="content">
+                              <span>
+                                <p>{e.category_name}</p>
+                                {/* <p>{e.count}</p> */}
+                              </span>
+                            </div>
+                          ))}
                       </span>
-
                     </li>
                   </div>
                 )}
-            </li>
-          ))}
+              </li>
+            ))}
         </Slider>
       </div>
     </div>
