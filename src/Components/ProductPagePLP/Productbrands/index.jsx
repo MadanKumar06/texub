@@ -24,12 +24,22 @@ const Slides = () =>
     { id: 7, Image: dell },
     { id: 8, Image: windows },
     { id: 9, Image: hpcolor },
+    { id: 10, Image: dell },
+    { id: 11, Image: samsung },
+    { id: 12, Image: apple },
+    { id: 13, Image: hp },
+    { id: 14, Image: dell },
+    { id: 15, Image: apple },
+    { id: 16, Image: acer },
+    { id: 17, Image: samsung },
+    { id: 18, Image: hp },
+    { id: 19, Image: dell },
+    { id: 20, Image: apple },
   ].map((num) => (
     <div key={num.id} className="ProductBrand_first_Slider">
       <img src={num.Image} alt=" " className="Slider_icons" />
     </div>
   ));
-  
 const Productsbrands = () => {
   const [isChange, setisChange] = useState(false)
   const brand = (value) => {
@@ -62,7 +72,7 @@ const Productsbrands = () => {
       {
         breakpoint: 1921,
         settings: {
-          slidesToShow: 8,
+          slidesToShow: 15,
           slidesToScroll: 2,
           initialSlide: 8,
         },
@@ -126,7 +136,7 @@ const Productsbrands = () => {
       {
         breakpoint: 1921,
         settings: {
-          slidesToShow: 8,
+          slidesToShow: 9,
           slidesToScroll: 2,
           initialSlide: 8,
         },
@@ -190,7 +200,7 @@ const Productsbrands = () => {
         </Slider>
       </div>
       <div className="Slider_Section">
-        <Slider {...Productsbtns} className="slide_Test">
+        <Slider {...Productsbtns} className="slide_Test1">
           {SliderBrands.map((item) => (
             <li
               key={item.id}

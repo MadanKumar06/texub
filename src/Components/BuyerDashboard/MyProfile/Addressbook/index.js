@@ -10,23 +10,34 @@ import { Link } from "react-router-dom";
 
 const Index = () => {
     // data state //storage
-    // const [data, setData] = useState([]);
-    // useEffect(() => {
-        // axios.get('https://jsonplaceholder.typicode.com/posts/1/comments')
-        //     .then(
-        //         res => {
-        //             setData(res.data)
-        //         })
-        //     .catch(err => console.log(err));
-        // loadData();
-        // getData();
-    // }, [])  
+    //  const [data, setData] = useState([]);
+    //  useEffect(() => {
+    //      axios.get('https://jsonplaceholder.typicode.com/posts/1/comments')
+    //         .then(
+    //             res => {
+    //                 setData(res.data)
+    //             })
+    //         .catch(err => console.log(err));
+    //       //loadData();
+    //      // getData();
+    //  }, [])  
+    //  console.log(data)
     // const loadData=()=>{
     //     fetch('https://jsonplaceholder.typicode.com/posts/1/comments')
-    //     .then(res=> res.json())
+    //     .then(res=> res.data)
     //     .then(receivedData => setData(receivedData))
     // }
-    // console.log(data)
+    
+    //  return(
+    //      <>
+    //      {data.map((post)=>
+    //      <div key={post.id}>
+    //         {post.mail}
+    //      </div>
+    //          )}
+    //      </>
+    //  );
+    
     const [isBilling, setisBilling] = useState(false)
     const Billaddress = () => {
         setisBilling(true)
@@ -41,7 +52,7 @@ const Index = () => {
     }
     const [isAddress, setisAddress] = useState(true)
     const billingAdderess = [
-        {
+        { 
             id: 1,
             organization: "Tech World",
             heading: "Default Billing Adress",
@@ -99,7 +110,7 @@ const Index = () => {
                                 <img src={Edit_image} alt="" style={{ height: "34px" }} /><p className='profile_edit' onClick={() => Billaddress()} >Edit</p>
                             </div>
                         </div>
-                        <div class="vl"></div>
+                        <div className="vl"></div>
                         <div className='Address_Shipping'>
                             {shippingAddress.map((user) => (
                                 <ul key={user.id}>
@@ -116,7 +127,8 @@ const Index = () => {
                             )
                             )}
                             <div className='edit_section'>
-                                <img src={Edit_image} alt="" style={{ height: "34px" }} /><p className='profile_edit' onClick={() => Shipadress()} >Edit</p>
+                                <img src={Edit_image} alt="" style={{ height: "34px" }} />
+                                <p className='profile_edit' onClick={() => Shipadress()} >Edit</p>
                             </div>
 
                         </div>
