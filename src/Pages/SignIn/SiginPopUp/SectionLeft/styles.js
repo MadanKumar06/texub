@@ -20,6 +20,9 @@ const styles = (theme) => ({
     "@media (max-width:1440px)": {
       margin: "0 15%",
     },
+    "@media (max-width:780px)": {
+      margin: "0 5%",
+    },
     "@media (max-width:580px)": {
       margin: "0 2%",
     },
@@ -171,6 +174,9 @@ const styles = (theme) => ({
       "@media(max-width:1660px)": {
         fontSize: "16px",
       },
+      "@media(max-width:780px)": {
+        fontSize: "14px",
+      },
     },
     "& svg": {
       width: "1.3em",
@@ -205,6 +211,10 @@ const styles = (theme) => ({
     "@media(max-width:1660px)": {
       padding: "8px !important",
       fontSize: "16px !important",
+    },
+    "@media(max-width:780px)": {
+      padding: "8px !important",
+      fontSize: "14px !important",
     },
   },
   forgot_password: {
