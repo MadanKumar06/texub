@@ -52,7 +52,11 @@
     }
   }
 }
-
+@media (max-width: 1399px) {
+  .products .products_want_to_buy p span{
+   font-size: 18px;
+  }
+}
 @media (max-width: 480px) {
   .products .products_want_to_buy {
     top: 18.5em;

@@ -158,7 +158,8 @@
   .productlist .productlist__deal .productlist__deal__image {
     width: 46px;
   }
-  .productlist {
+ 
+      .productlist {
     padding: 15px 2%;
     gap: 1em;
   }
@@ -170,6 +171,14 @@
   .productlist {
     padding: 15px 2%;
     gap: 1em;
+  }
+  .productlist .productlist__deal span{
+    font-size: 14px;
+  }
+  .productlist .productlist__search .search_input .MuiInput-root input{
+    font-size: 16px;
+    height: 100%;
+    padding: 3px 0 4px;
   }
 }
 
