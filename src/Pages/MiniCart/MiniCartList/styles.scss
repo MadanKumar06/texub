@@ -120,7 +120,7 @@
           .price {
             margin: 0;
             width: max-content;
-            font-size: 28px;
+            font-size: 24px;
             font-weight: 600;
             color: #5c6369;
             span {
@@ -189,7 +189,7 @@
           p {
             margin: 0;
             color: #5c6369;
-            font-size: 28px;
+            font-size: 24px;
             font-weight: 600;
             span {
               color: #5c6369;
@@ -217,12 +217,12 @@
         letter-spacing: 0.72px;
       }
       .total_price {
-        font-size: 38px;
+        font-size: 28px;
         margin: 0;
         color: #333c42;
         font-weight: 600;
         span {
-          font-size: 24px;
+          font-size: 22px;
         }
       }
     }
@@ -291,6 +291,11 @@
     .minicart_list_content
     .minicart_section_container
     .section_right {
+      .modal__hub {
+        .modal_name {
+          font-size: 16px;
+        }
+      }
     .detail_link {
       font-size: 16px;
     }
@@ -298,9 +303,12 @@
       span {
         font-size: 16px;
       }
-      font-size: 24px;
+      font-size: 20px;
     }
     .price_block .quantity .qty_change {
+      .input_text{
+        font-size: 20px;
+      }
       .item_decrease,
       .item_increase {
         width: 32px;
@@ -311,7 +319,7 @@
       span {
         font-size: 16px;
       }
-      font-size: 24px;
+      font-size: 20px;
     }
   }
   .minicart_list_main .minicart_footer .minicart_total {
@@ -320,9 +328,9 @@
     }
     .total_price {
       span {
-        font-size: 18px;
+        font-size: 16px;
       }
-      font-size: 28px;
+      font-size: 22px;
     }
   }
   .minicart_list_main
@@ -363,13 +371,30 @@
             .quantity {
               .qty_change {
                 .input_text {
-                  font-size: 22px;
+                  font-size: 18px;
                 }
               }
             }
           }
+          .price_block .price {
+            span {
+              font-size: 14px;
+            }
+            font-size: 18px;
+          }
         }
       }
+    }
+  }
+  .minicart_list_main .minicart_footer .minicart_total {
+    .title_total {
+      font-size: 18px;
+    }
+    .total_price {
+      span {
+        font-size: 14px;
+      }
+      font-size: 18px;
     }
   }
 }
@@ -449,6 +474,47 @@
     font-size: 22px;
   }
 }
+@media (max-width: 780px) {
+  .minicart_list_main
+    .minicart_footer
+    .minicart_btn
+    .minicart_bottom_button_cart,
+  .minicart_list_main
+    .minicart_footer
+    .minicart_btn
+    .minicart_bottom_button_pending_invoice {
+    padding: 4px !important;
+  }
+  .minicart_list_main
+    .minicart_list_content
+    .minicart_section_container
+    .section_right
+      .modal__hub {
+        .modal_name {
+          font-size: 14px;
+        }
+      }
+    .total_block
+    span {
+    font-size: 14px;
+  }
+  .minicart_list_main
+    .minicart_list_content
+    .minicart_section_container
+    .section_right
+    .total_block
+    p {
+    font-size: 18px;
+  }
+  .minicart_list_main
+    .minicart_list_content
+    .minicart_section_container
+    .section_right
+    .price_block
+    .price {
+    font-size: 18px;
+  }
+}
 @media (max-width: 480px) {
   .minicart_list_main {
     .minicart_list_content .minicart_section_container {
@@ -475,5 +541,8 @@
         }
       }
     }
+  }
+  .minicart_list_main .minicart_list_content .minicart_section_container .section_right .price_block .quantity .qty_change{
+    width: fit-content;
   }
 }
