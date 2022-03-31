@@ -12,6 +12,7 @@ const styles = (theme) => ({
     },
     "@media(max-width:767px)": {
       margin: "0",
+      fontSize: "14px",
     },
   },
   info_text_guest: {
@@ -24,6 +25,9 @@ const styles = (theme) => ({
     },
     "@media (max-width:767px)": {
       textAlign: "center",
+    },
+    "@media (max-width:567px)": {
+      fontSize: "18px",
     },
   },
   validation_error: {
@@ -62,6 +66,9 @@ const styles = (theme) => ({
       fontSize: "20px",
       "@media(max-width:1660px)": {
         fontSize: "16px",
+      },
+      "@media(max-width:780px)": {
+        fontSize: "14px",
       },
     },
     "& svg": {
