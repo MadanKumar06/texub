@@ -5,4 +5,7 @@ module.exports = {
   imageBaseUrl: function () {
     return "https://texub.uat.a2zportals.co.in/media/";
   },
+  adminTokenUrl: function () {
+    return "https://texub.uat.a2zportals.co.in/rest/V1/integration/admin/token";
+  },
 };

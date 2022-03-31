@@ -15,7 +15,7 @@ import { useStateValue } from "../../../store/state";
 import styles from "./styles";
 import MuiPhoneNumber from "material-ui-phone-number";
 import axios from "axios";
-import baseUrl from "../../../Constant";
+import Constant from "../../../Constant";
 import clsx from "clsx";
 
 const BuyerRegistration = ({ classes }) => {
@@ -78,7 +78,7 @@ const BuyerRegistration = ({ classes }) => {
   useEffect(() => {
     const fetchRegionData = () => {
       axios
-        .get(baseUrl + "/getRegionList", {
+        .get(Constant.baseUrl() + "/getRegionList", {
           headers: {
             "Content-Type": "application/json",
           },
@@ -96,7 +96,7 @@ const BuyerRegistration = ({ classes }) => {
   useEffect(() => {
     const fetchRoleData = () => {
       axios
-        .get(baseUrl + "/getRoleList", {
+        .get(Constant.baseUrl() + "/getRoleList", {
           headers: {
             "Content-Type": "application/json",
           },
@@ -118,7 +118,7 @@ const BuyerRegistration = ({ classes }) => {
           region_id: sellerRegistrationData?.region?.region_id,
         };
         axios
-          .post(baseUrl + "/getCountryListByRegion", data, {
+          .post(Constant.baseUrl() + "/getCountryListByRegion", data, {
             headers: {
               "Content-Type": "application/json",
             },
