@@ -1,4 +1,4 @@
-import React, {useState}from 'react'
+import React, {useState,useEffect}from 'react'
 import TextField from '@mui/material/TextField';
 import './styles.scss'
 // import { useStateValue } from "../../../../../../src/store/state";
@@ -7,20 +7,20 @@ import Autocomplete from "@mui/material/Autocomplete";
 import { useParams } from "react-router-dom";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import { Link } from "react-router-dom";
+import axios from "axios"
+import baseUrl from '../../../../../../src/Constant'
 
 const Index = ({address}) => {  
-  // const [{}, dispatch] = useStateValue();
   let { type } = useParams();
   const city = ["Banglore", "Chennai","Hyderabad",];
   const state = ["Karnataka", "Tamilnadu","Telangana"];
-  const country = ["India", "USA","Dubai"];
   const [Value, setValue] = React.useState({
     city:"",
     state:"",
     country:"",
   });
   
-  // const [inputValue, setInputValue] = React.useState("");
+  
   const [billing, setbilling] = useState(false)
   const [shippingAddressdata, setshippingAddressdata] = useState({
     organization_name: "",
@@ -57,7 +57,24 @@ const Index = ({address}) => {
   //     country: event 
   //   }));
   // };
-  
+   //Api
+   const [CountryDropdown, setCountryDropdown] = useState([])
+   useEffect(() => {
+    const fetchCountryList = () => {
+      axios
+        .get(baseUrl + "/getCountryList", {
+          headers: {
+            "Content-type": "application/json",
+          },
+        })
+        .then((response) => {
+          console.log('$%$%$%$%',response)
+          setCountryDropdown(response?.data);
+        })
+        .catch((error) => { });
+    }
+   fetchCountryList();
+}, []);
   return (
     <div className='Shippingaddress_main'>
       <div className='Shippingaddress_heading_section'>
@@ -180,7 +197,7 @@ const Index = ({address}) => {
               <p>Country</p>
               <Autocomplete
                name='country'
-               options={country}
+               options={CountryDropdown}
                 value={Value?.country}
                 onChange={(event, newValue) => {
                   setValue((prevState) => ({

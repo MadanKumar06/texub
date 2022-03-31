@@ -20,7 +20,6 @@ const Index = (classes) => {
     new_password: "",
     new_confrim_password: "",
   });
-  const [CountryDropdown, setCountryDropdown] = useState(null)
   const [inputValidation, setInputValidation] = useState({
     first_name: "",
     last_name: "",
@@ -35,6 +34,7 @@ const Index = (classes) => {
       ...prevState,
       [event.target.name]: event.target.value,
     }));
+    setInputValidation("");
     handleSwitchCase([event.target.name], event.target.value);
   };
   const handleMobileChangeInput = (event) => {
@@ -63,16 +63,12 @@ const Index = (classes) => {
         }
         break;
       case "mobile_number":
-        if (!value) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            mobile_number: "Please enter your mobile number.",
-          }));
-        } else if (AccountInfoData?.mobile_number?.length > 10) {
+        if (value?.length < 6 || value?.length > 15) {
           document.getElementById("mobile_number")?.focus();
           setInputValidation((prevState) => ({
             ...prevState,
-            mobile_number: "Please enter 10 digit mobile number.",
+            mobile_number:
+              "Please enter more than 6 and less than 16 digit mobile number.",
           }));
         }
         break;
@@ -140,13 +136,14 @@ const Index = (classes) => {
       errorHandle = true;
     }
     if (!AccountInfoData?.mobile_number) {
-      document.getElementById("root")?.focus();
+      document.getElementById("mobile_number")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
         mobile_number: "Please enter the mobile number.",
       }));
       errorHandle = true;
-    } else if (AccountInfoData?.mobile_number?.length < 10) {
+    } else if (AccountInfoData?.mobile_number[1]?.length !== 10) {
+      debugger;
       document.getElementById("mobile_number")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
@@ -179,25 +176,6 @@ const Index = (classes) => {
       errorHandle = true;
     }
   };
-  //Api
-  useEffect(() => {
-    const fetchCountryList = () => {
-      axios
-        .get(baseUrl + "/getCountryList", {
-          headers: {
-            "Content-type": "application/json",
-          },
-        })
-        .then((response) => {
-          console.log('$%$%$%$%',response)
-          setCountryDropdown(response?.data);
-        })
-        .catch((error) => { });
-    }
-   fetchCountryList();
-}, []);
-{}
-
 return (
   <div className='account_ifo_main'>
     <span className='Account_heading'> <p>EDIT PROFILE INFORMATION</p></span>
@@ -247,7 +225,6 @@ return (
               country={'in'}
               id="mobile_number"
               fullWidth
-              enableSearch={true}
               countryCodeEditable={false}
               className="inputfield-box"
               name="mobile_number"
