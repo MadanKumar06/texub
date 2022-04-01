@@ -210,9 +210,15 @@ const TransitionsModal = ({ classes, openPopUp }) => {
   const handleKyc = (event) => {
     if (event?.info === "kyc_not_filled") {
       dispatch({
-        type: "SET_KYC_OPEN_CLOSE",
-        value: true,
+        type: "SET_SIGNIN_OPEN_CLOSE",
+        value: false,
       });
+      setTimeout(() => {
+        dispatch({
+          type: "SET_KYC_OPEN_CLOSE",
+          value: true,
+        });
+      }, 1000 / 2);
     } else if (event?.info === "kyc_filled") {
       let user = event?.id === 5 ? "buyer" : event?.id === 6 && "seller";
       dispatch({

@@ -39,6 +39,10 @@ const TaxCertificateButton = ({
   const [dateChange, setDateChange] = useState(null);
   const handleChange = (newValue) => {
     setDateChange(newValue);
+    SetFormValues((prevState) => ({
+      ...prevState,
+      tax_expiration_date: newValue,
+    }));
     setInputValidation("");
     handleSwitchCase(["tax_expiration_date"], newValue);
   };
@@ -71,22 +75,8 @@ const TaxCertificateButton = ({
 
   const handleSwitchCase = (fieldName, value) => {
     switch (fieldName[0]) {
-      // case "tax_number":
-      //   if (!value) {
-      //     setInputValidation((prevState) => ({
-      //       ...prevState,
-      //       tax_number: "Please enter the tax number.",
-      //     }));
-      //   }
-      //   break;
-
       case "tax_expiration_date":
-        if (!value) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            tax_expiration_date: "Please select expiration date.",
-          }));
-        } else if (value.toString() === "Invalid Date") {
+        if (value.toString() === "Invalid Date") {
           setInputValidation((prevState) => ({
             ...prevState,
             tax_expiration_date: "Please select valid date.",
@@ -126,8 +116,7 @@ const TaxCertificateButton = ({
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <DesktopDatePicker
             label="Expiration Date"
-            inputFormat="MM/yy"
-            views={["year", "month"]}
+            inputFormat="MM/dd/yyyy"
             minDate={new Date()}
             value={dateChange}
             onChange={handleChange}
@@ -137,13 +126,13 @@ const TaxCertificateButton = ({
                 fullWidth
                 className="inputfield-box"
                 id="tax_expiration_date"
-                placeholder="MM/YY"
+                placeholder="MM/DD/YY"
                 InputLabelProps={{
                   shrink: true,
-                  required: false,
-                  classes: {
-                    asterisk: asterisk,
-                  },
+                  // required: false,
+                  // classes: {
+                  //   asterisk: asterisk,
+                  // },
                 }}
               />
             )}
@@ -163,7 +152,7 @@ const TaxCertificateButton = ({
               htmlFor="icon-button-file"
             >
               <input
-                accept="image/*"
+                accept="image/jpeg,image/png,application/pdf"
                 id="icon-button-file"
                 type="file"
                 name="tax_image"
@@ -183,28 +172,31 @@ const TaxCertificateButton = ({
         <InputLabel className={validation_error}>
           {inputValidation?.tax_image}
         </InputLabel>
-        {FormValues?.tax_image && (
-          <div className={input_image_name}>
+
+        <div className={input_image_name}>
+          {FormValues?.tax_image?.name ? (
             <p>{FormValues?.tax_image?.name}</p>
-            <Clear
-              className={input_image_name_clear_btn}
-              onClick={() =>
-                SetFormValues((prevState) => ({
-                  ...prevState,
-                  tax_image: "",
-                }))
-              }
-            />
-          </div>
-        )}
+          ) : (
+            <p>No File Chosen</p>
+          )}
+          <Clear
+            className={input_image_name_clear_btn}
+            onClick={() =>
+              SetFormValues((prevState) => ({
+                ...prevState,
+                tax_image: "",
+              }))
+            }
+          />
+        </div>
       </div>
-        <FormControlLabel
-          value="yes"
-          control={<Checkbox color="color_third" />}
-          label="Automated Reminder on Expiry."
-          labelPlacement="end"
-          className={checkbox_label}
-        />
+      <FormControlLabel
+        value="yes"
+        control={<Checkbox color="color_third" />}
+        label="Automated Reminder on Expiry."
+        labelPlacement="end"
+        className={checkbox_label}
+      />
     </>
   );
 };
