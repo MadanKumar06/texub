@@ -16,17 +16,21 @@ import {
   isEmailValid,
   isPasswordValid,
   isFirstAndLastNameValid,
+  isCompanyNameValid,
+  getAdminToken,
 } from "../../../utilities";
 import Autocomplete from "@mui/material/Autocomplete";
 import { withStyles } from "@mui/styles";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/material.css";
+import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
-import baseUrl from "../../../Constant";
+import Constant from "../../../Constant";
 
 const BuyerRegistration = ({ classes }) => {
   const [{}, dispatch] = useStateValue();
+  const history = useNavigate();
   let {
     main_container,
     input_fields,
@@ -41,6 +45,7 @@ const BuyerRegistration = ({ classes }) => {
     mobile_input,
   } = classes;
   const [countryList, setCountryList] = useState([]);
+  const [adminToken, setAdminToken] = useState({});
   const [buyerRegistrationData, setbuyerRegistrationData] = useState({
     first_name: "",
     last_name: "",
@@ -73,7 +78,10 @@ const BuyerRegistration = ({ classes }) => {
       mobile_number: value,
       mobile_valid: value?.slice(data?.dialCode?.length),
     }));
-    setInputValidation("");
+    setInputValidation((prevState) => ({
+      ...prevState,
+      mobile_number: "",
+    }));
     handleSwitchCase(["mobile_number"], value?.slice(data?.dialCode?.length));
   };
   const handleChangeInput = (event) => {
@@ -82,14 +90,20 @@ const BuyerRegistration = ({ classes }) => {
         ...prevState,
         [event.target.name]: event.target.checked,
       }));
-      setInputValidation("");
+      setInputValidation((prevState) => ({
+        ...prevState,
+        [event.target.name]: "",
+      }));
       handleSwitchCase([event.target.name], event.target.value);
     } else {
       setbuyerRegistrationData((prevState) => ({
         ...prevState,
         [event.target.name]: event.target.value,
       }));
-      setInputValidation("");
+      setInputValidation((prevState) => ({
+        ...prevState,
+        [event.target.name]: "",
+      }));
       handleSwitchCase([event.target.name], event.target.value);
     }
   };
@@ -121,14 +135,6 @@ const BuyerRegistration = ({ classes }) => {
           }));
         }
         break;
-      case "confrim_password":
-        if (!(buyerRegistrationData?.password === value)) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            confrim_password: "Password and confirm password does not match",
-          }));
-        }
-        break;
       case "email_address":
         if (!isEmailValid(value)) {
           setInputValidation((prevState) => ({
@@ -146,30 +152,31 @@ const BuyerRegistration = ({ classes }) => {
           }));
         }
         break;
-      // case "company":
-      //   if (!value) {
-      //     setInputValidation((prevState) => ({
-      //       ...prevState,
-      //       company: "Please enter the company.",
-      //     }));
-      //   }
-      //   break;
-      // case "designation":
-      //   if (!value) {
-      //     setInputValidation((prevState) => ({
-      //       ...prevState,
-      //       designation: "Please enter the designation.",
-      //     }));
-      //   }
-      //   break;
-      // case "country":
-      //   if (!value) {
-      //     setInputValidation((prevState) => ({
-      //       ...prevState,
-      //       country: "Please select the country.",
-      //     }));
-      //   }
-      //   break;
+      case "confrim_password":
+        if (!(buyerRegistrationData?.password === value)) {
+          setInputValidation((prevState) => ({
+            ...prevState,
+            confrim_password: "Password and confirm password does not match",
+          }));
+        }
+        break;
+
+      case "company":
+        if (!isCompanyNameValid(value)) {
+          setInputValidation((prevState) => ({
+            ...prevState,
+            company: "Please enter Alphabet or (Alphabet and Number).",
+          }));
+        }
+        break;
+      case "designation":
+        if (!isFirstAndLastNameValid(value)) {
+          setInputValidation((prevState) => ({
+            ...prevState,
+            designation: "Please enter alphabet.",
+          }));
+        }
+        break;
       default:
         break;
     }
@@ -183,12 +190,26 @@ const BuyerRegistration = ({ classes }) => {
         first_name: "Please enter the first name.",
       }));
       errorHandle = true;
+    } else if (!isFirstAndLastNameValid(buyerRegistrationData?.first_name)) {
+      document.getElementById("first_name")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        first_name: "Please enter alphabet.",
+      }));
+      errorHandle = true;
     }
     if (!buyerRegistrationData?.last_name) {
       document.getElementById("last_name")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
         last_name: "Please enter the last name.",
+      }));
+      errorHandle = true;
+    } else if (!isFirstAndLastNameValid(buyerRegistrationData?.last_name)) {
+      document.getElementById("last_name")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        last_name: "Please enter alphabet.",
       }));
       errorHandle = true;
     }
@@ -214,12 +235,15 @@ const BuyerRegistration = ({ classes }) => {
         mobile_number: "Please enter the mobile number.",
       }));
       errorHandle = true;
-    } else if (buyerRegistrationData?.mobile_number[1]?.length !== 10) {
-      debugger;
+    } else if (
+      buyerRegistrationData?.mobile_valid?.length < 6 ||
+      buyerRegistrationData?.mobile_valid?.length > 15
+    ) {
       document.getElementById("mobile_number")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
-        mobile_number: "Please enter 10 digit mobile number.",
+        mobile_number:
+          "Please enter more than 6 and less than 16 digit mobile number.",
       }));
       errorHandle = true;
     }
@@ -263,7 +287,14 @@ const BuyerRegistration = ({ classes }) => {
       document.getElementById("company")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
-        company: "Please enter the company.",
+        company: "Please enter the company name.",
+      }));
+      errorHandle = true;
+    } else if (!isCompanyNameValid(buyerRegistrationData?.company)) {
+      document.getElementById("company")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        company: "Please enter Alphabet or (Alphabet and Number)..",
       }));
       errorHandle = true;
     }
@@ -274,9 +305,16 @@ const BuyerRegistration = ({ classes }) => {
         designation: "Please enter the designation.",
       }));
       errorHandle = true;
+    } else if (!isFirstAndLastNameValid(buyerRegistrationData?.designation)) {
+      document.getElementById("designation")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        designation: "Please enter alphabet.",
+      }));
+      errorHandle = true;
     }
-    if (!buyerRegistrationData) {
-      document.getElementById("last_name")?.focus();
+    if (!buyerRegistrationData?.country) {
+      document.getElementById("country")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
         country: "Please select the country.",
@@ -285,10 +323,7 @@ const BuyerRegistration = ({ classes }) => {
     }
     if (!errorHandle) {
       // Apicall fuction
-      dispatch({
-        type: "SET_KYC_OPEN_CLOSE",
-        value: true,
-      });
+      FinalBuyerRegistration();
     }
   };
 
@@ -296,7 +331,7 @@ const BuyerRegistration = ({ classes }) => {
   useEffect(() => {
     const fetchCountryData = () => {
       axios
-        .get(baseUrl + "/getCountryList", {
+        .get(Constant.baseUrl() + "/getCountryList", {
           headers: {
             "Content-Type": "application/json",
           },
@@ -309,6 +344,59 @@ const BuyerRegistration = ({ classes }) => {
     fetchCountryData();
   }, []);
 
+  //API to fetch admin token
+  useEffect(() => {
+    getAdminToken((res) => {
+      setAdminToken(res);
+    });
+  }, []);
+
+  //API to Register
+  const FinalBuyerRegistration = () => {
+    dispatch({
+      type: "SET_IS_LOADING",
+      value: true,
+    });
+    let data = {
+      customer: {
+        group_id: 5,
+        website_id: 1,
+        store_id: 2,
+        email: buyerRegistrationData?.email_address,
+        first_name: buyerRegistrationData?.first_name,
+        last_name: buyerRegistrationData?.last_name,
+        mobile_number: buyerRegistrationData?.mobile_number,
+        password: buyerRegistrationData?.password,
+        confirm_password: buyerRegistrationData?.confrim_password,
+        landline_number: buyerRegistrationData?.landline_number,
+        company_name: buyerRegistrationData?.company,
+        country: buyerRegistrationData?.country?.value,
+        designation: buyerRegistrationData?.designation,
+        is_seller: 0,
+      },
+    };
+    axios
+      .post(Constant.baseUrl() + "/createCustomer", data, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${adminToken}`,
+        },
+      })
+      .then((res) => {
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+        localStorage.setItem("register_success", JSON.stringify(res?.data));
+        history("/thankyou/buyer", { state: res?.data });
+      })
+      .catch((err) => {
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+      });
+  };
   return (
     <div className={main_container}>
       <div className={input_fields}>
@@ -535,7 +623,9 @@ const BuyerRegistration = ({ classes }) => {
                   ...prevState,
                   country: newValue,
                 }));
-                setInputValidation("");
+                setInputValidation((prevState) => ({
+                  country: "",
+                }));
               }}
               className={auto_complete_input}
               id="controllable-states-demo"
@@ -575,11 +665,11 @@ const BuyerRegistration = ({ classes }) => {
               value="yes"
               control={<Checkbox color="secondary" />}
               label={
-                <div>
+                <p>
                   By using this form you agree with the{" "}
-                  <span>Terms of Use</span>
-                  and <span>Privacy Policy</span> by this website.
-                </div>
+                  <span>Terms of Use</span> and <span>Privacy Policy</span> by
+                  this website.
+                </p>
               }
               labelPlacement="end"
               className={checkbox_label}
@@ -602,7 +692,6 @@ const BuyerRegistration = ({ classes }) => {
           {/* </Link> */}
         </Box>
       </div>
-      {/* <ArrowDropUp className={arrow_icon} />  */}
     </div>
   );
 };
