@@ -30,6 +30,38 @@ const NationalIdButton = ({
       [event.target.name]: event.target.files[0],
     }));
     setInputValidation("");
+    toBase64(event.target?.files[0], event.target?.files[0]?.type);
+  };
+  const toBase64 = (File, type) => {
+    var reader = new FileReader();
+    reader.readAsDataURL(File);
+    reader.onload = function () {
+      if (type === "image/png") {
+        let temp = reader.result?.replace("data:image/png;base64,", "png;");
+        SetFormValues((prevState) => ({
+          ...prevState,
+          nationality_image_base64: temp,
+        }));
+      } else if (type === "application/pdf") {
+        let temp = reader.result?.replace(
+          "data:application/pdf;base64,",
+          "pdf;"
+        );
+        SetFormValues((prevState) => ({
+          ...prevState,
+          nationality_image_base64: temp,
+        }));
+      } else if (type === "image/jpeg") {
+        let temp = reader.result?.replace("data:image/jpeg;base64,", "jpeg;");
+        SetFormValues((prevState) => ({
+          ...prevState,
+          nationality_image_base64: temp,
+        }));
+      }
+    };
+    reader.onerror = function (error) {
+      console.log("Error: ", error);
+    };
   };
   const [inputValidation, setInputValidation] = useState({
     national_id_image: "",
