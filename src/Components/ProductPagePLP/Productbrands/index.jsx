@@ -221,8 +221,8 @@ const Productsbrands = () => {
         <Slider {...Productsbtns} className="slide_Test">
           {sliderBrandsAndCategories?.categories?.length &&
             sliderBrandsAndCategories?.categories?.map((item) => (
-              <li key={item?.category?.id} className="Slider_brands">
-                <span onMouseOver={() => brand(item?.category?.id)}>
+              <li key={item?.category?.id} className="Slider_brands" onMouseOver={() => brand(item?.category?.id)}>
+                <span>
                   {item?.category?.category_name}
                 </span>
                 {isChange && (
