@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from "@mui/material/Autocomplete";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import axios from "axios"
-import baseUrl from '../../../../../../src/Constant'
+import Constants from '../../../../../../src/Constant'
 import { Link } from "react-router-dom";
 
 const Index = (classes, props) => {
@@ -21,7 +21,7 @@ const Index = (classes, props) => {
    useEffect(() => {
     const fetchCountryList = () => {
       axios
-        .get(baseUrl + "/getCountryList", {
+        .get(Constants.baseUrl() + "/getCountryList", {
           headers: {
             "Content-type": "application/json",
           },
@@ -30,7 +30,7 @@ const Index = (classes, props) => {
           console.log('$%$%$%$%',response)
           setCountryDropdown(response?.data);
         })
-        .catch((error) => { });
+        .catch((error) =>console.log(error));
     }
    fetchCountryList();
 }, []);

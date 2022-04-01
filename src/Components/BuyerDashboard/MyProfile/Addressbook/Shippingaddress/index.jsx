@@ -8,7 +8,7 @@ import { useParams } from "react-router-dom";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import axios from "axios"
-import baseUrl from '../../../../../../src/Constant'
+import Constant from '../../../../../../src/Constant'
 
 const Index = ({address}) => {  
   let { type } = useParams();
@@ -37,32 +37,12 @@ const Index = ({address}) => {
       [event.target.name]: event.target.value, 
     }));
   };
-  // const handleChangeCityInput = (event) => {
-  //   setshippingAddressdata((prevState) => ({
-  //     ...prevState,
-  //     city: event
-  //   }));
-  //   console.log(city)
-  // };
-
-  // const handleChangeStateInput = (event) => {
-  //   setshippingAddressdata((prevState) => ({
-  //     ...prevState,
-  //     state: event  
-  //   }));
-  // };
-  // const handleChangeCountryInput = (event) => {
-  //   setshippingAddressdata((prevState) => ({
-  //     ...prevState,
-  //     country: event 
-  //   }));
-  // };
    //Api
    const [CountryDropdown, setCountryDropdown] = useState([])
    useEffect(() => {
     const fetchCountryList = () => {
       axios
-        .get(baseUrl + "/getCountryList", {
+        .get(Constant.baseUrl() + "/getCountryList", {
           headers: {
             "Content-type": "application/json",
           },
@@ -214,7 +194,7 @@ const Index = ({address}) => {
                     {...params}
                      id='country'
                      name='country'
-                    placeholder="State"
+                    placeholder="Country"
                     // onChange={handleChangeCountryInput}
                     InputLabelProps={{
                       shrink: true,
