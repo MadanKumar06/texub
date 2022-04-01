@@ -17,17 +17,20 @@ import {
   isPasswordValid,
   isFirstAndLastNameValid,
   isCompanyNameValid,
+  getAdminToken,
 } from "../../../utilities";
 import Autocomplete from "@mui/material/Autocomplete";
 import { withStyles } from "@mui/styles";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/material.css";
+import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
 import Constant from "../../../Constant";
 
 const BuyerRegistration = ({ classes }) => {
   const [{}, dispatch] = useStateValue();
+  const history = useNavigate();
   let {
     main_container,
     input_fields,
@@ -343,28 +346,17 @@ const BuyerRegistration = ({ classes }) => {
 
   //API to fetch admin token
   useEffect(() => {
-    const fetchAdminToken = () => {
-      let data = {
-        username: "admin",
-        password: "admin@1234",
-      };
-      axios
-        .post(Constant.adminTokenUrl(), data, {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
-        .then((res) => {
-          setAdminToken(res?.data);
-        })
-        .catch((err) => {});
-    };
-    fetchAdminToken();
+    getAdminToken((res) => {
+      setAdminToken(res);
+    });
   }, []);
 
   //API to Register
   const FinalBuyerRegistration = () => {
-    debugger;
+    dispatch({
+      type: "SET_IS_LOADING",
+      value: true,
+    });
     let data = {
       customer: {
         group_id: 5,
@@ -378,7 +370,7 @@ const BuyerRegistration = ({ classes }) => {
         confirm_password: buyerRegistrationData?.confrim_password,
         landline_number: buyerRegistrationData?.landline_number,
         company_name: buyerRegistrationData?.company,
-        country: buyerRegistrationData?.country,
+        country: buyerRegistrationData?.country?.value,
         designation: buyerRegistrationData?.designation,
         is_seller: 0,
       },
@@ -387,16 +379,23 @@ const BuyerRegistration = ({ classes }) => {
       .post(Constant.baseUrl() + "/createCustomer", data, {
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${adminToken}`,
         },
       })
       .then((res) => {
-        setAdminToken(res?.data);
         dispatch({
-          type: "SET_KYC_OPEN_CLOSE",
-          value: true,
+          type: "SET_IS_LOADING",
+          value: false,
         });
+        localStorage.setItem("register_success", JSON.stringify(res?.data));
+        history("/thankyou/buyer", { state: res?.data });
       })
-      .catch((err) => {});
+      .catch((err) => {
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+      });
   };
   return (
     <div className={main_container}>
@@ -668,8 +667,8 @@ const BuyerRegistration = ({ classes }) => {
               label={
                 <p>
                   By using this form you agree with the{" "}
-                  <span>Terms of Use</span>{" "}
-                  and <span>Privacy Policy</span> by this website.
+                  <span>Terms of Use</span> and <span>Privacy Policy</span> by
+                  this website.
                 </p>
               }
               labelPlacement="end"
@@ -693,7 +692,6 @@ const BuyerRegistration = ({ classes }) => {
           {/* </Link> */}
         </Box>
       </div>
-      {/* <ArrowDropUp className={arrow_icon} />  */}
     </div>
   );
 };

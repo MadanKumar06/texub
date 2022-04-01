@@ -48,9 +48,10 @@ import PDPpopUp from "./Pages/PDPpopUp";
 import SignIn from './Pages/SignIn/SiginPopUp/SectionLeft'
 import RegisterPopup from './Pages/Register/RegisterPopup/SectionLeft'
 import MiniCartList from "./Pages/MiniCart/MiniCartList";
+import SimpleBackdrop from "./Components/LoaderBackDrop"
 
 const App = () => {
-  const [{kycOpenClose,pdpPopUpOpenClose,registerOpenClose,miniCartOpenClose,
+  const [{kycOpenClose,pdpPopUpOpenClose,registerOpenClose,miniCartOpenClose, isLoading,
     signInOpenClose}, dispatch] = useStateValue();
   return (
     <div className="App">
@@ -100,11 +101,12 @@ const App = () => {
           </Routes>
 
            {/* Popup component using context api */}          
-          {kycOpenClose && <KYCformSectionLeft/>} 
-          {pdpPopUpOpenClose?.openClose && <PDPpopUp/>}
-          {signInOpenClose && <SignIn />}
-          {registerOpenClose && <RegisterPopup/>}
-         { miniCartOpenClose?.openClose && <MiniCartList/>}
+           {kycOpenClose && <KYCformSectionLeft/>} 
+           {pdpPopUpOpenClose?.openClose && <PDPpopUp/>}
+           {signInOpenClose && <SignIn />}
+           {registerOpenClose && <RegisterPopup/>}
+           { miniCartOpenClose?.openClose && <MiniCartList/>}
+           {isLoading && <SimpleBackdrop/>}
       
         </Router>
       </ThemeProvider>

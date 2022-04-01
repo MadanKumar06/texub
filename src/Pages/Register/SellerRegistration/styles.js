@@ -49,6 +49,46 @@ const styles = (theme) => ({
   recaptcha_info: {
     width: "100%",
   },
+  mobile_input: {
+    "& .form-control": {
+      width: "100% !important",
+      padding: "12.5px 14px 12.5px 58px",
+    },
+    "& .form-control:focus": {
+      borderColor: "#ddb363",
+      boxShadow: "0 0 0 0 #ddb363",
+    },
+    "& .form-control:hover": {
+      borderColor: "#ddb363",
+    },
+    "& .special-label": {
+      visibility: "hidden",
+      // position: "relative",
+      "&:after": {
+        visibility: "visible",
+        position: "absolute",
+        top: "0",
+        left: "0",
+        background: "#ffffff",
+        fontWeight: "600",
+        fontSize: "14px",
+        color: "#3e3e3e",
+        padding: "0px 15px 0 5px",
+        content: "'Mobile Number'",
+      },
+      "&:before": {
+        top: "0",
+        left: "97px",
+        color: "#ff0000",
+        content: "'*'",
+        position: "absolute",
+        fontSize: "14px",
+        visibility: "visible",
+        fontWeight: "600",
+        zIndex: "1",
+      },
+    },
+  },
   input_fields: {
     display: "flex",
     flexDirection: "column",

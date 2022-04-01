@@ -4,8 +4,16 @@ import "./styles.scss";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { InputLabel, TextField, Autocomplete } from "@mui/material";
 
-function Index({ checkselection, countincrease, i, deleterow }) {
-  const [test, settest] = useState();
+function Index({
+  checkselection,
+  countincrease,
+  i,
+  deleterow,
+  hubDropDownValues,
+}) {
+  const [hubList, setHubList] = useState({
+    hub: "",
+  });
 
   const [checkmumbai, setcheckmumbai] = useState();
 
@@ -20,16 +28,22 @@ function Index({ checkselection, countincrease, i, deleterow }) {
         <div className="updateproduct_info_form autocomplete_input">
           <InputLabel>Hub</InputLabel>
           <Autocomplete
-            value={test}
-            name=""
-            onChange={(event, newValue) => handleChange(newValue)}
-            //   className={auto_complete_input}
-            //   inputValue={inputValue}
-            //   onInputChange={(event, newInputValue) => {
-            //     setInputValue(newInputValue);
-            //   }}
-            id="controllable-states-demo"
-            options={options}
+            value={hubList?.hub}
+            name="hub_list"
+            onChange={(event, newValue) => {
+              setHubList((prevState) => ({
+                ...prevState,
+                conditions: newValue,
+              }));
+              handleChange(newValue);
+            }}
+            id="hub_list"
+            disablePortal={true}
+            options={hubDropDownValues?.length ? hubDropDownValues : [""]}
+            getOptionLabel={(option) =>
+              option.hub_name ? option.hub_name : ""
+            }
+            filterOptions={(options) => options}
             renderInput={(params) => (
               <TextField
                 {...params}
@@ -47,7 +61,7 @@ function Index({ checkselection, countincrease, i, deleterow }) {
           <InputLabel>Price</InputLabel>
           <div className="price_customize">
             <Autocomplete
-              value={test}
+              // value={test}
               name=""
               onChange={(event, newValue) => handleChange(newValue)}
               //   className={auto_complete_input}

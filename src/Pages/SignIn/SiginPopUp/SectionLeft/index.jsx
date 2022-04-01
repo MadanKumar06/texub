@@ -15,16 +15,26 @@ import {
 import clsx from "clsx";
 import { withStyles } from "@mui/styles";
 import { Clear } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 
 import { isEmailValid, isPasswordValid } from "../../../../utilities";
 import SectionRight from "../SectionRight";
 import { useStateValue } from "../../../../store/state";
 
+import Constant from "../../../../Constant";
+import MessageModal from "../../../../Components/MessageModal";
+
 //Assets
 import forgot from "../../../../Assets/Home/forgotpassword.svg";
 
 const TransitionsModal = ({ classes, openPopUp }) => {
+  let history = useNavigate();
   const [{}, dispatch] = useStateValue();
+  const [popUpApiMessage, setPopUpApiMessage] = useState(false);
+  const [apiMessages, setApiMessages] = useState({
+    errorMessage: "",
+    successMessage: "",
+  });
   let {
     forgotpassword,
     forgotpassword__title,
@@ -66,7 +76,6 @@ const TransitionsModal = ({ classes, openPopUp }) => {
   });
 
   const [forgotpwdemail, setforgotpwdemail] = useState();
-
   const handleChangeEmail = (event) => {
     setforgotpwdemail(event.target.value);
   };
@@ -84,26 +93,26 @@ const TransitionsModal = ({ classes, openPopUp }) => {
         ...prevState,
         [event.target.name]: event.target.checked,
       }));
-      setInputValidation("");
+      setInputValidation((prevState) => ({
+        ...prevState,
+        [event.target.name]: "",
+      }));
       handleSwitchCase([event.target.name], event.target.value);
     } else {
       setSignInData((prevState) => ({
         ...prevState,
         [event.target.name]: event.target.value,
       }));
-      setInputValidation("");
+      setInputValidation((prevState) => ({
+        ...prevState,
+        [event.target.name]: "",
+      }));
       handleSwitchCase([event.target.name], event.target.value);
     }
   };
   const handleSwitchCase = (fieldName, value) => {
     switch (fieldName[0]) {
       case "email_address":
-        // if (!value) {
-        //   setInputValidation((prevState) => ({
-        //     ...prevState,
-        //     email_address: "Please enter the e-mail.",
-        //   }));
-        // } else
         if (!isEmailValid(value)) {
           setInputValidation((prevState) => ({
             ...prevState,
@@ -112,12 +121,6 @@ const TransitionsModal = ({ classes, openPopUp }) => {
         }
         break;
       case "password":
-        // if (!value) {
-        //   setInputValidation((prevState) => ({
-        //     ...prevState,
-        //     password: "Please enter your password.",
-        //   }));
-        // } else
         if (!isPasswordValid(value)) {
           setInputValidation((prevState) => ({
             ...prevState,
@@ -165,22 +168,111 @@ const TransitionsModal = ({ classes, openPopUp }) => {
     }
     if (!errorHandle) {
       // Apicall fuction
+      FinalSignin();
     }
   };
 
-  const getDummyList = () => {
+  //API to Register
+  const FinalSignin = () => {
+    dispatch({
+      type: "SET_IS_LOADING",
+      value: true,
+    });
+    let data = {
+      username: signInData?.email_address,
+      password: signInData?.password,
+    };
     axios
-      .get("https://texub.uat.a2zportals.co.in/rest/V1/Texub/getRegionList", {
+      .post(Constant.customerTokenUrl(), data, {
         headers: {
           "Content-Type": "application/json",
         },
       })
       .then((res) => {
-        console.log();
+        getSigninedUserData(res?.data);
       })
-      .catch((err) => {});
+      .catch((error) => {
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+        setApiMessages({
+          errorMessage: error?.response?.data?.message || error.message,
+        });
+        setPopUpApiMessage(true);
+      });
   };
 
+  //Success or Error Message Popup
+  const handleMessageModal = (event) => {
+    setPopUpApiMessage(event?.open);
+  };
+  const handleKyc = (event) => {
+    if (event?.info === "kyc_not_filled") {
+      dispatch({
+        type: "SET_KYC_OPEN_CLOSE",
+        value: true,
+      });
+    } else if (event?.info === "kyc_filled") {
+      let user = event?.id === 5 ? "buyer" : event?.id === 6 && "seller";
+      dispatch({
+        type: "SET_SIGNIN_OPEN_CLOSE",
+        value: false,
+      });
+      setTimeout(() => {
+        history(`/thankyou/${user}kyc`);
+      }, 1000 / 2);
+    }
+  };
+
+  const KycFormOpenClose = (isDataValid, group_id) => {
+    let temp =
+      isDataValid[0]?.value == 0
+        ? handleKyc({
+            info: "kyc_not_filled",
+            id: group_id,
+          })
+        : isDataValid[0]?.value == 1
+        ? handleKyc({ info: "kyc_filled", id: group_id })
+        : "";
+  };
+  const getSigninedUserData = (token) => {
+    axios
+      .get(Constant.customerMeDetailUrl(), {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+        // setApiMessages({
+        //   successMessage: "You have Successfully LoggedIn !",
+        // });
+        // setPopUpApiMessage(true);
+        localStorage.setItem("userdata", JSON.stringify(res?.data));
+
+        let iskycFormFilled = res?.data;
+        if (
+          iskycFormFilled?.group_id === 5 ||
+          iskycFormFilled?.group_id === 6
+        ) {
+          let isDataValid = iskycFormFilled?.custom_attributes?.filter(
+            (itm) => itm?.attribute_code === "kyc_status"
+          );
+          KycFormOpenClose(isDataValid, iskycFormFilled?.group_id);
+        }
+      })
+      .catch((err) => {
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+      });
+  };
   //// Forgor Password ///
   const [passopen, setpassopen] = useState(false);
   const forgotpass = () => {
@@ -188,6 +280,23 @@ const TransitionsModal = ({ classes, openPopUp }) => {
   };
   return (
     <>
+      {popUpApiMessage &&
+      (apiMessages?.errorMessage !== "" ||
+        apiMessages?.successMessage !== "") ? (
+        <MessageModal
+          handleMessageModal={handleMessageModal}
+          successMessage={{
+            success: "Success",
+            successMessage: apiMessages?.successMessage,
+          }}
+          errorMessage={{
+            error: "Error",
+            errorMessage: apiMessages?.errorMessage,
+          }}
+        />
+      ) : (
+        ""
+      )}
       {passopen ? (
         <Modal
           open={passopen}
@@ -333,7 +442,7 @@ const TransitionsModal = ({ classes, openPopUp }) => {
                   />
                   <Box className={button_box}>
                     <Button
-                      onClick={() => getDummyList()}
+                      onClick={() => handleClickValidation()}
                       className={button_signin}
                     >
                       Sign In
