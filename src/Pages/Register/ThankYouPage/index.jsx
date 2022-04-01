@@ -34,10 +34,15 @@ const ThankyouPage = ({ classes }) => {
       value: true,
     });
   };
+  // let userName = JSON.parse(localStorage.getItem("data"));
   return (
     <div
       className={`${
-        type === "buyer" ? thankyou_container_buyer : thankyou_container_seller
+        type === "buyer"
+          ? thankyou_container_buyer
+          : type === "buyerkyc"
+          ? thankyou_container_buyer
+          : thankyou_container_seller
       }`}
     >
       <div className={thankyou_sub_container}>
@@ -45,16 +50,24 @@ const ThankyouPage = ({ classes }) => {
           <img src={thanksLogo} alt="auth" />
         </div>
         <p className={thankyou_title}>Thank You !</p>
-        <p className={thankyou_user}>Dear Nikhil</p>
+        <p className={thankyou_user}>Dear User</p>
+        {(type === "buyer" || type === "seller") && (
+          <p className={thankyou_for_register}>
+            You have submitted the Registration form successfully. Kindly login
+            into your account to complete the KYC.
+          </p>
+        )}
+        {(type === "buyerkyc" || type === "sellerkyc") && (
+          <p className={thankyou_for_register}>
+            Your account is not yet activated, so kindly visit again once you
+            receive the account activation email.
+          </p>
+        )}
         {/* <p className={thankyou_for_register}>
-          You have submitted the Registration form successfully. Kindly login
-          into your account to complete the KYC.
-        </p> */}
-        <p className={thankyou_for_register}>
           You have submitted the KYC form successfully. And Our team will get
           back to you after verification. once your account has been approved,
           you will receive a mail notification.
-        </p>
+        </p> */}
         <Box className={thankyou_button_box} fullWidth>
           <Button
             className={thankyou_button_signin}

@@ -38,6 +38,9 @@ const styles = () => ({
         textAlign: "center",
         whiteSpace: "nowrap",
         fontSize: "18px",
+        "@media (max-width:1399px)": {
+          fontSize: "16px",
+        }
       },
     },
     "& .MuiTableBody-root": {
@@ -53,11 +56,16 @@ const styles = () => ({
         textAlign: "center",
         fontSize: "18px",
         fontWeight: "600",
+        "@media (max-width:1399px)": {
+          fontSize: "14px"
+        },
         "& a": {
           textDecoration: "none",
         },
         "@media (max-width:900px)": {
-          display: "block !important",
+          display: "flex !important",
+          justifyContent:"center",
+          alignItems:"center",
         },
       },
     },
@@ -88,6 +96,9 @@ const styles = () => ({
     gap: "1em",
     display: "flex",
     justifyContent: "flex-end",
+    "@media (max-width:900px)": {
+      justifyContent: "center",
+    },
     "& img": {
       width: "40px",
       height: "40px",
@@ -104,7 +115,7 @@ const styles = () => ({
     // button styles
     textDecoration: "none !important",
     minWidth: "144px !important",
-    padding: "8px 0 !important",
+    padding: "8px 15px !important",
     borderRadius: "45px !important",
     border: "none !important",
     background: "linear-gradient(180deg, #20639B 0%, #002D56 100%)",

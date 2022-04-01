@@ -10,6 +10,10 @@ import hp from "../../../Assets/sellerdashboard/inventory/hp.png";
 import { Link } from "react-router-dom";
 import Pagination from "../../Pagination";
 import ProductGrid from "./ProductGrid";
+
+import axios from "axios";
+import Constant from "../../../Constant";
+
 function Index({ registerproduct }) {
   const [tableData, setTableData] = useState([]);
   const [searchList, setSearchList] = useState(false);
@@ -328,7 +332,21 @@ function Index({ registerproduct }) {
     setTableData(event);
   };
   const handleSearchInput = (event) => {
-    setSearchList(event?.target?.value === "laptop" ? true : false);
+    var customer_id = JSON.parse(localStorage.getItem("userdata"));
+    let data = {
+      customerId: customer_id?.id,
+      keyWord: event?.target?.value,
+    };
+    axios
+      .post(Constant.baseUrl() + "/getSearchProduct", data, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        setSearchList(res?.data);
+      })
+      .catch((err) => {});
   };
   return (
     <div className="inventory">
@@ -370,7 +388,7 @@ function Index({ registerproduct }) {
           </div>
         </div>
       </div>
-      {searchList && <ProductGrid />}
+      {searchList?.length && <ProductGrid gridData={searchList} />}
       <MUITable
         columns={columns}
         table={tableData}
