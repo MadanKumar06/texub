@@ -4,6 +4,8 @@ import styles from "../SectionRight/styles";
 import { withStyles } from "@mui/styles";
 import { useNavigate } from "react-router-dom";
 import { useStateValue } from "../../../../store/state";
+import axios from "axios";
+import Constant from "../../../../Constant";
 
 function ValidationForKycForm({
   classes,
@@ -26,13 +28,7 @@ function ValidationForKycForm({
   const handleValidationClick = () => {
     let endPoint = false;
     setValid("");
-    if (!values?.company_name) {
-      setValid((prevState) => ({
-        ...prevState,
-        company_name: "Please enter the Company name.",
-      }));
-      endPoint = true;
-    }
+
     if (!values?.trade_lic_number) {
       setValid((prevState) => ({
         ...prevState,
@@ -40,13 +36,7 @@ function ValidationForKycForm({
       }));
       endPoint = true;
     }
-    if (!values?.trade_expiration_date) {
-      setValid((prevState) => ({
-        ...prevState,
-        trade_expiration_date: "Please select expiration date .",
-      }));
-      endPoint = true;
-    } else if (values.toString() === "Invalid Date") {
+    if (values.toString() === "Invalid Date") {
       setValid((prevState) => ({
         ...prevState,
         trade_expiration_date: "Please select valid date.",
@@ -67,17 +57,6 @@ function ValidationForKycForm({
       }));
       endPoint = true;
     }
-    // if (!values?.tax_expiration_date) {
-    //   setValid((prevState) => ({
-    //     ...prevState,
-    //     tax_expiration_date: "Please select expiration date.",
-    //   }));
-    // } else if (values?.toString() === "Invalid Date") {
-    //   setValid((prevState) => ({
-    //     ...prevState,
-    //     tax_expiration_date: "Please select valid date.",
-    //   }));
-    // }
     if (!values?.tax_image?.name) {
       setValid((prevState) => ({
         ...prevState,
@@ -113,21 +92,72 @@ function ValidationForKycForm({
       }));
       endPoint = true;
     }
-    if (!values?.country) {
-      setValid((prevState) => ({
-        ...prevState,
-        country: "Please select the country.",
-      }));
-      endPoint = true;
+    if (!endPoint) {
+      //API call
+      debugger;
+      FinalKYCFormSavaData();
     }
-
-    if (endPoint) {
-      dispatch({
-        type: "SET_KYC_OPEN_CLOSE",
-        value: false,
+  };
+  const FinalKYCFormSavaData = () => {
+    // dispatch({
+    //   type: "SET_IS_LOADING",
+    //   value: true,
+    // });
+    debugger;
+    let data = {
+      kyc: {
+        customer_id: 341,
+        bussiness_name: "business1",
+        trade_license_number: "123782",
+        license_expiry_date: "20-02-2023",
+        license_expiry_remainder: 0,
+        license_certificate: "png;i",
+        tax_number: "56782342",
+        tax_certificate: "jpeg;/9",
+        tax_expire_date: "20-02-2025",
+        tax_expiry_remainder: 0,
+        full_name: "test2",
+        passport_number: "2356893939112",
+        account_number: "78234567812",
+        bank_name: "hdfc12",
+        passport_certificate: "png;i",
+        passport_expire_date: "20-04-2022",
+        passport_expiry_remainder: 0,
+        account_holder_name: "udhaya2",
+        additional_info: "test add2dddddddd",
+        category: "cat1,cat2,cat3,cat4",
+        country: "indiaa",
+        door_no: "7/899",
+        street: "maravv",
+        pincode: "6235142",
+        city: "bangalore",
+        other_category: "other categoryy",
+      },
+    };
+    axios
+      .post(Constant.baseUrl() + "/saveKyc", data, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+        dispatch({
+          type: "SET_KYC_OPEN_CLOSE",
+          value: false,
+        });
+        localStorage.setItem("register_success", JSON.stringify(res?.data));
+        history("/thankyou/buyer");
+      })
+      .catch((err) => {
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
       });
-      history("/thankyou/buyer");
-    }
   };
   return (
     <>

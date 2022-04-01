@@ -46,7 +46,7 @@ const NationalIdButton = ({
               htmlFor="icon-button-file"
             >
               <input
-                accept="image/*"
+                accept="image/jpeg,image/png,application/pdf"
                 id="icon-button-file"
                 type="file"
                 name="national_id_image"
@@ -66,20 +66,23 @@ const NationalIdButton = ({
         <InputLabel className={validation_error}>
           {inputValidation?.national_id_image}
         </InputLabel>
-        {FormValues?.national_id_image?.name && (
-          <div className={input_image_name}>
+
+        <div className={input_image_name}>
+          {FormValues?.national_id_image?.name ? (
             <p>{FormValues?.national_id_image?.name}</p>
-            <Clear
-              className={input_image_name_clear_btn}
-              onClick={() =>
-                SetFormValues((prevState) => ({
-                  ...prevState,
-                  national_id_image: "",
-                }))
-              }
-            />
-          </div>
-        )}
+          ) : (
+            <p>No File Chosen</p>
+          )}
+          <Clear
+            className={input_image_name_clear_btn}
+            onClick={() =>
+              SetFormValues((prevState) => ({
+                ...prevState,
+                national_id_image: "",
+              }))
+            }
+          />
+        </div>
       </div>
     </>
   );

@@ -23,12 +23,12 @@ import price_drop_inactive from "../../../Assets/BasicNeeded/PLPIcons/price_drop
 import just_launch_active from "../../../Assets/BasicNeeded/PLPIcons/just_launch_active.png";
 import just_launch_inactive from "../../../Assets/BasicNeeded/PLPIcons/just_launch_inactive.png";
 
-const Productlists = () => {
-  const [productlistdata, setProductlistdata] = useState({
-    hub: "",
-    conditions: "",
-    eta: "",
-  });
+const Productlists = ({ setProductFetchApi, productFetchApi }) => {
+  // const [productlistdata, setProductlistdata] = useState({
+  //   hub: "",
+  //   conditions: "",
+  //   eta: "",
+  // });
   const [productlistdropdown, setProductlistdropdown] = useState({
     hub: [],
     conditions: [],
@@ -43,7 +43,7 @@ const Productlists = () => {
     price_drop_image: price_drop_inactive,
   });
   const handleChange = (event) => {
-    setProductlistdata((prevState) => ({
+    setProductFetchApi((prevState) => ({
       ...prevState,
       [event.target.name]: event.target.value,
     }));
@@ -170,7 +170,7 @@ const Productlists = () => {
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={productlistdata?.hub}
+            value={productFetchApi?.hub}
             label="Hub"
             name="hub"
             onChange={handleChange}
@@ -191,7 +191,7 @@ const Productlists = () => {
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={productlistdata?.conditions}
+            value={productFetchApi?.conditions}
             label="Age"
             name="conditions"
             onChange={handleChange}
@@ -212,7 +212,7 @@ const Productlists = () => {
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={productlistdata?.eta}
+            value={productFetchApi?.eta}
             label="ETA"
             name="eta"
             onChange={handleChange}
