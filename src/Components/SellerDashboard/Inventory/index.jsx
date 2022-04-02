@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./styles.scss";
 import MUITable from "../../Common/MUITable";
 import { Button, Box } from "@mui/material";
@@ -16,6 +16,7 @@ import Constant from "../../../Constant";
 
 function Index({ registerproduct }) {
   const [tableData, setTableData] = useState([]);
+  const [apiTableData, setApiTableData] = useState([]);
   const [searchList, setSearchList] = useState(false);
 
   const options = {
@@ -331,6 +332,45 @@ function Index({ registerproduct }) {
   const PaginateDataSplit = (event) => {
     setTableData(event);
   };
+
+  //Api to fetch table values
+  useEffect(() => {
+    const fetchcustomerToken = () => {
+      let data = {
+        username: "ajitha.v@ambab.com",
+        password: "admin@1234",
+      };
+      axios
+        .post(Constant.customerTokenUrl(), data, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => {
+          fetchTableData(res?.data);
+        })
+        .catch((err) => {});
+    };
+    fetchcustomerToken();
+  }, []);
+
+  const fetchTableData = (token) => {
+    let customerId = JSON.parse(localStorage.getItem("userdata"));
+    let data = {
+      customerId: customerId?.id,
+    };
+    axios
+      .post(Constant.baseUrl() + "/getEditProductList", data, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        setApiTableData(res?.data);
+      })
+      .catch((err) => {});
+  };
   const handleSearchInput = (event) => {
     var customer_id = JSON.parse(localStorage.getItem("userdata"));
     let data = {
@@ -398,7 +438,7 @@ function Index({ registerproduct }) {
 
       <Pagination
         PaginateData={PaginateDataSplit}
-        DataList={table}
+        DataList={apiTableData}
         PagePerRow={10}
       />
       <Link className="inventory-page-back" to="/sellerdashboard/dashboard">

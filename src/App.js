@@ -25,6 +25,7 @@ import BuyerDashboard from "./Pages/BuyerDashboard";
 import SellerProfile from "./Pages/SellerProfile";
 import PendingInvoice from "./Pages/PendingInvoice";
 import Checkout from "./Pages/Checkout";
+import KYCDetails from "./Pages/KYCDetails";
 
 //Footer section page
 import Selleradvantage from "./Pages/CMS/Services/Selleradvantage";
@@ -97,6 +98,7 @@ const App = () => {
             <Route path="/mycart" element={ <> <Mycart /> <ScrollToTop/> <Footer /> </> } exact />
             <Route path="/thankyou/:type" element={ <> <ThankYouPage />  <ScrollToTop/><Footer /> </> } exact ></Route>
             <Route path="/edit" element={ <> <Accountinfo /> <ScrollToTop/> <Footer /> </> } exact />
+            <Route path="/kycdetails" element={ <> <KYCDetails /> <ScrollToTop/> <Footer /> </> } exact />
             
           </Routes>
 

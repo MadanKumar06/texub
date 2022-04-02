@@ -31,7 +31,6 @@ function ValidationForKycForm({
     setValid("");
 
     if (!values?.trade_lic_number) {
-      debugger;
       setValid((prevState) => ({
         ...prevState,
         trade_lic_number: "Please enter the trade lic number.",
@@ -39,7 +38,6 @@ function ValidationForKycForm({
       endPoint = true;
     }
     if (values.toString() === "Invalid Date") {
-      debugger;
       setValid((prevState) => ({
         ...prevState,
         trade_expiration_date: "Please select valid date.",
@@ -47,7 +45,6 @@ function ValidationForKycForm({
       endPoint = true;
     }
     if (!values?.trade_image?.name) {
-      debugger;
       setValid((prevState) => ({
         ...prevState,
         trade_image: "Please attach the License details.",
@@ -55,7 +52,6 @@ function ValidationForKycForm({
       endPoint = true;
     }
     if (!values?.tax_number) {
-      debugger;
       setValid((prevState) => ({
         ...prevState,
         tax_number: "Please enter the tax number.",
@@ -63,7 +59,6 @@ function ValidationForKycForm({
       endPoint = true;
     }
     if (!values?.tax_image?.name) {
-      debugger;
       setValid((prevState) => ({
         ...prevState,
         tax_image: "Please attatch certificate.",
@@ -71,7 +66,6 @@ function ValidationForKycForm({
       endPoint = true;
     }
     if (!values?.national_id_image?.name) {
-      debugger;
       setValid((prevState) => ({
         ...prevState,
         national_id_image: "Please attach National id details.",
@@ -79,7 +73,6 @@ function ValidationForKycForm({
       endPoint = true;
     }
     if (!values?.address_line_one) {
-      debugger;
       setValid((prevState) => ({
         ...prevState,
         address_line_one: "Please enter the address line one.",
@@ -87,7 +80,6 @@ function ValidationForKycForm({
       endPoint = true;
     }
     if (!values?.pin_zip_code) {
-      debugger;
       setValid((prevState) => ({
         ...prevState,
         pin_zip_code: "Please enter the pincode.",
@@ -95,7 +87,6 @@ function ValidationForKycForm({
       endPoint = true;
     }
     if (!values?.city) {
-      debugger;
       setValid((prevState) => ({
         ...prevState,
         city: "Please enter the city.",
@@ -104,7 +95,6 @@ function ValidationForKycForm({
     }
     if (!endPoint) {
       //API call
-      debugger;
       FinalKYCFormSavaData();
     }
   };
@@ -117,52 +107,55 @@ function ValidationForKycForm({
   );
   let customer_id = localUserData?.id;
   const FinalKYCFormSavaData = () => {
-    // dispatch({
-    //   type: "SET_IS_LOADING",
-    //   value: true,
-    // });
+    dispatch({
+      type: "SET_IS_LOADING",
+      value: true,
+    });
 
     let Category_id = values?.categorylist?.map(
       (itm) => itm?.texub_category_id
     );
+    let tax_date = moment(values?.tax_expiration_date).format("MM-DD-YYYY");
+    let trade_date = moment(values?.trade_expiration_date).format("MM-DD-YYYY");
+
     let data = {
       kyc: {
         customer_id: customer_id,
         bussiness_name: company_name?.[0]?.value,
-        trade_license_number: values?.trade_lic_number,
-        // license_expiry_date: moment(
-        //   values?.trade_expiration_date,
-        //   "MM-DD-YYYY"
-        // ),
-        license_expiry_date: "22-04-2022",
+        trade_license_number: values?.trade_lic_number
+          ? values?.trade_lic_number
+          : "",
+        license_expiry_date: trade_date ? trade_date : "",
         license_expiry_remainder: values?.trade_remainder_check ? 1 : 0,
-        license_certificate: values?.trade_image_base64,
-        tax_number: values?.tax_number,
-        tax_certificate: values?.tax_image_base64,
-        // tax_expire_date: moment(values?.tax_expiration_date, "MM-DD-YYYY"),
-        tax_expire_date: "22-04-2022",
+        license_certificate: values?.trade_image_base64
+          ? values?.trade_image_base64
+          : "",
+        tax_number: values?.tax_number ? values?.tax_number : "",
+        tax_certificate: values?.tax_image_base64
+          ? values?.tax_image_base64
+          : "",
+        tax_expire_date: tax_date ? tax_date : "",
         tax_expiry_remainder: values?.tax_remainder_check ? 1 : 0,
-        full_name: "test",
-        passport_number: "test",
-        // account_number: values?.account_number,
-        // bank_name: values?.bank_name,
-        account_number: "data",
-        bank_name: "data",
-        passport_certificate: values?.nationality_image_base64,
-        passport_expire_date: "test",
-        passport_expiry_remainder: "test",
-        // account_holder_name: values?.account_holder_name,
-        // additional_info: values?.additional_info,
-        account_holder_name: "test",
-        additional_info: "test",
-        category: Category_id?.toString(),
+        full_name: "",
+        passport_number: "",
+        account_number: values?.account_number ? values?.account_number : "",
+        bank_name: values?.bank_name ? values?.bank_name : "",
+        passport_certificate: values?.nationality_image_base64
+          ? values?.nationality_image_base64
+          : "",
+        passport_expire_date: "",
+        passport_expiry_remainder: 0,
+        account_holder_name: values?.account_holder_name
+          ? values?.account_holder_name
+          : "",
+        additional_info: values?.additional_info ? values?.additional_info : "",
+        category: Category_id?.toString() ? Category_id?.toString() : "",
         country: country?.[0]?.value,
-        // door_no: values?.address_line_one,
-         door_no: "7/565",
-        street: values?.address_line_two,
-        pincode: values?.pin_zip_code,
-        city: values?.city,
-        other_category: values?.other_category,
+        door_no: values?.address_line_one ? values?.address_line_one : "",
+        street: values?.address_line_two ? values?.address_line_two : "",
+        pincode: values?.pin_zip_code ? values?.pin_zip_code : "",
+        city: values?.city ? values?.city : "",
+        other_category: values?.other_category ? values?.other_category : "",
       },
     };
     axios
