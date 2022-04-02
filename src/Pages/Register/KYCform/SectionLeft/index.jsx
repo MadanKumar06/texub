@@ -49,9 +49,8 @@ const BuyerKYCformSectionLeft = ({ classes }) => {
   let HideAndShowBankDetails = JSON.parse(localStorage.getItem("userdata"));
   let buyer_or_seller = HideAndShowBankDetails?.group_id;
   let seller = HideAndShowBankDetails?.custom_attributes?.filter(
-    (itm) => itm?.customer_country === "US"
+    (itm) => itm?.attribute_code === "customer_country"
   );
-
   return (
     <Modal
       aria-labelledby="transition-modal-title"

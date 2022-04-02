@@ -228,6 +228,14 @@ const TransitionsModal = ({ classes, openPopUp }) => {
       setTimeout(() => {
         history(`/thankyou/${user}kyc`);
       }, 1000 / 2);
+    } else if (event?.info === "kyc_filled_success") {
+      dispatch({
+        type: "SET_SIGNIN_OPEN_CLOSE",
+        value: false,
+      });
+      setTimeout(() => {
+        history("/");
+      }, 1000 / 2);
     }
   };
 
@@ -240,6 +248,8 @@ const TransitionsModal = ({ classes, openPopUp }) => {
           })
         : isDataValid[0]?.value == 1
         ? handleKyc({ info: "kyc_filled", id: group_id })
+        : isDataValid[0]?.value == 2
+        ? handleKyc({ info: "kyc_filled_success", id: group_id })
         : "";
   };
   const getSigninedUserData = (token) => {

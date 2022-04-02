@@ -68,11 +68,11 @@ const Productlists = ({ setProductFetchApi, productFetchApi }) => {
 
   //API for fetch dropdown values
   useEffect(() => {
+    var currency_id = JSON.parse(localStorage.getItem("currency"));
     const fetchProductListDropDownData = () => {
       let data = {
         currency_id: 3,
       };
-
       axios
         .post(Constant.baseUrl() + "/getSearchItemsInPlp", data, {
           headers: {

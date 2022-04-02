@@ -49,7 +49,7 @@ const TradeLicenseButton = ({
 
   // input state and onchange events
   const handleFormvalue = (event) => {
-    if (event.target.name === "remainder_check") {
+    if (event.target.name === "trade_remainder_check") {
       SetFormValues((prevState) => ({
         ...prevState,
         [event.target.name]: event.target.checked,
@@ -71,6 +71,38 @@ const TradeLicenseButton = ({
     }));
     setInputValidation("");
     handleSwitchCase([event.target.name], event.target?.files[0]?.name);
+    toBase64(event.target?.files[0], event.target?.files[0]?.type);
+  };
+  const toBase64 = (File, type) => {
+    var reader = new FileReader();
+    reader.readAsDataURL(File);
+    reader.onload = function () {
+      if (type === "image/png") {
+        let temp = reader.result?.replace("data:image/png;base64,", "png;");
+        SetFormValues((prevState) => ({
+          ...prevState,
+          trade_image_base64: temp,
+        }));
+      } else if (type === "application/pdf") {
+        let temp = reader.result?.replace(
+          "data:application/pdf;base64,",
+          "pdf;"
+        );
+        SetFormValues((prevState) => ({
+          ...prevState,
+          trade_image_base64: temp,
+        }));
+      } else if (type === "image/jpeg") {
+        let temp = reader.result?.replace("data:image/jpeg;base64,", "jpeg;");
+        SetFormValues((prevState) => ({
+          ...prevState,
+          trade_image_base64: temp,
+        }));
+      }
+    };
+    reader.onerror = function (error) {
+      console.log("Error: ", error);
+    };
   };
 
   // input validation on onchange
@@ -242,11 +274,11 @@ const TradeLicenseButton = ({
       </div>
       {FormValues?.expiry_checkbox && (
         <FormControlLabel
-          value={FormValues?.remainder_check}
+          value={FormValues?.trade_remainder_check}
           control={
             <Checkbox
               color="color_third"
-              name="remainder_check"
+              name="trade_remainder_check"
               onChange={handleFormvalue}
             />
           }

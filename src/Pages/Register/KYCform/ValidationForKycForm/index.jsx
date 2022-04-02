@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useStateValue } from "../../../../store/state";
 import axios from "axios";
 import Constant from "../../../../Constant";
+var moment = require("moment");
 
 function ValidationForKycForm({
   classes,
@@ -94,44 +95,67 @@ function ValidationForKycForm({
     }
     if (!endPoint) {
       //API call
-      debugger;
       FinalKYCFormSavaData();
     }
   };
+  let localUserData = JSON.parse(localStorage?.getItem("userdata"));
+  let company_name = localUserData?.custom_attributes?.filter(
+    (itm) => itm?.attribute_code === "customer_company_name"
+  );
+  let country = localUserData?.custom_attributes?.filter(
+    (itm) => itm?.attribute_code === "customer_country"
+  );
+  let customer_id = localUserData?.id;
   const FinalKYCFormSavaData = () => {
-    // dispatch({
-    //   type: "SET_IS_LOADING",
-    //   value: true,
-    // });
-    debugger;
+    dispatch({
+      type: "SET_IS_LOADING",
+      value: true,
+    });
+
+    let Category_id = values?.categorylist?.map(
+      (itm) => itm?.texub_category_id
+    );
+    let tax_date = moment(values?.tax_expiration_date).format("MM-DD-YYYY");
+    let trade_date = moment(values?.trade_expiration_date).format("MM-DD-YYYY");
+
     let data = {
       kyc: {
-        customer_id: 341,
-        bussiness_name: "business1",
-        trade_license_number: "123782",
-        license_expiry_date: "20-02-2023",
-        license_expiry_remainder: 0,
-        license_certificate: "png;i",
-        tax_number: "56782342",
-        tax_certificate: "jpeg;/9",
-        tax_expire_date: "20-02-2025",
-        tax_expiry_remainder: 0,
-        full_name: "test2",
-        passport_number: "2356893939112",
-        account_number: "78234567812",
-        bank_name: "hdfc12",
-        passport_certificate: "png;i",
-        passport_expire_date: "20-04-2022",
+        customer_id: customer_id,
+        bussiness_name: company_name?.[0]?.value,
+        trade_license_number: values?.trade_lic_number
+          ? values?.trade_lic_number
+          : "",
+        license_expiry_date: trade_date ? trade_date : "",
+        license_expiry_remainder: values?.trade_remainder_check ? 1 : 0,
+        license_certificate: values?.trade_image_base64
+          ? values?.trade_image_base64
+          : "",
+        tax_number: values?.tax_number ? values?.tax_number : "",
+        tax_certificate: values?.tax_image_base64
+          ? values?.tax_image_base64
+          : "",
+        tax_expire_date: tax_date ? tax_date : "",
+        tax_expiry_remainder: values?.tax_remainder_check ? 1 : 0,
+        full_name: "",
+        passport_number: "",
+        account_number: values?.account_number ? values?.account_number : "",
+        bank_name: values?.bank_name ? values?.bank_name : "",
+        passport_certificate: values?.nationality_image_base64
+          ? values?.nationality_image_base64
+          : "",
+        passport_expire_date: "",
         passport_expiry_remainder: 0,
-        account_holder_name: "udhaya2",
-        additional_info: "test add2dddddddd",
-        category: "cat1,cat2,cat3,cat4",
-        country: "indiaa",
-        door_no: "7/899",
-        street: "maravv",
-        pincode: "6235142",
-        city: "bangalore",
-        other_category: "other categoryy",
+        account_holder_name: values?.account_holder_name
+          ? values?.account_holder_name
+          : "",
+        additional_info: values?.additional_info ? values?.additional_info : "",
+        category: Category_id?.toString() ? Category_id?.toString() : "",
+        country: country?.[0]?.value,
+        door_no: values?.address_line_one ? values?.address_line_one : "",
+        street: values?.address_line_two ? values?.address_line_two : "",
+        pincode: values?.pin_zip_code ? values?.pin_zip_code : "",
+        city: values?.city ? values?.city : "",
+        other_category: values?.other_category ? values?.other_category : "",
       },
     };
     axios
@@ -149,8 +173,8 @@ function ValidationForKycForm({
           type: "SET_KYC_OPEN_CLOSE",
           value: false,
         });
-        localStorage.setItem("register_success", JSON.stringify(res?.data));
-        history("/thankyou/buyer");
+        let user_id = JSON.parse(localStorage.getItem("userdata"));
+        history(`/thankyou/${user_id?.group_id === 5 ? "buyer" : "seller"}`);
       })
       .catch((err) => {
         dispatch({

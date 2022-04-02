@@ -53,6 +53,12 @@ const MyAccountPopup = () => {
           </Link>
         </MenuItem>
         <MenuItem onClick={() => handleClose()}>
+          <Link to="/kycdetails">
+            <img src={dashboardLogo} alt="" />
+            KYC Details
+          </Link>
+        </MenuItem>
+        <MenuItem onClick={() => handleClose()}>
           <img src={myOrderLogo} alt="" />
           My Orders
         </MenuItem>

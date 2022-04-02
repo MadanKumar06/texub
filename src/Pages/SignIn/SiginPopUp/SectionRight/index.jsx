@@ -22,6 +22,7 @@ import { useStateValue } from "../../../../store/state";
 
 const TransitionsModal = ({ classes }) => {
   const [{}, dispatch] = useStateValue();
+  const history = useNavigate();
   let {
     section_right,
     info_text_lineNote,
@@ -248,7 +249,7 @@ const TransitionsModal = ({ classes }) => {
           type: "SET_IS_LOADING",
           value: false,
         });
-        localStorage.setItem("register_success", JSON.stringify(res?.data));
+        history("/");
       })
       .catch((err) => {
         dispatch({

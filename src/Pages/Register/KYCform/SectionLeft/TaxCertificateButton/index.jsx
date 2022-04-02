@@ -49,12 +49,19 @@ const TaxCertificateButton = ({
 
   // input state and onchange events
   const handleFormvalue = (event) => {
-    SetFormValues((prevState) => ({
-      ...prevState,
-      [event.target.name]: event.target.value,
-    }));
-    setInputValidation("");
-    handleSwitchCase([event.target.name], event.target.value);
+    if (event.target.name === "tax_remainder_check") {
+      SetFormValues((prevState) => ({
+        ...prevState,
+        [event.target.name]: event.target.checked,
+      }));
+    } else {
+      SetFormValues((prevState) => ({
+        ...prevState,
+        [event.target.name]: event.target.value,
+      }));
+      setInputValidation("");
+      handleSwitchCase([event.target.name], event.target.value);
+    }
   };
 
   // input validation on onchange
@@ -71,8 +78,39 @@ const TaxCertificateButton = ({
     }));
     setInputValidation("");
     handleSwitchCase([event.target.name], event.target?.files[0]?.name);
+    toBase64(event.target?.files[0], event.target?.files[0]?.type);
   };
-
+  const toBase64 = (File, type) => {
+    var reader = new FileReader();
+    reader.readAsDataURL(File);
+    reader.onload = function () {
+      if (type === "image/png") {
+        let temp = reader.result?.replace("data:image/png;base64,", "png;");
+        SetFormValues((prevState) => ({
+          ...prevState,
+          tax_image_base64: temp,
+        }));
+      } else if (type === "application/pdf") {
+        let temp = reader.result?.replace(
+          "data:application/pdf;base64,",
+          "pdf;"
+        );
+        SetFormValues((prevState) => ({
+          ...prevState,
+          tax_image_base64: temp,
+        }));
+      } else if (type === "image/jpeg") {
+        let temp = reader.result?.replace("data:image/jpeg;base64,", "jpeg;");
+        SetFormValues((prevState) => ({
+          ...prevState,
+          tax_image_base64: temp,
+        }));
+      }
+    };
+    reader.onerror = function (error) {
+      console.log("Error: ", error);
+    };
+  };
   const handleSwitchCase = (fieldName, value) => {
     switch (fieldName[0]) {
       case "tax_expiration_date":
@@ -191,8 +229,14 @@ const TaxCertificateButton = ({
         </div>
       </div>
       <FormControlLabel
-        value="yes"
-        control={<Checkbox color="color_third" />}
+        value={FormValues?.tax_remainder_check}
+        control={
+          <Checkbox
+            color="color_third"
+            name="tax_remainder_check"
+            onChange={handleFormvalue}
+          />
+        }
         label="Automated Reminder on Expiry."
         labelPlacement="end"
         className={checkbox_label}

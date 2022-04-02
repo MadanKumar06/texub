@@ -8,7 +8,7 @@ import Slider from "react-slick";
 import axios from "axios";
 import Constant from "../../../Constant";
 
-const Productsbrands = () => {
+const Productsbrands = ({ setProductFetchApi, productFetchApi }) => {
   const [isChange, setisChange] = useState(false);
   const brand = (value) => {
     value && setisChange(value);
@@ -74,7 +74,7 @@ const Productsbrands = () => {
   }, []);
   const Productsicon = {
     dots: false,
-    infinite: true,
+    infinite: false,
     nextArrow: <Arrow type="next" />,
     prevArrow: <Arrow type="prev" />,
     responsive: [
@@ -138,7 +138,7 @@ const Productsbrands = () => {
   };
   const Productsbtns = {
     dots: false,
-    infinite: true,
+    infinite: false,
     nextArrow: <Arrow type="next" />,
     prevArrow: <Arrow type="prev" />,
     responsive: [
@@ -207,7 +207,15 @@ const Productsbrands = () => {
         <Slider {...Productsicon} className="slide_Test">
           {sliderBrandsAndCategories?.brands?.length &&
             sliderBrandsAndCategories?.brands?.map((itm) => (
-              <div className="ProductBrand_first_Slider">
+              <div
+                className="ProductBrand_first_Slider"
+                onClick={() =>
+                  setProductFetchApi((prevState) => ({
+                    ...prevState,
+                    brand_id: itm?.brand_id,
+                  }))
+                }
+              >
                 <img
                   src={`${Constant.imageBaseUrl()}${itm?.image}`}
                   alt="brands"
@@ -221,10 +229,12 @@ const Productsbrands = () => {
         <Slider {...Productsbtns} className="slide_Test">
           {sliderBrandsAndCategories?.categories?.length &&
             sliderBrandsAndCategories?.categories?.map((item) => (
-              <li key={item?.category?.id} className="Slider_brands" onMouseOver={() => brand(item?.category?.id)}>
-                <span>
-                  {item?.category?.category_name}
-                </span>
+              <li
+                key={item?.category?.id}
+                className="Slider_brands"
+                onMouseOver={() => brand(item?.category?.id)}
+              >
+                <span>{item?.category?.category_name}</span>
                 {isChange && (
                   <div className="list">
                     <li className="list_content">

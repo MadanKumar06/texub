@@ -4,6 +4,8 @@ import styles from "./styles";
 import { withStyles } from "@mui/styles";
 import MUITable from "../../Common/MUITable";
 import { useStateValue } from "../../../store/state";
+import Pagination from "../../Pagination";
+import Constant from "../../../Constant";
 
 import HP from "./../../../Assets/Productlist/hp_td_icon.png";
 import Acer from "../../../Assets/Productlist/acer_icon_td.png";
@@ -16,8 +18,14 @@ import shortExpand_active_icon from "../../../Assets/BasicNeeded/PLPIcons/Group 
 import shortExpand_inactive_icon from "../../../Assets/BasicNeeded/PLPIcons/Group 1177.png";
 import longExpand_active_icon from "../../../Assets/BasicNeeded/PLPIcons/Group 1178.png";
 import longExpand_inactive_icon from "../../../Assets/BasicNeeded/PLPIcons/Group 1176.png";
-const Productstable = ({ classes }) => {
+const Productstable = ({
+  classes,
+  setProductFetchApi,
+  productFetchApi,
+  productData,
+}) => {
   const [{}, dispatch] = useStateValue();
+  const [tableData, setTableData] = useState([]);
   let {
     producttable,
     mui_datatable_main,
@@ -66,58 +74,81 @@ const Productstable = ({ classes }) => {
 
   const columns = [
     {
-      name: "BRANDNAME",
+      name: "mainproduct",
       label: "BRAND NAME",
       options: {
         filter: false,
         customBodyRender: (value) => {
           return (
             <div className={productable_image}>
-              <img src={value} alt="" />
+              <img
+                src={`${Constant.imageBaseUrl()}${value?.brand}`}
+                alt="brand"
+              />
             </div>
           );
         },
       },
     },
     {
-      name: "MODELNAME",
+      name: "mainproduct",
       label: "MODEL NAME",
+      options: {
+        customBodyRender: (value) => {
+          return <div>{value?.model_number}</div>;
+        },
+      },
     },
     {
-      name: "PARTNUMBER",
+      name: "mainproduct",
       label: "PART NUMBER",
+      options: {
+        customBodyRender: (value) => {
+          return <div>{value?.part_number}</div>;
+        },
+      },
     },
     {
-      name: "DESCRIPTION",
+      name: "mainproduct",
       label: "DESCRIPTION",
       options: {
         customBodyRender: (value) => {
           return (
             <div className={producttable_description}>
-              {truncate(value, textsize?.size)}
+              {truncate(value?.description, textsize?.size)}
             </div>
           );
         },
       },
     },
     {
-      name: "HUB",
+      name: "subProducts",
       label: "HUB",
+      options: {
+        customBodyRender: (value) => {
+          return <div>{value?.[0]?.hub}</div>;
+        },
+      },
     },
     {
-      name: "MOQ",
+      name: "subProducts",
       label: "MOQ",
+      options: {
+        customBodyRender: (value) => {
+          return <div>{value?.[0]?.moq}</div>;
+        },
+      },
     },
     {
-      name: "PRICE",
+      name: "subProducts",
       label: "PRICE",
       options: {
         customBodyRender: (value) => {
           return (
             <div className={producttable_price_block}>
               <div className={producttable_price}>
-                <span>INR</span>
-                {value}
+                <span>{value?.[0]?.currency}</span>
+                {value?.[0]?.price}
               </div>
             </div>
           );
@@ -125,15 +156,25 @@ const Productstable = ({ classes }) => {
       },
     },
     {
-      name: "INSTOCK",
+      name: "subProducts",
       label: "INSTOCK",
+      options: {
+        customBodyRender: (value) => {
+          return <div>{value?.[0]?.In_stock}</div>;
+        },
+      },
     },
     {
-      name: "CONDITION",
+      name: "mainproduct",
       label: "CONDITION",
+      options: {
+        customBodyRender: (value) => {
+          return <div>{value?.condition}</div>;
+        },
+      },
     },
     {
-      name: "CONDITION",
+      name: "mainproduct",
       label: (
         <div className={producttable_heading_icon}>
           <img
@@ -301,21 +342,26 @@ const Productstable = ({ classes }) => {
     search: false,
   };
 
+  const PaginateDataSplit = (event) => {
+    setTableData(event);
+  };
   return (
     <div className={producttable}>
-      {/* <MUIDataTable
-        title={""}
-        data={Productstablelist}
-        columns={columns}
-        options={options}
-        className={mui_datatable_main}
-      /> */}
       <MUITable
         columns={columns}
-        table={Productstablelist}
+        table={tableData}
         options={options}
         className={mui_datatable_main}
       />
+      {productData?.length ? (
+        <Pagination
+          PaginateData={PaginateDataSplit}
+          DataList={productData}
+          PagePerRow={10}
+        />
+      ) : (
+        ""
+      )}
     </div>
   );
 };

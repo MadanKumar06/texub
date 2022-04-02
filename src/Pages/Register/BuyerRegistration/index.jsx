@@ -677,7 +677,7 @@ const BuyerRegistration = ({ classes }) => {
           </div>
           <ReCAPTCHA
             className="recaptcha_info1 buyer-recaptcha_info"
-            sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+            sitekey="6LcaHDYfAAAAAOUR0jJWtEI128eoRL4xjBWOpjKD"
           />
         </div>
 
