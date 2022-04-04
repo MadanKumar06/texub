@@ -10,6 +10,7 @@ import MiniCartDrawer from "../../Pages/MiniCart";
 
 export const Userdetails = () => {
   let isSignedIn = JSON.parse(localStorage.getItem("userdata"));
+  debugger;
   return (
     <div className="user_details_main_container">
       <div className="logo">
@@ -28,14 +29,14 @@ export const Userdetails = () => {
             <h6 className="User_Call_tag">From 8:00 to 17:00 (Mon-Sat)</h6>
           </div> */}
           {isSignedIn?.group_id === 5 ||
-            (isSignedIn?.group_id === 6 &&
-            isSignedIn?.custom_attributes?.[3]?.value === "2" ? (
-              <div className="user_account">
-                <MyAccountPopUP />
-              </div>
-            ) : (
-              ""
-            ))}
+          (isSignedIn?.group_id === 6 &&
+            isSignedIn?.custom_attributes?.[3]?.value === "2") ? (
+            <div className="user_account">
+              <MyAccountPopUP />
+            </div>
+          ) : (
+            ""
+          )}
 
           {isSignedIn?.group_id === 5 &&
           isSignedIn?.custom_attributes?.[3]?.value === "2" ? (
