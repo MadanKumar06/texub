@@ -1,26 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./styles.scss";
 
 import DeleteIcon from "@mui/icons-material/Delete";
 import { InputLabel, TextField, Autocomplete } from "@mui/material";
+import Subdetails from './Subdetails'
 
 function Index({
-  checkselection,
+  key,
   countincrease,
   i,
   deleterow,
   hubDropDownValues,
+  setHubList,
+  hubList,
+  checkmumbai,
+  checkhub,
+  setpdetails,
+  pdetails,
+  setcount,
+  count
 }) {
-  const [hubList, setHubList] = useState({
-    hub: "",
-  });
 
-  const [checkmumbai, setcheckmumbai] = useState();
+  const options = ["INR", "USD"];
 
-  const handleChange = (value) => {
-    setcheckmumbai(value);
-  };
-  const options = ["Option 1", "Option 2"];
+  useEffect(() => {
+      count.filter(c => {
+        if(c.count === i) {
+          c.pdata = pdetails
+        }
+      })
+  }, [pdetails])
+
+  
 
   return (
     <>
@@ -28,18 +39,18 @@ function Index({
         <div className="updateproduct_info_form autocomplete_input">
           <InputLabel>Hub</InputLabel>
           <Autocomplete
-            value={hubList?.hub}
+            value={hubList}
             name="hub_list"
             onChange={(event, newValue) => {
-              setHubList((prevState) => ({
+              setpdetails((prevState) => ({
                 ...prevState,
-                conditions: newValue,
+                hub_id: newValue.hub_id,
               }));
-              handleChange(newValue);
+              checkhub(newValue, i);
             }}
             id="hub_list"
             disablePortal={true}
-            options={hubDropDownValues?.length ? hubDropDownValues : [""]}
+            options={hubDropDownValues}
             getOptionLabel={(option) =>
               option.hub_name ? option.hub_name : ""
             }
@@ -61,14 +72,7 @@ function Index({
           <InputLabel>Price</InputLabel>
           <div className="price_customize">
             <Autocomplete
-              // value={test}
               name=""
-              onChange={(event, newValue) => handleChange(newValue)}
-              //   className={auto_complete_input}
-              //   inputValue={inputValue}
-              //   onInputChange={(event, newInputValue) => {
-              //     setInputValue(newInputValue);
-              //   }}
               id="controllable-states-demo"
               options={options}
               renderInput={(params) => (
@@ -96,7 +100,10 @@ function Index({
               InputLabelProps={{
                 shrink: false,
               }}
-              // onChange={handleChangeInput}
+              onChange={(e) => setpdetails(data => ({
+                ...data,
+                price: e.target.value
+              }))}
               variant="outlined"
             />
           </div>
@@ -115,7 +122,10 @@ function Index({
             InputLabelProps={{
               shrink: false,
             }}
-            // onChange={handleChangeInput}
+            onChange={(e) => setpdetails(data => ({
+              ...data,
+              in_stock: e.target.value
+            }))}
             variant="outlined"
           />
         </div>
@@ -133,7 +143,10 @@ function Index({
             InputLabelProps={{
               shrink: false,
             }}
-            // onChange={handleChangeInput}
+            onChange={(e) => setpdetails(data => ({
+              ...data,
+              eta: e.target.value
+            }))}
             variant="outlined"
           />
         </div>
@@ -151,7 +164,10 @@ function Index({
             InputLabelProps={{
               shrink: false,
             }}
-            // onChange={handleChangeInput}
+            onChange={(e) => setpdetails(data => ({
+              ...data,
+              moq: e.target.value
+            }))}
             variant="outlined"
           />
         </div>
@@ -175,63 +191,12 @@ function Index({
         </div>
       )}
 
-      {checkmumbai === "Option 1" && (
-        <div className="updateproduct__gst">
-          <div className="updateproduct_info_form">
-            <InputLabel>GST %</InputLabel>
-            <TextField
-              id="gst"
-              name="gst"
-              placeholder="18"
-              className="inputfield-box"
-              fullWidth
-              autoComplete="off"
-              // value={signInData?.email_address}
-              InputLabelProps={{
-                shrink: false,
-              }}
-              // onChange={handleChangeInput}
-              variant="outlined"
-            />
-          </div>
-          <div className="updateproduct_info_form">
-            <InputLabel>IGST %</InputLabel>
-            <TextField
-              id="igst"
-              name="igst"
-              placeholder="18"
-              fullWidth
-              className="inputfield-box"
-              autoComplete="off"
-              // value={signInData?.email_address}
-              InputLabelProps={{
-                shrink: false,
-              }}
-              // onChange={handleChangeInput}
-              variant="outlined"
-            />
-          </div>
-          <div className="updateproduct_info_form">
-            <InputLabel>SGST %</InputLabel>
-            <TextField
-              id="sgst"
-              name="sgst"
-              placeholder="18"
-              fullWidth
-              autoComplete="off"
-              className="inputfield-box"
-              // value={signInData?.email_address}
-              InputLabelProps={{
-                shrink: false,
-              }}
-              // onChange={handleChangeInput}
-              variant="outlined"
-            />
-          </div>
-        </div>
+      {checkmumbai?.hub_name === "Mumbai" && (
+        <Subdetails setpdetails={setpdetails} />
       )}
     </>
   );
 }
 
 export default Index;
+

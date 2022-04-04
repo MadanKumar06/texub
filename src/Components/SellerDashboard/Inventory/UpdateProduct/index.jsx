@@ -3,19 +3,26 @@ import "./styles.scss";
 import { Link } from "react-router-dom";
 import { InputLabel, TextField, Autocomplete } from "@mui/material";
 import Details from "./Details";
-
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Constant from "../../../../Constant";
 
 function Index({ type }) {
-  const [count, setcount] = useState([0]);
+  const [count, setcount] = useState([{
+    count: 0
+  }]);
   const [test, settest] = useState(1);
   const [openTextbox, setOpenTextbox] = useState(false);
 
   const countincrease = () => {
     settest(test + 1);
-    count.push(test);
+    setcount(data => [
+      ...data, { count: test + 1 }
+    ])
   };
+
+  const {navigate} = useNavigate()
+  const {id} = useParams()
 
   const [dropdownListFromApi, setDropdownListFromApi] = useState({
     dropDownList: [],
@@ -23,28 +30,106 @@ function Index({ type }) {
 
   const [updateProductList, setUpdateProductList] = useState({});
   //Api to fetch dropdown values
-  useEffect(() => {
-    const fetchMainCategoryData = () => {
-      axios
-        .get(Constant.baseUrl() + "/getUpdateProductDetails", {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
-        .then((res) => {
-          setDropdownListFromApi((prevState) => ({
-            ...prevState,
-            dropDownList: Object.assign({}, ...res?.data),
-          }));
-        })
-        .catch((err) => {});
-    };
-    fetchMainCategoryData();
+  useEffect( async() => {
+    try {
+      const updateproductdropdown = await axios({
+        method: 'get',
+        url: `${Constant.baseUrl()}/getUpdateProductDetails`
+      })
+      setDropdownListFromApi((prevState) => ({
+        ...prevState,
+        dropDownList: Object.assign({}, ...updateproductdropdown?.data),
+      }));
+    } catch(e) {
+      console.log(e)
+    }
   }, []);
+
+
   const deleterow = (value) => {
     setcount(count.filter((item, i) => i !== value));
   };
+
+
+  console.log(count)
+
+  const [hubList, setHubList] = useState();
+
+  const [checkmumbai, setcheckmumbai] = useState();
+
+  const checkhub = (value, value2) => {
+    setcheckmumbai(value);
+    // count.filter(data => {
+    //   if(i === data.count) {
+        
+    //   }
+    // })
+  };
+
+  const [pdetails, setpdetails] = useState([])
+  const [updateform, setupdateform] = useState({})
+  
   const options = ["Option 1", "Option 2"];
+
+  const updateProduct = async() => {
+    // console.log(hubList)
+    // console.log(updateform)
+    // console.log(pdetails)
+    // console.log(updateProductList)
+    let productdata = []
+    count.filter(data => {
+      productdata.push(data?.pdata)
+    })
+    let user = JSON.parse(localStorage.getItem('userdata'))
+    try {
+      const updatepform = await axios({
+        method: 'post',
+        url: "https://texub.uat.a2zportals.co.in/rest/V1/texub/saveProductPrice",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        },
+        data: {
+          "data":{
+            "bulk_upload" : 0,
+            "customer_id" : user?.id,
+            "product_id": id,
+            "product_condition":updateProductList?.conditions?.value,
+            "other_condition" : 1,
+            "warranty_type": updateProductList?.warranty?.value,
+            "warranty_country":"IN,US",
+            "warranty_days" : updateform?.days,
+            "packing_details" : updateProductList?.packing?.value,
+            "no_pieces_per" : 234,
+            "width" : updateform?.width,
+            "height" : updateform?.height,
+            "length" : updateform?.lnth,
+            "weight" : updateform?.weight,
+            "restrictions" : updateProductList?.restrictions?.value,
+            "restricted_region" : 3,
+            "restricted_country" : "AU,IN",
+            "description" : updateform?.notes,
+            "product_details":productdata
+          }
+        }
+      })
+      console.log(updatepform?.data)
+      if(type === "Add Product Details") {
+        navigate("/sellerdashboard/addsuccess")
+      } else {
+        navigate("/sellerdashboard/updatesuccess")
+      }
+    } catch(e) {
+      console.log(e)
+    }
+  }
+
+  console.log(pdetails)
+
+  const [restrictvalue, setrestrictvalue] = useState([
+    {label: 'Yes',value: 'Yes' },
+    {label: 'No',value: 'No' }
+  ])
+
   return (
     <div className="updateproduct">
       <h1>{type}</h1>
@@ -53,11 +138,19 @@ function Index({ type }) {
         {count.map((data, i) => (
           <div className="topform__details">
             <Details
-              key={i}
+              key={dropdownListFromApi?.dropDownList?.hub_list?.hub_id}
               countincrease={countincrease}
-              i={i}
+              i={data.count}
               deleterow={deleterow}
               hubDropDownValues={dropdownListFromApi?.dropDownList?.hub_list}
+              setHubList={setHubList}
+              hubList={hubList}
+              checkmumbai={checkmumbai}
+              checkhub={checkhub}
+              setpdetails={setpdetails}
+              pdetails={pdetails}
+              setcount={setcount}
+              count={count}
             />
           </div>
         ))}
@@ -102,7 +195,7 @@ function Index({ type }) {
                 onChange={(event, newValue) => {
                   setUpdateProductList((prevState) => ({
                     ...prevState,
-                    conditions: newValue,
+                    warranty: newValue,
                   }));
                   if (newValue?.label === "Direct Vendor Warranty In Country") {
                     setOpenTextbox(true);
@@ -172,7 +265,10 @@ function Index({ type }) {
                 InputLabelProps={{
                   shrink: false,
                 }}
-                // onChange={handleChangeInput}
+                onChange={(e) => setupdateform(data => ({
+                  ...data,
+                  days: e.target.value
+                }))}
                 variant="outlined"
               />
             </div>
@@ -219,7 +315,10 @@ function Index({ type }) {
                   InputLabelProps={{
                     shrink: false,
                   }}
-                  // onChange={handleChangeInput}
+                  onChange={(e) => setupdateform(data => ({
+                    ...data,
+                    lnth: e.target.value
+                  }))}
                   variant="outlined"
                 />
                 <TextField
@@ -233,7 +332,10 @@ function Index({ type }) {
                   InputLabelProps={{
                     shrink: false,
                   }}
-                  // onChange={handleChangeInput}
+                  onChange={(e) => setupdateform(data => ({
+                    ...data,
+                    width: e.target.value
+                  }))}
                   variant="outlined"
                 />
                 <TextField
@@ -247,7 +349,10 @@ function Index({ type }) {
                   InputLabelProps={{
                     shrink: false,
                   }}
-                  // onChange={handleChangeInput}
+                  onChange={(e) => setupdateform(data => ({
+                    ...data,
+                    height: e.target.value
+                  }))}
                   variant="outlined"
                 />
                 <TextField
@@ -261,27 +366,39 @@ function Index({ type }) {
                   InputLabelProps={{
                     shrink: false,
                   }}
-                  // onChange={handleChangeInput}
+                  onChange={(e) => setupdateform(data => ({
+                    ...data,
+                    weight: e.target.value
+                  }))}
                   variant="outlined"
                 />
               </div>
             </div>
             <div className="updateproduct_inputfields info">
               <InputLabel>Restrictions</InputLabel>
-              <TextField
-                id="gst"
-                name="gst"
-                placeholder="Yes"
-                fullWidth
-                autoFocus={true}
-                className="inputfield-box"
-                autoComplete="off"
-                // value={signInData?.email_address}
-                InputLabelProps={{
-                  shrink: false,
+              <Autocomplete
+                value={updateProductList?.packing_details}
+                name="packing_details"
+                disablePortal={true}
+                onChange={(event, newValue) => {
+                  setUpdateProductList((prevState) => ({
+                    ...prevState,
+                    restrictions: newValue,
+                  }));
                 }}
-                // onChange={handleChangeInput}
-                variant="outlined"
+                id="packing_details"
+                options={restrictvalue}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    className="inputfield-box"
+                    placeholder="Select Packing Details"
+                    fullWidth
+                    InputLabelProps={{
+                      shrink: false,
+                    }}
+                  />
+                )}
               />
             </div>
           </div>
@@ -301,6 +418,10 @@ function Index({ type }) {
                 },
               }}
               variant="outlined"
+              onChange={(e) => setupdateform(data => ({
+                ...data,
+                notes: e.target.value
+              }))}
             />
           </div>
         </div>
@@ -310,15 +431,15 @@ function Index({ type }) {
         <Link to="/sellerdashboard/inventory">
           <span className="updateproduct__back">Back</span>
         </Link>
-        <Link
+        {/* <Link
           to={`${
             type === "Add Product Details"
               ? "/sellerdashboard/updatesuccess"
               : "/sellerdashboard/addsuccess"
           }`}
-        >
-          <p className="updateproduct__submit">Submit</p>
-        </Link>
+        > */}
+          <p className="updateproduct__submit" onClick={updateProduct}>Submit</p>
+        {/* </Link> */}
       </div>
     </div>
   );
