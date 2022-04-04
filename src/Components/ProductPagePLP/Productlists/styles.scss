@@ -11,7 +11,8 @@
     display: flex;
   }
   .product_menu_filter {
-    width: 100%;
+    width: 35px;
+    height: 35px;
     cursor: pointer;
   }
 
@@ -158,8 +159,8 @@
   .productlist .productlist__deal .productlist__deal__image {
     width: 46px;
   }
- 
-      .productlist {
+
+  .productlist {
     padding: 15px 2%;
     gap: 1em;
   }
@@ -172,10 +173,10 @@
     padding: 15px 2%;
     gap: 1em;
   }
-  .productlist .productlist__deal span{
+  .productlist .productlist__deal span {
     font-size: 14px;
   }
-  .productlist .productlist__search .search_input .MuiInput-root input{
+  .productlist .productlist__search .search_input .MuiInput-root input {
     font-size: 16px;
     height: 100%;
     padding: 3px 0 4px;

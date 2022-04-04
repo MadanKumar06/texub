@@ -1,0 +1,9 @@
+.simple_loader {
+  display: flex;
+  justify-content: center;
+  .MuiCircularProgress-root {
+    svg {
+      color: #20639b !important;
+    }
+  }
+}

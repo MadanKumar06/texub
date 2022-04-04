@@ -15,6 +15,7 @@
     .slick-track {
       display: flex;
       align-items: center;
+      width: 100% !important;
       .slick-slide {
         width: max-content;
         margin: 0 1em;

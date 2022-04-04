@@ -61,7 +61,7 @@ const PDPTable = ({
         if (index === ind) {
           return {
             ...item,
-            seller_moq: event,
+            moq: event,
           };
         } else {
           return item;
@@ -75,7 +75,7 @@ const PDPTable = ({
         if (index === ind) {
           return {
             ...item,
-            seller_moq: event,
+            moq: event,
           };
         } else {
           return item;
@@ -94,22 +94,17 @@ const PDPTable = ({
   };
 
   useEffect(() => {
-    let temp1 =
-      tableData?.length &&
-      tableData?.filter(
-        (itm) =>
-          itm?.main_product?.main_product_id ==
-          dataFromPLP?.row?.[9]?.props?.value
-      );
-    setIs_table_one(temp1?.[0]?.sub_products);
-    setPdpSellerData((prevState) => ({
-      ...prevState,
-      seller_id: temp1?.[0]?.subProducts?.[0]?.seller_code,
-      warranty_days: temp1?.[0]?.subProducts?.[0]?.warranty_days,
-      packing_details: temp1?.[0]?.subProducts?.[0]?.packing_details,
-      no_of_pieces: temp1?.[0]?.subProducts?.[0]?.no_of_pieces,
-    }));
-  }, [dataFromPLP?.tableData?.length ,tableData]);
+    if (tableData?.tableone?.length) {
+      setIs_table_one(tableData?.tableone);
+      setPdpSellerData((prevState) => ({
+        ...prevState,
+        seller_id: tableData?.tableone?.[0]?.seller_code,
+        warranty_days: tableData?.tableone?.[0]?.warranty_days,
+        packing_details: tableData?.tableone?.[0]?.packing_details,
+        no_of_pieces: tableData?.tableone?.[0]?.no_of_pieces,
+      }));
+    }
+  }, [dataFromPLP?.tableData?.length]);
 
   return (
     <div className={table_container}>
@@ -224,8 +219,8 @@ const PDPTable = ({
                             className={item_decrease}
                             onClick={() =>
                               handleChangeValueTableone(
-                                item?.seller_moq >= 2
-                                  ? item?.seller_moq - 1
+                                parseInt(item?.moq) >= 2
+                                  ? parseInt(item?.moq) - 1
                                   : 1,
                                 index
                               )
@@ -236,7 +231,7 @@ const PDPTable = ({
                             className={item_increase}
                             onClick={() =>
                               handleChangeValueTableone(
-                                item?.seller_moq + 1,
+                                parseInt(item?.moq) + 1,
                                 index
                               )
                             }

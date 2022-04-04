@@ -29,7 +29,7 @@ import inr from "../../../Assets/CommonImage/Currency switcher/Group 1132.png";
 const CurrencyPopup = ({ classes }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [{}, dispatch] = useStateValue();
-  const [apiDropDowns, setApiDropDowns] = useState([]);
+  const [apiDropDowns, setApiDropDowns] = useState("");
   const [selectedValue, setSelectedValue] = useState({
     currency_code: "",
     currency_id: "",
@@ -85,9 +85,10 @@ const CurrencyPopup = ({ classes }) => {
     };
     fetchCurrencyDropDownData();
   }, []);
+
   return (
     <div className={classes.header_dropdown}>
-      {apiDropDowns?.length && (
+      {apiDropDowns && (
         <>
           <Button
             aria-controls="simple-menu"

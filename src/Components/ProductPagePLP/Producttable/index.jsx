@@ -217,14 +217,14 @@ const Productstable = ({
     search: false,
     textLabels: {
       body: {
-        noMatch: tableData?.length
-          ? "Loading data ..."
-          : "Sorry, No data found",
+        noMatch:
+          tableData?.length > 0 ? "Loading data ..." : "Sorry, No data found",
       },
     },
   };
 
   const PaginateDataSplit = (event) => {
+    debugger;
     setTableData(event);
   };
   return (
@@ -238,7 +238,7 @@ const Productstable = ({
       {productData?.length ? (
         <Pagination
           PaginateData={PaginateDataSplit}
-          DataList={productData}
+          DataList={productData?.length ? productData : []}
           PagePerRow={10}
         />
       ) : (
