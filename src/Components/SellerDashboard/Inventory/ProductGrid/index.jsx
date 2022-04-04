@@ -5,7 +5,6 @@ import hp from "../../../../Assets/sellerdashboard/inventory/hp.png";
 import Pagination from "../../../Pagination";
 function Index({ registerproduct, gridData }) {
   const [tableData, setTableData] = useState([]);
-  debugger;
   const options = {
     filter: false,
     filterType: "dropdown",

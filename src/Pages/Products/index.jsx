@@ -1,26 +1,27 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./styles.scss";
 import Productsbrands from "../../Components/ProductPagePLP/Productbrands";
 import Productlists from "../../Components/ProductPagePLP/Productlists";
 import Productstable from "../../Components/ProductPagePLP/Producttable";
 import axios from "axios";
 import Constant from "../../Constant";
-
+import { useStateValue } from "../../store/state";
 export const Products = () => {
+  const [{ currency }, dispatch] = useStateValue();
   const [productFetchApi, setProductFetchApi] = useState({});
   const [productData, setProductData] = useState([]);
-
+  const [getCategories, setGetCategories] = useState([]);
+  let customer_id = JSON.parse(localStorage.getItem("userdata"));
   useEffect(() => {
-    if (productFetchApi) {
-      debugger;
-      var currencyId = JSON.parse(localStorage.getItem("currency"));
-      var customer_id = JSON.parse(localStorage.getItem("userdata"));
+    if (productFetchApi || currency || getCategories) {
       const fetchProductData = () => {
         let data = {
           data: {
-            currency_id: parseInt(currencyId?.currency_id),
+            currency_id: parseInt(currency?.currency_id),
             customer_id: customer_id?.id,
-            category_id: "21",
+            category_id: productFetchApi?.category_id
+              ? productFetchApi?.category_id
+              : getCategories?.[0]?.category?.id,
             brand_id: productFetchApi?.brand_id
               ? productFetchApi?.brand_id
               : "0",
@@ -30,7 +31,7 @@ export const Products = () => {
               : "0",
           },
         };
-
+        setProductData([]);
         axios
           .post(Constant.baseUrl() + "/getProducts", data, {
             headers: {
@@ -38,22 +39,36 @@ export const Products = () => {
             },
           })
           .then((res) => {
-            // setProductData(res?.data?.[0]);
-            sortCall(res?.data?.[0]);
+            sortCall(res?.data);
           })
           .catch((err) => {});
       };
       fetchProductData();
     }
-  }, [productFetchApi]);
+  }, [productFetchApi, currency, getCategories]);
 
+  useEffect(() => {
+    const fetchCategoryData = () => {
+      axios
+        .get(Constant.baseUrl() + "/getCategoriesList", {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => {
+          setGetCategories(res?.data);
+        })
+        .catch((err) => {});
+    };
+    fetchCategoryData();
+  }, []);
   const sortCall = (data) => {
     var productTableData = [];
     data?.map((itm) => {
-      if (itm.subProducts?.length) {
+      if (itm.sub_products?.length) {
         var temp =
-          itm?.subProducts?.length &&
-          itm?.subProducts?.sort((a, b) => {
+          itm?.sub_products?.length &&
+          itm?.sub_products?.sort((a, b) => {
             let fa = a.price,
               fb = b.price;
             if (fa < fb) {
@@ -65,8 +80,8 @@ export const Products = () => {
             return 0;
           });
         productTableData.push({
-          mainproduct: { ...itm.mainProduct },
-          subProducts: [...temp],
+          main_product: { ...itm.main_product },
+          sub_products: [...temp],
         });
       }
     });
@@ -81,6 +96,7 @@ export const Products = () => {
       <Productsbrands
         setProductFetchApi={setProductFetchApi}
         productFetchApi={productFetchApi}
+        getCategories={getCategories}
       />
       <Productstable
         setProductFetchApi={setProductFetchApi}

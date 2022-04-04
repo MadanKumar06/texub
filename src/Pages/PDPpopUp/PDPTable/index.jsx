@@ -7,7 +7,13 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
-const PDPTable = ({ classes, tableData, setPdpSellerData, pdpSellerData }) => {
+const PDPTable = ({
+  classes,
+  tableData,
+  setPdpSellerData,
+  pdpSellerData,
+  dataFromPLP,
+}) => {
   let {
     table_container,
     pdp_middle_wapper,
@@ -79,9 +85,32 @@ const PDPTable = ({ classes, tableData, setPdpSellerData, pdpSellerData }) => {
   };
   const handleRadioGroupChange = (event) => {
     setPdpSellerData((prevState) => ({
-      seller_id: event,
+      ...prevState,
+      seller_id: event?.seller_code,
+      warranty_days: event?.warranty_days,
+      packing_details: event?.packing_details,
+      no_of_pieces: event?.no_of_pieces,
     }));
   };
+
+  useEffect(() => {
+    let temp1 =
+      dataFromPLP?.tableData?.length &&
+      dataFromPLP?.tableData?.filter(
+        (itm) =>
+          itm?.main_product?.main_product_id ==
+          dataFromPLP?.row?.[9]?.props?.value
+      );
+    setIs_table_one(temp1?.[0]?.sub_products);
+    setPdpSellerData((prevState) => ({
+      ...prevState,
+      seller_id: temp1?.[0]?.subProducts?.[0]?.seller_code,
+      warranty_days: temp1?.[0]?.subProducts?.[0]?.warranty_days,
+      packing_details: temp1?.[0]?.subProducts?.[0]?.packing_details,
+      no_of_pieces: temp1?.[0]?.subProducts?.[0]?.no_of_pieces,
+    }));
+  }, [dataFromPLP?.tableData?.length]);
+
   return (
     <div className={table_container}>
       <div className={pdp_middle_wapper}>
@@ -125,9 +154,12 @@ const PDPTable = ({ classes, tableData, setPdpSellerData, pdpSellerData }) => {
                 </div>
               </div>
             </li>
+
             <RadioGroup
               aria-labelledby="demo-radio-buttons-group-label"
-              defaultValue={""}
+              defaultValue={
+                is_table_one?.length && is_table_one?.[0]?.seller_code
+              }
               name="radio-buttons-group"
               className={radio_btn_group}
             >
@@ -141,12 +173,17 @@ const PDPTable = ({ classes, tableData, setPdpSellerData, pdpSellerData }) => {
                       <div className={price_list_action}>
                         <div className={list_action_input}>
                           <FormControlLabel
-                            value={item?.seller_id}
+                            value={item?.seller_code}
                             control={
                               <Radio
                                 className={radio_button}
                                 onClick={() =>
-                                  handleRadioGroupChange(item?.seller_id)
+                                  handleRadioGroupChange({
+                                    seller_code: item?.seller_code,
+                                    warranty_days: item?.warranty_days,
+                                    packing_details: item?.packing_details,
+                                    no_of_pieces: item?.no_of_pieces,
+                                  })
                                 }
                               />
                             }
@@ -156,30 +193,28 @@ const PDPTable = ({ classes, tableData, setPdpSellerData, pdpSellerData }) => {
                       </div>
                       <div className={price_list_seller}>
                         <span>
-                          <a href="/">{item?.seller_id}</a>
+                          <a href="/">{item?.seller_code}</a>
                         </span>
                       </div>
                       <div className={price_list_price}>
-                        <span className={price_indicator}>INR</span>
-                        <span className={price_value}>
-                          {item?.seller_price}
+                        <span className={price_indicator}>
+                          {item?.currency}
                         </span>
+                        <span className={price_value}>{item?.price}</span>
                       </div>
 
                       <div className={price_list_stock}>
                         <span className={seller_stock_value}>
-                          {item?.seller_in_stock}
+                          {item?.in_stock}
                         </span>
                       </div>
                       <div className={price_list_eta}>
-                        <span className={seller_eta_value}>
-                          {item?.seller_eta}
-                        </span>
+                        <span className={seller_eta_value}>{item?.eta}</span>
                       </div>
 
                       <div className={price_list_hub}>
                         <div className={price_list_hubblk}>
-                          <span>{item?.seller_hub}</span>
+                          <span>{item?.hub}</span>
                         </div>
                       </div>
 
@@ -196,7 +231,7 @@ const PDPTable = ({ classes, tableData, setPdpSellerData, pdpSellerData }) => {
                               )
                             }
                           />
-                          <span className={input_text}>{item?.seller_moq}</span>
+                          <span className={input_text}>{item?.moq}</span>
                           <AddIcon
                             className={item_increase}
                             onClick={() =>
@@ -211,7 +246,7 @@ const PDPTable = ({ classes, tableData, setPdpSellerData, pdpSellerData }) => {
                     </div>
                   </li>
                 ))}
-              <div className={seller_price_title}>
+              {/* <div className={seller_price_title}>
                 <span>From The Nearest Hub</span>
               </div>
               {is_table_two?.length > 0 &&
@@ -293,7 +328,7 @@ const PDPTable = ({ classes, tableData, setPdpSellerData, pdpSellerData }) => {
                       </div>
                     </div>
                   </li>
-                ))}
+                ))} */}
             </RadioGroup>
           </ol>
         </div>

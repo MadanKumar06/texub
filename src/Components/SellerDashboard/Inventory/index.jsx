@@ -33,7 +33,7 @@ function Index({ registerproduct }) {
 
   const columns = [
     {
-      name: "logo",
+      name: "brand_image_url",
       label: " ",
       options: {
         customBodyRender: (value) => {
@@ -42,7 +42,7 @@ function Index({ registerproduct }) {
       },
     },
     {
-      name: "pname",
+      name: "name",
       label: "PRODUCT NAME",
       options: {
         customBodyRender: (value) => {
@@ -59,7 +59,7 @@ function Index({ registerproduct }) {
       label: "SKU",
     },
     {
-      name: "instock",
+      name: "in_stock",
       label: "IN STOCK",
       options: {
         customBodyRender: (value) => {
@@ -78,7 +78,7 @@ function Index({ registerproduct }) {
       },
     },
     {
-      name: "myprice",
+      name: "my_price",
       label: "MY PRICE",
       options: {
         customBodyRender: (value) => {
@@ -94,7 +94,7 @@ function Index({ registerproduct }) {
       },
     },
     {
-      name: "lowestprice",
+      name: "my_price",
       label: "LOWEST PRICE",
       options: {
         customBodyRender: (value) => {
@@ -120,8 +120,7 @@ function Index({ registerproduct }) {
         customBodyRender: (value) => {
           return (
             <div className="inventory__rank">
-              {value}
-              <p>th</p>
+              {/* {value} */}3<p>th</p>
             </div>
           );
         },
@@ -137,196 +136,11 @@ function Index({ registerproduct }) {
               className="inventory__action"
               onClick={() => registerproduct("updateproduct")}
             >
-              {value}
+              Update
             </div>
           );
         },
       },
-    },
-  ];
-
-  const table = [
-    {
-      logo: hp,
-      pname: "pname1pname1pname1 pname1pname1pname1",
-      category: "cat1",
-      sku: "sku1",
-      instock: 100,
-      moq: 30,
-      myprice: 500,
-      lowestprice: 450,
-      hub: "Chennai",
-      rank: "6",
-      action: "Update",
-    },
-    {
-      logo: hp,
-      pname: "pname2",
-      category: "cat2",
-      sku: "sku2",
-      instock: 500,
-      moq: 100,
-      myprice: 5000,
-      lowestprice: 4050,
-      hub: "Hydrebad",
-      rank: "13",
-      action: "Update",
-    },
-    {
-      logo: hp,
-      pname: "pname2",
-      category: "cat2",
-      sku: "sku2",
-      instock: 500,
-      moq: 100,
-      myprice: 5000,
-      lowestprice: 4050,
-      hub: "Hydrebad",
-      rank: "13",
-      action: "Update",
-    },
-    {
-      logo: hp,
-      pname: "pname2",
-      category: "cat2",
-      sku: "sku2",
-      instock: 500,
-      moq: 100,
-      myprice: 5000,
-      lowestprice: 4050,
-      hub: "Hydrebad",
-      rank: "13",
-      action: "Update",
-    },
-    {
-      logo: hp,
-      pname: "pname2",
-      category: "cat2",
-      sku: "sku2",
-      instock: 500,
-      moq: 100,
-      myprice: 5000,
-      lowestprice: 4050,
-      hub: "Hydrebad",
-      rank: "13",
-      action: "Update",
-    },
-    {
-      logo: hp,
-      pname: "pname2",
-      category: "cat2",
-      sku: "sku2",
-      instock: 500,
-      moq: 100,
-      myprice: 5000,
-      lowestprice: 4050,
-      hub: "Hydrebad",
-      rank: "13",
-      action: "Update",
-    },
-    {
-      logo: hp,
-      pname: "pname2",
-      category: "cat2",
-      sku: "sku2",
-      instock: 500,
-      moq: 100,
-      myprice: 5000,
-      lowestprice: 4050,
-      hub: "Hydrebad",
-      rank: "13",
-      action: "Update",
-    },
-    {
-      logo: hp,
-      pname: "pname2",
-      category: "cat2",
-      sku: "sku2",
-      instock: 500,
-      moq: 100,
-      myprice: 5000,
-      lowestprice: 4050,
-      hub: "Hydrebad",
-      rank: "13",
-      action: "Update",
-    },
-    {
-      logo: hp,
-      pname: "pname2",
-      category: "cat2",
-      sku: "sku2",
-      instock: 500,
-      moq: 100,
-      myprice: 5000,
-      lowestprice: 4050,
-      hub: "Hydrebad",
-      rank: "13",
-      action: "Update",
-    },
-    {
-      logo: hp,
-      pname: "pname2",
-      category: "cat2",
-      sku: "sku2",
-      instock: 500,
-      moq: 100,
-      myprice: 5000,
-      lowestprice: 4050,
-      hub: "Hydrebad",
-      rank: "13",
-      action: "Update",
-    },
-    {
-      logo: hp,
-      pname: "pname2",
-      category: "cat2",
-      sku: "sku2",
-      instock: 500,
-      moq: 100,
-      myprice: 5000,
-      lowestprice: 4050,
-      hub: "Hydrebad",
-      rank: "13",
-      action: "Update",
-    },
-    {
-      logo: hp,
-      pname: "pname2",
-      category: "cat2",
-      sku: "sku2",
-      instock: 500,
-      moq: 100,
-      myprice: 5000,
-      lowestprice: 4050,
-      hub: "Hydrebad",
-      rank: "13",
-      action: "Update",
-    },
-    {
-      logo: hp,
-      pname: "pname2",
-      category: "cat2",
-      sku: "sku2",
-      instock: 500,
-      moq: 100,
-      myprice: 5000,
-      lowestprice: 4050,
-      hub: "Hydrebad",
-      rank: "13",
-      action: "Update",
-    },
-    {
-      logo: hp,
-      pname: "pname2",
-      category: "cat2",
-      sku: "sku2",
-      instock: 500,
-      moq: 100,
-      myprice: 5000,
-      lowestprice: 4050,
-      hub: "Hydrebad",
-      rank: "13",
-      action: "Update",
     },
   ];
   const PaginateDataSplit = (event) => {
@@ -436,11 +250,13 @@ function Index({ registerproduct }) {
         className="inventory__table"
       />
 
-      <Pagination
-        PaginateData={PaginateDataSplit}
-        DataList={apiTableData}
-        PagePerRow={10}
-      />
+      {apiTableData?.length && (
+        <Pagination
+          PaginateData={PaginateDataSplit}
+          DataList={apiTableData}
+          PagePerRow={10}
+        />
+      )}
       <Link className="inventory-page-back" to="/sellerdashboard/dashboard">
         <ArrowBackIosNew />
         <span>Back</span>

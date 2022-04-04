@@ -19,10 +19,11 @@ const styles = (theme) => ({
   pdp_top_header_sub_container: {
     display: "flex",
     flexDirection: "row",
+    justifyContent: "space-between",
     width: "100%",
-    "@media (max-width:1439px)": {
-      flexDirection: "column",
-    },
+    // "@media (max-width:1439px)": {
+    //   flexDirection: "column",
+    // },
   },
   pdp_page_brands_images: {
     width: "128px",
@@ -77,6 +78,7 @@ const styles = (theme) => ({
   pdp_top_header_products: {
     display: "flex",
     width: "80%",
+    gap: "20px",
     justifyContent: "space-between",
     flexDirection: "row",
     "@media (max-width:1439px)": {
@@ -112,6 +114,7 @@ const styles = (theme) => ({
   reviews: {
     fontSize: "18px",
     color: "#DDB363",
+    whiteSpace: "nowrap",
     letterSpacing: "0.43px",
     margin: "auto !important",
     textDecoration: "underline",

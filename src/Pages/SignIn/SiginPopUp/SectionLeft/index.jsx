@@ -22,7 +22,7 @@ import SectionRight from "../SectionRight";
 import { useStateValue } from "../../../../store/state";
 
 import Constant from "../../../../Constant";
-import MessageModal from "../../../../Components/MessageModal";
+import swal from "sweetalert2";
 
 //Assets
 import forgot from "../../../../Assets/Home/forgotpassword.svg";
@@ -30,11 +30,6 @@ import forgot from "../../../../Assets/Home/forgotpassword.svg";
 const TransitionsModal = ({ classes, openPopUp }) => {
   let history = useNavigate();
   const [{}, dispatch] = useStateValue();
-  const [popUpApiMessage, setPopUpApiMessage] = useState(false);
-  const [apiMessages, setApiMessages] = useState({
-    errorMessage: "",
-    successMessage: "",
-  });
   let {
     forgotpassword,
     forgotpassword__title,
@@ -190,23 +185,22 @@ const TransitionsModal = ({ classes, openPopUp }) => {
       })
       .then((res) => {
         getSigninedUserData(res?.data);
+        localStorage.setItem("customer_auth", JSON.stringify(res?.data));
       })
       .catch((error) => {
         dispatch({
           type: "SET_IS_LOADING",
           value: false,
         });
-        setApiMessages({
-          errorMessage: error?.response?.data?.message || error.message,
+        swal.fire({
+          text: `${error?.response?.data?.message || error.message}`,
+          icon: "error",
+          showConfirmButton: false,
+          timer: 3000,
         });
-        setPopUpApiMessage(true);
       });
   };
 
-  //Success or Error Message Popup
-  const handleMessageModal = (event) => {
-    setPopUpApiMessage(event?.open);
-  };
   const handleKyc = (event) => {
     if (event?.info === "kyc_not_filled") {
       dispatch({
@@ -233,9 +227,15 @@ const TransitionsModal = ({ classes, openPopUp }) => {
         type: "SET_SIGNIN_OPEN_CLOSE",
         value: false,
       });
+      swal.fire({
+        text: "You have Successfully loggedIn !",
+        icon: "success",
+        showConfirmButton: false,
+        timer: 3000,
+      });
       setTimeout(() => {
         history("/");
-      }, 1000 / 2);
+      }, 1000);
     }
   };
 
@@ -265,10 +265,6 @@ const TransitionsModal = ({ classes, openPopUp }) => {
           type: "SET_IS_LOADING",
           value: false,
         });
-        // setApiMessages({
-        //   successMessage: "You have Successfully LoggedIn !",
-        // });
-        // setPopUpApiMessage(true);
         localStorage.setItem("userdata", JSON.stringify(res?.data));
 
         let iskycFormFilled = res?.data;
@@ -296,23 +292,6 @@ const TransitionsModal = ({ classes, openPopUp }) => {
   };
   return (
     <>
-      {popUpApiMessage &&
-      (apiMessages?.errorMessage !== "" ||
-        apiMessages?.successMessage !== "") ? (
-        <MessageModal
-          handleMessageModal={handleMessageModal}
-          successMessage={{
-            success: "Success",
-            successMessage: apiMessages?.successMessage,
-          }}
-          errorMessage={{
-            error: "Error",
-            errorMessage: apiMessages?.errorMessage,
-          }}
-        />
-      ) : (
-        ""
-      )}
       {passopen ? (
         <Modal
           open={passopen}

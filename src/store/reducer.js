@@ -5,6 +5,7 @@ export const initialState = {
   signInOpenClose: false,
   registerOpenClose: false,
   isLoading: false,
+  currency: {},
 };
 
 const reducer = (state, action) => {
@@ -38,6 +39,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         registerOpenClose: action.value,
+      };
+    case "SET_CURRENCY":
+      return {
+        ...state,
+        currency: action.data,
       };
     default:
       return state;
