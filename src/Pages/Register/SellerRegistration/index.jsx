@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/material.css";
+import swal from "sweetalert2";
 
 import {
   TextField,
@@ -69,6 +70,7 @@ const BuyerRegistration = ({ classes }) => {
     mobile_valid: "",
     remember_me: false,
     other_role: false,
+    recaptcha: false,
   });
   const [inputValidation, setInputValidation] = useState({
     first_name: "",
@@ -84,6 +86,7 @@ const BuyerRegistration = ({ classes }) => {
     designation: "",
     country: "",
     confrim_password: "",
+    recaptcha: "",
   });
 
   //API to fetch admin token
@@ -429,6 +432,14 @@ const BuyerRegistration = ({ classes }) => {
       }));
       errorHandle = true;
     }
+    if (!sellerRegistrationData?.recaptcha) {
+      document.getElementById("recaptcha")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        recaptcha: "Please enter the recaptcha .",
+      }));
+      errorHandle = true;
+    }
     if (!errorHandle) {
       // Apicall fuction
       FinalSellerRegistration();
@@ -487,8 +498,54 @@ const BuyerRegistration = ({ classes }) => {
           type: "SET_IS_LOADING",
           value: false,
         });
-        localStorage.setItem("register_success", JSON.stringify(res?.data));
-        history("/thankyou/seller", { state: res?.data });
+        if (res?.data?.[0]?.status) {
+          localStorage.setItem("register_success", JSON.stringify(res?.data));
+          localStorage.setItem(
+            "customer_auth",
+            JSON.stringify(res?.data?.[0]?.token)
+          );
+          // history("/thankyou/buyer", { state: res?.data });
+          getUserData(res.data?.[0]?.token);
+        } else {
+          swal.fire({
+            text: `${res.data?.[0]?.message}`,
+            icon: "error",
+            showConfirmButton: false,
+            timer: 3000,
+          });
+        }
+      })
+      .catch((error) => {
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+        swal.fire({
+          text: `${error?.response?.data?.message || error.message}`,
+          icon: "error",
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      });
+  };
+  const getUserData = (token) => {
+    axios
+      .get(Constant.customerMeDetailUrl(), {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+        localStorage.setItem("userdata", JSON.stringify(res?.data));
+        dispatch({
+          type: "SET_KYC_OPEN_CLOSE",
+          value: true,
+        });
       })
       .catch((err) => {
         dispatch({
@@ -870,6 +927,24 @@ const BuyerRegistration = ({ classes }) => {
             </InputLabel>
           </div>
         </div>
+        <ReCAPTCHA
+          className={recaptcha_info}
+          sitekey="6LcaHDYfAAAAAOUR0jJWtEI128eoRL4xjBWOpjKD"
+          onChange={() => {
+            setsellerRegistrationData((prevState) => ({
+              ...prevState,
+              recaptcha: true,
+            }));
+            setInputValidation((prevState) => ({
+              ...prevState,
+              recaptcha: "",
+            }));
+          }}
+          name="recaptcha"
+        />
+        <InputLabel className={validation_error}>
+          {inputValidation?.recaptcha}
+        </InputLabel>
         <div className={input_textField}>
           <FormControlLabel
             value={sellerRegistrationData?.remember_me}
@@ -882,10 +957,6 @@ const BuyerRegistration = ({ classes }) => {
             }
             labelPlacement="end"
             className={checkbox_label}
-          />
-          <ReCAPTCHA
-            className={recaptcha_info}
-            sitekey="6LcaHDYfAAAAAOUR0jJWtEI128eoRL4xjBWOpjKD"
           />
         </div>
         <Box className={button_box} fullWidth>

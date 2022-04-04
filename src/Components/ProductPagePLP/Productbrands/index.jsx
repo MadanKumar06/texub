@@ -8,7 +8,11 @@ import Slider from "react-slick";
 import axios from "axios";
 import Constant from "../../../Constant";
 
-const Productsbrands = ({ setProductFetchApi, productFetchApi }) => {
+const Productsbrands = ({
+  setProductFetchApi,
+  productFetchApi,
+  getCategories,
+}) => {
   const [isChange, setisChange] = useState(false);
   const brand = (value) => {
     value && setisChange(value);
@@ -54,24 +58,24 @@ const Productsbrands = ({ setProductFetchApi, productFetchApi }) => {
     };
     fetchBrandsData();
   }, []);
-  useEffect(() => {
-    const fetchCategoryData = () => {
-      axios
-        .get(Constant.baseUrl() + "/getCategoriesList", {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
-        .then((res) => {
-          setSliderBrandsAndCategories((prevState) => ({
-            ...prevState,
-            categories: res?.data,
-          }));
-        })
-        .catch((err) => {});
-    };
-    fetchCategoryData();
-  }, []);
+  // useEffect(() => {
+  //   const fetchCategoryData = () => {
+  //     axios
+  //       .get(Constant.baseUrl() + "/getCategoriesList", {
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //       })
+  //       .then((res) => {
+  //         setSliderBrandsAndCategories((prevState) => ({
+  //           ...prevState,
+  //           categories: res?.data,
+  //         }));
+  //       })
+  //       .catch((err) => {});
+  //   };
+  //   fetchCategoryData();
+  // }, []);
   const Productsicon = {
     dots: false,
     infinite: false,
@@ -227,11 +231,17 @@ const Productsbrands = ({ setProductFetchApi, productFetchApi }) => {
       </div>
       <div className="Slider_Section">
         <Slider {...Productsbtns} className="slide_Test">
-          {sliderBrandsAndCategories?.categories?.length &&
-            sliderBrandsAndCategories?.categories?.map((item) => (
+          {getCategories?.length &&
+            getCategories?.map((item) => (
               <li
                 key={item?.category?.id}
                 className="Slider_brands"
+                onClick={() =>
+                  setProductFetchApi((prevState) => ({
+                    ...prevState,
+                    category_id: item?.category?.id,
+                  }))
+                }
                 onMouseOver={() => brand(item?.category?.id)}
               >
                 <span>{item?.category?.category_name}</span>
@@ -242,7 +252,15 @@ const Productsbrands = ({ setProductFetchApi, productFetchApi }) => {
                         {item.category?.id === isChange &&
                           item?.subcategories?.length &&
                           item?.subcategories?.map((e) => (
-                            <div className="content">
+                            <div
+                              className="content"
+                              onClick={() =>
+                                setProductFetchApi((prevState) => ({
+                                  ...prevState,
+                                  category_id: item?.id,
+                                }))
+                              }
+                            >
                               <span>
                                 <p>{e.category_name}</p>
                                 {/* <p>{e.count}</p> */}

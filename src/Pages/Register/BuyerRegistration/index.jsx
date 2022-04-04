@@ -24,13 +24,13 @@ import { withStyles } from "@mui/styles";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/material.css";
 import { useNavigate } from "react-router-dom";
+import swal from "sweetalert2";
 
 import axios from "axios";
 import Constant from "../../../Constant";
 
 const BuyerRegistration = ({ classes }) => {
   const [{}, dispatch] = useStateValue();
-  const history = useNavigate();
   let {
     main_container,
     input_fields,
@@ -59,6 +59,7 @@ const BuyerRegistration = ({ classes }) => {
     confrim_password: "",
     mobile_valid: "",
     remember_me: false,
+    recaptcha: false,
   });
   const [inputValidation, setInputValidation] = useState({
     first_name: "",
@@ -71,6 +72,7 @@ const BuyerRegistration = ({ classes }) => {
     designation: "",
     country: "",
     confrim_password: "",
+    recaptcha: "",
   });
   const handleMobileChangeInput = (value, data, event, formattedValue) => {
     setbuyerRegistrationData((prevState) => ({
@@ -321,6 +323,14 @@ const BuyerRegistration = ({ classes }) => {
       }));
       errorHandle = true;
     }
+    if (!buyerRegistrationData?.recaptcha) {
+      document.getElementById("recaptcha")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        recaptcha: "Please enter the recaptcha .",
+      }));
+      errorHandle = true;
+    }
     if (!errorHandle) {
       // Apicall fuction
       FinalBuyerRegistration();
@@ -387,8 +397,55 @@ const BuyerRegistration = ({ classes }) => {
           type: "SET_IS_LOADING",
           value: false,
         });
-        localStorage.setItem("register_success", JSON.stringify(res?.data));
-        history("/thankyou/buyer", { state: res?.data });
+        if (res?.data?.[0]?.status) {
+          localStorage.setItem("register_success", JSON.stringify(res?.data));
+          localStorage.setItem(
+            "customer_auth",
+            JSON.stringify(res?.data?.[0]?.token)
+          );
+          // history("/thankyou/buyer", { state: res?.data });
+          getUserData(res.data?.[0]?.token);
+        } else {
+          swal.fire({
+            text: `${res.data?.[0]?.message}`,
+            icon: "error",
+            showConfirmButton: false,
+            timer: 3000,
+          });
+        }
+      })
+      .catch((error) => {
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+        swal.fire({
+          text: `${error?.response?.data?.message || error.message}`,
+          icon: "error",
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      });
+  };
+
+  const getUserData = (token) => {
+    axios
+      .get(Constant.customerMeDetailUrl(), {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+        localStorage.setItem("userdata", JSON.stringify(res?.data));
+        dispatch({
+          type: "SET_KYC_OPEN_CLOSE",
+          value: true,
+        });
       })
       .catch((err) => {
         dispatch({
@@ -652,6 +709,26 @@ const BuyerRegistration = ({ classes }) => {
             </InputLabel>
           </div>
         </div>
+        {/* 6LcaHDYfAAAAAOUR0jJWtEI128eoRL4xjBWOpjKD ---- site key */}
+        <ReCAPTCHA
+          className="recaptcha_info1 buyer-recaptcha_info"
+          // 6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI  --- Localllllll
+          sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+          onChange={() => {
+            setbuyerRegistrationData((prevState) => ({
+              ...prevState,
+              recaptcha: true,
+            }));
+            setInputValidation((prevState) => ({
+              ...prevState,
+              recaptcha: "",
+            }));
+          }}
+          name="recaptcha"
+        />
+        <InputLabel className={validation_error}>
+          {inputValidation?.recaptcha}
+        </InputLabel>
         <div className={input_textField}>
           <div style={{ width: "100%" }}>
             <FormControlLabel
@@ -675,10 +752,6 @@ const BuyerRegistration = ({ classes }) => {
               className={checkbox_label}
             />
           </div>
-          <ReCAPTCHA
-            className="recaptcha_info1 buyer-recaptcha_info"
-            sitekey="6LcaHDYfAAAAAOUR0jJWtEI128eoRL4xjBWOpjKD"
-          />
         </div>
 
         <Box className={button_box} fullWidth>

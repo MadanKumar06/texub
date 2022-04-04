@@ -6,6 +6,7 @@ import { withStyles } from "@mui/styles";
 import { ExpandMore } from "@mui/icons-material";
 import axios from "axios";
 import Constant from "../../../Constant";
+import { useStateValue } from "../../../store/state";
 
 import aed from "../../../Assets/CommonImage/Currency switcher/DH.png";
 import usd from "../../../Assets/CommonImage/Currency switcher/dollar-symbol.png";
@@ -27,6 +28,7 @@ import inr from "../../../Assets/CommonImage/Currency switcher/Group 1132.png";
 // ];
 const CurrencyPopup = ({ classes }) => {
   const [anchorEl, setAnchorEl] = useState(null);
+  const [{}, dispatch] = useStateValue();
   const [apiDropDowns, setApiDropDowns] = useState([]);
   const [selectedValue, setSelectedValue] = useState({
     currency_code: "",
@@ -45,6 +47,10 @@ const CurrencyPopup = ({ classes }) => {
       currency_code: event?.currency_code,
       currency_id: event?.currency_id,
       // image: event.image,
+    });
+    dispatch({
+      type: "SET_CURRENCY",
+      data: event,
     });
     setAnchorEl(null);
   };
@@ -66,6 +72,13 @@ const CurrencyPopup = ({ classes }) => {
           setSelectedValue({
             currency_code: res?.data?.[0]?.currency_code,
             currency_id: res?.data?.[0]?.currency_id,
+          });
+          dispatch({
+            type: "SET_CURRENCY",
+            data: {
+              currency_code: res?.data?.[0]?.currency_code,
+              currency_id: res?.data?.[0]?.currency_id,
+            },
           });
         })
         .catch((err) => {});
