@@ -18,7 +18,7 @@ export const Products = () => {
         let data = {
           data: {
             currency_id: parseInt(currency?.currency_id),
-            customer_id: customer_id?.id,
+            customer_id: customer_id?.id ? customer_id?.id : 0,
             category_id: productFetchApi?.category_id
               ? productFetchApi?.category_id
               : getCategories?.[0]?.category?.id,

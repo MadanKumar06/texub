@@ -95,8 +95,8 @@ const PDPTable = ({
 
   useEffect(() => {
     let temp1 =
-      dataFromPLP?.tableData?.length &&
-      dataFromPLP?.tableData?.filter(
+      tableData?.length &&
+      tableData?.filter(
         (itm) =>
           itm?.main_product?.main_product_id ==
           dataFromPLP?.row?.[9]?.props?.value
@@ -109,7 +109,7 @@ const PDPTable = ({
       packing_details: temp1?.[0]?.subProducts?.[0]?.packing_details,
       no_of_pieces: temp1?.[0]?.subProducts?.[0]?.no_of_pieces,
     }));
-  }, [dataFromPLP?.tableData?.length]);
+  }, [dataFromPLP?.tableData?.length ,tableData]);
 
   return (
     <div className={table_container}>
