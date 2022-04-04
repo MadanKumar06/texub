@@ -4,10 +4,17 @@ export const initialState = {
   miniCartOpenClose: { openClose: false, open: false },
   signInOpenClose: false,
   registerOpenClose: false,
+  isLoading: false,
+  currency: {},
 };
 
 const reducer = (state, action) => {
   switch (action.type) {
+    case "SET_IS_LOADING":
+      return {
+        ...state,
+        isLoading: action.value,
+      };
     case "SET_KYC_OPEN_CLOSE":
       return {
         ...state,
@@ -32,6 +39,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         registerOpenClose: action.value,
+      };
+    case "SET_CURRENCY":
+      return {
+        ...state,
+        currency: action.data,
       };
     default:
       return state;

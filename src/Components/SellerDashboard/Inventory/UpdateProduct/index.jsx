@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./styles.scss";
 import { Link } from "react-router-dom";
 import { InputLabel, TextField, Autocomplete } from "@mui/material";
 import Details from "./Details";
+
+import axios from "axios";
+import Constant from "../../../../Constant";
 
 function Index({ type }) {
   const [count, setcount] = useState([0]);
@@ -14,6 +17,30 @@ function Index({ type }) {
     count.push(test);
   };
 
+  const [dropdownListFromApi, setDropdownListFromApi] = useState({
+    dropDownList: [],
+  });
+
+  const [updateProductList, setUpdateProductList] = useState({});
+  //Api to fetch dropdown values
+  useEffect(() => {
+    const fetchMainCategoryData = () => {
+      axios
+        .get(Constant.baseUrl() + "/getUpdateProductDetails", {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => {
+          setDropdownListFromApi((prevState) => ({
+            ...prevState,
+            dropDownList: Object.assign({}, ...res?.data),
+          }));
+        })
+        .catch((err) => {});
+    };
+    fetchMainCategoryData();
+  }, []);
   const deleterow = (value) => {
     setcount(count.filter((item, i) => i !== value));
   };
@@ -30,6 +57,7 @@ function Index({ type }) {
               countincrease={countincrease}
               i={i}
               deleterow={deleterow}
+              hubDropDownValues={dropdownListFromApi?.dropDownList?.hub_list}
             />
           </div>
         ))}
@@ -41,18 +69,17 @@ function Index({ type }) {
             <div className="updateproduct_inputfields info ">
               <InputLabel>Conditions</InputLabel>
               <Autocomplete
-                //   value={value}
-                name=""
-                //   onChange={(event, newValue) => {
-                //     setValue(newValue);
-                //   }}
-                //   className={auto_complete_input}
-                //   inputValue={inputValue}
-                //   onInputChange={(event, newInputValue) => {
-                //     setInputValue(newInputValue);
-                //   }}
-                id="controllable-states-demo"
-                options={options}
+                value={updateProductList?.conditions}
+                disablePortal={true}
+                name="conditions"
+                onChange={(event, newValue) => {
+                  setUpdateProductList((prevState) => ({
+                    ...prevState,
+                    conditions: newValue,
+                  }));
+                }}
+                id="conditions"
+                options={dropdownListFromApi?.dropDownList?.condition_list}
                 renderInput={(params) => (
                   <TextField
                     {...params}
@@ -69,18 +96,22 @@ function Index({ type }) {
             <div className="updateproduct_inputfields info">
               <InputLabel>Warranty Type</InputLabel>
               <Autocomplete
-                //   value={value}
-                name=""
+                value={updateProductList?.warranty_type}
+                name="warranty_type"
+                disablePortal={true}
                 onChange={(event, newValue) => {
-                  setOpenTextbox(true);
+                  setUpdateProductList((prevState) => ({
+                    ...prevState,
+                    conditions: newValue,
+                  }));
+                  if (newValue?.label === "Direct Vendor Warranty In Country") {
+                    setOpenTextbox(true);
+                  } else {
+                    setOpenTextbox(false);
+                  }
                 }}
-                //   className={auto_complete_input}
-                //   inputValue={inputValue}
-                //   onInputChange={(event, newInputValue) => {
-                //     setInputValue(newInputValue);
-                //   }}
-                id="controllable-states-demo"
-                options={options}
+                id="warranty_type"
+                options={dropdownListFromApi?.dropDownList?.warranty_type}
                 renderInput={(params) => (
                   <TextField
                     {...params}
@@ -147,20 +178,29 @@ function Index({ type }) {
             </div>
             <div className="updateproduct_inputfields info">
               <InputLabel>Packing Details</InputLabel>
-              <TextField
-                id="upc_number"
-                name="upc_number"
-                placeholder="2 Days"
-                fullWidth
-                autoFocus={true}
-                autoComplete="off"
-                // value={signInData?.email_address}
-                InputLabelProps={{
-                  shrink: false,
+              <Autocomplete
+                value={updateProductList?.packing_details}
+                name="packing_details"
+                disablePortal={true}
+                onChange={(event, newValue) => {
+                  setUpdateProductList((prevState) => ({
+                    ...prevState,
+                    packing: newValue,
+                  }));
                 }}
-                className="inputfield-box"
-                // onChange={handleChangeInput}
-                variant="outlined"
+                id="packing_details"
+                options={dropdownListFromApi?.dropDownList?.packing_details}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    className="inputfield-box"
+                    placeholder="Select Packing Details"
+                    fullWidth
+                    InputLabelProps={{
+                      shrink: false,
+                    }}
+                  />
+                )}
               />
             </div>
           </div>

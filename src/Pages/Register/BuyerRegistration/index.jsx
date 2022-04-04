@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./styles";
 import "./popupstyle.scss";
 
@@ -12,14 +12,22 @@ import {
 } from "@mui/material";
 import { useStateValue } from "../../../store/state";
 import ReCAPTCHA from "react-google-recaptcha";
-import { isEmailValid, isPasswordValid } from "../../../utilities";
+import {
+  isEmailValid,
+  isPasswordValid,
+  isFirstAndLastNameValid,
+  isCompanyNameValid,
+  getAdminToken,
+} from "../../../utilities";
 import Autocomplete from "@mui/material/Autocomplete";
 import { withStyles } from "@mui/styles";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/material.css";
+import { useNavigate } from "react-router-dom";
+import swal from "sweetalert2";
 
 import axios from "axios";
-import baseUrl from "../../../Constant";
+import Constant from "../../../Constant";
 
 const BuyerRegistration = ({ classes }) => {
   const [{}, dispatch] = useStateValue();
@@ -33,13 +41,11 @@ const BuyerRegistration = ({ classes }) => {
     auto_complete_input,
     validation_error,
     text_field_container,
-    recaptcha_info,
-    arrow_icon,
     button_box,
+    mobile_input,
   } = classes;
-  const options = ["Option 1", "Option 2"];
-  const [value, setValue] = React.useState();
-  const [inputValue, setInputValue] = React.useState("");
+  const [countryList, setCountryList] = useState([]);
+  const [adminToken, setAdminToken] = useState({});
   const [buyerRegistrationData, setbuyerRegistrationData] = useState({
     first_name: "",
     last_name: "",
@@ -51,7 +57,9 @@ const BuyerRegistration = ({ classes }) => {
     designation: "",
     country: "",
     confrim_password: "",
+    mobile_valid: "",
     remember_me: false,
+    recaptcha: false,
   });
   const [inputValidation, setInputValidation] = useState({
     first_name: "",
@@ -64,13 +72,19 @@ const BuyerRegistration = ({ classes }) => {
     designation: "",
     country: "",
     confrim_password: "",
+    recaptcha: "",
   });
-  const handleMobileChangeInput = (event) => {
+  const handleMobileChangeInput = (value, data, event, formattedValue) => {
     setbuyerRegistrationData((prevState) => ({
       ...prevState,
-      mobile_number: event.split(" "),
+      mobile_number: value,
+      mobile_valid: value?.slice(data?.dialCode?.length),
     }));
-    setInputValidation("");
+    setInputValidation((prevState) => ({
+      ...prevState,
+      mobile_number: "",
+    }));
+    handleSwitchCase(["mobile_number"], value?.slice(data?.dialCode?.length));
   };
   const handleChangeInput = (event) => {
     if (event?.target?.name === "remember_me") {
@@ -78,73 +92,52 @@ const BuyerRegistration = ({ classes }) => {
         ...prevState,
         [event.target.name]: event.target.checked,
       }));
-      setInputValidation("");
+      setInputValidation((prevState) => ({
+        ...prevState,
+        [event.target.name]: "",
+      }));
       handleSwitchCase([event.target.name], event.target.value);
     } else {
       setbuyerRegistrationData((prevState) => ({
         ...prevState,
         [event.target.name]: event.target.value,
       }));
-      setInputValidation("");
+      setInputValidation((prevState) => ({
+        ...prevState,
+        [event.target.name]: "",
+      }));
       handleSwitchCase([event.target.name], event.target.value);
     }
   };
   const handleSwitchCase = (fieldName, value) => {
     switch (fieldName[0]) {
-      // case "first_name":
-      //   if (!value) {
-      //     setInputValidation((prevState) => ({
-      //       ...prevState,
-      //       first_name: "Please enter the first name.",
-      //     }));
-      //   }
-      //   break;
-      // case "last_name":
-      //   if (!value) {
-      //     setInputValidation((prevState) => ({
-      //       ...prevState,
-      //       last_name: "Please enter the last name.",
-      //     }));
-      //   }
-      //   break;
-      case "mobile_number":
-        // if (!value) {
-        //   document.getElementById("mobile_number")?.focus();
-        //   setInputValidation((prevState) => ({
-        //     ...prevState,
-        //     mobile_number: "Please enter the mobile number.",
-        //   }));
-        // } else
-        if (value?.length !== 10) {
-          document.getElementById("mobile_number")?.focus();
-
+      case "first_name":
+        if (!isFirstAndLastNameValid(value)) {
           setInputValidation((prevState) => ({
             ...prevState,
-            mobile_number: "Please enter 10 digit mobile number.",
+            first_name: "Please enter alphabet.",
           }));
         }
         break;
-      case "confrim_password":
-        // if (!value) {
-        //   setInputValidation((prevState) => ({
-        //     ...prevState,
-        //     confrim_password: "Please enter your confrim password.",
-        //   }));
-        // } else
-        if (!(buyerRegistrationData?.password === value)) {
+      case "last_name":
+        if (!isFirstAndLastNameValid(value)) {
           setInputValidation((prevState) => ({
             ...prevState,
-            confrim_password: "Password and confirm password does not match",
+            last_name: "Please enter alphabet.",
+          }));
+        }
+        break;
+      case "mobile_number":
+        if (value?.length < 6 || value?.length > 15) {
+          document.getElementById("mobile_number")?.focus();
+          setInputValidation((prevState) => ({
+            ...prevState,
+            mobile_number:
+              "Please enter more than 6 and less than 16 digit mobile number.",
           }));
         }
         break;
       case "email_address":
-        // if (!value) {
-        //   setInputValidation((prevState) => ({
-        //     ...prevState,
-        //     email_address: "Please enter the e-mail.",
-        //   }));
-        // } else
         if (!isEmailValid(value)) {
           setInputValidation((prevState) => ({
             ...prevState,
@@ -153,12 +146,6 @@ const BuyerRegistration = ({ classes }) => {
         }
         break;
       case "password":
-        // if (!value) {
-        //   setInputValidation((prevState) => ({
-        //     ...prevState,
-        //     password: "Please enter your password.",
-        //   }));
-        // } else
         if (!isPasswordValid(value)) {
           setInputValidation((prevState) => ({
             ...prevState,
@@ -167,30 +154,31 @@ const BuyerRegistration = ({ classes }) => {
           }));
         }
         break;
-      // case "company":
-      //   if (!value) {
-      //     setInputValidation((prevState) => ({
-      //       ...prevState,
-      //       company: "Please enter the company.",
-      //     }));
-      //   }
-      //   break;
-      // case "designation":
-      //   if (!value) {
-      //     setInputValidation((prevState) => ({
-      //       ...prevState,
-      //       designation: "Please enter the designation.",
-      //     }));
-      //   }
-      //   break;
-      // case "country":
-      //   if (!value) {
-      //     setInputValidation((prevState) => ({
-      //       ...prevState,
-      //       country: "Please select the country.",
-      //     }));
-      //   }
-      //   break;
+      case "confrim_password":
+        if (!(buyerRegistrationData?.password === value)) {
+          setInputValidation((prevState) => ({
+            ...prevState,
+            confrim_password: "Password and confirm password does not match",
+          }));
+        }
+        break;
+
+      case "company":
+        if (!isCompanyNameValid(value)) {
+          setInputValidation((prevState) => ({
+            ...prevState,
+            company: "Please enter Alphabet or (Alphabet and Number).",
+          }));
+        }
+        break;
+      case "designation":
+        if (!isFirstAndLastNameValid(value)) {
+          setInputValidation((prevState) => ({
+            ...prevState,
+            designation: "Please enter alphabet.",
+          }));
+        }
+        break;
       default:
         break;
     }
@@ -204,12 +192,26 @@ const BuyerRegistration = ({ classes }) => {
         first_name: "Please enter the first name.",
       }));
       errorHandle = true;
+    } else if (!isFirstAndLastNameValid(buyerRegistrationData?.first_name)) {
+      document.getElementById("first_name")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        first_name: "Please enter alphabet.",
+      }));
+      errorHandle = true;
     }
     if (!buyerRegistrationData?.last_name) {
       document.getElementById("last_name")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
         last_name: "Please enter the last name.",
+      }));
+      errorHandle = true;
+    } else if (!isFirstAndLastNameValid(buyerRegistrationData?.last_name)) {
+      document.getElementById("last_name")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        last_name: "Please enter alphabet.",
       }));
       errorHandle = true;
     }
@@ -235,12 +237,15 @@ const BuyerRegistration = ({ classes }) => {
         mobile_number: "Please enter the mobile number.",
       }));
       errorHandle = true;
-    } else if (buyerRegistrationData?.mobile_number[1]?.length !== 10) {
-      debugger;
+    } else if (
+      buyerRegistrationData?.mobile_valid?.length < 6 ||
+      buyerRegistrationData?.mobile_valid?.length > 15
+    ) {
       document.getElementById("mobile_number")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
-        mobile_number: "Please enter 10 digit mobile number.",
+        mobile_number:
+          "Please enter more than 6 and less than 16 digit mobile number.",
       }));
       errorHandle = true;
     }
@@ -284,7 +289,14 @@ const BuyerRegistration = ({ classes }) => {
       document.getElementById("company")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
-        company: "Please enter the company.",
+        company: "Please enter the company name.",
+      }));
+      errorHandle = true;
+    } else if (!isCompanyNameValid(buyerRegistrationData?.company)) {
+      document.getElementById("company")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        company: "Please enter Alphabet or (Alphabet and Number)..",
       }));
       errorHandle = true;
     }
@@ -295,22 +307,152 @@ const BuyerRegistration = ({ classes }) => {
         designation: "Please enter the designation.",
       }));
       errorHandle = true;
+    } else if (!isFirstAndLastNameValid(buyerRegistrationData?.designation)) {
+      document.getElementById("designation")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        designation: "Please enter alphabet.",
+      }));
+      errorHandle = true;
     }
-    if (!value) {
-      document.getElementById("last_name")?.focus();
+    if (!buyerRegistrationData?.country) {
+      document.getElementById("country")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
         country: "Please select the country.",
       }));
       errorHandle = true;
     }
+    if (!buyerRegistrationData?.recaptcha) {
+      document.getElementById("recaptcha")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        recaptcha: "Please enter the recaptcha .",
+      }));
+      errorHandle = true;
+    }
     if (!errorHandle) {
       // Apicall fuction
-      dispatch({
-        type: "SET_KYC_OPEN_CLOSE",
-        value: true,
-      });
+      FinalBuyerRegistration();
     }
+  };
+
+  //API for fetch dropdown values
+  useEffect(() => {
+    const fetchCountryData = () => {
+      axios
+        .get(Constant.baseUrl() + "/getCountryList", {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => {
+          setCountryList(res?.data);
+        })
+        .catch((err) => {});
+    };
+    fetchCountryData();
+  }, []);
+
+  //API to fetch admin token
+  useEffect(() => {
+    getAdminToken((res) => {
+      setAdminToken(res);
+    });
+  }, []);
+
+  //API to Register
+  const FinalBuyerRegistration = () => {
+    dispatch({
+      type: "SET_IS_LOADING",
+      value: true,
+    });
+    let data = {
+      customer: {
+        group_id: 5,
+        website_id: 1,
+        store_id: 2,
+        email: buyerRegistrationData?.email_address,
+        first_name: buyerRegistrationData?.first_name,
+        last_name: buyerRegistrationData?.last_name,
+        mobile_number: buyerRegistrationData?.mobile_number,
+        password: buyerRegistrationData?.password,
+        confirm_password: buyerRegistrationData?.confrim_password,
+        landline_number: buyerRegistrationData?.landline_number,
+        company_name: buyerRegistrationData?.company,
+        country: buyerRegistrationData?.country?.value,
+        designation: buyerRegistrationData?.designation,
+        is_seller: 0,
+      },
+    };
+    axios
+      .post(Constant.baseUrl() + "/createCustomer", data, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${adminToken}`,
+        },
+      })
+      .then((res) => {
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+        if (res?.data?.[0]?.status) {
+          localStorage.setItem("register_success", JSON.stringify(res?.data));
+          localStorage.setItem(
+            "customer_auth",
+            JSON.stringify(res?.data?.[0]?.token)
+          );
+          // history("/thankyou/buyer", { state: res?.data });
+          getUserData(res.data?.[0]?.token);
+        } else {
+          swal.fire({
+            text: `${res.data?.[0]?.message}`,
+            icon: "error",
+            showConfirmButton: false,
+            timer: 3000,
+          });
+        }
+      })
+      .catch((error) => {
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+        swal.fire({
+          text: `${error?.response?.data?.message || error.message}`,
+          icon: "error",
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      });
+  };
+
+  const getUserData = (token) => {
+    axios
+      .get(Constant.customerMeDetailUrl(), {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+        localStorage.setItem("userdata", JSON.stringify(res?.data));
+        dispatch({
+          type: "SET_KYC_OPEN_CLOSE",
+          value: true,
+        });
+      })
+      .catch((err) => {
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+      });
   };
   return (
     <div className={main_container}>
@@ -390,62 +532,22 @@ const BuyerRegistration = ({ classes }) => {
           </div>
 
           <div className={text_field_container}>
-            {/* <MuiPhoneNumber
-              preferredCountries={["india"]}
-              defaultCountry={"in"}
-              id="mobile_number"
-              fullWidth
-              label="Mobile Number"
-              className="inputfield-box"
-              name="mobile_number"
-              placeholder="8796878788"
-              value={buyerRegistrationData?.mobile_number}
-              InputLabelProps={{
-                shrink: true,
-                required: true,
-                classes: {
-                  asterisk: asterisk,
-                },
-              }}
-              onChange={handleMobileChangeInput}
-              variant="outlined"
-            /> */}
             <PhoneInput
               country={"in"}
               id="mobile_number"
               fullWidth
               label="Mobile Number"
-              className="inputfield-box"
+              className={mobile_input}
               name="mobile_number"
+              placeholder="Mobile number"
               value={buyerRegistrationData?.mobile_number}
-              InputLabelProps={{
-                shrink: true,
+              inputProps={{
+                label: "Mobile Number",
                 required: true,
-                classes: {
-                  asterisk: asterisk,
-                },
               }}
               onChange={handleMobileChangeInput}
               variant="outlined"
             />
-            {/* <TextField
-              id="mobile_number"
-              label="Mobile Number"
-              fullWidth
-              type="number"
-              placeholder="Mobile Number"
-              InputLabelProps={{
-                shrink: true,
-                required: true,
-                classes: {
-                  asterisk: asterisk,
-                },
-              }}
-              value={buyerRegistrationData?.mobile_number}
-              name="mobile_number"
-              onChange={handleChangeInput}
-              variant="outlined"
-            /> */}
             <InputLabel className={validation_error}>
               {inputValidation?.mobile_number}
             </InputLabel>
@@ -571,19 +673,20 @@ const BuyerRegistration = ({ classes }) => {
 
           <div className={text_field_container}>
             <Autocomplete
-              value={value}
+              value={buyerRegistrationData?.country}
               name="country"
               onChange={(event, newValue) => {
-                setValue(newValue);
-                setInputValidation("");
+                setbuyerRegistrationData((prevState) => ({
+                  ...prevState,
+                  country: newValue,
+                }));
+                setInputValidation((prevState) => ({
+                  country: "",
+                }));
               }}
               className={auto_complete_input}
-              inputValue={inputValue}
-              onInputChange={(event, newInputValue) => {
-                setInputValue(newInputValue);
-              }}
               id="controllable-states-demo"
-              options={options}
+              options={countryList}
               fullWidth
               renderInput={(params) => (
                 <TextField
@@ -606,6 +709,26 @@ const BuyerRegistration = ({ classes }) => {
             </InputLabel>
           </div>
         </div>
+        {/* 6LcaHDYfAAAAAOUR0jJWtEI128eoRL4xjBWOpjKD ---- site key */}
+        <ReCAPTCHA
+          className="recaptcha_info1 buyer-recaptcha_info"
+          // 6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI  --- Localllllll
+          sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+          onChange={() => {
+            setbuyerRegistrationData((prevState) => ({
+              ...prevState,
+              recaptcha: true,
+            }));
+            setInputValidation((prevState) => ({
+              ...prevState,
+              recaptcha: "",
+            }));
+          }}
+          name="recaptcha"
+        />
+        <InputLabel className={validation_error}>
+          {inputValidation?.recaptcha}
+        </InputLabel>
         <div className={input_textField}>
           <div style={{ width: "100%" }}>
             <FormControlLabel
@@ -619,20 +742,16 @@ const BuyerRegistration = ({ classes }) => {
               value="yes"
               control={<Checkbox color="secondary" />}
               label={
-                <div>
+                <p>
                   By using this form you agree with the{" "}
-                  <span>Terms of Use</span>
-                  and <span>Privacy Policy</span> by this website.
-                </div>
+                  <span>Terms of Use</span> and <span>Privacy Policy</span> by
+                  this website.
+                </p>
               }
               labelPlacement="end"
               className={checkbox_label}
             />
           </div>
-          <ReCAPTCHA
-            className="recaptcha_info1 buyer-recaptcha_info"
-            sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
-          />
         </div>
 
         <Box className={button_box} fullWidth>
@@ -646,7 +765,6 @@ const BuyerRegistration = ({ classes }) => {
           {/* </Link> */}
         </Box>
       </div>
-      {/* <ArrowDropUp className={arrow_icon} />  */}
     </div>
   );
 };

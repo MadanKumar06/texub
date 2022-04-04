@@ -1,11 +1,6 @@
 import React, { useState } from "react";
 import styles from "./styles";
-import {
-  Modal,
-  Button,
-  Box,
-  Backdrop,
-} from "@mui/material";
+import { Modal, Button, Box, Backdrop } from "@mui/material";
 import { withStyles } from "@mui/styles";
 import { Clear } from "@mui/icons-material";
 import SectionRight from "../SectionRight";
@@ -50,6 +45,12 @@ const BuyerKYCformSectionLeft = ({ classes }) => {
   };
 
   console.log(kycFormData);
+  //HIDE and show bank details for different users
+  let HideAndShowBankDetails = JSON.parse(localStorage.getItem("userdata"));
+  let buyer_or_seller = HideAndShowBankDetails?.group_id;
+  let seller = HideAndShowBankDetails?.custom_attributes?.filter(
+    (itm) => itm?.attribute_code === "customer_country"
+  );
   return (
     <Modal
       aria-labelledby="transition-modal-title"
@@ -127,10 +128,16 @@ const BuyerKYCformSectionLeft = ({ classes }) => {
                   setValidationFieldMessage={setValidationFieldMessage}
                 />
               )}
-              <BankDetails
-                SetFormValues={setKycFormData}
-                FormValues={kycFormData}
-              />
+              {buyer_or_seller === 5 ? (
+                ""
+              ) : seller?.length ? (
+                ""
+              ) : (
+                <BankDetails
+                  SetFormValues={setKycFormData}
+                  FormValues={kycFormData}
+                />
+              )}
             </div>
           </div>
           <div className={section_right}>

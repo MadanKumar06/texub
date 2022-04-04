@@ -3,9 +3,8 @@ import "./styles.scss";
 import MUITable from "../../../Common/MUITable";
 import hp from "../../../../Assets/sellerdashboard/inventory/hp.png";
 import Pagination from "../../../Pagination";
-function Index({ registerproduct }) {
+function Index({ registerproduct, gridData }) {
   const [tableData, setTableData] = useState([]);
-
   const options = {
     filter: false,
     filterType: "dropdown",
@@ -110,7 +109,7 @@ function Index({ registerproduct }) {
 
       <Pagination
         PaginateData={PaginateDataSplit}
-        DataList={table}
+        DataList={gridData}
         PagePerRow={4}
       />
     </div>

@@ -1,6 +1,8 @@
 const styles = (theme) => ({
-  section_right: {
-    marginBottom: "14px",
+  kyc_detail_container: {
+    marginBottom: "3em",
+    margin: "auto",
+    width: "60%",
   },
   info_text_lineNote: {
     color: "#333333",
@@ -103,9 +105,6 @@ const styles = (theme) => ({
       padding: "8px !important",
       fontSize: "16px !important",
     },
-  },
-  asterisk: {
-    color: "red",
   },
 });
 export default styles;

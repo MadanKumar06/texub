@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
   InputLabel,
@@ -8,9 +8,134 @@ import {
   Button,
 } from "@mui/material";
 import "./styles.scss";
+import axios from "axios";
+import Constant from "../../../../Constant";
 
 function RegisterProduct() {
-  const options = ["Option 1", "Option 2"];
+  const [openClosePopOver, setOpenClosePopOver] = useState({
+    state: false,
+    message: "",
+    Status: "",
+  });
+  const [dropdownListFromApi, setDropdownListFromApi] = useState({
+    mainCategoryList: [],
+    subCategoryList: [],
+    brandsList: [],
+    vendor_part_number: "",
+    texub_product_id: "",
+  });
+  const [registerNewProductData, setRegisterNewProductData] = useState({
+    main_category: "",
+    sub_category: "",
+    brands: "",
+    vendor_manufacturer_part_number: "",
+  });
+
+  //Api to fetch dropdown values
+  useEffect(() => {
+    const fetchMainCategoryData = () => {
+      axios
+        .get(Constant.baseUrl() + "/getCategoryList", {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => {
+          setDropdownListFromApi((prevState) => ({
+            ...prevState,
+            mainCategoryList: res?.data,
+          }));
+        })
+        .catch((err) => {});
+    };
+    fetchMainCategoryData();
+  }, []);
+  useEffect(() => {
+    if (registerNewProductData?.main_category?.value) {
+      const fetchRegionBasedCountryData = () => {
+        let data = {
+          category_id: registerNewProductData?.main_category?.value,
+        };
+        axios
+          .post(Constant.baseUrl() + "/getSubCategories", data, {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+          .then((res) => {
+            setDropdownListFromApi((prevState) => ({
+              ...prevState,
+              subCategoryList: res?.data,
+            }));
+          })
+          .catch((err) => {});
+      };
+      fetchRegionBasedCountryData();
+    }
+  }, [registerNewProductData?.main_category]);
+  useEffect(() => {
+    const fetchBrandsData = () => {
+      axios
+        .get(Constant.baseUrl() + "/getBrandList", {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => {
+          setDropdownListFromApi((prevState) => ({
+            ...prevState,
+            brandsList: res?.data,
+          }));
+        })
+        .catch((err) => {});
+    };
+    fetchBrandsData();
+  }, []);
+  useEffect(() => {
+    const fetchTexubProductIdData = () => {
+      axios
+        .get(Constant.baseUrl() + "/getTexubProductId", {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => {
+          setDropdownListFromApi((prevState) => ({
+            ...prevState,
+            texub_product_id: res?.data,
+          }));
+        })
+        .catch((err) => {});
+    };
+    fetchTexubProductIdData();
+  }, []);
+
+  const handleVendorChange = (event) => {
+    let data = {
+      sku: event?.target.value,
+    };
+    setOpenClosePopOver({
+      state: false,
+    });
+    setRegisterNewProductData((prevState) => ({
+      ...prevState,
+      vendor_manufacturer_part_number: event.target.value,
+    }));
+    axios
+      .post(Constant.baseUrl() + "/validateSku", data, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        setOpenClosePopOver({
+          state: true,
+          message: res?.data?.[0]?.message,
+          Status: res?.data?.[0]?.status,
+        });
+      })
+      .catch((err) => {});
+  };
   return (
     <div className="registerproduct">
       <h1>Register New Product</h1>
@@ -39,15 +164,15 @@ function RegisterProduct() {
             <TextField
               id="product_id"
               name="product_id"
-              placeholder="11041"
+              placeholder="Texub product id"
               fullWidth
-              disabled
+              // disabled
               className="inputfield-box"
-              // value={signInData?.email_address}
+              readOnly={true}
+              value={dropdownListFromApi?.texub_product_id}
               InputLabelProps={{
                 shrink: false,
               }}
-              // onChange={handleChangeInput}
               variant="outlined"
             />
           </div>
@@ -56,18 +181,17 @@ function RegisterProduct() {
           <div className="registerproducts_inputfields">
             <InputLabel>Main Category</InputLabel>
             <Autocomplete
-              //   value={value}
-              name=""
-              //   onChange={(event, newValue) => {
-              //     setValue(newValue);
-              //   }}
-              //   className={auto_complete_input}
-              //   inputValue={inputValue}
-              //   onInputChange={(event, newInputValue) => {
-              //     setInputValue(newInputValue);
-              //   }}
+              value={registerNewProductData?.main_category}
+              name="main_category"
+              onChange={(event, newValue) => {
+                setRegisterNewProductData((prevState) => ({
+                  ...prevState,
+                  main_category: newValue,
+                }));
+              }}
+              disablePortal={true}
               id="controllable-states-demo"
-              options={options}
+              options={dropdownListFromApi?.mainCategoryList}
               renderInput={(params) => (
                 <TextField
                   {...params}
@@ -84,18 +208,17 @@ function RegisterProduct() {
           <div className="registerproducts_inputfields">
             <InputLabel>Sub-Category</InputLabel>
             <Autocomplete
-              //   value={value}
-              name=""
-              //   onChange={(event, newValue) => {
-              //     setValue(newValue);
-              //   }}
-              //   className={auto_complete_input}
-              //   inputValue={inputValue}
-              //   onInputChange={(event, newInputValue) => {
-              //     setInputValue(newInputValue);
-              //   }}
+              value={registerNewProductData?.subCategoryList}
+              name="sub_category"
+              onChange={(event, newValue) => {
+                setRegisterNewProductData((prevState) => ({
+                  ...prevState,
+                  sub_category: newValue,
+                }));
+              }}
               id="controllable-states-demo"
-              options={options}
+              options={dropdownListFromApi?.subCategoryList}
+              disablePortal={true}
               renderInput={(params) => (
                 <TextField
                   {...params}
@@ -114,18 +237,19 @@ function RegisterProduct() {
           <div className="registerproducts_inputfields">
             <InputLabel>Brand</InputLabel>
             <Autocomplete
-              //   value={value}
+              value={registerNewProductData?.brands}
               name=""
-              //   onChange={(event, newValue) => {
-              //     setValue(newValue);
-              //   }}
-              //   className={auto_complete_input}
-              //   inputValue={inputValue}
-              //   onInputChange={(event, newInputValue) => {
-              //     setInputValue(newInputValue);
-              //   }}
+              onChange={(event, newValue) => {
+                setDropdownListFromApi((prevState) => ({
+                  ...prevState,
+                  brands: newValue,
+                }));
+              }}
+              disablePortal={true}
               id="controllable-states-demo"
-              options={options}
+              options={dropdownListFromApi?.brandsList}
+              getOptionLabel={(option) => (option.name ? option.name : "")}
+              filterOptions={(options) => options}
               fullWidth
               renderInput={(params) => (
                 <TextField
@@ -163,19 +287,27 @@ function RegisterProduct() {
             <InputLabel>Vendor / Manufacturer part Number</InputLabel>
             <TextField
               id="part_number"
-              name="part_nymber"
+              name="vendor_manufacturer_part_number"
               placeholder="DE-B-0089"
               fullWidth
-              autoFocus={true}
               className="inputfield-box"
               autoComplete="off"
-              // value={signInData?.email_address}
+              value={registerNewProductData?.vendor_manufacturer_part_number}
               InputLabelProps={{
                 shrink: false,
               }}
-              // onChange={handleChangeInput}
+              onChange={handleVendorChange}
               variant="outlined"
             />
+            {openClosePopOver?.state && (
+              <p
+                className={`${"popover"}${" "}${
+                  openClosePopOver?.Status ? "active" : "inActive"
+                }`}
+              >
+                {openClosePopOver?.message}
+              </p>
+            )}
           </div>
           <div className="registerproducts_inputfields">
             <InputLabel>UPC Number</InputLabel>

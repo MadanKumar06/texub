@@ -40,19 +40,24 @@ const OfficeAddressDetails = ({
   });
   const handleSwitchCase = (fieldName, value) => {
     switch (fieldName[0]) {
-      case "pin_zip_code":
-        if (value !== 6) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            pin_zip_code: "Please enter 6 digit pincode.",
-          }));
-        }
-        break;
+      // case "pin_zip_code":
+      //   if (value !== 6) {
+      //     setInputValidation((prevState) => ({
+      //       ...prevState,
+      //       pin_zip_code: "Please enter 6 digit pincode.",
+      //     }));
+      //   }
+      //   break;
       default:
         break;
     }
   };
 
+  var country_readonly = JSON.parse(
+    localStorage.getItem("userdata")
+  )?.custom_attributes?.filter(
+    (itm) => itm?.attribute_code === "customer_country"
+  );
   return (
     <div>
       <p className={info_text_lineNote_one}>Office Address</p>
@@ -95,26 +100,24 @@ const OfficeAddressDetails = ({
         <div className={input_div}>
           <div className={textFlied_separate}>
             <TextField
-              id="pin_zip_code"
-              label="PIN/ZIP Code"
-              placeholder="PIN/ZIP Code"
+              id="country"
+              label="Country"
+              placeholder="Country"
               fullWidth
+              disabled
               className="inputfield-box"
               InputLabelProps={{
                 shrink: true,
                 required: true,
+                readOnly: true,
                 classes: {
                   asterisk: asterisk,
                 },
               }}
-              name="pin_zip_code"
-              onChange={handleFormvalue}
-              value={FormValues?.pin_zip_code}
+              name="country"
+              value={country_readonly?.[0]?.value}
               variant="outlined"
             />
-            <InputLabel className={validation_error}>
-              {inputValidation?.pin_zip_code}
-            </InputLabel>
           </div>
           <div className={textFlied_separate}>
             <TextField
@@ -140,12 +143,12 @@ const OfficeAddressDetails = ({
             </InputLabel>
           </div>
         </div>
+        {/* <div className={textFlied_separate}> */}
         <TextField
-          id="country"
-          label="Country"
-          placeholder="Country"
+          id="pin_zip_code"
+          label="PIN/ZIP Code"
+          placeholder="PIN/ZIP Code"
           fullWidth
-          disabled
           className="inputfield-box"
           InputLabelProps={{
             shrink: true,
@@ -154,10 +157,15 @@ const OfficeAddressDetails = ({
               asterisk: asterisk,
             },
           }}
-          name="country"
-          value={FormValues?.country}
+          name="pin_zip_code"
+          onChange={handleFormvalue}
+          value={FormValues?.pin_zip_code}
           variant="outlined"
         />
+        <InputLabel className={validation_error}>
+          {inputValidation?.pin_zip_code}
+        </InputLabel>
+        {/* </div> */}
       </div>
     </div>
   );

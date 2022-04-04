@@ -12,6 +12,23 @@
     }
     .registerproducts_inputfields {
       width: 100%;
+      position: relative;
+      .popover {
+        padding: 1em 3em;
+        position: absolute;
+        right: 3em;
+        font-size: 14px;
+        font-weight: 600;
+        background: #ffffff;
+        box-shadow: 0 3px 18px #00000029;
+        top: -7px;
+      }
+      .active {
+        color: #008000;
+      }
+      .inActive {
+        color: #ff0000;
+      }
       .MuiInputLabel-root {
         font-size: 18px;
         font-weight: 600;
@@ -106,7 +123,7 @@
   .registerproduct .registerproduct__submit .registerproduct__submitbutton {
     font-size: 16px;
     padding: 0.4em 7.2em;
-}
+  }
 }
 @media (max-width: 767px) {
   .registerproduct .registerproducts__form .input_separator {

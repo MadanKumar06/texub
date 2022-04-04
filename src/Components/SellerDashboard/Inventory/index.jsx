@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./styles.scss";
 import MUITable from "../../Common/MUITable";
 import { Button, Box } from "@mui/material";
@@ -10,8 +10,13 @@ import hp from "../../../Assets/sellerdashboard/inventory/hp.png";
 import { Link } from "react-router-dom";
 import Pagination from "../../Pagination";
 import ProductGrid from "./ProductGrid";
+
+import axios from "axios";
+import Constant from "../../../Constant";
+
 function Index({ registerproduct }) {
   const [tableData, setTableData] = useState([]);
+  const [apiTableData, setApiTableData] = useState([]);
   const [searchList, setSearchList] = useState(false);
 
   const options = {
@@ -28,7 +33,7 @@ function Index({ registerproduct }) {
 
   const columns = [
     {
-      name: "logo",
+      name: "brand_image_url",
       label: " ",
       options: {
         customBodyRender: (value) => {
@@ -37,7 +42,7 @@ function Index({ registerproduct }) {
       },
     },
     {
-      name: "pname",
+      name: "name",
       label: "PRODUCT NAME",
       options: {
         customBodyRender: (value) => {
@@ -54,7 +59,7 @@ function Index({ registerproduct }) {
       label: "SKU",
     },
     {
-      name: "instock",
+      name: "in_stock",
       label: "IN STOCK",
       options: {
         customBodyRender: (value) => {
@@ -73,7 +78,7 @@ function Index({ registerproduct }) {
       },
     },
     {
-      name: "myprice",
+      name: "my_price",
       label: "MY PRICE",
       options: {
         customBodyRender: (value) => {
@@ -89,7 +94,7 @@ function Index({ registerproduct }) {
       },
     },
     {
-      name: "lowestprice",
+      name: "my_price",
       label: "LOWEST PRICE",
       options: {
         customBodyRender: (value) => {
@@ -115,8 +120,7 @@ function Index({ registerproduct }) {
         customBodyRender: (value) => {
           return (
             <div className="inventory__rank">
-              {value}
-              <p>th</p>
+              {/* {value} */}3<p>th</p>
             </div>
           );
         },
@@ -132,203 +136,71 @@ function Index({ registerproduct }) {
               className="inventory__action"
               onClick={() => registerproduct("updateproduct")}
             >
-              {value}
+              Update
             </div>
           );
         },
       },
     },
   ];
-
-  const table = [
-    {
-      logo: hp,
-      pname: "pname1pname1pname1 pname1pname1pname1",
-      category: "cat1",
-      sku: "sku1",
-      instock: 100,
-      moq: 30,
-      myprice: 500,
-      lowestprice: 450,
-      hub: "Chennai",
-      rank: "6",
-      action: "Update",
-    },
-    {
-      logo: hp,
-      pname: "pname2",
-      category: "cat2",
-      sku: "sku2",
-      instock: 500,
-      moq: 100,
-      myprice: 5000,
-      lowestprice: 4050,
-      hub: "Hydrebad",
-      rank: "13",
-      action: "Update",
-    },
-    {
-      logo: hp,
-      pname: "pname2",
-      category: "cat2",
-      sku: "sku2",
-      instock: 500,
-      moq: 100,
-      myprice: 5000,
-      lowestprice: 4050,
-      hub: "Hydrebad",
-      rank: "13",
-      action: "Update",
-    },
-    {
-      logo: hp,
-      pname: "pname2",
-      category: "cat2",
-      sku: "sku2",
-      instock: 500,
-      moq: 100,
-      myprice: 5000,
-      lowestprice: 4050,
-      hub: "Hydrebad",
-      rank: "13",
-      action: "Update",
-    },
-    {
-      logo: hp,
-      pname: "pname2",
-      category: "cat2",
-      sku: "sku2",
-      instock: 500,
-      moq: 100,
-      myprice: 5000,
-      lowestprice: 4050,
-      hub: "Hydrebad",
-      rank: "13",
-      action: "Update",
-    },
-    {
-      logo: hp,
-      pname: "pname2",
-      category: "cat2",
-      sku: "sku2",
-      instock: 500,
-      moq: 100,
-      myprice: 5000,
-      lowestprice: 4050,
-      hub: "Hydrebad",
-      rank: "13",
-      action: "Update",
-    },
-    {
-      logo: hp,
-      pname: "pname2",
-      category: "cat2",
-      sku: "sku2",
-      instock: 500,
-      moq: 100,
-      myprice: 5000,
-      lowestprice: 4050,
-      hub: "Hydrebad",
-      rank: "13",
-      action: "Update",
-    },
-    {
-      logo: hp,
-      pname: "pname2",
-      category: "cat2",
-      sku: "sku2",
-      instock: 500,
-      moq: 100,
-      myprice: 5000,
-      lowestprice: 4050,
-      hub: "Hydrebad",
-      rank: "13",
-      action: "Update",
-    },
-    {
-      logo: hp,
-      pname: "pname2",
-      category: "cat2",
-      sku: "sku2",
-      instock: 500,
-      moq: 100,
-      myprice: 5000,
-      lowestprice: 4050,
-      hub: "Hydrebad",
-      rank: "13",
-      action: "Update",
-    },
-    {
-      logo: hp,
-      pname: "pname2",
-      category: "cat2",
-      sku: "sku2",
-      instock: 500,
-      moq: 100,
-      myprice: 5000,
-      lowestprice: 4050,
-      hub: "Hydrebad",
-      rank: "13",
-      action: "Update",
-    },
-    {
-      logo: hp,
-      pname: "pname2",
-      category: "cat2",
-      sku: "sku2",
-      instock: 500,
-      moq: 100,
-      myprice: 5000,
-      lowestprice: 4050,
-      hub: "Hydrebad",
-      rank: "13",
-      action: "Update",
-    },
-    {
-      logo: hp,
-      pname: "pname2",
-      category: "cat2",
-      sku: "sku2",
-      instock: 500,
-      moq: 100,
-      myprice: 5000,
-      lowestprice: 4050,
-      hub: "Hydrebad",
-      rank: "13",
-      action: "Update",
-    },
-    {
-      logo: hp,
-      pname: "pname2",
-      category: "cat2",
-      sku: "sku2",
-      instock: 500,
-      moq: 100,
-      myprice: 5000,
-      lowestprice: 4050,
-      hub: "Hydrebad",
-      rank: "13",
-      action: "Update",
-    },
-    {
-      logo: hp,
-      pname: "pname2",
-      category: "cat2",
-      sku: "sku2",
-      instock: 500,
-      moq: 100,
-      myprice: 5000,
-      lowestprice: 4050,
-      hub: "Hydrebad",
-      rank: "13",
-      action: "Update",
-    },
-  ];
   const PaginateDataSplit = (event) => {
     setTableData(event);
   };
+
+  //Api to fetch table values
+  useEffect(() => {
+    const fetchcustomerToken = () => {
+      let data = {
+        username: "ajitha.v@ambab.com",
+        password: "admin@1234",
+      };
+      axios
+        .post(Constant.customerTokenUrl(), data, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => {
+          fetchTableData(res?.data);
+        })
+        .catch((err) => {});
+    };
+    fetchcustomerToken();
+  }, []);
+
+  const fetchTableData = (token) => {
+    let customerId = JSON.parse(localStorage.getItem("userdata"));
+    let data = {
+      customerId: customerId?.id,
+    };
+    axios
+      .post(Constant.baseUrl() + "/getEditProductList", data, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        setApiTableData(res?.data);
+      })
+      .catch((err) => {});
+  };
   const handleSearchInput = (event) => {
-    setSearchList(event?.target?.value === "laptop" ? true : false);
+    var customer_id = JSON.parse(localStorage.getItem("userdata"));
+    let data = {
+      customerId: customer_id?.id,
+      keyWord: event?.target?.value,
+    };
+    axios
+      .post(Constant.baseUrl() + "/getSearchProduct", data, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        setSearchList(res?.data);
+      })
+      .catch((err) => {});
   };
   return (
     <div className="inventory">
@@ -370,7 +242,7 @@ function Index({ registerproduct }) {
           </div>
         </div>
       </div>
-      {searchList && <ProductGrid />}
+      {searchList?.length && <ProductGrid gridData={searchList} />}
       <MUITable
         columns={columns}
         table={tableData}
@@ -378,11 +250,13 @@ function Index({ registerproduct }) {
         className="inventory__table"
       />
 
-      <Pagination
-        PaginateData={PaginateDataSplit}
-        DataList={table}
-        PagePerRow={10}
-      />
+      {apiTableData?.length && (
+        <Pagination
+          PaginateData={PaginateDataSplit}
+          DataList={apiTableData}
+          PagePerRow={10}
+        />
+      )}
       <Link className="inventory-page-back" to="/sellerdashboard/dashboard">
         <ArrowBackIosNew />
         <span>Back</span>

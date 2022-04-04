@@ -18,7 +18,7 @@ import invoice_image from "../../Assets/CommonImage/invoice.png";
 
 const PdpPopup = () => {
   const [open, setOpen] = useState(true);
-  const [{}, dispatch] = useStateValue();
+  const [{ pdpPopUpOpenClose }, dispatch] = useStateValue();
   const [moreOffers, setMoreOffers] = useState({ tableone: 3, tabletwo: 3 });
   const [tableData, setTableData] = useState({
     tableone: "",
@@ -46,6 +46,7 @@ const PdpPopup = () => {
       show_scroll: "show_scroll",
     });
   };
+
   return (
     <Modal
       aria-labelledby="transition-modal-title"
@@ -66,11 +67,14 @@ const PdpPopup = () => {
             <PDPTopHeader
               setPdpSellerData={setPdpSellerData}
               pdpSellerData={pdpSellerData}
+              dataFromPLP={pdpPopUpOpenClose?.data}
             />
             <div className="pdp_header_bottom_container">
               <div className="header_bottom_image_container">
                 <img src={header_bottom_image_1} alt="" />
-                <span>Vendor Warranty For 30 Days</span>
+                <span>
+                  Vendor Warranty For {pdpSellerData?.warranty_days} Days
+                </span>
               </div>
               <div className="header_bottom_image_container">
                 <img src={header_bottom_image_2} alt="" />
@@ -78,7 +82,7 @@ const PdpPopup = () => {
               </div>
               <div className="header_bottom_image_container">
                 <img src={header_bottom_image_3} alt="" />
-                <span>Retail Box Packaging</span>
+                <span> {pdpSellerData?.packing_details}</span>
               </div>
             </div>
           </div>
@@ -88,6 +92,7 @@ const PdpPopup = () => {
                 tableData={tableData}
                 pdpSellerData={pdpSellerData}
                 setPdpSellerData={setPdpSellerData}
+                dataFromPLP={pdpPopUpOpenClose?.data}
               />
             )}
           </div>

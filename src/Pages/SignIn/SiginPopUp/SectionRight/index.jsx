@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   TextField,
   Checkbox,
@@ -9,12 +9,21 @@ import {
 } from "@mui/material";
 import { withStyles } from "@mui/styles";
 import styles from "./styles";
-import { isEmailValid, isPasswordValid } from "../../../../utilities";
+import {
+  isEmailValid,
+  isPasswordValid,
+  isFirstAndLastNameValid,
+  getAdminToken,
+} from "../../../../utilities";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import Constant from "../../../../Constant";
 import { useStateValue } from "../../../../store/state";
+import swal from "sweetalert2";
 
 const TransitionsModal = ({ classes }) => {
   const [{}, dispatch] = useStateValue();
+  const history = useNavigate();
   let {
     section_right,
     info_text_lineNote,
@@ -27,14 +36,16 @@ const TransitionsModal = ({ classes }) => {
     validation_error,
   } = classes;
   const [guestData, setGuestData] = useState({
-    name: "",
+    first_name: "",
+    last_name: "",
     email_address: "",
     password: "",
     confrim_password: "",
     checkbox_confrim: false,
   });
+  const [adminToken, setAdminToken] = useState({});
   const [inputValidation, setInputValidation] = useState({
-    name: "",
+    first_name: "",
     last_name: "",
     email_address: "",
     password: "",
@@ -46,34 +57,42 @@ const TransitionsModal = ({ classes }) => {
         ...prevState,
         [event.target.name]: event.target.checked,
       }));
-      setInputValidation("");
+      setInputValidation((prevState) => ({
+        ...prevState,
+        [event.target.name]: "",
+      }));
       handleSwitchCase([event.target.name], event.target.value);
     } else {
       setGuestData((prevState) => ({
         ...prevState,
         [event.target.name]: event.target.value,
       }));
-      setInputValidation("");
+      setInputValidation((prevState) => ({
+        ...prevState,
+        [event.target.name]: "",
+      }));
       handleSwitchCase([event.target.name], event.target.value);
     }
   };
   const handleSwitchCase = (fieldName, value) => {
     switch (fieldName[0]) {
-      // case "name":
-      //   if (!value) {
-      //     setInputValidation((prevState) => ({
-      //       ...prevState,
-      //       name: "Please enter the name.",
-      //     }));
-      //   }
-      //   break;
+      case "first_name":
+        if (!isFirstAndLastNameValid(value)) {
+          setInputValidation((prevState) => ({
+            ...prevState,
+            first_name: "Please enter alphabet.",
+          }));
+        }
+        break;
+      case "last_name":
+        if (!isFirstAndLastNameValid(value)) {
+          setInputValidation((prevState) => ({
+            ...prevState,
+            last_name: "Please enter alphabet.",
+          }));
+        }
+        break;
       case "email_address":
-        // if (!value) {
-        //   setInputValidation((prevState) => ({
-        //     ...prevState,
-        //     email_address: "Please enter the e-mail.",
-        //   }));
-        // } else
         if (!isEmailValid(value)) {
           setInputValidation((prevState) => ({
             ...prevState,
@@ -82,12 +101,6 @@ const TransitionsModal = ({ classes }) => {
         }
         break;
       case "password":
-        // if (!value) {
-        //   setInputValidation((prevState) => ({
-        //     ...prevState,
-        //     password: "Please enter your password.",
-        //   }));
-        // } else
         if (!isPasswordValid(value)) {
           setInputValidation((prevState) => ({
             ...prevState,
@@ -97,12 +110,6 @@ const TransitionsModal = ({ classes }) => {
         }
         break;
       case "confrim_password":
-        // if (!value) {
-        //   setInputValidation((prevState) => ({
-        //     ...prevState,
-        //     confrim_password: "Please enter your confrim password.",
-        //   }));
-        // } else
         if (!(guestData?.password === value)) {
           setInputValidation((prevState) => ({
             ...prevState,
@@ -117,11 +124,33 @@ const TransitionsModal = ({ classes }) => {
 
   const handleClickValidation = (event) => {
     var errorHandle = false;
-    if (!guestData?.name) {
-      document.getElementById("name")?.focus();
+    if (!guestData?.first_name) {
+      document.getElementById("first_name")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
-        name: "Please enter the name.",
+        first_name: "Please enter the first name.",
+      }));
+      errorHandle = true;
+    } else if (!isFirstAndLastNameValid(guestData?.first_name)) {
+      document.getElementById("first_name")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        first_name: "Please enter alphabet.",
+      }));
+      errorHandle = true;
+    }
+    if (!guestData?.last_name) {
+      document.getElementById("last_name")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        last_name: "Please enter the last name.",
+      }));
+      errorHandle = true;
+    } else if (!isFirstAndLastNameValid(guestData?.last_name)) {
+      document.getElementById("last_name")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        last_name: "Please enter alphabet.",
       }));
       errorHandle = true;
     }
@@ -180,14 +209,64 @@ const TransitionsModal = ({ classes }) => {
       errorHandle = true;
     }
     if (!errorHandle) {
-      // Apicall fuction
-      // dispatch({
-      //   type: "SET_SIGNIN_OPEN_CLOSE",
-      //   value: false,
-      // });
+      //Apicall fuction
+      FinalGuestRegistration();
     }
   };
 
+  //API to fetch admin token
+  useEffect(() => {
+    getAdminToken((res) => {
+      setAdminToken(res);
+    });
+  }, []);
+
+  //API to Register
+  const FinalGuestRegistration = () => {
+    dispatch({
+      type: "SET_IS_LOADING",
+      value: true,
+    });
+    let data = {
+      customer: {
+        website_id: 1,
+        store_id: 2,
+        email: guestData?.email_address,
+        first_name: guestData?.first_name,
+        last_name: guestData?.last_name,
+        password: guestData?.password,
+        confirm_password: guestData?.confrim_password,
+      },
+    };
+    axios
+      .post(Constant.baseUrl() + "/createCustomer", data, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${adminToken}`,
+        },
+      })
+      .then((res) => {
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+        swal.fire({
+          text: "You have Successfully Registered !",
+          icon: "success",
+          showConfirmButton: false,
+          timer: 3000,
+        });
+        setTimeout(() => {
+          history("/");
+        }, 1000);
+      })
+      .catch((err) => {
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+      });
+  };
   return (
     <div className={section_right}>
       <p className={info_text_lineNote}>
@@ -197,10 +276,11 @@ const TransitionsModal = ({ classes }) => {
       <div className={info_text_guest}>Guest Access</div>
       <div className={input_fields}>
         <TextField
-          id="name"
-          label="Full Name"
-          placeholder="Full Name"
+          id="first_name"
+          label="First Name"
+          placeholder="First Name"
           fullWidth
+          className="inputfield-box"
           InputLabelProps={{
             shrink: true,
             required: true,
@@ -208,14 +288,34 @@ const TransitionsModal = ({ classes }) => {
               asterisk: asterisk,
             },
           }}
-          className="inputfield-box"
-          value={guestData?.name}
-          name="name"
+          value={guestData?.first_name}
+          name="first_name"
           onChange={handleChangeInput}
           variant="outlined"
         />
         <InputLabel className={validation_error}>
-          {inputValidation?.name}
+          {inputValidation?.first_name}
+        </InputLabel>
+        <TextField
+          id="last_name"
+          className="inputfield-box"
+          label="Last Name"
+          fullWidth
+          placeholder="Last Name"
+          InputLabelProps={{
+            shrink: true,
+            required: true,
+            classes: {
+              asterisk: asterisk,
+            },
+          }}
+          value={guestData?.last_name}
+          name="last_name"
+          onChange={handleChangeInput}
+          variant="outlined"
+        />
+        <InputLabel className={validation_error}>
+          {inputValidation?.last_name}
         </InputLabel>
         <TextField
           id="email_address"

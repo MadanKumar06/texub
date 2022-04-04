@@ -10,7 +10,12 @@
   width: 100%;
   gap: 20px;
 }
-
+.swal2-container {
+  z-index: 1201 !important;
+}
+.MuiModal-root {
+  z-index: 1200 !important;
+}
 .button-text {
   border-radius: 45px !important;
   border: none !important;

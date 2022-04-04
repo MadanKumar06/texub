@@ -1,15 +1,7 @@
 import React, { useState, useEffect } from "react";
-import {
-  TextField,
-  MenuItem,
-  ListItemText,
-  Checkbox,
-  FormControlLabel,
-  Select,
-} from "@mui/material";
+import { TextField, Checkbox, FormControlLabel } from "@mui/material";
 
 import axios from "axios";
-import baseUrl from "../../../../Constant";
 import { withStyles } from "@mui/styles";
 import styles from "./styles";
 import clsx from "clsx";
@@ -19,6 +11,7 @@ import ValidationForKycForm from "../ValidationForKycForm";
 import Autocomplete from "@mui/material/Autocomplete";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
+import Constant from "../../../../Constant";
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
@@ -40,42 +33,16 @@ const BuyerKYCformSectionRight = ({
     input_fields,
     download_link,
   } = classes;
-
-  const ITEM_HEIGHT = 48;
-  const ITEM_PADDING_TOP = 8;
-  const MenuProps = {
-    PaperProps: {
-      style: {
-        maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-        width: 250,
-      },
-    },
-  };
-
   const handleCallValidation = (event) => {
     setValidationFieldMessage(event);
   };
-  const names = [
-    "Oliver Hansen",
-    "Van Henry",
-    "April Tucker",
-    "Ralph Hubbard",
-    "Omar Alexander",
-    "Carlos Abbott",
-    "Miriam Wagner",
-    "Bradley Wilkerson",
-    "Virginia Andrews",
-    "Kelly Snyder",
-    "other",
-  ];
   const [kycCategoryList, setKycCategoryList] = useState([]);
-  const [categorylist, setCategorylist] = React.useState();
 
   //API for fetch dropdown values
   useEffect(() => {
     const fetchCountryData = () => {
       axios
-        .get(baseUrl + "/getkyccategories", {
+        .get(Constant.baseUrl() + "/getkyccategories", {
           headers: {
             "Content-Type": "application/json",
           },
@@ -87,9 +54,6 @@ const BuyerKYCformSectionRight = ({
     };
     fetchCountryData();
   }, []);
-  const handleChange = (event, value) => {
-    setCategorylist(value);
-  };
 
   const handleFormvalue = (event) => {
     SetFormValues((prevState) => ({
@@ -113,7 +77,7 @@ const BuyerKYCformSectionRight = ({
             options={kycCategoryList}
             disableCloseOnSelect
             className={clsx(auto_complete_input, "inputfield-box")}
-            value={categorylist}
+            value={FormValues?.categorylist}
             getOptionLabel={(option) => option.category_name}
             renderOption={(props, option, { selected }) => (
               <li {...props}>
@@ -126,12 +90,19 @@ const BuyerKYCformSectionRight = ({
                 {option.category_name}
               </li>
             )}
-            onChange={handleChange}
+            onChange={(event, newValue) => {
+              SetFormValues((prevState) => ({
+                ...prevState,
+                categorylist: newValue,
+              }));
+            }}
             renderInput={(params) => (
               <TextField {...params} placeholder="Category List" />
             )}
           />
-          {categorylist?.some((itm) => itm?.category_name === "Others") && (
+          {FormValues?.categorylist?.some(
+            (itm) => itm?.category_name === "Others"
+          ) && (
             <div className={clsx(input_fields)}>
               <TextField
                 id="other category"

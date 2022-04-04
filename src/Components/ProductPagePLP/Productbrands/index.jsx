@@ -8,7 +8,11 @@ import Slider from "react-slick";
 import axios from "axios";
 import Constant from "../../../Constant";
 
-const Productsbrands = () => {
+const Productsbrands = ({
+  setProductFetchApi,
+  productFetchApi,
+  getCategories,
+}) => {
   const [isChange, setisChange] = useState(false);
   const brand = (value) => {
     value && setisChange(value);
@@ -54,27 +58,27 @@ const Productsbrands = () => {
     };
     fetchBrandsData();
   }, []);
-  useEffect(() => {
-    const fetchCategoryData = () => {
-      axios
-        .get(Constant.baseUrl() + "/getCategoriesList", {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
-        .then((res) => {
-          setSliderBrandsAndCategories((prevState) => ({
-            ...prevState,
-            categories: res?.data,
-          }));
-        })
-        .catch((err) => {});
-    };
-    fetchCategoryData();
-  }, []);
+  // useEffect(() => {
+  //   const fetchCategoryData = () => {
+  //     axios
+  //       .get(Constant.baseUrl() + "/getCategoriesList", {
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //       })
+  //       .then((res) => {
+  //         setSliderBrandsAndCategories((prevState) => ({
+  //           ...prevState,
+  //           categories: res?.data,
+  //         }));
+  //       })
+  //       .catch((err) => {});
+  //   };
+  //   fetchCategoryData();
+  // }, []);
   const Productsicon = {
     dots: false,
-    infinite: true,
+    infinite: false,
     nextArrow: <Arrow type="next" />,
     prevArrow: <Arrow type="prev" />,
     responsive: [
@@ -138,7 +142,7 @@ const Productsbrands = () => {
   };
   const Productsbtns = {
     dots: false,
-    infinite: true,
+    infinite: false,
     nextArrow: <Arrow type="next" />,
     prevArrow: <Arrow type="prev" />,
     responsive: [
@@ -207,7 +211,15 @@ const Productsbrands = () => {
         <Slider {...Productsicon} className="slide_Test">
           {sliderBrandsAndCategories?.brands?.length &&
             sliderBrandsAndCategories?.brands?.map((itm) => (
-              <div className="ProductBrand_first_Slider">
+              <div
+                className="ProductBrand_first_Slider"
+                onClick={() =>
+                  setProductFetchApi((prevState) => ({
+                    ...prevState,
+                    brand_id: itm?.brand_id,
+                  }))
+                }
+              >
                 <img
                   src={`${Constant.imageBaseUrl()}${itm?.image}`}
                   alt="brands"
@@ -219,12 +231,20 @@ const Productsbrands = () => {
       </div>
       <div className="Slider_Section">
         <Slider {...Productsbtns} className="slide_Test">
-          {sliderBrandsAndCategories?.categories?.length &&
-            sliderBrandsAndCategories?.categories?.map((item) => (
-              <li key={item?.category?.id} className="Slider_brands">
-                <span onMouseOver={() => brand(item?.category?.id)}>
-                  {item?.category?.category_name}
-                </span>
+          {getCategories?.length &&
+            getCategories?.map((item) => (
+              <li
+                key={item?.category?.id}
+                className="Slider_brands"
+                onClick={() =>
+                  setProductFetchApi((prevState) => ({
+                    ...prevState,
+                    category_id: item?.category?.id,
+                  }))
+                }
+                onMouseOver={() => brand(item?.category?.id)}
+              >
+                <span>{item?.category?.category_name}</span>
                 {isChange && (
                   <div className="list">
                     <li className="list_content">
@@ -232,7 +252,15 @@ const Productsbrands = () => {
                         {item.category?.id === isChange &&
                           item?.subcategories?.length &&
                           item?.subcategories?.map((e) => (
-                            <div className="content">
+                            <div
+                              className="content"
+                              onClick={() =>
+                                setProductFetchApi((prevState) => ({
+                                  ...prevState,
+                                  category_id: item?.id,
+                                }))
+                              }
+                            >
                               <span>
                                 <p>{e.category_name}</p>
                                 {/* <p>{e.count}</p> */}

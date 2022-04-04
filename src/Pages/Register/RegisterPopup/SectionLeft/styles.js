@@ -6,7 +6,7 @@ const styles = (theme) => ({
     width: "90%",
     // overflow: "auto",
     gap: "2em",
-    height: "100%",
+    height: "fit-content",
     overflowY: "auto",
     "@media (max-width:1299px)": {
       height: "auto",
@@ -72,17 +72,16 @@ const styles = (theme) => ({
     padding: "2.5%",
     margin: "1.5%",
     width: "40%",
-    height: "max-content",
+    height: "fit-content",
     backgroundImage: "url('/Images/user_selection_leftbg.png')",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
     backgroundSize: "cover",
-    height:"auto",
     "@media (max-width:1400px)": {
-      height:"100%",
+      height: "fit-content",
     },
     "@media (max-width:1299px)": {
-      height:"auto",
+      height: "fit-content",
     },
     "@media (max-width:768px)": {
       width: "97%",
