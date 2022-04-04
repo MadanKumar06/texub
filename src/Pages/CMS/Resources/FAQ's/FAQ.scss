@@ -4,10 +4,16 @@
         position: relative;
         .faqs_heading{
             position: absolute;
-            font-size: 50px;
+            font-size: 40px;
             font-weight: 600;
-            top: 22%;
-             left: 31%;
+             top: 0;
+             left: 0;
+             right: 0;
+             bottom: 0;
+             margin: auto;
+             display: flex;
+             justify-content: center;
+             align-items: center;
             // text-align: center;
             color: #002D56;
             opacity: 1;
@@ -23,7 +29,7 @@
         height: auto;
         padding: 20px 50px 40px 50px;
         .faqs_table_heading{
-            font-size: 30px;
+            font-size: 24px;
             color: #4E4E4E;
             font-weight: 600;
             opacity: 1;
@@ -42,17 +48,18 @@
       }
       .faqs_qns_section{
           display: flex;
-          gap: 40px;
+          align-items: center;
+          gap: 30px;          
           padding: 20px 0 20px 20px;
        .faq_qns_heading{
            color: #4E4E4E;
-           font-size: 25px;
+           font-size: 20px;
            opacity: 1;
            font-weight: 600;
        }   
       .faqs_plus_img{
           height: 50px;
-          margin-top: -12px;
+          margin-top: 0px;
           cursor: pointer;
           
       }
@@ -63,10 +70,11 @@
     }
     .faqs_description{
         display: flex;
-        font-size: 20px;
+        font-size: 16px;
         font-weight: 500;
-        padding-left:15%;
-        padding-top: 10px;
+        padding-left: 5%;
+        padding-top: 0px;
+        padding-bottom: 10px;
         gap: 20px;
         overflow: hidden;
         color: #4E4E4E;
@@ -87,8 +95,9 @@
   
 @media (max-width:1550px){
     .faqs_main .faqs_heading_section .faqs_heading{
-        top: 18%;
-        left: 22%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }
 
@@ -99,8 +108,9 @@
                   height: 300px !important;
               }
               .faqs_heading{
-                top: 18% !important;
-                left: 21% !important;
+                display: flex;
+                justify-content: center;
+                align-items: center;
               }
           }
       }
@@ -110,7 +120,9 @@
     .faqs_main{
         .faqs_heading_section{
         .faqs_heading{
-            left: 18% !important;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
       } 
     }
@@ -121,7 +133,9 @@
     .faqs_main{
         .faqs_heading_section{
         .faqs_heading{
-            left: 9% !important;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
       } 
     }
@@ -133,8 +147,10 @@
         padding: 1% 1% 5% 1%;
         .faqs_heading_section{
         .faqs_heading{
-            left: 13% !important;
-            font-size: xx-large;
+            display: flex;
+             justify-content: center;
+             align-items: center;
+            font-size: 30px;
         }
         .faqs_heading_img{
             height: 200px !important;
@@ -142,6 +158,12 @@
       } 
       .faqs_table_section{
           margin: 2% 1% 2% 1%;
+          padding: 15px 30px 20px 30px;
+      }
+      .faqs_table_section
+      .faqs_qns_section
+      .faq_qns_heading{
+          font-size: 18px;
       }
     }
     
@@ -151,7 +173,7 @@
     .faqs_main{
         .faqs_heading_section{
         .faqs_heading{
-            
+            font-size: 24px;            
             text-align: center;
         }
       } 
@@ -175,9 +197,9 @@
     .faqs_main{
         .faqs_heading_section{
         .faqs_heading{
-            left: 11% !important;
-            top: 31% !important;
-            font-size: x-large;
+            display: flex;
+             justify-content: center;
+             align-items: center;
         }
       } 
       .faqs_table_section{
@@ -190,7 +212,9 @@
     .faqs_main{
       .faqs_heading_section{
           .faqs_heading{
-              left: 6% !important;
+            display: flex;
+            justify-content: center;
+            align-items: center;
           }
       }
       .faqs_table_section{
