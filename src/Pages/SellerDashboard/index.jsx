@@ -18,6 +18,8 @@ import Sellerservices from "../../Components/SellerDashboard/Sellerservices";
 import Directenqueries from "../../Components/SellerDashboard/Directenqueries";
 import Paymentmethods from "../../Components/SellerDashboard/Paymentmethods";
 import PendingProduct from '../../Components/SellerDashboard/Inventory/PendingProducts'
+import axios from "axios";
+import Constant from "../../Constant";
 
 function SellerDashboard() {
   const [currentmenu, setcurrentmenu] = useState();
@@ -35,12 +37,40 @@ function SellerDashboard() {
   const [userform, setuserform] = useState(false);
 
   const [showregister, setshowregister] = useState(false);
+  const [pid, setpid] = useState()
 
-  const registerproduct = (value) => {
+  const registerproduct = (value, value1, value2) => {
     setshowregister(true);
-    navigate(`/sellerdashboard/${value}`);
+    if (value === 'updateproduct') {
+      navigate(`/sellerdashboard/${value}/${value1}`);  
+    } else {
+      navigate(`/sellerdashboard/${value}`);
+    }
+    if(value2 === 'update'){
+      setpid(value1) 
+      const data = async() => {
+        const user = JSON.parse(localStorage.getItem('userdata'))
+          try {
+            const formdata = await axios({
+              method: 'post',
+              url: `${Constant.baseUrl()}/getEditFormData`,
+              data: {
+                "product_id" : pid,
+                "seller_id" : user?.id
+              },
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+              }
+            })
+            console.log(formdata?.data)
+          } catch(e) {
+            console.log(e)
+          }
+      }
+      data()
+    }
   };
-
+  
   useEffect(() => {
     if (
       currenttab === "registerproduct" ||

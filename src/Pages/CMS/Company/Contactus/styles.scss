@@ -153,7 +153,7 @@
       justify-content: center;
       flex-wrap: wrap;
       align-items: center;
-      margin: 0 auto;
+      margin: 0 3em;
       .contactus_location1 {
         .contactus_location_list {
           list-style: none;
@@ -327,6 +327,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    
     .contactus_form {
       width: 100%;
     }
@@ -334,4 +335,12 @@
   .contactus_main .contactus_map_section {
     padding: 10px;
   }
+  .contactus_main
+   .contactus_map_section
+    .contactus_locations
+     .contactus_location1 
+     .contactus_location_list 
+     .contactus_locations_1 span{
+       font-size: 14px;
+     }
 }
