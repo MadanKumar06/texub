@@ -16,7 +16,9 @@ const MyAccountPopup = () => {
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-  const handleClose = () => {};
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
   const SignOut = () => {
     setAnchorEl(null);
     swal
