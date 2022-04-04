@@ -10,7 +10,6 @@ import MiniCartDrawer from "../../Pages/MiniCart";
 
 export const Userdetails = () => {
   let isSignedIn = JSON.parse(localStorage.getItem("userdata"));
-  debugger;
   return (
     <div className="user_details_main_container">
       <div className="logo">
