@@ -1,4 +1,31 @@
 $black: #333333;
+$yellow: #DDB363;
+
+@mixin subtitle {
+  font-size: 34px;
+  color: $black;
+  font-weight: 600;
+  text-align: center;
+}
+
+@mixin headings {
+  h2, h5 {
+    margin: 0;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+
+  h5 {
+    color: $black;
+    font-size: 24px;
+  }
+
+  h2 {
+    color: #DDB363;
+    font-size: 30px;
+  }
+}
 .aboutus {
   .aboutus__banner {
     max-width: 1920px;
@@ -18,8 +45,33 @@ $black: #333333;
     margin: 0 3%;
   }
 
+  .aboutus__content {
+    ul {
+      display: flex;
+      list-style-type: none;
+
+      li {
+        width: calc(100% / 3 - 20px);
+        position: relative;
+
+        img {
+          width: 100%;
+          object-fit: contain;
+        }
+
+        p {
+          position: absolute;
+          top: 1.25em;
+          left: 5em;
+          font-size: 34px;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
   .aboutus__info {
-    background: linear-gradient(to right, #ddb363, #ffffff);
+    background: linear-gradient(to right, $yellow, #ffffff);
     padding: 1em 3em;
 
     h2 {
@@ -79,36 +131,44 @@ $black: #333333;
     }
 
     .businessmodel__content {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      display: flex;
+
+      .content__left, .content__right {
+        width: calc(100% / 2 - 20px);
+
+        img {
+          width: 100%;
+          object-fit: contain;
+        }
+      }
 
       .content__left {
-        display: flex;
-        flex-wrap: wrap;
-        grid-template-rows: auto;
-        justify-content: center;
+        position: relative;
+        margin-top: 8em;
 
-        .left__top {
-          width: 100%;
-          text-align: center;
-          position: relative;
-
-          p {
-            position: absolute;
-            left: 33%;
-            bottom: 1em;
-          }
-
-          span {
-            position: absolute;
-            bottom: -1em;
-            left: 25%;
-            width: 45%;
-          }
+        .left__content1 {
+          position: absolute;
+          top: 11em;
+          left: 14em;
         }
 
-        .left__middle {
-          margin-right: 12em;
+        .left__content2 {
+          position: absolute;
+          width: 34%;
+          left: 13em;
+          bottom: 5em;
+        }
+
+        p {
+          color: #0D2D53;
+          font-size: 24px;
+          text-align: center;
+          font-weight: 600;
+  
+          span {
+            color: $yellow;
+            display: block;
+          }
         }
       }
     }
@@ -119,9 +179,7 @@ $black: #333333;
     margin: 0 auto;
 
     h2 {
-      font-size: 34px;
-      color: $black;
-      font-weight: bold;
+      @include subtitle
     }
     ul {
       display: flex;
@@ -158,10 +216,7 @@ $black: #333333;
     padding: 3em 0;
     h2 {
       margin: 0 3%;
-      text-align: center;
-      font-size: 34px;
-      color: $black;
-      font-weight: bold;
+      @include subtitle
     }
     .members__content {
       margin: 0 3%;
@@ -177,16 +232,191 @@ $black: #333333;
       }
     }
   }
+
+  .aboutus__advisary, .aboutus__mgmt {
+    h2 {
+      @include subtitle
+    }
+    .advisory__content, .mgmt__content {
+      ul {
+        list-style: none;
+        display: flex;
+        width: 65%;
+        margin: 0 auto;
+        gap: 8em;
+
+        li {
+          width: calc(100% / 2 - 20px);
+
+          .advisory__top, .mgmt__top {
+            min-height: 20em;
+            div {
+              width: 10em;
+              margin: 0 auto;
+  
+              img {
+                width: 100%;
+                object-fit: contain;
+              }
+            }
+  
+            @include headings
+          }
+          p {
+            background-color: #f3f3f3;
+            padding: 1em;
+            color: #878787;
+            font-size: 1em;
+          }
+        }
+      }
+    }
+  }
+
+  .aboutus__mgmt {
+    h2 {
+      background-color: #f3f3f3;
+      margin: 0;
+      padding: 1em 0;
+    }
+
+    .mgmt__content {
+      background-color: #f3f3f3;
+
+      li {
+        p {
+          background-color: white !important;
+        }
+      }
+  
+      
+    }
+  }
+  
+  .aboutus__core {
+    background-color: white;
+    h2 {
+      @include subtitle()
+    }
+
+    .core__content {
+      max-width: 80%;
+      margin: 0 auto;
+      ul {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        gap: 2em;
+
+        li {
+          width: calc(100% / 4 - 2em);
+          text-align: center;
+
+          @include headings
+        }
+      }
+    }
+  }
 }
 
-@media (max-width: 1600px) {
+@media (max-width: 1660px) {
+  .aboutus .aboutus__highlights {
+    max-width: 80%;
+  }
+
+  .aboutus .aboutus__content ul li p {
+    top: 0.75em;
+    left: 4em;
+  }
+
+  .aboutus .aboutus__businessmodel .businessmodel__content .content__left {
+    margin-top: 3em;
+
+    .left__content1 {
+      top: 9em;
+      left: 11em;
+    }
+
+    .left__content2 {
+      left: 11em;
+      bottom: 7em;
+    }
+  }
+}
+
+@media (max-width: 1660px) {
   .aboutus .aboutus__highlights {
     max-width: 90%;
   }
+}
+
+@media (max-width: 1550px) {
+  .aboutus .aboutus__businessmodel .businessmodel__content .content__left .left__content2 {
+    bottom: 5em;
+  }
+}
+
+@media (max-width: 1440px) {
+  .aboutus .aboutus__content ul li p {
+    top: 0.5em;
+    left: 3em;
+  }
+
+  .aboutus .aboutus__businessmodel .businessmodel__content .content__left {
+    margin-top: 1em;
+    .left__content1 {
+      left: 9em;
+    }
+    .left__content2 {
+      bottom: 4em;
+      left: 9em;
+      width: 36%;
+    }
+  } 
 }
 
 @media (max-width: 1375px) {
   .aboutus .aboutus__highlights {
     max-width: 100%;
   }
+  .aboutus .aboutus__content ul li p {
+    top: 0.35em;
+  }
+
+  .aboutus .aboutus__businessmodel .businessmodel__content .content__left {
+    .left__content1 {
+      left: 8.25em;
+    }
+    .left__content2 {
+      bottom: 2em;
+      width: 38%;
+    }
+  } 
 }
+
+@media (max-width: 1240px) {
+  .aboutus .aboutus__highlights ul {
+    margin-right: 0 !important;
+
+    .highlights__image {
+      width: calc(25% - 1px);
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .aboutus .aboutus__content ul li p {
+    top: .15em;
+  }
+}
+
+
+@media (max-width: 1080px) {
+  .aboutus .aboutus__content ul li p {
+    top: -.05em;
+  }
+}
+
