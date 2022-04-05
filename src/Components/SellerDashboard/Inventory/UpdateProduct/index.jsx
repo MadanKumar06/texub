@@ -62,8 +62,6 @@ function Index({ type, pid }) {
     data()
   }, [id])
 
-  
-
   useEffect(() => {
     // if(isMounted) {
       setupdateform((data1) => ({
@@ -109,7 +107,7 @@ function Index({ type, pid }) {
   const [dropdownListFromApi, setDropdownListFromApi] = useState({
     dropDownList: [],
   });
-console.log(dropdownListFromApi)
+  console.log(olddata)
   const [updateProductList, setUpdateProductList] = useState({
     width: "",
     conditions: '',
@@ -134,16 +132,33 @@ console.log(dropdownListFromApi)
     }
   }, []);
 
-  const deleterow = (value) => {
-    debugger
-    setcount(count.filter((item, i) => i !== value));
+  const deleterow = async(value1, value2) => {
+    try {
+      const rowdelete = await axios({
+        method: 'post',
+        url: `${Constant.baseUrl()}/deleteProduct`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        },
+        data: {
+            "product_id" : value1
+        }
+      })
+      console.log(rowdelete.data)
+    } catch(e) {
+      console.log(e)
+    }
+    if(!value1) {
+      setcount(count.filter((item, i) => i !== value2));
+    }
+    
   };
 
   const [hubList, setHubList] = useState();
 
   const [pdetails, setpdetails] = useState([]);
   const [updateform, setupdateform] = useState({
-    length: '',
+    lnth: '',
     width: "",
     height: '',
     weight: '',
@@ -151,7 +166,7 @@ console.log(dropdownListFromApi)
     notes: ''
   });
 
-  
+  console.log(updateform)  
 
   const updateProduct = async () => {
     let productdata = [];
@@ -166,7 +181,8 @@ console.log(dropdownListFromApi)
     try {
       const updatepform = await axios({
         method: "post",
-        url: `${Constant.baseUrl()}${olddata?.length > 0 ? "/editProductPrice" : "/saveProductPrice"}`,
+        // url: `${Constant.baseUrl()}${olddata?.length > 0 ? "/editProductPrice" : "/saveProductPrice"}`,
+        url: `${Constant.baseUrl()}/editProductPrice`,
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

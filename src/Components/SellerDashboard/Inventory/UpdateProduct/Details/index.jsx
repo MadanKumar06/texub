@@ -22,7 +22,7 @@ function Index({
 
   const [options, setoptions] = useState([])
   const [currenthub ,setcurrenthub] = useState()
-  // console.log(i)
+  console.log(count)
 
   const hubselect = (e, value) => {
     count.filter(c => {
@@ -230,7 +230,7 @@ function Index({
         </div>
       ) : (
         <div className="updateproduct__delete">
-          <p onClick={() => deleterow(index)}>
+          <p onClick={() => deleterow(currentdata?.assign_id, index)}>
           {/* <p onClick={() => console.log(i)}> */}
             <span className="addmore__text">
               <DeleteIcon />
