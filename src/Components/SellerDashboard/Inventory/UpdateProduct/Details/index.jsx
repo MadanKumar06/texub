@@ -62,6 +62,7 @@ function Index({
     })
   }
 
+
   return (
     <>
       <div className="updateproduct__bgform">

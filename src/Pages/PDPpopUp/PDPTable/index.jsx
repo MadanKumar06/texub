@@ -7,13 +7,8 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
-const PDPTable = ({
-  classes,
-  tableData,
-  setPdpSellerData,
-  pdpSellerData,
-  dataFromPLP,
-}) => {
+const PDPTable = ({ classes, tableData, setPdpSellerData, pdpSellerData }) => {
+  //styles
   let {
     table_container,
     pdp_middle_wapper,
@@ -49,19 +44,38 @@ const PDPTable = ({
     table_title_container,
     sub_table_title,
   } = classes;
+
   const [is_table_one, setIs_table_one] = useState(0);
   const [is_table_two, setIs_table_two] = useState(0);
+
+  //tableValues
   useEffect(() => {
-    setIs_table_one(tableData?.tableone);
+    if (tableData?.tableone?.length) {
+      let temp = tableData?.tableone?.map((itm) => ({
+        ...itm,
+        // in_stock: 20,
+        is_moq_valid: itm.moq,
+      }));
+      setIs_table_one(temp);
+      setPdpSellerData((prevState) => ({
+        ...prevState,
+        seller_id: tableData?.tableone?.[0]?.seller_code,
+        warranty_days: tableData?.tableone?.[0]?.warranty_days,
+        packing_details: tableData?.tableone?.[0]?.packing_details,
+        no_of_pieces: tableData?.tableone?.[0]?.no_of_pieces,
+      }));
+    }
     setIs_table_two(tableData?.tabletwo);
   }, [tableData]);
+
+  // update values of moq
   const handleChangeValueTableone = (event, index) => {
     setIs_table_one(
       is_table_one?.map((item, ind) => {
         if (index === ind) {
           return {
             ...item,
-            seller_moq: event,
+            moq: event,
           };
         } else {
           return item;
@@ -69,13 +83,14 @@ const PDPTable = ({
       })
     );
   };
+
   const handleChangeValueTableTwo = (event, index) => {
     setIs_table_two(
       is_table_two?.map((item, ind) => {
         if (index === ind) {
           return {
             ...item,
-            seller_moq: event,
+            moq: event,
           };
         } else {
           return item;
@@ -83,6 +98,7 @@ const PDPTable = ({
       })
     );
   };
+
   const handleRadioGroupChange = (event) => {
     setPdpSellerData((prevState) => ({
       ...prevState,
@@ -92,25 +108,6 @@ const PDPTable = ({
       no_of_pieces: event?.no_of_pieces,
     }));
   };
-
-  useEffect(() => {
-    let temp1 =
-      tableData?.length &&
-      tableData?.filter(
-        (itm) =>
-          itm?.main_product?.main_product_id ==
-          dataFromPLP?.row?.[9]?.props?.value
-      );
-    setIs_table_one(temp1?.[0]?.sub_products);
-    setPdpSellerData((prevState) => ({
-      ...prevState,
-      seller_id: temp1?.[0]?.subProducts?.[0]?.seller_code,
-      warranty_days: temp1?.[0]?.subProducts?.[0]?.warranty_days,
-      packing_details: temp1?.[0]?.subProducts?.[0]?.packing_details,
-      no_of_pieces: temp1?.[0]?.subProducts?.[0]?.no_of_pieces,
-    }));
-  }, [dataFromPLP?.tableData?.length ,tableData]);
-
   return (
     <div className={table_container}>
       <div className={pdp_middle_wapper}>
@@ -224,9 +221,9 @@ const PDPTable = ({
                             className={item_decrease}
                             onClick={() =>
                               handleChangeValueTableone(
-                                item?.seller_moq >= 2
-                                  ? item?.seller_moq - 1
-                                  : 1,
+                                parseInt(item?.moq) > item?.is_moq_valid
+                                  ? parseInt(item?.moq) - 1
+                                  : item?.is_moq_valid,
                                 index
                               )
                             }
@@ -236,7 +233,9 @@ const PDPTable = ({
                             className={item_increase}
                             onClick={() =>
                               handleChangeValueTableone(
-                                item?.seller_moq + 1,
+                                parseInt(item?.in_stock) > item?.moq
+                                  ? parseInt(item?.moq) + 1
+                                  : item?.moq,
                                 index
                               )
                             }

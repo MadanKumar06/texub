@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, Button } from "@mui/material";
+import { Box, Button, FormControlLabel, Checkbox } from "@mui/material";
 import styles from "../SectionRight/styles";
 import { withStyles } from "@mui/styles";
 import { useNavigate } from "react-router-dom";
@@ -17,7 +17,7 @@ function ValidationForKycForm({
 }) {
   const history = useNavigate();
   const [{}, dispatch] = useStateValue();
-  let { button_box, button_guest } = classes;
+  let { button_box, button_guest, download_link } = classes;
   const [valid, setValid] = useState(null);
 
   useEffect(() => {
@@ -93,11 +93,19 @@ function ValidationForKycForm({
       }));
       endPoint = true;
     }
+    if (!values?.city) {
+      setValid((prevState) => ({
+        ...prevState,
+        city: "Please enter the city.",
+      }));
+      endPoint = true;
+    }
     if (!endPoint) {
       //API call
       FinalKYCFormSavaData();
     }
   };
+
   let localUserData = JSON.parse(localStorage?.getItem("userdata"));
   let customer_token = JSON.parse(localStorage?.getItem("customer_auth"));
   let company_name = localUserData?.custom_attributes?.filter(
@@ -185,8 +193,45 @@ function ValidationForKycForm({
         });
       });
   };
+
+  const handlePdfDownload = (event) => {
+    if (event.target.checked) {
+      window.location =
+        Constant.pdfDowloadUrl() +
+        `/kyc/customer/selleragreement?address1=${
+          values?.address_line_one ? values?.address_line_one : ""
+        }&address2=${
+          values?.address_line_two ? values?.address_line_two : ""
+        }&country=${country?.[0]?.value}&city=${
+          values?.city ? values?.city : ""
+        }&pin=${
+          values?.pin_zip_code ? values?.pin_zip_code : ""
+        }&trade_license_number=${
+          values?.trade_lic_number ? values?.trade_lic_number : ""
+        }&tax_no=${
+          values?.tax_number ? values?.tax_number : ""
+        }&customer_id=${customer_id}`;
+    }
+  };
   return (
     <>
+      <FormControlLabel
+        value="yes"
+        control={
+          <Checkbox
+            color="secondary"
+            onClick={(event) => handlePdfDownload(event)}
+          />
+        }
+        label={
+          <p>
+            By clicking here, I state that I have read and understood the terms
+            of agreement
+          </p>
+        }
+        labelPlacement="end"
+        className={download_link}
+      />
       <Box className={button_box} fullWidth>
         {documentButton === "national_id" ? (
           <Button

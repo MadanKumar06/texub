@@ -6,6 +6,7 @@ export const initialState = {
   registerOpenClose: false,
   isLoading: false,
   currency: {},
+  isSimpleLoading: false,
 };
 
 const reducer = (state, action) => {
@@ -14,6 +15,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         isLoading: action.value,
+      };
+    case "SET_IS_SIMPLE_LOADING":
+      return {
+        ...state,
+        isSimpleLoading: action.value,
       };
     case "SET_KYC_OPEN_CLOSE":
       return {

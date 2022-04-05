@@ -16,3 +16,16 @@
     }
   }
 }
+
+@media (max-width: 899px) {
+ 
+      .default_appearance
+      .MuiTable-root
+        .MuiTableBody-root
+        .MuiTableRow-root:nth-child(odd){
+          background-color: rgba(0, 0, 0, 0.04);
+        }
+        .MuiTableRow-root:nth-child(even){
+          background-color: #fff;
+        }
+}
