@@ -11,7 +11,7 @@ const styles = (theme) => ({
         color:"#4E4E4E",
         opacity:"1",
         "@media (max-width:425px)":{
-            fontSize: "larger",
+            fontSize: "18px",
         },
         "@media (max-width:320px)":{
             fontSize: "unset",
