@@ -7,7 +7,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Constant from "../../../../Constant";
 
-function Index({ type }) {
+function Index({ type, data }) {
+  console.log(data)
   const [count, setcount] = useState([{
     count: 0
   }]);
@@ -47,11 +48,14 @@ function Index({ type }) {
 
 
   const deleterow = (value) => {
+    debugger
     setcount(count.filter((item, i) => i !== value));
   };
 
-
-  console.log(count)
+  useEffect(() => {
+    console.log(count)
+  }, [count])
+  
 
   const [hubList, setHubList] = useState();
 
@@ -59,11 +63,6 @@ function Index({ type }) {
 
   const checkhub = (value, value2) => {
     setcheckmumbai(value);
-    // count.filter(data => {
-    //   if(i === data.count) {
-        
-    //   }
-    // })
   };
 
   const [pdetails, setpdetails] = useState([])
@@ -72,13 +71,9 @@ function Index({ type }) {
   const options = ["Option 1", "Option 2"];
 
   const updateProduct = async() => {
-    // console.log(hubList)
-    // console.log(updateform)
-    // console.log(pdetails)
-    // console.log(updateProductList)
     let productdata = []
     count.filter(data => {
-      productdata.push(data?.pdata)
+      productdata.push(data)
     })
     let user = JSON.parse(localStorage.getItem('userdata'))
     try {
@@ -130,6 +125,20 @@ function Index({ type }) {
     {label: 'No',value: 'No' }
   ])
 
+  const [country, setcountry] = useState()
+
+  useEffect(async() => {
+    try {
+      const data = await axios({
+        method: 'get',
+        url: `${Constant.baseUrl()}/getCountryList`
+      })
+      setcountry(data.data)
+    } catch(e) {
+      console.log(e)
+    }
+  }, [])
+
   return (
     <div className="updateproduct">
       <h1>{type}</h1>
@@ -151,6 +160,7 @@ function Index({ type }) {
               pdetails={pdetails}
               setcount={setcount}
               count={count}
+              hubname = {data?.hubname}
             />
           </div>
         ))}
@@ -225,16 +235,8 @@ function Index({ type }) {
                 <Autocomplete
                   //   value={value}
                   name=""
-                  //   onChange={(event, newValue) => {
-                  //     setValue(newValue);
-                  //   }}
-                  //   className={auto_complete_input}
-                  //   inputValue={inputValue}
-                  //   onInputChange={(event, newInputValue) => {
-                  //     setInputValue(newInputValue);
-                  //   }}
                   id="controllable-states-demo"
-                  options={options}
+                  options={country}
                   renderInput={(params) => (
                     <TextField
                       {...params}
