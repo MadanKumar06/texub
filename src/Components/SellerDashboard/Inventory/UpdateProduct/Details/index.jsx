@@ -18,20 +18,55 @@ function Index({
   setpdetails,
   pdetails,
   setcount,
-  count
+  count,
+  hubname
 }) {
 
   const options = ["INR", "USD"];
 
-  useEffect(() => {
-      count.filter(c => {
-        if(c.count === i) {
-          c.pdata = pdetails
-        }
-      })
-  }, [pdetails])
+  // useEffect(() => {
+  //   console.log(count)
+  //   console.log(hubname)
+  // })
 
-  
+
+  const hubselect = (e, value) => {
+    count.filter(c => {
+      if(c.count === i) {
+        c.hub_id = value.hub_id
+        c.hubname = value.hub_name
+      }
+    })
+  }
+  const priceselect = (value) => {
+    count.filter(c => {
+      if(c.count === i) {
+        c.price = value
+      }
+    })
+  }
+  const instockselect = (value) => {
+    count.filter(c => {
+      if(c.count === i) {
+        c.in_stock = value
+      }
+    })
+  }
+  const etaselect = (value) => {
+    count.filter(c => {
+      if(c.count === i) {
+        c.eta = value
+      }
+    })
+  }
+  const moqselect = (value) => {
+    count.filter(c => {
+      if(c.count === i) {
+        c.moq = value
+      }
+    })
+  }
+  console.log(count)
 
   return (
     <>
@@ -41,13 +76,7 @@ function Index({
           <Autocomplete
             value={hubList}
             name="hub_list"
-            onChange={(event, newValue) => {
-              setpdetails((prevState) => ({
-                ...prevState,
-                hub_id: newValue.hub_id,
-              }));
-              checkhub(newValue, i);
-            }}
+            onChange={(event, newValue) => hubselect(event, newValue)}
             id="hub_list"
             disablePortal={true}
             options={hubDropDownValues}
@@ -100,10 +129,7 @@ function Index({
               InputLabelProps={{
                 shrink: false,
               }}
-              onChange={(e) => setpdetails(data => ({
-                ...data,
-                price: e.target.value
-              }))}
+              onChange={(e) => priceselect(e.target.value)}
               variant="outlined"
             />
           </div>
@@ -122,10 +148,7 @@ function Index({
             InputLabelProps={{
               shrink: false,
             }}
-            onChange={(e) => setpdetails(data => ({
-              ...data,
-              in_stock: e.target.value
-            }))}
+            onChange={(e) => instockselect(e.target.value)}
             variant="outlined"
           />
         </div>
@@ -143,10 +166,7 @@ function Index({
             InputLabelProps={{
               shrink: false,
             }}
-            onChange={(e) => setpdetails(data => ({
-              ...data,
-              eta: e.target.value
-            }))}
+            onChange={(e) => etaselect(e.target.value)}
             variant="outlined"
           />
         </div>
@@ -164,10 +184,7 @@ function Index({
             InputLabelProps={{
               shrink: false,
             }}
-            onChange={(e) => setpdetails(data => ({
-              ...data,
-              moq: e.target.value
-            }))}
+            onChange={(e) => moqselect(e.target.value)}
             variant="outlined"
           />
         </div>
@@ -191,7 +208,7 @@ function Index({
         </div>
       )}
 
-      {checkmumbai?.hub_name === "Mumbai" && (
+      {hubname === "Mumbai" && (
         <Subdetails setpdetails={setpdetails} />
       )}
     </>

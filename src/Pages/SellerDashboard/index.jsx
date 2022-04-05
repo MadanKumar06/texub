@@ -39,6 +39,8 @@ function SellerDashboard() {
   const [showregister, setshowregister] = useState(false);
   const [pid, setpid] = useState()
 
+  const [editdata, seteditdata] = useState()
+
   const registerproduct = (value, value1, value2) => {
     setshowregister(true);
     if (value === 'updateproduct') {
@@ -55,14 +57,15 @@ function SellerDashboard() {
               method: 'post',
               url: `${Constant.baseUrl()}/getEditFormData`,
               data: {
-                "product_id" : pid,
+                "product_id" : value1,
                 "seller_id" : user?.id
               },
               headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`
               }
             })
-            console.log(formdata?.data)
+            // console.log(formdata?.data)
+            seteditdata(formdata?.data)
           } catch(e) {
             console.log(e)
           }
@@ -154,7 +157,7 @@ function SellerDashboard() {
             <PendingProduct registerproduct={registerproduct} />
           )}
           {currenttab === "updateproduct" && (
-            <UpdateProduct type="Update New Product Details" />
+            <UpdateProduct type="Update New Product Details" data={editdata} />
           )}
           {currenttab === "updatesuccess" && (
             <SuccessPage msg={updatesuccess} />
