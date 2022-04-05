@@ -21,9 +21,9 @@ const styles = (theme) => ({
     flexDirection: "row",
     justifyContent: "space-between",
     width: "100%",
-    // "@media (max-width:1439px)": {
-    //   flexDirection: "column",
-    // },
+    "@media (max-width:480px)": {
+      flexDirection: "column-reverse",
+    },
   },
   pdp_page_brands_images: {
     width: "128px",
@@ -53,6 +53,10 @@ const styles = (theme) => ({
     "@media (max-width:1439px)": {
       width: "100%",
       padding: "0px 22px",
+    },
+    "@media (max-width:780px)": {
+      width: "100%",
+      padding: "0px 10px",
     },
   },
   pdp_top_header_product_details: {
@@ -96,6 +100,12 @@ const styles = (theme) => ({
     letterSpacing: "0.78px",
     "@media (max-width:1660px)": {
       fontSize: "20px",
+    },
+    "@media (max-width:780px)": {
+      fontSize: "18px",
+    },
+    "@media (max-width:480px)": {
+      fontSize: "16px",
     },
   },
   pdp_top_header_rating_reviews_container: {
