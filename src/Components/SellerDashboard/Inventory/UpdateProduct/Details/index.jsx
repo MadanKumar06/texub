@@ -4,32 +4,32 @@ import "./styles.scss";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { InputLabel, TextField, Autocomplete } from "@mui/material";
 import Subdetails from './Subdetails'
+import axios from "axios";
+import Constant from "../../../../../Constant";
 
 function Index({
-  key,
   countincrease,
   i,
+  index,
   deleterow,
   hubDropDownValues,
-  setHubList,
   hubList,
-  checkmumbai,
-  checkhub,
   setpdetails,
-  pdetails,
-  setcount,
   count,
-  hubname
+  hubname,
+  currentdata
 }) {
 
-  const options = ["INR", "USD"];
-
+  const [options, setoptions] = useState([])
+  const [currenthub ,setcurrenthub] = useState()
+  // console.log(i)
 
   const hubselect = (e, value) => {
     count.filter(c => {
       if(c.count === i) {
         c.hub_id = value.hub_id
         c.hubname = value.hub_name
+        setcurrenthub(value.hub_id)
       }
     })
   }
@@ -62,6 +62,41 @@ function Index({
     })
   }
 
+  const currencyselect = (value) => {
+    count.filter(c => {
+      if(c.count === i) {
+        c.currency_id = value
+      }
+    })
+  }
+
+  useEffect(async() => {
+    try {
+      const hubcurrencydata = await axios({
+        method: 'post',
+        url: `${Constant.baseUrl()}/hubBasedCurrency`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        },
+        data: {
+          "data":{
+            "hub_id" : currenthub,
+            "country_code": "IN"
+          }
+        }
+      })
+      let temp = []
+      hubcurrencydata.data.filter(hub => {
+        temp.push({
+          label: hub?.currency_code,
+          value: hub?.currency_id
+        })
+      })
+      setoptions(temp)
+    } catch(e) {
+      console.log(e)
+    }
+  }, [currenthub])
 
   return (
     <>
@@ -99,6 +134,7 @@ function Index({
               name=""
               id="controllable-states-demo"
               options={options}
+              onChange={(e) => currencyselect(e.target.value)}
               renderInput={(params) => (
                 <TextField
                   {...params}
@@ -112,15 +148,15 @@ function Index({
               )}
             />
             <TextField
-              id="part_number"
-              name="part_nymber"
+              id="price"
+              name="price"
               placeholder="60,500"
               fullWidth
               type="number"
               autoFocus={true}
               className="inputfield-box price_textbox"
               autoComplete="off"
-              // value={signInData?.email_address}
+              value={parseInt(currentdata.price).toFixed(2)}
               InputLabelProps={{
                 shrink: false,
               }}
@@ -132,14 +168,14 @@ function Index({
         <div className="updateproduct_info_form">
           <InputLabel>In Stock</InputLabel>
           <TextField
-            id="part_number"
-            name="part_nymber"
+            id="in_stock"
+            name="in_stock"
             className="inputfield-box"
             placeholder="280"
             fullWidth
             autoFocus={true}
             autoComplete="off"
-            // value={signInData?.email_address}
+            value={currentdata?.in_stock}
             InputLabelProps={{
               shrink: false,
             }}
@@ -157,7 +193,7 @@ function Index({
             fullWidth
             autoFocus={true}
             autoComplete="off"
-            // value={signInData?.email_address}
+            value={currentdata?.eta}
             InputLabelProps={{
               shrink: false,
             }}
@@ -175,7 +211,7 @@ function Index({
             fullWidth
             autoFocus={true}
             autoComplete="off"
-            // value={signInData?.email_address}
+            value={currentdata?.moq}
             InputLabelProps={{
               shrink: false,
             }}
@@ -185,7 +221,7 @@ function Index({
         </div>
       </div>
 
-      {i === 0 ? (
+      {index === 0 ? (
         <div className="updateproduct__addmore">
           <p onClick={countincrease}>
             <span className="addmore__plus"></span>
@@ -194,8 +230,8 @@ function Index({
         </div>
       ) : (
         <div className="updateproduct__delete">
-          <p onClick={() => deleterow(i)}>
-            {/* <span className='addmore__plus'></span> */}
+          <p onClick={() => deleterow(index)}>
+          {/* <p onClick={() => console.log(i)}> */}
             <span className="addmore__text">
               <DeleteIcon />
             </span>

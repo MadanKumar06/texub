@@ -12,72 +12,111 @@ import Constant from "../../../../Constant";
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
-function Index({ type, data }) {
+function Index({ type, pid }) {
   const [count, setcount] = useState([
     {
       count: 0,
+      assign_id: '',
+      currency_id: "",
+      eta: "",
+      hub_id: "",
+      in_stock: "",
+      moq: "",
+      mp_id: "",
+      price: ""
     },
   ]);
-  const [test, settest] = useState(1);
   const [openTextbox, setOpenTextbox] = useState(false);
 
   const countincrease = () => {
-    settest(test + 1);
-    setcount((data) => [...data, { count: test + 1 }]);
+    setcount((data) => [...data, { count: count + 1 }]);
   };
 
   const { navigate } = useNavigate();
-  const { id } = useParams();
+  const { currenttab, id } = useParams();
+
+  const [olddata, setolddata] = useState([])
 
   useEffect(() => {
-    setupdateform((data1) => ({
-        ...data1,
-      width: data?.width,
-      height: data?.height,
-      length: data?.length,
-      weight: data?.weight,
-    }))
-    setUpdateProductList((prevState) => ({
-      ...prevState,
-      // restrictions: data?.restrictions,
-      warranty_days: data?.warranty_days
-    }));
-    // debugger
-    dropdownListFromApi?.dropDownList?.condition_list?.filter(d => d.value === data?.product_condition && 
+    if(type !== "Update New Product Details") return
+    const data = async() => {
+      const user = JSON.parse(localStorage.getItem('userdata'))
+        try {
+          const formdata = await axios({
+            method: 'post',
+            url: `${Constant.baseUrl()}/getEditFormData`,
+            data: {
+              "product_id" : id,
+              "seller_id" : user?.id
+            },
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+          })
+          setolddata(formdata?.data[0])
+          setcount(formdata?.data[0]?.sub_products)
+        } catch(e) {
+          console.log(e)
+        }
+    }
+    data()
+  }, [id])
+
+  
+
+  useEffect(() => {
+    // if(isMounted) {
+      setupdateform((data1) => ({
+          ...data1,
+        width: olddata?.width,
+        height: olddata?.height,
+        length: olddata?.length,
+        weight: olddata?.weight,
+      }))
       setUpdateProductList((prevState) => ({
         ...prevState,
-        conditions: d,
-      }))
-    )
-    dropdownListFromApi?.dropDownList?.warranty_type?.filter(d => d.value === data?.warranty_type && 
-      setUpdateProductList((prevState) => ({
-        ...prevState,
-        warranty: d,
-      }))
-    )
-    dropdownListFromApi?.dropDownList?.packing_details?.filter(d => d.value === data?.packing_details && 
-      setUpdateProductList((prevState) => ({
-        ...prevState,
-        packing: d,
-      }))
-    )
-    dropdownListFromApi?.dropDownList?.restrictions?.filter(d => d.value === data?.restrictions && 
-      setUpdateProductList((prevState) => ({
-        ...prevState,
-        restrictions: d,
-      }))
-    )
-  }, [data])
+        // restrictions: data?.restrictions,
+        warranty_days: olddata?.warranty_days
+      }));
+      // debugger
+      dropdownListFromApi?.dropDownList?.condition_list?.filter(d => d.value === olddata?.product_condition && 
+        setUpdateProductList((prevState) => ({
+          ...prevState,
+          conditions: d,
+        }))
+      )
+      dropdownListFromApi?.dropDownList?.warranty_type?.filter(d => d.value === olddata?.warranty_type && 
+        setUpdateProductList((prevState) => ({
+          ...prevState,
+          warranty: d,
+        }))
+      )
+      dropdownListFromApi?.dropDownList?.packing_details?.filter(d => d.value === olddata?.packing_details && 
+        setUpdateProductList((prevState) => ({
+          ...prevState,
+          packing: d,
+        }))
+      )
+      restrictvalue?.filter(d => d.value === olddata?.restrictions && 
+        setUpdateProductList((prevState) => ({
+          ...prevState,
+          restrictions: d,
+        }))
+      )
+    // }
+  }, [olddata])
 
   const [dropdownListFromApi, setDropdownListFromApi] = useState({
     dropDownList: [],
   });
-
+console.log(dropdownListFromApi)
   const [updateProductList, setUpdateProductList] = useState({
     width: "",
-    // conditions: ""
+    conditions: '',
+    warranty: '',
+    packing: '',
+    restrictions: ''
   });
-  console.log(updateProductList)
   //Api to fetch dropdown values
   useEffect(async () => {
     try {
@@ -85,6 +124,7 @@ function Index({ type, data }) {
         method: "get",
         url: `${Constant.baseUrl()}/getUpdateProductDetails`,
       });
+      console.log(updateproductdropdown)
       setDropdownListFromApi((prevState) => ({
         ...prevState,
         dropDownList: Object.assign({}, ...updateproductdropdown?.data),
@@ -95,30 +135,23 @@ function Index({ type, data }) {
   }, []);
 
   const deleterow = (value) => {
+    debugger
     setcount(count.filter((item, i) => i !== value));
   };
 
-  useEffect(() => {
-    console.log(count);
-  }, [count]);
-
   const [hubList, setHubList] = useState();
-
-  const [checkmumbai, setcheckmumbai] = useState();
-
-  const checkhub = (value, value2) => {
-    setcheckmumbai(value);
-  };
 
   const [pdetails, setpdetails] = useState([]);
   const [updateform, setupdateform] = useState({
     length: '',
     width: "",
     height: '',
-    weight: ''
+    weight: '',
+    days: '',
+    notes: ''
   });
 
-  console.log(updateform)
+  
 
   const updateProduct = async () => {
     let productdata = [];
@@ -126,14 +159,14 @@ function Index({ type, data }) {
       productdata.push(data);
     });
     let restrictedcountries = []
-    updateProductList?.rescountry.filter(country => restrictedcountries.push(country.value))
+    updateProductList?.rescountry?.filter(country => restrictedcountries.push(country.value))
     let warrantycountries = []
-    updateProductList?.warcountry.filter(country => warrantycountries.push(country.value))
+    updateProductList?.warcountry?.filter(country => warrantycountries.push(country.value))
     let user = JSON.parse(localStorage.getItem("userdata"));
     try {
       const updatepform = await axios({
         method: "post",
-        url: "https://texub.uat.a2zportals.co.in/rest/V1/texub/saveProductPrice",
+        url: `${Constant.baseUrl()}${olddata?.length > 0 ? "/editProductPrice" : "/saveProductPrice"}`,
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -145,7 +178,7 @@ function Index({ type, data }) {
             product_condition: updateProductList?.conditions?.value,
             other_condition: 1,
             warranty_type: updateProductList?.warranty?.value,
-            warranty_country: warrantycountries,
+            warranty_country: warrantycountries.toString(),
             warranty_days: updateform?.days,
             packing_details: updateProductList?.packing?.value,
             no_pieces_per: 234,
@@ -155,7 +188,7 @@ function Index({ type, data }) {
             weight: updateform?.weight,
             restrictions: updateProductList?.restrictions?.value,
             restricted_region: updateProductList?.resregion?.region_id,
-            restricted_country: restrictedcountries,
+            restricted_country: restrictedcountries.toString(),
             description: updateform?.notes,
             product_details: productdata,
           },
@@ -171,8 +204,6 @@ function Index({ type, data }) {
       console.log(e);
     }
   };
-
-  console.log(dropdownListFromApi);
 
   const [restrictvalue, setrestrictvalue] = useState([
     { label: "Yes", value: "Yes" },
@@ -229,28 +260,26 @@ function Index({ type, data }) {
       fetchData();
     }
   }, [updateProductList?.resregion]);
+
   return (
     <div className="updateproduct">
       <h1>{type}</h1>
 
       <div className="updateproduct__topform">
-        {count.map((data, i) => (
+        {count.map((data, ind) => (
           <div className="topform__details">
             <Details
-              key={dropdownListFromApi?.dropDownList?.hub_list?.hub_id}
               countincrease={countincrease}
               i={data.count}
               deleterow={deleterow}
               hubDropDownValues={dropdownListFromApi?.dropDownList?.hub_list}
-              setHubList={setHubList}
               hubList={hubList}
-              checkmumbai={checkmumbai}
-              checkhub={checkhub}
               setpdetails={setpdetails}
-              pdetails={pdetails}
               setcount={setcount}
               count={count}
               hubname={data?.hubname}
+              currentdata={data}
+              index={ind}
             />
           </div>
         ))}
@@ -265,7 +294,7 @@ function Index({ type, data }) {
                 value={updateProductList?.conditions}
                 disablePortal={true}
                 name="conditions"
-                getOptionLabel={(option) => option.label}
+                getOptionLabel={(option) => option.label ? option.label : []}
                 // onChange={(event, newValue) => console.log(newValue)}
                 onChange={(event, newValue) => {
                   setUpdateProductList((prevState) => ({
@@ -274,7 +303,7 @@ function Index({ type, data }) {
                   }));
                 }}
                 id="conditions"
-                options={dropdownListFromApi?.dropDownList?.condition_list}
+                options={dropdownListFromApi?.dropDownList?.condition_list ? dropdownListFromApi?.dropDownList?.condition_list : []}
                 renderInput={(params) => (
                   <TextField
                     {...params}
@@ -291,9 +320,10 @@ function Index({ type, data }) {
             <div className="updateproduct_inputfields info">
               <InputLabel>Warranty Type</InputLabel>
               <Autocomplete
-                value={updateProductList?.warranty_type}
+                value={updateProductList?.warranty}
                 name="warranty_type"
                 disablePortal={true}
+                getOptionLabel={(option) => option.label ? option.label : []}
                 onChange={(event, newValue) => {
                   setUpdateProductList((prevState) => ({
                     ...prevState,
@@ -306,7 +336,7 @@ function Index({ type, data }) {
                   }
                 }}
                 id="warranty_type"
-                options={dropdownListFromApi?.dropDownList?.warranty_type}
+                options={dropdownListFromApi?.dropDownList?.warranty_type ? dropdownListFromApi?.dropDownList?.warranty_type : [] }
                 renderInput={(params) => (
                   <TextField
                     {...params}
@@ -329,7 +359,7 @@ function Index({ type, data }) {
                   id="checkboxes-tags-demo"
                   options={country}
                   disableCloseOnSelect
-                  getOptionLabel={(option) => option.label}
+                  getOptionLabel={(option) => option.label ? option.label : []}
                   renderOption={(props, option, { selected }) => (
                     <li {...props}>
                       <Checkbox
@@ -385,7 +415,7 @@ function Index({ type, data }) {
             <div className="updateproduct_inputfields info">
               <InputLabel>Packing Details</InputLabel>
               <Autocomplete
-                value={updateProductList?.packing_details}
+                value={updateProductList?.packing}
                 name="packing_details"
                 disablePortal={true}
                 onChange={(event, newValue) => {
@@ -395,7 +425,8 @@ function Index({ type, data }) {
                   }));
                 }}
                 id="packing_details"
-                options={dropdownListFromApi?.dropDownList?.packing_details}
+                options={dropdownListFromApi?.dropDownList?.packing_details ? dropdownListFromApi?.dropDownList?.packing_details : []}
+                getOptionLabel={(option) => option.label ? option.label : []}
                 renderInput={(params) => (
                   <TextField
                     {...params}
@@ -498,6 +529,7 @@ function Index({ type, data }) {
                 value={updateProductList?.restrictions}
                 name="packing_details"
                 disablePortal={true}
+                getOptionLabel={(option) => option.label ? option.label : []}
                 onChange={(event, newValue) => {
                   setUpdateProductList((prevState) => ({
                     ...prevState,
@@ -505,7 +537,7 @@ function Index({ type, data }) {
                   }));
                 }}
                 id="packing_details"
-                options={restrictvalue}
+                options={restrictvalue ? restrictvalue : []}
                 renderInput={(params) => (
                   <TextField
                     {...params}
@@ -561,7 +593,7 @@ function Index({ type, data }) {
                   id="checkboxes-tags-demo"
                   options={restricts_country}
                   disableCloseOnSelect
-                  getOptionLabel={(option) => option.label}
+                  getOptionLabel={(option) => option.label ? option.label : []}
                   renderOption={(props, option, { selected }) => (
                     <li {...props}>
                       <Checkbox
