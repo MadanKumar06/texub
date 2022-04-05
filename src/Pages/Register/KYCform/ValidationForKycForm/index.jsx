@@ -194,30 +194,37 @@ function ValidationForKycForm({
       });
   };
 
-  const handlePdfDownload = () => {
-    window.location =
-      Constant.pdfDowloadUrl() +
-      `/kyc/customer/selleragreement?address1=${
-        values?.address_line_one ? values?.address_line_one : ""
-      }&address2=${
-        values?.address_line_two ? values?.address_line_two : ""
-      }&country=${country?.[0]?.value}&city=${
-        values?.city ? values?.city : ""
-      }&pin=${
-        values?.pin_zip_code ? values?.pin_zip_code : ""
-      }&trade_license_number=${
-        values?.trade_lic_number ? values?.trade_lic_number : ""
-      }&tax_no=${
-        values?.tax_number ? values?.tax_number : ""
-      }&customer_id=${customer_id}`;
+  const handlePdfDownload = (event) => {
+    if (event.target.checked) {
+      window.location =
+        Constant.pdfDowloadUrl() +
+        `/kyc/customer/selleragreement?address1=${
+          values?.address_line_one ? values?.address_line_one : ""
+        }&address2=${
+          values?.address_line_two ? values?.address_line_two : ""
+        }&country=${country?.[0]?.value}&city=${
+          values?.city ? values?.city : ""
+        }&pin=${
+          values?.pin_zip_code ? values?.pin_zip_code : ""
+        }&trade_license_number=${
+          values?.trade_lic_number ? values?.trade_lic_number : ""
+        }&tax_no=${
+          values?.tax_number ? values?.tax_number : ""
+        }&customer_id=${customer_id}`;
+    }
   };
   return (
     <>
       <FormControlLabel
         value="yes"
-        control={<Checkbox color="secondary" />}
+        control={
+          <Checkbox
+            color="secondary"
+            onClick={(event) => handlePdfDownload(event)}
+          />
+        }
         label={
-          <p onClick={() => handlePdfDownload()}>
+          <p>
             By clicking here, I state that I have read and understood the terms
             of agreement
           </p>

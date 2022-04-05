@@ -224,7 +224,6 @@ const Productstable = ({
   };
 
   const PaginateDataSplit = (event) => {
-    debugger;
     setTableData(event);
   };
   return (
