@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import "./styles.scss";
 import Productsbrands from "../../Components/ProductPagePLP/Productbrands";
 import Productlists from "../../Components/ProductPagePLP/Productlists";
@@ -13,15 +13,21 @@ export const Products = () => {
   const [getCategories, setGetCategories] = useState([]);
   let customer_id = JSON.parse(localStorage.getItem("userdata"));
   useEffect(() => {
-    if (productFetchApi || currency || getCategories) {
+    if (
+      (productFetchApi && currency?.currency_id) ||
+      (getCategories && currency?.currency_id)
+    ) {
       const fetchProductData = () => {
+        setProductData([]);
         let data = {
           data: {
             currency_id: parseInt(currency?.currency_id),
             customer_id: customer_id?.id ? customer_id?.id : 0,
             category_id: productFetchApi?.category_id
               ? productFetchApi?.category_id
-              : getCategories?.[0]?.category?.id,
+              : getCategories?.[0]?.category?.id
+              ? getCategories?.[0]?.category?.id
+              : 0,
             brand_id: productFetchApi?.brand_id
               ? productFetchApi?.brand_id
               : "0",
@@ -31,7 +37,6 @@ export const Products = () => {
               : "0",
           },
         };
-        setProductData([]);
         axios
           .post(Constant.baseUrl() + "/getProducts", data, {
             headers: {

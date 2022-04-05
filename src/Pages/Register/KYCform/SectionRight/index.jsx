@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { TextField, Checkbox, FormControlLabel } from "@mui/material";
+import { TextField, Checkbox } from "@mui/material";
 
 import axios from "axios";
 import { withStyles } from "@mui/styles";
@@ -122,13 +122,7 @@ const BuyerKYCformSectionRight = ({
           )}
         </div>
       </>
-      <FormControlLabel
-        value="yes"
-        control={<Checkbox color="secondary" />}
-        label="By clicking here, I state that I have read and understood the terms of agreement"
-        labelPlacement="end"
-        className={download_link}
-      />
+
       <ValidationForKycForm
         values={FormValues}
         handleCallValidation={handleCallValidation}
