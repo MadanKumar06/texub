@@ -176,7 +176,7 @@
     .pdp_modal_footer
     .pdp_footer_model_details
     .pdp_footer_model_info {
-    font-size: 14px;
+    font-size: 16px;
   }
   .pdp_modal
     .section_main_container
@@ -184,7 +184,7 @@
     .pdp_modal_footer
     .pdp_footer_model_details
     .pdp_footer_model_info_detail {
-    font-size: 16px;
+    font-size: 18px;
   }
 }
 
@@ -285,7 +285,7 @@
     .pdp_modal_footer
     .pdp_footer_model_details
     .pdp_footer_model_info {
-    font-size: 18px;
+    font-size: 14px;
   }
   .pdp_modal
     .section_main_container
@@ -293,7 +293,7 @@
     .pdp_modal_footer
     .pdp_footer_model_details
     .pdp_footer_model_info_detail {
-    font-size: 20px;
+    font-size: 16px;
   }
 }
 @media (max-width: 480px) {
@@ -303,10 +303,17 @@
   }
   .pdp_modal
     .section_main_container
-    .section_main_sub
+    .section_main_sub{
+      overflow-x: hidden;
+    }
     .section_main_sub_container {
     background-image: none;
-    padding: 20px 10px 0;
+    padding: 20px 10px 0 !important;
+    .pdp_header_bottom_container
+    .header_bottom_image_container{
+      width: 100%;
+
+    }
   }
 }
 @media (max-width: 425px) {

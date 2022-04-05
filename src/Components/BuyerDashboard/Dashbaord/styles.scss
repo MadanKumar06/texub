@@ -317,7 +317,7 @@
       margin-left: 0em;
     }
     h2 {
-      font-size: 28px;
+      font-size: 18px;
     }
     .pricelist__headertime {
       margin-left: 8em;
@@ -346,6 +346,12 @@
         object-fit: contain;
       }
     }
+  }
+  .piechart_container .title{
+    font-size: 18px;
+  }
+  .linechart .order_volume{
+    font-size: 18px;
   }
 
   .buyer_dashboard
