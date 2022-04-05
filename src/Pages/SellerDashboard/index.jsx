@@ -48,30 +48,6 @@ function SellerDashboard() {
     } else {
       navigate(`/sellerdashboard/${value}`);
     }
-    if(value2 === 'update'){
-      setpid(value1) 
-      const data = async() => {
-        const user = JSON.parse(localStorage.getItem('userdata'))
-          try {
-            const formdata = await axios({
-              method: 'post',
-              url: `${Constant.baseUrl()}/getEditFormData`,
-              data: {
-                "product_id" : value1,
-                "seller_id" : user?.id
-              },
-              headers: {
-                Authorization: `Bearer ${localStorage.getItem('token')}`
-              }
-            })
-            // console.log(formdata?.data)
-            seteditdata(formdata?.data[0])
-          } catch(e) {
-            console.log(e)
-          }
-      }
-      data()
-    }
   };
 
   console.log(editdata)
@@ -159,7 +135,7 @@ function SellerDashboard() {
             <PendingProduct registerproduct={registerproduct} />
           )}
           {currenttab === "updateproduct" && (
-            <UpdateProduct type="Update New Product Details" data={editdata} />
+            <UpdateProduct type="Update New Product Details" pid={pid} />
           )}
           {currenttab === "updatesuccess" && (
             <SuccessPage msg={updatesuccess} />
