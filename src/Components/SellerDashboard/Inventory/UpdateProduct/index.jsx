@@ -8,11 +8,10 @@ import axios from "axios";
 import Constant from "../../../../Constant";
 
 function Index({ type, data }) {
-  console.log(data)
   const [count, setcount] = useState([{
     count: 0
   }]);
-  const [test, settest] = useState(1);
+  const [test, settest] = useState(0);
   const [openTextbox, setOpenTextbox] = useState(false);
 
   const countincrease = () => {
@@ -22,6 +21,22 @@ function Index({ type, data }) {
     ])
   };
 
+  useEffect(() => {
+    console.log(data)
+    setUpdateProductList((prevState) => ({
+      ...prevState,
+      width: data?.width,
+      height: data?.height,
+      length: data?.length,
+      weight: data?.weight,
+      conditions: data?.product_condition,
+      warranty_type: data?.warranty_type,
+      packing_details: data?.packing_details,
+      restrictions: data?.restrictions
+
+    }));
+  }, [data])
+
   const {navigate} = useNavigate()
   const {id} = useParams()
 
@@ -30,6 +45,7 @@ function Index({ type, data }) {
   });
 
   const [updateProductList, setUpdateProductList] = useState({});
+  console.log(updateProductList)
   //Api to fetch dropdown values
   useEffect( async() => {
     try {
@@ -49,12 +65,8 @@ function Index({ type, data }) {
 
   const deleterow = (value) => {
     debugger
-    setcount(count.filter((item, i) => i !== value));
+    setcount(count.filter((item) => item.count !== value));
   };
-
-  useEffect(() => {
-    console.log(count)
-  }, [count])
   
 
   const [hubList, setHubList] = useState();
@@ -107,7 +119,6 @@ function Index({ type, data }) {
           }
         }
       })
-      console.log(updatepform?.data)
       if(type === "Add Product Details") {
         navigate("/sellerdashboard/addsuccess")
       } else {
@@ -118,7 +129,6 @@ function Index({ type, data }) {
     }
   }
 
-  console.log(pdetails)
 
   const [restrictvalue, setrestrictvalue] = useState([
     {label: 'Yes',value: 'Yes' },
@@ -312,7 +322,7 @@ function Index({ type, data }) {
                   placeholder="Length"
                   fullWidth
                   autoComplete="off"
-                  // value={signInData?.email_address}
+                  value={updateProductList?.length}
                   className="inputfield-box length_field"
                   InputLabelProps={{
                     shrink: false,
@@ -330,7 +340,7 @@ function Index({ type, data }) {
                   fullWidth
                   autoComplete="off"
                   className="inputfield-box width_field"
-                  // value={signInData?.email_address}
+                  value={updateProductList?.width}
                   InputLabelProps={{
                     shrink: false,
                   }}
@@ -347,7 +357,7 @@ function Index({ type, data }) {
                   fullWidth
                   autoComplete="off"
                   className="inputfield-box height_field"
-                  // value={signInData?.email_address}
+                  value={updateProductList?.height}
                   InputLabelProps={{
                     shrink: false,
                   }}
@@ -364,7 +374,7 @@ function Index({ type, data }) {
                   className="inputfield-box weight_field"
                   fullWidth
                   autoComplete="off"
-                  // value={signInData?.email_address}
+                  value={updateProductList?.weight}
                   InputLabelProps={{
                     shrink: false,
                   }}
