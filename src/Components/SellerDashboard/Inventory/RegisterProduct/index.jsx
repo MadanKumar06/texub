@@ -28,6 +28,9 @@ function RegisterProduct() {
     main_category: "",
     sub_category: "",
     brands: "",
+    other_brands: "",
+    other_main_category: "",
+    other_sub_catgory: "",
     vendor_manufacturer_part_number: "",
   });
 
@@ -51,7 +54,7 @@ function RegisterProduct() {
     fetchMainCategoryData();
   }, []);
   useEffect(() => {
-    if (registerNewProductData?.main_category?.value) {
+    if (registerNewProductData?.main_category?.value !== "mc") {
       const fetchRegionBasedCountryData = () => {
         let data = {
           category_id: registerNewProductData?.main_category?.value,
@@ -136,6 +139,14 @@ function RegisterProduct() {
       })
       .catch((err) => {});
   };
+
+  const [registerNewProdData, setRegisterNewProdData] = useState({});
+  const handleOnchange = (event) => {
+    setRegisterNewProdData((prev) => ({
+      ...prev,
+      [event.target.name]: event.target.value,
+    }));
+  };
   return (
     <div className="registerproduct">
       <h1>Register New Product</h1>
@@ -149,13 +160,12 @@ function RegisterProduct() {
               name="modal_number"
               placeholder="3604929017"
               fullWidth
-              disabled
               className="inputfield-box"
-              // value={signInData?.email_address}
+              value={registerNewProdData?.modal_number}
               InputLabelProps={{
                 shrink: false,
               }}
-              // onChange={handleChangeInput}
+              onChange={handleOnchange}
               variant="outlined"
             />
           </div>
@@ -205,32 +215,90 @@ function RegisterProduct() {
               )}
             />
           </div>
+          {registerNewProductData?.main_category?.value === "mc" ? (
+            <div className="registerproducts_inputfields">
+              <InputLabel>Other Sub Category</InputLabel>
+              <TextField
+                id="other_sub_category"
+                name="other_sub_category"
+                placeholder="Other Sub Category"
+                fullWidth
+                className="inputfield-box"
+                value={registerNewProdData?.other_sub_category}
+                InputLabelProps={{
+                  shrink: false,
+                }}
+                variant="outlined"
+              />
+            </div>
+          ) : (
+            <div className="registerproducts_inputfields">
+              <InputLabel>Sub-Category</InputLabel>
+              <Autocomplete
+                value={registerNewProductData?.subCategoryList}
+                name="sub_category"
+                onChange={(event, newValue) => {
+                  setRegisterNewProductData((prevState) => ({
+                    ...prevState,
+                    sub_category: newValue,
+                  }));
+                }}
+                id="controllable-states-demo"
+                options={dropdownListFromApi?.subCategoryList}
+                disablePortal={true}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    className="inputfield-box"
+                    placeholder="Select Sub-Catrgory"
+                    fullWidth
+                    InputLabelProps={{
+                      shrink: false,
+                    }}
+                  />
+                )}
+              />
+            </div>
+          )}
+        </div>
+        <div className="input_separator">
           <div className="registerproducts_inputfields">
-            <InputLabel>Sub-Category</InputLabel>
-            <Autocomplete
-              value={registerNewProductData?.subCategoryList}
-              name="sub_category"
-              onChange={(event, newValue) => {
-                setRegisterNewProductData((prevState) => ({
-                  ...prevState,
-                  sub_category: newValue,
-                }));
-              }}
-              id="controllable-states-demo"
-              options={dropdownListFromApi?.subCategoryList}
-              disablePortal={true}
-              renderInput={(params) => (
+            {registerNewProductData?.main_category?.value === "mc" && (
+              <div className="registerproducts_inputfields">
+                <InputLabel>Other Main Category</InputLabel>
                 <TextField
-                  {...params}
-                  className="inputfield-box"
-                  placeholder="Select Sub-Catrgory"
+                  id="other_main_category"
+                  name="other_main_category"
+                  placeholder="Other Main Category"
                   fullWidth
+                  className="inputfield-box"
+                  value={registerNewProdData?.other_main_category}
                   InputLabelProps={{
                     shrink: false,
                   }}
+                  variant="outlined"
                 />
-              )}
-            />
+              </div>
+            )}
+          </div>
+          <div className="registerproducts_inputfields">
+            {registerNewProductData?.sub_category?.value === "sc" && (
+              <div className="registerproducts_inputfields">
+                <InputLabel>Other Sub Category</InputLabel>
+                <TextField
+                  id="other_sub_category"
+                  name="other_sub_category"
+                  placeholder="Other Sub Category"
+                  fullWidth
+                  className="inputfield-box"
+                  value={registerNewProdData?.other_sub_category}
+                  InputLabelProps={{
+                    shrink: false,
+                  }}
+                  variant="outlined"
+                />
+              </div>
+            )}
           </div>
         </div>
         <div className="input_separator">
