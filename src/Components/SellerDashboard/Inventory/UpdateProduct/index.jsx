@@ -29,11 +29,55 @@ function Index({ type, data }) {
   const { navigate } = useNavigate();
   const { id } = useParams();
 
+  useEffect(() => {
+    setupdateform((data1) => ({
+        ...data1,
+      width: data?.width,
+      height: data?.height,
+      length: data?.length,
+      weight: data?.weight,
+    }))
+    setUpdateProductList((prevState) => ({
+      ...prevState,
+      // restrictions: data?.restrictions,
+      warranty_days: data?.warranty_days
+    }));
+    // debugger
+    dropdownListFromApi?.dropDownList?.condition_list?.filter(d => d.value === data?.product_condition && 
+      setUpdateProductList((prevState) => ({
+        ...prevState,
+        conditions: d,
+      }))
+    )
+    dropdownListFromApi?.dropDownList?.warranty_type?.filter(d => d.value === data?.warranty_type && 
+      setUpdateProductList((prevState) => ({
+        ...prevState,
+        warranty: d,
+      }))
+    )
+    dropdownListFromApi?.dropDownList?.packing_details?.filter(d => d.value === data?.packing_details && 
+      setUpdateProductList((prevState) => ({
+        ...prevState,
+        packing: d,
+      }))
+    )
+    dropdownListFromApi?.dropDownList?.restrictions?.filter(d => d.value === data?.restrictions && 
+      setUpdateProductList((prevState) => ({
+        ...prevState,
+        restrictions: d,
+      }))
+    )
+  }, [data])
+
   const [dropdownListFromApi, setDropdownListFromApi] = useState({
     dropDownList: [],
   });
 
-  const [updateProductList, setUpdateProductList] = useState({});
+  const [updateProductList, setUpdateProductList] = useState({
+    width: "",
+    // conditions: ""
+  });
+  console.log(updateProductList)
   //Api to fetch dropdown values
   useEffect(async () => {
     try {
@@ -67,15 +111,24 @@ function Index({ type, data }) {
   };
 
   const [pdetails, setpdetails] = useState([]);
-  const [updateform, setupdateform] = useState({});
+  const [updateform, setupdateform] = useState({
+    length: '',
+    width: "",
+    height: '',
+    weight: ''
+  });
 
-  const options = ["Option 1", "Option 2"];
+  console.log(updateform)
 
   const updateProduct = async () => {
     let productdata = [];
     count.filter((data) => {
       productdata.push(data);
     });
+    let restrictedcountries = []
+    updateProductList?.rescountry.filter(country => restrictedcountries.push(country.value))
+    let warrantycountries = []
+    updateProductList?.warcountry.filter(country => warrantycountries.push(country.value))
     let user = JSON.parse(localStorage.getItem("userdata"));
     try {
       const updatepform = await axios({
@@ -92,7 +145,7 @@ function Index({ type, data }) {
             product_condition: updateProductList?.conditions?.value,
             other_condition: 1,
             warranty_type: updateProductList?.warranty?.value,
-            warranty_country: "IN,US",
+            warranty_country: warrantycountries,
             warranty_days: updateform?.days,
             packing_details: updateProductList?.packing?.value,
             no_pieces_per: 234,
@@ -101,8 +154,8 @@ function Index({ type, data }) {
             length: updateform?.lnth,
             weight: updateform?.weight,
             restrictions: updateProductList?.restrictions?.value,
-            restricted_region: 3,
-            restricted_country: "AU,IN",
+            restricted_region: updateProductList?.resregion?.region_id,
+            restricted_country: restrictedcountries,
             description: updateform?.notes,
             product_details: productdata,
           },
@@ -119,7 +172,7 @@ function Index({ type, data }) {
     }
   };
 
-  console.log(pdetails);
+  console.log(dropdownListFromApi);
 
   const [restrictvalue, setrestrictvalue] = useState([
     { label: "Yes", value: "Yes" },
@@ -155,14 +208,14 @@ function Index({ type, data }) {
 
   const [restricts_country, setRestricts_country] = useState([]);
   useEffect(() => {
-    if (updateProductList?.region?.region_id) {
+    if (updateProductList?.resregion) {
       async function fetchData() {
         try {
           const tabledata = await axios({
             method: "post",
             url: `${Constant.baseUrl()}/getCountryListByRegion`,
             data: {
-              region_id: updateProductList?.region?.region_id,
+              region_id: updateProductList?.resregion?.region_id,
             },
             headers: {
               "Content-Type": "application/json",
@@ -175,7 +228,7 @@ function Index({ type, data }) {
       }
       fetchData();
     }
-  }, [updateProductList?.region]);
+  }, [updateProductList?.resregion]);
   return (
     <div className="updateproduct">
       <h1>{type}</h1>
@@ -212,6 +265,8 @@ function Index({ type, data }) {
                 value={updateProductList?.conditions}
                 disablePortal={true}
                 name="conditions"
+                getOptionLabel={(option) => option.label}
+                // onChange={(event, newValue) => console.log(newValue)}
                 onChange={(event, newValue) => {
                   setUpdateProductList((prevState) => ({
                     ...prevState,
@@ -286,12 +341,12 @@ function Index({ type, data }) {
                       {option.label}
                     </li>
                   )}
-                  // onChange={(event, newValue) => {
-                  //   SetFormValues((prevState) => ({
-                  //     ...prevState,
-                  //     categorylist: newValue,
-                  //   }));
-                  // }}
+                  onChange={(event, newValue) => {
+                    setUpdateProductList((prevState) => ({
+                      ...prevState,
+                      warcountry: newValue,
+                    }));
+                  }}
                   renderInput={(params) => (
                     <TextField
                       {...params}
@@ -314,7 +369,7 @@ function Index({ type, data }) {
                 autoFocus={true}
                 autoComplete="off"
                 className="inputfield-box"
-                // value={signInData?.email_address}
+                value={updateProductList?.warranty_days}
                 InputLabelProps={{
                   shrink: false,
                 }}
@@ -360,12 +415,12 @@ function Index({ type, data }) {
               <InputLabel>Dimensions</InputLabel>
               <div className="dimensions_input">
                 <TextField
-                  id="hsn_code"
-                  name="hsn_code"
+                  id="length"
+                  name="length"
                   placeholder="Length"
                   fullWidth
                   autoComplete="off"
-                  // value={signInData?.email_address}
+                  value={updateform?.length}
                   className="inputfield-box length_field"
                   InputLabelProps={{
                     shrink: false,
@@ -379,13 +434,13 @@ function Index({ type, data }) {
                   variant="outlined"
                 />
                 <TextField
-                  id="hsn_code"
-                  name="hsn_code"
+                  id="width"
+                  name="width"
                   placeholder=" Width"
                   fullWidth
                   autoComplete="off"
                   className="inputfield-box width_field"
-                  // value={signInData?.email_address}
+                  value={updateform?.width}
                   InputLabelProps={{
                     shrink: false,
                   }}
@@ -398,13 +453,13 @@ function Index({ type, data }) {
                   variant="outlined"
                 />
                 <TextField
-                  id="hsn_code"
-                  name="hsn_code"
+                  id="height"
+                  name="height"
                   placeholder="Height"
                   fullWidth
                   autoComplete="off"
                   className="inputfield-box height_field"
-                  // value={signInData?.email_address}
+                  value={updateform?.height}
                   InputLabelProps={{
                     shrink: false,
                   }}
@@ -417,13 +472,13 @@ function Index({ type, data }) {
                   variant="outlined"
                 />
                 <TextField
-                  id="hsn_code"
-                  name="hsn_code"
+                  id="weight"
+                  name="weight"
                   placeholder="Weight"
                   className="inputfield-box weight_field"
                   fullWidth
                   autoComplete="off"
-                  // value={signInData?.email_address}
+                  value={updateform?.weight}
                   InputLabelProps={{
                     shrink: false,
                   }}
@@ -440,7 +495,7 @@ function Index({ type, data }) {
             <div className="updateproduct_inputfields info">
               <InputLabel>Restrictions</InputLabel>
               <Autocomplete
-                value={updateProductList?.packing_details}
+                value={updateProductList?.restrictions}
                 name="packing_details"
                 disablePortal={true}
                 onChange={(event, newValue) => {
@@ -480,7 +535,7 @@ function Index({ type, data }) {
                   onChange={(event, newValue) => {
                     setUpdateProductList((prevState) => ({
                       ...prevState,
-                      region: newValue,
+                      resregion: newValue,
                     }));
                   }}
                   id="region"
@@ -518,12 +573,12 @@ function Index({ type, data }) {
                       {option.label}
                     </li>
                   )}
-                  // onChange={(event, newValue) => {
-                  //   SetFormValues((prevState) => ({
-                  //     ...prevState,
-                  //     categorylist: newValue,
-                  //   }));
-                  // }}
+                  onChange={(event, newValue) => {
+                    setUpdateProductList((prevState) => ({
+                      ...prevState,
+                      rescountry: newValue,
+                    }));
+                  }}
                   renderInput={(params) => (
                     <TextField
                       {...params}

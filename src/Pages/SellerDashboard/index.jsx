@@ -65,7 +65,7 @@ function SellerDashboard() {
               }
             })
             // console.log(formdata?.data)
-            seteditdata(formdata?.data)
+            seteditdata(formdata?.data[0])
           } catch(e) {
             console.log(e)
           }
@@ -73,6 +73,8 @@ function SellerDashboard() {
       data()
     }
   };
+
+  console.log(editdata)
   
   useEffect(() => {
     if (

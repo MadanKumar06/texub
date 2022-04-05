@@ -24,11 +24,6 @@ function Index({
 
   const options = ["INR", "USD"];
 
-  // useEffect(() => {
-  //   console.log(count)
-  //   console.log(hubname)
-  // })
-
 
   const hubselect = (e, value) => {
     count.filter(c => {
@@ -66,7 +61,7 @@ function Index({
       }
     })
   }
-  console.log(count)
+
 
   return (
     <>
