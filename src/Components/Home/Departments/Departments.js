@@ -18,7 +18,7 @@ export const Departments = () => {
           >
             <p className="Department_heading">
               <Menu className="button_Icon" />
-              DEPARTMENTS
+              CATEGORIES
             </p>
           </div>
           <div className="Departments_Dropdown_list">
