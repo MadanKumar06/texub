@@ -76,7 +76,7 @@ const App = () => {
   return(
    <div className="App">
    <ThemeProvider theme={theme}>
-        <Router>
+        <Router baseName={"/"}>
           <ScrollToTop/>
           <Header />
           <Userdetails />
