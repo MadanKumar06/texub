@@ -7,6 +7,8 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
+import Constant from "../../../Constant";
+import axios from "axios";
 const PDPTable = ({ classes, tableData, setPdpSellerData, pdpSellerData }) => {
   //styles
   let {
@@ -100,14 +102,17 @@ const PDPTable = ({ classes, tableData, setPdpSellerData, pdpSellerData }) => {
   };
 
   const handleRadioGroupChange = (event) => {
+    debugger;
     setPdpSellerData((prevState) => ({
       ...prevState,
-      seller_id: event?.seller_code,
-      warranty_days: event?.warranty_days,
-      packing_details: event?.packing_details,
-      no_of_pieces: event?.no_of_pieces,
+      event,
+      // seller_id: event?.seller_code,
+      // warranty_days: event?.warranty_days,
+      // packing_details: event?.packing_details,
+      // no_of_pieces: event?.no_of_pieces,
     }));
   };
+
   return (
     <div className={table_container}>
       <div className={pdp_middle_wapper}>
@@ -176,10 +181,11 @@ const PDPTable = ({ classes, tableData, setPdpSellerData, pdpSellerData }) => {
                                 className={radio_button}
                                 onClick={() =>
                                   handleRadioGroupChange({
-                                    seller_code: item?.seller_code,
-                                    warranty_days: item?.warranty_days,
-                                    packing_details: item?.packing_details,
-                                    no_of_pieces: item?.no_of_pieces,
+                                    // seller_code: item?.seller_code,
+                                    // warranty_days: item?.warranty_days,
+                                    // packing_details: item?.packing_details,
+                                    // no_of_pieces: item?.no_of_pieces,
+                                    ...item,
                                   })
                                 }
                               />

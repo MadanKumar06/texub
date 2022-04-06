@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   InputLabel,
   TextField,
@@ -9,9 +9,11 @@ import {
 } from "@mui/material";
 import "./styles.scss";
 import axios from "axios";
+import swal from "sweetalert2";
 import Constant from "../../../../Constant";
 
 function RegisterProduct() {
+  const history = useNavigate();
   const [openClosePopOver, setOpenClosePopOver] = useState({
     state: false,
     message: "",
@@ -28,6 +30,12 @@ function RegisterProduct() {
     main_category: "",
     sub_category: "",
     brands: "",
+    other_brands: "",
+    modal_number: "",
+    description: "",
+    upc_number: "",
+    other_main_category: "",
+    other_sub_category: "",
     vendor_manufacturer_part_number: "",
   });
 
@@ -51,7 +59,7 @@ function RegisterProduct() {
     fetchMainCategoryData();
   }, []);
   useEffect(() => {
-    if (registerNewProductData?.main_category?.value) {
+    if (registerNewProductData?.main_category?.value !== "mc") {
       const fetchRegionBasedCountryData = () => {
         let data = {
           category_id: registerNewProductData?.main_category?.value,
@@ -136,10 +144,69 @@ function RegisterProduct() {
       })
       .catch((err) => {});
   };
+
+  const handleOnchange = (event) => {
+    setRegisterNewProductData((prevState) => ({
+      ...prevState,
+      [event.target.name]: event.target.value,
+    }));
+  };
+  console.log(registerNewProductData);
+
+  //API to Register
+  const FinalRegisterNewProduct = () => {
+    let user = JSON.parse(localStorage.getItem("userdata"));
+    let customer_token = JSON.parse(localStorage.getItem("customer_auth"));
+    debugger;
+    let data = {
+      product_data: {
+        customer_id: user?.id,
+        main_category: registerNewProductData?.main_category?.value,
+        other_main_category: registerNewProductData?.other_main_category,
+        sub_category: registerNewProductData?.sub_category?.value,
+        other_sub_category: registerNewProductData?.other_sub_category,
+        other_brand_number: "",
+        name: registerNewProductData?.modal_number,
+        texub_product_id: dropdownListFromApi?.texub_product_id,
+        mgs_brand: registerNewProductData?.brands?.brand_id,
+        hsn_code: registerNewProductData?.hsn_code,
+        sku: registerNewProductData?.vendor_manufacturer_part_number,
+        upc_number: registerNewProductData?.upc_number,
+        description: registerNewProductData?.description,
+      },
+    };
+    axios
+      .post(Constant.baseUrl() + `/createSellerProduct`, data, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${customer_token}`,
+        },
+      })
+      .then((res) => {
+        if (res.data?.[0]?.status) {
+          history("/sellerdashboard/registersuccess");
+        } else {
+          swal.fire({
+            text: `${res.data?.[0]?.message}`,
+            icon: "error",
+            showConfirmButton: false,
+            timer: 3000,
+          });
+        }
+      })
+      .catch((error) => {
+        swal.fire({
+          text: `${error?.response?.data?.message || error.message}`,
+          icon: "error",
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      });
+  };
+
   return (
     <div className="registerproduct">
       <h1>Register New Product</h1>
-
       <div className="registerproducts__form">
         <div className="input_separator">
           <div className="registerproducts_inputfields">
@@ -149,13 +216,12 @@ function RegisterProduct() {
               name="modal_number"
               placeholder="3604929017"
               fullWidth
-              disabled
               className="inputfield-box"
-              // value={signInData?.email_address}
+              value={registerNewProductData?.modal_number}
               InputLabelProps={{
                 shrink: false,
               }}
-              // onChange={handleChangeInput}
+              onChange={handleOnchange}
               variant="outlined"
             />
           </div>
@@ -189,8 +255,9 @@ function RegisterProduct() {
                   main_category: newValue,
                 }));
               }}
-              disablePortal={true}
               id="controllable-states-demo"
+              getOptionLabel={(option) => (option.label ? option.label : "")}
+              filterOptions={(options) => options}
               options={dropdownListFromApi?.mainCategoryList}
               renderInput={(params) => (
                 <TextField
@@ -205,32 +272,91 @@ function RegisterProduct() {
               )}
             />
           </div>
+          {registerNewProductData?.main_category?.value === "mc" ? (
+            <div className="registerproducts_inputfields">
+              <InputLabel>Other Sub Category</InputLabel>
+              <TextField
+                id="other_sub_category"
+                name="other_sub_category"
+                placeholder="Other Sub Category"
+                fullWidth
+                className="inputfield-box"
+                value={registerNewProductData?.other_sub_category}
+                InputLabelProps={{
+                  shrink: false,
+                }}
+                variant="outlined"
+              />
+            </div>
+          ) : (
+            <div className="registerproducts_inputfields">
+              <InputLabel>Sub-Category</InputLabel>
+              <Autocomplete
+                value={registerNewProductData?.subCategoryList}
+                name="sub_category"
+                onChange={(event, newValue) => {
+                  setRegisterNewProductData((prevState) => ({
+                    ...prevState,
+                    sub_category: newValue,
+                  }));
+                }}
+                id="controllable-states-demo"
+                options={dropdownListFromApi?.subCategoryList}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    className="inputfield-box"
+                    placeholder="Select Sub-Catrgory"
+                    fullWidth
+                    InputLabelProps={{
+                      shrink: false,
+                    }}
+                  />
+                )}
+              />
+            </div>
+          )}
+        </div>
+        <div className="input_separator">
           <div className="registerproducts_inputfields">
-            <InputLabel>Sub-Category</InputLabel>
-            <Autocomplete
-              value={registerNewProductData?.subCategoryList}
-              name="sub_category"
-              onChange={(event, newValue) => {
-                setRegisterNewProductData((prevState) => ({
-                  ...prevState,
-                  sub_category: newValue,
-                }));
-              }}
-              id="controllable-states-demo"
-              options={dropdownListFromApi?.subCategoryList}
-              disablePortal={true}
-              renderInput={(params) => (
+            {registerNewProductData?.main_category?.value === "mc" && (
+              <div className="registerproducts_inputfields">
+                <InputLabel>Other Main Category</InputLabel>
                 <TextField
-                  {...params}
-                  className="inputfield-box"
-                  placeholder="Select Sub-Catrgory"
+                  id="other_main_category"
+                  name="other_main_category"
+                  placeholder="Other Main Category"
                   fullWidth
+                  className="inputfield-box"
+                  value={registerNewProductData?.other_main_category}
                   InputLabelProps={{
                     shrink: false,
                   }}
+                  variant="outlined"
+                  onChange={handleOnchange}
                 />
-              )}
-            />
+              </div>
+            )}
+          </div>
+          <div className="registerproducts_inputfields">
+            {registerNewProductData?.sub_category?.value === "sc" && (
+              <div className="registerproducts_inputfields">
+                <InputLabel>Other Sub Category</InputLabel>
+                <TextField
+                  id="other_sub_category"
+                  name="other_sub_category"
+                  placeholder="Other Sub Category"
+                  fullWidth
+                  className="inputfield-box"
+                  value={registerNewProductData?.other_sub_category}
+                  InputLabelProps={{
+                    shrink: false,
+                  }}
+                  variant="outlined"
+                  onChange={handleOnchange}
+                />
+              </div>
+            )}
           </div>
         </div>
         <div className="input_separator">
@@ -238,14 +364,13 @@ function RegisterProduct() {
             <InputLabel>Brand</InputLabel>
             <Autocomplete
               value={registerNewProductData?.brands}
-              name=""
+              name="brands"
               onChange={(event, newValue) => {
-                setDropdownListFromApi((prevState) => ({
+                setRegisterNewProductData((prevState) => ({
                   ...prevState,
                   brands: newValue,
                 }));
               }}
-              disablePortal={true}
               id="controllable-states-demo"
               options={dropdownListFromApi?.brandsList}
               getOptionLabel={(option) => (option.name ? option.name : "")}
@@ -273,11 +398,11 @@ function RegisterProduct() {
               autoFocus={true}
               autoComplete="off"
               className="inputfield-box"
-              // value={signInData?.email_address}
+              value={registerNewProductData?.hsn_code}
               InputLabelProps={{
                 shrink: false,
               }}
-              // onChange={handleChangeInput}
+              onChange={handleOnchange}
               variant="outlined"
             />
           </div>
@@ -319,11 +444,11 @@ function RegisterProduct() {
               autoFocus={true}
               autoComplete="off"
               className="inputfield-box"
-              // value={signInData?.email_address}
+              value={registerNewProductData?.upc_number}
               InputLabelProps={{
                 shrink: false,
               }}
-              // onChange={handleChangeInput}
+              onChange={handleOnchange}
               variant="outlined"
             />
           </div>
@@ -334,7 +459,10 @@ function RegisterProduct() {
             id="outlined-multiline-static_2"
             fullWidth
             multiline
+            value={registerNewProductData?.description}
             rows={5}
+            name="description"
+            onChange={handleOnchange}
             className="inputfield-box"
             InputLabelProps={{
               shrink: false,
@@ -353,11 +481,12 @@ function RegisterProduct() {
           <span className="registerproduct__back">Back</span>
         </Link>
         <Box>
-          <Link to="/sellerdashboard/registersuccess">
-            <Button className="button-text btn-secondary registerproduct__submitbutton">
-              Submit
-            </Button>
-          </Link>
+          <Button
+            className="button-text btn-secondary registerproduct__submitbutton"
+            onClick={() => FinalRegisterNewProduct()}
+          >
+            Submit
+          </Button>
         </Box>
       </div>
     </div>

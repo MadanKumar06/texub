@@ -7,6 +7,8 @@ import PDPTable from "./PDPTable";
 import { useNavigate } from "react-router-dom";
 import { table_two_data } from "./PDPTable/TableData";
 import { useStateValue } from "../../store/state";
+import Constant from "../../Constant";
+import axios from "axios";
 
 import header_bottom_image_1 from "../../Assets/Productlist/warranty.png";
 import header_bottom_image_2 from "../../Assets/Productlist/Delivery.png";
@@ -70,6 +72,37 @@ const PdpPopup = () => {
     });
   };
 
+  //APi call to addtocart
+  const AddToCart = () => {
+    debugger;
+    console.log(pdpSellerData);
+    const data = async () => {
+      const user = JSON.parse(localStorage.getItem("userdata"));
+      try {
+        const formdata = await axios({
+          method: "post",
+          url: `${Constant.baseUrl()}/addToCart`,
+          data: {
+            pendingProducts: {
+              customer_id: user?.id,
+              productId: pdpSellerData?.event?.main_product_id,
+              price: pdpSellerData?.event?.price,
+              qty: pdpSellerData?.event?.moq,
+              hub: pdpSellerData?.event?.hub_id,
+              currency: pdpSellerData?.event?.currency_id,
+              sellerId: user?.id,
+            },
+          },
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    data();
+  };
   return (
     <Modal
       aria-labelledby="transition-modal-title"
@@ -106,7 +139,7 @@ const PdpPopup = () => {
               <div className="header_bottom_image_container">
                 <img src={header_bottom_image_3} alt="" />
                 <span> {pdpSellerData?.packing_details}</span>:{" "}
-                <span> {pdpSellerData?.no_of_pieces}{" "}No of pieces</span>
+                <span> {pdpSellerData?.no_of_pieces} No of pieces</span>
               </div>
             </div>
           </div>
@@ -139,7 +172,8 @@ const PdpPopup = () => {
             <div className="modal_bottom_button_main">
               <Button
                 className="modal_bottom_button_add_to_cart"
-                onClick={() => handleRouteOnButtonClick("add_to_cart")}
+                // onClick={() => handleRouteOnButtonClick("add_to_cart")}
+                onClick={() => AddToCart()}
               >
                 <img src={shopping_cart} alt="" />
                 <span>Add to Cart</span>
