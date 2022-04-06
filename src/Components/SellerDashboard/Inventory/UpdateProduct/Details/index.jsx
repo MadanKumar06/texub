@@ -19,43 +19,41 @@ function Index({
   hubname,
   currentdata,
   setcount,
-  settest
+  settest,
 }) {
   const [options, setoptions] = useState([]);
-  const [currenthub, setcurrenthub] = useState();
+  const [currenthub, setcurrenthub] = useState("");
 
   const hubselect = (e, value) => {
     let temp = count.filter((c) => {
       if (c.count === i) {
         c.hub_id = value.hub_id;
         c.hubname = value.hub_name;
-        setcurrenthub(value.hub_id);
       }
     });
-    settest(temp)
+    settest(temp);
   };
   const changevalues = (value, type) => {
-    debugger
     let temp = count.filter((c) => {
       if (c.count === i) {
-        if(type === 'price') {
-          return c.price = value;
+        if (type === "price") {
+          return (c.price = value);
         }
-        if(type === 'instock') {
-          return c.in_stock = value;
+        if (type === "instock") {
+          return (c.in_stock = value);
         }
-        if(type === 'eta') {
-          return c.eta = value;
+        if (type === "eta") {
+          return (c.eta = value);
         }
-        if(type === 'moq') {
-          return c.moq = value;
+        if (type === "moq") {
+          return (c.moq = value);
         }
-        if(type === 'currency') {
-          return c.currency_id = value;
+        if (type === "currency") {
+          return (c.currency_id = value);
         }
       }
     });
-    settest(temp)
+    settest(temp);
   };
 
   useEffect(async () => {
@@ -86,20 +84,22 @@ function Index({
     }
   }, [currenthub]);
 
-  // const [hubdata, sethubdata] = useState([])
+  useEffect(() => {
+    if (hubDropDownValues?.length === 0) return;
+    let temp = [];
+    hubDropDownValues?.length &&
+      hubDropDownValues.filter((wc) => {
+        if (wc?.hub_id === currentdata?.hub_id) {
+          temp.push(wc);
+        }
+      });
+    setcurrenthub(temp);
+  }, [hubDropDownValues]);
 
-  // useEffect(() => {
-  //   let temp = []
-  //   hubDropDownValues.filter(hub => temp.push({
-  //     label: hub?.hub_name,
-  //     value: hub?.hub_id
-  //   }))
-  //   sethubdata(temp)
-  // }, [hubDropDownValues])
+  console.log(currentdata);
+  console.log(hubDropDownValues);
 
-  // console.log(currentdata)
-  // console.log(hubDropDownValues)
-  // console.log(hubdata)
+  console.log("currenthub", currenthub);
 
   return (
     <>
@@ -107,16 +107,15 @@ function Index({
         <div className="updateproduct_info_form autocomplete_input">
           <InputLabel>Hub</InputLabel>
           <Autocomplete
-            value={currentdata?.hub_id}
+            value={currenthub}
             name="hub_list"
             onChange={(event, newValue) => hubselect(event, newValue)}
             id="hub_list"
             disablePortal={true}
             options={hubDropDownValues ? hubDropDownValues : []}
-            getOptionLabel={(option) => (option.hub_name ? option.hub_name : "")}
-            // getOptionLabel={(option) =>
-            //   option.hub_name ? option.hub_name : ""
-            // }
+            getOptionLabel={(option) =>
+              option.hub_name ? option.hub_name : ""
+            }
             filterOptions={(options) => options}
             renderInput={(params) => (
               <TextField
@@ -138,7 +137,7 @@ function Index({
               name=""
               id="controllable-states-demo"
               options={options}
-              onChange={(e) => changevalues(e.target.value, 'currency')}
+              onChange={(e) => changevalues(e.target.value, "currency")}
               renderInput={(params) => (
                 <TextField
                   {...params}
@@ -164,7 +163,7 @@ function Index({
               InputLabelProps={{
                 shrink: false,
               }}
-              onChange={(e) => changevalues(e.target.value, 'price')}
+              onChange={(e) => changevalues(e.target.value, "price")}
               variant="outlined"
             />
           </div>
@@ -183,7 +182,7 @@ function Index({
             InputLabelProps={{
               shrink: false,
             }}
-            onChange={(e) => changevalues(e.target.value, 'instock')}
+            onChange={(e) => changevalues(e.target.value, "instock")}
             variant="outlined"
           />
         </div>
@@ -201,7 +200,7 @@ function Index({
             InputLabelProps={{
               shrink: false,
             }}
-            onChange={(e) => changevalues(e.target.value, 'eta')}
+            onChange={(e) => changevalues(e.target.value, "eta")}
             variant="outlined"
           />
         </div>
@@ -219,7 +218,7 @@ function Index({
             InputLabelProps={{
               shrink: false,
             }}
-            onChange={(e) => changevalues(e.target.value, 'moq')}
+            onChange={(e) => changevalues(e.target.value, "moq")}
             variant="outlined"
           />
         </div>
