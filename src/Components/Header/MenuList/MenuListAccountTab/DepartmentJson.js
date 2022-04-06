@@ -7,7 +7,7 @@ const Departments = [
   {
     id: 2,
     path: "/new_arrival",
-    name: "New arrival",
+    name: "New arrivals",
   },
   {
     id: 3,
@@ -37,12 +37,12 @@ const Departments = [
   {
     id: 8,
     path: "/tv_radio",
-    name: "Tv & Radio",
+    name: "Tv & Audio",
   },
   {
     id: 9,
     path: "/bags_laggage",
-    name: "Bags & Laggage",
+    name: "Bags & Luggage",
   },
   {
     id: 10,

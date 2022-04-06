@@ -26,15 +26,27 @@ function Index({ type, pid }) {
       price: "",
     },
   ]);
+  const [olddata, setolddata] = useState([]);
+  const [eventcheck, seteventcheck] = useState(false)
+  const [test, settest] = useState([])
+  const [updateProductList, setUpdateProductList] = useState({
+    width: "",
+    conditions: "",
+    warranty: "",
+    packing: "",
+    restrictions: [],
+    warcountry: [],
+    resregion: "",
+  });
 
+  const [country, setcountry] = useState([]);
+  
   const countincrease = () => {
     setcount((data) => [...data, { count: count + 1 }]);
   };
 
   const { navigate } = useNavigate();
   const { id } = useParams();
-
-  const [olddata, setolddata] = useState([]);
 
   useEffect(() => {
     if (type !== "Update New Product Details") return;
@@ -63,7 +75,26 @@ function Index({ type, pid }) {
       }
     };
     data();
-  }, [id]);
+  }, [id, eventcheck]);
+
+  console.log(updateProductList)
+  
+  useEffect(() => {
+    if(olddata.length === 0) return
+    let temp = []
+    olddata.warranty_country.filter(wc => 
+        country.filter(c => {
+          if(wc === c.value) {
+            temp.push(c)        
+          }
+        })
+      )
+    updateProductList.warcountry = temp
+    updateProductList.restrictions = olddata?.restrictions
+  }, [olddata])
+
+  console.log(updateProductList)
+  console.log(olddata)
 
   useEffect(() => {
     // if(isMounted) {
@@ -83,6 +114,7 @@ function Index({ type, pid }) {
           conditions: d,
         }))
     );
+    
     dropdownListFromApi?.dropDownList?.warranty_type?.filter(
       (d) =>
         d.value === olddata?.warranty_type &&
@@ -110,10 +142,19 @@ function Index({ type, pid }) {
       );
     restrictvalue?.filter(
       (d) =>
-        d.value === olddata?.restrictions &&
+        d.value === olddata?.warranty_country &&
         setUpdateProductList((prevState) => ({
           ...prevState,
           restrictions: d,
+        }))
+    );
+
+    country?.filter(
+      (d) =>
+        d.value === olddata?.warranty_country &&
+        setUpdateProductList((prevState) => ({
+          ...prevState,
+          warcountry: d,
         }))
     );
     // }
@@ -122,16 +163,8 @@ function Index({ type, pid }) {
   const [dropdownListFromApi, setDropdownListFromApi] = useState({
     dropDownList: [],
   });
-  console.log(olddata);
-  const [updateProductList, setUpdateProductList] = useState({
-    width: "",
-    conditions: "",
-    warranty: "",
-    packing: "",
-    restrictions: "",
-    warcountry: "",
-    resregion: "",
-  });
+
+
   //Api to fetch dropdown values
   useEffect(async () => {
     try {
@@ -139,7 +172,6 @@ function Index({ type, pid }) {
         method: "get",
         url: `${Constant.baseUrl()}/getUpdateProductDetails`,
       });
-      console.log(updateproductdropdown);
       setDropdownListFromApi((prevState) => ({
         ...prevState,
         dropDownList: Object.assign({}, ...updateproductdropdown?.data),
@@ -161,7 +193,7 @@ function Index({ type, pid }) {
           product_id: value1,
         },
       });
-      console.log(rowdelete.data);
+      seteventcheck(!eventcheck)
     } catch (e) {
       console.log(e);
     }
@@ -182,8 +214,6 @@ function Index({ type, pid }) {
     notes: "",
   });
 
-  console.log(updateform);
-
   const updateProduct = async () => {
     let productdata = [];
     count.filter((data) => {
@@ -202,7 +232,7 @@ function Index({ type, pid }) {
       const updatepform = await axios({
         method: "post",
         // url: `${Constant.baseUrl()}${olddata?.length > 0 ? "/editProductPrice" : "/saveProductPrice"}`,
-        url: `${Constant.baseUrl()}/editProductPrice`,
+        url: `${Constant.baseUrl()}${olddata?.customer_id ? "/editProductPrice" : "/saveProductPrice"}`,
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -230,7 +260,6 @@ function Index({ type, pid }) {
           },
         },
       });
-      console.log(updatepform?.data);
       if (type === "Add Product Details") {
         navigate("/sellerdashboard/addsuccess");
       } else {
@@ -245,8 +274,6 @@ function Index({ type, pid }) {
     { label: "Yes", value: "Yes" },
     { label: "No", value: "No" },
   ]);
-
-  const [country, setcountry] = useState([]);
 
   useEffect(async () => {
     try {
@@ -301,7 +328,7 @@ function Index({ type, pid }) {
       <h1>{type}</h1>
 
       <div className="updateproduct__topform">
-        {count?.length &&
+        {count?.length > 0 &&
           count.map((data, ind) => (
             <div className="topform__details">
               <Details
@@ -316,6 +343,7 @@ function Index({ type, pid }) {
                 hubname={data?.hubname}
                 currentdata={data}
                 index={ind}
+                settest={settest}
               />
             </div>
           ))}
@@ -331,7 +359,6 @@ function Index({ type, pid }) {
                 disablePortal={true}
                 name="conditions"
                 getOptionLabel={(option) => (option.label ? option.label : [])}
-                // onChange={(event, newValue) => console.log(newValue)}
                 onChange={(event, newValue) => {
                   setUpdateProductList((prevState) => ({
                     ...prevState,
@@ -399,6 +426,7 @@ function Index({ type, pid }) {
                   id="checkboxes-tags-demo"
                   options={country ? country : []}
                   disableCloseOnSelect
+                  value={updateProductList.warcountry}
                   getOptionLabel={(option) =>
                     option.label ? option.label : []
                   }
@@ -575,7 +603,7 @@ function Index({ type, pid }) {
                 value={updateProductList?.restrictions}
                 name="packing_details"
                 disablePortal={true}
-                getOptionLabel={(option) => (option.label ? option.label : [])}
+                getOptionLabel={(option) => (option.label ? option.label : "")}
                 onChange={(event, newValue) => {
                   setUpdateProductList((prevState) => ({
                     ...prevState,
