@@ -26,15 +26,27 @@ function Index({ type, pid }) {
       price: "",
     },
   ]);
+  const [olddata, setolddata] = useState([]);
+  const [eventcheck, seteventcheck] = useState(false)
+  const [test, settest] = useState([])
+  const [updateProductList, setUpdateProductList] = useState({
+    width: "",
+    conditions: "",
+    warranty: "",
+    packing: "",
+    restrictions: "",
+    warcountry: [],
+    resregion: "",
+  });
 
+  const [country, setcountry] = useState([]);
+  
   const countincrease = () => {
     setcount((data) => [...data, { count: count + 1 }]);
   };
 
   const { navigate } = useNavigate();
   const { id } = useParams();
-
-  const [olddata, setolddata] = useState([]);
 
   useEffect(() => {
     if (type !== "Update New Product Details") return;
@@ -63,7 +75,25 @@ function Index({ type, pid }) {
       }
     };
     data();
-  }, [id]);
+  }, [id, eventcheck]);
+
+  console.log(updateProductList)
+  
+  useEffect(() => {
+    if(olddata.length === 0) return
+    let temp = olddata.warranty_country.filter(wc => 
+        country.filter(c => {
+          if(wc === c.value) {
+            // return c
+            console.log(c)
+            updateProductList?.warcountry.push(c)
+          }
+        })
+      )
+    // console.log(temp)
+  }, [olddata])
+
+  console.log(updateProductList)
 
   useEffect(() => {
     // if(isMounted) {
@@ -110,10 +140,19 @@ function Index({ type, pid }) {
       );
     restrictvalue?.filter(
       (d) =>
-        d.value === olddata?.restrictions &&
+        d.value === olddata?.warranty_country &&
         setUpdateProductList((prevState) => ({
           ...prevState,
           restrictions: d,
+        }))
+    );
+
+    country?.filter(
+      (d) =>
+        d.value === olddata?.warranty_country &&
+        setUpdateProductList((prevState) => ({
+          ...prevState,
+          warcountry: d,
         }))
     );
     // }
@@ -122,16 +161,8 @@ function Index({ type, pid }) {
   const [dropdownListFromApi, setDropdownListFromApi] = useState({
     dropDownList: [],
   });
-  console.log(olddata);
-  const [updateProductList, setUpdateProductList] = useState({
-    width: "",
-    conditions: "",
-    warranty: "",
-    packing: "",
-    restrictions: "",
-    warcountry: "",
-    resregion: "",
-  });
+
+
   //Api to fetch dropdown values
   useEffect(async () => {
     try {
@@ -139,7 +170,6 @@ function Index({ type, pid }) {
         method: "get",
         url: `${Constant.baseUrl()}/getUpdateProductDetails`,
       });
-      console.log(updateproductdropdown);
       setDropdownListFromApi((prevState) => ({
         ...prevState,
         dropDownList: Object.assign({}, ...updateproductdropdown?.data),
@@ -161,7 +191,7 @@ function Index({ type, pid }) {
           product_id: value1,
         },
       });
-      console.log(rowdelete.data);
+      seteventcheck(!eventcheck)
     } catch (e) {
       console.log(e);
     }
@@ -181,8 +211,6 @@ function Index({ type, pid }) {
     warranty_days: "",
     notes: "",
   });
-
-  console.log(updateform);
 
   const updateProduct = async () => {
     let productdata = [];
@@ -230,7 +258,6 @@ function Index({ type, pid }) {
           },
         },
       });
-      console.log(updatepform?.data);
       if (type === "Add Product Details") {
         navigate("/sellerdashboard/addsuccess");
       } else {
@@ -245,8 +272,6 @@ function Index({ type, pid }) {
     { label: "Yes", value: "Yes" },
     { label: "No", value: "No" },
   ]);
-
-  const [country, setcountry] = useState([]);
 
   useEffect(async () => {
     try {
@@ -301,7 +326,7 @@ function Index({ type, pid }) {
       <h1>{type}</h1>
 
       <div className="updateproduct__topform">
-        {count?.length &&
+        {count?.length > 0 &&
           count.map((data, ind) => (
             <div className="topform__details">
               <Details
@@ -316,6 +341,7 @@ function Index({ type, pid }) {
                 hubname={data?.hubname}
                 currentdata={data}
                 index={ind}
+                settest={settest}
               />
             </div>
           ))}
@@ -331,7 +357,6 @@ function Index({ type, pid }) {
                 disablePortal={true}
                 name="conditions"
                 getOptionLabel={(option) => (option.label ? option.label : [])}
-                // onChange={(event, newValue) => console.log(newValue)}
                 onChange={(event, newValue) => {
                   setUpdateProductList((prevState) => ({
                     ...prevState,
@@ -399,6 +424,7 @@ function Index({ type, pid }) {
                   id="checkboxes-tags-demo"
                   options={country ? country : []}
                   disableCloseOnSelect
+                  // value={updateProductList.warcountry}
                   getOptionLabel={(option) =>
                     option.label ? option.label : []
                   }
