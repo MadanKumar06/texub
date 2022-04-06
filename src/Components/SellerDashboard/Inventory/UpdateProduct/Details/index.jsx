@@ -3,7 +3,7 @@ import "./styles.scss";
 
 import DeleteIcon from "@mui/icons-material/Delete";
 import { InputLabel, TextField, Autocomplete } from "@mui/material";
-import Subdetails from './Subdetails'
+import Subdetails from "./Subdetails";
 import axios from "axios";
 import Constant from "../../../../../Constant";
 
@@ -17,86 +17,86 @@ function Index({
   setpdetails,
   count,
   hubname,
-  currentdata
+  currentdata,
+  setcount,
 }) {
-
-  const [options, setoptions] = useState([])
-  const [currenthub ,setcurrenthub] = useState()
-  console.log(count)
+  const [options, setoptions] = useState([]);
+  const [currenthub, setcurrenthub] = useState();
+  console.log(count);
 
   const hubselect = (e, value) => {
-    count.filter(c => {
-      if(c.count === i) {
-        c.hub_id = value.hub_id
-        c.hubname = value.hub_name
-        setcurrenthub(value.hub_id)
+    count.filter((c) => {
+      if (c.count === i) {
+        c.hub_id = value.hub_id;
+        c.hubname = value.hub_name;
+        setcurrenthub(value.hub_id);
       }
-    })
-  }
+    });
+  };
   const priceselect = (value) => {
-    count.filter(c => {
-      if(c.count === i) {
-        c.price = value
-      }
-    })
-  }
+    let temp = count?.map((itm) => ({
+      ...(itm.count === i && (itm.price: value)),
+    }));
+    setcount(temp);
+  };
+  console.log(count);
   const instockselect = (value) => {
-    count.filter(c => {
-      if(c.count === i) {
-        c.in_stock = value
+    count.filter((c) => {
+      if (c.count === i) {
+        c.in_stock = value;
       }
-    })
-  }
+    });
+  };
   const etaselect = (value) => {
-    count.filter(c => {
-      if(c.count === i) {
-        c.eta = value
+    count.filter((c) => {
+      if (c.count === i) {
+        c.eta = value;
       }
-    })
-  }
+    });
+  };
   const moqselect = (value) => {
-    count.filter(c => {
-      if(c.count === i) {
-        c.moq = value
+    count.filter((c) => {
+      if (c.count === i) {
+        c.moq = value;
       }
-    })
-  }
+    });
+  };
 
   const currencyselect = (value) => {
-    count.filter(c => {
-      if(c.count === i) {
-        c.currency_id = value
+    count.filter((c) => {
+      if (c.count === i) {
+        c.currency_id = value;
       }
-    })
-  }
+    });
+  };
 
-  useEffect(async() => {
+  useEffect(async () => {
     try {
       const hubcurrencydata = await axios({
-        method: 'post',
+        method: "post",
         url: `${Constant.baseUrl()}/hubBasedCurrency`,
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         data: {
-          "data":{
-            "hub_id" : currenthub,
-            "country_code": "IN"
-          }
-        }
-      })
-      let temp = []
-      hubcurrencydata.data.filter(hub => {
+          data: {
+            hub_id: currenthub,
+            country_code: "IN",
+          },
+        },
+      });
+      let temp = [];
+      hubcurrencydata.data.filter((hub) => {
         temp.push({
           label: hub?.currency_code,
-          value: hub?.currency_id
-        })
-      })
-      setoptions(temp)
-    } catch(e) {
-      console.log(e)
+          value: hub?.currency_id,
+        });
+      });
+      setoptions(temp);
+    } catch (e) {
+      console.log(e);
     }
-  }, [currenthub])
+  }, [currenthub]);
 
   return (
     <>
@@ -231,7 +231,7 @@ function Index({
       ) : (
         <div className="updateproduct__delete">
           <p onClick={() => deleterow(currentdata?.assign_id, index)}>
-          {/* <p onClick={() => console.log(i)}> */}
+            {/* <p onClick={() => console.log(i)}> */}
             <span className="addmore__text">
               <DeleteIcon />
             </span>
@@ -239,12 +239,9 @@ function Index({
         </div>
       )}
 
-      {hubname === "Mumbai" && (
-        <Subdetails setpdetails={setpdetails} />
-      )}
+      {hubname === "Mumbai" && <Subdetails setpdetails={setpdetails} />}
     </>
   );
 }
 
 export default Index;
-
