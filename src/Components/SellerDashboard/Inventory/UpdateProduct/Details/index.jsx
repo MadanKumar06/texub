@@ -86,8 +86,20 @@ function Index({
     }
   }, [currenthub]);
 
-  console.log(currentdata)
-  console.log(hubDropDownValues)
+  // const [hubdata, sethubdata] = useState([])
+
+  // useEffect(() => {
+  //   let temp = []
+  //   hubDropDownValues.filter(hub => temp.push({
+  //     label: hub?.hub_name,
+  //     value: hub?.hub_id
+  //   }))
+  //   sethubdata(temp)
+  // }, [hubDropDownValues])
+
+  // console.log(currentdata)
+  // console.log(hubDropDownValues)
+  // console.log(hubdata)
 
   return (
     <>

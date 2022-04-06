@@ -34,7 +34,7 @@ function Index({ type, pid }) {
     conditions: "",
     warranty: "",
     packing: "",
-    restrictions: "",
+    restrictions: [],
     warcountry: [],
     resregion: "",
   });
@@ -81,19 +81,20 @@ function Index({ type, pid }) {
   
   useEffect(() => {
     if(olddata.length === 0) return
-    let temp = olddata.warranty_country.filter(wc => 
+    let temp = []
+    olddata.warranty_country.filter(wc => 
         country.filter(c => {
           if(wc === c.value) {
-            // return c
-            console.log(c)
-            updateProductList?.warcountry.push(c)
+            temp.push(c)        
           }
         })
       )
-    // console.log(temp)
+    updateProductList.warcountry = temp
+    updateProductList.restrictions = olddata?.restrictions
   }, [olddata])
 
   console.log(updateProductList)
+  console.log(olddata)
 
   useEffect(() => {
     // if(isMounted) {
@@ -113,6 +114,7 @@ function Index({ type, pid }) {
           conditions: d,
         }))
     );
+    
     dropdownListFromApi?.dropDownList?.warranty_type?.filter(
       (d) =>
         d.value === olddata?.warranty_type &&
@@ -230,7 +232,7 @@ function Index({ type, pid }) {
       const updatepform = await axios({
         method: "post",
         // url: `${Constant.baseUrl()}${olddata?.length > 0 ? "/editProductPrice" : "/saveProductPrice"}`,
-        url: `${Constant.baseUrl()}/editProductPrice`,
+        url: `${Constant.baseUrl()}${olddata?.customer_id ? "/editProductPrice" : "/saveProductPrice"}`,
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -424,7 +426,7 @@ function Index({ type, pid }) {
                   id="checkboxes-tags-demo"
                   options={country ? country : []}
                   disableCloseOnSelect
-                  // value={updateProductList.warcountry}
+                  value={updateProductList.warcountry}
                   getOptionLabel={(option) =>
                     option.label ? option.label : []
                   }
@@ -601,7 +603,7 @@ function Index({ type, pid }) {
                 value={updateProductList?.restrictions}
                 name="packing_details"
                 disablePortal={true}
-                getOptionLabel={(option) => (option.label ? option.label : [])}
+                getOptionLabel={(option) => (option.label ? option.label : "")}
                 onChange={(event, newValue) => {
                   setUpdateProductList((prevState) => ({
                     ...prevState,
