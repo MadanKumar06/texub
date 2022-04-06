@@ -124,7 +124,7 @@ const styles = () => ({
     },
   },
   title: {
-    padding: "9px 5px !important",
+    padding: "15px 5px !important",
     textAlign: "center",
     fontSize: "20px",
     fontWeight: "600",
