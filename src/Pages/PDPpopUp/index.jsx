@@ -9,6 +9,7 @@ import { table_two_data } from "./PDPTable/TableData";
 import { useStateValue } from "../../store/state";
 import Constant from "../../Constant";
 import axios from "axios";
+import swal from "sweetalert2";
 
 import header_bottom_image_1 from "../../Assets/Productlist/warranty.png";
 import header_bottom_image_2 from "../../Assets/Productlist/Delivery.png";
@@ -35,21 +36,6 @@ const PdpPopup = () => {
       value: false,
     });
   };
-  const handleRouteOnButtonClick = (event) => {
-    dispatch({
-      type: "SET_PDP_POPUP_OPEN_CLOSE",
-      value: false,
-    });
-    if (event === "add_to_cart") {
-      setTimeout(() => {
-        history("/mycart");
-      }, 1000 / 2);
-    } else {
-      setTimeout(() => {
-        history("/pending-invoice");
-      }, 1000 / 2);
-    }
-  };
   useEffect(() => {
     if (pdpPopUpOpenClose?.data?.tableData?.[0]?.sub_products?.length) {
       let sortData = pdpPopUpOpenClose?.data?.tableData?.[0]?.sub_products.sort(
@@ -73,35 +59,85 @@ const PdpPopup = () => {
   };
 
   //APi call to addtocart
-  const AddToCart = () => {
-    debugger;
-    console.log(pdpSellerData);
-    const data = async () => {
-      const user = JSON.parse(localStorage.getItem("userdata"));
-      try {
-        const formdata = await axios({
-          method: "post",
-          url: `${Constant.baseUrl()}/addToCart`,
-          data: {
-            pendingProducts: {
-              customer_id: user?.id,
-              productId: pdpSellerData?.event?.main_product_id,
-              price: pdpSellerData?.event?.price,
-              qty: pdpSellerData?.event?.moq,
-              hub: pdpSellerData?.event?.hub_id,
-              currency: pdpSellerData?.event?.currency_id,
-              sellerId: user?.id,
-            },
-          },
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        });
-      } catch (e) {
-        console.log(e);
-      }
+  const AddToCartAndPendingInvoice = (info) => {
+    const user = JSON.parse(localStorage.getItem("userdata"));
+    dispatch({
+      type: "SET_IS_LOADING",
+      value: true,
+    });
+    let data = {
+      pendingProducts: {
+        store_id: 1,
+        customer_id: user?.id,
+        productId: pdpSellerData?.event?.product_id,
+        price: pdpSellerData?.event?.price,
+        qty: pdpSellerData?.event?.moq,
+        hub: pdpSellerData?.event?.hub_id,
+        currency: pdpSellerData?.event?.currency_id,
+        sellerId: pdpSellerData?.event?.seller_id,
+      },
     };
-    data();
+    axios
+      .post(
+        `${Constant.baseUrl()}${
+          info === "add_to_cart" ? `/addToCart` : `/addToPendingInvoice`
+        }`,
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${JSON.parse(
+              localStorage.getItem("customer_auth")
+            )}`,
+          },
+        }
+      )
+      .then((res) => {
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+        if (res?.data?.[0]?.status) {
+          swal.fire({
+            text: `${res.data?.[0]?.message}`,
+            icon: "success",
+            showConfirmButton: false,
+            timer: 3000,
+          });
+          dispatch({
+            type: "SET_PDP_POPUP_OPEN_CLOSE",
+            value: false,
+          });
+          if (info === "add_to_cart") {
+            setTimeout(() => {
+              history("/mycart");
+            }, 1000 / 2);
+          } else {
+            setTimeout(() => {
+              history("/pending-invoice");
+            }, 1000 / 2);
+          }
+        } else {
+          swal.fire({
+            text: `${res.data?.[0]?.message}`,
+            icon: "error",
+            showConfirmButton: false,
+            timer: 3000,
+          });
+        }
+      })
+      .catch((error) => {
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+        swal.fire({
+          text: `${error?.response?.data?.message || error.message}`,
+          icon: "error",
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      });
   };
   return (
     <Modal
@@ -173,14 +209,15 @@ const PdpPopup = () => {
               <Button
                 className="modal_bottom_button_add_to_cart"
                 // onClick={() => handleRouteOnButtonClick("add_to_cart")}
-                onClick={() => AddToCart()}
+                onClick={() => AddToCartAndPendingInvoice("add_to_cart")}
               >
                 <img src={shopping_cart} alt="" />
                 <span>Add to Cart</span>
               </Button>
               <Button
                 className="modal_bottom_button_pending_invoice"
-                onClick={() => handleRouteOnButtonClick("pending_invoice")}
+                // onClick={() => handleRouteOnButtonClick("pending_invoice")}
+                onClick={() => AddToCartAndPendingInvoice("pending_invoice")}
               >
                 <img width="21px" src={invoice_image} alt="" />
                 <span> Add to Pending Invoice</span>

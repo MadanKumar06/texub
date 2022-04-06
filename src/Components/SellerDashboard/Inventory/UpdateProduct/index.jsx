@@ -27,8 +27,8 @@ function Index({ type, pid }) {
     },
   ]);
   const [olddata, setolddata] = useState([]);
-  const [eventcheck, seteventcheck] = useState(false)
-  const [test, settest] = useState([])
+  const [eventcheck, seteventcheck] = useState(false);
+  const [test, settest] = useState([]);
   const [updateProductList, setUpdateProductList] = useState({
     width: "",
     conditions: "",
@@ -36,17 +36,17 @@ function Index({ type, pid }) {
     packing: "",
     restrictions: [],
     warcountry: [],
+    restricts_country: [],
     resregion: "",
   });
 
   const [country, setcountry] = useState([]);
-  
+  const [restricts_country, setRestricts_country] = useState([]);
+  const { navigate } = useNavigate();
+  const { id } = useParams();
   const countincrease = () => {
     setcount((data) => [...data, { count: count + 1 }]);
   };
-
-  const { navigate } = useNavigate();
-  const { id } = useParams();
 
   useEffect(() => {
     if (type !== "Update New Product Details") return;
@@ -77,24 +77,50 @@ function Index({ type, pid }) {
     data();
   }, [id, eventcheck]);
 
-  console.log(updateProductList)
-  
+  console.log(updateProductList);
+
   useEffect(() => {
-    if(olddata.length === 0) return
-    let temp = []
-    olddata.warranty_country.filter(wc => 
-        country.filter(c => {
-          if(wc === c.value) {
-            temp.push(c)        
+    if (olddata.length === 0) return;
+    let temp = [];
+    olddata.warranty_country?.length &&
+      olddata.warranty_country.filter((wc) =>
+        country.filter((c) => {
+          if (wc === c.value) {
+            temp.push(c);
           }
         })
-      )
-    updateProductList.warcountry = temp
-    updateProductList.restrictions = olddata?.restrictions
-  }, [olddata])
+      );
+    updateProductList.warcountry = temp;
+    updateProductList.restrictions = olddata?.restrictions;
+  }, [olddata]);
 
-  console.log(updateProductList)
-  console.log(olddata)
+  useEffect(() => {
+    if (olddata.length === 0) return;
+    let temp = [];
+    olddata.restricted_region?.length &&
+      olddata.restricted_region.filter((wc) =>
+        region.filter((c) => {
+          if (wc === c.region_id) {
+            temp.push(c);
+          }
+        })
+      );
+    updateProductList.resregion = temp;
+  }, [olddata]);
+
+  useEffect(() => {
+    if (restricts_country.length === 0) return;
+    let temp = [];
+    olddata.restricted_country?.length &&
+      olddata.restricted_country.filter((wc) =>
+        restricts_country?.filter((c) => {
+          if (wc === c.value) {
+            temp.push(c);
+          }
+        })
+      );
+    updateProductList.restricts_country = temp;
+  }, [restricts_country]);
 
   useEffect(() => {
     // if(isMounted) {
@@ -114,7 +140,7 @@ function Index({ type, pid }) {
           conditions: d,
         }))
     );
-    
+
     dropdownListFromApi?.dropDownList?.warranty_type?.filter(
       (d) =>
         d.value === olddata?.warranty_type &&
@@ -142,7 +168,7 @@ function Index({ type, pid }) {
       );
     restrictvalue?.filter(
       (d) =>
-        d.value === olddata?.warranty_country &&
+        d.value === olddata?.restrictions &&
         setUpdateProductList((prevState) => ({
           ...prevState,
           restrictions: d,
@@ -163,7 +189,6 @@ function Index({ type, pid }) {
   const [dropdownListFromApi, setDropdownListFromApi] = useState({
     dropDownList: [],
   });
-
 
   //Api to fetch dropdown values
   useEffect(async () => {
@@ -193,7 +218,7 @@ function Index({ type, pid }) {
           product_id: value1,
         },
       });
-      seteventcheck(!eventcheck)
+      seteventcheck(!eventcheck);
     } catch (e) {
       console.log(e);
     }
@@ -232,7 +257,9 @@ function Index({ type, pid }) {
       const updatepform = await axios({
         method: "post",
         // url: `${Constant.baseUrl()}${olddata?.length > 0 ? "/editProductPrice" : "/saveProductPrice"}`,
-        url: `${Constant.baseUrl()}${olddata?.customer_id ? "/editProductPrice" : "/saveProductPrice"}`,
+        url: `${Constant.baseUrl()}${
+          olddata?.customer_id ? "/editProductPrice" : "/saveProductPrice"
+        }`,
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -300,16 +327,16 @@ function Index({ type, pid }) {
     }
   }, []);
 
-  const [restricts_country, setRestricts_country] = useState([]);
   useEffect(() => {
     if (updateProductList?.resregion) {
+      let temp = updateProductList?.resregion?.map((itm) => itm?.region_id);
       async function fetchData() {
         try {
           const tabledata = await axios({
             method: "post",
             url: `${Constant.baseUrl()}/getCountryListByRegion`,
             data: {
-              region_id: updateProductList?.resregion?.region_id,
+              region_id: temp?.toString(),
             },
             headers: {
               "Content-Type": "application/json",
@@ -323,6 +350,8 @@ function Index({ type, pid }) {
       fetchData();
     }
   }, [updateProductList?.resregion]);
+
+  console.log("regionData", updateProductList?.resregion);
   return (
     <div className="updateproduct">
       <h1>{type}</h1>
@@ -358,7 +387,7 @@ function Index({ type, pid }) {
                 value={updateProductList?.conditions}
                 disablePortal={true}
                 name="conditions"
-                getOptionLabel={(option) => (option.label ? option.label : [])}
+                getOptionLabel={(option) => (option.label ? option.label : "")}
                 onChange={(event, newValue) => {
                   setUpdateProductList((prevState) => ({
                     ...prevState,
@@ -390,7 +419,7 @@ function Index({ type, pid }) {
                 value={updateProductList?.warranty}
                 name="warranty_type"
                 disablePortal={true}
-                getOptionLabel={(option) => (option.label ? option.label : [])}
+                getOptionLabel={(option) => (option.label ? option.label : "")}
                 onChange={(event, newValue) => {
                   setUpdateProductList((prevState) => ({
                     ...prevState,
@@ -428,7 +457,7 @@ function Index({ type, pid }) {
                   disableCloseOnSelect
                   value={updateProductList.warcountry}
                   getOptionLabel={(option) =>
-                    option.label ? option.label : []
+                    option.label ? option.label : ""
                   }
                   renderOption={(props, option, { selected }) => (
                     <li {...props}>
@@ -500,7 +529,7 @@ function Index({ type, pid }) {
                     ? dropdownListFromApi?.dropDownList?.packing_details
                     : []
                 }
-                getOptionLabel={(option) => (option.label ? option.label : [])}
+                getOptionLabel={(option) => (option.label ? option.label : "")}
                 renderInput={(params) => (
                   <TextField
                     {...params}
@@ -631,21 +660,31 @@ function Index({ type, pid }) {
               <div className="updateproduct_inputfields info ">
                 <InputLabel>Region</InputLabel>
                 <Autocomplete
-                  disablePortal={true}
-                  name="region"
+                  multiple
+                  id="checkboxes-tags-demo"
+                  options={region ? region : []}
+                  disableCloseOnSelect
                   value={updateProductList?.resregion}
                   getOptionLabel={(option) =>
                     option.region_name ? option.region_name : ""
                   }
-                  filterOptions={(options) => options}
+                  renderOption={(props, option, { selected }) => (
+                    <li {...props}>
+                      <Checkbox
+                        icon={icon}
+                        checkedIcon={checkedIcon}
+                        style={{ marginRight: 8 }}
+                        checked={selected}
+                      />
+                      {option.region_name}
+                    </li>
+                  )}
                   onChange={(event, newValue) => {
                     setUpdateProductList((prevState) => ({
                       ...prevState,
                       resregion: newValue,
                     }));
                   }}
-                  id="region"
-                  options={region ? region : []}
                   renderInput={(params) => (
                     <TextField
                       {...params}
@@ -665,10 +704,11 @@ function Index({ type, pid }) {
                 <Autocomplete
                   multiple
                   id="checkboxes-tags-demo"
-                  options={restricts_country}
+                  options={restricts_country ? restricts_country : ""}
                   disableCloseOnSelect
+                  value={updateProductList?.restricts_country}
                   getOptionLabel={(option) =>
-                    option.label ? option.label : []
+                    option.label ? option.label : ""
                   }
                   renderOption={(props, option, { selected }) => (
                     <li {...props}>
@@ -684,7 +724,7 @@ function Index({ type, pid }) {
                   onChange={(event, newValue) => {
                     setUpdateProductList((prevState) => ({
                       ...prevState,
-                      rescountry: newValue,
+                      restricts_country: newValue,
                     }));
                   }}
                   renderInput={(params) => (

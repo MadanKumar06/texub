@@ -160,7 +160,7 @@ const PDPTable = ({ classes, tableData, setPdpSellerData, pdpSellerData }) => {
             <RadioGroup
               aria-labelledby="demo-radio-buttons-group-label"
               defaultValue={
-                is_table_one?.length && is_table_one?.[0]?.seller_code
+                is_table_one?.length ? is_table_one?.[0]?.seller_code : ""
               }
               name="radio-buttons-group"
               className={radio_btn_group}

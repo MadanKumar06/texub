@@ -2,31 +2,36 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./styles.scss";
 import MUITable from "../../../Components/Common/MUITable";
+import Constant from "../../../Constant";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
 
 import HP from "./../../../Assets/Productlist/hp_td_icon.png";
 import Acer from "../../../Assets/Productlist/acer_icon_td.png";
 
-const MyCartTable = () => {
-  const [is_table_quantity, setIs_table_quantity] = useState(0);
+const MyCartTable = ({ cartDataList }) => {
+  const [is_table_quantity, setIs_table_quantity] = useState([]);
 
   useEffect(() => {
-    setIs_table_quantity(Productstablelist);
-  }, []);
+    setIs_table_quantity(
+      cartDataList?.[0]?.invoice_items?.length &&
+        cartDataList?.[0]?.invoice_items
+    );
+  }, [cartDataList]);
 
   const handleChangeValueTable = (event, index) => {
     setIs_table_quantity(
-      is_table_quantity?.map((item, ind) => {
-        if (index === ind) {
-          return {
-            ...item,
-            quantity: event,
-          };
-        } else {
-          return item;
-        }
-      })
+      is_table_quantity?.length &&
+        is_table_quantity?.map((item, ind) => {
+          if (index === ind) {
+            return {
+              ...item,
+              qty: event,
+            };
+          } else {
+            return item;
+          }
+        })
     );
   };
   const columns = [
@@ -44,21 +49,22 @@ const MyCartTable = () => {
       },
     },
     {
-      name: "products",
+      name: "brand",
       label: "PRODUCTS",
       options: {
-        customBodyRender: (value) => {
+        customBodyRender: (value, tableMeta) => {
+          let eta = tableMeta?.rowData[8];
+          let description = tableMeta?.rowData[7];
+          let productname = tableMeta?.rowData[6];
           return (
             <div className="mycart_product_main">
               <div className="mycart_product_sub_block">
                 <div className="img_block">
-                  <img src={value?.product_img} alt="" />
+                  <img src={`${Constant.imageBaseUrl()}${value}`} alt="" />
                 </div>
                 <div className="mycart_right_section">
                   <div className="mycart_right_section_block">
-                    <span className="mycart_product_eta">
-                      ETA: {value?.eta}
-                    </span>
+                    <span className="mycart_product_eta">ETA: {eta}</span>
                     <span className="mycart_product_delete_icon">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -92,9 +98,9 @@ const MyCartTable = () => {
                                 transform="translate(-2.5 0.456)"
                                 fill="none"
                                 stroke="#002d56"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
                               />
                               <path
                                 id="Path-2"
@@ -103,9 +109,9 @@ const MyCartTable = () => {
                                 transform="translate(-1.438 -1.667)"
                                 fill="none"
                                 stroke="#002d56"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
                               />
                               <line
                                 id="Line"
@@ -113,9 +119,9 @@ const MyCartTable = () => {
                                 transform="translate(9.549 12.277)"
                                 fill="none"
                                 stroke="#002d56"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
                               />
                               <line
                                 id="Line-2"
@@ -124,9 +130,9 @@ const MyCartTable = () => {
                                 transform="translate(15.005 12.277)"
                                 fill="none"
                                 stroke="#002d56"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
                               />
                             </g>
                           </g>
@@ -135,10 +141,8 @@ const MyCartTable = () => {
                     </span>
                   </div>
 
-                  <p className="my_cart_product_name">{value?.model_name}</p>
-                  <p className="my_cart_product_description">
-                    {value?.model_desc}
-                  </p>
+                  <p className="my_cart_product_name">{productname}</p>
+                  <p className="my_cart_product_description">{description}</p>
                   <div className="my_cart_link">
                     <Link to="/">Details</Link>
                     <Link to="/" className="link_2">
@@ -168,9 +172,9 @@ const MyCartTable = () => {
                               transform="translate(-1.291 -2.499)"
                               fill="none"
                               stroke="#002d56"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="1.2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="1.2"
                             />
                           </g>
                         </g>
@@ -216,7 +220,7 @@ const MyCartTable = () => {
       },
     },
     {
-      name: "quantity",
+      name: "qty",
       label: "QUANTITY",
       options: {
         customBodyRender: (value, tablemeta) => {
@@ -249,7 +253,7 @@ const MyCartTable = () => {
       },
     },
     {
-      name: "sub_total",
+      name: "row_total",
       label: "SUBTOTAL",
       options: {
         customBodyRender: (value) => {
@@ -261,6 +265,36 @@ const MyCartTable = () => {
               </div>
             </div>
           );
+        },
+      },
+    },
+    {
+      name: "product_name",
+      label: " ",
+      options: {
+        display: false,
+        customBodyRender: (value) => {
+          return value;
+        },
+      },
+    },
+    {
+      name: "description",
+      label: "",
+      options: {
+        display: false,
+        customBodyRender: (value) => {
+          return value;
+        },
+      },
+    },
+    {
+      name: "eta",
+      label: " ",
+      options: {
+        display: false,
+        customBodyRender: (value) => {
+          return value;
         },
       },
     },
@@ -310,18 +344,26 @@ const MyCartTable = () => {
     sort: false,
     viewColumns: false,
     search: false,
+    textLabels: {
+      body: {
+        noMatch:
+          is_table_quantity?.length > 0
+            ? "Loading data ..."
+            : "Sorry, No data found",
+      },
+    },
   };
 
   return (
     <div className="mycart_table_main_container">
-      {is_table_quantity?.length && (
-        <MUITable
-          columns={columns}
-          table={is_table_quantity}
-          options={options}
-          className="mycart_table_mui_datatable_main"
-        />
-      )}
+      {/* {is_table_quantity?.[0]?.invoice_items?.length && ( */}
+      <MUITable
+        columns={columns}
+        table={is_table_quantity}
+        options={options}
+        className="mycart_table_mui_datatable_main"
+      />
+      {/* )} */}
     </div>
   );
 };

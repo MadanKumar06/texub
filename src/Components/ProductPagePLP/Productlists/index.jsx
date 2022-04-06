@@ -244,9 +244,9 @@ const Productlists = ({ setProductFetchApi, productFetchApi }) => {
               transform="translate(-4.5 -0.5)"
               fill="none"
               stroke="#fff"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="3"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="3"
             />
             <path
               id="Path-2"
@@ -255,9 +255,9 @@ const Productlists = ({ setProductFetchApi, productFetchApi }) => {
               transform="translate(-4.5 -2.346)"
               fill="none"
               stroke="#fff"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="3"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="3"
             />
             <line
               id="Line"
@@ -265,9 +265,9 @@ const Productlists = ({ setProductFetchApi, productFetchApi }) => {
               transform="translate(15.5)"
               fill="none"
               stroke="#fff"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="3"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="3"
             />{" "}
           </g>
         </svg>
