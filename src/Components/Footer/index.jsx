@@ -114,7 +114,7 @@ export const Footer = () => {
       <div className="Copyright">
         <p>@2020 Mockup. All Rights Reserved</p>
         <p>Privacy Policy</p>
-        <p>Terms of Services</p>
+        <p>Terms of Use</p>
       </div>
       <div className="User_Details">
         <Link to="/">
