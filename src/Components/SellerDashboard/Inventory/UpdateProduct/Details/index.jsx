@@ -23,6 +23,7 @@ function Index({
 }) {
   const [options, setoptions] = useState([]);
   const [currenthub, setcurrenthub] = useState("");
+  console.log(hubname)
 
   const hubselect = (e, value) => {
     let temp = count.filter((c) => {
@@ -33,6 +34,18 @@ function Index({
     });
     settest(temp);
   };
+
+  // const hubselect = (value) => {
+  //   let data = JSON.parse(value)
+  //     let temp = count.filter((c) => {
+  //       if (c.count === i) {
+  //         c.hub_id = data.value;
+  //         c.hubname = data.name;
+  //       }
+  //     });
+  //     settest(temp);
+  // }
+
   const changevalues = (value, type) => {
     let temp = count.filter((c) => {
       if (c.count === i) {
@@ -72,7 +85,7 @@ function Index({
         },
       });
       let temp = [];
-      hubcurrencydata.data.filter((hub) => {
+      hubcurrencydata?.data?.filter((hub) => {
         temp.push({
           label: hub?.currency_code,
           value: hub?.currency_id,
@@ -86,35 +99,45 @@ function Index({
 
   useEffect(() => {
     if (hubDropDownValues?.length === 0) return;
-    let temp = [];
+    let temp = {
+      hub_id: '',
+      hub_name: ''
+    };
     hubDropDownValues?.length &&
       hubDropDownValues.filter((wc) => {
         if (wc?.hub_id === currentdata?.hub_id) {
-          temp.push(wc);
+          temp.hub_id = wc.hub_id
+          temp.hub_name = wc.hub_name
         }
       });
     setcurrenthub(temp);
-  }, [hubDropDownValues]);
-
-  console.log(currentdata);
-  console.log(hubDropDownValues);
-
-  console.log("currenthub", currenthub);
+  }, [currentdata?.hub_id]);
 
   return (
     <>
       <div className="updateproduct__bgform">
         <div className="updateproduct_info_form autocomplete_input">
+        {/* <select value={currenthub[0].hub_id} onChange={(e) => hubselect(e.target.value)}>
+          <option value="">Select</option>
+          {hubDropDownValues?.length && hubDropDownValues.map(hub => 
+            // <option value={`{"name":"${hub.hub_name}","value":"${hub.hub_id}"}`}>{hub.hub_name}</option>
+            <option value={hub.hub_id}>{hub.hub_name}</option>
+          )}
+        </select> */}
           <InputLabel>Hub</InputLabel>
           <Autocomplete
             value={currenthub}
-            name="hub_list"
+            name="currenthub"
             onChange={(event, newValue) => hubselect(event, newValue)}
-            id="hub_list"
+            id="currenthub"
             disablePortal={true}
             options={hubDropDownValues ? hubDropDownValues : []}
             getOptionLabel={(option) =>
-              option.hub_name ? option.hub_name : ""
+              // option.hub_id ?
+              option.hub_name ? option.hub_name : ''
+              // :
+              // option[0]?.hub_name ? option[0]?.hub_name : ""
+              // {console.log(option)}
             }
             filterOptions={(options) => options}
             renderInput={(params) => (
@@ -242,7 +265,7 @@ function Index({
         </div>
       )}
 
-      {hubname === "Mumbai" && <Subdetails setpdetails={setpdetails} />}
+      {currentdata?.hub_id === "2" && <Subdetails setpdetails={setpdetails} />}
     </>
   );
 }
