@@ -77,8 +77,6 @@ function Index({ type, pid }) {
     data();
   }, [id, eventcheck]);
 
-  console.log(updateProductList);
-
   useEffect(() => {
     if (olddata.length === 0) return;
     let temp = [];
@@ -351,7 +349,6 @@ function Index({ type, pid }) {
     }
   }, [updateProductList?.resregion]);
 
-  console.log("regionData", updateProductList?.resregion);
   return (
     <div className="updateproduct">
       <h1>{type}</h1>
