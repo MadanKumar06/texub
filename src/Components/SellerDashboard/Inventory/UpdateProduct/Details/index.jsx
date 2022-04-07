@@ -22,7 +22,6 @@ function Index({
 }) {
   const [options, setoptions] = useState([]);
   const [currenthub, setcurrenthub] = useState("");
-  console.log(hubname);
 
   const hubselect = (e, value) => {
     let temp = count.filter((c) => {
@@ -33,6 +32,15 @@ function Index({
     });
     settest(temp);
   };
+
+  const selectcurrency = (e, value) => {
+    let temp = count.filter((c) => {
+      if (c.count === i) {
+        c.currency_id = value.value;
+      }
+    });
+    settest(temp);
+  }
 
   // const hubselect = (value) => {
   //   let data = JSON.parse(value)
@@ -46,6 +54,7 @@ function Index({
   // }
 
   const changevalues = (value, type) => {
+    console.log(value)
     let temp = count.filter((c) => {
       if (c.count === i) {
         if (type === "price") {
@@ -126,6 +135,27 @@ function Index({
     setcurrenthub(temp);
   }, [currentdata?.hub_id]);
 
+  const [currentcurrency, setcurrentcurrency] = useState([])
+
+  useEffect(() => {
+    if (hubDropDownValues?.length === 0) return;
+    let temp = {
+      label: "",
+      value: "",
+    }
+    options?.length &&
+    options.filter((wc) => {
+        if (wc?.value === currentdata?.currency_id) {
+          temp.value = wc.value;
+          temp.label = wc.label;
+        }
+      });
+      console.log(temp)
+      setcurrentcurrency(temp);
+  }, [options]);
+
+  console.log(count)
+
   return (
     <>
       <div className="updateproduct__bgform">
@@ -149,11 +179,7 @@ function Index({
             options={hubDropDownValues ? hubDropDownValues : []}
             getOptionLabel={
               (option) =>
-                // option.hub_id ?
                 option.hub_name ? option.hub_name : ""
-              // :
-              // option[0]?.hub_name ? option[0]?.hub_name : ""
-              // {console.log(option)}
             }
             filterOptions={(options) => options}
             renderInput={(params) => (
@@ -177,9 +203,13 @@ function Index({
             <Autocomplete
               name=""
               id="controllable-states-demo"
-              // value={options}
-              options={options}
-              onChange={(e) => changevalues(e.target.value, "currency")}
+              value={currentcurrency}
+              options={options ? options : []}
+              onChange={(event, newValue) => selectcurrency(event, newValue)}
+              getOptionLabel={
+                (option) =>
+                  option.label ? option.label : ""
+              }
               renderInput={(params) => (
                 <TextField
                   {...params}

@@ -104,19 +104,19 @@ function Index({ type, pid }) {
       }));
       errorHandle = true;
     }
-    if (
-      !updateform?.product_length ||
-      !updateform?.heigth ||
-      !updateform?.width ||
-      !updateform?.weight
-    ) {
-      document.getElementById("dimension")?.focus();
-      setInputValidation((prevState) => ({
-        ...prevState,
-        dimension: "Please select the dimension.",
-      }));
-      errorHandle = true;
-    }
+    // if (
+    //   !updateform?.product_length ||
+    //   !updateform?.heigth ||
+    //   !updateform?.width ||
+    //   !updateform?.weight
+    // ) {
+    //   document.getElementById("dimension")?.focus();
+    //   setInputValidation((prevState) => ({
+    //     ...prevState,
+    //     dimension: "Please select the dimension.",
+    //   }));
+    //   errorHandle = true;
+    // }
     if (!updateform?.notes) {
       document.getElementById("notes")?.focus();
       setInputValidation((prevState) => ({
@@ -326,9 +326,8 @@ function Index({ type, pid }) {
     count.filter((data) => {
       productdata.push(data);
     });
-    let restrictedcountries = [];
-    updateProductList?.rescountry?.filter((country) =>
-      restrictedcountries.push(country.value)
+    let restrictedcountries = updateProductList?.restricts_country?.map((country) =>
+      country.value
     );
     let warrantycountries = [];
     updateProductList?.warcountry?.filter((country) =>
@@ -338,7 +337,6 @@ function Index({ type, pid }) {
     try {
       const updatepform = await axios({
         method: "post",
-        // url: `${Constant.baseUrl()}${olddata?.length > 0 ? "/editProductPrice" : "/saveProductPrice"}`,
         url: `${Constant.baseUrl()}${
           olddata?.customer_id ? "/editProductPrice" : "/saveProductPrice"
         }`,
@@ -356,7 +354,8 @@ function Index({ type, pid }) {
             warranty_country: warrantycountries.toString(),
             warranty_days: updateform?.warranty_days,
             packing_details: updateProductList?.packing?.value,
-            no_pieces_per: 234,
+            // no_pieces_per: updateProductList?.carton_packing,
+            no_pieces_per: 125,
             width: updateform?.width,
             height: updateform?.height,
             product_length: updateform?.product_length,
