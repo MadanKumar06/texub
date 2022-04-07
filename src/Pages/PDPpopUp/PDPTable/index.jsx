@@ -110,9 +110,10 @@ const PDPTable = ({ classes, tableData, setPdpSellerData, pdpSellerData }) => {
   };
 
   const handleRadioGroupChange = (event) => {
+    console.log(event)
     setPdpSellerData((prevState) => ({
       ...prevState,
-      event,
+      ...event,
       // seller_id: event?.seller_code,
       // warranty_days: event?.warranty_days,
       // packing_details: event?.packing_details,

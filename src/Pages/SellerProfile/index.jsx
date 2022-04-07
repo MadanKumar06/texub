@@ -10,8 +10,9 @@ import Pagination from "../../Components/Pagination";
 import axios from "axios";
 import Constant from "../../Constant";
 import { useParams } from "react-router-dom";
+
 const Index = () => {
-  const type = useParams();
+  const { id } = useParams();
   const [tableData, setTableData] = useState([]);
   const [serllerProfileList, setSellerProfileList] = useState([]);
 
@@ -23,7 +24,7 @@ const Index = () => {
 
   useEffect(() => {
     let data = {
-      sellercode: type?.id,
+      sellercode: id,
     };
     axios
       .post(Constant.baseUrl() + "/getSellerList", data, {
@@ -36,6 +37,8 @@ const Index = () => {
       })
       .catch((error) => {});
   }, []);
+
+  console.log(serllerProfileList)
 
   const PaginateDataSplit = (event) => {
     setTableData(event);
@@ -159,13 +162,13 @@ const Index = () => {
             <li className="bgcolor1">
               <p className="sellerprofile__label">Seller Code</p>
               <p className="sellerprofile__value">
-                {serllerProfileList?.[0].sellercode}
+                {id}
               </p>
             </li>
             <li className="bgcolor2">
               <p className="sellerprofile__label">Seller Country</p>
               <p className="sellerprofile__value">
-                {serllerProfileList?.[0].seller_country}
+                {serllerProfileList?.[0]?.seller_country}
               </p>
             </li>
             <li className="bgcolor2">
