@@ -24,6 +24,9 @@ function Index({ type, pid }) {
       moq: "",
       mp_id: "",
       price: "",
+      igst: "",
+      cgst: "",
+      sgst: "",
     },
   ]);
   const [olddata, setolddata] = useState([]);
@@ -34,10 +37,10 @@ function Index({ type, pid }) {
     conditions: "",
     warranty: "",
     packing: "",
-    restrictions: "",
-    warcountry: "",
-    restricts_country: "",
-    resregion: "",
+    restrictions: [],
+    warcountry: [],
+    restricts_country: [],
+    resregion: [],
   });
 
   const [country, setcountry] = useState([]);
@@ -77,7 +80,6 @@ function Index({ type, pid }) {
       }));
       errorHandle = true;
     }
-    debugger;
     if (!updateform?.warranty_days) {
       document.getElementById("warranty_days")?.focus();
       setInputValidation((prevState) => ({
@@ -452,6 +454,7 @@ function Index({ type, pid }) {
                 currentdata={data}
                 index={ind}
                 settest={settest}
+                inputValidation={inputValidation}
               />
             </div>
           ))}
@@ -661,6 +664,51 @@ function Index({ type, pid }) {
               <InputLabel className="validation_error">
                 {inputValidation?.packing}
               </InputLabel>
+              {updateProductList?.packing?.label === "Carton Packing" ? (
+                <TextField
+                  id="carton_packing"
+                  name="carton_packing"
+                  placeholder="10"
+                  fullWidth
+                  autoFocus={true}
+                  autoComplete="off"
+                  className="inputfield-box"
+                  value={updateProductList?.carton_packing}
+                  InputLabelProps={{
+                    shrink: false,
+                  }}
+                  onChange={(e) => {
+                    setUpdateProductList((prev) => ({
+                      ...prev,
+                      carton_packing: e.target.value,
+                    }));
+                  }}
+                  variant="outlined"
+                />
+              ) : updateProductList?.packing?.label === "Pallet Packing" ? (
+                <TextField
+                  id="pallet_packing"
+                  name="pallet_packing"
+                  placeholder="10"
+                  fullWidth
+                  autoFocus={true}
+                  autoComplete="off"
+                  className="inputfield-box"
+                  value={updateProductList?.pallet_packing}
+                  InputLabelProps={{
+                    shrink: false,
+                  }}
+                  onChange={(e) => {
+                    setUpdateProductList((prev) => ({
+                      ...prev,
+                      pallet_packing: e.target.value,
+                    }));
+                  }}
+                  variant="outlined"
+                />
+              ) : (
+                ""
+              )}
             </div>
           </div>
           <div className="input_separator">

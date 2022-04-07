@@ -3,7 +3,6 @@ import "./styles.scss";
 
 import DeleteIcon from "@mui/icons-material/Delete";
 import { InputLabel, TextField, Autocomplete } from "@mui/material";
-import Subdetails from "./Subdetails";
 import axios from "axios";
 import Constant from "../../../../../Constant";
 
@@ -64,12 +63,26 @@ function Index({
         if (type === "currency") {
           return (c.currency_id = value);
         }
+        if (type === "sgst") {
+          return (c.sgst = value);
+        }
+        if (type === "igst") {
+          return (c.igst = value);
+        }
+        if (type === "cgst") {
+          return (c.cgst = value);
+        }
       }
     });
     settest(temp);
   };
 
   useEffect(async () => {
+    let country_code = JSON.parse(
+      localStorage.getItem("userdata")
+    )?.custom_attributes?.find(
+      (itm) => itm?.attribute_code === "customer_country"
+    );
     try {
       const hubcurrencydata = await axios({
         method: "post",
@@ -79,8 +92,8 @@ function Index({
         },
         data: {
           data: {
-            hub_id: currenthub,
-            country_code: "IN",
+            hub_id: currenthub?.hub_id,
+            country_code: country_code?.value,
           },
         },
       });
@@ -164,6 +177,7 @@ function Index({
             <Autocomplete
               name=""
               id="controllable-states-demo"
+              // value={options}
               options={options}
               onChange={(e) => changevalues(e.target.value, "currency")}
               renderInput={(params) => (
@@ -276,7 +290,61 @@ function Index({
         </div>
       )}
 
-      {currentdata?.hub_id === "2" && <Subdetails setpdetails={setpdetails} />}
+      {currentdata?.hub_id === "2" && (
+        <div className="updateproduct__gst">
+          <div className="updateproduct_info_form">
+            <InputLabel>GST %</InputLabel>
+            <TextField
+              id="gst"
+              name="gst"
+              placeholder="18"
+              className="inputfield-box"
+              fullWidth
+              autoComplete="off"
+              // value={signInData?.email_address}
+              InputLabelProps={{
+                shrink: false,
+              }}
+              onChange={(e) => changevalues(e.target.value, "cgst")}
+              variant="outlined"
+            />
+          </div>
+          <div className="updateproduct_info_form">
+            <InputLabel>IGST %</InputLabel>
+            <TextField
+              id="igst"
+              name="igst"
+              placeholder="18"
+              fullWidth
+              className="inputfield-box"
+              autoComplete="off"
+              // value={signInData?.email_address}
+              InputLabelProps={{
+                shrink: false,
+              }}
+              onChange={(e) => changevalues(e.target.value, "igst")}
+              variant="outlined"
+            />
+          </div>
+          <div className="updateproduct_info_form">
+            <InputLabel>SGST %</InputLabel>
+            <TextField
+              id="sgst"
+              name="sgst"
+              placeholder="18"
+              fullWidth
+              autoComplete="off"
+              className="inputfield-box"
+              // value={signInData?.email_address}
+              InputLabelProps={{
+                shrink: false,
+              }}
+              onChange={(e) => changevalues(e.target.value, "sgst")}
+              variant="outlined"
+            />
+          </div>
+        </div>
+      )}
     </>
   );
 }
