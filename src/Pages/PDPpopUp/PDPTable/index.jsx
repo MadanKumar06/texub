@@ -57,11 +57,11 @@ const PDPTable = ({ classes, tableData, setPdpSellerData, pdpSellerData }) => {
     if (tableData?.tableone?.length) {
       let temp = tableData?.tableone?.map((itm) => ({
         ...itm,
-        // in_stock: 20,
+        //  in_stock: 20,
         is_moq_valid: itm.moq,
       }));
       setIs_table_one(temp);
-      handleRadioGroupChange(temp[0])
+      handleRadioGroupChange(temp[0]);
       setPdpSellerData((prevState) => ({
         ...prevState,
         seller_id: tableData?.tableone?.[0]?.seller_code,
@@ -110,11 +110,11 @@ const PDPTable = ({ classes, tableData, setPdpSellerData, pdpSellerData }) => {
     );
   };
 
-  const [dradio, setdradio] = useState()
+  const [dradio, setdradio] = useState();
 
   const handleRadioGroupChange = (event) => {
-    console.log(event)
-    setdradio(event.seller_code)
+    console.log(event);
+    setdradio(event.seller_code);
     setPdpSellerData((prevState) => ({
       ...prevState,
       ...event,
@@ -125,7 +125,7 @@ const PDPTable = ({ classes, tableData, setPdpSellerData, pdpSellerData }) => {
     }));
   };
 
-  console.log(dradio)
+  console.log(dradio);
 
   return (
     <div className={table_container}>
@@ -246,12 +246,17 @@ const PDPTable = ({ classes, tableData, setPdpSellerData, pdpSellerData }) => {
                         <div className={clsx(control, qty_change)}>
                           <RemoveIcon
                             // className={item_decrease}
-                            className={`${item.moq > item.is_moq_valid ? item_increase : item_decrease}`}
+                            className={`${
+                              item.moq > item.is_moq_valid
+                                ? item_increase
+                                : item_decrease
+                            }`}
                             onClick={() =>
                               handleChangeValueTableone(
-                                parseInt(item?.moq) > item?.is_moq_valid
+                                parseInt(item?.moq) >
+                                  parseInt(item?.is_moq_valid)
                                   ? parseInt(item?.moq) - 1
-                                  : item?.is_moq_valid,
+                                  : parseInt(item?.is_moq_valid),
                                 index
                               )
                             }
@@ -259,12 +264,16 @@ const PDPTable = ({ classes, tableData, setPdpSellerData, pdpSellerData }) => {
                           <span className={input_text}>{item?.moq}</span>
                           <AddIcon
                             // className={item_increase}
-                            className={`${item.moq < item.in_stock ? item_increase : item_decrease}`}
+                            className={`${
+                              item.moq < item.in_stock
+                                ? item_increase
+                                : item_decrease
+                            }`}
                             onClick={() =>
                               handleChangeValueTableone(
-                                parseInt(item?.in_stock) > item?.moq
+                                parseInt(item?.in_stock) > parseInt(item?.moq)
                                   ? parseInt(item?.moq) + 1
-                                  : item?.moq,
+                                  : parseInt(item?.moq),
                                 index
                               )
                             }
