@@ -40,7 +40,7 @@ function Index({
       }
     });
     settest(temp);
-  }
+  };
 
   // const hubselect = (value) => {
   //   let data = JSON.parse(value)
@@ -54,7 +54,7 @@ function Index({
   // }
 
   const changevalues = (value, type) => {
-    console.log(value)
+    console.log(value);
     let temp = count.filter((c) => {
       if (c.count === i) {
         if (type === "price") {
@@ -135,26 +135,26 @@ function Index({
     setcurrenthub(temp);
   }, [currentdata?.hub_id]);
 
-  const [currentcurrency, setcurrentcurrency] = useState([])
+  const [currentcurrency, setcurrentcurrency] = useState([]);
 
   useEffect(() => {
     if (hubDropDownValues?.length === 0) return;
     let temp = {
       label: "",
       value: "",
-    }
+    };
     options?.length &&
-    options.filter((wc) => {
+      options.filter((wc) => {
         if (wc?.value === currentdata?.currency_id) {
           temp.value = wc.value;
           temp.label = wc.label;
         }
       });
-      console.log(temp)
-      setcurrentcurrency(temp);
-  }, [options]);
+    console.log(temp);
+    setcurrentcurrency(temp);
+  }, [currentdata?.currency_id]);
 
-  console.log(count)
+  console.log(count);
 
   return (
     <>
@@ -177,9 +177,8 @@ function Index({
             id="currenthub"
             disablePortal={true}
             options={hubDropDownValues ? hubDropDownValues : []}
-            getOptionLabel={
-              (option) =>
-                option.hub_name ? option.hub_name : ""
+            getOptionLabel={(option) =>
+              option.hub_name ? option.hub_name : ""
             }
             filterOptions={(options) => options}
             renderInput={(params) => (
@@ -206,10 +205,7 @@ function Index({
               value={currentcurrency}
               options={options ? options : []}
               onChange={(event, newValue) => selectcurrency(event, newValue)}
-              getOptionLabel={
-                (option) =>
-                  option.label ? option.label : ""
-              }
+              getOptionLabel={(option) => (option.label ? option.label : "")}
               renderInput={(params) => (
                 <TextField
                   {...params}

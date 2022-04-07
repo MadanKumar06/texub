@@ -47,8 +47,26 @@ function Index({ type, pid }) {
   const [restricts_country, setRestricts_country] = useState([]);
   const { navigate } = useNavigate();
   const { id } = useParams();
+  const [dummyState, setDummyState] = useState(1);
   const countincrease = () => {
-    setcount((data) => [...data, { count: count + 1 }]);
+    setDummyState(dummyState + 1);
+    setcount((data) => [
+      ...data,
+      {
+        assign_id: "",
+        currency_id: "",
+        eta: "",
+        hub_id: "",
+        in_stock: "",
+        moq: "",
+        mp_id: "",
+        price: "",
+        igst: "",
+        cgst: "",
+        sgst: "",
+        count: dummyState,
+      },
+    ]);
   };
 
   const [inputValidation, setInputValidation] = useState({
@@ -324,57 +342,103 @@ function Index({ type, pid }) {
   const updateProduct = async () => {
     let productdata = [];
     count.filter((data) => {
-      productdata.push(data);
+      if (data?.hub_id) {
+        productdata.push(data);
+      }
     });
-    let restrictedcountries = updateProductList?.restricts_country?.map((country) =>
-      country.value
+    let restrictedcountries = updateProductList?.restricts_country?.map(
+      (country) => country.value
     );
     let warrantycountries = [];
     updateProductList?.warcountry?.filter((country) =>
       warrantycountries.push(country.value)
     );
     let user = JSON.parse(localStorage.getItem("userdata"));
-    try {
-      const updatepform = await axios({
-        method: "post",
-        url: `${Constant.baseUrl()}${
-          olddata?.customer_id ? "/editProductPrice" : "/saveProductPrice"
-        }`,
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-        data: {
-          data: {
-            bulk_upload: 0,
-            customer_id: user?.id,
-            product_id: id,
-            product_condition: updateProductList?.conditions?.value,
-            other_condition: 1,
-            warranty_type: updateProductList?.warranty?.value,
-            warranty_country: warrantycountries.toString(),
-            warranty_days: updateform?.warranty_days,
-            packing_details: updateProductList?.packing?.value,
-            // no_pieces_per: updateProductList?.carton_packing,
-            no_pieces_per: 125,
-            width: updateform?.width,
-            height: updateform?.height,
-            product_length: updateform?.product_length,
-            weight: updateform?.weight,
-            restrictions: updateProductList?.restrictions?.value,
-            restricted_region: updateProductList?.resregion?.region_id,
-            restricted_country: restrictedcountries.toString(),
-            description: updateform?.notes,
-            product_details: productdata,
+    let productDetailSave = productdata?.filter((itm) => !itm?.assign_id);
+    let productDetailEdit = productdata?.filter((itm) => itm?.assign_id);
+    if (productDetailSave?.length) {
+      try {
+        const updatepform = await axios({
+          method: "post",
+          url: `${Constant.baseUrl()}${"/saveProductPrice"}`,
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
-        },
-      });
-      if (type === "Add Product Details") {
-        navigate("/sellerdashboard/addsuccess");
-      } else {
-        navigate("/sellerdashboard/updatesuccess");
+          data: {
+            data: {
+              bulk_upload: 0,
+              customer_id: user?.id,
+              product_id: id,
+              product_condition: updateProductList?.conditions?.value,
+              other_condition: 1,
+              warranty_type: updateProductList?.warranty?.value,
+              warranty_country: warrantycountries.toString(),
+              warranty_days: updateform?.warranty_days,
+              packing_details: updateProductList?.packing?.value,
+              // no_pieces_per: updateProductList?.carton_packing,
+              no_pieces_per: 125,
+              width: updateform?.width,
+              height: updateform?.height,
+              product_length: updateform?.product_length,
+              weight: updateform?.weight,
+              restrictions: updateProductList?.restrictions?.value,
+              restricted_region: updateProductList?.resregion?.region_id,
+              restricted_country: restrictedcountries.toString(),
+              description: updateform?.notes,
+              product_details: productDetailSave,
+            },
+          },
+        });
+        if (type === "Add Product Details") {
+          navigate("/sellerdashboard/addsuccess");
+        } else {
+          navigate("/sellerdashboard/updatesuccess");
+        }
+      } catch (e) {
+        console.log(e);
       }
-    } catch (e) {
-      console.log(e);
+    }
+    if (productDetailEdit?.length) {
+      try {
+        const updatepform = await axios({
+          method: "post",
+          url: `${Constant.baseUrl()}${"/editProductPrice"}`,
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          data: {
+            data: {
+              bulk_upload: 0,
+              customer_id: user?.id,
+              product_id: id,
+              product_condition: updateProductList?.conditions?.value,
+              other_condition: 1,
+              warranty_type: updateProductList?.warranty?.value,
+              warranty_country: warrantycountries.toString(),
+              warranty_days: updateform?.warranty_days,
+              packing_details: updateProductList?.packing?.value,
+              // no_pieces_per: updateProductList?.carton_packing,
+              no_pieces_per: 125,
+              width: updateform?.width,
+              height: updateform?.height,
+              product_length: updateform?.product_length,
+              weight: updateform?.weight,
+              restrictions: updateProductList?.restrictions?.value,
+              restricted_region: updateProductList?.resregion?.region_id,
+              restricted_country: restrictedcountries.toString(),
+              description: updateform?.notes,
+              product_details: productDetailEdit,
+            },
+          },
+        });
+        if (type === "Add Product Details") {
+          navigate("/sellerdashboard/addsuccess");
+        } else {
+          navigate("/sellerdashboard/updatesuccess");
+        }
+      } catch (e) {
+        console.log(e);
+      }
     }
   };
 
