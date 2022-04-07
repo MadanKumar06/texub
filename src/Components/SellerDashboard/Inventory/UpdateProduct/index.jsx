@@ -34,9 +34,9 @@ function Index({ type, pid }) {
     conditions: "",
     warranty: "",
     packing: "",
-    restrictions: [],
-    warcountry: [],
-    restricts_country: [],
+    restrictions: "",
+    warcountry: "",
+    restricts_country: "",
     resregion: "",
   });
 
@@ -48,6 +48,88 @@ function Index({ type, pid }) {
     setcount((data) => [...data, { count: count + 1 }]);
   };
 
+  const [inputValidation, setInputValidation] = useState({
+    conditions: "",
+    warranty: "",
+    warranty_days: "",
+    resregion: "",
+    rescountry: "",
+    packing_details: "",
+    dimension: "",
+    restrictions: "",
+    notes: "",
+  });
+  const handleClickValidation = (event) => {
+    var errorHandle = false;
+    if (!updateProductList?.conditions) {
+      document.getElementById("conditions")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        conditions: "Please select the conditions.",
+      }));
+      errorHandle = true;
+    }
+    if (!updateProductList?.warranty) {
+      document.getElementById("warranty")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        warranty: "Please select the warranty type.",
+      }));
+      errorHandle = true;
+    }
+    debugger;
+    if (!updateform?.warranty_days) {
+      document.getElementById("warranty_days")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        warranty_days: "Please select the warranty days.",
+      }));
+      errorHandle = true;
+    }
+    if (!updateProductList?.packing) {
+      document.getElementById("packing")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        packing: "Please select the packing details.",
+      }));
+      errorHandle = true;
+    }
+    if (!updateProductList?.restrictions) {
+      document.getElementById("restrictions")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        restrictions: "Please select the restrictions.",
+      }));
+      errorHandle = true;
+    }
+    if (
+      !updateform?.product_length ||
+      !updateform?.heigth ||
+      !updateform?.width ||
+      !updateform?.weight
+    ) {
+      document.getElementById("dimension")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        dimension: "Please select the dimension.",
+      }));
+      errorHandle = true;
+    }
+    if (!updateform?.notes) {
+      document.getElementById("notes")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        notes: "Please select the notes.",
+      }));
+      errorHandle = true;
+    }
+    if (!errorHandle) {
+      // Apicall fuction
+      updateProduct();
+    }
+  };
+
+  console.log(updateProductList);
   useEffect(() => {
     if (type !== "Update New Product Details") return;
     const data = async () => {
@@ -122,11 +204,11 @@ function Index({ type, pid }) {
 
   useEffect(() => {
     // if(isMounted) {
-    setupdateform((data1) => ({
-      ...data1,
+    setupdateform((prevState) => ({
+      ...prevState,
       width: olddata?.width,
       height: olddata?.height,
-      length: olddata?.length,
+      product_length: olddata?.product_length,
       weight: olddata?.weight,
       warranty_days: olddata?.warranty_days,
     }));
@@ -229,7 +311,7 @@ function Index({ type, pid }) {
 
   const [pdetails, setpdetails] = useState([]);
   const [updateform, setupdateform] = useState({
-    lnth: "",
+    product_length: "",
     width: "",
     height: "",
     weight: "",
@@ -270,12 +352,12 @@ function Index({ type, pid }) {
             other_condition: 1,
             warranty_type: updateProductList?.warranty?.value,
             warranty_country: warrantycountries.toString(),
-            warranty_days: updateform?.days,
+            warranty_days: updateform?.warranty_days,
             packing_details: updateProductList?.packing?.value,
             no_pieces_per: 234,
             width: updateform?.width,
             height: updateform?.height,
-            length: updateform?.lnth,
+            product_length: updateform?.product_length,
             weight: updateform?.weight,
             restrictions: updateProductList?.restrictions?.value,
             restricted_region: updateProductList?.resregion?.region_id,
@@ -379,7 +461,9 @@ function Index({ type, pid }) {
         <div className="updateproduct__form">
           <div className="input_separator">
             <div className="updateproduct_inputfields info ">
-              <InputLabel>Conditions</InputLabel>
+              <InputLabel>
+                Conditions<small className="asterisk">*</small>
+              </InputLabel>
               <Autocomplete
                 value={updateProductList?.conditions}
                 disablePortal={true}
@@ -389,6 +473,10 @@ function Index({ type, pid }) {
                   setUpdateProductList((prevState) => ({
                     ...prevState,
                     conditions: newValue,
+                  }));
+                  setInputValidation((prevState) => ({
+                    ...prevState,
+                    conditions: "",
                   }));
                 }}
                 id="conditions"
@@ -409,9 +497,14 @@ function Index({ type, pid }) {
                   />
                 )}
               />
+              <InputLabel className="validation_error">
+                {inputValidation?.conditions}
+              </InputLabel>
             </div>
             <div className="updateproduct_inputfields info">
-              <InputLabel>Warranty Type</InputLabel>
+              <InputLabel>
+                Warranty Type<small className="asterisk">*</small>
+              </InputLabel>
               <Autocomplete
                 value={updateProductList?.warranty}
                 name="warranty_type"
@@ -421,6 +514,10 @@ function Index({ type, pid }) {
                   setUpdateProductList((prevState) => ({
                     ...prevState,
                     warranty: newValue,
+                  }));
+                  setInputValidation((prevState) => ({
+                    ...prevState,
+                    warranty: "",
                   }));
                 }}
                 id="warranty_type"
@@ -441,6 +538,9 @@ function Index({ type, pid }) {
                   />
                 )}
               />
+              <InputLabel className="validation_error">
+                {inputValidation?.warranty}
+              </InputLabel>
             </div>
           </div>
           {updateProductList?.warranty?.label ===
@@ -452,7 +552,7 @@ function Index({ type, pid }) {
                   id="checkboxes-tags-demo"
                   options={country ? country : []}
                   disableCloseOnSelect
-                  value={updateProductList.warcountry}
+                  value={updateProductList?.warcountry}
                   getOptionLabel={(option) =>
                     option.label ? option.label : ""
                   }
@@ -472,6 +572,10 @@ function Index({ type, pid }) {
                       ...prevState,
                       warcountry: newValue,
                     }));
+                    setInputValidation((prevState) => ({
+                      ...prevState,
+                      warranty_country: "",
+                    }));
                   }}
                   renderInput={(params) => (
                     <TextField
@@ -486,10 +590,12 @@ function Index({ type, pid }) {
           )}
           <div className="input_separator">
             <div className="updateproduct_inputfields info">
-              <InputLabel>Warranty Days</InputLabel>
+              <InputLabel>
+                Warranty Days<small className="asterisk">*</small>
+              </InputLabel>
               <TextField
-                id="part_number"
-                name="part_nymber"
+                id="warranty_days"
+                name="warranty_days"
                 placeholder="90 Days"
                 fullWidth
                 autoFocus={true}
@@ -499,28 +605,41 @@ function Index({ type, pid }) {
                 InputLabelProps={{
                   shrink: false,
                 }}
-                onChange={(e) =>
+                onChange={(e) => {
                   setupdateform((prev) => ({
                     ...prev,
                     warranty_days: e.target.value,
-                  }))
-                }
+                  }));
+                  setInputValidation((prevState) => ({
+                    ...prevState,
+                    warranty_days: "",
+                  }));
+                }}
                 variant="outlined"
               />
+              <InputLabel className="validation_error">
+                {inputValidation?.warranty_days}
+              </InputLabel>
             </div>
             <div className="updateproduct_inputfields info">
-              <InputLabel>Packing Details</InputLabel>
+              <InputLabel>
+                Packing Details<small className="asterisk">*</small>
+              </InputLabel>
               <Autocomplete
                 value={updateProductList?.packing}
-                name="packing_details"
+                name="packing"
                 disablePortal={true}
                 onChange={(event, newValue) => {
                   setUpdateProductList((prevState) => ({
                     ...prevState,
                     packing: newValue,
                   }));
+                  setInputValidation((prevState) => ({
+                    ...prevState,
+                    packing: "",
+                  }));
                 }}
-                id="packing_details"
+                id="packing"
                 options={
                   dropdownListFromApi?.dropDownList?.packing_details
                     ? dropdownListFromApi?.dropDownList?.packing_details
@@ -539,29 +658,38 @@ function Index({ type, pid }) {
                   />
                 )}
               />
+              <InputLabel className="validation_error">
+                {inputValidation?.packing}
+              </InputLabel>
             </div>
           </div>
           <div className="input_separator">
             <div className="updateproduct_inputfields info">
-              <InputLabel>Dimensions</InputLabel>
+              <InputLabel>
+                Dimensions<small className="asterisk">*</small>
+              </InputLabel>
               <div className="dimensions_input">
                 <TextField
-                  id="length"
-                  name="length"
+                  id="product_length"
+                  name="product_length"
                   placeholder="Length"
                   fullWidth
                   autoComplete="off"
-                  value={updateform?.length}
+                  value={updateform?.product_length}
                   className="inputfield-box length_field"
                   InputLabelProps={{
                     shrink: false,
                   }}
-                  onChange={(e) =>
+                  onChange={(e) => {
                     setupdateform((data) => ({
                       ...data,
-                      lnth: e.target.value,
-                    }))
-                  }
+                      product_length: e.target.value,
+                    }));
+                    setInputValidation((prevState) => ({
+                      ...prevState,
+                      dimension: "",
+                    }));
+                  }}
                   variant="outlined"
                 />
                 <TextField
@@ -575,12 +703,16 @@ function Index({ type, pid }) {
                   InputLabelProps={{
                     shrink: false,
                   }}
-                  onChange={(e) =>
-                    setupdateform((data) => ({
-                      ...data,
+                  onChange={(e) => {
+                    setupdateform((prevState) => ({
+                      ...prevState,
                       width: e.target.value,
-                    }))
-                  }
+                    }));
+                    setInputValidation((prevState) => ({
+                      ...prevState,
+                      dimension: "",
+                    }));
+                  }}
                   variant="outlined"
                 />
                 <TextField
@@ -594,12 +726,16 @@ function Index({ type, pid }) {
                   InputLabelProps={{
                     shrink: false,
                   }}
-                  onChange={(e) =>
-                    setupdateform((data) => ({
-                      ...data,
+                  onChange={(e) => {
+                    setupdateform((prevState) => ({
+                      ...prevState,
                       height: e.target.value,
-                    }))
-                  }
+                    }));
+                    setInputValidation((prevState) => ({
+                      ...prevState,
+                      dimension: "",
+                    }));
+                  }}
                   variant="outlined"
                 />
                 <TextField
@@ -613,21 +749,34 @@ function Index({ type, pid }) {
                   InputLabelProps={{
                     shrink: false,
                   }}
-                  onChange={(e) =>
+                  onChange={(e) => {
                     setupdateform((data) => ({
                       ...data,
                       weight: e.target.value,
-                    }))
-                  }
+                    }));
+                    setInputValidation((prevState) => ({
+                      ...prevState,
+                      dimension: "",
+                    }));
+                  }}
                   variant="outlined"
                 />
               </div>
+              <InputLabel className="validation_error">
+                {inputValidation?.dimension}
+              </InputLabel>
             </div>
             <div className="updateproduct_inputfields info">
-              <InputLabel>Restrictions</InputLabel>
+              <InputLabel>
+                Restrictions<small className="asterisk">*</small>
+              </InputLabel>
               <Autocomplete
-                value={updateProductList?.restrictions}
-                name="packing_details"
+                value={
+                  updateProductList?.restrictions
+                    ? updateProductList?.restrictions
+                    : ""
+                }
+                name="restrictions"
                 disablePortal={true}
                 getOptionLabel={(option) => (option.label ? option.label : "")}
                 onChange={(event, newValue) => {
@@ -635,8 +784,12 @@ function Index({ type, pid }) {
                     ...prevState,
                     restrictions: newValue,
                   }));
+                  setInputValidation((prevState) => ({
+                    ...prevState,
+                    restrictions: "",
+                  }));
                 }}
-                id="packing_details"
+                id="restrictions"
                 options={restrictvalue ? restrictvalue : []}
                 renderInput={(params) => (
                   <TextField
@@ -650,18 +803,27 @@ function Index({ type, pid }) {
                   />
                 )}
               />
+              <InputLabel className="validation_error">
+                {inputValidation?.restrictions}
+              </InputLabel>
             </div>
           </div>
-          {updateProductList?.restrictions?.value === "Yes" && (
+          {updateProductList?.restrictions?.value === "Yes" ? (
             <div className="input_separator">
               <div className="updateproduct_inputfields info ">
-                <InputLabel>Region</InputLabel>
+                <InputLabel>
+                  Region<small className="asterisk">*</small>
+                </InputLabel>
                 <Autocomplete
                   multiple
                   id="checkboxes-tags-demo"
-                  options={region ? region : []}
+                  options={region?.length ? region : []}
                   disableCloseOnSelect
-                  value={updateProductList?.resregion}
+                  value={
+                    updateProductList?.resregion
+                      ? updateProductList?.resregion
+                      : ""
+                  }
                   getOptionLabel={(option) =>
                     option.region_name ? option.region_name : ""
                   }
@@ -681,6 +843,10 @@ function Index({ type, pid }) {
                       ...prevState,
                       resregion: newValue,
                     }));
+                    setInputValidation((prevState) => ({
+                      ...prevState,
+                      resregion: "",
+                    }));
                   }}
                   renderInput={(params) => (
                     <TextField
@@ -696,7 +862,9 @@ function Index({ type, pid }) {
                 />
               </div>
               <div className="updateproduct_inputfields info">
-                <InputLabel>Country</InputLabel>
+                <InputLabel>
+                  Country<small className="asterisk">*</small>
+                </InputLabel>
 
                 <Autocomplete
                   multiple
@@ -723,6 +891,10 @@ function Index({ type, pid }) {
                       ...prevState,
                       restricts_country: newValue,
                     }));
+                    setInputValidation((prevState) => ({
+                      ...prevState,
+                      rescountry: "",
+                    }));
                   }}
                   renderInput={(params) => (
                     <TextField
@@ -734,9 +906,13 @@ function Index({ type, pid }) {
                 />
               </div>
             </div>
+          ) : (
+            ""
           )}
           <div className="updateproduct_inputfields info">
-            <InputLabel>Special Notes</InputLabel>
+            <InputLabel>
+              Special Notes<small className="asterisk">*</small>
+            </InputLabel>
             <TextField
               id="outlined-multiline-static_2"
               fullWidth
@@ -751,13 +927,20 @@ function Index({ type, pid }) {
                 },
               }}
               variant="outlined"
-              onChange={(e) =>
-                setupdateform((data) => ({
-                  ...data,
+              onChange={(e) => {
+                setupdateform((prevState) => ({
+                  ...prevState,
                   notes: e.target.value,
-                }))
-              }
+                }));
+                setInputValidation((prevState) => ({
+                  ...prevState,
+                  notes: "",
+                }));
+              }}
             />
+            <InputLabel className="validation_error">
+              {inputValidation?.notes}
+            </InputLabel>
           </div>
         </div>
       </div>
@@ -773,7 +956,10 @@ function Index({ type, pid }) {
               : "/sellerdashboard/addsuccess"
           }`}
         > */}
-        <p className="updateproduct__submit" onClick={updateProduct}>
+        <p
+          className="updateproduct__submit"
+          onClick={() => handleClickValidation()}
+        >
           Submit
         </p>
         {/* </Link> */}

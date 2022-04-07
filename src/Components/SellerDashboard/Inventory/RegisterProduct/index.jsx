@@ -38,7 +38,15 @@ function RegisterProduct() {
     other_sub_category: "",
     vendor_manufacturer_part_number: "",
   });
-
+  const [inputValidation, setInputValidation] = useState({
+    main_category: "",
+    other_main_category: "",
+    sub_category: "",
+    other_sub_category: "",
+    brands: "",
+    description: "",
+    vendor_manufacturer_part_number: "",
+  });
   //Api to fetch dropdown values
   useEffect(() => {
     const fetchMainCategoryData = () => {
@@ -118,10 +126,96 @@ function RegisterProduct() {
     fetchTexubProductIdData();
   }, []);
 
+  const handleClickValidation = (event) => {
+    var errorHandle = false;
+    if (!registerNewProductData?.main_category) {
+      document.getElementById("main_category")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        main_category: "Please select the category.",
+      }));
+      errorHandle = true;
+    }
+    if (
+      registerNewProductData?.main_category?.value === "mc" &&
+      !registerNewProductData?.other_main_category
+    ) {
+      document.getElementById("other_main_category")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        other_main_category: "Please select the other main category.",
+      }));
+      errorHandle = true;
+    }
+    if (
+      registerNewProductData?.main_category?.value === "mc" &&
+      !registerNewProductData?.other_sub_category
+    ) {
+      document.getElementById("other_sub_category")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        other_sub_category: "Please select the other sub category.",
+      }));
+      errorHandle = true;
+    }
+    if (!registerNewProductData?.sub_category) {
+      document.getElementById("sub_category")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        sub_category: "Please select the sub category.",
+      }));
+      errorHandle = true;
+    }
+    if (
+      registerNewProductData?.sub_category?.value === "sc" &&
+      !registerNewProductData?.other_sub_category
+    ) {
+      document.getElementById("other_sub_category")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        other_sub_category: "Please select the other sub category.",
+      }));
+      errorHandle = true;
+    }
+    if (!registerNewProductData?.brands) {
+      document.getElementById("brands")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        brands: "Please select the brands.",
+      }));
+      errorHandle = true;
+    }
+    if (!registerNewProductData?.description) {
+      document.getElementById("description")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        description: "Please select the description.",
+      }));
+      errorHandle = true;
+    }
+    if (!registerNewProductData?.vendor_manufacturer_part_number) {
+      document.getElementById("vendor_manufacturer_part_number")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        vendor_manufacturer_part_number:
+          "Please select the vendor manufacturer part number.",
+      }));
+      errorHandle = true;
+    }
+    if (!errorHandle) {
+      // Apicall fuction
+      FinalRegisterNewProduct();
+    }
+  };
+
   const handleVendorChange = (event) => {
     let data = {
       sku: event?.target.value,
     };
+    setInputValidation((prevState) => ({
+      ...prevState,
+      [event.target.name]: "",
+    }));
     setOpenClosePopOver({
       state: false,
     });
@@ -150,14 +244,16 @@ function RegisterProduct() {
       ...prevState,
       [event.target.name]: event.target.value,
     }));
+    setInputValidation((prevState) => ({
+      ...prevState,
+      [event.target.name]: "",
+    }));
   };
-  console.log(registerNewProductData);
 
   //API to Register
   const FinalRegisterNewProduct = () => {
     let user = JSON.parse(localStorage.getItem("userdata"));
     let customer_token = JSON.parse(localStorage.getItem("customer_auth"));
-    debugger;
     let data = {
       product_data: {
         customer_id: user?.id,
@@ -245,7 +341,10 @@ function RegisterProduct() {
         </div>
         <div className="input_separator">
           <div className="registerproducts_inputfields">
-            <InputLabel>Main Category</InputLabel>
+            <InputLabel>
+              Main Category
+              <small className="asterisk">*</small>
+            </InputLabel>
             <Autocomplete
               value={registerNewProductData?.main_category}
               name="main_category"
@@ -254,8 +353,12 @@ function RegisterProduct() {
                   ...prevState,
                   main_category: newValue,
                 }));
+                setInputValidation((prevState) => ({
+                  ...prevState,
+                  main_category: "",
+                }));
               }}
-              id="controllable-states-demo"
+              id="main_category"
               getOptionLabel={(option) => (option.label ? option.label : "")}
               filterOptions={(options) => options}
               options={dropdownListFromApi?.mainCategoryList}
@@ -271,10 +374,15 @@ function RegisterProduct() {
                 />
               )}
             />
+            <InputLabel className="validation_error">
+              {inputValidation?.main_category}
+            </InputLabel>
           </div>
           {registerNewProductData?.main_category?.value === "mc" ? (
             <div className="registerproducts_inputfields">
-              <InputLabel>Other Sub Category</InputLabel>
+              <InputLabel>
+                Other Sub Category <small className="asterisk">*</small>
+              </InputLabel>
               <TextField
                 id="other_sub_category"
                 name="other_sub_category"
@@ -287,10 +395,15 @@ function RegisterProduct() {
                 }}
                 variant="outlined"
               />
+              <InputLabel className="validation_error">
+                {inputValidation?.other_sub_category}
+              </InputLabel>
             </div>
           ) : (
             <div className="registerproducts_inputfields">
-              <InputLabel>Sub-Category</InputLabel>
+              <InputLabel>
+                Sub-Category <small className="asterisk">*</small>
+              </InputLabel>
               <Autocomplete
                 value={registerNewProductData?.subCategoryList}
                 name="sub_category"
@@ -299,8 +412,12 @@ function RegisterProduct() {
                     ...prevState,
                     sub_category: newValue,
                   }));
+                  setInputValidation((prevState) => ({
+                    ...prevState,
+                    sub_category: "",
+                  }));
                 }}
-                id="controllable-states-demo"
+                id="sub_category"
                 options={dropdownListFromApi?.subCategoryList}
                 renderInput={(params) => (
                   <TextField
@@ -314,6 +431,9 @@ function RegisterProduct() {
                   />
                 )}
               />
+              <InputLabel className="validation_error">
+                {inputValidation?.sub_category}
+              </InputLabel>
             </div>
           )}
         </div>
@@ -321,7 +441,9 @@ function RegisterProduct() {
           <div className="registerproducts_inputfields">
             {registerNewProductData?.main_category?.value === "mc" && (
               <div className="registerproducts_inputfields">
-                <InputLabel>Other Main Category</InputLabel>
+                <InputLabel>
+                  Other Main Category <small className="asterisk">*</small>
+                </InputLabel>
                 <TextField
                   id="other_main_category"
                   name="other_main_category"
@@ -335,13 +457,18 @@ function RegisterProduct() {
                   variant="outlined"
                   onChange={handleOnchange}
                 />
+                <InputLabel className="validation_error">
+                  {inputValidation?.other_main_category}
+                </InputLabel>
               </div>
             )}
           </div>
           <div className="registerproducts_inputfields">
             {registerNewProductData?.sub_category?.value === "sc" && (
               <div className="registerproducts_inputfields">
-                <InputLabel>Other Sub Category</InputLabel>
+                <InputLabel>
+                  Other Sub Category <small className="asterisk">*</small>
+                </InputLabel>
                 <TextField
                   id="other_sub_category"
                   name="other_sub_category"
@@ -355,13 +482,18 @@ function RegisterProduct() {
                   variant="outlined"
                   onChange={handleOnchange}
                 />
+                <InputLabel className="validation_error">
+                  {inputValidation?.other_sub_category}
+                </InputLabel>
               </div>
             )}
           </div>
         </div>
         <div className="input_separator">
           <div className="registerproducts_inputfields">
-            <InputLabel>Brand</InputLabel>
+            <InputLabel>
+              Brand <small className="asterisk">*</small>
+            </InputLabel>
             <Autocomplete
               value={registerNewProductData?.brands}
               name="brands"
@@ -370,8 +502,12 @@ function RegisterProduct() {
                   ...prevState,
                   brands: newValue,
                 }));
+                setInputValidation((prevState) => ({
+                  ...prevState,
+                  brands: "",
+                }));
               }}
-              id="controllable-states-demo"
+              id="brands"
               options={dropdownListFromApi?.brandsList}
               getOptionLabel={(option) => (option.name ? option.name : "")}
               filterOptions={(options) => options}
@@ -387,6 +523,9 @@ function RegisterProduct() {
                 />
               )}
             />
+            <InputLabel className="validation_error">
+              {inputValidation?.brands}
+            </InputLabel>
           </div>
           <div className="registerproducts_inputfields">
             <InputLabel>HSN Code</InputLabel>
@@ -409,9 +548,12 @@ function RegisterProduct() {
         </div>
         <div className="input_separator">
           <div className="registerproducts_inputfields">
-            <InputLabel>Vendor / Manufacturer part Number</InputLabel>
+            <InputLabel>
+              Vendor / Manufacturer part Number{" "}
+              <small className="asterisk">*</small>
+            </InputLabel>
             <TextField
-              id="part_number"
+              id="vendor_manufacturer_part_number"
               name="vendor_manufacturer_part_number"
               placeholder="DE-B-0089"
               fullWidth
@@ -424,6 +566,9 @@ function RegisterProduct() {
               onChange={handleVendorChange}
               variant="outlined"
             />
+            <InputLabel className="validation_error">
+              {inputValidation?.vendor_manufacturer_part_number}
+            </InputLabel>
             {openClosePopOver?.state && (
               <p
                 className={`${"popover"}${" "}${
@@ -454,9 +599,11 @@ function RegisterProduct() {
           </div>
         </div>
         <div className="registerproducts_inputfields">
-          <InputLabel>Description</InputLabel>
+          <InputLabel>
+            Description <small className="asterisk">*</small>
+          </InputLabel>
           <TextField
-            id="outlined-multiline-static_2"
+            id="description"
             fullWidth
             multiline
             value={registerNewProductData?.description}
@@ -473,6 +620,9 @@ function RegisterProduct() {
             }}
             variant="outlined"
           />
+          <InputLabel className="validation_error">
+            {inputValidation?.description}
+          </InputLabel>
         </div>
       </div>
 
@@ -483,7 +633,7 @@ function RegisterProduct() {
         <Box>
           <Button
             className="button-text btn-secondary registerproduct__submitbutton"
-            onClick={() => FinalRegisterNewProduct()}
+            onClick={() => handleClickValidation()}
           >
             Submit
           </Button>

@@ -4,6 +4,9 @@
   }
   .updateproduct_info_form {
     width: 100%;
+    .asterisk {
+      color: red;
+    }
     .MuiInputLabel-root {
       font-size: 18px;
       font-weight: 600;
