@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { withStyles } from "@mui/styles";
 import styles from "./styles";
 import clsx from "clsx";
+import { Link } from "react-router-dom";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -9,6 +10,7 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
 import Constant from "../../../Constant";
 import axios from "axios";
+import { useStateValue } from "../../../store/state";
 const PDPTable = ({ classes, tableData, setPdpSellerData, pdpSellerData }) => {
   //styles
   let {
@@ -49,7 +51,7 @@ const PDPTable = ({ classes, tableData, setPdpSellerData, pdpSellerData }) => {
 
   const [is_table_one, setIs_table_one] = useState(0);
   const [is_table_two, setIs_table_two] = useState(0);
-
+  const [{}, dispatch] = useStateValue();
   //tableValues
   useEffect(() => {
     if (tableData?.tableone?.length) {
@@ -85,6 +87,12 @@ const PDPTable = ({ classes, tableData, setPdpSellerData, pdpSellerData }) => {
       })
     );
   };
+  const handleClose = () => {
+    dispatch({
+      type: "SET_PDP_POPUP_OPEN_CLOSE",
+      value: false,
+    });
+  };
 
   const handleChangeValueTableTwo = (event, index) => {
     setIs_table_two(
@@ -102,7 +110,6 @@ const PDPTable = ({ classes, tableData, setPdpSellerData, pdpSellerData }) => {
   };
 
   const handleRadioGroupChange = (event) => {
-    debugger;
     setPdpSellerData((prevState) => ({
       ...prevState,
       event,
@@ -196,7 +203,12 @@ const PDPTable = ({ classes, tableData, setPdpSellerData, pdpSellerData }) => {
                       </div>
                       <div className={price_list_seller}>
                         <span>
-                          <a href="/">{item?.seller_code}</a>
+                          <Link
+                            to={`/sellerprofile/${item.seller_code}`}
+                            onClick={() => handleClose()}
+                          >
+                            {item?.seller_code}
+                          </Link>
                         </span>
                       </div>
                       <div className={price_list_price}>
