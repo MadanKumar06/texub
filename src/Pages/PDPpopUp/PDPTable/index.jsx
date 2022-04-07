@@ -57,7 +57,7 @@ const PDPTable = ({ classes, tableData, setPdpSellerData, pdpSellerData }) => {
     if (tableData?.tableone?.length) {
       let temp = tableData?.tableone?.map((itm) => ({
         ...itm,
-        in_stock: 20,
+        // in_stock: 20,
         is_moq_valid: itm.moq,
       }));
       setIs_table_one(temp);
