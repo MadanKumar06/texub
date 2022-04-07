@@ -182,7 +182,6 @@ function Index({ registerproduct }) {
           Authorization: `Bearer ${token}`
         }
       })
-      console.log(tabledata.data)
       setApiTableData(tabledata.data)
     } catch(e) {
       console.log(e)
