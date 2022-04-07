@@ -57,7 +57,7 @@ function Index({ type, pid }) {
     packing_details: "",
     dimension: "",
     restrictions: "",
-    special_note: "",
+    notes: "",
   });
   const handleClickValidation = (event) => {
     var errorHandle = false;
@@ -77,8 +77,8 @@ function Index({ type, pid }) {
       }));
       errorHandle = true;
     }
+    debugger;
     if (!updateform?.warranty_days) {
-      debugger
       document.getElementById("warranty_days")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
@@ -87,11 +87,10 @@ function Index({ type, pid }) {
       errorHandle = true;
     }
     if (!updateProductList?.packing) {
-      debugger
-      document.getElementById("packing_details")?.focus();
+      document.getElementById("packing")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
-        packing_details: "Please select the packing details.",
+        packing: "Please select the packing details.",
       }));
       errorHandle = true;
     }
@@ -104,15 +103,23 @@ function Index({ type, pid }) {
       errorHandle = true;
     }
     if (
-      !updateform?.product_length &&
-      !updateform?.heigth &&
-      !updateform?.width &&
+      !updateform?.product_length ||
+      !updateform?.heigth ||
+      !updateform?.width ||
       !updateform?.weight
     ) {
       document.getElementById("dimension")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
         dimension: "Please select the dimension.",
+      }));
+      errorHandle = true;
+    }
+    if (!updateform?.notes) {
+      document.getElementById("notes")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        notes: "Please select the notes.",
       }));
       errorHandle = true;
     }
@@ -197,8 +204,8 @@ function Index({ type, pid }) {
 
   useEffect(() => {
     // if(isMounted) {
-    setupdateform((data1) => ({
-      ...data1,
+    setupdateform((prevState) => ({
+      ...prevState,
       width: olddata?.width,
       height: olddata?.height,
       product_length: olddata?.product_length,
@@ -304,7 +311,7 @@ function Index({ type, pid }) {
 
   const [pdetails, setpdetails] = useState([]);
   const [updateform, setupdateform] = useState({
-    lnth: "",
+    product_length: "",
     width: "",
     height: "",
     weight: "",
@@ -345,7 +352,7 @@ function Index({ type, pid }) {
             other_condition: 1,
             warranty_type: updateProductList?.warranty?.value,
             warranty_country: warrantycountries.toString(),
-            warranty_days: updateform?.days,
+            warranty_days: updateform?.warranty_days,
             packing_details: updateProductList?.packing?.value,
             no_pieces_per: 234,
             width: updateform?.width,
@@ -620,7 +627,7 @@ function Index({ type, pid }) {
               </InputLabel>
               <Autocomplete
                 value={updateProductList?.packing}
-                name="packing_details"
+                name="packing"
                 disablePortal={true}
                 onChange={(event, newValue) => {
                   setUpdateProductList((prevState) => ({
@@ -632,7 +639,7 @@ function Index({ type, pid }) {
                     packing: "",
                   }));
                 }}
-                id="packing_details"
+                id="packing"
                 options={
                   dropdownListFromApi?.dropDownList?.packing_details
                     ? dropdownListFromApi?.dropDownList?.packing_details
@@ -652,7 +659,7 @@ function Index({ type, pid }) {
                 )}
               />
               <InputLabel className="validation_error">
-                {inputValidation?.packing_details}
+                {inputValidation?.packing}
               </InputLabel>
             </div>
           </div>
@@ -673,12 +680,16 @@ function Index({ type, pid }) {
                   InputLabelProps={{
                     shrink: false,
                   }}
-                  onChange={(e) =>
+                  onChange={(e) => {
                     setupdateform((data) => ({
                       ...data,
-                      lnth: e.target.value,
-                    }))
-                  }
+                      product_length: e.target.value,
+                    }));
+                    setInputValidation((prevState) => ({
+                      ...prevState,
+                      dimension: "",
+                    }));
+                  }}
                   variant="outlined"
                 />
                 <TextField
@@ -692,12 +703,16 @@ function Index({ type, pid }) {
                   InputLabelProps={{
                     shrink: false,
                   }}
-                  onChange={(e) =>
-                    setupdateform((data) => ({
-                      ...data,
+                  onChange={(e) => {
+                    setupdateform((prevState) => ({
+                      ...prevState,
                       width: e.target.value,
-                    }))
-                  }
+                    }));
+                    setInputValidation((prevState) => ({
+                      ...prevState,
+                      dimension: "",
+                    }));
+                  }}
                   variant="outlined"
                 />
                 <TextField
@@ -711,12 +726,16 @@ function Index({ type, pid }) {
                   InputLabelProps={{
                     shrink: false,
                   }}
-                  onChange={(e) =>
-                    setupdateform((data) => ({
-                      ...data,
+                  onChange={(e) => {
+                    setupdateform((prevState) => ({
+                      ...prevState,
                       height: e.target.value,
-                    }))
-                  }
+                    }));
+                    setInputValidation((prevState) => ({
+                      ...prevState,
+                      dimension: "",
+                    }));
+                  }}
                   variant="outlined"
                 />
                 <TextField
@@ -730,12 +749,16 @@ function Index({ type, pid }) {
                   InputLabelProps={{
                     shrink: false,
                   }}
-                  onChange={(e) =>
+                  onChange={(e) => {
                     setupdateform((data) => ({
                       ...data,
                       weight: e.target.value,
-                    }))
-                  }
+                    }));
+                    setInputValidation((prevState) => ({
+                      ...prevState,
+                      dimension: "",
+                    }));
+                  }}
                   variant="outlined"
                 />
               </div>
@@ -767,7 +790,7 @@ function Index({ type, pid }) {
                   }));
                 }}
                 id="restrictions"
-                options={restrictvalue?.length ? restrictvalue : []}
+                options={restrictvalue ? restrictvalue : []}
                 renderInput={(params) => (
                   <TextField
                     {...params}
@@ -785,106 +808,107 @@ function Index({ type, pid }) {
               </InputLabel>
             </div>
           </div>
-          {updateProductList?.restrictions &&
-            updateProductList?.restrictions?.value === "Yes" && (
-              <div className="input_separator">
-                <div className="updateproduct_inputfields info ">
-                  <InputLabel>
-                    Region<small className="asterisk">*</small>
-                  </InputLabel>
-                  <Autocomplete
-                    multiple
-                    id="checkboxes-tags-demo"
-                    options={region?.length ? region : []}
-                    disableCloseOnSelect
-                    value={
-                      updateProductList?.resregion
-                        ? updateProductList?.resregion
-                        : ""
-                    }
-                    getOptionLabel={(option) =>
-                      option.region_name ? option.region_name : ""
-                    }
-                    renderOption={(props, option, { selected }) => (
-                      <li {...props}>
-                        <Checkbox
-                          icon={icon}
-                          checkedIcon={checkedIcon}
-                          style={{ marginRight: 8 }}
-                          checked={selected}
-                        />
-                        {option.region_name}
-                      </li>
-                    )}
-                    onChange={(event, newValue) => {
-                      setUpdateProductList((prevState) => ({
-                        ...prevState,
-                        resregion: newValue,
-                      }));
-                      setInputValidation((prevState) => ({
-                        ...prevState,
-                        resregion: "",
-                      }));
-                    }}
-                    renderInput={(params) => (
-                      <TextField
-                        {...params}
-                        className="inputfield-box"
-                        fullWidth
-                        placeholder="Select Region"
-                        InputLabelProps={{
-                          shrink: false,
-                        }}
+          {updateProductList?.restrictions?.value === "Yes" ? (
+            <div className="input_separator">
+              <div className="updateproduct_inputfields info ">
+                <InputLabel>
+                  Region<small className="asterisk">*</small>
+                </InputLabel>
+                <Autocomplete
+                  multiple
+                  id="checkboxes-tags-demo"
+                  options={region?.length ? region : []}
+                  disableCloseOnSelect
+                  value={
+                    updateProductList?.resregion
+                      ? updateProductList?.resregion
+                      : ""
+                  }
+                  getOptionLabel={(option) =>
+                    option.region_name ? option.region_name : ""
+                  }
+                  renderOption={(props, option, { selected }) => (
+                    <li {...props}>
+                      <Checkbox
+                        icon={icon}
+                        checkedIcon={checkedIcon}
+                        style={{ marginRight: 8 }}
+                        checked={selected}
                       />
-                    )}
-                  />
-                </div>
-                <div className="updateproduct_inputfields info">
-                  <InputLabel>
-                    Country<small className="asterisk">*</small>
-                  </InputLabel>
-
-                  <Autocomplete
-                    multiple
-                    id="checkboxes-tags-demo"
-                    options={restricts_country ? restricts_country : ""}
-                    disableCloseOnSelect
-                    value={updateProductList?.restricts_country}
-                    getOptionLabel={(option) =>
-                      option.label ? option.label : ""
-                    }
-                    renderOption={(props, option, { selected }) => (
-                      <li {...props}>
-                        <Checkbox
-                          icon={icon}
-                          checkedIcon={checkedIcon}
-                          style={{ marginRight: 8 }}
-                          checked={selected}
-                        />
-                        {option.label}
-                      </li>
-                    )}
-                    onChange={(event, newValue) => {
-                      setUpdateProductList((prevState) => ({
-                        ...prevState,
-                        restricts_country: newValue,
-                      }));
-                      setInputValidation((prevState) => ({
-                        ...prevState,
-                        rescountry: "",
-                      }));
-                    }}
-                    renderInput={(params) => (
-                      <TextField
-                        {...params}
-                        placeholder="Country"
-                        className="inputfield-box"
-                      />
-                    )}
-                  />
-                </div>
+                      {option.region_name}
+                    </li>
+                  )}
+                  onChange={(event, newValue) => {
+                    setUpdateProductList((prevState) => ({
+                      ...prevState,
+                      resregion: newValue,
+                    }));
+                    setInputValidation((prevState) => ({
+                      ...prevState,
+                      resregion: "",
+                    }));
+                  }}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      className="inputfield-box"
+                      fullWidth
+                      placeholder="Select Region"
+                      InputLabelProps={{
+                        shrink: false,
+                      }}
+                    />
+                  )}
+                />
               </div>
-            )}
+              <div className="updateproduct_inputfields info">
+                <InputLabel>
+                  Country<small className="asterisk">*</small>
+                </InputLabel>
+
+                <Autocomplete
+                  multiple
+                  id="checkboxes-tags-demo"
+                  options={restricts_country ? restricts_country : ""}
+                  disableCloseOnSelect
+                  value={updateProductList?.restricts_country}
+                  getOptionLabel={(option) =>
+                    option.label ? option.label : ""
+                  }
+                  renderOption={(props, option, { selected }) => (
+                    <li {...props}>
+                      <Checkbox
+                        icon={icon}
+                        checkedIcon={checkedIcon}
+                        style={{ marginRight: 8 }}
+                        checked={selected}
+                      />
+                      {option.label}
+                    </li>
+                  )}
+                  onChange={(event, newValue) => {
+                    setUpdateProductList((prevState) => ({
+                      ...prevState,
+                      restricts_country: newValue,
+                    }));
+                    setInputValidation((prevState) => ({
+                      ...prevState,
+                      rescountry: "",
+                    }));
+                  }}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      placeholder="Country"
+                      className="inputfield-box"
+                    />
+                  )}
+                />
+              </div>
+            </div>
+          ) : (
+            ""
+          )}
           <div className="updateproduct_inputfields info">
             <InputLabel>
               Special Notes<small className="asterisk">*</small>
@@ -903,15 +927,19 @@ function Index({ type, pid }) {
                 },
               }}
               variant="outlined"
-              onChange={(e) =>
-                setupdateform((data) => ({
-                  ...data,
+              onChange={(e) => {
+                setupdateform((prevState) => ({
+                  ...prevState,
                   notes: e.target.value,
-                }))
-              }
+                }));
+                setInputValidation((prevState) => ({
+                  ...prevState,
+                  notes: "",
+                }));
+              }}
             />
             <InputLabel className="validation_error">
-              {inputValidation?.special_note}
+              {inputValidation?.notes}
             </InputLabel>
           </div>
         </div>
