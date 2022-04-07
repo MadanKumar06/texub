@@ -23,7 +23,7 @@ function Index({
 }) {
   const [options, setoptions] = useState([]);
   const [currenthub, setcurrenthub] = useState("");
-  console.log(hubname)
+  console.log(hubname);
 
   const hubselect = (e, value) => {
     let temp = count.filter((c) => {
@@ -100,14 +100,14 @@ function Index({
   useEffect(() => {
     if (hubDropDownValues?.length === 0) return;
     let temp = {
-      hub_id: '',
-      hub_name: ''
+      hub_id: "",
+      hub_name: "",
     };
     hubDropDownValues?.length &&
       hubDropDownValues.filter((wc) => {
         if (wc?.hub_id === currentdata?.hub_id) {
-          temp.hub_id = wc.hub_id
-          temp.hub_name = wc.hub_name
+          temp.hub_id = wc.hub_id;
+          temp.hub_name = wc.hub_name;
         }
       });
     setcurrenthub(temp);
@@ -117,14 +117,16 @@ function Index({
     <>
       <div className="updateproduct__bgform">
         <div className="updateproduct_info_form autocomplete_input">
-        {/* <select value={currenthub[0].hub_id} onChange={(e) => hubselect(e.target.value)}>
+          {/* <select value={currenthub[0].hub_id} onChange={(e) => hubselect(e.target.value)}>
           <option value="">Select</option>
           {hubDropDownValues?.length && hubDropDownValues.map(hub => 
             // <option value={`{"name":"${hub.hub_name}","value":"${hub.hub_id}"}`}>{hub.hub_name}</option>
             <option value={hub.hub_id}>{hub.hub_name}</option>
           )}
         </select> */}
-          <InputLabel>Hub</InputLabel>
+          <InputLabel>
+            Hub<small className="asterisk">*</small>
+          </InputLabel>
           <Autocomplete
             value={currenthub}
             name="currenthub"
@@ -132,9 +134,10 @@ function Index({
             id="currenthub"
             disablePortal={true}
             options={hubDropDownValues ? hubDropDownValues : []}
-            getOptionLabel={(option) =>
-              // option.hub_id ?
-              option.hub_name ? option.hub_name : ''
+            getOptionLabel={
+              (option) =>
+                // option.hub_id ?
+                option.hub_name ? option.hub_name : ""
               // :
               // option[0]?.hub_name ? option[0]?.hub_name : ""
               // {console.log(option)}
@@ -154,7 +157,9 @@ function Index({
           />
         </div>
         <div className="updateproduct_info_form">
-          <InputLabel>Price</InputLabel>
+          <InputLabel>
+            Price<small className="asterisk">*</small>
+          </InputLabel>
           <div className="price_customize">
             <Autocomplete
               name=""
@@ -192,7 +197,9 @@ function Index({
           </div>
         </div>
         <div className="updateproduct_info_form">
-          <InputLabel>In Stock</InputLabel>
+          <InputLabel>
+            In Stock<small className="asterisk">*</small>
+          </InputLabel>
           <TextField
             id="in_stock"
             name="in_stock"
@@ -210,7 +217,9 @@ function Index({
           />
         </div>
         <div className="updateproduct_info_form">
-          <InputLabel>ETA (Days)</InputLabel>
+          <InputLabel>
+            ETA (Days)<small className="asterisk">*</small>
+          </InputLabel>
           <TextField
             id="part_number"
             name="part_nymber"
@@ -228,7 +237,9 @@ function Index({
           />
         </div>
         <div className="updateproduct_info_form">
-          <InputLabel>MOQ</InputLabel>
+          <InputLabel>
+            MOQ<small className="asterisk">*</small>
+          </InputLabel>
           <TextField
             id="part_number"
             name="part_nymber"

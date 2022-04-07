@@ -108,6 +108,15 @@
   .updateproduct__specifications
     .updateproduct__form
     .updateproduct_inputfields {
+      .validation_error{
+        color: red !important;
+        font-size: 14px !important;
+        font-weight: 400 !important;
+        margin-top: 0em !important;
+      }
+    .asterisk {
+      color: red;
+    }
     .MuiInputLabel-root {
       font-size: 18px;
       font-weight: 600;
@@ -122,7 +131,7 @@
         }
       }
     }
-    
+
     .dimensions_input {
       display: flex;
 
@@ -262,7 +271,7 @@
     }
   }
 }
-.updateproduct__gst .updateproduct_info_form .MuiInputLabel-root{
+.updateproduct__gst .updateproduct_info_form .MuiInputLabel-root {
   margin-top: 10px !important;
 }
 @media (max-width: 1660px) {
@@ -281,11 +290,11 @@
   }
 }
 @media (max-width: 780px) {
-  .updateproduct .updateproduct__bgform{
+  .updateproduct .updateproduct__bgform {
     flex-wrap: wrap;
     flex-direction: row !important;
   }
-  .updateproduct .updateproduct__bgform .updateproduct_info_form{
+  .updateproduct .updateproduct__bgform .updateproduct_info_form {
     width: 48%;
   }
   .updateproduct .updateproduct__gst > * {
@@ -296,16 +305,19 @@
   }
 }
 @media (max-width: 567px) {
-  .updateproduct .updateproduct__bgform .updateproduct_info_form{
+  .updateproduct .updateproduct__bgform .updateproduct_info_form {
     width: 100%;
   }
-  .updateproduct .topform__details{
-    grid-template-columns:80% 20%;
+  .updateproduct .topform__details {
+    grid-template-columns: 80% 20%;
   }
-  .updateproduct .updateproduct__specifications .updateproduct__form .input_separator{
+  .updateproduct
+    .updateproduct__specifications
+    .updateproduct__form
+    .input_separator {
     flex-direction: column;
   }
-  .updateproduct .updateproduct__buttons{
+  .updateproduct .updateproduct__buttons {
     flex-direction: column;
   }
 }
