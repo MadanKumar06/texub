@@ -253,7 +253,6 @@ function RegisterProduct() {
   //API to Register
   const FinalRegisterNewProduct = () => {
     let user = JSON.parse(localStorage.getItem("userdata"));
-    let customer_token = JSON.parse(localStorage.getItem("customer_auth"));
     let data = {
       product_data: {
         customer_id: user?.id,
@@ -275,7 +274,7 @@ function RegisterProduct() {
       .post(Constant.baseUrl() + `/createSellerProduct`, data, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${customer_token}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       })
       .then((res) => {
