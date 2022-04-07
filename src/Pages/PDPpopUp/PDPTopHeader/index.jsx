@@ -106,6 +106,7 @@ const PdpHeader = ({
       margin: 0;
     }
   `;
+  console.log(pdpSellerData)
   return (
     <div className={pdp_top_header_container}>
       <div className={pdp_page_brands_images_container}>
@@ -122,7 +123,7 @@ const PdpHeader = ({
         <div className={pdp_top_header_product_details}>
           {pdpSellerData?.seller_id && (
             <p className={pdp_top_header_seller_id}>
-              Seller ID :<span>{pdpSellerData?.seller_id} </span>
+              Seller ID :<span>{pdpSellerData?.seller_code ? pdpSellerData?.seller_code : pdpSellerData?.seller_id} </span>
             </p>
           )}
           <div className={pdp_top_header_products}>
