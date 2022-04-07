@@ -28,8 +28,12 @@ export const Departments = () => {
                 isActive && "Body_Down_Pannel_btn_content"
               }`}
             >
-              {Departments1.map((item) => (
-                <li href={item.path} className="Body_Down_Pannel_btn_items">
+              {Departments1.map((item, ind) => (
+                <li
+                  key={ind}
+                  href={item.path}
+                  className="Body_Down_Pannel_btn_items"
+                >
                   {item.display}
                 </li>
               ))}

@@ -76,7 +76,7 @@ const App = () => {
   return(
    <div className="App">
    <ThemeProvider theme={theme}>
-        <Router baseName={"/"}>
+        <Router >
           <ScrollToTop/>
           <Header />
           <Userdetails />
@@ -112,7 +112,7 @@ const App = () => {
             <Route path="/sellerdashboard/:currenttab" element={ <> <SellerDashboard /> <ScrollToTop/> <Footer /></> } exact />
             <Route path="/sellerdashboard/:currenttab/:id" element={ <> <SellerDashboard /> <ScrollToTop/> <Footer /></> } exact />
             <Route path="/buyerdashboard/:currenttab" element={ <> <BuyerDashboard />  <ScrollToTop/><Footer /> </> } exact />
-            <Route path="/sellerprofile" element={ <> <SellerProfile /> <ScrollToTop/> <Footer /></> } exact />
+            <Route path="/sellerprofile/:id" element={ <> <SellerProfile /> <ScrollToTop/> <Footer /></> } exact />
             <Route path="/pending-invoice" element={ <> <PendingInvoice /> <ScrollToTop/> <Footer /> </> } exact />
             <Route path="/checkout" element={ <> <Checkout /> <ScrollToTop/> <Footer /> </> } exact />
             <Route path="/mycart" element={ <> <Mycart /> <ScrollToTop/> <Footer /> </> } exact />
