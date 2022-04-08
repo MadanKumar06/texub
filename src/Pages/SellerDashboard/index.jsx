@@ -17,7 +17,7 @@ import Sidebar from "../../Components/Sidebar";
 import Sellerservices from "../../Components/SellerDashboard/Sellerservices";
 import Directenqueries from "../../Components/SellerDashboard/Directenqueries";
 import Paymentmethods from "../../Components/SellerDashboard/Paymentmethods";
-import PendingProduct from '../../Components/SellerDashboard/Inventory/PendingProducts'
+import PendingProduct from "../../Components/SellerDashboard/Inventory/PendingProducts";
 import axios from "axios";
 import Constant from "../../Constant";
 
@@ -37,21 +37,23 @@ function SellerDashboard() {
   const [userform, setuserform] = useState(false);
 
   const [showregister, setshowregister] = useState(false);
-  const [pid, setpid] = useState()
+  const [pid, setpid] = useState();
 
-  const [editdata, seteditdata] = useState()
+  const [editdata, seteditdata] = useState();
 
   const registerproduct = (value, value1, value2) => {
     setshowregister(true);
-    if (value === 'updateproduct') {
-      navigate(`/sellerdashboard/${value}/${value1}`);  
+    if (value === "updateproduct") {
+      navigate(`/sellerdashboard/${value}/${value1}`);
+    } else if (value === "addproduct") {
+      navigate(`/sellerdashboard/${value}/${value1}`);
     } else {
       navigate(`/sellerdashboard/${value}`);
     }
   };
 
-  console.log(editdata)
-  
+  console.log(editdata);
+
   useEffect(() => {
     if (
       currenttab === "registerproduct" ||
@@ -142,7 +144,7 @@ function SellerDashboard() {
           )}
 
           {currenttab === "addproduct" && (
-            <UpdateProduct type="Add Product Details" />
+            <UpdateProduct type="Add Product Details" pid={pid} />
           )}
           {currenttab === "addsuccess" && <SuccessPage msg={addsuccess} />}
 
@@ -163,4 +165,3 @@ function SellerDashboard() {
 }
 
 export default SellerDashboard;
-

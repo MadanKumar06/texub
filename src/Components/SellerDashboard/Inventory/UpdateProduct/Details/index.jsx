@@ -12,11 +12,11 @@ function Index({
   index,
   deleterow,
   hubDropDownValues,
-  hubList,
-  setpdetails,
   count,
   hubname,
   currentdata,
+  isDetailTabValid,
+  setIsDetailTabValid,
   setcount,
   settest,
 }) {
@@ -54,7 +54,6 @@ function Index({
   // }
 
   const changevalues = (value, type) => {
-    console.log(value);
     let temp = count.filter((c) => {
       if (c.count === i) {
         if (type === "price") {
@@ -173,7 +172,13 @@ function Index({
           <Autocomplete
             value={currenthub}
             name="currenthub"
-            onChange={(event, newValue) => hubselect(event, newValue)}
+            onChange={(event, newValue) => {
+              setIsDetailTabValid((prevState) => ({
+                ...prevState,
+                isHubValid: "",
+              }));
+              hubselect(event, newValue);
+            }}
             id="currenthub"
             disablePortal={true}
             options={hubDropDownValues ? hubDropDownValues : []}
@@ -193,6 +198,9 @@ function Index({
               />
             )}
           />
+          <InputLabel className="validation_error">
+            {isDetailTabValid?.isHubValid}
+          </InputLabel>
         </div>
         <div className="updateproduct_info_form">
           <InputLabel>
@@ -204,7 +212,13 @@ function Index({
               id="controllable-states-demo"
               value={currentcurrency}
               options={options ? options : []}
-              onChange={(event, newValue) => selectcurrency(event, newValue)}
+              onChange={(event, newValue) => {
+                setIsDetailTabValid((prevState) => ({
+                  ...prevState,
+                  isPriceValid: "",
+                }));
+                selectcurrency(event, newValue);
+              }}
               getOptionLabel={(option) => (option.label ? option.label : "")}
               renderInput={(params) => (
                 <TextField
@@ -224,17 +238,25 @@ function Index({
               placeholder="60,500"
               fullWidth
               type="number"
-              autoFocus={true}
               className="inputfield-box price_textbox"
               autoComplete="off"
-              value={parseInt(currentdata.price).toFixed(2)}
+              value={currentdata.price}
               InputLabelProps={{
                 shrink: false,
               }}
-              onChange={(e) => changevalues(e.target.value, "price")}
+              onChange={(e) => {
+                setIsDetailTabValid((prevState) => ({
+                  ...prevState,
+                  isPriceValid: "",
+                }));
+                changevalues(e.target.value, "price");
+              }}
               variant="outlined"
             />
           </div>
+          <InputLabel className="validation_error">
+            {isDetailTabValid?.isPriceValid}
+          </InputLabel>
         </div>
         <div className="updateproduct_info_form">
           <InputLabel>
@@ -246,15 +268,24 @@ function Index({
             className="inputfield-box"
             placeholder="280"
             fullWidth
-            autoFocus={true}
+            type="number"
             autoComplete="off"
             value={currentdata?.in_stock}
             InputLabelProps={{
               shrink: false,
             }}
-            onChange={(e) => changevalues(e.target.value, "instock")}
+            onChange={(e) => {
+              setIsDetailTabValid((prevState) => ({
+                ...prevState,
+                isInStockValid: "",
+              }));
+              changevalues(e.target.value, "instock");
+            }}
             variant="outlined"
           />
+          <InputLabel className="validation_error">
+            {isDetailTabValid?.isInStockValid}
+          </InputLabel>
         </div>
         <div className="updateproduct_info_form">
           <InputLabel>
@@ -266,15 +297,23 @@ function Index({
             placeholder="05 Days"
             className="inputfield-box"
             fullWidth
-            autoFocus={true}
             autoComplete="off"
             value={currentdata?.eta}
             InputLabelProps={{
               shrink: false,
             }}
-            onChange={(e) => changevalues(e.target.value, "eta")}
+            onChange={(e) => {
+              setIsDetailTabValid((prevState) => ({
+                ...prevState,
+                isETAValid: "",
+              }));
+              changevalues(e.target.value, "eta");
+            }}
             variant="outlined"
           />
+          <InputLabel className="validation_error">
+            {isDetailTabValid?.isETAValid}
+          </InputLabel>
         </div>
         <div className="updateproduct_info_form">
           <InputLabel>
@@ -286,15 +325,24 @@ function Index({
             className="inputfield-box"
             placeholder="50"
             fullWidth
-            autoFocus={true}
+            type="number"
             autoComplete="off"
             value={currentdata?.moq}
             InputLabelProps={{
               shrink: false,
             }}
-            onChange={(e) => changevalues(e.target.value, "moq")}
+            onChange={(e) => {
+              setIsDetailTabValid((prevState) => ({
+                ...prevState,
+                isMoqValid: "",
+              }));
+              changevalues(e.target.value, "moq");
+            }}
             variant="outlined"
           />
+          <InputLabel className="validation_error">
+            {isDetailTabValid?.isMoqValid}
+          </InputLabel>
         </div>
       </div>
 
