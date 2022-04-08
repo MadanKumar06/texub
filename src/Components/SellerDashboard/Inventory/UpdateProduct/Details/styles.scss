@@ -4,6 +4,12 @@
   }
   .updateproduct_info_form {
     width: 100%;
+    .validation_error{
+      color: red !important;
+      font-size: 14px !important;
+      font-weight: 400 !important;
+      margin-top: 0em !important;
+    }
     .asterisk {
       color: red;
     }

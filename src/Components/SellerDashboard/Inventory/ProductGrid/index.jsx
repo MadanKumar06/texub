@@ -53,7 +53,7 @@ function Index({ registerproduct, gridData }) {
           return (
             <div
               className="productGrid__action"
-              onClick={() => registerproduct("addproduct", value)}
+              onClick={() => registerproduct("addproduct", value,"addNew")}
             >
               Sell Yours
             </div>

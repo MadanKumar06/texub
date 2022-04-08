@@ -8,11 +8,16 @@ import axios from "axios";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import Constant from "../../../../Constant";
+import { useStateValue } from "../../../../store/state";
+import swal from "sweetalert2";
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
 function Index({ type, pid }) {
+  const [{}, dispatch] = useStateValue();
+  const history = useNavigate();
+
   const [count, setcount] = useState([
     {
       count: 0,
@@ -45,30 +50,101 @@ function Index({ type, pid }) {
 
   const [country, setcountry] = useState([]);
   const [restricts_country, setRestricts_country] = useState([]);
-  const { navigate } = useNavigate();
-  const { id } = useParams();
+  const { id, currenttab } = useParams();
   const [dummyState, setDummyState] = useState(1);
-  const countincrease = () => {
-    setDummyState(dummyState + 1);
-    setcount((data) => [
-      ...data,
-      {
-        assign_id: "",
-        currency_id: "",
-        eta: "",
-        hub_id: "",
-        in_stock: "",
-        moq: "",
-        mp_id: "",
-        price: "",
-        igst: "",
-        cgst: "",
-        sgst: "",
-        count: dummyState,
-      },
-    ]);
-  };
+  const [updateform, setupdateform] = useState({
+    product_length: "",
+    width: "",
+    height: "",
+    weight: "",
+    warranty_days: "",
+    notes: "",
+  });
 
+  const [restrictvalue, setrestrictvalue] = useState([
+    { label: "Yes", value: "Yes" },
+    { label: "No", value: "No" },
+  ]);
+  const [isDetailTabValid, setIsDetailTabValid] = useState({
+    isHubValid: "",
+    isPriceValid: "",
+    isInStockValid: "",
+    isMoqValid: "",
+    isETAValid: "",
+  });
+  const countincrease = () => {
+    if (count?.length) {
+      let temp = count?.slice(-1);
+      var errorHandle = false;
+      if (!temp[0]?.hub_id) {
+        document.getElementById("isHubValid")?.focus();
+        setIsDetailTabValid((prevState) => ({
+          ...prevState,
+          isHubValid: "Please select the hub.",
+        }));
+        errorHandle = true;
+      }
+      if (!temp[0]?.price) {
+        document.getElementById("isPriceValid")?.focus();
+        setIsDetailTabValid((prevState) => ({
+          ...prevState,
+          isPriceValid: "Please enter the price.",
+        }));
+        errorHandle = true;
+      } else if (!temp[0]?.currency_id) {
+        document.getElementById("isPriceValid")?.focus();
+        setIsDetailTabValid((prevState) => ({
+          ...prevState,
+          isPriceValid: "Please select the currency.",
+        }));
+        errorHandle = true;
+      }
+      if (!temp[0]?.in_stock) {
+        document.getElementById("isInStockValid")?.focus();
+        setIsDetailTabValid((prevState) => ({
+          ...prevState,
+          isInStockValid: "Please enter the instock.",
+        }));
+        errorHandle = true;
+      }
+      if (!temp[0]?.moq) {
+        document.getElementById("isMoqValid")?.focus();
+        setIsDetailTabValid((prevState) => ({
+          ...prevState,
+          isMoqValid: "Please enter the moq.",
+        }));
+        errorHandle = true;
+      }
+      if (!temp[0]?.eta) {
+        document.getElementById("isETAValid")?.focus();
+        setIsDetailTabValid((prevState) => ({
+          ...prevState,
+          isETAValid: "Please enter the eta.",
+        }));
+        errorHandle = true;
+      }
+      if (!errorHandle) {
+        setDummyState(dummyState + 1);
+        setcount((data) => [
+          ...data,
+          {
+            assign_id: "",
+            currency_id: "",
+            eta: "",
+            hub_id: "",
+            in_stock: "",
+            moq: "",
+            mp_id: "",
+            price: "",
+            igst: "",
+            cgst: "",
+            sgst: "",
+            count: dummyState,
+          },
+        ]);
+      }
+    }
+  };
   const [inputValidation, setInputValidation] = useState({
     conditions: "",
     warranty: "",
@@ -122,19 +198,19 @@ function Index({ type, pid }) {
       }));
       errorHandle = true;
     }
-    // if (
-    //   !updateform?.product_length ||
-    //   !updateform?.heigth ||
-    //   !updateform?.width ||
-    //   !updateform?.weight
-    // ) {
-    //   document.getElementById("dimension")?.focus();
-    //   setInputValidation((prevState) => ({
-    //     ...prevState,
-    //     dimension: "Please select the dimension.",
-    //   }));
-    //   errorHandle = true;
-    // }
+    if (
+      !updateform?.product_length ||
+      !updateform?.height ||
+      !updateform?.width ||
+      !updateform?.weight
+    ) {
+      document.getElementById("dimension")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        dimension: "Please select the dimension.",
+      }));
+      errorHandle = true;
+    }
     if (!updateform?.notes) {
       document.getElementById("notes")?.focus();
       setInputValidation((prevState) => ({
@@ -148,8 +224,6 @@ function Index({ type, pid }) {
       updateProduct();
     }
   };
-
-  console.log(updateProductList);
   useEffect(() => {
     if (type !== "Update New Product Details") return;
     const data = async () => {
@@ -228,6 +302,7 @@ function Index({ type, pid }) {
       ...prevState,
       width: olddata?.width,
       height: olddata?.height,
+      notes: olddata?.description,
       product_length: olddata?.product_length,
       weight: olddata?.weight,
       warranty_days: olddata?.warranty_days,
@@ -327,18 +402,6 @@ function Index({ type, pid }) {
     }
   };
 
-  const [hubList, setHubList] = useState();
-
-  const [pdetails, setpdetails] = useState([]);
-  const [updateform, setupdateform] = useState({
-    product_length: "",
-    width: "",
-    height: "",
-    weight: "",
-    warranty_days: "",
-    notes: "",
-  });
-
   const updateProduct = async () => {
     let productdata = [];
     count.filter((data) => {
@@ -356,9 +419,14 @@ function Index({ type, pid }) {
     let user = JSON.parse(localStorage.getItem("userdata"));
     let productDetailSave = productdata?.filter((itm) => !itm?.assign_id);
     let productDetailEdit = productdata?.filter((itm) => itm?.assign_id);
+
     if (productDetailSave?.length) {
       try {
-        const updatepform = await axios({
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: true,
+        });
+        const updateformApi = await axios({
           method: "post",
           url: `${Constant.baseUrl()}${"/saveProductPrice"}`,
           headers: {
@@ -375,8 +443,9 @@ function Index({ type, pid }) {
               warranty_country: warrantycountries.toString(),
               warranty_days: updateform?.warranty_days,
               packing_details: updateProductList?.packing?.value,
-              // no_pieces_per: updateProductList?.carton_packing,
-              no_pieces_per: 125,
+              no_pieces_per: updateProductList?.carton_packing
+                ? updateProductList?.carton_packing
+                : updateProductList?.pallet_packing,
               width: updateform?.width,
               height: updateform?.height,
               product_length: updateform?.product_length,
@@ -389,18 +458,56 @@ function Index({ type, pid }) {
             },
           },
         });
-        if (type === "Add Product Details") {
-          navigate("/sellerdashboard/addsuccess");
+        // if (type === "Add Product Details") {
+        //   navigate("/sellerdashboard/addsuccess");
+        // } else {
+        //   navigate("/sellerdashboard/updatesuccess");
+        // }
+
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+        if (updateformApi?.data?.[0]?.status) {
+          swal.fire({
+            text: `${updateformApi?.data?.[0]?.message}`,
+            icon: "success",
+            showConfirmButton: false,
+            timer: 3000,
+          });
+          if (currenttab === "addproduct") {
+            setTimeout(() => {
+              history("/sellerdashboard/inventory");
+            }, 3000);
+          }
         } else {
-          navigate("/sellerdashboard/updatesuccess");
+          swal.fire({
+            text: `${updateformApi?.data?.[0]?.message}`,
+            icon: "error",
+            showConfirmButton: false,
+            timer: 3000,
+          });
         }
-      } catch (e) {
-        console.log(e);
+      } catch (error) {
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+        swal.fire({
+          text: `${error?.response?.data?.message || error.message}`,
+          icon: "error",
+          showConfirmButton: false,
+          timer: 3000,
+        });
       }
     }
     if (productDetailEdit?.length) {
       try {
-        const updatepform = await axios({
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: true,
+        });
+        const updateformApi = await axios({
           method: "post",
           url: `${Constant.baseUrl()}${"/editProductPrice"}`,
           headers: {
@@ -431,21 +538,42 @@ function Index({ type, pid }) {
             },
           },
         });
-        if (type === "Add Product Details") {
-          navigate("/sellerdashboard/addsuccess");
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+        if (updateformApi?.data?.[0]?.status) {
+          swal.fire({
+            text: `${updateformApi?.data?.[0]?.message}`,
+            icon: "success",
+            showConfirmButton: false,
+            timer: 3000,
+          });
+          setTimeout(() => {
+            history("/sellerdashboard/inventory");
+          }, 3000);
         } else {
-          navigate("/sellerdashboard/updatesuccess");
+          swal.fire({
+            text: `${updateformApi?.data?.[0]?.message}`,
+            icon: "error",
+            showConfirmButton: false,
+            timer: 3000,
+          });
         }
-      } catch (e) {
-        console.log(e);
+      } catch (error) {
+        swal.fire({
+          text: `${error?.response?.data?.message || error.message}`,
+          icon: "error",
+          showConfirmButton: false,
+          timer: 3000,
+        });
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
       }
     }
   };
-
-  const [restrictvalue, setrestrictvalue] = useState([
-    { label: "Yes", value: "Yes" },
-    { label: "No", value: "No" },
-  ]);
 
   useEffect(async () => {
     try {
@@ -508,9 +636,9 @@ function Index({ type, pid }) {
                 countincrease={countincrease}
                 i={data.count}
                 deleterow={deleterow}
+                isDetailTabValid={isDetailTabValid}
+                setIsDetailTabValid={setIsDetailTabValid}
                 hubDropDownValues={dropdownListFromApi?.dropDownList?.hub_list}
-                hubList={hubList}
-                setpdetails={setpdetails}
                 setcount={setcount}
                 count={count}
                 hubname={data?.hubname}
@@ -664,7 +792,7 @@ function Index({ type, pid }) {
                 name="warranty_days"
                 placeholder="90 Days"
                 fullWidth
-                autoFocus={true}
+                type="number"
                 autoComplete="off"
                 className="inputfield-box"
                 value={updateform?.warranty_days}
@@ -733,7 +861,7 @@ function Index({ type, pid }) {
                   name="carton_packing"
                   placeholder="10"
                   fullWidth
-                  autoFocus={true}
+                  type="number"
                   autoComplete="off"
                   className="inputfield-box"
                   value={updateProductList?.carton_packing}
@@ -754,7 +882,7 @@ function Index({ type, pid }) {
                   name="pallet_packing"
                   placeholder="10"
                   fullWidth
-                  autoFocus={true}
+                  type="number"
                   autoComplete="off"
                   className="inputfield-box"
                   value={updateProductList?.pallet_packing}
@@ -781,7 +909,7 @@ function Index({ type, pid }) {
               </InputLabel>
               <div className="dimensions_input">
                 <TextField
-                  id="product_length"
+                  id="dimension"
                   name="product_length"
                   placeholder="Length"
                   fullWidth
@@ -804,7 +932,7 @@ function Index({ type, pid }) {
                   variant="outlined"
                 />
                 <TextField
-                  id="width"
+                  id="dimension"
                   name="width"
                   placeholder=" Width"
                   fullWidth
@@ -827,7 +955,7 @@ function Index({ type, pid }) {
                   variant="outlined"
                 />
                 <TextField
-                  id="height"
+                  id="dimension"
                   name="height"
                   placeholder="Height"
                   fullWidth
@@ -850,7 +978,7 @@ function Index({ type, pid }) {
                   variant="outlined"
                 />
                 <TextField
-                  id="weight"
+                  id="dimension"
                   name="weight"
                   placeholder="Weight"
                   className="inputfield-box weight_field"
@@ -923,7 +1051,8 @@ function Index({ type, pid }) {
             <div className="input_separator">
               <div className="updateproduct_inputfields info ">
                 <InputLabel>
-                  Region<small className="asterisk">*</small>
+                  Region
+                  {/* <small className="asterisk">*</small> */}
                 </InputLabel>
                 <Autocomplete
                   multiple
@@ -974,7 +1103,8 @@ function Index({ type, pid }) {
               </div>
               <div className="updateproduct_inputfields info">
                 <InputLabel>
-                  Country<small className="asterisk">*</small>
+                  Country
+                  {/* <small className="asterisk">*</small> */}
                 </InputLabel>
 
                 <Autocomplete
@@ -1025,7 +1155,7 @@ function Index({ type, pid }) {
               Special Notes<small className="asterisk">*</small>
             </InputLabel>
             <TextField
-              id="outlined-multiline-static_2"
+              id="notes"
               fullWidth
               multiline
               rows={5}
@@ -1037,6 +1167,7 @@ function Index({ type, pid }) {
                   // asterisk: "asterisk",
                 },
               }}
+              value={updateform?.notes}
               variant="outlined"
               onChange={(e) => {
                 setupdateform((prevState) => ({
