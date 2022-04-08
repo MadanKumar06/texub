@@ -4,9 +4,12 @@ import "./styles.scss";
 import { Clear } from "@mui/icons-material";
 import PDPTopHeader from "./PDPTopHeader";
 import PDPTable from "./PDPTable";
-import { Link } from "react-router-dom";
-import { table_one_data, table_two_data } from "./PDPTable/TableData";
+import { useNavigate } from "react-router-dom";
+import { table_two_data } from "./PDPTable/TableData";
 import { useStateValue } from "../../store/state";
+import Constant from "../../Constant";
+import axios from "axios";
+import swal from "sweetalert2";
 
 import header_bottom_image_1 from "../../Assets/Productlist/warranty.png";
 import header_bottom_image_2 from "../../Assets/Productlist/Delivery.png";
@@ -18,7 +21,8 @@ import invoice_image from "../../Assets/CommonImage/invoice.png";
 
 const PdpPopup = () => {
   const [open, setOpen] = useState(true);
-  const [{}, dispatch] = useStateValue();
+  const history = useNavigate();
+  const [{ pdpPopUpOpenClose }, dispatch] = useStateValue();
   const [moreOffers, setMoreOffers] = useState({ tableone: 3, tabletwo: 3 });
   const [tableData, setTableData] = useState({
     tableone: "",
@@ -33,18 +37,107 @@ const PdpPopup = () => {
     });
   };
   useEffect(() => {
-    let tempTable_one = table_one_data?.slice(0, moreOffers?.tableone);
-    let tempTable_two = table_two_data?.slice(0, moreOffers?.tabletwo);
-    setTableData({ tableone: tempTable_one, tabletwo: tempTable_two });
+    if (pdpPopUpOpenClose?.data?.tableData?.[0]?.sub_products?.length) {
+      let sortData = pdpPopUpOpenClose?.data?.tableData?.[0]?.sub_products.sort(
+        (a, b) => (a.price > b.price ? 1 : -1)
+      );
+      console.log(sortData);
+      let tempTable_one = sortData?.slice(0, moreOffers?.tableone);
+      let tempTable_two = table_two_data?.slice(0, moreOffers?.tabletwo);
+      setTableData({ tableone: tempTable_one, tabletwo: tempTable_two });
+    }
   }, [moreOffers]);
   const MoreOfferChange = () => {
-    let table_one = table_one_data?.length;
+    let table_one =
+      pdpPopUpOpenClose?.data?.tableData?.[0]?.sub_products?.length;
     let table_two = table_two_data?.length;
     setMoreOffers({
       tableone: table_one,
       tabletwo: table_two,
       show_scroll: "show_scroll",
     });
+  };
+
+  //APi call to addtocart
+  const AddToCartAndPendingInvoice = (info) => {
+    const user = JSON.parse(localStorage.getItem("userdata"));
+    dispatch({
+      type: "SET_IS_LOADING",
+      value: true,
+    });
+    let data = {
+      pendingProducts: {
+        store_id: 1,
+        customer_id: user?.id,
+        productId: pdpSellerData?.event?.product_id,
+        price: pdpSellerData?.event?.price,
+        qty: pdpSellerData?.event?.moq,
+        hub: pdpSellerData?.event?.hub_id,
+        currency: pdpSellerData?.event?.currency_id,
+        sellerId: pdpSellerData?.event?.seller_id,
+      },
+    };
+    axios
+      .post(
+        `${Constant.baseUrl()}${
+          info === "add_to_cart" ? `/addToCart` : `/addToPendingInvoice`
+        }`,
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${JSON.parse(
+              localStorage.getItem("customer_auth")
+            )}`,
+          },
+        }
+      )
+      .then((res) => {
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+        if (res?.data?.[0]?.status) {
+          swal.fire({
+            text: `${res.data?.[0]?.message}`,
+            icon: "success",
+            showConfirmButton: false,
+            timer: 3000,
+          });
+          dispatch({
+            type: "SET_PDP_POPUP_OPEN_CLOSE",
+            value: false,
+          });
+          if (info === "add_to_cart") {
+            setTimeout(() => {
+              history("/mycart");
+            }, 1000 / 2);
+          } else {
+            setTimeout(() => {
+              history("/pending-invoice");
+            }, 1000 / 2);
+          }
+        } else {
+          swal.fire({
+            text: `${res.data?.[0]?.message}`,
+            icon: "error",
+            showConfirmButton: false,
+            timer: 3000,
+          });
+        }
+      })
+      .catch((error) => {
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+        swal.fire({
+          text: `${error?.response?.data?.message || error.message}`,
+          icon: "error",
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      });
   };
   return (
     <Modal
@@ -66,11 +159,14 @@ const PdpPopup = () => {
             <PDPTopHeader
               setPdpSellerData={setPdpSellerData}
               pdpSellerData={pdpSellerData}
+              dataFromPLP={pdpPopUpOpenClose?.data}
             />
             <div className="pdp_header_bottom_container">
               <div className="header_bottom_image_container">
                 <img src={header_bottom_image_1} alt="" />
-                <span>Vendor Warranty For 30 Days</span>
+                <span>
+                  Vendor Warranty For {pdpSellerData?.warranty_days} Days
+                </span>
               </div>
               <div className="header_bottom_image_container">
                 <img src={header_bottom_image_2} alt="" />
@@ -78,7 +174,8 @@ const PdpPopup = () => {
               </div>
               <div className="header_bottom_image_container">
                 <img src={header_bottom_image_3} alt="" />
-                <span>Retail Box Packaging</span>
+                <span> {pdpSellerData?.packing_details}</span>:{" "}
+                <span> {pdpSellerData?.no_of_pieces} No of pieces</span>
               </div>
             </div>
           </div>
@@ -88,11 +185,13 @@ const PdpPopup = () => {
                 tableData={tableData}
                 pdpSellerData={pdpSellerData}
                 setPdpSellerData={setPdpSellerData}
+                dataFromPLP={pdpPopUpOpenClose?.data}
               />
             )}
           </div>
           <div className="modal_bottom_container">
-            {(table_one_data?.length > 3 || table_two_data?.length > 3) && (
+            {(pdpPopUpOpenClose?.data?.tableData?.length > 3 ||
+              table_two_data?.length > 3) && (
               <div
                 className="modal_bottom_image_container"
                 onClick={() => MoreOfferChange()}
@@ -107,18 +206,22 @@ const PdpPopup = () => {
               <span>Add to Wishlist</span>
             </div>
             <div className="modal_bottom_button_main">
-              <Link to="/mycart">
-                <Button className="modal_bottom_button_add_to_cart">
-                  <img src={shopping_cart} alt="" />
-                  <span>Add to Cart</span>
-                </Button>
-              </Link>
-              <Link to="/pending-invoice">
-                <Button className="modal_bottom_button_pending_invoice">
-                  <img width="21px" src={invoice_image} alt="" />
-                  <span> Add to Pending Invoice</span>
-                </Button>
-              </Link>
+              <Button
+                className="modal_bottom_button_add_to_cart"
+                // onClick={() => handleRouteOnButtonClick("add_to_cart")}
+                onClick={() => AddToCartAndPendingInvoice("add_to_cart")}
+              >
+                <img src={shopping_cart} alt="" />
+                <span>Add to Cart</span>
+              </Button>
+              <Button
+                className="modal_bottom_button_pending_invoice"
+                // onClick={() => handleRouteOnButtonClick("pending_invoice")}
+                onClick={() => AddToCartAndPendingInvoice("pending_invoice")}
+              >
+                <img width="21px" src={invoice_image} alt="" />
+                <span> Add to Pending Invoice</span>
+              </Button>
             </div>
           </div>
           <div className="pdp_modal_footer">

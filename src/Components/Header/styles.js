@@ -58,7 +58,7 @@ const styles = (theme) => ({
     },
   },
   title: {
-    fontSize: "18px !important",
+    fontSize: "16px !important",
     letterSpacing: "0.6px !important",
     fontWeight: "600 !important",
     marginRight: "24px",
@@ -78,11 +78,11 @@ const styles = (theme) => ({
       },
     },
     "@media (max-width:1660px)": {
-      fontSize: "16px !important",
+      fontSize: "15px !important",
       marginRight: "8px",
     },
     "@media (max-width:1300px)": {
-      fontSize: "16px !important",
+      fontSize: "15px !important",
     },
     "@media (max-width:1080px)": {
       fontSize: "14px !important",

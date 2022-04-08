@@ -24,16 +24,18 @@ const styles = (theme) => ({
   },
   download_link: {
     marginTop: "3em",
-    color: "#002D56",
-    textDecoration: "underline",
-    fontSize: "22px",
-    letterSpacing: "0.66px",
-    textTransform: "capitalize",
+    "& a": {
+      color: "#002D56",
+      textDecoration: "none",
+      fontSize: "22px",
+      letterSpacing: "0.66px",
+      textTransform: "capitalize",
+      "@media (max-width:1660px)": {
+        fontSize: "16px",
+      },
+    },
     "& .MuiTypography-root": {
       fontWeight: "600",
-    },
-    "@media (max-width:1660px)": {
-      fontSize: "16px",
     },
   },
   validation_error: {

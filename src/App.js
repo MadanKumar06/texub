@@ -1,5 +1,5 @@
-import React from "react";
-import { BrowserRouter as  Router, Routes, Route } from "react-router-dom";
+import React, { useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
 import { useStateValue } from "./store/state";
@@ -25,10 +25,11 @@ import BuyerDashboard from "./Pages/BuyerDashboard";
 import SellerProfile from "./Pages/SellerProfile";
 import PendingInvoice from "./Pages/PendingInvoice";
 import Checkout from "./Pages/Checkout";
+import KYCDetails from "./Pages/KYCDetails";
 
 //Footer section page
 import Selleradvantage from "./Pages/CMS/Services/Selleradvantage";
-import Buyeradvantage  from "./Pages/CMS/Services/Buyeradvantage";
+import Buyeradvantage from "./Pages/CMS/Services/Buyeradvantage";
 import Career from "./Pages/CMS/Services/Career";
 import { Training } from "./Pages/CMS/Services/Training";
 import { Termsofuse } from "./Pages/CMS/Company/Termsofuse/Termsofuse";
@@ -38,25 +39,44 @@ import Legal from "./Pages/CMS/Resources/Legal";
 import GDPR from "./Pages/CMS/Resources/GDPR";
 import Privacypolicy from "./Pages/CMS/Company/Privacypolicy";
 import RRpolicy from "./Pages/CMS/Company/RRpolicy";
-import Accountinfo from './Components/BuyerDashboard/MyProfile/Accountinfo'
+import Accountinfo from "./Components/BuyerDashboard/MyProfile/Accountinfo";
 
 //coming soon page
-import ComingSoon from './Pages/ComingSoon'
+import ComingSoon from "./Pages/ComingSoon";
 //popup component
-import KYCformSectionLeft from './Pages/Register/KYCform/SectionLeft'
+import KYCformSectionLeft from "./Pages/Register/KYCform/SectionLeft";
 import PDPpopUp from "./Pages/PDPpopUp";
-import SignIn from './Pages/SignIn/SiginPopUp/SectionLeft'
-import RegisterPopup from './Pages/Register/RegisterPopup/SectionLeft'
+import SignIn from "./Pages/SignIn/SiginPopUp/SectionLeft";
+import RegisterPopup from "./Pages/Register/RegisterPopup/SectionLeft";
 import MiniCartList from "./Pages/MiniCart/MiniCartList";
-import SimpleBackdrop from "./Components/LoaderBackDrop"
+import SimpleBackdrop from "./Components/LoaderBackDrop";
 
 const App = () => {
-  const [{kycOpenClose,pdpPopUpOpenClose,registerOpenClose,miniCartOpenClose, isLoading,
-    signInOpenClose}, dispatch] = useStateValue();
-  return (
-    <div className="App">
-      <ThemeProvider theme={theme}>
-        <Router>
+  const [
+    {
+      kycOpenClose,
+      pdpPopUpOpenClose,
+      registerOpenClose,
+      miniCartOpenClose,
+      isLoading,
+      signInOpenClose,
+    },
+    dispatch,
+  ] = useStateValue();
+  let isKYCSubmitted = JSON.parse(localStorage.getItem("userdata"));
+  useEffect(() => {
+    if (isKYCSubmitted) {
+        isKYCSubmitted?.custom_attributes?.[3]?.value === "0" &&
+        dispatch({
+          type: "SET_KYC_OPEN_CLOSE",
+          value: true,
+        });
+    }
+  }, []);
+  return(
+   <div className="App">
+   <ThemeProvider theme={theme}>
+        <Router >
           <ScrollToTop/>
           <Header />
           <Userdetails />
@@ -90,13 +110,15 @@ const App = () => {
 
             {/* user section */}
             <Route path="/sellerdashboard/:currenttab" element={ <> <SellerDashboard /> <ScrollToTop/> <Footer /></> } exact />
+            <Route path="/sellerdashboard/:currenttab/:id" element={ <> <SellerDashboard /> <ScrollToTop/> <Footer /></> } exact />
             <Route path="/buyerdashboard/:currenttab" element={ <> <BuyerDashboard />  <ScrollToTop/><Footer /> </> } exact />
-            <Route path="/sellerprofile" element={ <> <SellerProfile /> <ScrollToTop/> <Footer /></> } exact />
+            <Route path="/sellerprofile/:id" element={ <> <SellerProfile /> <ScrollToTop/> <Footer /></> } exact />
             <Route path="/pending-invoice" element={ <> <PendingInvoice /> <ScrollToTop/> <Footer /> </> } exact />
             <Route path="/checkout" element={ <> <Checkout /> <ScrollToTop/> <Footer /> </> } exact />
             <Route path="/mycart" element={ <> <Mycart /> <ScrollToTop/> <Footer /> </> } exact />
             <Route path="/thankyou/:type" element={ <> <ThankYouPage />  <ScrollToTop/><Footer /> </> } exact ></Route>
             <Route path="/edit" element={ <> <Accountinfo /> <ScrollToTop/> <Footer /> </> } exact />
+            <Route path="/kycdetails" element={ <> <KYCDetails /> <ScrollToTop/> <Footer /> </> } exact />
             
           </Routes>
 
@@ -110,8 +132,8 @@ const App = () => {
       
         </Router>
       </ThemeProvider>
-    </div>
-  );
+  </div>
+  )
 };
 
 export default App;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./styles.scss";
 import bg from "../../Assets/sellerdashboard/bg.png";
 import { Paper, IconButton, InputBase } from "@mui/material";
@@ -7,22 +7,45 @@ import notification from "../../Assets/sellerdashboard/notification.png";
 import hp from "../../Assets/sellerdashboard/inventory/hp.png";
 import MUITable from "../../Components/Common/MUITable";
 import Pagination from "../../Components/Pagination";
+import axios from "axios";
+import Constant from "../../Constant";
+import { useParams } from "react-router-dom";
 
-function Index() {
+const Index = () => {
+  const { id } = useParams();
   const [tableData, setTableData] = useState([]);
+  const [serllerProfileList, setSellerProfileList] = useState([]);
 
-  const PaginateDataSplit = (event) => {
-    setTableData(event);
-  };
   const sidemenu = [
     { label: "Seller Code", value: "INDS20222" },
     { label: "Seller Country", value: "INDIA" },
     { label: "Completed Orders", value: 118 },
   ];
 
+  useEffect(() => {
+    let data = {
+      sellercode: id,
+    };
+    axios
+      .post(Constant.baseUrl() + "/getSellerList", data, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        setSellerProfileList(res?.data);
+      })
+      .catch((error) => {});
+  }, []);
+
+  console.log(serllerProfileList)
+
+  const PaginateDataSplit = (event) => {
+    setTableData(event);
+  };
   const columns = [
     {
-      name: "logo",
+      name: "product_image",
       label: " ",
       options: {
         customBodyRender: (value) => {
@@ -34,11 +57,11 @@ function Index() {
         },
       },
     },
-    { name: "productname", label: "PRODUCT NAME" },
-    { name: "category", label: "CATEGORY" },
+    { name: "product_name", label: "PRODUCT NAME" },
+    { name: "category_name", label: "CATEGORY" },
     { name: "sku", label: "SKU" },
     {
-      name: "instock",
+      name: "in_stock",
       label: "IN STOCK",
       options: {
         customBodyRender: (value) => {
@@ -47,7 +70,7 @@ function Index() {
       },
     },
     {
-      name: "moq",
+      name: "product_moq",
       label: "MOQ",
       options: {
         customBodyRender: (value) => {
@@ -56,7 +79,7 @@ function Index() {
       },
     },
     {
-      name: "myprice",
+      name: "price",
       label: "MY PRICE",
       options: {
         customBodyRender: (value) => {
@@ -64,7 +87,7 @@ function Index() {
         },
       },
     },
-    { name: "hub", label: "HUB" },
+    { name: "product_hub", label: "HUB" },
     {
       name: "rank",
       label: "RANK",
@@ -73,7 +96,7 @@ function Index() {
           return (
             <div className="sellerprofile__rank">
               {value}
-              <p>th</p>
+              {/* <p>th</p> */}
             </div>
           );
         },
@@ -124,7 +147,7 @@ function Index() {
       <div className="sellerprofile__bg">
         <div className="sellerprofile__sidebar">
           <ul>
-            {sidemenu.map((data, i) => (
+            {/* {sidemenu.map((data, i) => (
               <li
                 key={i}
                 className={`${data.label === "Seller Code" && "bgcolor1"}
@@ -135,7 +158,26 @@ function Index() {
                 <p className="sellerprofile__label">{data.label}</p>
                 <p className="sellerprofile__value">{data.value}</p>
               </li>
-            ))}
+            ))} */}
+            <li className="bgcolor1">
+              <p className="sellerprofile__label">Seller Code</p>
+              <p className="sellerprofile__value">
+                {id}
+              </p>
+            </li>
+            <li className="bgcolor2">
+              <p className="sellerprofile__label">Seller Country</p>
+              <p className="sellerprofile__value">
+                {serllerProfileList?.[0]?.seller_country}
+              </p>
+            </li>
+            <li className="bgcolor2">
+              <p className="sellerprofile__label">Completed Orders</p>
+              <p className="sellerprofile__value">
+                {/* {serllerProfileList?.[0].seller_country} */}
+                0
+              </p>
+            </li>
           </ul>
         </div>
         <div className="sellerprofile__main">
@@ -166,15 +208,19 @@ function Index() {
             options={options}
             className="sellerprofile__table"
           />
-          <Pagination
-            PaginateData={PaginateDataSplit}
-            DataList={table}
-            PagePerRow={10}
-          />
+          {serllerProfileList?.[1]?.length && (
+            <Pagination
+              PaginateData={PaginateDataSplit}
+              DataList={
+                serllerProfileList?.[1]?.length ? serllerProfileList?.[1] : []
+              }
+              PagePerRow={10}
+            />
+          )}
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default Index;

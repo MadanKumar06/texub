@@ -11,38 +11,30 @@ import IMG2 from "../../../../Assets/FAQ/group 6.svg";
 
 const FAQ = ({ classes }) => {
   const [description, setdescription] = useState(false);
-  const [toggle, settoggle] = useState(true); 
+  const [toggle, settoggle] = useState(false);
   const text = (value) => {
-    setdescription(value)
-    settoggle(false)
-     console.log(toggle)
-  }
+    setdescription(value);
+    settoggle(value);
+    console.log(toggle);
+  };
   const FAQs = [
     {
       id: 1,
-      image: IMG,
-      image1: IMG2,
       heading: "How can I order in Bulk?",
       script:
-        [{ text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam maecenas ultricies mi eget mauris pharetra et. Vel eros donec ac odio tempor orci dapibus. Purus sit amet luctus venenatis lectus magna fringilla urna. Enim nunc faucibus a pellentesque sit amet. Auctor neque vitae tempus quam pellentesque nec nam aliquam sem.", }]
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam maecenas ultricies mi eget mauris pharetra et. Vel eros donec ac odio tempor orci dapibus. Purus sit amet luctus venenatis lectus magna fringilla urna. Enim nunc faucibus a pellentesque sit amet. Auctor neque vitae tempus quam pellentesque nec nam aliquam sem.",
     },
     {
       id: 2,
-      image: IMG,
-      image1: IMG2,
       heading: "How can I order in Bulk?",
       script:
-        [{ text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam maecenas ultricies mi eget mauris pharetra et. Vel eros donec ac odio tempor orci dapibus. Purus sit amet luctus venenatis lectus magna fringilla urna. Enim nunc faucibus a pellentesque sit amet. Auctor neque vitae tempus quam pellentesque nec nam aliquam sem.", }]
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam maecenas ultricies mi eget mauris pharetra et. Vel eros donec ac odio tempor orci dapibus. Purus sit amet luctus venenatis lectus magna fringilla urna. Enim nunc faucibus a pellentesque sit amet. Auctor neque vitae tempus quam pellentesque nec nam aliquam sem.",
     },
     {
       id: 3,
-      image: IMG,
-      image1: IMG2,
       heading: "How can I order in Bulk?",
       script:
-        [
-          { text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam maecenas ultricies mi eget mauris pharetra et. Vel eros donec ac odio tempor orci dapibus. Purus sit amet luctus venenatis lectus magna fringilla urna. Enim nunc faucibus a pellentesque sit amet. Auctor neque vitae tempus quam pellentesque nec nam aliquam sem.", }
-        ]
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam maecenas ultricies mi eget mauris pharetra et. Vel eros donec ac odio tempor orci dapibus. Purus sit amet luctus venenatis lectus magna fringilla urna. Enim nunc faucibus a pellentesque sit amet. Auctor neque vitae tempus quam pellentesque nec nam aliquam sem.",
     },
   ];
   return (
@@ -58,28 +50,29 @@ const FAQ = ({ classes }) => {
         </h3>
         <hr className="faqs_hr1"></hr>
         {FAQs.map((item) => (
-          <li key= {item.id} className="faqs_table_adding">
+          <li
+            key={item.id}
+            onClick={() => {
+              text(item.id);
+            }}
+            className="faqs_table_adding"
+          >
             <div className="faqs_qns_section">
               <img
-                src={toggle ? item.image : item.image1 }
+                src={toggle === item.id ? IMG2 : IMG}
                 alt=""
-                onClick={() => {text(item.id)
-                }
-                }
                 className="faqs_plus_img"
               ></img>
               <span className="faq_qns_heading">{item.heading}</span>
             </div>
             {description && (
               <>
-                <span>{item.id === description && item.script.map(e =>
-                  <div className="faqs_description">
-                    <div className="content">
-                      <div className="v1"></div>
-                      {e.text}
+                <span>
+                  {item.id === description && (
+                    <div className="faqs_description">
+                      <div className="content">{item.script}</div>
                     </div>
-                  </div>
-                )}
+                  )}
                 </span>
               </>
             )}

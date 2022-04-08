@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
 import "./styles.scss";
-import MUITable from '../../../Components/Common/MUITable'
+import MUITable from "../../../Components/Common/MUITable";
+import Constant from "../../../Constant";
 
 import HP from "./../../../Assets/Productlist/hp_td_icon.png";
 import Acer from "../../../Assets/Productlist/acer_icon_td.png";
 
-const PendingInvoiceTable = () => {
-  const [is_table_quantity, setIs_table_quantity] = useState(0);
+const PendingInvoiceTable = ({ pendingInvoiceList }) => {
+  const [is_table_quantity, setIs_table_quantity] = useState([]);
   useEffect(() => {
-    setIs_table_quantity(Productstablelist);
-  }, []);
+    setIs_table_quantity(pendingInvoiceList);
+  }, [pendingInvoiceList]);
   const columns = [
     {
       name: "seller_id",
@@ -25,28 +26,31 @@ const PendingInvoiceTable = () => {
       },
     },
     {
-      name: "products",
+      name: "brand",
       label: "PRODUCTS",
       options: {
-        customBodyRender: (value) => {
+        customBodyRender: (value, tableMeta) => {
+          let eta = tableMeta?.rowData[8];
+          let description = tableMeta?.rowData[7];
+          let productname = tableMeta?.rowData[6];
           return (
             <div className="pending_invoice_product_main">
               <div className="pending_invoice_product_sub_block">
                 <div className="img_block">
-                  <img src={value?.product_img} alt="" />
+                  <img src={`${Constant.imageBaseUrl()}${value}`} alt="" />
                 </div>
                 <div className="pending_invoice_right_section">
                   <div className="pending_invoice_right_section_block">
                     <p className="pending_invoice_product_name">
-                      {value?.model_name}
+                      {productname}
                     </p>
                     <span className="pending_invoice_product_eta">
-                      ETA: {value?.eta}
+                      ETA: {eta}
                     </span>
                   </div>
 
                   <p className="pending_invoice_product_description">
-                    {value?.model_desc}
+                    {description}
                   </p>
                 </div>
               </div>
@@ -86,7 +90,7 @@ const PendingInvoiceTable = () => {
       },
     },
     {
-      name: "quantity",
+      name: "qty",
       label: "QUANTITY",
       options: {
         customBodyRender: (value, tablemeta) => {
@@ -99,7 +103,7 @@ const PendingInvoiceTable = () => {
       },
     },
     {
-      name: "sub_total",
+      name: "row_total",
       label: "SUBTOTAL",
       options: {
         customBodyRender: (value) => {
@@ -111,6 +115,36 @@ const PendingInvoiceTable = () => {
               </div>
             </div>
           );
+        },
+      },
+    },
+    {
+      name: "product_name",
+      label: " ",
+      options: {
+        display: false,
+        customBodyRender: (value) => {
+          return value;
+        },
+      },
+    },
+    {
+      name: "description",
+      label: "",
+      options: {
+        display: false,
+        customBodyRender: (value) => {
+          return value;
+        },
+      },
+    },
+    {
+      name: "eta",
+      label: " ",
+      options: {
+        display: false,
+        customBodyRender: (value) => {
+          return value;
         },
       },
     },
@@ -164,9 +198,15 @@ const PendingInvoiceTable = () => {
 
   return (
     <div className="pending_invoice_table_main_container">
-      {is_table_quantity?.length && (
-        <MUITable columns={columns} table={is_table_quantity} options={options} className="pending_invoice_table_mui_datatable_main" />
-      )}
+      {is_table_quantity?.length &&
+        is_table_quantity?.map((itm) => (
+          <MUITable
+            columns={columns}
+            table={itm?.invoice_items}
+            options={options}
+            className="pending_invoice_table_mui_datatable_main"
+          />
+        ))}
     </div>
   );
 };

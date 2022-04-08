@@ -45,7 +45,7 @@ const styles = () => ({
     listStyleType: "none",
     margin: "0",
     paddingLeft: "0",
-    height: "53vh",
+    height: "27vh",
     overflowX: "auto",
     "&::-webkit-scrollbar": {
       width: "10px",
@@ -124,7 +124,7 @@ const styles = () => ({
     },
   },
   title: {
-    padding: "9px 5px !important",
+    padding: "15px 5px !important",
     textAlign: "center",
     fontSize: "20px",
     fontWeight: "600",

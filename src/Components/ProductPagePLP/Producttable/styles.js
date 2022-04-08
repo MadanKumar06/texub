@@ -56,6 +56,9 @@ const styles = () => ({
         textAlign: "center",
         fontSize: "18px",
         fontWeight: "600",
+        "@media (max-width:1680px)": {
+          fontSize: "16px"
+        },
         "@media (max-width:1399px)": {
           fontSize: "14px"
         },

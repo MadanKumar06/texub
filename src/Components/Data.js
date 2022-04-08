@@ -7,7 +7,7 @@
     {
         id:2,
         path:"/new arrival",
-        display:"New arrival"
+        display:"New arrivals"
     },
     {
         id:3,
@@ -37,12 +37,12 @@
     {
         id:8,
         path:"/tv&radio",
-        display:"Tv & Radio"
+        display:"Tv & Audio"
     },
     {
         id:9,
         path:"/bags&laggage",
-        display:"Bags & Laggage"
+        display:"Bags & Luggage"
     },
     {
         id:10,

@@ -6,10 +6,9 @@ import yellow from '../../../Assets/Aboutus/vision/yellow.png'
 import blue from '../../../Assets/Aboutus/vision/blue.png'
 import blue1 from '../../../Assets/Aboutus/vision/blue1.png'
 
+
 import right from '../../../Assets/Aboutus/businessmodel/right.png'
-import buyer from '../../../Assets/Aboutus/businessmodel/buyer.png'
-import seller from '../../../Assets/Aboutus/businessmodel/seller.png'
-import serviceprovider from '../../../Assets/Aboutus/businessmodel/serviceprovider.png'
+import flow from '../../../Assets/Aboutus/businessmodel/flow.png'
 import global from '../../../Assets/Aboutus/businessmodel/global.png'
 import effieciency from '../../../Assets/Aboutus/businessmodel/effieciency.png'
 import transparency from '../../../Assets/Aboutus/businessmodel/transparency.png'
@@ -32,12 +31,22 @@ import board1 from '../../../Assets/Aboutus/members/board1.png'
 import board2 from '../../../Assets/Aboutus/members/board2.png'
 import board3 from '../../../Assets/Aboutus/members/board3.png'
 
+import susir from '../../../Assets/Aboutus/membersimg/susir.png'
+import yasuo from '../../../Assets/Aboutus/membersimg/yasuo.png'
+import vinay from '../../../Assets/Aboutus/membersimg/vinay.png'
+import ahmed from '../../../Assets/Aboutus/membersimg/ahmed.png'
+import dummy from '../../../Assets/Aboutus/membersimg/dummy.png'
+import aishwarya from '../../../Assets/Aboutus/membersimg/aishwarya.png'
+import aditya from '../../../Assets/Aboutus/membersimg/aditya.png'
+import suchit from '../../../Assets/Aboutus/membersimg/suchit.png'
+import tushar from '../../../Assets/Aboutus/membersimg/tushar.png'
+
 function Index() {
 
     const info = [
-        {name: 'VISION', image: blue},
-        {name: 'MISSION', image: yellow},
-        {name: 'VALUES', image: blue1}
+        {name: 'VISION', image: blue, color: '#002D56'},
+        {name: 'MISSION', image: yellow, color: '#DDB363'},
+        {name: 'VALUES', image: blue1, color: '#002D56'}
     ]
 
     console.log(info)
@@ -59,6 +68,27 @@ function Index() {
         {bg: board3, name: 'Suchit Kumar', position: 'CO-FOUNDER & CEO', content: 'Over 30 years of experience in setting up business network globally. Accomplished leader with track record of success in bringing global and holistic perspective to enterprises in transformation.'},
     ]
 
+    const advisary = [
+        {image: susir,name: 'Susir Kumar', designation: 'BUSINESS, STRATEGY & FINANCE', content: 'Founded the most successful global BPO venture. Delivered significant profitability and value to all key stakeholders : employees, clients and PE. Over 3o years of experience in the services industry specializing in setting up new ventures, M&A advisory and corporate structuring. Chairman & Board member of VSF global, board member TaskUs, Refyne, Sports Village & Ingroup consulting.'},
+        {image: yasuo, name: 'Yasuo Okada', designation: 'TECHNICAL', content: 'IT Strategist and specialist in Information security, Data privacy, Compliances and Digital transformation. Expert in overseeing changes to enterprise-wide technology, cyber and risk management, culture, skills and behaviours.'}
+    ]
+
+    const mgmt = [
+        {image: vinay, name: 'Vinay Pagare', designation: 'HEAD OPERATIONS & TECHNOLOGY', content: 'IT Engineer turned entrepreneur with 12 years of experience in IT, Digital Transformation space. Vinay has proven management experience in setting up new ventures & building system driven business. Worked with TCS, BNI globally.' },
+        {image: ahmed, name: 'Ahmed Rayyan', designation: 'VICE PRESIDENTS, AMERICA', content: 'Dedicated business development professional with over 20 years of experience in market research, team management and global marketing in the Middle East and Africa. Speciality in market trends and IT development in the US. Led multiple projects for business initiatives worldwide with a focus on e-commerce.'},
+    ]
+
+    const core = [
+        {image: dummy, name: 'Name', designation: 'FINANCE HEAD'},
+        {image: dummy, name: 'Name', designation: 'FINANCE HEAD'},
+        {image: dummy, name: 'Name', designation: 'FINANCE HEAD'},
+        {image: dummy, name: 'Name', designation: 'FINANCE HEAD'},
+        {image: aditya, name: 'Aditya Shah', designation: 'HEAD STRATEGY & CORPORATE FINANCE'},
+        {image: aishwarya, name: 'Aishwarya Mishra', designation: 'LEGAL & COMPLIANCE'},
+        {image: suchit, name: 'Suchit Shah', designation: 'TAX & ACCOUNTING INDIA BUSINESS'},
+        {image: tushar, name: 'Tushar Patil', designation: 'TAX & ACCOUNTING AMERICAS'}
+    ]
+
   return (
     <div className='aboutus'>
         <div className='aboutus__banner'>
@@ -72,11 +102,12 @@ function Index() {
 
         <div className='aboutus__content'>
             <ul>
-            {info.map(data => {
-                <li key={data.image}>
+            {info.map(data => 
+                <li key={data.name}>
                     <img src={data.image} alt="" />
+                    <p style={{color: data.color}}>{data.name}</p>
                 </li>
-            })}
+            )}
             </ul>
         </div>
 
@@ -87,17 +118,9 @@ function Index() {
             </div>
             <div className='businessmodel__content'>
                 <div className='content__left'>
-                    <span className='left__top'>
-                        <img className='sp' src={serviceprovider} alt="" />
-                        <p>Safe, Stable And Seamless Digital Marketplace</p>
-                        <span>Seller and Buyer are anonymous and operate with Customer ID</span>
-                    </span>
-                    <span className='left__middle'>
-                        <img src={buyer} alt="" />
-                    </span>
-                    <span>
-                        <img src={seller} alt="" />
-                    </span>
+                    <img src={flow} alt="" />
+                    <p className='left__content1'><span>Safe, Stable And Seamless</span> Digital Marketplace</p>
+                    <p className='left__content2'>Seller and Buyer are anonymous and operate with Customer ID</p>
                 </div>
                 <div className='content__right'>
                     <img src={right} alt="" />
@@ -153,14 +176,53 @@ function Index() {
 
         <div className='aboutus__advisary'>
             <h2>Advisary Board</h2>
+            <div className='advisory__content'>
+                <ul>
+                    {advisary.map(data => <li>
+                        <div className='advisory__top'>
+                            <div>
+                                <img src={data.image} alt="" />
+                            </div>
+                            <h5>{data.name}</h5>
+                            <h2>{data.designation}</h2>
+                        </div>
+                        <p>{data.content}</p>
+                    </li>)}
+                </ul>
+            </div>
         </div>
 
         <div className='aboutus__mgmt'>
             <h2>Management Team</h2>
+            <div className='mgmt__content'>
+                <ul>
+                    {mgmt.map(data => <li>
+                        <div className='mgmt__top'>
+                            <div>
+                                <img src={data.image} alt="" />
+                            </div>
+                            <h5>{data.name}</h5>
+                            <h2>{data.designation}</h2>
+                        </div>
+                        <p>{data.content}</p>
+                    </li>)}
+                </ul>
+            </div>
         </div>
 
         <div className='aboutus__core'>
             <h2>Core Team</h2>
+            <div className='core__content'>
+                <ul>
+                    {core.map(data => <li>
+                        <div className='core__image'>
+                            <img src={data.image} alt="" />
+                        </div>
+                        <h5>{data.name}</h5>
+                        <h2>{data.designation}</h2>
+                    </li>)}
+                </ul>
+            </div>
         </div>
 
         <div className='aboutus__banner bottom'>

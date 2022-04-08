@@ -4,11 +4,18 @@ import { ArrowBackIosNew, ArrowForwardIos } from "@mui/icons-material";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import { useStateValue } from "../../../store/state";
 
 import axios from "axios";
 import Constant from "../../../Constant";
+import SimpleLoader from "../../../Components/SimpleLoader";
 
-const Productsbrands = () => {
+const Productsbrands = ({
+  setProductFetchApi,
+  productFetchApi,
+  getCategories,
+}) => {
+  const [{ isSimpleLoading }, dispatch] = useStateValue();
   const [isChange, setisChange] = useState(false);
   const brand = (value) => {
     value && setisChange(value);
@@ -38,6 +45,10 @@ const Productsbrands = () => {
   });
   useEffect(() => {
     const fetchBrandsData = () => {
+      dispatch({
+        type: "SET_IS_SIMPLE_LOADING",
+        value: true,
+      });
       axios
         .get(Constant.baseUrl() + "/getBrandList", {
           headers: {
@@ -49,89 +60,53 @@ const Productsbrands = () => {
             ...prevState,
             brands: res?.data,
           }));
+          dispatch({
+            type: "SET_IS_SIMPLE_LOADING",
+            value: false,
+          });
         })
-        .catch((err) => {});
+        .catch((err) => {
+          dispatch({
+            type: "SET_IS_SIMPLE_LOADING",
+            value: false,
+          });
+        });
     };
     fetchBrandsData();
   }, []);
-  useEffect(() => {
-    const fetchCategoryData = () => {
-      axios
-        .get(Constant.baseUrl() + "/getCategoriesList", {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
-        .then((res) => {
-          setSliderBrandsAndCategories((prevState) => ({
-            ...prevState,
-            categories: res?.data,
-          }));
-        })
-        .catch((err) => {});
-    };
-    fetchCategoryData();
-  }, []);
+  // useEffect(() => {
+  //   const fetchCategoryData = () => {
+  //     axios
+  //       .get(Constant.baseUrl() + "/getCategoriesList", {
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //       })
+  //       .then((res) => {
+  //         setSliderBrandsAndCategories((prevState) => ({
+  //           ...prevState,
+  //           categories: res?.data,
+  //         }));
+  //       })
+  //       .catch((err) => {});
+  //   };
+  //   fetchCategoryData();
+  // }, []);
   const Productsicon = {
     dots: false,
-    infinite: true,
+    infinite: false,
+    slidesToShow: 15,
+    slidesToScroll: 2,
+    initialSlide: 0,
     nextArrow: <Arrow type="next" />,
     prevArrow: <Arrow type="prev" />,
     responsive: [
       {
-        breakpoint: 1921,
+        breakpoint: 192,
         settings: {
           slidesToShow: 15,
           slidesToScroll: 2,
-          initialSlide: 8,
-        },
-      },
-      {
-        breakpoint: 1600,
-        settings: {
-          slidesToShow: 7,
-          slidesToScroll: 2,
-          initialSlide: 7,
-        },
-      },
-      {
-        breakpoint: 1440,
-        settings: {
-          slidesToShow: 6,
-          slidesToScroll: 2,
-          initialSlide: 6,
-        },
-      },
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 6,
-          slidesToScroll: 2,
-          initialSlide: 4,
-        },
-      },
-      {
-        breakpoint: 769,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 2,
-          initialSlide: 3,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
-          initialSlide: 2,
-        },
-      },
-      {
-        breakpoint: 320,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-          initialSlide: 2,
+          initialSlide: 0,
         },
       },
     ],
@@ -139,63 +114,34 @@ const Productsbrands = () => {
   const Productsbtns = {
     dots: false,
     infinite: true,
+    slidesToShow: 15,
+    slidesToScroll: 2,
+    initialSlide: 0,
     nextArrow: <Arrow type="next" />,
     prevArrow: <Arrow type="prev" />,
     responsive: [
       {
-        breakpoint: 1921,
+        breakpoint: 1920,
         settings: {
-          slidesToShow: 9,
+          slidesToShow: 15,
           slidesToScroll: 2,
-          initialSlide: 8,
+          initialSlide: 0,
         },
       },
       {
         breakpoint: 1600,
         settings: {
-          slidesToShow: 7,
+          slidesToShow: 10,
           slidesToScroll: 2,
-          initialSlide: 7,
-        },
-      },
-      {
-        breakpoint: 1440,
-        settings: {
-          slidesToShow: 6,
-          slidesToScroll: 2,
-          initialSlide: 6,
-        },
-      },
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 6,
-          slidesToScroll: 2,
-          initialSlide: 4,
+          initialSlide: 0,
         },
       },
       {
         breakpoint: 769,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 8,
           slidesToScroll: 2,
           initialSlide: 3,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2,
-        },
-      },
-      {
-        breakpoint: 320,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          initialSlide: 1,
         },
       },
     ],
@@ -203,50 +149,200 @@ const Productsbrands = () => {
 
   return (
     <div className="Productsbrands">
-      <div className="Slider_Section">
-        <Slider {...Productsicon} className="slide_Test">
-          {sliderBrandsAndCategories?.brands?.length &&
-            sliderBrandsAndCategories?.brands?.map((itm) => (
-              <div className="ProductBrand_first_Slider">
-                <img
-                  src={`${Constant.imageBaseUrl()}${itm?.image}`}
-                  alt="brands"
-                  className="Slider_icons"
-                />
-              </div>
-            ))}
-        </Slider>
-      </div>
-      <div className="Slider_Section">
-        <Slider {...Productsbtns} className="slide_Test">
-          {sliderBrandsAndCategories?.categories?.length &&
-            sliderBrandsAndCategories?.categories?.map((item) => (
-              <li key={item?.category?.id} className="Slider_brands">
-                <span onMouseOver={() => brand(item?.category?.id)}>
-                  {item?.category?.category_name}
-                </span>
-                {isChange && (
-                  <div className="list">
-                    <li className="list_content">
-                      <span>
-                        {item.category?.id === isChange &&
-                          item?.subcategories?.length &&
-                          item?.subcategories?.map((e) => (
-                            <div className="content">
-                              <span>
-                                <p>{e.category_name}</p>
-                                {/* <p>{e.count}</p> */}
-                              </span>
-                            </div>
-                          ))}
-                      </span>
-                    </li>
+      <>
+        {isSimpleLoading ? (
+          <SimpleLoader />
+        ) : (
+          <div className="Slider_Section">
+            <Slider {...Productsicon} className="slide_Test">
+              {sliderBrandsAndCategories?.brands?.length &&
+                sliderBrandsAndCategories?.brands?.map((itm) => (
+                  <div
+                    className="ProductBrand_first_Slider"
+                    onClick={() =>
+                      setProductFetchApi((prevState) => ({
+                        ...prevState,
+                        brand_id: itm?.option_id,
+                      }))
+                    }
+                  >
+                    <img
+                      src={`${Constant.imageBaseUrl()}${itm?.image}`}
+                      alt="brands"
+                      className="Slider_icons"
+                    />
                   </div>
-                )}
-              </li>
-            ))}
-        </Slider>
-      </div>
+                ))}
+              {sliderBrandsAndCategories?.brands?.length &&
+                sliderBrandsAndCategories?.brands?.map((itm) => (
+                  <div
+                    className="ProductBrand_first_Slider"
+                    onClick={() =>
+                      setProductFetchApi((prevState) => ({
+                        ...prevState,
+                        brand_id: itm?.option_id,
+                      }))
+                    }
+                  >
+                    <img
+                      src={`${Constant.imageBaseUrl()}${itm?.image}`}
+                      alt="brands"
+                      className="Slider_icons"
+                    />
+                  </div>
+                ))}
+              {sliderBrandsAndCategories?.brands?.length &&
+                sliderBrandsAndCategories?.brands?.map((itm) => (
+                  <div
+                    className="ProductBrand_first_Slider"
+                    onClick={() =>
+                      setProductFetchApi((prevState) => ({
+                        ...prevState,
+                        brand_id: itm?.option_id,
+                      }))
+                    }
+                  >
+                    <img
+                      src={`${Constant.imageBaseUrl()}${itm?.image}`}
+                      alt="brands"
+                      className="Slider_icons"
+                    />
+                  </div>
+                ))}
+              {sliderBrandsAndCategories?.brands?.length &&
+                sliderBrandsAndCategories?.brands?.map((itm) => (
+                  <div
+                    className="ProductBrand_first_Slider"
+                    onClick={() =>
+                      setProductFetchApi((prevState) => ({
+                        ...prevState,
+                        brand_id: itm?.option_id,
+                      }))
+                    }
+                  >
+                    <img
+                      src={`${Constant.imageBaseUrl()}${itm?.image}`}
+                      alt="brands"
+                      className="Slider_icons"
+                    />
+                  </div>
+                ))}
+              {sliderBrandsAndCategories?.brands?.length &&
+                sliderBrandsAndCategories?.brands?.map((itm) => (
+                  <div
+                    className="ProductBrand_first_Slider"
+                    onClick={() =>
+                      setProductFetchApi((prevState) => ({
+                        ...prevState,
+                        brand_id: itm?.option_id,
+                      }))
+                    }
+                  >
+                    <img
+                      src={`${Constant.imageBaseUrl()}${itm?.image}`}
+                      alt="brands"
+                      className="Slider_icons"
+                    />
+                  </div>
+                ))}
+            </Slider>
+          </div>
+        )}
+      </>
+      <>
+        {isSimpleLoading ? (
+          <SimpleLoader />
+        ) : (
+          <div className="Slider_Section">
+            <Slider {...Productsbtns} className="slide_Test">
+              {getCategories?.length &&
+                getCategories?.map((item) => (
+                  <li
+                    key={item?.category?.id}
+                    className="Slider_brands"
+                    onClick={() =>
+                      setProductFetchApi((prevState) => ({
+                        ...prevState,
+                        category_id: item?.category?.id,
+                      }))
+                    }
+                    onMouseOver={() => brand(item?.category?.id)}
+                  >
+                    <span>{item?.category?.category_name}</span>
+                    {isChange && (
+                      <div className="list">
+                        <li className="list_content">
+                          <span>
+                            {item.category?.id === isChange &&
+                              item?.subcategories?.length &&
+                              item?.subcategories?.map((e) => (
+                                <div
+                                  className="content"
+                                  onClick={() =>
+                                    setProductFetchApi((prevState) => ({
+                                      ...prevState,
+                                      category_id: item?.id,
+                                    }))
+                                  }
+                                >
+                                  <span>
+                                    <p>{e.category_name}</p>
+                                    {/* <p>{e.count}</p> */}
+                                  </span>
+                                </div>
+                              ))}
+                          </span>
+                        </li>
+                      </div>
+                    )}
+                  </li>
+                ))}
+              {getCategories?.length &&
+                getCategories?.map((item) => (
+                  <li
+                    key={item?.category?.id}
+                    className="Slider_brands"
+                    onClick={() =>
+                      setProductFetchApi((prevState) => ({
+                        ...prevState,
+                        category_id: item?.category?.id,
+                      }))
+                    }
+                    onMouseOver={() => brand(item?.category?.id)}
+                  >
+                    <span>{item?.category?.category_name}</span>
+                    {isChange && (
+                      <div className="list">
+                        <li className="list_content">
+                          <span>
+                            {item.category?.id === isChange &&
+                              item?.subcategories?.length &&
+                              item?.subcategories?.map((e) => (
+                                <div
+                                  className="content"
+                                  onClick={() =>
+                                    setProductFetchApi((prevState) => ({
+                                      ...prevState,
+                                      category_id: item?.id,
+                                    }))
+                                  }
+                                >
+                                  <span>
+                                    <p>{e.category_name}</p>
+                                    {/* <p>{e.count}</p> */}
+                                  </span>
+                                </div>
+                              ))}
+                          </span>
+                        </li>
+                      </div>
+                    )}
+                  </li>
+                ))}
+            </Slider>
+          </div>
+        )}
+      </>
     </div>
   );
 };

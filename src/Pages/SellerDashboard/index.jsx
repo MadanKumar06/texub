@@ -17,7 +17,9 @@ import Sidebar from "../../Components/Sidebar";
 import Sellerservices from "../../Components/SellerDashboard/Sellerservices";
 import Directenqueries from "../../Components/SellerDashboard/Directenqueries";
 import Paymentmethods from "../../Components/SellerDashboard/Paymentmethods";
-import PendingProduct from '../../Components/SellerDashboard/Inventory/PendingProducts'
+import PendingProduct from "../../Components/SellerDashboard/Inventory/PendingProducts";
+import axios from "axios";
+import Constant from "../../Constant";
 
 function SellerDashboard() {
   const [currentmenu, setcurrentmenu] = useState();
@@ -35,11 +37,22 @@ function SellerDashboard() {
   const [userform, setuserform] = useState(false);
 
   const [showregister, setshowregister] = useState(false);
+  const [pid, setpid] = useState();
 
-  const registerproduct = (value) => {
+  const [editdata, seteditdata] = useState();
+
+  const registerproduct = (value, value1, value2) => {
     setshowregister(true);
-    navigate(`/sellerdashboard/${value}`);
+    if (value === "updateproduct") {
+      navigate(`/sellerdashboard/${value}/${value1}`);
+    } else if (value === "addproduct") {
+      navigate(`/sellerdashboard/${value}/${value1}`);
+    } else {
+      navigate(`/sellerdashboard/${value}`);
+    }
   };
+
+  console.log(editdata);
 
   useEffect(() => {
     if (
@@ -124,14 +137,14 @@ function SellerDashboard() {
             <PendingProduct registerproduct={registerproduct} />
           )}
           {currenttab === "updateproduct" && (
-            <UpdateProduct type="Update New Product Details" />
+            <UpdateProduct type="Update New Product Details" pid={pid} />
           )}
           {currenttab === "updatesuccess" && (
             <SuccessPage msg={updatesuccess} />
           )}
 
           {currenttab === "addproduct" && (
-            <UpdateProduct type="Add Product Details" />
+            <UpdateProduct type="Add Product Details" pid={pid} />
           )}
           {currenttab === "addsuccess" && <SuccessPage msg={addsuccess} />}
 
@@ -152,4 +165,3 @@ function SellerDashboard() {
 }
 
 export default SellerDashboard;
-

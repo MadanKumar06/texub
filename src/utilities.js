@@ -35,3 +35,4 @@ export const getAdminToken = (callback) => {
     })
     .catch((err) => {});
 };
+

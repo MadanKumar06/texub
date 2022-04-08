@@ -82,3 +82,26 @@
     width: 100%;
   }
 }
+
+@media (max-width: 480px) {
+  .linechart
+  .recharts-wrapper {
+    .recharts-surface {
+      .recharts-layer.firstData {
+        circle {
+          r: 3;
+          stroke-width: 2;
+          fill: rgb(204, 155, 62);
+        }
+      }
+      .recharts-layer.secondData {
+        circle {
+          r: 3;
+          stroke-width: 2;
+          fill: rgb(32, 99, 155);
+        }
+      }
+    }
+  }
+}
+

@@ -1,45 +1,187 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./styles.scss";
 
 import DeleteIcon from "@mui/icons-material/Delete";
 import { InputLabel, TextField, Autocomplete } from "@mui/material";
+import axios from "axios";
+import Constant from "../../../../../Constant";
 
 function Index({
-  checkselection,
   countincrease,
   i,
+  index,
   deleterow,
   hubDropDownValues,
+  count,
+  hubname,
+  currentdata,
+  isDetailTabValid,
+  setIsDetailTabValid,
+  setcount,
+  settest,
 }) {
-  const [hubList, setHubList] = useState({
-    hub: "",
-  });
+  const [options, setoptions] = useState([]);
+  const [currenthub, setcurrenthub] = useState("");
 
-  const [checkmumbai, setcheckmumbai] = useState();
-
-  const handleChange = (value) => {
-    setcheckmumbai(value);
+  const hubselect = (e, value) => {
+    let temp = count.filter((c) => {
+      if (c.count === i) {
+        c.hub_id = value.hub_id;
+        c.hubname = value.hub_name;
+      }
+    });
+    settest(temp);
   };
-  const options = ["Option 1", "Option 2"];
+
+  const selectcurrency = (e, value) => {
+    let temp = count.filter((c) => {
+      if (c.count === i) {
+        c.currency_id = value.value;
+      }
+    });
+    settest(temp);
+  };
+
+  // const hubselect = (value) => {
+  //   let data = JSON.parse(value)
+  //     let temp = count.filter((c) => {
+  //       if (c.count === i) {
+  //         c.hub_id = data.value;
+  //         c.hubname = data.name;
+  //       }
+  //     });
+  //     settest(temp);
+  // }
+
+  const changevalues = (value, type) => {
+    let temp = count.filter((c) => {
+      if (c.count === i) {
+        if (type === "price") {
+          return (c.price = value);
+        }
+        if (type === "instock") {
+          return (c.in_stock = value);
+        }
+        if (type === "eta") {
+          return (c.eta = value);
+        }
+        if (type === "moq") {
+          return (c.moq = value);
+        }
+        if (type === "currency") {
+          return (c.currency_id = value);
+        }
+        if (type === "sgst") {
+          return (c.sgst = value);
+        }
+        if (type === "igst") {
+          return (c.igst = value);
+        }
+        if (type === "cgst") {
+          return (c.cgst = value);
+        }
+      }
+    });
+    settest(temp);
+  };
+
+  useEffect(async () => {
+    let country_code = JSON.parse(
+      localStorage.getItem("userdata")
+    )?.custom_attributes?.find(
+      (itm) => itm?.attribute_code === "customer_country"
+    );
+    try {
+      const hubcurrencydata = await axios({
+        method: "post",
+        url: `${Constant.baseUrl()}/hubBasedCurrency`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        data: {
+          data: {
+            hub_id: currenthub?.hub_id,
+            country_code: country_code?.value,
+          },
+        },
+      });
+      let temp = [];
+      hubcurrencydata?.data?.filter((hub) => {
+        temp.push({
+          label: hub?.currency_code,
+          value: hub?.currency_id,
+        });
+      });
+      setoptions(temp);
+    } catch (e) {
+      console.log(e);
+    }
+  }, [currenthub]);
+
+  useEffect(() => {
+    if (hubDropDownValues?.length === 0) return;
+    let temp = {
+      hub_id: "",
+      hub_name: "",
+    };
+    hubDropDownValues?.length &&
+      hubDropDownValues.filter((wc) => {
+        if (wc?.hub_id === currentdata?.hub_id) {
+          temp.hub_id = wc.hub_id;
+          temp.hub_name = wc.hub_name;
+        }
+      });
+    setcurrenthub(temp);
+  }, [currentdata?.hub_id]);
+
+  const [currentcurrency, setcurrentcurrency] = useState([]);
+
+  useEffect(() => {
+    if (hubDropDownValues?.length === 0) return;
+    let temp = {
+      label: "",
+      value: "",
+    };
+    options?.length &&
+      options.filter((wc) => {
+        if (wc?.value === currentdata?.currency_id) {
+          temp.value = wc.value;
+          temp.label = wc.label;
+        }
+      });
+    console.log(temp);
+    setcurrentcurrency(temp);
+  }, [currentdata?.currency_id]);
+
+  console.log(count);
 
   return (
     <>
       <div className="updateproduct__bgform">
         <div className="updateproduct_info_form autocomplete_input">
-          <InputLabel>Hub</InputLabel>
+          {/* <select value={currenthub[0].hub_id} onChange={(e) => hubselect(e.target.value)}>
+          <option value="">Select</option>
+          {hubDropDownValues?.length && hubDropDownValues.map(hub => 
+            // <option value={`{"name":"${hub.hub_name}","value":"${hub.hub_id}"}`}>{hub.hub_name}</option>
+            <option value={hub.hub_id}>{hub.hub_name}</option>
+          )}
+        </select> */}
+          <InputLabel>
+            Hub<small className="asterisk">*</small>
+          </InputLabel>
           <Autocomplete
-            value={hubList?.hub}
-            name="hub_list"
+            value={currenthub}
+            name="currenthub"
             onChange={(event, newValue) => {
-              setHubList((prevState) => ({
+              setIsDetailTabValid((prevState) => ({
                 ...prevState,
-                conditions: newValue,
+                isHubValid: "",
               }));
-              handleChange(newValue);
+              hubselect(event, newValue);
             }}
-            id="hub_list"
+            id="currenthub"
             disablePortal={true}
-            options={hubDropDownValues?.length ? hubDropDownValues : [""]}
+            options={hubDropDownValues ? hubDropDownValues : []}
             getOptionLabel={(option) =>
               option.hub_name ? option.hub_name : ""
             }
@@ -56,21 +198,28 @@ function Index({
               />
             )}
           />
+          <InputLabel className="validation_error">
+            {isDetailTabValid?.isHubValid}
+          </InputLabel>
         </div>
         <div className="updateproduct_info_form">
-          <InputLabel>Price</InputLabel>
+          <InputLabel>
+            Price<small className="asterisk">*</small>
+          </InputLabel>
           <div className="price_customize">
             <Autocomplete
-              // value={test}
               name=""
-              onChange={(event, newValue) => handleChange(newValue)}
-              //   className={auto_complete_input}
-              //   inputValue={inputValue}
-              //   onInputChange={(event, newInputValue) => {
-              //     setInputValue(newInputValue);
-              //   }}
               id="controllable-states-demo"
-              options={options}
+              value={currentcurrency}
+              options={options ? options : []}
+              onChange={(event, newValue) => {
+                setIsDetailTabValid((prevState) => ({
+                  ...prevState,
+                  isPriceValid: "",
+                }));
+                selectcurrency(event, newValue);
+              }}
+              getOptionLabel={(option) => (option.label ? option.label : "")}
               renderInput={(params) => (
                 <TextField
                   {...params}
@@ -84,80 +233,120 @@ function Index({
               )}
             />
             <TextField
-              id="part_number"
-              name="part_nymber"
+              id="price"
+              name="price"
               placeholder="60,500"
               fullWidth
               type="number"
-              autoFocus={true}
               className="inputfield-box price_textbox"
               autoComplete="off"
-              // value={signInData?.email_address}
+              value={currentdata.price}
               InputLabelProps={{
                 shrink: false,
               }}
-              // onChange={handleChangeInput}
+              onChange={(e) => {
+                setIsDetailTabValid((prevState) => ({
+                  ...prevState,
+                  isPriceValid: "",
+                }));
+                changevalues(e.target.value, "price");
+              }}
               variant="outlined"
             />
           </div>
+          <InputLabel className="validation_error">
+            {isDetailTabValid?.isPriceValid}
+          </InputLabel>
         </div>
         <div className="updateproduct_info_form">
-          <InputLabel>In Stock</InputLabel>
+          <InputLabel>
+            In Stock<small className="asterisk">*</small>
+          </InputLabel>
           <TextField
-            id="part_number"
-            name="part_nymber"
+            id="in_stock"
+            name="in_stock"
             className="inputfield-box"
             placeholder="280"
             fullWidth
-            autoFocus={true}
+            type="number"
             autoComplete="off"
-            // value={signInData?.email_address}
+            value={currentdata?.in_stock}
             InputLabelProps={{
               shrink: false,
             }}
-            // onChange={handleChangeInput}
+            onChange={(e) => {
+              setIsDetailTabValid((prevState) => ({
+                ...prevState,
+                isInStockValid: "",
+              }));
+              changevalues(e.target.value, "instock");
+            }}
             variant="outlined"
           />
+          <InputLabel className="validation_error">
+            {isDetailTabValid?.isInStockValid}
+          </InputLabel>
         </div>
         <div className="updateproduct_info_form">
-          <InputLabel>ETA (Days)</InputLabel>
+          <InputLabel>
+            ETA (Days)<small className="asterisk">*</small>
+          </InputLabel>
           <TextField
             id="part_number"
             name="part_nymber"
             placeholder="05 Days"
             className="inputfield-box"
             fullWidth
-            autoFocus={true}
             autoComplete="off"
-            // value={signInData?.email_address}
+            value={currentdata?.eta}
             InputLabelProps={{
               shrink: false,
             }}
-            // onChange={handleChangeInput}
+            onChange={(e) => {
+              setIsDetailTabValid((prevState) => ({
+                ...prevState,
+                isETAValid: "",
+              }));
+              changevalues(e.target.value, "eta");
+            }}
             variant="outlined"
           />
+          <InputLabel className="validation_error">
+            {isDetailTabValid?.isETAValid}
+          </InputLabel>
         </div>
         <div className="updateproduct_info_form">
-          <InputLabel>MOQ</InputLabel>
+          <InputLabel>
+            MOQ<small className="asterisk">*</small>
+          </InputLabel>
           <TextField
             id="part_number"
             name="part_nymber"
             className="inputfield-box"
             placeholder="50"
             fullWidth
-            autoFocus={true}
+            type="number"
             autoComplete="off"
-            // value={signInData?.email_address}
+            value={currentdata?.moq}
             InputLabelProps={{
               shrink: false,
             }}
-            // onChange={handleChangeInput}
+            onChange={(e) => {
+              setIsDetailTabValid((prevState) => ({
+                ...prevState,
+                isMoqValid: "",
+              }));
+              changevalues(e.target.value, "moq");
+            }}
             variant="outlined"
           />
+          <InputLabel className="validation_error">
+            {isDetailTabValid?.isMoqValid}
+          </InputLabel>
         </div>
       </div>
 
-      {i === 0 ? (
+      {index === 0 ? (
         <div className="updateproduct__addmore">
           <p onClick={countincrease}>
             <span className="addmore__plus"></span>
@@ -166,8 +355,8 @@ function Index({
         </div>
       ) : (
         <div className="updateproduct__delete">
-          <p onClick={() => deleterow(i)}>
-            {/* <span className='addmore__plus'></span> */}
+          <p onClick={() => deleterow(currentdata?.assign_id, index)}>
+            {/* <p onClick={() => console.log(i)}> */}
             <span className="addmore__text">
               <DeleteIcon />
             </span>
@@ -175,7 +364,7 @@ function Index({
         </div>
       )}
 
-      {checkmumbai === "Option 1" && (
+      {currentdata?.hub_id === "2" && (
         <div className="updateproduct__gst">
           <div className="updateproduct_info_form">
             <InputLabel>GST %</InputLabel>
@@ -190,7 +379,7 @@ function Index({
               InputLabelProps={{
                 shrink: false,
               }}
-              // onChange={handleChangeInput}
+              onChange={(e) => changevalues(e.target.value, "cgst")}
               variant="outlined"
             />
           </div>
@@ -207,7 +396,7 @@ function Index({
               InputLabelProps={{
                 shrink: false,
               }}
-              // onChange={handleChangeInput}
+              onChange={(e) => changevalues(e.target.value, "igst")}
               variant="outlined"
             />
           </div>
@@ -224,7 +413,7 @@ function Index({
               InputLabelProps={{
                 shrink: false,
               }}
-              // onChange={handleChangeInput}
+              onChange={(e) => changevalues(e.target.value, "sgst")}
               variant="outlined"
             />
           </div>

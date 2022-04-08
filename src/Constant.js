@@ -14,4 +14,7 @@ module.exports = {
   customerMeDetailUrl: function () {
     return "https://texub.uat.a2zportals.co.in/rest/V1/customers/me";
   },
+  pdfDowloadUrl: function () {
+    return "https://texub.uat.a2zportals.co.in";
+  },
 };

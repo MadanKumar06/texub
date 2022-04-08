@@ -9,9 +9,11 @@ import MenuList from "./MenuList";
 import { useStateValue } from "../../store/state";
 
 import logo from "../../Assets/Homepage Assets/Group.png";
+import swal from "sweetalert2";
 
 const Header = ({ classes }) => {
   const [{}, dispatch] = useStateValue();
+  let isSignedIn = JSON.parse(localStorage.getItem("userdata"));
 
   const SigninPopUP = () => {
     dispatch({
@@ -25,6 +27,33 @@ const Header = ({ classes }) => {
       type: "SET_REGISTER_OPEN_CLOSE",
       value: true,
     });
+  };
+  const SignOut = () => {
+    swal
+      .fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "SignOut!",
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          localStorage.clear();
+          swal.fire({
+            text: "You have Successfully logged out !",
+            icon: "success",
+            showConfirmButton: false,
+            timer: 3000,
+          });
+          setTimeout(() => {
+            window.location.reload();
+            window.location.href = "/";
+          }, 1000);
+        }
+      });
   };
   return (
     <div className={classes.header_main}>
@@ -58,21 +87,33 @@ const Header = ({ classes }) => {
               <Link to="/Contactus"> Contact Us </Link>
             </Typography>
           </div>
-          <div className={classes.header_button_main}>
-            <Button
-              className={classes.header_button_register}
-              onClick={() => RegistrationPop()}
-            >
-              {/* <Link to="/register"> Register </Link> */}
-              Register
-            </Button>
-            <Button
-              className={classes.header_button_signin}
-              onClick={() => SigninPopUP()}
-            >
-              Sign In
-            </Button>
-          </div>
+
+          {!isSignedIn?.group_id ? (
+            <div className={classes.header_button_main}>
+              <Button
+                className={classes.header_button_register}
+                onClick={() => RegistrationPop()}
+              >
+                {/* <Link to="/register"> Register </Link> */}
+                Register
+              </Button>
+              <Button
+                className={classes.header_button_signin}
+                onClick={() => SigninPopUP()}
+              >
+                Sign In
+              </Button>
+            </div>
+          ) : (
+            <div className={classes.header_button_main}>
+              <Button
+                className={classes.header_button_signin}
+                onClick={() => SignOut()}
+              >
+                Sign Out
+              </Button>
+            </div>
+          )}
           <CurrencyPopup />
         </Toolbar>
       </AppBar>

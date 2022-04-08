@@ -23,12 +23,12 @@ import price_drop_inactive from "../../../Assets/BasicNeeded/PLPIcons/price_drop
 import just_launch_active from "../../../Assets/BasicNeeded/PLPIcons/just_launch_active.png";
 import just_launch_inactive from "../../../Assets/BasicNeeded/PLPIcons/just_launch_inactive.png";
 
-const Productlists = () => {
-  const [productlistdata, setProductlistdata] = useState({
-    hub: "",
-    conditions: "",
-    eta: "",
-  });
+const Productlists = ({ setProductFetchApi, productFetchApi }) => {
+  // const [productlistdata, setProductlistdata] = useState({
+  //   hub: "",
+  //   conditions: "",
+  //   eta: "",
+  // });
   const [productlistdropdown, setProductlistdropdown] = useState({
     hub: [],
     conditions: [],
@@ -43,7 +43,7 @@ const Productlists = () => {
     price_drop_image: price_drop_inactive,
   });
   const handleChange = (event) => {
-    setProductlistdata((prevState) => ({
+    setProductFetchApi((prevState) => ({
       ...prevState,
       [event.target.name]: event.target.value,
     }));
@@ -68,11 +68,11 @@ const Productlists = () => {
 
   //API for fetch dropdown values
   useEffect(() => {
+    var currency_id = JSON.parse(localStorage.getItem("currency"));
     const fetchProductListDropDownData = () => {
       let data = {
         currency_id: 3,
       };
-
       axios
         .post(Constant.baseUrl() + "/getSearchItemsInPlp", data, {
           headers: {
@@ -170,7 +170,7 @@ const Productlists = () => {
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={productlistdata?.hub}
+            value={productFetchApi?.hub}
             label="Hub"
             name="hub"
             onChange={handleChange}
@@ -191,7 +191,7 @@ const Productlists = () => {
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={productlistdata?.conditions}
+            value={productFetchApi?.conditions}
             label="Age"
             name="conditions"
             onChange={handleChange}
@@ -212,7 +212,7 @@ const Productlists = () => {
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={productlistdata?.eta}
+            value={productFetchApi?.eta}
             label="ETA"
             name="eta"
             onChange={handleChange}
@@ -244,9 +244,9 @@ const Productlists = () => {
               transform="translate(-4.5 -0.5)"
               fill="none"
               stroke="#fff"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="3"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="3"
             />
             <path
               id="Path-2"
@@ -255,9 +255,9 @@ const Productlists = () => {
               transform="translate(-4.5 -2.346)"
               fill="none"
               stroke="#fff"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="3"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="3"
             />
             <line
               id="Line"
@@ -265,9 +265,9 @@ const Productlists = () => {
               transform="translate(15.5)"
               fill="none"
               stroke="#fff"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="3"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="3"
             />{" "}
           </g>
         </svg>

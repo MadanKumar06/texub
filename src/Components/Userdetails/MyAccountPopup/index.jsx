@@ -7,7 +7,10 @@ import myOrderLogo from "../../../Assets/CommonImage/MyAccountMegamenu/shopping-
 import auctionsLogo from "../../../Assets/CommonImage/MyAccountMegamenu/auction.png";
 import logoutLogo from "../../../Assets/CommonImage/MyAccountMegamenu/logout.png";
 import account_circle from "../../../Assets/CommonImage/My Account.png";
+
+import swal from "sweetalert2";
 const MyAccountPopup = () => {
+  let isSignedIn = JSON.parse(localStorage.getItem("userdata"));
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
@@ -15,6 +18,34 @@ const MyAccountPopup = () => {
   };
   const handleClose = () => {
     setAnchorEl(null);
+  };
+  const SignOut = () => {
+    setAnchorEl(null);
+    swal
+      .fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "SignOut!",
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          localStorage.clear();
+          swal.fire({
+            text: "You have Successfully logged out !",
+            icon: "success",
+            showConfirmButton: false,
+            timer: 3000,
+          });
+          setTimeout(() => {
+            window.location.reload();
+            window.location.href = "/";
+          }, 1000);
+        }
+      });
   };
   return (
     <div className="myAccount_popup_header_dropdown">
@@ -40,27 +71,41 @@ const MyAccountPopup = () => {
         onClose={handleClose}
         className="menulist_items"
       >
+        {isSignedIn?.group_id === 5 && (
+          <MenuItem onClick={() => handleClose()}>
+            <Link to="/buyerdashboard/dashboard">
+              <img src={dashboardLogo} alt="" />
+              Buyer Dashboard
+            </Link>
+          </MenuItem>
+        )}
+        {isSignedIn?.group_id === 6 && (
+          <MenuItem onClick={() => handleClose()}>
+            <Link to="/sellerdashboard/dashboard">
+              <img src={dashboardLogo} alt="" />
+              Seller Dashboard
+            </Link>
+          </MenuItem>
+        )}
         <MenuItem onClick={() => handleClose()}>
-          <Link to="/buyerdashboard/dashboard">
+          <Link to="/kycdetails">
             <img src={dashboardLogo} alt="" />
-            Buyer Dashboard
+            KYC Details
           </Link>
         </MenuItem>
-        <MenuItem onClick={() => handleClose()}>
-          <Link to="/sellerdashboard/dashboard">
-            <img src={dashboardLogo} alt="" />
-            Seller Dashboard
-          </Link>
-        </MenuItem>
-        <MenuItem onClick={() => handleClose()}>
-          <img src={myOrderLogo} alt="" />
-          My Orders
-        </MenuItem>
-        <MenuItem onClick={() => handleClose()}>
-          <img src={auctionsLogo} alt="" />
-          Auctions
-        </MenuItem>
-        <MenuItem onClick={() => handleClose()}>
+        {isSignedIn?.group_id === 5 && (
+          <>
+            <MenuItem onClick={() => handleClose()}>
+              <img src={myOrderLogo} alt="" />
+              My Orders
+            </MenuItem>
+            <MenuItem onClick={() => handleClose()}>
+              <img src={auctionsLogo} alt="" />
+              Auctions
+            </MenuItem>
+          </>
+        )}
+        <MenuItem onClick={() => SignOut()}>
           <img src={logoutLogo} alt="" />
           Logout
         </MenuItem>

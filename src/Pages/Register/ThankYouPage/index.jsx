@@ -52,9 +52,14 @@ const ThankyouPage = ({ classes }) => {
         <p className={thankyou_title}>Thank You !</p>
         <p className={thankyou_user}>Dear User</p>
         {(type === "buyer" || type === "seller") && (
+          // <p className={thankyou_for_register}>
+          //   You have submitted the Registration form successfully. Kindly login
+          //   into your account to complete the KYC.
+          // </p>
           <p className={thankyou_for_register}>
-            You have submitted the Registration form successfully. Kindly login
-            into your account to complete the KYC.
+            You have submitted the KYC form successfully. And Our team will get
+            back to you after verification. once your account has been approved,
+            you will receive a mail notification.
           </p>
         )}
         {(type === "buyerkyc" || type === "sellerkyc") && (
@@ -63,19 +68,18 @@ const ThankyouPage = ({ classes }) => {
             receive the account activation email.
           </p>
         )}
-        {/* <p className={thankyou_for_register}>
-          You have submitted the KYC form successfully. And Our team will get
-          back to you after verification. once your account has been approved,
-          you will receive a mail notification.
-        </p> */}
-        <Box className={thankyou_button_box} fullWidth>
-          <Button
-            className={thankyou_button_signin}
-            onClick={() => handleSignInOpenClose()}
-          >
-            SignIn
-          </Button>
-        </Box>
+        {type === "buyer" || type === "seller" ? (
+          ""
+        ) : (
+          <Box className={thankyou_button_box} fullWidth>
+            <Button
+              className={thankyou_button_signin}
+              onClick={() => handleSignInOpenClose()}
+            >
+              SignIn
+            </Button>
+          </Box>
+        )}
         <Link to="/">
           <p className={thankyou_backto_home}>Back To Homepage</p>
         </Link>

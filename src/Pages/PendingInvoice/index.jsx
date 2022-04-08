@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./styles.scss";
 import { Link } from "react-router-dom";
 import PendingInvoiceTable from "./PendingInvoiceTable";
@@ -13,13 +13,40 @@ import {
   Radio,
   RadioGroup,
 } from "@mui/material";
+import axios from "axios";
+import Constant from "../../Constant";
 
 import pending_invoice_image from "../../Assets/PendingInvoice/Group 1051.png";
 
 const PendingInvoice = () => {
+  const [pendingInvoiceList, setPendingInvoiceList] = useState([]);
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("userdata"));
+    let data = {
+      data: {
+        // customer_id: user?.id,
+        // currency_id: currency?.currency_id,
+        customer_id: 275,
+      },
+    };
+    axios
+      .post(Constant.baseUrl() + "/pendingInvoiceList", data, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${JSON.parse(
+            localStorage.getItem("customer_auth")
+          )}`,
+        },
+      })
+      .then((res) => {
+        setPendingInvoiceList(res?.data);
+      })
+      .catch((error) => {});
+  }, []);
   const options = ["Option 1", "Option 2"];
-  const [value, setValue] = React.useState();
-  const [inputValue, setInputValue] = React.useState("");
+  const [value, setValue] = useState();
+  const [inputValue, setInputValue] = useState("");
   return (
     <div className="pending_invoice_main_container">
       <div className="pending_invoice_image_block">
@@ -37,7 +64,7 @@ const PendingInvoice = () => {
           </Breadcrumbs>
         </Stack>
       </div>
-      <PendingInvoiceTable />
+      <PendingInvoiceTable pendingInvoiceList={pendingInvoiceList} />
 
       {/* middle content */}
       <div className="middle_block">

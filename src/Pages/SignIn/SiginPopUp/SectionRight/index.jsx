@@ -19,9 +19,11 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Constant from "../../../../Constant";
 import { useStateValue } from "../../../../store/state";
+import swal from "sweetalert2";
 
 const TransitionsModal = ({ classes }) => {
   const [{}, dispatch] = useStateValue();
+  const history = useNavigate();
   let {
     section_right,
     info_text_lineNote,
@@ -248,7 +250,15 @@ const TransitionsModal = ({ classes }) => {
           type: "SET_IS_LOADING",
           value: false,
         });
-        localStorage.setItem("register_success", JSON.stringify(res?.data));
+        swal.fire({
+          text: "You have Successfully Registered !",
+          icon: "success",
+          showConfirmButton: false,
+          timer: 3000,
+        });
+        setTimeout(() => {
+          history("/");
+        }, 1000);
       })
       .catch((err) => {
         dispatch({

@@ -7,6 +7,7 @@
   width: auto;
   .slick-slider {
     .slick-list {
+      width: 100%;
       overflow: hidden;
       overflow-x: clip !important;
       overflow-y: inherit;
@@ -14,6 +15,7 @@
     .slick-track {
       display: flex;
       align-items: center;
+      width: 100% !important;
       .slick-slide {
         width: max-content;
         margin: 0 1em;
@@ -53,7 +55,9 @@
       display: flex;
       justify-content: center;
       .Slider_icons {
-        height: 40px;
+        height: 50px;
+        width: 50px;
+        cursor: pointer;
       }
     }
     .Slider_brands {
@@ -74,6 +78,7 @@
       background: transparent linear-gradient(180deg, #ffd788 0%, #cc9b3e 100%);
       color: #ffffff;
     }
+
 
     .Productbrands_Laptops_btn {
       .Productbrands_btn_content_list {
@@ -129,8 +134,7 @@
   display: flex;
   width: max-content;
   min-width: 150px;
-  background-color: #ffffff;
-  box-shadow: 0px 3px 18px #00000022;
+
   border-radius: 4px;
   z-index: 9;
   position: absolute;
@@ -139,16 +143,17 @@
   .list_content {
     list-style: none;
     width: 100%;
-    padding: 0.6em;
-
     span {
       display: flex;
       flex-direction: column;
       .content {
         display: flex;
         justify-content: space-between;
-        padding: 3px;
-
+        padding: 0.6em;
+        background-color: #ffffff;
+        box-shadow: 0px 3px 18px #00000022;
+        cursor: pointer;
+        z-index: 1;
         span {
           background: #f8f0e0;
           display: flex;
@@ -169,4 +174,10 @@
       }
     }
   }
+}
+@media only screen and (max-width:580px) {
+  .Productsbrands .slick-list{
+    padding: 0;
+  }
+
 }

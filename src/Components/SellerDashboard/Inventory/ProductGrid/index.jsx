@@ -4,8 +4,8 @@ import MUITable from "../../../Common/MUITable";
 import hp from "../../../../Assets/sellerdashboard/inventory/hp.png";
 import Pagination from "../../../Pagination";
 function Index({ registerproduct, gridData }) {
+  console.log(gridData)
   const [tableData, setTableData] = useState([]);
-  debugger;
   const options = {
     filter: false,
     filterType: "dropdown",
@@ -46,14 +46,14 @@ function Index({ registerproduct, gridData }) {
       label: "SKU",
     },
     {
-      name: "action",
+      name: "product_id",
       label: "ACTION",
       options: {
         customBodyRender: (value) => {
           return (
             <div
               className="productGrid__action"
-              onClick={() => registerproduct("updateproduct")}
+              onClick={() => registerproduct("addproduct", value,"addNew")}
             >
               Sell Yours
             </div>

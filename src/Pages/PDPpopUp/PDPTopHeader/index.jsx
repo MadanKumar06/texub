@@ -9,7 +9,12 @@ import SwitchUnstyled, {
 } from "@mui/base/SwitchUnstyled";
 import { styled } from "@mui/system";
 
-const PdpHeader = ({ classes, setPdpSellerData, pdpSellerData }) => {
+const PdpHeader = ({
+  classes,
+  setPdpSellerData,
+  pdpSellerData,
+  dataFromPLP,
+}) => {
   const label = { componentsProps: { input: { "aria-label": "Demo switch" } } };
   const [value, setValue] = React.useState(2);
   let {
@@ -101,11 +106,16 @@ const PdpHeader = ({ classes, setPdpSellerData, pdpSellerData }) => {
       margin: 0;
     }
   `;
+  console.log(pdpSellerData)
   return (
     <div className={pdp_top_header_container}>
       <div className={pdp_page_brands_images_container}>
         <div className={pdp_page_brands_images}>
-          <img className={pdp_brand_icon_1} src={brand_logo} alt="" />
+          <img
+            className={pdp_brand_icon_1}
+            src={dataFromPLP?.row?.[0]?.props?.children?.props?.src}
+            alt=""
+          />
           <img className={pdp_brand_icon_2} src={brand_tag} alt="" />
         </div>
       </div>
@@ -113,29 +123,28 @@ const PdpHeader = ({ classes, setPdpSellerData, pdpSellerData }) => {
         <div className={pdp_top_header_product_details}>
           {pdpSellerData?.seller_id && (
             <p className={pdp_top_header_seller_id}>
-              Seller ID :<span>{pdpSellerData?.seller_id} </span>
+              Seller ID :<span>{pdpSellerData?.seller_code ? pdpSellerData?.seller_code : pdpSellerData?.seller_id} </span>
             </p>
           )}
           <div className={pdp_top_header_products}>
             <p className={pdp_top_header_product_name}>
-              PAVILION MODEL14-DV0054TU
+              {dataFromPLP?.row?.[1]?.props?.children}
             </p>
             <div className={pdp_top_header_rating_reviews_container}>
               <Rating
                 className={ratings}
                 name="simple-controlled"
                 value={value}
-                onChange={(event, newValue) => {
-                  setValue(newValue);
-                }}
+                // onChange={(event, newValue) => {
+                //   setValue(newValue);
+                // }}
               />
               <p className={reviews}> 543 Reviews</p>
             </div>
           </div>
 
           <p className={pdp_top_header_model_details}>
-            Hp 14-Dv0054Tu Pavilion Laptop (11Th Gen Intel Core I5-1135G7/…512Gb
-            Sdd/Intel Iris Xe Graphics/Windows 10/Mso/Fhd), 35.56 Cm (14 Inch)
+            {dataFromPLP?.row?.[3]?.props?.children}
           </p>
         </div>
         <div className={pdp_toggle_switch_container}>
