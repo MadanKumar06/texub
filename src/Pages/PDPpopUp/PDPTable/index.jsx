@@ -55,9 +55,10 @@ const PDPTable = ({ classes, tableData, setPdpSellerData, pdpSellerData }) => {
   //tableValues
   useEffect(() => {
     if (tableData?.tableone?.length) {
+      debugger;
       let temp = tableData?.tableone?.map((itm) => ({
         ...itm,
-        //  in_stock: 20,
+        //  in_stock: 100,
         is_moq_valid: itm.moq,
       }));
       setIs_table_one(temp);
@@ -154,7 +155,28 @@ const PDPTable = ({ classes, tableData, setPdpSellerData, pdpSellerData }) => {
                 </div>
 
                 <div className={clsx(price_list_stock, title)}>
-                  <span>In Stock</span>
+                  <span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="14.701"
+                      height="10.353"
+                      viewBox="0 0 21.701 15.353"
+                    >
+                      <path
+                        id="Path_23"
+                        data-name="Path 23"
+                        d="M-2570.053,7068.5l5.726,5.726,11.732-11.732"
+                        transform="translate(2572.175 -7060.373)"
+                        fill="none"
+                        stroke="#00b91c"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="3"
+                      />
+                    </svg>
+                    {"  "}
+                    In Stock
+                  </span>
                 </div>
 
                 <div className={clsx(price_list_eta, title)}>
@@ -247,7 +269,7 @@ const PDPTable = ({ classes, tableData, setPdpSellerData, pdpSellerData }) => {
                           <RemoveIcon
                             // className={item_decrease}
                             className={`${
-                              item.moq > item.is_moq_valid
+                              parseInt(item.moq) > parseInt(item.is_moq_valid)
                                 ? item_increase
                                 : item_decrease
                             }`}
@@ -265,7 +287,7 @@ const PDPTable = ({ classes, tableData, setPdpSellerData, pdpSellerData }) => {
                           <AddIcon
                             // className={item_increase}
                             className={`${
-                              item.moq < item.in_stock
+                              parseInt(item.moq) < parseInt(item.in_stock)
                                 ? item_increase
                                 : item_decrease
                             }`}

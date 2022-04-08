@@ -530,7 +530,7 @@ const BuyerRegistration = ({ classes }) => {
       .get(Constant.customerMeDetailUrl(), {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       })
       .then((res) => {
@@ -539,6 +539,10 @@ const BuyerRegistration = ({ classes }) => {
           value: false,
         });
         localStorage.setItem("userdata", JSON.stringify(res?.data));
+        localStorage.setItem(
+          "isLoggedIn_auth",
+          res?.data?.group_id === 1 ? false : true
+        );
         dispatch({
           type: "SET_KYC_OPEN_CLOSE",
           value: true,
@@ -924,37 +928,43 @@ const BuyerRegistration = ({ classes }) => {
             </InputLabel>
           </div>
         </div>
-        <ReCAPTCHA
-          className={recaptcha_info}
-          sitekey="6LcaHDYfAAAAAOUR0jJWtEI128eoRL4xjBWOpjKD"
-          onChange={() => {
-            setsellerRegistrationData((prevState) => ({
-              ...prevState,
-              recaptcha: true,
-            }));
-            setInputValidation((prevState) => ({
-              ...prevState,
-              recaptcha: "",
-            }));
-          }}
-          name="recaptcha"
-        />
-        <InputLabel className={validation_error}>
-          {inputValidation?.recaptcha}
-        </InputLabel>
+
         <div className={input_textField}>
-          <FormControlLabel
-            value={sellerRegistrationData?.remember_me}
-            control={<Checkbox color="color_third" />}
-            label={
-              <p>
-                By using this form you agree with the <span>Terms of Use</span>
-                and <span>Privacy Policy</span> by this website.
-              </p>
-            }
-            labelPlacement="end"
-            className={checkbox_label}
-          />
+          <div className={text_field_container}>
+            <FormControlLabel
+              value={sellerRegistrationData?.remember_me}
+              control={<Checkbox color="color_third" />}
+              label={
+                <p>
+                  By using this form you agree with the{" "}
+                  <span>Terms of Use</span>
+                  and <span>Privacy Policy</span> by this website.
+                </p>
+              }
+              labelPlacement="end"
+              className={checkbox_label}
+            />
+          </div>
+          <div className={text_field_container}>
+            <ReCAPTCHA
+              className={recaptcha_info}
+              sitekey="6LcaHDYfAAAAAOUR0jJWtEI128eoRL4xjBWOpjKD"
+              onChange={() => {
+                setsellerRegistrationData((prevState) => ({
+                  ...prevState,
+                  recaptcha: true,
+                }));
+                setInputValidation((prevState) => ({
+                  ...prevState,
+                  recaptcha: "",
+                }));
+              }}
+              name="recaptcha"
+            />
+            <InputLabel className={validation_error}>
+              {inputValidation?.recaptcha}
+            </InputLabel>
+          </div>
         </div>
         <Box className={button_box} fullWidth>
           <Button

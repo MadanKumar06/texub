@@ -29,6 +29,8 @@ const Productstable = ({
     producttable_add_to_cart,
     producttable_price_block,
     producttable_heading_icon,
+    check_price,
+    guest_login,
   } = classes;
 
   const onRowHandleClick = (row, index) => {
@@ -67,6 +69,7 @@ const Productstable = ({
     }));
   };
 
+  let isGuestUserSignedIn = JSON.parse(localStorage.getItem("userdata"));
   const columns = [
     {
       name: "main_product",
@@ -141,10 +144,19 @@ const Productstable = ({
         customBodyRender: (value) => {
           return (
             <div className={producttable_price_block}>
-              <div className={producttable_price}>
-                <span>{value?.[0]?.currency}</span>
-                {value?.[0]?.price}
-              </div>
+              {!localStorage.getItem("isLoggedIn_auth") ? (
+                <div className={producttable_price}>
+                  <p className={guest_login}>Login</p>
+                  <p className={check_price}>to see the prices</p>
+                </div>
+              ) : (
+                localStorage.getItem("isLoggedIn_auth") && (
+                  <div className={producttable_price}>
+                    <span>{value?.[0]?.currency}</span>
+                    {value?.[0]?.price}
+                  </div>
+                )
+              )}
             </div>
           );
         },

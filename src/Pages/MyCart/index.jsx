@@ -15,10 +15,10 @@ const Mycart = () => {
     const currency = JSON.parse(localStorage.getItem("currency"));
     let data = {
       data: {
-        // customer_id: user?.id,
-        // currency_id: currency?.currency_id,
-        customer_id: 280,
-        currency_id: 1,
+        customer_id: user?.id,
+        currency_id: currency?.currency_id,
+        // customer_id: 280,
+        // currency_id: 1,
       },
     };
     axios

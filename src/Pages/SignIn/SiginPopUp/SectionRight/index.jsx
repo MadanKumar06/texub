@@ -250,6 +250,10 @@ const TransitionsModal = ({ classes }) => {
           type: "SET_IS_LOADING",
           value: false,
         });
+        dispatch({
+          type: "SET_SIGNIN_OPEN_CLOSE",
+          value: false,
+        });
         swal.fire({
           text: "You have Successfully Registered !",
           icon: "success",
@@ -258,7 +262,7 @@ const TransitionsModal = ({ classes }) => {
         });
         setTimeout(() => {
           history("/");
-        }, 1000);
+        }, 1000/2);
       })
       .catch((err) => {
         dispatch({

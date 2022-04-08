@@ -17,7 +17,7 @@ function ValidationForKycForm({
 }) {
   const history = useNavigate();
   const [{}, dispatch] = useStateValue();
-  let { button_box, button_guest, download_link } = classes;
+  let { button_box, button_guest, download_link,agreemnetDowload } = classes;
   const [valid, setValid] = useState(null);
 
   useEffect(() => {
@@ -223,9 +223,9 @@ function ValidationForKycForm({
           />
         }
         label={
-          <p>
-            By clicking here, I state that I have read and understood the terms
-            of agreement
+          <p className={agreemnetDowload}>
+            By Clicking Here, I state that I have read and understood the{" "}
+            <span>Terms Of Agreement</span>.
           </p>
         }
         labelPlacement="end"

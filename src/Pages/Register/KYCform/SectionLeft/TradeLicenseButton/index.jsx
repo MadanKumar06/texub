@@ -36,9 +36,7 @@ const TradeLicenseButton = ({
   } = classes;
 
   //Data state and onchange event
-  const [dateChange, setDateChange] = useState(null);
   const handleChange = (newValue) => {
-    setDateChange(newValue);
     SetFormValues((prevState) => ({
       ...prevState,
       trade_expiration_date: newValue,
@@ -197,9 +195,13 @@ const TradeLicenseButton = ({
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <DesktopDatePicker
             label="Expiration Date"
-            inputFormat="MM/dd/yyyy"
+            inputFormat="dd/MM/yyyy"
             minDate={new Date()}
-            value={dateChange}
+            value={
+              FormValues?.trade_expiration_date
+                ? FormValues?.trade_expiration_date
+                : null
+            }
             onChange={handleChange}
             renderInput={(params) => (
               <TextField
@@ -207,7 +209,7 @@ const TradeLicenseButton = ({
                 fullWidth
                 className="inputfield-box"
                 id="trade_expiration_date"
-                placeholder="MM/DD/YY"
+                inputProps={{ ...params.inputProps, placeholder: "DD/MM/YYYY" }}
                 InputLabelProps={{
                   shrink: true,
                   // required: true,
@@ -274,9 +276,9 @@ const TradeLicenseButton = ({
       </div>
       {FormValues?.expiry_checkbox && (
         <FormControlLabel
-          value={FormValues?.trade_remainder_check}
           control={
             <Checkbox
+              checked={FormValues?.trade_remainder_check}
               color="color_third"
               name="trade_remainder_check"
               onChange={handleFormvalue}

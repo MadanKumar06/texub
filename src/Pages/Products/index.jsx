@@ -19,6 +19,7 @@ export const Products = () => {
     ) {
       const fetchProductData = () => {
         setProductData([]);
+        debugger
         let data = {
           data: {
             currency_id: parseInt(currency?.currency_id),
@@ -35,6 +36,9 @@ export const Products = () => {
             condition_id: productFetchApi?.conditions
               ? productFetchApi?.conditions
               : "0",
+            keyword: productFetchApi?.search_product
+              ? productFetchApi?.search_product
+              : "",
           },
         };
         axios

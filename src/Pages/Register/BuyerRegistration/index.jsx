@@ -430,7 +430,7 @@ const BuyerRegistration = ({ classes }) => {
       .get(Constant.customerMeDetailUrl(), {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       })
       .then((res) => {
@@ -439,6 +439,10 @@ const BuyerRegistration = ({ classes }) => {
           value: false,
         });
         localStorage.setItem("userdata", JSON.stringify(res?.data));
+        localStorage.setItem(
+          "isLoggedIn_auth",
+          res?.data?.group_id === 1 ? false : true
+        );
         dispatch({
           type: "SET_KYC_OPEN_CLOSE",
           value: true,
@@ -706,35 +710,9 @@ const BuyerRegistration = ({ classes }) => {
             </InputLabel>
           </div>
         </div>
-        {/* 6LcaHDYfAAAAAOUR0jJWtEI128eoRL4xjBWOpjKD ---- site key */}
-        <ReCAPTCHA
-          className="recaptcha_info1 buyer-recaptcha_info"
-          // 6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI  --- Localllllll
-          sitekey="6LcaHDYfAAAAAOUR0jJWtEI128eoRL4xjBWOpjKD"
-          onChange={() => {
-            setbuyerRegistrationData((prevState) => ({
-              ...prevState,
-              recaptcha: true,
-            }));
-            setInputValidation((prevState) => ({
-              ...prevState,
-              recaptcha: "",
-            }));
-          }}
-          name="recaptcha"
-        />
-        <InputLabel className={validation_error}>
-          {inputValidation?.recaptcha}
-        </InputLabel>
+
         <div className={input_textField}>
-          <div style={{ width: "100%" }}>
-            <FormControlLabel
-              value="yes"
-              control={<Checkbox color="secondary" />}
-              label="Remember Me"
-              labelPlacement="end"
-              className={checkbox_label}
-            />
+          <div className={text_field_container}>
             <FormControlLabel
               value="yes"
               control={<Checkbox color="secondary" />}
@@ -748,6 +726,28 @@ const BuyerRegistration = ({ classes }) => {
               labelPlacement="end"
               className={checkbox_label}
             />
+          </div>
+          <div className={text_field_container}>
+            {/* 6LcaHDYfAAAAAOUR0jJWtEI128eoRL4xjBWOpjKD ---- site key */}
+            <ReCAPTCHA
+              className="recaptcha_info1 buyer-recaptcha_info"
+              // 6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI  --- Localllllll
+              sitekey="6LcaHDYfAAAAAOUR0jJWtEI128eoRL4xjBWOpjKD"
+              onChange={() => {
+                setbuyerRegistrationData((prevState) => ({
+                  ...prevState,
+                  recaptcha: true,
+                }));
+                setInputValidation((prevState) => ({
+                  ...prevState,
+                  recaptcha: "",
+                }));
+              }}
+              name="recaptcha"
+            />
+            <InputLabel className={validation_error}>
+              {inputValidation?.recaptcha}
+            </InputLabel>
           </div>
         </div>
 

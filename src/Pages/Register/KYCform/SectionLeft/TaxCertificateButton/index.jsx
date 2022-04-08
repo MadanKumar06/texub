@@ -36,9 +36,7 @@ const TaxCertificateButton = ({
   } = classes;
 
   //Date onchange event
-  const [dateChange, setDateChange] = useState(null);
   const handleChange = (newValue) => {
-    setDateChange(newValue);
     SetFormValues((prevState) => ({
       ...prevState,
       tax_expiration_date: newValue,
@@ -114,10 +112,28 @@ const TaxCertificateButton = ({
   const handleSwitchCase = (fieldName, value) => {
     switch (fieldName[0]) {
       case "tax_expiration_date":
-        if (value.toString() === "Invalid Date") {
+        if (!value) {
+          setInputValidation((prevState) => ({
+            ...prevState,
+            tax_expiration_date: "Please select expiration date.",
+          }));
+          SetFormValues((prevState) => ({
+            ...prevState,
+            expiry_checkbox: false,
+          }));
+        } else if (value.toString() === "Invalid Date") {
           setInputValidation((prevState) => ({
             ...prevState,
             tax_expiration_date: "Please select valid date.",
+          }));
+          SetFormValues((prevState) => ({
+            ...prevState,
+            tax_expiry_checkbox: false,
+          }));
+        } else if (value.toString() !== "Invalid Date") {
+          SetFormValues((prevState) => ({
+            ...prevState,
+            tax_expiry_checkbox: true,
           }));
         }
         break;
@@ -131,8 +147,7 @@ const TaxCertificateButton = ({
       <div className={input_div}>
         <TextField
           id="tax_number"
-          label="Tax Number"
-          type="number"
+          label="Tax Number"  
           fullWidth
           placeholder="Tax Number"
           className="inputfield-box"
@@ -154,9 +169,13 @@ const TaxCertificateButton = ({
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <DesktopDatePicker
             label="Expiration Date"
-            inputFormat="MM/dd/yyyy"
+            inputFormat="dd/MM/yyyy"
             minDate={new Date()}
-            value={dateChange}
+            value={
+              FormValues?.tax_expiration_date
+                ? FormValues?.tax_expiration_date
+                : null
+            }
             onChange={handleChange}
             renderInput={(params) => (
               <TextField
@@ -164,7 +183,8 @@ const TaxCertificateButton = ({
                 fullWidth
                 className="inputfield-box"
                 id="tax_expiration_date"
-                placeholder="MM/DD/YY"
+                placeholder="DD/MM/YY"
+                inputProps={{ ...params.inputProps, placeholder: "DD/MM/YYYY" }}
                 InputLabelProps={{
                   shrink: true,
                   // required: false,
@@ -228,19 +248,21 @@ const TaxCertificateButton = ({
           />
         </div>
       </div>
-      <FormControlLabel
-        value={FormValues?.tax_remainder_check}
-        control={
-          <Checkbox
-            color="color_third"
-            name="tax_remainder_check"
-            onChange={handleFormvalue}
-          />
-        }
-        label="Automated Reminder on Expiry."
-        labelPlacement="end"
-        className={checkbox_label}
-      />
+      {FormValues?.tax_expiry_checkbox && (
+        <FormControlLabel
+          control={
+            <Checkbox
+              color="color_third"
+              name="tax_remainder_check"
+              checked={FormValues?.tax_remainder_check}
+              onChange={handleFormvalue}
+            />
+          }
+          label="Automated Reminder on Expiry."
+          labelPlacement="end"
+          className={checkbox_label}
+        />
+      )}
     </>
   );
 };

@@ -159,7 +159,7 @@ function Index({ registerproduct }) {
             customerId: customerId?.id,
           },
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         });
         setApiTableData(tabledata.data);

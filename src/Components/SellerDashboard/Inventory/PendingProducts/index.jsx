@@ -55,7 +55,7 @@ function Index({ registerproduct }) {
       },
     },
     {
-      name: "category_name",
+      name: "name",
       label: "PRODUCT NAME",
       options: {
         customBodyRender: (value) => {
@@ -64,11 +64,11 @@ function Index({ registerproduct }) {
       },
     },
     {
-      name: "categorys",
+      name: "category_name",
       label: "CATEGORY",
       options: {
         customBodyRender: (value) => {
-          return <div className="product">{`${value} ${" "}`} </div>;
+          return <div className="product">{`${value}`} </div>;
         },
       },
     },
@@ -92,7 +92,6 @@ function Index({ registerproduct }) {
         customBodyRender: (value, tablemeta) => {
           var data = tablemeta?.rowData[4];
           var product_id = tablemeta?.rowData[6];
-          debugger;
           return (
             <div
               className="productGrid__action"

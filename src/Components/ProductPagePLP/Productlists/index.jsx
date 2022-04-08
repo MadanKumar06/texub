@@ -153,7 +153,10 @@ const Productlists = ({ setProductFetchApi, productFetchApi }) => {
           size="small"
           placeholder="Search Products Here…"
           variant="standard"
+          name="search_product"
           className="search_input"
+          value={productFetchApi?.search_product}
+          onChange={handleChange}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
