@@ -134,7 +134,7 @@ function Index({ registerproduct }) {
           return (
             <div
               className="inventory__action"
-              onClick={() => registerproduct("updateproduct", value, 'update')}
+              onClick={() => registerproduct("updateproduct", value, "update")}
             >
               Update
             </div>
@@ -149,66 +149,47 @@ function Index({ registerproduct }) {
 
   //Api to fetch table values
   useEffect(() => {
-    const fetchcustomerToken = () => {
-      let data = {
-        username: "ajitha.v@ambab.com",
-        password: "admin@1234",
-      };
-      axios
-        .post(Constant.customerTokenUrl(), data, {
-          headers: {
-            "Content-Type": "application/json",
+    const fetchTableData = async (token) => {
+      let customerId = JSON.parse(localStorage.getItem("userdata"));
+      try {
+        const tabledata = await axios({
+          method: "post",
+          url: `${Constant.baseUrl()}/getEditProductList`,
+          data: {
+            customerId: customerId?.id,
           },
-        })
-        .then((res) => {
-          fetchTableData(res?.data);
-          localStorage.setItem('token', res?.data)
-        })
-        .catch((err) => {});
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setApiTableData(tabledata.data);
+      } catch (e) {
+        console.log(e);
+      }
     };
-    fetchcustomerToken();
+    fetchTableData();
   }, []);
 
-  const fetchTableData = async(token) => {
-    let customerId = JSON.parse(localStorage.getItem("userdata"));
-    try {
-      const tabledata = await axios({
-        method: 'post',
-        url: `${Constant.baseUrl()}/getEditProductList`,
-        data: {
-          customerId: customerId?.id,    
-        },
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      })
-      setApiTableData(tabledata.data)
-    } catch(e) {
-      console.log(e)
-    }
-
-  };
-
-  const handleSearchInput = async(event) => {
-    if(event.target.value === "") {
-      return setSearchList(false)
+  const handleSearchInput = async (event) => {
+    if (event.target.value === "") {
+      return setSearchList(false);
     }
     var customer_id = JSON.parse(localStorage.getItem("userdata"));
     try {
       const searchresults = await axios({
-        method: 'post',
+        method: "post",
         url: `${Constant.baseUrl()}/getSearchProduct`,
         data: {
           customerId: 310,
           keyWord: event?.target?.value,
         },
         headers: {
-          Authorization:`Bearer ${localStorage.getItem('token')}`
-        }
-      })
-      setSearchList(searchresults?.data)
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+      setSearchList(searchresults?.data);
     } catch (e) {
-      console.log(e)
+      console.log(e);
     }
   };
 
@@ -252,7 +233,9 @@ function Index({ registerproduct }) {
           </div>
         </div>
       </div>
-      {searchList?.length > 0 && <ProductGrid gridData={searchList} registerproduct={registerproduct} />}
+      {searchList?.length > 0 && (
+        <ProductGrid gridData={searchList} registerproduct={registerproduct} />
+      )}
       <MUITable
         columns={columns}
         table={tableData}

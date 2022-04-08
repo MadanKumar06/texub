@@ -107,7 +107,6 @@ function ValidationForKycForm({
   };
 
   let localUserData = JSON.parse(localStorage?.getItem("userdata"));
-  let customer_token = JSON.parse(localStorage?.getItem("customer_auth"));
   let company_name = localUserData?.custom_attributes?.filter(
     (itm) => itm?.attribute_code === "customer_company_name"
   );
@@ -171,7 +170,7 @@ function ValidationForKycForm({
       .post(Constant.baseUrl() + "/saveKyc", data, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${customer_token}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       })
       .then((res) => {

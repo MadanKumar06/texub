@@ -25,9 +25,7 @@ const Mycart = () => {
       .post(Constant.baseUrl() + "/cartList", data, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${JSON.parse(
-            localStorage.getItem("customer_auth")
-          )}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       })
       .then((res) => {

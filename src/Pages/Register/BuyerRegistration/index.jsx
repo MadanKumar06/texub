@@ -399,10 +399,7 @@ const BuyerRegistration = ({ classes }) => {
         });
         if (res?.data?.[0]?.status) {
           localStorage.setItem("register_success", JSON.stringify(res?.data));
-          localStorage.setItem(
-            "customer_auth",
-            JSON.stringify(res?.data?.[0]?.token)
-          );
+          localStorage.setItem("token", res?.data?.[0]?.token);
           // history("/thankyou/buyer", { state: res?.data });
           getUserData(res.data?.[0]?.token);
         } else {

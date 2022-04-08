@@ -185,7 +185,7 @@ const TransitionsModal = ({ classes, openPopUp }) => {
       })
       .then((res) => {
         getSigninedUserData(res?.data);
-        localStorage.setItem("customer_auth", JSON.stringify(res?.data));
+        localStorage.setItem("token", res?.data);
       })
       .catch((error) => {
         dispatch({

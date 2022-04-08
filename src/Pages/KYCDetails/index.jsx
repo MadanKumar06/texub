@@ -18,7 +18,6 @@ const TransitionsModal = ({ classes }) => {
     button_box,
     button_guest,
   } = classes;
-  let customer_token = JSON.parse(localStorage?.getItem("customer_auth"));
   const [kycDetailData, setKycDetailData] = useState({
     additional_info: "",
     account_holder_name: "",
@@ -44,7 +43,7 @@ const TransitionsModal = ({ classes }) => {
         .post(Constant.baseUrl() + "/getBankDetails", data, {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${customer_token}`,
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         })
         .then((res) => {
@@ -75,7 +74,7 @@ const TransitionsModal = ({ classes }) => {
       .post(Constant.baseUrl() + "/saveBankDetails", data, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${customer_token}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       })
       .then((res) => {
