@@ -7,9 +7,11 @@ export const initialState = {
   isLoading: false,
   currency: {},
   isSimpleLoading: false,
+  cart: [],
 };
 
 const reducer = (state, action) => {
+  console.log(action);
   switch (action.type) {
     case "SET_IS_LOADING":
       return {
@@ -50,6 +52,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         currency: action.data,
+      };
+    case "CART__DATA":
+      return {
+        ...state,
+        cart: action.value,
       };
     default:
       return state;
