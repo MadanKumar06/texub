@@ -543,10 +543,14 @@ const BuyerRegistration = ({ classes }) => {
           "isLoggedIn_auth",
           res?.data?.group_id === 1 ? false : true
         );
-        dispatch({
-          type: "SET_KYC_OPEN_CLOSE",
-          value: true,
-        });
+
+        history("/");
+        setTimeout(() => {
+          dispatch({
+            type: "SET_KYC_OPEN_CLOSE",
+            value: true,
+          });
+        }, 1000 / 2);
       })
       .catch((err) => {
         dispatch({

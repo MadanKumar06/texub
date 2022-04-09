@@ -3,6 +3,9 @@ import "./styles.scss";
 
 import { TextField, Box, Button, InputLabel } from "@mui/material";
 import { isEmailValid } from "../../../../utilities";
+import Constant from "../../../../Constant";
+import axios from "axios";
+import swal from "sweetalert2";
 
 import contact from "../../../../Assets/Career/Group 982.png";
 import officeicon from "../../../../Assets/Contactus/office.png";
@@ -25,6 +28,40 @@ const Contactus = () => {
     e_mail: "",
     your_message: "",
   });
+  const handleCall = () => {
+    let data = {
+      data: {
+        storeId: 3,
+        email: contactusData?.e_mail,
+        name: contactusData?.your_name,
+        subject: contactusData?.subject,
+        message: contactusData?.your_message,
+      },
+    };
+    axios
+      .post(Constant.baseUrl() + `/contactForm`, data, {
+        headers: {
+          "Content-Type": "application/json",
+          // Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((res) => {
+        swal.fire({
+          text: `${res?.data?.[0]?.message}`,
+          icon: "success",
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      })
+      .catch((error) => {
+        swal.fire({
+          text: `${error?.response?.data?.message || error.message}`,
+          icon: "error",
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      });
+  };
   const handleFormvalue = (event) => {
     setcontactusData((prevState) => ({
       ...prevState,
@@ -96,6 +133,9 @@ const Contactus = () => {
       }));
       errorHandle = true;
     }
+    if (!errorHandle) {
+      handleCall();
+    }
   };
   const office = [
     {
@@ -109,7 +149,12 @@ const Contactus = () => {
     },
   ];
   const mail = [
-    { id: 1, icon: mailicon, heading: "E-Mail Address", mail: "info@texub.com" },
+    {
+      id: 1,
+      icon: mailicon,
+      heading: "E-Mail Address",
+      mail: "info@texub.com",
+    },
   ];
   const telephone = [
     {
@@ -225,8 +270,12 @@ const Contactus = () => {
                     {item.heading}
                   </span>
                   <span className="contactus_office_number">{item.number}</span>
-                  <span className="contactus_office_number">{item.number2}</span>
-                  <span className="contactus_office_number">{item.number3}</span>
+                  <span className="contactus_office_number">
+                    {item.number2}
+                  </span>
+                  <span className="contactus_office_number">
+                    {item.number3}
+                  </span>
                   <span className="contactus_office_number">
                     {item.landmark}
                   </span>
@@ -359,6 +408,8 @@ const Contactus = () => {
                 shrink: true,
               }}
               variant="outlined"
+              onChange={handleFormvalue}
+              value={contactusData?.subject}
             />
           </div>
           <div>
