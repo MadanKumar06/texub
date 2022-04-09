@@ -80,7 +80,7 @@ const BuyerKYCformSectionRight = ({
             getOptionLabel={(option) => option.category_name}
             disableCloseOnSelect={
               FormValues?.categorylist?.length &&
-              FormValues?.categorylist?.some(
+              FormValues?.categorylist?.includes(
                 (itm) => itm?.category_name === "Others"
               )
             }

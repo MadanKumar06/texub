@@ -25,9 +25,7 @@ const PendingInvoice = () => {
     const user = JSON.parse(localStorage.getItem("userdata"));
     let data = {
       data: {
-        // customer_id: user?.id,
-        // currency_id: currency?.currency_id,
-        customer_id: 275,
+        customer_id: user?.id,
       },
     };
     axios
