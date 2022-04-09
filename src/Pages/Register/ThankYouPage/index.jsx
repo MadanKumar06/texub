@@ -9,6 +9,8 @@ import { Link } from "react-router-dom";
 const ThankyouPage = ({ classes }) => {
   const { type } = useParams();
   const [{}, dispatch] = useStateValue();
+
+  let userData = JSON.parse(localStorage.getItem("userdata"));
   let {
     thankyou_container_seller,
     thankyou_container_buyer,
@@ -21,13 +23,6 @@ const ThankyouPage = ({ classes }) => {
     thankyou_backto_home,
     thankyou_logo,
   } = classes;
-
-  useEffect(() => {
-    // dispatch({
-    //   type: "SET_KYC_OPEN_CLOSE",
-    //   value: true,
-    // });
-  }, []);
   const handleSignInOpenClose = () => {
     dispatch({
       type: "SET_SIGNIN_OPEN_CLOSE",
@@ -50,7 +45,9 @@ const ThankyouPage = ({ classes }) => {
           <img src={thanksLogo} alt="auth" />
         </div>
         <p className={thankyou_title}>Thank You !</p>
-        <p className={thankyou_user}>Dear User</p>
+        <p className={thankyou_user}>
+          {userData?.firstname} {userData?.lastname}
+        </p>
         {(type === "buyer" || type === "seller") && (
           // <p className={thankyou_for_register}>
           //   You have submitted the Registration form successfully. Kindly login

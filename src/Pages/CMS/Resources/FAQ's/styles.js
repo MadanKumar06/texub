@@ -1,6 +1,5 @@
 
 const styles = (theme) => ({
-
     faqs_table: {
         display: "flex",
         flexDirection: "column",
@@ -17,11 +16,6 @@ const styles = (theme) => ({
             fontSize: "unset",
         },
     },
-    // faqs_textarea: {
-    //     "& .FAQ-faqs_textarea-20": {
-    //         Height: "216px",
-    //     }
-    // },
     faqs_button: {
         width:"30%",
         padding:"10px 20px",

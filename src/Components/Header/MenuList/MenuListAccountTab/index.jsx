@@ -236,11 +236,11 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
               <ListItemText primary={"Buy On TEXUB"} />
             </ListItem>
           </Link>
-          <Link className={classes.link_in_tab} to="/">
+          {/* <Link className={classes.link_in_tab} to="/">
             <ListItem button>
               <ListItemText primary={"FAQ"} />
             </ListItem>
-          </Link>
+          </Link> */}
 
           <Link className={classes.link_in_tab} to="/Contactus">
             <ListItem button>

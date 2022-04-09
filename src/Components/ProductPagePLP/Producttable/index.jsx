@@ -29,9 +29,11 @@ const Productstable = ({
     producttable_add_to_cart,
     producttable_price_block,
     producttable_heading_icon,
+    check_price,
+    guest_login,
   } = classes;
 
-  const onRowHandleClick = (row, index) => {
+  const onRowHandleClick = (row, rowState, rowMeta) => {
     dispatch({
       type: "SET_PDP_POPUP_OPEN_CLOSE",
       value: true,
@@ -39,6 +41,13 @@ const Productstable = ({
     });
   };
 
+  const handleClick = (event) => {
+    event.stopPropagation();
+    dispatch({
+      type: "SET_SIGNIN_OPEN_CLOSE",
+      value: true,
+    });
+  };
   function truncate(str, n) {
     return str?.length > n ? str.substr(0, n - 1) + "..." : str;
   }
@@ -67,6 +76,7 @@ const Productstable = ({
     }));
   };
 
+  let isGuestUserSignedIn = JSON.parse(localStorage.getItem("userdata"));
   const columns = [
     {
       name: "main_product",
@@ -141,10 +151,23 @@ const Productstable = ({
         customBodyRender: (value) => {
           return (
             <div className={producttable_price_block}>
-              <div className={producttable_price}>
-                <span>{value?.[0]?.currency}</span>
-                {value?.[0]?.price}
-              </div>
+              {!localStorage.getItem("isLoggedIn_auth") ||
+              isGuestUserSignedIn?.group_id === 1 ? (
+                <div
+                  className={producttable_price}
+                  onClick={(e) => handleClick(e)}
+                >
+                  <p className={guest_login}>Login</p>
+                  <p className={check_price}>to see the prices</p>
+                </div>
+              ) : (
+                localStorage.getItem("isLoggedIn_auth") && (
+                  <div className={producttable_price}>
+                    <span>{value?.[0]?.currency}</span>
+                    {value?.[0]?.price}
+                  </div>
+                )
+              )}
             </div>
           );
         },
@@ -199,6 +222,13 @@ const Productstable = ({
             </p>
           );
         },
+      },
+    },
+    {
+      name: "main_product",
+      label: "CONDITION",
+      options: {
+        display: false,
       },
     },
   ];

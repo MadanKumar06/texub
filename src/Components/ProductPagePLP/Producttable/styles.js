@@ -40,7 +40,7 @@ const styles = () => ({
         fontSize: "18px",
         "@media (max-width:1399px)": {
           fontSize: "16px",
-        }
+        },
       },
     },
     "& .MuiTableBody-root": {
@@ -57,21 +57,32 @@ const styles = () => ({
         fontSize: "18px",
         fontWeight: "600",
         "@media (max-width:1680px)": {
-          fontSize: "16px"
+          fontSize: "16px",
         },
         "@media (max-width:1399px)": {
-          fontSize: "14px"
+          fontSize: "14px",
         },
         "& a": {
           textDecoration: "none",
         },
         "@media (max-width:900px)": {
           display: "flex !important",
-          justifyContent:"center",
-          alignItems:"center",
+          justifyContent: "center",
+          alignItems: "center",
         },
       },
     },
+  },
+  guest_login: {
+    margin: "0",
+    fontSize: "12px",
+    textDecoration: "underline",
+    color: "#002D56",
+  },
+  check_price: {
+    margin: "0",
+    fontSize: "10px",
+    color: "#333C42",
   },
   productable_image: {
     display: "flex",
@@ -82,7 +93,7 @@ const styles = () => ({
   },
   producttable_price: {
     width: "110px",
-    padding: "10px 0",
+    padding: "3px 0px",
     background: "#ffffff",
     borderRadius: "22px",
     "& span": {

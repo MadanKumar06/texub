@@ -10,9 +10,11 @@ import Pagination from "../../Components/Pagination";
 import axios from "axios";
 import Constant from "../../Constant";
 import { useParams } from "react-router-dom";
+import { useStateValue } from "../../store/state";
 
 const Index = () => {
   const { id } = useParams();
+  const [{}, dispatch] = useStateValue();
   const [tableData, setTableData] = useState([]);
   const [serllerProfileList, setSellerProfileList] = useState([]);
 
@@ -22,6 +24,13 @@ const Index = () => {
     { label: "Completed Orders", value: 118 },
   ];
 
+  const handleClick = (event) => {
+    event.stopPropagation();
+    dispatch({
+      type: "SET_SIGNIN_OPEN_CLOSE",
+      value: true,
+    });
+  };
   useEffect(() => {
     let data = {
       sellercode: id,
@@ -38,11 +47,10 @@ const Index = () => {
       .catch((error) => {});
   }, []);
 
-  console.log(serllerProfileList)
-
   const PaginateDataSplit = (event) => {
     setTableData(event);
   };
+  let isGuestUserSignedIn = JSON.parse(localStorage.getItem("userdata"));
   const columns = [
     {
       name: "product_image",
@@ -83,7 +91,15 @@ const Index = () => {
       label: "MY PRICE",
       options: {
         customBodyRender: (value) => {
-          return <div className="sellerprofile__myprice">{value}</div>;
+          return !localStorage.getItem("isLoggedIn_auth") ||
+            isGuestUserSignedIn?.group_id === 1 ? (
+            <div className="producttable_price" onClick={(e) => handleClick(e)}>
+              <p className="guest_login">Login</p>
+              <p className="check_price">to see the prices</p>
+            </div>
+          ) : (
+            <div className="sellerprofile__myprice">{value}</div>
+          );
         },
       },
     },
@@ -101,31 +117,6 @@ const Index = () => {
           );
         },
       },
-    },
-  ];
-
-  const table = [
-    {
-      logo: hp,
-      productname: "pname1",
-      category: "Laptop",
-      sku: "sku1",
-      instock: 2000,
-      moq: 50,
-      myprice: 65999,
-      hub: "Mumbai",
-      rank: "4",
-    },
-    {
-      logo: hp,
-      productname: "pname2",
-      category: "Desktop",
-      sku: "sku5",
-      instock: 4500,
-      moq: 200,
-      myprice: 55699,
-      hub: "Banglore",
-      rank: "4",
     },
   ];
 
@@ -161,9 +152,7 @@ const Index = () => {
             ))} */}
             <li className="bgcolor1">
               <p className="sellerprofile__label">Seller Code</p>
-              <p className="sellerprofile__value">
-                {id}
-              </p>
+              <p className="sellerprofile__value">{id}</p>
             </li>
             <li className="bgcolor2">
               <p className="sellerprofile__label">Seller Country</p>
@@ -174,8 +163,7 @@ const Index = () => {
             <li className="bgcolor2">
               <p className="sellerprofile__label">Completed Orders</p>
               <p className="sellerprofile__value">
-                {/* {serllerProfileList?.[0].seller_country} */}
-                0
+                {/* {serllerProfileList?.[0].seller_country} */}0
               </p>
             </li>
           </ul>

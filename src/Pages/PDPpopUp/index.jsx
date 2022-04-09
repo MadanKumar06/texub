@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Modal, Button, Backdrop } from "@mui/material";
 import "./styles.scss";
 import { Clear } from "@mui/icons-material";
@@ -21,6 +21,7 @@ import invoice_image from "../../Assets/CommonImage/invoice.png";
 
 const PdpPopup = () => {
   const [open, setOpen] = useState(true);
+  let detailsData = useRef();
   const history = useNavigate();
   const [{ pdpPopUpOpenClose }, dispatch] = useStateValue();
   const [moreOffers, setMoreOffers] = useState({ tableone: 3, tabletwo: 3 });
@@ -36,12 +37,17 @@ const PdpPopup = () => {
       value: false,
     });
   };
+
   useEffect(() => {
-    if (pdpPopUpOpenClose?.data?.tableData?.[0]?.sub_products?.length) {
-      let sortData = pdpPopUpOpenClose?.data?.tableData?.[0]?.sub_products.sort(
-        (a, b) => (a.price > b.price ? 1 : -1)
+    if (pdpPopUpOpenClose?.data?.tableData?.length) {
+      detailsData.current = pdpPopUpOpenClose?.data?.tableData?.filter(
+        (itm) =>
+          itm?.main_product?.main_product_id ===
+          pdpPopUpOpenClose?.data?.row?.[10]?.main_product_id
       );
-      console.log(sortData);
+      let sortData = detailsData?.current?.[0]?.sub_products.sort((a, b) =>
+        a.price > b.price ? 1 : -1
+      );
       let tempTable_one = sortData?.slice(0, moreOffers?.tableone);
       let tempTable_two = table_two_data?.slice(0, moreOffers?.tabletwo);
       setTableData({ tableone: tempTable_one, tabletwo: tempTable_two });
@@ -58,6 +64,31 @@ const PdpPopup = () => {
     });
   };
 
+  const handleIsValidUser = (event) => {
+    let isValidUser = JSON.parse(localStorage.getItem("userdata"))?.group_id;
+
+    if (isValidUser === 5) {
+      let temp =
+        event === "add_to_cart"
+          ? AddToCartAndPendingInvoice("add_to_cart")
+          : event === "pending_invoice"
+          ? AddToCartAndPendingInvoice("pending_invoice")
+          : "";
+    } else {
+      swal.fire({
+        text: `${
+          event === "add_to_cart"
+            ? "Login as a buyer to add cart"
+            : event === "add_to_wishlist"
+            ? "Login as a buyer to add wishlist"
+            : "Login as a buyer to add pending invoice"
+        }`,
+        icon: "error",
+        showConfirmButton: false,
+        timer: 3000,
+      });
+    }
+  };
   //APi call to addtocart
   const AddToCartAndPendingInvoice = (info) => {
     const user = JSON.parse(localStorage.getItem("userdata"));
@@ -69,12 +100,12 @@ const PdpPopup = () => {
       pendingProducts: {
         store_id: 1,
         customer_id: user?.id,
-        productId: pdpSellerData?.event?.product_id,
-        price: pdpSellerData?.event?.price,
-        qty: pdpSellerData?.event?.moq,
-        hub: pdpSellerData?.event?.hub_id,
-        currency: pdpSellerData?.event?.currency_id,
-        sellerId: pdpSellerData?.event?.seller_id,
+        productId: pdpSellerData?.product_id,
+        price: pdpSellerData?.price,
+        qty: pdpSellerData?.moq,
+        hub: pdpSellerData?.hub_id,
+        currency: pdpSellerData?.currency_id,
+        sellerId: pdpSellerData?.seller_id,
       },
     };
     axios
@@ -86,9 +117,7 @@ const PdpPopup = () => {
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${JSON.parse(
-              localStorage.getItem("customer_auth")
-            )}`,
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         }
       )
@@ -170,7 +199,11 @@ const PdpPopup = () => {
               </div>
               <div className="header_bottom_image_container">
                 <img src={header_bottom_image_2} alt="" />
-                <span>Delivers In 5-7 Business Days</span>
+                <p>
+                  <span>4.5/</span>
+                  <small>5</small>
+                </p>
+                <span>Seller Score</span>
               </div>
               <div className="header_bottom_image_container">
                 <img src={header_bottom_image_3} alt="" />
@@ -201,7 +234,10 @@ const PdpPopup = () => {
               </div>
             )}
 
-            <div className="modal_bottom_image_container">
+            <div
+              className="modal_bottom_image_container"
+              onClick={() => handleIsValidUser("add_to_wishlist")}
+            >
               <img src={add_whishlist} alt="" />
               <span>Add to Wishlist</span>
             </div>
@@ -209,7 +245,7 @@ const PdpPopup = () => {
               <Button
                 className="modal_bottom_button_add_to_cart"
                 // onClick={() => handleRouteOnButtonClick("add_to_cart")}
-                onClick={() => AddToCartAndPendingInvoice("add_to_cart")}
+                onClick={() => handleIsValidUser("add_to_cart")}
               >
                 <img src={shopping_cart} alt="" />
                 <span>Add to Cart</span>
@@ -217,7 +253,7 @@ const PdpPopup = () => {
               <Button
                 className="modal_bottom_button_pending_invoice"
                 // onClick={() => handleRouteOnButtonClick("pending_invoice")}
-                onClick={() => AddToCartAndPendingInvoice("pending_invoice")}
+                onClick={() => handleIsValidUser("pending_invoice")}
               >
                 <img width="21px" src={invoice_image} alt="" />
                 <span> Add to Pending Invoice</span>
@@ -228,21 +264,27 @@ const PdpPopup = () => {
             <div className="pdp_footer_model_details">
               <span className="pdp_footer_model_info">MODEL NAME</span>
               <span className="pdp_footer_model_info_detail">
-                Pavilion Model14-Dv0054Tu
+                {detailsData?.current?.[0]?.main_product?.model_number}
               </span>
             </div>
             <div className="pdp_footer_model_details">
               <span className="pdp_footer_model_info">PART NUMBER</span>
-              <span className="pdp_footer_model_info_detail">1135G7</span>
+              <span className="pdp_footer_model_info_detail">
+                {" "}
+                {detailsData?.current?.[0]?.main_product?.part_number}
+              </span>
             </div>
             <div className="pdp_footer_model_details">
               <span className="pdp_footer_model_info">CONDITION</span>
-              <span className="pdp_footer_model_info_detail">New</span>
+              <span className="pdp_footer_model_info_detail">
+                {" "}
+                {detailsData?.current?.[0]?.main_product?.condition}
+              </span>
             </div>
             <div className="pdp_footer_model_details">
               <span className="pdp_footer_model_info">OTHER INFO</span>
               <span className="pdp_footer_model_info_detail">
-                Not Available
+                {detailsData?.current?.[0]?.main_product?.other_info}
               </span>
             </div>
           </div>

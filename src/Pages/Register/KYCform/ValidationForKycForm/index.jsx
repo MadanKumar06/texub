@@ -17,7 +17,7 @@ function ValidationForKycForm({
 }) {
   const history = useNavigate();
   const [{}, dispatch] = useStateValue();
-  let { button_box, button_guest, download_link } = classes;
+  let { button_box, button_guest, download_link,agreemnetDowload } = classes;
   const [valid, setValid] = useState(null);
 
   useEffect(() => {
@@ -107,7 +107,6 @@ function ValidationForKycForm({
   };
 
   let localUserData = JSON.parse(localStorage?.getItem("userdata"));
-  let customer_token = JSON.parse(localStorage?.getItem("customer_auth"));
   let company_name = localUserData?.custom_attributes?.filter(
     (itm) => itm?.attribute_code === "customer_company_name"
   );
@@ -171,7 +170,7 @@ function ValidationForKycForm({
       .post(Constant.baseUrl() + "/saveKyc", data, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${customer_token}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       })
       .then((res) => {
@@ -224,9 +223,9 @@ function ValidationForKycForm({
           />
         }
         label={
-          <p>
-            By clicking here, I state that I have read and understood the terms
-            of agreement
+          <p className={agreemnetDowload}>
+            By Clicking Here, I state that I have read and understood the{" "}
+            <span>Terms Of Agreement</span>.
           </p>
         }
         labelPlacement="end"

@@ -15,19 +15,17 @@ const Mycart = () => {
     const currency = JSON.parse(localStorage.getItem("currency"));
     let data = {
       data: {
-        // customer_id: user?.id,
-        // currency_id: currency?.currency_id,
-        customer_id: 280,
-        currency_id: 1,
+        customer_id: user?.id,
+        currency_id: currency?.currency_id,
+        // customer_id: 280,
+        // currency_id: 1,
       },
     };
     axios
       .post(Constant.baseUrl() + "/cartList", data, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${JSON.parse(
-            localStorage.getItem("customer_auth")
-          )}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       })
       .then((res) => {

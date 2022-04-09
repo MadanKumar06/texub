@@ -34,9 +34,7 @@ const PendingInvoice = () => {
       .post(Constant.baseUrl() + "/pendingInvoiceList", data, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${JSON.parse(
-            localStorage.getItem("customer_auth")
-          )}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       })
       .then((res) => {

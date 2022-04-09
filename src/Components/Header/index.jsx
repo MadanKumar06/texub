@@ -80,9 +80,9 @@ const Header = ({ classes }) => {
             <Typography variant="h6" className={classes.title}>
               <Link to="/coming-soon"> Buy On TEXUB </Link>
             </Typography>
-            <Typography variant="h6" className={classes.title}>
+            {/* <Typography variant="h6" className={classes.title}>
               <Link to="/Faqs"> FAQ</Link>
-            </Typography>
+            </Typography> */}
             <Typography variant="h6" className={classes.title}>
               <Link to="/Contactus"> Contact Us </Link>
             </Typography>

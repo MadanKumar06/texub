@@ -97,7 +97,7 @@ const BuyerKYCformSectionRight = ({
               }));
             }}
             renderInput={(params) => (
-              <TextField {...params} placeholder="Category List" />
+              <TextField {...params} placeholder="Select categories" />
             )}
           />
           {FormValues?.categorylist?.some(
