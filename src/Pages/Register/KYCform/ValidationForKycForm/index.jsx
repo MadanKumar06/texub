@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Box, Button, FormControlLabel, Checkbox } from "@mui/material";
+import {
+  Box,
+  Button,
+  FormControlLabel,
+  Checkbox,
+  InputLabel,
+} from "@mui/material";
 import styles from "../SectionRight/styles";
 import { withStyles } from "@mui/styles";
 import { useNavigate } from "react-router-dom";
@@ -15,10 +21,12 @@ function ValidationForKycForm({
   documentButton,
   setDocumentButton,
 }) {
+  let { validation_error } = classes;
   const history = useNavigate();
   const [{}, dispatch] = useStateValue();
-  let { button_box, button_guest, download_link,agreemnetDowload } = classes;
+  let { button_box, button_guest, download_link, agreemnetDowload } = classes;
   const [valid, setValid] = useState(null);
+  const [agreementChecked, setAgreementChecked] = useState(false);
 
   useEffect(() => {
     if (valid) {
@@ -29,7 +37,6 @@ function ValidationForKycForm({
   const handleValidationClick = () => {
     let endPoint = false;
     setValid("");
-
     if (!values?.trade_lic_number) {
       setValid((prevState) => ({
         ...prevState,
@@ -97,6 +104,13 @@ function ValidationForKycForm({
       setValid((prevState) => ({
         ...prevState,
         city: "Please enter the city.",
+      }));
+      endPoint = true;
+    }
+    if (!agreementChecked) {
+      setValid((prevState) => ({
+        ...prevState,
+        agreementChecked: "Please agree the terms of agreement",
       }));
       endPoint = true;
     }
@@ -194,6 +208,7 @@ function ValidationForKycForm({
   };
 
   const handlePdfDownload = (event) => {
+    setAgreementChecked(event.target.checked);
     if (event.target.checked) {
       window.location =
         Constant.pdfDowloadUrl() +
@@ -219,6 +234,7 @@ function ValidationForKycForm({
         control={
           <Checkbox
             color="secondary"
+            checked={agreementChecked}
             onClick={(event) => handlePdfDownload(event)}
           />
         }
@@ -231,6 +247,9 @@ function ValidationForKycForm({
         labelPlacement="end"
         className={download_link}
       />
+      <InputLabel className={validation_error}>
+        {valid?.agreementChecked}
+      </InputLabel>
       <Box className={button_box} fullWidth>
         {documentButton === "national_id" ? (
           <Button
