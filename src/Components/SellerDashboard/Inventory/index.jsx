@@ -210,7 +210,7 @@ function Index({ registerproduct }) {
                 sx={{ ml: 1, flex: 1 }}
                 placeholder="Search..."
                 onChange={handleSearchInput}
-                inputProps={{ "aria-label": "search google maps" }}
+                inputProps={{ "aria-label": "" }}
               />
             </Paper>
             <Box className="button-box-container inventory-hedaer-btn">

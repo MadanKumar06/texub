@@ -61,7 +61,6 @@ const TransitionsModal = ({ classes }) => {
         ...prevState,
         [event.target.name]: "",
       }));
-      handleSwitchCase([event.target.name], event.target.value);
     } else {
       setGuestData((prevState) => ({
         ...prevState,
@@ -71,57 +70,8 @@ const TransitionsModal = ({ classes }) => {
         ...prevState,
         [event.target.name]: "",
       }));
-      handleSwitchCase([event.target.name], event.target.value);
     }
   };
-  const handleSwitchCase = (fieldName, value) => {
-    switch (fieldName[0]) {
-      case "first_name":
-        if (!isFirstAndLastNameValid(value)) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            first_name: "Please enter alphabet.",
-          }));
-        }
-        break;
-      case "last_name":
-        if (!isFirstAndLastNameValid(value)) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            last_name: "Please enter alphabet.",
-          }));
-        }
-        break;
-      case "email_address":
-        if (!isEmailValid(value)) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            email_address: "Please enter the valid e-mail.",
-          }));
-        }
-        break;
-      case "password":
-        if (!isPasswordValid(value)) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            password:
-              "Minimum 8 characters at least 1 Alphabet, 1 Number and 1 Special Character.",
-          }));
-        }
-        break;
-      case "confrim_password":
-        if (!(guestData?.password === value)) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            confrim_password: "Password and confirm password does not match",
-          }));
-        }
-        break;
-      default:
-        break;
-    }
-  };
-
   const handleClickValidation = (event) => {
     var errorHandle = false;
     if (!guestData?.first_name) {
@@ -262,7 +212,7 @@ const TransitionsModal = ({ classes }) => {
         });
         setTimeout(() => {
           history("/");
-        }, 1000/2);
+        }, 1000 / 2);
       })
       .catch((err) => {
         dispatch({
