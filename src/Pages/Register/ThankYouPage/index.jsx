@@ -23,13 +23,6 @@ const ThankyouPage = ({ classes }) => {
     thankyou_backto_home,
     thankyou_logo,
   } = classes;
-
-  useEffect(() => {
-    // dispatch({
-    //   type: "SET_KYC_OPEN_CLOSE",
-    //   value: true,
-    // });
-  }, []);
   const handleSignInOpenClose = () => {
     dispatch({
       type: "SET_SIGNIN_OPEN_CLOSE",

@@ -47,6 +47,9 @@ const PDPTable = ({ classes, tableData, setPdpSellerData, pdpSellerData }) => {
     seller_eta_value,
     table_title_container,
     sub_table_title,
+    producttable_price,
+    guest_login,
+    check_price,
   } = classes;
 
   const [is_table_one, setIs_table_one] = useState(0);
@@ -55,7 +58,6 @@ const PDPTable = ({ classes, tableData, setPdpSellerData, pdpSellerData }) => {
   //tableValues
   useEffect(() => {
     if (tableData?.tableone?.length) {
-      debugger;
       let temp = tableData?.tableone?.map((itm) => ({
         ...itm,
         //  in_stock: 100,
@@ -74,6 +76,13 @@ const PDPTable = ({ classes, tableData, setPdpSellerData, pdpSellerData }) => {
     setIs_table_two(tableData?.tabletwo);
   }, [tableData]);
 
+  const handleClick = (event) => {
+    event.stopPropagation();
+    dispatch({
+      type: "SET_SIGNIN_OPEN_CLOSE",
+      value: true,
+    });
+  };
   // update values of moq
   const handleChangeValueTableone = (event, index) => {
     setIs_table_one(
@@ -125,9 +134,7 @@ const PDPTable = ({ classes, tableData, setPdpSellerData, pdpSellerData }) => {
       // no_of_pieces: event?.no_of_pieces,
     }));
   };
-
-  console.log(dradio);
-
+  let isGuestUserSignedIn = JSON.parse(localStorage.getItem("userdata"));
   return (
     <div className={table_container}>
       <div className={pdp_middle_wapper}>
@@ -242,13 +249,24 @@ const PDPTable = ({ classes, tableData, setPdpSellerData, pdpSellerData }) => {
                           </Link>
                         </span>
                       </div>
-                      <div className={price_list_price}>
-                        <span className={price_indicator}>
-                          {item?.currency}
-                        </span>
-                        <span className={price_value}>{item?.price}</span>
-                      </div>
 
+                      {!localStorage.getItem("isLoggedIn_auth") ||
+                      isGuestUserSignedIn?.group_id === 1 ? (
+                        <div
+                          className={producttable_price}
+                          onClick={(e) => handleClick(e)}
+                        >
+                          <p className={guest_login}>Login</p>
+                          <p className={check_price}>to see the prices</p>
+                        </div>
+                      ) : (
+                        <div className={price_list_price}>
+                          <span className={price_indicator}>
+                            {item?.currency}
+                          </span>
+                          <span className={price_value}>{item?.price}</span>
+                        </div>
+                      )}
                       <div className={price_list_stock}>
                         <span className={seller_stock_value}>
                           {item?.in_stock}

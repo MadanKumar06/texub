@@ -203,6 +203,7 @@ const TransitionsModal = ({ classes, openPopUp }) => {
   };
 
   const handleKyc = (event) => {
+    debugger;
     if (event?.info === "kyc_not_filled") {
       dispatch({
         type: "SET_SIGNIN_OPEN_CLOSE",

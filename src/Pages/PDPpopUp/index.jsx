@@ -37,11 +37,15 @@ const PdpPopup = () => {
     });
   };
   useEffect(() => {
-    if (pdpPopUpOpenClose?.data?.tableData?.[0]?.sub_products?.length) {
-      let sortData = pdpPopUpOpenClose?.data?.tableData?.[0]?.sub_products.sort(
-        (a, b) => (a.price > b.price ? 1 : -1)
+    if (pdpPopUpOpenClose?.data?.tableData?.length) {
+      let detailsData = pdpPopUpOpenClose?.data?.tableData?.filter(
+        (itm) =>
+          itm?.main_product?.main_product_id ===
+          pdpPopUpOpenClose?.data?.row?.[10]?.main_product_id
       );
-      console.log(sortData);
+      let sortData = detailsData?.[0]?.sub_products.sort((a, b) =>
+        a.price > b.price ? 1 : -1
+      );
       let tempTable_one = sortData?.slice(0, moreOffers?.tableone);
       let tempTable_two = table_two_data?.slice(0, moreOffers?.tabletwo);
       setTableData({ tableone: tempTable_one, tabletwo: tempTable_two });

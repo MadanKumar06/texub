@@ -33,7 +33,7 @@ const Productstable = ({
     guest_login,
   } = classes;
 
-  const onRowHandleClick = (row, index) => {
+  const onRowHandleClick = (row, rowState, rowMeta) => {
     dispatch({
       type: "SET_PDP_POPUP_OPEN_CLOSE",
       value: true,
@@ -41,6 +41,13 @@ const Productstable = ({
     });
   };
 
+  const handleClick = (event) => {
+    event.stopPropagation();
+    dispatch({
+      type: "SET_SIGNIN_OPEN_CLOSE",
+      value: true,
+    });
+  };
   function truncate(str, n) {
     return str?.length > n ? str.substr(0, n - 1) + "..." : str;
   }
@@ -143,8 +150,12 @@ const Productstable = ({
       options: {
         customBodyRender: (value) => {
           return (
-            <div className={producttable_price_block}>
-              {!localStorage.getItem("isLoggedIn_auth") ? (
+            <div
+              className={producttable_price_block}
+              onClick={(e) => handleClick(e)}
+            >
+              {!localStorage.getItem("isLoggedIn_auth") ||
+              isGuestUserSignedIn?.group_id === 1 ? (
                 <div className={producttable_price}>
                   <p className={guest_login}>Login</p>
                   <p className={check_price}>to see the prices</p>
@@ -211,6 +222,13 @@ const Productstable = ({
             </p>
           );
         },
+      },
+    },
+    {
+      name: "main_product",
+      label: "CONDITION",
+      options: {
+        display: false,
       },
     },
   ];

@@ -19,7 +19,6 @@ export const Products = () => {
     ) {
       const fetchProductData = () => {
         setProductData([]);
-        debugger
         let data = {
           data: {
             currency_id: parseInt(currency?.currency_id),
