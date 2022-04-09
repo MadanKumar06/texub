@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import styles from "./styles";
 
@@ -10,10 +10,39 @@ import { useStateValue } from "../../store/state";
 
 import logo from "../../Assets/Homepage Assets/Group.png";
 import swal from "sweetalert2";
+import axios from "axios";
+import Constant from "../../Constant";
 
 const Header = ({ classes }) => {
-  const [{}, dispatch] = useStateValue();
+  const [{currency}, dispatch] = useStateValue();
   let isSignedIn = JSON.parse(localStorage.getItem("userdata"));
+
+  useEffect(async() => {
+    const user = JSON.parse(localStorage.getItem("userdata"));
+    debugger
+    try {
+      const cartdata = await axios({
+        method: 'post',
+        url: `${Constant.baseUrl()}/cartList`,
+        data: {
+          data: {
+            customer_id: user?.id,
+            currency_id: currency?.currency_id,
+          },
+        },
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+      })
+      console.log(cartdata.data[0])
+      dispatch({
+        type: 'CART__DATA',
+        value: cartdata?.data,
+      })
+    } catch(e) {
+      console.log(e)
+    }
+  }, [currency])
 
   const SigninPopUP = () => {
     dispatch({

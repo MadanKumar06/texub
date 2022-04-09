@@ -9,9 +9,12 @@ import AddIcon from "@mui/icons-material/Add";
 import brand_logo from "../../../Assets/Productlist/Brand_icon.png";
 import { Rating } from "@mui/material";
 import { useStateValue } from "../../../store/state";
+import Constant from "../../../Constant";
+import axios from "axios";
 
 const MiniCartList = ({ handleSideBarClose }) => {
-  const [{}, dispatch] = useStateValue();
+  const [{ cart }, dispatch] = useStateValue();
+  console.log(cart)
   const [value, setValue] = React.useState(4);
   const [isCartData, setIsCartData] = useState(0);
   useEffect(() => {
@@ -67,8 +70,9 @@ const MiniCartList = ({ handleSideBarClose }) => {
       total: "4,019,940",
     },
   ];
+
   return (
-    <div className="minicart_list_main">
+    <div className="minicart_list_main" >
       <header className="minicart_header">
         <Clear
           className="clear_btn"
@@ -77,8 +81,8 @@ const MiniCartList = ({ handleSideBarClose }) => {
         <h6>Mini Cart</h6>
       </header>
       <div className="minicart_list_content">
-        {isCartData?.length &&
-          isCartData?.map((itm, index) => (
+        {cart[0]?.invoice_items?.length &&
+          cart[0]?.invoice_items?.map((itm, index) => (
             <div className="minicart_section_container">
               <div className="section_left">
                 <img src={brand_logo} alt="" />
@@ -88,7 +92,7 @@ const MiniCartList = ({ handleSideBarClose }) => {
                   Seller ID : <span>{itm?.seller_id} </span>
                 </p>
                 <div className="modal__hub">
-                  <p className="modal_name">{itm?.model_name}</p>
+                  <p className="modal_name">{itm?.product_name}</p>
                   <p className="hub">
                     <span>Hub</span>
                     {itm?.hub}
@@ -111,7 +115,8 @@ const MiniCartList = ({ handleSideBarClose }) => {
                 <div className="price_block">
                   <p className="price">
                     <span>INR</span>
-                    {itm?.price}
+                    {/* {itm?.price} */}
+                    {parseInt(itm?.price).toFixed(2)}
                     <span> /Unit</span>
                   </p>
                   <div className="quantity">
@@ -140,7 +145,7 @@ const MiniCartList = ({ handleSideBarClose }) => {
                 <div className="total_block">
                   <span>TOTAL</span>
                   <p>
-                    <span>INR</span> {itm?.total}
+                    <span>INR</span> {parseInt(itm?.price * itm?.qty).toFixed(2)}
                   </p>
                 </div>
               </div>
@@ -151,7 +156,7 @@ const MiniCartList = ({ handleSideBarClose }) => {
         <div className="minicart_total">
           <p className="title_total">TOTAL</p>
           <p className="total_price">
-            <span>INR</span>10,729,830
+            <span>INR</span>{cart?.invoice?.grand_total}
           </p>
         </div>
         <div className="minicart_btn">
