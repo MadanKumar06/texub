@@ -103,7 +103,19 @@ const NationalIdButton = ({
           {FormValues?.national_id_image?.name ? (
             <p>{FormValues?.national_id_image?.name}</p>
           ) : (
-            <p>No File Chosen</p>
+            <label
+              className={sub_media_upload_label}
+              htmlFor="icon-button-file"
+            >
+              <input
+                accept="image/jpeg,image/png,application/pdf"
+                id="icon-button-file"
+                type="file"
+                name="national_id_image"
+                onChange={handleImageChange}
+              />
+              <p>No File Chosen</p>
+            </label>
           )}
           <Clear
             className={input_image_name_clear_btn}

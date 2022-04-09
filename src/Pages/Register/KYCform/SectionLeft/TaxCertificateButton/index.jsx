@@ -113,19 +113,11 @@ const TaxCertificateButton = ({
     switch (fieldName[0]) {
       case "tax_expiration_date":
         if (!value) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            tax_expiration_date: "Please select expiration date.",
-          }));
           SetFormValues((prevState) => ({
             ...prevState,
-            expiry_checkbox: false,
+            tax_expiry_checkbox: false,
           }));
         } else if (value.toString() === "Invalid Date") {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            tax_expiration_date: "Please select valid date.",
-          }));
           SetFormValues((prevState) => ({
             ...prevState,
             tax_expiry_checkbox: false,
@@ -147,7 +139,7 @@ const TaxCertificateButton = ({
       <div className={input_div}>
         <TextField
           id="tax_number"
-          label="Tax Number"  
+          label="Tax Number"
           fullWidth
           placeholder="Tax Number"
           className="inputfield-box"
@@ -187,6 +179,7 @@ const TaxCertificateButton = ({
                 inputProps={{ ...params.inputProps, placeholder: "DD/MM/YYYY" }}
                 InputLabelProps={{
                   shrink: true,
+                  readOnly: true,
                   // required: false,
                   // classes: {
                   //   asterisk: asterisk,
@@ -235,7 +228,19 @@ const TaxCertificateButton = ({
           {FormValues?.tax_image?.name ? (
             <p>{FormValues?.tax_image?.name}</p>
           ) : (
-            <p>No File Chosen</p>
+            <label
+              className={sub_media_upload_label}
+              htmlFor="icon-button-file"
+            >
+              <input
+                accept="image/jpeg,image/png,application/pdf"
+                id="icon-button-file"
+                type="file"
+                name="tax_image"
+                onChange={handleImageChange}
+              />
+              <p>No File Chosen</p>
+            </label>
           )}
           <Clear
             className={input_image_name_clear_btn}

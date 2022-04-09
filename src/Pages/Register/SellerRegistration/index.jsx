@@ -168,7 +168,6 @@ const BuyerRegistration = ({ classes }) => {
         ...prevState,
         [event.target.name]: "",
       }));
-      handleSwitchCase([event.target.name], event.target.value);
     } else {
       setsellerRegistrationData((prevState) => ({
         ...prevState,
@@ -178,93 +177,9 @@ const BuyerRegistration = ({ classes }) => {
         ...prevState,
         [event.target.name]: "",
       }));
-      handleSwitchCase([event.target.name], event.target.value);
     }
   };
 
-  //onchange validation
-  const handleSwitchCase = (fieldName, value) => {
-    switch (fieldName[0]) {
-      case "first_name":
-        if (!isFirstAndLastNameValid(value)) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            first_name: "Please enter alphabet.",
-          }));
-        }
-        break;
-      case "last_name":
-        if (!isFirstAndLastNameValid(value)) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            last_name: "Please enter alphabet.",
-          }));
-        }
-        break;
-      case "mobile_number":
-        if (value?.length < 6 || value?.length > 15) {
-          document.getElementById("mobile_number")?.focus();
-          setInputValidation((prevState) => ({
-            ...prevState,
-            mobile_number:
-              "Please enter more than 6 and less than 16 digit mobile number.",
-          }));
-        }
-        break;
-      case "email_address":
-        if (!isEmailValid(value)) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            email_address: "Please enter the valid e-mail.",
-          }));
-        }
-        break;
-      case "password":
-        if (!isPasswordValid(value)) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            password:
-              "Minimum 8 characters at least 1 Alphabet, 1 Number and 1 Special Character.",
-          }));
-        }
-        break;
-      case "confrim_password":
-        if (!(sellerRegistrationData?.password === value)) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            confrim_password: "Password and confirm password does not match",
-          }));
-        }
-        break;
-
-      case "company":
-        if (!isCompanyNameValid(value)) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            company: "Please enter Alphabet or (Alphabet and Number).",
-          }));
-        }
-        break;
-      case "designation":
-        if (!isFirstAndLastNameValid(value)) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            designation: "Please enter alphabet.",
-          }));
-        }
-        break;
-      case "other_roles":
-        if (!value) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            other_roles: "Please enter the other roles.",
-          }));
-        }
-        break;
-      default:
-        break;
-    }
-  };
   const handleClickValidation = (event) => {
     var errorHandle = false;
     if (!sellerRegistrationData?.first_name) {
@@ -457,7 +372,6 @@ const BuyerRegistration = ({ classes }) => {
       ...prevState,
       mobile_number: "",
     }));
-    handleSwitchCase(["mobile_number"], value?.slice(data?.dialCode?.length));
   };
   //API to Register
   const FinalSellerRegistration = () => {

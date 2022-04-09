@@ -19,7 +19,7 @@ function Index({ registerproduct, gridData }) {
 
   const columns = [
     {
-      name: "logo",
+      name: "brand_image_url",
       label: " ",
       options: {
         customBodyRender: (value) => {
@@ -28,7 +28,7 @@ function Index({ registerproduct, gridData }) {
       },
     },
     {
-      name: "pname",
+      name: "name",
       label: "PRODUCT NAME",
       options: {
         customBodyRender: (value) => {

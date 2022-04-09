@@ -93,7 +93,6 @@ const TransitionsModal = ({ classes, openPopUp }) => {
         ...prevState,
         [event.target.name]: "",
       }));
-      handleSwitchCase([event.target.name], event.target.value);
     } else {
       setSignInData((prevState) => ({
         ...prevState,
@@ -103,30 +102,6 @@ const TransitionsModal = ({ classes, openPopUp }) => {
         ...prevState,
         [event.target.name]: "",
       }));
-      handleSwitchCase([event.target.name], event.target.value);
-    }
-  };
-  const handleSwitchCase = (fieldName, value) => {
-    switch (fieldName[0]) {
-      case "email_address":
-        if (!isEmailValid(value)) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            email_address: "Please enter the valid e-mail.",
-          }));
-        }
-        break;
-      case "password":
-        if (!isPasswordValid(value)) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            password:
-              "Minimum 8 characters at least 1 Alphabet, 1 Number and 1 Special Character.",
-          }));
-        }
-        break;
-      default:
-        break;
     }
   };
   const handleClickValidation = (event) => {
@@ -158,7 +133,7 @@ const TransitionsModal = ({ classes, openPopUp }) => {
       setInputValidation((prevState) => ({
         ...prevState,
         password:
-          "Minimum 8 characters at least 1 Alphabet, 1 Number and 1 Special Character.",
+          "Please enter the valid password.",
       }));
       errorHandle = true;
     }
