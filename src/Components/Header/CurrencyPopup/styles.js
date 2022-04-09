@@ -26,6 +26,13 @@ const styles = (theme) => ({
       color: "#5C6369",
     },
   },
+  curreny_image: {
+    margin: "0",
+    background: "#c19643",
+    color: "#ffffff",
+    padding: "0px 10px",
+    borderRadius: "50%",
+  },
   menulist_item: {
     "& .MuiList-root ": {
       padding: "15px",

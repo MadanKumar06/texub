@@ -96,6 +96,7 @@ const PdpPopup = () => {
       type: "SET_IS_LOADING",
       value: true,
     });
+    debugger
     let data = {
       pendingProducts: {
         store_id: 1,
