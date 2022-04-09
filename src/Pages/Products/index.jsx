@@ -6,6 +6,7 @@ import Productstable from "../../Components/ProductPagePLP/Producttable";
 import axios from "axios";
 import Constant from "../../Constant";
 import { useStateValue } from "../../store/state";
+import { Button } from "@mui/material";
 export const Products = () => {
   const [{ currency }, dispatch] = useStateValue();
   const [productFetchApi, setProductFetchApi] = useState({});
@@ -106,6 +107,9 @@ export const Products = () => {
         productFetchApi={productFetchApi}
         getCategories={getCategories}
       />
+      <div className="clear-btn">
+        <Button className="button-text btn-primary clear" onClick={() => setProductFetchApi("")}>Clear All</Button>
+      </div>
       <Productstable
         setProductFetchApi={setProductFetchApi}
         productFetchApi={productFetchApi}

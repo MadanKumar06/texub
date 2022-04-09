@@ -50,10 +50,6 @@ const styles = (theme) => ({
     width: "30%",
     display: "flex",
     flexDirection: "column",
-    "@media (max-width:1439px)": {
-      width: "100%",
-      padding: "0px 22px",
-    },
     "@media (max-width:780px)": {
       width: "100%",
       padding: "0px 10px",
@@ -61,6 +57,7 @@ const styles = (theme) => ({
   },
   pdp_top_header_product_details: {
     padding: "0px 22px",
+    width: "80%",
     "@media (max-width:925px)": {
       padding: "0px 10px"
     },

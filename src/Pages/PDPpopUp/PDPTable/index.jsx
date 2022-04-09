@@ -67,7 +67,8 @@ const PDPTable = ({ classes, tableData, setPdpSellerData, pdpSellerData }) => {
       handleRadioGroupChange(temp[0]);
       setPdpSellerData((prevState) => ({
         ...prevState,
-        seller_id: tableData?.tableone?.[0]?.seller_code,
+        seller_code:tableData?.tableone?.[0]?.seller_code,
+        seller_id: tableData?.tableone?.[0]?.seller_id,
         warranty_days: tableData?.tableone?.[0]?.warranty_days,
         packing_details: tableData?.tableone?.[0]?.packing_details,
         no_of_pieces: tableData?.tableone?.[0]?.no_of_pieces,
@@ -273,7 +274,7 @@ const PDPTable = ({ classes, tableData, setPdpSellerData, pdpSellerData }) => {
                         </span>
                       </div>
                       <div className={price_list_eta}>
-                        <span className={seller_eta_value}>{item?.eta}</span>
+                        <span className={seller_eta_value}>{item?.eta}{" "}Days</span>
                       </div>
 
                       <div className={price_list_hub}>

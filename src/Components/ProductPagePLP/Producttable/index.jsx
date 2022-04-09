@@ -150,13 +150,13 @@ const Productstable = ({
       options: {
         customBodyRender: (value) => {
           return (
-            <div
-              className={producttable_price_block}
-              onClick={(e) => handleClick(e)}
-            >
+            <div className={producttable_price_block}>
               {!localStorage.getItem("isLoggedIn_auth") ||
               isGuestUserSignedIn?.group_id === 1 ? (
-                <div className={producttable_price}>
+                <div
+                  className={producttable_price}
+                  onClick={(e) => handleClick(e)}
+                >
                   <p className={guest_login}>Login</p>
                   <p className={check_price}>to see the prices</p>
                 </div>
