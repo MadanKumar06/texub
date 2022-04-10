@@ -7,7 +7,7 @@ export const initialState = {
   isLoading: false,
   currency: {},
   isSimpleLoading: false,
-  cart: { apiTrigger: false, data: [] },
+  cart: [],
 };
 
 const reducer = (state, action) => {
@@ -56,7 +56,7 @@ const reducer = (state, action) => {
     case "CART__DATA":
       return {
         ...state,
-        cart: { apiTrigger: action.value, data: action.data },
+        cart: action.data,
       };
     default:
       return state;
