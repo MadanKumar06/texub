@@ -96,7 +96,6 @@ const PdpPopup = () => {
       type: "SET_IS_LOADING",
       value: true,
     });
-    debugger
     let data = {
       pendingProducts: {
         store_id: 1,
@@ -169,6 +168,10 @@ const PdpPopup = () => {
         });
       });
   };
+
+  function truncate(str, n) {
+    return str?.length > n ? str.substr(0, n - 1) + "..." : str;
+  }
   return (
     <Modal
       aria-labelledby="transition-modal-title"
@@ -285,7 +288,7 @@ const PdpPopup = () => {
             <div className="pdp_footer_model_details">
               <span className="pdp_footer_model_info">OTHER INFO</span>
               <span className="pdp_footer_model_info_detail">
-                {detailsData?.current?.[0]?.main_product?.other_info}
+                {truncate(detailsData?.current?.[0]?.main_product?.other_info, 30)}
               </span>
             </div>
           </div>

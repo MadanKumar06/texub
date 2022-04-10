@@ -19,7 +19,6 @@ const Header = ({ classes }) => {
 
   useEffect(async() => {
     const user = JSON.parse(localStorage.getItem("userdata"));
-    debugger
     try {
       const cartdata = await axios({
         method: 'post',

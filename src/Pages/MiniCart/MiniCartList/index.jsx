@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./styles.scss";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Clear } from "@mui/icons-material";
 import { Button } from "@mui/material";
 import RemoveIcon from "@mui/icons-material/Remove";
@@ -34,6 +34,8 @@ const MiniCartList = ({ handleSideBarClose }) => {
       })
     );
   };
+
+  const navigate = useNavigate()
 
   const onCLickDetailsLink = () => {
     handleSideBarClose("right", false);
@@ -70,6 +72,27 @@ const MiniCartList = ({ handleSideBarClose }) => {
       total: "4,019,940",
     },
   ];
+
+  const addpendinginvoice = async() => {
+    handleSideBarClose("right", false)
+    try {
+      const pinvoice = await axios({
+        method: 'post',
+        url: `${Constant.baseUrl()}/cartToPendingInvoice`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        },
+        data: {
+            "quote_id":cart[0]?.invoice?.Cart_id,
+            "store_id":1
+        }
+      })
+      console.log(pinvoice?.data)
+      navigate('/pending-invoice')
+    } catch(e) {
+      console.log(e)
+    }
+  }
 
   return (
     <div className="minicart_list_main" >
@@ -125,18 +148,18 @@ const MiniCartList = ({ handleSideBarClose }) => {
                         className="item_decrease"
                         onClick={() =>
                           handleChange(
-                            parseInt(itm?.quantity) >= 2
-                              ? parseInt(itm?.quantity) - 1
+                            parseInt(itm?.qty) >= 2
+                              ? parseInt(itm?.qty) - 1
                               : 1,
                             index
                           )
                         }
                       />
-                      <span className="input_text">{itm?.quantity}</span>
+                      <span className="input_text">{itm?.qty}</span>
                       <AddIcon
                         className="item_increase"
                         onClick={() =>
-                          handleChange(parseInt(itm?.quantity) + 1, index)
+                          handleChange(parseInt(itm?.qty) + 1, index)
                         }
                       />
                     </div>
@@ -165,14 +188,14 @@ const MiniCartList = ({ handleSideBarClose }) => {
               <span>Go To Cart</span>
             </Button>
           </Link>
-          <Link
+          {/* <Link
             to="/pending-invoice"
             onClick={() => handleSideBarClose("right", false)}
-          >
-            <Button className="minicart_bottom_button_pending_invoice">
+          > */}
+            <Button className="minicart_bottom_button_pending_invoice" onClick={addpendinginvoice}>
               <span>Add To Pending Invoice</span>
             </Button>
-          </Link>
+          {/* </Link> */}
         </div>
       </footer>
     </div>

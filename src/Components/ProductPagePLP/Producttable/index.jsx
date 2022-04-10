@@ -20,6 +20,8 @@ const Productstable = ({
 }) => {
   const [{}, dispatch] = useStateValue();
   const [tableData, setTableData] = useState([]);
+  const [emptytableData, setemptyTableData] = useState([]);
+
   let {
     producttable,
     mui_datatable_main,
@@ -254,20 +256,31 @@ const Productstable = ({
   };
 
   const PaginateDataSplit = (event) => {
+    if(productData.length === 0) return setTableData([])
     setTableData(event);
   };
   return (
     <div className={producttable}>
-      <MUITable
-        columns={columns}
-        table={tableData}
-        options={options}
-        className={mui_datatable_main}
-      />
-      {productData?.length ? (
+      {productData?.length > 0 ? 
+        <MUITable
+          columns={columns}
+          table={tableData}
+          options={options}
+          className={mui_datatable_main}
+        />
+      :
+        <MUITable
+          columns={columns}
+          table={emptytableData}
+          options={options}
+          className={mui_datatable_main}
+        />
+      }
+      
+      {productData?.length > 0 ? (
         <Pagination
           PaginateData={PaginateDataSplit}
-          DataList={productData?.length ? productData : []}
+          DataList={productData?.length > 0 ? productData : []}
           PagePerRow={10}
         />
       ) : (
