@@ -44,6 +44,7 @@
           .blogs_arial_img {
             width: 100%;
             height: 511px;
+            object-fit: contain;
           }
         }
         .Blogs_social_imgs {
@@ -204,6 +205,14 @@
           }
         }
       }
+    }
+  }
+
+  .blog__imageholder {
+    img {
+      height: 100% !important;
+      width: 100% !important;
+      object-fit: contain;
     }
   }
 }

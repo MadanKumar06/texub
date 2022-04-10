@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./styles.scss";
 
-import { Link } from "react-router-dom";
-import { Clear, RemoveCircleOutline } from "@mui/icons-material";
-
+import { Link, useNavigate } from "react-router-dom";
+import { Clear } from "@mui/icons-material";
 import { Button } from "@mui/material";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
@@ -41,6 +40,8 @@ const MiniCartList = ({ handleSideBarClose }) => {
       })
     );
   };
+
+  const navigate = useNavigate();
 
   const onCLickDetailsLink = () => {
     handleSideBarClose("right", false);
@@ -112,6 +113,27 @@ const MiniCartList = ({ handleSideBarClose }) => {
         });
       });
   };
+  const addpendinginvoice = async () => {
+    handleSideBarClose("right", false);
+    try {
+      const pinvoice = await axios({
+        method: "post",
+        url: `${Constant.baseUrl()}/cartToPendingInvoice`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        data: {
+          quote_id: cart[0]?.invoice?.Cart_id,
+          store_id: 1,
+        },
+      });
+      console.log(pinvoice?.data);
+      navigate("/pending-invoice");
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
     <div className="minicart_list_main">
       <header className="minicart_header">
@@ -136,131 +158,165 @@ const MiniCartList = ({ handleSideBarClose }) => {
                 <div className="minicart_section_container">
                   <div className="section_left">
                     <img src={brand_logo} alt="" />
-                  </div>
-                  <div className="section_right">
-                    <p className="seller_id">
-                      Seller ID : <span>{itm?.seller_id} </span>
-                    </p>
-                    <div className="modal__hub">
-                      <p className="modal_name">{itm?.product_name}</p>
-                      <p className="hub">
-                        <span>Hub</span>
-                        {itm?.hub}
+                    <div className="section_right">
+                      <p className="seller_id">
+                        Seller ID : <span>{itm?.seller_id} </span>
                       </p>
-                    </div>
-                    <div className="rating_main">
-                      <Rating
-                        className="ratings"
-                        name="simple-controlled"
-                        value={value}
-                        onChange={(event, newValue) => {
-                          setValue(newValue);
-                        }}
-                      />
-                      <p className="reviews"> 543 Reviews</p>
-                    </div>
-                    <p
-                      className="detail_link"
-                      onClick={() => onCLickDetailsLink()}
-                    >
-                      Details
-                    </p>
-                    <div className="price_block">
-                      <p className="price">
-                        <span>INR</span>
-                        {/* {itm?.price} */}
-                        {parseInt(itm?.price).toFixed(2)}
-                        <span> /Unit</span>
+                      <div className="modal__hub">
+                        <p className="modal_name">{itm?.product_name}</p>
+                        <p className="hub">
+                          <span>Hub</span>
+                          {itm?.hub}
+                        </p>
+                      </div>
+                      <div className="rating_main">
+                        <Rating
+                          className="ratings"
+                          name="simple-controlled"
+                          value={value}
+                          onChange={(event, newValue) => {
+                            setValue(newValue);
+                          }}
+                        />
+                        <p className="reviews"> 543 Reviews</p>
+                      </div>
+                      <p
+                        className="detail_link"
+                        onClick={() => onCLickDetailsLink()}
+                      >
+                        Details
                       </p>
-                      <div className="quantity">
-                        {parseInt(itm?.is_qty) !== parseInt(itm?.qty) && (
+                      <div className="price_block">
+                        <p className="price">
+                          <span>INR</span>
+                          {parseInt(itm?.price).toFixed(2)}
+                          <span> /Unit</span>
+                        </p>
+                        <div className="quantity">
+                          <div className="qty_change">
+                            <RemoveIcon
+                              className="item_decrease"
+                              onClick={() =>
+                                handleChange(
+                                  parseInt(itm?.qty) >= 2
+                                    ? parseInt(itm?.qty) - 1
+                                    : 1,
+                                  index
+                                )
+                              }
+                            />
+                            <span className="input_text">{itm?.qty}</span>
+                            <AddIcon
+                              className="item_increase"
+                              onClick={() =>
+                                handleChange(parseInt(itm?.qty) + 1, index)
+                              }
+                            />
+                            <p className="reviews"> 543 Reviews</p>
+                          </div>
                           <p
-                            className="update"
-                            onClick={() =>
-                              handleUpdate(
-                                itm?.qty,
-                                itm?.sku,
-                                cart?.data?.[0]?.invoice?.Cart_id,
-                                itm?.item_id
-                              )
-                            }
+                            className="detail_link"
+                            onClick={() => onCLickDetailsLink()}
                           >
-                            Update
+                            Details
                           </p>
-                        )}
-                        <div className="qty_change">
-                          <RemoveIcon
-                            className={`${
-                              parseInt(itm.moq) < parseInt(itm.qty)
-                                ? "item_increase"
-                                : "item_decrease"
-                            }`}
-                            onClick={() =>
-                              handleChange(
-                                parseInt(itm?.moq) >= parseInt(itm?.qty)
-                                  ? parseInt(itm?.qty)
-                                  : parseInt(itm?.qty) - 1,
-                                index
-                              )
-                            }
-                          />
-                          <span className="input_text">{itm?.qty}</span>
-                          <AddIcon
-                            className={`${
-                              parseInt(itm.qty) < parseInt(itm.in_stock)
-                                ? "item_increase"
-                                : "item_decrease"
-                            }`}
-                            onClick={() =>
-                              handleChange(
-                                parseInt(itm?.in_stock) > parseInt(itm?.qty)
-                                  ? parseInt(itm?.qty) + 1
-                                  : parseInt(itm?.qty),
-                                index
-                              )
-                            }
-                          />
+                          <div className="price_block">
+                            <p className="price">
+                              <span>INR</span>
+                              {parseInt(itm?.price).toFixed(2)}
+                              <span> /Unit</span>
+                            </p>
+                            <div className="quantity">
+                              {parseInt(itm?.is_qty) !== parseInt(itm?.qty) && (
+                                <p
+                                  className="update"
+                                  onClick={() =>
+                                    handleUpdate(
+                                      itm?.qty,
+                                      itm?.sku,
+                                      cart?.data?.[0]?.invoice?.Cart_id,
+                                      itm?.item_id
+                                    )
+                                  }
+                                >
+                                  Update
+                                </p>
+                              )}
+                              <div className="qty_change">
+                                <RemoveIcon
+                                  className={`${
+                                    parseInt(itm.moq) < parseInt(itm.qty)
+                                      ? "item_increase"
+                                      : "item_decrease"
+                                  }`}
+                                  onClick={() =>
+                                    handleChange(
+                                      parseInt(itm?.moq) >= parseInt(itm?.qty)
+                                        ? parseInt(itm?.qty)
+                                        : parseInt(itm?.qty) - 1,
+                                      index
+                                    )
+                                  }
+                                />
+                                <span className="input_text">{itm?.qty}</span>
+                                <AddIcon
+                                  className={`${
+                                    parseInt(itm.qty) < parseInt(itm.in_stock)
+                                      ? "item_increase"
+                                      : "item_decrease"
+                                  }`}
+                                  onClick={() =>
+                                    handleChange(
+                                      parseInt(itm?.in_stock) >
+                                        parseInt(itm?.qty)
+                                        ? parseInt(itm?.qty) + 1
+                                        : parseInt(itm?.qty),
+                                      index
+                                    )
+                                  }
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          <div className="total_block">
+                            <span>TOTAL</span>
+                            <p>
+                              <span>INR</span>{" "}
+                              {parseInt(itm?.price * itm?.qty).toFixed(2)}
+                            </p>
+                          </div>
                         </div>
                       </div>
                     </div>
-                    <div className="total_block">
-                      <span>TOTAL</span>
-                      <p>
-                        <span>INR</span>{" "}
-                        {parseInt(itm?.price * itm?.qty).toFixed(2)}
-                      </p>
-                    </div>
+                    <footer className="minicart_footer">
+                      <div className="minicart_total">
+                        <p className="title_total">TOTAL</p>
+                        <p className="total_price">
+                          {cart?.data?.[0]?.invoice?.grand_total}
+                        </p>
+                      </div>
+                      <div className="minicart_btn">
+                        <Link
+                          to="/mycart"
+                          onClick={() => handleSideBarClose("right", false)}
+                        >
+                          <Button className="minicart_bottom_button_cart">
+                            <span>Go To Cart</span>
+                          </Button>
+                        </Link>
+
+                        <Button
+                          className="minicart_bottom_button_pending_invoice"
+                          onClick={addpendinginvoice}
+                        >
+                          <span>Add To Pending Invoice</span>
+                        </Button>
+                      </div>
+                    </footer>
                   </div>
                 </div>
               ))}
           </div>
-          <footer className="minicart_footer">
-            <div className="minicart_total">
-              <p className="title_total">TOTAL</p>
-              <p className="total_price">
-                <span>INR</span>
-                {cart?.data?.[0]?.invoice?.grand_total}
-              </p>
-            </div>
-            <div className="minicart_btn">
-              <Link
-                to="/mycart"
-                onClick={() => handleSideBarClose("right", false)}
-              >
-                <Button className="minicart_bottom_button_cart">
-                  <span>Go To Cart</span>
-                </Button>
-              </Link>
-              <Link
-                to="/pending-invoice"
-                onClick={() => handleSideBarClose("right", false)}
-              >
-                <Button className="minicart_bottom_button_pending_invoice">
-                  <span>Add To Pending Invoice</span>
-                </Button>
-              </Link>
-            </div>
-          </footer>
         </>
       )}
     </div>

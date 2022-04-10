@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./styles.scss";
 import { Stack, Button, Breadcrumbs, Typography } from "@mui/material";
 import MyCartTable from "./MyCartTable";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import shopping_image from "../../Assets/MyCart/Group 956.png";
 import { useStateValue } from "../../store/state";
 import { getAdminToken } from "../../utilities";
@@ -60,6 +60,27 @@ const Mycart = () => {
       console.log(e);
     }
   };
+  const navigate = useNavigate()
+
+  const addpendinginvoice = async() => {
+    try {
+      const pinvoice = await axios({
+        method: 'post',
+        url: `${Constant.baseUrl()}/cartToPendingInvoice`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        },
+        data: {
+            "quote_id":cart[0]?.invoice?.Cart_id,
+            "store_id":1
+        }
+      })
+      navigate('/pending-invoice')
+    } catch(e) {
+      console.log(e)
+    }
+  }
+
   return (
     <div className="my_cart_main">
       <div className="my_cart_image_block">
@@ -82,7 +103,7 @@ const Mycart = () => {
         <Button className="my_cart_bottom_button_shopping">
           <span>Continue Shopping</span>
         </Button>
-        <Button className="my_cart_bottom_button_pending_invoice">
+        <Button className="my_cart_bottom_button_pending_invoice" onCLick={addpendinginvoice}>
           <span>Add To Pending Invoice</span>
         </Button>
       </div>

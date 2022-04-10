@@ -12,28 +12,38 @@ import { useStateValue } from "../../store/state";
 
 export const Home = () => {
   const [{}, dispatch] = useStateValue()
-  const [homedata, sethomedata] = useState([])
+  const [homedata, sethomedata] = useState({
+    homecontent: []
+  })
 
-  // useEffect(async() =>{
-  //   try {
-  //     const home = await axios({
-  //       method: 'get',
-  //       url: `${Constant.baseUrl()}/getHomePage`
-  //     })
-  //   } catch (e) {
-  //     console.log(e)
-  //   }
-  // }, [])
+  useEffect(async() =>{
+    try {
+      const home = await axios({
+        method: 'get',
+        url: `${Constant.baseUrl()}/getHomePage`
+      })
+      console.log(home.data)
+      sethomedata(prevState => ({
+        ...prevState,
+        homecontent: Object.assign({}, ...home.data)
+      }))
+    } catch (e) {
+      console.log(e)
+    }
+  }, [])
+
+  console.log(homedata)
 
 
   return (
     <div className="Home">
-      <Departments />
-      <Favorites />
-      <Todaysdeal />
-      <Benfits />
-      <Auctions />
-      <B2Bconnect />
+      <Departments data={homedata?.homecontent?.banner} />
+      <Favorites data={homedata?.homecontent?.block_2} />
+      <Todaysdeal data={homedata?.homecontent?.todays_deal} />
+      <Benfits data={homedata?.homecontent?.block_4} />
+      <Todaysdeal data={homedata?.homecontent?.block_5} />
+      {/* <Auctions data={homedata?.banner} /> */}
+      <B2Bconnect data={homedata?.homecontent?.block_6} />
     </div>
   );
 };
