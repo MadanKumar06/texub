@@ -28,7 +28,7 @@
   font-size: 18px !important;
 }
 .btn-primary {
-  background: linear-gradient(180deg, #ffd788 0% ,#ad7c20 100%);
+  background: linear-gradient(180deg, #ffd788 0%, #ad7c20 100%);
   color: #ffffff !important;
   max-width: calc(100% / 4);
 }
@@ -43,6 +43,14 @@
   border: 1px solid #002d56 !important;
 }
 
+.swal2-container {
+  .swal2-styled.swal2-confirm {
+    background-color: #002d56 !important;
+  }
+  .swal2-styled.swal2-cancel {
+    background-color: #ddb363 !important;
+  }
+}
 // material ui textbox
 
 .inputfield-box {
