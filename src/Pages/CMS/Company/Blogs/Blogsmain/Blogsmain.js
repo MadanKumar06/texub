@@ -17,24 +17,23 @@ const Blogsmain = () => {
         method: "get",
         url: `${Constant.baseUrl()}/blogList`,
       });
+      console.log(blogsdata?.data);
       let popular = [];
       let notpopular = [];
       blogsdata?.data?.filter((bd) => {
-        if (bd.isPopular === 0) {
+        if (bd.isPopular === "1") {
           popular.push(bd);
-        } else {
-          notpopular.push(bd);
         }
       });
       setpopularcontent(popular);
-      setblogmain(notpopular);
-      let temp = notpopular?.slice(1);
+      setblogmain(blogsdata.data[0]);
+      let temp = blogsdata?.data?.slice(1);
       setbloglist(temp);
     } catch (e) {
       console.log(e);
     }
   }, []);
-  console.log(popularcontent);
+
   return (
     <div className="Blogsmain_main">
       <div className="Blogsmain_1st_section">
@@ -43,22 +42,18 @@ const Blogsmain = () => {
           <div className="Blogs_details">
             <div className="Blogs_img_section">
               <div className="blogs_arial">
-                <img
-                  src={blogmain[0]?.image}
-                  alt=""
-                  className="blogs_arial_img"
-                />
+                <img src={blogmain?.image} alt="" className="blogs_arial_img" />
               </div>
             </div>
             <div className="Blogs_heading">
               <span
                 className="Blogs_heading1"
-                dangerouslySetInnerHTML={{ __html: bloglist[0]?.title }}
+                dangerouslySetInnerHTML={{ __html: blogmain?.title }}
               ></span>
               <span className="Blogs_date">
                 <span className="date_heading">Date :</span>{" "}
                 <span
-                  dangerouslySetInnerHTML={{ __html: bloglist[0]?.createdAt }}
+                  dangerouslySetInnerHTML={{ __html: blogmain?.createdAt }}
                 ></span>
               </span>
             </div>
@@ -66,14 +61,14 @@ const Blogsmain = () => {
               <span
                 className="description"
                 dangerouslySetInnerHTML={{
-                  __html: bloglist[0]?.shortDescription,
+                  __html: blogmain?.shortDescription,
                 }}
               ></span>
             </div>
             <div className="Blogs_description">
               <Box>
                 <Link
-                  to={`/blogsdetails/${blogmain[0]?.postId}`}
+                  to={`/blogsdetails/${blogmain?.postId}`}
                   className="Blogs_blog"
                 >
                   <Button className="button-text btn-secondary ">
@@ -129,7 +124,9 @@ const Blogsmain = () => {
           {popularcontent?.map((id, i) => (
             <div key={i} className="blogs_queue_section">
               <div className="blogs_q_img_section">
-                <img src={id.image} alt="" className="blogs_q" />
+                <div className="blog__imageholder">
+                  <img src={id.image} alt="" className="blogs_q" />
+                </div>
                 <div className="blogs_queue_text">
                   <span className="blogs_date">
                     <span className="date_heading">Date :</span>

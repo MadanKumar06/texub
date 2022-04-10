@@ -134,9 +134,13 @@
         .blogs_q_img_section {
           display: flex;
           gap: 46px;
-          .blogs_q {
-            height: 268px;
-            width: 32%;
+
+          .blog__imageholder {
+            .blogs_q {
+              height: 100%;
+              width: 100%;
+              object-fit: contain;
+            }
           }
           .blogs_queue_text {
             display: flex;
