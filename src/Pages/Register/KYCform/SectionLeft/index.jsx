@@ -51,7 +51,6 @@ const BuyerKYCformSectionLeft = ({ classes }) => {
   let seller = HideAndShowBankDetails?.custom_attributes?.filter(
     (itm) => itm?.attribute_code === "customer_country"
   );
-  debugger;
   return (
     <Modal
       aria-labelledby="transition-modal-title"

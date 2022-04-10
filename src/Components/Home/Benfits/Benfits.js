@@ -2,17 +2,14 @@ import React from "react";
 import Learn from "../../../Assets/Homepage Assets/Group 73.png";
 import "./Benfits.scss";
 
-export const Benfits = () => {
+export const Benfits = ({ data }) => {
   return (
     <div className="Benfits">
       <div className="Benfits_1st_div">
         <h1 className="Benfits_Get">Get </h1>
-        <h1 className="Benfits_Get">Benefits& </h1>
+        <h1 className="Benfits_Get">Benefits & </h1>
         <h1 className="Benfits_Get">Advantages</h1>
-        <p className="Benfits_Get_Tag">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </p>
+        <p className="Benfits_Get_Tag">{data?.content}</p>
         <div className="button__learnmore">
           <button className="Benfits_Learnmore_btn" type="button">
             Learn More
@@ -22,8 +19,8 @@ export const Benfits = () => {
       <div className="Benfits_2nd_div">
         <img className="Benfits_img" src={Learn} alt="" />
         <div className="Benfits__floatingcontent">
-          <h2 className="Benfits_Offer">Save Up to 60%</h2>
-          <h5 className="Benfits_Offer_tag">On all gaming products</h5>
+          <h2 className="Benfits_Offer">{data?.banner_content_1}</h2>
+          <h5 className="Benfits_Offer_tag">{data?.banner_content_2}</h5>
         </div>
       </div>
     </div>

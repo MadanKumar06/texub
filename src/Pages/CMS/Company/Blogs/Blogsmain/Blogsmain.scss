@@ -19,9 +19,14 @@
         .blogs_q_img_section {
           display: flex;
           gap: 25px;
-          .blogs_q {
-            height: 220px;
-            width: 32%;
+          align-items: center;
+          .blog__imageholder {
+            height: 16em;
+            .blogs_q {
+              height: 100%;
+              object-fit: contain;
+              width: 100%;
+            }
           }
           .blogs_queue_text {
             display: flex;
