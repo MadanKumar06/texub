@@ -232,6 +232,7 @@ const MyCartTable = ({ cartDataList, deleteCartData }) => {
       label: "QUANTITY",
       options: {
         customBodyRender: (value, tablemeta) => {
+          debugger
           return (
             <div className="mycart_table_quantity">
               <div className="mycart_quantity_subblock">
@@ -308,6 +309,20 @@ const MyCartTable = ({ cartDataList, deleteCartData }) => {
     },
     {
       name: "item_id",
+      label: " ",
+      options: {
+        display: false,
+      },
+    },
+    {
+      name: "moq",
+      label: " ",
+      options: {
+        display: false,
+      },
+    },
+    {
+      name: "in_stock",
       label: " ",
       options: {
         display: false,

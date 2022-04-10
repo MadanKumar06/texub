@@ -137,6 +137,7 @@ const BuyerRegistration = ({ classes }) => {
   useEffect(() => {
     if (sellerRegistrationData?.region?.region_id) {
       const fetchRegionBasedCountryData = () => {
+        setsellerRegistrationData({ country: "" });
         let data = {
           region_id: sellerRegistrationData?.region?.region_id,
         };
@@ -291,14 +292,15 @@ const BuyerRegistration = ({ classes }) => {
         company: "Please enter the company.",
       }));
       errorHandle = true;
-    } else if (!isCompanyNameValid(sellerRegistrationData?.company)) {
-      document.getElementById("company")?.focus();
-      setInputValidation((prevState) => ({
-        ...prevState,
-        company: "Please enter Alphabet or (Alphabet and Number)..",
-      }));
-      errorHandle = true;
-    }
+    } 
+    // else if (!isCompanyNameValid(sellerRegistrationData?.company)) {
+    //   document.getElementById("company")?.focus();
+    //   setInputValidation((prevState) => ({
+    //     ...prevState,
+    //     company: "Please enter Alphabet or (Alphabet and Number)..",
+    //   }));
+    //   errorHandle = true;
+    // }
     if (!sellerRegistrationData?.designation) {
       document.getElementById("designation")?.focus();
       setInputValidation((prevState) => ({
