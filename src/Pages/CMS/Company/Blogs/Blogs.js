@@ -24,7 +24,24 @@ const Blogs = () => {
     }
   }, [id]);
 
-  console.log(currentblog);
+  const [popularcontent, setpopularcontent] = useState([]);
+  useEffect(async () => {
+    try {
+      const blogsdata = await axios({
+        method: "get",
+        url: `${Constant.baseUrl()}/blogList`,
+      });
+      let popular = [];
+      blogsdata?.data?.filter((bd) => {
+        if (bd.isPopular === "1") {
+          popular.push(bd);
+        }
+      });
+      setpopularcontent(popular);
+    } catch (e) {
+      console.log(e);
+    }
+  }, []);
 
   return (
     <div className="Blogs_main">
@@ -107,18 +124,33 @@ const Blogs = () => {
       <div className="blogs_popular_main">
         <p className="mainheading">Popular Blog</p>
         <div className="blogs_popular">
-          {Popularblog.map((id) => (
-            <div key={id.id} className="blogs_queue_section">
+          {popularcontent?.map((id, i) => (
+            <div key={i} className="blogs_queue_section">
               <div className="blogs_q_img_section">
-                <img src={id.image} alt="" className="blogs_q" />
+                <div className="blog__imageholder">
+                  <img src={id.image} alt="" className="blogs_q" />
+                </div>
                 <div className="blogs_queue_text">
                   <span className="blogs_date">
-                    <span className="date_heading">Date : </span> {id.date}
+                    <span className="date_heading">Date :</span>
+                    <span
+                      dangerouslySetInnerHTML={{
+                        __html: id?.createdAt,
+                      }}
+                    ></span>
                   </span>
-                  <span className="blogs_queue_heading">{id.heading}</span>
-                  <span className="blogs_q_text">{id.details}</span>
-                  <Link to="/">
-                    <span className="blogs_readblog">{id.blog}</span>
+                  <span
+                    className="blogs_queue_heading"
+                    dangerouslySetInnerHTML={{ __html: id?.title }}
+                  ></span>
+                  <span
+                    className="blogs_q_text"
+                    dangerouslySetInnerHTML={{
+                      __html: id?.shortDescription,
+                    }}
+                  ></span>
+                  <Link to={`/blogsdetails/${id.postId}`}>
+                    <span className="blogs_readblog">Read Blog</span>
                   </Link>
                 </div>
               </div>
