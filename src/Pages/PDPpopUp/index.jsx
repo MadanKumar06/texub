@@ -96,7 +96,6 @@ const PdpPopup = () => {
       type: "SET_IS_LOADING",
       value: true,
     });
-    debugger
     let data = {
       pendingProducts: {
         store_id: 1,
@@ -139,6 +138,10 @@ const PdpPopup = () => {
             value: false,
           });
           if (info === "add_to_cart") {
+            dispatch({
+              type: "CART__DATA",
+              value: true,
+            });
             setTimeout(() => {
               history("/mycart");
             }, 1000 / 2);

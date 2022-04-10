@@ -5,36 +5,61 @@ import MyCartTable from "./MyCartTable";
 import { Link } from "react-router-dom";
 import shopping_image from "../../Assets/MyCart/Group 956.png";
 import { useStateValue } from "../../store/state";
+import { getAdminToken } from "../../utilities";
 
 import axios from "axios";
 import Constant from "../../Constant";
+import swal from "sweetalert2";
 
 const Mycart = () => {
-  const [cartDataList, setCartDataList] = useState([]);
-  const [{cart}, dispatch] = useStateValue()
+  const [{ cart }, dispatch] = useStateValue();
+
+  //API to fetch admin token
+  const [adminToken, setAdminToken] = useState("");
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("userdata"));
-    const currency = JSON.parse(localStorage.getItem("currency"));
-    let data = {
-      data: {
-        customer_id: user?.id,
-        currency_id: currency?.currency_id,
-      },
-    };
-    axios
-      .post(Constant.baseUrl() + "/cartList", data, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      })
-      .then((res) => {
-        setCartDataList(res?.data);
-      })
-      .catch((error) => {});
+    getAdminToken((res) => {
+      setAdminToken(res);
+    });
   }, []);
 
-  // console.log(cartDataList)
+  //Delete cart
+
+  const deleteCartData = async (deleteCart) => {
+    try {
+      const rowdelete = await axios({
+        method: "delete",
+        url: `${Constant.baseUrl2()}/carts/${deleteCart?.cart_id}/items/${
+          deleteCart?.item_id
+        }`,
+        headers: {
+          Authorization: `Bearer ${adminToken}`,
+        },
+      });
+      if (rowdelete) {
+        dispatch({
+          type: "CART__DATA",
+          value: true,
+        });
+        swal.fire({
+          text: `Your Cart is Deleted Successfully!`,
+          icon: "success",
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      } else {
+        swal.fire({
+          text: `Your Cart Not Deleted Try Again later`,
+          icon: "error",
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      }
+
+      // seteventcheck(!eventcheck);
+    } catch (e) {
+      console.log(e);
+    }
+  };
   return (
     <div className="my_cart_main">
       <div className="my_cart_image_block">
@@ -51,7 +76,7 @@ const Mycart = () => {
           </Breadcrumbs>
         </Stack>
       </div>
-      <MyCartTable cartDataList={cart} />
+      <MyCartTable cartDataList={cart?.data} deleteCartData={deleteCartData} />
 
       <div className="my_cart_footer">
         <Button className="my_cart_bottom_button_shopping">

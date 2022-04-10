@@ -43,6 +43,7 @@ function RegisterProduct() {
     other_main_category: "",
     sub_category: "",
     other_sub_category: "",
+    other_brands: "",
     brands: "",
     description: "",
     vendor_manufacturer_part_number: "",
@@ -92,7 +93,7 @@ function RegisterProduct() {
   useEffect(() => {
     const fetchBrandsData = () => {
       axios
-        .get(Constant.baseUrl() + "/getBrandList", {
+        .get(Constant.baseUrl() + "/getBrandListRegister", {
           headers: {
             "Content-Type": "application/json",
           },
@@ -182,6 +183,16 @@ function RegisterProduct() {
       setInputValidation((prevState) => ({
         ...prevState,
         brands: "Please select the brands.",
+      }));
+      errorHandle = true;
+    } else if (
+      registerNewProductData?.brands?.value === "brand-others" &&
+      !registerNewProductData?.other_brands
+    ) {
+      document.getElementById("other_brands")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        other_brands: "Please enter the other brands.",
       }));
       errorHandle = true;
     }
@@ -508,7 +519,7 @@ function RegisterProduct() {
               }}
               id="brands"
               options={dropdownListFromApi?.brandsList}
-              getOptionLabel={(option) => (option.name ? option.name : "")}
+              getOptionLabel={(option) => (option.label ? option.label : "")}
               filterOptions={(options) => options}
               fullWidth
               renderInput={(params) => (
@@ -525,6 +536,30 @@ function RegisterProduct() {
             <InputLabel className="validation_error">
               {inputValidation?.brands}
             </InputLabel>
+
+            {registerNewProductData?.brands?.value === "brand-others" && (
+              <div className="registerproducts_inputfields">
+                <InputLabel>
+                  Other Brands <small className="asterisk">*</small>
+                </InputLabel>
+                <TextField
+                  id="other_brands"
+                  name="other_brands"
+                  placeholder="Other brands"
+                  fullWidth
+                  className="inputfield-box"
+                  value={registerNewProductData?.other_brands}
+                  InputLabelProps={{
+                    shrink: false,
+                  }}
+                  variant="outlined"
+                  onChange={handleOnchange}
+                />
+                <InputLabel className="validation_error">
+                  {inputValidation?.other_brands}
+                </InputLabel>
+              </div>
+            )}
           </div>
           <div className="registerproducts_inputfields">
             <InputLabel>HSN Code</InputLabel>

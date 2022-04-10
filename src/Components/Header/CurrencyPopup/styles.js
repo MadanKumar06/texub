@@ -28,10 +28,14 @@ const styles = (theme) => ({
   },
   curreny_image: {
     margin: "0",
-    background: "#c19643",
     color: "#ffffff",
-    padding: "0px 10px",
+    background: "#dfb566",
     borderRadius: "50%",
+    minWidth: "35px",
+    minHeight: "35px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
   menulist_item: {
     "& .MuiList-root ": {

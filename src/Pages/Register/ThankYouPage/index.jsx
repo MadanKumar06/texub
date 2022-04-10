@@ -54,18 +54,27 @@ const ThankyouPage = ({ classes }) => {
           //   into your account to complete the KYC.
           // </p>
           <p className={thankyou_for_register}>
-            You have submitted the KYC form successfully. And Our team will get
-            back to you after verification. once your account has been approved,
-            you will receive a mail notification.
+            <p>You have submitted the KYC form successfully</p>
+            <p>and our team will get back to you after verification.</p>
+            <p>
+              Once your account has been approved, you will receive a mail
+              notification.
+            </p>
           </p>
         )}
         {(type === "buyerkyc" || type === "sellerkyc") && (
           <p className={thankyou_for_register}>
-            Your account is not yet activated, so kindly visit again once you
-            receive the account activation email.
+            <p>
+              Your account is not yet activated, so kindly visit again once you
+              receive
+            </p>
+            <p> the account activation email.</p>
           </p>
         )}
-        {type === "buyer" || type === "seller" ? (
+        {type === "buyer" ||
+        type === "seller" ||
+        type === "buyerkyc" ||
+        type === "sellerkyc" ? (
           ""
         ) : (
           <Box className={thankyou_button_box} fullWidth>

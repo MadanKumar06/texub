@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import { useStateValue } from "../../../../store/state";
 import axios from "axios";
 import Constant from "../../../../Constant";
+import swal from "sweetalert2";
 var moment = require("moment");
 
 function ValidationForKycForm({
@@ -137,8 +138,8 @@ function ValidationForKycForm({
     let Category_id = values?.categorylist?.map(
       (itm) => itm?.texub_category_id
     );
-    let tax_date = moment(values?.tax_expiration_date).format("MM-DD-YYYY");
-    let trade_date = moment(values?.trade_expiration_date).format("MM-DD-YYYY");
+    let tax_date = moment(values?.tax_expiration_date).format("DD-MM-YYYY");
+    let trade_date = moment(values?.trade_expiration_date).format("DD-MM-YYYY");
 
     let data = {
       kyc: {
@@ -192,12 +193,21 @@ function ValidationForKycForm({
           type: "SET_IS_LOADING",
           value: false,
         });
-        dispatch({
-          type: "SET_KYC_OPEN_CLOSE",
-          value: false,
-        });
-        let user_id = JSON.parse(localStorage.getItem("userdata"));
-        history(`/thankyou/${user_id?.group_id === 5 ? "buyer" : "seller"}`);
+        if (res?.data?.[0]?.status) {
+          dispatch({
+            type: "SET_KYC_OPEN_CLOSE",
+            value: false,
+          });
+          let user_id = JSON.parse(localStorage.getItem("userdata"));
+          history(`/thankyou/${user_id?.group_id === 5 ? "buyer" : "seller"}`);
+        } else {
+          swal.fire({
+            text: `${res?.data?.[0]?.message}`,
+            icon: "error",
+            showConfirmButton: false,
+            timer: 3000,
+          });
+        }
       })
       .catch((err) => {
         dispatch({
