@@ -21,7 +21,7 @@ const MiniCartList = ({ handleSideBarClose }) => {
   const [value, setValue] = React.useState(4);
   const [isCartData, setIsCartData] = useState(0);
   useEffect(() => {
-    let temp = cart?.data?.[0]?.invoice_items?.map((itm) => ({
+    let temp = cart?.[0]?.invoice_items?.map((itm) => ({
       ...itm,
       is_qty: itm?.qty,
     }));
@@ -91,10 +91,6 @@ const MiniCartList = ({ handleSideBarClose }) => {
           type: "SET_IS_SIMPLE_LOADING",
           value: false,
         });
-        dispatch({
-          type: "CART__DATA",
-          value: true,
-        });
       })
       .catch((error) => {
         dispatch({
@@ -123,13 +119,9 @@ const MiniCartList = ({ handleSideBarClose }) => {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         data: {
-          quote_id: cart?.data?.[0]?.invoice?.Cart_id,
+          quote_id: cart?.[0]?.invoice?.Cart_id,
           store_id: 1,
         },
-      });
-      dispatch({
-        type: "CART__DATA",
-        value: true,
       });
       navigate("/pending-invoice");
     } catch (e) {
@@ -205,7 +197,7 @@ const MiniCartList = ({ handleSideBarClose }) => {
                               handleUpdate(
                                 itm?.qty,
                                 itm?.sku,
-                                cart?.data?.[0]?.invoice?.Cart_id,
+                                cart?.[0]?.invoice?.Cart_id,
                                 itm?.item_id
                               )
                             }

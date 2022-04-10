@@ -36,10 +36,6 @@ const Mycart = () => {
         },
       });
       if (rowdelete) {
-        dispatch({
-          type: "CART__DATA",
-          value: true,
-        });
         swal.fire({
           text: `Your Cart is Deleted Successfully!`,
           icon: "success",
@@ -97,7 +93,7 @@ const Mycart = () => {
           </Breadcrumbs>
         </Stack>
       </div>
-      <MyCartTable cartDataList={cart?.data} deleteCartData={deleteCartData} />
+      <MyCartTable cartDataList={cart} deleteCartData={deleteCartData} />
 
       <div className="my_cart_footer">
         <Button className="my_cart_bottom_button_shopping">

@@ -18,6 +18,7 @@ const Header = ({ classes }) => {
   let isSignedIn = JSON.parse(localStorage.getItem("userdata"));
 
   useEffect(async () => {
+    debugger;
     const user = JSON.parse(localStorage.getItem("userdata"));
     if (localStorage.getItem("token")) {
       try {
@@ -43,7 +44,7 @@ const Header = ({ classes }) => {
         console.log(e);
       }
     }
-  }, [currency, cart?.apiTrigger]);
+  }, [currency, cart]);
 
   const SigninPopUP = () => {
     dispatch({

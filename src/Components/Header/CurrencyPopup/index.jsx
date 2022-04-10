@@ -82,10 +82,6 @@ const CurrencyPopup = ({ classes }) => {
               currency_symbol: res?.data?.[0]?.currency_symbol,
             },
           });
-          dispatch({
-            type: "CART__DATA",
-            value: true,
-          });
         })
         .catch((err) => {});
     };
