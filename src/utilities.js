@@ -10,7 +10,7 @@ export const isPasswordValid = (password) =>
   password.match(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,99}$/);
 
 export const isFirstAndLastNameValid = (firstAndLastName) =>
-  firstAndLastName.match(/^[a-zA-Z]*$/);
+  firstAndLastName.match(/^[a-zA-Z\s]*$/);
 
 export const isDesignationValid = (designation) =>
   designation.match(/^[a-zA-Z ]*$/);
@@ -18,7 +18,8 @@ export const isDesignationValid = (designation) =>
 export const isCompanyNameValid = (company) =>
   company.match(/^[^'][a-zA-Z0-9' ]*[^']$/);
 
-export const isRolesValid = (roles) => roles.match(/^[A-Z@~`!@#$%^&*()_=+\\';:"\/?>.<,-]*$/);
+export const isRolesValid = (roles) =>
+  roles.match(/^[A-Z@~`!@#$%^&*()_=+\\';:"\/?>.<,-]*$/);
 
 //get adminToken for seller and buyer registration
 export const getAdminToken = (callback) => {
