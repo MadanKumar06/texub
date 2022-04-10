@@ -108,6 +108,7 @@ const BuyerRegistration = ({ classes }) => {
     }
   };
   const handleClickValidation = (event) => {
+    event.preventDefault();
     var errorHandle = false;
     if (!buyerRegistrationData?.first_name) {
       document.getElementById("first_name")?.focus();
@@ -385,309 +386,312 @@ const BuyerRegistration = ({ classes }) => {
   return (
     <div className={main_container}>
       <div className={input_fields}>
-        <div className={input_textField}>
-          <div className={text_field_container}>
-            <TextField
-              id="first_name"
-              label="First Name"
-              placeholder="First Name"
-              fullWidth
-              className="inputfield-box"
-              InputLabelProps={{
-                shrink: true,
-                required: true,
-                classes: {
-                  asterisk: asterisk,
-                },
-              }}
-              value={buyerRegistrationData?.first_name}
-              name="first_name"
-              onChange={handleChangeInput}
-              variant="outlined"
-            />
-            <InputLabel className={validation_error}>
-              {inputValidation?.first_name}
-            </InputLabel>
+        <form onSubmit={handleClickValidation}>
+          <div className={input_textField}>
+            <div className={text_field_container}>
+              <TextField
+                id="first_name"
+                label="First Name"
+                placeholder="First Name"
+                fullWidth
+                className="inputfield-box"
+                InputLabelProps={{
+                  shrink: true,
+                  required: true,
+                  classes: {
+                    asterisk: asterisk,
+                  },
+                }}
+                value={buyerRegistrationData?.first_name}
+                name="first_name"
+                onChange={handleChangeInput}
+                variant="outlined"
+              />
+              <InputLabel className={validation_error}>
+                {inputValidation?.first_name}
+              </InputLabel>
+            </div>
+            <div className={text_field_container}>
+              <TextField
+                id="last_name"
+                className="inputfield-box"
+                label="Last Name"
+                fullWidth
+                placeholder="Last Name"
+                InputLabelProps={{
+                  shrink: true,
+                  required: true,
+                  classes: {
+                    asterisk: asterisk,
+                  },
+                }}
+                value={buyerRegistrationData?.last_name}
+                name="last_name"
+                onChange={handleChangeInput}
+                variant="outlined"
+              />
+              <InputLabel className={validation_error}>
+                {inputValidation?.last_name}
+              </InputLabel>
+            </div>
           </div>
-          <div className={text_field_container}>
-            <TextField
-              id="last_name"
-              className="inputfield-box"
-              label="Last Name"
-              fullWidth
-              placeholder="Last Name"
-              InputLabelProps={{
-                shrink: true,
-                required: true,
-                classes: {
-                  asterisk: asterisk,
-                },
-              }}
-              value={buyerRegistrationData?.last_name}
-              name="last_name"
-              onChange={handleChangeInput}
-              variant="outlined"
-            />
-            <InputLabel className={validation_error}>
-              {inputValidation?.last_name}
-            </InputLabel>
+          <div className={input_textField}>
+            <div className={text_field_container}>
+              <TextField
+                id="email_address"
+                label="E-mail Address"
+                autoComplete="off"
+                className="inputfield-box"
+                placeholder="E-mail Address"
+                fullWidth
+                InputLabelProps={{
+                  shrink: true,
+                  required: true,
+                  classes: {
+                    asterisk: asterisk,
+                  },
+                }}
+                value={buyerRegistrationData?.email_address}
+                name="email_address"
+                onChange={handleChangeInput}
+                variant="outlined"
+              />
+              <InputLabel className={validation_error}>
+                {inputValidation?.email_address}
+              </InputLabel>
+            </div>
+
+            <div className={text_field_container}>
+              <PhoneInput
+                country={"in"}
+                id="mobile_number"
+                fullWidth
+                label="Mobile Number"
+                className={mobile_input}
+                name="mobile_number"
+                placeholder="Mobile number"
+                value={buyerRegistrationData?.mobile_number}
+                inputProps={{
+                  label: "Mobile Number",
+                  required: true,
+                }}
+                onChange={handleMobileChangeInput}
+                variant="outlined"
+              />
+              <InputLabel className={validation_error}>
+                {inputValidation?.mobile_number}
+              </InputLabel>
+            </div>
           </div>
-        </div>
-        <div className={input_textField}>
-          <div className={text_field_container}>
-            <TextField
-              id="email_address"
-              label="E-mail Address"
-              autoComplete="off"
-              className="inputfield-box"
-              placeholder="E-mail Address"
-              fullWidth
-              InputLabelProps={{
-                shrink: true,
-                required: true,
-                classes: {
-                  asterisk: asterisk,
-                },
-              }}
-              value={buyerRegistrationData?.email_address}
-              name="email_address"
-              onChange={handleChangeInput}
-              variant="outlined"
-            />
-            <InputLabel className={validation_error}>
-              {inputValidation?.email_address}
-            </InputLabel>
+          <div className={input_textField}>
+            <div className={text_field_container}>
+              <TextField
+                id="password"
+                label="Password"
+                className="inputfield-box"
+                fullWidth
+                type="password"
+                autoComplete="new-password"
+                placeholder="Password"
+                InputLabelProps={{
+                  shrink: true,
+                  required: true,
+                  classes: {
+                    asterisk: asterisk,
+                  },
+                }}
+                value={buyerRegistrationData?.password}
+                name="password"
+                onChange={handleChangeInput}
+                variant="outlined"
+              />
+              <InputLabel className={validation_error}>
+                {inputValidation?.password}
+              </InputLabel>
+            </div>
+            <div className={text_field_container}>
+              <TextField
+                id="confrim_password"
+                label="Confrim Password"
+                fullWidth
+                className="inputfield-box"
+                type="password"
+                placeholder="Confrim Password"
+                InputLabelProps={{
+                  shrink: true,
+                  required: true,
+                  classes: {
+                    asterisk: asterisk,
+                  },
+                }}
+                value={buyerRegistrationData?.confrim_password}
+                name="confrim_password"
+                onChange={handleChangeInput}
+                variant="outlined"
+              />
+              <InputLabel className={validation_error}>
+                {inputValidation?.confrim_password}
+              </InputLabel>
+            </div>
+          </div>
+          <div className={input_textField}>
+            <div className={text_field_container}>
+              <TextField
+                id="landline_number"
+                label="Landline Number"
+                className="inputfield-box"
+                fullWidth
+                type="number"
+                placeholder="Landline Number"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                value={buyerRegistrationData?.landline_number}
+                name="landline_number"
+                onChange={handleChangeInput}
+                variant="outlined"
+              />
+            </div>
+            <div className={text_field_container}>
+              <TextField
+                id="company"
+                label="Company Name"
+                fullWidth
+                placeholder="Company Name"
+                className="inputfield-box"
+                InputLabelProps={{
+                  shrink: true,
+                  required: true,
+                  classes: {
+                    asterisk: asterisk,
+                  },
+                }}
+                value={buyerRegistrationData?.company}
+                name="company"
+                onChange={handleChangeInput}
+                variant="outlined"
+              />
+              <InputLabel className={validation_error}>
+                {inputValidation?.company}
+              </InputLabel>
+            </div>
+          </div>
+          <div className={input_textField}>
+            <div className={text_field_container}>
+              <TextField
+                id="designation"
+                className="inputfield-box"
+                label="Designation"
+                placeholder="Designation"
+                fullWidth
+                InputLabelProps={{
+                  shrink: true,
+                  required: true,
+                  classes: {
+                    asterisk: asterisk,
+                  },
+                }}
+                value={buyerRegistrationData?.designation}
+                name="designation"
+                onChange={handleChangeInput}
+                variant="outlined"
+              />
+              <InputLabel className={validation_error}>
+                {inputValidation?.designation}
+              </InputLabel>
+            </div>
+
+            <div className={text_field_container}>
+              <Autocomplete
+                value={buyerRegistrationData?.country}
+                name="country"
+                onChange={(event, newValue) => {
+                  setbuyerRegistrationData((prevState) => ({
+                    ...prevState,
+                    country: newValue,
+                  }));
+                  setInputValidation((prevState) => ({
+                    country: "",
+                  }));
+                }}
+                className={auto_complete_input}
+                id="controllable-states-demo"
+                options={countryList}
+                fullWidth
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    label="Country"
+                    className="inputfield-box"
+                    placeholder="Country"
+                    InputLabelProps={{
+                      shrink: true,
+                      required: true,
+                      classes: {
+                        asterisk: asterisk,
+                      },
+                    }}
+                  />
+                )}
+              />
+              <InputLabel className={validation_error}>
+                {inputValidation?.country}
+              </InputLabel>
+            </div>
           </div>
 
-          <div className={text_field_container}>
-            <PhoneInput
-              country={"in"}
-              id="mobile_number"
-              fullWidth
-              label="Mobile Number"
-              className={mobile_input}
-              name="mobile_number"
-              placeholder="Mobile number"
-              value={buyerRegistrationData?.mobile_number}
-              inputProps={{
-                label: "Mobile Number",
-                required: true,
-              }}
-              onChange={handleMobileChangeInput}
-              variant="outlined"
-            />
-            <InputLabel className={validation_error}>
-              {inputValidation?.mobile_number}
-            </InputLabel>
-          </div>
-        </div>
-        <div className={input_textField}>
-          <div className={text_field_container}>
-            <TextField
-              id="password"
-              label="Password"
-              className="inputfield-box"
-              fullWidth
-              type="password"
-              autoComplete="new-password"
-              placeholder="Password"
-              InputLabelProps={{
-                shrink: true,
-                required: true,
-                classes: {
-                  asterisk: asterisk,
-                },
-              }}
-              value={buyerRegistrationData?.password}
-              name="password"
-              onChange={handleChangeInput}
-              variant="outlined"
-            />
-            <InputLabel className={validation_error}>
-              {inputValidation?.password}
-            </InputLabel>
-          </div>
-          <div className={text_field_container}>
-            <TextField
-              id="confrim_password"
-              label="Confrim Password"
-              fullWidth
-              className="inputfield-box"
-              type="password"
-              placeholder="Confrim Password"
-              InputLabelProps={{
-                shrink: true,
-                required: true,
-                classes: {
-                  asterisk: asterisk,
-                },
-              }}
-              value={buyerRegistrationData?.confrim_password}
-              name="confrim_password"
-              onChange={handleChangeInput}
-              variant="outlined"
-            />
-            <InputLabel className={validation_error}>
-              {inputValidation?.confrim_password}
-            </InputLabel>
-          </div>
-        </div>
-        <div className={input_textField}>
-          <div className={text_field_container}>
-            <TextField
-              id="landline_number"
-              label="Landline Number"
-              className="inputfield-box"
-              fullWidth
-              type="number"
-              placeholder="Landline Number"
-              InputLabelProps={{
-                shrink: true,
-              }}
-              value={buyerRegistrationData?.landline_number}
-              name="landline_number"
-              onChange={handleChangeInput}
-              variant="outlined"
-            />
-          </div>
-          <div className={text_field_container}>
-            <TextField
-              id="company"
-              label="Company Name"
-              fullWidth
-              placeholder="Company Name"
-              className="inputfield-box"
-              InputLabelProps={{
-                shrink: true,
-                required: true,
-                classes: {
-                  asterisk: asterisk,
-                },
-              }}
-              value={buyerRegistrationData?.company}
-              name="company"
-              onChange={handleChangeInput}
-              variant="outlined"
-            />
-            <InputLabel className={validation_error}>
-              {inputValidation?.company}
-            </InputLabel>
-          </div>
-        </div>
-        <div className={input_textField}>
-          <div className={text_field_container}>
-            <TextField
-              id="designation"
-              className="inputfield-box"
-              label="Designation"
-              placeholder="Designation"
-              fullWidth
-              InputLabelProps={{
-                shrink: true,
-                required: true,
-                classes: {
-                  asterisk: asterisk,
-                },
-              }}
-              value={buyerRegistrationData?.designation}
-              name="designation"
-              onChange={handleChangeInput}
-              variant="outlined"
-            />
-            <InputLabel className={validation_error}>
-              {inputValidation?.designation}
-            </InputLabel>
+          <div className={input_textField}>
+            <div className={text_field_container}>
+              <FormControlLabel
+                value="yes"
+                control={<Checkbox color="secondary" />}
+                label={
+                  <p>
+                    By using this form you agree with the{" "}
+                    <span>Terms of Use</span> and <span>Privacy Policy</span> by
+                    this website.
+                  </p>
+                }
+                labelPlacement="end"
+                className={checkbox_label}
+              />
+            </div>
+            <div className={text_field_container}>
+              {/* 6LcaHDYfAAAAAOUR0jJWtEI128eoRL4xjBWOpjKD ---- site key */}
+              <ReCAPTCHA
+                className="recaptcha_info1 buyer-recaptcha_info"
+                // 6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI  --- Localllllll
+                sitekey="6LcaHDYfAAAAAOUR0jJWtEI128eoRL4xjBWOpjKD"
+                onChange={() => {
+                  setbuyerRegistrationData((prevState) => ({
+                    ...prevState,
+                    recaptcha: true,
+                  }));
+                  setInputValidation((prevState) => ({
+                    ...prevState,
+                    recaptcha: "",
+                  }));
+                }}
+                name="recaptcha"
+              />
+              <InputLabel className={validation_error}>
+                {inputValidation?.recaptcha}
+              </InputLabel>
+            </div>
           </div>
 
-          <div className={text_field_container}>
-            <Autocomplete
-              value={buyerRegistrationData?.country}
-              name="country"
-              onChange={(event, newValue) => {
-                setbuyerRegistrationData((prevState) => ({
-                  ...prevState,
-                  country: newValue,
-                }));
-                setInputValidation((prevState) => ({
-                  country: "",
-                }));
-              }}
-              className={auto_complete_input}
-              id="controllable-states-demo"
-              options={countryList}
-              fullWidth
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  label="Country"
-                  className="inputfield-box"
-                  placeholder="Country"
-                  InputLabelProps={{
-                    shrink: true,
-                    required: true,
-                    classes: {
-                      asterisk: asterisk,
-                    },
-                  }}
-                />
-              )}
-            />
-            <InputLabel className={validation_error}>
-              {inputValidation?.country}
-            </InputLabel>
-          </div>
-        </div>
-
-        <div className={input_textField}>
-          <div className={text_field_container}>
-            <FormControlLabel
-              value="yes"
-              control={<Checkbox color="secondary" />}
-              label={
-                <p>
-                  By using this form you agree with the{" "}
-                  <span>Terms of Use</span> and <span>Privacy Policy</span> by
-                  this website.
-                </p>
-              }
-              labelPlacement="end"
-              className={checkbox_label}
-            />
-          </div>
-          <div className={text_field_container}>
-            {/* 6LcaHDYfAAAAAOUR0jJWtEI128eoRL4xjBWOpjKD ---- site key */}
-            <ReCAPTCHA
-              className="recaptcha_info1 buyer-recaptcha_info"
-              // 6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI  --- Localllllll
-              sitekey="6LcaHDYfAAAAAOUR0jJWtEI128eoRL4xjBWOpjKD"
-              onChange={() => {
-                setbuyerRegistrationData((prevState) => ({
-                  ...prevState,
-                  recaptcha: true,
-                }));
-                setInputValidation((prevState) => ({
-                  ...prevState,
-                  recaptcha: "",
-                }));
-              }}
-              name="recaptcha"
-            />
-            <InputLabel className={validation_error}>
-              {inputValidation?.recaptcha}
-            </InputLabel>
-          </div>
-        </div>
-
-        <Box className={button_box} fullWidth>
-          {/* <Link to={`/thankyou/${type}`}> */}
-          <Button
-            onClick={() => handleClickValidation()}
-            className={button_guest}
-          >
-            Register
-          </Button>
-          {/* </Link> */}
-        </Box>
+          <Box className={button_box} fullWidth>
+            {/* <Link to={`/thankyou/${type}`}> */}
+            <Button
+              onClick={() => handleClickValidation()}
+              className={button_guest}
+              type="submit"
+            >
+              Register
+            </Button>
+            {/* </Link> */}
+          </Box>
+        </form>
       </div>
     </div>
   );

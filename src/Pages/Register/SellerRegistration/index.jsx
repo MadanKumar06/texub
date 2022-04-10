@@ -18,6 +18,7 @@ import {
   isPasswordValid,
   isFirstAndLastNameValid,
   isCompanyNameValid,
+  isRolesValid,
   getAdminToken,
 } from "../../../utilities";
 import { withStyles } from "@mui/styles";
@@ -181,6 +182,7 @@ const BuyerRegistration = ({ classes }) => {
   };
 
   const handleClickValidation = (event) => {
+    event.preventDefault();
     var errorHandle = false;
     if (!sellerRegistrationData?.first_name) {
       document.getElementById("first_name")?.focus();
@@ -347,6 +349,14 @@ const BuyerRegistration = ({ classes }) => {
       }));
       errorHandle = true;
     }
+    // else if (!isRolesValid(sellerRegistrationData?.other_roles)) {
+    //   document.getElementById("other_roles")?.focus();
+    //   setInputValidation((prevState) => ({
+    //     ...prevState,
+    //     other_roles: "Please enter only alphabet and special character.",
+    //   }));
+    //   errorHandle = true;
+    // }
     if (!sellerRegistrationData?.recaptcha) {
       document.getElementById("recaptcha")?.focus();
       setInputValidation((prevState) => ({
@@ -476,422 +486,427 @@ const BuyerRegistration = ({ classes }) => {
   return (
     <div className={main_container}>
       <div className={input_fields}>
-        <div className={input_textField}>
-          <div className={text_field_container}>
-            <TextField
-              id="first_name"
-              label="First Name"
-              placeholder="First Name"
-              className="inputfield-box"
-              fullWidth
-              InputLabelProps={{
-                shrink: true,
-                required: true,
-                classes: {
-                  asterisk: asterisk,
-                },
-              }}
-              value={sellerRegistrationData?.first_name}
-              name="first_name"
-              onChange={handleChangeInput}
-              variant="outlined"
-            />
-            <InputLabel className={validation_error}>
-              {inputValidation?.first_name}
-            </InputLabel>
+        <form onSubmit={handleClickValidation}>
+          <div className={input_textField}>
+            <div className={text_field_container}>
+              <TextField
+                id="first_name"
+                label="First Name"
+                placeholder="First Name"
+                className="inputfield-box"
+                fullWidth
+                InputLabelProps={{
+                  shrink: true,
+                  required: true,
+                  classes: {
+                    asterisk: asterisk,
+                  },
+                }}
+                value={sellerRegistrationData?.first_name}
+                name="first_name"
+                onChange={handleChangeInput}
+                variant="outlined"
+              />
+              <InputLabel className={validation_error}>
+                {inputValidation?.first_name}
+              </InputLabel>
+            </div>
+            <div className={text_field_container}>
+              <TextField
+                id="last_name"
+                label="Last Name"
+                fullWidth
+                placeholder="Last Name"
+                className="inputfield-box"
+                InputLabelProps={{
+                  shrink: true,
+                  required: true,
+                  classes: {
+                    asterisk: asterisk,
+                  },
+                }}
+                value={sellerRegistrationData?.last_name}
+                name="last_name"
+                onChange={handleChangeInput}
+                variant="outlined"
+              />
+              <InputLabel className={validation_error}>
+                {inputValidation?.last_name}
+              </InputLabel>
+            </div>
           </div>
-          <div className={text_field_container}>
-            <TextField
-              id="last_name"
-              label="Last Name"
-              fullWidth
-              placeholder="Last Name"
-              className="inputfield-box"
-              InputLabelProps={{
-                shrink: true,
-                required: true,
-                classes: {
-                  asterisk: asterisk,
-                },
-              }}
-              value={sellerRegistrationData?.last_name}
-              name="last_name"
-              onChange={handleChangeInput}
-              variant="outlined"
-            />
-            <InputLabel className={validation_error}>
-              {inputValidation?.last_name}
-            </InputLabel>
+          <div className={input_textField}>
+            <div className={text_field_container}>
+              <TextField
+                id="email_address"
+                label="E-mail Address"
+                autoComplete="off"
+                placeholder="E-mail Address"
+                className="inputfield-box"
+                fullWidth
+                InputLabelProps={{
+                  shrink: true,
+                  required: true,
+                  classes: {
+                    asterisk: asterisk,
+                  },
+                }}
+                value={sellerRegistrationData?.email_address}
+                name="email_address"
+                onChange={handleChangeInput}
+                variant="outlined"
+              />
+              <InputLabel className={validation_error}>
+                {inputValidation?.email_address}
+              </InputLabel>
+            </div>
+            <div className={text_field_container}>
+              <PhoneInput
+                country={"in"}
+                id="mobile_number"
+                fullWidth
+                label="Mobile Number"
+                className={mobile_input}
+                name="mobile_number"
+                placeholder="Mobile number"
+                value={sellerRegistrationData?.mobile_number}
+                inputProps={{
+                  label: "Mobile Number",
+                  required: true,
+                }}
+                onChange={handleMobileChangeInput}
+                variant="outlined"
+              />
+              <InputLabel className={validation_error}>
+                {inputValidation?.mobile_number}
+              </InputLabel>
+            </div>
           </div>
-        </div>
-        <div className={input_textField}>
-          <div className={text_field_container}>
-            <TextField
-              id="email_address"
-              label="E-mail Address"
-              autoComplete="off"
-              placeholder="E-mail Address"
-              className="inputfield-box"
-              fullWidth
-              InputLabelProps={{
-                shrink: true,
-                required: true,
-                classes: {
-                  asterisk: asterisk,
-                },
-              }}
-              value={sellerRegistrationData?.email_address}
-              name="email_address"
-              onChange={handleChangeInput}
-              variant="outlined"
-            />
-            <InputLabel className={validation_error}>
-              {inputValidation?.email_address}
-            </InputLabel>
+          <div className={input_textField}>
+            <div className={text_field_container}>
+              <TextField
+                id="password"
+                label="Password"
+                fullWidth
+                type="password"
+                className="inputfield-box"
+                autoComplete="new-password"
+                placeholder="Password"
+                InputLabelProps={{
+                  shrink: true,
+                  required: true,
+                  classes: {
+                    asterisk: asterisk,
+                  },
+                }}
+                value={sellerRegistrationData?.password}
+                name="password"
+                onChange={handleChangeInput}
+                variant="outlined"
+              />
+              <InputLabel className={validation_error}>
+                {inputValidation?.password}
+              </InputLabel>
+            </div>
+            <div className={text_field_container}>
+              <TextField
+                id="confrim_password"
+                label="Confrim Password"
+                fullWidth
+                type="password"
+                className="inputfield-box"
+                placeholder="Confrim Password"
+                InputLabelProps={{
+                  shrink: true,
+                  required: true,
+                  classes: {
+                    asterisk: asterisk,
+                  },
+                }}
+                value={sellerRegistrationData?.confrim_password}
+                name="confrim_password"
+                onChange={handleChangeInput}
+                variant="outlined"
+              />
+              <InputLabel className={validation_error}>
+                {inputValidation?.confrim_password}
+              </InputLabel>
+            </div>
           </div>
-          <div className={text_field_container}>
-            <PhoneInput
-              country={"in"}
-              id="mobile_number"
-              fullWidth
-              label="Mobile Number"
-              className={mobile_input}
-              name="mobile_number"
-              placeholder="Mobile number"
-              value={sellerRegistrationData?.mobile_number}
-              inputProps={{
-                label: "Mobile Number",
-                required: true,
-              }}
-              onChange={handleMobileChangeInput}
-              variant="outlined"
-            />
-            <InputLabel className={validation_error}>
-              {inputValidation?.mobile_number}
-            </InputLabel>
-          </div>
-        </div>
-        <div className={input_textField}>
-          <div className={text_field_container}>
-            <TextField
-              id="password"
-              label="Password"
-              fullWidth
-              type="password"
-              className="inputfield-box"
-              autoComplete="new-password"
-              placeholder="Password"
-              InputLabelProps={{
-                shrink: true,
-                required: true,
-                classes: {
-                  asterisk: asterisk,
-                },
-              }}
-              value={sellerRegistrationData?.password}
-              name="password"
-              onChange={handleChangeInput}
-              variant="outlined"
-            />
-            <InputLabel className={validation_error}>
-              {inputValidation?.password}
-            </InputLabel>
-          </div>
-          <div className={text_field_container}>
-            <TextField
-              id="confrim_password"
-              label="Confrim Password"
-              fullWidth
-              type="password"
-              className="inputfield-box"
-              placeholder="Confrim Password"
-              InputLabelProps={{
-                shrink: true,
-                required: true,
-                classes: {
-                  asterisk: asterisk,
-                },
-              }}
-              value={sellerRegistrationData?.confrim_password}
-              name="confrim_password"
-              onChange={handleChangeInput}
-              variant="outlined"
-            />
-            <InputLabel className={validation_error}>
-              {inputValidation?.confrim_password}
-            </InputLabel>
-          </div>
-        </div>
-        <div className={input_textField}>
-          <div className={text_field_container}>
-            <TextField
-              id="landline_number"
-              label="Landline Number"
-              fullWidth
-              className="inputfield-box"
-              type="number"
-              placeholder="Landline Number"
-              InputLabelProps={{
-                shrink: true,
-              }}
-              value={sellerRegistrationData?.landline_number}
-              name="landline_number"
-              onChange={handleChangeInput}
-              variant="outlined"
-            />
-          </div>
+          <div className={input_textField}>
+            <div className={text_field_container}>
+              <TextField
+                id="landline_number"
+                label="Landline Number"
+                fullWidth
+                className="inputfield-box"
+                type="number"
+                placeholder="Landline Number"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                value={sellerRegistrationData?.landline_number}
+                name="landline_number"
+                onChange={handleChangeInput}
+                variant="outlined"
+              />
+            </div>
 
-          <div className={text_field_container}>
-            <TextField
-              id="company"
-              label="Company Name"
-              fullWidth
-              placeholder="Company Name"
-              className="inputfield-box"
-              InputLabelProps={{
-                shrink: true,
-                required: true,
-                classes: {
-                  asterisk: asterisk,
-                },
-              }}
-              value={sellerRegistrationData?.company}
-              name="company"
-              onChange={handleChangeInput}
-              variant="outlined"
-            />
-            <InputLabel className={validation_error}>
-              {inputValidation?.company}
-            </InputLabel>
+            <div className={text_field_container}>
+              <TextField
+                id="company"
+                label="Company Name"
+                fullWidth
+                placeholder="Company Name"
+                className="inputfield-box"
+                InputLabelProps={{
+                  shrink: true,
+                  required: true,
+                  classes: {
+                    asterisk: asterisk,
+                  },
+                }}
+                value={sellerRegistrationData?.company}
+                name="company"
+                onChange={handleChangeInput}
+                variant="outlined"
+              />
+              <InputLabel className={validation_error}>
+                {inputValidation?.company}
+              </InputLabel>
+            </div>
           </div>
-        </div>
-        <div className={input_textField}>
-          <div className={text_field_container}>
-            <Autocomplete
-              value={sellerRegistrationData?.region}
-              name="region"
-              onChange={(event, newValue) => {
-                setsellerRegistrationData((prevState) => ({
-                  ...prevState,
-                  region: newValue,
-                }));
-                setInputValidation((prevState) => ({
-                  ...prevState,
-                  region: "",
-                }));
-              }}
-              className={auto_complete_input}
-              options={dropdownListFromApi?.regionList}
-              fullWidth
-              getOptionLabel={(option) =>
-                option.region_name ? option.region_name : ""
-              }
-              filterOptions={(options) => options}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  label="Region"
-                  placeholder="Region"
-                  className="inputfield-box"
-                  InputLabelProps={{
-                    shrink: true,
-                    required: true,
-                    classes: {
-                      asterisk: asterisk,
-                    },
-                  }}
-                />
-              )}
-            />
-            <InputLabel className={validation_error}>
-              {inputValidation?.region}
-            </InputLabel>
-          </div>
-          <div className={text_field_container}>
-            <Autocomplete
-              value={sellerRegistrationData?.country}
-              name="country"
-              onChange={(event, newValue) => {
-                setsellerRegistrationData((prevState) => ({
-                  ...prevState,
-                  country: newValue,
-                }));
-                setInputValidation((prevState) => ({
-                  ...prevState,
-                  country: "",
-                }));
-              }}
-              className={auto_complete_input}
-              options={dropdownListFromApi?.countryList}
-              fullWidth
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  label="Country"
-                  placeholder="Country"
-                  className="inputfield-box"
-                  InputLabelProps={{
-                    shrink: true,
-                    required: true,
-                    classes: {
-                      asterisk: asterisk,
-                    },
-                  }}
-                />
-              )}
-            />
-            <InputLabel className={validation_error}>
-              {inputValidation?.country}
-            </InputLabel>
-          </div>
-        </div>
-        <div className={input_textField}>
-          <div className={text_field_container}>
-            <Autocomplete
-              options={dropdownListFromApi?.rolesList}
-              value={sellerRegistrationData?.roles}
-              name="roles"
-              onChange={(event, newValue) => {
-                if (newValue?.role_id === "1") {
+          <div className={input_textField}>
+            <div className={text_field_container}>
+              <Autocomplete
+                value={sellerRegistrationData?.region}
+                name="region"
+                onChange={(event, newValue) => {
                   setsellerRegistrationData((prevState) => ({
                     ...prevState,
-                    other_role: true,
+                    region: newValue,
                   }));
-                } else {
-                  setsellerRegistrationData((prevState) => ({
+                  setInputValidation((prevState) => ({
                     ...prevState,
-                    other_role: false,
+                    region: "",
                   }));
+                }}
+                className={auto_complete_input}
+                options={dropdownListFromApi?.regionList}
+                fullWidth
+                getOptionLabel={(option) =>
+                  option.region_name ? option.region_name : ""
                 }
-                setsellerRegistrationData((prevState) => ({
-                  ...prevState,
-                  roles: newValue,
-                }));
-              }}
-              className={auto_complete_input}
-              fullWidth
-              getOptionLabel={(option) =>
-                option.role_name ? option.role_name : ""
-              }
-              filterOptions={(options) => options}
-              // isOptionEqualToValue={(option, value) => {
-              //   debugger;
-              // }}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  label="Role"
-                  className="inputfield-box"
-                  placeholder="Role"
-                  InputLabelProps={{
-                    shrink: true,
-                    // required: true,
-                    // classes: {
-                    //   asterisk: asterisk,
-                    // },
-                  }}
-                />
-              )}
-            />
-            {/* <InputLabel className={validation_error}>
+                filterOptions={(options) => options}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    label="Region"
+                    placeholder="Region"
+                    className="inputfield-box"
+                    InputLabelProps={{
+                      shrink: true,
+                      required: true,
+                      classes: {
+                        asterisk: asterisk,
+                      },
+                    }}
+                  />
+                )}
+              />
+              <InputLabel className={validation_error}>
+                {inputValidation?.region}
+              </InputLabel>
+            </div>
+            <div className={text_field_container}>
+              <Autocomplete
+                value={sellerRegistrationData?.country}
+                name="country"
+                onChange={(event, newValue) => {
+                  setsellerRegistrationData((prevState) => ({
+                    ...prevState,
+                    country: newValue,
+                  }));
+                  setInputValidation((prevState) => ({
+                    ...prevState,
+                    country: "",
+                  }));
+                }}
+                className={auto_complete_input}
+                options={dropdownListFromApi?.countryList}
+                fullWidth
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    label="Country"
+                    placeholder="Country"
+                    className="inputfield-box"
+                    InputLabelProps={{
+                      shrink: true,
+                      required: true,
+                      classes: {
+                        asterisk: asterisk,
+                      },
+                    }}
+                  />
+                )}
+              />
+              <InputLabel className={validation_error}>
+                {inputValidation?.country}
+              </InputLabel>
+            </div>
+          </div>
+          <div className={input_textField}>
+            <div className={text_field_container}>
+              <Autocomplete
+                options={dropdownListFromApi?.rolesList}
+                value={sellerRegistrationData?.roles}
+                name="roles"
+                onChange={(event, newValue) => {
+                  if (newValue?.role_id === "1") {
+                    setsellerRegistrationData((prevState) => ({
+                      ...prevState,
+                      other_role: true,
+                    }));
+                  } else {
+                    setsellerRegistrationData((prevState) => ({
+                      ...prevState,
+                      other_role: false,
+                    }));
+                  }
+                  setsellerRegistrationData((prevState) => ({
+                    ...prevState,
+                    roles: newValue,
+                  }));
+                }}
+                className={auto_complete_input}
+                fullWidth
+                getOptionLabel={(option) =>
+                  option.role_name ? option.role_name : ""
+                }
+                filterOptions={(options) => options}
+                // isOptionEqualToValue={(option, value) => {
+                //   debugger;
+                // }}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    label="Role"
+                    className="inputfield-box"
+                    placeholder="Role"
+                    InputLabelProps={{
+                      shrink: true,
+                      // required: true,
+                      // classes: {
+                      //   asterisk: asterisk,
+                      // },
+                    }}
+                  />
+                )}
+              />
+              {/* <InputLabel className={validation_error}>
               {inputValidation?.role}
             </InputLabel> */}
-            {sellerRegistrationData?.other_role && (
-              <div className={clsx(text_field_container, other_textbox)}>
-                <TextField
-                  id="other_roles"
-                  label="Other Roles"
-                  fullWidth
-                  className="inputfield-box"
-                  placeholder="Other Roles"
-                  InputLabelProps={{
-                    shrink: true,
-                    required: true,
-                    classes: {
-                      asterisk: asterisk,
-                    },
-                  }}
-                  value={sellerRegistrationData?.other_roles}
-                  name="other_roles"
-                  onChange={handleChangeInput}
-                  variant="outlined"
-                />
-                <InputLabel className={validation_error}>
-                  {inputValidation?.other_roles}
-                </InputLabel>
-              </div>
-            )}
+              {sellerRegistrationData?.other_role && (
+                <div className={clsx(text_field_container, other_textbox)}>
+                  <TextField
+                    id="other_roles"
+                    label="Other Roles"
+                    fullWidth
+                    className="inputfield-box"
+                    placeholder="Other Roles"
+                    InputLabelProps={{
+                      shrink: true,
+                      required: true,
+                      classes: {
+                        asterisk: asterisk,
+                      },
+                    }}
+                    value={sellerRegistrationData?.other_roles}
+                    name="other_roles"
+                    onChange={handleChangeInput}
+                    variant="outlined"
+                  />
+                  <InputLabel className={validation_error}>
+                    {inputValidation?.other_roles}
+                  </InputLabel>
+                </div>
+              )}
+            </div>
+            <div className={text_field_container}>
+              <TextField
+                id="designation"
+                label="Designation"
+                placeholder="Designation"
+                className="inputfield-box"
+                fullWidth
+                InputLabelProps={{
+                  shrink: true,
+                  required: true,
+                  classes: {
+                    asterisk: asterisk,
+                  },
+                }}
+                value={sellerRegistrationData?.designation}
+                name="designation"
+                onChange={handleChangeInput}
+                variant="outlined"
+              />
+              <InputLabel className={validation_error}>
+                {inputValidation?.designation}
+              </InputLabel>
+            </div>
           </div>
-          <div className={text_field_container}>
-            <TextField
-              id="designation"
-              label="Designation"
-              placeholder="Designation"
-              className="inputfield-box"
-              fullWidth
-              InputLabelProps={{
-                shrink: true,
-                required: true,
-                classes: {
-                  asterisk: asterisk,
-                },
-              }}
-              value={sellerRegistrationData?.designation}
-              name="designation"
-              onChange={handleChangeInput}
-              variant="outlined"
-            />
-            <InputLabel className={validation_error}>
-              {inputValidation?.designation}
-            </InputLabel>
-          </div>
-        </div>
 
-        <div className={input_textField}>
-          <div className={text_field_container}>
-            <FormControlLabel
-              value={sellerRegistrationData?.remember_me}
-              control={<Checkbox color="color_third" />}
-              label={
-                <p>
-                  By using this form you agree with the{" "}
-                  <span>Terms of Use</span>
-                  and <span>Privacy Policy</span> by this website.
-                </p>
-              }
-              labelPlacement="end"
-              className={checkbox_label}
-            />
+          <div className={input_textField}>
+            <div className={text_field_container}>
+              <FormControlLabel
+                value={sellerRegistrationData?.remember_me}
+                control={<Checkbox color="color_third" />}
+                label={
+                  <p>
+                    By using this form you agree with the{" "}
+                    <span>Terms of Use</span>
+                    and <span>Privacy Policy</span> by this website.
+                  </p>
+                }
+                labelPlacement="end"
+                className={checkbox_label}
+              />
+            </div>
+            <div className={text_field_container}>
+              <ReCAPTCHA
+                className={recaptcha_info}
+                // 6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI
+                // 6LcaHDYfAAAAAOUR0jJWtEI128eoRL4xjBWOpjKD
+                sitekey="6LcaHDYfAAAAAOUR0jJWtEI128eoRL4xjBWOpjKD"
+                onChange={() => {
+                  setsellerRegistrationData((prevState) => ({
+                    ...prevState,
+                    recaptcha: true,
+                  }));
+                  setInputValidation((prevState) => ({
+                    ...prevState,
+                    recaptcha: "",
+                  }));
+                }}
+                name="recaptcha"
+              />
+              <InputLabel className={validation_error}>
+                {inputValidation?.recaptcha}
+              </InputLabel>
+            </div>
           </div>
-          <div className={text_field_container}>
-            <ReCAPTCHA
-              className={recaptcha_info}
-              sitekey="6LcaHDYfAAAAAOUR0jJWtEI128eoRL4xjBWOpjKD"
-              onChange={() => {
-                setsellerRegistrationData((prevState) => ({
-                  ...prevState,
-                  recaptcha: true,
-                }));
-                setInputValidation((prevState) => ({
-                  ...prevState,
-                  recaptcha: "",
-                }));
-              }}
-              name="recaptcha"
-            />
-            <InputLabel className={validation_error}>
-              {inputValidation?.recaptcha}
-            </InputLabel>
-          </div>
-        </div>
-        <Box className={button_box} fullWidth>
-          <Button
-            onClick={() => handleClickValidation()}
-            className={button_guest}
-          >
-            Register
-          </Button>
-        </Box>
+          <Box className={button_box} fullWidth>
+            <Button
+              onClick={() => handleClickValidation()}
+              className={button_guest}
+              type="submit"
+            >
+              Register
+            </Button>
+          </Box>
+        </form>
       </div>
     </div>
   );

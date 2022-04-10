@@ -9,7 +9,7 @@ import AddIcon from "@mui/icons-material/Add";
 import HP from "./../../../Assets/Productlist/hp_td_icon.png";
 import Acer from "../../../Assets/Productlist/acer_icon_td.png";
 
-const MyCartTable = ({ cartDataList }) => {
+const MyCartTable = ({ cartDataList, deleteCartData }) => {
   const [is_table_quantity, setIs_table_quantity] = useState([]);
 
   useEffect(() => {
@@ -65,7 +65,15 @@ const MyCartTable = ({ cartDataList }) => {
                 <div className="mycart_right_section">
                   <div className="mycart_right_section_block">
                     <span className="mycart_product_eta">ETA: {eta}</span>
-                    <span className="mycart_product_delete_icon">
+                    <span
+                      className="mycart_product_delete_icon"
+                      onClick={() =>
+                        deleteCartData({
+                          cart_id: cartDataList?.[0]?.invoice?.Cart_id,
+                          item_id: tableMeta?.rowData?.[9],
+                        })
+                      }
+                    >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="30"
@@ -296,6 +304,13 @@ const MyCartTable = ({ cartDataList }) => {
         customBodyRender: (value) => {
           return value;
         },
+      },
+    },
+    {
+      name: "item_id",
+      label: " ",
+      options: {
+        display: false,
       },
     },
   ];

@@ -14,34 +14,36 @@ import axios from "axios";
 import Constant from "../../Constant";
 
 const Header = ({ classes }) => {
-  const [{currency}, dispatch] = useStateValue();
+  const [{ currency, cart }, dispatch] = useStateValue();
   let isSignedIn = JSON.parse(localStorage.getItem("userdata"));
 
-  useEffect(async() => {
+  useEffect(async () => {
     const user = JSON.parse(localStorage.getItem("userdata"));
-    try {
-      const cartdata = await axios({
-        method: 'post',
-        url: `${Constant.baseUrl()}/cartList`,
-        data: {
+    if (localStorage.getItem("token")) {
+      try {
+        const cartdata = await axios({
+          method: "post",
+          url: `${Constant.baseUrl()}/cartList`,
           data: {
-            customer_id: user?.id,
-            currency_id: currency?.currency_id,
+            data: {
+              customer_id: user?.id,
+              currency_id: currency?.currency_id,
+            },
           },
-        },
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`
-        }
-      })
-      console.log(cartdata.data[0])
-      dispatch({
-        type: 'CART__DATA',
-        value: cartdata?.data,
-      })
-    } catch(e) {
-      console.log(e)
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
+        console.log(cartdata.data[0]);
+        dispatch({
+          type: "CART__DATA",
+          data: cartdata?.data,
+        });
+      } catch (e) {
+        console.log(e);
+      }
     }
-  }, [currency])
+  }, [currency, cart?.apiTrigger]);
 
   const SigninPopUP = () => {
     dispatch({

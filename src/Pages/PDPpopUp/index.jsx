@@ -138,6 +138,10 @@ const PdpPopup = () => {
             value: false,
           });
           if (info === "add_to_cart") {
+            dispatch({
+              type: "CART__DATA",
+              value: true,
+            });
             setTimeout(() => {
               history("/mycart");
             }, 1000 / 2);

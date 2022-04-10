@@ -1,6 +1,6 @@
 const styles = () => ({
   thankyou_container_buyer: {
-    padding: "12% 12%",
+    padding: "3% 12% 12%",
     width: "100%",
     backgroundImage: "url('/Images/user_selection_bg.png')",
     backgroundRepeat: "no-repeat",
@@ -8,7 +8,7 @@ const styles = () => ({
     backgroundSize: "cover",
   },
   thankyou_container_seller: {
-    padding: "12% 12%",
+    padding: "3% 12% 12%",
     width: "100%",
     backgroundImage: "url('/Images/buyer_regirtration_bg.png')",
     backgroundRepeat: "no-repeat",
@@ -42,6 +42,9 @@ const styles = () => ({
     fontSize: "18px",
     padding: "0px 14%",
     textAlign: "center",
+    "& p": {
+      margin: "0",
+    },
   },
   thankyou_button_signin: {
     textDecoration: "none",
