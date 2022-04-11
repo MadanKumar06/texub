@@ -11,6 +11,8 @@ import Constant from '../../../Constant'
 const Whislist = () => {
   const [tableData, setTableData] = useState([]);
   const PaginateDataSplit = (event) => {
+    if(wishdata.length === 0) return setwishdata([])
+    console.log(event)
     setTableData(event);
   };
   const [wishdata, setwishdata] = useState([])
@@ -29,6 +31,8 @@ const Whislist = () => {
           }     
         }
       })
+      // console.log(wishlistdata)
+      setwishdata(wishlistdata.data)
     } catch(e) {
       console.log(e)
     }
@@ -57,6 +61,8 @@ const Whislist = () => {
     }
   },[])
 
+  console.log(wishdata)
+
   return (
     <div className="wishlist_main_container">
       <div className="wishlist__footer">
@@ -72,17 +78,17 @@ const Whislist = () => {
         {tableData?.length &&
           tableData?.map((itm) => (
             <WhislistTable
-              tableData={itm?.Product_details}
-              tableDataHeader={itm?.Top_product}
+              tableData={itm?.wishlist_data}
+              tableDataHeader={itm?.name}
               folderdata={folderdata}
             />
           ))}
       </div>
-      <Pagination
+      {wishdata.length > 0 ? <Pagination
         PaginateData={PaginateDataSplit}
-        DataList={WhishlistTableData}
+        DataList={wishdata?.length > 0 ? wishdata : []}
         PagePerRow={2}
-      />
+      /> : ""}
 
     </div>
   );

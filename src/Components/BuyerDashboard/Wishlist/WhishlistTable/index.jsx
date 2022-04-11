@@ -27,6 +27,26 @@ const WhislistTable = ({ tableData, tableDataHeader, folderdata }) => {
   }, [folderdata])
 
   const [{currency}, dispatch] = useStateValue()
+  const [wdata, setwdata] = useState(
+    // {
+    //   product_id: "",
+    //   product_name: "",
+    //   seller_id: "",
+    //   texub_product_brand: "",
+    //   texub_product_brand_image: "",
+    //   texub_product_currency: "",
+    //   texub_product_currency_id: "",
+    //   texub_product_hub_id: "",
+    //   texub_product_hub_name: "",
+    //   texub_product_moq: "",
+    //   texub_product_price: "",
+    //   texub_product_stock: ""
+    // }
+  )
+
+  useEffect(() => {
+    setwdata(tableData)
+  }, [tableData])
 
   const wishlistdelete = async() => {
     const user = JSON.parse(localStorage.getItem('userdata'))
@@ -75,6 +95,15 @@ const WhislistTable = ({ tableData, tableDataHeader, folderdata }) => {
     }
   }
 
+  console.log(wdata)
+  const increment = (value, value1) => {
+    // wdata.map(data => data?.product_id === value && setwdata(...prevState => ({...prevState, texub_product_moq: value1 + 1})))
+  }
+
+  const decrement = () => {
+    console.log('hi')
+  }
+
   return (
     <div className="wishlist_table_container">
       <div className="whishlist_table_header">
@@ -100,17 +129,17 @@ const WhislistTable = ({ tableData, tableDataHeader, folderdata }) => {
         </div>
       </div>
       <div className="table_boby_block">
-        {tableData?.map((itm, index) => (
+        {wdata?.map((itm, index) => (
           <div className="table_block">
             <div className="product_info_block">
               <div className="product_image">
-                <img src={itm?.products?.products_img} alt="" />
+                <img src={itm?.texub_product_brand_image} alt="" />
               </div>
               <div className="products_info">
-                <p className="product_name">{itm?.products?.products_name}</p>
+                <p className="product_name">{itm?.product_name}</p>
                 <p className="product_price">
-                  <span>INR</span>
-                  {itm?.products?.products_price}
+                  <span>{itm?.texub_product_currency}</span>
+                  {itm?.texub_product_price}
                 </p>
               </div>
               <div className="rating_block">
@@ -127,7 +156,7 @@ const WhislistTable = ({ tableData, tableDataHeader, folderdata }) => {
                 </div>
                 <p className="seller_id">
                   <span>Seller ID :</span>
-                  {itm?.products?.seller_id}
+                  {itm?.seller_id}
                 </p>
               </div>
             </div>
@@ -137,30 +166,25 @@ const WhislistTable = ({ tableData, tableDataHeader, folderdata }) => {
                 <span>Hub</span>
                 <div className="content">
                   <div className="hub_info">
-                    <p>{itm?.products?.products_hub}</p>
+                    <p>{itm?.texub_product_hub_name}</p>
                   </div>
                   <div className="quantity_info">
                     <div className="qty_change">
                       <Remove
                         className="item_decrease"
-                        // onClick={() =>
-                        //   handleChange(
-                        //     parseInt(itm?.quantity) >= 2
-                        //       ? parseInt(itm?.quantity) - 1
-                        //       : 1,
-                        //     index
-                        //   )
-                        // }
+                        onClick={() =>
+                          decrement(itm.product_id, itm.texub_product_moq)
+                        }
                       />
                       <span className="input_text">
                         {" "}
-                        {itm?.products?.products_quantity}
+                        {itm?.texub_product_moq}
                       </span>
                       <Add
                         className="item_increase"
-                        // onClick={() =>
-                        //   handleChange(parseInt(itm?.quantity) + 1, index)
-                        // }
+                        onClick={() =>
+                          increment(itm.product_id, itm.texub_product_moq)
+                        }
                       />
                     </div>
                   </div>
