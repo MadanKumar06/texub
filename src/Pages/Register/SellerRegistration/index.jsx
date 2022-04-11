@@ -137,7 +137,6 @@ const BuyerRegistration = ({ classes }) => {
   useEffect(() => {
     if (sellerRegistrationData?.region?.region_id) {
       const fetchRegionBasedCountryData = () => {
-        setsellerRegistrationData({ country: "" });
         let data = {
           region_id: sellerRegistrationData?.region?.region_id,
         };
@@ -292,8 +291,8 @@ const BuyerRegistration = ({ classes }) => {
         company: "Please enter the company.",
       }));
       errorHandle = true;
-    } 
-    // else if (!isCompanyNameValid(sellerRegistrationData?.company)) {
+    }
+    //  else if (!isCompanyNameValid(sellerRegistrationData?.company)) {
     //   document.getElementById("company")?.focus();
     //   setInputValidation((prevState) => ({
     //     ...prevState,
@@ -787,9 +786,6 @@ const BuyerRegistration = ({ classes }) => {
                   option.role_name ? option.role_name : ""
                 }
                 filterOptions={(options) => options}
-                // isOptionEqualToValue={(option, value) => {
-                //   debugger;
-                // }}
                 renderInput={(params) => (
                   <TextField
                     {...params}

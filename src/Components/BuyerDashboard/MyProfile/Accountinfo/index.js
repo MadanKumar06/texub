@@ -189,7 +189,6 @@ const Index = (classes) => {
           },
         })
         .then((response) => {
-          console.log('$%$%$%$%',response)
           setCountryDropdown(response?.data);
         })
         .catch((error) => { });

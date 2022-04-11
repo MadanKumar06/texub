@@ -384,8 +384,6 @@ const MyCartTable = ({ cartDataList, deleteCartData }) => {
     },
   };
 
-  console.log(is_table_quantity)
-
   return (
     <div className="mycart_table_main_container">
       {/* {is_table_quantity?.[0]?.invoice_items?.length && ( */}

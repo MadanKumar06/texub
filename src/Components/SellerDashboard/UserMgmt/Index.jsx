@@ -119,7 +119,7 @@ function Index({ setuserform, userform }) {
 
   const [maincat, setmaincat] = useState();
   const handleChange = () => {
-    console.log(maincat);
+   
   };
 
   const PaginateDataSplit = (event) => {
