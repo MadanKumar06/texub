@@ -44,7 +44,7 @@ const Header = ({ classes }) => {
         console.log(e);
       }
     }
-  }, [currency, gt]);
+  }, [currency, gt, localStorage.getItem("userdata")]);
 
   console.log(gt)
 
