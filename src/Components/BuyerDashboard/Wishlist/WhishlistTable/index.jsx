@@ -20,7 +20,7 @@ const WhislistTable = ({ tableData, tableDataHeader, folderdata }) => {
   const [folderid, setfolderid] = useState()
   useEffect(() => {
     folderdata?.filter(fd => {
-      if(fd.wishlist_name !== tableDataHeader) {
+      if(fd.wishlist_name === tableDataHeader) {
         setfolderid(fd)
       }
     })
@@ -53,46 +53,52 @@ const WhislistTable = ({ tableData, tableDataHeader, folderdata }) => {
     try {
       const deletewish = await axios({
         method: 'post',
-        url: `${Constant.baseUrl()}/deleteAll`,
+        url: `${Constant.baseUrl()}/wishlist/deleteAll`,
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`
         },
         data: {
           "requestParams":{
-              "multiwishlist_id":folderid?.id,
+              "multiwishlist_id": parseInt(folderid?.id),
               "customer_id":user?.id
           }
        }
       })
+      console.log(deletewish.data)
     } catch(e) {
       console.log(e)
     }
   }
 
-  const addalltocart = async() => {
+  const addalltocart = () => {
     const user = JSON.parse(localStorage.getItem('userdata'))
-    try {
-      const addcart = await axios({
-        method: 'post',
-        url: `${Constant.baseUrl()}/addToCart`,
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`
-        },
-        data: {
-          "pendingProducts" : {
-            "customer_id" : user?.id,
-            "productId" : tableData?.product_id,
-            "price" : tableData?.price,
-            "qty" : 1,
-            "hub" : tableData?.texub_product_hub,
-            "currency" : currency,
-            "sellerId" : tableData?.seller_id
-          }
-       }
-      })
-    } catch(e) {
-      console.log(e)
-    }
+    wdata?.filter(async(w) => {
+      try {
+        const addcart = await axios({
+          method: 'post',
+          url: `${Constant.baseUrl()}/addToCart`,
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+          },
+          data: {
+            "pendingProducts" : {
+              "customer_id" : user?.id,
+              "productId" : w?.product_id,
+              "price" : w?.texub_product_price,
+              "qty" : w?.texub_product_moq,
+              "hub" : w?.texub_product_hub,
+              "currency" : currency,
+              "sellerId" : w?.seller_id
+            }
+         }
+        })
+        dispatch({
+          type: "CART__TRIGGER",
+        });
+      } catch(e) {
+        console.log(e)
+      }
+    })
   }
 
   console.log(wdata)
@@ -124,12 +130,12 @@ const WhislistTable = ({ tableData, tableDataHeader, folderdata }) => {
           <MenuItem onClick={wishlistdelete}>Delete List</MenuItem>
         </Menu>
         <div className="header_link">
-          <p>Add All To Cart</p>
-          <p>Delete List</p>
+          <p onClick={addalltocart}>Add All To Cart</p>
+          <p onClick={wishlistdelete}>Delete List</p>
         </div>
       </div>
       <div className="table_boby_block">
-        {wdata?.map((itm, index) => (
+        {wdata?.length > 0 ? wdata?.map((itm, index) => (
           <div className="table_block">
             <div className="product_info_block">
               <div className="product_image">
@@ -197,7 +203,7 @@ const WhislistTable = ({ tableData, tableDataHeader, folderdata }) => {
               </div>
             </div>
           </div>
-        ))}
+        )) : ""}
       </div>
     </div>
   );
