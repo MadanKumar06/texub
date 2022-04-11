@@ -21,7 +21,6 @@ import invoice_image from "../../Assets/CommonImage/invoice.png";
 
 const PdpPopup = () => {
   const [open, setOpen] = useState(true);
-  const [localcart, setlocalcart] = useState(false)
   let detailsData = useRef();
   const history = useNavigate();
   const [{ pdpPopUpOpenClose }, dispatch] = useStateValue();
@@ -92,6 +91,18 @@ const PdpPopup = () => {
     let user = JSON.parse(localStorage.getItem('userdata'))
     if(event === "add_to_wishlist") {
         try {
+          const foldername = await axios({
+            method: 'post',
+            url: `${Constant.baseUrl()}/wishlist/getNames`,
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem('token')}`
+            },
+            data: {
+              "requestParams":{
+                  "customer_id":user?.id
+              }
+            }
+          })
           const wishdata = await axios({
             method: "post",
             url: `${Constant.baseUrl()}/wishlist`,
@@ -102,8 +113,8 @@ const PdpPopup = () => {
               "requestParams":{
                 "customer_id":user?.id,
                 "product_id":parseInt(pdpSellerData?.product_id),
-                "wk_id": folder?.id ? folder?.id : '',
-                "wk_name": folder?.id ? "" : "wishlist"
+                "wk_id": foldername.data[0]?.id ? foldername.data[0]?.id : '',
+                "wk_name": foldername.data[0]?.id ? "" : "wishlist"
               }         
             }
           })
