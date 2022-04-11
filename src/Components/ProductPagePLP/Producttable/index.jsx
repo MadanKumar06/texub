@@ -249,34 +249,34 @@ const Productstable = ({
     search: false,
     textLabels: {
       body: {
-        noMatch:
-          tableData?.length > 0 ? "Loading data ..." : "Sorry, No data found",
+        noMatch: "Sorry, No data found",
       },
     },
   };
 
   const PaginateDataSplit = (event) => {
-    if(productData.length === 0) return setTableData([])
+    if (productData.length === 0) return setTableData([]);
+    debugger;
     setTableData(event);
   };
   return (
     <div className={producttable}>
-      {productData?.length > 0 ? 
+      {productData?.length > 0 ? (
         <MUITable
           columns={columns}
           table={tableData}
           options={options}
           className={mui_datatable_main}
         />
-      :
+      ) : (
         <MUITable
           columns={columns}
           table={emptytableData}
           options={options}
           className={mui_datatable_main}
         />
-      }
-      
+      )}
+
       {productData?.length > 0 ? (
         <Pagination
           PaginateData={PaginateDataSplit}
