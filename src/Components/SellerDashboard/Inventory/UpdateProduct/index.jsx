@@ -40,6 +40,7 @@ function Index({ type, pid }) {
   const [updateProductList, setUpdateProductList] = useState({
     width: "",
     conditions: "",
+    other_condition: "",
     warranty: "",
     packing: "",
     restrictions: [],
@@ -147,6 +148,7 @@ function Index({ type, pid }) {
   };
   const [inputValidation, setInputValidation] = useState({
     conditions: "",
+    other_condition: "",
     warranty: "",
     warranty_days: "",
     resregion: "",

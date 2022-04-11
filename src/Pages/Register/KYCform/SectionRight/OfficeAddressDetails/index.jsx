@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { TextField, InputLabel } from "@mui/material";
 import { withStyles } from "@mui/styles";
 import styles from "../styles";
+import axios from "axios";
+import Constant from "../../../../../Constant";
 
 const OfficeAddressDetails = ({
   classes,
@@ -22,6 +24,7 @@ const OfficeAddressDetails = ({
   useEffect(() => {
     setInputValidation({ ...validationFieldMessage });
   }, [validationFieldMessage]);
+
   // input state and onchange events
   const handleFormvalue = (event) => {
     SetFormValues((prevState) => ({
@@ -29,8 +32,8 @@ const OfficeAddressDetails = ({
       [event.target.name]: event.target.value,
     }));
     setInputValidation("");
-    handleSwitchCase([event.target.name], event.target.value);
   };
+
   // input validation on onchange
   const [inputValidation, setInputValidation] = useState({
     address_line_one: "",
@@ -38,26 +41,33 @@ const OfficeAddressDetails = ({
     city: "",
     country: "",
   });
-  const handleSwitchCase = (fieldName, value) => {
-    switch (fieldName[0]) {
-      // case "pin_zip_code":
-      //   if (value !== 6) {
-      //     setInputValidation((prevState) => ({
-      //       ...prevState,
-      //       pin_zip_code: "Please enter 6 digit pincode.",
-      //     }));
-      //   }
-      //   break;
-      default:
-        break;
-    }
-  };
+  const [countryList, setCountryList] = useState([]);
 
   var country_readonly = JSON.parse(
     localStorage.getItem("userdata")
   )?.custom_attributes?.filter(
     (itm) => itm?.attribute_code === "customer_country"
   );
+  //API for fetch dropdown values
+  useEffect(() => {
+    const fetchCountryData = () => {
+      axios
+        .get(Constant.baseUrl() + "/getCountryList", {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => {
+          let temp = res?.data?.filter(
+            (itm) => itm?.value === country_readonly?.[0]?.value
+          );
+          setCountryList(temp);
+        })
+        .catch((err) => {});
+    };
+    fetchCountryData();
+  }, []);
+
   return (
     <div>
       <p className={info_text_lineNote_one}>Office Address</p>
@@ -115,7 +125,7 @@ const OfficeAddressDetails = ({
                 },
               }}
               name="country"
-              value={country_readonly?.[0]?.value}
+              value={countryList?.[0]?.label}
               variant="outlined"
             />
           </div>
