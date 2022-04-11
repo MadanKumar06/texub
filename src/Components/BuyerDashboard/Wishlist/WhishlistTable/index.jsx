@@ -20,60 +20,102 @@ const WhislistTable = ({ tableData, tableDataHeader, folderdata }) => {
   const [folderid, setfolderid] = useState()
   useEffect(() => {
     folderdata?.filter(fd => {
-      if(fd.wishlist_name !== tableDataHeader) {
+      if(fd.wishlist_name === tableDataHeader) {
         setfolderid(fd)
       }
     })
   }, [folderdata])
 
   const [{currency}, dispatch] = useStateValue()
+  const [wdata, setwdata] = useState()
+
+  useEffect(() => {
+    console.log(tableData)
+    if(tableData?.length > 0) {
+      let temp = tableData?.map(td => ({
+        ...td,
+        moq: td?.texub_product_moq
+      }))
+      setwdata(temp)
+    }
+  }, [tableData])
 
   const wishlistdelete = async() => {
     const user = JSON.parse(localStorage.getItem('userdata'))
     try {
       const deletewish = await axios({
         method: 'post',
-        url: `${Constant.baseUrl()}/deleteAll`,
+        url: `${Constant.baseUrl()}/wishlist/deleteAll`,
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`
         },
         data: {
           "requestParams":{
-              "multiwishlist_id":folderid?.id,
+              "multiwishlist_id": parseInt(folderid?.id),
               "customer_id":user?.id
           }
        }
       })
+      console.log(deletewish.data)
     } catch(e) {
       console.log(e)
     }
   }
 
-  const addalltocart = async() => {
+  const addalltocart = () => {
     const user = JSON.parse(localStorage.getItem('userdata'))
-    try {
-      const addcart = await axios({
-        method: 'post',
-        url: `${Constant.baseUrl()}/addToCart`,
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`
-        },
-        data: {
-          "pendingProducts" : {
-            "customer_id" : user?.id,
-            "productId" : tableData?.product_id,
-            "price" : tableData?.price,
-            "qty" : 1,
-            "hub" : tableData?.texub_product_hub,
-            "currency" : currency,
-            "sellerId" : tableData?.seller_id
-          }
-       }
-      })
-    } catch(e) {
-      console.log(e)
-    }
+    wdata?.filter(async(w) => {
+      try {
+        const addcart = await axios({
+          method: 'post',
+          url: `${Constant.baseUrl()}/addToCart`,
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+          },
+          data: {
+            "pendingProducts" : {
+              "customer_id" : user?.id,
+              "productId" : w?.product_id,
+              "price" : w?.texub_product_price,
+              "qty" : w?.texub_product_moq,
+              "hub" : w?.texub_product_hub,
+              "currency" : currency,
+              "sellerId" : w?.seller_id
+            }
+         }
+        })
+        dispatch({
+          type: "CART__TRIGGER",
+        });
+      } catch(e) {
+        console.log(e)
+      }
+    })
   }
+
+  const increment = (value, value1) => {
+   setwdata(wdata.map(wd => {
+     if(wd.product_id === value) {
+       return {
+         ...wd,
+         moq: value1
+       }
+     }
+   }))
+  }
+
+  const decrement = (value, value1) => {
+    setwdata(wdata.map(wd => {
+      if(wd.product_id === value) {
+        return {
+          ...wd,
+          moq: value1
+        }
+      }
+    }))
+  }
+
+  console.log(wdata)
 
   return (
     <div className="wishlist_table_container">
@@ -95,22 +137,22 @@ const WhislistTable = ({ tableData, tableDataHeader, folderdata }) => {
           <MenuItem onClick={wishlistdelete}>Delete List</MenuItem>
         </Menu>
         <div className="header_link">
-          <p>Add All To Cart</p>
-          <p>Delete List</p>
+          <p onClick={addalltocart}>Add All To Cart</p>
+          <p onClick={wishlistdelete}>Delete List</p>
         </div>
       </div>
       <div className="table_boby_block">
-        {tableData?.map((itm, index) => (
+        {wdata?.length > 0 ? wdata?.map((itm, index) => (
           <div className="table_block">
             <div className="product_info_block">
               <div className="product_image">
-                <img src={itm?.products?.products_img} alt="" />
+                <img src={itm?.texub_product_brand_image} alt="" />
               </div>
               <div className="products_info">
-                <p className="product_name">{itm?.products?.products_name}</p>
+                <p className="product_name">{itm?.product_name}</p>
                 <p className="product_price">
-                  <span>INR</span>
-                  {itm?.products?.products_price}
+                  <span>{itm?.texub_product_currency}</span>
+                  {itm?.texub_product_price}
                 </p>
               </div>
               <div className="rating_block">
@@ -127,7 +169,7 @@ const WhislistTable = ({ tableData, tableDataHeader, folderdata }) => {
                 </div>
                 <p className="seller_id">
                   <span>Seller ID :</span>
-                  {itm?.products?.seller_id}
+                  {itm?.seller_id}
                 </p>
               </div>
             </div>
@@ -137,30 +179,33 @@ const WhislistTable = ({ tableData, tableDataHeader, folderdata }) => {
                 <span>Hub</span>
                 <div className="content">
                   <div className="hub_info">
-                    <p>{itm?.products?.products_hub}</p>
+                    <p>{itm?.texub_product_hub_name}</p>
                   </div>
                   <div className="quantity_info">
                     <div className="qty_change">
                       <Remove
-                        className="item_decrease"
-                        // onClick={() =>
-                        //   handleChange(
-                        //     parseInt(itm?.quantity) >= 2
-                        //       ? parseInt(itm?.quantity) - 1
-                        //       : 1,
-                        //     index
-                        //   )
-                        // }
+                        className={`${
+                          parseInt(itm.moq) > parseInt(itm.texub_product_moq)
+                            ? "item_increase"
+                            : "item_decrease"
+                        }`}
+                        onClick={() =>
+                          decrement(itm.product_id, parseInt(itm.texub_product_moq) > parseInt(itm.moq) ? parseInt(itm.moq) - 1 : parseInt(itm.moq))
+                        }
                       />
                       <span className="input_text">
                         {" "}
-                        {itm?.products?.products_quantity}
+                        {itm?.moq}
                       </span>
                       <Add
-                        className="item_increase"
-                        // onClick={() =>
-                        //   handleChange(parseInt(itm?.quantity) + 1, index)
-                        // }
+                        className={`${
+                          parseInt(itm.moq) < parseInt(itm.texub_product_stock)
+                            ? "item_increase"
+                            : "item_decrease"
+                        }`}
+                        onClick={() =>
+                          increment(itm.product_id, parseInt(itm.texub_product_stock) > parseInt(itm.moq) ? parseInt(itm.moq) + 1 : parseInt(itm.moq))
+                        }
                       />
                     </div>
                   </div>
@@ -173,7 +218,7 @@ const WhislistTable = ({ tableData, tableDataHeader, folderdata }) => {
               </div>
             </div>
           </div>
-        ))}
+        )) : ""}
       </div>
     </div>
   );
