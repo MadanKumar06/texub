@@ -79,7 +79,7 @@ const WhislistTable = ({ tableData, tableDataHeader, folderdata }) => {
               price: w?.texub_product_price,
               qty: w?.texub_product_moq,
               hub: w?.texub_product_hub,
-              currency: currency,
+              currency: currency?.currency_id,
               sellerId: w?.seller_id,
             },
           },
