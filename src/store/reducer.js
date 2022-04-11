@@ -8,10 +8,10 @@ export const initialState = {
   currency: {},
   isSimpleLoading: false,
   cart: [],
+  gt: false,
 };
 
 const reducer = (state, action) => {
-  console.log(action);
   switch (action.type) {
     case "SET_IS_LOADING":
       return {
@@ -57,6 +57,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         cart: action.data,
+      };
+
+    case "CART__TRIGGER":
+      return {
+        ...state,
+        gt: !state.gt,
       };
     default:
       return state;

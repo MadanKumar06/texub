@@ -21,6 +21,7 @@ import invoice_image from "../../Assets/CommonImage/invoice.png";
 
 const PdpPopup = () => {
   const [open, setOpen] = useState(true);
+  const [localcart, setlocalcart] = useState(false)
   let detailsData = useRef();
   const history = useNavigate();
   const [{ pdpPopUpOpenClose }, dispatch] = useStateValue();
@@ -64,7 +65,55 @@ const PdpPopup = () => {
     });
   };
 
-  const handleIsValidUser = (event) => {
+  const [folder, setfolder] = useState()
+
+  useEffect(async() => {
+    let user = JSON.parse(localStorage.getItem('userdata'))
+    try {
+      const foldername = await axios({
+        method: 'post',
+        url: `${Constant.baseUrl()}/wishlist/getNames`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        },
+        data: {
+          "requestParams":{
+              "customer_id":user?.id
+          }
+        }
+      })
+      setfolder(foldername.data[0])
+    } catch(e) {
+      console.log(e)
+    }
+  }, [])
+
+  console.log(folder)
+
+  const handleIsValidUser = async(event) => {
+    let user = JSON.parse(localStorage.getItem('userdata'))
+    if(event === "add_to_wishlist") {
+        try {
+          const wishdata = await axios({
+            method: "post",
+            url: `${Constant.baseUrl()}/wishlist`,
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem('token')}`
+            },
+            data: {
+              "requestParams":{
+                "customer_id":user?.id,
+                "product_id":parseInt(pdpSellerData?.product_id),
+                "wk_id": folder?.id ? folder?.id : '',
+                "wk_name": folder?.id ? "" : "wishlist"
+              }         
+            }
+          })
+          console.log(wishdata.data)
+        } catch(e) {
+          console.log(e)
+        }
+    }
     let isValidUser = JSON.parse(localStorage.getItem("userdata"))?.group_id;
 
     if (isValidUser === 5) {
@@ -137,15 +186,18 @@ const PdpPopup = () => {
             type: "SET_PDP_POPUP_OPEN_CLOSE",
             value: false,
           });
-          if (info === "add_to_cart") {
-            setTimeout(() => {
-              history("/mycart");
-            }, 1000 / 2);
-          } else {
-            setTimeout(() => {
-              history("/pending-invoice");
-            }, 1000 / 2);
-          }
+          dispatch({
+            type: "CART__TRIGGER",
+          });
+          // if (info === "add_to_cart") {
+          //   setTimeout(() => {
+          //     history("/mycart");
+          //   }, 1000 / 2);
+          // } else {
+          //   setTimeout(() => {
+          //     history("/pending-invoice");
+          //   }, 1000 / 2);
+          // }
         } else {
           swal.fire({
             text: `${res.data?.[0]?.message}`,
