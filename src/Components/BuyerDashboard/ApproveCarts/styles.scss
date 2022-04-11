@@ -221,6 +221,15 @@
   }
 }
 
+@media (max-width: 926px){
+  .approve__cart .approve__cart__footer .approve__cart__container .approve__cart_button{
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .approve__cart .tss-1cibt4j-MUIDataTableBodyRow-root-MUIDataTableBody-lastStackedCell {
+    display: flow-root;
+  }
+}
 // @media (max-width: 926px) {
 //   .approve__cart__table {
 //     .MuiTable-root {

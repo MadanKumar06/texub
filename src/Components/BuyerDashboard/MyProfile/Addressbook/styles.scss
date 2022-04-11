@@ -99,6 +99,12 @@
     .Address_main .heading {
         width: 100%;
     }
+    .Address_main .Address_map ul .address_block,
+    .Address_main .Address_map ul .address_type ,
+    .Address_main .Address_map ul .address_name{
+        font-size: 20px;
+        
+    }
     .Address_main .Address_map{
         flex-direction: column;
     }

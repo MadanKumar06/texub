@@ -213,6 +213,11 @@
     }
   }
 }
+@media(max-width:960px){
+     .mergecarts .tss-1cibt4j-MUIDataTableBodyRow-root-MUIDataTableBody-lastStackedCell {
+       display: flow-root;
+     }
+}
 @media(max-width:580px){
   .mergecarts .mergecarts__footer .mergecarts__container .merge__cart_button {
     flex-direction: column;

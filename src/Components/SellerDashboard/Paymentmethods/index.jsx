@@ -134,7 +134,11 @@ const Index = () => {
         customBodyRender: (value) => {
           return (
             <div className="paymentmethod_amount">
-              <div className="paymentmethod_product_amount">{value?.name}</div>
+              
+              <div className="paymentmethod_product_amount">
+              <span>INR</span>
+                {value?.name}
+              </div>
             </div>
           );
         },

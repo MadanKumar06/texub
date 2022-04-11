@@ -68,6 +68,8 @@
         border: none !important;
       }
       .paymentmethod_amount {
+         display: flex;
+         justify-content: center;
         .paymentmethod_product_warranty {
           font-size: 14px;
           font-weight: 600;
@@ -76,6 +78,10 @@
           width: max-content;
           padding: 5px 8px;
           margin-left: auto;
+        }
+        span{
+          font-size: 16px;
+          font-weight: 600;
         }
         .paymentmethod_product_amount {
           font-size: 26px;
@@ -219,7 +225,7 @@
       .MuiTableBody-root {
         .MuiTableCell-root {
           display: flex;
-          flex-direction: column;
+          flex-direction: row;
           justify-content: center;
         }
       }

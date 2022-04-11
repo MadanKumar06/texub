@@ -230,15 +230,12 @@
       .MuiTableBody-root {
         .MuiTableCell-root {
           display: flex;
-          flex-direction: column;
+          flex-direction: row;
           justify-content: center;
         }
       }
     }
   }
-  // .directenquiries_container .directenquiries__buttons .directenquiries__btton_content {
-  //   width: 100%;
-  // }
   .directenquiries_container .directenquiries__buttons {
     flex-direction: column;
     gap: 30px;
@@ -250,37 +247,37 @@
   }
 }
 
-@media (max-width: 768px) {
-  .directenquiries_container
-    .directenquiries__buttons
-    .directenquiries__btton_content {
-    width: 100% !important;
-  }
-  .directenquiries__table .MuiTable-root .MuiTableBody-root .MuiTableCell-root {
-    justify-content: flex-end;
-  }
-  .directenquiries_container .MUIDataTableBodyCell-stackedCommon-70 {
-    width: 100%;
-    font-size: 28px;
-  }
-  .directenquiries_container .MUIDataTableBodyCell-stackedCommon-72 {
-    width: 100%;
-    font-size: 28px;
-  }
-  .directenquiries__table {
-    .MuiTable-root {
-      .MuiTableHead-root {
-        display: none;
-      }
+// @media (max-width: 768px) {
+//   .directenquiries_container
+//     .directenquiries__buttons
+//     .directenquiries__btton_content {
+//     width: 100% !important;
+//   }
+//   .directenquiries__table .MuiTable-root .MuiTableBody-root .MuiTableCell-root {
+//     justify-content: flex-end;
+//   }
+//   .directenquiries_container .MUIDataTableBodyCell-stackedCommon-70 {
+//     width: 100%;
+//     font-size: 28px;
+//   }
+//   .directenquiries_container .MUIDataTableBodyCell-stackedCommon-72 {
+//     width: 100%;
+//     font-size: 28px;
+//   }
+//   .directenquiries__table {
+//     .MuiTable-root {
+//       .MuiTableHead-root {
+//         display: none;
+//       }
 
-      .MuiTableBody-root {
-        .MuiTableCell-root {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-      }
-    }
-  }
-}
+//       .MuiTableBody-root {
+//         .MuiTableCell-root {
+//           display: flex;
+//           flex-direction: column;
+//           justify-content: center;
+//           align-items: center;
+//         }
+//       }
+//     }
+//   }
+// }

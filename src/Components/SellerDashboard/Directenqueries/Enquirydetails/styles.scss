@@ -23,7 +23,7 @@
     .enquirydetails_box{
         background-color: #F8F0E0;
         max-width: 665px;
-        width: 100%;
+        width: 95%;
         box-shadow: 0px 3px 16px #0000001C;
         
     .enquirydetails_heading{
@@ -134,16 +134,13 @@
 }
 @media (max-width:580px) {
     .enquirydetails_main{
-        //    position:fixed;
            max-height: 50vh;
            height: 100%;
-           width: 100%;
-          
-           
-              
+           width: 100%;  
     }
-    .enquirydetails_main .enquirydetails_box .enquirydetails_section .enquirydetails{
-        flex-direction: column;
+    .modal .enquirydetails_main .enquirydetails_box .enquirydetails_section .enquirydetails .heading{
+        width: 100%;
+        text-align: center;
     }
     .enquirydetails_main .enquirydetails_box .enquirydetails_section .button_box{
         flex-direction: column;
@@ -151,11 +148,9 @@
 
     .enquirydetails_main .enquirydetails_box .enquirydetails_section .enquirydetails{
         justify-content: center;
-        gap: 0;
-    }
-    .enquirydetails_main .enquirydetails_box .enquirydetails_section .enquirydetails{
-        justify-content: center;
+        gap: 5px !important;
         align-items: center;
+        flex-direction: column;
     }
     .enquirydetails_main .enquirydetails_box .enquirydetails_section .enquirydetails .details{
         width: auto;

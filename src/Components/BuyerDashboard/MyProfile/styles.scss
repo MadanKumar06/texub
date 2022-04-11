@@ -283,14 +283,10 @@
     .My_profile_main .My_profile_ac .My_profile_ac_table .my_profile_data .my_profile_data_section_tag {
         margin: 0;
     }
-    // .My_profile_main .My_profile_ac .My_profile_ac_table {
-    //     padding: 20px 0px 20px 22px;
-    // }
     .My_profile_main .My_profile_ac .my_profile_company .My_profile_ac_table .my_profile_table .my_profile_data1{
         flex-direction: column;
         width: 100%;
         gap: 1em;
-        // padding: 0 22px;
     }
     .My_profile_main .My_profile_ac .my_profile_company .My_profile_ac_table .my_profile_table .my_profile_data1 .my_profile_data_section{
          display: flex;
@@ -302,6 +298,10 @@
     }
     .My_profile_main .My_profile_ac .my_profile_company .My_profile_ac_table .my_profile_table .my_profile_data1 .my_profile_data_section_tag{
         margin: 0;
+        font-size: 18px;
+    }
+    .My_profile_main .My_profile_ac .my_profile_company .My_profile_ac_table .my_profile_table .my_profile_data .my_profile_data_section .my_profile_data_section_tag{
+        font-size: 20px;
     }
     .My_profile_main .My_profile_ac .my_profile_company .My_profile_main_heading{
         width: 100%;
