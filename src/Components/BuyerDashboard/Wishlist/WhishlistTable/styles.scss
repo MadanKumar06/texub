@@ -42,7 +42,7 @@
     .table_block {
       display: flex;
       background-color: #f5f5f5;
-      // min-height: 174px;
+      justify-content: space-between;
       padding: 1.5em;
       .product_info_block {
         display: flex;
