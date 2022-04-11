@@ -27,25 +27,17 @@ const WhislistTable = ({ tableData, tableDataHeader, folderdata }) => {
   }, [folderdata])
 
   const [{currency}, dispatch] = useStateValue()
-  const [wdata, setwdata] = useState(
-    // {
-    //   product_id: "",
-    //   product_name: "",
-    //   seller_id: "",
-    //   texub_product_brand: "",
-    //   texub_product_brand_image: "",
-    //   texub_product_currency: "",
-    //   texub_product_currency_id: "",
-    //   texub_product_hub_id: "",
-    //   texub_product_hub_name: "",
-    //   texub_product_moq: "",
-    //   texub_product_price: "",
-    //   texub_product_stock: ""
-    // }
-  )
+  const [wdata, setwdata] = useState()
 
   useEffect(() => {
-    setwdata(tableData)
+    console.log(tableData)
+    if(tableData?.length > 0) {
+      let temp = tableData?.map(td => ({
+        ...td,
+        moq: td?.texub_product_moq
+      }))
+      setwdata(temp)
+    }
   }, [tableData])
 
   const wishlistdelete = async() => {
@@ -101,14 +93,29 @@ const WhislistTable = ({ tableData, tableDataHeader, folderdata }) => {
     })
   }
 
-  console.log(wdata)
   const increment = (value, value1) => {
-    // wdata.map(data => data?.product_id === value && setwdata(...prevState => ({...prevState, texub_product_moq: value1 + 1})))
+   setwdata(wdata.map(wd => {
+     if(wd.product_id === value) {
+       return {
+         ...wd,
+         moq: value1
+       }
+     }
+   }))
   }
 
-  const decrement = () => {
-    console.log('hi')
+  const decrement = (value, value1) => {
+    setwdata(wdata.map(wd => {
+      if(wd.product_id === value) {
+        return {
+          ...wd,
+          moq: value1
+        }
+      }
+    }))
   }
+
+  console.log(wdata)
 
   return (
     <div className="wishlist_table_container">
@@ -177,19 +184,27 @@ const WhislistTable = ({ tableData, tableDataHeader, folderdata }) => {
                   <div className="quantity_info">
                     <div className="qty_change">
                       <Remove
-                        className="item_decrease"
+                        className={`${
+                          parseInt(itm.moq) > parseInt(itm.texub_product_moq)
+                            ? "item_increase"
+                            : "item_decrease"
+                        }`}
                         onClick={() =>
-                          decrement(itm.product_id, itm.texub_product_moq)
+                          decrement(itm.product_id, parseInt(itm.texub_product_moq) > parseInt(itm.moq) ? parseInt(itm.moq) - 1 : parseInt(itm.moq))
                         }
                       />
                       <span className="input_text">
                         {" "}
-                        {itm?.texub_product_moq}
+                        {itm?.moq}
                       </span>
                       <Add
-                        className="item_increase"
+                        className={`${
+                          parseInt(itm.moq) < parseInt(itm.texub_product_stock)
+                            ? "item_increase"
+                            : "item_decrease"
+                        }`}
                         onClick={() =>
-                          increment(itm.product_id, itm.texub_product_moq)
+                          increment(itm.product_id, parseInt(itm.texub_product_stock) > parseInt(itm.moq) ? parseInt(itm.moq) + 1 : parseInt(itm.moq))
                         }
                       />
                     </div>
