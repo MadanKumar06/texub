@@ -1,1 +1,116 @@
+.backdrop {
+  .MuiBackdrop-root {
+    background-color: #000000ab !important;
 
+    .container {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+    }
+
+    .item {
+      width: 60px;
+      height: 60px;
+      position: absolute;
+    }
+
+    .item-1 {
+      background-color: #ddb363;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      animation: item-1_move 1.8s cubic-bezier(0.6, 0.01, 0.4, 1) infinite;
+    }
+
+    .item-2 {
+      background-color: #002d56;
+      top: 0;
+      right: 0;
+      animation: item-2_move 1.8s cubic-bezier(0.6, 0.01, 0.4, 1) infinite;
+    }
+
+    .item-3 {
+      background-color: #ddb363;
+      bottom: 0;
+      right: 0;
+      z-index: 1;
+      animation: item-3_move 1.8s cubic-bezier(0.6, 0.01, 0.4, 1) infinite;
+    }
+
+    .item-4 {
+      background-color: #002d56;
+      bottom: 0;
+      left: 0;
+      animation: item-4_move 1.8s cubic-bezier(0.6, 0.01, 0.4, 1) infinite;
+    }
+
+    @keyframes item-1_move {
+      0%,
+      100% {
+        transform: translate(0, 0);
+      }
+      25% {
+        transform: translate(0, 60px);
+      }
+      50% {
+        transform: translate(60px, 60px);
+      }
+      75% {
+        transform: translate(60px, 0);
+      }
+    }
+
+    @keyframes item-2_move {
+      0%,
+      100% {
+        transform: translate(0, 0);
+      }
+      25% {
+        transform: translate(-60px, 0);
+      }
+      50% {
+        transform: translate(-60px, 60px);
+      }
+      75% {
+        transform: translate(0, 60px);
+      }
+    }
+
+    @keyframes item-3_move {
+      0%,
+      100% {
+        transform: translate(0, 0);
+      }
+      25% {
+        transform: translate(0, -60px);
+      }
+      50% {
+        transform: translate(-60px, -60px);
+      }
+      75% {
+        transform: translate(-60px, 0);
+      }
+    }
+
+    @keyframes item-4_move {
+      0%,
+      100% {
+        transform: translate(0, 0);
+      }
+      25% {
+        transform: translate(60px, 0);
+      }
+      50% {
+        transform: translate(60px, -60px);
+      }
+      75% {
+        transform: translate(0, -60px);
+      }
+    }
+  }
+}

@@ -5,21 +5,84 @@ import MUITable from "../../../Components/Common/MUITable";
 import Constant from "../../../Constant";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
+import { getAdminToken } from "../../../utilities";
+import { useStateValue } from "../../../store/state";
+import swal from "sweetalert2";
 
-import HP from "./../../../Assets/Productlist/hp_td_icon.png";
-import Acer from "../../../Assets/Productlist/acer_icon_td.png";
+import axios from "axios";
 
 const MyCartTable = ({ cartDataList, deleteCartData }) => {
   const [is_table_quantity, setIs_table_quantity] = useState([]);
-  const [is_table_quantity_test, setis_table_quantity_test] = useState([])
+  const [is_table_quantity_test, setis_table_quantity_test] = useState([]);
 
+  const [{}, dispatch] = useStateValue();
   useEffect(() => {
-    setIs_table_quantity(
+    let temp =
       cartDataList?.[0]?.invoice_items?.length &&
-        cartDataList?.[0]?.invoice_items
-    );
+      cartDataList?.[0]?.invoice_items?.map((itm) => ({
+        ...itm,
+        is_qty: itm?.qty,
+      }));
+    setIs_table_quantity(temp);
   }, [cartDataList]);
-
+  //API to fetch admin token
+  const [adminToken, setAdminToken] = useState("");
+  useEffect(() => {
+    getAdminToken((res) => {
+      setAdminToken(res);
+    });
+  }, []);
+  const handleUpdate = (quantity, sku, cart_id, item_id) => {
+    let data = {
+      cartItem: {
+        sku: sku,
+        qty: quantity,
+        quoteId: cart_id,
+      },
+    };
+    dispatch({
+      type: "SET_IS_LOADING",
+      value: true,
+    });
+    axios
+      .put(Constant.baseUrl2() + `/carts/${cart_id}/items/${item_id}`, data, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${adminToken}`,
+        },
+      })
+      .then((res) => {
+        swal.fire({
+          text: `Cart Updated Succesfully!`,
+          icon: "success",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+        dispatch({
+          type: "CART__TRIGGER",
+        });
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+      })
+      .catch((error) => {
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+        swal.fire({
+          text: `${error?.response?.data?.message || error.message}`,
+          icon: "error",
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      });
+  };
   const handleChangeValueTable = (event, index) => {
     setIs_table_quantity(
       is_table_quantity?.length &&
@@ -233,24 +296,55 @@ const MyCartTable = ({ cartDataList, deleteCartData }) => {
       label: "QUANTITY",
       options: {
         customBodyRender: (value, tablemeta) => {
+          debugger;
+          let moq = tablemeta?.rowData?.[10];
+          let in_stock = tablemeta?.rowData?.[11];
+          let is_qty = tablemeta?.rowData?.[12];
           return (
             <div className="mycart_table_quantity">
+              {parseInt(value) !== parseInt(is_qty) && (
+                <p
+                  className="update"
+                  onClick={() =>
+                    handleUpdate(
+                      value,
+                      tablemeta?.rowData?.[13],
+                      cartDataList?.[0]?.invoice?.Cart_id,
+                      tablemeta?.rowData?.[9]
+                    )
+                  }
+                >
+                  Update
+                </p>
+              )}
               <div className="mycart_quantity_subblock">
                 <RemoveIcon
-                  className="item_decrease"
+                  className={`${
+                    parseInt(moq) < parseInt(value)
+                      ? "item_increase"
+                      : "item_decrease"
+                  }`}
                   onClick={() =>
                     handleChangeValueTable(
-                      parseInt(value) >= 2 ? parseInt(value) - 1 : 1,
+                      parseInt(moq) >= parseInt(value)
+                        ? parseInt(value)
+                        : parseInt(value) - 1,
                       tablemeta?.rowIndex
                     )
                   }
                 />
                 <span className="input_text">{value}</span>
                 <AddIcon
-                  className="item_increase"
+                  className={`${
+                    parseInt(value) < parseInt(in_stock)
+                      ? "item_increase"
+                      : "item_decrease"
+                  }`}
                   onClick={() =>
                     handleChangeValueTable(
-                      parseInt(value) + 1,
+                      parseInt(in_stock) > parseInt(value)
+                        ? parseInt(value) + 1
+                        : parseInt(value),
                       tablemeta?.rowIndex
                     )
                   }
@@ -328,42 +422,22 @@ const MyCartTable = ({ cartDataList, deleteCartData }) => {
         display: false,
       },
     },
+    {
+      name: "is_qty",
+      label: " ",
+      options: {
+        display: false,
+      },
+    },
+    {
+      name: "sku",
+      label: " ",
+      options: {
+        display: false,
+      },
+    },
   ];
 
-  const Productstablelist = [
-    {
-      id: 1,
-      seller_id: "1135G7",
-      products: {
-        id: 11,
-        eta: "3 days",
-        model_name: "PAVILION MODEL14-DV0054TU",
-        model_desc:
-          "Hp 14-Dv0054Tu Pavilion Laptop (11Th Gen Intel Core I5-1135G7/…512Gb Sdd/Intel Iris Xe Graphics/Windows 10/Mso/Fhd), 35.56 Cm (14 Inch)",
-        product_img: HP,
-      },
-      hub: "Dubai",
-      price: "66,999 ",
-      quantity: "100",
-      sub_total: "4,019,943",
-    },
-    {
-      id: 2,
-      seller_id: "1235G7",
-      products: {
-        id: 22,
-        eta: "5 days",
-        model_name: "PAVILION MODEL14-DV0054TU",
-        model_desc:
-          "Hp 14-Dv0054Tu Pavilion Laptop (11Th Gen Intel Core I5-1135G7/…512Gb Sdd/Intel Iris Xe Graphics/Windows 10/Mso/Fhd), 35.56 Cm (14 Inch)",
-        product_img: Acer,
-      },
-      hub: "Mumbai",
-      price: "66,399 ",
-      quantity: "120",
-      sub_total: "4,019,940",
-    },
-  ];
   const options = {
     filter: true,
     filterType: "dropdown",
@@ -387,19 +461,21 @@ const MyCartTable = ({ cartDataList, deleteCartData }) => {
   return (
     <div className="mycart_table_main_container">
       {/* {is_table_quantity?.[0]?.invoice_items?.length && ( */}
-      {is_table_quantity?.length === 0 ? <MUITable
-        columns={columns}
-        table={is_table_quantity_test}
-        options={options}
-        className="mycart_table_mui_datatable_main"
-      /> : 
-      <MUITable
-      columns={columns}
-      table={is_table_quantity}
-      options={options}
-      className="mycart_table_mui_datatable_main"
-    />
-      } 
+      {is_table_quantity?.length === 0 ? (
+        <MUITable
+          columns={columns}
+          table={is_table_quantity_test}
+          options={options}
+          className="mycart_table_mui_datatable_main"
+        />
+      ) : (
+        <MUITable
+          columns={columns}
+          table={is_table_quantity}
+          options={options}
+          className="mycart_table_mui_datatable_main"
+        />
+      )}
     </div>
   );
 };

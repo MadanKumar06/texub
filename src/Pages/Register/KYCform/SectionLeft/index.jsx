@@ -126,11 +126,7 @@ const BuyerKYCformSectionLeft = ({ classes }) => {
                   setValidationFieldMessage={setValidationFieldMessage}
                 />
               )}
-              {buyer_or_seller === 5 ? (
-                ""
-              ) : seller?.length && seller?.[0]?.value === "US" ? (
-                ""
-              ) : (
+              {seller?.[0]?.value !== "US" && buyer_or_seller === 6 && (
                 <BankDetails
                   SetFormValues={setKycFormData}
                   FormValues={kycFormData}

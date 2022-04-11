@@ -877,7 +877,7 @@ const BuyerRegistration = ({ classes }) => {
                 className={recaptcha_info}
                 // 6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI
                 // 6LcaHDYfAAAAAOUR0jJWtEI128eoRL4xjBWOpjKD
-                sitekey="6LcaHDYfAAAAAOUR0jJWtEI128eoRL4xjBWOpjKD"
+                sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
                 onChange={() => {
                   setsellerRegistrationData((prevState) => ({
                     ...prevState,
