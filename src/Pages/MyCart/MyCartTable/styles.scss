@@ -53,6 +53,17 @@
       }
     }
     .mycart_table_quantity {
+      position: relative;
+      .update {
+        cursor: pointer;
+        position: absolute;
+        right: 0;
+        background: #ddb363;
+        top: -70px;
+        color: #ffffff;
+        border-radius: 5%;
+        padding: 3px 5px;
+      }
       .mycart_quantity_subblock {
         display: flex;
         align-items: center;
@@ -62,9 +73,9 @@
         padding: 2px;
         border-radius: 25px;
         .item_decrease {
-          width: 48px;
-          height: 48px;
-          background-color: #002d56;
+          width: 24px;
+          height: 25px;
+          background-color: #cdd5dd;
           border: none;
           fill: #ffffff !important;
           border-radius: 50%;
@@ -73,8 +84,8 @@
           cursor: pointer;
         }
         .item_increase {
-          width: 48px;
-          height: 48px;
+          width: 24px;
+          height: 25px;
           background-color: #002d56;
           border: none;
           fill: #ffffff !important;
@@ -113,7 +124,7 @@
         .mycart_right_section_block {
           display: flex;
           justify-content: space-between;
-          align-items:  flex-end;
+          align-items: flex-end;
           .mycart_product_eta {
             padding: 6px 9px;
             color: #002d56;
@@ -266,10 +277,16 @@
     }
   }
 
-  .mycart_table_main_container .mycart_table_mui_datatable_main .mycart_table_quantity .mycart_quantity_subblock{
+  .mycart_table_main_container
+    .mycart_table_mui_datatable_main
+    .mycart_table_quantity
+    .mycart_quantity_subblock {
     width: fit-content;
   }
-  .mycart_table_mui_datatable_main .mycart_table_quantity .mycart_quantity_subblock .input_text{
+  .mycart_table_mui_datatable_main
+    .mycart_table_quantity
+    .mycart_quantity_subblock
+    .input_text {
     font-size: 16px !important;
   }
 }
@@ -289,10 +306,16 @@
       }
     }
   }
-  .mycart_table_mui_datatable_main .mycart_table_quantity .mycart_quantity_subblock .input_text{
+  .mycart_table_mui_datatable_main
+    .mycart_table_quantity
+    .mycart_quantity_subblock
+    .input_text {
     font-size: 16px !important;
   }
-  .mycart_table_main_container .mycart_table_mui_datatable_main .mycart_table_quantity .mycart_quantity_subblock{
+  .mycart_table_main_container
+    .mycart_table_mui_datatable_main
+    .mycart_table_quantity
+    .mycart_quantity_subblock {
     width: fit-content;
   }
 }

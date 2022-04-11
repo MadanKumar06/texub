@@ -88,6 +88,9 @@ const MiniCartList = ({ handleSideBarClose }) => {
           timer: 2000,
         });
         dispatch({
+          type: "CART__TRIGGER",
+        });
+        dispatch({
           type: "SET_IS_SIMPLE_LOADING",
           value: false,
         });
@@ -139,12 +142,16 @@ const MiniCartList = ({ handleSideBarClose }) => {
         <h6>Mini Cart</h6>
       </header>
       {isSimpleLoading ? (
-        <SimpleLoader
+        <div
           style={{
-            alignItems: "center !important",
-            height: "100vh !important",
+            height: "100vh",
+            alignItems: "center",
+            display: "flex",
+            justifyContent: "center",
           }}
-        />
+        >
+          <SimpleLoader />
+        </div>
       ) : (
         <>
           <div className="minicart_list_content">

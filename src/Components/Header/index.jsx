@@ -20,6 +20,10 @@ const Header = ({ classes }) => {
   useEffect(async () => {
     const user = JSON.parse(localStorage.getItem("userdata"));
     if (localStorage.getItem("token")) {
+      dispatch({
+        type: "SET_IS_SIMPLE_LOADING",
+        value: true,
+      });
       try {
         const cartdata = await axios({
           method: "post",
@@ -38,13 +42,21 @@ const Header = ({ classes }) => {
           type: "CART__DATA",
           data: cartdata?.data,
         });
+        dispatch({
+          type: "SET_IS_SIMPLE_LOADING",
+          value: false,
+        });
       } catch (e) {
         console.log(e);
+        dispatch({
+          type: "SET_IS_SIMPLE_LOADING",
+          value: false,
+        });
       }
     }
   }, [currency, gt, localStorage.getItem("userdata")]);
 
-  console.log(gt)
+  console.log(gt);
 
   const SigninPopUP = () => {
     dispatch({
