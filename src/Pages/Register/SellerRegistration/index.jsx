@@ -786,9 +786,6 @@ const BuyerRegistration = ({ classes }) => {
                   option.role_name ? option.role_name : ""
                 }
                 filterOptions={(options) => options}
-                // isOptionEqualToValue={(option, value) => {
-                //   debugger;
-                // }}
                 renderInput={(params) => (
                   <TextField
                     {...params}

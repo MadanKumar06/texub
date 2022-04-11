@@ -19,7 +19,6 @@ const WhislistTable = ({ tableData, tableDataHeader, folderdata }) => {
   };
   const [folderid, setfolderid] = useState()
   useEffect(() => {
-    console.log(folderdata)
     folderdata?.filter(fd => {
       if(fd.wishlist_name !== tableDataHeader) {
         setfolderid(fd)
@@ -45,7 +44,6 @@ const WhislistTable = ({ tableData, tableDataHeader, folderdata }) => {
           }
        }
       })
-      console.log(deletewish.data)
     } catch(e) {
       console.log(e)
     }
@@ -72,7 +70,6 @@ const WhislistTable = ({ tableData, tableDataHeader, folderdata }) => {
           }
        }
       })
-      console.log(addcart.data)
     } catch(e) {
       console.log(e)
     }

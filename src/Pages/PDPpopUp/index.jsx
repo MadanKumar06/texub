@@ -88,8 +88,6 @@ const PdpPopup = () => {
     }
   }, [])
 
-  console.log(folder)
-
   const handleIsValidUser = async(event) => {
     let user = JSON.parse(localStorage.getItem('userdata'))
     if(event === "add_to_wishlist") {
@@ -109,7 +107,6 @@ const PdpPopup = () => {
               }         
             }
           })
-          console.log(wishdata.data)
         } catch(e) {
           console.log(e)
         }

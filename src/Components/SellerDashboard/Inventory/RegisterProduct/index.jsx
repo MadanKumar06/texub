@@ -264,7 +264,6 @@ function RegisterProduct() {
   //API to Register
   const FinalRegisterNewProduct = () => {
     let user = JSON.parse(localStorage.getItem("userdata"));
-    debugger;
     let data = {
       product_data: {
         bulkupload: 0,

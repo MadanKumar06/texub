@@ -13,9 +13,6 @@ const Whislist = () => {
   const PaginateDataSplit = (event) => {
     setTableData(event);
   };
-
-  console.log(WhishlistTableData)
-
   const [wishdata, setwishdata] = useState([])
   useEffect(async() => {
     const user = JSON.parse(localStorage.getItem('userdata'))
@@ -32,7 +29,6 @@ const Whislist = () => {
           }     
         }
       })
-      console.log(wishlistdata.data)
     } catch(e) {
       console.log(e)
     }
@@ -42,7 +38,6 @@ const Whislist = () => {
 
   useEffect(async() => {
     let user = JSON.parse(localStorage.getItem('userdata'))
-    console.log(user)
     try {
       const wishlistdata = await axios({
         method: 'post',
@@ -56,14 +51,11 @@ const Whislist = () => {
           }
         }
       })
-      console.log(wishlistdata.data)
       setfolderdata(wishlistdata.data)
     } catch(e) {
       console.log(e)
     }
   },[])
-
-  console.log(folderdata)
 
   return (
     <div className="wishlist_main_container">

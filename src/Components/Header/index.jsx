@@ -18,7 +18,6 @@ const Header = ({ classes }) => {
   let isSignedIn = JSON.parse(localStorage.getItem("userdata"));
 
   useEffect(async () => {
-    debugger
     const user = JSON.parse(localStorage.getItem("userdata"));
     if (localStorage.getItem("token")) {
       try {
@@ -35,7 +34,6 @@ const Header = ({ classes }) => {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         });
-        console.log(cartdata?.data)
         dispatch({
           type: "CART__DATA",
           data: cartdata?.data,
