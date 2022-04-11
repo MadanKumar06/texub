@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./styles.scss";
 
 import { Rating, Button, Menu, MenuItem } from "@mui/material";
 import { Remove, Add } from "@mui/icons-material";
 import { MoreVert } from "@mui/icons-material";
+import axios from "axios";
+import Constant from '../../../../Constant'
+import { useStateValue } from "../../../../store/state";
 
-const WhislistTable = ({ tableData, tableDataHeader }) => {
+const WhislistTable = ({ tableData, tableDataHeader, folderdata }) => {
   //open more option at resolution 767px and below
   const [openMoreOPtion, setOpenMoreOption] = useState(null);
   const handleClickForOpenMoreOption = (event) => {
@@ -14,6 +17,66 @@ const WhislistTable = ({ tableData, tableDataHeader }) => {
   const handleCloseForOpenMoreOption = () => {
     setOpenMoreOption(null);
   };
+  const [folderid, setfolderid] = useState()
+  useEffect(() => {
+    console.log(folderdata)
+    folderdata?.filter(fd => {
+      if(fd.wishlist_name !== tableDataHeader) {
+        setfolderid(fd)
+      }
+    })
+  }, [folderdata])
+
+  const [{currency}, dispatch] = useStateValue()
+
+  const wishlistdelete = async() => {
+    const user = JSON.parse(localStorage.getItem('userdata'))
+    try {
+      const deletewish = await axios({
+        method: 'post',
+        url: `${Constant.baseUrl()}/deleteAll`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        },
+        data: {
+          "requestParams":{
+              "multiwishlist_id":folderid?.id,
+              "customer_id":user?.id
+          }
+       }
+      })
+      console.log(deletewish.data)
+    } catch(e) {
+      console.log(e)
+    }
+  }
+
+  const addalltocart = async() => {
+    const user = JSON.parse(localStorage.getItem('userdata'))
+    try {
+      const addcart = await axios({
+        method: 'post',
+        url: `${Constant.baseUrl()}/addToCart`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        },
+        data: {
+          "pendingProducts" : {
+            "customer_id" : user?.id,
+            "productId" : tableData?.product_id,
+            "price" : tableData?.price,
+            "qty" : 1,
+            "hub" : tableData?.texub_product_hub,
+            "currency" : currency,
+            "sellerId" : tableData?.seller_id
+          }
+       }
+      })
+      console.log(addcart.data)
+    } catch(e) {
+      console.log(e)
+    }
+  }
 
   return (
     <div className="wishlist_table_container">
@@ -31,8 +94,8 @@ const WhislistTable = ({ tableData, tableDataHeader }) => {
           onClose={handleCloseForOpenMoreOption}
           className="menulist_item"
         >
-          <MenuItem>Add All To Cart</MenuItem>
-          <MenuItem>Delete List</MenuItem>
+          <MenuItem onClick={addalltocart}>Add All To Cart</MenuItem>
+          <MenuItem onClick={wishlistdelete}>Delete List</MenuItem>
         </Menu>
         <div className="header_link">
           <p>Add All To Cart</p>

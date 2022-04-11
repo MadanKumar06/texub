@@ -11,6 +11,7 @@ import Acer from "../../../Assets/Productlist/acer_icon_td.png";
 
 const MyCartTable = ({ cartDataList, deleteCartData }) => {
   const [is_table_quantity, setIs_table_quantity] = useState([]);
+  const [is_table_quantity_test, setis_table_quantity_test] = useState([])
 
   useEffect(() => {
     setIs_table_quantity(
@@ -232,7 +233,6 @@ const MyCartTable = ({ cartDataList, deleteCartData }) => {
       label: "QUANTITY",
       options: {
         customBodyRender: (value, tablemeta) => {
-          debugger
           return (
             <div className="mycart_table_quantity">
               <div className="mycart_quantity_subblock">
@@ -384,16 +384,24 @@ const MyCartTable = ({ cartDataList, deleteCartData }) => {
     },
   };
 
+  console.log(is_table_quantity)
+
   return (
     <div className="mycart_table_main_container">
       {/* {is_table_quantity?.[0]?.invoice_items?.length && ( */}
-      <MUITable
+      {is_table_quantity?.length === 0 ? <MUITable
         columns={columns}
-        table={is_table_quantity}
+        table={is_table_quantity_test}
         options={options}
         className="mycart_table_mui_datatable_main"
-      />
-      {/* )} */}
+      /> : 
+      <MUITable
+      columns={columns}
+      table={is_table_quantity}
+      options={options}
+      className="mycart_table_mui_datatable_main"
+    />
+      } 
     </div>
   );
 };

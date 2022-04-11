@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styles from "./styles";
 
@@ -14,11 +14,11 @@ import axios from "axios";
 import Constant from "../../Constant";
 
 const Header = ({ classes }) => {
-  const [{ currency, cart }, dispatch] = useStateValue();
+  const [{ currency, cart, gt }, dispatch] = useStateValue();
   let isSignedIn = JSON.parse(localStorage.getItem("userdata"));
 
   useEffect(async () => {
-    debugger;
+    debugger
     const user = JSON.parse(localStorage.getItem("userdata"));
     if (localStorage.getItem("token")) {
       try {
@@ -35,7 +35,7 @@ const Header = ({ classes }) => {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         });
-        console.log(cartdata.data[0]);
+        console.log(cartdata?.data)
         dispatch({
           type: "CART__DATA",
           data: cartdata?.data,
@@ -44,7 +44,9 @@ const Header = ({ classes }) => {
         console.log(e);
       }
     }
-  }, [currency, cart]);
+  }, [currency, gt]);
+
+  console.log(gt)
 
   const SigninPopUP = () => {
     dispatch({

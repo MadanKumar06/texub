@@ -23,6 +23,15 @@ const Mycart = () => {
   }, []);
 
   //Delete cart
+  const [localcart, setlocalcart] = useState(false)
+
+  useEffect(() => {
+    dispatch({
+      type: "CART__TRIGGER",
+      data: !localcart,
+    });
+    setlocalcart(!localcart)
+  }, [])
 
   const deleteCartData = async (deleteCart) => {
     try {
@@ -36,6 +45,9 @@ const Mycart = () => {
         },
       });
       if (rowdelete) {
+        dispatch({
+          type: "CART__TRIGGER",
+        });
         swal.fire({
           text: `Your Cart is Deleted Successfully!`,
           icon: "success",
