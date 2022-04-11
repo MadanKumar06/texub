@@ -74,8 +74,14 @@ const MiniCartDrawer = () => {
           className="miniCart_drawer"
           PaperProps={
             matches
-              ? { style: { height: "100vh", width: "min-content" } }
-              : { style: { height: "100vh", width: "100%" } }
+              ? {
+                  style: {
+                    height: "100vh",
+                    minWidth: "350px",
+                    width: "min-content",
+                  },
+                }
+              : { style: { height: "100vh", minWidth: "350px", width: "100%" } }
           }
         >
           {list("right")}

@@ -131,6 +131,23 @@
             font-size: smaller;
           }
         }
+        .guest_login {
+          margin: 0;
+          font-size: 12px;
+          text-decoration: underline;
+          font-weight: 600;
+          color: #002d56;
+        }
+        .check_price {
+          margin: 0;
+          font-size: 10px;
+          color: #333c42;
+        }
+        .producttable_price {
+          cursor: pointer;
+          padding: 5px;
+          font-size: 18px;
+        }
       }
 
       .sellerprofile__search {

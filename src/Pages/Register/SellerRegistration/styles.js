@@ -136,6 +136,7 @@ const styles = (theme) => ({
   },
   checkbox_label: {
     width: "100%",
+    marginRight: "0 !important",
     "& .MuiTypography-root": {
       color: "#5C6369",
       fontSize: "20px",
@@ -171,7 +172,7 @@ const styles = (theme) => ({
     fontWeight: "600 !important",
     textTransform: "capitalize !important",
     marginTop: "20px !important",
-    width: "46% !important",
+    width: "48.5% !important",
     fontSize: "18px !important",
     padding: "12px 0 !important",
     "@media(max-width:1660px)": {

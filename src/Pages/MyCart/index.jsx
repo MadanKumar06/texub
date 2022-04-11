@@ -2,39 +2,81 @@ import React, { useState, useEffect } from "react";
 import "./styles.scss";
 import { Stack, Button, Breadcrumbs, Typography } from "@mui/material";
 import MyCartTable from "./MyCartTable";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import shopping_image from "../../Assets/MyCart/Group 956.png";
+import { useStateValue } from "../../store/state";
+import { getAdminToken } from "../../utilities";
 
 import axios from "axios";
 import Constant from "../../Constant";
+import swal from "sweetalert2";
 
 const Mycart = () => {
-  const [cartDataList, setCartDataList] = useState([]);
+  const [{ cart }, dispatch] = useStateValue();
+
+  //API to fetch admin token
+  const [adminToken, setAdminToken] = useState("");
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("userdata"));
-    const currency = JSON.parse(localStorage.getItem("currency"));
-    let data = {
-      data: {
-        // customer_id: user?.id,
-        // currency_id: currency?.currency_id,
-        customer_id: 280,
-        currency_id: 1,
-      },
-    };
-    axios
-      .post(Constant.baseUrl() + "/cartList", data, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${JSON.parse(
-            localStorage.getItem("customer_auth")
-          )}`,
-        },
-      })
-      .then((res) => {
-        setCartDataList(res?.data);
-      })
-      .catch((error) => {});
+    getAdminToken((res) => {
+      setAdminToken(res);
+    });
   }, []);
+
+  //Delete cart
+
+  const deleteCartData = async (deleteCart) => {
+    try {
+      const rowdelete = await axios({
+        method: "delete",
+        url: `${Constant.baseUrl2()}/carts/${deleteCart?.cart_id}/items/${
+          deleteCart?.item_id
+        }`,
+        headers: {
+          Authorization: `Bearer ${adminToken}`,
+        },
+      });
+      if (rowdelete) {
+        swal.fire({
+          text: `Your Cart is Deleted Successfully!`,
+          icon: "success",
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      } else {
+        swal.fire({
+          text: `Your Cart Not Deleted Try Again later`,
+          icon: "error",
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      }
+
+      // seteventcheck(!eventcheck);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  const navigate = useNavigate()
+
+  const addpendinginvoice = async() => {
+    try {
+      const pinvoice = await axios({
+        method: 'post',
+        url: `${Constant.baseUrl()}/cartToPendingInvoice`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        },
+        data: {
+            "quote_id":cart[0]?.invoice?.Cart_id,
+            "store_id":1
+        }
+      })
+      navigate('/pending-invoice')
+    } catch(e) {
+      console.log(e)
+    }
+  }
+
   return (
     <div className="my_cart_main">
       <div className="my_cart_image_block">
@@ -51,13 +93,13 @@ const Mycart = () => {
           </Breadcrumbs>
         </Stack>
       </div>
-      <MyCartTable cartDataList={cartDataList} />
+      <MyCartTable cartDataList={cart} deleteCartData={deleteCartData} />
 
       <div className="my_cart_footer">
         <Button className="my_cart_bottom_button_shopping">
           <span>Continue Shopping</span>
         </Button>
-        <Button className="my_cart_bottom_button_pending_invoice">
+        <Button className="my_cart_bottom_button_pending_invoice" onCLick={addpendinginvoice}>
           <span>Add To Pending Invoice</span>
         </Button>
       </div>

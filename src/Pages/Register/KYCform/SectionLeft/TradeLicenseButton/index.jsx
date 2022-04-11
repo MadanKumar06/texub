@@ -36,9 +36,7 @@ const TradeLicenseButton = ({
   } = classes;
 
   //Data state and onchange event
-  const [dateChange, setDateChange] = useState(null);
   const handleChange = (newValue) => {
-    setDateChange(newValue);
     SetFormValues((prevState) => ({
       ...prevState,
       trade_expiration_date: newValue,
@@ -117,19 +115,11 @@ const TradeLicenseButton = ({
     switch (fieldName[0]) {
       case "trade_expiration_date":
         if (!value) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            trade_expiration_date: "Please select expiration date.",
-          }));
           SetFormValues((prevState) => ({
             ...prevState,
             expiry_checkbox: false,
           }));
         } else if (value.toString() === "Invalid Date") {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            trade_expiration_date: "Please select valid date.",
-          }));
           SetFormValues((prevState) => ({
             ...prevState,
             expiry_checkbox: false,
@@ -197,9 +187,13 @@ const TradeLicenseButton = ({
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <DesktopDatePicker
             label="Expiration Date"
-            inputFormat="MM/dd/yyyy"
+            inputFormat="dd/MM/yyyy"
             minDate={new Date()}
-            value={dateChange}
+            value={
+              FormValues?.trade_expiration_date
+                ? FormValues?.trade_expiration_date
+                : null
+            }
             onChange={handleChange}
             renderInput={(params) => (
               <TextField
@@ -207,8 +201,9 @@ const TradeLicenseButton = ({
                 fullWidth
                 className="inputfield-box"
                 id="trade_expiration_date"
-                placeholder="MM/DD/YY"
+                inputProps={{ ...params.inputProps, placeholder: "DD/MM/YYYY" }}
                 InputLabelProps={{
+                  readOnly: true,
                   shrink: true,
                   // required: true,
                   // classes: {
@@ -259,7 +254,19 @@ const TradeLicenseButton = ({
           {FormValues?.trade_image?.name ? (
             <p>{FormValues?.trade_image?.name}</p>
           ) : (
-            <p>No File Chosen</p>
+            <label
+              className={sub_media_upload_label}
+              htmlFor="icon-button-file"
+            >
+              <input
+                accept="image/jpeg,image/png,application/pdf"
+                id="icon-button-file"
+                type="file"
+                name="trade_image"
+                onChange={handleImageChange}
+              />
+              <p>No File Chosen</p>
+            </label>
           )}
           <Clear
             className={input_image_name_clear_btn}
@@ -274,9 +281,9 @@ const TradeLicenseButton = ({
       </div>
       {FormValues?.expiry_checkbox && (
         <FormControlLabel
-          value={FormValues?.trade_remainder_check}
           control={
             <Checkbox
+              checked={FormValues?.trade_remainder_check}
               color="color_third"
               name="trade_remainder_check"
               onChange={handleFormvalue}

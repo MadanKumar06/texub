@@ -43,8 +43,6 @@ const BuyerKYCformSectionLeft = ({ classes }) => {
   const handleChangeButton = (event) => {
     setDocumentButton(event);
   };
-
-  console.log(kycFormData);
   //HIDE and show bank details for different users
   let HideAndShowBankDetails = JSON.parse(localStorage.getItem("userdata"));
   let buyer_or_seller = HideAndShowBankDetails?.group_id;
@@ -130,7 +128,7 @@ const BuyerKYCformSectionLeft = ({ classes }) => {
               )}
               {buyer_or_seller === 5 ? (
                 ""
-              ) : seller?.length ? (
+              ) : seller?.length && seller?.[0]?.value === "US" ? (
                 ""
               ) : (
                 <BankDetails

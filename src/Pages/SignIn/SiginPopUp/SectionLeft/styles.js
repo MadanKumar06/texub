@@ -187,6 +187,11 @@ const styles = (theme) => ({
       },
     },
   },
+  logo_svg: {
+    display: "flex",
+    justifyContent: "center",
+    marginTop: "2em",
+  },
   button_box: {
     margin: "20px 0px",
     textAlign: "center",

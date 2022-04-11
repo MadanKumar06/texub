@@ -199,7 +199,8 @@ function Index({
             )}
           />
           <InputLabel className="validation_error">
-            {isDetailTabValid?.isHubValid}
+            {count?.slice(-1)?.[0]?.hub_id === currentdata?.hub_id &&
+              isDetailTabValid?.isHubValid}
           </InputLabel>
         </div>
         <div className="updateproduct_info_form">
@@ -255,7 +256,10 @@ function Index({
             />
           </div>
           <InputLabel className="validation_error">
-            {isDetailTabValid?.isPriceValid}
+            {(count?.slice(-1)?.[0]?.price === currentdata?.price ||
+              count?.slice(-1)?.[0]?.currency_id ===
+                currentdata?.currency_id) &&
+              isDetailTabValid?.isPriceValid}
           </InputLabel>
         </div>
         <div className="updateproduct_info_form">
@@ -284,7 +288,8 @@ function Index({
             variant="outlined"
           />
           <InputLabel className="validation_error">
-            {isDetailTabValid?.isInStockValid}
+            {count?.slice(-1)?.[0]?.in_stock === currentdata?.in_stock &&
+              isDetailTabValid?.isInStockValid}
           </InputLabel>
         </div>
         <div className="updateproduct_info_form">
@@ -312,7 +317,8 @@ function Index({
             variant="outlined"
           />
           <InputLabel className="validation_error">
-            {isDetailTabValid?.isETAValid}
+            {count?.slice(-1)?.[0]?.eta === currentdata?.eta &&
+              isDetailTabValid?.isETAValid}
           </InputLabel>
         </div>
         <div className="updateproduct_info_form">
@@ -341,7 +347,8 @@ function Index({
             variant="outlined"
           />
           <InputLabel className="validation_error">
-            {isDetailTabValid?.isMoqValid}
+            {count?.slice(-1)?.[0]?.moq === currentdata?.moq &&
+              isDetailTabValid?.isMoqValid}
           </InputLabel>
         </div>
       </div>
@@ -372,6 +379,7 @@ function Index({
               id="gst"
               name="gst"
               placeholder="18"
+              type="number"
               className="inputfield-box"
               fullWidth
               autoComplete="off"
@@ -390,6 +398,7 @@ function Index({
               name="igst"
               placeholder="18"
               fullWidth
+              type="number"
               className="inputfield-box"
               autoComplete="off"
               // value={signInData?.email_address}
@@ -407,6 +416,7 @@ function Index({
               name="sgst"
               placeholder="18"
               fullWidth
+              type="number"
               autoComplete="off"
               className="inputfield-box"
               // value={signInData?.email_address}

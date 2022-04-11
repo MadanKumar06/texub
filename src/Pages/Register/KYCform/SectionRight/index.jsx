@@ -75,10 +75,15 @@ const BuyerKYCformSectionRight = ({
             multiple
             id="checkboxes-tags-demo"
             options={kycCategoryList}
-            disableCloseOnSelect
             className={clsx(auto_complete_input, "inputfield-box")}
             value={FormValues?.categorylist}
             getOptionLabel={(option) => option.category_name}
+            disableCloseOnSelect={
+              FormValues?.categorylist?.length &&
+              FormValues?.categorylist?.includes(
+                (itm) => itm?.category_name === "Others"
+              )
+            }
             renderOption={(props, option, { selected }) => (
               <li {...props}>
                 <Checkbox
@@ -97,7 +102,12 @@ const BuyerKYCformSectionRight = ({
               }));
             }}
             renderInput={(params) => (
-              <TextField {...params} placeholder="Category List" />
+              <TextField
+                {...params}
+                placeholder={
+                  FormValues?.categorylist?.length ? "" : "Select categories"
+                }
+              />
             )}
           />
           {FormValues?.categorylist?.some(

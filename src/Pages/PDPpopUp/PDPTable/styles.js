@@ -12,6 +12,27 @@ const styles = () => ({
       width: "100%",
     },
   },
+  guest_login: {
+    margin: "0",
+    fontSize: "12px",
+    textDecoration: "underline",
+    color: "#002D56",
+  },
+  check_price: {
+    margin: "0",
+    fontSize: "10px",
+    color: "#333C42",
+  },
+  producttable_price: {
+    color: "#5C6369",
+    width: "15%",
+    display: "table-cell",
+    padding: "5px",
+    fontSize: "18px",
+    letterSpacing: "0.59px",
+    verticalAlign: "middle",
+    cursor:"pointer"
+  },
   table_title_container: {
     display: "none",
     "@media (max-width:767px)": {

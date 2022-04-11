@@ -61,7 +61,6 @@ const TransitionsModal = ({ classes }) => {
         ...prevState,
         [event.target.name]: "",
       }));
-      handleSwitchCase([event.target.name], event.target.value);
     } else {
       setGuestData((prevState) => ({
         ...prevState,
@@ -71,58 +70,10 @@ const TransitionsModal = ({ classes }) => {
         ...prevState,
         [event.target.name]: "",
       }));
-      handleSwitchCase([event.target.name], event.target.value);
     }
   };
-  const handleSwitchCase = (fieldName, value) => {
-    switch (fieldName[0]) {
-      case "first_name":
-        if (!isFirstAndLastNameValid(value)) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            first_name: "Please enter alphabet.",
-          }));
-        }
-        break;
-      case "last_name":
-        if (!isFirstAndLastNameValid(value)) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            last_name: "Please enter alphabet.",
-          }));
-        }
-        break;
-      case "email_address":
-        if (!isEmailValid(value)) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            email_address: "Please enter the valid e-mail.",
-          }));
-        }
-        break;
-      case "password":
-        if (!isPasswordValid(value)) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            password:
-              "Minimum 8 characters at least 1 Alphabet, 1 Number and 1 Special Character.",
-          }));
-        }
-        break;
-      case "confrim_password":
-        if (!(guestData?.password === value)) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            confrim_password: "Password and confirm password does not match",
-          }));
-        }
-        break;
-      default:
-        break;
-    }
-  };
-
   const handleClickValidation = (event) => {
+    event.preventDefault();
     var errorHandle = false;
     if (!guestData?.first_name) {
       document.getElementById("first_name")?.focus();
@@ -250,6 +201,10 @@ const TransitionsModal = ({ classes }) => {
           type: "SET_IS_LOADING",
           value: false,
         });
+        dispatch({
+          type: "SET_SIGNIN_OPEN_CLOSE",
+          value: false,
+        });
         swal.fire({
           text: "You have Successfully Registered !",
           icon: "success",
@@ -258,7 +213,7 @@ const TransitionsModal = ({ classes }) => {
         });
         setTimeout(() => {
           history("/");
-        }, 1000);
+        }, 1000 / 2);
       })
       .catch((err) => {
         dispatch({
@@ -273,137 +228,140 @@ const TransitionsModal = ({ classes }) => {
         Get started here by entering the personal details and get access as a
         guest.
       </p>
-      <div className={info_text_guest}>Guest Access</div>
-      <div className={input_fields}>
-        <TextField
-          id="first_name"
-          label="First Name"
-          placeholder="First Name"
-          fullWidth
-          className="inputfield-box"
-          InputLabelProps={{
-            shrink: true,
-            required: true,
-            classes: {
-              asterisk: asterisk,
-            },
-          }}
-          value={guestData?.first_name}
-          name="first_name"
-          onChange={handleChangeInput}
-          variant="outlined"
-        />
-        <InputLabel className={validation_error}>
-          {inputValidation?.first_name}
-        </InputLabel>
-        <TextField
-          id="last_name"
-          className="inputfield-box"
-          label="Last Name"
-          fullWidth
-          placeholder="Last Name"
-          InputLabelProps={{
-            shrink: true,
-            required: true,
-            classes: {
-              asterisk: asterisk,
-            },
-          }}
-          value={guestData?.last_name}
-          name="last_name"
-          onChange={handleChangeInput}
-          variant="outlined"
-        />
-        <InputLabel className={validation_error}>
-          {inputValidation?.last_name}
-        </InputLabel>
-        <TextField
-          id="email_address"
-          label="E-mail Address"
-          placeholder="E-mail Address"
-          fullWidth
-          InputLabelProps={{
-            shrink: true,
-            required: true,
-            classes: {
-              asterisk: asterisk,
-            },
-          }}
-          className="inputfield-box"
-          value={guestData?.email_address}
-          name="email_address"
-          onChange={handleChangeInput}
-          variant="outlined"
-        />
-        <InputLabel className={validation_error}>
-          {inputValidation?.email_address}
-        </InputLabel>
-        <TextField
-          id="password"
-          label="Password"
-          fullWidth
-          type="password"
-          placeholder="Password"
-          InputLabelProps={{
-            shrink: true,
-            required: true,
-            classes: {
-              asterisk: asterisk,
-            },
-          }}
-          className="inputfield-box"
-          value={guestData?.password}
-          name="password"
-          onChange={handleChangeInput}
-          variant="outlined"
-        />
-        <InputLabel className={validation_error}>
-          {inputValidation?.password}
-        </InputLabel>
-        <TextField
-          id="confrim_password"
-          label="Confrim Password"
-          fullWidth
-          type="password"
-          placeholder="Confrim Password"
-          InputLabelProps={{
-            shrink: true,
-            required: true,
-            classes: {
-              asterisk: asterisk,
-            },
-          }}
-          className="inputfield-box"
-          value={guestData?.confrim_password}
-          name="confrim_password"
-          onChange={handleChangeInput}
-          variant="outlined"
-        />
-        <InputLabel className={validation_error}>
-          {inputValidation?.confrim_password}
-        </InputLabel>
-        <FormControlLabel
-          value={guestData?.checkbox_confrim}
-          control={<Checkbox color="color_third" />}
-          label="I confirm that I am a wholesale buyer, and not a consumer or end user."
-          labelPlacement="end"
-          className={checkbox_label}
-          name="checkbox_confrim"
-          onClick={(event) => handleChangeInput(event)}
-        />
-        <InputLabel className={validation_error}>
-          {inputValidation?.checkbox_confrim}
-        </InputLabel>
+      <form onSubmit={handleClickValidation}>
+        <div className={info_text_guest}>Guest Access</div>
+        <div className={input_fields}>
+          <TextField
+            id="first_name"
+            label="First Name"
+            placeholder="First Name"
+            fullWidth
+            className="inputfield-box"
+            InputLabelProps={{
+              shrink: true,
+              required: true,
+              classes: {
+                asterisk: asterisk,
+              },
+            }}
+            value={guestData?.first_name}
+            name="first_name"
+            onChange={handleChangeInput}
+            variant="outlined"
+          />
+          <InputLabel className={validation_error}>
+            {inputValidation?.first_name}
+          </InputLabel>
+          <TextField
+            id="last_name"
+            className="inputfield-box"
+            label="Last Name"
+            fullWidth
+            placeholder="Last Name"
+            InputLabelProps={{
+              shrink: true,
+              required: true,
+              classes: {
+                asterisk: asterisk,
+              },
+            }}
+            value={guestData?.last_name}
+            name="last_name"
+            onChange={handleChangeInput}
+            variant="outlined"
+          />
+          <InputLabel className={validation_error}>
+            {inputValidation?.last_name}
+          </InputLabel>
+          <TextField
+            id="email_address"
+            label="E-mail Address"
+            placeholder="E-mail Address"
+            fullWidth
+            InputLabelProps={{
+              shrink: true,
+              required: true,
+              classes: {
+                asterisk: asterisk,
+              },
+            }}
+            className="inputfield-box"
+            value={guestData?.email_address}
+            name="email_address"
+            onChange={handleChangeInput}
+            variant="outlined"
+          />
+          <InputLabel className={validation_error}>
+            {inputValidation?.email_address}
+          </InputLabel>
+          <TextField
+            id="password"
+            label="Password"
+            fullWidth
+            type="password"
+            placeholder="Password"
+            InputLabelProps={{
+              shrink: true,
+              required: true,
+              classes: {
+                asterisk: asterisk,
+              },
+            }}
+            className="inputfield-box"
+            value={guestData?.password}
+            name="password"
+            onChange={handleChangeInput}
+            variant="outlined"
+          />
+          <InputLabel className={validation_error}>
+            {inputValidation?.password}
+          </InputLabel>
+          <TextField
+            id="confrim_password"
+            label="Confrim Password"
+            fullWidth
+            type="password"
+            placeholder="Confrim Password"
+            InputLabelProps={{
+              shrink: true,
+              required: true,
+              classes: {
+                asterisk: asterisk,
+              },
+            }}
+            className="inputfield-box"
+            value={guestData?.confrim_password}
+            name="confrim_password"
+            onChange={handleChangeInput}
+            variant="outlined"
+          />
+          <InputLabel className={validation_error}>
+            {inputValidation?.confrim_password}
+          </InputLabel>
+          <FormControlLabel
+            value={guestData?.checkbox_confrim}
+            control={<Checkbox color="color_third" />}
+            label="I confirm that I am a wholesale buyer, and not a consumer or end user."
+            labelPlacement="end"
+            className={checkbox_label}
+            name="checkbox_confrim"
+            onClick={(event) => handleChangeInput(event)}
+          />
+          <InputLabel className={validation_error}>
+            {inputValidation?.checkbox_confrim}
+          </InputLabel>
 
-        <Box className={button_box}>
-          <Button
-            onClick={() => handleClickValidation()}
-            className={button_guest}
-          >
-            Register as Guest
-          </Button>
-        </Box>
-      </div>
+          <Box className={button_box}>
+            <Button
+              onClick={() => handleClickValidation()}
+              className={button_guest}
+              type="submit"
+            >
+              Register as Guest
+            </Button>
+          </Box>
+        </div>
+      </form>
     </div>
   );
 };

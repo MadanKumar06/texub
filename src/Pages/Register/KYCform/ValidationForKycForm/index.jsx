@@ -1,11 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { Box, Button, FormControlLabel, Checkbox } from "@mui/material";
+import {
+  Box,
+  Button,
+  FormControlLabel,
+  Checkbox,
+  InputLabel,
+} from "@mui/material";
 import styles from "../SectionRight/styles";
 import { withStyles } from "@mui/styles";
 import { useNavigate } from "react-router-dom";
 import { useStateValue } from "../../../../store/state";
 import axios from "axios";
 import Constant from "../../../../Constant";
+import swal from "sweetalert2";
 var moment = require("moment");
 
 function ValidationForKycForm({
@@ -15,10 +22,12 @@ function ValidationForKycForm({
   documentButton,
   setDocumentButton,
 }) {
+  let { validation_error } = classes;
   const history = useNavigate();
   const [{}, dispatch] = useStateValue();
-  let { button_box, button_guest, download_link } = classes;
+  let { button_box, button_guest, download_link, agreemnetDowload } = classes;
   const [valid, setValid] = useState(null);
+  const [agreementChecked, setAgreementChecked] = useState(false);
 
   useEffect(() => {
     if (valid) {
@@ -29,7 +38,6 @@ function ValidationForKycForm({
   const handleValidationClick = () => {
     let endPoint = false;
     setValid("");
-
     if (!values?.trade_lic_number) {
       setValid((prevState) => ({
         ...prevState,
@@ -100,6 +108,13 @@ function ValidationForKycForm({
       }));
       endPoint = true;
     }
+    if (!agreementChecked) {
+      setValid((prevState) => ({
+        ...prevState,
+        agreementChecked: "Please agree the terms of agreement",
+      }));
+      endPoint = true;
+    }
     if (!endPoint) {
       //API call
       FinalKYCFormSavaData();
@@ -107,7 +122,6 @@ function ValidationForKycForm({
   };
 
   let localUserData = JSON.parse(localStorage?.getItem("userdata"));
-  let customer_token = JSON.parse(localStorage?.getItem("customer_auth"));
   let company_name = localUserData?.custom_attributes?.filter(
     (itm) => itm?.attribute_code === "customer_company_name"
   );
@@ -124,8 +138,8 @@ function ValidationForKycForm({
     let Category_id = values?.categorylist?.map(
       (itm) => itm?.texub_category_id
     );
-    let tax_date = moment(values?.tax_expiration_date).format("MM-DD-YYYY");
-    let trade_date = moment(values?.trade_expiration_date).format("MM-DD-YYYY");
+    let tax_date = moment(values?.tax_expiration_date).format("DD-MM-YYYY");
+    let trade_date = moment(values?.trade_expiration_date).format("DD-MM-YYYY");
 
     let data = {
       kyc: {
@@ -171,7 +185,7 @@ function ValidationForKycForm({
       .post(Constant.baseUrl() + "/saveKyc", data, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${customer_token}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       })
       .then((res) => {
@@ -179,12 +193,21 @@ function ValidationForKycForm({
           type: "SET_IS_LOADING",
           value: false,
         });
-        dispatch({
-          type: "SET_KYC_OPEN_CLOSE",
-          value: false,
-        });
-        let user_id = JSON.parse(localStorage.getItem("userdata"));
-        history(`/thankyou/${user_id?.group_id === 5 ? "buyer" : "seller"}`);
+        if (res?.data?.[0]?.status) {
+          dispatch({
+            type: "SET_KYC_OPEN_CLOSE",
+            value: false,
+          });
+          let user_id = JSON.parse(localStorage.getItem("userdata"));
+          history(`/thankyou/${user_id?.group_id === 5 ? "buyer" : "seller"}`);
+        } else {
+          swal.fire({
+            text: `${res?.data?.[0]?.message}`,
+            icon: "error",
+            showConfirmButton: false,
+            timer: 3000,
+          });
+        }
       })
       .catch((err) => {
         dispatch({
@@ -195,6 +218,7 @@ function ValidationForKycForm({
   };
 
   const handlePdfDownload = (event) => {
+    setAgreementChecked(event.target.checked);
     if (event.target.checked) {
       window.location =
         Constant.pdfDowloadUrl() +
@@ -220,18 +244,22 @@ function ValidationForKycForm({
         control={
           <Checkbox
             color="secondary"
+            checked={agreementChecked}
             onClick={(event) => handlePdfDownload(event)}
           />
         }
         label={
-          <p>
-            By clicking here, I state that I have read and understood the terms
-            of agreement
+          <p className={agreemnetDowload}>
+            By Clicking Here, I state that I have read and understood the{" "}
+            <span>Terms Of Agreement</span>.
           </p>
         }
         labelPlacement="end"
         className={download_link}
       />
+      <InputLabel className={validation_error}>
+        {valid?.agreementChecked}
+      </InputLabel>
       <Box className={button_box} fullWidth>
         {documentButton === "national_id" ? (
           <Button

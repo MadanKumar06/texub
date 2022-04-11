@@ -25,18 +25,14 @@ const PendingInvoice = () => {
     const user = JSON.parse(localStorage.getItem("userdata"));
     let data = {
       data: {
-        // customer_id: user?.id,
-        // currency_id: currency?.currency_id,
-        customer_id: 275,
+        customer_id: user?.id,
       },
     };
     axios
       .post(Constant.baseUrl() + "/pendingInvoiceList", data, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${JSON.parse(
-            localStorage.getItem("customer_auth")
-          )}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       })
       .then((res) => {

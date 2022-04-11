@@ -92,6 +92,14 @@ const styles = (theme) => ({
       marginTop: "2.5em",
     },
   },
+  agreemnetDowload: {
+    fontSize: "14px",
+    color: "#5C6369",
+    "& span":{
+      color: "#002D56",
+      textDecoration: "underline",
+    }
+  },
   button_guest: {
     borderRadius: "30px !important",
     background: "linear-gradient(180deg, #20639B 0%, #002D56 100%)",

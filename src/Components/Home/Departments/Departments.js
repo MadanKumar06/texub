@@ -6,7 +6,7 @@ import Best from "../../../Assets/Homepage Assets/Group 705.png";
 import { IconButton, InputBase, Paper } from "@mui/material";
 import { Menu, Search } from "@mui/icons-material";
 
-export const Departments = () => {
+export const Departments = ({ data }) => {
   const [isActive, setIsActive] = useState(true);
   return (
     <div className="Departments">
@@ -60,13 +60,18 @@ export const Departments = () => {
           </div>
           <div className="Body_Searchbar_Down_images">
             <div className="Body_Searchbar_Down_img1_div">
-              <img className="Body_Searchbar_Down_img1" src={Apple} alt="" />
+              <img
+                className="Body_Searchbar_Down_img1"
+                src={data?.mainbanner}
+                alt=""
+              />
               <div className="Offers">
-                <h5 className="Products_offer">Christmas Offer</h5>
-                <h2 className="Products_offer_per">FLASH SALE OF 70%</h2>
+                <h5 className="Products_offer">{data?.offer_content}</h5>
+                <h2 className="Products_offer_per">{data?.flash_sale}</h2>
                 <p className="Products_offer_per_graph">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  {data?.main_content}
+                  {/* Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua. */}
                 </p>
                 <div className="Offers_buttons">
                   <button className="Learn_more_btn">Learn More</button>
@@ -75,7 +80,11 @@ export const Departments = () => {
               </div>
             </div>
             <div className="Body_Searchbar_Down_img2_div">
-              <img className="Body_Searchbar_Down_img2" src={Best} alt="" />
+              <img
+                className="Body_Searchbar_Down_img2"
+                src={data?.sidebanner}
+                alt=""
+              />
             </div>
           </div>
         </div>

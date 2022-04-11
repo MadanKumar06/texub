@@ -26,6 +26,17 @@ const styles = (theme) => ({
       color: "#5C6369",
     },
   },
+  curreny_image: {
+    margin: "0",
+    color: "#ffffff",
+    background: "#dfb566",
+    borderRadius: "50%",
+    minWidth: "35px",
+    minHeight: "35px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
   menulist_item: {
     "& .MuiList-root ": {
       padding: "15px",

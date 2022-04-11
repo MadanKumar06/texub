@@ -34,7 +34,7 @@ const CurrencyPopup = ({ classes }) => {
     currency_code: "",
     currency_id: "",
   });
-
+  let { curreny_image } = classes;
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -46,7 +46,7 @@ const CurrencyPopup = ({ classes }) => {
     setSelectedValue({
       currency_code: event?.currency_code,
       currency_id: event?.currency_id,
-      // image: event.image,
+      currency_symbol: event.currency_symbol,
     });
     dispatch({
       type: "SET_CURRENCY",
@@ -72,12 +72,14 @@ const CurrencyPopup = ({ classes }) => {
           setSelectedValue({
             currency_code: res?.data?.[0]?.currency_code,
             currency_id: res?.data?.[0]?.currency_id,
+            currency_symbol: res?.data?.[0]?.currency_symbol,
           });
           dispatch({
             type: "SET_CURRENCY",
             data: {
               currency_code: res?.data?.[0]?.currency_code,
               currency_id: res?.data?.[0]?.currency_id,
+              currency_symbol: res?.data?.[0]?.currency_symbol,
             },
           });
         })
@@ -96,6 +98,7 @@ const CurrencyPopup = ({ classes }) => {
             onClick={handleClick}
           >
             {/* <img src={selectedValue?.image} alt="" /> */}
+            <p className={curreny_image}>{selectedValue?.currency_symbol}</p>
             {selectedValue?.currency_code}
             <ExpandMore />
           </Button>
@@ -114,6 +117,7 @@ const CurrencyPopup = ({ classes }) => {
                 onClick={(e) => handleChange(item)}
               >
                 {/* <img src={item?.image} alt="" /> */}
+                <p className={curreny_image}>{item?.currency_symbol}</p>
                 {item?.currency_code}
               </MenuItem>
             ))}

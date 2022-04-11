@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./styles.scss";
 import MUITable from "../../../Common/MUITable";
 import hp from "../../../../Assets/sellerdashboard/inventory/hp.png";
 import Pagination from "../../../Pagination";
+import axios from "axios";
+import Constant from "../../../../Constant";
+
 function Index({ registerproduct }) {
   const [tableData, setTableData] = useState([]);
-
+  const [apiTableData, setApiTableData] = useState([]);
   const options = {
     filter: false,
     filterType: "dropdown",
@@ -17,10 +20,33 @@ function Index({ registerproduct }) {
     viewColumns: false,
     search: false,
   };
+  useEffect(() => {
+    const fetchTableData = async () => {
+      let customerId = JSON.parse(localStorage.getItem("userdata"));
+      try {
+        const tabledata = await axios({
+          method: "post",
+          url: `${Constant.baseUrl()}/getSellerProduct`,
+          data: {
+            sellerData: {
+              customer_id: customerId?.id,
+            },
+          },
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
+        setApiTableData(tabledata.data);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    fetchTableData();
+  }, []);
 
   const columns = [
     {
-      name: "logo",
+      name: "brand",
       label: " ",
       options: {
         customBodyRender: (value) => {
@@ -29,7 +55,7 @@ function Index({ registerproduct }) {
       },
     },
     {
-      name: "pname",
+      name: "name",
       label: "PRODUCT NAME",
       options: {
         customBodyRender: (value) => {
@@ -38,8 +64,13 @@ function Index({ registerproduct }) {
       },
     },
     {
-      name: "category",
+      name: "category_name",
       label: "CATEGORY",
+      options: {
+        customBodyRender: (value) => {
+          return <div className="product">{`${value}`} </div>;
+        },
+      },
     },
     {
       name: "sku",
@@ -60,15 +91,23 @@ function Index({ registerproduct }) {
       options: {
         customBodyRender: (value, tablemeta) => {
           var data = tablemeta?.rowData[4];
+          var product_id = tablemeta?.rowData[6];
           return (
             <div
               className="productGrid__action"
-              onClick={() => registerproduct("updateproduct")}
+              onClick={() => registerproduct("updateproduct", product_id)}
             >
-              {data === "Approved" ? "Update" : ""}
+              {data === "1" ? "Update" : ""}
             </div>
           );
         },
+      },
+    },
+    {
+      name: "product_id",
+      label: "SKU",
+      options: {
+        display: false,
       },
     },
   ];
@@ -123,11 +162,13 @@ function Index({ registerproduct }) {
         className="productGrid__table"
       />
 
-      <Pagination
-        PaginateData={PaginateDataSplit}
-        DataList={table}
-        PagePerRow={4}
-      />
+      {apiTableData?.length > 0 && (
+        <Pagination
+          PaginateData={PaginateDataSplit}
+          DataList={apiTableData}
+          PagePerRow={8}
+        />
+      )}
     </div>
   );
 }

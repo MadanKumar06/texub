@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import styles from "./styles";
 
@@ -10,10 +10,41 @@ import { useStateValue } from "../../store/state";
 
 import logo from "../../Assets/Homepage Assets/Group.png";
 import swal from "sweetalert2";
+import axios from "axios";
+import Constant from "../../Constant";
 
 const Header = ({ classes }) => {
-  const [{}, dispatch] = useStateValue();
+  const [{ currency, cart }, dispatch] = useStateValue();
   let isSignedIn = JSON.parse(localStorage.getItem("userdata"));
+
+  useEffect(async () => {
+    debugger;
+    const user = JSON.parse(localStorage.getItem("userdata"));
+    if (localStorage.getItem("token")) {
+      try {
+        const cartdata = await axios({
+          method: "post",
+          url: `${Constant.baseUrl()}/cartList`,
+          data: {
+            data: {
+              customer_id: user?.id,
+              currency_id: currency?.currency_id,
+            },
+          },
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
+        console.log(cartdata.data[0]);
+        dispatch({
+          type: "CART__DATA",
+          data: cartdata?.data,
+        });
+      } catch (e) {
+        console.log(e);
+      }
+    }
+  }, [currency, cart]);
 
   const SigninPopUP = () => {
     dispatch({
@@ -80,9 +111,9 @@ const Header = ({ classes }) => {
             <Typography variant="h6" className={classes.title}>
               <Link to="/coming-soon"> Buy On TEXUB </Link>
             </Typography>
-            <Typography variant="h6" className={classes.title}>
+            {/* <Typography variant="h6" className={classes.title}>
               <Link to="/Faqs"> FAQ</Link>
-            </Typography>
+            </Typography> */}
             <Typography variant="h6" className={classes.title}>
               <Link to="/Contactus"> Contact Us </Link>
             </Typography>

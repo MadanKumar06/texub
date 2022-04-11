@@ -4,7 +4,6 @@ import MUITable from "../../../Common/MUITable";
 import hp from "../../../../Assets/sellerdashboard/inventory/hp.png";
 import Pagination from "../../../Pagination";
 function Index({ registerproduct, gridData }) {
-  console.log(gridData)
   const [tableData, setTableData] = useState([]);
   const options = {
     filter: false,
@@ -20,7 +19,7 @@ function Index({ registerproduct, gridData }) {
 
   const columns = [
     {
-      name: "logo",
+      name: "brand_image_url",
       label: " ",
       options: {
         customBodyRender: (value) => {
@@ -29,7 +28,7 @@ function Index({ registerproduct, gridData }) {
       },
     },
     {
-      name: "pname",
+      name: "name",
       label: "PRODUCT NAME",
       options: {
         customBodyRender: (value) => {

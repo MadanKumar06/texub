@@ -12,7 +12,7 @@ const styles = (theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    margin: "8%",
+    margin: "0 8%",
   },
   // header section  css
   header_section: {

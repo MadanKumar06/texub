@@ -1,42 +1,70 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./FAQ.scss";
 
-import { TextareaAutosize } from "@mui/material";
+import { TextField } from "@mui/material";
 import { withStyles } from "@mui/styles";
 import styles from "./styles";
+import axios from "axios";
+import Constant from "../../../../Constant";
 
 import IMG from "../../../../Assets/FAQ/group7.svg";
 import img from "../../../../Assets/Career/Group 765.png";
 import IMG2 from "../../../../Assets/FAQ/group 6.svg";
+import swal from "sweetalert2";
 
 const FAQ = ({ classes }) => {
   const [description, setdescription] = useState(false);
+  const [faqList, setFaqList] = useState({});
   const [toggle, settoggle] = useState(false);
+  const [askQuestion, setAskeQuestion] = useState("");
   const text = (value) => {
     setdescription(value);
     settoggle(value);
-    console.log(toggle);
   };
-  const FAQs = [
-    {
-      id: 1,
-      heading: "How can I order in Bulk?",
-      script:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam maecenas ultricies mi eget mauris pharetra et. Vel eros donec ac odio tempor orci dapibus. Purus sit amet luctus venenatis lectus magna fringilla urna. Enim nunc faucibus a pellentesque sit amet. Auctor neque vitae tempus quam pellentesque nec nam aliquam sem.",
-    },
-    {
-      id: 2,
-      heading: "How can I order in Bulk?",
-      script:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam maecenas ultricies mi eget mauris pharetra et. Vel eros donec ac odio tempor orci dapibus. Purus sit amet luctus venenatis lectus magna fringilla urna. Enim nunc faucibus a pellentesque sit amet. Auctor neque vitae tempus quam pellentesque nec nam aliquam sem.",
-    },
-    {
-      id: 3,
-      heading: "How can I order in Bulk?",
-      script:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam maecenas ultricies mi eget mauris pharetra et. Vel eros donec ac odio tempor orci dapibus. Purus sit amet luctus venenatis lectus magna fringilla urna. Enim nunc faucibus a pellentesque sit amet. Auctor neque vitae tempus quam pellentesque nec nam aliquam sem.",
-    },
-  ];
+
+  useEffect(() => {
+    axios
+      .get(Constant.baseUrl() + `/getFaq`, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        setFaqList(res?.data);
+      })
+      .catch((err) => {});
+  }, []);
+
+  const handleCall = () => {
+    let data = {
+      customerId: JSON.parse(localStorage.getItem("userdata"))?.id,
+      storeId: 3,
+      content: askQuestion,
+    };
+    axios
+      .post(Constant.baseUrl() + `/faqRequest`, data, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((res) => {
+        swal.fire({
+          text: `${res?.data?.[0]?.message}`,
+          icon: "success",
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      })
+      .catch((error) => {
+        swal.fire({
+          text: `${error?.response?.data?.message || error.message}`,
+          icon: "error",
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      });
+  };
   return (
     <div className="faqs_main">
       <div className="faqs_heading_section">
@@ -49,43 +77,61 @@ const FAQ = ({ classes }) => {
           Frequently Asked Questions (FAQ's)
         </h3>
         <hr className="faqs_hr1"></hr>
-        {FAQs.map((item) => (
-          <li
-            key={item.id}
-            onClick={() => {
-              text(item.id);
-            }}
-            className="faqs_table_adding"
-          >
-            <div className="faqs_qns_section">
-              <img
-                src={toggle === item.id ? IMG2 : IMG}
-                alt=""
-                className="faqs_plus_img"
-              ></img>
-              <span className="faq_qns_heading">{item.heading}</span>
-            </div>
-            {description && (
-              <>
-                <span>
-                  {item.id === description && (
-                    <div className="faqs_description">
-                      <div className="content">{item.script}</div>
-                    </div>
-                  )}
-                </span>
-              </>
-            )}
-            <hr className="faqs_horizental"></hr>
-          </li>
-        ))}
+        {faqList?.length &&
+          faqList?.map((item, ind) => (
+            <li
+              key={ind}
+              onClick={() => {
+                text(ind);
+              }}
+              className="faqs_table_adding"
+            >
+              <div className="faqs_qns_section">
+                <img
+                  src={toggle === ind ? IMG2 : IMG}
+                  alt=""
+                  className="faqs_plus_img"
+                ></img>
+                <span className="faq_qns_heading">{item.title}</span>
+              </div>
+              <span>
+                {ind === description && (
+                  <div className="faqs_description">
+                    <div
+                      className="content"
+                      dangerouslySetInnerHTML={{ __html: item.content }}
+                    />
+                  </div>
+                )}
+              </span>
+              <hr className="faqs_horizental"></hr>
+            </li>
+          ))}
         <div className={classes.faqs_table}>
           <p className={classes.faqs_text_heading}>
             Have a Question ? Type here and submit
           </p>
-          <TextareaAutosize className={classes.faqs_textarea} minRows={6} />
+          <div>
+            <TextField
+              className="inputfield-box contact-form-inputfieldbox"
+              fullWidth
+              placeholder="Type your Question…"
+              name="your_message"
+              id="your_message"
+              multiline
+              rows={5}
+              onChange={(event) => setAskeQuestion(event?.target?.value)}
+              value={askQuestion}
+              variant="outlined"
+            />
+          </div>
           <span>
-            <button className={classes.faqs_button}>Submit</button>
+            <button
+              className={classes.faqs_button}
+              onClick={() => handleCall()}
+            >
+              Submit
+            </button>
           </span>
         </div>
       </div>
