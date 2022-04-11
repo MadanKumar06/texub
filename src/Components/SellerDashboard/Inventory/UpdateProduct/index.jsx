@@ -59,6 +59,7 @@ function Index({ type, pid }) {
     height: "",
     weight: "",
     warranty_days: "",
+    no_pieces_per: "",
     notes: "",
   });
 
@@ -152,6 +153,7 @@ function Index({ type, pid }) {
     warranty: "",
     warranty_days: "",
     resregion: "",
+    no_pieces_per: "",
     rescountry: "",
     packing_details: "",
     dimension: "",
@@ -165,6 +167,17 @@ function Index({ type, pid }) {
       setInputValidation((prevState) => ({
         ...prevState,
         conditions: "Please select the conditions.",
+      }));
+      errorHandle = true;
+    }
+    if (
+      updateProductList?.conditions?.label === "Others" &&
+      !updateProductList?.other_condition
+    ) {
+      document.getElementById("other_condition")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        other_condition: "Please enter other condition.",
       }));
       errorHandle = true;
     }
@@ -189,6 +202,14 @@ function Index({ type, pid }) {
       setInputValidation((prevState) => ({
         ...prevState,
         packing: "Please select the packing details.",
+      }));
+      errorHandle = true;
+    }
+    if (!updateform?.no_pieces_per) {
+      document.getElementById("no_pieces_per")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        no_pieces_per: "Please enter the no. of piecies.",
       }));
       errorHandle = true;
     }
@@ -299,11 +320,11 @@ function Index({ type, pid }) {
   }, [restricts_country]);
 
   useEffect(() => {
-    // if(isMounted) {
     setupdateform((prevState) => ({
       ...prevState,
       width: olddata?.width,
       height: olddata?.height,
+      no_pieces_per: olddata?.no_pieces_per,
       notes: olddata?.description,
       product_length: olddata?.product_length,
       weight: olddata?.weight,
@@ -360,7 +381,6 @@ function Index({ type, pid }) {
           warcountry: d,
         }))
     );
-    // }
   }, [olddata]);
 
   const [dropdownListFromApi, setDropdownListFromApi] = useState({
@@ -440,14 +460,12 @@ function Index({ type, pid }) {
               customer_id: user?.id,
               product_id: id,
               product_condition: updateProductList?.conditions?.value,
-              other_condition: 1,
+              other_condition: updateProductList?.other_condition,
               warranty_type: updateProductList?.warranty?.value,
               warranty_country: warrantycountries.toString(),
               warranty_days: updateform?.warranty_days,
               packing_details: updateProductList?.packing?.value,
-              no_pieces_per: updateProductList?.carton_packing
-                ? updateProductList?.carton_packing
-                : updateProductList?.pallet_packing,
+              no_pieces_per: updateProductList?.no_pieces_per,
               width: updateform?.width,
               height: updateform?.height,
               product_length: updateform?.product_length,
@@ -480,7 +498,7 @@ function Index({ type, pid }) {
           if (currenttab === "addproduct") {
             setTimeout(() => {
               history("/sellerdashboard/inventory");
-            }, 3000);
+            }, 1000);
           }
         } else {
           swal.fire({
@@ -553,7 +571,7 @@ function Index({ type, pid }) {
           });
           setTimeout(() => {
             history("/sellerdashboard/inventory");
-          }, 3000);
+          }, 1000);
         } else {
           swal.fire({
             text: `${updateformApi?.data?.[0]?.message}`,
@@ -696,7 +714,34 @@ function Index({ type, pid }) {
               <InputLabel className="validation_error">
                 {inputValidation?.conditions}
               </InputLabel>
+              {updateProductList?.conditions?.label === "Others" && (
+                <>
+                  <TextField
+                    id="other_condition"
+                    name="other_condition"
+                    placeholder="other condition"
+                    fullWidth
+                    autoComplete="off"
+                    className="inputfield-box"
+                    value={updateProductList?.other_condition}
+                    InputLabelProps={{
+                      shrink: false,
+                    }}
+                    onChange={(e) => {
+                      setUpdateProductList((prev) => ({
+                        ...prev,
+                        other_condition: e.target.value,
+                      }));
+                    }}
+                    variant="outlined"
+                  />
+                  <InputLabel className="validation_error">
+                    {inputValidation?.other_condition}
+                  </InputLabel>
+                </>
+              )}
             </div>
+
             <div className="updateproduct_inputfields info">
               <InputLabel>
                 Warranty Type<small className="asterisk">*</small>
@@ -739,6 +784,7 @@ function Index({ type, pid }) {
               </InputLabel>
             </div>
           </div>
+
           {updateProductList?.warranty?.label ===
             "Direct Vendor Warranty In Country" && (
             <div className="input_separator country_selection">
@@ -857,50 +903,37 @@ function Index({ type, pid }) {
               <InputLabel className="validation_error">
                 {inputValidation?.packing}
               </InputLabel>
-              {updateProductList?.packing?.label === "Carton Packing" ? (
-                <TextField
-                  id="carton_packing"
-                  name="carton_packing"
-                  placeholder="10"
-                  fullWidth
-                  type="number"
-                  autoComplete="off"
-                  className="inputfield-box"
-                  value={updateProductList?.carton_packing}
-                  InputLabelProps={{
-                    shrink: false,
-                  }}
-                  onChange={(e) => {
-                    setUpdateProductList((prev) => ({
-                      ...prev,
-                      carton_packing: e.target.value,
-                    }));
-                  }}
-                  variant="outlined"
-                />
-              ) : updateProductList?.packing?.label === "Pallet Packing" ? (
-                <TextField
-                  id="pallet_packing"
-                  name="pallet_packing"
-                  placeholder="10"
-                  fullWidth
-                  type="number"
-                  autoComplete="off"
-                  className="inputfield-box"
-                  value={updateProductList?.pallet_packing}
-                  InputLabelProps={{
-                    shrink: false,
-                  }}
-                  onChange={(e) => {
-                    setUpdateProductList((prev) => ({
-                      ...prev,
-                      pallet_packing: e.target.value,
-                    }));
-                  }}
-                  variant="outlined"
-                />
-              ) : (
-                ""
+              {(updateProductList?.packing?.label === "Carton Packing" ||
+                updateProductList?.packing?.label === "Pallet Packing") && (
+                <>
+                  <TextField
+                    id="no_pieces_per"
+                    name="no_pieces_per"
+                    placeholder="10"
+                    fullWidth
+                    type="number"
+                    autoComplete="off"
+                    className="inputfield-box"
+                    value={updateform?.no_pieces_per}
+                    InputLabelProps={{
+                      shrink: false,
+                    }}
+                    onChange={(e) => {
+                      setupdateform((prev) => ({
+                        ...prev,
+                        no_pieces_per: e.target.value,
+                      }));
+                      setInputValidation((prevState) => ({
+                        ...prevState,
+                        no_pieces_per: "",
+                      }));
+                    }}
+                    variant="outlined"
+                  />
+                  <InputLabel className="validation_error">
+                    {inputValidation?.no_pieces_per}
+                  </InputLabel>
+                </>
               )}
             </div>
           </div>

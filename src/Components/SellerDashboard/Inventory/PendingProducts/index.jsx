@@ -81,7 +81,11 @@ function Index({ registerproduct }) {
       label: "Status",
       options: {
         customBodyRender: (value) => {
-          return <div className="productGrid__status">{value}</div>;
+          return (
+            <div className="productGrid__status">
+              {value === "1" ? "Approved" : "Disapproved"}
+            </div>
+          );
         },
       },
     },
