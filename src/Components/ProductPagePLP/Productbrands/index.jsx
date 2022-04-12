@@ -20,11 +20,11 @@ const Productsbrands = ({
   const brand = (value) => {
     value && setisChange(value);
   };
-  useEffect(() => {
-    document.addEventListener("mousedown", () => {
-      setisChange(false);
-    });
-  }, []);
+  // useEffect(() => {
+  //   document.addEventListener("mousedown", () => {
+  //     setisChange(false);
+  //   });
+  // }, []);
 
   function Arrow(props) {
     let className =
@@ -123,25 +123,33 @@ const Productsbrands = ({
       {
         breakpoint: 1920,
         settings: {
-          slidesToShow: 15,
-          slidesToScroll: 2,
+          slidesToShow: 10,
+          slidesToScroll: 1,
           initialSlide: 0,
         },
       },
       {
         breakpoint: 1600,
         settings: {
-          slidesToShow: 10,
-          slidesToScroll: 2,
+          slidesToShow: 8,
+          slidesToScroll: 1,
           initialSlide: 0,
         },
       },
       {
         breakpoint: 769,
         settings: {
-          slidesToShow: 8,
-          slidesToScroll: 2,
-          initialSlide: 3,
+          slidesToShow: 6,
+          slidesToScroll: 1,
+          initialSlide: 0,
+        },
+      },
+      {
+        breakpoint: 540,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          initialSlide: 0,
         },
       },
     ],

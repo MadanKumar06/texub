@@ -38,16 +38,18 @@
       }
       .MuiTableHead-root {
         .MuiTableCell-root {
-          font-size: 22px;
+          font-size: 20px;
           color: #959595;
           text-align: center;
+          padding: 10px 15px;
           font-weight: 600;
         }
       }
   
       .MuiTableBody-root {
         .MuiTableCell-root {
-          font-size: 22px;
+          font-size: 18px;
+          padding: 10px 15px;
           text-align: center;
           color: #333c42;
         }
@@ -67,7 +69,7 @@
         .invoices__action {
           text-decoration: underline;
           color: #002d56;
-          font-size: 22px;
+          font-size: 18px;
           font-weight: 600;
           cursor: pointer;
         }
@@ -134,16 +136,16 @@
   @media (max-width: 1660px) {
     .invoices_main .invoices__table {
       .MuiTableHead-root .MuiTableCell-root {
-        font-size: 20px;
+        font-size: 16px;
       }
   
       .MuiTableBody-root {
         .invoices__action {
-          font-size: 16px;
+          font-size: 14px;
         }
   
         .MuiTableCell-root {
-          font-size: 18px;
+          font-size: 14px;
         }
       }
     }
@@ -167,7 +169,7 @@
   
   @media (max-width: 1024px) {
     .invoices_main .invoices__buttons p {
-      font-size: 16px;
+      font-size: 14px;
     }
   }
   
