@@ -178,3 +178,14 @@
     font-size: 14px;
   }
 }
+
+
+@media (max-width: 900px) {
+  .myorders .myorders__table {
+    .MuiTableCell-root {
+      div{
+        font-size: 14px;
+      }
+    }
+  }
+}
