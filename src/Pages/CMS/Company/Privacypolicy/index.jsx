@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./styles.scss";
 import axios from 'axios'
-import Constant from '../../../../Constant'
 import { getAdminToken } from "../../../../utilities";
-
+import { useStateValue } from "../../../../store/state";
 import legal from "../../../../Assets/Career/privacy-policy.png";
 
 const Index = () => {
@@ -14,11 +13,16 @@ const Index = () => {
       setAdminToken(res);
     });
   }, []);
+  const [{}, dispatch] = useStateValue()
 
   const [pp, setpp] = useState()
 
   useEffect(async() => {
     try {
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: true,
+      });
       const privacy = await axios({
         method: 'get',
         url: 'https://texub.uat.a2zportals.co.in/india/rest/V1/cmsPage/27',
@@ -26,10 +30,17 @@ const Index = () => {
           Authorization: `Bearer ${adminToken}`
         }
       })
-      console.log(privacy.data)
       setpp(privacy?.data)
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
     } catch(e) {
       console.log(e)
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
     }
   }, [adminToken])
 

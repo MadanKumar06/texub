@@ -97,11 +97,12 @@
     width: 100%;
   }
   .country_selection {
-    justify-content: flex-end;
-    padding-left: 2em;
-    padding-top: 2em;
+    // justify-content: flex-end;
+    display: block !important;
+    // padding-left: 2em;
+    // padding-top: 2em;
     .updateproduct_inputfields {
-      width: 50%;
+      // width: 50%;
     }
   }
   .updateproduct__gst .updateproduct_info_form,

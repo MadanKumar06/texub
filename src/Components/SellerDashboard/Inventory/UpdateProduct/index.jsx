@@ -252,6 +252,10 @@ function Index({ type, pid }) {
     const data = async () => {
       const user = JSON.parse(localStorage.getItem("userdata"));
       try {
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: true,
+        });
         const formdata = await axios({
           method: "post",
           url: `${Constant.baseUrl()}/getEditFormData`,
@@ -269,8 +273,16 @@ function Index({ type, pid }) {
           count: ind,
         }));
         setcount(temp);
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
       } catch (e) {
         console.log(e);
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
       }
     };
     data();
@@ -782,10 +794,8 @@ function Index({ type, pid }) {
               <InputLabel className="validation_error">
                 {inputValidation?.warranty}
               </InputLabel>
-            </div>
-          </div>
 
-          {updateProductList?.warranty?.label ===
+              {updateProductList?.warranty?.label ===
             "Direct Vendor Warranty In Country" && (
             <div className="input_separator country_selection">
               <div className="updateproduct_inputfields ">
@@ -830,6 +840,9 @@ function Index({ type, pid }) {
               </div>
             </div>
           )}
+            </div>
+          </div>
+
           <div className="input_separator">
             <div className="updateproduct_inputfields info">
               <InputLabel>

@@ -234,9 +234,13 @@ const styles = (theme) => ({
     "& span": {
       color: "red",
     },
+    "& label":{
+      width:"auto !important",
+    }
   },
   sub_media_upload_label: {
     marginLeft: "1em",
+    width:"100%",
     cursor: "pointer",
     "& input": {
       display: "none",
@@ -256,6 +260,8 @@ const styles = (theme) => ({
     flexDirection: "row",
     justifyContent: "center",
     padding: "13px",
+    textAlign:"center",
+    height: "48px",
     marginTop: "12px",
     "& p": {
       margin: "0",
