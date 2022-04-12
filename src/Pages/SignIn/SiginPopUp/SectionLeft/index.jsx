@@ -257,6 +257,12 @@ const TransitionsModal = ({ classes, openPopUp }) => {
             type: "SET_SIGNIN_OPEN_CLOSE",
             value: false,
           });
+          swal.fire({
+            text: "You have Successfully loggedIn !",
+            icon: "success",
+            showConfirmButton: false,
+            timer: 3000,
+          });
         } else if (
           iskycFormFilled?.group_id === 5 ||
           iskycFormFilled?.group_id === 6
