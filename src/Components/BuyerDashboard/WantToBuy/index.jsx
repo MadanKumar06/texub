@@ -5,14 +5,14 @@ import { ArrowBackIosNew } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import Pagination from "../../Pagination";
 import "./styles.scss";
+import axios from "axios";
+import Constant from "../../../Constant";
 // import Vieworders from '../../Common/Vieworders'
+import WantToBuy from "./wantToBuyForm";
 
 function Index() {
   const [tableData, setTableData] = useState([]);
-
-  const PaginateDataSplit = (event) => {
-    setTableData(event);
-  };
+  const [apiTableData, setApiTableData] = useState([]);
 
   const [isVieworders, setisVieworders] = useState(false);
   const orders = () => {
@@ -32,84 +32,63 @@ function Index() {
     viewColumns: false,
     search: false,
   };
-
-  const table = [
-    {
-      orderid: "000069",
-      date: "11/09/22",
-      sellercode: "220012",
-      hub: "Mumbai",
-      ordertotal: "78999",
-      status: "Pending",
-      action: "View Order",
-    },
-    {
-      orderid: "000088",
-      date: "26/05/22",
-      sellercode: "344598",
-      hub: "Chennai",
-      ordertotal: "67999",
-      status: "Confirm",
-      action: "View Order",
-    },
-    {
-      orderid: "000088",
-      date: "26/05/22",
-      sellercode: "344598",
-      hub: "Chennai",
-      ordertotal: "67999",
-      status: "Delivered",
-      action: "View Order",
-    },
-    {
-      orderid: "000088",
-      date: "26/05/22",
-      sellercode: "344598",
-      hub: "Chennai",
-      ordertotal: "67999",
-      status: "Dispatched",
-      action: "View Order",
-    },
-  ];
-
+  useEffect(() => {
+    const fetchTableData = async () => {
+      let customerId = JSON.parse(localStorage.getItem("userdata"));
+      try {
+        const tabledata = await axios({
+          method: "post",
+          url: `${Constant.baseUrl()}/wtbBuyerList`,
+          data: {
+            buyer_id: customerId?.id,
+          },
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
+        setApiTableData(tabledata?.data);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    fetchTableData();
+  }, []);
+  const PaginateDataSplit = (event) => {
+    if (apiTableData?.length === 0) return setApiTableData([]);
+    setTableData(event);
+  };
   const columns = [
     {
-      name: "orderid",
-      label: "Order ID",
+      name: "buyer_code",
+      label: "WTB REFERENCE NO.",
       options: {
         customBodyRender: (value) => {
           return <div className="want_tobuy__orderid">{value}</div>;
         },
       },
     },
-    { name: "date", label: "Date" },
+    { name: "PART NUMBER", label: "PART NUMBER" },
     {
-      name: "sellercode",
-      label: "Seller Code",
+      name: "main_category_id",
+      label: "CATEGORY",
       options: {
         customBodyRender: (value) => {
           return <div className="want_tobuy__sellercode">{value}</div>;
         },
       },
     },
-    { name: "hub", label: "HUB" },
     {
-      name: "ordertotal",
-      label: "Order Total",
+      name: "quantity",
+      label: "QUANTITY",
       options: {
         customBodyRender: (value) => {
-          return (
-            <div className="want_tobuy__ordertotal">
-              <span className="currency">INR </span>
-              <span className="price">{value}</span>
-            </div>
-          );
+          return <div className="want_tobuy__sellercode">{value}</div>;
         },
       },
     },
     {
-      name: "status",
-      label: "Status",
+      name: "wtb_status",
+      label: "STATUS",
       options: {
         customBodyRender: (value) => {
           return (
@@ -128,8 +107,28 @@ function Index() {
       },
     },
     {
-      name: "action",
-      label: "Action",
+      name: "status",
+      label: "ACTIVE SELERS",
+      options: {
+        customBodyRender: (value) => {
+          return (
+            <div
+              className={`
+                    ${value === "Pending" && "want_tobuy__pending"}
+                    ${value === "Confirm" && "want_tobuy__confirm"}
+                    ${value === "Delivered" && "want_tobuy__delivered"}
+                    ${value === "Dispatched" && "want_tobuy__dispatched"}
+                    `}
+            >
+              {value}
+            </div>
+          );
+        },
+      },
+    },
+    {
+      name: "QUOTE RECEIVED",
+      label: "QUOTE RECEIVED",
       options: {
         customBodyRender: (value) => {
           return (
@@ -150,6 +149,12 @@ function Index() {
             <ArrowBackIosNew />
             <span>Back</span>
           </Link>
+          <Button
+            className="button-text btn-secondary"
+            onClick={() => orders()}
+          >
+            Want To Buy
+          </Button>
         </div>
       </div>
       {isOrders && (
@@ -160,14 +165,18 @@ function Index() {
             options={options}
             className="want_tobuy__table"
           />
-          <Pagination
-            PaginateData={PaginateDataSplit}
-            DataList={table}
-            PagePerRow={10}
-          />
+          {apiTableData?.length > 0 ? (
+            <Pagination
+              PaginateData={PaginateDataSplit}
+              DataList={apiTableData?.length ? apiTableData : []}
+              PagePerRow={10}
+            />
+          ) : (
+            ""
+          )}
         </>
       )}
-      {/* {isVieworders && <Vieworders />} */}
+      {isVieworders && <WantToBuy />}
     </div>
   );
 }
