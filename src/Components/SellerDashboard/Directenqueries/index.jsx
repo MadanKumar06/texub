@@ -6,14 +6,20 @@ import { ArrowBackIosNew } from "@mui/icons-material";
 import Enquirydetails from "../../SellerDashboard/Directenqueries/Enquirydetails";
 import axios from 'axios'
 import Constant from '../../../Constant'
+import { useStateValue } from "../../../store/state";
 
 const Index = () => {
   const [isUopup, setisUopup] = useState(false);
   const [direct, setdirect] = useState([])
+  const [{}, dispatch] = useStateValue()
 
   useEffect(async() => {
     let user = JSON.parse(localStorage.getItem('userdata'))
     try {
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: true,
+      });
       const ddlist = await axios({
         method: 'post',
         url: `${Constant.baseUrl()}/wtbSellerList`,
@@ -24,10 +30,17 @@ const Index = () => {
           seller_id: user?.id
         }
       })
-      console.log(ddlist?.data)
       setdirect(ddlist?.data)
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
     } catch(e) {
       console.log(e)
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
     }
   }, [])
 

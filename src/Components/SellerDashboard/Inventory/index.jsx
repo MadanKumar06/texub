@@ -13,11 +13,13 @@ import ProductGrid from "./ProductGrid";
 
 import axios from "axios";
 import Constant from "../../../Constant";
+import { useStateValue } from '../../../store/state'
 
 function Index({ registerproduct }) {
   const [tableData, setTableData] = useState([]);
   const [apiTableData, setApiTableData] = useState([]);
   const [searchList, setSearchList] = useState(false);
+  const [{}, dispatch] = useStateValue()
 
   const options = {
     filter: false,
@@ -152,6 +154,10 @@ function Index({ registerproduct }) {
     const fetchTableData = async (token) => {
       let customerId = JSON.parse(localStorage.getItem("userdata"));
       try {
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: true,
+        });
         const tabledata = await axios({
           method: "post",
           url: `${Constant.baseUrl()}/getEditProductList`,
@@ -163,8 +169,16 @@ function Index({ registerproduct }) {
           },
         });
         setApiTableData(tabledata?.data);
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
       } catch (e) {
         console.log(e);
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
       }
     };
     fetchTableData();
