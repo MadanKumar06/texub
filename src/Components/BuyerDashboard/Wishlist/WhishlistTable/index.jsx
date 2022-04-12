@@ -94,7 +94,6 @@ const WhislistTable = ({ tableData, tableDataHeader, folderdata }) => {
   };
 
   const increment = (value, index) => {
-    debugger;
     setwdata(
       wdata.map((itm, wd) => {
         if (index === wd) {
@@ -110,7 +109,6 @@ const WhislistTable = ({ tableData, tableDataHeader, folderdata }) => {
   };
 
   const decrement = (value, index) => {
-    debugger;
     setwdata(
       wdata.map((itm, wd) => {
         if (index === wd) {
