@@ -13,7 +13,10 @@ const styles = (theme) => ({
   },
   area_container: {
     display: "flex",
-    padding: "25px 6% 30px",
+    padding: "25px 6% 10px",
+    flexDirection: "row-reverse",
+    justifyContent: "space-between",
+    alignItems: "center",
     "@media (max-width:767px)": {
       flexDirection: "column",
     },
@@ -24,13 +27,28 @@ const styles = (theme) => ({
     fontWeight: "600",
     display: "flex",
     alignItems: "center",
-    paddingRight: "4%",
+    position:"relative",
+    
     "@media (max-width:1660px)": {
       fontSize: "24px",
     },
+    "& img" :{
+      width:"115px",
+      height:"115px",
+    },
+    "& span" :{
+      position: "absolute",
+      left: "0",
+      right: "0",
+      bottom: "0",
+      fontSize: "14px",
+      display: "flex",
+      color:"#20639B",
+      fontWeight:"600",
+      justifyContent: "center",
+    }
   },
   left_area: {
-    width: "30%",
     "& h6": {
       color: "#333C42",
       fontSize: "32px",
@@ -75,7 +93,7 @@ const styles = (theme) => ({
   right_area: {
     width: "70%",
     display: "flex",
-    justifyContent: " flex-end",
+    justifyContent: "start",
     "@media (max-width:767px)": {
       width: "100%",
       display: "flex",
@@ -88,6 +106,8 @@ const styles = (theme) => ({
     boxShadow: "0px 0px 5px 2px rgba(32,99,155,0.49)",
     WebkitBoxShadow: "0px 0px 5px 2px rgba(32,99,155,0.49)",
     MozBoxShadow: "0px 0px 5px 2px rgba(32,99,155,0.49)",
+    width:"115px",
+    height:"115px",
   },
   radio_group: {
     flexWrap: "nowrap !important",
