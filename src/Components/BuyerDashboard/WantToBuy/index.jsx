@@ -1,389 +1,175 @@
-import React, { useState } from "react";
-import "./styles.scss";
-
-import { TextField, InputLabel, Autocomplete, Button } from "@mui/material";
-import { LocalizationProvider, DesktopDatePicker } from "@mui/lab";
-import AdapterDateFns from "@mui/lab/AdapterDateFns";
+import React, { useState, useEffect } from "react";
+import MUITable from "../../../Components/Common/MUITable";
+import { Button } from "@mui/material";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import { Link } from "react-router-dom";
+import Pagination from "../../Pagination";
+import "./styles.scss";
+// import Vieworders from '../../Common/Vieworders'
 
-const WantToBuy = () => {
-  const [wantTobuyData, setWantToBuyData] = useState({
-    part_number: "",
-    model_name_number: "",
-    product_description: "",
-    quantity: "",
-    notes: "",
-    hub: "",
-    main_category: "",
-  });
-  const [dateChange, setDateChange] = useState(new Date());
-  const handleChange = (newValue) => {
-    setDateChange(newValue);
+function Index() {
+  const [tableData, setTableData] = useState([]);
+
+  const PaginateDataSplit = (event) => {
+    setTableData(event);
   };
 
-  // input state and onchange events
-  const handleFormvalue = (event) => {
-    setWantToBuyData((prevState) => ({
-      ...prevState,
-      [event.target.name]: event.target.value,
-    }));
-    setInputValidation("");
-    handleSwitchCase([event.target.name], event.target.value);
+  const [isVieworders, setisVieworders] = useState(false);
+  const orders = () => {
+    setisVieworders(true);
+    setisOrders(false);
   };
-  // input validation on onchange
-  const [inputValidation, setInputValidation] = useState({
-    part_number: "",
-    model_name_number: "",
-    quantity: "",
-    main_category: "",
-    closing_date: "",
-  });
+  const [isOrders, setisOrders] = useState(true);
 
-  const options = ["Option 1", "Option 2"];
-  const [value, setValue] = useState();
-  const [inputValue, setInputValue] = useState("");
-  const handleSwitchCase = (fieldName, value) => {
-    switch (fieldName[0]) {
-      // case "part_number":
-      //   if (!value) {
-      //     setInputValidation((prevState) => ({
-      //       ...prevState,
-      //       part_number: "Please enter the part number.",
-      //     }));
-      //   }
-      //   break;
-      // case "model_name_number":
-      //   if (!value) {
-      //     setInputValidation((prevState) => ({
-      //       ...prevState,
-      //       model_name_number: "Please enter the model name/ number number.",
-      //     }));
-      //   }
-      //   break;
+  const options = {
+    filter: false,
+    filterType: "dropdown",
+    responsive: "vertical",
+    selectableRows: "none",
+    download: false,
+    print: false,
+    sort: false,
+    viewColumns: false,
+    search: false,
+  };
 
-      case "closing_date":
-        // if (!value) {
-        //   setInputValidation((prevState) => ({
-        //     ...prevState,
-        //     closing_date: "Please select closing date.",
-        //   }));
-        // } else
-        if (value.toString() === "Invalid Date") {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            closing_date: "Please select valid date.",
-          }));
-        }
-        break;
-      // case "quantity":
-      //   if (!value) {
-      //     setInputValidation((prevState) => ({
-      //       ...prevState,
-      //       quantity: "Please select the quantity.",
-      //     }));
-      //   }
-      //   break;
-      // case "main_category":
-      //   if (!value) {
-      //     setInputValidation((prevState) => ({
-      //       ...prevState,
-      //       main_category: "Please select the main category.",
-      //     }));
-      //   }
-      //   break;
-      default:
-        break;
-    }
-  };
-  const handleClickValidation = (event) => {
-    var errorHandle = false;
-    if (!wantTobuyData?.part_number) {
-      document.getElementById("part_number")?.focus();
-      setInputValidation((prevState) => ({
-        ...prevState,
-        part_number: "Please enter the part number.",
-      }));
-      errorHandle = true;
-    }
-    if (!wantTobuyData?.model_name_number) {
-      document.getElementById("model_name_number")?.focus();
-      setInputValidation((prevState) => ({
-        ...prevState,
-        model_name_number: "Please enter the model number",
-      }));
-      errorHandle = true;
-    }
-    if (!wantTobuyData?.quantity) {
-      document.getElementById("quantity")?.focus();
-      setInputValidation((prevState) => ({
-        ...prevState,
-        quantity: "Please select quantity.",
-      }));
-      errorHandle = true;
-    }
-    if (!wantTobuyData?.main_category) {
-      document.getElementById("main_category")?.focus();
-      setInputValidation((prevState) => ({
-        ...prevState,
-        main_category: "Please select category.",
-      }));
-      errorHandle = true;
-    }
-    if (!wantTobuyData?.closing_date) {
-      document.getElementById("closing_date")?.focus();
-      setInputValidation((prevState) => ({
-        ...prevState,
-        closing_date: "Please select date.",
-      }));
-      errorHandle = true;
-    }
-  };
+  const table = [
+    {
+      orderid: "000069",
+      date: "11/09/22",
+      sellercode: "220012",
+      hub: "Mumbai",
+      ordertotal: "78999",
+      status: "Pending",
+      action: "View Order",
+    },
+    {
+      orderid: "000088",
+      date: "26/05/22",
+      sellercode: "344598",
+      hub: "Chennai",
+      ordertotal: "67999",
+      status: "Confirm",
+      action: "View Order",
+    },
+    {
+      orderid: "000088",
+      date: "26/05/22",
+      sellercode: "344598",
+      hub: "Chennai",
+      ordertotal: "67999",
+      status: "Delivered",
+      action: "View Order",
+    },
+    {
+      orderid: "000088",
+      date: "26/05/22",
+      sellercode: "344598",
+      hub: "Chennai",
+      ordertotal: "67999",
+      status: "Dispatched",
+      action: "View Order",
+    },
+  ];
+
+  const columns = [
+    {
+      name: "orderid",
+      label: "Order ID",
+      options: {
+        customBodyRender: (value) => {
+          return <div className="want_tobuy__orderid">{value}</div>;
+        },
+      },
+    },
+    { name: "date", label: "Date" },
+    {
+      name: "sellercode",
+      label: "Seller Code",
+      options: {
+        customBodyRender: (value) => {
+          return <div className="want_tobuy__sellercode">{value}</div>;
+        },
+      },
+    },
+    { name: "hub", label: "HUB" },
+    {
+      name: "ordertotal",
+      label: "Order Total",
+      options: {
+        customBodyRender: (value) => {
+          return (
+            <div className="want_tobuy__ordertotal">
+              <span className="currency">INR </span>
+              <span className="price">{value}</span>
+            </div>
+          );
+        },
+      },
+    },
+    {
+      name: "status",
+      label: "Status",
+      options: {
+        customBodyRender: (value) => {
+          return (
+            <div
+              className={`
+                    ${value === "Pending" && "want_tobuy__pending"}
+                    ${value === "Confirm" && "want_tobuy__confirm"}
+                    ${value === "Delivered" && "want_tobuy__delivered"}
+                    ${value === "Dispatched" && "want_tobuy__dispatched"}
+                    `}
+            >
+              {value}
+            </div>
+          );
+        },
+      },
+    },
+    {
+      name: "action",
+      label: "Action",
+      options: {
+        customBodyRender: (value) => {
+          return (
+            <div className="want_tobuy__action" onClick={orders}>
+              {value}
+            </div>
+          );
+        },
+      },
+    },
+  ];
+
   return (
-    <div className="want_to_buy__container">
-      <div className="want_to_buy__sub_container">
-        <div className="block_1 input_block">
-          <div className="block_1_input">
-            <TextField
-              id="part_number"
-              label="Part number"
-              fullWidth
-              name="part_number"
-              placeholder="R7-5700U"
-              InputLabelProps={{
-                shrink: true,
-                required: true,
-                classes: {
-                  asterisk: "asterisk",
-                },
-              }}
-              className="inputfield-box"
-              onChange={handleFormvalue}
-              value={wantTobuyData?.part_number}
-              variant="outlined"
-            />
-            <InputLabel className="validation_error">
-              {inputValidation?.part_number}
-            </InputLabel>
-          </div>
-          <div className="block_1_input">
-            <TextField
-              id="model_name_number"
-              label="Model Name/Number"
-              fullWidth
-              name="model_name_number"
-              placeholder="Lenovo Dpin Yoga 6 Dpin"
-              InputLabelProps={{
-                shrink: true,
-                required: true,
-                classes: {
-                  asterisk: "asterisk",
-                },
-              }}
-              className="inputfield-box"
-              value={wantTobuyData?.model_name_number}
-              onChange={handleFormvalue}
-              variant="outlined"
-            />
-            <InputLabel className="validation_error">
-              {inputValidation?.model_name_number}
-            </InputLabel>
-          </div>
-        </div>
-        <div className="block_2 input_block">
-          <TextField
-            id="product_description"
-            label="Product Description"
-            fullWidth
-            multiline
-            name="product_description"
-            rows={5}
-            placeholder="Product Description"
-            className="inputfield-box"
-            InputLabelProps={{
-              shrink: true,
-              // required: true,
-              classes: {
-                // asterisk: "asterisk",
-              },
-            }}
-            value={wantTobuyData?.product_description}
-            onChange={handleFormvalue}
-            variant="outlined"
-          />
-        </div>
-        <div className="block_3 input_block">
-          <div className="input_field">
-            <div className="block_1_input">
-              <Autocomplete
-                value={value}
-                onChange={(event, newValue) => {
-                  setWantToBuyData((prevState) => ({
-                    ...prevState,
-                    main_category: newValue,
-                  }));
-                }}
-                inputValue={inputValue}
-                id="controllable-states-demo"
-                options={options}
-                fullWidth
-                className="inputfield-box auto_complete_input"
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    label="Main Category"
-                    placeholder="Main Category"
-                    InputLabelProps={{
-                      shrink: true,
-                      required: true,
-                      classes: {
-                        asterisk: "asterisk",
-                      },
-                    }}
-                  />
-                )}
-              />
-              <InputLabel className="validation_error">
-                {inputValidation?.main_category}
-              </InputLabel>
-            </div>
-            <div className="block_1_input">
-              <Autocomplete
-                value={value}
-                onChange={(event, newValue) => {
-                  setWantToBuyData((prevState) => ({
-                    ...prevState,
-                    quantity: newValue,
-                  }));
-                }}
-                inputValue={inputValue}
-                id="controllable-states-demo"
-                options={options}
-                fullWidth
-                className="inputfield-box auto_complete_input"
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    label="Quantity"
-                    placeholder="Select Quantity"
-                    InputLabelProps={{
-                      shrink: true,
-                      required: true,
-                      classes: {
-                        asterisk: "asterisk",
-                      },
-                    }}
-                  />
-                )}
-              />
-
-              <InputLabel className="validation_error">
-                {inputValidation?.quantity}
-              </InputLabel>
-            </div>
-          </div>
-
-          <div className="input_field">
-            <div className="block_1_input">
-              <Autocomplete
-                value={value}
-                onChange={(event, newValue) => {
-                  setWantToBuyData((prevState) => ({
-                    ...prevState,
-                    hub: newValue,
-                  }));
-                }}
-                inputValue={inputValue}
-                id="controllable-states-demo"
-                options={options}
-                fullWidth
-                className="inputfield-box auto_complete_input"
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    label="Hub"
-                    placeholder="Select Hub"
-                    InputLabelProps={{
-                      shrink: true,
-                      // required: true,
-                      classes: {
-                        // asterisk: "asterisk",
-                      },
-                    }}
-                  />
-                )}
-              />
-            </div>
-            <div className="block_1_input">
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <DesktopDatePicker
-                  label="Closing Date"
-                  inputFormat="MM/dd/yyyy"
-                  minDate={new Date()}
-                  value={dateChange}
-                  onChange={handleChange}
-                  renderInput={(params) => (
-                    <TextField
-                      {...params}
-                      fullWidth
-                      className="inputfield-box"
-                      placeholder="Select Closing Date"
-                      InputLabelProps={{
-                        shrink: true,
-                        required: true,
-                        classes: {
-                          asterisk: "asterisk",
-                        },
-                      }}
-                    />
-                  )}
-                />
-              </LocalizationProvider>
-              <InputLabel className="validation_error">
-                {inputValidation?.closing_date}
-              </InputLabel>
-            </div>
-          </div>
-        </div>
-        <div className="block_4 input_block">
-          <TextField
-            id="notes"
-            label="Notes"
-            fullWidth
-            placeholder="Notes"
-            multiline
-            rows={5}
-            className="inputfield-box"
-            value={wantTobuyData?.notes}
-            InputLabelProps={{
-              shrink: true,
-              // required: true,
-              classes: {
-                // asterisk: "asterisk",
-              },
-            }}
-            onChange={handleFormvalue}
-            name="notes"
-            variant="outlined"
-          />
-        </div>
-      </div>
-      <div className="want_to_buy__footer">
-        <div className="want_to_buy__container">
+    <div className="want_tobuy">
+      <div className="want_tobuy__footer">
+        <div className="want_tobuy__container">
           <Link to="/buyerdashboard/dashboard">
             <ArrowBackIosNew />
             <span>Back</span>
           </Link>
-          <Button
-            className="want_to_buy_btn"
-            onClick={() => handleClickValidation()}
-          >
-            Submit
-          </Button>
         </div>
       </div>
+      {isOrders && (
+        <>
+          <MUITable
+            columns={columns}
+            table={tableData}
+            options={options}
+            className="want_tobuy__table"
+          />
+          <Pagination
+            PaginateData={PaginateDataSplit}
+            DataList={table}
+            PagePerRow={10}
+          />
+        </>
+      )}
+      {/* {isVieworders && <Vieworders />} */}
     </div>
   );
-};
+}
 
-export default WantToBuy;
+export default Index;

@@ -1,0 +1,134 @@
+.want_to_buy__container {
+    .want_to_buy__sub_container {
+      padding: 6% 5% 1%;
+      gap: 3em;
+      display: flex;
+      flex-direction: column;
+  
+      .block_1 {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        gap: 2em;
+      }
+      .auto_complete_input {
+        display: flex;
+        flex-direction: column;
+        .MuiFormControl-root {
+          .MuiOutlinedInput-input {
+            padding: 12px !important;
+          }
+        }
+        .MuiOutlinedInput-root {
+          padding: 0px !important;
+        }
+      }
+      .input_block {
+        .block_1_input {
+          width: 50%;
+        }
+        .asterisk {
+          color: #ff0000;
+        }
+        .MuiFormControl-root {
+          margin-top: 2em;
+        }
+      }
+      .block_3 {
+        gap: 3em;
+        display: flex;
+        flex-direction: column;
+        .input_field {
+          width: calc(100% - 5px);
+          display: flex;
+          flex-direction: row;
+          gap: 2em;
+        }
+      }
+    }
+    .want_to_buy__footer {
+      cursor: pointer;
+      align-items: center;
+      bottom: 51px;
+      width: 100%;
+      padding: 0 2em;
+      .want_to_buy__container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin-top: 2em;
+        a {
+          text-decoration: none;
+          display: flex;
+          align-items: center;
+          .MuiSvgIcon-root {
+            color: #002d56;
+          }
+          span {
+            font-size: 20px;
+            color: #002d56;
+            font-weight: 600;
+            margin-left: 0.6em;
+          }
+        }
+        .want_to_buy_btn {
+          width: 30% !important;
+          text-decoration: none !important;
+          font-size: 18px !important;
+          letter-spacing: 0.54px !important;
+          min-width: 245px !important;
+          border-radius: 45px !important;
+          border: none !important;
+          background: linear-gradient(180deg, #20639b 0%, #002d56 100%);
+          color: #ffffff !important;
+          cursor: pointer;
+          box-shadow: 0px 3px 6px #00000029;
+          font-weight: 600 !important;
+          padding: 10px !important;
+          text-transform: capitalize !important;
+        }
+      }
+    }
+  }
+  
+  @media (max-width: 1660px) {
+    .want_to_buy__container
+      .want_to_buy__footer
+      .want_to_buy__container
+      a
+      .MuiSvgIcon-root {
+      width: 0.6em;
+      height: 0.6em;
+    }
+    .want_to_buy__container .want_to_buy__footer .want_to_buy__container a span {
+      font-size: 18px;
+    }
+    .want_to_buy__container
+      .want_to_buy__footer
+      .want_to_buy__container
+      .want_to_buy_btn {
+      width: 23% !important;
+      font-size: 16px !important;
+      padding: 8px !important;
+    }
+  }
+  @media (max-width: 580px) {
+    .want_to_buy__container .want_to_buy__sub_container .block_3 .input_field,
+    .want_to_buy__container .want_to_buy__sub_container .block_1 {
+      flex-direction: column;
+    }
+    .want_to_buy__container
+      .want_to_buy__sub_container
+      .input_block
+      .block_1_input {
+      width: 100%;
+    }
+    .want_to_buy__container .want_to_buy__sub_container {
+      gap: 2em;
+      .block_3 {
+        gap: 2em;
+      }
+    }
+  }
+  
+  

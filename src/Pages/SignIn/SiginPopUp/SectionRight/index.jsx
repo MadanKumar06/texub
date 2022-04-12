@@ -201,19 +201,63 @@ const TransitionsModal = ({ classes }) => {
           type: "SET_IS_LOADING",
           value: false,
         });
+        if (res?.data?.[0]?.status === "true") {
+          dispatch({
+            type: "SET_SIGNIN_OPEN_CLOSE",
+            value: false,
+          });
+          localStorage.setItem("register_success", JSON.stringify(res?.data));
+          localStorage.setItem("token", res?.data?.[0]?.token);
+          getUserData(res.data?.[0]?.token);
+        } else {
+          swal.fire({
+            text: `${res.data?.[0]?.message}`,
+            icon: "error",
+            showConfirmButton: false,
+            timer: 3000,
+          });
+        }
+      })
+      .catch((error) => {
         dispatch({
-          type: "SET_SIGNIN_OPEN_CLOSE",
+          type: "SET_IS_LOADING",
           value: false,
         });
         swal.fire({
-          text: "You have Successfully Registered !",
+          text: `${error?.response?.data?.message || error.message}`,
+          icon: "error",
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      });
+  };
+  const getUserData = (token) => {
+    axios
+      .get(Constant.customerMeDetailUrl(), {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+        localStorage.setItem("userdata", JSON.stringify(res?.data));
+        localStorage.setItem(
+          "isLoggedIn_auth",
+          res?.data?.group_id === 1 ? false : true
+        );
+        swal.fire({
+          text: "You have Successfully loggedIn !",
           icon: "success",
           showConfirmButton: false,
           timer: 3000,
         });
         setTimeout(() => {
           history("/");
-        }, 1000 / 2);
+        }, 1000);
       })
       .catch((err) => {
         dispatch({
