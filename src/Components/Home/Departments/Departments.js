@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import "./Departments.scss";
 import Departments1 from "../../Data";
-import Apple from "../../../Assets/Homepage Assets/Placement Area [ASSEThero][SIZEDefault][STATEDEFAULT].png";
-import Best from "../../../Assets/Homepage Assets/Group 705.png";
 import { IconButton, InputBase, Paper } from "@mui/material";
 import { Menu, Search } from "@mui/icons-material";
 
@@ -35,6 +33,17 @@ export const Departments = ({ data }) => {
                   className="Body_Down_Pannel_btn_items"
                 >
                   {item.display}
+                  <span
+                    className={`${
+                      item?.tag === "Sale"
+                        ? "sale"
+                        : item?.tag === "New"
+                        ? "new"
+                        : ""
+                    }`}
+                  >
+                    {item?.tag}
+                  </span>
                 </li>
               ))}
             </ul>

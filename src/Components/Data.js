@@ -2,7 +2,8 @@
     {
         id:1,
         path:"/Value of the day",
-        display:"Value of the day"
+        display:"Value of the day",
+        tag:"New"
     },
     {
         id:2,
@@ -32,7 +33,8 @@
     {
         id:7,
         path:"/watches & eyewear",
-        display:"Watches & Eyewear"
+        display:"Watches & Eyewear",
+        tag:"Sale"
     },
     {
         id:8,
