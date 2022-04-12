@@ -172,4 +172,15 @@
       font-size: 14px;
     }
   }
-  
+
+  @media (max-width: 900px) {
+    .invoices_main .invoices__table {
+      .MuiTableCell-root {
+        div{
+          font-size: 14px;
+        }
+
+    }
+
+  }
+}

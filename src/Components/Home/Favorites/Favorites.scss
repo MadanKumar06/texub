@@ -15,8 +15,16 @@
       position: absolute;
       color: #ffffff;
       font-size: 24px;
-      top: 6em;
       margin: 0;
+      margin: 0;
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      left: 0;
+      right: 0;
+      bottom: 2em;
+      top: auto !important;
     }
     .Favorites_Images2 {
       position: relative;
@@ -81,14 +89,14 @@
 
 @media (max-width: 768px) {
   .Favorites .Favorites_Sections .Favorites_Deals {
-    font-size: 22px;
+    font-size: 20px;
     top: 4.5em;
   }
 }
 
 @media (max-width: 580px) {
   .Favorites .Favorites_Sections .Favorites_Deals {
-    font-size: 22px;
+    font-size: 18px;
     top: 3.5em;
   }
 }
@@ -108,7 +116,7 @@
     width: initial;
   }
   .Favorites .Favorites_Sections .Favorites_Deals {
-    font-size: 24px;
+    font-size: 16px;
     top: 6em;
   }
 }
