@@ -1,12 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./styles.scss";
 import MUITable from "../../Common/MUITable";
 import { Link } from "react-router-dom";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import Enquirydetails from "../../SellerDashboard/Directenqueries/Enquirydetails";
+import axios from 'axios'
+import Constant from '../../../Constant'
 
 const Index = () => {
   const [isUopup, setisUopup] = useState(false);
+  const [direct, setdirect] = useState([])
+
+  useEffect(async() => {
+    let user = JSON.parse(localStorage.getItem('userdata'))
+    try {
+      const ddlist = await axios({
+        method: 'post',
+        url: `${Constant.baseUrl()}/wtbSellerList`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        },
+        data: {
+          seller_id: user?.id
+        }
+      })
+      console.log(ddlist?.data)
+      setdirect(ddlist?.data)
+    } catch(e) {
+      console.log(e)
+    }
+  }, [])
+
   const Popup = () => {
     setisUopup(true);
   };
@@ -87,7 +111,7 @@ const Index = () => {
 
   const columns = [
     {
-      name: "enqno",
+      name: "enquiry_id",
       label: "Enq. No.",
       options: {
         customBodyRender: (value) => {
@@ -96,7 +120,7 @@ const Index = () => {
       },
     },
     {
-      name: "buyercode",
+      name: "buyer_code",
       label: "Buyer Code",
       options: {
         customBodyRender: (value) => {
@@ -110,20 +134,20 @@ const Index = () => {
     },
     { name: "partno", label: "Part No." },
     {
-      name: "modelname",
+      name: "model_number",
       label: "Model Name/No.",
       options: {
         customBodyRender: (value) => {
           return (
             <div className="directenquiries_products">
-              <div className="directenquiries_product_name">{value?.name}</div>
+              <div className="directenquiries_product_name">{value}</div>
             </div>
           );
         },
       },
     },
     {
-      name: "qty",
+      name: "quantity",
       label: "Qty.",
       options: {
         customBodyRender: (value) => {
@@ -140,7 +164,7 @@ const Index = () => {
       label: "Hub",
     },
     {
-      name: "status",
+      name: "wtb_status",
       label: "Status",
       options: {
         customBodyRender: (value) => {
@@ -207,7 +231,7 @@ const Index = () => {
 
       <MUITable
         columns={columns}
-        table={table}
+        table={direct}
         options={options}
         className="directenquiries__table"
       />

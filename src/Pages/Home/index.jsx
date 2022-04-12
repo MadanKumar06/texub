@@ -18,6 +18,10 @@ export const Home = () => {
 
   useEffect(async() =>{
     try {
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: true,
+      });
       const home = await axios({
         method: 'get',
         url: `${Constant.baseUrl()}/getHomePage`
@@ -26,8 +30,16 @@ export const Home = () => {
         ...prevState,
         homecontent: Object.assign({}, ...home.data)
       }))
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
     } catch (e) {
       console.log(e)
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
     }
   }, [])
 
