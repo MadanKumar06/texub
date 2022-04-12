@@ -4,7 +4,7 @@ import { Clear } from "@mui/icons-material";
 
 import { SellerList, BuyerList } from "./image";
 import logout from "../../Assets/sellerdashboard/InactiveDashboardPng/logout.png";
-
+import swal from "sweetalert2";
 function Index({
   selectmenu,
   setcurrentmenu,
@@ -18,6 +18,33 @@ function Index({
     setcurrentmenu(SellerList[0]?.name);
   }, []);
 
+  const SignOut = () => {
+    swal
+      .fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Sign Out!",
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          localStorage.clear();
+          swal.fire({
+            text: "You have Successfully logged out !",
+            icon: "success",
+            showConfirmButton: false,
+            timer: 3000,
+          });
+          setTimeout(() => {
+            window.location.reload();
+            window.location.href = "/";
+          }, 1000);
+        }
+      });
+  };
   return (
     <div className={`${barstate ? "sidebaropen" : "sellerdashboard__sidebar"}`}>
       <Clear className="sidebar__close" onClick={() => setbarstate(false)} />
@@ -53,18 +80,23 @@ function Index({
                 key={i}
                 onClick={() => selectmenu(data.url)}
               >
-                <img
+                {currentmenu === data.url ? (
+                  <span className="active_image">{data.image}</span>
+                ) : (
+                  <span className="inActive_image">{data.image}</span>
+                )}
+                {/* <img
                   src={
                     currentmenu === data?.url
                       ? data.image_Active
                       : data.image_Inactive
                   }
                   alt=""
-                />
+                /> */}
                 {data.name}
               </li>
             ))}
-            <li>
+            <li onClick={() => SignOut()}>
               <img src={logout} alt="" />
               Logout
             </li>
@@ -87,18 +119,24 @@ function Index({
                 key={i}
                 onClick={() => selectmenu(data.url)}
               >
-                <img
+                {currentmenu === data.url ? (
+                  <span className="active_image">{data.image}</span>
+                ) : (
+                  <span className="inActive_image">{data.image}</span>
+                )}
+
+                {/* <img
                   src={
                     currentmenu === data.url
-                      ? data.image_Active
-                      : data.image_Inactive
+                      ? data.image
+                      : ""
                   }
                   alt=""
-                />
+                /> */}
                 {data.name}
               </li>
             ))}
-            <li>
+            <li onClick={() => SignOut()}>
               <img src={logout} alt="" />
               Logout
             </li>

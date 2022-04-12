@@ -101,13 +101,6 @@ function ValidationForKycForm({
       }));
       endPoint = true;
     }
-    if (!values?.city) {
-      setValid((prevState) => ({
-        ...prevState,
-        city: "Please enter the city.",
-      }));
-      endPoint = true;
-    }
     if (!agreementChecked) {
       setValid((prevState) => ({
         ...prevState,

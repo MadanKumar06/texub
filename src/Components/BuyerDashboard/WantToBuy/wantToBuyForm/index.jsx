@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./styles.scss";
 
 import { TextField, InputLabel, Autocomplete, Button } from "@mui/material";
@@ -6,8 +6,13 @@ import { LocalizationProvider, DesktopDatePicker } from "@mui/lab";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import Constant from "../../../../Constant";
+import { useStateValue } from "../../../../store/state";
+import swal from "sweetalert2";
 
 const WantToBuy = () => {
+  const [{}, dispatch] = useStateValue();
   const [wantTobuyData, setWantToBuyData] = useState({
     part_number: "",
     model_name_number: "",
@@ -16,6 +21,10 @@ const WantToBuy = () => {
     notes: "",
     hub: "",
     main_category: "",
+  });
+  const [dropdownListFromApi, setDropdownListFromApi] = useState({
+    mainCategoryList: [],
+    dropDownList: [],
   });
   const [dateChange, setDateChange] = useState(new Date());
   const handleChange = (newValue) => {
@@ -29,100 +38,26 @@ const WantToBuy = () => {
       [event.target.name]: event.target.value,
     }));
     setInputValidation("");
-    handleSwitchCase([event.target.name], event.target.value);
   };
   // input validation on onchange
   const [inputValidation, setInputValidation] = useState({
-    part_number: "",
-    model_name_number: "",
     quantity: "",
     main_category: "",
+    hub: "",
     closing_date: "",
   });
 
-  const options = ["Option 1", "Option 2"];
-  const [value, setValue] = useState();
-  const [inputValue, setInputValue] = useState("");
-  const handleSwitchCase = (fieldName, value) => {
-    switch (fieldName[0]) {
-      // case "part_number":
-      //   if (!value) {
-      //     setInputValidation((prevState) => ({
-      //       ...prevState,
-      //       part_number: "Please enter the part number.",
-      //     }));
-      //   }
-      //   break;
-      // case "model_name_number":
-      //   if (!value) {
-      //     setInputValidation((prevState) => ({
-      //       ...prevState,
-      //       model_name_number: "Please enter the model name/ number number.",
-      //     }));
-      //   }
-      //   break;
-
-      case "closing_date":
-        // if (!value) {
-        //   setInputValidation((prevState) => ({
-        //     ...prevState,
-        //     closing_date: "Please select closing date.",
-        //   }));
-        // } else
-        if (value.toString() === "Invalid Date") {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            closing_date: "Please select valid date.",
-          }));
-        }
-        break;
-      // case "quantity":
-      //   if (!value) {
-      //     setInputValidation((prevState) => ({
-      //       ...prevState,
-      //       quantity: "Please select the quantity.",
-      //     }));
-      //   }
-      //   break;
-      // case "main_category":
-      //   if (!value) {
-      //     setInputValidation((prevState) => ({
-      //       ...prevState,
-      //       main_category: "Please select the main category.",
-      //     }));
-      //   }
-      //   break;
-      default:
-        break;
-    }
-  };
   const handleClickValidation = (event) => {
     var errorHandle = false;
-    if (!wantTobuyData?.part_number) {
-      document.getElementById("part_number")?.focus();
-      setInputValidation((prevState) => ({
-        ...prevState,
-        part_number: "Please enter the part number.",
-      }));
-      errorHandle = true;
-    }
-    if (!wantTobuyData?.model_name_number) {
-      document.getElementById("model_name_number")?.focus();
-      setInputValidation((prevState) => ({
-        ...prevState,
-        model_name_number: "Please enter the model number",
-      }));
-      errorHandle = true;
-    }
     if (!wantTobuyData?.quantity) {
       document.getElementById("quantity")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
-        quantity: "Please select quantity.",
+        quantity: "Please enter the quantity.",
       }));
       errorHandle = true;
     }
-    if (!wantTobuyData?.main_category) {
+    if (!wantTobuyData?.main_category?.label) {
       document.getElementById("main_category")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
@@ -130,7 +65,15 @@ const WantToBuy = () => {
       }));
       errorHandle = true;
     }
-    if (!wantTobuyData?.closing_date) {
+    if (!wantTobuyData?.hub?.hub_name) {
+      document.getElementById("hub")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        hub: "Please select hub.",
+      }));
+      errorHandle = true;
+    }
+    if (wantTobuyData?.closing_date?.toString() === "Invalid Date") {
       document.getElementById("closing_date")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
@@ -138,7 +81,108 @@ const WantToBuy = () => {
       }));
       errorHandle = true;
     }
+    if (!errorHandle) {
+      FinalWantToBuy();
+    }
   };
+
+  //Api to fetch dropdown values
+  useEffect(() => {
+    const fetchMainCategoryData = () => {
+      axios
+        .get(Constant.baseUrl() + "/getCategoryList", {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => {
+          setDropdownListFromApi((prevState) => ({
+            ...prevState,
+            mainCategoryList: res?.data,
+          }));
+        })
+        .catch((err) => {});
+    };
+    fetchMainCategoryData();
+  }, []);
+  //Api to fetch dropdown values
+  useEffect(async () => {
+    try {
+      const updateproductdropdown = await axios({
+        method: "get",
+        url: `${Constant.baseUrl()}/getUpdateProductDetails`,
+      });
+      setDropdownListFromApi((prevState) => ({
+        ...prevState,
+        dropDownList: updateproductdropdown?.data?.[0]?.hub_list,
+      }));
+    } catch (e) {
+      console.log(e);
+    }
+  }, []);
+  console.log(dropdownListFromApi?.dropDownList);
+  //API to Register
+  const FinalWantToBuy = () => {
+    dispatch({
+      type: "SET_IS_LOADING",
+      value: true,
+    });
+    let data = {
+      data: {
+        store_id: 1,
+        buyer_id: "167",
+        part_number: wantTobuyData?.part_number,
+        model_number: wantTobuyData?.model_name_number,
+        description: wantTobuyData?.description,
+        main_category_id: wantTobuyData?.main_category?.value,
+        quantity: wantTobuyData?.quantity,
+        hub_id: wantTobuyData?.hub?.hub_id,
+        closing_date: wantTobuyData?.closing_date,
+        notes: wantTobuyData?.notes,
+      },
+    };
+    axios
+      .post(Constant.baseUrl() + "/addToWtb", data, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((res) => {
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+        if (res?.data?.[0]?.status) {
+          swal.fire({
+            text: `${res.data?.[0]?.message}`,
+            icon: "error",
+            showConfirmButton: false,
+            timer: 3000,
+          });
+        } else {
+          swal.fire({
+            text: `${res.data?.[0]?.message}`,
+            icon: "error",
+            showConfirmButton: false,
+            timer: 3000,
+          });
+        }
+      })
+      .catch((error) => {
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+        swal.fire({
+          text: `${error?.response?.data?.message || error.message}`,
+          icon: "error",
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      });
+  };
+
   return (
     <div className="want_to_buy__container">
       <div className="want_to_buy__sub_container">
@@ -152,19 +196,12 @@ const WantToBuy = () => {
               placeholder="R7-5700U"
               InputLabelProps={{
                 shrink: true,
-                required: true,
-                classes: {
-                  asterisk: "asterisk",
-                },
               }}
               className="inputfield-box"
               onChange={handleFormvalue}
               value={wantTobuyData?.part_number}
               variant="outlined"
             />
-            <InputLabel className="validation_error">
-              {inputValidation?.part_number}
-            </InputLabel>
           </div>
           <div className="block_1_input">
             <TextField
@@ -175,19 +212,12 @@ const WantToBuy = () => {
               placeholder="Lenovo Dpin Yoga 6 Dpin"
               InputLabelProps={{
                 shrink: true,
-                required: true,
-                classes: {
-                  asterisk: "asterisk",
-                },
               }}
               className="inputfield-box"
               value={wantTobuyData?.model_name_number}
               onChange={handleFormvalue}
               variant="outlined"
             />
-            <InputLabel className="validation_error">
-              {inputValidation?.model_name_number}
-            </InputLabel>
           </div>
         </div>
         <div className="block_2 input_block">
@@ -216,16 +246,17 @@ const WantToBuy = () => {
           <div className="input_field">
             <div className="block_1_input">
               <Autocomplete
-                value={value}
+                value={wantTobuyData?.main_category}
                 onChange={(event, newValue) => {
                   setWantToBuyData((prevState) => ({
                     ...prevState,
                     main_category: newValue,
                   }));
                 }}
-                inputValue={inputValue}
                 id="controllable-states-demo"
-                options={options}
+                getOptionLabel={(option) => (option.label ? option.label : "")}
+                filterOptions={(options) => options}
+                options={dropdownListFromApi?.mainCategoryList}
                 fullWidth
                 className="inputfield-box auto_complete_input"
                 renderInput={(params) => (
@@ -248,24 +279,62 @@ const WantToBuy = () => {
               </InputLabel>
             </div>
             <div className="block_1_input">
+              <TextField
+                id="Quantity"
+                label="Quantity"
+                fullWidth
+                name="quantity"
+                placeholder="Enter Quantity"
+                InputLabelProps={{
+                  shrink: true,
+                  required: true,
+                  classes: {
+                    asterisk: "asterisk",
+                  },
+                }}
+                className="inputfield-box"
+                onChange={(event) => {
+                  setWantToBuyData((prevState) => ({
+                    ...prevState,
+                    quantity: event.target.value,
+                  }));
+                }}
+                value={wantTobuyData?.quantity}
+                variant="outlined"
+              />
+              <InputLabel className="validation_error">
+                {inputValidation?.quantity}
+              </InputLabel>
+            </div>
+          </div>
+
+          <div className="input_field">
+            <div className="block_1_input">
               <Autocomplete
-                value={value}
+                getOptionLabel={(option) =>
+                  option?.hub_name ? option.hub_name : ""
+                }
+                filterOptions={(options) => options}
+                options={
+                  dropdownListFromApi?.dropDownList
+                    ? dropdownListFromApi?.dropDownList
+                    : []
+                }
                 onChange={(event, newValue) => {
                   setWantToBuyData((prevState) => ({
                     ...prevState,
-                    quantity: newValue,
+                    hub: newValue,
                   }));
                 }}
-                inputValue={inputValue}
+                value={wantTobuyData?.hub}
                 id="controllable-states-demo"
-                options={options}
                 fullWidth
                 className="inputfield-box auto_complete_input"
                 renderInput={(params) => (
                   <TextField
                     {...params}
-                    label="Quantity"
-                    placeholder="Select Quantity"
+                    label="Hub"
+                    placeholder="Select Hub"
                     InputLabelProps={{
                       shrink: true,
                       required: true,
@@ -276,49 +345,15 @@ const WantToBuy = () => {
                   />
                 )}
               />
-
               <InputLabel className="validation_error">
-                {inputValidation?.quantity}
+                {inputValidation?.hub}
               </InputLabel>
-            </div>
-          </div>
-
-          <div className="input_field">
-            <div className="block_1_input">
-              <Autocomplete
-                value={value}
-                onChange={(event, newValue) => {
-                  setWantToBuyData((prevState) => ({
-                    ...prevState,
-                    hub: newValue,
-                  }));
-                }}
-                inputValue={inputValue}
-                id="controllable-states-demo"
-                options={options}
-                fullWidth
-                className="inputfield-box auto_complete_input"
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    label="Hub"
-                    placeholder="Select Hub"
-                    InputLabelProps={{
-                      shrink: true,
-                      // required: true,
-                      classes: {
-                        // asterisk: "asterisk",
-                      },
-                    }}
-                  />
-                )}
-              />
             </div>
             <div className="block_1_input">
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DesktopDatePicker
                   label="Closing Date"
-                  inputFormat="MM/dd/yyyy"
+                  inputFormat="dd/MM/yyyy"
                   minDate={new Date()}
                   value={dateChange}
                   onChange={handleChange}
