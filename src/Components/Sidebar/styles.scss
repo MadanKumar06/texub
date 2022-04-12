@@ -99,20 +99,20 @@
     min-width: 20%;
   }
   .sellerdashboard__sidebar p .sellerlabel {
-    font-size: 18px;
+    font-size: 16px;
   }
   .sellerdashboard__sidebar p .sellervalue {
-    font-size: 22px;
+    font-size: 18px;
   }
   .sellerdashboard__sidebar ul li {
-    font-size: 16px;
+    font-size: 14px;
     padding-left: 20px;
   }
   .sellerdashboard__sidebar .sidebar_head_title {
     padding: 1em 0;
   }
   .sellerdashboard__sidebar ul li {
-    min-height: 60px;
+    min-height: 50px;
   }
   .sellerdashboard__sidebar .buyerbg ::before {
     height: 60px;
@@ -151,9 +151,9 @@
         padding-left: 1em;
         align-items: center;
         gap: 10px;
-        font-size: 18px;
+        font-size: 14px;
         color: #858a8e;
-        min-height: 60px;
+        min-height: 50px;
         cursor: pointer;
         font-weight: 600;
         letter-spacing: 0.66px;
@@ -171,7 +171,7 @@
       gap: 10px;
       .sellerlabel {
         color: #5c6369;
-        font-size: 18px;
+        font-size: 16px;
         font-weight: 600;
         letter-spacing: 0.96px;
       }
@@ -179,7 +179,7 @@
       .sellervalue {
         background-color: #f8f0e0;
         color: #5c6369;
-        font-size: 22px;
+        font-size: 18px;
         padding: 0.3em 1em;
         box-shadow: rgb(99 99 99 / 20%) 0px 2px 8px 0px;
       }
