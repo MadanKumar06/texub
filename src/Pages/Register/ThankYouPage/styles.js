@@ -36,6 +36,8 @@ const styles = () => ({
     margin: "0",
     color: "#5C6369",
     marginTop: "17px",
+    fontWeight: "600",
+    fontStyle: "italic",
   },
   thankyou_for_register: {
     color: "#333C42",

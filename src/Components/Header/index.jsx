@@ -131,34 +131,38 @@ const Header = ({ classes }) => {
             </Typography>
           </div>
 
-          {!isSignedIn?.group_id ? (
-            <div className={classes.header_button_main}>
-              <Button
-                className={classes.header_button_register}
-                onClick={() => RegistrationPop()}
-              >
-                {/* <Link to="/register"> Register </Link> */}
-                Register
-              </Button>
-              <Button
-                className={classes.header_button_signin}
-                onClick={() => SigninPopUP()}
-              >
-                Sign In
-              </Button>
-            </div>
-          ) : isSignedIn?.group_id === 1 ? (
-            <div className={classes.header_button_main}>
-              <Button
-                className={classes.header_button_signin}
-                onClick={() => SignOut()}
-              >
-                Sign Out
-              </Button>
-            </div>
-          ) : (
-            ""
-          )}
+          {
+            !isSignedIn?.group_id ? (
+              <div className={classes.header_button_main}>
+                <Button
+                  className={classes.header_button_register}
+                  onClick={() => RegistrationPop()}
+                >
+                  {/* <Link to="/register"> Register </Link> */}
+                  Register
+                </Button>
+                <Button
+                  className={classes.header_button_signin}
+                  onClick={() => SigninPopUP()}
+                >
+                  Sign In
+                </Button>
+              </div>
+            ) : (
+              // isSignedIn?.group_id === 1 ? (
+              <div className={classes.header_button_main}>
+                <Button
+                  className={classes.header_button_signin}
+                  onClick={() => SignOut()}
+                >
+                  Sign Out
+                </Button>
+              </div>
+            )
+            // ) : (
+            //   ""
+            // )
+          }
           <CurrencyPopup />
         </Toolbar>
       </AppBar>

@@ -204,7 +204,7 @@ const TradeLicenseButton = ({
                 inputProps={{
                   ...params.inputProps,
                   readOnly: true,
-                  placeholder: "DD/MM/YY",
+                  placeholder: "DD/MM/YYYY",
                 }}
                 InputLabelProps={{
                   shrink: true,
