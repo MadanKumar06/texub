@@ -497,6 +497,23 @@ const BuyerRegistration = ({ classes }) => {
           <div className={input_textField}>
             <div className={text_field_container}>
               <TextField
+                id="landline_number"
+                label="Landline Number"
+                className="inputfield-box"
+                fullWidth
+                type="number"
+                placeholder="Landline Number"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                value={buyerRegistrationData?.landline_number}
+                name="landline_number"
+                onChange={handleChangeInput}
+                variant="outlined"
+              />
+            </div>
+            <div className={text_field_container}>
+              <TextField
                 id="password"
                 label="Password"
                 className="inputfield-box"
@@ -520,6 +537,8 @@ const BuyerRegistration = ({ classes }) => {
                 {inputValidation?.password}
               </InputLabel>
             </div>
+          </div>
+          <div className={input_textField}>
             <div className={text_field_container}>
               <TextField
                 id="confrim_password"
@@ -543,25 +562,6 @@ const BuyerRegistration = ({ classes }) => {
               <InputLabel className={validation_error}>
                 {inputValidation?.confrim_password}
               </InputLabel>
-            </div>
-          </div>
-          <div className={input_textField}>
-            <div className={text_field_container}>
-              <TextField
-                id="landline_number"
-                label="Landline Number"
-                className="inputfield-box"
-                fullWidth
-                type="number"
-                placeholder="Landline Number"
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                value={buyerRegistrationData?.landline_number}
-                name="landline_number"
-                onChange={handleChangeInput}
-                variant="outlined"
-              />
             </div>
             <div className={text_field_container}>
               <TextField
