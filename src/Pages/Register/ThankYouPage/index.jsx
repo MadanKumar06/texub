@@ -46,7 +46,7 @@ const ThankyouPage = ({ classes }) => {
         </div>
         <p className={thankyou_title}>Thank You !</p>
         <p className={thankyou_user}>
-          {userData?.firstname} {userData?.lastname}
+          Dear {userData?.firstname} {userData?.lastname}
         </p>
         {(type === "buyer" || type === "seller") && (
           // <p className={thankyou_for_register}>
