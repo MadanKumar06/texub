@@ -44,9 +44,12 @@ const Index = () => {
     }
   }, [])
 
-  const Popup = () => {
+  const [popid, setpopid] = useState()
+  const Popup = (value) => {
     setisUopup(true);
+    setpopid(value)
   };
+
   const ordertype = [
     { name: "All Enquiries" },
     { name: "Open Enquiries " },
@@ -71,57 +74,6 @@ const Index = () => {
     search: false,
   };
 
-  const table = [
-    {
-      enqno: "000000006",
-      buyercode: "BU201201",
-      partno: "RT-5700U",
-      modelname: {
-        name: "Lenovo Dpin Yoga..",
-      },
-      qty: "50",
-      hub: "Mumbai",
-      status: "Open",
-      action: "View Details",
-    },
-    {
-      enqno: "0000000021",
-      buyercode: "BU201201",
-      partno: "RT-5700U",
-      modelname: {
-        name: "Acer Sf314-42 Swift 3...",
-      },
-      qty: "34",
-      hub: "Mumbai",
-      status: "Accepted",
-      action: "View Details",
-    },
-    {
-      enqno: "0000000022",
-      buyercode: "BU201201",
-      partno: "RT-5700U",
-      modelname: {
-        name: "Apple Macbook Pro...",
-      },
-      qty: "25",
-      hub: "Mumbai",
-      status: "Closed",
-      action: "View Details",
-    },
-    {
-      enqno: "0000000023",
-      buyercode: "BU201201",
-      partno: "RT-5700U",
-      modelname: {
-        name: "Hp Business Laptop...",
-      },
-      qty: "20",
-      hub: "Mumbai",
-      status: "Accepted",
-      action: "View Details",
-    },
-  ];
-
   const columns = [
     {
       name: "enquiry_id",
@@ -145,7 +97,7 @@ const Index = () => {
         },
       },
     },
-    { name: "partno", label: "Part No." },
+    { name: "sku", label: "Part No." },
     {
       name: "model_number",
       label: "Model Name/No.",
@@ -173,7 +125,7 @@ const Index = () => {
       },
     },
     {
-      name: "hub",
+      name: "hub_id",
       label: "Hub",
     },
     {
@@ -200,13 +152,13 @@ const Index = () => {
       },
     },
     {
-      name: "action",
+      name: "wtb_id",
       label: "Action",
       options: {
         customBodyRender: (value) => {
           return (
-            <div className="actions" onClick={() => Popup()}>
-              <span className="value">{value}</span>
+            <div className="actions" onClick={() => Popup(value)}>
+              <span className="value">View Details</span>
             </div>
           );
         },
@@ -248,7 +200,7 @@ const Index = () => {
         options={options}
         className="directenquiries__table"
       />
-      {isUopup && <Enquirydetails closePOPup={setisUopup} />}
+      {isUopup && <Enquirydetails closePOPup={setisUopup} popid={popid} direct={direct} />}
     </div>
   );
 };
