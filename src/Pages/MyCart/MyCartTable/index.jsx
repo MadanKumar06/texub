@@ -14,6 +14,7 @@ import axios from "axios";
 const MyCartTable = ({ cartDataList, deleteCartData }) => {
   const [is_table_quantity, setIs_table_quantity] = useState([]);
   const [is_table_quantity_test, setis_table_quantity_test] = useState([]);
+  console.log(cartDataList[0]?.invoice_items?.length)
 
   const [{}, dispatch] = useStateValue();
   useEffect(() => {
@@ -457,14 +458,20 @@ const MyCartTable = ({ cartDataList, deleteCartData }) => {
       },
     },
   };
-
+  console.log(is_table_quantity)
   return (
     <div className="mycart_table_main_container">
+      <MUITable
+          columns={columns}
+          table={is_table_quantity}
+          options={options}
+          className="mycart_table_mui_datatable_main"
+        />
       {/* {is_table_quantity?.[0]?.invoice_items?.length && ( */}
-      {is_table_quantity?.length === 0 ? (
+      {/* {cartDataList[0]?.invoice_items?.length === 0 ? (
         <MUITable
           columns={columns}
-          table={is_table_quantity_test}
+          table={is_table_quantity}
           options={options}
           className="mycart_table_mui_datatable_main"
         />
@@ -475,7 +482,7 @@ const MyCartTable = ({ cartDataList, deleteCartData }) => {
           options={options}
           className="mycart_table_mui_datatable_main"
         />
-      )}
+      )} */}
     </div>
   );
 };
