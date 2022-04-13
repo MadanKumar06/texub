@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./Termsofuse.scss";
+import "./ProductListingPolicy.scss";
 import Terms from "../../../../Assets/Career/Terms.png";
 import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
 import { getAdminToken } from "../../../../utilities";
@@ -14,7 +14,7 @@ const Termstext = [
   },
 ];
 
-export const Termsofuse = () => {
+export const ProductListingPolicy = () => {
   const [adminToken, setAdminToken] = useState("");
   useEffect(() => {
     getAdminToken((res) => {
@@ -33,7 +33,7 @@ export const Termsofuse = () => {
       });
       const termsdata = await axios({
         method: "get",
-        url: "https://texub.uat.a2zportals.co.in/india/rest/V1/cmsPage/29",
+        url: "https://texub.uat.a2zportals.co.in/india/rest/V1/cmsPage/30",
         headers: {
           Authorization: `Bearer ${adminToken}`,
         },

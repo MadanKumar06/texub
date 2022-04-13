@@ -53,7 +53,7 @@ export const Footer = () => {
               <Link to="/rrpolicy" className="to_CMS">
                 <li>Refund Policy</li>
               </Link>
-              <Link to="/" className="to_CMS">
+              <Link to="/productlistingpolicy" className="to_CMS">
                 <li> Product Listing Policy</li>
               </Link>
               <Link to="/contactus" className="to_CMS">
