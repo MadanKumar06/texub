@@ -13,7 +13,7 @@ export const isFirstAndLastNameValid = (firstAndLastName) =>
   firstAndLastName.match(/^[a-zA-Z\s]*$/);
 
 export const isDesignationValid = (designation) =>
-  designation.match(/^[a-zA-Z .]*$"/);
+  designation.match(/^[a-zA-Z ]*$/);
 
 export const isCompanyNameValid = (company) =>
   company.match(/^[^'][a-zA-Z0-9' ]*[^']$/);
