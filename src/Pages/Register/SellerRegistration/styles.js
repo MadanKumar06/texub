@@ -21,6 +21,30 @@ const styles = (theme) => ({
   text_field_container: {
     width: "100%",
   },
+  check_container: {
+    width: "100%",
+    display: "flex",
+    position: "relative",
+    flexDirection: "column",
+    alignItems: "flex-start",
+    "& .MuiCheckbox-root ": {
+      width: "min-content",
+      position: "absolute",
+      left: "-13px",
+      top: "5px",
+    },
+    "& p": {
+      marginLeft: "2em",
+      color: "#5C6369",
+      fontSize: "16px",
+      fontWeight: "600",
+      "& a": {
+        color: "#002D56",
+        textDecoration: "underline",
+        cursor: "pointer",
+      },
+    },
+  },
   validation_error: {
     whiteSpace: "unset !important",
     marginLeft: "4px !important",

@@ -28,7 +28,7 @@ import clsx from "clsx";
 import { useStateValue } from "../../../store/state";
 import axios from "axios";
 import Constant from "../../../Constant";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const BuyerRegistration = ({ classes }) => {
   const history = useNavigate();
@@ -47,6 +47,7 @@ const BuyerRegistration = ({ classes }) => {
     auto_complete_input,
     other_textbox,
     mobile_input,
+    check_container,
   } = classes;
   const [dropdownListFromApi, setDropdownListFromApi] = useState({
     regionList: [],
@@ -874,22 +875,22 @@ const BuyerRegistration = ({ classes }) => {
             </div>
           </div>
           <div className={input_textField}>
-            <div className={text_field_container}>
-              <FormControlLabel
-                value={sellerRegistrationData?.checkbox_confrim}
-                control={<Checkbox color="color_third" />}
-                label={
-                  <p>
-                    By using this form you agree with the{" "}
-                    <span>Terms of Use</span>
-                    and <span>Privacy Policy</span> by this website.
-                  </p>
-                }
-                onClick={(event) => handleChangeInput(event)}
-                name="checkbox_confrim"
-                labelPlacement="end"
-                className={checkbox_label}
-              />
+            <div className={check_container}>
+              <div>
+                <Checkbox
+                  value={sellerRegistrationData?.checkbox_confrim}
+                  color="color_third"
+                  name="checkbox_confrim"
+                  onClick={(event) => handleChangeInput(event)}
+                  className={checkbox_label}
+                />
+                <p>
+                  By using this form you agree with the{" "}
+                  <Link to="/termsofuse">Terms of Use</Link> and{" "}
+                  <Link to="/privacypolicy">Privacy Policy</Link> by this
+                  website.
+                </p>
+              </div>
               <InputLabel className={validation_error}>
                 {inputValidation?.checkbox_confrim}
               </InputLabel>
