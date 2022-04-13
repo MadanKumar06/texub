@@ -121,7 +121,8 @@ const BuyerRegistration = ({ classes }) => {
   useEffect(() => {
     const fetchRoleData = () => {
       axios
-        .get(Constant.baseUrl() + "/getRoleList", {
+        // .get(Constant.baseUrl() + "/getRoleList", {
+          .get("https://uat.texub.com/rest/V1/texub/getRoleList", {
           headers: {
             "Content-Type": "application/json",
           },

@@ -10,6 +10,7 @@ import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import Constant from "../../../../Constant";
 import { useStateValue } from "../../../../store/state";
 import swal from "sweetalert2";
+import { Co2Sharp } from "@mui/icons-material";
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
@@ -288,8 +289,6 @@ function Index({ type, pid }) {
     data();
   }, [id, eventcheck]);
 
-  console.log(updateProductList)
-
   useEffect(() => {
     if (olddata.length === 0) return;
     let temp = [];
@@ -318,20 +317,6 @@ function Index({ type, pid }) {
       );
     updateProductList.resregion = temp;
   }, [olddata]);
-
-  useEffect(() => {
-    if (restricts_country.length === 0) return;
-    let temp = [];
-    olddata.restricted_country?.length &&
-      olddata.restricted_country.filter((wc) =>
-        restricts_country?.filter((c) => {
-          if (wc === c.value) {
-            temp.push(c);
-          }
-        })
-      );
-    updateProductList.restricts_country = temp;
-  }, [restricts_country]);
 
   useEffect(() => {
     setupdateform((prevState) => ({
@@ -399,7 +384,27 @@ function Index({ type, pid }) {
           warcountry: d,
         }))
     );
-  }, [olddata]);
+  }, [olddata, country]);
+
+  useEffect(() => {
+    if(country?.length === 0) return
+    // debugger
+    console.log(updateProduct?.resregion)
+    if(updateProduct?.resregion?.length === 0) return
+    country?.filter(
+      (d) =>
+      console.log(d)
+        // d.value === olddata?.restricts_country &&
+        // setUpdateProductList((prevState) => ({
+        //   ...prevState,
+        //   restricts_country: d,
+        // }))
+    );
+  }, [restricts_country])
+
+  console.log(olddata)
+  console.log(restricts_country)
+  console.log(updateProductList?.restricts_country)
 
   const [dropdownListFromApi, setDropdownListFromApi] = useState({
     dropDownList: [],
@@ -614,18 +619,6 @@ function Index({ type, pid }) {
     }
   };
 
-  useEffect(async () => {
-    try {
-      const data = await axios({
-        method: "get",
-        url: `${Constant.baseUrl()}/getCountryList`,
-      });
-      setcountry(data.data);
-    } catch (e) {
-      console.log(e);
-    }
-  }, []);
-
   const [region, setRegion] = useState([]);
   useEffect(async () => {
     try {
@@ -634,6 +627,18 @@ function Index({ type, pid }) {
         url: `${Constant.baseUrl()}/getRegionList`,
       });
       setRegion(data.data);
+    } catch (e) {
+      console.log(e);
+    }
+  }, []);
+
+  useEffect(async () => {
+    try {
+      const data = await axios({
+        method: "get",
+        url: `${Constant.baseUrl()}/getCountryList`,
+      });
+      setcountry(data.data);
     } catch (e) {
       console.log(e);
     }
@@ -662,6 +667,20 @@ function Index({ type, pid }) {
       fetchData();
     }
   }, [updateProductList?.resregion]);
+
+  useEffect(() => {
+    if (restricts_country.length === 0) return;
+    let temp = [];
+    olddata.restricted_country?.length &&
+      olddata.restricted_country.filter((wc) =>
+        restricts_country?.filter((c) => {
+          if (wc === c.value) {
+            temp.push(c);
+          }
+        })
+      );
+    updateProductList.restricts_country = temp;
+  }, [restricts_country?.length > 0]);
 
   return (
     <div className="updateproduct">
