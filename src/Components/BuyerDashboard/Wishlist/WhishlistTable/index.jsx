@@ -8,6 +8,9 @@ import axios from "axios";
 import Constant from "../../../../Constant";
 import { useStateValue } from "../../../../store/state";
 
+import WishlistEdit from "../image/wishlist-edit.png";
+import WishlistDelete from "../image/wishlist-delete.png";
+
 const WhislistTable = ({ tableData, tableDataHeader, folderdata }) => {
   //open more option at resolution 767px and below
   const [openMoreOPtion, setOpenMoreOption] = useState(null);
@@ -128,7 +131,13 @@ const WhislistTable = ({ tableData, tableDataHeader, folderdata }) => {
   return (
     <div className="wishlist_table_container">
       <div className="whishlist_table_header">
+        <div className="wishlist-first-text">
         <p className="header_title">{tableDataHeader}</p>
+        <span className="wishlist-edit-img">
+            <img src={WishlistEdit} alt="" />
+            <span className="wishlist-edit-text">Edit</span>
+        </span>
+      </div>
         <MoreVert
           className="more_option"
           onClick={handleClickForOpenMoreOption}
@@ -146,6 +155,7 @@ const WhislistTable = ({ tableData, tableDataHeader, folderdata }) => {
         </Menu>
         <div className="header_link">
           <p onClick={addalltocart}>Add All To Cart</p>
+          <p > Add All To Pending Invoice</p>
           <p onClick={wishlistdelete}>Delete List</p>
         </div>
       </div>
@@ -234,7 +244,13 @@ const WhislistTable = ({ tableData, tableDataHeader, folderdata }) => {
                       </div>
                     </div>
                   </div>
-                  <div>
+                  <div className="wishlist-btn-info">
+                    <span className="wishlist-delete-btn"> 
+                      <img src={WishlistDelete} alt="" />
+                      </span>
+                    <Button className="add-cart-btn">
+                      <span> Add to Cart</span>
+                    </Button>
                     <Button className="pending-invoice-btn">
                       <span> Add to Pending Invoice</span>
                     </Button>
