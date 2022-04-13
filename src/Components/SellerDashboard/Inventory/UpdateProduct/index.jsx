@@ -436,6 +436,8 @@ function Index({ type, pid }) {
     }
   };
 
+  console.log(updateform?.no_pieces_per)
+
   const updateProduct = async () => {
     let productdata = [];
     count.filter((data) => {
@@ -477,7 +479,7 @@ function Index({ type, pid }) {
               warranty_country: warrantycountries.toString(),
               warranty_days: updateform?.warranty_days,
               packing_details: updateProductList?.packing?.value,
-              no_pieces_per: updateProductList?.no_pieces_per,
+              no_pieces_per: updateform?.no_pieces_per,
               width: updateform?.width,
               height: updateform?.height,
               product_length: updateform?.product_length,
@@ -556,8 +558,8 @@ function Index({ type, pid }) {
               warranty_country: warrantycountries.toString(),
               warranty_days: updateform?.warranty_days,
               packing_details: updateProductList?.packing?.value,
-              // no_pieces_per: updateProductList?.carton_packing,
-              no_pieces_per: 125,
+              // no_pieces_per: updateform?.carton_packing,
+              no_pieces_per: updateform?.no_pieces_per,
               width: updateform?.width,
               height: updateform?.height,
               product_length: updateform?.product_length,
