@@ -223,7 +223,7 @@ function Index({
                   {...params}
                   className="inputfield-box"
                   fullWidth
-                  placeholder="INR"
+                  placeholder="curr"
                   InputLabelProps={{
                     shrink: false,
                   }}
