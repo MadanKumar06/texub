@@ -91,8 +91,7 @@ const Index = () => {
       label: "MY PRICE",
       options: {
         customBodyRender: (value) => {
-          return !localStorage.getItem("isLoggedIn_auth") ||
-            isGuestUserSignedIn?.group_id === 1 ? (
+          return !localStorage.getItem("isLoggedIn_auth") ? (
             <div className="producttable_price" onClick={(e) => handleClick(e)}>
               <p className="guest_login">Login</p>
               <p className="check_price">to see the prices</p>

@@ -1,22 +1,3 @@
-//seller Inactive image
-import dashboard_Inactive from "../../Assets/sellerdashboard/InactiveDashboardPng/inactivedashboard.png";
-import inventory_Inactive from "../../Assets/sellerdashboard/InactiveDashboardPng/inventory.png";
-import orders_Inactive from "../../Assets/sellerdashboard/InactiveDashboardPng/orders.png";
-import direct_Inactive from "../../Assets/sellerdashboard/InactiveDashboardPng/direct.png";
-import payment_Inactive from "../../Assets/sellerdashboard/InactiveDashboardPng/payment.png";
-import seller_Inactive from "../../Assets/sellerdashboard/InactiveDashboardPng/seller.png";
-import report_Inactive from "../../Assets/sellerdashboard/InactiveDashboardPng/report.png";
-import user_Inactive from "../../Assets/sellerdashboard/InactiveDashboardPng/user.png";
-import training_Inactive from "../../Assets/sellerdashboard/InactiveDashboardPng/training.png";
-
-//seller active image
-import dashboard_active from "../../Assets/sellerdashboard/ActiveDashboardPng/dashboard.png";
-import inventory_active from "../../Assets/sellerdashboard/ActiveDashboardPng/warehouse.png";
-import orders_active from "../../Assets/sellerdashboard/ActiveDashboardPng/shopping-bag.png";
-import direct_active from "../../Assets/sellerdashboard/ActiveDashboardPng/call.png";
-import seller_active from "../../Assets/sellerdashboard/ActiveDashboardPng/repair.png";
-import user_active from "../../Assets/sellerdashboard/ActiveDashboardPng/add-group.png";
-
 const SellerList = [
   {
    image:(<svg xmlns="http://www.w3.org/2000/svg" width="31" height="31" viewBox="0 0 31 31">

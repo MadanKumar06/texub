@@ -4,12 +4,17 @@ import logo from "../../Assets/Homepage Assets/Group.png";
 import { Badge } from "@mui/material";
 import { Link } from "react-router-dom";
 import MyAccountPopUP from "./MyAccountPopup";
+import { useNavigate } from "react-router-dom";
 
 import whishlist_image from "../../Assets/User/Icon.png";
 import MiniCartDrawer from "../../Pages/MiniCart";
 
 export const Userdetails = () => {
   let isSignedIn = JSON.parse(localStorage.getItem("userdata"));
+  const history = useNavigate();
+  const handleWishlist = () => {
+    history("/buyerdashboard/wishlist");
+  };
   return (
     <div className="user_details_main_container">
       <div className="logo">
@@ -41,7 +46,7 @@ export const Userdetails = () => {
           {isSignedIn?.group_id === 5 &&
           isSignedIn?.custom_attributes?.[3]?.value === "2" ? (
             <>
-              <div className="user_wishlist">
+              <div className="user_wishlist" onClick={() => handleWishlist()}>
                 <Badge badgeContent={0} className="badge_user">
                   <div className="whishlist_image">
                     <img src={whishlist_image} alt="" />

@@ -13,13 +13,13 @@ import ProductGrid from "./ProductGrid";
 
 import axios from "axios";
 import Constant from "../../../Constant";
-import { useStateValue } from '../../../store/state'
+import { useStateValue } from "../../../store/state";
 
 function Index({ registerproduct }) {
   const [tableData, setTableData] = useState([]);
   const [apiTableData, setApiTableData] = useState([]);
   const [searchList, setSearchList] = useState(false);
-  const [{}, dispatch] = useStateValue()
+  const [{}, dispatch] = useStateValue();
 
   const options = {
     filter: false,
@@ -83,11 +83,11 @@ function Index({ registerproduct }) {
       name: "my_price",
       label: "MY PRICE",
       options: {
-        customBodyRender: (value) => {
+        customBodyRender: (value, tablemeta) => {
           return (
             <div className="inventory__myprice">
               <p>
-                {/* <span className="label">INR</span> */}
+                <span className="label">{tablemeta?.rowData?.[11]}</span>
                 <span className="value">{value}</span>
               </p>
             </div>
@@ -99,11 +99,11 @@ function Index({ registerproduct }) {
       name: "my_price",
       label: "LOWEST PRICE",
       options: {
-        customBodyRender: (value) => {
+        customBodyRender: (value,tablemeta) => {
           return (
             <div className="inventory__lowestprice">
               <p>
-                {/* <span className="label">INR</span> */}
+                <span className="label">{tablemeta?.rowData?.[11]}</span>
                 <span className="value">{value}</span>
               </p>
             </div>
@@ -142,6 +142,13 @@ function Index({ registerproduct }) {
             </div>
           );
         },
+      },
+    },
+    {
+      name: "currency_name",
+      label: " ",
+      options: {
+        display: false,
       },
     },
   ];

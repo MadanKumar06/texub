@@ -176,7 +176,11 @@ const TaxCertificateButton = ({
                 className="inputfield-box"
                 id="tax_expiration_date"
                 placeholder="DD/MM/YY"
-                inputProps={{ ...params.inputProps, placeholder: "DD/MM/YYYY" }}
+                inputProps={{
+                  ...params.inputProps,
+                  readOnly: true,
+                  placeholder: "DD/MM/YYYY",
+                }}
                 InputLabelProps={{
                   shrink: true,
                   readOnly: true,
