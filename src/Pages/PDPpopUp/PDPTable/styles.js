@@ -153,7 +153,7 @@ const styles = () => ({
     color: "#333C42 !important",
     textTransform: "capitalize",
     "@media (max-width:1660px)": {
-      fontSize: "14px !important",
+      fontSize: "16px !important",
     },
   },
   price_list_seller: {
@@ -409,6 +409,7 @@ const styles = () => ({
   },
   price_value: {
     fontSize: "24px",
+    fontWeight: "800",
     letterSpacing: "0.9px",
     "@media (max-width:1660px)": {
       fontSize: "18px",
