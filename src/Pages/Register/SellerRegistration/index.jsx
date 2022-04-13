@@ -137,6 +137,14 @@ const BuyerRegistration = ({ classes }) => {
   }, []);
   useEffect(() => {
     if (sellerRegistrationData?.region?.region_id) {
+      setDropdownListFromApi((prev) => ({
+        ...prev,
+        countryList: [],
+      }));
+      setsellerRegistrationData((prev) => ({
+        ...prev,
+        country: "",
+      }));
       const fetchRegionBasedCountryData = () => {
         let data = {
           region_id: sellerRegistrationData?.region?.region_id,
@@ -891,7 +899,7 @@ const BuyerRegistration = ({ classes }) => {
                 className={recaptcha_info}
                 // 6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI
                 // 6LcaHDYfAAAAAOUR0jJWtEI128eoRL4xjBWOpjKD
-                sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+                sitekey="6LcaHDYfAAAAAOUR0jJWtEI128eoRL4xjBWOpjKD"
                 onChange={() => {
                   setsellerRegistrationData((prevState) => ({
                     ...prevState,
