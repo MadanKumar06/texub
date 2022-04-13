@@ -201,9 +201,12 @@ const TradeLicenseButton = ({
                 fullWidth
                 className="inputfield-box"
                 id="trade_expiration_date"
-                inputProps={{ ...params.inputProps, placeholder: "DD/MM/YYYY" }}
-                InputLabelProps={{
+                inputProps={{
+                  ...params.inputProps,
                   readOnly: true,
+                  placeholder: "DD/MM/YYYY",
+                }}
+                InputLabelProps={{
                   shrink: true,
                   // required: true,
                   // classes: {

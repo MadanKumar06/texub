@@ -59,7 +59,7 @@ const BuyerRegistration = ({ classes }) => {
     country: "",
     confrim_password: "",
     mobile_valid: "",
-    remember_me: false,
+    checkbox_confrim: false,
     recaptcha: false,
   });
   const [inputValidation, setInputValidation] = useState({
@@ -73,6 +73,7 @@ const BuyerRegistration = ({ classes }) => {
     designation: "",
     country: "",
     confrim_password: "",
+    checkbox_confrim: "",
     recaptcha: "",
   });
   const handleMobileChangeInput = (value, data, event, formattedValue) => {
@@ -87,7 +88,7 @@ const BuyerRegistration = ({ classes }) => {
     }));
   };
   const handleChangeInput = (event) => {
-    if (event?.target?.name === "remember_me") {
+    if (event?.target?.name === "checkbox_confrim") {
       setbuyerRegistrationData((prevState) => ({
         ...prevState,
         [event.target.name]: event.target.checked,
@@ -254,6 +255,14 @@ const BuyerRegistration = ({ classes }) => {
       setInputValidation((prevState) => ({
         ...prevState,
         recaptcha: "Please enter the recaptcha .",
+      }));
+      errorHandle = true;
+    }
+    if (!buyerRegistrationData?.checkbox_confrim) {
+      document.getElementById("checkbox_confrim")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        checkbox_confrim: "Please agree to terms and conditions .",
       }));
       errorHandle = true;
     }
@@ -644,7 +653,7 @@ const BuyerRegistration = ({ classes }) => {
           <div className={input_textField}>
             <div className={text_field_container}>
               <FormControlLabel
-                value="yes"
+                value={buyerRegistrationData?.checkbox_confrim}
                 control={<Checkbox color="secondary" />}
                 label={
                   <p>
@@ -653,9 +662,14 @@ const BuyerRegistration = ({ classes }) => {
                     this website.
                   </p>
                 }
+                name="checkbox_confrim"
+                onClick={(event) => handleChangeInput(event)}
                 labelPlacement="end"
                 className={checkbox_label}
               />
+              <InputLabel className={validation_error}>
+                {inputValidation?.checkbox_confrim}
+              </InputLabel>
             </div>
             <div className={text_field_container}>
               {/* 6LcaHDYfAAAAAOUR0jJWtEI128eoRL4xjBWOpjKD ---- site key */}

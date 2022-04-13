@@ -66,7 +66,7 @@ const PDPTable = ({ classes, tableData, setPdpSellerData, pdpSellerData }) => {
       handleRadioGroupChange(temp[0]);
       setPdpSellerData((prevState) => ({
         ...prevState,
-        seller_code:tableData?.tableone?.[0]?.seller_code,
+        seller_code: tableData?.tableone?.[0]?.seller_code,
         seller_id: tableData?.tableone?.[0]?.seller_id,
         warranty_days: tableData?.tableone?.[0]?.warranty_days,
         packing_details: tableData?.tableone?.[0]?.packing_details,
@@ -249,8 +249,7 @@ const PDPTable = ({ classes, tableData, setPdpSellerData, pdpSellerData }) => {
                         </span>
                       </div>
 
-                      {!localStorage.getItem("isLoggedIn_auth") ||
-                      isGuestUserSignedIn?.group_id === 1 ? (
+                      {!localStorage.getItem("isLoggedIn_auth") ? (
                         <div
                           className={producttable_price}
                           onClick={(e) => handleClick(e)}
@@ -272,7 +271,9 @@ const PDPTable = ({ classes, tableData, setPdpSellerData, pdpSellerData }) => {
                         </span>
                       </div>
                       <div className={price_list_eta}>
-                        <span className={seller_eta_value}>{item?.eta}{" "}Days</span>
+                        <span className={seller_eta_value}>
+                          {item?.eta} Days
+                        </span>
                       </div>
 
                       <div className={price_list_hub}>
