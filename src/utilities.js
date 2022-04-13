@@ -38,3 +38,36 @@ export const getAdminToken = (callback) => {
     })
     .catch((err) => {});
 };
+
+export const getSigninedUserData = (token) => {
+  axios
+    .get(Constant.customerMeDetailUrl(), {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+    .then((res) => {
+      localStorage.setItem("userdata", JSON.stringify(res?.data));
+      localStorage.setItem(
+        "isLoggedIn_auth",
+        res?.data?.group_id === 1 ? false : true
+      );
+
+      let iskycFormFilled = res?.data;
+      if (iskycFormFilled?.group_id === 1) {
+        // setTimeout(() => {
+        //   history("/");
+        // }, 1000 / 2);
+      } else if (
+        iskycFormFilled?.group_id === 5 ||
+        iskycFormFilled?.group_id === 6
+      ) {
+        let isDataValid = iskycFormFilled?.custom_attributes?.filter(
+          (itm) => itm?.attribute_code === "kyc_status"
+        );
+        // KycFormOpenClose(isDataValid, iskycFormFilled?.group_id);
+      }
+    })
+    .catch((err) => {});
+};
