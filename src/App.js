@@ -82,302 +82,39 @@ const App = () => {
           <Userdetails />
           <Routes>
             {/* header section */}
-            <Route
-              path="/"
-              element={
-                <>
-                  {" "}
-                  <Home /> <ScrollToTop /> <Footer />{" "}
-                </>
-              }
-              exact
-            />
-            <Route
-              path="/register/:type"
-              element={
-                <>
-                  {" "}
-                  <Registration /> <ScrollToTop /> <Footer />
-                </>
-              }
-              exact
-            />
-            <Route
-              path="/Products"
-              element={
-                <>
-                  {" "}
-                  <Products /> <ScrollToTop /> <Footer />{" "}
-                </>
-              }
-              exact
-            />
-            <Route
-              path="/Aboutus"
-              element={
-                <>
-                  {" "}
-                  <Aboutus /> <ScrollToTop /> <Footer />
-                </>
-              }
-              exact
-            />
-            <Route
-              path="/coming-soon"
-              element={
-                <>
-                  <ComingSoon /> <ScrollToTop /> <Footer />
-                </>
-              }
-              exact
-            />
+            <Route path="/" element={ <> {" "} <Home /> <ScrollToTop /> <Footer />{" "} </> } exact />
+            <Route path="/register/:type" element={ <> {" "} <Registration /> <ScrollToTop /> <Footer /> </> } exact />
+            <Route path="/products" element={ <> {" "} <Products /> <ScrollToTop /> <Footer />{" "} </> } exact />
+            <Route path="/Aboutus" element={ <> {" "} <Aboutus /> <ScrollToTop /> <Footer /> </> } exact />
+            <Route path="/coming-soon" element={ <> <ComingSoon /> <ScrollToTop /> <Footer /> </> } exact />
 
             {/* Footer section */}
-            <Route
-              path="/legal"
-              element={
-                <>
-                  {" "}
-                  <Legal /> <ScrollToTop /> <Footer />
-                </>
-              }
-              exact
-            />
-            <Route
-              path="/gdpr"
-              element={
-                <>
-                  {" "}
-                  <GDPR /> <ScrollToTop /> <Footer />
-                </>
-              }
-              exact
-            />
-            <Route
-              path="/Faqs"
-              element={
-                <>
-                  {" "}
-                  <FAQ /> <ScrollToTop /> <Footer />
-                </>
-              }
-              exact
-            />
-            <Route
-              path="/Contactus"
-              element={
-                <>
-                  {" "}
-                  <Contactus /> <ScrollToTop /> <Footer />{" "}
-                </>
-              }
-              exact
-            />
-            <Route
-              path="/privacypolicy"
-              element={
-                <>
-                  {" "}
-                  <Privacypolicy /> <ScrollToTop /> <Footer />{" "}
-                </>
-              }
-              exact
-            />
-            <Route
-              path="/termsofuse"
-              element={
-                <>
-                  {" "}
-                  <Termsofuse /> <ScrollToTop /> <Footer />{" "}
-                </>
-              }
-              exact
-            />
-            <Route
-              path="/rrpolicy"
-              element={
-                <>
-                  {" "}
-                  <RRpolicy /> <ScrollToTop /> <Footer />{" "}
-                </>
-              }
-              exact
-            />
-            <Route
-              path="/training"
-              element={
-                <>
-                  {" "}
-                  <Training /> <ScrollToTop /> <Footer />{" "}
-                </>
-              }
-              exact
-            />
-            <Route
-              path="/seller_advantage"
-              element={
-                <>
-                  {" "}
-                  <Selleradvantage /> <ScrollToTop /> <Footer />
-                </>
-              }
-              exact
-            />
-            <Route
-              path="/buyer_advantage"
-              element={
-                <>
-                  {" "}
-                  <Buyeradvantage /> <ScrollToTop /> <Footer />
-                </>
-              }
-              exact
-            ></Route>
-            <Route
-              path="/career"
-              element={
-                <>
-                  {" "}
-                  <Career /> <ScrollToTop /> <Footer />{" "}
-                </>
-              }
-              exact
-            ></Route>
-            <Route
-              path="/blogsmain"
-              element={
-                <>
-                  {" "}
-                  <Blogsmain /> <ScrollToTop /> <Footer />
-                </>
-              }
-              exact
-            />
-            <Route
-              path="/blogsdetails/:id"
-              element={
-                <>
-                  {" "}
-                  <Blogs /> <ScrollToTop />
-                  <Footer />{" "}
-                </>
-              }
-              exact
-            />
-            <Route
-              path="/faqs"
-              element={
-                <>
-                  {" "}
-                  <FAQ /> <ScrollToTop /> <Footer />{" "}
-                </>
-              }
-              exact
-            />
+            <Route path="/legal" element={ <> {" "} <Legal /> <ScrollToTop /> <Footer /> </> } exact />
+            <Route path="/gdpr" element={ <> {" "} <GDPR /> <ScrollToTop /> <Footer /> </> } exact />
+            <Route path="/Faqs" element={ <> {" "} <FAQ /> <ScrollToTop /> <Footer /> </> } exact />
+            <Route path="/Contactus" element={ <> {" "} <Contactus /> <ScrollToTop /> <Footer />{" "} </> } exact />
+            <Route path="/privacypolicy" element={ <> {" "} <Privacypolicy /> <ScrollToTop /> <Footer />{" "} </> } exact />
+            <Route path="/termsofuse" element={ <> {" "} <Termsofuse /> <ScrollToTop /> <Footer />{" "} </> } exact />
+            <Route path="/rrpolicy" element={ <> {" "} <RRpolicy /> <ScrollToTop /> <Footer />{" "} </> } exact />
+            <Route path="/training" element={ <> {" "} <Training /> <ScrollToTop /> <Footer />{" "} </> } exact />
+            <Route path="/seller_advantage" element={ <> {" "} <Selleradvantage /> <ScrollToTop /> <Footer /> </> } exact />
+            <Route path="/buyer_advantage" element={ <> {" "} <Buyeradvantage /> <ScrollToTop /> <Footer /> </> } exact ></Route>
+            <Route path="/career" element={ <> {" "} <Career /> <ScrollToTop /> <Footer />{" "} </> } exact ></Route>
+            <Route path="/blogsmain" element={ <> {" "} <Blogsmain /> <ScrollToTop /> <Footer /> </> } exact />
+            <Route path="/blogsdetails/:id" element={ <> {" "} <Blogs /> <ScrollToTop /> <Footer />{" "} </> } exact />
+            <Route path="/faqs" element={ <> {" "} <FAQ /> <ScrollToTop /> <Footer />{" "} </> } exact />
 
             {/* user section */}
-            <Route
-              path="/sellerdashboard/:currenttab"
-              element={
-                <>
-                  {" "}
-                  <SellerDashboard /> <ScrollToTop /> <Footer />
-                </>
-              }
-              exact
-            />
-            <Route
-              path="/sellerdashboard/:currenttab/:id"
-              element={
-                <>
-                  {" "}
-                  <SellerDashboard /> <ScrollToTop /> <Footer />
-                </>
-              }
-              exact
-            />
-            <Route
-              path="/buyerdashboard/:currenttab"
-              element={
-                <>
-                  {" "}
-                  <BuyerDashboard /> <ScrollToTop />
-                  <Footer />{" "}
-                </>
-              }
-              exact
-            />
-            <Route
-              path="/sellerprofile/:id"
-              element={
-                <>
-                  {" "}
-                  <SellerProfile /> <ScrollToTop /> <Footer />
-                </>
-              }
-              exact
-            />
-            <Route
-              path="/pending-invoice"
-              element={
-                <>
-                  {" "}
-                  <PendingInvoice /> <ScrollToTop /> <Footer />{" "}
-                </>
-              }
-              exact
-            />
-            <Route
-              path="/checkout"
-              element={
-                <>
-                  {" "}
-                  <Checkout /> <ScrollToTop /> <Footer />{" "}
-                </>
-              }
-              exact
-            />
-            <Route
-              path="/mycart"
-              element={
-                <>
-                  {" "}
-                  <Mycart /> <ScrollToTop /> <Footer />{" "}
-                </>
-              }
-              exact
-            />
-            <Route
-              path="/thankyou/:type"
-              element={
-                <>
-                  {" "}
-                  <ThankYouPage /> <ScrollToTop />
-                  <Footer />{" "}
-                </>
-              }
-              exact
-            ></Route>
-            <Route
-              path="/edit"
-              element={
-                <>
-                  {" "}
-                  <Accountinfo /> <ScrollToTop /> <Footer />{" "}
-                </>
-              }
-              exact
-            />
-            <Route
-              path="/kycdetails"
-              element={
-                <>
-                  {" "}
-                  <KYCDetails /> <ScrollToTop /> <Footer />{" "}
-                </>
-              }
-              exact
-            />
+            <Route path="/sellerdashboard/:currenttab" element={ <> {" "} <SellerDashboard /> <ScrollToTop /> <Footer /> </> } exact />
+            <Route path="/sellerdashboard/:currenttab/:id" element={ <> {" "} <SellerDashboard /> <ScrollToTop /> <Footer /> </> } exact />
+            <Route path="/buyerdashboard/:currenttab" element={ <> {" "} <BuyerDashboard /> <ScrollToTop /> <Footer />{" "} </> } exact />
+            <Route path="/sellerprofile/:id" element={ <> {" "} <SellerProfile /> <ScrollToTop /> <Footer /> </> } exact />
+            <Route path="/pending-invoice" element={ <> {" "} <PendingInvoice /> <ScrollToTop /> <Footer />{" "} </> } exact />
+            <Route path="/checkout" element={ <> {" "} <Checkout /> <ScrollToTop /> <Footer />{" "} </> } exact />
+            <Route path="/mycart" element={ <> {" "} <Mycart /> <ScrollToTop /> <Footer />{" "} </> } exact />
+            <Route path="/thankyou/:type" element={ <> {" "} <ThankYouPage /> <ScrollToTop /> <Footer />{" "} </> } exact ></Route>
+            <Route path="/edit" element={ <> {" "} <Accountinfo /> <ScrollToTop /> <Footer />{" "} </> } exact />
+            <Route path="/kycdetails" element={ <> {" "} <KYCDetails /> <ScrollToTop /> <Footer />{" "} </> } exact />
           </Routes>
 
           {/* Popup component using context api */}

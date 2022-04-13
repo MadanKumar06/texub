@@ -3,9 +3,24 @@ import "./Departments.scss";
 import Departments1 from "../../Data";
 import { IconButton, InputBase, Paper } from "@mui/material";
 import { Menu, Search } from "@mui/icons-material";
+import { useStateValue } from "../../../store/state";
+import { useNavigate } from "react-router-dom";
 
 export const Departments = ({ data }) => {
   const [isActive, setIsActive] = useState(true);
+  const [search, setSearch] = useState("");
+  const [{}, dispatch] = useStateValue();
+  const history = useNavigate();
+
+  const handleSearchClick = (event) => {
+    event.preventDefault();
+    dispatch({
+      type: "SET_SEARCH",
+      value: search,
+    });
+    history("/products");
+  };
+
   return (
     <div className="Departments">
       <div className="Departments_Body_Search">
@@ -57,14 +72,20 @@ export const Departments = ({ data }) => {
               component="form"
               sx={{ p: "2px 4px", display: "flex", alignItems: "center" }}
             >
-              <IconButton type="submit" sx={{ p: "10px" }} aria-label="search">
-                <Search />
-              </IconButton>
               <InputBase
                 sx={{ ml: 1, flex: 1 }}
                 placeholder="Search Entire Store Here…"
-                inputProps={{ "aria-label": "search google maps" }}
+                inputProps={{ "aria-label": " " }}
+                onChange={(event) => setSearch(event.target.value)}
               />
+              <IconButton
+                type="submit"
+                onClick={(event) => handleSearchClick(event)}
+                sx={{ p: "10px" }}
+                aria-label="search"
+              >
+                <Search />
+              </IconButton>
             </Paper>
           </div>
           <div className="Body_Searchbar_Down_images">

@@ -14,6 +14,7 @@ import { Search } from "@mui/icons-material";
 import ProductFilterDrawer from "./ProductFilter";
 import axios from "axios";
 import Constant from "../../../Constant";
+import { useStateValue } from "../../../store/state";
 
 //Basic need
 import todays_deal_active from "../../../Assets/BasicNeeded/PLPIcons/today_deal.png";
@@ -24,6 +25,7 @@ import just_launch_active from "../../../Assets/BasicNeeded/PLPIcons/just_launch
 import just_launch_inactive from "../../../Assets/BasicNeeded/PLPIcons/just_launch_inactive.png";
 
 const Productlists = ({ setProductFetchApi, productFetchApi }) => {
+  const [{ homeSearch }, dispatch] = useStateValue();
   // const [productlistdata, setProductlistdata] = useState({
   //   hub: "",
   //   conditions: "",
@@ -48,6 +50,14 @@ const Productlists = ({ setProductFetchApi, productFetchApi }) => {
       [event.target.name]: event.target.value,
     }));
   };
+  useEffect(() => {
+    if (homeSearch !== "") {
+      setProductFetchApi((prev) => ({
+        ...prev,
+        search_product: homeSearch,
+      }));
+    }
+  }, [homeSearch]);
   const handleImageChange = (event) => {
     setFilterHeaderImage((prevState) => ({
       ...prevState,
@@ -222,7 +232,7 @@ const Productlists = ({ setProductFetchApi, productFetchApi }) => {
           >
             {productlistdropdown?.eta?.length ? (
               productlistdropdown?.eta?.map((itm) => (
-                <MenuItem value={itm}>{itm}</MenuItem>
+                <MenuItem value={itm?.label}>{itm?.label}</MenuItem>
               ))
             ) : (
               <MenuItem>No option</MenuItem>

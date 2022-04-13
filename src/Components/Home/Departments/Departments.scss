@@ -121,6 +121,12 @@
             font-weight: 600;
             text-transform: capitalize;
           }
+          .MuiButtonBase-root {
+            background: #002d56;
+            color: #ffffff;
+            padding: 0.7% 2%;
+            border-radius: 3px;
+          }
         }
       }
     }
