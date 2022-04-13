@@ -114,7 +114,7 @@ const Header = ({ classes }) => {
               <Link to="/aboutus">About Us</Link>
             </Typography>
             <Typography variant="h6" className={classes.title}>
-              <Link to="/Products">Products</Link>
+              <Link to="/products">Products</Link>
               <span>New</span>
             </Typography>
             <Typography variant="h6" className={classes.title}>
@@ -147,7 +147,7 @@ const Header = ({ classes }) => {
                 Sign In
               </Button>
             </div>
-          ) : (
+          ) : isSignedIn?.group_id === 1 ? (
             <div className={classes.header_button_main}>
               <Button
                 className={classes.header_button_signin}
@@ -156,6 +156,8 @@ const Header = ({ classes }) => {
                 Sign Out
               </Button>
             </div>
+          ) : (
+            ""
           )}
           <CurrencyPopup />
         </Toolbar>

@@ -73,14 +73,14 @@ const WantToBuy = () => {
       }));
       errorHandle = true;
     }
-    if (wantTobuyData?.closing_date?.toString() === "Invalid Date") {
-      document.getElementById("closing_date")?.focus();
-      setInputValidation((prevState) => ({
-        ...prevState,
-        closing_date: "Please select date.",
-      }));
-      errorHandle = true;
-    }
+    // if (wantTobuyData?.closing_date?.toString() === "Invalid Date") {
+    //   document.getElementById("closing_date")?.focus();
+    //   setInputValidation((prevState) => ({
+    //     ...prevState,
+    //     closing_date: "Please select date.",
+    //   }));
+    //   errorHandle = true;
+    // }
     if (!errorHandle) {
       FinalWantToBuy();
     }
@@ -90,9 +90,10 @@ const WantToBuy = () => {
   useEffect(() => {
     const fetchMainCategoryData = () => {
       axios
-        .get(Constant.baseUrl() + "/getCategoryList", {
+        .get(Constant.baseUrl() + "/wtbMainCategoryList", {
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         })
         .then((res) => {
@@ -130,14 +131,13 @@ const WantToBuy = () => {
     let data = {
       data: {
         store_id: 1,
-        buyer_id: "167",
+        buyer_id: JSON.parse(localStorage.getItem("userdata")?.id),
         part_number: wantTobuyData?.part_number,
         model_number: wantTobuyData?.model_name_number,
         description: wantTobuyData?.description,
         main_category_id: wantTobuyData?.main_category?.value,
         quantity: wantTobuyData?.quantity,
         hub_id: wantTobuyData?.hub?.hub_id,
-        closing_date: wantTobuyData?.closing_date,
         notes: wantTobuyData?.notes,
       },
     };
@@ -349,7 +349,7 @@ const WantToBuy = () => {
                 {inputValidation?.hub}
               </InputLabel>
             </div>
-            <div className="block_1_input">
+            {/* <div className="block_1_input">
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DesktopDatePicker
                   label="Closing Date"
@@ -377,7 +377,7 @@ const WantToBuy = () => {
               <InputLabel className="validation_error">
                 {inputValidation?.closing_date}
               </InputLabel>
-            </div>
+            </div> */}
           </div>
         </div>
         <div className="block_4 input_block">

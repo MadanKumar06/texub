@@ -8,12 +8,13 @@ import "./styles.scss";
 import axios from "axios";
 import Constant from "../../../Constant";
 // import Vieworders from '../../Common/Vieworders'
+import { useStateValue } from "../../../store/state";
 import WantToBuy from "./wantToBuyForm";
 
 function Index() {
   const [tableData, setTableData] = useState([]);
   const [apiTableData, setApiTableData] = useState([]);
-
+  const [{}, dispatch] = useStateValue();
   const [isVieworders, setisVieworders] = useState(false);
   const orders = () => {
     setisVieworders(true);
@@ -34,6 +35,10 @@ function Index() {
   };
   useEffect(() => {
     const fetchTableData = async () => {
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: true,
+      });
       let customerId = JSON.parse(localStorage.getItem("userdata"));
       try {
         const tabledata = await axios({
@@ -46,9 +51,17 @@ function Index() {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         });
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
         setApiTableData(tabledata?.data);
       } catch (e) {
         console.log(e);
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
       }
     };
     fetchTableData();
@@ -67,7 +80,7 @@ function Index() {
         },
       },
     },
-    { name: "PART NUMBER", label: "PART NUMBER" },
+    { name: "sku", label: "PART NUMBER" },
     {
       name: "main_category_id",
       label: "CATEGORY",
