@@ -288,6 +288,8 @@ function Index({ type, pid }) {
     data();
   }, [id, eventcheck]);
 
+  console.log(updateProductList)
+
   useEffect(() => {
     if (olddata.length === 0) return;
     let temp = [];
@@ -342,6 +344,10 @@ function Index({ type, pid }) {
       weight: olddata?.weight,
       warranty_days: olddata?.warranty_days,
     }));
+    setUpdateProductList((prevState) => ({
+      ...prevState,
+      other_condition: olddata?.other_condition
+    }))
     dropdownListFromApi?.dropDownList?.condition_list?.filter(
       (d) =>
         d.value === olddata?.product_condition &&
@@ -436,8 +442,6 @@ function Index({ type, pid }) {
     }
   };
 
-  console.log(updateform?.no_pieces_per)
-
   const updateProduct = async () => {
     let productdata = [];
     count.filter((data) => {
@@ -448,6 +452,7 @@ function Index({ type, pid }) {
     let restrictedcountries = updateProductList?.restricts_country?.map(
       (country) => country.value
     );
+    let resregiondata = updateProductList?.resregion?.map(rr => rr.region_id)
     let warrantycountries = [];
     updateProductList?.warcountry?.filter((country) =>
       warrantycountries.push(country.value)
@@ -485,7 +490,7 @@ function Index({ type, pid }) {
               product_length: updateform?.product_length,
               weight: updateform?.weight,
               restrictions: updateProductList?.restrictions?.value,
-              restricted_region: updateProductList?.resregion?.region_id,
+              restricted_region: resregiondata.toString(),
               restricted_country: restrictedcountries.toString(),
               description: updateform?.notes,
               product_details: productDetailSave,
@@ -553,7 +558,7 @@ function Index({ type, pid }) {
               customer_id: user?.id,
               product_id: id,
               product_condition: updateProductList?.conditions?.value,
-              other_condition: 1,
+              other_condition: updateProductList?.other_condition,
               warranty_type: updateProductList?.warranty?.value,
               warranty_country: warrantycountries.toString(),
               warranty_days: updateform?.warranty_days,
@@ -565,7 +570,7 @@ function Index({ type, pid }) {
               product_length: updateform?.product_length,
               weight: updateform?.weight,
               restrictions: updateProductList?.restrictions?.value,
-              restricted_region: updateProductList?.resregion?.region_id,
+              restricted_region: resregiondata.toString(),
               restricted_country: restrictedcountries.toString(),
               description: updateform?.notes,
               product_details: productDetailEdit,
@@ -1160,7 +1165,7 @@ function Index({ type, pid }) {
                 <Autocomplete
                   multiple
                   id="checkboxes-tags-demo"
-                  options={restricts_country ? restricts_country : ""}
+                  options={restricts_country ? restricts_country : []}
                   disableCloseOnSelect
                   value={updateProductList?.restricts_country}
                   getOptionLabel={(option) =>
