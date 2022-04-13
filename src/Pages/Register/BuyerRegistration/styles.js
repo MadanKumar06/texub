@@ -13,15 +13,39 @@ const styles = (theme) => ({
   text_field_container: {
     width: "100%",
   },
+  check_container: {
+    width: "100%",
+    display: "flex",
+    position: "relative",
+    flexDirection: "column",
+    alignItems: "flex-start",
+    "& .MuiCheckbox-root ": {
+      width: "min-content",
+      position: "absolute",
+      left: "-13px",
+      top: "5px",
+    },
+    "& p": {
+      marginLeft: "2em",
+      color: "#5C6369",
+      fontSize: "16px",
+      fontWeight: "600",
+      "& a": {
+        color: "#002D56",
+        textDecoration: "underline",
+        cursor: "pointer",
+      },
+    },
+  },
   input_textField: {
     display: "flex",
-    paddingBottom: "2%",
+    paddingBottom: "3%",
     gap: "2em",
     "@media (max-width:580px)": {
       gap: "25px",
       display: "flex",
       flexDirection: "column",
-      paddingBottom: "0",
+      paddingBottom: "6%",
     },
   },
   auto_complete_input: {

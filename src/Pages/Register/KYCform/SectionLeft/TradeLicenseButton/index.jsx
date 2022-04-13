@@ -33,6 +33,7 @@ const TradeLicenseButton = ({
     input_image_name_clear_btn,
     validation_error,
     checkbox_label,
+    datepicker,
   } = classes;
 
   //Data state and onchange event
@@ -216,6 +217,19 @@ const TradeLicenseButton = ({
               />
             )}
           />
+          {FormValues?.trade_expiration_date ? (
+            <Clear
+              className={datepicker}
+              onClick={() => {
+                SetFormValues((prev) => ({
+                  ...prev,
+                  trade_expiration_date: null,
+                  expiry_checkbox: false,
+                  trade_remainder_check: false,
+                }));
+              }}
+            />
+          ) : null}
         </LocalizationProvider>
         <InputLabel className={validation_error}>
           {inputValidation?.trade_expiration_date}

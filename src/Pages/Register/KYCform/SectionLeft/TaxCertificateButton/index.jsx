@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import styles from "../styles";
-
 import {
   TextField,
   InputLabel,
@@ -33,6 +32,7 @@ const TaxCertificateButton = ({
     input_image_name_clear_btn,
     validation_error,
     checkbox_label,
+    datepicker,
   } = classes;
 
   //Date onchange event
@@ -192,6 +192,19 @@ const TaxCertificateButton = ({
               />
             )}
           />
+          {FormValues?.tax_expiration_date ? (
+            <Clear
+              className={datepicker}
+              onClick={() => {
+                SetFormValues((prev) => ({
+                  ...prev,
+                  tax_expiration_date: null,
+                  tax_remainder_check: false,
+                  tax_expiry_checkbox: false,
+                }));
+              }}
+            />
+          ) : null}
         </LocalizationProvider>
         <InputLabel className={validation_error}>
           {inputValidation?.tax_expiration_date}
