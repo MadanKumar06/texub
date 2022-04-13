@@ -31,9 +31,9 @@
         background-repeat: no-repeat;
         padding: 15px 29px 0;
         .pdp_header_bottom_container {
+          margin-left: 105px;
           display: flex;
-          gap: 15px;
-          justify-content: space-around;
+          gap: 2em;
           padding: 15px 0px;
           border-bottom: 1px solid #cccccc;
           span {
@@ -254,6 +254,13 @@
     .section_main_sub
     .section_main_sub_container {
     padding: 29px 10px 0;
+    .pdp_header_bottom_container{
+      margin-left: 0;
+      flex-wrap: wrap;
+      .pdp_header_bottom_container{
+        width: 40%;
+      }
+    }
   }
 }
 @media (max-width: 767px) {
