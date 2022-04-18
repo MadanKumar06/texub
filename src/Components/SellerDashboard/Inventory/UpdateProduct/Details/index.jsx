@@ -101,6 +101,7 @@ function Index({
     setcurrenthub(temp);
   }, [currentdata?.hub_id]);
 
+  console.log(currenthub)
   useEffect(async () => {
     let country_code = JSON.parse(
       localStorage.getItem("userdata")
@@ -122,7 +123,7 @@ function Index({
         },
       });
       let temp = [];
-      hubcurrencydata?.data?.filter((hub) => {
+      hubcurrencydata?.data?.[0]?.currency_details?.filter((hub) => {
         temp.push({
           label: hub?.currency_code,
           value: hub?.currency_id,
