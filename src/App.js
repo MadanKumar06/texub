@@ -59,6 +59,7 @@ const App = () => {
       console.log(res);
     });
   }, []);
+
   const [
     {
       kycOpenClose,
