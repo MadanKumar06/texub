@@ -111,7 +111,9 @@ const Header = ({ classes }) => {
           </div>
           <div className={classes.title_main}>
             <Typography variant="h6" className={classes.title}>
-              <Link to="/aboutus">About Us</Link>
+              <Link to="/aboutus" className={classes.middle}>
+                About Us
+              </Link>
             </Typography>
             <Typography variant="h6" className={classes.title}>
               <Link to="/products">Products</Link>

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./styles.scss";
 import MUITable from "../../../Common/MUITable";
-import hp from "../../../../Assets/sellerdashboard/inventory/hp.png";
 import Pagination from "../../../Pagination";
 function Index({ registerproduct, gridData }) {
   const [tableData, setTableData] = useState([]);
@@ -52,7 +51,7 @@ function Index({ registerproduct, gridData }) {
           return (
             <div
               className="productGrid__action"
-              onClick={() => registerproduct("addproduct", value,"addNew")}
+              onClick={() => registerproduct("addproduct", value, "addNew")}
             >
               Sell Yours
             </div>
@@ -61,57 +60,28 @@ function Index({ registerproduct, gridData }) {
       },
     },
   ];
-
-  const table = [
-    {
-      logo: hp,
-      pname:
-        "Hp 14-Dv0054Tu Pavilion Laptop (11Th Gen Intel Core I5-1135G7/…512Gb Sdd/Intel Iris Xe Graphics/Windows 10/Mso/Fhd), 35.56 Cm (14 Inch)",
-      category: "Laptop",
-      sku: "SK-3102",
-    },
-    {
-      logo: hp,
-      pname: "Lenovo Dpin Yoga 6 Convertible (Amd Ryzen 7-5700U/16Gb/1Tb Ssd/…",
-      category: "Laptop",
-      sku: "SK-3102",
-    },
-    {
-      logo: hp,
-      pname: "Acer Sf314-42 Swift 3 Laptop (Amd R5-4500U/8 Gb/512 Gb Hdd/…",
-      category: "Laptop",
-      sku: "SK-3102",
-    },
-    {
-      logo: hp,
-      pname: "Apple Macbook Pro Mvvj2Hn/A 2.6Ghz 6-Core 9Th-Gen I7, 16Gb, …",
-      category: "Laptop",
-      sku: "SK-3102",
-    },
-    {
-      logo: hp,
-      pname: "Apple Macbook Pro Mvvj2Hn/A 2.6Ghz 6-Core 9Th-Gen I7, 16Gb, …",
-      category: "Laptop",
-      sku: "SK-3102",
-    },
-  ];
   const PaginateDataSplit = (event) => {
+    if (gridData?.length === 0) return setTableData([]);
     setTableData(event);
   };
   return (
     <div className="productGrid_inventory">
       <MUITable
         columns={columns}
-        table={tableData}
+        table={tableData?.length ? tableData : []}
         options={options}
         className="productGrid__table"
       />
 
-      <Pagination
-        PaginateData={PaginateDataSplit}
-        DataList={gridData}
-        PagePerRow={4}
-      />
+      {gridData?.length > 0 ? (
+        <Pagination
+          PaginateData={PaginateDataSplit}
+          DataList={gridData?.length ? gridData : []}
+          PagePerRow={4}
+        />
+      ) : (
+        ""
+      )}
     </div>
   );
 }
