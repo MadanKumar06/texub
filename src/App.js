@@ -74,7 +74,7 @@ const App = () => {
   let isKYCSubmitted = JSON.parse(localStorage.getItem("userdata"));
   useEffect(() => {
     if (isKYCSubmitted) {
-      isKYCSubmitted?.custom_attributes?.[3]?.value === "0" &&
+      isKYCSubmitted?.group_id !== 1 && isKYCSubmitted?.custom_attributes?.[3]?.value === "0" &&
         dispatch({
           type: "SET_KYC_OPEN_CLOSE",
           value: true,

@@ -61,6 +61,7 @@ export const Products = () => {
 
   useEffect(() => {
     const fetchCategoryData = () => {
+      
       axios
         .get(Constant.baseUrl() + "/getCategoriesList", {
           headers: {

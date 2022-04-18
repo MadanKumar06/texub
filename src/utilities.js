@@ -39,7 +39,7 @@ export const getAdminToken = (callback) => {
     .catch((err) => {});
 };
 
-export const getSigninedUserData = (token) => {
+export const getSigninedUserData = () => {
   axios
     .get(Constant.customerMeDetailUrl(), {
       headers: {

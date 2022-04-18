@@ -62,6 +62,10 @@ const OfficeAddressDetails = ({
             (itm) => itm?.value === country_readonly?.[0]?.value
           );
           setCountryList(temp);
+          SetFormValues((prev) => ({
+            ...prev,
+            country: temp?.[0]?.label,
+          }));
         })
         .catch((err) => {});
     };

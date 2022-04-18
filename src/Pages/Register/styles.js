@@ -1,12 +1,12 @@
 const styles = (theme) => ({
   register_main_container_buyer: {
-    backgroundImage: "url('/Images/user_selection_bg.png')",
+    backgroundImage: "url('/Images/bg-min.png')",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
     backgroundSize: "cover",
   },
   register_main_container_seller: {
-    backgroundImage: "url('/Images/buyer_regirtration_bg.png')",
+    backgroundImage: "url('/Images/buyer_regirtration_bg-min.png')",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
     backgroundSize: "cover",
