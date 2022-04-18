@@ -60,14 +60,13 @@ const PDPTable = ({ classes, tableData, setPdpSellerData, pdpSellerData }) => {
     if (tableData?.tableone?.length) {
       let temp = tableData?.tableone?.map((itm) => ({
         ...itm,
-        //  in_stock: 100,
         is_moq_valid: itm.moq,
       }));
       setIs_table_one(temp);
       handleRadioGroupChange(temp[0]);
       setPdpSellerData((prevState) => ({
         ...prevState,
-        seller_code:tableData?.tableone?.[0]?.seller_code,
+        seller_code: tableData?.tableone?.[0]?.seller_code,
         seller_id: tableData?.tableone?.[0]?.seller_id,
         warranty_days: tableData?.tableone?.[0]?.warranty_days,
         packing_details: tableData?.tableone?.[0]?.packing_details,
@@ -134,7 +133,6 @@ const PDPTable = ({ classes, tableData, setPdpSellerData, pdpSellerData }) => {
       // no_of_pieces: event?.no_of_pieces,
     }));
   };
-  let isGuestUserSignedIn = JSON.parse(localStorage.getItem("userdata"));
   return (
     <div className={table_container}>
       <div className={pdp_middle_wapper}>
@@ -250,8 +248,7 @@ const PDPTable = ({ classes, tableData, setPdpSellerData, pdpSellerData }) => {
                         </span>
                       </div>
 
-                      {!localStorage.getItem("isLoggedIn_auth") ||
-                      isGuestUserSignedIn?.group_id === 1 ? (
+                      {!localStorage.getItem("isLoggedIn_auth") ? (
                         <div
                           className={producttable_price}
                           onClick={(e) => handleClick(e)}
@@ -273,7 +270,9 @@ const PDPTable = ({ classes, tableData, setPdpSellerData, pdpSellerData }) => {
                         </span>
                       </div>
                       <div className={price_list_eta}>
-                        <span className={seller_eta_value}>{item?.eta}{" "}Days</span>
+                        <span className={seller_eta_value}>
+                          {item?.eta} Days
+                        </span>
                       </div>
 
                       <div className={price_list_hub}>

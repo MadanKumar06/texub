@@ -64,7 +64,7 @@ const BuyerKYCformSectionLeft = ({ classes }) => {
       <div className={buyer_kyc_section_left_container}>
         <header className={header_section}>
           <p>KYC Form</p>
-          <Clear className={clear_btn} onClick={() => handleClose()} />
+          {/* <Clear className={clear_btn} onClick={() => handleClose()} /> */}
         </header>
         <div className={sections}>
           <div className={section_left}>

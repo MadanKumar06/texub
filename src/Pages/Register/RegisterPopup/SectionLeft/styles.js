@@ -5,7 +5,7 @@ const styles = (theme) => ({
     display: "flex",
     width: "90%",
     // overflow: "auto",
-    gap: "3em",
+    gap: "6em",
     height: "fit-content",
     overflowY: "auto",
     "@media (max-width:1299px)": {
@@ -43,14 +43,14 @@ const styles = (theme) => ({
     background: "#DDB363",
   },
   section_main_buyer: {
-    backgroundImage: "url('/Images/user_selection_bg.png')",
+    backgroundImage: "url('/Images/bg-min.png')",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
     backgroundSize: "cover",
     position: "relative",
   },
   section_main_seller: {
-    backgroundImage: "url('/Images/buyer_regirtration_bg.png')",
+    backgroundImage: "url('/Images/buyer_regirtration_bg-min.png')",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
     backgroundSize: "cover",

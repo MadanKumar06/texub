@@ -1,10 +1,21 @@
-import React ,{useState}from "react";
+import React ,{useEffect, useState}from "react";
 import "./styles.scss";
 import { Clear } from "@mui/icons-material";
 import { Button, Box } from "@mui/material";
 import {Modal,Backdrop } from "@mui/material";
-const Index = ({ closePOPup }) => {
+const Index = ({ closePOPup, popid, direct }) => {
   const [open, setOpen] = useState(true);
+  console.log(popid)
+  console.log(direct)
+  const [currentdata, setcurrentdata] = useState()
+
+  useEffect(() => {
+    let temp = direct.find(d => d?.wtb_id === popid)
+    setcurrentdata(temp)
+  },[direct])
+
+  console.log(currentdata)
+
   return (
     <Modal
       aria-labelledby="transition-modal-title"
@@ -21,7 +32,7 @@ const Index = ({ closePOPup }) => {
         <div className="enquirydetails_box">
           <div className="enquirydetails_heading">
             <p>
-              Enquiry No.<span> 0000000006</span>
+              Enquiry No.<span> {currentdata?.enquiry_id}</span>
             </p>
             <Clear onClick={() => closePOPup(false)} />
           </div>
@@ -29,11 +40,14 @@ const Index = ({ closePOPup }) => {
           <div className="enquirydetails_section">
             <div className="enquirydetails">
               <p className="heading">Buyer Code</p>
-              <p className="details">BU201201</p>
+              <p className="details">{currentdata?.buyer_code}</p>
+            </div>
+            <div className="status">
+              {currentdata?.wtb_status}
             </div>
             <div className="enquirydetails">
               <p className="heading">Part Number</p>
-              <p className="details">RT-5700U</p>
+              <p className="details">{currentdata?.sku}</p>
             </div>
 
             <div className="enquirydetails">
@@ -43,21 +57,20 @@ const Index = ({ closePOPup }) => {
             <div className="enquirydetails">
               <p className="heading">Product Description</p>
               <p className="details">
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-                nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam.
+                {currentdata?.description}
               </p>
             </div>
             <div className="enquirydetails">
               <p className="heading">Main Category</p>
-              <p className="details">Laptop</p>
+              <p className="details">{currentdata?.main_category_id}</p>
             </div>
             <div className="enquirydetails">
               <p className="heading">Quantity</p>
-              <p className="details">50</p>
+              <p className="details">{currentdata?.quantity}</p>
             </div>
             <div className="enquirydetails">
               <p className="heading">Hub</p>
-              <p className="details">Mumbai</p>
+              <p className="details">{currentdata?.hub_id}</p>
             </div>
             <div className="enquirydetails">
               <p className="heading">Enquiry Date</p>
@@ -70,14 +83,17 @@ const Index = ({ closePOPup }) => {
             <div className="enquirydetails">
               <p className="heading">Notes</p>
               <p className="details">
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-                nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam.
+                {currentdata?.notes}
               </p>
             </div>
-            <Box className="button_box">
-              <Button className="button_decline">Decline</Button>
-              <Button className="button_accept">Accept</Button>
-            </Box>
+            {currentdata?.seller_enquiry_status === "Enquiry Received" ? 
+              <Box className="button_box">
+                <Button className="button_decline">Decline</Button>
+                <Button className="button_accept">Accept</Button>
+              </Box>
+            :
+            <Box style={{color: "#333C42",fontSize: "20px"}} className="button_box">{currentdata?.seller_enquiry_status}</Box>
+            }
           </div>
         </div>
       </div>

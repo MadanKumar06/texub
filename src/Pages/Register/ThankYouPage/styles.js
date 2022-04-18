@@ -36,6 +36,8 @@ const styles = () => ({
     margin: "0",
     color: "#5C6369",
     marginTop: "17px",
+    fontWeight: "600",
+    fontStyle: "italic",
   },
   thankyou_for_register: {
     color: "#333C42",
@@ -44,6 +46,7 @@ const styles = () => ({
     textAlign: "center",
     "& p": {
       margin: "0",
+      letterSpacing: "1.3px",
     },
   },
   thankyou_button_signin: {
@@ -63,6 +66,7 @@ const styles = () => ({
     color: "#002D56",
     textDecoration: "underline",
     fontWeight: "600",
+    letterSpacing: "0.66px",
   },
 });
 export default styles;

@@ -43,12 +43,37 @@ const styles = (theme) => ({
       width: "109px",
     },
   },
+
   title_main: {
     display: "flex",
     gap: "30px",
     "& a": {
       textDecoration: "none",
       color: "#5C6369",
+      WebkitTransition: "all 0.3s 0s ease-out",
+      MozTransition: "all 0.3s 0s ease-out",
+      OTransition: "all 0.3s 0s ease-out",
+      transition: "all 0.3s 0s ease-out",
+      // position: "relative",
+      "&:hover": {
+        color: "#002d56",
+      },
+      // "&:before": {
+      //   content: "''",
+      //   position: "absolute",
+      //   width: "100%",
+      //   height: "2px",
+      //   bottom: "0",
+      //   left: "0",
+      //   backgroundColor: "#002d56",
+      //   visibility: "hidden",
+      //   transform: "scaleX(0)",
+      //   transition: "all 0.3s ease-in-out",
+      // },
+      // "&:hover:before": {
+      //   visibility: "visible",
+      //   transform: "scaleX(1)",
+      // },
     },
     "@media (max-width:965px)": {
       gap: "10px",

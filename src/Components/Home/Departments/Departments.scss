@@ -74,9 +74,37 @@
             height: 52.8px;
             padding-left: 20px;
             font-weight: 600;
+            .new {
+              background: linear-gradient(180deg, #20639b 0%, #002d56 100%);
+              color: #ffffff;
+              padding: 2px 5px;
+              border-radius: 21px;
+              font-size: 10px;
+            }
+            .sale {
+              color: #ffffff;
+              padding: 2px 5px;
+              border-radius: 21px;
+              font-size: 10px;
+              background: linear-gradient(180deg, #ffd788 0%, #ad7c20 100%);
+            }
           }
           .Body_Down_Pannel_btn_items:hover {
-            background-color: rgb(223, 217, 217);
+            background-image: linear-gradient(#20639b, #002d56);
+            color: #ffffff;
+            box-shadow: rgb(0 0 0 / 15%) 0px 5px 15px 0px;
+            position: relative;
+            ::before {
+              border: 1px solid #d1cccc;
+              content: "";
+              position: absolute;
+              width: 5px;
+              height: 43px;
+              left: -1px;
+              top: -1px;
+              background-color: #ffffff;
+              box-shadow: rgb(0 0 0 / 15%) 0px 5px 15px 0px;
+          }
           }
         }
       }
@@ -106,6 +134,12 @@
             font-size: 16px;
             font-weight: 600;
             text-transform: capitalize;
+          }
+          .MuiButtonBase-root {
+            background: #002d56;
+            color: #ffffff;
+            padding: 0.7% 2%;
+            border-radius: 3px;
           }
         }
       }
@@ -498,17 +532,16 @@
 }
 
 @media (max-width: 920px) {
-  .Departments .Departments_Body_Search .Body_Searchbar_Down_images{
+  .Departments .Departments_Body_Search .Body_Searchbar_Down_images {
     flex-direction: column;
   }
-
 }
 
 @media (max-width: 768px) {
   .Departments .Departments_Body_Search .Body_Searchbar_Down_images {
     min-height: unset !important;
   }
-  .Departments .Departments_Body_Search .Body_Searchbar_Down_images{
+  .Departments .Departments_Body_Search .Body_Searchbar_Down_images {
     flex-direction: row;
   }
 
@@ -529,36 +562,68 @@
   .Departments .Departments_Body_Search .Body_Searchbar_Down_images {
     min-height: 372px;
   }
-  .Departments .Departments_Body_Search .Body_Searchbar_Down_images .Body_Searchbar_Down_img1_div .Offers .Products_offer_per{
+  .Departments
+    .Departments_Body_Search
+    .Body_Searchbar_Down_images
+    .Body_Searchbar_Down_img1_div
+    .Offers
+    .Products_offer_per {
     font-size: 24px;
   }
-  .Departments .Departments_Body_Search .Body_Searchbar_Down_images .Body_Searchbar_Down_img1_div .Offers .Offers_buttons{
+  .Departments
+    .Departments_Body_Search
+    .Body_Searchbar_Down_images
+    .Body_Searchbar_Down_img1_div
+    .Offers
+    .Offers_buttons {
     margin-top: 10px !important;
   }
-  .Departments .Departments_Body_Search .Body_Searchbar_Down_images .Body_Searchbar_Down_img1_div .Offers .Offers_buttons .Learn_more_btn{
+  .Departments
+    .Departments_Body_Search
+    .Body_Searchbar_Down_images
+    .Body_Searchbar_Down_img1_div
+    .Offers
+    .Offers_buttons
+    .Learn_more_btn {
     font-size: 14px;
   }
-  .Departments .Departments_Body_Search .Body_Searchbar_Down_images .Body_Searchbar_Down_img1_div .Offers .Offers_buttons .Get_started_btn{
+  .Departments
+    .Departments_Body_Search
+    .Body_Searchbar_Down_images
+    .Body_Searchbar_Down_img1_div
+    .Offers
+    .Offers_buttons
+    .Get_started_btn {
     font-size: 14px;
   }
 }
 
 @media (max-width: 647px) {
-  .Departments .Departments_Body_Search .Body_Searchbar_Down_images{
+  .Departments .Departments_Body_Search .Body_Searchbar_Down_images {
     flex-direction: column;
   }
-  .Departments .Departments_Body_Search .Body_Searchbar_Down_images .Body_Searchbar_Down_img1_div .Offers{
+  .Departments
+    .Departments_Body_Search
+    .Body_Searchbar_Down_images
+    .Body_Searchbar_Down_img1_div
+    .Offers {
     width: 100%;
-    max-width:100%;
+    max-width: 100%;
   }
-  .Departments .Departments_Body_Search .Body_Searchbar_Down_images .Body_Searchbar_Down_img2_div{
+  .Departments
+    .Departments_Body_Search
+    .Body_Searchbar_Down_images
+    .Body_Searchbar_Down_img2_div {
     max-width: 100%;
     width: 100%;
   }
-  .Departments .Departments_Body_Search .Body_Searchbar_Down_images .Body_Searchbar_Down_img1_div .Offers{
+  .Departments
+    .Departments_Body_Search
+    .Body_Searchbar_Down_images
+    .Body_Searchbar_Down_img1_div
+    .Offers {
     justify-content: center;
   }
-
 }
 
 @media (max-width: 580px) {

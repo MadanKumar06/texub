@@ -28,7 +28,7 @@ import clsx from "clsx";
 import { useStateValue } from "../../../store/state";
 import axios from "axios";
 import Constant from "../../../Constant";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const BuyerRegistration = ({ classes }) => {
   const history = useNavigate();
@@ -47,6 +47,7 @@ const BuyerRegistration = ({ classes }) => {
     auto_complete_input,
     other_textbox,
     mobile_input,
+    check_container,
   } = classes;
   const [dropdownListFromApi, setDropdownListFromApi] = useState({
     regionList: [],
@@ -69,7 +70,7 @@ const BuyerRegistration = ({ classes }) => {
     region: "",
     confrim_password: "",
     mobile_valid: "",
-    remember_me: false,
+    checkbox_confrim: false,
     other_role: false,
     recaptcha: false,
   });
@@ -88,6 +89,7 @@ const BuyerRegistration = ({ classes }) => {
     country: "",
     confrim_password: "",
     recaptcha: "",
+    checkbox_confrim: "",
   });
 
   //API to fetch admin token
@@ -119,7 +121,8 @@ const BuyerRegistration = ({ classes }) => {
   useEffect(() => {
     const fetchRoleData = () => {
       axios
-        .get(Constant.baseUrl() + "/getRoleList", {
+        // .get(Constant.baseUrl() + "/getRoleList", {
+          .get("https://uat.texub.com/rest/V1/texub/getRoleList", {
           headers: {
             "Content-Type": "application/json",
           },
@@ -136,6 +139,14 @@ const BuyerRegistration = ({ classes }) => {
   }, []);
   useEffect(() => {
     if (sellerRegistrationData?.region?.region_id) {
+      setDropdownListFromApi((prev) => ({
+        ...prev,
+        countryList: [],
+      }));
+      setsellerRegistrationData((prev) => ({
+        ...prev,
+        country: "",
+      }));
       const fetchRegionBasedCountryData = () => {
         let data = {
           region_id: sellerRegistrationData?.region?.region_id,
@@ -160,7 +171,7 @@ const BuyerRegistration = ({ classes }) => {
 
   // updating State
   const handleChangeInput = (event) => {
-    if (event?.target?.name === "remember_me") {
+    if (event?.target?.name === "checkbox_confrim") {
       setsellerRegistrationData((prevState) => ({
         ...prevState,
         [event.target.name]: event.target.checked,
@@ -363,6 +374,14 @@ const BuyerRegistration = ({ classes }) => {
       setInputValidation((prevState) => ({
         ...prevState,
         recaptcha: "Please enter the recaptcha .",
+      }));
+      errorHandle = true;
+    }
+    if (!sellerRegistrationData?.checkbox_confrim) {
+      document.getElementById("checkbox_confrim")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        checkbox_confrim: "Please agree to terms and conditions .",
       }));
       errorHandle = true;
     }
@@ -586,6 +605,23 @@ const BuyerRegistration = ({ classes }) => {
           <div className={input_textField}>
             <div className={text_field_container}>
               <TextField
+                id="landline_number"
+                label="Landline Number"
+                fullWidth
+                className="inputfield-box"
+                type="number"
+                placeholder="Landline Number"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                value={sellerRegistrationData?.landline_number}
+                name="landline_number"
+                onChange={handleChangeInput}
+                variant="outlined"
+              />
+            </div>
+            <div className={text_field_container}>
+              <TextField
                 id="password"
                 label="Password"
                 fullWidth
@@ -609,6 +645,8 @@ const BuyerRegistration = ({ classes }) => {
                 {inputValidation?.password}
               </InputLabel>
             </div>
+          </div>
+          <div className={input_textField}>
             <div className={text_field_container}>
               <TextField
                 id="confrim_password"
@@ -633,25 +671,6 @@ const BuyerRegistration = ({ classes }) => {
                 {inputValidation?.confrim_password}
               </InputLabel>
             </div>
-          </div>
-          <div className={input_textField}>
-            <div className={text_field_container}>
-              <TextField
-                id="landline_number"
-                label="Landline Number"
-                fullWidth
-                className="inputfield-box"
-                type="number"
-                placeholder="Landline Number"
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                value={sellerRegistrationData?.landline_number}
-                name="landline_number"
-                onChange={handleChangeInput}
-                variant="outlined"
-              />
-            </div>
 
             <div className={text_field_container}>
               <TextField
@@ -675,6 +694,105 @@ const BuyerRegistration = ({ classes }) => {
               <InputLabel className={validation_error}>
                 {inputValidation?.company}
               </InputLabel>
+            </div>
+          </div>
+
+          <div className={input_textField}>
+            <div className={text_field_container}>
+              <TextField
+                id="designation"
+                label="Designation"
+                placeholder="Designation"
+                className="inputfield-box"
+                fullWidth
+                InputLabelProps={{
+                  shrink: true,
+                  required: true,
+                  classes: {
+                    asterisk: asterisk,
+                  },
+                }}
+                value={sellerRegistrationData?.designation}
+                name="designation"
+                onChange={handleChangeInput}
+                variant="outlined"
+              />
+              <InputLabel className={validation_error}>
+                {inputValidation?.designation}
+              </InputLabel>
+            </div>
+            <div className={text_field_container}>
+              <Autocomplete
+                options={dropdownListFromApi?.rolesList}
+                value={sellerRegistrationData?.roles}
+                name="roles"
+                onChange={(event, newValue) => {
+                  if (newValue?.role_id === "1") {
+                    setsellerRegistrationData((prevState) => ({
+                      ...prevState,
+                      other_role: true,
+                    }));
+                  } else {
+                    setsellerRegistrationData((prevState) => ({
+                      ...prevState,
+                      other_role: false,
+                    }));
+                  }
+                  setsellerRegistrationData((prevState) => ({
+                    ...prevState,
+                    roles: newValue,
+                  }));
+                }}
+                className={auto_complete_input}
+                fullWidth
+                getOptionLabel={(option) =>
+                  option.role_name ? option.role_name : ""
+                }
+                filterOptions={(options) => options}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    label="Role"
+                    className="inputfield-box"
+                    placeholder="Role"
+                    InputLabelProps={{
+                      shrink: true,
+                      // required: true,
+                      // classes: {
+                      //   asterisk: asterisk,
+                      // },
+                    }}
+                  />
+                )}
+              />
+              {/* <InputLabel className={validation_error}>
+              {inputValidation?.role}
+            </InputLabel> */}
+              {sellerRegistrationData?.other_role && (
+                <div className={clsx(text_field_container, other_textbox)}>
+                  <TextField
+                    id="other_roles"
+                    label="Other Roles"
+                    fullWidth
+                    className="inputfield-box"
+                    placeholder="Other Roles"
+                    InputLabelProps={{
+                      shrink: true,
+                      required: true,
+                      classes: {
+                        asterisk: asterisk,
+                      },
+                    }}
+                    value={sellerRegistrationData?.other_roles}
+                    name="other_roles"
+                    onChange={handleChangeInput}
+                    variant="outlined"
+                  />
+                  <InputLabel className={validation_error}>
+                    {inputValidation?.other_roles}
+                  </InputLabel>
+                </div>
+              )}
             </div>
           </div>
           <div className={input_textField}>
@@ -758,126 +876,32 @@ const BuyerRegistration = ({ classes }) => {
             </div>
           </div>
           <div className={input_textField}>
-            <div className={text_field_container}>
-              <Autocomplete
-                options={dropdownListFromApi?.rolesList}
-                value={sellerRegistrationData?.roles}
-                name="roles"
-                onChange={(event, newValue) => {
-                  if (newValue?.role_id === "1") {
-                    setsellerRegistrationData((prevState) => ({
-                      ...prevState,
-                      other_role: true,
-                    }));
-                  } else {
-                    setsellerRegistrationData((prevState) => ({
-                      ...prevState,
-                      other_role: false,
-                    }));
-                  }
-                  setsellerRegistrationData((prevState) => ({
-                    ...prevState,
-                    roles: newValue,
-                  }));
-                }}
-                className={auto_complete_input}
-                fullWidth
-                getOptionLabel={(option) =>
-                  option.role_name ? option.role_name : ""
-                }
-                filterOptions={(options) => options}
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    label="Role"
-                    className="inputfield-box"
-                    placeholder="Role"
-                    InputLabelProps={{
-                      shrink: true,
-                      // required: true,
-                      // classes: {
-                      //   asterisk: asterisk,
-                      // },
-                    }}
-                  />
-                )}
-              />
-              {/* <InputLabel className={validation_error}>
-              {inputValidation?.role}
-            </InputLabel> */}
-              {sellerRegistrationData?.other_role && (
-                <div className={clsx(text_field_container, other_textbox)}>
-                  <TextField
-                    id="other_roles"
-                    label="Other Roles"
-                    fullWidth
-                    className="inputfield-box"
-                    placeholder="Other Roles"
-                    InputLabelProps={{
-                      shrink: true,
-                      required: true,
-                      classes: {
-                        asterisk: asterisk,
-                      },
-                    }}
-                    value={sellerRegistrationData?.other_roles}
-                    name="other_roles"
-                    onChange={handleChangeInput}
-                    variant="outlined"
-                  />
-                  <InputLabel className={validation_error}>
-                    {inputValidation?.other_roles}
-                  </InputLabel>
-                </div>
-              )}
-            </div>
-            <div className={text_field_container}>
-              <TextField
-                id="designation"
-                label="Designation"
-                placeholder="Designation"
-                className="inputfield-box"
-                fullWidth
-                InputLabelProps={{
-                  shrink: true,
-                  required: true,
-                  classes: {
-                    asterisk: asterisk,
-                  },
-                }}
-                value={sellerRegistrationData?.designation}
-                name="designation"
-                onChange={handleChangeInput}
-                variant="outlined"
-              />
+            <div className={check_container}>
+              <div>
+                <Checkbox
+                  value={sellerRegistrationData?.checkbox_confrim}
+                  color="color_third"
+                  name="checkbox_confrim"
+                  onClick={(event) => handleChangeInput(event)}
+                  className={checkbox_label}
+                />
+                <p>
+                  By using this form you agree with the{" "}
+                  <Link to="/termsofuse">Terms of Use</Link> and{" "}
+                  <Link to="/privacypolicy">Privacy Policy</Link> by this
+                  website.
+                </p>
+              </div>
               <InputLabel className={validation_error}>
-                {inputValidation?.designation}
+                {inputValidation?.checkbox_confrim}
               </InputLabel>
-            </div>
-          </div>
-
-          <div className={input_textField}>
-            <div className={text_field_container}>
-              <FormControlLabel
-                value={sellerRegistrationData?.remember_me}
-                control={<Checkbox color="color_third" />}
-                label={
-                  <p>
-                    By using this form you agree with the{" "}
-                    <span>Terms of Use</span>
-                    and <span>Privacy Policy</span> by this website.
-                  </p>
-                }
-                labelPlacement="end"
-                className={checkbox_label}
-              />
             </div>
             <div className={text_field_container}>
               <ReCAPTCHA
                 className={recaptcha_info}
                 // 6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI
                 // 6LcaHDYfAAAAAOUR0jJWtEI128eoRL4xjBWOpjKD
-                sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+                sitekey="6LcaHDYfAAAAAOUR0jJWtEI128eoRL4xjBWOpjKD"
                 onChange={() => {
                   setsellerRegistrationData((prevState) => ({
                     ...prevState,

@@ -10,6 +10,7 @@ import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import Constant from "../../../../Constant";
 import { useStateValue } from "../../../../store/state";
 import swal from "sweetalert2";
+import { Co2Sharp } from "@mui/icons-material";
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
@@ -252,6 +253,10 @@ function Index({ type, pid }) {
     const data = async () => {
       const user = JSON.parse(localStorage.getItem("userdata"));
       try {
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: true,
+        });
         const formdata = await axios({
           method: "post",
           url: `${Constant.baseUrl()}/getEditFormData`,
@@ -269,8 +274,16 @@ function Index({ type, pid }) {
           count: ind,
         }));
         setcount(temp);
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
       } catch (e) {
         console.log(e);
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
       }
     };
     data();
@@ -306,20 +319,6 @@ function Index({ type, pid }) {
   }, [olddata]);
 
   useEffect(() => {
-    if (restricts_country.length === 0) return;
-    let temp = [];
-    olddata.restricted_country?.length &&
-      olddata.restricted_country.filter((wc) =>
-        restricts_country?.filter((c) => {
-          if (wc === c.value) {
-            temp.push(c);
-          }
-        })
-      );
-    updateProductList.restricts_country = temp;
-  }, [restricts_country]);
-
-  useEffect(() => {
     setupdateform((prevState) => ({
       ...prevState,
       width: olddata?.width,
@@ -330,6 +329,10 @@ function Index({ type, pid }) {
       weight: olddata?.weight,
       warranty_days: olddata?.warranty_days,
     }));
+    setUpdateProductList((prevState) => ({
+      ...prevState,
+      other_condition: olddata?.other_condition
+    }))
     dropdownListFromApi?.dropDownList?.condition_list?.filter(
       (d) =>
         d.value === olddata?.product_condition &&
@@ -381,7 +384,27 @@ function Index({ type, pid }) {
           warcountry: d,
         }))
     );
-  }, [olddata]);
+  }, [olddata, country]);
+
+  useEffect(() => {
+    if(country?.length === 0) return
+    // debugger
+    console.log(updateProduct?.resregion)
+    if(updateProduct?.resregion?.length === 0) return
+    country?.filter(
+      (d) =>
+      console.log(d)
+        // d.value === olddata?.restricts_country &&
+        // setUpdateProductList((prevState) => ({
+        //   ...prevState,
+        //   restricts_country: d,
+        // }))
+    );
+  }, [restricts_country])
+
+  console.log(olddata)
+  console.log(restricts_country)
+  console.log(updateProductList?.restricts_country)
 
   const [dropdownListFromApi, setDropdownListFromApi] = useState({
     dropDownList: [],
@@ -434,6 +457,7 @@ function Index({ type, pid }) {
     let restrictedcountries = updateProductList?.restricts_country?.map(
       (country) => country.value
     );
+    let resregiondata = updateProductList?.resregion?.map(rr => rr.region_id)
     let warrantycountries = [];
     updateProductList?.warcountry?.filter((country) =>
       warrantycountries.push(country.value)
@@ -465,13 +489,13 @@ function Index({ type, pid }) {
               warranty_country: warrantycountries.toString(),
               warranty_days: updateform?.warranty_days,
               packing_details: updateProductList?.packing?.value,
-              no_pieces_per: updateProductList?.no_pieces_per,
+              no_pieces_per: updateform?.no_pieces_per,
               width: updateform?.width,
               height: updateform?.height,
               product_length: updateform?.product_length,
               weight: updateform?.weight,
               restrictions: updateProductList?.restrictions?.value,
-              restricted_region: updateProductList?.resregion?.region_id,
+              restricted_region: resregiondata.toString(),
               restricted_country: restrictedcountries.toString(),
               description: updateform?.notes,
               product_details: productDetailSave,
@@ -539,19 +563,19 @@ function Index({ type, pid }) {
               customer_id: user?.id,
               product_id: id,
               product_condition: updateProductList?.conditions?.value,
-              other_condition: 1,
+              other_condition: updateProductList?.other_condition,
               warranty_type: updateProductList?.warranty?.value,
               warranty_country: warrantycountries.toString(),
               warranty_days: updateform?.warranty_days,
               packing_details: updateProductList?.packing?.value,
-              // no_pieces_per: updateProductList?.carton_packing,
-              no_pieces_per: 125,
+              // no_pieces_per: updateform?.carton_packing,
+              no_pieces_per: updateform?.no_pieces_per,
               width: updateform?.width,
               height: updateform?.height,
               product_length: updateform?.product_length,
               weight: updateform?.weight,
               restrictions: updateProductList?.restrictions?.value,
-              restricted_region: updateProductList?.resregion?.region_id,
+              restricted_region: resregiondata.toString(),
               restricted_country: restrictedcountries.toString(),
               description: updateform?.notes,
               product_details: productDetailEdit,
@@ -595,18 +619,6 @@ function Index({ type, pid }) {
     }
   };
 
-  useEffect(async () => {
-    try {
-      const data = await axios({
-        method: "get",
-        url: `${Constant.baseUrl()}/getCountryList`,
-      });
-      setcountry(data.data);
-    } catch (e) {
-      console.log(e);
-    }
-  }, []);
-
   const [region, setRegion] = useState([]);
   useEffect(async () => {
     try {
@@ -615,6 +627,18 @@ function Index({ type, pid }) {
         url: `${Constant.baseUrl()}/getRegionList`,
       });
       setRegion(data.data);
+    } catch (e) {
+      console.log(e);
+    }
+  }, []);
+
+  useEffect(async () => {
+    try {
+      const data = await axios({
+        method: "get",
+        url: `${Constant.baseUrl()}/getCountryList`,
+      });
+      setcountry(data.data);
     } catch (e) {
       console.log(e);
     }
@@ -643,6 +667,20 @@ function Index({ type, pid }) {
       fetchData();
     }
   }, [updateProductList?.resregion]);
+
+  useEffect(() => {
+    if (restricts_country.length === 0) return;
+    let temp = [];
+    olddata.restricted_country?.length &&
+      olddata.restricted_country.filter((wc) =>
+        restricts_country?.filter((c) => {
+          if (wc === c.value) {
+            temp.push(c);
+          }
+        })
+      );
+    updateProductList.restricts_country = temp;
+  }, [restricts_country?.length > 0]);
 
   return (
     <div className="updateproduct">
@@ -782,10 +820,8 @@ function Index({ type, pid }) {
               <InputLabel className="validation_error">
                 {inputValidation?.warranty}
               </InputLabel>
-            </div>
-          </div>
 
-          {updateProductList?.warranty?.label ===
+              {updateProductList?.warranty?.label ===
             "Direct Vendor Warranty In Country" && (
             <div className="input_separator country_selection">
               <div className="updateproduct_inputfields ">
@@ -830,6 +866,9 @@ function Index({ type, pid }) {
               </div>
             </div>
           )}
+            </div>
+          </div>
+
           <div className="input_separator">
             <div className="updateproduct_inputfields info">
               <InputLabel>
@@ -1145,7 +1184,7 @@ function Index({ type, pid }) {
                 <Autocomplete
                   multiple
                   id="checkboxes-tags-demo"
-                  options={restricts_country ? restricts_country : ""}
+                  options={restricts_country ? restricts_country : []}
                   disableCloseOnSelect
                   value={updateProductList?.restricts_country}
                   getOptionLabel={(option) =>

@@ -37,7 +37,7 @@ function ValidationForKycForm({
 
   const handleValidationClick = () => {
     let endPoint = false;
-    setValid("");
+    setValid("");    
     if (!values?.trade_lic_number) {
       setValid((prevState) => ({
         ...prevState,
@@ -101,13 +101,6 @@ function ValidationForKycForm({
       }));
       endPoint = true;
     }
-    if (!values?.city) {
-      setValid((prevState) => ({
-        ...prevState,
-        city: "Please enter the city.",
-      }));
-      endPoint = true;
-    }
     if (!agreementChecked) {
       setValid((prevState) => ({
         ...prevState,
@@ -140,7 +133,6 @@ function ValidationForKycForm({
     );
     let tax_date = moment(values?.tax_expiration_date).format("DD-MM-YYYY");
     let trade_date = moment(values?.trade_expiration_date).format("DD-MM-YYYY");
-
     let data = {
       kyc: {
         customer_id: customer_id,
@@ -173,9 +165,9 @@ function ValidationForKycForm({
           : "",
         additional_info: values?.additional_info ? values?.additional_info : "",
         category: Category_id?.toString() ? Category_id?.toString() : "",
-        country: country?.[0]?.value,
-        door_no: values?.address_line_one ? values?.address_line_one : "",
-        street: values?.address_line_two ? values?.address_line_two : "",
+        country: values?.country,
+        door_no: values?.address_line_two ? values?.address_line_two : "",
+        street: values?.address_line_one ? values?.address_line_one : "",
         pincode: values?.pin_zip_code ? values?.pin_zip_code : "",
         city: values?.city ? values?.city : "",
         other_category: values?.other_category ? values?.other_category : "",

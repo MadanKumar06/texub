@@ -38,18 +38,20 @@
     }
     .MuiTableHead-root {
       .MuiTableCell-root {
-        font-size: 26px;
+        font-size: 20px;
         color: #959595;
         text-align: center;
         font-weight: 600;
+        padding: 10px 15px;
       }
     }
 
     .MuiTableBody-root {
       .MuiTableCell-root {
-        font-size: 22px;
+        font-size: 18px;
         text-align: center;
         color: #333c42;
+        padding: 10px 15px;
       }
 
       .myorders__orderid {
@@ -73,7 +75,7 @@
       .myorders__action {
         text-decoration: underline;
         color: #002d56;
-        font-size: 22px;
+        font-size: 18px;
         font-weight: 600;
         cursor: pointer;
       }
@@ -140,16 +142,16 @@
 @media (max-width: 1660px) {
   .myorders .myorders__table {
     .MuiTableHead-root .MuiTableCell-root {
-      font-size: 20px;
+      font-size: 16px;
     }
 
     .MuiTableBody-root {
       .myorders__action {
-        font-size: 16px;
+        font-size: 14px;
       }
 
       .MuiTableCell-root {
-        font-size: 18px;
+        font-size: 14px;
       }
     }
   }
@@ -173,6 +175,17 @@
 
 @media (max-width: 1024px) {
   .myorders .myorders__buttons p {
-    font-size: 16px;
+    font-size: 14px;
+  }
+}
+
+
+@media (max-width: 900px) {
+  .myorders .myorders__table {
+    .MuiTableCell-root {
+      div{
+        font-size: 14px;
+      }
+    }
   }
 }

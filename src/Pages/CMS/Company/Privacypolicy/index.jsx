@@ -1,9 +1,49 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./styles.scss";
-
+import axios from 'axios'
+import { getAdminToken } from "../../../../utilities";
+import { useStateValue } from "../../../../store/state";
 import legal from "../../../../Assets/Career/privacy-policy.png";
 
-const index = () => {
+const Index = () => {
+
+  const [adminToken, setAdminToken] = useState("");
+  useEffect(() => {
+    getAdminToken((res) => {
+      setAdminToken(res);
+    });
+  }, []);
+  const [{}, dispatch] = useStateValue()
+
+  const [pp, setpp] = useState()
+
+  useEffect(async() => {
+    try {
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: true,
+      });
+      const privacy = await axios({
+        method: 'get',
+        url: 'https://texub.uat.a2zportals.co.in/india/rest/V1/cmsPage/27',
+        headers: {
+          Authorization: `Bearer ${adminToken}`
+        }
+      })
+      setpp(privacy?.data)
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
+    } catch(e) {
+      console.log(e)
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
+    }
+  }, [adminToken])
+
   const Legal = [
     {
       id: 1,
@@ -22,7 +62,8 @@ const index = () => {
             <span className="heading">{item.heading}</span>
           </li>
         ))}
-        <div className="Legal_description">
+        <span  dangerouslySetInnerHTML={{ __html: pp?.content }}></span>
+        {/* <div className="Legal_description">
           {Legal.map((item) => (
             <li key={item.id} className="Legal_heading_list">
               <span className="description">{item.description}</span>
@@ -42,9 +83,9 @@ const index = () => {
               <span className="description1">{item.description}</span>
             </li>
           ))}
-        </div>
+        </div> */}
       </div>
     </div>
   );
 };
-export default index;
+export default Index;

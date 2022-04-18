@@ -8,7 +8,7 @@ import Constant from "../../Constant";
 import { useStateValue } from "../../store/state";
 import { Button } from "@mui/material";
 export const Products = () => {
-  const [{ currency }, dispatch] = useStateValue();
+  const [{ currency, homeSearch }, dispatch] = useStateValue();
   const [productFetchApi, setProductFetchApi] = useState({});
   const [productData, setProductData] = useState([]);
   const [getCategories, setGetCategories] = useState([]);
@@ -36,11 +36,12 @@ export const Products = () => {
             condition_id: productFetchApi?.conditions
               ? productFetchApi?.conditions
               : "0",
-            keyword: productFetchApi?.search_product
+            keyword: homeSearch
+              ? homeSearch
+              : productFetchApi?.search_product
               ? productFetchApi?.search_product
               : "",
-            // eta: productFetchApi?.eta ? productFetchApi?.eta : "",
-            eta: 0,
+            eta: productFetchApi?.eta ? productFetchApi?.eta : "0",
           },
         };
         axios
@@ -56,10 +57,11 @@ export const Products = () => {
       };
       fetchProductData();
     }
-  }, [productFetchApi, currency, getCategories]);
+  }, [productFetchApi, currency, getCategories, homeSearch]);
 
   useEffect(() => {
     const fetchCategoryData = () => {
+      
       axios
         .get(Constant.baseUrl() + "/getCategoriesList", {
           headers: {
@@ -112,7 +114,13 @@ export const Products = () => {
       <div className="clear-btn">
         <Button
           className="button-text btn-primary clear"
-          onClick={() => setProductFetchApi("")}
+          onClick={() => {
+            setProductFetchApi("");
+            dispatch({
+              type: "SET_SEARCH",
+              value: "",
+            });
+          }}
         >
           Clear All
         </Button>

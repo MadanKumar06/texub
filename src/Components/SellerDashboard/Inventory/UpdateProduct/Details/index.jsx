@@ -85,6 +85,22 @@ function Index({
     settest(temp);
   };
 
+  useEffect(() => {
+    if (hubDropDownValues?.length === 0) return;
+    let temp = {
+      hub_id: "",
+      hub_name: "",
+    };
+    hubDropDownValues?.length &&
+      hubDropDownValues.filter((wc) => {
+        if (wc?.hub_id === currentdata?.hub_id) {
+          temp.hub_id = wc.hub_id;
+          temp.hub_name = wc.hub_name;
+        }
+      });
+    setcurrenthub(temp);
+  }, [currentdata?.hub_id]);
+
   useEffect(async () => {
     let country_code = JSON.parse(
       localStorage.getItem("userdata")
@@ -118,25 +134,10 @@ function Index({
     }
   }, [currenthub]);
 
-  useEffect(() => {
-    if (hubDropDownValues?.length === 0) return;
-    let temp = {
-      hub_id: "",
-      hub_name: "",
-    };
-    hubDropDownValues?.length &&
-      hubDropDownValues.filter((wc) => {
-        if (wc?.hub_id === currentdata?.hub_id) {
-          temp.hub_id = wc.hub_id;
-          temp.hub_name = wc.hub_name;
-        }
-      });
-    setcurrenthub(temp);
-  }, [currentdata?.hub_id]);
-
   const [currentcurrency, setcurrentcurrency] = useState([]);
 
   useEffect(() => {
+    if(currentdata?.currency_id === "") return
     if (hubDropDownValues?.length === 0) return;
     let temp = {
       label: "",
@@ -150,7 +151,8 @@ function Index({
         }
       });
     setcurrentcurrency(temp);
-  }, [currentdata?.currency_id]);
+  }, [currentdata?.currency_id, options]);
+
 
   return (
     <>
@@ -223,7 +225,7 @@ function Index({
                   {...params}
                   className="inputfield-box"
                   fullWidth
-                  placeholder="INR"
+                  placeholder="curr"
                   InputLabelProps={{
                     shrink: false,
                   }}

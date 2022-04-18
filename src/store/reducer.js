@@ -9,6 +9,7 @@ export const initialState = {
   isSimpleLoading: false,
   cart: [],
   gt: false,
+  homeSearch: "",
 };
 
 const reducer = (state, action) => {
@@ -63,6 +64,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         gt: !state.gt,
+      };
+    case "SET_SEARCH":
+      return {
+        ...state,
+        homeSearch: action.value,
       };
     default:
       return state;

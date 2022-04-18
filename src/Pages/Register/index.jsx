@@ -39,6 +39,11 @@ const Registration = ({ classes }) => {
   useEffect(() => {
     setClicked(type);
   }, [type]);
+const Buyerregimg = <img  className={`${clicked === "buyer" && clicking_user}`}  src={buyer_img}  alt="auth" /> ;
+const Sellerregimg = <img  className={`${clicked === "buyer" && clicking_user}`}  src={seller_img}  alt="auth"/>;
+const BuyerregText =  <p className={`${clicked === "buyer" && clicking_user_para}`}>Buyer</p>;
+const SellerregText =  <p className={`${clicked === "buyer" && clicking_user_para}`}>Seller</p>;
+
   return (
     <div
       className={`${
@@ -57,8 +62,13 @@ const Registration = ({ classes }) => {
         </div>
         <div className={right_area}>
           <p className={select_text}>
-            {clicked === "buyer" ? "Buyer Registration" : "Seller Registration"}
+              {clicked === "buyer" ? Buyerregimg  : Sellerregimg}  
+              {/* {clicked === "buyer" ? "Buyer Registration" : "Seller Registration"} */}
+              <span >
+                  {clicked === "buyer" ? BuyerregText  : SellerregText}          
+            </span>
           </p>
+         
           {/* <RadioGroup
             row
             aria-label="position"

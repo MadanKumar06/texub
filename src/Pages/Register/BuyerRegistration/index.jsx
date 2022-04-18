@@ -22,7 +22,7 @@ import Autocomplete from "@mui/material/Autocomplete";
 import { withStyles } from "@mui/styles";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/material.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import swal from "sweetalert2";
 
 import axios from "axios";
@@ -41,6 +41,7 @@ const BuyerRegistration = ({ classes }) => {
     auto_complete_input,
     validation_error,
     text_field_container,
+    check_container,
     button_box,
     mobile_input,
   } = classes;
@@ -58,7 +59,7 @@ const BuyerRegistration = ({ classes }) => {
     country: "",
     confrim_password: "",
     mobile_valid: "",
-    remember_me: false,
+    checkbox_confrim: false,
     recaptcha: false,
   });
   const [inputValidation, setInputValidation] = useState({
@@ -72,6 +73,7 @@ const BuyerRegistration = ({ classes }) => {
     designation: "",
     country: "",
     confrim_password: "",
+    checkbox_confrim: "",
     recaptcha: "",
   });
   const handleMobileChangeInput = (value, data, event, formattedValue) => {
@@ -86,7 +88,7 @@ const BuyerRegistration = ({ classes }) => {
     }));
   };
   const handleChangeInput = (event) => {
-    if (event?.target?.name === "remember_me") {
+    if (event?.target?.name === "checkbox_confrim") {
       setbuyerRegistrationData((prevState) => ({
         ...prevState,
         [event.target.name]: event.target.checked,
@@ -253,6 +255,14 @@ const BuyerRegistration = ({ classes }) => {
       setInputValidation((prevState) => ({
         ...prevState,
         recaptcha: "Please enter the recaptcha .",
+      }));
+      errorHandle = true;
+    }
+    if (!buyerRegistrationData?.checkbox_confrim) {
+      document.getElementById("checkbox_confrim")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        checkbox_confrim: "Please agree to terms and conditions .",
       }));
       errorHandle = true;
     }
@@ -653,6 +663,23 @@ const BuyerRegistration = ({ classes }) => {
           <div className={input_textField}>
             <div className={text_field_container}>
               <TextField
+                id="landline_number"
+                label="Landline Number"
+                className="inputfield-box"
+                fullWidth
+                type="number"
+                placeholder="Landline Number"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                value={buyerRegistrationData?.landline_number}
+                name="landline_number"
+                onChange={handleChangeInput}
+                variant="outlined"
+              />
+            </div>
+            <div className={text_field_container}>
+              <TextField
                 id="password"
                 label="Password"
                 className="inputfield-box"
@@ -676,6 +703,8 @@ const BuyerRegistration = ({ classes }) => {
                 {inputValidation?.password}
               </InputLabel>
             </div>
+          </div>
+          <div className={input_textField}>
             <div className={text_field_container}>
               <TextField
                 id="confrim_password"
@@ -699,25 +728,6 @@ const BuyerRegistration = ({ classes }) => {
               <InputLabel className={validation_error}>
                 {inputValidation?.confrim_password}
               </InputLabel>
-            </div>
-          </div>
-          <div className={input_textField}>
-            <div className={text_field_container}>
-              <TextField
-                id="landline_number"
-                label="Landline Number"
-                className="inputfield-box"
-                fullWidth
-                type="number"
-                placeholder="Landline Number"
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                value={buyerRegistrationData?.landline_number}
-                name="landline_number"
-                onChange={handleChangeInput}
-                variant="outlined"
-              />
             </div>
             <div className={text_field_container}>
               <TextField
@@ -808,20 +818,25 @@ const BuyerRegistration = ({ classes }) => {
           </div>
 
           <div className={input_textField}>
-            <div className={text_field_container}>
-              <FormControlLabel
-                value="yes"
-                control={<Checkbox color="secondary" />}
-                label={
-                  <p>
-                    By using this form you agree with the{" "}
-                    <span>Terms of Use</span> and <span>Privacy Policy</span> by
-                    this website.
-                  </p>
-                }
-                labelPlacement="end"
-                className={checkbox_label}
-              />
+            <div className={check_container}>
+              <div>
+                <Checkbox
+                  value={buyerRegistrationData?.checkbox_confrim}
+                  color="secondary"
+                  name="checkbox_confrim"
+                  onClick={(event) => handleChangeInput(event)}
+                  className={checkbox_label}
+                />
+                <p>
+                  By using this form you agree with the{" "}
+                  <Link to="/termsofuse">Terms of Use</Link> and{" "}
+                  <Link to="/privacypolicy">Privacy Policy</Link> by this
+                  website.
+                </p>
+              </div>
+              <InputLabel className={validation_error}>
+                {inputValidation?.checkbox_confrim}
+              </InputLabel>
             </div>
             <div className={text_field_container}>
               {/* 6LcaHDYfAAAAAOUR0jJWtEI128eoRL4xjBWOpjKD ---- site key */}

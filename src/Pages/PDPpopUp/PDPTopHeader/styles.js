@@ -67,7 +67,7 @@ const styles = (theme) => ({
     padding: "10px 18px",
     width: "fit-content",
     color: "#002D56",
-    margin: "0",
+    marginLeft : "10px",
     fontSize: "18px",
     "& span": {
       fontWeight: "600",

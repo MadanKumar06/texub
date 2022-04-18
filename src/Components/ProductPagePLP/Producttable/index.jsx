@@ -153,8 +153,7 @@ const Productstable = ({
         customBodyRender: (value) => {
           return (
             <div className={producttable_price_block}>
-              {!localStorage.getItem("isLoggedIn_auth") ||
-              isGuestUserSignedIn?.group_id === 1 ? (
+              {!localStorage.getItem("isLoggedIn_auth") ? (
                 <div
                   className={producttable_price}
                   onClick={(e) => handleClick(e)}
@@ -255,7 +254,7 @@ const Productstable = ({
   };
 
   const PaginateDataSplit = (event) => {
-    if (productData.length === 0) return setTableData([]);
+    if (productData?.length === 0) return setTableData([]);
     setTableData(event);
   };
   return (

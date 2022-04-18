@@ -7,9 +7,12 @@ import WhishlistTableData from "./whishlistJson";
 import WhislistTable from "./WhishlistTable";
 import axios from 'axios'
 import Constant from '../../../Constant'
+import {useStateValue} from '../../../store/state'
 
 const Whislist = () => {
   const [tableData, setTableData] = useState([]);
+  const [{}, dispatch] = useStateValue()
+  
   const PaginateDataSplit = (event) => {
     if(wishdata.length === 0) return setwishdata([])
     console.log(event)
@@ -19,6 +22,10 @@ const Whislist = () => {
   useEffect(async() => {
     const user = JSON.parse(localStorage.getItem('userdata'))
     try {
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: true,
+      });
       const wishlistdata = await axios({
         method: 'post',
         url: `${Constant.baseUrl()}/getwishlist`,
@@ -31,10 +38,18 @@ const Whislist = () => {
           }     
         }
       })
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
       // console.log(wishlistdata)
       setwishdata(wishlistdata.data)
     } catch(e) {
       console.log(e)
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
     }
   }, [])
 

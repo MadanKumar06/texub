@@ -33,6 +33,7 @@ import Buyeradvantage from "./Pages/CMS/Services/Buyeradvantage";
 import Career from "./Pages/CMS/Services/Career";
 import { Training } from "./Pages/CMS/Services/Training";
 import { Termsofuse } from "./Pages/CMS/Company/Termsofuse/Termsofuse";
+import { ProductListingPolicy } from "./Pages/CMS/Company/ProductListingPolicy/ProductListingPolicy";
 import Blogsmain from "./Pages/CMS/Company/Blogs/Blogsmain/Blogsmain";
 import Blogs from "./Pages/CMS/Company/Blogs/Blogs";
 import Legal from "./Pages/CMS/Resources/Legal";
@@ -50,8 +51,14 @@ import SignIn from "./Pages/SignIn/SiginPopUp/SectionLeft";
 import RegisterPopup from "./Pages/Register/RegisterPopup/SectionLeft";
 import MiniCartList from "./Pages/MiniCart/MiniCartList";
 import SimpleBackdrop from "./Components/LoaderBackDrop";
+import { getSigninedUserData } from "./utilities";
 
 const App = () => {
+  useEffect(() => {
+    getSigninedUserData((res) => {
+      console.log(res);
+    });
+  }, []);
   const [
     {
       kycOpenClose,
@@ -66,7 +73,7 @@ const App = () => {
   let isKYCSubmitted = JSON.parse(localStorage.getItem("userdata"));
   useEffect(() => {
     if (isKYCSubmitted) {
-      isKYCSubmitted?.custom_attributes?.[3]?.value === "0" &&
+      isKYCSubmitted?.group_id !== 1 && isKYCSubmitted?.custom_attributes?.[3]?.value === "0" &&
         dispatch({
           type: "SET_KYC_OPEN_CLOSE",
           value: true,
@@ -97,13 +104,13 @@ const App = () => {
               element={
                 <>
                   {" "}
-                  <Registration /> <ScrollToTop /> <Footer />
+                  <Registration /> <ScrollToTop /> <Footer />{" "}
                 </>
               }
               exact
             />
             <Route
-              path="/Products"
+              path="/products"
               element={
                 <>
                   {" "}
@@ -117,7 +124,7 @@ const App = () => {
               element={
                 <>
                   {" "}
-                  <Aboutus /> <ScrollToTop /> <Footer />
+                  <Aboutus /> <ScrollToTop /> <Footer />{" "}
                 </>
               }
               exact
@@ -126,7 +133,8 @@ const App = () => {
               path="/coming-soon"
               element={
                 <>
-                  <ComingSoon /> <ScrollToTop /> <Footer />
+                  {" "}
+                  <ComingSoon /> <ScrollToTop /> <Footer />{" "}
                 </>
               }
               exact
@@ -138,7 +146,7 @@ const App = () => {
               element={
                 <>
                   {" "}
-                  <Legal /> <ScrollToTop /> <Footer />
+                  <Legal /> <ScrollToTop /> <Footer />{" "}
                 </>
               }
               exact
@@ -148,7 +156,7 @@ const App = () => {
               element={
                 <>
                   {" "}
-                  <GDPR /> <ScrollToTop /> <Footer />
+                  <GDPR /> <ScrollToTop /> <Footer />{" "}
                 </>
               }
               exact
@@ -158,7 +166,7 @@ const App = () => {
               element={
                 <>
                   {" "}
-                  <FAQ /> <ScrollToTop /> <Footer />
+                  <FAQ /> <ScrollToTop /> <Footer />{" "}
                 </>
               }
               exact
@@ -194,6 +202,16 @@ const App = () => {
               exact
             />
             <Route
+              path="/productlistingpolicy"
+              element={
+                <>
+                  {" "}
+                  <ProductListingPolicy /> <ScrollToTop /> <Footer />{" "}
+                </>
+              }
+              exact
+            />
+            <Route
               path="/rrpolicy"
               element={
                 <>
@@ -218,7 +236,7 @@ const App = () => {
               element={
                 <>
                   {" "}
-                  <Selleradvantage /> <ScrollToTop /> <Footer />
+                  <Selleradvantage /> <ScrollToTop /> <Footer />{" "}
                 </>
               }
               exact
@@ -228,7 +246,7 @@ const App = () => {
               element={
                 <>
                   {" "}
-                  <Buyeradvantage /> <ScrollToTop /> <Footer />
+                  <Buyeradvantage /> <ScrollToTop /> <Footer />{" "}
                 </>
               }
               exact
@@ -248,7 +266,7 @@ const App = () => {
               element={
                 <>
                   {" "}
-                  <Blogsmain /> <ScrollToTop /> <Footer />
+                  <Blogsmain /> <ScrollToTop /> <Footer />{" "}
                 </>
               }
               exact
@@ -258,8 +276,7 @@ const App = () => {
               element={
                 <>
                   {" "}
-                  <Blogs /> <ScrollToTop />
-                  <Footer />{" "}
+                  <Blogs /> <ScrollToTop /> <Footer />{" "}
                 </>
               }
               exact
@@ -281,7 +298,7 @@ const App = () => {
               element={
                 <>
                   {" "}
-                  <SellerDashboard /> <ScrollToTop /> <Footer />
+                  <SellerDashboard /> <ScrollToTop /> <Footer />{" "}
                 </>
               }
               exact
@@ -291,7 +308,7 @@ const App = () => {
               element={
                 <>
                   {" "}
-                  <SellerDashboard /> <ScrollToTop /> <Footer />
+                  <SellerDashboard /> <ScrollToTop /> <Footer />{" "}
                 </>
               }
               exact
@@ -301,8 +318,7 @@ const App = () => {
               element={
                 <>
                   {" "}
-                  <BuyerDashboard /> <ScrollToTop />
-                  <Footer />{" "}
+                  <BuyerDashboard /> <ScrollToTop /> <Footer />{" "}
                 </>
               }
               exact
@@ -312,7 +328,7 @@ const App = () => {
               element={
                 <>
                   {" "}
-                  <SellerProfile /> <ScrollToTop /> <Footer />
+                  <SellerProfile /> <ScrollToTop /> <Footer />{" "}
                 </>
               }
               exact
@@ -352,8 +368,7 @@ const App = () => {
               element={
                 <>
                   {" "}
-                  <ThankYouPage /> <ScrollToTop />
-                  <Footer />{" "}
+                  <ThankYouPage /> <ScrollToTop /> <Footer />{" "}
                 </>
               }
               exact

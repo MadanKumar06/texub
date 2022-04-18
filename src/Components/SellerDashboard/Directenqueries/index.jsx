@@ -1,15 +1,55 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./styles.scss";
 import MUITable from "../../Common/MUITable";
 import { Link } from "react-router-dom";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import Enquirydetails from "../../SellerDashboard/Directenqueries/Enquirydetails";
+import axios from 'axios'
+import Constant from '../../../Constant'
+import { useStateValue } from "../../../store/state";
 
 const Index = () => {
   const [isUopup, setisUopup] = useState(false);
-  const Popup = () => {
+  const [direct, setdirect] = useState([])
+  const [{}, dispatch] = useStateValue()
+
+  useEffect(async() => {
+    let user = JSON.parse(localStorage.getItem('userdata'))
+    try {
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: true,
+      });
+      const ddlist = await axios({
+        method: 'post',
+        url: `${Constant.baseUrl()}/wtbSellerList`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        },
+        data: {
+          seller_id: user?.id
+        }
+      })
+      setdirect(ddlist?.data)
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
+    } catch(e) {
+      console.log(e)
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
+    }
+  }, [])
+
+  const [popid, setpopid] = useState()
+  const Popup = (value) => {
     setisUopup(true);
+    setpopid(value)
   };
+
   const ordertype = [
     { name: "All Enquiries" },
     { name: "Open Enquiries " },
@@ -34,60 +74,9 @@ const Index = () => {
     search: false,
   };
 
-  const table = [
-    {
-      enqno: "000000006",
-      buyercode: "BU201201",
-      partno: "RT-5700U",
-      modelname: {
-        name: "Lenovo Dpin Yoga..",
-      },
-      qty: "50",
-      hub: "Mumbai",
-      status: "Open",
-      action: "View Details",
-    },
-    {
-      enqno: "0000000021",
-      buyercode: "BU201201",
-      partno: "RT-5700U",
-      modelname: {
-        name: "Acer Sf314-42 Swift 3...",
-      },
-      qty: "34",
-      hub: "Mumbai",
-      status: "Accepted",
-      action: "View Details",
-    },
-    {
-      enqno: "0000000022",
-      buyercode: "BU201201",
-      partno: "RT-5700U",
-      modelname: {
-        name: "Apple Macbook Pro...",
-      },
-      qty: "25",
-      hub: "Mumbai",
-      status: "Closed",
-      action: "View Details",
-    },
-    {
-      enqno: "0000000023",
-      buyercode: "BU201201",
-      partno: "RT-5700U",
-      modelname: {
-        name: "Hp Business Laptop...",
-      },
-      qty: "20",
-      hub: "Mumbai",
-      status: "Accepted",
-      action: "View Details",
-    },
-  ];
-
   const columns = [
     {
-      name: "enqno",
+      name: "enquiry_id",
       label: "Enq. No.",
       options: {
         customBodyRender: (value) => {
@@ -96,7 +85,7 @@ const Index = () => {
       },
     },
     {
-      name: "buyercode",
+      name: "buyer_code",
       label: "Buyer Code",
       options: {
         customBodyRender: (value) => {
@@ -108,22 +97,22 @@ const Index = () => {
         },
       },
     },
-    { name: "partno", label: "Part No." },
+    { name: "sku", label: "Part No." },
     {
-      name: "modelname",
+      name: "model_number",
       label: "Model Name/No.",
       options: {
         customBodyRender: (value) => {
           return (
             <div className="directenquiries_products">
-              <div className="directenquiries_product_name">{value?.name}</div>
+              <div className="directenquiries_product_name">{value}</div>
             </div>
           );
         },
       },
     },
     {
-      name: "qty",
+      name: "quantity",
       label: "Qty.",
       options: {
         customBodyRender: (value) => {
@@ -136,11 +125,11 @@ const Index = () => {
       },
     },
     {
-      name: "hub",
+      name: "hub_id",
       label: "Hub",
     },
     {
-      name: "status",
+      name: "wtb_status",
       label: "Status",
       options: {
         customBodyRender: (value) => {
@@ -163,13 +152,13 @@ const Index = () => {
       },
     },
     {
-      name: "action",
+      name: "wtb_id",
       label: "Action",
       options: {
         customBodyRender: (value) => {
           return (
-            <div className="actions" onClick={() => Popup()}>
-              <span className="value">{value}</span>
+            <div className="actions" onClick={() => Popup(value)}>
+              <span className="value">View Details</span>
             </div>
           );
         },
@@ -207,11 +196,11 @@ const Index = () => {
 
       <MUITable
         columns={columns}
-        table={table}
+        table={direct}
         options={options}
         className="directenquiries__table"
       />
-      {isUopup && <Enquirydetails closePOPup={setisUopup} />}
+      {isUopup && <Enquirydetails closePOPup={setisUopup} popid={popid} direct={direct} />}
     </div>
   );
 };
