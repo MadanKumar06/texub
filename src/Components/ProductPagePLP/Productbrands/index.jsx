@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./styles.scss";
-import { ArrowBackIosNew, ArrowForwardIos } from "@mui/icons-material";
+import { ArrowBackIosNew, ArrowForwardIos, RemoveDoneRounded } from "@mui/icons-material";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
@@ -20,11 +20,11 @@ const Productsbrands = ({
   const brand = (value) => {
     value && setisChange(value);
   };
-  useEffect(() => {
-    document.addEventListener("mousedown", () => {
-      setisChange(false);
-    });
-  }, []);
+  // useEffect(() => {
+  //   document.addEventListener("mousedown", () => {
+  //     setisChange(false);
+  //   });
+  // }, []);
 
   function Arrow(props) {
     let className =
@@ -96,26 +96,7 @@ const Productsbrands = ({
     dots: false,
     infinite: false,
     slidesToShow: 15,
-    slidesToScroll: 2,
-    initialSlide: 0,
-    nextArrow: <Arrow type="next" />,
-    prevArrow: <Arrow type="prev" />,
-    responsive: [
-      {
-        breakpoint: 192,
-        settings: {
-          slidesToShow: 15,
-          slidesToScroll: 2,
-          initialSlide: 0,
-        },
-      },
-    ],
-  };
-  const Productsbtns = {
-    dots: false,
-    infinite: true,
-    slidesToShow: 15,
-    slidesToScroll: 2,
+    slidesToScroll: 1,
     initialSlide: 0,
     nextArrow: <Arrow type="next" />,
     prevArrow: <Arrow type="prev" />,
@@ -124,28 +105,110 @@ const Productsbrands = ({
         breakpoint: 1920,
         settings: {
           slidesToShow: 15,
-          slidesToScroll: 2,
+          slidesToScroll: 1,
           initialSlide: 0,
+         
+        },
+      },
+    ],
+  };
+  const Productsbtns = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToScroll: 1,
+    slidesToShow: 15,
+    initialSlide: 0,
+    cssEase: "linear",
+    lazyLoad: true,
+    nextArrow: <Arrow type="next" />,
+    prevArrow: <Arrow type="prev" />,
+    responsive: [
+      {
+        breakpoint: 1920,
+        settings: {
+          slidesToShow: 6,
+          slidesToScroll: 2,
+          initialSlide: 8,
         },
       },
       {
         breakpoint: 1600,
         settings: {
-          slidesToShow: 10,
+          slidesToShow: 7,
           slidesToScroll: 2,
-          initialSlide: 0,
+          initialSlide: 7,
+        },
+      },
+      {
+        breakpoint: 1440,
+        settings: {
+          slidesToShow: 6,
+          slidesToScroll: 2,
+          initialSlide: 6,
+        },
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 2,
+          initialSlide: 4,
         },
       },
       {
         breakpoint: 769,
         settings: {
-          slidesToShow: 8,
+          slidesToShow: 3,
           slidesToScroll: 2,
           initialSlide: 3,
         },
       },
+      {
+        breakpoint: 580,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2,
+        },
+      },
     ],
   };
+  // const Productsbtns = {
+  //   dots: false,
+  //   infinite: true,
+  //   slidesToShow: 15,
+  //   slidesToScroll: 2,
+  //   initialSlide: 0,
+  //   nextArrow: <Arrow type="next"/>,
+  //   prevArrow: <Arrow type="prev"/>,
+  //   responsive: [
+  //     {
+  //       breakpoint: 1920,
+  //       settings: {
+  //         slidesToShow: 5,
+  //         slidesToScroll: 2,
+  //         initialSlide: 0,
+  //       },
+  //     },
+  //     {
+  //       breakpoint: 1600,
+  //       settings: {
+  //         slidesToShow: 8,
+  //         slidesToScroll: 2,
+  //         initialSlide: 0,
+  //       },
+  //     },
+  //     {
+  //       breakpoint: 769,
+  //       settings: {
+  //         slidesToShow: 5,
+  //         slidesToScroll: 2,
+  //         initialSlide: 3,
+  //       },
+  //     },
+  //   ],
+  // };
 
   return (
     <div className="Productsbrands">
@@ -182,7 +245,8 @@ const Productsbrands = ({
           <SimpleLoader />
         ) : (
           <div className="Slider_Section">
-            <Slider {...Productsbtns} className="slide_Test">
+            <Slider {...Productsbtns}  className="slide_Test">
+          
               {getCategories?.length &&
                 getCategories?.map((item) => (
                   <li
@@ -231,5 +295,6 @@ const Productsbrands = ({
       </>
     </div>
   );
+
 };
 export default Productsbrands;

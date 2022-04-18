@@ -39,6 +39,8 @@ export const Products = () => {
             keyword: productFetchApi?.search_product
               ? productFetchApi?.search_product
               : "",
+            // eta: productFetchApi?.eta ? productFetchApi?.eta : "",
+            eta: 0,
           },
         };
         axios
@@ -108,7 +110,12 @@ export const Products = () => {
         getCategories={getCategories}
       />
       <div className="clear-btn">
-        <Button className="button-text btn-primary clear" onClick={() => setProductFetchApi("")}>Clear All</Button>
+        <Button
+          className="button-text btn-primary clear"
+          onClick={() => setProductFetchApi("")}
+        >
+          Clear All
+        </Button>
       </div>
       <Productstable
         setProductFetchApi={setProductFetchApi}

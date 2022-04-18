@@ -22,7 +22,6 @@ export const Home = () => {
         method: 'get',
         url: `${Constant.baseUrl()}/getHomePage`
       })
-      console.log(home.data)
       sethomedata(prevState => ({
         ...prevState,
         homecontent: Object.assign({}, ...home.data)
@@ -31,9 +30,6 @@ export const Home = () => {
       console.log(e)
     }
   }, [])
-
-  console.log(homedata)
-
 
   return (
     <div className="Home">

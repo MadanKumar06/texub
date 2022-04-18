@@ -10,6 +10,7 @@ import { useStateValue } from "../../store/state";
 import Constant from "../../Constant";
 import axios from "axios";
 import swal from "sweetalert2";
+import Wishlist from './Wishlist'
 
 import header_bottom_image_1 from "../../Assets/Productlist/warranty.png";
 import header_bottom_image_2 from "../../Assets/Productlist/Delivery.png";
@@ -21,6 +22,10 @@ import invoice_image from "../../Assets/CommonImage/invoice.png";
 
 const PdpPopup = () => {
   const [open, setOpen] = useState(true);
+  const [openwishlist, setopenwishlist] = useState(false)
+  const list = () => {
+    setopenwishlist(true)
+  }
   let detailsData = useRef();
   const history = useNavigate();
   const [{ pdpPopUpOpenClose }, dispatch] = useStateValue();
@@ -64,7 +69,64 @@ const PdpPopup = () => {
     });
   };
 
-  const handleIsValidUser = (event) => {
+  const [folder, setfolder] = useState()
+
+  useEffect(async () => {
+    let user = JSON.parse(localStorage.getItem('userdata'))
+    try {
+      const foldername = await axios({
+        method: 'post',
+        url: `${Constant.baseUrl()}/wishlist/getNames`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        },
+        data: {
+          "requestParams": {
+            "customer_id": user?.id
+          }
+        }
+      })
+      setfolder(foldername.data[0])
+    } catch (e) {
+      console.log(e)
+    }
+  }, [])
+
+  const handleIsValidUser = async (event) => {
+    let user = JSON.parse(localStorage.getItem('userdata'))
+    if (event === "add_to_wishlist") {
+      try {
+        const foldername = await axios({
+          method: 'post',
+          url: `${Constant.baseUrl()}/wishlist/getNames`,
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+          },
+          data: {
+            "requestParams": {
+              "customer_id": user?.id
+            }
+          }
+        })
+        const wishdata = await axios({
+          method: "post",
+          url: `${Constant.baseUrl()}/wishlist`,
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+          },
+          data: {
+            "requestParams": {
+              "customer_id": user?.id,
+              "product_id": parseInt(pdpSellerData?.product_id),
+              "wk_id": foldername.data[0]?.id ? foldername.data[0]?.id : '',
+              "wk_name": foldername.data[0]?.id ? "" : "wishlist"
+            }
+          }
+        })
+      } catch (e) {
+        console.log(e)
+      }
+    }
     let isValidUser = JSON.parse(localStorage.getItem("userdata"))?.group_id;
 
     if (isValidUser === 5) {
@@ -72,17 +134,16 @@ const PdpPopup = () => {
         event === "add_to_cart"
           ? AddToCartAndPendingInvoice("add_to_cart")
           : event === "pending_invoice"
-          ? AddToCartAndPendingInvoice("pending_invoice")
-          : "";
+            ? AddToCartAndPendingInvoice("pending_invoice")
+            : "";
     } else {
       swal.fire({
-        text: `${
-          event === "add_to_cart"
+        text: `${event === "add_to_cart"
             ? "Login as a buyer to add cart"
             : event === "add_to_wishlist"
-            ? "Login as a buyer to add wishlist"
-            : "Login as a buyer to add pending invoice"
-        }`,
+              ? "Login as a buyer to add wishlist"
+              : "Login as a buyer to add pending invoice"
+          }`,
         icon: "error",
         showConfirmButton: false,
         timer: 3000,
@@ -110,8 +171,7 @@ const PdpPopup = () => {
     };
     axios
       .post(
-        `${Constant.baseUrl()}${
-          info === "add_to_cart" ? `/addToCart` : `/addToPendingInvoice`
+        `${Constant.baseUrl()}${info === "add_to_cart" ? `/addToCart` : `/addToPendingInvoice`
         }`,
         data,
         {
@@ -137,15 +197,18 @@ const PdpPopup = () => {
             type: "SET_PDP_POPUP_OPEN_CLOSE",
             value: false,
           });
-          if (info === "add_to_cart") {
-            setTimeout(() => {
-              history("/mycart");
-            }, 1000 / 2);
-          } else {
-            setTimeout(() => {
-              history("/pending-invoice");
-            }, 1000 / 2);
-          }
+          dispatch({
+            type: "CART__TRIGGER",
+          });
+          // if (info === "add_to_cart") {
+          //   setTimeout(() => {
+          //     history("/mycart");
+          //   }, 1000 / 2);
+          // } else {
+          //   setTimeout(() => {
+          //     history("/pending-invoice");
+          //   }, 1000 / 2);
+          // }
         } else {
           swal.fire({
             text: `${res.data?.[0]?.message}`,
@@ -229,21 +292,21 @@ const PdpPopup = () => {
           <div className="modal_bottom_container">
             {(pdpPopUpOpenClose?.data?.tableData?.length > 3 ||
               table_two_data?.length > 3) && (
-              <div
-                className="modal_bottom_image_container"
-                onClick={() => MoreOfferChange()}
-              >
-                <img src={more_offer_image} alt="" />
-                <span>More Offers</span>
-              </div>
-            )}
+                <div
+                  className="modal_bottom_image_container"
+                  onClick={() => MoreOfferChange()}
+                >
+                  <img src={more_offer_image} alt="" />
+                  <span>More Offers</span>
+                </div>
+              )}
 
             <div
               className="modal_bottom_image_container"
-              onClick={() => handleIsValidUser("add_to_wishlist")}
+              // onClick={() => handleIsValidUser("add_to_wishlist")}
             >
               <img src={add_whishlist} alt="" />
-              <span>Add to Wishlist</span>
+              <span onClick={list}>Add to Wishlist</span>
             </div>
             <div className="modal_bottom_button_main">
               <Button
@@ -264,6 +327,7 @@ const PdpPopup = () => {
               </Button>
             </div>
           </div>
+          {openwishlist && <Wishlist/>}
           <div className="pdp_modal_footer">
             <div className="pdp_footer_model_details">
               <span className="pdp_footer_model_info">MODEL NAME</span>
@@ -294,6 +358,7 @@ const PdpPopup = () => {
           </div>
         </div>
       </div>
+
     </Modal>
   );
 };

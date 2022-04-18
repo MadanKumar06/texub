@@ -71,7 +71,7 @@ const Productlists = ({ setProductFetchApi, productFetchApi }) => {
     var currency_id = JSON.parse(localStorage.getItem("currency"));
     const fetchProductListDropDownData = () => {
       let data = {
-        currency_id: 3,
+        currency_id: currency_id?.currency_id,
       };
       axios
         .post(Constant.baseUrl() + "/getSearchItemsInPlp", data, {

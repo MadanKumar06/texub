@@ -17,7 +17,6 @@ const Blogsmain = () => {
         method: "get",
         url: `${Constant.baseUrl()}/blogList`,
       });
-      console.log(blogsdata?.data);
       let popular = [];
       let notpopular = [];
       blogsdata?.data?.filter((bd) => {

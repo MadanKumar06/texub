@@ -176,6 +176,24 @@ const Index = (classes) => {
       errorHandle = true;
     }
   };
+  //Api
+  useEffect(() => {
+    const fetchCountryList = () => {
+      axios
+        .get(baseUrl + "/getCountryList", {
+          headers: {
+            "Content-type": "application/json",
+          },
+        })
+        // .then((response) => {
+        //   setCountryDropdown(response?.data);
+        // })
+        .catch((error) => { });
+    }
+   fetchCountryList();
+}, []);
+{}
+
 return (
   <div className='account_ifo_main'>
     <span className='Account_heading'> <p>EDIT PROFILE INFORMATION</p></span>

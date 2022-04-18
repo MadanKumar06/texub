@@ -27,7 +27,12 @@ function Index({
             {color === "yellow" && "Seller ID"}
             {color === "blue" && "Buyer ID"}
           </span>
-          <span className="sellervalue">10013</span>
+          <span className="sellervalue">
+            {
+              JSON.parse(localStorage.getItem("userdata"))
+                ?.custom_attributes?.[7]?.value
+            }
+          </span>
         </p>
       </div>
       <ul>

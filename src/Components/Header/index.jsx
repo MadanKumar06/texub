@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styles from "./styles";
 
@@ -14,13 +14,16 @@ import axios from "axios";
 import Constant from "../../Constant";
 
 const Header = ({ classes }) => {
-  const [{ currency, cart }, dispatch] = useStateValue();
+  const [{ currency, cart, gt }, dispatch] = useStateValue();
   let isSignedIn = JSON.parse(localStorage.getItem("userdata"));
 
   useEffect(async () => {
-    debugger;
     const user = JSON.parse(localStorage.getItem("userdata"));
     if (localStorage.getItem("token")) {
+      dispatch({
+        type: "SET_IS_SIMPLE_LOADING",
+        value: true,
+      });
       try {
         const cartdata = await axios({
           method: "post",
@@ -35,16 +38,25 @@ const Header = ({ classes }) => {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         });
-        console.log(cartdata.data[0]);
         dispatch({
           type: "CART__DATA",
           data: cartdata?.data,
         });
+        dispatch({
+          type: "SET_IS_SIMPLE_LOADING",
+          value: false,
+        });
       } catch (e) {
         console.log(e);
+        dispatch({
+          type: "SET_IS_SIMPLE_LOADING",
+          value: false,
+        });
       }
     }
-  }, [currency, cart]);
+  }, [currency, gt, localStorage.getItem("userdata")]);
+
+  console.log(gt);
 
   const SigninPopUP = () => {
     dispatch({
@@ -68,7 +80,7 @@ const Header = ({ classes }) => {
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "SignOut!",
+        confirmButtonText: "Sign Out!",
       })
       .then((result) => {
         if (result.isConfirmed) {

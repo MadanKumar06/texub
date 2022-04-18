@@ -266,15 +266,16 @@ function RegisterProduct() {
     let user = JSON.parse(localStorage.getItem("userdata"));
     let data = {
       product_data: {
+        bulkupload: 0,
         customer_id: user?.id,
         main_category: registerNewProductData?.main_category?.value,
         other_main_category: registerNewProductData?.other_main_category,
         sub_category: registerNewProductData?.sub_category?.value,
         other_sub_category: registerNewProductData?.other_sub_category,
-        other_brand_number: "",
+        other_brand_number: registerNewProductData?.other_brands,
         name: registerNewProductData?.modal_number,
         texub_product_id: dropdownListFromApi?.texub_product_id,
-        mgs_brand: registerNewProductData?.brands?.brand_id,
+        mgs_brand: registerNewProductData?.brands?.value,
         hsn_code: registerNewProductData?.hsn_code,
         sku: registerNewProductData?.vendor_manufacturer_part_number,
         upc_number: registerNewProductData?.upc_number,
@@ -289,7 +290,7 @@ function RegisterProduct() {
         },
       })
       .then((res) => {
-        if (res.data?.[0]?.status) {
+        if (res.data?.[0]?.status === "true") {
           history("/sellerdashboard/registersuccess");
         } else {
           swal.fire({
@@ -388,28 +389,7 @@ function RegisterProduct() {
               {inputValidation?.main_category}
             </InputLabel>
           </div>
-          {registerNewProductData?.main_category?.value === "mc" ? (
-            <div className="registerproducts_inputfields">
-              <InputLabel>
-                Other Sub Category <small className="asterisk">*</small>
-              </InputLabel>
-              <TextField
-                id="other_sub_category"
-                name="other_sub_category"
-                placeholder="Other Sub Category"
-                fullWidth
-                className="inputfield-box"
-                value={registerNewProductData?.other_sub_category}
-                InputLabelProps={{
-                  shrink: false,
-                }}
-                variant="outlined"
-              />
-              <InputLabel className="validation_error">
-                {inputValidation?.other_sub_category}
-              </InputLabel>
-            </div>
-          ) : (
+          {registerNewProductData?.main_category?.value !== "mc" && (
             <div className="registerproducts_inputfields">
               <InputLabel>
                 Sub-Category <small className="asterisk">*</small>
@@ -474,29 +454,30 @@ function RegisterProduct() {
             )}
           </div>
           <div className="registerproducts_inputfields">
-            {registerNewProductData?.sub_category?.value === "sc" && (
-              <div className="registerproducts_inputfields">
-                <InputLabel>
-                  Other Sub Category <small className="asterisk">*</small>
-                </InputLabel>
-                <TextField
-                  id="other_sub_category"
-                  name="other_sub_category"
-                  placeholder="Other Sub Category"
-                  fullWidth
-                  className="inputfield-box"
-                  value={registerNewProductData?.other_sub_category}
-                  InputLabelProps={{
-                    shrink: false,
-                  }}
-                  variant="outlined"
-                  onChange={handleOnchange}
-                />
-                <InputLabel className="validation_error">
-                  {inputValidation?.other_sub_category}
-                </InputLabel>
-              </div>
-            )}
+            {registerNewProductData?.sub_category?.value === "sc" ||
+              (registerNewProductData?.main_category?.value === "mc" && (
+                <div className="registerproducts_inputfields">
+                  <InputLabel>
+                    Other Sub Category <small className="asterisk">*</small>
+                  </InputLabel>
+                  <TextField
+                    id="other_sub_category"
+                    name="other_sub_category"
+                    placeholder="Other Sub Category"
+                    fullWidth
+                    className="inputfield-box"
+                    value={registerNewProductData?.other_sub_category}
+                    InputLabelProps={{
+                      shrink: false,
+                    }}
+                    variant="outlined"
+                    onChange={handleOnchange}
+                  />
+                  <InputLabel className="validation_error">
+                    {inputValidation?.other_sub_category}
+                  </InputLabel>
+                </div>
+              ))}
           </div>
         </div>
         <div className="input_separator">

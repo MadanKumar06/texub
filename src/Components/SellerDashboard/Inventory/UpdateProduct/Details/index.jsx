@@ -149,11 +149,8 @@ function Index({
           temp.label = wc.label;
         }
       });
-    console.log(temp);
     setcurrentcurrency(temp);
   }, [currentdata?.currency_id]);
-
-  console.log(count);
 
   return (
     <>

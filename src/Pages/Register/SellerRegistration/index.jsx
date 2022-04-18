@@ -137,7 +137,6 @@ const BuyerRegistration = ({ classes }) => {
   useEffect(() => {
     if (sellerRegistrationData?.region?.region_id) {
       const fetchRegionBasedCountryData = () => {
-        setsellerRegistrationData({ country: "" });
         let data = {
           region_id: sellerRegistrationData?.region?.region_id,
         };
@@ -292,8 +291,8 @@ const BuyerRegistration = ({ classes }) => {
         company: "Please enter the company.",
       }));
       errorHandle = true;
-    } 
-    // else if (!isCompanyNameValid(sellerRegistrationData?.company)) {
+    }
+    //  else if (!isCompanyNameValid(sellerRegistrationData?.company)) {
     //   document.getElementById("company")?.focus();
     //   setInputValidation((prevState) => ({
     //     ...prevState,
@@ -787,9 +786,6 @@ const BuyerRegistration = ({ classes }) => {
                   option.role_name ? option.role_name : ""
                 }
                 filterOptions={(options) => options}
-                // isOptionEqualToValue={(option, value) => {
-                //   debugger;
-                // }}
                 renderInput={(params) => (
                   <TextField
                     {...params}
@@ -881,7 +877,7 @@ const BuyerRegistration = ({ classes }) => {
                 className={recaptcha_info}
                 // 6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI
                 // 6LcaHDYfAAAAAOUR0jJWtEI128eoRL4xjBWOpjKD
-                sitekey="6LcaHDYfAAAAAOUR0jJWtEI128eoRL4xjBWOpjKD"
+                sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
                 onChange={() => {
                   setsellerRegistrationData((prevState) => ({
                     ...prevState,

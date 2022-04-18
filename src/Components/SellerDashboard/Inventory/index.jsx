@@ -85,7 +85,7 @@ function Index({ registerproduct }) {
           return (
             <div className="inventory__myprice">
               <p>
-                <span className="label">INR</span>
+                {/* <span className="label">INR</span> */}
                 <span className="value">{value}</span>
               </p>
             </div>
@@ -101,7 +101,7 @@ function Index({ registerproduct }) {
           return (
             <div className="inventory__lowestprice">
               <p>
-                <span className="label">INR</span>
+                {/* <span className="label">INR</span> */}
                 <span className="value">{value}</span>
               </p>
             </div>
@@ -162,7 +162,7 @@ function Index({ registerproduct }) {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         });
-        setApiTableData(tabledata.data);
+        setApiTableData(tabledata?.data);
       } catch (e) {
         console.log(e);
       }

@@ -23,8 +23,21 @@ const Mycart = () => {
   }, []);
 
   //Delete cart
+  const [localcart, setlocalcart] = useState(false);
+
+  useEffect(() => {
+    dispatch({
+      type: "CART__TRIGGER",
+      data: !localcart,
+    });
+    setlocalcart(!localcart);
+  }, []);
 
   const deleteCartData = async (deleteCart) => {
+    dispatch({
+      type: "SET_IS_LOADING",
+      value: true,
+    });
     try {
       const rowdelete = await axios({
         method: "delete",
@@ -36,6 +49,13 @@ const Mycart = () => {
         },
       });
       if (rowdelete) {
+        dispatch({
+          type: "CART__TRIGGER",
+        });
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
         swal.fire({
           text: `Your Cart is Deleted Successfully!`,
           icon: "success",
@@ -43,6 +63,10 @@ const Mycart = () => {
           timer: 3000,
         });
       } else {
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
         swal.fire({
           text: `Your Cart Not Deleted Try Again later`,
           icon: "error",
@@ -53,29 +77,45 @@ const Mycart = () => {
 
       // seteventcheck(!eventcheck);
     } catch (e) {
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
       console.log(e);
     }
   };
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const addpendinginvoice = async() => {
+  const addpendinginvoice = async () => {
+    dispatch({
+      type: "SET_IS_LOADING",
+      value: true,
+    });
     try {
       const pinvoice = await axios({
-        method: 'post',
+        method: "post",
         url: `${Constant.baseUrl()}/cartToPendingInvoice`,
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         data: {
-            "quote_id":cart[0]?.invoice?.Cart_id,
-            "store_id":1
-        }
-      })
-      navigate('/pending-invoice')
-    } catch(e) {
-      console.log(e)
+          quote_id: cart[0]?.invoice?.Cart_id,
+          store_id: 1,
+        },
+      });
+      navigate("/pending-invoice");
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
+    } catch (e) {
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
+      console.log(e);
     }
-  }
+  };
 
   return (
     <div className="my_cart_main">
@@ -99,7 +139,10 @@ const Mycart = () => {
         <Button className="my_cart_bottom_button_shopping">
           <span>Continue Shopping</span>
         </Button>
-        <Button className="my_cart_bottom_button_pending_invoice" onCLick={addpendinginvoice}>
+        <Button
+          className="my_cart_bottom_button_pending_invoice"
+          onClick={() => addpendinginvoice()}
+        >
           <span>Add To Pending Invoice</span>
         </Button>
       </div>
