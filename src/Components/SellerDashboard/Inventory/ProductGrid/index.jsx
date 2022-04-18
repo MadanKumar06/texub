@@ -16,6 +16,8 @@ function Index({ registerproduct, gridData }) {
     search: false,
   };
 
+  console.log(gridData)
+  console.log(tableData)
   const columns = [
     {
       name: "brand_image_url",
@@ -61,9 +63,11 @@ function Index({ registerproduct, gridData }) {
     },
   ];
   const PaginateDataSplit = (event) => {
-    if (gridData?.length === 0) return setTableData([]);
+    console.log(event)
+    if (event?.length === 0) return setTableData([]);
     setTableData(event);
   };
+
   return (
     <div className="productGrid_inventory">
       <MUITable
@@ -77,7 +81,7 @@ function Index({ registerproduct, gridData }) {
         <Pagination
           PaginateData={PaginateDataSplit}
           DataList={gridData?.length ? gridData : []}
-          PagePerRow={4}
+          PagePerRow={10}
         />
       ) : (
         ""

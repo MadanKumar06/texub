@@ -265,7 +265,7 @@ const MiniCartList = ({ handleSideBarClose }) => {
               <p className="total_price">
                 <span>INR </span>
                 {/* {cart?.data?.[0]?.invoice?.grand_total} */}
-                {cart[0].invoice?.subtotal}
+                {cart[0]?.invoice?.subtotal}
               </p>
             </div>
             <div className="minicart_btn">
