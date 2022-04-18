@@ -463,7 +463,7 @@ const MyCartTable = ({ cartDataList, deleteCartData }) => {
     <div className="mycart_table_main_container">
       <MUITable
           columns={columns}
-          table={is_table_quantity}
+          table={is_table_quantity?.length ? is_table_quantity : []}
           options={options}
           className="mycart_table_mui_datatable_main"
         />

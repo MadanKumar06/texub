@@ -131,6 +131,7 @@ const MiniCartList = ({ handleSideBarClose }) => {
       console.log(e);
     }
   };
+  console.log(cart[0].invoice)
 
   return (
     <div className="minicart_list_main">
@@ -262,8 +263,9 @@ const MiniCartList = ({ handleSideBarClose }) => {
             <div className="minicart_total">
               <p className="title_total">TOTAL</p>
               <p className="total_price">
-                <span>INR</span>
-                {cart?.data?.[0]?.invoice?.grand_total}
+                <span>INR </span>
+                {/* {cart?.data?.[0]?.invoice?.grand_total} */}
+                {cart[0].invoice?.subtotal}
               </p>
             </div>
             <div className="minicart_btn">
