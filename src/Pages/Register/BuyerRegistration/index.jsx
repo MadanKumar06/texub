@@ -656,7 +656,7 @@ const BuyerRegistration = ({ classes }) => {
               <div>
                 <Checkbox
                   value={buyerRegistrationData?.checkbox_confrim}
-                  color="secondary"
+                  color="color_third"
                   name="checkbox_confrim"
                   onClick={(event) => handleChangeInput(event)}
                   className={checkbox_label}
