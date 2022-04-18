@@ -18,7 +18,7 @@ import { useStateValue } from "../../../store/state";
 function Index({ registerproduct }) {
   const [tableData, setTableData] = useState([]);
   const [apiTableData, setApiTableData] = useState([]);
-  const [searchList, setSearchList] = useState(false);
+  const [searchList, setSearchList] = useState([]);
   const [{}, dispatch] = useStateValue();
 
   const options = {
@@ -99,7 +99,7 @@ function Index({ registerproduct }) {
       name: "my_price",
       label: "LOWEST PRICE",
       options: {
-        customBodyRender: (value,tablemeta) => {
+        customBodyRender: (value, tablemeta) => {
           return (
             <div className="inventory__lowestprice">
               <p>
@@ -192,10 +192,10 @@ function Index({ registerproduct }) {
   }, []);
 
   const handleSearchInput = async (event) => {
+    event.preventDefault();
     if (event.target.value === "") {
       return setSearchList(false);
     }
-    var customer_id = JSON.parse(localStorage.getItem("userdata"));
     try {
       const searchresults = await axios({
         method: "post",
@@ -255,11 +255,14 @@ function Index({ registerproduct }) {
         </div>
       </div>
       {searchList?.length > 0 && (
-        <ProductGrid gridData={searchList} registerproduct={registerproduct} />
+        <ProductGrid
+          gridData={searchList?.length ? searchList : []}
+          registerproduct={registerproduct}
+        />
       )}
       <MUITable
         columns={columns}
-        table={tableData}
+        table={tableData?.length ? tableData : []}
         options={options}
         className="inventory__table"
       />
@@ -267,7 +270,7 @@ function Index({ registerproduct }) {
       {apiTableData?.length > 0 && (
         <Pagination
           PaginateData={PaginateDataSplit}
-          DataList={apiTableData}
+          DataList={apiTableData?.length ? apiTableData : []}
           PagePerRow={10}
         />
       )}

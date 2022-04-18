@@ -133,7 +133,6 @@ const PDPTable = ({ classes, tableData, setPdpSellerData, pdpSellerData }) => {
       // no_of_pieces: event?.no_of_pieces,
     }));
   };
-  let isGuestUserSignedIn = JSON.parse(localStorage.getItem("userdata"));
   return (
     <div className={table_container}>
       <div className={pdp_middle_wapper}>

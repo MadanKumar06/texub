@@ -254,7 +254,7 @@ const Productstable = ({
   };
 
   const PaginateDataSplit = (event) => {
-    if (productData.length === 0) return setTableData([]);
+    if (productData?.length === 0) return setTableData([]);
     setTableData(event);
   };
   return (
