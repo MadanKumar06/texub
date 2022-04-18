@@ -59,7 +59,7 @@ export const Termsofuse = () => {
       <div className="Termsofuse_Description_section">
         <div className="Termsofuse_heading_section">
           <img src={Terms} alt="" className="Termsofuse_terms" />
-          <h2 className="Termsofuse_heading">Product Listing Policy</h2>
+          <h2 className="Termsofuse_heading">Terms Of Use</h2>
         </div>
         <span dangerouslySetInnerHTML={{ __html: terms?.content }}></span>
         {/* <div className="Termsofuse_description">

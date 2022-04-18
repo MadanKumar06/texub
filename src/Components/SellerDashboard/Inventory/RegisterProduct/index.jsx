@@ -510,7 +510,7 @@ function RegisterProduct() {
                 <TextField
                   {...params}
                   className="inputfield-box"
-                  placeholder="Brand"
+                  placeholder="Select Brand"
                   InputLabelProps={{
                     shrink: false,
                   }}
