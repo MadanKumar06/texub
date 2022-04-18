@@ -122,7 +122,7 @@ const BuyerRegistration = ({ classes }) => {
     const fetchRoleData = () => {
       axios
         // .get(Constant.baseUrl() + "/getRoleList", {
-          .get("https://uat.texub.com/rest/V1/texub/getRoleList", {
+        .get("https://uat.texub.com/rest/V1/texub/getRoleList", {
           headers: {
             "Content-Type": "application/json",
           },
@@ -302,15 +302,14 @@ const BuyerRegistration = ({ classes }) => {
         company: "Please enter the company.",
       }));
       errorHandle = true;
+    } else if (!isCompanyNameValid(sellerRegistrationData?.company)) {
+      document.getElementById("company")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        company: "Please enter Alphabet or (Alphabet and Number)..",
+      }));
+      errorHandle = true;
     }
-    //  else if (!isCompanyNameValid(sellerRegistrationData?.company)) {
-    //   document.getElementById("company")?.focus();
-    //   setInputValidation((prevState) => ({
-    //     ...prevState,
-    //     company: "Please enter Alphabet or (Alphabet and Number)..",
-    //   }));
-    //   errorHandle = true;
-    // }
     if (!sellerRegistrationData?.designation) {
       document.getElementById("designation")?.focus();
       setInputValidation((prevState) => ({
@@ -361,14 +360,17 @@ const BuyerRegistration = ({ classes }) => {
       }));
       errorHandle = true;
     }
-    // else if (!isRolesValid(sellerRegistrationData?.other_roles)) {
-    //   document.getElementById("other_roles")?.focus();
-    //   setInputValidation((prevState) => ({
-    //     ...prevState,
-    //     other_roles: "Please enter only alphabet and special character.",
-    //   }));
-    //   errorHandle = true;
-    // }
+    if (
+      sellerRegistrationData?.other_roles &&
+      !isRolesValid(sellerRegistrationData?.other_roles)
+    ) {
+      document.getElementById("other_roles")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        other_roles: "Please enter only alphabet and special character.",
+      }));
+      errorHandle = true;
+    }
     if (!sellerRegistrationData?.recaptcha) {
       document.getElementById("recaptcha")?.focus();
       setInputValidation((prevState) => ({

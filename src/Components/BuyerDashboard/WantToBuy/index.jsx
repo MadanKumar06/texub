@@ -72,7 +72,7 @@ function Index() {
   };
   const columns = [
     {
-      name: "buyer_code",
+      name: "texub_wtb_id",
       label: "WTB REFERENCE NO.",
       options: {
         customBodyRender: (value) => {
@@ -120,7 +120,7 @@ function Index() {
       },
     },
     {
-      name: "status",
+      name: "active_sellers",
       label: "ACTIVE SELERS",
       options: {
         customBodyRender: (value) => {
@@ -140,7 +140,7 @@ function Index() {
       },
     },
     {
-      name: "QUOTE RECEIVED",
+      name: "quote_submitted",
       label: "QUOTE RECEIVED",
       options: {
         customBodyRender: (value) => {

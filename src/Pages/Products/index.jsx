@@ -42,6 +42,8 @@ export const Products = () => {
               ? productFetchApi?.search_product
               : "",
             eta: productFetchApi?.eta ? productFetchApi?.eta : "0",
+            min_price: 0,
+            max_price: 0,
           },
         };
         axios
@@ -51,7 +53,7 @@ export const Products = () => {
             },
           })
           .then((res) => {
-            sortCall(res?.data);
+            sortCall(res?.data?.[1]?.products);
           })
           .catch((err) => {});
       };
@@ -61,9 +63,11 @@ export const Products = () => {
 
   useEffect(() => {
     const fetchCategoryData = () => {
-      
+      let data = {
+        currency_id: parseInt(currency?.currency_id),
+      };
       axios
-        .get(Constant.baseUrl() + "/getCategoriesList", {
+        .post(Constant.baseUrl() + "/getCategoriesList", data, {
           headers: {
             "Content-Type": "application/json",
           },
