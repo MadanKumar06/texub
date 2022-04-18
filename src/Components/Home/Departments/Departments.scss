@@ -90,7 +90,21 @@
             }
           }
           .Body_Down_Pannel_btn_items:hover {
-            background-color: rgb(223, 217, 217);
+            background-image: linear-gradient(#20639b, #002d56);
+            color: #ffffff;
+            box-shadow: rgb(0 0 0 / 15%) 0px 5px 15px 0px;
+            position: relative;
+            ::before {
+              border: 1px solid #d1cccc;
+              content: "";
+              position: absolute;
+              width: 5px;
+              height: 43px;
+              left: -1px;
+              top: -1px;
+              background-color: #ffffff;
+              box-shadow: rgb(0 0 0 / 15%) 0px 5px 15px 0px;
+          }
           }
         }
       }
