@@ -128,13 +128,14 @@ const WantToBuy = () => {
       type: "SET_IS_LOADING",
       value: true,
     });
+    let id = JSON.parse(localStorage.getItem("userdata"));
     let data = {
       data: {
         store_id: 1,
-        buyer_id: JSON.parse(localStorage.getItem("userdata")?.id),
+        buyer_id: id?.id,
         part_number: wantTobuyData?.part_number,
         model_number: wantTobuyData?.model_name_number,
-        description: wantTobuyData?.description,
+        description: wantTobuyData?.product_description,
         main_category_id: wantTobuyData?.main_category?.value,
         quantity: wantTobuyData?.quantity,
         hub_id: wantTobuyData?.hub?.hub_id,
@@ -156,7 +157,7 @@ const WantToBuy = () => {
         if (res?.data?.[0]?.status) {
           swal.fire({
             text: `${res.data?.[0]?.message}`,
-            icon: "error",
+            icon: "success",
             showConfirmButton: false,
             timer: 3000,
           });

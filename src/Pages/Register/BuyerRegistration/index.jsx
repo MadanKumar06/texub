@@ -220,14 +220,14 @@ const BuyerRegistration = ({ classes }) => {
       }));
       errorHandle = true;
     }
-    // else if (!isCompanyNameValid(buyerRegistrationData?.company)) {
-    //   document.getElementById("company")?.focus();
-    //   setInputValidation((prevState) => ({
-    //     ...prevState,
-    //     company: "Please enter Alphabet or (Alphabet and Number)..",
-    //   }));
-    //   errorHandle = true;
-    // }
+    else if (!isCompanyNameValid(buyerRegistrationData?.company)) {
+      document.getElementById("company")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        company: "Please enter Alphabet or (Alphabet and Number)..",
+      }));
+      errorHandle = true;
+    }
     if (!buyerRegistrationData?.designation) {
       document.getElementById("designation")?.focus();
       setInputValidation((prevState) => ({
