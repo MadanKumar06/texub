@@ -388,17 +388,10 @@ function Index({ type, pid }) {
 
   useEffect(() => {
     if(country?.length === 0) return
-    // debugger
-    console.log(updateProduct?.resregion)
     if(updateProduct?.resregion?.length === 0) return
     country?.filter(
       (d) =>
       console.log(d)
-        // d.value === olddata?.restricts_country &&
-        // setUpdateProductList((prevState) => ({
-        //   ...prevState,
-        //   restricts_country: d,
-        // }))
     );
   }, [restricts_country])
 
