@@ -33,24 +33,32 @@ const FilterViewList = ({ handleSideBarClose, dataFromApi }) => {
   });
 
   useEffect(() => {
-    let filterByBrand = filter_by_brand?.slice(0, 5);
-    let filterByProduct = filter_by_product?.slice(0, 5);
-    let filterByHub = filter_by_hub?.slice(0, 5);
-    setSeeMoreData({
-      filter_by_brand: filterByBrand,
-      filter_by_product: filterByProduct,
-      filter_by_hub: filterByHub,
-    });
-  }, []);
+    if (dataFromApi?.length) {
+      debugger;
+      let filterByBrand = dataFromApi?.[0]?.brands?.slice(0, 5);
+      let filterByProduct = dataFromApi?.[3]?.categories?.slice(0, 5);
+      let filterByHub = dataFromApi?.[4]?.hub?.slice(0, 5);
+      setSeeMoreData({
+        filter_by_brand: filterByBrand,
+        filter_by_product: filterByProduct,
+        filter_by_hub: filterByHub,
+      });
+
+      setValue([
+        dataFromApi?.[2]?.price?.min_price,
+        dataFromApi?.[2]?.price?.max_price,
+      ]);
+    }
+  }, [dataFromApi]);
 
   const seeMoreChange = (event) => {
     let FilteredData =
       event === "filter_by_brand"
-        ? filter_by_brand
+        ? dataFromApi?.[0]?.brands
         : event === "filter_by_product"
-        ? filter_by_product
+        ? dataFromApi?.[3]?.categories
         : event === "filter_by_hub"
-        ? filter_by_hub
+        ? dataFromApi?.[4]?.hub
         : null;
     setSeeMoreData((prevState) => ({
       ...prevState,
@@ -95,13 +103,14 @@ const FilterViewList = ({ handleSideBarClose, dataFromApi }) => {
                 />
                 <div className="filter_info">
                   <p>{item?.name}</p>
-                  <p>({item?.value})</p>
+                  <p>({item?.count})</p>
                 </div>
               </div>
             ))}
           </div>
           <div className="filter_by_brand filter_option_block">
             <p className="filter_title">Filter By Brand</p>
+            {/* <div className="filter_scroll"> */}
             {seeMoreData?.filter_by_brand?.length &&
               seeMoreData?.filter_by_brand?.map((item) => (
                 <div className="map_container">
@@ -111,11 +120,12 @@ const FilterViewList = ({ handleSideBarClose, dataFromApi }) => {
                     inputProps={{ "aria-label": "controlled" }}
                   />
                   <div className="filter_info">
-                    <p>{item?.label}</p>
-                    <p>({item?.value})</p>
+                    <p>{item?.name}</p>
+                    <p>({item?.count})</p>
                   </div>
                 </div>
               ))}
+            {/* </div> */}
             <p
               className="seemore"
               onClick={() => seeMoreChange("filter_by_brand")}
@@ -129,6 +139,8 @@ const FilterViewList = ({ handleSideBarClose, dataFromApi }) => {
               <Slider
                 getAriaLabel={() => "Minimum distance"}
                 value={value}
+                min={dataFromApi?.[2]?.price?.min_price}
+                max={dataFromApi?.[2]?.price?.max_price}
                 onChange={handleChange}
                 valueLabelDisplay="auto"
                 getAriaValueText={valuetext}
@@ -170,15 +182,18 @@ const FilterViewList = ({ handleSideBarClose, dataFromApi }) => {
                         inputProps={{ "aria-label": "controlled" }}
                       />
                       <div className="filter_info">
-                        <p>{item?.label}</p>
-                        <p>({item?.value})</p>
+                        <p>{item?.category?.category_name}</p>
+                        <p>({item?.category?.count})</p>
                       </div>
                     </Typography>
                   </AccordionSummary>
                   <AccordionDetails>
-                    {item?.sub_product?.map((itm) => (
-                      <Typography>{itm?.label}</Typography>
-                    ))}
+                    {/* {item?.subcategories?.map((itm) => (
+                      <Typography>{itm?.category_name}</Typography>
+                    ))} */}
+                    <Typography>
+                      {item?.subcategories?.category_name}
+                    </Typography>
                   </AccordionDetails>
                 </Accordion>
               ))}
@@ -200,7 +215,7 @@ const FilterViewList = ({ handleSideBarClose, dataFromApi }) => {
                     inputProps={{ "aria-label": "controlled" }}
                   />
                   <div className="filter_info">
-                    <p>{item?.label}</p>
+                    <p>{item?.hub_name}</p>
                   </div>
                 </div>
               ))}
