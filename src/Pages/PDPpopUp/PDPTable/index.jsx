@@ -123,7 +123,6 @@ const PDPTable = ({ classes, tableData, setPdpSellerData }) => {
   const [dradio, setdradio] = useState();
 
   const handleRadioGroupChange = (event) => {
-    debugger
     setdradio(event.seller_code);
     setPdpSellerData((prevState) => ({
       ...prevState,
@@ -219,7 +218,7 @@ const PDPTable = ({ classes, tableData, setPdpSellerData }) => {
                         <div className={list_action_input}>
                           <FormControlLabel
                             value={item?.seller_code}
-                            label={item?.seller_code}
+                            label=""
                             // value={dradio}
                             defaultValue={dradio}
                             control={
