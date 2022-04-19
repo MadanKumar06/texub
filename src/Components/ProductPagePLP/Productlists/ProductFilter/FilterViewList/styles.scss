@@ -1,4 +1,9 @@
 .filterView_list_main {
+  .filter_scroll {
+    height: 100%;
+    overflow-y: scroll;
+    max-height: 217px;
+  }
   .clear_btn {
     top: 6px;
     color: #ffffff;
