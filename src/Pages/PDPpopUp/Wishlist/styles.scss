@@ -30,11 +30,12 @@
         height: 1.5em !important;
     }
     .wishlist_product{
-        .wishlist_product_content{
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            .description{
+        display: flex;
+        gap: 20px;
+       .wishlist_img{
+           height: 80px;
+        }
+       .description{
                 font-size: 20px;
                 color: #333C42;
                 border: 1px #00000000;
@@ -43,7 +44,6 @@
                 opacity: 1;
                 font-family: "Source Sans Pro";
                 font-weight: 600;
-            }
         }
     }
     .wishlist_product_section{

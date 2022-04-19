@@ -328,7 +328,7 @@ const PdpPopup = () => {
               </Button>
             </div>
           </div>
-          {openwishlist && <Wishlist/>}
+          {openwishlist && <Wishlist dataFromPLP={pdpPopUpOpenClose?.data}/>}
           <div className="pdp_modal_footer">
             <div className="pdp_footer_model_details">
               <span className="pdp_footer_model_info">MODEL NAME</span>
