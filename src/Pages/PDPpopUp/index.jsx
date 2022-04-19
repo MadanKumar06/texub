@@ -312,10 +312,9 @@ const PdpPopup = () => {
               <img src={add_whishlist} alt="" />
               <span onClick={list}>Add to Wishlist</span>
             </div>
-            {openwishlist && <Wishlist dataFromPLP={pdpPopUpOpenClose?.data} />}
+            {openwishlist && <Wishlist dataFromPLP={pdpPopUpOpenClose?.data} pdpSellerData={pdpSellerData} />}
             <div className="modal_bottom_button_main">
               <Button
-                className="modal_bottom_button_add_to_cart"
                 className="modal_bottom_button_add_to_cart"
                 // onClick={() => handleRouteOnButtonClick("add_to_cart")}
                 onClick={() => handleIsValidUser("add_to_cart")}
