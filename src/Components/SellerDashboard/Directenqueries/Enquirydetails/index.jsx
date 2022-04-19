@@ -77,10 +77,6 @@ const Index = ({ closePOPup, popid, direct }) => {
               <p className="details">12/03/22</p>
             </div>
             <div className="enquirydetails">
-              <p className="heading">Closing Date</p>
-              <p className="details">23/03/22</p>
-            </div>
-            <div className="enquirydetails">
               <p className="heading">Notes</p>
               <p className="details">
                 {currentdata?.notes}

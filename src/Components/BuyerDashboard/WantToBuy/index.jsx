@@ -10,14 +10,29 @@ import Constant from "../../../Constant";
 // import Vieworders from '../../Common/Vieworders'
 import { useStateValue } from "../../../store/state";
 import WantToBuy from "./wantToBuyForm";
+import QuoteReceivedGrid from "./QuoteRecievedGrid";
 
 function Index() {
   const [tableData, setTableData] = useState([]);
   const [apiTableData, setApiTableData] = useState([]);
   const [{}, dispatch] = useStateValue();
   const [isVieworders, setisVieworders] = useState(false);
+  const [isViewQuoteReceived, setIsViewQuoteReceived] = useState({
+    id: "",
+    activeState: false,
+  });
   const orders = () => {
     setisVieworders(true);
+    setisOrders(false);
+  };
+
+  const quoteReceived = (value) => {
+    setIsViewQuoteReceived((prev) => ({
+      ...prev,
+      id: value,
+      activeState: true,
+    }));
+    setisVieworders(false);
     setisOrders(false);
   };
   const [isOrders, setisOrders] = useState(true);
@@ -143,13 +158,24 @@ function Index() {
       name: "quote_submitted",
       label: "QUOTE RECEIVED",
       options: {
-        customBodyRender: (value) => {
+        customBodyRender: (value, tablemeta) => {
+          debugger;
           return (
-            <div className="want_tobuy__action" onClick={orders}>
+            <div
+              className="want_tobuy__action"
+              onClick={() => quoteReceived(tablemeta?.rowData[7])}
+            >
               {value}
             </div>
           );
         },
+      },
+    },
+    {
+      name: "wtb_id",
+      label: " ",
+      options: {
+        display: false,
       },
     },
   ];
@@ -190,6 +216,9 @@ function Index() {
         </>
       )}
       {isVieworders && <WantToBuy />}
+      {isViewQuoteReceived?.activeState && (
+        <QuoteReceivedGrid id={isViewQuoteReceived?.id} />
+      )}
     </div>
   );
 }

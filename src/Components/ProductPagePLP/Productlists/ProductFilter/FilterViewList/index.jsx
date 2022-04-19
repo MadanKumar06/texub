@@ -18,7 +18,7 @@ import {
   filter_by_hub,
 } from "./filteroptionJson";
 
-const FilterViewList = ({ handleSideBarClose }) => {
+const FilterViewList = ({ handleSideBarClose, dataFromApi }) => {
   //accordion view for  filter by product
   const [expanded, setExpanded] = useState(false);
   const handleAccordionChange = (panel) => (event, isExpanded) => {
@@ -86,7 +86,7 @@ const FilterViewList = ({ handleSideBarClose }) => {
         <div className="sub_filter_view_cards">
           <div className="filter_by_condtion filter_option_block">
             <p className="filter_title">Filter By Condition</p>
-            {filter_by_condition?.map((item) => (
+            {dataFromApi?.[1]?.conditions?.map((item) => (
               <div className="map_container">
                 <Checkbox
                   // checked={checked}
@@ -94,7 +94,7 @@ const FilterViewList = ({ handleSideBarClose }) => {
                   inputProps={{ "aria-label": "controlled" }}
                 />
                 <div className="filter_info">
-                  <p>{item?.label}</p>
+                  <p>{item?.name}</p>
                   <p>({item?.value})</p>
                 </div>
               </div>

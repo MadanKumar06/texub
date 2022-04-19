@@ -63,6 +63,9 @@
         border: 1px solid #cecece;
         border-radius: 24px;
         padding: 0.3em 0.9em;
+        .value {
+          font-weight: 600;
+        }
       }
       .directenquiries_products {
         .directenquiries_product_warranty {
@@ -173,17 +176,17 @@
     .MuiTable-root {
       .MuiTableHead-root {
         .MuiTableCell-root {
-          font-size: 20px;
+          font-size: 18px;
         }
       }
 
       .MuiTableBody-root {
         .MuiTableCell-root {
-          font-size: 18px;
+          font-size: 16px;
         }
 
         .directenquiries_products .directenquiries_product_name {
-          font-size: 18px;
+          font-size: 16px;
         }
       }
     }
@@ -194,7 +197,7 @@
     .directenquiries__closed,
     .directenquiries__open,
     .actions {
-      font-size: 18px;
+      font-size: 16px;
     }
   }
   .directenquiries_container

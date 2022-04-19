@@ -1,13 +1,12 @@
 import React from "react";
 import "./styles.scss";
 
-import { Drawer, Button } from "@mui/material";
-import { Tune } from "@mui/icons-material";
+import { Drawer } from "@mui/material";
 import FilterViewList from "./FilterViewList";
 
 //basic need
 import filter_option from "../../../../Assets/BasicNeeded/PLPIcons/filter.png";
-const ProductFilterDrawer = () => {
+const ProductFilterDrawer = ({ dataFromApi }) => {
   const [sideBar, setSideBar] = React.useState({
     left: false,
   });
@@ -31,7 +30,10 @@ const ProductFilterDrawer = () => {
       role="presentation"
       onKeyDown={toggleDrawer(anchor, false)}
     >
-      <FilterViewList handleSideBarClose={handleSideBarClose} />
+      <FilterViewList
+        handleSideBarClose={handleSideBarClose}
+        dataFromApi={dataFromApi}
+      />
     </div>
   );
 

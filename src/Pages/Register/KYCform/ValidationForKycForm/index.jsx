@@ -235,7 +235,7 @@ function ValidationForKycForm({
         value="yes"
         control={
           <Checkbox
-            color="secondary"
+            color="color_third"
             checked={agreementChecked}
             onClick={(event) => handlePdfDownload(event)}
           />
