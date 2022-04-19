@@ -51,8 +51,8 @@ const Index = ({ closePOPup, popid, direct }) => {
             </div>
 
             <div className="enquirydetails">
-              <p className="heading">Mobile Name/Number</p>
-              <p className="details">Lenovo Dpin Yoga..</p>
+              <p className="heading">Model Name/Number</p>
+              <p className="details">{currentdata?.model_number}</p>
             </div>
             <div className="enquirydetails">
               <p className="heading">Product Description</p>
