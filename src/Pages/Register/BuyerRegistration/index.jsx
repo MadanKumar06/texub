@@ -219,14 +219,14 @@ const BuyerRegistration = ({ classes }) => {
       }));
       errorHandle = true;
     }
-    // else if (!isCompanyNameValid(buyerRegistrationData?.company)) {
-    //   document.getElementById("company")?.focus();
-    //   setInputValidation((prevState) => ({
-    //     ...prevState,
-    //     company: "Please enter Alphabet or (Alphabet and Number)..",
-    //   }));
-    //   errorHandle = true;
-    // }
+    else if (!isCompanyNameValid(buyerRegistrationData?.company)) {
+      document.getElementById("company")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        company: "Please enter Alphabet or (Alphabet and Number)..",
+      }));
+      errorHandle = true;
+    }
     if (!buyerRegistrationData?.designation) {
       document.getElementById("designation")?.focus();
       setInputValidation((prevState) => ({
@@ -822,7 +822,7 @@ const BuyerRegistration = ({ classes }) => {
               <div>
                 <Checkbox
                   value={buyerRegistrationData?.checkbox_confrim}
-                  color="secondary"
+                  color="color_third"
                   name="checkbox_confrim"
                   onClick={(event) => handleChangeInput(event)}
                   className={checkbox_label}

@@ -273,7 +273,7 @@ function RegisterProduct() {
         customer_id: user?.id,
         main_category: registerNewProductData?.main_category?.value,
         other_main_category: registerNewProductData?.other_main_category,
-        sub_category: registerNewProductData?.sub_category?.value,
+        sub_category: registerNewProductData?.sub_category?.value ? registerNewProductData?.sub_category?.value : "sc",
         other_sub_category: registerNewProductData?.other_sub_category,
         other_brand_number: registerNewProductData?.other_brands,
         name: registerNewProductData?.modal_number,
@@ -510,7 +510,7 @@ function RegisterProduct() {
                 <TextField
                   {...params}
                   className="inputfield-box"
-                  placeholder="Brand"
+                  placeholder="Select Brand"
                   InputLabelProps={{
                     shrink: false,
                   }}

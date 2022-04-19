@@ -24,13 +24,8 @@ import price_drop_inactive from "../../../Assets/BasicNeeded/PLPIcons/price_drop
 import just_launch_active from "../../../Assets/BasicNeeded/PLPIcons/just_launch_active.png";
 import just_launch_inactive from "../../../Assets/BasicNeeded/PLPIcons/just_launch_inactive.png";
 
-const Productlists = ({ setProductFetchApi, productFetchApi }) => {
+const Productlists = ({ setProductFetchApi, productFetchApi, dataFromApi }) => {
   const [{ homeSearch }, dispatch] = useStateValue();
-  // const [productlistdata, setProductlistdata] = useState({
-  //   hub: "",
-  //   conditions: "",
-  //   eta: "",
-  // });
   const [productlistdropdown, setProductlistdropdown] = useState({
     hub: [],
     conditions: [],
@@ -103,7 +98,7 @@ const Productlists = ({ setProductFetchApi, productFetchApi }) => {
   return (
     <div className="productlist">
       <div className="sidebar-toggle">
-        <ProductFilterDrawer />
+        <ProductFilterDrawer dataFromApi={dataFromApi} />
       </div>
       <div className="product_based_deals">
         <div className="productlist__deal">

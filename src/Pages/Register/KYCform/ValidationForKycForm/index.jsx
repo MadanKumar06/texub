@@ -218,7 +218,7 @@ function ValidationForKycForm({
           values?.address_line_one ? values?.address_line_one : ""
         }&address2=${
           values?.address_line_two ? values?.address_line_two : ""
-        }&country=${country?.[0]?.value}&city=${
+        }&country=${values?.country}&city=${
           values?.city ? values?.city : ""
         }&pin=${
           values?.pin_zip_code ? values?.pin_zip_code : ""
@@ -235,7 +235,7 @@ function ValidationForKycForm({
         value="yes"
         control={
           <Checkbox
-            color="secondary"
+            color="color_third"
             checked={agreementChecked}
             onClick={(event) => handlePdfDownload(event)}
           />

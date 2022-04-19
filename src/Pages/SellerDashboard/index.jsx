@@ -18,6 +18,7 @@ import Sellerservices from "../../Components/SellerDashboard/Sellerservices";
 import Directenqueries from "../../Components/SellerDashboard/Directenqueries";
 import Paymentmethods from "../../Components/SellerDashboard/Paymentmethods";
 import PendingProduct from "../../Components/SellerDashboard/Inventory/PendingProducts";
+import SmartRecommendation from "../../Components/SellerDashboard/SmartRecommendation";
 import axios from "axios";
 import Constant from "../../Constant";
 
@@ -158,6 +159,7 @@ function SellerDashboard() {
 
           {currenttab === "directenquiries" && <Directenqueries />}
           {currenttab === "paymentmethods" && <Paymentmethods />}
+          {currenttab === "smart-recommendation" && <SmartRecommendation />}
         </div>
       </div>
     </div>

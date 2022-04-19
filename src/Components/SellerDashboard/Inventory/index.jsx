@@ -192,9 +192,10 @@ function Index({ registerproduct }) {
   }, []);
 
   const handleSearchInput = async (event) => {
+    console.log(event.target.value)
     event.preventDefault();
     if (event.target.value === "") {
-      return setSearchList(false);
+      return setSearchList([]);
     }
     try {
       const searchresults = await axios({
@@ -209,6 +210,7 @@ function Index({ registerproduct }) {
         },
       });
       setSearchList(searchresults?.data);
+      console.log(searchresults?.data)
     } catch (e) {
       console.log(e);
     }

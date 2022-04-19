@@ -4,56 +4,57 @@ import MUITable from "../../Common/MUITable";
 import { Link } from "react-router-dom";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import Enquirydetails from "../../SellerDashboard/Directenqueries/Enquirydetails";
-import axios from 'axios'
-import Constant from '../../../Constant'
+import axios from "axios";
+import Constant from "../../../Constant";
 import { useStateValue } from "../../../store/state";
 
 const Index = () => {
   const [isUopup, setisUopup] = useState(false);
-  const [direct, setdirect] = useState([])
-  const [{}, dispatch] = useStateValue()
+  const [direct, setdirect] = useState([]);
+  const [{}, dispatch] = useStateValue();
 
-  useEffect(async() => {
-    let user = JSON.parse(localStorage.getItem('userdata'))
+  useEffect(async () => {
+    let user = JSON.parse(localStorage.getItem("userdata"));
     try {
       dispatch({
         type: "SET_IS_LOADING",
         value: true,
       });
       const ddlist = await axios({
-        method: 'post',
+        method: "post",
         url: `${Constant.baseUrl()}/wtbSellerList`,
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         data: {
-          seller_id: user?.id
-        }
-      })
-      setdirect(ddlist?.data)
+          seller_id: user?.id,
+        },
+      });
+      setdirect(ddlist?.data);
       dispatch({
         type: "SET_IS_LOADING",
         value: false,
       });
-    } catch(e) {
-      console.log(e)
+    } catch (e) {
+      console.log(e);
       dispatch({
         type: "SET_IS_LOADING",
         value: false,
       });
     }
-  }, [])
+  }, []);
 
-  const [popid, setpopid] = useState()
+  const [popid, setpopid] = useState();
   const Popup = (value) => {
     setisUopup(true);
-    setpopid(value)
+    setpopid(value);
   };
 
   const ordertype = [
     { name: "All Enquiries" },
-    { name: "Open Enquiries " },
-    { name: "Accepted Enquiries " },
+    { name: "Pending Enquiries" },
+    { name: "Accepted Enquiries" },
+    { name: "Declined Enquiries" },
   ];
 
   const [type, settype] = useState(0);
@@ -97,7 +98,15 @@ const Index = () => {
         },
       },
     },
-    { name: "sku", label: "Part No." },
+    {
+      name: "sku",
+      label: "Part No.",
+      options: {
+        customBodyRender: (value) => {
+          return <div className="directenquiries__order_id">{value}</div>;
+        },
+      },
+    },
     {
       name: "model_number",
       label: "Model Name/No.",
@@ -168,16 +177,6 @@ const Index = () => {
 
   return (
     <div className="directenquiries_container">
-      <div className="directenquiries__footer">
-        <div className="directenquiries__container">
-          <Link to="/sellerdashboard/dashboard">
-            <ArrowBackIosNew />
-            <span>Back</span>
-          </Link>
-          {/* <Button className="rma_btn">Request RMA</Button> */}
-        </div>
-      </div>
-      
       <div className="directenquiries__buttons">
         {ordertype.map((data, i) => (
           <div className="directenquiries__btton_content">
@@ -200,7 +199,18 @@ const Index = () => {
         options={options}
         className="directenquiries__table"
       />
-      {isUopup && <Enquirydetails closePOPup={setisUopup} popid={popid} direct={direct} />}
+      {isUopup && (
+        <Enquirydetails closePOPup={setisUopup} popid={popid} direct={direct} />
+      )}
+      <div className="directenquiries__footer">
+        <div className="directenquiries__container">
+          <Link to="/sellerdashboard/dashboard">
+            <ArrowBackIosNew />
+            <span>Back</span>
+          </Link>
+          {/* <Button className="rma_btn">Request RMA</Button> */}
+        </div>
+      </div>
     </div>
   );
 };
