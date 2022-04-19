@@ -11,6 +11,7 @@ export const Products = () => {
   const [{ currency, homeSearch }, dispatch] = useStateValue();
   const [productFetchApi, setProductFetchApi] = useState({});
   const [productData, setProductData] = useState([]);
+  const [dataFromApi, setDataFromApi] = useState([]);
   const [getCategories, setGetCategories] = useState([]);
   let customer_id = JSON.parse(localStorage.getItem("userdata"));
   useEffect(() => {
@@ -54,6 +55,7 @@ export const Products = () => {
           })
           .then((res) => {
             sortCall(res?.data?.[1]?.products);
+            setDataFromApi(res?.data?.[0]?.layered);
           })
           .catch((err) => {});
       };
@@ -109,6 +111,7 @@ export const Products = () => {
       <Productlists
         setProductFetchApi={setProductFetchApi}
         productFetchApi={productFetchApi}
+        dataFromApi={dataFromApi}
       />
       <Productsbrands
         setProductFetchApi={setProductFetchApi}
