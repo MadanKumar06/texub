@@ -24,7 +24,7 @@ const PdpPopup = () => {
   const [open, setOpen] = useState(true);
   const [openwishlist, setopenwishlist] = useState(false)
   const list = () => {
-    setopenwishlist(true)
+    setopenwishlist(!openwishlist)
   }
   let detailsData = useRef();
   const history = useNavigate();
@@ -309,6 +309,7 @@ const PdpPopup = () => {
               <img src={add_whishlist} alt="" />
               <span onClick={list}>Add to Wishlist</span>
             </div>
+            {openwishlist && <Wishlist dataFromPLP={pdpPopUpOpenClose?.data}/>}
             <div className="modal_bottom_button_main">
               <Button
                 className="modal_bottom_button_add_to_cart"
@@ -328,7 +329,6 @@ const PdpPopup = () => {
               </Button>
             </div>
           </div>
-          {openwishlist && <Wishlist dataFromPLP={pdpPopUpOpenClose?.data}/>}
           <div className="pdp_modal_footer">
             <div className="pdp_footer_model_details">
               <span className="pdp_footer_model_info">MODEL NAME</span>

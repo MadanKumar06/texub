@@ -6,22 +6,20 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import hp from '../../../Assets/PDP/hp@2x.png'
 import TextField from '@mui/material/TextField';
 const Index = ({ dataFromPLP }) => {
-    const [open, setOpen] = useState(true);
+    
     const [create1, setcreate1] = useState(false)
     const create = () => {
-        setcreate1(true)
+        setcreate1(!create1)
     }
+    const [open, setOpen] = useState(true);
     const handleClose = () => {
         setOpen(false);
     };
     useEffect(() => {
         console.log(dataFromPLP)
-
         return () => {
-
         }
     }, [])
 
@@ -51,12 +49,6 @@ const Index = ({ dataFromPLP }) => {
                         <span className="description">
                             {dataFromPLP?.row?.[1]?.props?.children}
                         </span>
-                        {/* {product.map((item) => (
-                    <span key={item.id} className="wishlist_product_content">
-                        <span></span> <img src={item.image} alt="/" />
-                        <span className='description'>{item.description}</span>
-                    </span>
-                ))} */}
                     </div>
                     <div className='wishlist_product_section'>
                         <p>Add to the existing Wishlist</p>
@@ -84,7 +76,7 @@ const Index = ({ dataFromPLP }) => {
                         </div>
                     }
                     <div className='back_to_pdp'>
-                        <ArrowBackIosIcon /><p className='back'>Back to Hp 14-Dv0054Tu Pavilion Laptop</p>
+                        <ArrowBackIosIcon /><p className='back'>{dataFromPLP?.row?.[1]?.props?.children}</p>
                     </div>
                 </div>
             </>
