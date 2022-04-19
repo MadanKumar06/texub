@@ -77,7 +77,7 @@ const Index = () => {
 
   const columns = [
     {
-      name: "enquiry_id",
+      name: "texub_wtb_id",
       label: "Enq. No.",
       options: {
         customBodyRender: (value) => {
