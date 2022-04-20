@@ -255,7 +255,9 @@ function Index({ registerproduct }) {
               >
                 Pending Products
               </Button>
-              <Button className="button-text btn-ternary  inventory_product_upload">
+              <Button className="button-text btn-ternary  inventory_product_upload"
+                onClick={() => registerproduct("bulkupload")}
+              >
                 Bulk Upload
               </Button>
             </Box>
