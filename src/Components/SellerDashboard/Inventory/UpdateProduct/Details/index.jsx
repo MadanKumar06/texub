@@ -101,7 +101,6 @@ function Index({
     setcurrenthub(temp);
   }, [currentdata?.hub_id]);
 
-  console.log(currenthub)
   useEffect(async () => {
     let country_code = JSON.parse(
       localStorage.getItem("userdata")
@@ -299,7 +298,7 @@ function Index({
           <TextField
             id="part_number"
             name="part_nymber"
-            placeholder="05 Days"
+            placeholder="05"
             className="inputfield-box"
             fullWidth
             autoComplete="off"

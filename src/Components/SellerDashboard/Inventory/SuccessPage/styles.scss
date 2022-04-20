@@ -1,58 +1,55 @@
-.successpagemain{
+.successpagemain {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
-.successpage {
-  max-width: 900px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  margin: auto 3em;
+  .successpage {
+    max-width: 900px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: auto 3em;
 
-  & > * {
-    margin: 0;
-    margin-bottom: 1em;
-  }
+    & > * {
+      margin: 0;
+      margin-bottom: 1em;
+    }
 
-  h3 {
-    color: #5c6369;
-    font-size: 34px;
-    font-style: italic;
-  }
-  h4 {
-    color: #5c6369;
-    font-size: 28px;
-    font-style: italic;
-  }
-  h5 {
-    color: #333c42;
-    font-size: 20px;
-  }
+    h3 {
+      color: #5c6369;
+      font-size: 22px;
+      font-style: italic;
+      font-weight: 600;
+    }
+    h4 {
+      color: #5c6369;
+      font-size: 20px;
+      font-style: italic;
+      font-weight: 600;
+    }
+    h5 {
+      color: #333c42;
+      font-size: 20px;
+      font-weight: normal;
+    }
 
-  p {
-    color: #002d56;
-    font-size: 22px;
-    text-decoration: underline;
-    font-weight: 600;
-    cursor: pointer;
+    p {
+      color: #002d56;
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: underline;
+      cursor: pointer;
+    }
   }
-}
 }
 
 @media (max-width: 1660px) {
-  .successpage h3 {
-    font-size: 24px;
-  }
   .successpage h4 {
     font-size: 20px;
   }
   .successpage h5 {
     font-size: 18px;
-  }
-  .successpage p {
-    font-size: 16px;
   }
 }

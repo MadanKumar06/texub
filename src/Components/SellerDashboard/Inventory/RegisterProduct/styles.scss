@@ -1,4 +1,5 @@
 .registerproduct {
+  padding: 0 1em;
   h1 {
     color: #ddb363;
     font-size: 30px;
@@ -6,6 +7,7 @@
     letter-spacing: 0.9px;
   }
   .registerproducts__form {
+    padding-right: 8em;
     .input_separator {
       display: flex;
       gap: 2em;
