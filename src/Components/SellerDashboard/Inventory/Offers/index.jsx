@@ -1,12 +1,25 @@
 import React, { useState } from "react";
 import "./styles.scss";
-import { Modal, Backdrop, TextField } from "@mui/material";
+import {
+  Modal,
+  Backdrop,
+  TextField,
+  InputLabel,
+  Box,
+  Button,
+} from "@mui/material";
 import { Clear } from "@mui/icons-material";
 import { LocalizationProvider, DesktopDatePicker } from "@mui/lab";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 
 const TransitionsModal = ({ handleOpenCloseOffers }) => {
   const [open, setOpen] = useState(true);
+  const [offersData, setOffersData] = useState({
+    start_date: "",
+    end_date: "",
+    price: "",
+  });
+
   const handleClose = () => {
     setOpen(false);
     handleOpenCloseOffers(false);
@@ -25,55 +38,123 @@ const TransitionsModal = ({ handleOpenCloseOffers }) => {
     >
       <div className="offers_section">
         <p>Add Offers</p>
-        <div className="">
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <DesktopDatePicker
-              label="Expiration Date"
-              inputFormat="dd/MM/yyyy"
-              minDate={new Date()}
-              // value={
-              //   FormValues?.trade_expiration_date
-              //     ? FormValues?.trade_expiration_date
-              //     : null
-              // }
-              // onChange={handleChange}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  fullWidth
-                  className="inputfield-box"
-                  id="trade_expiration_date"
-                  inputProps={{
-                    ...params.inputProps,
-                    readOnly: true,
-                    placeholder: "DD/MM/YYYY",
-                  }}
-                  InputLabelProps={{
-                    shrink: true,
-                    // required: true,
-                    // classes: {
-                    //   asterisk: asterisk,
-                    // },
-                  }}
+        <div className="offers_sub_container">
+          <div className="textbox-fields">
+            <div className="sub-textbox">
+              <InputLabel>Start Date</InputLabel>
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <DesktopDatePicker
+                  label=""
+                  inputFormat="dd-MM-yy"
+                  minDate={new Date()}
+                  value={offersData?.start_date ? offersData?.start_date : null}
+                  onChange={(newValue) =>
+                    setOffersData((prevState) => ({
+                      ...prevState,
+                      start_date: newValue,
+                    }))
+                  }
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      fullWidth
+                      className="inputfield-box"
+                      id="start_date"
+                      inputProps={{
+                        ...params.inputProps,
+                        readOnly: true,
+                        placeholder: "DD-MM-YY",
+                      }}
+                    />
+                  )}
                 />
-              )}
+                {offersData?.start_date ? (
+                  <Clear
+                    className="datepicker"
+                    onClick={() => {
+                      setOffersData((prev) => ({
+                        ...prev,
+                        start_date: null,
+                      }));
+                    }}
+                  />
+                ) : null}
+              </LocalizationProvider>
+            </div>
+
+            <div className="sub-textbox">
+              <InputLabel>End Date</InputLabel>
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <DesktopDatePicker
+                  label=""
+                  inputFormat="dd-MM-yy"
+                  minDate={new Date()}
+                  value={offersData?.end_date ? offersData?.end_date : null}
+                  onChange={(newValue) =>
+                    setOffersData((prevState) => ({
+                      ...prevState,
+                      end_date: newValue,
+                    }))
+                  }
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      fullWidth
+                      className="inputfield-box"
+                      id="end_date"
+                      inputProps={{
+                        ...params.inputProps,
+                        readOnly: true,
+                        placeholder: "DD-MM-YY",
+                      }}
+                    />
+                  )}
+                />
+                {offersData?.end_date ? (
+                  <Clear
+                    className="datepicker"
+                    onClick={() => {
+                      setOffersData((prev) => ({
+                        ...prev,
+                        end_date: null,
+                      }));
+                    }}
+                  />
+                ) : null}
+              </LocalizationProvider>
+            </div>
+          </div>
+          <div className="offers_price">
+            <InputLabel>Price</InputLabel>
+            <TextField
+              id="price"
+              label=""
+              placeholder="INR 68,99900"
+              fullWidth
+              onChange={(event) =>
+                setOffersData((prevState) => ({
+                  ...prevState,
+                  price: event.target.value,
+                }))
+              }
+              value={offersData?.price}
+              className="inputfield-box"
+              name="price"
+              variant="outlined"
             />
-            {/* {FormValues?.trade_expiration_date ? (
-            <Clear
-              className={datepicker}
-              onClick={() => {
-                SetFormValues((prev) => ({
-                  ...prev,
-                  trade_expiration_date: null,
-                  expiry_checkbox: false,
-                  trade_remainder_check: false,
-                }));
-              }}
-            />
-          ) : null} */}
-          </LocalizationProvider>
+          </div>
         </div>
-        <button onClick={() => handleClose()}>Cancel</button>
+        <Box className="button-box-container">
+          <Button
+            className="button-text btn-ternary offers_button"
+            onClick={() => handleClose()}
+          >
+            Cancel
+          </Button>
+          <Button className="button-text btn-secondary offers_button">
+            Submit
+          </Button>
+        </Box>
       </div>
     </Modal>
   );

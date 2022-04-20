@@ -434,13 +434,13 @@ function RegisterProduct() {
           <div className="registerproducts_inputfields">
             {registerNewProductData?.main_category?.value === "mc" && (
               <div className="registerproducts_inputfields">
-                <InputLabel>
+                {/* <InputLabel>
                   Other Main Category <small className="asterisk">*</small>
-                </InputLabel>
+                </InputLabel> */}
                 <TextField
                   id="other_main_category"
                   name="other_main_category"
-                  placeholder="Other Main Category"
+                  placeholder="Please Specify Other Main Category"
                   fullWidth
                   className="inputfield-box"
                   value={registerNewProductData?.other_main_category}
@@ -460,13 +460,13 @@ function RegisterProduct() {
             {(registerNewProductData?.sub_category?.value === "sc" ||
               registerNewProductData?.main_category?.value === "mc") && (
               <div className="registerproducts_inputfields">
-                <InputLabel>
+                {/* <InputLabel>
                   Other Sub Category <small className="asterisk">*</small>
-                </InputLabel>
+                </InputLabel> */}
                 <TextField
                   id="other_sub_category"
                   name="other_sub_category"
-                  placeholder="Other Sub Category"
+                  placeholder="Please Specify Other Sub Category"
                   fullWidth
                   className="inputfield-box"
                   value={registerNewProductData?.other_sub_category}
@@ -523,13 +523,13 @@ function RegisterProduct() {
 
             {registerNewProductData?.brands?.value === "brand-others" && (
               <div className="registerproducts_inputfields">
-                <InputLabel>
+                {/* <InputLabel>
                   Other Brands <small className="asterisk">*</small>
-                </InputLabel>
+                </InputLabel> */}
                 <TextField
                   id="other_brands"
                   name="other_brands"
-                  placeholder="Other brands"
+                  placeholder="Please Specify Other brands"
                   fullWidth
                   className="inputfield-box"
                   value={registerNewProductData?.other_brands}
