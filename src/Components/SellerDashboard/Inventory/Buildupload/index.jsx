@@ -23,7 +23,6 @@ export default function CsvReader(){
 
     const submit = () => {
         const file = csvFile;
-        console.log
         const reader = new FileReader();
 
         reader.onload = function(e) {
