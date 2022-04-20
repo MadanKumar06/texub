@@ -20,7 +20,7 @@ const Index = ({ dataFromPLP, pdpSellerData }) => {
         setOpen(false);
     };
 
-    const [newwishdata, setnewwishdata] = useState()
+    const [newwishdata, setnewwishdata] = useState("")
     const newwishlist = async () => {
         let user = JSON.parse(localStorage.getItem("userdata"));
 
@@ -40,8 +40,7 @@ const Index = ({ dataFromPLP, pdpSellerData }) => {
             console.log(foldername)
             let temp = foldername.data.find(fd => fd.wishlist_name === newwishdata)
             console.log(temp)
-            console.log(newwishdata)
-            // return
+            // return  
             const wishdata = await axios({
               method: "post",
               url: `${Constant.baseUrl()}/wishlist`,
@@ -52,8 +51,8 @@ const Index = ({ dataFromPLP, pdpSellerData }) => {
                 requestParams: {
                   customer_id: user?.id,
                   product_id: parseInt(pdpSellerData?.product_id),
-                  wk_id: temp === undefined ? "" : foldername.data[0]?.id,
-                  wk_name: temp !== undefined ? `""` : newwishdata
+                  wk_id: temp === undefined ? "" : temp?.id,
+                  wk_name: temp !== undefined ? "" : newwishdata
                 },
               },
             });
@@ -138,7 +137,7 @@ const Index = ({ dataFromPLP, pdpSellerData }) => {
                     <div className='wishlist_product_section'>
                         <p>Add to the existing Wishlist</p>
                         <FormGroup>
-                            {fname?.map((f,i) => <FormControlLabel control={<Checkbox />} label={f?.wishlist_name} />)}
+                            {fname?.map((f,i) => <FormControlLabel control={<Checkbox onChange={(e) => console.log(e.target.checked)} />} label={f?.wishlist_name} />)}
                         </FormGroup>
                     </div>
                     <div className='wishlist_bts'>
