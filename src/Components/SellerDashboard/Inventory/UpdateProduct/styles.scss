@@ -109,12 +109,12 @@
   .updateproduct__specifications
     .updateproduct__form
     .updateproduct_inputfields {
-      .validation_error{
-        color: red !important;
-        font-size: 14px !important;
-        font-weight: 400 !important;
-        margin-top: 0em !important;
-      }
+    .validation_error {
+      color: red !important;
+      font-size: 14px !important;
+      font-weight: 400 !important;
+      margin-top: 0em !important;
+    }
     .asterisk {
       color: red;
     }
@@ -222,7 +222,7 @@
   }
   .updateproduct__specifications {
     .updateproduct__form {
-      padding: 16px;
+      padding: 16px 6em 16px 16px;
       .input_separator {
         display: flex;
         gap: 2em;

@@ -96,7 +96,7 @@ function SellerDashboard() {
           currenttab={currenttab}
         />
         <div className="sellerdashboard__maintab">
-          {showregister === false && (
+          {/* {showregister === false && (
             <div className="sellerdashboard__search">
               <Paper
                 className="sellerdashboard__searchinput"
@@ -122,7 +122,7 @@ function SellerDashboard() {
               </div>
               <span>Notification</span>
             </div>
-          )}
+          )} */}
 
           {currenttab === "dashboard" && <Dashboard />}
 
