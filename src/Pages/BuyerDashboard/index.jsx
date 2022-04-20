@@ -51,7 +51,7 @@ const Index = () => {
           barstate={barstate}
         />
         <div className="buyerdashboard__main">
-          <div className="buyerdashboard__search">
+          {/* <div className="buyerdashboard__search">
             <Paper
               className="buyerdashboard__searchinput"
               component="form"
@@ -71,7 +71,7 @@ const Index = () => {
               <img src={notification} alt="" />
             </div>
             <span>Notification</span>
-          </div>
+          </div> */}
           {currenttab === "dashboard" && <Dashboard />}
           {currenttab === "myorder" && <MyOrders />}
           {currenttab === "invoiceslist" && <InvoicesList />}
