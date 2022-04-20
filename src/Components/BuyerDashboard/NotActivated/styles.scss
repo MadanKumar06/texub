@@ -1,0 +1,71 @@
+.notactived_dashboard{
+    .dashboard__top{
+        float: none;
+        margin: 5em auto;
+        max-width: 600px;
+        width: auto;
+        text-align: center;
+        .common-block{
+            padding: 15px 0;
+        }
+        .report_msg{ 
+            .msg{
+                color: #5c6369;
+                font-size: 28px;
+                font-style: italic;
+                font-weight: 800;
+                letter-spacing: 2px;
+            }
+        }
+        .logged_user{
+            .msg{
+                color: #5c6369;
+                font-size: 24px;
+                font-weight: 600;
+                letter-spacing: 2px;
+                font-style: italic;
+            }
+        }
+        .custom_msg{
+            .msg{
+                 color: #5c6369;
+                font-size: 20px;
+                font-weight: normal;
+                letter-spacing: 1.2px;
+            }
+        }
+        .backto_home_btn{
+            width: 70%;
+            text-align: center;
+            margin: auto;
+            .home_to_home{
+                width: 100%;
+            }
+        }
+    }
+}
+
+@media (max-width: 567px) {
+
+    .notactived_dashboard{
+        .dashboard__top{
+            .report_msg{ 
+                .msg{
+                     font-size: 26px;   
+                }
+            }
+            .logged_user{
+                .msg{
+                    font-size: 20px;
+                }
+            }
+            .custom_msg{
+                .msg{
+                    font-size: 16px;  
+                }
+            }
+
+        }
+    }
+
+}

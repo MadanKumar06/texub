@@ -17,6 +17,8 @@ import InvoicesList from "../../Components/BuyerDashboard/InvoicesList";
 import MergeCarts from "../../Components/BuyerDashboard/MergeCarts";
 import ApproveCarts from "../../Components/BuyerDashboard/ApproveCarts";
 import SubAccountOrders from "../../Components/BuyerDashboard/SubAccountOrders";
+import NotActivated from "../../Components/BuyerDashboard/NotActivated";
+
 //assets
 import notification from "../../Assets/sellerdashboard/notification.png";
 
@@ -84,6 +86,7 @@ const Index = () => {
           {currenttab === "approvecarts" && <ApproveCarts />}
           {currenttab === "mergecarts" && <MergeCarts />}
           {currenttab === "subaccountorders" && <SubAccountOrders />}
+          {currenttab === "notactived" && <NotActivated />}
         </div>
       </div>
     </div>
