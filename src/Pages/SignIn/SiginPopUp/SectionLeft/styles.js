@@ -11,6 +11,9 @@ const styles = (theme) => ({
     width: "100%",
     flexDirection: "column",
     borderRadius: "3px",
+     "@media (min-width:1600px)": {
+      height: "92vh",
+    },
   },
   modal: {
     display: "flex",
@@ -34,7 +37,13 @@ const styles = (theme) => ({
     background: "#333C42",
     minHeight: "94px",
     position: "relative",
-    "@media (max-width:1660px)": {
+      "@media (min-width:1800px)": {
+      minHeight: "70px !important",
+    },
+     "@media (min-width:1600px)": {
+      minHeight: "60px",
+    },
+    "@media (max-width:1599px)": {
       minHeight: "58px",
     },
     "& p": {
@@ -43,11 +52,17 @@ const styles = (theme) => ({
       alignItems: "center",
       justifyContent: "center",
       minHeight: "94px",
-      fontSize: "40px",
+      fontSize: "30px",
       opacity: "1",
       fontWeight: "600",
       color: "#FFFFFF",
-      "@media(max-width:1660px)": {
+       "@media(min-width:1800px)": {
+         minHeight: "70px !important",
+      },
+      "@media(min-width:1600px)": {
+         minHeight: "60px",
+      },
+      "@media(max-width:1599px)": {
         minHeight: "58px",
         fontSize: "24px",
       },
@@ -92,11 +107,14 @@ const styles = (theme) => ({
   },
 
   info_text: {
-    fontSize: "30px",
+    fontSize: "24px",
     color: "#20639B",
     fontWeight: "600",
     padding: "16px 0",
-    "@media(max-width:1600px)": {
+    "@media(min-width:1600px)": {
+       padding: "5px 0",
+    },
+    "@media(max-width:1599px)": {
       fontSize: "22px",
     },
     "@media (max-width:767px)": {
@@ -127,6 +145,12 @@ const styles = (theme) => ({
     fontSize: "20px",
     padding: "12px 0",
     margin: "0",
+    "@media(min-width:1600px)": {
+       padding: "8px 0",
+    },
+    "@media(max-width:1599px)": {
+      padding: "8px 0",
+    },
     "@media(max-width:1660px)": {
       fontSize: "16px",
     },
@@ -147,9 +171,12 @@ const styles = (theme) => ({
     boxShadow: "0px 3px 6px #00000029",
     borderRadius: "4px",
     backgroundColor: "#ffffff",
-    "@media(max-width:1440px)": {
+    "@media(min-width:1600px)": {
+       paddingBottom: "1em",
+    },
+    "@media(max-width:1599px)": {
       padding: "0 2em",
-      paddingBottom: "3em",
+      paddingBottom: "1em",
     },
     "@media (max-width:767px)": {
       marginBottom: "30px",
@@ -160,14 +187,14 @@ const styles = (theme) => ({
       paddingBottom: "1em !important",
     },
     "& .MuiFormControl-root": {
-      marginTop: "2em",
+      marginTop: "1.5em",
     },
   },
   asterisk: {
     color: "red",
   },
   checkbox_label: {
-    marginTop: "12px",
+    marginTop: "6px",
     "& .MuiTypography-root": {
       color: "#5C6369",
       fontSize: "20px",
@@ -195,6 +222,12 @@ const styles = (theme) => ({
   button_box: {
     margin: "20px 0px",
     textAlign: "center",
+     "@media(min-width:1600px)": {
+      margin: "10px 0px",
+    },
+     "@media(max-width:1599px)": {
+      margin: "10px 0px",
+    },
     "@media(max-width:425px)": {
       margin: "6px 0px",
     },

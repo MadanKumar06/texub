@@ -50,22 +50,39 @@
   .productlist__search {
     color: white;
     min-width: 13em;
+    border: 1px solid #D6D8D9;
     .search_input {
-      .MuiInput-root input {
-        padding: 4px 0 11px;
-        color: #ffffff;
-        font-size: 20px;
+      .MuiInput-root{
+        display: flex;
+        flex-direction: row-reverse;
+
+        input {
+          padding: 14px 10px;
+          color: #ffffff;
+          font-size: 18px;
+        }
       }
       .MuiInput-root input::placeholder {
-        color: #ffffff;
-        font-size: 20px;
+        color: #858A8E;
+        font-size: 16px;
         opacity: 1;
       }
       .MuiInput-root:before {
-        border-bottom: 1px solid #ffffff;
+        border-bottom: 0px solid #ffffff;
       }
       .MuiInput-root:after {
-        border-bottom: 1px solid #ddb363;
+        border-bottom: 0px solid #ddb363;
+      }
+      .plpsearchicon {
+        background: #ddb363;
+        border-radius: 3px;
+        color: #fff;
+        padding: .7% 2%;
+        width:60px;
+        height:40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
       .search_icon {
         color: #ffffff;
@@ -76,14 +93,15 @@
   .product_dropdown_hub {
     .MuiInputLabel-root {
       color: #ffffff;
-      font-size: 20px;
+      font-size: 16px;
     }
     .MuiOutlinedInput-root {
       .MuiSelect-select {
         color: #ffffff;
       }
       .MuiOutlinedInput-notchedOutline {
-        border-color: #ffffff;
+        border: 1px solid #BFBFBF;
+        border-radius: 4px;
       }
       .MuiSvgIcon-root {
         fill: #ffffff;
@@ -96,14 +114,15 @@
   .product_dropdown_condition {
     .MuiInputLabel-root {
       color: #ffffff;
-      font-size: 20px;
+      font-size: 16px;
     }
     .MuiOutlinedInput-root {
       .MuiSelect-select {
         color: #ffffff;
       }
       .MuiOutlinedInput-notchedOutline {
-        border-color: #ffffff;
+        border: 1px solid #BFBFBF;
+        border-radius: 4px;
       }
       .MuiSvgIcon-root {
         fill: #ffffff;
@@ -117,14 +136,15 @@
   .product_dropdown_price {
     .MuiInputLabel-root {
       color: #ffffff;
-      font-size: 20px;
+      font-size: 16px;
     }
     .MuiOutlinedInput-root {
       .MuiSelect-select {
         color: #ffffff;
       }
       .MuiOutlinedInput-notchedOutline {
-        border-color: #ffffff;
+        border: 1px solid #BFBFBF;
+        border-radius: 4px;
       }
       .MuiSvgIcon-root {
         fill: #ffffff;
@@ -132,6 +152,11 @@
       fieldset legend {
         font-size: 1.5em;
       }
+    }
+  }
+  .apply-btn{
+    .plp-apply-btn{
+      min-width: 120px;
     }
   }
 
@@ -179,7 +204,6 @@
   .productlist .productlist__search .search_input .MuiInput-root input {
     font-size: 16px;
     height: 100%;
-    padding: 3px 0 4px;
   }
 }
 
