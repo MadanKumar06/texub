@@ -35,7 +35,11 @@
       display: flex;
       background-color: #f5f5f5;
       margin-bottom: 20px;
+      .minicart_icon{
+        position: absolute;
+      }
       .section_left {
+        position: relative;
         width: 65px;
         height: 126px;
         display: flex;
@@ -43,6 +47,15 @@
         margin-left: 9px;
         img {
           width: 100%;
+        }
+        .minicart_new{
+            position: absolute;
+            right: 8px;
+            top: 18px;
+            left: 25px;
+            img{
+              width: 30px;
+            }
         }
       }
       .section_right {

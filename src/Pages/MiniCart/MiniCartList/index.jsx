@@ -8,6 +8,8 @@ import { Button } from "@mui/material";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
 import brand_logo from "../../../Assets/Productlist/Brand_icon.png";
+import minicart_icon from "../../../Assets/Minicart/minicart_icon.png";
+import minicart_new from "../../../Assets/Minicart/minicart_new.png";
 import { Rating } from "@mui/material";
 import { useStateValue } from "../../../store/state";
 import { getAdminToken } from "../../../utilities";
@@ -15,6 +17,12 @@ import Constant from "../../../Constant";
 import axios from "axios";
 import swal from "sweetalert2";
 import SimpleLoader from "../../../Components/SimpleLoader";
+
+
+function formatToCurrency(amount) {
+    return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+}
 
 const MiniCartList = ({ handleSideBarClose }) => {
   const [{ cart, isSimpleLoading }, dispatch] = useStateValue();
@@ -159,8 +167,14 @@ const MiniCartList = ({ handleSideBarClose }) => {
             {isCartData?.length &&
               isCartData?.map((itm, index) => (
                 <div className="minicart_section_container">
+                  <div className="minicart_icon">
+                    <img src={minicart_icon} alt="" />
+                  </div>
                   <div className="section_left">
                     <img src={brand_logo} alt="" />
+                    <span className="minicart_new">
+                      <img src={minicart_new} alt="" />
+                    </span>
                   </div>
                   <div className="section_right">
                     <p className="seller_id">
@@ -194,8 +208,8 @@ const MiniCartList = ({ handleSideBarClose }) => {
                       <p className="price">
                         <span>INR</span>
                         {/* {itm?.price} */}
-                        {parseInt(itm?.price).toFixed(2)}
-                        <span> /Unit</span>
+                        {formatToCurrency(parseInt(itm?.price))}
+                        <span> / Unit</span>
                       </p>
                       <div className="quantity">
                         {parseInt(itm?.is_qty) !== parseInt(itm?.qty) && (
@@ -252,7 +266,7 @@ const MiniCartList = ({ handleSideBarClose }) => {
                       <span>TOTAL</span>
                       <p>
                         <span>INR</span>{" "}
-                        {parseInt(itm?.price * itm?.qty).toFixed(2)}
+                        {formatToCurrency(parseInt(itm?.price * itm?.qty))}
                       </p>
                     </div>
                   </div>
@@ -265,7 +279,7 @@ const MiniCartList = ({ handleSideBarClose }) => {
               <p className="total_price">
                 <span>INR </span>
                 {/* {cart?.data?.[0]?.invoice?.grand_total} */}
-                {cart[0]?.invoice?.subtotal}
+                {formatToCurrency(cart[0]?.invoice?.subtotal)}
               </p>
             </div>
             <div className="minicart_btn">
