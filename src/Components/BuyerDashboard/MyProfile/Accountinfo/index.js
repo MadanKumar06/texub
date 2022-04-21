@@ -106,7 +106,7 @@ const Index = (classes) => {
             new_confrim_password: "Please enter confirm new password",
           }));
         } else if (!(AccountInfoData?.new_password === value)) {
-          setInputValidation((prevState) => ({
+          setInputValidation((prevState) => ({  
             ...prevState,
             new_confrim_password:
               "Password and confirm password does not match",

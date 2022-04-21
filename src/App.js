@@ -28,6 +28,7 @@ import Checkout from "./Pages/Checkout";
 import KYCDetails from "./Pages/KYCDetails";
 
 //Footer section page
+import ResetPassword from './Components/Footer/ResetPassword'
 import Selleradvantage from "./Pages/CMS/Services/Selleradvantage";
 import Buyeradvantage from "./Pages/CMS/Services/Buyeradvantage";
 import Career from "./Pages/CMS/Services/Career";
@@ -142,6 +143,16 @@ const App = () => {
             />
 
             {/* Footer section */}
+            <Route
+              path="/reset-password"
+              element={
+                <>
+                  {" "}
+                  <ResetPassword/> <ScrollToTop /> <Footer />{" "}
+                </>
+              }
+              exact
+            />
             <Route
               path="/legal"
               element={

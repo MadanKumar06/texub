@@ -133,6 +133,7 @@
             border-radius: 2px;
             width: max-content;
             height: max-content;
+            font-weight: 600;
           }
         }
         .my_cart_product_name {
@@ -156,11 +157,13 @@
           justify-content: space-between;
           a {
             color: #002d56;
+            font-weight: 600;
           }
           .link_2 {
             display: flex;
             align-items: center;
             gap: 4px;
+            font-weight:600;
           }
         }
       }

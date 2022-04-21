@@ -1,3 +1,5 @@
+import { Directions, ViewColumn } from "@mui/icons-material";
+
 const styles = (theme) => ({
   auto_complete_input: {
     "& .MuiOutlinedInput-root": {
@@ -95,6 +97,9 @@ const styles = (theme) => ({
   agreemnetDowload: {
     fontSize: "14px",
     color: "#5C6369",
+    display: "flex",
+    flexDirection: "column",
+    marginTop: "37px",
     "& span":{
       color: "#002D56",
       textDecoration: "underline",

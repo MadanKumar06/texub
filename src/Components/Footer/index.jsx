@@ -23,7 +23,9 @@ export const Footer = () => {
       <div className="Footer_box">
         <div className="Footer_box_col_1">
           <div className="image_div">
-            <img className="Footer_Logo" src={logo} alt="" />
+            <Link to="/reset-password">
+              <img className="Footer_Logo" src={logo} alt="" />
+            </Link>
           </div>
           <p className="Footer_Paragraph">
             Lorem Ipsum has been the industry's standard dummy text ever since
