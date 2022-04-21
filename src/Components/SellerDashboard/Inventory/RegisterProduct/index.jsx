@@ -273,7 +273,9 @@ function RegisterProduct() {
         customer_id: user?.id,
         main_category: registerNewProductData?.main_category?.value,
         other_main_category: registerNewProductData?.other_main_category,
-        sub_category: registerNewProductData?.sub_category?.value ? registerNewProductData?.sub_category?.value : "sc",
+        sub_category: registerNewProductData?.sub_category?.value
+          ? registerNewProductData?.sub_category?.value
+          : "sc",
         other_sub_category: registerNewProductData?.other_sub_category,
         other_brand_number: registerNewProductData?.other_brands,
         name: registerNewProductData?.modal_number,
@@ -294,7 +296,7 @@ function RegisterProduct() {
       })
       .then((res) => {
         if (res.data?.[0]?.status === "true") {
-          history("/sellerdashboard/registersuccess");
+          history("/sellerdashboard/registersuccess", { state: "add" });
         } else {
           swal.fire({
             text: `${res.data?.[0]?.message}`,
@@ -434,13 +436,13 @@ function RegisterProduct() {
           <div className="registerproducts_inputfields">
             {registerNewProductData?.main_category?.value === "mc" && (
               <div className="registerproducts_inputfields">
-                <InputLabel>
+                {/* <InputLabel>
                   Other Main Category <small className="asterisk">*</small>
-                </InputLabel>
+                </InputLabel> */}
                 <TextField
                   id="other_main_category"
                   name="other_main_category"
-                  placeholder="Other Main Category"
+                  placeholder="Please Specify Other Main Category"
                   fullWidth
                   className="inputfield-box"
                   value={registerNewProductData?.other_main_category}
@@ -460,13 +462,13 @@ function RegisterProduct() {
             {(registerNewProductData?.sub_category?.value === "sc" ||
               registerNewProductData?.main_category?.value === "mc") && (
               <div className="registerproducts_inputfields">
-                <InputLabel>
+                {/* <InputLabel>
                   Other Sub Category <small className="asterisk">*</small>
-                </InputLabel>
+                </InputLabel> */}
                 <TextField
                   id="other_sub_category"
                   name="other_sub_category"
-                  placeholder="Other Sub Category"
+                  placeholder="Please Specify Other Sub Category"
                   fullWidth
                   className="inputfield-box"
                   value={registerNewProductData?.other_sub_category}
@@ -523,13 +525,13 @@ function RegisterProduct() {
 
             {registerNewProductData?.brands?.value === "brand-others" && (
               <div className="registerproducts_inputfields">
-                <InputLabel>
+                {/* <InputLabel>
                   Other Brands <small className="asterisk">*</small>
-                </InputLabel>
+                </InputLabel> */}
                 <TextField
                   id="other_brands"
                   name="other_brands"
-                  placeholder="Other brands"
+                  placeholder="Please Specify Other brands"
                   fullWidth
                   className="inputfield-box"
                   value={registerNewProductData?.other_brands}

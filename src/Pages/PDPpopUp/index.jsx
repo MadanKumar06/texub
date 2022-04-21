@@ -10,7 +10,7 @@ import { useStateValue } from "../../store/state";
 import Constant from "../../Constant";
 import axios from "axios";
 import swal from "sweetalert2";
-import Wishlist from './Wishlist'
+import Wishlist from "./Wishlist";
 
 import header_bottom_image_1 from "../../Assets/Productlist/warranty.png";
 import header_bottom_image_2 from "../../Assets/Productlist/Delivery.png";
@@ -69,62 +69,62 @@ const PdpPopup = () => {
     });
   };
 
-  const [folder, setfolder] = useState()
+  const [folder, setfolder] = useState();
 
   useEffect(async () => {
-    let user = JSON.parse(localStorage.getItem('userdata'))
+    let user = JSON.parse(localStorage.getItem("userdata"));
     try {
       const foldername = await axios({
-        method: 'post',
+        method: "post",
         url: `${Constant.baseUrl()}/wishlist/getNames`,
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         data: {
-          "requestParams": {
-            "customer_id": user?.id
-          }
-        }
-      })
-      setfolder(foldername.data[0])
+          requestParams: {
+            customer_id: user?.id,
+          },
+        },
+      });
+      setfolder(foldername.data[0]);
     } catch (e) {
-      console.log(e)
+      console.log(e);
     }
-  }, [])
+  }, []);
 
   const handleIsValidUser = async (event) => {
-    let user = JSON.parse(localStorage.getItem('userdata'))
+    let user = JSON.parse(localStorage.getItem("userdata"));
     if (event === "add_to_wishlist") {
       try {
         const foldername = await axios({
-          method: 'post',
+          method: "post",
           url: `${Constant.baseUrl()}/wishlist/getNames`,
           headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
           data: {
-            "requestParams": {
-              "customer_id": user?.id
-            }
-          }
-        })
+            requestParams: {
+              customer_id: user?.id,
+            },
+          },
+        });
         const wishdata = await axios({
           method: "post",
           url: `${Constant.baseUrl()}/wishlist`,
           headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
           data: {
-            "requestParams": {
-              "customer_id": user?.id,
-              "product_id": parseInt(pdpSellerData?.product_id),
-              "wk_id": foldername.data[0]?.id ? foldername.data[0]?.id : '',
-              "wk_name": foldername.data[0]?.id ? "" : "wishlist"
-            }
-          }
-        })
+            requestParams: {
+              customer_id: user?.id,
+              product_id: parseInt(pdpSellerData?.product_id),
+              wk_id: foldername.data[0]?.id ? foldername.data[0]?.id : "",
+              wk_name: foldername.data[0]?.id ? "" : "wishlist",
+            },
+          },
+        });
       } catch (e) {
-        console.log(e)
+        console.log(e);
       }
     }
     let isValidUser = JSON.parse(localStorage.getItem("userdata"))?.group_id;
@@ -157,7 +157,7 @@ const PdpPopup = () => {
       type: "SET_IS_LOADING",
       value: true,
     });
-    debugger
+    debugger;
     let data = {
       pendingProducts: {
         store_id: 1,
@@ -236,6 +236,11 @@ const PdpPopup = () => {
   function truncate(str, n) {
     return str?.length > n ? str.substr(0, n - 1) + "..." : str;
   }
+
+  // const [openwishlist, setopenwishlist] = useState(false);
+  // const list = () => {
+  //   setopenwishlist(!openwishlist);
+  // };
   return (
     <Modal
       aria-labelledby="transition-modal-title"
@@ -309,7 +314,7 @@ const PdpPopup = () => {
               <img src={add_whishlist} alt="" />
               <span onClick={list}>Add to Wishlist</span>
             </div>
-            {openwishlist && <Wishlist dataFromPLP={pdpPopUpOpenClose?.data}/>}
+            {openwishlist && <Wishlist dataFromPLP={pdpPopUpOpenClose?.data} pdpSellerData={pdpSellerData} />}
             <div className="modal_bottom_button_main">
               <Button
                 className="modal_bottom_button_add_to_cart"
@@ -353,7 +358,10 @@ const PdpPopup = () => {
             <div className="pdp_footer_model_details">
               <span className="pdp_footer_model_info">OTHER INFO</span>
               <span className="pdp_footer_model_info_detail">
-                {truncate(detailsData?.current?.[0]?.main_product?.other_info, 30)}
+                {truncate(
+                  detailsData?.current?.[0]?.main_product?.other_info,
+                  30
+                )}
               </span>
             </div>
           </div>

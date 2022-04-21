@@ -12,6 +12,7 @@
       user-select: none;
       // height: 34em;
       .Departments_Body_Down_Pannel_btn {
+        border-radius: 4px 4px 0px 0px;
         background-color: #333c42;
         color: #ffffff;
         display: flex;
@@ -77,13 +78,13 @@
             .new {
               background: linear-gradient(180deg, #20639b 0%, #002d56 100%);
               color: #ffffff;
-              padding: 2px 5px;
+              padding: 1px 6px;
               border-radius: 21px;
               font-size: 10px;
             }
             .sale {
               color: #ffffff;
-              padding: 2px 5px;
+              padding: 1px 6px;
               border-radius: 21px;
               font-size: 10px;
               background: linear-gradient(180deg, #ffd788 0%, #ad7c20 100%);
@@ -104,7 +105,7 @@
               top: -1px;
               background-color: #ffffff;
               box-shadow: rgb(0 0 0 / 15%) 0px 5px 15px 0px;
-          }
+            }
           }
         }
       }

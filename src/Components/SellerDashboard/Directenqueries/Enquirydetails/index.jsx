@@ -55,49 +55,13 @@ const Index = ({ closePOPup, popid, direct }) => {
                 <p className="details">{currentdata?.sku}</p>
               </div>
 
-              <div className="enquirydetails">
-                <p className="heading">Mobile Name/Number</p>
-                <p className="details">Lenovo Dpin Yoga..</p>
-              </div>
-              <div className="enquirydetails">
-                <p className="heading">Product Description</p>
-                <p className="details">
-                  {currentdata?.description}
-                </p>
-              </div>
-              <div className="enquirydetails">
-                <p className="heading">Main Category</p>
-                <p className="details">{currentdata?.main_category_id}</p>
-              </div>
-              <div className="enquirydetails">
-                <p className="heading">Quantity</p>
-                <p className="details">{currentdata?.quantity}</p>
-              </div>
-              <div className="enquirydetails">
-                <p className="heading">Hub</p>
-                <p className="details">{currentdata?.hub_id}</p>
-              </div>
-              <div className="enquirydetails">
-                <p className="heading">Enquiry Date</p>
-                <p className="details">12/03/22</p>
-              </div>
-              <div className="enquirydetails">
-                <p className="heading">Notes</p>
-                <p className="details">
-                  {currentdata?.notes}
-                </p>
-              </div>
-              {currentdata?.seller_enquiry_status === "Enquiry Received" ?
-                <Box className="button_box">
-                  <Button className="button_decline">Decline</Button>
-                  <Button className="button_accept">Accept</Button>
-                </Box>
-                :
-                <Box style={{ color: "#333C42", fontSize: "20px" }} className="button_box">{currentdata?.seller_enquiry_status}</Box>
-              }
+            <div className="enquirydetails">
+              <p className="heading">Model Name/Number</p>
+              <p className="details">{currentdata?.model_number}</p>
             </div>
           </div>
         </div>
+      </div>
       </div>
     </Modal>
   );

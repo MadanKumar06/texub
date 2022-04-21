@@ -37,7 +37,7 @@ function ValidationForKycForm({
 
   const handleValidationClick = () => {
     let endPoint = false;
-    setValid("");    
+    setValid("");
     if (!values?.trade_lic_number) {
       setValid((prevState) => ({
         ...prevState,
@@ -137,6 +137,7 @@ function ValidationForKycForm({
       kyc: {
         customer_id: customer_id,
         bussiness_name: company_name?.[0]?.value,
+        group_id: localUserData?.group_id,
         trade_license_number: values?.trade_lic_number
           ? values?.trade_lic_number
           : "",

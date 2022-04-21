@@ -17,6 +17,7 @@ import {
   isFirstAndLastNameValid,
   isCompanyNameValid,
   getAdminToken,
+  isLandlineValid,
 } from "../../../utilities";
 import Autocomplete from "@mui/material/Autocomplete";
 import { withStyles } from "@mui/styles";
@@ -218,8 +219,7 @@ const BuyerRegistration = ({ classes }) => {
         company: "Please enter the company name.",
       }));
       errorHandle = true;
-    }
-    else if (!isCompanyNameValid(buyerRegistrationData?.company)) {
+    } else if (!isCompanyNameValid(buyerRegistrationData?.company)) {
       document.getElementById("company")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
@@ -227,6 +227,18 @@ const BuyerRegistration = ({ classes }) => {
       }));
       errorHandle = true;
     }
+    // if (
+    //   buyerRegistrationData?.landline_number &&
+    //   !isLandlineValid(buyerRegistrationData?.landline_number)
+    // ) {
+    //   document.getElementById("landline_number")?.focus();
+    //   setInputValidation((prevState) => ({
+    //     ...prevState,
+    //     landline_number: "Please enter the valid landline number.",
+    //   }));
+    //   errorHandle = true;
+    // }
+
     if (!buyerRegistrationData?.designation) {
       document.getElementById("designation")?.focus();
       setInputValidation((prevState) => ({
@@ -677,6 +689,9 @@ const BuyerRegistration = ({ classes }) => {
                 onChange={handleChangeInput}
                 variant="outlined"
               />
+              {/* <InputLabel className={validation_error}>
+                {inputValidation?.landline_number}
+              </InputLabel> */}
             </div>
             <div className={text_field_container}>
               <TextField

@@ -9,6 +9,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import Dashboard from "../../Components/SellerDashboard/Dashboard";
 import Inventory from "../../Components/SellerDashboard/Inventory";
 import RegisterProduct from "../../Components/SellerDashboard/Inventory/RegisterProduct";
+import Bulkupload from '../../Components/SellerDashboard/Inventory/Buildupload'
 import SuccessPage from "../../Components/SellerDashboard/Inventory/SuccessPage";
 import UpdateProduct from "../../Components/SellerDashboard/Inventory/UpdateProduct";
 import Orders from "../../Components/SellerDashboard/Orders";
@@ -96,7 +97,7 @@ function SellerDashboard() {
           currenttab={currenttab}
         />
         <div className="sellerdashboard__maintab">
-          {showregister === false && (
+          {/* {showregister === false && (
             <div className="sellerdashboard__search">
               <Paper
                 className="sellerdashboard__searchinput"
@@ -122,7 +123,7 @@ function SellerDashboard() {
               </div>
               <span>Notification</span>
             </div>
-          )}
+          )} */}
 
           {currenttab === "dashboard" && <Dashboard />}
 
@@ -131,6 +132,7 @@ function SellerDashboard() {
           )}
 
           {currenttab === "registerproduct" && <RegisterProduct />}
+          {currenttab === "bulkupload" && <Bulkupload />}
           {currenttab === "registersuccess" && (
             <SuccessPage msg={registersuccess} />
           )}

@@ -331,8 +331,8 @@ function Index({ type, pid }) {
     }));
     setUpdateProductList((prevState) => ({
       ...prevState,
-      other_condition: olddata?.other_condition
-    }))
+      other_condition: olddata?.other_condition,
+    }));
     dropdownListFromApi?.dropDownList?.condition_list?.filter(
       (d) =>
         d.value === olddata?.product_condition &&
@@ -387,17 +387,14 @@ function Index({ type, pid }) {
   }, [olddata, country]);
 
   useEffect(() => {
-    if(country?.length === 0) return
-    if(updateProduct?.resregion?.length === 0) return
-    country?.filter(
-      (d) =>
-      console.log(d)
-    );
-  }, [restricts_country])
+    if (country?.length === 0) return;
+    if (updateProduct?.resregion?.length === 0) return;
+    country?.filter((d) => console.log(d));
+  }, [restricts_country]);
 
-  console.log(olddata)
-  console.log(restricts_country)
-  console.log(updateProductList?.restricts_country)
+  console.log(olddata);
+  console.log(restricts_country);
+  console.log(updateProductList?.restricts_country);
 
   const [dropdownListFromApi, setDropdownListFromApi] = useState({
     dropDownList: [],
@@ -450,7 +447,7 @@ function Index({ type, pid }) {
     let restrictedcountries = updateProductList?.restricts_country?.map(
       (country) => country.value
     );
-    let resregiondata = updateProductList?.resregion?.map(rr => rr.region_id)
+    let resregiondata = updateProductList?.resregion?.map((rr) => rr.region_id);
     let warrantycountries = [];
     updateProductList?.warcountry?.filter((country) =>
       warrantycountries.push(country.value)
@@ -505,17 +502,17 @@ function Index({ type, pid }) {
           type: "SET_IS_LOADING",
           value: false,
         });
-        if (updateformApi?.data?.[0]?.status) {
-          swal.fire({
-            text: `${updateformApi?.data?.[0]?.message}`,
-            icon: "success",
-            showConfirmButton: false,
-            timer: 3000,
-          });
+        if (updateformApi?.data?.[0]?.status === "true") {
+          // swal.fire({
+          //   text: `${updateformApi?.data?.[0]?.message}`,
+          //   icon: "success",
+          //   showConfirmButton: false,
+          //   timer: 3000,
+          // });
           if (currenttab === "addproduct") {
             setTimeout(() => {
-              history("/sellerdashboard/inventory");
-            }, 1000);
+              history("/sellerdashboard/registersuccess", { state: "add" });
+            }, 1000 / 2);
           }
         } else {
           swal.fire({
@@ -579,16 +576,16 @@ function Index({ type, pid }) {
           type: "SET_IS_LOADING",
           value: false,
         });
-        if (updateformApi?.data?.[0]?.status) {
-          swal.fire({
-            text: `${updateformApi?.data?.[0]?.message}`,
-            icon: "success",
-            showConfirmButton: false,
-            timer: 3000,
-          });
+        if (updateformApi?.data?.[0]?.status === "true") {
+          // swal.fire({
+          //   text: `${updateformApi?.data?.[0]?.message}`,
+          //   icon: "success",
+          //   showConfirmButton: false,
+          //   timer: 3000,
+          // });
           setTimeout(() => {
-            history("/sellerdashboard/inventory");
-          }, 1000);
+            history("/sellerdashboard/registersuccess", { state: "update" });
+          }, 1000 / 2);
         } else {
           swal.fire({
             text: `${updateformApi?.data?.[0]?.message}`,
@@ -815,50 +812,50 @@ function Index({ type, pid }) {
               </InputLabel>
 
               {updateProductList?.warranty?.label ===
-            "Direct Vendor Warranty In Country" && (
-            <div className="input_separator country_selection">
-              <div className="updateproduct_inputfields ">
-                <Autocomplete
-                  multiple
-                  id="checkboxes-tags-demo"
-                  options={country ? country : []}
-                  disableCloseOnSelect
-                  value={updateProductList?.warcountry}
-                  getOptionLabel={(option) =>
-                    option.label ? option.label : ""
-                  }
-                  renderOption={(props, option, { selected }) => (
-                    <li {...props}>
-                      <Checkbox
-                        icon={icon}
-                        checkedIcon={checkedIcon}
-                        style={{ marginRight: 8 }}
-                        checked={selected}
-                      />
-                      {option.label}
-                    </li>
-                  )}
-                  onChange={(event, newValue) => {
-                    setUpdateProductList((prevState) => ({
-                      ...prevState,
-                      warcountry: newValue,
-                    }));
-                    setInputValidation((prevState) => ({
-                      ...prevState,
-                      warranty_country: "",
-                    }));
-                  }}
-                  renderInput={(params) => (
-                    <TextField
-                      {...params}
-                      placeholder="Country"
-                      className="inputfield-box"
+                "Direct Vendor Warranty In Country" && (
+                <div className="input_separator country_selection">
+                  <div className="updateproduct_inputfields ">
+                    <Autocomplete
+                      multiple
+                      id="checkboxes-tags-demo"
+                      options={country ? country : []}
+                      disableCloseOnSelect
+                      value={updateProductList?.warcountry}
+                      getOptionLabel={(option) =>
+                        option.label ? option.label : ""
+                      }
+                      renderOption={(props, option, { selected }) => (
+                        <li {...props}>
+                          <Checkbox
+                            icon={icon}
+                            checkedIcon={checkedIcon}
+                            style={{ marginRight: 8 }}
+                            checked={selected}
+                          />
+                          {option.label}
+                        </li>
+                      )}
+                      onChange={(event, newValue) => {
+                        setUpdateProductList((prevState) => ({
+                          ...prevState,
+                          warcountry: newValue,
+                        }));
+                        setInputValidation((prevState) => ({
+                          ...prevState,
+                          warranty_country: "",
+                        }));
+                      }}
+                      renderInput={(params) => (
+                        <TextField
+                          {...params}
+                          placeholder="Country"
+                          className="inputfield-box"
+                        />
+                      )}
                     />
-                  )}
-                />
-              </div>
-            </div>
-          )}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
 

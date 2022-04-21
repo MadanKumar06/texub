@@ -14,12 +14,16 @@ import ProductGrid from "./ProductGrid";
 import axios from "axios";
 import Constant from "../../../Constant";
 import { useStateValue } from "../../../store/state";
+import Offers from "./Offers";
 
 function Index({ registerproduct }) {
   const [tableData, setTableData] = useState([]);
   const [apiTableData, setApiTableData] = useState([]);
   const [searchList, setSearchList] = useState([]);
+  const [search, setSearch] = useState("");
   const [{}, dispatch] = useStateValue();
+
+  const [offersOpenClose, setOffersOpenClose] = useState(false);
 
   const options = {
     filter: false,
@@ -31,6 +35,10 @@ function Index({ registerproduct }) {
     sort: false,
     viewColumns: false,
     search: false,
+  };
+
+  const handleOpenCloseOffers = () => {
+    setOffersOpenClose(false);
   };
 
   const columns = [
@@ -87,23 +95,7 @@ function Index({ registerproduct }) {
           return (
             <div className="inventory__myprice">
               <p>
-                <span className="label">{tablemeta?.rowData?.[11]}</span>
-                <span className="value">{value}</span>
-              </p>
-            </div>
-          );
-        },
-      },
-    },
-    {
-      name: "my_price",
-      label: "LOWEST PRICE",
-      options: {
-        customBodyRender: (value, tablemeta) => {
-          return (
-            <div className="inventory__lowestprice">
-              <p>
-                <span className="label">{tablemeta?.rowData?.[11]}</span>
+                <span className="label">{tablemeta?.rowData?.[10]}</span>
                 <span className="value">{value}</span>
               </p>
             </div>
@@ -134,11 +126,21 @@ function Index({ registerproduct }) {
       options: {
         customBodyRender: (value) => {
           return (
-            <div
-              className="inventory__action"
-              onClick={() => registerproduct("updateproduct", value, "update")}
-            >
-              Update
+            <div className="action">
+              <div
+                className="inventory__action"
+                onClick={() =>
+                  registerproduct("updateproduct", value, "update")
+                }
+              >
+                Update
+              </div>
+              <div
+                className="inventory__action add_offers"
+                onClick={() => setOffersOpenClose(true)}
+              >
+                Add Offers
+              </div>
             </div>
           );
         },
@@ -192,9 +194,8 @@ function Index({ registerproduct }) {
   }, []);
 
   const handleSearchInput = async (event) => {
-    console.log(event.target.value)
     event.preventDefault();
-    if (event.target.value === "") {
+    if (search === "") {
       return setSearchList([]);
     }
     try {
@@ -203,14 +204,14 @@ function Index({ registerproduct }) {
         url: `${Constant.baseUrl()}/getSearchProduct`,
         data: {
           customerId: 310,
-          keyWord: event?.target?.value,
+          keyWord: search,
         },
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
       setSearchList(searchresults?.data);
-      console.log(searchresults?.data)
+      console.log(searchresults?.data);
     } catch (e) {
       console.log(e);
     }
@@ -226,15 +227,20 @@ function Index({ registerproduct }) {
               className="paper_search"
               sx={{ p: "2px 4px", display: "flex", alignItems: "center" }}
             >
-              <IconButton type="submit" sx={{ p: "10px" }} aria-label="search">
-                <SearchIcon />
-              </IconButton>
               <InputBase
                 sx={{ ml: 1, flex: 1 }}
                 placeholder="Search..."
-                onChange={handleSearchInput}
+                onChange={(event) => setSearch(event.target.value)}
                 inputProps={{ "aria-label": "" }}
               />
+              <IconButton
+                type="submit"
+                sx={{ p: "10px" }}
+                aria-label="search"
+                onClick={(event) => handleSearchInput(event)}
+              >
+                <SearchIcon />
+              </IconButton>
             </Paper>
             <Box className="button-box-container inventory-hedaer-btn">
               <Button
@@ -249,7 +255,9 @@ function Index({ registerproduct }) {
               >
                 Pending Products
               </Button>
-              <Button className="button-text btn-ternary  inventory_product_upload">
+              <Button className="button-text btn-ternary  inventory_product_upload"
+                onClick={() => registerproduct("bulkupload")}
+              >
                 Bulk Upload
               </Button>
             </Box>
@@ -275,6 +283,9 @@ function Index({ registerproduct }) {
           DataList={apiTableData?.length ? apiTableData : []}
           PagePerRow={10}
         />
+      )}
+      {offersOpenClose && (
+        <Offers handleOpenCloseOffers={handleOpenCloseOffers} />
       )}
       <Link className="inventory-page-back" to="/sellerdashboard/dashboard">
         <ArrowBackIosNew />

@@ -17,6 +17,8 @@ import InvoicesList from "../../Components/BuyerDashboard/InvoicesList";
 import MergeCarts from "../../Components/BuyerDashboard/MergeCarts";
 import ApproveCarts from "../../Components/BuyerDashboard/ApproveCarts";
 import SubAccountOrders from "../../Components/BuyerDashboard/SubAccountOrders";
+import NotActivated from "../../Components/BuyerDashboard/NotActivated";
+
 //assets
 import notification from "../../Assets/sellerdashboard/notification.png";
 
@@ -51,7 +53,7 @@ const Index = () => {
           barstate={barstate}
         />
         <div className="buyerdashboard__main">
-          <div className="buyerdashboard__search">
+          {/* <div className="buyerdashboard__search">
             <Paper
               className="buyerdashboard__searchinput"
               component="form"
@@ -71,7 +73,7 @@ const Index = () => {
               <img src={notification} alt="" />
             </div>
             <span>Notification</span>
-          </div>
+          </div> */}
           {currenttab === "dashboard" && <Dashboard />}
           {currenttab === "myorder" && <MyOrders />}
           {currenttab === "invoiceslist" && <InvoicesList />}
@@ -84,6 +86,7 @@ const Index = () => {
           {currenttab === "approvecarts" && <ApproveCarts />}
           {currenttab === "mergecarts" && <MergeCarts />}
           {currenttab === "subaccountorders" && <SubAccountOrders />}
+          {currenttab === "notactived" && <NotActivated />}
         </div>
       </div>
     </div>

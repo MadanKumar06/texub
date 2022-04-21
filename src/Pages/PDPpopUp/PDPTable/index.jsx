@@ -11,7 +11,7 @@ import AddIcon from "@mui/icons-material/Add";
 import Constant from "../../../Constant";
 import axios from "axios";
 import { useStateValue } from "../../../store/state";
-const PDPTable = ({ classes, tableData, setPdpSellerData, pdpSellerData }) => {
+const PDPTable = ({ classes, tableData, setPdpSellerData }) => {
   //styles
   let {
     table_container,
@@ -123,16 +123,20 @@ const PDPTable = ({ classes, tableData, setPdpSellerData, pdpSellerData }) => {
   const [dradio, setdradio] = useState();
 
   const handleRadioGroupChange = (event) => {
+    debugger
     setdradio(event.seller_code);
     setPdpSellerData((prevState) => ({
       ...prevState,
       ...event,
-      // seller_id: event?.seller_code,
-      // warranty_days: event?.warranty_days,
-      // packing_details: event?.packing_details,
-      // no_of_pieces: event?.no_of_pieces,
     }));
   };
+
+  useEffect(() => {
+    if(is_table_one.length) {
+      handleRadioGroupChange(is_table_one[0])
+    }    
+  }, [is_table_one])
+
   return (
     <div className={table_container}>
       <div className={pdp_middle_wapper}>
@@ -200,9 +204,7 @@ const PDPTable = ({ classes, tableData, setPdpSellerData, pdpSellerData }) => {
 
             <RadioGroup
               aria-labelledby="demo-radio-buttons-group-label"
-              defaultValue={
-                is_table_one?.length ? is_table_one?.[0]?.seller_code : ""
-              }
+              defaultValue={tableData?.tableone[0].seller_code}
               name="radio-buttons-group"
               className={radio_btn_group}
             >
@@ -217,23 +219,17 @@ const PDPTable = ({ classes, tableData, setPdpSellerData, pdpSellerData }) => {
                         <div className={list_action_input}>
                           <FormControlLabel
                             value={item?.seller_code}
+                            label=""
                             // value={dradio}
                             defaultValue={dradio}
                             control={
                               <Radio
                                 className={radio_button}
                                 onClick={() =>
-                                  handleRadioGroupChange({
-                                    // seller_code: item?.seller_code,
-                                    // warranty_days: item?.warranty_days,
-                                    // packing_details: item?.packing_details,
-                                    // no_of_pieces: item?.no_of_pieces,
-                                    ...item,
-                                  })
+                                  handleRadioGroupChange({...item})
                                 }
                               />
                             }
-                            label={""}
                           />
                         </div>
                       </div>
