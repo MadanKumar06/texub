@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./styles";
 import axios from "axios";
 
@@ -17,7 +17,11 @@ import { withStyles } from "@mui/styles";
 import { Clear } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 
-import { isEmailValid, isPasswordValid } from "../../../../utilities";
+import {
+  isEmailValid,
+  isPasswordValid,
+  getAdminToken,
+} from "../../../../utilities";
 import SectionRight from "../SectionRight";
 import { useStateValue } from "../../../../store/state";
 
@@ -57,6 +61,7 @@ const TransitionsModal = ({ classes, openPopUp }) => {
     button_signin,
     forgot_password,
     validation_error,
+    forgot_password_container,
     asterisk,
   } = classes;
 
@@ -65,16 +70,13 @@ const TransitionsModal = ({ classes, openPopUp }) => {
     email_address: "",
     password: "",
     keep_me_logged_in: false,
+    forgot_email_address: "",
   });
   const [inputValidation, setInputValidation] = useState({
     email_address: "",
     password: "",
+    forgot_email_address: "",
   });
-
-  const [forgotpwdemail, setforgotpwdemail] = useState();
-  const handleChangeEmail = (event) => {
-    setforgotpwdemail(event.target.value);
-  };
 
   const handleClose = () => {
     setOpen(false);
@@ -143,6 +145,80 @@ const TransitionsModal = ({ classes, openPopUp }) => {
     }
   };
 
+  const ForgotPasswordValidation = (event) => {
+    event.preventDefault();
+    var errorHandle = false;
+    if (!signInData?.forgot_email_address) {
+      document.getElementById("forgot_email_address")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        forgot_email_address: "Please enter the e-mail.",
+      }));
+      errorHandle = true;
+    } else if (!isEmailValid(signInData?.forgot_email_address)) {
+      document.getElementById("forgot_email_address")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        forgot_email_address: "Please enter the valid e-mail.",
+      }));
+      errorHandle = true;
+    }
+    if (!errorHandle) {
+      // Apicall fuction
+      ForgotPasswordFinalApi();
+    }
+  };
+
+  const [adminToken, setAdminToken] = useState("");
+  useEffect(() => {
+    getAdminToken((res) => {
+      setAdminToken(res);
+    });
+  }, []);
+  const ForgotPasswordFinalApi = () => {
+    dispatch({
+      type: "SET_IS_LOADING",
+      value: true,
+    });
+    let data = {
+      data: {
+        email: signInData?.forgot_email_address,
+        website_id: 1,
+        store_id: 1,
+      },
+    };
+    axios
+      .post(Constant.baseUrl() + "/forgotPassword", data, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${adminToken}`,
+        },
+      })
+      .then((res) => {
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+        swal.fire({
+          text: `${res?.data?.[0]?.message}`,
+          icon: "success",
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      })
+      .catch((error) => {
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+        swal.fire({
+          text: `${error?.data?.message}`,
+          icon: "error",
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      });
+  };
   //API to Register
   const FinalSignin = () => {
     dispatch({
@@ -310,16 +386,17 @@ const TransitionsModal = ({ classes, openPopUp }) => {
                     Enter your E-mail address to receive a link to reset
                     Password.
                   </p>
-                  <div className="inputfield-box">
+                  <div className={forgot_password_container}>
                     <TextField
-                      id="email_address"
-                      name="email_address"
+                      id="forgot_email_address"
+                      name="forgot_email_address"
                       label="E-mail Address"
                       placeholder="E-mail Address"
                       fullWidth
-                      // autoFocus={true}
+                      autoFocus={true}
                       autoComplete="off"
-                      value={forgotpwdemail}
+                      className="inputfield-box"
+                      value={signInData?.forgot_email_address}
                       InputLabelProps={{
                         shrink: true,
                         required: true,
@@ -327,9 +404,17 @@ const TransitionsModal = ({ classes, openPopUp }) => {
                           asterisk: asterisk,
                         },
                       }}
-                      onChange={handleChangeEmail}
+                      onChange={(e) =>
+                        setSignInData((prev) => ({
+                          ...prev,
+                          forgot_email_address: e.target.value,
+                        }))
+                      }
                       variant="outlined"
                     />
+                    <InputLabel className={validation_error}>
+                      {inputValidation?.forgot_email_address}
+                    </InputLabel>
                   </div>
                   <Box>
                     <Button
@@ -337,7 +422,7 @@ const TransitionsModal = ({ classes, openPopUp }) => {
                         forgotpassword__submit,
                         "button-text btn-secondary"
                       )}
-                      onClick={() => setpassopen(false)}
+                      onClick={(event) => ForgotPasswordValidation(event)}
                     >
                       Submit
                     </Button>

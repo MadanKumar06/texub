@@ -1,0 +1,133 @@
+.reset_password_main {
+  background-size: cover;
+  background-image: url("../../Assets/ResetPassword/Group 84.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 30px;
+  .reset_pwd_section {
+    display: flex;
+    flex-direction: column;
+    margin: 5rem auto;
+    max-width: 1045px;
+    background-color: #ffffff;
+    box-shadow: 0px 3px 6px #00000029;
+    .reset_left_section {
+      box-shadow: 0px 3px 6px #00000029;
+      margin: 5rem auto;
+      width: 90%;
+      display: flex;
+      background-image: url("../../Assets/ResetPassword/Reset.png");
+      background-repeat: no-repeat;
+      background-position: right;
+      background-size: contain;
+      .resetForm {
+        width: 50%;
+      }
+      .reset_credetial {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 30px;
+        padding: 20px;
+        margin: 44px;
+        .reset_signifire {
+          display: flex;
+          position: relative;
+          .signifier {
+            position: absolute;
+            right: -2.5rem;
+            top: 10px;
+          }
+        }
+        .reset_pwd_heading {
+          font-size: 20px;
+          font-family: "Source Sans Pro";
+          color: #333333;
+          margin: 0;
+          text-transform: capitalize;
+          opacity: 1;
+        }
+        // .css-1ppfawq-MuiInputBase-root-MuiOutlinedInput-root,
+        .validation_error {
+          color: red;
+          font-size: 12px;
+        }
+        .css-23qga5-MuiFormLabel-root-MuiInputLabel-root {
+          // font-size: 18px;
+          font-family: "Source Sans Pro";
+          color: #3e3e3e;
+          border: 1px #00000000;
+          opacity: 1;
+          font-weight: 600;
+        }
+        .reset_box {
+          .reset_button {
+            color: #ffffff !important;
+            border: none !important;
+            cursor: pointer;
+            font-size: 18px !important;
+            min-width: 126px !important;
+            background: linear-gradient(180deg, #20639b 0%, #002d56 100%);
+            box-shadow: 0px 3px 6px #00000029;
+            font-weight: 600 !important;
+            border-radius: 45px !important;
+            letter-spacing: 1px;
+            text-transform: capitalize !important;
+            text-decoration: none !important;
+            width: 100%;
+          }
+        }
+      }
+      // .reset_image_section{
+      //    .reset_image{
+      //    background-repeat: no-repeat;
+      //    background-position: center;
+      //    background-size: cover;
+      //   }
+      // }
+    }
+    .reset_pwd_header {
+      background-color: #333c42;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+      width: 100%;
+      height: 78px;
+      .reset_heading {
+        font-size: 22px;
+        color: #ffffff;
+        margin: 0;
+        font-weight: 600;
+        opacity: 1;
+        position: absolute;
+      }
+      .clear_btn {
+        background-color: #ddb363;
+        border-radius: 4px;
+        align-self: flex-end;
+        height: 31px;
+        width: 31px;
+        color: #ffffff;
+      }
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .reset_password_main .reset_pwd_section .reset_pwd_header .reset_heading {
+    font-size: 30px;
+  }
+}
+@media (max-width: 800px) {
+  .reset_password_main .reset_pwd_section .reset_left_section .reset_credetial {
+    width: 100%;
+  }
+}
+
+@media (max-width: 580px) {
+  .reset_password_main .reset_pwd_section .reset_left_section .reset_credetial {
+    margin: 0;
+  }
+}

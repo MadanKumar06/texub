@@ -342,7 +342,11 @@ const styles = (theme) => ({
 
   forgotpassword__para: {
     color: "#333333",
-    fontSize: "20px",
+    fontSize: "16px",
+  },
+
+  forgot_password_container: {
+    paddingTop: "2em",
   },
 
   forgotpassword__submit: {

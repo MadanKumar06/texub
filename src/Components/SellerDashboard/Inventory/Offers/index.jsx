@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./styles.scss";
 import {
   Modal,
@@ -9,10 +9,16 @@ import {
   Button,
 } from "@mui/material";
 import { Clear } from "@mui/icons-material";
+import axios from "axios";
+import Constant from "../../../../Constant";
 import { LocalizationProvider, DesktopDatePicker } from "@mui/lab";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
+import { useStateValue } from "../../../../store/state";
+import swal from "sweetalert2";
+var moment = require("moment");
 
-const TransitionsModal = ({ handleOpenCloseOffers }) => {
+const TransitionsModal = ({ handleOpenCloseOffers, offersOpenClose }) => {
+  const [{}, dispatch] = useStateValue();
   const [open, setOpen] = useState(true);
   const [offersData, setOffersData] = useState({
     start_date: "",
@@ -23,6 +29,81 @@ const TransitionsModal = ({ handleOpenCloseOffers }) => {
   const handleClose = () => {
     setOpen(false);
     handleOpenCloseOffers(false);
+  };
+
+  useEffect(() => {
+    let customerId = JSON.parse(localStorage.getItem("userdata"));
+    let data = {
+      sellerData: {
+        customer_id: customerId?.id,
+        product_id: parseInt(offersOpenClose?.product_id),
+        assign_product_id: parseInt(offersOpenClose?.assigned_product_id),
+      },
+    };
+    axios
+      .post(Constant.baseUrl() + "/viewSellerOffer", data, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((res) => {
+        setOffersData({
+          price: res?.data?.[0]?.offer_price,
+          start_date: new Date(res?.data?.[0]?.offer_start_date),
+          end_date: new Date(res?.data?.[0]?.offer_end_date),
+        });
+      })
+      .catch((err) => {});
+  }, []);
+  const OffersAPICall = () => {
+    let start_date = moment(offersData?.start_date).format("DD/MM/YYYY");
+    let end_date = moment(offersData?.end_date).format("DD/MM/YYYY");
+    let customerId = JSON.parse(localStorage.getItem("userdata"));
+    let data = {
+      sellerData: {
+        customer_id: customerId?.id,
+        product_id: parseInt(offersOpenClose?.product_id),
+        assign_product_id: parseInt(offersOpenClose?.assigned_product_id),
+        offer_value: parseInt(offersData?.price),
+        from_date: start_date,
+        end_date: end_date,
+      },
+    };
+    axios
+      .post(Constant.baseUrl() + "/setOfferprice", data, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((res) => {
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+        if (res?.data?.[0]?.status) {
+          swal.fire({
+            text: `${res?.data?.[0]?.message}`,
+            icon: "success",
+            showConfirmButton: false,
+            timer: 3000,
+          });
+        } else {
+          swal.fire({
+            text: `${res?.data?.[0]?.message}`,
+            icon: "error",
+            showConfirmButton: false,
+            timer: 3000,
+          });
+        }
+      })
+      .catch((err) => {
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+      });
   };
   return (
     <Modal
@@ -45,7 +126,7 @@ const TransitionsModal = ({ handleOpenCloseOffers }) => {
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DesktopDatePicker
                   label=""
-                  inputFormat="dd-MM-yy"
+                  inputFormat="dd-MM-yyyy"
                   minDate={new Date()}
                   value={offersData?.start_date ? offersData?.start_date : null}
                   onChange={(newValue) =>
@@ -63,7 +144,7 @@ const TransitionsModal = ({ handleOpenCloseOffers }) => {
                       inputProps={{
                         ...params.inputProps,
                         readOnly: true,
-                        placeholder: "DD-MM-YY",
+                        placeholder: "DD-MM-YYYY",
                       }}
                     />
                   )}
@@ -87,7 +168,7 @@ const TransitionsModal = ({ handleOpenCloseOffers }) => {
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DesktopDatePicker
                   label=""
-                  inputFormat="dd-MM-yy"
+                  inputFormat="dd-MM-yyyy"
                   minDate={new Date()}
                   value={offersData?.end_date ? offersData?.end_date : null}
                   onChange={(newValue) =>
@@ -105,7 +186,7 @@ const TransitionsModal = ({ handleOpenCloseOffers }) => {
                       inputProps={{
                         ...params.inputProps,
                         readOnly: true,
-                        placeholder: "DD-MM-YY",
+                        placeholder: "DD-MM-YYYY",
                       }}
                     />
                   )}
@@ -151,7 +232,10 @@ const TransitionsModal = ({ handleOpenCloseOffers }) => {
           >
             Cancel
           </Button>
-          <Button className="button-text btn-secondary offers_button">
+          <Button
+            className="button-text btn-secondary offers_button"
+            onClick={() => OffersAPICall()}
+          >
             Submit
           </Button>
         </Box>
