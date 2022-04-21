@@ -273,7 +273,9 @@ function RegisterProduct() {
         customer_id: user?.id,
         main_category: registerNewProductData?.main_category?.value,
         other_main_category: registerNewProductData?.other_main_category,
-        sub_category: registerNewProductData?.sub_category?.value ? registerNewProductData?.sub_category?.value : "sc",
+        sub_category: registerNewProductData?.sub_category?.value
+          ? registerNewProductData?.sub_category?.value
+          : "sc",
         other_sub_category: registerNewProductData?.other_sub_category,
         other_brand_number: registerNewProductData?.other_brands,
         name: registerNewProductData?.modal_number,
@@ -294,7 +296,7 @@ function RegisterProduct() {
       })
       .then((res) => {
         if (res.data?.[0]?.status === "true") {
-          history("/sellerdashboard/registersuccess");
+          history("/sellerdashboard/registersuccess", { state: "add" });
         } else {
           swal.fire({
             text: `${res.data?.[0]?.message}`,

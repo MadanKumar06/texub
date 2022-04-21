@@ -31,6 +31,7 @@ const styles = () => ({
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
+    fontStyle: "italic",
     width: "70%",
     alignItems: "center",
     backgroundColor: "#ffffff",
@@ -44,7 +45,7 @@ const styles = () => ({
       },
   },
   thankyou_title: {
-    fontSize: "38px",
+    fontSize: "30px",
     fontWeight: "600",
     margin: "0",
     color: "#5C6369",
@@ -53,7 +54,7 @@ const styles = () => ({
       },
   },
   thankyou_user: {
-    fontSize: "22px",
+    fontSize: "20px",
     margin: "0",
     color: "#5C6369",
     marginTop: "17px",

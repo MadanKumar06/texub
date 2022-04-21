@@ -16,17 +16,22 @@ const SuccesMessage = ({ msg }) => {
         </h4>
         {/* <h5>{msg}</h5> */}
         {location.state === "add" && (
-          <h5>
-            You have submitted the product registration form successfully. once
-            your product has been registered, you will receive a mail
-            notification.
-          </h5>
+          <>
+            <p>
+              You have submitted the product registration form successfully.
+            </p>
+            <p>
+              Once your product has been registered, you will receive a mail
+              notification
+            </p>
+            <p>to update product details.</p>
+          </>
         )}
         {location?.state === "update" && (
-          <h5>You have updated the product details successfully.</h5>
+          <p>You have updated the product details successfully.</p>
         )}
         <Link to="/sellerdashboard/inventory">
-          <p>Back To Inventory</p>
+          <p className="link">Back To Inventory</p>
         </Link>
       </div>
     </div>
