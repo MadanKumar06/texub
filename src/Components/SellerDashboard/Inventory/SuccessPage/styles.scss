@@ -29,18 +29,20 @@
       font-style: italic;
       font-weight: 600;
     }
-    h5 {
+    p {
       color: #333c42;
       font-size: 20px;
       font-weight: normal;
+      margin: 0;
     }
 
-    p {
+    .link {
       color: #002d56;
       font-size: 16px;
       font-weight: 600;
       text-decoration: underline;
       cursor: pointer;
+      padding-top: 2em;
     }
   }
 }
