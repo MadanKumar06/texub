@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Button, IconButton } from "@mui/material";
 import "./styles.scss";
 
 import {
@@ -165,7 +166,15 @@ const Productlists = ({ setProductFetchApi, productFetchApi, dataFromApi }) => {
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
-                <Search className="search_icon"></Search>
+                <IconButton
+                  type="submit"
+                  className="plpsearchicon"
+                  sx={{ p: "10px" }}
+                  aria-label="search"
+                >
+                  <Search className="search_icon"></Search>
+                </IconButton>
+
               </InputAdornment>
             ),
           }}
@@ -235,6 +244,9 @@ const Productlists = ({ setProductFetchApi, productFetchApi, dataFromApi }) => {
           </Select>
         </FormControl>
       </Box>
+      <div className="apply-btn">
+        <Button className="button-text btn-primary clear plp-apply-btn">Apply</Button>
+      </div>
 
       <div className="productlist__download">
         <svg
