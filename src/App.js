@@ -42,6 +42,9 @@ import Privacypolicy from "./Pages/CMS/Company/Privacypolicy";
 import RRpolicy from "./Pages/CMS/Company/RRpolicy";
 import Accountinfo from "./Components/BuyerDashboard/MyProfile/Accountinfo";
 
+//ResetPassword
+import ResetPassword from "./Components/ResetPassword";
+
 //coming soon page
 import ComingSoon from "./Pages/ComingSoon";
 //popup component
@@ -74,7 +77,8 @@ const App = () => {
   let isKYCSubmitted = JSON.parse(localStorage.getItem("userdata"));
   useEffect(() => {
     if (isKYCSubmitted) {
-      isKYCSubmitted?.group_id !== 1 && isKYCSubmitted?.custom_attributes?.[3]?.value === "0" &&
+      isKYCSubmitted?.group_id !== 1 &&
+        isKYCSubmitted?.custom_attributes?.[3]?.value === "0" &&
         dispatch({
           type: "SET_KYC_OPEN_CLOSE",
           value: true,
@@ -96,6 +100,16 @@ const App = () => {
                 <>
                   {" "}
                   <Home /> <ScrollToTop /> <Footer />{" "}
+                </>
+              }
+              exact
+            />
+            <Route
+              path="/resetpassword/:token"
+              element={
+                <>
+                  {" "}
+                  <ResetPassword /> <ScrollToTop /> <Footer />{" "}
                 </>
               }
               exact

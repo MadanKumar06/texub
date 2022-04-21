@@ -23,7 +23,11 @@ function Index({ registerproduct }) {
   const [search, setSearch] = useState("");
   const [{}, dispatch] = useStateValue();
 
-  const [offersOpenClose, setOffersOpenClose] = useState(false);
+  const [offersOpenClose, setOffersOpenClose] = useState({
+    isOpenClose: false,
+    product_id: "",
+    assigned_product_id: "",
+  });
 
   const options = {
     filter: false,
@@ -38,7 +42,7 @@ function Index({ registerproduct }) {
   };
 
   const handleOpenCloseOffers = () => {
-    setOffersOpenClose(false);
+    setOffersOpenClose({ isOpenClose: false });
   };
 
   const columns = [
@@ -124,7 +128,7 @@ function Index({ registerproduct }) {
       name: "main_product_id",
       label: "ACTION",
       options: {
-        customBodyRender: (value) => {
+        customBodyRender: (value, tablemeta) => {
           return (
             <div className="action">
               <div
@@ -137,7 +141,13 @@ function Index({ registerproduct }) {
               </div>
               <div
                 className="inventory__action add_offers"
-                onClick={() => setOffersOpenClose(true)}
+                onClick={() =>
+                  setOffersOpenClose({
+                    isOpenClose: true,
+                    product_id: value,
+                    assigned_product_id: tablemeta?.rowData?.[11],
+                  })
+                }
               >
                 Add Offers
               </div>
@@ -153,11 +163,17 @@ function Index({ registerproduct }) {
         display: false,
       },
     },
+    {
+      name: "assign_product_id",
+      label: " ",
+      options: {
+        display: false,
+      },
+    },
   ];
   const PaginateDataSplit = (event) => {
     setTableData(event);
   };
-
   //Api to fetch table values
   useEffect(() => {
     const fetchTableData = async (token) => {
@@ -255,7 +271,8 @@ function Index({ registerproduct }) {
               >
                 Pending Products
               </Button>
-              <Button className="button-text btn-ternary  inventory_product_upload"
+              <Button
+                className="button-text btn-ternary  inventory_product_upload"
                 onClick={() => registerproduct("bulkupload")}
               >
                 Bulk Upload
@@ -284,8 +301,11 @@ function Index({ registerproduct }) {
           PagePerRow={10}
         />
       )}
-      {offersOpenClose && (
-        <Offers handleOpenCloseOffers={handleOpenCloseOffers} />
+      {offersOpenClose?.isOpenClose && (
+        <Offers
+          handleOpenCloseOffers={handleOpenCloseOffers}
+          offersOpenClose={offersOpenClose}
+        />
       )}
       <Link className="inventory-page-back" to="/sellerdashboard/dashboard">
         <ArrowBackIosNew />

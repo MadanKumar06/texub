@@ -1,0 +1,76 @@
+.bulkUpload_container {
+  .table_container {
+    width: 100%;
+    overflow: auto;
+    .ExcelTable2007 {
+      min-width: 300px;
+      max-width: 100%;
+      border-collapse: collapse;
+      tbody {
+        tr {
+          .heading,
+          th {
+            display: none;
+          }
+        }
+      }
+    }
+    .ExcelTable2007 tr:nth-child(2) {
+      border-top: none;
+      background-color: #002d56;
+      color: white;
+      text-align: center;
+      font-weight: 600;
+      font-size: 16px;
+      letter-spacing: 0.6px;
+    }
+
+    .ExcelTable2007 tr {
+      border-bottom: 2px solid #ffffff;
+      background-color: #f5f5f5;
+      display: flex;
+    }
+
+    .ExcelTable2007 tr:nth-child(odd):not(:nth-child(2)) {
+      background-color: #eaeaea;
+      display: flex;
+    }
+
+    .ExcelTable2007 th {
+      display: none;
+    }
+
+    .ExcelTable2007 td {
+      display: block;
+      min-width: 150px;
+      max-width: 200px;
+    }
+
+    .ExcelTable2007 td:nth-child(2) {
+      margin-top: 0.5em;
+    }
+
+    .ExcelTable2007 td:last-child {
+      margin-bottom: 0.5em;
+    }
+    .ExcelTable2007 th,
+    .ExcelTable2007 td {
+      text-align: left;
+    }
+
+    .ExcelTable2007 {
+      color: #333;
+      border-radius: 0.4em;
+      overflow: hidden;
+    }
+
+    .ExcelTable2007 tr {
+      border-color: #ffffff;
+    }
+
+    .ExcelTable2007 th,
+    .ExcelTable2007 td {
+      padding: 0.5em 1em;
+    }
+  }
+}
