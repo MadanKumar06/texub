@@ -75,7 +75,7 @@ const MyAccountPopup = () => {
           <MenuItem onClick={() => handleClose()}>
             <Link to="/buyerdashboard/dashboard">
               <img src={dashboardLogo} alt="" />
-              Buyer Dashboard
+              Dashboard
             </Link>
           </MenuItem>
         )}
@@ -102,6 +102,12 @@ const MyAccountPopup = () => {
             <MenuItem onClick={() => handleClose()}>
               <img src={auctionsLogo} alt="" />
               Auctions
+            </MenuItem>
+            <MenuItem onClick={() => handleClose()}>
+              <Link to="/buyerdashboard/invoiceslist">
+                <img src={auctionsLogo} alt="" />
+                Pending Invoices
+              </Link>
             </MenuItem>
           </>
         )}
