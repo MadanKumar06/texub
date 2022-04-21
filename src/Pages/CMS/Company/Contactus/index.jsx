@@ -456,14 +456,14 @@ const Contactus = () => {
               <li key={item.id} className="contactus_location_list">
                 <div className="contactus_locations_1">
                   <img src={item.image} className="location_image" alt=""></img>
-                  <div class="address-info-box">
+                  <div className="address-info-box">
                     <span> {item.address}</span>
                     <span> {item.address2}</span>
                     <span> {item.address3}</span>
                     <span> {item.address4}</span>
                     <span> {item.address5}</span>
                   </div>
-                  <div class="address-phone-box">
+                  <div className="address-phone-box">
                     <span>{item.contact}</span>
                   </div>
                 </div>
@@ -475,14 +475,14 @@ const Contactus = () => {
               <li key={item.id} className="contactus_location_list">
                 <div className="contactus_locations_1">
                   <img src={item.image} className="location_image" alt=""></img>
-                  <div class="address-info-box">
+                  <div className="address-info-box">
                     <span> {item.address}</span>
                     <span> {item.address2}</span>
                     <span> {item.address3}</span>
                     <span> {item.address4}</span>
                     <span> {item.address5}</span>
                   </div>
-                  <div class="address-phone-box">
+                  <div className="address-phone-box">
                     <span>{item.contact}</span>
                     <span>{item.contact2}</span>
                   </div>
@@ -495,14 +495,14 @@ const Contactus = () => {
               <li key={item.id} className="contactus_location_list">
                 <div className="contactus_locations_1">
                   <img src={item.image} className="location_image" alt=""></img>
-                  <div class="address-info-box">
+                  <div className="address-info-box">
                     <span> {item.address}</span>
                     <span> {item.address2}</span>
                     <span> {item.address3}</span>
                     <span> {item.address4}</span>
                     <span> {item.address5}</span>
                   </div>
-                  <div class="address-phone-box">
+                  <div className="address-phone-box">
                     <span>{item.contact}</span>
                     <span>{item.contact2}</span>
                   </div>
@@ -515,7 +515,7 @@ const Contactus = () => {
               <li key={item.id} className="contactus_location_list">
                 <div className="contactus_locations_1">
                   <img src={item.image} className="location_image" alt=""></img>
-                  <div class="address-info-box">
+                  <div className="address-info-box">
                     <span> {item.address}</span>
                     <span> {item.address2}</span>
                     <span> {item.address3}</span>
@@ -531,7 +531,7 @@ const Contactus = () => {
               <li key={item.id} className="contactus_location_list">
                 <div className="contactus_locations_1">
                   <img src={item.image} className="location_image" alt=""></img>
-                  <div class="address-info-box">
+                  <div className="address-info-box">
                     <span> {item.address}</span>
                     <span> {item.address2}</span>
                   </div>
@@ -545,7 +545,7 @@ const Contactus = () => {
               <li key={item.id} className="contactus_location_list">
                 <div className="contactus_locations_1">
                   <img src={item.image} className="location_image" alt=""></img>
-                  <div class="address-info-box">
+                  <div className="address-info-box">
                     <span> {item.address}</span>
                     <span> {item.address2}</span>
                   </div>
@@ -558,7 +558,7 @@ const Contactus = () => {
               <li key={item.id} className="contactus_location_list">
                 <div className="contactus_locations_1">
                   <img src={item.image} className="location_image" alt=""></img>
-                  <div class="address-info-box">
+                  <div className="address-info-box">
                     <span> {item.address}</span>
                     <span> {item.address2}</span>
                   </div>

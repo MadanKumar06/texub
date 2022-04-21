@@ -9,11 +9,11 @@ export default function SimpleBackdrop() {
         open={true}
       >
         {/* <CircularProgress color="inherit" /> */}
-        <div class="container">
-          <div class="item item-1"></div>
-          <div class="item item-2"></div>
-          <div class="item item-3"></div>
-          <div class="item item-4"></div>
+        <div className="container">
+          <div className="item item-1"></div>
+          <div className="item item-2"></div>
+          <div className="item item-3"></div>
+          <div className="item item-4"></div>
         </div>
       </Backdrop>
     </div>
