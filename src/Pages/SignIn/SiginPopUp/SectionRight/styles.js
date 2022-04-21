@@ -2,6 +2,12 @@ const styles = (theme) => ({
   section_right: {
     marginBottom: "14px",
   },
+   "@media(min-width:1600px)": {
+      marginBottom: "7px",
+    },
+     "@media(max-width:1599px)": {
+      marginBottom: "7px",
+    },
   info_text_lineNote: {
     color: "#333333",
     fontSize: "20px",
@@ -9,6 +15,7 @@ const styles = (theme) => ({
     marginBottom: "0",
     "@media(max-width:1660px)": {
       fontSize: "16px",
+      marginTop :"10px",
     },
     "@media(max-width:767px)": {
       margin: "0",
@@ -18,9 +25,12 @@ const styles = (theme) => ({
   info_text_guest: {
     color: "#20639B",
     padding: "16px 0px",
-    fontSize: "30px",
+    fontSize: "24px",
     fontWeight: "600",
-    "@media(max-width:1660px)": {
+     "@media(min-width:1600px)": {
+       padding: "5px 0",
+    },
+    "@media(max-width:1599px)": {
       fontSize: "22px",
     },
     "@media (max-width:767px)": {
@@ -43,9 +53,12 @@ const styles = (theme) => ({
     boxShadow: "0px 3px 6px #00000029",
     borderRadius: "4px",
     backgroundColor: "#ffffff",
-    "@media(max-width:1440px)": {
+     "@media(min-width:1600px)": {
+       paddingBottom: "0.5em",
+    },
+    "@media(max-width:1599px)": {
       padding: "0 2em",
-      paddingBottom: "1em",
+      paddingBottom: "0.5em",
     },
     "@media (max-width:767px)": {
       paddingBottom: "1em !important",
@@ -55,11 +68,11 @@ const styles = (theme) => ({
       paddingBottom: "1em !important",
     },
     "& .MuiFormControl-root": {
-      marginTop: "2em",
+      marginTop: "1.5em",
     },
   },
   checkbox_label: {
-    marginTop: "20px",
+    marginTop: "10px",
     width: "100%",
     "& .MuiTypography-root": {
       color: "#5C6369",
@@ -83,6 +96,12 @@ const styles = (theme) => ({
   button_box: {
     margin: "20px 0px",
     textAlign: "center",
+    "@media(min-width:1600px)": {
+      margin: "6px 0px",
+    },
+     "@media(max-width:1599px)": {
+      margin: "6px 0px",
+    },
     "@media(max-width:425px)": {
       margin: "6px 0px",
     },

@@ -45,16 +45,19 @@ const styles = () => ({
       },
   },
   thankyou_title: {
-    fontSize: "30px",
+    fontSize: "35px",
     fontWeight: "600",
     margin: "0",
     color: "#5C6369",
     "@media (max-width:780px)": {     
+       fontSize: "30px",
+      },
+       "@media (max-width:567px)": {     
        fontSize: "26px",
       },
   },
   thankyou_user: {
-    fontSize: "20px",
+    fontSize: "24px",
     margin: "0",
     color: "#5C6369",
     marginTop: "17px",
