@@ -50,9 +50,11 @@ const MyCartTable = ({ cartDataList, deleteCartData }) => {
     if (product_id) {
       temp = is_table_quantity?.filter((itm) => itm?.product_id === product_id);
     }
-    setopenwishlist({ open: !openwishlist?.open, dataFromPLP: temp?.[0] });
+    setopenwishlist({ open: true, dataFromPLP: temp?.[0] });
   };
-
+  const handleOpenClose = (event) => {
+    setopenwishlist({ open: event });
+  };
   const handleUpdate = (quantity, sku, cart_id, item_id) => {
     let data = {
       cartItem: {
@@ -510,7 +512,10 @@ const MyCartTable = ({ cartDataList, deleteCartData }) => {
         />
       )} */}
       {openwishlist?.open && (
-        <Wishlist pdpSellerData={openwishlist?.dataFromPLP} />
+        <Wishlist
+          pdpSellerData={openwishlist?.dataFromPLP}
+          handleOpenClose={handleOpenClose}
+        />
       )}
     </div>
   );
