@@ -231,7 +231,7 @@
   .minicart_footer {
     background: #ffffff;
     width: auto;
-    padding: 0 9%;
+    padding: 0 9% 1.5em;
     position: sticky;
     bottom: 0;
     .minicart_total {
@@ -258,7 +258,7 @@
       }
     }
     .minicart_btn {
-      margin: 25px 0;
+      margin: 25px 0 0;
       display: flex;
       flex-direction: column;
       gap: 24px;
