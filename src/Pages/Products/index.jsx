@@ -17,6 +17,10 @@ export const Products = () => {
   const [applyFilter, setApplyFilter] = useState(false);
   let customer_id = JSON.parse(localStorage.getItem("userdata"));
   useEffect(() => {
+    dispatch({
+      type: "SET_IS_LOADING",
+      value: true,
+    });
     if (getCategories && currency?.currency_id) {
       const fetchProductData = () => {
         setProductData([]);
@@ -54,8 +58,17 @@ export const Products = () => {
           .then((res) => {
             sortCall(res?.data?.[1]?.products);
             setDataFromApi(res?.data?.[0]?.layered);
+            dispatch({
+              type: "SET_IS_LOADING",
+              value: false,
+            });
           })
-          .catch((err) => {});
+          .catch((err) => 
+            dispatch({
+              type: "SET_IS_LOADING",
+              value: false,
+            })
+          );
       };
       fetchProductData();
     }
@@ -78,7 +91,7 @@ export const Products = () => {
         .catch((err) => {});
     };
     fetchCategoryData();
-  }, []);
+  }, [currency]);
   const sortCall = (data) => {
     var productTableData = [];
     data?.map((itm) => {
@@ -105,7 +118,6 @@ export const Products = () => {
     setProductData(productTableData);
   };
 
-  console.log(productFetchApi);
   return (
     <div className="products">
       <Productlists

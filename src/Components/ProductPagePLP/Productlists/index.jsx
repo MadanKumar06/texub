@@ -32,7 +32,7 @@ const Productlists = ({
   setApplyFilter,
   applyFilter,
 }) => {
-  const [{ homeSearch }, dispatch] = useStateValue();
+  const [{ homeSearch, currency }, dispatch] = useStateValue();
   const [productlistdropdown, setProductlistdropdown] = useState({
     hub: [],
     conditions: [],
@@ -100,7 +100,8 @@ const Productlists = ({
         .catch((err) => {});
     };
     fetchProductListDropDownData();
-  }, []);
+  }, [currency]);
+
   const handleSearchClick = (event) => {
     event.preventDefault();
     setApplyFilter(!applyFilter);
