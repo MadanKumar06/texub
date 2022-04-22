@@ -19,7 +19,10 @@ import swal from "sweetalert2";
 import SimpleLoader from "../../../Components/SimpleLoader";
 
 function formatToCurrency(amount) {
-  return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  
+  return amount.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
+
+  // return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
 const MiniCartList = ({ handleSideBarClose }) => {
