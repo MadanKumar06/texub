@@ -134,6 +134,24 @@ const PdpPopup = () => {
             },
           },
         });
+        if (wishdata?.data?.[0]?.status) {
+          handleOpenClose(false);
+          setTimeout(() => {
+            swal.fire({
+              text: wishdata?.data?.[0]?.message,
+              icon: "success",
+              showConfirmButton: false,
+              timer: 3000,
+            });
+          }, 1000 / 2);
+        } else {
+          swal.fire({
+            text: wishdata?.data?.[0]?.message,
+            icon: "error",
+            showConfirmButton: false,
+            timer: 3000,
+          });
+        }
       } catch (e) {
         console.log(e);
       }
