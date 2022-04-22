@@ -10,6 +10,7 @@ import TextField from '@mui/material/TextField';
 import axios from 'axios';
 import Constant from '../../../Constant';
 const Index = ({ dataFromPLP, pdpSellerData }) => {
+    console.log(pdpSellerData)
     
     const [create1, setcreate1] = useState(false)
     const create = () => {
@@ -35,7 +36,6 @@ const Index = ({ dataFromPLP, pdpSellerData }) => {
         //     setwishcheck(temp)
         //   }
       }
-      console.log(wishcheck)
 
     const [newwishdata, setnewwishdata] = useState("")
     const newwishlist = async () => {
@@ -54,11 +54,7 @@ const Index = ({ dataFromPLP, pdpSellerData }) => {
                 },
               },
             });
-            // console.log(foldername.data)
-            // console.log(newwishdata)
             let temp = foldername.data.find(fd => fd.wishlist_name === newwishdata)
-            // console.log(temp)
-            // console.log(wishcheck)
             // return  
             const wishdata = await axios({
               method: "post",
@@ -121,7 +117,6 @@ const Index = ({ dataFromPLP, pdpSellerData }) => {
                     }
                 }
             })
-            console.log(foldernames?.data)
             setfname(foldernames?.data)
         } catch(e) {
             console.log(e)
@@ -147,12 +142,12 @@ const Index = ({ dataFromPLP, pdpSellerData }) => {
                         <span>
                             <img
                                 className="wishlist_img"
-                                src={dataFromPLP?.row?.[0]?.props?.children?.props?.src}
+                                src={`${Constant?.imageBaseUrl()}${pdpSellerData?.brand}`}
                                 alt=""
                             />
                         </span>
                         <span className="description">
-                            {dataFromPLP?.row?.[1]?.props?.children}
+                            {pdpSellerData?.description}
                         </span>
                     </div>
                     <div className='wishlist_product_section'>
@@ -181,7 +176,7 @@ const Index = ({ dataFromPLP, pdpSellerData }) => {
                         </div>
                     }
                     <div className='back_to_pdp'>
-                        <ArrowBackIosIcon /><p className='back'>{dataFromPLP?.row?.[1]?.props?.children}</p>
+                        <ArrowBackIosIcon /><p className='back'>{pdpSellerData?.model_number}</p>
                     </div>
                 </div>
             </>
