@@ -192,14 +192,23 @@
 }
 @media (max-width: 1440px) {
   .productlist .productlist__deal .productlist__deal__image {
-    width: 35px;
+    width: 30px;
+    height: 30px;
+  }
+  .product_menu_filter{
+    width: 30px;
+    height: 30px;
   }
   .productlist {
     padding: 15px 2%;
-    gap: 1em;
+    gap: 10px;
   }
-  .productlist .productlist__deal span {
-    font-size: 14px;
+  .productlist .productlist__deal{
+    width: auto;
+  
+    span {
+      font-size: 14px;
+    }
   }
   .productlist .productlist__search .search_input .MuiInput-root input {
     font-size: 16px;
