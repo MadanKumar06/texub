@@ -225,7 +225,7 @@ const MyCartTable = ({ cartDataList, deleteCartData }) => {
                   <p className="my_cart_product_description">{description}</p>
                   <div className="my_cart_link">
                     <Link to="/">Details</Link>
-                    <span className="link_2"  onClick={list}>
+                    <span className="link_2"  onClick={() => list()}>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="18.123"
@@ -310,7 +310,6 @@ const MyCartTable = ({ cartDataList, deleteCartData }) => {
       label: "QUANTITY",
       options: {
         customBodyRender: (value, tablemeta) => {
-          debugger;
           let moq = tablemeta?.rowData?.[10];
           let in_stock = tablemeta?.rowData?.[11];
           let is_qty = tablemeta?.rowData?.[12];
@@ -471,7 +470,6 @@ const MyCartTable = ({ cartDataList, deleteCartData }) => {
       },
     },
   };
-  console.log(is_table_quantity)
   return (
     <div className="mycart_table_main_container">
       <MUITable
