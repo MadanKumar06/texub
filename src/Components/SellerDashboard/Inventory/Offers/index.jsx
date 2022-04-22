@@ -30,31 +30,32 @@ const TransitionsModal = ({ handleOpenCloseOffers, offersOpenClose }) => {
     setOpen(false);
     handleOpenCloseOffers(false);
   };
-
   useEffect(() => {
     let customerId = JSON.parse(localStorage.getItem("userdata"));
-    let data = {
-      sellerData: {
-        customer_id: customerId?.id,
-        product_id: parseInt(offersOpenClose?.product_id),
-        assign_product_id: parseInt(offersOpenClose?.assigned_product_id),
-      },
-    };
-    axios
-      .post(Constant.baseUrl() + "/viewSellerOffer", data, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+    if (offersOpenClose?.isOfferValid === "1") {
+      let data = {
+        sellerData: {
+          customer_id: customerId?.id,
+          product_id: parseInt(offersOpenClose?.product_id),
+          assign_product_id: parseInt(offersOpenClose?.assigned_product_id),
         },
-      })
-      .then((res) => {
-        setOffersData({
-          price: res?.data?.[0]?.offer_price,
-          start_date: new Date(res?.data?.[0]?.offer_start_date),
-          end_date: new Date(res?.data?.[0]?.offer_end_date),
-        });
-      })
-      .catch((err) => {});
+      };
+      axios
+        .post(Constant.baseUrl() + "/viewSellerOffer", data, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        })
+        .then((res) => {
+          setOffersData({
+            price: res?.data?.[0]?.offer_price,
+            start_date: new Date(res?.data?.[0]?.offer_start_date),
+            end_date: new Date(res?.data?.[0]?.offer_end_date),
+          });
+        })
+        .catch((err) => {});
+    }
   }, []);
   const OffersAPICall = () => {
     let start_date = moment(offersData?.start_date).format("DD/MM/YYYY");
@@ -102,6 +103,12 @@ const TransitionsModal = ({ handleOpenCloseOffers, offersOpenClose }) => {
         dispatch({
           type: "SET_IS_LOADING",
           value: false,
+        });
+        swal.fire({
+          text: `${err?.response?.data?.message}`,
+          icon: "error",
+          showConfirmButton: false,
+          timer: 3000,
         });
       });
   };

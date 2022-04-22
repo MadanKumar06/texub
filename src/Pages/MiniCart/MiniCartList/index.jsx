@@ -189,8 +189,6 @@ const MiniCartList = ({ handleSideBarClose }) => {
       console.log(e);
     }
   };
-  console.log(cart[0].invoice);
-
   return (
     <div className="minicart_list_main">
       <header className="minicart_header">
@@ -334,8 +332,7 @@ const MiniCartList = ({ handleSideBarClose }) => {
               <p className="title_total">TOTAL</p>
               <p className="total_price">
                 <span>INR </span>
-                {/* {cart?.data?.[0]?.invoice?.grand_total} */}
-                {formatToCurrency(cart[0]?.invoice?.subtotal)}
+                {formatToCurrency(cart?.length && cart[0]?.invoice?.subtotal)}
               </p>
             </div>
             <div className="minicart_btn">
@@ -347,17 +344,12 @@ const MiniCartList = ({ handleSideBarClose }) => {
                   <span>Go To Cart</span>
                 </Button>
               </Link>
-              {/* <Link
-                to="/pending-invoice"
-                onClick={() => handleSideBarClose("right", false)}
-              > */}
               <Button
                 className="minicart_bottom_button_pending_invoice"
                 onClick={() => addpendinginvoice()}
               >
                 <span>Add To Pending Invoice</span>
               </Button>
-              {/* </Link> */}
             </div>
           </footer>
         </>

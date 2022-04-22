@@ -81,10 +81,11 @@ function Index() {
       name: "price",
       label: "Price",
       options: {
-        customBodyRender: (value) => {
+        customBodyRender: (value, tablemeta) => {
+          let currency = tablemeta?.rowDate[3];
           return (
             <div className="orders__ordertotal">
-              {/* <span className="label">INR</span> */}
+              <span className="label">{currency}</span>
               <span className="value">{value}</span>
             </div>
           );
@@ -95,10 +96,11 @@ function Index() {
       name: "lowest_price",
       label: "Lowest Price",
       options: {
-        customBodyRender: (value) => {
+        customBodyRender: (value, tablemeta) => {
+          let currency = tablemeta?.rowDate[3];
           return (
             <div className="orders__ordertotal">
-              {/* <span className="label">INR</span> */}
+              <span className="label">{currency}</span>
               <span className="value">{value}</span>
             </div>
           );
@@ -112,6 +114,13 @@ function Index() {
         customBodyRender: (value) => {
           return <div className="orders__buyercode">{value}</div>;
         },
+      },
+    },
+    {
+      name: "product_currency",
+      label: "",
+      options: {
+        display: false,
       },
     },
   ];
