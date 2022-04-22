@@ -678,8 +678,8 @@ const BuyerRegistration = ({ classes }) => {
                 />
                 <p>
                   By using this form you agree with the{" "}
-                  <Link to="/termsofuse">Terms of Use</Link> and{" "}
-                  <Link to="/privacypolicy">Privacy Policy</Link> by this
+                  <Link to="/termsofuse" target="_blank">Terms of Use</Link> and{" "}
+                  <Link to="/privacypolicy" target="_blank">Privacy Policy</Link> by this
                   website.
                 </p>
               </div>

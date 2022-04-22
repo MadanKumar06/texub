@@ -290,7 +290,7 @@ const MyCartTable = ({ cartDataList, deleteCartData }) => {
     },
     {
       name: "price",
-      label: "PRICE",
+      label: "PRICE / UNIT",
       options: {
         customBodyRender: (value) => {
           return (
@@ -298,7 +298,7 @@ const MyCartTable = ({ cartDataList, deleteCartData }) => {
               <div className="mycart_table_price">
                 <span>INR</span>
                 {value}
-                <span>/unit</span>
+                {/* <span>/unit</span> */}
               </div>
             </div>
           );

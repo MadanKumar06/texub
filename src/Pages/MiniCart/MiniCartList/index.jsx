@@ -23,8 +23,9 @@ function formatToCurrency(amount) {
 }
 
 const MiniCartList = ({ handleSideBarClose }) => {
-  const [{ cart, isSimpleLoading }, dispatch] = useStateValue();
+  const [{ cart, currency, isSimpleLoading }, dispatch] = useStateValue();
   const [value, setValue] = React.useState(4);
+  const navigate = useNavigate();
   const [isCartData, setIsCartData] = useState(0);
   useEffect(() => {
     let temp = cart?.[0]?.invoice_items?.map((itm) => ({
@@ -48,16 +49,59 @@ const MiniCartList = ({ handleSideBarClose }) => {
     );
   };
 
-  const navigate = useNavigate();
-  const onCLickDetailsLink = () => {
+  const [getCategories, setGetCategories] = useState("");
+  useEffect(() => {
+    const fetchCategoryData = () => {
+      let data = {
+        currency_id: parseInt(currency?.currency_id),
+      };
+      axios
+        .post(Constant.baseUrl() + "/getCategoriesList", data, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => {
+          if (res?.data?.length) {
+            setGetCategories(res?.data[0]?.category.id);
+          }
+        })
+        .catch((err) => {});
+    };
+    fetchCategoryData();
+  }, []);
+
+  const onCLickDetailsLink = (event) => {
     handleSideBarClose("right", false);
-    setTimeout(() => {
-      dispatch({
-        type: "SET_PDP_POPUP_OPEN_CLOSE",
-        value: true,
-        data: { isCartData, isCartData },
-      });
-    }, 1000 / 2);
+    let customer_id = JSON.parse(localStorage.getItem("userdata"));
+    let data = {
+      data: {
+        currency_id: event?.currency_id,
+        customer_id: customer_id?.id,
+        category_id: getCategories?.toString(),
+        brand_id: "0",
+        hub_id: "0",
+        condition_id: "0",
+        keyword: event?.sku,
+        eta: "0",
+        min_price: 0,
+        max_price: 0,
+      },
+    };
+    axios
+      .post(Constant.baseUrl() + "/getProducts", data, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        dispatch({
+          type: "SET_PDP_POPUP_OPEN_CLOSE",
+          value: true,
+          data: { CartData: res.data[1].products },
+        });
+      })
+      .catch((err) => {});
   };
 
   //API to fetch admin token
@@ -183,7 +227,7 @@ const MiniCartList = ({ handleSideBarClose }) => {
                       <p className="modal_name">{itm?.product_name}</p>
                       <p className="hub">
                         <span>Hub</span>
-                        {itm?.hub}
+                        <div className="hub_name">{itm?.hub}</div>
                       </p>
                     </div>
                     <div className="rating_main">
@@ -199,7 +243,12 @@ const MiniCartList = ({ handleSideBarClose }) => {
                     </div>
                     <p
                       className="detail_link"
-                      onClick={() => onCLickDetailsLink()}
+                      onClick={() =>
+                        onCLickDetailsLink({
+                          sku: itm?.sku,
+                          currency_id: itm?.currency_id,
+                        })
+                      }
                     >
                       Details
                     </p>
