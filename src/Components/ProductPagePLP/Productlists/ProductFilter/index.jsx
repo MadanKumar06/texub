@@ -6,7 +6,13 @@ import FilterViewList from "./FilterViewList";
 
 //basic need
 import filter_option from "../../../../Assets/BasicNeeded/PLPIcons/filter.png";
-const ProductFilterDrawer = ({ dataFromApi }) => {
+const ProductFilterDrawer = ({
+  dataFromApi,
+  setProductFetchApi,
+  setApplyFilter,
+  applyFilter,
+  productFetchApi,
+}) => {
   const [sideBar, setSideBar] = React.useState({
     left: false,
   });
@@ -33,6 +39,10 @@ const ProductFilterDrawer = ({ dataFromApi }) => {
       <FilterViewList
         handleSideBarClose={handleSideBarClose}
         dataFromApi={dataFromApi}
+        setProductFetchApi={setProductFetchApi}
+        setApplyFilter={setApplyFilter}
+        applyFilter={applyFilter}
+        productFetchApi={productFetchApi}
       />
     </div>
   );

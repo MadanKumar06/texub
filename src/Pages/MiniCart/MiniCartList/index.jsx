@@ -99,7 +99,10 @@ const MiniCartList = ({ handleSideBarClose }) => {
           dispatch({
             type: "SET_PDP_POPUP_OPEN_CLOSE",
             value: true,
-            data: { CartData: res.data[1].products },
+            data: {
+              CartData: res.data[1].products,
+              product_id: event?.product_id,
+            },
           });
         })
         .catch((err) => {});
@@ -249,6 +252,7 @@ const MiniCartList = ({ handleSideBarClose }) => {
                         onCLickDetailsLink({
                           sku: itm?.sku,
                           currency_id: itm?.currency_id,
+                          product_id: itm?.product_id,
                         })
                       }
                     >

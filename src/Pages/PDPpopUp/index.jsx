@@ -41,7 +41,9 @@ const PdpPopup = () => {
 
   useEffect(() => {
     if (pdpPopUpOpenClose?.data?.CartData?.length) {
-      let temp = pdpPopUpOpenClose?.data?.CartData?.[0]?.sub_products;
+      let temp = pdpPopUpOpenClose?.data?.CartData?.[0]?.sub_products?.filter(
+        (itm) => itm?.product_id === pdpPopUpOpenClose?.data?.product_id
+      );
       setPdpSellerData((prev) => ({
         ...prev,
         ...pdpPopUpOpenClose?.data?.CartData?.[0]?.main_product,
@@ -66,7 +68,7 @@ const PdpPopup = () => {
       setTableData({ tableone: tempTable_one, tabletwo: tempTable_two });
     }
   }, [moreOffers]);
-  
+
   const MoreOfferChange = () => {
     let table_one =
       pdpPopUpOpenClose?.data?.tableData?.[0]?.sub_products?.length;
