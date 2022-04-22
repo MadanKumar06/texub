@@ -82,7 +82,7 @@ const styles = (theme) => ({
     gap: "20px",
     justifyContent: "space-between",
     flexDirection: "row",
-    "@media (max-width:1439px)": {
+    "@media (max-width:992px)": {
       flexDirection: "column",
     },
     "@media (max-width:768px)": {
@@ -126,7 +126,7 @@ const styles = (theme) => ({
     margin: "auto !important",
     textDecoration: "underline",
     "@media (max-width:1439px)": {
-      margin: "0 !important",
+      // margin: "0 !important",
       padding: "5px",
     },
     "@media (max-width:1660px)": {
