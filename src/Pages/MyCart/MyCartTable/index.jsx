@@ -8,6 +8,7 @@ import AddIcon from "@mui/icons-material/Add";
 import { getAdminToken } from "../../../utilities";
 import { useStateValue } from "../../../store/state";
 import swal from "sweetalert2";
+import Wishlist from '../../PDPpopUp/Wishlist'
 
 import axios from "axios";
 
@@ -16,7 +17,7 @@ const MyCartTable = ({ cartDataList, deleteCartData }) => {
   const [is_table_quantity_test, setis_table_quantity_test] = useState([]);
   console.log(cartDataList[0]?.invoice_items?.length)
 
-  const [{}, dispatch] = useStateValue();
+  const [{ pdpPopUpOpenClose }, dispatch] = useStateValue();
   useEffect(() => {
     let temp =
       cartDataList?.[0]?.invoice_items?.length &&
@@ -33,6 +34,12 @@ const MyCartTable = ({ cartDataList, deleteCartData }) => {
       setAdminToken(res);
     });
   }, []);
+
+  const [openwishlist, setopenwishlist] = useState(false);
+  const list = () => {
+    setopenwishlist(!openwishlist);
+  };
+
   const handleUpdate = (quantity, sku, cart_id, item_id) => {
     let data = {
       cartItem: {
@@ -218,7 +225,7 @@ const MyCartTable = ({ cartDataList, deleteCartData }) => {
                   <p className="my_cart_product_description">{description}</p>
                   <div className="my_cart_link">
                     <Link to="/">Details</Link>
-                    <Link to="/" className="link_2">
+                    <span className="link_2"  onClick={list}>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="18.123"
@@ -253,7 +260,13 @@ const MyCartTable = ({ cartDataList, deleteCartData }) => {
                         </g>
                       </svg>
                       Add to Wishlist
-                    </Link>
+                    </span>
+                    {openwishlist && (
+                      <Wishlist
+                        dataFromPLP={pdpPopUpOpenClose?.data}
+                        // pdpSellerData={pdpSellerData}
+                      />
+                    )}
                   </div>
                 </div>
               </div>
