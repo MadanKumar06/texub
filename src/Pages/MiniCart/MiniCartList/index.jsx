@@ -72,36 +72,38 @@ const MiniCartList = ({ handleSideBarClose }) => {
   }, []);
 
   const onCLickDetailsLink = (event) => {
-    handleSideBarClose("right", false);
-    let customer_id = JSON.parse(localStorage.getItem("userdata"));
-    let data = {
-      data: {
-        currency_id: event?.currency_id,
-        customer_id: customer_id?.id,
-        category_id: getCategories?.toString(),
-        brand_id: "0",
-        hub_id: "0",
-        condition_id: "0",
-        keyword: event?.sku,
-        eta: "0",
-        min_price: 0,
-        max_price: 0,
-      },
-    };
-    axios
-      .post(Constant.baseUrl() + "/getProducts", data, {
-        headers: {
-          "Content-Type": "application/json",
+    if (getCategories !== "") {
+      handleSideBarClose("right", false);
+      let customer_id = JSON.parse(localStorage.getItem("userdata"));
+      let data = {
+        data: {
+          currency_id: event?.currency_id,
+          customer_id: customer_id?.id,
+          category_id: getCategories?.toString(),
+          brand_id: "0",
+          hub_id: "0",
+          condition_id: "0",
+          keyword: event?.sku,
+          eta: "0",
+          min_price: 0,
+          max_price: 0,
         },
-      })
-      .then((res) => {
-        dispatch({
-          type: "SET_PDP_POPUP_OPEN_CLOSE",
-          value: true,
-          data: { CartData: res.data[1].products },
-        });
-      })
-      .catch((err) => {});
+      };
+      axios
+        .post(Constant.baseUrl() + "/getProducts", data, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => {
+          dispatch({
+            type: "SET_PDP_POPUP_OPEN_CLOSE",
+            value: true,
+            data: { CartData: res.data[1].products },
+          });
+        })
+        .catch((err) => {});
+    }
   };
 
   //API to fetch admin token
