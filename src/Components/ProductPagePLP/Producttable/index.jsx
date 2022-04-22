@@ -50,6 +50,13 @@ const Productstable = ({
       value: true,
     });
   };
+  function formatToCurrency(amount) {
+    return amount
+      .toString()
+      .replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
+
+    // return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
   function truncate(str, n) {
     return str?.length > n ? str.substr(0, n - 1) + "..." : str;
   }
@@ -165,7 +172,7 @@ const Productstable = ({
                 localStorage.getItem("isLoggedIn_auth") && (
                   <div className={producttable_price}>
                     <span>{value?.[0]?.currency}</span>
-                    {value?.[0]?.price}
+                    {formatToCurrency(parseInt(value?.[0]?.price))}
                   </div>
                 )
               )}

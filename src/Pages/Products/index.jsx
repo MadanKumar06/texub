@@ -13,15 +13,15 @@ export const Products = () => {
   const [productData, setProductData] = useState([]);
   const [dataFromApi, setDataFromApi] = useState([]);
   const [getCategories, setGetCategories] = useState([]);
+
+  const [applyFilter, setApplyFilter] = useState(false);
   let customer_id = JSON.parse(localStorage.getItem("userdata"));
   useEffect(() => {
-    if (
-      (productFetchApi && currency?.currency_id) ||
-      (getCategories && currency?.currency_id)
-    ) {
+    if (getCategories && currency?.currency_id) {
       const fetchProductData = () => {
         setProductData([]);
-        let data = {
+        let data;
+        data = {
           data: {
             currency_id: parseInt(currency?.currency_id),
             customer_id: customer_id?.id ? customer_id?.id : 0,
@@ -37,9 +37,7 @@ export const Products = () => {
             condition_id: productFetchApi?.conditions
               ? productFetchApi?.conditions
               : "0",
-            keyword: homeSearch
-              ? homeSearch
-              : productFetchApi?.search_product
+            keyword: productFetchApi?.search_product
               ? productFetchApi?.search_product
               : "",
             eta: productFetchApi?.eta ? productFetchApi?.eta : "0",
@@ -61,7 +59,7 @@ export const Products = () => {
       };
       fetchProductData();
     }
-  }, [productFetchApi, currency, getCategories, homeSearch]);
+  }, [currency, getCategories, homeSearch, applyFilter]);
 
   useEffect(() => {
     const fetchCategoryData = () => {
@@ -106,12 +104,16 @@ export const Products = () => {
     });
     setProductData(productTableData);
   };
+
+  console.log(productFetchApi);
   return (
     <div className="products">
       <Productlists
         setProductFetchApi={setProductFetchApi}
         productFetchApi={productFetchApi}
         dataFromApi={dataFromApi}
+        setApplyFilter={setApplyFilter}
+        applyFilter={applyFilter}
       />
       <Productsbrands
         setProductFetchApi={setProductFetchApi}
@@ -122,7 +124,16 @@ export const Products = () => {
         <Button
           className="button-text btn-primary clear"
           onClick={() => {
-            setProductFetchApi("");
+            setProductFetchApi((prev) => ({
+              ...prev,
+              conditions: "",
+              eta: "",
+              hub: "",
+              search_product: "",
+              brand_id: "",
+              category_id: "",
+            }));
+            setApplyFilter(!applyFilter);
             dispatch({
               type: "SET_SEARCH",
               value: "",

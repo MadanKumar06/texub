@@ -106,7 +106,7 @@ function Index() {
       },
     },
     {
-      name: "rank",
+      name: "seller_rank",
       label: "Rank",
       options: {
         customBodyRender: (value) => {
