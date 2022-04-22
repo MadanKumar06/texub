@@ -77,6 +77,7 @@
         .modal__hub {
           display: flex;
           gap: 40px;
+          justify-content: space-between;
           align-items: center;
           .modal_name {
             text-transform: uppercase;
@@ -228,6 +229,8 @@
     background: #ffffff;
     width: auto;
     padding: 0 9%;
+    position: sticky;
+    bottom: 0;
     .minicart_total {
       display: flex;
       justify-content: space-between;
