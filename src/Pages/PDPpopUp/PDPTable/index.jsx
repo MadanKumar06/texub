@@ -71,6 +71,7 @@ const PDPTable = ({ classes, tableData, setPdpSellerData }) => {
         warranty_days: tableData?.tableone?.[0]?.warranty_days,
         packing_details: tableData?.tableone?.[0]?.packing_details,
         no_of_pieces: tableData?.tableone?.[0]?.no_of_pieces,
+        is_table_one: is_table_one,
       }));
     }
     setIs_table_two(tableData?.tabletwo);
@@ -105,20 +106,20 @@ const PDPTable = ({ classes, tableData, setPdpSellerData }) => {
     });
   };
 
-  const handleChangeValueTableTwo = (event, index) => {
-    setIs_table_two(
-      is_table_two?.map((item, ind) => {
-        if (index === ind) {
-          return {
-            ...item,
-            moq: event,
-          };
-        } else {
-          return item;
-        }
-      })
-    );
-  };
+  // const handleChangeValueTableTwo = (event, index) => {
+  //   setIs_table_two(
+  //     is_table_two?.map((item, ind) => {
+  //       if (index === ind) {
+  //         return {
+  //           ...item,
+  //           moq: event,
+  //         };
+  //       } else {
+  //         return item;
+  //       }
+  //     })
+  //   );
+  // };
 
   const [dradio, setdradio] = useState();
 
@@ -127,14 +128,13 @@ const PDPTable = ({ classes, tableData, setPdpSellerData }) => {
     setPdpSellerData((prevState) => ({
       ...prevState,
       ...event,
+      is_table_one: is_table_one,
     }));
   };
   function formatToCurrency(amount) {
     return amount
       .toString()
       .replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
-
-    // return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
   useEffect(() => {
     if (is_table_one.length) {

@@ -165,6 +165,10 @@ const PdpPopup = () => {
   //APi call to addtocart
   const AddToCartAndPendingInvoice = (info) => {
     const user = JSON.parse(localStorage.getItem("userdata"));
+
+    let isUserAddData = pdpSellerData?.is_table_one?.filter(
+      (itm) => itm?.product_id === pdpSellerData?.product_id
+    );
     dispatch({
       type: "SET_IS_LOADING",
       value: true,
@@ -173,12 +177,12 @@ const PdpPopup = () => {
       pendingProducts: {
         store_id: 1,
         customer_id: user?.id,
-        productId: pdpSellerData?.product_id,
-        price: pdpSellerData?.price,
-        qty: pdpSellerData?.moq,
-        hub: pdpSellerData?.hub_id,
-        currency: pdpSellerData?.currency_id,
-        sellerId: pdpSellerData?.seller_id,
+        productId: isUserAddData?.[0]?.product_id,
+        price: isUserAddData?.[0]?.price,
+        qty: isUserAddData?.[0]?.moq,
+        hub: isUserAddData?.[0]?.hub_id,
+        currency: isUserAddData?.[0]?.currency_id,
+        sellerId: isUserAddData?.[0]?.seller_id,
       },
     };
     axios
