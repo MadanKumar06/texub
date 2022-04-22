@@ -67,13 +67,29 @@
             font-size: 16px;
           }
         }
-        .inventory-product-grid-info {
-          display: -webkit-box;
-          -webkit-line-clamp: 1;
-          -webkit-box-orient: vertical;
-          text-overflow: ellipsis;
-          overflow: hidden;
-          white-space: initial;
+        .brandOffers {
+          position: relative;
+          .inventory-product-grid-info {
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: initial;
+          }
+          p {
+            position: absolute;
+            bottom: 17px;
+            right: 0px;
+            margin: 0;
+            background-color: #ddb363;
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.8px;
+            padding: 0% 5.7%;
+            border-radius: 40px;
+          }
         }
         .action {
           display: flex;

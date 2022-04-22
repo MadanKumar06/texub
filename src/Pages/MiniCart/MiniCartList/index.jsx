@@ -25,7 +25,6 @@ function formatToCurrency(amount) {
 }
 
 const MiniCartList = ({ handleSideBarClose }) => {
-  debugger;
   const [{ cart, currency, isSimpleLoading }, dispatch] = useStateValue();
   const [value, setValue] = React.useState(4);
   const navigate = useNavigate();
