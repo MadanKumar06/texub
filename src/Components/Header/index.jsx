@@ -18,6 +18,7 @@ const Header = ({ classes }) => {
   let isSignedIn = JSON.parse(localStorage.getItem("userdata"));
 
   useEffect(async () => {
+    if(currency?.currency_id === undefined) return
     const user = JSON.parse(localStorage.getItem("userdata"));
     if (localStorage.getItem("token")) {
       dispatch({
@@ -55,8 +56,6 @@ const Header = ({ classes }) => {
       }
     }
   }, [currency, gt, localStorage.getItem("userdata")]);
-
-  console.log(gt);
 
   const SigninPopUP = () => {
     dispatch({
