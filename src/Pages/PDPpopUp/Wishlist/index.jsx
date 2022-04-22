@@ -9,9 +9,8 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import TextField from '@mui/material/TextField';
 import axios from 'axios';
 import Constant from '../../../Constant';
-const Index = ({ dataFromPLP, pdpSellerData }) => {
-    console.log(pdpSellerData)
-    
+const Index = ({ pdpSellerData }) => {
+    debugger
     const [create1, setcreate1] = useState(false)
     const create = () => {
         setcreate1(!create1)
@@ -176,7 +175,7 @@ const Index = ({ dataFromPLP, pdpSellerData }) => {
                         </div>
                     }
                     <div className='back_to_pdp'>
-                        <ArrowBackIosIcon /><p className='back'>{pdpSellerData?.model_number}</p>
+                        <ArrowBackIosIcon /><p className='back'>Back to{pdpSellerData?.model_number}</p>
                     </div>
                 </div>
             </>

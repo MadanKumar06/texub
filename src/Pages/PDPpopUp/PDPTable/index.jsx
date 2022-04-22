@@ -129,7 +129,13 @@ const PDPTable = ({ classes, tableData, setPdpSellerData }) => {
       ...event,
     }));
   };
+  function formatToCurrency(amount) {
+    return amount
+      .toString()
+      .replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
 
+    // return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
   useEffect(() => {
     if (is_table_one.length) {
       handleRadioGroupChange(is_table_one[0]);
@@ -256,7 +262,9 @@ const PDPTable = ({ classes, tableData, setPdpSellerData }) => {
                           <span className={price_indicator}>
                             {item?.currency}
                           </span>
-                          <span className={price_value}>{item?.price}</span>
+                          <span className={price_value}>
+                            {formatToCurrency(parseInt(item?.price))}
+                          </span>
                         </div>
                       )}
                       <div className={price_list_stock}>

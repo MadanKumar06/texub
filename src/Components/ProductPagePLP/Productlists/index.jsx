@@ -25,7 +25,13 @@ import price_drop_inactive from "../../../Assets/BasicNeeded/PLPIcons/price_drop
 import just_launch_active from "../../../Assets/BasicNeeded/PLPIcons/just_launch_active.png";
 import just_launch_inactive from "../../../Assets/BasicNeeded/PLPIcons/just_launch_inactive.png";
 
-const Productlists = ({ setProductFetchApi, productFetchApi, dataFromApi }) => {
+const Productlists = ({
+  setProductFetchApi,
+  productFetchApi,
+  dataFromApi,
+  setApplyFilter,
+  applyFilter,
+}) => {
   const [{ homeSearch }, dispatch] = useStateValue();
   const [productlistdropdown, setProductlistdropdown] = useState({
     hub: [],
@@ -95,11 +101,20 @@ const Productlists = ({ setProductFetchApi, productFetchApi, dataFromApi }) => {
     };
     fetchProductListDropDownData();
   }, []);
-
+  const handleSearchClick = (event) => {
+    event.preventDefault();
+    setApplyFilter(!applyFilter);
+  };
   return (
     <div className="productlist">
       <div className="sidebar-toggle">
-        <ProductFilterDrawer dataFromApi={dataFromApi} />
+        <ProductFilterDrawer
+          dataFromApi={dataFromApi}
+          setProductFetchApi={setProductFetchApi}
+          setApplyFilter={setApplyFilter}
+          productFetchApi={productFetchApi}
+          applyFilter={applyFilter}
+        />
       </div>
       <div className="product_based_deals">
         <div className="productlist__deal">
@@ -171,10 +186,10 @@ const Productlists = ({ setProductFetchApi, productFetchApi, dataFromApi }) => {
                   className="plpsearchicon"
                   sx={{ p: "10px" }}
                   aria-label="search"
+                  onClick={(event) => handleSearchClick(event)}
                 >
                   <Search className="search_icon"></Search>
                 </IconButton>
-
               </InputAdornment>
             ),
           }}
@@ -245,7 +260,12 @@ const Productlists = ({ setProductFetchApi, productFetchApi, dataFromApi }) => {
         </FormControl>
       </Box>
       <div className="apply-btn">
-        <Button className="button-text btn-primary clear plp-apply-btn">Apply</Button>
+        <Button
+          className="button-text btn-primary clear plp-apply-btn"
+          onClick={() => setApplyFilter(!applyFilter)}
+        >
+          Apply
+        </Button>
       </div>
 
       <div className="productlist__download">

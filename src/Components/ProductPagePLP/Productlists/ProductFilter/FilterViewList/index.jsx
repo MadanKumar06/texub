@@ -11,14 +11,14 @@ import {
 } from "@mui/material";
 
 import { Clear, ExpandMore } from "@mui/icons-material";
-import {
-  filter_by_condition,
-  filter_by_product,
-  filter_by_brand,
-  filter_by_hub,
-} from "./filteroptionJson";
-
-const FilterViewList = ({ handleSideBarClose, dataFromApi }) => {
+const FilterViewList = ({
+  handleSideBarClose,
+  dataFromApi,
+  setProductFetchApi,
+  setApplyFilter,
+  applyFilter,
+  productFetchApi,
+}) => {
   //accordion view for  filter by product
   const [expanded, setExpanded] = useState(false);
   const handleAccordionChange = (panel) => (event, isExpanded) => {
@@ -34,7 +34,6 @@ const FilterViewList = ({ handleSideBarClose, dataFromApi }) => {
 
   useEffect(() => {
     if (dataFromApi?.length) {
-      debugger;
       let filterByBrand = dataFromApi?.[0]?.brands?.slice(0, 5);
       let filterByProduct = dataFromApi?.[3]?.categories?.slice(0, 5);
       let filterByHub = dataFromApi?.[4]?.hub?.slice(0, 5);
@@ -84,6 +83,16 @@ const FilterViewList = ({ handleSideBarClose, dataFromApi }) => {
     }
   };
 
+  const handleChangeChecbox = (event) => {
+    setProductFetchApi((prev) => ({
+      ...prev,
+      [event.e.target.name]: event?.value,
+    }));
+    setApplyFilter(!applyFilter);
+    setTimeout(() => {
+      handleSideBarClose("left", false);
+    }, 1000);
+  };
   return (
     <div className="filterView_list_main">
       <Clear
@@ -92,13 +101,41 @@ const FilterViewList = ({ handleSideBarClose, dataFromApi }) => {
       />
       <div className="filter_view_cards">
         <div className="sub_filter_view_cards">
+          <div className="filter_by_hub filter_option_block">
+            <p className="filter_title">Filter By Hub</p>
+            {seeMoreData?.filter_by_hub?.length &&
+              seeMoreData?.filter_by_hub?.map((item) => (
+                <div className="map_container">
+                  <Checkbox
+                    name="hub"
+                    // checked={productFetchApi?.hub}
+                    onChange={(e) =>
+                      handleChangeChecbox({ e, value: item?.hub_id })
+                    }
+                    inputProps={{ "aria-label": "controlled" }}
+                  />
+                  <div className="filter_info">
+                    <p>{item?.hub_name}</p>
+                  </div>
+                </div>
+              ))}
+            <p
+              className="seemore"
+              onClick={() => seeMoreChange("filter_by_hub")}
+            >
+              see More
+            </p>
+          </div>
           <div className="filter_by_condtion filter_option_block">
             <p className="filter_title">Filter By Condition</p>
             {dataFromApi?.[1]?.conditions?.map((item) => (
               <div className="map_container">
                 <Checkbox
-                  // checked={checked}
-                  // onChange={handleChange}
+                  name="conditions"
+                  // checked={productFetchApi?.conditions}
+                  onChange={(e) =>
+                    handleChangeChecbox({ e, value: item?.value })
+                  }
                   inputProps={{ "aria-label": "controlled" }}
                 />
                 <div className="filter_info">
@@ -115,8 +152,11 @@ const FilterViewList = ({ handleSideBarClose, dataFromApi }) => {
               seeMoreData?.filter_by_brand?.map((item) => (
                 <div className="map_container">
                   <Checkbox
-                    // checked={checked}
-                    // onChange={handleChange}
+                    name="brand_id"
+                    // checked={productFetchApi?.brand_id}
+                    onChange={(e) =>
+                      handleChangeChecbox({ e, value: item?.value })
+                    }
                     inputProps={{ "aria-label": "controlled" }}
                   />
                   <div className="filter_info">
@@ -177,8 +217,11 @@ const FilterViewList = ({ handleSideBarClose, dataFromApi }) => {
                       // className={classes.heading_accordion}
                     >
                       <Checkbox
-                        // checked={checked}
-                        // onChange={handleChange}
+                        // checked={productFetchApi?.category_id}
+                        name="category_id"
+                        onChange={(e) =>
+                          handleChangeChecbox({ e, value: item?.id })
+                        }
                         inputProps={{ "aria-label": "controlled" }}
                       />
                       <div className="filter_info">
@@ -188,40 +231,15 @@ const FilterViewList = ({ handleSideBarClose, dataFromApi }) => {
                     </Typography>
                   </AccordionSummary>
                   <AccordionDetails>
-                    {/* {item?.subcategories?.map((itm) => (
-                      <Typography>{itm?.category_name}</Typography>
-                    ))} */}
-                    <Typography>
-                      {item?.subcategories?.category_name}
-                    </Typography>
+                    {item?.subcategories?.map((itm) => (
+                      <Typography> {itm?.category_name}</Typography>
+                    ))}
                   </AccordionDetails>
                 </Accordion>
               ))}
             <p
               className="seemore"
               onClick={() => seeMoreChange("filter_by_product")}
-            >
-              see More
-            </p>
-          </div>
-          <div className="filter_by_hub filter_option_block">
-            <p className="filter_title">Filter By Hub</p>
-            {seeMoreData?.filter_by_hub?.length &&
-              seeMoreData?.filter_by_hub?.map((item) => (
-                <div className="map_container">
-                  <Checkbox
-                    // checked={checked}
-                    // onChange={handleChange}
-                    inputProps={{ "aria-label": "controlled" }}
-                  />
-                  <div className="filter_info">
-                    <p>{item?.hub_name}</p>
-                  </div>
-                </div>
-              ))}
-            <p
-              className="seemore"
-              onClick={() => seeMoreChange("filter_by_hub")}
             >
               see More
             </p>

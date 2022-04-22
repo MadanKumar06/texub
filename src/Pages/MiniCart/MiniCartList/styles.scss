@@ -35,8 +35,10 @@
       display: flex;
       background-color: #f5f5f5;
       margin-bottom: 20px;
+      position: relative;
       .minicart_icon{
         position: absolute;
+        left: 0;
       }
       .section_left {
         position: relative;
@@ -247,12 +249,12 @@
         letter-spacing: 0.72px;
       }
       .total_price {
-        font-size: 28px;
+        font-size: 26px;
         margin: 0;
         color: #333c42;
         font-weight: 800;
         span {
-          font-size: 22px;
+          font-size: 16px;
           font-weight: 400;
         }
       }

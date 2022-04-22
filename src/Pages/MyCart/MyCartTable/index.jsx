@@ -8,14 +8,20 @@ import AddIcon from "@mui/icons-material/Add";
 import { getAdminToken } from "../../../utilities";
 import { useStateValue } from "../../../store/state";
 import swal from "sweetalert2";
-import Wishlist from '../../PDPpopUp/Wishlist'
+import Wishlist from "../../PDPpopUp/Wishlist";
 
 import axios from "axios";
+
+function formatToCurrency(amount) {
+  return amount.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
+
+  // return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
 
 const MyCartTable = ({ cartDataList, deleteCartData }) => {
   const [is_table_quantity, setIs_table_quantity] = useState([]);
   const [is_table_quantity_test, setis_table_quantity_test] = useState([]);
-  console.log(cartDataList[0]?.invoice_items?.length)
+  console.log(cartDataList[0]?.invoice_items?.length);
 
   const [{ pdpPopUpOpenClose }, dispatch] = useStateValue();
   useEffect(() => {
@@ -35,9 +41,16 @@ const MyCartTable = ({ cartDataList, deleteCartData }) => {
     });
   }, []);
 
-  const [openwishlist, setopenwishlist] = useState(false);
-  const list = () => {
-    setopenwishlist(!openwishlist);
+  const [openwishlist, setopenwishlist] = useState({
+    open: false,
+    dataFromPLP: "",
+  });
+  const list = (product_id) => {
+    let temp;
+    if (product_id) {
+      temp = is_table_quantity?.filter((itm) => itm?.product_id === product_id);
+    }
+    setopenwishlist({ open: !openwishlist?.open, dataFromPLP: temp?.[0] });
   };
 
   const handleUpdate = (quantity, sku, cart_id, item_id) => {
@@ -128,6 +141,7 @@ const MyCartTable = ({ cartDataList, deleteCartData }) => {
           let eta = tableMeta?.rowData[8];
           let description = tableMeta?.rowData[7];
           let productname = tableMeta?.rowData[6];
+          let product_id = tableMeta?.rowData[14];
           return (
             <div className="mycart_product_main">
               <div className="mycart_product_sub_block">
@@ -225,7 +239,7 @@ const MyCartTable = ({ cartDataList, deleteCartData }) => {
                   <p className="my_cart_product_description">{description}</p>
                   <div className="my_cart_link">
                     <Link to="/">Details</Link>
-                    <span className="link_2"  onClick={() => list()}>
+                    <span className="link_2" onClick={() => list(product_id)}>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="18.123"
@@ -261,12 +275,6 @@ const MyCartTable = ({ cartDataList, deleteCartData }) => {
                       </svg>
                       Add to Wishlist
                     </span>
-                    {openwishlist && (
-                      <Wishlist
-                        dataFromPLP={pdpPopUpOpenClose?.data}
-                        // pdpSellerData={pdpSellerData}
-                      />
-                    )}
                   </div>
                 </div>
               </div>
@@ -297,7 +305,7 @@ const MyCartTable = ({ cartDataList, deleteCartData }) => {
             <div className="mycart_table_price_block">
               <div className="mycart_table_price">
                 <span>INR</span>
-                {value}
+                {formatToCurrency(parseInt(value))}
                 {/* <span>/unit</span> */}
               </div>
             </div>
@@ -377,7 +385,7 @@ const MyCartTable = ({ cartDataList, deleteCartData }) => {
             <div className="mycart_table_subtotal_block">
               <div className="mycart_table_subtotal">
                 <span>INR</span>
-                {value}
+                {formatToCurrency(parseInt(value))}
               </div>
             </div>
           );
@@ -449,6 +457,13 @@ const MyCartTable = ({ cartDataList, deleteCartData }) => {
         display: false,
       },
     },
+    {
+      name: "product_id",
+      label: " ",
+      options: {
+        display: false,
+      },
+    },
   ];
 
   const options = {
@@ -473,11 +488,11 @@ const MyCartTable = ({ cartDataList, deleteCartData }) => {
   return (
     <div className="mycart_table_main_container">
       <MUITable
-          columns={columns}
-          table={is_table_quantity?.length ? is_table_quantity : []}
-          options={options}
-          className="mycart_table_mui_datatable_main"
-        />
+        columns={columns}
+        table={is_table_quantity?.length ? is_table_quantity : []}
+        options={options}
+        className="mycart_table_mui_datatable_main"
+      />
       {/* {is_table_quantity?.[0]?.invoice_items?.length && ( */}
       {/* {cartDataList[0]?.invoice_items?.length === 0 ? (
         <MUITable
@@ -494,6 +509,9 @@ const MyCartTable = ({ cartDataList, deleteCartData }) => {
           className="mycart_table_mui_datatable_main"
         />
       )} */}
+      {openwishlist?.open && (
+        <Wishlist pdpSellerData={openwishlist?.dataFromPLP} />
+      )}
     </div>
   );
 };
