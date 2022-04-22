@@ -22,14 +22,18 @@ function Index() {
         type: "SET_IS_LOADING",
         value: true,
       });
-      let sellerCode = JSON.parse(localStorage.getItem("userdata"))
-        ?.custom_attributes?.[7]?.value;
+
+      let sellerCode = JSON.parse(
+        localStorage.getItem("userdata")
+      )?.custom_attributes?.filter(
+        (itm) => itm?.attribute_code === "customer_code"
+      );
       try {
         const tabledata = await axios({
           method: "post",
           url: `${Constant.baseUrl()}/getSellerData`,
           data: {
-            sellercode: sellerCode,
+            sellercode: sellerCode?.[0]?.value,
           },
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,

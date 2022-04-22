@@ -18,10 +18,8 @@ import axios from "axios";
 import swal from "sweetalert2";
 import SimpleLoader from "../../../Components/SimpleLoader";
 
-
 function formatToCurrency(amount) {
-    return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-
+  return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
 const MiniCartList = ({ handleSideBarClose }) => {
@@ -57,6 +55,7 @@ const MiniCartList = ({ handleSideBarClose }) => {
       dispatch({
         type: "SET_PDP_POPUP_OPEN_CLOSE",
         value: true,
+        data: { isCartData, isCartData },
       });
     }, 1000 / 2);
   };
@@ -139,7 +138,7 @@ const MiniCartList = ({ handleSideBarClose }) => {
       console.log(e);
     }
   };
-  console.log(cart[0].invoice)
+  console.log(cart[0].invoice);
 
   return (
     <div className="minicart_list_main">

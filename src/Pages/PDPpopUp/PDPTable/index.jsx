@@ -123,7 +123,6 @@ const PDPTable = ({ classes, tableData, setPdpSellerData }) => {
   const [dradio, setdradio] = useState();
 
   const handleRadioGroupChange = (event) => {
-    debugger
     setdradio(event.seller_code);
     setPdpSellerData((prevState) => ({
       ...prevState,
@@ -132,10 +131,10 @@ const PDPTable = ({ classes, tableData, setPdpSellerData }) => {
   };
 
   useEffect(() => {
-    if(is_table_one.length) {
-      handleRadioGroupChange(is_table_one[0])
-    }    
-  }, [is_table_one])
+    if (is_table_one.length) {
+      handleRadioGroupChange(is_table_one[0]);
+    }
+  }, [is_table_one]);
 
   return (
     <div className={table_container}>
@@ -226,7 +225,7 @@ const PDPTable = ({ classes, tableData, setPdpSellerData }) => {
                               <Radio
                                 className={radio_button}
                                 onClick={() =>
-                                  handleRadioGroupChange({...item})
+                                  handleRadioGroupChange({ ...item })
                                 }
                               />
                             }
