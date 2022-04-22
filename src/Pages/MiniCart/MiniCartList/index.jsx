@@ -72,7 +72,7 @@ const MiniCartList = ({ handleSideBarClose }) => {
         .catch((err) => {});
     };
     fetchCategoryData();
-  }, []);
+  }, [currency]);
 
   const onCLickDetailsLink = (event) => {
     if (getCategories !== "") {
