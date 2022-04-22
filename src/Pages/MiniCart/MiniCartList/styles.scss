@@ -98,6 +98,9 @@
               color: #ddb363;
               font-size: 12px;
             }
+            .hub_name{
+              text-transform: uppercase;
+            }
           }
         }
         .rating_main {
@@ -247,9 +250,10 @@
         font-size: 28px;
         margin: 0;
         color: #333c42;
-        font-weight: 600;
+        font-weight: 800;
         span {
           font-size: 22px;
+          font-weight: 400;
         }
       }
     }

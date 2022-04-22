@@ -227,7 +227,7 @@ const MiniCartList = ({ handleSideBarClose }) => {
                       <p className="modal_name">{itm?.product_name}</p>
                       <p className="hub">
                         <span>Hub</span>
-                        {itm?.hub}
+                        <div className="hub_name">{itm?.hub}</div>
                       </p>
                     </div>
                     <div className="rating_main">
