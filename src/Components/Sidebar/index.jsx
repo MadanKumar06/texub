@@ -45,6 +45,12 @@ function Index({
         }
       });
   };
+
+  let sellerCode = JSON.parse(
+    localStorage.getItem("userdata")
+  )?.custom_attributes?.filter(
+    (itm) => itm?.attribute_code === "customer_code"
+  );
   return (
     <div className={`${barstate ? "sidebaropen" : "sellerdashboard__sidebar"}`}>
       <Clear className="sidebar__close" onClick={() => setbarstate(false)} />
@@ -54,12 +60,7 @@ function Index({
             {color === "yellow" && "Seller ID"}
             {color === "blue" && "Buyer ID"}
           </span>
-          <span className="sellervalue">
-            {
-              JSON.parse(localStorage.getItem("userdata"))
-                ?.custom_attributes?.[7]?.value
-            }
-          </span>
+          <span className="sellervalue">{sellerCode?.[0]?.value}</span>
         </p>
       </div>
       <ul>

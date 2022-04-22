@@ -51,6 +51,7 @@ const PdpPopup = () => {
       );
       let tempTable_one = sortData?.slice(0, moreOffers?.tableone);
       let tempTable_two = table_two_data?.slice(0, moreOffers?.tabletwo);
+      debugger
       setTableData({ tableone: tempTable_one, tabletwo: tempTable_two });
     }
   }, [moreOffers]);
@@ -154,7 +155,6 @@ const PdpPopup = () => {
       type: "SET_IS_LOADING",
       value: true,
     });
-    debugger;
     let data = {
       pendingProducts: {
         store_id: 1,
@@ -312,7 +312,12 @@ const PdpPopup = () => {
               <img src={add_whishlist} alt="" />
               <span onClick={list}>Add to Wishlist</span>
             </div>
-            {openwishlist && <Wishlist dataFromPLP={pdpPopUpOpenClose?.data} pdpSellerData={pdpSellerData} />}
+            {openwishlist && (
+              <Wishlist
+                dataFromPLP={pdpPopUpOpenClose?.data}
+                pdpSellerData={pdpSellerData}
+              />
+            )}
             <div className="modal_bottom_button_main">
               <Button
                 className="modal_bottom_button_add_to_cart"

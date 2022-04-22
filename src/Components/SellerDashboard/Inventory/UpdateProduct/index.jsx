@@ -502,7 +502,7 @@ function Index({ type, pid }) {
           type: "SET_IS_LOADING",
           value: false,
         });
-        if (updateformApi?.data?.[0]?.status === "true") {
+        if (updateformApi?.data?.[0]?.status) {
           // swal.fire({
           //   text: `${updateformApi?.data?.[0]?.message}`,
           //   icon: "success",
@@ -576,7 +576,7 @@ function Index({ type, pid }) {
           type: "SET_IS_LOADING",
           value: false,
         });
-        if (updateformApi?.data?.[0]?.status === "true") {
+        if (updateformApi?.data?.[0]?.status) {
           // swal.fire({
           //   text: `${updateformApi?.data?.[0]?.message}`,
           //   icon: "success",

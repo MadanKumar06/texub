@@ -11,6 +11,9 @@ import MiniCartDrawer from "../../Pages/MiniCart";
 
 export const Userdetails = () => {
   let isSignedIn = JSON.parse(localStorage.getItem("userdata"));
+  let kycStatus = JSON.parse(
+    localStorage.getItem("userdata")
+  )?.custom_attributes?.filter((itm) => itm?.attribute_code === "kyc_status");
   const history = useNavigate();
   const handleWishlist = () => {
     history("/buyerdashboard/wishlist");
@@ -32,10 +35,8 @@ export const Userdetails = () => {
             </li>
             <h6 className="User_Call_tag">From 8:00 to 17:00 (Mon-Sat)</h6>
           </div> */}
-          {(isSignedIn?.group_id === 5 &&
-            isSignedIn?.custom_attributes?.[3]?.value === "2") ||
-          (isSignedIn?.group_id === 6 &&
-            isSignedIn?.custom_attributes?.[3]?.value === "2") ? (
+          {(isSignedIn?.group_id === 5 && kycStatus?.[0]?.value === "2") ||
+          (isSignedIn?.group_id === 6 && kycStatus?.[0]?.value === "2") ? (
             <div className="user_account">
               <MyAccountPopUP />
             </div>
@@ -43,8 +44,7 @@ export const Userdetails = () => {
             ""
           )}
 
-          {isSignedIn?.group_id === 5 &&
-          isSignedIn?.custom_attributes?.[3]?.value === "2" ? (
+          {isSignedIn?.group_id === 5 && kycStatus?.[0]?.value === "2" ? (
             <>
               <div className="user_wishlist" onClick={() => handleWishlist()}>
                 <Badge badgeContent={0} className="badge_user">
