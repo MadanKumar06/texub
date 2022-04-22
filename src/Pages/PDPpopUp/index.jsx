@@ -40,18 +40,29 @@ const PdpPopup = () => {
   };
 
   useEffect(() => {
+    if (pdpPopUpOpenClose?.data?.CartData?.length) {
+      let temp = pdpPopUpOpenClose?.data?.CartData?.[0]?.sub_products;
+      setPdpSellerData((prev) => ({
+        ...prev,
+        ...pdpPopUpOpenClose?.data?.CartData?.[0]?.main_product,
+      }));
+      setTableData({ tableone: temp, tabletwo: "" });
+    }
     if (pdpPopUpOpenClose?.data?.tableData?.length) {
       detailsData.current = pdpPopUpOpenClose?.data?.tableData?.filter(
         (itm) =>
           itm?.main_product?.main_product_id ===
           pdpPopUpOpenClose?.data?.row?.[10]?.main_product_id
       );
+      setPdpSellerData((prev) => ({
+        ...prev,
+        ...detailsData?.current?.[0]?.main_product,
+      }));
       let sortData = detailsData?.current?.[0]?.sub_products.sort((a, b) =>
         a.price > b.price ? 1 : -1
       );
       let tempTable_one = sortData?.slice(0, moreOffers?.tableone);
       let tempTable_two = table_two_data?.slice(0, moreOffers?.tabletwo);
-      debugger
       setTableData({ tableone: tempTable_one, tabletwo: tempTable_two });
     }
   }, [moreOffers]);
@@ -341,30 +352,27 @@ const PdpPopup = () => {
             <div className="pdp_footer_model_details">
               <span className="pdp_footer_model_info">MODEL NAME</span>
               <span className="pdp_footer_model_info_detail">
-                {detailsData?.current?.[0]?.main_product?.model_number}
+                {pdpSellerData?.model_number}
               </span>
             </div>
             <div className="pdp_footer_model_details">
               <span className="pdp_footer_model_info">PART NUMBER</span>
               <span className="pdp_footer_model_info_detail">
                 {" "}
-                {detailsData?.current?.[0]?.main_product?.part_number}
+                {pdpSellerData?.part_number}
               </span>
             </div>
             <div className="pdp_footer_model_details">
               <span className="pdp_footer_model_info">CONDITION</span>
               <span className="pdp_footer_model_info_detail">
                 {" "}
-                {detailsData?.current?.[0]?.main_product?.condition}
+                {pdpSellerData?.condition}
               </span>
             </div>
             <div className="pdp_footer_model_details">
               <span className="pdp_footer_model_info">OTHER INFO</span>
               <span className="pdp_footer_model_info_detail">
-                {truncate(
-                  detailsData?.current?.[0]?.main_product?.other_info,
-                  30
-                )}
+                {truncate(pdpSellerData.other_info, 30)}
               </span>
             </div>
           </div>
