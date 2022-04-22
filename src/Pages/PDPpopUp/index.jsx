@@ -253,9 +253,13 @@ const PdpPopup = () => {
     return str?.length > n ? str.substr(0, n - 1) + "..." : str;
   }
 
-  const [openwishlist, setopenwishlist] = useState(false);
+  const [openwishlist, setopenwishlist] = useState({ open: false });
   const list = () => {
-    setopenwishlist(!openwishlist);
+    setopenwishlist({ open: true });
+  };
+
+  const handleOpenClose = (event) => {
+    setopenwishlist({ open: event });
   };
   return (
     <Modal
@@ -330,10 +334,11 @@ const PdpPopup = () => {
               <img src={add_whishlist} alt="" />
               <span onClick={list}>Add to Wishlist</span>
             </div>
-            {openwishlist && (
+            {openwishlist?.open && (
               <Wishlist
                 dataFromPLP={pdpPopUpOpenClose?.data}
                 pdpSellerData={pdpSellerData}
+                handleOpenClose={handleOpenClose}
               />
             )}
             <div className="modal_bottom_button_main">
