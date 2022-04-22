@@ -150,7 +150,9 @@ const MyCartTable = ({ cartDataList, deleteCartData }) => {
                 </div>
                 <div className="mycart_right_section">
                   <div className="mycart_right_section_block">
-                    <span className="mycart_product_eta">ETA: {eta}</span>
+                    <span className="mycart_product_eta">
+                      ETA : {eta} <span> Days</span>
+                    </span>
                     <span
                       className="mycart_product_delete_icon"
                       onClick={() =>
