@@ -8,13 +8,9 @@ import SwitchUnstyled, {
   switchUnstyledClasses,
 } from "@mui/base/SwitchUnstyled";
 import { styled } from "@mui/system";
+import Constant from "../../../Constant";
 
-const PdpHeader = ({
-  classes,
-  setPdpSellerData,
-  pdpSellerData,
-  dataFromPLP,
-}) => {
+const PdpHeader = ({ classes, pdpSellerData, dataFromPLP }) => {
   const label = { componentsProps: { input: { "aria-label": "Demo switch" } } };
   const [value, setValue] = React.useState(2);
   let {
@@ -112,7 +108,7 @@ const PdpHeader = ({
         <div className={pdp_page_brands_images}>
           <img
             className={pdp_brand_icon_1}
-            src={dataFromPLP?.row?.[0]?.props?.children?.props?.src}
+            src={Constant.imageBaseUrl() + pdpSellerData?.brand}
             alt=""
           />
           <img className={pdp_brand_icon_2} src={brand_tag} alt="" />
@@ -127,7 +123,7 @@ const PdpHeader = ({
           )}
           <div className={pdp_top_header_products}>
             <p className={pdp_top_header_product_name}>
-              {dataFromPLP?.row?.[1]?.props?.children}
+              {pdpSellerData?.model_number}
             </p>
             <div className={pdp_top_header_rating_reviews_container}>
               <Rating
@@ -143,7 +139,7 @@ const PdpHeader = ({
           </div>
 
           <p className={pdp_top_header_model_details}>
-            {dataFromPLP?.row?.[3]?.props?.children}
+            {pdpSellerData?.description}
           </p>
         </div>
         <div className={pdp_toggle_switch_container}>
