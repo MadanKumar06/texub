@@ -12,6 +12,12 @@ import Wishlist from '../../PDPpopUp/Wishlist'
 
 import axios from "axios";
 
+function formatToCurrency(amount) {
+  return amount.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
+
+  // return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 const MyCartTable = ({ cartDataList, deleteCartData }) => {
   const [is_table_quantity, setIs_table_quantity] = useState([]);
   const [is_table_quantity_test, setis_table_quantity_test] = useState([]);
@@ -297,7 +303,7 @@ const MyCartTable = ({ cartDataList, deleteCartData }) => {
             <div className="mycart_table_price_block">
               <div className="mycart_table_price">
                 <span>INR</span>
-                {value}
+                {formatToCurrency(parseInt(value))}
                 {/* <span>/unit</span> */}
               </div>
             </div>
@@ -377,7 +383,7 @@ const MyCartTable = ({ cartDataList, deleteCartData }) => {
             <div className="mycart_table_subtotal_block">
               <div className="mycart_table_subtotal">
                 <span>INR</span>
-                {value}
+                {formatToCurrency(parseInt(value))}
               </div>
             </div>
           );
