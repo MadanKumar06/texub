@@ -66,6 +66,7 @@ const PdpPopup = () => {
       setTableData({ tableone: tempTable_one, tabletwo: tempTable_two });
     }
   }, [moreOffers]);
+  
   const MoreOfferChange = () => {
     let table_one =
       pdpPopUpOpenClose?.data?.tableData?.[0]?.sub_products?.length;
