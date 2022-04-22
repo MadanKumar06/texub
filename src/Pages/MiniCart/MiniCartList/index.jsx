@@ -19,7 +19,6 @@ import swal from "sweetalert2";
 import SimpleLoader from "../../../Components/SimpleLoader";
 
 function formatToCurrency(amount) {
-  
   return amount.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
 
   // return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -29,7 +28,7 @@ const MiniCartList = ({ handleSideBarClose }) => {
   const [{ cart, currency, isSimpleLoading }, dispatch] = useStateValue();
   const [value, setValue] = React.useState(4);
   const navigate = useNavigate();
-  const [isCartData, setIsCartData] = useState(0);
+  const [isCartData, setIsCartData] = useState([]);
   useEffect(() => {
     let temp = cart?.[0]?.invoice_items?.map((itm) => ({
       ...itm,
