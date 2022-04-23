@@ -70,6 +70,12 @@ const styles = () => ({
           justifyContent: "center",
           alignItems: "center",
         },
+         "& div ": {
+            "@media (max-width:900px)": {
+              fontSize:"14px",
+            },
+         },
+           
       },
     },
   },
