@@ -84,7 +84,25 @@
     }
   }
 }
+@media (max-width: 1440px) {
+  .Benfits .Benfits_1st_div .Benfits_Get{
+    font-size: 24px;
+  }
+  .Benfits .Benfits_1st_div .Benfits_Get_Tag{
+    font-size: 14px;
+  }
+  .Benfits .Benfits_1st_div .button__learnmore .Benfits_Learnmore_btn{
+    font-size:14px;
+    margin-top: 10px;
+  }
+  .Benfits .Benfits_2nd_div .Benfits__floatingcontent h2{
+    font-size: 24px;
+  }
+  .Benfits .Benfits_2nd_div .Benfits__floatingcontent h5{
+    font-size: 20px;
+  }
 
+}
 @media (max-width: 1366px) {
   .Benfits {
     margin-top: 2em;

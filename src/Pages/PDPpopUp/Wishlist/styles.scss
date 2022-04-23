@@ -187,14 +187,19 @@
                     height: 60px;
                 }
             }
-            .wishlist_product_section p{
-                font-size: 16px;
+            .wishlist_product_section{
+                p{
+                    font-size: 16px;
+                }
+                .MuiFormGroup-root
+                    .pdpwishlist_label{
+                        margin-left: 0;
+                    }
             }
-            .wishlist_bts{
-                
-                 button{
-                     font-size: 14px !important;
-                 }
+                .wishlist_bts{                
+                    button{
+                        font-size: 14px !important;
+                    }
              }
              .back_to_pdp
                 .back{

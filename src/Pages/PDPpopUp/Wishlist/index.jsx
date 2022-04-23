@@ -117,7 +117,10 @@ const Index = ({ pdpSellerData, handleOpenClose }) => {
       <>
         <div className="wishlist_main">
           <div className="wishlist_main_block">
-            <Clear className="clear_btn wishlist_clear_btn" onClick={() => handleClose()} />
+            <Clear
+              className="clear_btn wishlist_clear_btn"
+              onClick={() => handleClose()}
+            />
             <div className="wishlist_product">
               <span>
                 <img
@@ -133,9 +136,10 @@ const Index = ({ pdpSellerData, handleOpenClose }) => {
               <FormGroup>
                 {fname?.map((f, i) => (
                   <FormControlLabel
+                    className={"pdpwishlist_label"}
                     control={
                       <Checkbox
-                        className={'pdpwishlisthceckbox'}
+                        className={"pdpwishlisthceckbox"}
                         onChange={(e) => wishlistselect(f, e.target.checked)}
                       />
                     }
