@@ -76,10 +76,10 @@ const MobileFooterAccordions = () => {
             <Typography>Training</Typography>
           </Link>
           <Link to="/seller_advantage" className="link">
-            <Typography>Seller Advantage</Typography>
+            <Typography>Sell on Texub</Typography>
           </Link>
           <Link to="/buyer_advantage" className="link">
-            <Typography>Buyer Advantage</Typography>
+            <Typography>Buy On Texub</Typography>
           </Link>
           <Link to="/career" className="link">
             <Typography>Career</Typography>

@@ -82,7 +82,7 @@ function Index() {
       label: "Price",
       options: {
         customBodyRender: (value, tablemeta) => {
-          let currency = tablemeta?.rowDate[3];
+          let currency = tablemeta?.rowData[4];
           return (
             <div className="orders__ordertotal">
               <span className="label">{currency}</span>
@@ -97,7 +97,7 @@ function Index() {
       label: "Lowest Price",
       options: {
         customBodyRender: (value, tablemeta) => {
-          let currency = tablemeta?.rowDate[3];
+          let currency = tablemeta?.rowData[4];
           return (
             <div className="orders__ordertotal">
               <span className="label">{currency}</span>

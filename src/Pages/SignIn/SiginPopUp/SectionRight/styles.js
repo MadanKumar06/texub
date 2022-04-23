@@ -68,7 +68,7 @@ const styles = (theme) => ({
       paddingBottom: "1em !important",
     },
     "& .MuiFormControl-root": {
-      marginTop: "1.5em",
+      marginTop: "2em",
     },
   },
   checkbox_label: {
