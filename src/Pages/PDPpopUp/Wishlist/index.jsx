@@ -116,65 +116,69 @@ const Index = ({ pdpSellerData, handleOpenClose }) => {
     >
       <>
         <div className="wishlist_main">
-          <Clear className="clear_btn" onClick={() => handleClose()} />
-          <div className="wishlist_product">
-            <span>
-              <img
-                className="wishlist_img"
-                src={`${Constant?.imageBaseUrl()}${pdpSellerData?.brand}`}
-                alt=""
-              />
-            </span>
-            <span className="description">{pdpSellerData?.description}</span>
-          </div>
-          <div className="wishlist_product_section">
-            <p>Add to the existing Wishlist</p>
-            <FormGroup>
-              {fname?.map((f, i) => (
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      onChange={(e) => wishlistselect(f, e.target.checked)}
-                    />
-                  }
-                  label={f?.wishlist_name}
+          <div className="wishlist_main_block">
+            <Clear className="clear_btn wishlist_clear_btn" onClick={() => handleClose()} />
+            <div className="wishlist_product">
+              <span>
+                <img
+                  className="wishlist_img"
+                  src={`${Constant?.imageBaseUrl()}${pdpSellerData?.brand}`}
+                  alt=""
                 />
-              ))}
-            </FormGroup>
-          </div>
-          <div className="wishlist_bts">
-            <Button className="wishlist_create_btn" onClick={create}>
-              Create New Wishlist
-            </Button>
-            <Button className="wishlist_add_btn" onClick={newwishlist}>
-              Add
-            </Button>
-          </div>
-          {create1 && (
-            <div className="inputplace">
-              <span className="inputfield">
-                <TextField
-                  id="outlined-required"
-                  name="save"
-                  placeholder="Name"
-                  onChange={(e) => setnewwishdata(e.target.value)}
-                />
-                <button
-                  className="wishlist_save_btn"
-                  onClick={() => newwishlist()}
-                >
-                  Save
-                </button>
               </span>
-              <p>Cancel</p>
+              <span className="description">{pdpSellerData?.description}</span>
             </div>
-          )}
-          <div className="back_to_pdp">
-            <ArrowBackIosIcon />
-            <p className="back">
-              Back to {pdpSellerData?.model_number}
-              {pdpSellerData?.product_name}
-            </p>
+            <div className="wishlist_product_section">
+              <p>Add to the existing Wishlist</p>
+              <FormGroup>
+                {fname?.map((f, i) => (
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        className={'pdpwishlisthceckbox'}
+                        onChange={(e) => wishlistselect(f, e.target.checked)}
+                      />
+                    }
+                    label={f?.wishlist_name}
+                  />
+                ))}
+              </FormGroup>
+            </div>
+            <div className="wishlist_bts">
+              <Button className="wishlist_create_btn" onClick={create}>
+                Create New Wishlist
+              </Button>
+              <Button className="wishlist_add_btn" onClick={newwishlist}>
+                Add
+              </Button>
+            </div>
+            {create1 && (
+              <div className="inputplace">
+                <span className="inputfield">
+                  <TextField
+                    id="outlined-required"
+                    name="save"
+                    placeholder="Name"
+                    className="wishlistsave_input"
+                    onChange={(e) => setnewwishdata(e.target.value)}
+                  />
+                  <button
+                    className="wishlist_save_btn"
+                    onClick={() => newwishlist()}
+                  >
+                    Save
+                  </button>
+                </span>
+                <p>Cancel</p>
+              </div>
+            )}
+            <div className="back_to_pdp">
+              <ArrowBackIosIcon />
+              <p className="back">
+                Back to {pdpSellerData?.model_number}
+                {pdpSellerData?.product_name}
+              </p>
+            </div>
           </div>
         </div>
       </>
