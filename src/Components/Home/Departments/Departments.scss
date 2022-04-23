@@ -334,6 +334,30 @@
       top: 8%;
     }
   }
+
+   .Departments
+    .Departments_Body_Search
+      .Body_Searchbar_Down_images
+      .Body_Searchbar_Down_img1_div
+        .Offers{
+          .Products_offer{
+            font-size: 16px;
+          }
+          .Products_offer_per{
+            font-size: 24px;
+          }
+          .Products_offer_per_graph{
+            font-size: 16px;
+          }
+          .Offers_buttons{
+            button.Learn_more_btn{
+              font-size: 14px;
+            }
+            button.Get_started_btn{
+              font-size: 14px;
+            }
+          }
+        }
 }
 
 @media (max-width: 1366px) {

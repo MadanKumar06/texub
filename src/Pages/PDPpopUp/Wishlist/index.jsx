@@ -144,6 +144,7 @@ const Index = ({ pdpSellerData, handleOpenClose }) => {
               <FormGroup>
                 {fname?.map((f, i) => (
                   <FormControlLabel
+                    className={"pdpwishlist_label"}
                     control={
                       <Checkbox
                         className={"pdpwishlisthceckbox"}

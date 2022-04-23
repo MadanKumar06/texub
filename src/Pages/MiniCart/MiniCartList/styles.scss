@@ -1,5 +1,5 @@
 .minicart_list_main {
-  //   width: 600px;
+    width: 425px;
   .minicart_header {
     height: 72px;
     background: #000000;
@@ -34,7 +34,7 @@
     .minicart_section_container {
       display: flex;
       background-color: #f5f5f5;
-      margin-bottom: 20px;
+      margin-bottom: 12px;
       position: relative;
       .minicart_icon{
         position: absolute;
@@ -61,7 +61,7 @@
         }
       }
       .section_right {
-        padding: 20px;
+        padding: 10px 15px;
         width: calc(100% - 62px);
         .seller_id {
           margin: 0;
@@ -192,7 +192,7 @@
                 cursor: pointer;
               }
               .input_text {
-                width: 84px;
+                width: 60px;
                 text-align: center;
                 font-size: 24px;
                 color: #333c42;
@@ -208,7 +208,7 @@
           border: 1px solid #d6d8d9;
           background: #ffffff;
           width: 100%;
-          margin-top: 17px;
+          margin-top: 7px;
           padding: 8px;
           border-radius: 25px;
           span {
@@ -350,9 +350,9 @@
     }
     .total_block p {
       span {
-        font-size: 16px;
+        font-size: 12px;
       }
-      font-size: 20px;
+      font-size: 18px;
     }
   }
   .minicart_list_main .minicart_footer .minicart_total {
@@ -388,12 +388,11 @@
         .section_right {
           .modal__hub {
             .modal_name {
-              font-size: 16px;
+              font-size: 14px;
             }
           }
           .rating_main {
             .reviews {
-              font-size: 16px;
               font-size: 12px;
             }
           }
@@ -404,6 +403,7 @@
             .quantity {
               .qty_change {
                 .input_text {
+                  width: 60px;
                   font-size: 18px;
                 }
               }
@@ -411,10 +411,16 @@
           }
           .price_block .price {
             span {
-              font-size: 14px;
+              font-size: 12px;
             }
-            font-size: 18px;
+            font-size: 16px;
           }
+          .total_block{
+            span{
+              font-size: 16px;
+            }
+          }
+
         }
       }
     }
@@ -436,14 +442,14 @@
     .minicart_list_content
     .minicart_section_container
     .section_right {
-    padding: 14px;
+    padding: 5px 8px;
   }
   .minicart_list_main
     .minicart_list_content
     .minicart_section_container
     .section_right {
     .detail_link {
-      font-size: 16px;
+      font-size: 14px;
     }
     .price_block .quantity .qty_change {
       .item_decrease,
