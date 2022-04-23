@@ -68,10 +68,10 @@ export const Footer = () => {
                 <li>Training</li>
               </Link>
               <Link to="/seller_advantage" className="to_CMS">
-                <li>Seller Advantage</li>
+                <li>Sell on Texub</li>
               </Link>
               <Link to="/buyer_advantage" className="to_CMS">
-                <li>Buyer Advantage</li>
+                <li>Buy On Texub</li>
               </Link>
               <Link to="/career" className="to_CMS">
                 <li>Career</li>
@@ -87,7 +87,8 @@ export const Footer = () => {
               <Link to="/legal" className="to_CMS">
                 <li>Legal</li>
               </Link>
-              <li className="to_CMS cookie"
+              <li
+                className="to_CMS cookie"
                 onClick={() => {
                   setisCookies(true);
                 }}

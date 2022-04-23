@@ -2,16 +2,17 @@ const styles = (theme) => ({
   section_main: {
     minHeight: "70vh",
     height: "87vh",
-    backgroundImage: "url('/Images/Group 76.png')",
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "center",
-    backgroundSize: "cover",
+    // backgroundImage: "url('/Images/Group 76.png')",
+    // backgroundRepeat: "no-repeat",
+    // backgroundPosition: "center",
+    // backgroundSize: "cover",
+    backgroundColor: "#f5f5f5",
     zIndex: "1",
     display: "flex",
     width: "100%",
     flexDirection: "column",
     borderRadius: "3px",
-     "@media (min-width:1600px)": {
+    "@media (min-width:1600px)": {
       height: "92vh",
     },
   },
@@ -37,10 +38,10 @@ const styles = (theme) => ({
     background: "#333C42",
     minHeight: "94px",
     position: "relative",
-      "@media (min-width:1800px)": {
+    "@media (min-width:1800px)": {
       minHeight: "70px !important",
     },
-     "@media (min-width:1600px)": {
+    "@media (min-width:1600px)": {
       minHeight: "60px",
     },
     "@media (max-width:1599px)": {
@@ -56,11 +57,11 @@ const styles = (theme) => ({
       opacity: "1",
       fontWeight: "600",
       color: "#FFFFFF",
-       "@media(min-width:1800px)": {
-         minHeight: "70px !important",
+      "@media(min-width:1800px)": {
+        minHeight: "70px !important",
       },
       "@media(min-width:1600px)": {
-         minHeight: "60px",
+        minHeight: "60px",
       },
       "@media(max-width:1599px)": {
         minHeight: "58px",
@@ -112,7 +113,7 @@ const styles = (theme) => ({
     fontWeight: "600",
     padding: "16px 0",
     "@media(min-width:1600px)": {
-       padding: "5px 0",
+      padding: "5px 0",
     },
     "@media(max-width:1599px)": {
       fontSize: "22px",
@@ -146,7 +147,7 @@ const styles = (theme) => ({
     padding: "12px 0",
     margin: "0",
     "@media(min-width:1600px)": {
-       padding: "8px 0",
+      padding: "8px 0",
     },
     "@media(max-width:1599px)": {
       padding: "8px 0",
@@ -172,7 +173,7 @@ const styles = (theme) => ({
     borderRadius: "4px",
     backgroundColor: "#ffffff",
     "@media(min-width:1600px)": {
-       paddingBottom: "1em",
+      paddingBottom: "1em",
     },
     "@media(max-width:1599px)": {
       padding: "0 2em",
@@ -187,7 +188,7 @@ const styles = (theme) => ({
       paddingBottom: "1em !important",
     },
     "& .MuiFormControl-root": {
-      marginTop: "1.5em",
+      marginTop: "2em",
     },
   },
   asterisk: {
@@ -222,10 +223,10 @@ const styles = (theme) => ({
   button_box: {
     margin: "20px 0px",
     textAlign: "center",
-     "@media(min-width:1600px)": {
+    "@media(min-width:1600px)": {
       margin: "10px 0px",
     },
-     "@media(max-width:1599px)": {
+    "@media(max-width:1599px)": {
       margin: "10px 0px",
     },
     "@media(max-width:425px)": {
@@ -270,7 +271,7 @@ const styles = (theme) => ({
   // section rigth css
   section_right: {
     width: "50%",
-    padding: "0px 14px",
+    padding: "1.2em",
     background: "#F8F0E0",
     height: "fit-content",
     "@media (max-width:767px)": {

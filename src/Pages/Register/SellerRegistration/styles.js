@@ -53,13 +53,13 @@ const styles = (theme) => ({
   },
   input_textField: {
     display: "flex",
-    paddingBottom: "2%",
+    paddingBottom: "3%",
     gap: "2em",
     "@media (max-width:580px)": {
       gap: "25px",
       display: "flex",
       flexDirection: "column",
-      paddingBottom: "0",
+      paddingBottom: "8%",
     },
   },
   auto_complete_input: {

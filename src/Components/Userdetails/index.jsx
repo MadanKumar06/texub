@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 
 import whishlist_image from "../../Assets/User/Icon.png";
 import MiniCartDrawer from "../../Pages/MiniCart";
+import notification from "../../Assets/sellerdashboard/notification.png";
+import dashboardLogo from "../../Assets/CommonImage/MyAccountMegamenu/menu.png";
 
 export const Userdetails = () => {
   let isSignedIn = JSON.parse(localStorage.getItem("userdata"));
@@ -17,6 +19,9 @@ export const Userdetails = () => {
   const history = useNavigate();
   const handleWishlist = () => {
     history("/buyerdashboard/wishlist");
+  };
+  const handleDashboard = () => {
+    history("/sellerdashboard/dashboard");
   };
   return (
     <div className="user_details_main_container">
@@ -35,19 +40,46 @@ export const Userdetails = () => {
             </li>
             <h6 className="User_Call_tag">From 8:00 to 17:00 (Mon-Sat)</h6>
           </div> */}
-          {(isSignedIn?.group_id === 5 && kycStatus?.[0]?.value === "2") ||
+          {(isSignedIn?.group_id === 5 && kycStatus?.[0]?.value !== "2") ||
           (isSignedIn?.group_id === 6 && kycStatus?.[0]?.value === "2") ? (
-            <div className="user_account">
-              <MyAccountPopUP />
-            </div>
+            <>
+              <div className="user_account">
+                <MyAccountPopUP />
+              </div>
+              <div className="user_notification">
+                <Badge showZero={true} badgeContent={0} className="badge_user">
+                  <div className="notification_image">
+                    <img src={notification} alt="" />
+                  </div>
+                </Badge>
+                <li className="user_account_notification">Notification</li>
+              </div>
+            </>
           ) : (
             ""
           )}
 
+          {isSignedIn?.group_id === 6 && kycStatus?.[0]?.value === "2" ? (
+            <>
+              <div
+                className="user_notification"
+                onClick={() => handleDashboard()}
+              >
+                <Badge badgeContent={0} className="badge_user">
+                  <div className="notification_image">
+                    <img src={dashboardLogo} alt="" />
+                  </div>
+                </Badge>
+                <li className="user_account_notification">Dashboard</li>
+              </div>
+            </>
+          ) : (
+            ""
+          )}
           {isSignedIn?.group_id === 5 && kycStatus?.[0]?.value === "2" ? (
             <>
               <div className="user_wishlist" onClick={() => handleWishlist()}>
-                <Badge badgeContent={0} className="badge_user">
+                <Badge showZero={true} badgeContent={0} className="badge_user">
                   <div className="whishlist_image">
                     <img src={whishlist_image} alt="" />
                   </div>

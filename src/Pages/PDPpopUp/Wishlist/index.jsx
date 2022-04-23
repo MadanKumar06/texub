@@ -60,7 +60,6 @@ const Index = ({ pdpSellerData, handleOpenClose }) => {
         },
       });
       if (foldernames?.data) {
-        debugger
         setfname(foldernames?.data);
       }
     } catch (e) {

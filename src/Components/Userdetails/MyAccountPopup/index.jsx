@@ -48,6 +48,11 @@ const MyAccountPopup = () => {
         }
       });
   };
+
+  let userData = JSON.parse(localStorage.getItem("userdata"));
+  let userCode = userData?.custom_attributes?.filter(
+    (itm) => itm?.attribute_code === "customer_code"
+  );
   return (
     <div className="myAccount_popup_header_dropdown">
       <Button
@@ -55,13 +60,15 @@ const MyAccountPopup = () => {
         aria-haspopup="true"
         onClick={handleClick}
       >
-        {/* <Badge badgeContent={1} className="badge_user"> */}
         <div className="account_circle_image">
           <img src={account_circle} alt="" />
         </div>
-
-        {/* </Badge> */}
-        <li className="user_account">My Account</li>
+        <li className="user_account">
+          <span className="user_code">{userCode?.[0]?.value}</span>
+          <span className="user_name">
+            {userData?.firstname} {userData?.lastname}
+          </span>
+        </li>
       </Button>
 
       <Menu

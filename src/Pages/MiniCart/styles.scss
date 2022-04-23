@@ -15,6 +15,7 @@
     font-weight: 600;
     font-size: 20px;
     opacity: 0.8;
+    letter-spacing: 0.6px;
   }
   .badge {
     color: #5c6369;
@@ -35,6 +36,9 @@
       -webkit-box-shadow: -2px -2px 8px -6px rgba(0, 0, 0, 0.75);
       -moz-box-shadow: -2px -2px 8px -6px rgba(0, 0, 0, 0.75);
     }
+    .MuiBadge-anchorOriginTopRightRectangular {
+      font-weight: 700;
+    }
   }
   .miniCart_drawer {
     height: 100vh !important;
@@ -49,8 +53,8 @@
     height: 30px;
   }
   .minicart_drawer_main .badge span {
-    min-width: 21px !important;
-    height: 21px !important;
+    min-width: 25px !important;
+    height: 25px !important;
   }
 }
 @media (max-width: 1300px) {
@@ -62,8 +66,8 @@
     height: 26px;
   }
   .minicart_drawer_main .badge span {
-    min-width: 19px !important;
-    height: 19px !important;
+    min-width: 20px !important;
+    height: 20px !important;
   }
 }
 @media (max-width: 1080px) {
