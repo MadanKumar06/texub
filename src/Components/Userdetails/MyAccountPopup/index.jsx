@@ -1,7 +1,7 @@
 import React from "react";
 import { Menu, MenuItem, Button, Badge } from "@mui/material";
 import "./styles.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import dashboardLogo from "../../../Assets/CommonImage/MyAccountMegamenu/menu.png";
 import myOrderLogo from "../../../Assets/CommonImage/MyAccountMegamenu/shopping-bag.png";
 import auctionsLogo from "../../../Assets/CommonImage/MyAccountMegamenu/auction.png";
@@ -16,6 +16,7 @@ const MyAccountPopup = () => {
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+  const history = useNavigate();
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -41,8 +42,8 @@ const MyAccountPopup = () => {
             timer: 3000,
           });
           setTimeout(() => {
+            history("/");
             window.location.reload();
-            window.location.href = "/";
           }, 1000);
         }
       });
