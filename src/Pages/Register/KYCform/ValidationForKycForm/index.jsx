@@ -118,9 +118,6 @@ function ValidationForKycForm({
   let company_name = localUserData?.custom_attributes?.filter(
     (itm) => itm?.attribute_code === "customer_company_name"
   );
-  let country = localUserData?.custom_attributes?.filter(
-    (itm) => itm?.attribute_code === "customer_country"
-  );
   let customer_id = localUserData?.id;
   const FinalKYCFormSavaData = () => {
     dispatch({
@@ -213,7 +210,7 @@ function ValidationForKycForm({
   const handlePdfDownload = (event) => {
     setAgreementChecked(event.target.checked);
     if (event.target.checked) {
-      window.location =
+      window.location.href =
         Constant.pdfDowloadUrl() +
         `/kyc/customer/selleragreement?address1=${
           values?.address_line_one ? values?.address_line_one : ""

@@ -80,13 +80,13 @@ const PendingInvoice = () => {
                   <label>Country</label>
                   <Autocomplete
                     value={value}
-                    onChange={(event, newValue) => {
-                      setValue(newValue);
-                    }}
-                    inputValue={inputValue}
-                    onInputChange={(event, newInputValue) => {
-                      setInputValue(newInputValue);
-                    }}
+                    // onChange={(event, newValue) => {
+                    //   setValue(newValue);
+                    // }}
+                    // inputValue={inputValue}
+                    // onInputChange={(event, newInputValue) => {
+                    //   setInputValue(newInputValue);
+                    // }}
                     id="controllable-states-demo"
                     options={options}
                     renderInput={(params) => (
@@ -105,13 +105,13 @@ const PendingInvoice = () => {
                   <label>State/Province</label>
                   <Autocomplete
                     value={value}
-                    onChange={(event, newValue) => {
-                      setValue(newValue);
-                    }}
-                    inputValue={inputValue}
-                    onInputChange={(event, newInputValue) => {
-                      setInputValue(newInputValue);
-                    }}
+                    // onChange={(event, newValue) => {
+                    //   setValue(newValue);
+                    // }}
+                    // inputValue={inputValue}
+                    // onInputChange={(event, newInputValue) => {
+                    //   setInputValue(newInputValue);
+                    // }}
                     id="controllable-states-demo"
                     options={options}
                     renderInput={(params) => (

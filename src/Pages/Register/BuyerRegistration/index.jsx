@@ -678,9 +678,14 @@ const BuyerRegistration = ({ classes }) => {
                 />
                 <p>
                   By using this form you agree with the{" "}
-                  <Link to="/termsofuse" target="_blank">Terms of Use</Link> and{" "}
-                  <Link to="/privacypolicy" target="_blank">Privacy Policy</Link> by this
-                  website.
+                  <a href="/termsofuse" target="_blank">
+                    Terms of Use
+                  </a>{" "}
+                  and{" "}
+                  <a href="/privacypolicy" target="_blank">
+                    Privacy Policy
+                  </a>{" "}
+                  by this website.
                 </p>
               </div>
               <InputLabel className={validation_error}>
