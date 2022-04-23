@@ -8,6 +8,7 @@ import {
   AccordionDetails,
   Accordion,
   Typography,
+  Button,
 } from "@mui/material";
 
 import { Clear, ExpandMore } from "@mui/icons-material";
@@ -72,6 +73,11 @@ const FilterViewList = ({
   }
   const minDistance = 10;
   const handleChange = (event, newValue, activeThumb) => {
+    setProductFetchApi((prev) => ({
+      ...prev,
+      min_price: newValue[0],
+      max_price: newValue[1],
+    }));
     if (!Array.isArray(newValue)) {
       return;
     }
@@ -175,6 +181,12 @@ const FilterViewList = ({
           </div>
           <div className="filter_by_price filter_option_block">
             <p className="filter_title">Filter By Price</p>
+            <Button
+              className="button-text btn-secondary apply"
+              onClick={() => setApplyFilter(!applyFilter)}
+            >
+              Apply
+            </Button>
             <Box>
               <Slider
                 getAriaLabel={() => "Minimum distance"}

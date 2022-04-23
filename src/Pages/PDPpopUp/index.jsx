@@ -80,15 +80,27 @@ const PdpPopup = () => {
 
   const handleIsValidUser = async (event) => {
     let isValidUser = JSON.parse(localStorage.getItem("userdata"))?.group_id;
+    let isDataValid = user?.custom_attributes?.filter(
+      (itm) => itm?.attribute_code === "kyc_status"
+    );
     if (isValidUser === 5) {
-      let temp =
-        event === "add_to_cart"
-          ? AddToCartAndPendingInvoice("add_to_cart")
-          : event === "pending_invoice"
-          ? AddToCartAndPendingInvoice("pending_invoice")
-          : event === "add_to_wishlist"
-          ? list("add_to_wishlist")
-          : "";
+      if (isDataValid[0]?.value === "2") {
+        let temp =
+          event === "add_to_cart"
+            ? AddToCartAndPendingInvoice("add_to_cart")
+            : event === "pending_invoice"
+            ? AddToCartAndPendingInvoice("pending_invoice")
+            : event === "add_to_wishlist"
+            ? list("add_to_wishlist")
+            : "";
+      } else {
+        swal.fire({
+          text: `Your account is not yet activated, so kindly visit again once you receive
+          the account activation email.`,
+          icon: "error",
+          showConfirmButton: true,
+        });
+      }
     } else {
       swal.fire({
         text: `${
@@ -111,9 +123,8 @@ const PdpPopup = () => {
     }
   };
   //APi call to addtocart
+  const user = JSON.parse(localStorage.getItem("userdata"));
   const AddToCartAndPendingInvoice = (info) => {
-    const user = JSON.parse(localStorage.getItem("userdata"));
-
     let isUserAddData = pdpSellerData?.is_table_one?.filter(
       (itm) => itm?.product_id === pdpSellerData?.product_id
     );
@@ -206,6 +217,7 @@ const PdpPopup = () => {
   const handleOpenClose = (event) => {
     setopenwishlist({ open: event });
   };
+
   return (
     <Modal
       aria-labelledby="transition-modal-title"

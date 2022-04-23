@@ -1,20 +1,27 @@
 import React, { useState, useEffect } from "react";
 import "./styles.scss";
-import { Modal, Button, Backdrop } from "@mui/material";
 import { Clear } from "@mui/icons-material";
-import FormGroup from "@mui/material/FormGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import TextField from "@mui/material/TextField";
+import {
+  FormControlLabel,
+  Checkbox,
+  TextField,
+  FormGroup,
+  Modal,
+  Button,
+  Backdrop,
+} from "@mui/material";
 import axios from "axios";
 import Constant from "../../../Constant";
 import swal from "sweetalert2";
+
 const Index = ({ pdpSellerData, handleOpenClose }) => {
   const [create1, setcreate1] = useState(false);
   const create = () => {
     setcreate1(!create1);
   };
+  const [fname, setfname] = useState([]);
+  const [newwishdata, setnewwishdata] = useState("");
   const [open, setOpen] = useState(true);
   const handleClose = () => {
     setOpen(false);
@@ -37,7 +44,30 @@ const Index = ({ pdpSellerData, handleOpenClose }) => {
     //   }
   };
 
-  const [newwishdata, setnewwishdata] = useState("");
+  useEffect(async () => {
+    let user = JSON.parse(localStorage.getItem("userdata"));
+    try {
+      const foldernames = await axios({
+        method: "post",
+        url: `${Constant.baseUrl()}/wishlist/getNames`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        data: {
+          requestParams: {
+            customer_id: user.id,
+          },
+        },
+      });
+      if (foldernames?.data) {
+        debugger
+        setfname(foldernames?.data);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  }, []);
+
   const newwishlist = async () => {
     let user = JSON.parse(localStorage.getItem("userdata"));
     try {
@@ -80,28 +110,6 @@ const Index = ({ pdpSellerData, handleOpenClose }) => {
     }
   };
 
-  const [fname, setfname] = useState([]);
-  useEffect(async () => {
-    let user = JSON.parse(localStorage.getItem("userdata"));
-    try {
-      const foldernames = await axios({
-        method: "post",
-        url: `${Constant.baseUrl()}/wishlist/getNames`,
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-        data: {
-          requestParams: {
-            customer_id: user.id,
-          },
-        },
-      });
-      setfname(foldernames?.data);
-    } catch (e) {
-      console.log(e);
-    }
-  }, []);
-
   return (
     <Modal
       aria-labelledby="transition-modal-title"
@@ -117,7 +125,10 @@ const Index = ({ pdpSellerData, handleOpenClose }) => {
       <>
         <div className="wishlist_main">
           <div className="wishlist_main_block">
-            <Clear className="clear_btn wishlist_clear_btn" onClick={() => handleClose()} />
+            <Clear
+              className="clear_btn wishlist_clear_btn"
+              onClick={() => handleClose()}
+            />
             <div className="wishlist_product">
               <span>
                 <img
@@ -135,7 +146,7 @@ const Index = ({ pdpSellerData, handleOpenClose }) => {
                   <FormControlLabel
                     control={
                       <Checkbox
-                        className={'pdpwishlisthceckbox'}
+                        className={"pdpwishlisthceckbox"}
                         onChange={(e) => wishlistselect(f, e.target.checked)}
                       />
                     }
