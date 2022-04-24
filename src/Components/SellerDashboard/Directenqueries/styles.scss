@@ -17,7 +17,7 @@
         padding: 0.7em 1.2em;
         background-color: #f0f0f0;
         color: #333c42;
-        font-size: 18px;
+        font-size: 16px;
         font-weight: 600;
         border-radius: 25px;
         cursor: pointer;
@@ -33,12 +33,12 @@
     margin-top: 3em;
     box-shadow: unset;
     .MuiTypography-root {
-      font-size: 20px;
+      font-size: 16px;
       letter-spacing: 0.75px;
     }
     .MuiTableHead-root {
       .MuiTableCell-root {
-        font-size: 22px;
+        font-size: 16px;
         color: #959595;
         text-align: center;
         font-weight: 600;
@@ -52,7 +52,7 @@
     }
     .MuiTableBody-root {
       .MuiTableCell-root {
-        font-size: 22px;
+        font-size: 14px;
         text-align: center;
         color: #333c42;
       }
@@ -78,7 +78,7 @@
           margin-left: auto;
         }
         .directenquiries_product_name {
-          font-size: 22px;
+          font-size: 14px;
           font-weight: 500 !important;
           color: #333c42;
           padding-top: 5px;
@@ -86,7 +86,7 @@
       }
       .directenquiries__pending {
         color: #d9ad59;
-        font-size: 22px;
+        font-size: 16px;
         font-weight: 600;
         background-color: #fff6e5;
         padding: 0.4em 0.9em;
@@ -95,7 +95,7 @@
       .directenquiries__accepted {
         color: #20639b !important;
         font-weight: 600;
-        font-size: 22px;
+        font-size: 16px;
         background-color: #d5ecff !important;
         padding: 0.4em 0.9em;
         border-radius: 28px;
@@ -103,7 +103,7 @@
       .directenquiries__closed {
         color: #00b91c;
         font-weight: 600;
-        font-size: 22px;
+        font-size: 16px;
         background-color: #e6ffea;
         padding: 0.4em 0.9em;
         border-radius: 28px;
@@ -111,7 +111,7 @@
       .actions {
         text-decoration: underline;
         color: #002d56;
-        font-size: 22px;
+        font-size: 14px;
         font-weight: 600;
         cursor: pointer;
       }
@@ -176,17 +176,17 @@
     .MuiTable-root {
       .MuiTableHead-root {
         .MuiTableCell-root {
-          font-size: 18px;
+          font-size: 16px;
         }
       }
 
       .MuiTableBody-root {
         .MuiTableCell-root {
-          font-size: 16px;
+          font-size: 14px;
         }
 
         .directenquiries_products .directenquiries_product_name {
-          font-size: 16px;
+          font-size: 14px;
         }
       }
     }
@@ -197,7 +197,7 @@
     .directenquiries__closed,
     .directenquiries__open,
     .actions {
-      font-size: 16px;
+      font-size: 14px;
     }
   }
   .directenquiries_container

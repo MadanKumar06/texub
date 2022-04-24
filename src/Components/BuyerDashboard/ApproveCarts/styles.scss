@@ -31,7 +31,7 @@
     }
     .MuiTableHead-root {
       .MuiTableCell-root {
-        font-size: 22px;
+        font-size: 16px;
         color: #959595;
         text-align: center;
         font-weight: 600;
@@ -51,7 +51,7 @@
     .MuiTableBody-root {
       .MuiTableCell-root {
         text-align: center;
-        font-size: 22px;
+        font-size: 14px;
         color: #4e4e4e;
         .MuiSvgIcon-root {
           width: 30px;
@@ -89,7 +89,7 @@
         .approve__cart__action {
           text-decoration: underline;
           color: #002d56;
-          font-size: 22px;
+          font-size: 14px;
           cursor: pointer;
           font-weight: 600;
           padding: 0 9px;
@@ -108,7 +108,7 @@
       .approve__cart__item {
         text-decoration: underline;
         color: #002d56;
-        font-size: 22px;
+        font-size: 14px;
         cursor: pointer;
         font-weight: 600;
       }
@@ -202,7 +202,7 @@
     }
   }
   .approve__cart .approve__cart__table .MuiTableHead-root .MuiTableCell-root {
-    font-size: 20px;
+    font-size: 16px;
     .MuiSvgIcon-root {
       width: 24px;
       height: 24px;
@@ -212,7 +212,7 @@
     .approve__cart__item,
     .MuiTableCell-root,
     .approve__cart__action_main .approve__cart__action {
-      font-size: 18px;
+      font-size: 14px;
     }
     .MuiTableCell-root .MuiSvgIcon-root {
       width: 24px;
