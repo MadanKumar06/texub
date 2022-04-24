@@ -6,63 +6,64 @@ import { Todaysdeal } from "../../Components/Home/Todaysdeal/Todaysdeal";
 import { Benfits } from "../../Components/Home/Benfits/Benfits";
 import { Auctions } from "../../Components/Home/Auctions/Auctions";
 import { B2Bconnect } from "../../Components/Home/B2Bconnect/B2Bconnect";
-import Constant from '../../Constant'
+import Constant from "../../Constant";
 import axios from "axios";
 import { useStateValue } from "../../store/state";
 import { useParams, useNavigate } from "react-router-dom";
 
 export const Home = () => {
-  const [{geo, customstore}, dispatch] = useStateValue()
+  const [{ geo, customstore }, dispatch] = useStateValue();
   const [homedata, sethomedata] = useState({
-    homecontent: []
-  })
+    homecontent: [],
+  });
 
-  const history = useParams()
-  const navigate = useNavigate()
+  const history = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // debugger
-    let storedata = JSON.parse(localStorage.getItem('storedata'))
-    console.log(storedata?.code)
-    console.log(geo?.country_name)
-    if(geo === "") return
-    let temp = Object.values(history)
-    dispatch({
-      type: 'GEO__CUSTOM__STORE',
-      data: storedata ? storedata?.code : geo?.country_name
-    })
-    navigate(`/${storedata ? storedata?.code : geo?.country_name}`)
-    if(temp.length === 0) {
-      navigate(`/${customstore ? customstore : geo?.country_name}`)
+    let storedata = JSON.parse(localStorage.getItem("storedata"));
+    console.log(storedata?.code);
+    console.log(geo?.country_name);
+    if (geo === "") return;
+    let temp = Object.values(history);
+    debugger;
+    if (temp.length === 0) {
+      navigate(`/${geo?.country_name}`);
+    } else {
+      dispatch({
+        type: "GEO__CUSTOM__STORE",
+        data: temp?.[0],
+      });
+      navigate(`/${customstore ? customstore : temp?.[0]}`);
     }
-  }, [geo, customstore])
+  }, [geo, customstore]);
 
-  useEffect(async() =>{
+  useEffect(async () => {
     try {
       dispatch({
         type: "SET_IS_LOADING",
         value: true,
       });
       const home = await axios({
-        method: 'get',
-        url: `${Constant.baseUrl()}/getHomePage`
-      })
-      sethomedata(prevState => ({
+        method: "get",
+        url: `${Constant.baseUrl()}/getHomePage`,
+      });
+      sethomedata((prevState) => ({
         ...prevState,
-        homecontent: Object.assign({}, ...home.data)
-      }))
+        homecontent: Object.assign({}, ...home.data),
+      }));
       dispatch({
         type: "SET_IS_LOADING",
         value: false,
       });
     } catch (e) {
-      console.log(e)
+      console.log(e);
       dispatch({
         type: "SET_IS_LOADING",
         value: false,
       });
     }
-  }, [])
+  }, []);
 
   return (
     <div className="Home">
