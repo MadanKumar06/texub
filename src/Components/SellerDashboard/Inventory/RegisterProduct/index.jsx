@@ -14,7 +14,7 @@ import Constant from "../../../../Constant";
 import { useStateValue } from "../../../../store/state";
 
 function RegisterProduct() {
-  const [{geo}, dispatch] = useStateValue()
+  const [{geo, customstore}, dispatch] = useStateValue()
   const history = useNavigate();
   const [openClosePopOver, setOpenClosePopOver] = useState({
     state: false,
@@ -649,7 +649,7 @@ function RegisterProduct() {
       </div>
 
       <div className="registerproduct__submit">
-        <Link to={`/${geo?.country_name}/sellerdashboard/inventory`}>
+        <Link to={`/${customstore ? customstore : geo?.country_name}/sellerdashboard/inventory`}>
           <span className="registerproduct__back">Back</span>
         </Link>
         <Box>

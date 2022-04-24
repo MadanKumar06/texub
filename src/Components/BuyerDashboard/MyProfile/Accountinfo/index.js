@@ -11,7 +11,7 @@ import baseUrl from "../../../../../src/Constant";
 import { useStateValue } from "../../../../store/state";
 
 const Index = (classes) => {
-  const [{ geo }, dispatch] = useStateValue();
+  const [{ geo, customstore }, dispatch] = useStateValue();
   let { validation_error } = classes;
   const [AccountInfoData, setAccountInfoData] = useState({
     first_name: "",
@@ -344,7 +344,9 @@ const Index = (classes) => {
         </div>
         <div className="my_profile_back">
           <Link
-            to={`/${geo?.country_name}/buyerdashboard/dashboard`}
+            to={`/${
+              customstore ? customstore : geo?.country_name
+            }/buyerdashboard/dashboard`}
             className="link"
           >
             <ArrowBackIosNew />

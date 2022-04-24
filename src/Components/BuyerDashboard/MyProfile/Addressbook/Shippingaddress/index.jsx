@@ -9,7 +9,7 @@ import { ArrowBackIosNew } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 
 const Index = ({address}) => {  
-  const [{geo}, dispatch] = useStateValue();
+  const [{geo, customstore}, dispatch] = useStateValue();
   let { type } = useParams();
   const city = ["Banglore", "Chennai","Hyderabad",];
   const state = ["Karnataka", "Tamilnadu","Telangana"];
@@ -216,7 +216,7 @@ const Index = ({address}) => {
         </form>
       </div>
       <div className='my_profile_back'>
-      <Link to={`/${geo?.country_name}/buyerdashboard/dashboard`} className="link">
+      <Link to={`/${customstore ? customstore : geo?.country_name}/buyerdashboard/dashboard`} className="link">
         <ArrowBackIosNew /><span><p className='back'>Back</p></span>
           </Link>
       </div>

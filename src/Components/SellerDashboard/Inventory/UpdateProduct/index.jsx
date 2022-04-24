@@ -16,7 +16,7 @@ const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
 function Index({ type, pid }) {
-  const [{geo}, dispatch] = useStateValue();
+  const [{geo, customstore}, dispatch] = useStateValue();
   const history = useNavigate();
 
   const [count, setcount] = useState([
@@ -1252,7 +1252,7 @@ function Index({ type, pid }) {
       </div>
 
       <div className="updateproduct__buttons">
-        <Link to={`/${geo?.country_name}/sellerdashboard/inventory`}>
+        <Link to={`/${customstore ? customstore : geo?.country_name}/sellerdashboard/inventory`}>
           <span className="updateproduct__back">Back</span>
         </Link>
         {/* <Link

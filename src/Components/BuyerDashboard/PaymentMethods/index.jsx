@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { useStateValue } from "../../../store/state";
 
 function PaymentMethod() {
-  const [{geo}, dispatch] = useStateValue()
+  const [{geo, customstore}, dispatch] = useStateValue()
   const table = [
     {
       card_number: "Ending with….1789",
@@ -69,7 +69,7 @@ function PaymentMethod() {
     <div className="payment_method">
       <div className="payment_method__footer">
         <div className="payment_method__container">
-          <Link to={`/${geo?.country_name}/buyerdashboard/dashboard`}>
+          <Link to={`/${customstore ? customstore : geo?.country_name}/buyerdashboard/dashboard`}>
             <ArrowBackIosNew />
             <span>Back</span>
           </Link>

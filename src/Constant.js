@@ -3,7 +3,7 @@ module.exports = {
     return "https://uat.texub.com/rest/V1/texub";
   },
   imageBaseUrl: function () {
-    return "https://texub.uat.a2zportals.co.in/media/";
+    return "https://uat.texub.com/media/";
   },
   adminTokenUrl: function () {
     return "https://uat.texub.com/rest/V1/integration/admin/token";

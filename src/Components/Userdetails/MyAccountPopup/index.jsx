@@ -11,7 +11,7 @@ import { useStateValue } from "../../../store/state";
 
 import swal from "sweetalert2";
 const MyAccountPopup = () => {
-  const [{geo}, dispatch] = useStateValue()
+  const [{geo, customstore}, dispatch] = useStateValue()
   let isSignedIn = JSON.parse(localStorage.getItem("userdata"));
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -83,7 +83,7 @@ const MyAccountPopup = () => {
       >
         {isSignedIn?.group_id === 5 && (
           <MenuItem onClick={() => handleClose()}>
-            <Link to={`/${geo?.country_name}/buyerdashboard/dashboard`}>
+            <Link to={`/${customstore ? customstore : geo?.country_name}/buyerdashboard/dashboard`}>
               <img src={dashboardLogo} alt="" />
               Dashboard
             </Link>
@@ -91,14 +91,14 @@ const MyAccountPopup = () => {
         )}
         {isSignedIn?.group_id === 6 && (
           <MenuItem onClick={() => handleClose()}>
-            <Link to={`/${geo?.country_name}/sellerdashboard/dashboard`}>
+            <Link to={`/${customstore ? customstore : geo?.country_name}/sellerdashboard/dashboard`}>
               <img src={dashboardLogo} alt="" />
               Seller Dashboard
             </Link>
           </MenuItem>
         )}
         <MenuItem onClick={() => handleClose()}>
-          <Link to={`/${geo?.country_name}/kycdetails`}>
+          <Link to={`/${customstore ? customstore : geo?.country_name}/kycdetails`}>
             <img src={dashboardLogo} alt="" />
             KYC Details
           </Link>
@@ -114,7 +114,7 @@ const MyAccountPopup = () => {
               Auctions
             </MenuItem>
             <MenuItem onClick={() => handleClose()}>
-              <Link to={`/${geo?.country_name}/buyerdashboard/invoiceslist`}>
+              <Link to={`/${customstore ? customstore : geo?.country_name}/buyerdashboard/invoiceslist`}>
                 <img src={auctionsLogo} alt="" />
                 Pending Invoices
               </Link>
