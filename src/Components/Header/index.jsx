@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import styles from "./styles";
 
 import { AppBar, Toolbar, Typography, Button } from "@mui/material";
@@ -14,8 +14,18 @@ import axios from "axios";
 import Constant from "../../Constant";
 
 const Header = ({ classes }) => {
-  const [{ currency, cart, gt, geo }, dispatch] = useStateValue();
-  const history = useNavigate();
+  // const history = useParams();
+  // console.log(Object.values(history))
+  const history = useParams()
+
+  useEffect(() => {
+    // if(geo === "") return
+    let temp = Object.values(history)
+    console.log(temp?.country)
+  }, [])
+
+  const [{ currency, cart, gt, geo, customstore }, dispatch] = useStateValue();
+  const navigate = useNavigate();
   let isSignedIn = JSON.parse(localStorage.getItem("userdata"));
 
   useEffect(async () => {
@@ -92,7 +102,7 @@ const Header = ({ classes }) => {
             timer: 3000,
           });
           setTimeout(() => {
-            history("/");
+            navigate("/");
             window.location.reload();
           }, 1000);
         }
@@ -105,31 +115,31 @@ const Header = ({ classes }) => {
           <MenuList />
           <div className={classes.company_logo}>
             {/* //height="48px" width="140px" */}
-            <Link to={`/${geo?.country_name}`}>
+            <Link to={`/${customstore ? customstore : geo?.country_name}`}>
               <img src={logo} alt="" />
             </Link>
           </div>
           <div className={classes.title_main}>
             <Typography variant="h6" className={classes.title}>
-              <Link to={`/${geo?.country_name}/aboutus`} className={classes.middle}>
+              <Link to={`/${customstore ? customstore : geo?.country_name}/aboutus`} className={classes.middle}>
                 About Us
               </Link>
             </Typography>
             <Typography variant="h6" className={classes.title}>
-              <Link to={`/${geo?.country_name}/products`}>Products</Link>
+              <Link to={`/${customstore ? customstore : geo?.country_name}/products`}>Products</Link>
               <span>New</span>
             </Typography>
             <Typography variant="h6" className={classes.title}>
-              <Link to={`/${geo?.country_name}/coming-soon`}> Sell On TEXUB </Link>
+              <Link to={`/${customstore ? customstore : geo?.country_name}/coming-soon`}> Sell On TEXUB </Link>
             </Typography>
             <Typography variant="h6" className={classes.title}>
-              <Link to={`/${geo?.country_name}/coming-soon`}> Buy On TEXUB </Link>
+              <Link to={`/${customstore ? customstore : geo?.country_name}/coming-soon`}> Buy On TEXUB </Link>
             </Typography>
             {/* <Typography variant="h6" className={classes.title}>
-              <Link to={`/${geo?.country_name}/Faqs`}> FAQ</Link>
+              <Link to={`/${customstore ? customstore : geo?.country_name}/Faqs`}> FAQ</Link>
             </Typography> */}
             <Typography variant="h6" className={classes.title}>
-              <Link to={`/${geo?.country_name}/Contactus`}> Contact Us </Link>
+              <Link to={`/${customstore ? customstore : geo?.country_name}/Contactus`}> Contact Us </Link>
             </Typography>
           </div>
 

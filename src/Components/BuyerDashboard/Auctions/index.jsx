@@ -8,7 +8,7 @@ import { useStateValue } from "../../../store/state";
 
 function Index() {
   const [tableData, setTableData] = useState([]);
-  const [{geo}, dispatch] = useStateValue()
+  const [{geo, customstore}, dispatch] = useStateValue()
 
   const auctiondata = [
     {
@@ -83,7 +83,7 @@ function Index() {
     <div className="auctions">
       <div className="auctions__footer">
         <div className="auctions__container">
-          <Link to={`/${geo?.country_name}/buyerdashboard/dashboard`}>
+          <Link to={`/${customstore ? customstore : geo?.country_name}/buyerdashboard/dashboard`}>
             <ArrowBackIosNew />
             <span>Back</span>
           </Link>

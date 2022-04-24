@@ -15,7 +15,7 @@ function Index() {
     { name: "Pending Invoices" },
     { name: "Paid Invoices" },
   ];
-  const [{geo}, dispatch] = useStateValue()
+  const [{geo, customstore}, dispatch] = useStateValue()
   const [type, settype] = useState();
 
   const selectorder = (value) => {
@@ -178,7 +178,7 @@ function Index() {
     <div className="invoices_main">
       <div className="invoices__footer">
         <div className="invoices__container">
-          <Link to={`/${geo?.country_name}/buyerdashboard/dashboard`}>
+          <Link to={`/${customstore ? customstore : geo?.country_name}/buyerdashboard/dashboard`}>
             <ArrowBackIosNew />
             <span>Back</span>
           </Link>

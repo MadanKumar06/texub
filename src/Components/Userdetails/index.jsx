@@ -13,7 +13,7 @@ import notification from "../../Assets/sellerdashboard/notification.png";
 import dashboardLogo from "../../Assets/CommonImage/MyAccountMegamenu/menu.png";
 
 export const Userdetails = () => {
-  const [{geo}, dispatch] = useStateValue()
+  const [{geo, customstore}, dispatch] = useStateValue()
   let isSignedIn = JSON.parse(localStorage.getItem("userdata"));
   let kycStatus = JSON.parse(
     localStorage.getItem("userdata")
@@ -25,12 +25,12 @@ export const Userdetails = () => {
 
 
   const handleDashboard = () => {
-    history(`/${geo?.country_name}/sellerdashboard/dashboard`);
+    history(`/${customstore ? customstore : geo?.country_name}/sellerdashboard/dashboard`);
   };
   return (
     <div className="user_details_main_container">
       <div className="logo">
-        <Link to={`/${geo?.country_name}`}>
+        <Link to={`/${customstore ? customstore : geo?.country_name}`}>
           <img src={logo} alt="texub logo" />
         </Link>
       </div>

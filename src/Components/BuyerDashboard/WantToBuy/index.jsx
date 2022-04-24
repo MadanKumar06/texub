@@ -15,7 +15,7 @@ import QuoteReceivedGrid from "./QuoteRecievedGrid";
 function Index() {
   const [tableData, setTableData] = useState([]);
   const [apiTableData, setApiTableData] = useState([]);
-  const [{geo}, dispatch] = useStateValue();
+  const [{geo, customstore}, dispatch] = useStateValue();
   const [isVieworders, setisVieworders] = useState(false);
   const [isViewQuoteReceived, setIsViewQuoteReceived] = useState({
     id: "",
@@ -184,7 +184,7 @@ function Index() {
     <div className="want_tobuy">
       <div className="want_tobuy__footer">
         <div className="want_tobuy__container">
-          <Link to={`/${geo?.country_name}/buyerdashboard/dashboard`}>
+          <Link to={`/${customstore ? customstore : geo?.country_name}/buyerdashboard/dashboard`}>
             <ArrowBackIosNew />
             <span>Back</span>
           </Link>

@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import { useStateValue } from '../../../../../store/state';
 
 const Index = (classes) => {
-  const [{geo}, dispatch] = useStateValue()
+  const [{geo, customstore}, dispatch] = useStateValue()
     const List =[
         {title:"Cart Approval Required",},
         {title:"Can Approve Carts",},
@@ -292,7 +292,7 @@ if (!NewSubAccountData?.active) {
     </div>
     <div className='my_profile_btns'>
     <div className='my_profile_back'>
-    <Link to={`/${geo?.country_name}/buyerdashboard/dashboard`} className="link">
+    <Link to={`/${customstore ? customstore : geo?.country_name}/buyerdashboard/dashboard`} className="link">
         <ArrowBackIosNew /><span><p className='back'>Back</p></span>
           </Link>
       </div>

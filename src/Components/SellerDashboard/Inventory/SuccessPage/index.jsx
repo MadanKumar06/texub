@@ -5,7 +5,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useStateValue } from "../../../../store/state";
 
 const SuccesMessage = ({ msg }) => {
-  const [{geo}, dispatch] = useStateValue()
+  const [{geo, customstore}, dispatch] = useStateValue()
   let userDetails = JSON.parse(localStorage.getItem("userdata"));
   const location = useLocation();
   return (
@@ -32,7 +32,7 @@ const SuccesMessage = ({ msg }) => {
         {location?.state === "update" && (
           <p>You have updated the product details successfully.</p>
         )}
-        <Link to={`/${geo?.country_name}/sellerdashboard/inventory`}>
+        <Link to={`/${customstore ? customstore : geo?.country_name}/sellerdashboard/inventory`}>
           <p className="link">Back To Inventory</p>
         </Link>
       </div>

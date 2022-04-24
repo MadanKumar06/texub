@@ -7,28 +7,17 @@ import { ExpandMore } from "@mui/icons-material";
 import axios from "axios";
 import Constant from "../../../Constant";
 import { useStateValue } from "../../../store/state";
+// import { useParams } from "react-router-dom";
 
 import aed from "../../../Assets/CommonImage/Currency switcher/DH.png";
 import usd from "../../../Assets/CommonImage/Currency switcher/dollar-symbol.png";
 import inr from "../../../Assets/CommonImage/Currency switcher/Group 1132.png";
 
-// const Currency = [
-//   {
-//     name: "INR",
-//     image: inr,
-//   },
-//   {
-//     name: "USD",
-//     image: usd,
-//   },
-//   {
-//     name: "AED",
-//     image: aed,
-//   },
-// ];
 const CurrencyPopup = ({ classes }) => {
+  // let { country } = useParams();
+  // console.log(country)
   const [anchorEl, setAnchorEl] = useState(null);
-  const [{geo}, dispatch] = useStateValue();
+  const [{geo, customstore}, dispatch] = useStateValue();
   const [apiDropDowns, setApiDropDowns] = useState("");
   const [selectedValue, setSelectedValue] = useState({
     currency_code: "",
@@ -60,10 +49,14 @@ const CurrencyPopup = ({ classes }) => {
   }, [selectedValue]);
   //API for fetch dropdown values
   useEffect(() => {
+    // debugger
+    console.log(customstore)
+    console.log(geo?.country_name)
+    if(geo === '' && customstore === '') return
     const fetchCurrencyDropDownData = () => {
       let data = {
         geoCode:geo?.country_code,
-        // storeCode: geo?.country_name
+        storeCode: customstore ? customstore : geo?.country_name
       }
       axios
         .post(Constant.baseUrl() + "/getCurrency", data, {
@@ -73,6 +66,7 @@ const CurrencyPopup = ({ classes }) => {
         })  
         .then((res) => {
           setApiDropDowns(res?.data?.[1]?.currency);
+          console.log(res.data?.[0]?.store)
           localStorage.setItem('storedata', JSON.stringify(res.data?.[0]?.store))
           setSelectedValue({
             currency_code: res?.data?.[1]?.currency?.[0]?.currency_code,
@@ -91,7 +85,8 @@ const CurrencyPopup = ({ classes }) => {
         .catch((err) => {});
     };
     fetchCurrencyDropDownData();
-  }, [geo]);
+  }, [geo, customstore]);
+
 
   return (
     <div className={classes.header_dropdown}>

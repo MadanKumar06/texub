@@ -9,30 +9,33 @@ import { B2Bconnect } from "../../Components/Home/B2Bconnect/B2Bconnect";
 import Constant from '../../Constant'
 import axios from "axios";
 import { useStateValue } from "../../store/state";
-import { useParams, useNavigate, Route } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 export const Home = () => {
-  const [{geo}, dispatch] = useStateValue()
+  const [{geo, customstore}, dispatch] = useStateValue()
   const [homedata, sethomedata] = useState({
     homecontent: []
   })
 
   const history = useParams()
   const navigate = useNavigate()
-  
-  let { country } = useParams();
 
   useEffect(() => {
-    console.log(country);
-  }, [country]);
-
-  useEffect(() => {
+    // debugger
+    let storedata = JSON.parse(localStorage.getItem('storedata'))
+    console.log(storedata?.code)
+    console.log(geo?.country_name)
     if(geo === "") return
     let temp = Object.values(history)
+    dispatch({
+      type: 'GEO__CUSTOM__STORE',
+      data: storedata ? storedata?.code : geo?.country_name
+    })
+    navigate(`/${storedata ? storedata?.code : geo?.country_name}`)
     if(temp.length === 0) {
-      navigate(`/${geo?.country_name}`)
+      navigate(`/${customstore ? customstore : geo?.country_name}`)
     }
-  }, [geo])
+  }, [geo, customstore])
 
   useEffect(async() =>{
     try {
