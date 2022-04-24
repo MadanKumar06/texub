@@ -27,6 +27,7 @@ function Index({ registerproduct }) {
     isOpenClose: false,
     product_id: "",
     assigned_product_id: "",
+    isOfferValid: "",
   });
 
   const options = {
@@ -59,8 +60,14 @@ function Index({ registerproduct }) {
       name: "name",
       label: "PRODUCT NAME",
       options: {
-        customBodyRender: (value) => {
-          return <div className="inventory-product-grid-info">{value} </div>;
+        customBodyRender: (value, tablemeta) => {
+          let isOfferValid = tablemeta?.rowData[12];
+          return (
+            <div className="brandOffers">
+              <div className="inventory-product-grid-info">{value}</div>
+              {isOfferValid === "1" && <p>Offers</p>}
+            </div>
+          );
         },
       },
     },
@@ -129,6 +136,7 @@ function Index({ registerproduct }) {
       label: "ACTION",
       options: {
         customBodyRender: (value, tablemeta) => {
+          let isOfferValid = tablemeta?.rowData[12];
           return (
             <div className="action">
               <div
@@ -146,10 +154,11 @@ function Index({ registerproduct }) {
                     isOpenClose: true,
                     product_id: value,
                     assigned_product_id: tablemeta?.rowData?.[11],
+                    isOfferValid: isOfferValid,
                   })
                 }
               >
-                Add Offers
+                {isOfferValid === "0" ? "Add Offers" : "View Offers"}
               </div>
             </div>
           );
@@ -165,6 +174,13 @@ function Index({ registerproduct }) {
     },
     {
       name: "assign_product_id",
+      label: " ",
+      options: {
+        display: false,
+      },
+    },
+    {
+      name: "offer_status",
       label: " ",
       options: {
         display: false,

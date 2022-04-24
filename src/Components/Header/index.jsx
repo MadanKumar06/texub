@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./styles";
 
 import { AppBar, Toolbar, Typography, Button } from "@mui/material";
@@ -15,10 +15,11 @@ import Constant from "../../Constant";
 
 const Header = ({ classes }) => {
   const [{ currency, cart, gt, geo }, dispatch] = useStateValue();
+  const history = useNavigate();
   let isSignedIn = JSON.parse(localStorage.getItem("userdata"));
 
   useEffect(async () => {
-    if(currency?.currency_id === undefined) return
+    if (currency?.currency_id === undefined) return;
     const user = JSON.parse(localStorage.getItem("userdata"));
     if (localStorage.getItem("token")) {
       dispatch({
@@ -91,8 +92,8 @@ const Header = ({ classes }) => {
             timer: 3000,
           });
           setTimeout(() => {
+            history("/");
             window.location.reload();
-            window.location.href = "/";
           }, 1000);
         }
       });

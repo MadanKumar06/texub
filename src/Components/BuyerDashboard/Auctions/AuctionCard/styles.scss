@@ -29,7 +29,7 @@
         right: 8px;
         text-decoration: underline;
         color: #002d56;
-        font-size: 22px;
+        font-size: 20px;
       }
 
       h4,
@@ -39,11 +39,11 @@
       }
 
       h4 {
-        font-size: 20px;
+        font-size: 18px;
       }
 
       p {
-        font-size: 18px;
+        font-size: 16px;
       }
 
       .auction__text {
@@ -84,13 +84,13 @@
       }
 
       .value {
-        font-size: 26px;
+        font-size: 22px;
         margin-top: 10px;
         font-weight: 600;
       }
 
       .label {
-        font-size: 18px;
+        font-size: 16px;
         color: #ddb363;
         font-weight: 600;
         margin-bottom: 10px;
@@ -115,7 +115,7 @@
       width: unset;
       font-weight: 600;
       color: #333c42;
-      font-size: 18px;
+      font-size: 16px;
     }
 
     .bid__color {
@@ -213,20 +213,20 @@
 
 @media (max-width: 1660px) {
   .auctioncard .auctioncard__detail .auctioncard__info .label {
-    font-size: 14px;
+    font-size: 12px;
   }
   .auctioncard .auctioncard__detail .auctioncard__info .value {
-    font-size: 16px;
+    font-size: 14px;
   }
   .auctioncard .auctioncard__detail .auctioncard__productdetails h4 {
-    font-size: 18px;
+    font-size: 16px;
   }
   .auctioncard .auctioncard__detail .auctioncard__productdetails p {
-    font-size: 16px;
+    font-size: 14px;
     margin-bottom: 2em;
   }
   .auctioncard .auctioncard__detail .auctioncard__productdetails span {
-    font-size: 16px;
+    font-size: 14px;
   }
   .auctioncard .auctioncard__bid .bid__lot,
   .auctioncard .auctioncard__bid .bid__lot {
@@ -242,7 +242,7 @@
   }
   .auctioncard .auctioncard__bid .bid__button,
   .auctioncard .auctioncard__bid .bud__inactive {
-    font-size: 16px;
+    font-size: 14px;
     height: 36px;
   }
   .auctioncard .auctioncard__bid .bid__status {

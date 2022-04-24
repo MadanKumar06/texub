@@ -20,10 +20,10 @@ function formatToCurrency(amount) {
 
 const MyCartTable = ({ cartDataList, deleteCartData }) => {
   const [is_table_quantity, setIs_table_quantity] = useState([]);
-  const [is_table_quantity_test, setis_table_quantity_test] = useState([]);
   console.log(cartDataList[0]?.invoice_items?.length);
 
-  const [{ pdpPopUpOpenClose, geo }, dispatch] = useStateValue();
+  const [{ pdpPopUpOpenClose, currency, geo }, dispatch] = useStateValue();
+  
   useEffect(() => {
     let temp =
       cartDataList?.[0]?.invoice_items?.length &&
@@ -50,9 +50,11 @@ const MyCartTable = ({ cartDataList, deleteCartData }) => {
     if (product_id) {
       temp = is_table_quantity?.filter((itm) => itm?.product_id === product_id);
     }
-    setopenwishlist({ open: !openwishlist?.open, dataFromPLP: temp?.[0] });
+    setopenwishlist({ open: true, dataFromPLP: temp?.[0] });
   };
-
+  const handleOpenClose = (event) => {
+    setopenwishlist({ open: event });
+  };
   const handleUpdate = (quantity, sku, cart_id, item_id) => {
     let data = {
       cartItem: {
@@ -119,6 +121,65 @@ const MyCartTable = ({ cartDataList, deleteCartData }) => {
         })
     );
   };
+
+  const [getCategories, setGetCategories] = useState("");
+  useEffect(() => {
+    const fetchCategoryData = () => {
+      let data = {
+        currency_id: parseInt(currency?.currency_id),
+      };
+      axios
+        .post(Constant.baseUrl() + "/getCategoriesList", data, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => {
+          if (res?.data?.length) {
+            setGetCategories(res?.data[0]?.category.id);
+          }
+        })
+        .catch((err) => {});
+    };
+    fetchCategoryData();
+  }, [currency]);
+
+  const onCLickDetailsLink = (event) => {
+    if (getCategories !== "") {
+      let customer_id = JSON.parse(localStorage.getItem("userdata"));
+      let data = {
+        data: {
+          currency_id: event?.currency_id,
+          customer_id: customer_id?.id,
+          category_id: getCategories?.toString(),
+          brand_id: "0",
+          hub_id: "0",
+          condition_id: "0",
+          keyword: event?.sku,
+          eta: "0",
+          min_price: 0,
+          max_price: 0,
+        },
+      };
+      axios
+        .post(Constant.baseUrl() + "/getProducts", data, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => {
+          dispatch({
+            type: "SET_PDP_POPUP_OPEN_CLOSE",
+            value: true,
+            data: {
+              CartData: res.data[1].products,
+              product_id: event?.product_id,
+            },
+          });
+        })
+        .catch((err) => {});
+    }
+  };
   const columns = [
     {
       name: "seller_id",
@@ -142,6 +203,8 @@ const MyCartTable = ({ cartDataList, deleteCartData }) => {
           let description = tableMeta?.rowData[7];
           let productname = tableMeta?.rowData[6];
           let product_id = tableMeta?.rowData[14];
+          let sku = tableMeta?.rowData[13];
+          let currency_id = tableMeta?.rowData[15];
           return (
             <div className="mycart_product_main">
               <div className="mycart_product_sub_block">
@@ -150,7 +213,9 @@ const MyCartTable = ({ cartDataList, deleteCartData }) => {
                 </div>
                 <div className="mycart_right_section">
                   <div className="mycart_right_section_block">
-                    <span className="mycart_product_eta">ETA: {eta}</span>
+                    <span className="mycart_product_eta">
+                      ETA : {eta} <span> Days</span>
+                    </span>
                     <span
                       className="mycart_product_delete_icon"
                       onClick={() =>
@@ -238,7 +303,17 @@ const MyCartTable = ({ cartDataList, deleteCartData }) => {
                   <p className="my_cart_product_name">{productname}</p>
                   <p className="my_cart_product_description">{description}</p>
                   <div className="my_cart_link">
-                    <Link to={`/:${geo?.country_name}`}>Details</Link>
+                    <span
+                      onClick={() =>
+                        onCLickDetailsLink({
+                          sku: sku,
+                          currency_id: currency_id,
+                          product_id: product_id,
+                        })
+                      }
+                    >
+                      Details
+                    </span>
                     <span className="link_2" onClick={() => list(product_id)}>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -464,13 +539,20 @@ const MyCartTable = ({ cartDataList, deleteCartData }) => {
         display: false,
       },
     },
+    {
+      name: "currency_id",
+      label: " ",
+      options: {
+        display: false,
+      },
+    },
   ];
 
   const options = {
     filter: true,
     filterType: "dropdown",
     responsive: "vertical",
-    selectableRows: "none",
+    selectableRows: true,
     download: false,
     print: false,
     sort: false,
@@ -510,7 +592,10 @@ const MyCartTable = ({ cartDataList, deleteCartData }) => {
         />
       )} */}
       {openwishlist?.open && (
-        <Wishlist pdpSellerData={openwishlist?.dataFromPLP} />
+        <Wishlist
+          pdpSellerData={openwishlist?.dataFromPLP}
+          handleOpenClose={handleOpenClose}
+        />
       )}
     </div>
   );

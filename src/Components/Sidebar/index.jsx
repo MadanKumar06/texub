@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import "./styles.scss";
 import { Clear } from "@mui/icons-material";
-
+import { useNavigate } from "react-router-dom";
 import { SellerList, BuyerList } from "./image";
 import logout from "../../Assets/sellerdashboard/InactiveDashboardPng/logout.png";
 import swal from "sweetalert2";
@@ -18,6 +18,7 @@ function Index({
     setcurrentmenu(SellerList[0]?.name);
   }, []);
 
+  const history = useNavigate();
   const SignOut = () => {
     swal
       .fire({
@@ -39,8 +40,8 @@ function Index({
             timer: 3000,
           });
           setTimeout(() => {
+            history("/");
             window.location.reload();
-            window.location.href = "/";
           }, 1000);
         }
       });

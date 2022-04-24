@@ -22,7 +22,7 @@ const styles = (theme) => ({
     position: "relative",
     "& p": {
       color: "#333C42",
-      fontSize: "50px",
+      fontSize: "40px",
       fontWeight: "700",
       paddingLeft: "22px",
       margin: "0",
@@ -31,10 +31,10 @@ const styles = (theme) => ({
       flexDirection: "row",
       alignItems: "center",
       "@media (max-width:1800px)": {
-        fontSize: "40px",
+        fontSize: "30px",
       },
       "@media (max-width:1660px)": {
-        fontSize: "30px",
+        fontSize: "26px",
         height: "54px",
       },
     },
@@ -220,6 +220,10 @@ const styles = (theme) => ({
       flexDirection: "column",
       gap: "0",
     },
+     "@media (max-width:780px)": {
+      flexDirection: "column",
+      gap: "0",
+    },
     "@media (max-width:580px)": {
       flexDirection: "column",
       gap: "0",
@@ -276,7 +280,7 @@ const styles = (theme) => ({
     },
     "@media (max-width:767px)": {
       width: "100%",
-      marginTop: "30px",
+      marginTop: "15px",
       padding: "12px",
     },
   },

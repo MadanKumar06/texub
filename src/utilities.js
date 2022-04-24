@@ -16,7 +16,7 @@ export const isDesignationValid = (designation) =>
   designation.match(/^[a-zA-Z ]*$/);
 
 export const isCompanyNameValid = (company) =>
-  company.match(/^\d*[a-zA-Z][a-zA-Z0-9][a-zA-Z0-9-+()!@#$%^&*'{} ]*$/);
+  company.match(/^\d*[a-zA-Z][a-zA-Z0-9][a-zA-Z0-9-+\.+()!@#$%^&*'{} ]*$/);
 
 export const isRolesValid = (roles) =>
   roles.match(/^((?=.*[a-zA-Z])[a-zA-Z0-9]{0,14})$/);
@@ -28,7 +28,7 @@ export const isLandlineValid = (landline) =>
 export const getAdminToken = (callback) => {
   let data = {
     username: "admin",
-    password: "admin@1234",
+    password: "admin@123",
   };
   axios
     .post(Constant.adminTokenUrl(), data, {
@@ -42,6 +42,7 @@ export const getAdminToken = (callback) => {
     .catch((err) => {});
 };
 
+//Customer details
 export const getSigninedUserData = () => {
   axios
     .get(Constant.customerMeDetailUrl(), {
@@ -56,21 +57,6 @@ export const getSigninedUserData = () => {
         "isLoggedIn_auth",
         res?.data?.group_id === 1 ? false : true
       );
-
-      let iskycFormFilled = res?.data;
-      if (iskycFormFilled?.group_id === 1) {
-        // setTimeout(() => {
-        //   history("/");
-        // }, 1000 / 2);
-      } else if (
-        iskycFormFilled?.group_id === 5 ||
-        iskycFormFilled?.group_id === 6
-      ) {
-        let isDataValid = iskycFormFilled?.custom_attributes?.filter(
-          (itm) => itm?.attribute_code === "kyc_status"
-        );
-        // KycFormOpenClose(isDataValid, iskycFormFilled?.group_id);
-      }
     })
     .catch((err) => {});
 };

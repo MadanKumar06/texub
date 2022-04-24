@@ -98,6 +98,7 @@ const styles = (theme) => ({
     "& span":{
       color: "#002D56",
       textDecoration: "underline",
+      whiteSpace: "nowrap",
     }
   },
   button_guest: {

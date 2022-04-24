@@ -22,16 +22,23 @@
     .user_account {
       display: flex;
       align-items: center;
-      gap: 8px;
+      flex-direction: column;
+      margin: auto;
+      letter-spacing: 0.6px;
+      .user_code {
+        opacity: 1;
+        color: #002d56;
+      }
       svg {
         color: #5c6369;
       }
     }
-    .user_wishlist {
+    .user_wishlist,
+    .user_notification {
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 15px;
       font-size: 20px;
       svg {
         color: #5c6369;
@@ -40,15 +47,19 @@
         color: #5c6369;
         span {
           color: #5c6369;
-          min-width: 26px !important;
-          height: 26px !important;
+          min-width: 25px !important;
+          height: 25px !important;
           border-radius: 26px !important;
           background-color: #ffffff;
           box-shadow: -2px -2px 8px -6px rgba(0, 0, 0, 0.75);
           -webkit-box-shadow: -2px -2px 8px -6px rgba(0, 0, 0, 0.75);
           -moz-box-shadow: -2px -2px 8px -6px rgba(0, 0, 0, 0.75);
         }
-        .whishlist_image {
+        .MuiBadge-anchorOriginTopRightRectangular {
+          font-weight: 700;
+        }
+        .whishlist_image,
+        .notification_image {
           width: 35px;
           height: 35px;
           img {
@@ -56,10 +67,12 @@
           }
         }
       }
-      .user_account_wishlist_cart {
+      .user_account_wishlist_cart,
+      .user_account_notification {
         color: #5c6369;
         font-weight: 600;
         opacity: 0.8;
+        letter-spacing: 0.6px;
       }
     }
     .user_cart {
@@ -101,24 +114,25 @@
 }
 
 @media (max-width: 1600px) {
-  .user_details_main_container .user_details_list .user_wishlist {
-    font-size: 16px !important;
+  .user_details_main_container .user_details_list {
+    .user_wishlist,
+    .user_notification {
+      font-size: 16px !important;
+    }
   }
-  .user_details_main_container
-    .user_details_list
-    .user_wishlist
-    .badge_user
-    .whishlist_image {
-    width: 30px;
-    height: 30px;
+  .user_details_main_container .user_details_list {
+    .user_wishlist .badge_user .whishlist_image,
+    .user_notification .badge_user .notification_image {
+      width: 35px;
+      height: 35px;
+    }
   }
-  .user_details_main_container
-    .user_details_list
-    .user_wishlist
-    .badge_user
-    span {
-    min-width: 21px !important;
-    height: 21px !important;
+  .user_details_main_container .user_details_list {
+    .user_wishlist .badge_user span,
+    .user_notification .badge_user span {
+      min-width: 25px !important;
+      height: 25px !important;
+    }
   }
   .user_details_main_container
     .user_details_list
@@ -142,42 +156,49 @@
     .user_cart
     .badge
     span {
-    min-width: 21px !important;
-    height: 21px !important;
+    min-width: 25px !important;
+    height: 25px !important;
   }
 }
 @media (max-width: 1399px) {
-
-    .user_details_main_container .user_details_list .user_account{
-      font-size: 16px;
-    }
-    .user_details_main_container .user_details_list .user_wishlist{
+  .user_details_main_container .user_details_list .user_account {
+    font-size: 16px;
+  }
+  .user_details_main_container .user_details_list {
+    .user_wishlist,
+    .user_notification {
       font-size: 16px !important;
     }
-    .user_details_main_container .user_details_list .user_details_content .user_cart .mini_cart_head{
-          font-size: 16px !important;
-    }
+  }
+  .user_details_main_container
+    .user_details_list
+    .user_details_content
+    .user_cart
+    .mini_cart_head {
+    font-size: 16px !important;
+  }
 }
 
 @media (max-width: 1300px) {
-  .user_details_main_container .user_details_list .user_wishlist {
-    font-size: 16px !important;
+  .user_details_main_container .user_details_list {
+    .user_wishlist,
+    .user_notification {
+      font-size: 16px !important;
+    }
   }
-  .user_details_main_container
-    .user_details_list
-    .user_wishlist
-    .badge_user
-    .whishlist_image {
-    width: 26px;
-    height: 26px;
+  .user_details_main_container .user_details_list {
+    .user_wishlist .badge_user .whishlist_image,
+    .user_notification .badge_user .notification_image {
+      width: 30px;
+      height: 30px;
+    }
   }
-  .user_details_main_container
-    .user_details_list
-    .user_wishlist
-    .badge_user
-    span {
-    min-width: 19px !important;
-    height: 19px !important;
+  .user_details_main_container .user_details_list {
+    .user_wishlist .badge_user span,
+    .user_notification .badge_user span {
+      min-width: 20px !important;
+      height: 20px !important;
+    }
   }
   .user_details_main_container
     .user_details_list
@@ -207,24 +228,32 @@
 }
 
 @media (max-width: 1080px) {
-  .user_details_main_container .user_details_list .user_wishlist {
-    font-size: 14px !important;
+  .user_details_main_container .user_details_list .user_account {
+    font-size: 14px;
   }
-  .user_details_main_container
-    .user_details_list
-    .user_wishlist
-    .badge_user
-    .whishlist_image {
-    width: 24px;
-    height: 24px;
+  .user_details_main_container .user_details_list .user_details_content {
+    gap: 15px;
   }
-  .user_details_main_container
-    .user_details_list
-    .user_wishlist
-    .badge_user
-    span {
-    min-width: 18px !important;
-    height: 18px !important;
+  .user_details_main_container .user_details_list {
+    .user_wishlist,
+    .user_notification {
+      font-size: 14px !important;
+    }
+  }
+  .user_details_main_container .user_details_list {
+    .user_wishlist .badge_user .whishlist_image,
+    .user_notification .badge_user .notification_image,
+    .myAccount_popup_header_dropdown .account_circle_image {
+      width: 24px;
+      height: 24px;
+    }
+  }
+  .user_details_main_container .user_details_list {
+    .user_wishlist .badge_user span,
+    .user_notification .badge_user span {
+      min-width: 18px !important;
+      height: 18px !important;
+    }
   }
   .user_details_main_container
     .user_details_list
@@ -254,8 +283,11 @@
 }
 
 @media (max-width: 850px) {
-  .user_details_main_container .user_details_list .user_wishlist {
-    font-size: 12px !important;
+  .user_details_main_container .user_details_list {
+    .user_wishlist,
+    .user_notification {
+      font-size: 12px !important;
+    }
   }
   .user_details_main_container
     .user_details_list

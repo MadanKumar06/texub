@@ -4,7 +4,6 @@ import "./styles.scss";
 import { Clear } from "@mui/icons-material";
 import PDPTopHeader from "./PDPTopHeader";
 import PDPTable from "./PDPTable";
-import { useNavigate } from "react-router-dom";
 import { table_two_data } from "./PDPTable/TableData";
 import { useStateValue } from "../../store/state";
 import Constant from "../../Constant";
@@ -23,7 +22,6 @@ import invoice_image from "../../Assets/CommonImage/invoice.png";
 const PdpPopup = () => {
   const [open, setOpen] = useState(true);
   let detailsData = useRef();
-  const history = useNavigate();
   const [{ pdpPopUpOpenClose }, dispatch] = useStateValue();
   const [moreOffers, setMoreOffers] = useState({ tableone: 3, tabletwo: 3 });
   const [tableData, setTableData] = useState({
@@ -80,73 +78,29 @@ const PdpPopup = () => {
     });
   };
 
-  const [folder, setfolder] = useState();
-
-  useEffect(async () => {
-    let user = JSON.parse(localStorage.getItem("userdata"));
-    try {
-      const foldername = await axios({
-        method: "post",
-        url: `${Constant.baseUrl()}/wishlist/getNames`,
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-        data: {
-          requestParams: {
-            customer_id: user?.id,
-          },
-        },
-      });
-      setfolder(foldername.data[0]);
-    } catch (e) {
-      console.log(e);
-    }
-  }, []);
-
   const handleIsValidUser = async (event) => {
-    let user = JSON.parse(localStorage.getItem("userdata"));
-    if (event === "add_to_wishlist") {
-      try {
-        const foldername = await axios({
-          method: "post",
-          url: `${Constant.baseUrl()}/wishlist/getNames`,
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-          data: {
-            requestParams: {
-              customer_id: user?.id,
-            },
-          },
-        });
-        const wishdata = await axios({
-          method: "post",
-          url: `${Constant.baseUrl()}/wishlist`,
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-          data: {
-            requestParams: {
-              customer_id: user?.id,
-              product_id: parseInt(pdpSellerData?.product_id),
-              wk_id: foldername.data[0]?.id ? foldername.data[0]?.id : "",
-              wk_name: foldername.data[0]?.id ? "" : "wishlist",
-            },
-          },
-        });
-      } catch (e) {
-        console.log(e);
-      }
-    }
     let isValidUser = JSON.parse(localStorage.getItem("userdata"))?.group_id;
-
+    let isDataValid = user?.custom_attributes?.filter(
+      (itm) => itm?.attribute_code === "kyc_status"
+    );
     if (isValidUser === 5) {
-      let temp =
-        event === "add_to_cart"
-          ? AddToCartAndPendingInvoice("add_to_cart")
-          : event === "pending_invoice"
-          ? AddToCartAndPendingInvoice("pending_invoice")
-          : "";
+      if (isDataValid[0]?.value === "2") {
+        let temp =
+          event === "add_to_cart"
+            ? AddToCartAndPendingInvoice("add_to_cart")
+            : event === "pending_invoice"
+            ? AddToCartAndPendingInvoice("pending_invoice")
+            : event === "add_to_wishlist"
+            ? list("add_to_wishlist")
+            : "";
+      } else {
+        swal.fire({
+          text: `Your account is not yet activated, so kindly visit again once you receive
+          the account activation email.`,
+          icon: "error",
+          showConfirmButton: true,
+        });
+      }
     } else {
       swal.fire({
         text: `${
@@ -162,9 +116,18 @@ const PdpPopup = () => {
       });
     }
   };
+
+  const list = (event) => {
+    if (event === "add_to_wishlist") {
+      setopenwishlist({ open: true });
+    }
+  };
   //APi call to addtocart
+  const user = JSON.parse(localStorage.getItem("userdata"));
   const AddToCartAndPendingInvoice = (info) => {
-    const user = JSON.parse(localStorage.getItem("userdata"));
+    let isUserAddData = pdpSellerData?.is_table_one?.filter(
+      (itm) => itm?.product_id === pdpSellerData?.product_id
+    );
     dispatch({
       type: "SET_IS_LOADING",
       value: true,
@@ -173,12 +136,12 @@ const PdpPopup = () => {
       pendingProducts: {
         store_id: 1,
         customer_id: user?.id,
-        productId: pdpSellerData?.product_id,
-        price: pdpSellerData?.price,
-        qty: pdpSellerData?.moq,
-        hub: pdpSellerData?.hub_id,
-        currency: pdpSellerData?.currency_id,
-        sellerId: pdpSellerData?.seller_id,
+        productId: isUserAddData?.[0]?.product_id,
+        price: isUserAddData?.[0]?.price,
+        qty: isUserAddData?.[0]?.moq,
+        hub: isUserAddData?.[0]?.hub_id,
+        currency: isUserAddData?.[0]?.currency_id,
+        sellerId: isUserAddData?.[0]?.seller_id,
       },
     };
     axios
@@ -249,10 +212,12 @@ const PdpPopup = () => {
     return str?.length > n ? str.substr(0, n - 1) + "..." : str;
   }
 
-  const [openwishlist, setopenwishlist] = useState(false);
-  const list = () => {
-    setopenwishlist(!openwishlist);
+  const [openwishlist, setopenwishlist] = useState({ open: false });
+
+  const handleOpenClose = (event) => {
+    setopenwishlist({ open: event });
   };
+
   return (
     <Modal
       aria-labelledby="transition-modal-title"
@@ -321,15 +286,16 @@ const PdpPopup = () => {
 
             <div
               className="modal_bottom_image_container"
-              // onClick={() => handleIsValidUser("add_to_wishlist")}
+              onClick={() => handleIsValidUser("add_to_wishlist")}
             >
               <img src={add_whishlist} alt="" />
-              <span onClick={list}>Add to Wishlist</span>
+              <span>Add to Wishlist</span>
             </div>
-            {openwishlist && (
+            {openwishlist?.open && (
               <Wishlist
                 dataFromPLP={pdpPopUpOpenClose?.data}
                 pdpSellerData={pdpSellerData}
+                handleOpenClose={handleOpenClose}
               />
             )}
             <div className="modal_bottom_button_main">

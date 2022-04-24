@@ -89,7 +89,8 @@ export const Footer = () => {
               <Link to={`/:${geo?.country_name}/legal`} className="to_CMS">
                 <li>Legal</li>
               </Link>
-              <li className="to_CMS cookie"
+              <li
+                className="to_CMS cookie"
                 onClick={() => {
                   setisCookies(true);
                 }}

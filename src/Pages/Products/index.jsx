@@ -45,8 +45,12 @@ export const Products = () => {
               ? productFetchApi?.search_product
               : "",
             eta: productFetchApi?.eta ? productFetchApi?.eta : "0",
-            min_price: 0,
-            max_price: 0,
+            min_price: productFetchApi?.min_price
+              ? productFetchApi?.min_price
+              : 0,
+            max_price: productFetchApi?.max_price
+              ? productFetchApi?.max_price
+              : 0,
           },
         };
         axios
@@ -63,7 +67,7 @@ export const Products = () => {
               value: false,
             });
           })
-          .catch((err) => 
+          .catch((err) =>
             dispatch({
               type: "SET_IS_LOADING",
               value: false,
