@@ -25,7 +25,8 @@ function formatToCurrency(amount) {
 }
 
 const MiniCartList = ({ handleSideBarClose }) => {
-  const [{ cart, currency, isSimpleLoading, geo }, dispatch] = useStateValue();
+  const [{ cart, currency, isSimpleLoading, geo, customstore }, dispatch] =
+    useStateValue();
   const [value, setValue] = React.useState(4);
   const navigate = useNavigate();
   const [isCartData, setIsCartData] = useState([]);
@@ -172,7 +173,7 @@ const MiniCartList = ({ handleSideBarClose }) => {
   };
   const addpendinginvoice = async () => {
     handleSideBarClose("right", false);
-    let storedata = JSON.parse(localStorage.getItem('storedata'))
+    let storedata = JSON.parse(localStorage.getItem("storedata"));
     try {
       const pinvoice = await axios({
         method: "post",

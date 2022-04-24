@@ -44,7 +44,7 @@ export const Userdetails = () => {
             </li>
             <h6 className="User_Call_tag">From 8:00 to 17:00 (Mon-Sat)</h6>
           </div> */}
-          {(isSignedIn?.group_id === 5 && kycStatus?.[0]?.value !== "2") ||
+          {(isSignedIn?.group_id === 5 && kycStatus?.[0]?.value === "2") ||
           (isSignedIn?.group_id === 6 && kycStatus?.[0]?.value === "2") ? (
             <>
               <div className="user_account">

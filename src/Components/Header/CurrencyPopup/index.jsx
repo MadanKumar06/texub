@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./styles";
 
+import { useNavigate } from "react-router-dom";
 import { Button, Menu, MenuItem } from "@mui/material";
 import { withStyles } from "@mui/styles";
 import { ExpandMore } from "@mui/icons-material";
@@ -17,7 +18,7 @@ const CurrencyPopup = ({ classes }) => {
   // let { country } = useParams();
   // console.log(country)
   const [anchorEl, setAnchorEl] = useState(null);
-  const [{geo, customstore}, dispatch] = useStateValue();
+  const [{ geo, customstore }, dispatch] = useStateValue();
   const [apiDropDowns, setApiDropDowns] = useState("");
   const [selectedValue, setSelectedValue] = useState({
     currency_code: "",
@@ -27,6 +28,7 @@ const CurrencyPopup = ({ classes }) => {
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+  const navigate = useNavigate();
 
   const handleClose = () => {
     setAnchorEl(null);
@@ -49,25 +51,31 @@ const CurrencyPopup = ({ classes }) => {
   }, [selectedValue]);
   //API for fetch dropdown values
   useEffect(() => {
-    // debugger
-    console.log(customstore)
-    console.log(geo?.country_name)
-    if(geo === '' && customstore === '') return
+    if (geo === "" && customstore === "") return;
     const fetchCurrencyDropDownData = () => {
       let data = {
-        geoCode:geo?.country_code,
-        storeCode: customstore ? customstore : geo?.country_name
-      }
+        geoCode: geo?.country_code,
+        storeCode:
+          customstore !== ""
+            ? customstore?.toLowerCase()
+            : geo?.country_name?.toLowerCase(),
+      };
+      debugger;
       axios
         .post(Constant.baseUrl() + "/getCurrency", data, {
           headers: {
             "Content-Type": "application/json",
           },
-        })  
+        })
         .then((res) => {
           setApiDropDowns(res?.data?.[1]?.currency);
-          console.log(res.data?.[0]?.store)
-          localStorage.setItem('storedata', JSON.stringify(res.data?.[0]?.store))
+          debugger;
+          console.log(res.data?.[0]?.store);
+          localStorage.setItem(
+            "storedata",
+            JSON.stringify(res.data?.[0]?.store)
+          );
+          navigate(`/${res.data?.[0]?.store?.code}`);
           setSelectedValue({
             currency_code: res?.data?.[1]?.currency?.[0]?.currency_code,
             currency_id: res?.data?.[1]?.currency?.[0]?.currency_id,
@@ -86,7 +94,6 @@ const CurrencyPopup = ({ classes }) => {
     };
     fetchCurrencyDropDownData();
   }, [geo, customstore]);
-
 
   return (
     <div className={classes.header_dropdown}>
