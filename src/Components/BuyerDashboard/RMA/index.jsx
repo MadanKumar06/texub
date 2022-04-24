@@ -5,8 +5,10 @@ import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import Pagination from "../../Pagination";
+import { useStateValue } from "../../../store/state";
 
 function RMA() {
+  const [{geo}, dispatch] = useStateValue()
   const [tableData, setTableData] = useState([]);
   const ordertype = [
     { name: "All RMA" },
@@ -156,7 +158,7 @@ function RMA() {
     <div className="rma_container">
       <div className="rma__footer">
         <div className="rma__container">
-          <Link to="/buyerdashboard/dashboard">
+          <Link to={`/:${geo?.country_name}/buyerdashboard/dashboard`}>
             <ArrowBackIosNew />
             <span>Back</span>
           </Link>

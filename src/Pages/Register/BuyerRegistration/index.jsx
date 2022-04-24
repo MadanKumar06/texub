@@ -31,7 +31,7 @@ import axios from "axios";
 import Constant from "../../../Constant";
 
 const BuyerRegistration = ({ classes }) => {
-  const [{}, dispatch] = useStateValue();
+  const [{geo}, dispatch] = useStateValue();
   const history = useNavigate();
   let {
     main_container,
@@ -678,8 +678,8 @@ const BuyerRegistration = ({ classes }) => {
                 />
                 <p>
                   By using this form you agree with the{" "}
-                  <Link to="/termsofuse" target="_blank">Terms of Use</Link> and{" "}
-                  <Link to="/privacypolicy" target="_blank">Privacy Policy</Link> by this
+                  <Link to={`/:${geo?.country_name}/termsofuse`} target="_blank">Terms of Use</Link> and{" "}
+                  <Link to={`/:${geo?.country_name}/privacypolicy`} target="_blank">Privacy Policy</Link> by this
                   website.
                 </p>
               </div>

@@ -1,5 +1,10 @@
-import React, { useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  // useNavigate,
+} from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
 import { useStateValue } from "./store/state";
@@ -55,13 +60,10 @@ import RegisterPopup from "./Pages/Register/RegisterPopup/SectionLeft";
 import MiniCartList from "./Pages/MiniCart/MiniCartList";
 import SimpleBackdrop from "./Components/LoaderBackDrop";
 import { getSigninedUserData } from "./utilities";
+import axios from "axios";
 
 const App = () => {
-  useEffect(() => {
-    getSigninedUserData((res) => {
-      console.log(res);
-    });
-  }, []);
+  const [geo, setgeo] = useState([]);
 
   const [
     {
@@ -74,6 +76,22 @@ const App = () => {
     },
     dispatch,
   ] = useStateValue();
+
+  useEffect(async () => {
+    const res = await axios.get("https://geolocation-db.com/json/");
+    setgeo(res.data);
+    dispatch({
+      type: "GEO__LOCATION",
+      data: res.data,
+    });
+  }, []);
+
+  useEffect(() => {
+    getSigninedUserData((res) => {
+      console.log(res);
+    });
+  }, []);
+
   let isKYCSubmitted = JSON.parse(localStorage.getItem("userdata"));
   useEffect(() => {
     if (isKYCSubmitted) {
@@ -88,6 +106,7 @@ const App = () => {
         });
     }
   }, []);
+  // const navigate = useNavigate();
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
@@ -98,7 +117,18 @@ const App = () => {
           <Routes>
             {/* header section */}
             <Route
-              path="/"
+              path={"/"}
+              element={
+                <>
+                  {" "}
+                  <Home /> <ScrollToTop /> <Footer />{" "}
+                </>
+              }
+              exact
+            />
+            {/* <navigate exact from="/" to={`/:${geo?.country_name}`} /> */}
+            <Route
+              path={`/:${geo?.country_name}`}
               element={
                 <>
                   {" "}
@@ -108,7 +138,8 @@ const App = () => {
               exact
             />
             <Route
-              path="/resetpassword/:token"
+              // path="/resetpassword/:token"
+              path={`/:${geo?.country_name}/resetpassword/:token`}
               element={
                 <>
                   {" "}
@@ -118,7 +149,8 @@ const App = () => {
               exact
             />
             <Route
-              path="/register/:type"
+              // path="/register/:type"
+              path={`/:${geo?.country_name}/register/:type`}
               element={
                 <>
                   {" "}
@@ -128,7 +160,8 @@ const App = () => {
               exact
             />
             <Route
-              path="/products"
+              // path="/products"
+              path={`/:${geo?.country_name}/products`}
               element={
                 <>
                   {" "}
@@ -138,7 +171,8 @@ const App = () => {
               exact
             />
             <Route
-              path="/Aboutus"
+              // path="/Aboutus"
+              path={`/:${geo?.country_name}/Aboutus`}
               element={
                 <>
                   {" "}
@@ -148,7 +182,8 @@ const App = () => {
               exact
             />
             <Route
-              path="/coming-soon"
+              // path="/coming-soon"
+              path={`/:${geo?.country_name}/coming-soon`}
               element={
                 <>
                   {" "}
@@ -160,7 +195,8 @@ const App = () => {
 
             {/* Footer section */}
             <Route
-              path="/legal"
+              // path="/legal"
+              path={`/:${geo?.country_name}/legal`}
               element={
                 <>
                   {" "}
@@ -170,7 +206,8 @@ const App = () => {
               exact
             />
             <Route
-              path="/gdpr"
+              // path="/gdpr"
+              path={`/:${geo?.country_name}/gdpr`}
               element={
                 <>
                   {" "}
@@ -180,7 +217,8 @@ const App = () => {
               exact
             />
             <Route
-              path="/Faqs"
+              // path="/Faqs"
+              path={`/:${geo?.country_name}/Faqs`}
               element={
                 <>
                   {" "}
@@ -190,7 +228,8 @@ const App = () => {
               exact
             />
             <Route
-              path="/Contactus"
+              // path="/Contactus"
+              path={`/:${geo?.country_name}/Contactus`}
               element={
                 <>
                   {" "}
@@ -200,7 +239,8 @@ const App = () => {
               exact
             />
             <Route
-              path="/privacypolicy"
+              // path="/privacypolicy"
+              path={`/:${geo?.country_name}/privacypolicy`}
               element={
                 <>
                   {" "}
@@ -210,7 +250,8 @@ const App = () => {
               exact
             />
             <Route
-              path="/termsofuse"
+              // path="/termsofuse"
+              path={`/:${geo?.country_name}/termsofuse`}
               element={
                 <>
                   {" "}
@@ -220,7 +261,8 @@ const App = () => {
               exact
             />
             <Route
-              path="/productlistingpolicy"
+              // path="/productlistingpolicy"
+              path={`/:${geo?.country_name}/productlistingpolicy`}
               element={
                 <>
                   {" "}
@@ -230,7 +272,8 @@ const App = () => {
               exact
             />
             <Route
-              path="/rrpolicy"
+              // path="/rrpolicy"
+              path={`/:${geo?.country_name}/rrpolicy`}
               element={
                 <>
                   {" "}
@@ -240,7 +283,8 @@ const App = () => {
               exact
             />
             <Route
-              path="/training"
+              // path="/training"
+              path={`/:${geo?.country_name}/training`}
               element={
                 <>
                   {" "}
@@ -250,7 +294,8 @@ const App = () => {
               exact
             />
             <Route
-              path="/seller_advantage"
+              // path="/seller_advantage"
+              path={`/:${geo?.country_name}/seller_advantage`}
               element={
                 <>
                   {" "}
@@ -260,7 +305,8 @@ const App = () => {
               exact
             />
             <Route
-              path="/buyer_advantage"
+              // path="/buyer_advantage"
+              path={`/:${geo?.country_name}/buyer_advantage`}
               element={
                 <>
                   {" "}
@@ -270,7 +316,8 @@ const App = () => {
               exact
             ></Route>
             <Route
-              path="/career"
+              // path="/career"
+              path={`/:${geo?.country_name}/career`}
               element={
                 <>
                   {" "}
@@ -280,7 +327,8 @@ const App = () => {
               exact
             ></Route>
             <Route
-              path="/blogsmain"
+              // path="/blogsmain"
+              path={`/:${geo?.country_name}/blogsmain`}
               element={
                 <>
                   {" "}
@@ -290,7 +338,8 @@ const App = () => {
               exact
             />
             <Route
-              path="/blogsdetails/:id"
+              // path="/blogsdetails/:id"
+              path={`/:${geo?.country_name}/blogsdetails/:id`}
               element={
                 <>
                   {" "}
@@ -300,7 +349,8 @@ const App = () => {
               exact
             />
             <Route
-              path="/faqs"
+              // path="/faqs"
+              path={`/:${geo?.country_name}/faqs`}
               element={
                 <>
                   {" "}
@@ -312,7 +362,8 @@ const App = () => {
 
             {/* user section */}
             <Route
-              path="/sellerdashboard/:currenttab"
+              // path="/sellerdashboard/:currenttab"
+              path={`/:${geo?.country_name}/sellerdashboard/:currenttab`}
               element={
                 <>
                   {" "}
@@ -322,7 +373,8 @@ const App = () => {
               exact
             />
             <Route
-              path="/sellerdashboard/:currenttab/:id"
+              // path="/sellerdashboard/:currenttab/:id"
+              path={`/:${geo?.country_name}/sellerdashboard/:currenttab/:id`}
               element={
                 <>
                   {" "}
@@ -332,7 +384,8 @@ const App = () => {
               exact
             />
             <Route
-              path="/buyerdashboard/:currenttab"
+              // path="/buyerdashboard/:currenttab"
+              path={`/:${geo?.country_name}/buyerdashboard/:currenttab`}
               element={
                 <>
                   {" "}
@@ -342,7 +395,8 @@ const App = () => {
               exact
             />
             <Route
-              path="/sellerprofile/:id"
+              // path="/sellerprofile/:id"
+              path={`/:${geo?.country_name}/sellerprofile/:id`}
               element={
                 <>
                   {" "}
@@ -352,7 +406,8 @@ const App = () => {
               exact
             />
             <Route
-              path="/pending-invoice"
+              // path="/pending-invoice"
+              path={`/:${geo?.country_name}/pending-invoice`}
               element={
                 <>
                   {" "}
@@ -362,7 +417,8 @@ const App = () => {
               exact
             />
             <Route
-              path="/checkout"
+              // path="/checkout"
+              path={`/:${geo?.country_name}/checkout`}
               element={
                 <>
                   {" "}
@@ -372,7 +428,8 @@ const App = () => {
               exact
             />
             <Route
-              path="/mycart"
+              // path="/mycart"
+              path={`/:${geo?.country_name}/mycart`}
               element={
                 <>
                   {" "}
@@ -382,7 +439,8 @@ const App = () => {
               exact
             />
             <Route
-              path="/thankyou/:type"
+              // path="/thankyou/:type"
+              path={`/:${geo?.country_name}/thankyou/:type`}
               element={
                 <>
                   {" "}
@@ -392,7 +450,8 @@ const App = () => {
               exact
             ></Route>
             <Route
-              path="/edit"
+              // path="/edit"
+              path={`/:${geo?.country_name}/edit`}
               element={
                 <>
                   {" "}
@@ -402,7 +461,8 @@ const App = () => {
               exact
             />
             <Route
-              path="/kycdetails"
+              // path="/kycdetails"
+              path={`/:${geo?.country_name}/kycdetails`}
               element={
                 <>
                   {" "}

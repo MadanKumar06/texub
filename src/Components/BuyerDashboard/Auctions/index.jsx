@@ -4,9 +4,11 @@ import AuctionCard from "./AuctionCard/Index";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import Pagination from "../../Pagination";
+import { useStateValue } from "../../../store/state";
 
 function Index() {
   const [tableData, setTableData] = useState([]);
+  const [{geo}, dispatch] = useStateValue()
 
   const auctiondata = [
     {
@@ -81,7 +83,7 @@ function Index() {
     <div className="auctions">
       <div className="auctions__footer">
         <div className="auctions__container">
-          <Link to="/buyerdashboard/dashboard">
+          <Link to={`/:${geo?.country_name}/buyerdashboard/dashboard`}>
             <ArrowBackIosNew />
             <span>Back</span>
           </Link>

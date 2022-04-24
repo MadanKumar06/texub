@@ -15,10 +15,11 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import Constant from "../../Constant";
-
+import { useStateValue } from "../../store/state";
 import pending_invoice_image from "../../Assets/PendingInvoice/Group 1051.png";
 
 const PendingInvoice = () => {
+  const [{geo}, dispatch] = useStateValue()
   const [pendingInvoiceList, setPendingInvoiceList] = useState([]);
 
   useEffect(() => {
@@ -52,8 +53,8 @@ const PendingInvoice = () => {
       <div className="pending_invoice_breadcrumbs">
         <Stack spacing={2}>
           <Breadcrumbs separator="››" aria-label="breadcrumb">
-            <Link to="/">Home</Link>
-            <Link to="/mycart">Cart</Link>
+            <Link to={`/:${geo?.country_name}`}>Home</Link>
+            <Link to={`/:${geo?.country_name}/mycart`}>Cart</Link>
             <Typography key="3" color="#002D56">
               Pending Invoice
             </Typography>
@@ -194,7 +195,7 @@ const PendingInvoice = () => {
               </p>
             </div>
           </div>
-          <Link to="/checkout">
+          <Link to={`/:${geo?.country_name}/checkout`}>
             <Button className="proceed_btn">Proceed To Checkout</Button>
           </Link>
         </div>

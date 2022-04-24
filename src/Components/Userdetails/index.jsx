@@ -8,8 +8,10 @@ import { useNavigate } from "react-router-dom";
 
 import whishlist_image from "../../Assets/User/Icon.png";
 import MiniCartDrawer from "../../Pages/MiniCart";
+import { useStateValue } from "../../store/state";
 
 export const Userdetails = () => {
+  const [{geo}, dispatch] = useStateValue()
   let isSignedIn = JSON.parse(localStorage.getItem("userdata"));
   let kycStatus = JSON.parse(
     localStorage.getItem("userdata")
@@ -18,10 +20,12 @@ export const Userdetails = () => {
   const handleWishlist = () => {
     history("/buyerdashboard/wishlist");
   };
+
+
   return (
     <div className="user_details_main_container">
       <div className="logo">
-        <Link to="/">
+        <Link to={`/:${geo?.country_name}`}>
           <img src={logo} alt="texub logo" />
         </Link>
       </div>

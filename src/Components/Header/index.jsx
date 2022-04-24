@@ -14,7 +14,7 @@ import axios from "axios";
 import Constant from "../../Constant";
 
 const Header = ({ classes }) => {
-  const [{ currency, cart, gt }, dispatch] = useStateValue();
+  const [{ currency, cart, gt, geo }, dispatch] = useStateValue();
   let isSignedIn = JSON.parse(localStorage.getItem("userdata"));
 
   useEffect(async () => {
@@ -104,31 +104,31 @@ const Header = ({ classes }) => {
           <MenuList />
           <div className={classes.company_logo}>
             {/* //height="48px" width="140px" */}
-            <Link to="/">
+            <Link to={`/:${geo?.country_name}`}>
               <img src={logo} alt="" />
             </Link>
           </div>
           <div className={classes.title_main}>
             <Typography variant="h6" className={classes.title}>
-              <Link to="/aboutus" className={classes.middle}>
+              <Link to={`/:${geo?.country_name}/aboutus`} className={classes.middle}>
                 About Us
               </Link>
             </Typography>
             <Typography variant="h6" className={classes.title}>
-              <Link to="/products">Products</Link>
+              <Link to={`/:${geo?.country_name}/products`}>Products</Link>
               <span>New</span>
             </Typography>
             <Typography variant="h6" className={classes.title}>
-              <Link to="/coming-soon"> Sell On TEXUB </Link>
+              <Link to={`/:${geo?.country_name}/coming-soon`}> Sell On TEXUB </Link>
             </Typography>
             <Typography variant="h6" className={classes.title}>
-              <Link to="/coming-soon"> Buy On TEXUB </Link>
+              <Link to={`/:${geo?.country_name}/coming-soon`}> Buy On TEXUB </Link>
             </Typography>
             {/* <Typography variant="h6" className={classes.title}>
-              <Link to="/Faqs"> FAQ</Link>
+              <Link to={`/:${geo?.country_name}/Faqs`}> FAQ</Link>
             </Typography> */}
             <Typography variant="h6" className={classes.title}>
-              <Link to="/Contactus"> Contact Us </Link>
+              <Link to={`/:${geo?.country_name}/Contactus`}> Contact Us </Link>
             </Typography>
           </div>
 
@@ -139,7 +139,6 @@ const Header = ({ classes }) => {
                   className={classes.header_button_register}
                   onClick={() => RegistrationPop()}
                 >
-                  {/* <Link to="/register"> Register </Link> */}
                   Register
                 </Button>
                 <Button

@@ -6,12 +6,13 @@ import { isPasswordValid, isEmailValid } from "../../../../utilities";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import PhoneInput from "react-phone-input-2";
-import axios from "axios"
-import baseUrl from '../../../../../src/Constant'
+import axios from "axios";
+import baseUrl from "../../../../../src/Constant";
+import { useStateValue } from "../../../../store/state";
+
 const Index = (classes) => {
-  let {
-    validation_error
-  } = classes;
+  const [{ geo }, dispatch] = useStateValue();
+  let { validation_error } = classes;
   const [AccountInfoData, setAccountInfoData] = useState({
     first_name: "",
     last_name: "",
@@ -20,7 +21,7 @@ const Index = (classes) => {
     new_password: "",
     new_confrim_password: "",
   });
-  const [CountryDropdown, setCountryDropdown] = useState(null)
+  const [CountryDropdown, setCountryDropdown] = useState(null);
   const [inputValidation, setInputValidation] = useState({
     first_name: "",
     last_name: "",
@@ -40,7 +41,7 @@ const Index = (classes) => {
   const handleMobileChangeInput = (event) => {
     setAccountInfoData((prevState) => ({
       ...prevState,
-      mobile_number: event
+      mobile_number: event,
     }));
     setInputValidation("");
   };
@@ -191,74 +192,76 @@ const Index = (classes) => {
         .then((response) => {
           setCountryDropdown(response?.data);
         })
-        .catch((error) => { });
-    }
-   fetchCountryList();
-}, []);
-{}
+        .catch((error) => {});
+    };
+    fetchCountryList();
+  }, []);
+  {
+  }
 
-return (
-  <div className='account_ifo_main'>
-    <span className='Account_heading'> <p>EDIT PROFILE INFORMATION</p></span>
-    <div className='account_info_edit' >
-      {/* <form className='form' > */}
-      <div className='form'>
-        <div className='inputfield_section'>
-          <div className='inputfield'>
-            <p>First Name</p>
-            <TextField
-
-              id="first_name"
-              name="first_name"
-              placeholder='First Name'
-              value={AccountInfoData?.first_name}
-              InputLabelProps={{
-                shrink: false,
-              }}
-              onChange={handleChangeInput}
-            />
-            <InputLabel className={validation_error}
-            >
-              {inputValidation?.first_name}
-            </InputLabel>
+  return (
+    <div className="account_ifo_main">
+      <span className="Account_heading">
+        {" "}
+        <p>EDIT PROFILE INFORMATION</p>
+      </span>
+      <div className="account_info_edit">
+        {/* <form className='form' > */}
+        <div className="form">
+          <div className="inputfield_section">
+            <div className="inputfield">
+              <p>First Name</p>
+              <TextField
+                id="first_name"
+                name="first_name"
+                placeholder="First Name"
+                value={AccountInfoData?.first_name}
+                InputLabelProps={{
+                  shrink: false,
+                }}
+                onChange={handleChangeInput}
+              />
+              <InputLabel className={validation_error}>
+                {inputValidation?.first_name}
+              </InputLabel>
+            </div>
+            <div className="inputfield">
+              <p>Last Name</p>
+              <TextField
+                id="last_name"
+                name="last_name"
+                placeholder="Last Name"
+                value={AccountInfoData?.last_name}
+                InputLabelProps={{
+                  shrink: false,
+                }}
+                onChange={handleChangeInput}
+              />
+              <InputLabel className={validation_error}>
+                {inputValidation?.last_name}
+              </InputLabel>
+            </div>
           </div>
-          <div className='inputfield'>
-            <p>Last Name</p>
-            <TextField
-              id="last_name"
-              name="last_name"
-              placeholder='Last Name'
-              value={AccountInfoData?.last_name}
-              InputLabelProps={{
-                shrink: false,
-              }}
-              onChange={handleChangeInput}
-            />
-            <InputLabel className={validation_error}>
-              {inputValidation?.last_name}
-            </InputLabel>
-          </div>
-        </div>
-        <div className='inputfield_section'>
-          <div className='inputfield'>
-            <p>Mobile Number</p>
-            <PhoneInput
-              country={'in'}
-              id="mobile_number"
-              fullWidth
-              enableSearch={true}
-              countryCodeEditable={false}
-              className="inputfield-box"
-              name="mobile_number"
-              value={AccountInfoData?.mobile_number}
-              InputLabelProps={{
-                shrink: true,
-                required: true,
-              }}
-              onChange={handleMobileChangeInput} 
-              variant="outlined"
-            />
-            {/* <MuiPhoneNumber
+          <div className="inputfield_section">
+            <div className="inputfield">
+              <p>Mobile Number</p>
+              <PhoneInput
+                country={"in"}
+                id="mobile_number"
+                fullWidth
+                enableSearch={true}
+                countryCodeEditable={false}
+                className="inputfield-box"
+                name="mobile_number"
+                value={AccountInfoData?.mobile_number}
+                InputLabelProps={{
+                  shrink: true,
+                  required: true,
+                }}
+                onChange={handleMobileChangeInput}
+                variant="outlined"
+              />
+              {/* <MuiPhoneNumber
                 // preferredCountries={["india"]}
                 defaultCountry={'in'}
                 id="mobile_number"
@@ -271,79 +274,87 @@ return (
                 onChange={handleMobileChangeInput}
                 variant="outlined"
               /> */}
-            <InputLabel className={validation_error}>
-              {inputValidation?.mobile_number}
-            </InputLabel>
+              <InputLabel className={validation_error}>
+                {inputValidation?.mobile_number}
+              </InputLabel>
+            </div>
+            <div className="inputfield">
+              <p>Email Address</p>
+              <TextField
+                id="email_address"
+                name="email_address"
+                placeholder="E-Mail"
+                value={AccountInfoData?.email_address}
+                InputLabelProps={{
+                  shrink: false,
+                }}
+                onChange={handleChangeInput}
+              />
+              <InputLabel className={validation_error}>
+                {inputValidation?.email_address}
+              </InputLabel>
+            </div>
           </div>
-          <div className="inputfield">
-            <p>Email Address</p>
-            <TextField
-              id="email_address"
-              name="email_address"
-              placeholder="E-Mail"
-              value={AccountInfoData?.email_address}
-              InputLabelProps={{
-                shrink: false,
-              }}
-              onChange={handleChangeInput}
-            />
-            <InputLabel className={validation_error}>
-              {inputValidation?.email_address}
-            </InputLabel>
+          <div className="inputfield_section">
+            <div className="inputfield">
+              <p>New Password</p>
+              <TextField
+                id="new_password"
+                name="new_password"
+                value={AccountInfoData?.new_password}
+                type="password"
+                placeholder="New Password"
+                InputLabelProps={{
+                  shrink: false,
+                }}
+                onChange={handleChangeInput}
+              />
+              <InputLabel className={validation_error}>
+                {inputValidation?.new_password}
+              </InputLabel>
+            </div>
+            <div className="inputfield">
+              <p>Confirm New Password</p>
+              <TextField
+                id="new_confrim_password"
+                name="new_confrim_password"
+                placeholder="New Confirm Password"
+                value={AccountInfoData?.new_confrim_password}
+                type="password"
+                InputLabelProps={{
+                  shrink: false,
+                }}
+                onChange={handleChangeInput}
+              />
+              <InputLabel className={validation_error}>
+                {inputValidation?.new_confrim_password}
+              </InputLabel>
+            </div>
           </div>
+          <div className="accountinfo_btn">
+            <button className="account_info_cancel">Cancel</button>
+            <button
+              className="account_info_save"
+              onClick={() => handleClickValidation()}
+            >
+              Save Changes
+            </button>
+          </div>
+          {/* </form> */}
         </div>
-        <div className='inputfield_section'>
-          <div className='inputfield'>
-            <p>New Password</p>
-            <TextField
-              id="new_password"
-              name="new_password"
-              value={AccountInfoData?.new_password}
-              type="password"
-              placeholder='New Password'
-              InputLabelProps={{
-                shrink: false,
-              }}
-              onChange={handleChangeInput}
-            />
-            <InputLabel className={validation_error}>
-              {inputValidation?.new_password}
-            </InputLabel>
-
-          </div>
-          <div className='inputfield'>
-            <p>Confirm New Password</p>
-            <TextField
-              id="new_confrim_password"
-              name="new_confrim_password"
-              placeholder='New Confirm Password'
-              value={AccountInfoData?.new_confrim_password}
-              type="password"
-              InputLabelProps={{
-                shrink: false,
-              }}
-              onChange={handleChangeInput}
-            />
-            <InputLabel className={validation_error}>
-              {inputValidation?.new_confrim_password}
-            </InputLabel>
-          </div>
-
+        <div className="my_profile_back">
+          <Link
+            to={`/:${geo?.country_name}/buyerdashboard/dashboard`}
+            className="link"
+          >
+            <ArrowBackIosNew />
+            <span>
+              <p className="back">Back</p>
+            </span>
+          </Link>
         </div>
-        <div className='accountinfo_btn'>
-          <button className='account_info_cancel'>Cancel</button>
-          <button className='account_info_save' onClick={() => handleClickValidation()} >Save Changes</button>
-        </div>
-        {/* </form> */}
-      </div>
-      <div className='my_profile_back'>
-        <Link to="/buyerdashboard/dashboard" className="link">
-          <ArrowBackIosNew /><span><p className='back'>Back</p></span>
-        </Link>
-
       </div>
     </div>
-  </div>
-);
+  );
 };
 export default Index;

@@ -7,9 +7,11 @@ import myOrderLogo from "../../../Assets/CommonImage/MyAccountMegamenu/shopping-
 import auctionsLogo from "../../../Assets/CommonImage/MyAccountMegamenu/auction.png";
 import logoutLogo from "../../../Assets/CommonImage/MyAccountMegamenu/logout.png";
 import account_circle from "../../../Assets/CommonImage/My Account.png";
+import { useStateValue } from "../../../store/state";
 
 import swal from "sweetalert2";
 const MyAccountPopup = () => {
+  const [{geo}, dispatch] = useStateValue()
   let isSignedIn = JSON.parse(localStorage.getItem("userdata"));
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -73,7 +75,7 @@ const MyAccountPopup = () => {
       >
         {isSignedIn?.group_id === 5 && (
           <MenuItem onClick={() => handleClose()}>
-            <Link to="/buyerdashboard/dashboard">
+            <Link to={`/:${geo?.country_name}/buyerdashboard/dashboard`}>
               <img src={dashboardLogo} alt="" />
               Dashboard
             </Link>
@@ -81,14 +83,14 @@ const MyAccountPopup = () => {
         )}
         {isSignedIn?.group_id === 6 && (
           <MenuItem onClick={() => handleClose()}>
-            <Link to="/sellerdashboard/dashboard">
+            <Link to={`/:${geo?.country_name}/sellerdashboard/dashboard`}>
               <img src={dashboardLogo} alt="" />
               Seller Dashboard
             </Link>
           </MenuItem>
         )}
         <MenuItem onClick={() => handleClose()}>
-          <Link to="/kycdetails">
+          <Link to={`/:${geo?.country_name}/kycdetails`}>
             <img src={dashboardLogo} alt="" />
             KYC Details
           </Link>
@@ -104,7 +106,7 @@ const MyAccountPopup = () => {
               Auctions
             </MenuItem>
             <MenuItem onClick={() => handleClose()}>
-              <Link to="/buyerdashboard/invoiceslist">
+              <Link to={`/:${geo?.country_name}/buyerdashboard/invoiceslist`}>
                 <img src={auctionsLogo} alt="" />
                 Pending Invoices
               </Link>

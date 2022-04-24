@@ -32,7 +32,7 @@ import { useNavigate, Link } from "react-router-dom";
 
 const BuyerRegistration = ({ classes }) => {
   const history = useNavigate();
-  const [{}, dispatch] = useStateValue();
+  const [{geo}, dispatch] = useStateValue();
   let {
     main_container,
     input_fields,
@@ -889,8 +889,8 @@ const BuyerRegistration = ({ classes }) => {
                 />
                 <p>
                   By using this form you agree with the{" "}
-                  <Link to="/termsofuse" target="_blank">Terms of Use</Link> and{" "}
-                  <Link to="/privacypolicy" target="_blank">Privacy Policy</Link> by this
+                  <Link to={`/:${geo?.country_name}/termsofuse`} target="_blank">Terms of Use</Link> and{" "}
+                  <Link to={`/:${geo?.country_name}/privacypolicy`} target="_blank">Privacy Policy</Link> by this
                   website.
                 </p>
               </div>

@@ -21,7 +21,7 @@ function Index({ registerproduct }) {
   const [apiTableData, setApiTableData] = useState([]);
   const [searchList, setSearchList] = useState([]);
   const [search, setSearch] = useState("");
-  const [{}, dispatch] = useStateValue();
+  const [{geo}, dispatch] = useStateValue();
 
   const [offersOpenClose, setOffersOpenClose] = useState({
     isOpenClose: false,
@@ -307,7 +307,7 @@ function Index({ registerproduct }) {
           offersOpenClose={offersOpenClose}
         />
       )}
-      <Link className="inventory-page-back" to="/sellerdashboard/dashboard">
+      <Link className="inventory-page-back" to={`/:${geo?.country_name}/sellerdashboard/dashboard`}>
         <ArrowBackIosNew />
         <span>Back</span>
       </Link>

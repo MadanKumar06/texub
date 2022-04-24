@@ -12,7 +12,7 @@ import { useStateValue } from "../../../../store/state";
 import swal from "sweetalert2";
 
 const WantToBuy = () => {
-  const [{}, dispatch] = useStateValue();
+  const [{geo}, dispatch] = useStateValue();
   const [wantTobuyData, setWantToBuyData] = useState({
     part_number: "",
     model_name_number: "",
@@ -406,7 +406,7 @@ const WantToBuy = () => {
       </div>
       <div className="want_to_buy__footer">
         <div className="want_to_buy__container">
-          <Link to="/buyerdashboard/dashboard">
+          <Link to={`/:${geo?.country_name}/buyerdashboard/dashboard`}>
             <ArrowBackIosNew />
             <span>Back</span>
           </Link>

@@ -7,6 +7,7 @@ import "./styles.scss";
 import Vieworders from '../../Common/Vieworders'
 import transaction_type from "../../../Assets/buyerdashboard/InvoicesList/paypal (1).png"
 import transaction_type1 from "../../../Assets/buyerdashboard/InvoicesList/braintree-logo-black.png"
+import { useStateValue } from "../../../store/state";
 function Index() {
   const [tableData, setTableData] = useState([]);
   const ordertype = [
@@ -14,7 +15,7 @@ function Index() {
     { name: "Pending Invoices" },
     { name: "Paid Invoices" },
   ];
-
+  const [{geo}, dispatch] = useStateValue()
   const [type, settype] = useState();
 
   const selectorder = (value) => {
@@ -177,7 +178,7 @@ function Index() {
     <div className="invoices_main">
       <div className="invoices__footer">
         <div className="invoices__container">
-          <Link to="/buyerdashboard/dashboard">
+          <Link to={`/:${geo?.country_name}/buyerdashboard/dashboard`}>
             <ArrowBackIosNew />
             <span>Back</span>
           </Link>

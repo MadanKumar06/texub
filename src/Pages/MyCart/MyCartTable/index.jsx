@@ -23,7 +23,7 @@ const MyCartTable = ({ cartDataList, deleteCartData }) => {
   const [is_table_quantity_test, setis_table_quantity_test] = useState([]);
   console.log(cartDataList[0]?.invoice_items?.length);
 
-  const [{ pdpPopUpOpenClose }, dispatch] = useStateValue();
+  const [{ pdpPopUpOpenClose, geo }, dispatch] = useStateValue();
   useEffect(() => {
     let temp =
       cartDataList?.[0]?.invoice_items?.length &&
@@ -238,7 +238,7 @@ const MyCartTable = ({ cartDataList, deleteCartData }) => {
                   <p className="my_cart_product_name">{productname}</p>
                   <p className="my_cart_product_description">{description}</p>
                   <div className="my_cart_link">
-                    <Link to="/">Details</Link>
+                    <Link to={`/:${geo?.country_name}`}>Details</Link>
                     <span className="link_2" onClick={() => list(product_id)}>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"

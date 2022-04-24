@@ -14,7 +14,7 @@ function Index() {
     if (apiTableData?.length === 0) return setApiTableData([]);
     setTableData(event);
   };
-  const [{}, dispatch] = useStateValue();
+  const [{geo}, dispatch] = useStateValue();
   const [apiTableData, setApiTableData] = useState([]);
   useEffect(() => {
     const fetchTableData = async () => {
@@ -120,7 +120,7 @@ function Index() {
     <div className="orders">
       <div className="orders__back__footer">
         <div className="orders__back__container">
-          <Link to="/buyerdashboard/dashboard">
+          <Link to={`/:${geo?.country_name}/buyerdashboard/dashboard`}>
             <ArrowBackIosNew />
             <span>Back</span>
           </Link>

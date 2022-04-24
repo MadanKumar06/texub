@@ -6,7 +6,10 @@ import Autocomplete from "@mui/material/Autocomplete";
 import { useParams } from "react-router-dom";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import { Link } from "react-router-dom";
+import { useStateValue } from '../../../../../store/state';
+
 const Index = (classes) => {
+  const [{geo}, dispatch] = useStateValue()
     const List =[
         {title:"Cart Approval Required",},
         {title:"Can Approve Carts",},
@@ -289,7 +292,7 @@ if (!NewSubAccountData?.active) {
     </div>
     <div className='my_profile_btns'>
     <div className='my_profile_back'>
-    <Link to="/buyerdashboard/dashboard" className="link">
+    <Link to={`/:${geo?.country_name}/buyerdashboard/dashboard`} className="link">
         <ArrowBackIosNew /><span><p className='back'>Back</p></span>
           </Link>
       </div>
