@@ -31,7 +31,7 @@ function SellerDashboard() {
 
   const selectmenu = (value) => {
     setcurrentmenu(value);
-    navigate(`/:${geo?.country_name}/sellerdashboard/${value}`);
+    navigate(`/${geo?.country_name}/sellerdashboard/${value}`);
     setshowregister(false);
     setbarstate(false);
   };
@@ -48,11 +48,11 @@ function SellerDashboard() {
   const registerproduct = (value, value1, value2) => {
     setshowregister(true);
     if (value === "updateproduct") {
-      navigate(`/:${geo?.country_name}/sellerdashboard/${value}/${value1}`);
+      navigate(`/${geo?.country_name}/sellerdashboard/${value}/${value1}`);
     } else if (value === "addproduct") {
-      navigate(`/:${geo?.country_name}/sellerdashboard/${value}/${value1}`);
+      navigate(`/${geo?.country_name}/sellerdashboard/${value}/${value1}`);
     } else {
-      navigate(`/:${geo?.country_name}/sellerdashboard/${value}`);
+      navigate(`/${geo?.country_name}/sellerdashboard/${value}`);
     }
   };
 

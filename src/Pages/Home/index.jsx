@@ -19,12 +19,18 @@ export const Home = () => {
 
   const history = useParams()
   const navigate = useNavigate()
-  console.log()
+  
+  let { country } = useParams();
+
+  useEffect(() => {
+    console.log(country);
+  }, [country]);
+
   useEffect(() => {
     if(geo === "") return
     let temp = Object.values(history)
     if(temp.length === 0) {
-      navigate(`/:${geo?.country_name}`)
+      navigate(`/${geo?.country_name}`)
     }
   }, [geo])
 

@@ -158,7 +158,7 @@ function RMA() {
     <div className="rma_container">
       <div className="rma__footer">
         <div className="rma__container">
-          <Link to={`/:${geo?.country_name}/buyerdashboard/dashboard`}>
+          <Link to={`/${geo?.country_name}/buyerdashboard/dashboard`}>
             <ArrowBackIosNew />
             <span>Back</span>
           </Link>

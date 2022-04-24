@@ -292,7 +292,7 @@ if (!NewSubAccountData?.active) {
     </div>
     <div className='my_profile_btns'>
     <div className='my_profile_back'>
-    <Link to={`/:${geo?.country_name}/buyerdashboard/dashboard`} className="link">
+    <Link to={`/${geo?.country_name}/buyerdashboard/dashboard`} className="link">
         <ArrowBackIosNew /><span><p className='back'>Back</p></span>
           </Link>
       </div>

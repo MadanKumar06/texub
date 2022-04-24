@@ -25,12 +25,12 @@ export const Userdetails = () => {
 
 
   const handleDashboard = () => {
-    history("/sellerdashboard/dashboard");
+    history(`/${geo?.country_name}/sellerdashboard/dashboard`);
   };
   return (
     <div className="user_details_main_container">
       <div className="logo">
-        <Link to={`/:${geo?.country_name}`}>
+        <Link to={`/${geo?.country_name}`}>
           <img src={logo} alt="texub logo" />
         </Link>
       </div>

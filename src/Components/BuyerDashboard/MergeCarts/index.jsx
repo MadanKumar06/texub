@@ -130,7 +130,7 @@ function MergeCarts() {
     <div className="mergecarts">
       <div className="mergecarts__footer">
         <div className="mergecarts__container">
-          <Link to={`/:${geo?.country_name}/buyerdashboard/dashboard`}>
+          <Link to={`/${geo?.country_name}/buyerdashboard/dashboard`}>
             <ArrowBackIosNew />
             <span>Back</span>
           </Link>

@@ -9,11 +9,12 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import { withStyles } from "@mui/styles";
-
+import { useStateValue } from "../../../../store/state";
 import styles from "./styles";
 import buyer_img from "../../../../Assets/CommonImage/RegisterPopup/user_select_buyer.png";
 import seller_img from "../../../../Assets/CommonImage/RegisterPopup/user_select_seller.png";
 const SectionRight = ({ classes, handleClose, handleClassChange }) => {
+  const [{geo}, dispatch] = useStateValue()
   let {
     radio_btn_container,
     select_text,
@@ -26,6 +27,7 @@ const SectionRight = ({ classes, handleClose, handleClassChange }) => {
   const handleChange = (event) => {
     handleClassChange(event);
   };
+
   return (
     <FormControl component="fieldset" className={radio_btn_container}>
       <FormLabel component="legend" className={select_text}>
@@ -89,7 +91,7 @@ const SectionRight = ({ classes, handleClose, handleClassChange }) => {
         </div>
       )}
       <Link
-        to={`/register${userDescription ? "/buyer" : "/seller"}`}
+        to={`${geo?.country_name}/register${userDescription ? "/buyer" : "/seller"}`}
         className={btn_link}
       >
         <Button

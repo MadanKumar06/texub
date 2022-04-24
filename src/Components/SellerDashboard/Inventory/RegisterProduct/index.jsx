@@ -649,7 +649,7 @@ function RegisterProduct() {
       </div>
 
       <div className="registerproduct__submit">
-        <Link to={`/:${geo?.country_name}/sellerdashboard/inventory`}>
+        <Link to={`/${geo?.country_name}/sellerdashboard/inventory`}>
           <span className="registerproduct__back">Back</span>
         </Link>
         <Box>

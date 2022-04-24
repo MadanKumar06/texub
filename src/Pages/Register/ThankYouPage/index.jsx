@@ -86,7 +86,7 @@ const ThankyouPage = ({ classes }) => {
             </Button>
           </Box>
         )}
-        <Link to={`/:${geo?.country_name}`}>
+        <Link to={`/${geo?.country_name}`}>
           <p className={thankyou_backto_home}>Back To Homepage</p>
         </Link>
       </div>

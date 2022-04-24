@@ -263,7 +263,7 @@ function ApproveCart() {
     <div className="approve__cart">
       <div className="approve__cart__footer">
         <div className="approve__cart__container">
-          <Link to={`/:${geo?.country_name}/buyerdashboard/dashboard`}>
+          <Link to={`/${geo?.country_name}/buyerdashboard/dashboard`}>
             <ArrowBackIosNew />
             <span>Back</span>
           </Link>

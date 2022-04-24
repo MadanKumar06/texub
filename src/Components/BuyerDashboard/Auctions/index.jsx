@@ -83,7 +83,7 @@ function Index() {
     <div className="auctions">
       <div className="auctions__footer">
         <div className="auctions__container">
-          <Link to={`/:${geo?.country_name}/buyerdashboard/dashboard`}>
+          <Link to={`/${geo?.country_name}/buyerdashboard/dashboard`}>
             <ArrowBackIosNew />
             <span>Back</span>
           </Link>

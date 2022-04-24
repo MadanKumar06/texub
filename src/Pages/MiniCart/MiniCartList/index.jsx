@@ -172,6 +172,7 @@ const MiniCartList = ({ handleSideBarClose }) => {
   };
   const addpendinginvoice = async () => {
     handleSideBarClose("right", false);
+    let storedata = JSON.parse(localStorage.getItem('storedata'))
     try {
       const pinvoice = await axios({
         method: "post",
@@ -181,7 +182,7 @@ const MiniCartList = ({ handleSideBarClose }) => {
         },
         data: {
           quote_id: cart?.[0]?.invoice?.Cart_id,
-          store_id: 1,
+          store_id: storedata?.store_id,
         },
       });
       navigate("/pending-invoice");
@@ -337,7 +338,7 @@ const MiniCartList = ({ handleSideBarClose }) => {
             </div>
             <div className="minicart_btn">
               <Link
-                to={`/:${geo?.country_name}/mycart`}
+                to={`/${geo?.country_name}/mycart`}
                 onClick={() => handleSideBarClose("right", false)}
               >
                 <Button className="minicart_bottom_button_cart">

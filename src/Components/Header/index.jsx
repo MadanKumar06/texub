@@ -105,31 +105,31 @@ const Header = ({ classes }) => {
           <MenuList />
           <div className={classes.company_logo}>
             {/* //height="48px" width="140px" */}
-            <Link to={`/:${geo?.country_name}`}>
+            <Link to={`/${geo?.country_name}`}>
               <img src={logo} alt="" />
             </Link>
           </div>
           <div className={classes.title_main}>
             <Typography variant="h6" className={classes.title}>
-              <Link to={`/:${geo?.country_name}/aboutus`} className={classes.middle}>
+              <Link to={`/${geo?.country_name}/aboutus`} className={classes.middle}>
                 About Us
               </Link>
             </Typography>
             <Typography variant="h6" className={classes.title}>
-              <Link to={`/:${geo?.country_name}/products`}>Products</Link>
+              <Link to={`/${geo?.country_name}/products`}>Products</Link>
               <span>New</span>
             </Typography>
             <Typography variant="h6" className={classes.title}>
-              <Link to={`/:${geo?.country_name}/coming-soon`}> Sell On TEXUB </Link>
+              <Link to={`/${geo?.country_name}/coming-soon`}> Sell On TEXUB </Link>
             </Typography>
             <Typography variant="h6" className={classes.title}>
-              <Link to={`/:${geo?.country_name}/coming-soon`}> Buy On TEXUB </Link>
+              <Link to={`/${geo?.country_name}/coming-soon`}> Buy On TEXUB </Link>
             </Typography>
             {/* <Typography variant="h6" className={classes.title}>
-              <Link to={`/:${geo?.country_name}/Faqs`}> FAQ</Link>
+              <Link to={`/${geo?.country_name}/Faqs`}> FAQ</Link>
             </Typography> */}
             <Typography variant="h6" className={classes.title}>
-              <Link to={`/:${geo?.country_name}/Contactus`}> Contact Us </Link>
+              <Link to={`/${geo?.country_name}/Contactus`}> Contact Us </Link>
             </Typography>
           </div>
 

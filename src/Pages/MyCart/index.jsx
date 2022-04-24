@@ -91,6 +91,7 @@ const Mycart = () => {
       type: "SET_IS_LOADING",
       value: true,
     });
+    let storedata = JSON.parse(localStorage.getItem('storedata'))
     try {
       const pinvoice = await axios({
         method: "post",
@@ -100,7 +101,7 @@ const Mycart = () => {
         },
         data: {
           quote_id: cart[0]?.invoice?.Cart_id,
-          store_id: 1,
+          store_id: storedata?.store_id,
         },
       });
       navigate("/pending-invoice");
@@ -126,7 +127,7 @@ const Mycart = () => {
       <div className="my_cart_breadcrumbs">
         <Stack spacing={2}>
           <Breadcrumbs separator=">>" aria-label="breadcrumb">
-            <Link to={`/:${geo?.country_name}`}>Home</Link>
+            <Link to={`/${geo?.country_name}`}>Home</Link>
             <Typography key="4" color="#002D56">
               Cart
             </Typography>

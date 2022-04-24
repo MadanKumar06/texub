@@ -174,6 +174,7 @@ const TransitionsModal = ({ classes }) => {
 
   //API to Register
   const FinalGuestRegistration = () => {
+    let storedata = JSON.parse(localStorage.getItem('storedata'))
     dispatch({
       type: "SET_IS_LOADING",
       value: true,
@@ -181,7 +182,7 @@ const TransitionsModal = ({ classes }) => {
     let data = {
       customer: {
         website_id: 1,
-        store_id: 2,
+        store_id: storedata?.store_id,
         email: guestData?.email_address,
         first_name: guestData?.first_name,
         last_name: guestData?.last_name,

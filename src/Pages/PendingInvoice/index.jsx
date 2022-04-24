@@ -53,8 +53,8 @@ const PendingInvoice = () => {
       <div className="pending_invoice_breadcrumbs">
         <Stack spacing={2}>
           <Breadcrumbs separator="››" aria-label="breadcrumb">
-            <Link to={`/:${geo?.country_name}`}>Home</Link>
-            <Link to={`/:${geo?.country_name}/mycart`}>Cart</Link>
+            <Link to={`/${geo?.country_name}`}>Home</Link>
+            <Link to={`/${geo?.country_name}/mycart`}>Cart</Link>
             <Typography key="3" color="#002D56">
               Pending Invoice
             </Typography>
@@ -195,7 +195,7 @@ const PendingInvoice = () => {
               </p>
             </div>
           </div>
-          <Link to={`/:${geo?.country_name}/checkout`}>
+          <Link to={`/${geo?.country_name}/checkout`}>
             <Button className="proceed_btn">Proceed To Checkout</Button>
           </Link>
         </div>

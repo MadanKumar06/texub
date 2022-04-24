@@ -32,7 +32,7 @@ const SuccesMessage = ({ msg }) => {
         {location?.state === "update" && (
           <p>You have updated the product details successfully.</p>
         )}
-        <Link to={`/:${geo?.country_name}/sellerdashboard/inventory`}>
+        <Link to={`/${geo?.country_name}/sellerdashboard/inventory`}>
           <p className="link">Back To Inventory</p>
         </Link>
       </div>

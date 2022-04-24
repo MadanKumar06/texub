@@ -344,7 +344,7 @@ const Index = (classes) => {
         </div>
         <div className="my_profile_back">
           <Link
-            to={`/:${geo?.country_name}/buyerdashboard/dashboard`}
+            to={`/${geo?.country_name}/buyerdashboard/dashboard`}
             className="link"
           >
             <ArrowBackIosNew />

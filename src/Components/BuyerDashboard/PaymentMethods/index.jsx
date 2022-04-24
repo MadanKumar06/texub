@@ -69,7 +69,7 @@ function PaymentMethod() {
     <div className="payment_method">
       <div className="payment_method__footer">
         <div className="payment_method__container">
-          <Link to={`/:${geo?.country_name}/buyerdashboard/dashboard`}>
+          <Link to={`/${geo?.country_name}/buyerdashboard/dashboard`}>
             <ArrowBackIosNew />
             <span>Back</span>
           </Link>

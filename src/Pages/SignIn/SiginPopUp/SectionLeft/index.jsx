@@ -176,6 +176,7 @@ const TransitionsModal = ({ classes, openPopUp }) => {
     });
   }, []);
   const ForgotPasswordFinalApi = () => {
+    let storedata = JSON.parse(localStorage.getItem('storedata'))
     dispatch({
       type: "SET_IS_LOADING",
       value: true,
@@ -184,7 +185,7 @@ const TransitionsModal = ({ classes, openPopUp }) => {
       data: {
         email: signInData?.forgot_email_address,
         website_id: 1,
-        store_id: 1,
+        store_id: storedata?.store_id,
       },
     };
     axios
@@ -221,6 +222,7 @@ const TransitionsModal = ({ classes, openPopUp }) => {
   };
   //API to Register
   const FinalSignin = () => {
+    let storedata = JSON.parse(localStorage.getItem('storedata'))
     dispatch({
       type: "SET_IS_LOADING",
       value: true,
@@ -228,6 +230,7 @@ const TransitionsModal = ({ classes, openPopUp }) => {
     let data = {
       username: signInData?.email_address,
       password: signInData?.password,
+      store_id: storedata?.store_id,
     };
     axios
       .post(Constant.customerTokenUrl(), data, {

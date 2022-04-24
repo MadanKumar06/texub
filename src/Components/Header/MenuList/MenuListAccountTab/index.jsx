@@ -151,7 +151,7 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
         </Collapse>
         <Link
           className={classes.link_in_tab}
-          to={`/:${geo?.country_name}`}
+          to={`/${geo?.country_name}`}
           onClick={() => handleSideBarClose("left", false)}
         >
           <ListItem button>
@@ -161,7 +161,7 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
         </Link>
         <Link
           className={classes.link_in_tab}
-          to={`/:${geo?.country_name}/mycart`}
+          to={`/${geo?.country_name}/mycart`}
           onClick={() => handleSideBarClose("left", false)}
         >
           <ListItem button>
@@ -216,33 +216,33 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
           </Collapse>
         </List>
         <List onClick={() => handleSideBarClose("left", false)}>
-          <Link className={classes.link_in_tab} to={`/:${geo?.country_name}/aboutus`}>
+          <Link className={classes.link_in_tab} to={`/${geo?.country_name}/aboutus`}>
             <ListItem button>
               <ListItemText primary={"About Us"} />
             </ListItem>
           </Link>
-          <Link className={classes.link_in_tab} to={`/:${geo?.country_name}/products`}>
+          <Link className={classes.link_in_tab} to={`/${geo?.country_name}/products`}>
             <ListItem button>
               <ListItemText primary={"Products"} />
             </ListItem>
           </Link>
-          <Link className={classes.link_in_tab} to={`/:${geo?.country_name}/Sellontexhub`}>
+          <Link className={classes.link_in_tab} to={`/${geo?.country_name}/Sellontexhub`}>
             <ListItem button>
               <ListItemText primary={"Sell On TEXUB"} />
             </ListItem>
           </Link>
-          <Link className={classes.link_in_tab} to={`/:${geo?.country_name}/Buyontexhub`}>
+          <Link className={classes.link_in_tab} to={`/${geo?.country_name}/Buyontexhub`}>
             <ListItem button>
               <ListItemText primary={"Buy On TEXUB"} />
             </ListItem>
           </Link>
-          {/* <Link className={classes.link_in_tab} to={`/:${geo?.country_name}`}>
+          {/* <Link className={classes.link_in_tab} to={`/${geo?.country_name}`}>
             <ListItem button>
               <ListItemText primary={"FAQ"} />
             </ListItem>
           </Link> */}
 
-          <Link className={classes.link_in_tab} to={`/:${geo?.country_name}/Contactus`}>
+          <Link className={classes.link_in_tab} to={`/${geo?.country_name}/Contactus`}>
             <ListItem button>
               <ListItemText primary={"Contact Us"} />
             </ListItem>

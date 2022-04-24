@@ -82,7 +82,7 @@ const Whislist = () => {
     <div className="wishlist_main_container">
       <div className="wishlist__footer">
         <div className="wishlist__container">
-          <Link to={`/:${geo?.country_name}/buyerdashboard/dashboard`}>
+          <Link to={`/${geo?.country_name}/buyerdashboard/dashboard`}>
             <ArrowBackIosNew />
             <span>Back</span>
           </Link>

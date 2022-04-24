@@ -204,7 +204,7 @@ const Index = () => {
       )}
       <div className="directenquiries__footer">
         <div className="directenquiries__container">
-          <Link to={`/:${geo?.country_name}/sellerdashboard/dashboard`}>
+          <Link to={`/${geo?.country_name}/sellerdashboard/dashboard`}>
             <ArrowBackIosNew />
             <span>Back</span>
           </Link>

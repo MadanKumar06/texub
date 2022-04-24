@@ -133,7 +133,7 @@ function SubAccountOrders() {
   return (
     <div className="subaccount__orders">
       <div className="subaccount__orders__back">
-        <Link to={`/:${geo?.country_name}/buyerdashboard/dashboard`}>
+        <Link to={`/${geo?.country_name}/buyerdashboard/dashboard`}>
           <ArrowBackIosNew />
           <span>Back</span>
         </Link>

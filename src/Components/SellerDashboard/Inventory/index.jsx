@@ -323,7 +323,7 @@ function Index({ registerproduct }) {
           offersOpenClose={offersOpenClose}
         />
       )}
-      <Link className="inventory-page-back" to={`/:${geo?.country_name}/sellerdashboard/dashboard`}>
+      <Link className="inventory-page-back" to={`/${geo?.country_name}/sellerdashboard/dashboard`}>
         <ArrowBackIosNew />
         <span>Back</span>
       </Link>

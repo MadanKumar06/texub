@@ -1252,7 +1252,7 @@ function Index({ type, pid }) {
       </div>
 
       <div className="updateproduct__buttons">
-        <Link to={`/:${geo?.country_name}/sellerdashboard/inventory`}>
+        <Link to={`/${geo?.country_name}/sellerdashboard/inventory`}>
           <span className="updateproduct__back">Back</span>
         </Link>
         {/* <Link

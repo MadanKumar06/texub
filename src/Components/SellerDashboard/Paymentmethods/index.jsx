@@ -196,7 +196,7 @@ const Index = () => {
     <div className="paymentmethod_container">
       <div className="paymentmethod__footer">
         <div className="paymentmethod__container">
-          <Link to={`/:${geo?.country_name}/sellerdashboard/dashboard`}>
+          <Link to={`/${geo?.country_name}/sellerdashboard/dashboard`}>
             <ArrowBackIosNew />
             <span>Back</span>
           </Link>

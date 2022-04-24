@@ -152,7 +152,7 @@ function Index() {
       {!vieworder ? <>
         <div className="orders__back__footer">
           <div className="orders__back__container">
-            <Link to={`/:${geo?.country_name}/buyerdashboard/dashboard`}>
+            <Link to={`/${geo?.country_name}/buyerdashboard/dashboard`}>
               <ArrowBackIosNew />
               <span>Back</span>
             </Link>
