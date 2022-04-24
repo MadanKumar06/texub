@@ -16,8 +16,9 @@
     }
     .MuiTableRow-root {
       .MuiTableCell-root {
-        font-size: 22px;
+        font-size: 16px;
         text-align: center;
+        vertical-align: middle;
       }
     }
 
@@ -181,16 +182,16 @@
   }
   .usermgmt .usermgmt__table {
     .MuiTableHead-root .MuiTableCell-root {
-      font-size: 20px;
+      font-size: 16px;
     }
 
     .MuiTableBody-root {
       .myorders__action {
-        font-size: 16px;
+        font-size: 14px;
       }
 
       .MuiTableCell-root {
-        font-size: 18px;
+        font-size: 14px;
       }
     }
   }
