@@ -12,7 +12,7 @@ import Constant from "../../Constant";
 import swal from "sweetalert2";
 
 const Mycart = () => {
-  const [{ cart, geo }, dispatch] = useStateValue();
+  const [{ cart, geo, customstore }, dispatch] = useStateValue();
 
   //API to fetch admin token
   const [adminToken, setAdminToken] = useState("");
@@ -127,7 +127,7 @@ const Mycart = () => {
       <div className="my_cart_breadcrumbs">
         <Stack spacing={2}>
           <Breadcrumbs separator=">>" aria-label="breadcrumb">
-            <Link to={`/${geo?.country_name}`}>Home</Link>
+            <Link to={`/${customstore ? customstore : geo?.country_name}`}>Home</Link>
             <Typography key="4" color="#002D56">
               Cart
             </Typography>

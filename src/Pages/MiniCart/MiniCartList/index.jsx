@@ -338,7 +338,7 @@ const MiniCartList = ({ handleSideBarClose }) => {
             </div>
             <div className="minicart_btn">
               <Link
-                to={`/${geo?.country_name}/mycart`}
+                to={`/${customstore ? customstore : geo?.country_name}/mycart`}
                 onClick={() => handleSideBarClose("right", false)}
               >
                 <Button className="minicart_bottom_button_cart">

@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 import { useStateValue } from '../../../../../store/state';
 
 const Index = ({classes}) => {
-   const [{geo}, dispatch] = useStateValue()
+   const [{geo, customstore}, dispatch] = useStateValue()
   let {
     auto_complete_input,
     input_image_name,
@@ -309,7 +309,7 @@ const Index = ({classes}) => {
         </div>
       </div>
       <div className='my_profile_back'>
-      <Link to={`/${geo?.country_name}/buyerdashboard/dashboard`} className="link">
+      <Link to={`/${customstore ? customstore : geo?.country_name}/buyerdashboard/dashboard`} className="link">
         <ArrowBackIosNew /><span><p className='back'>Back</p></span>
           </Link>
       </div>

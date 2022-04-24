@@ -14,7 +14,7 @@ import styles from "./styles";
 import buyer_img from "../../../../Assets/CommonImage/RegisterPopup/user_select_buyer.png";
 import seller_img from "../../../../Assets/CommonImage/RegisterPopup/user_select_seller.png";
 const SectionRight = ({ classes, handleClose, handleClassChange }) => {
-  const [{geo}, dispatch] = useStateValue()
+  const [{geo, customstore}, dispatch] = useStateValue()
   let {
     radio_btn_container,
     select_text,
@@ -91,7 +91,7 @@ const SectionRight = ({ classes, handleClose, handleClassChange }) => {
         </div>
       )}
       <Link
-        to={`${geo?.country_name}/register${userDescription ? "/buyer" : "/seller"}`}
+        to={`${customstore ? customstore : geo?.country_name}/register${userDescription ? "/buyer" : "/seller"}`}
         className={btn_link}
       >
         <Button

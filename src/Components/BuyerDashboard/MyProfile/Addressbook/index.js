@@ -9,7 +9,7 @@ import { useStateValue } from "../../../../store/state";
 // import axios from "axios";
 
 const Index = () => {
-  const [{ geo }, dispatch] = useStateValue();
+  const [{ geo, customstore }, dispatch] = useStateValue();
   // data state //storage
   //  const [data, setData] = useState([]);
   //  useEffect(() => {
@@ -138,7 +138,9 @@ const Index = () => {
           </div>
           <div className="my_profile_back">
             <Link
-              to={`/${geo?.country_name}/buyerdashboard/dashboard`}
+              to={`/${
+                customstore ? customstore : geo?.country_name
+              }/buyerdashboard/dashboard`}
               className="link"
             >
               <ArrowBackIosNew />

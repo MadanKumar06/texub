@@ -9,7 +9,7 @@ import paypal_image from '../../../Assets/sellerdashboard/dashboard/paypal (1).p
 import braintree_image from '../../../Assets/sellerdashboard/dashboard/paypal (1).png'
 
 const Index = () => {
-  const [{geo}, dispatch] = useStateValue()
+  const [{geo, customstore}, dispatch] = useStateValue()
   const [isUopup,setisUopup] = useState(false)
   const Popup =() =>{
     setisUopup(true)
@@ -196,7 +196,7 @@ const Index = () => {
     <div className="paymentmethod_container">
       <div className="paymentmethod__footer">
         <div className="paymentmethod__container">
-          <Link to={`/${geo?.country_name}/sellerdashboard/dashboard`}>
+          <Link to={`/${customstore ? customstore : geo?.country_name}/sellerdashboard/dashboard`}>
             <ArrowBackIosNew />
             <span>Back</span>
           </Link>
