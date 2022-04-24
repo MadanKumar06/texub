@@ -7,9 +7,11 @@ import Companyinfo from './Accountinfo/Companyinfo'
 import Subusers from './Subusers'
 import Edit_image from "../../../Assets/CheckoutPage/Group 913.png";
 import { Link } from "react-router-dom";
+import { useStateValue } from '../../../store/state';
 
 const Index = () => {
   const [isAccountinfo, setisAccountinfo] = useState(true)
+  const [{geo}, dispatch] = useStateValue()
   const Acinfo = () => {
     setisAccountinfo(!(isAccountinfo))
     setisEdit(false)
@@ -135,7 +137,7 @@ const Index = () => {
             </div>
           </div>
           <div className='my_profile_back'>
-        <Link to="/buyerdashboard/dashboard" className='link'>
+        <Link to={`/${geo?.country_name}/buyerdashboard/dashboard`} className='link'>
         <ArrowBackIosNew /><span><p className='back'>Back</p></span>
           </Link>
       </div>

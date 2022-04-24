@@ -5,7 +5,10 @@ import { Link } from "react-router-dom";
 import Pagination from "../../Pagination";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import ViewOrder from '../../Common/Vieworders'
+import { useStateValue } from "../../../store/state";
+
 function Index() {
+  const [{geo}, dispatch] = useStateValue()
   const [tableData, setTableData] = useState([]);
   const ordertype = [
     { name: "All Orders" },
@@ -149,7 +152,7 @@ function Index() {
       {!vieworder ? <>
         <div className="orders__back__footer">
           <div className="orders__back__container">
-            <Link to="/buyerdashboard/dashboard">
+            <Link to={`/${geo?.country_name}/buyerdashboard/dashboard`}>
               <ArrowBackIosNew />
               <span>Back</span>
             </Link>

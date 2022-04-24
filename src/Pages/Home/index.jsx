@@ -9,12 +9,30 @@ import { B2Bconnect } from "../../Components/Home/B2Bconnect/B2Bconnect";
 import Constant from '../../Constant'
 import axios from "axios";
 import { useStateValue } from "../../store/state";
+import { useParams, useNavigate, Route } from "react-router-dom";
 
 export const Home = () => {
-  const [{}, dispatch] = useStateValue()
+  const [{geo}, dispatch] = useStateValue()
   const [homedata, sethomedata] = useState({
     homecontent: []
   })
+
+  const history = useParams()
+  const navigate = useNavigate()
+  
+  let { country } = useParams();
+
+  useEffect(() => {
+    console.log(country);
+  }, [country]);
+
+  useEffect(() => {
+    if(geo === "") return
+    let temp = Object.values(history)
+    if(temp.length === 0) {
+      navigate(`/${geo?.country_name}`)
+    }
+  }, [geo])
 
   useEffect(async() =>{
     try {

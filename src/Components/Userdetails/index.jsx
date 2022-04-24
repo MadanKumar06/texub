@@ -8,10 +8,12 @@ import { useNavigate } from "react-router-dom";
 
 import whishlist_image from "../../Assets/User/Icon.png";
 import MiniCartDrawer from "../../Pages/MiniCart";
+import { useStateValue } from "../../store/state";
 import notification from "../../Assets/sellerdashboard/notification.png";
 import dashboardLogo from "../../Assets/CommonImage/MyAccountMegamenu/menu.png";
 
 export const Userdetails = () => {
+  const [{geo}, dispatch] = useStateValue()
   let isSignedIn = JSON.parse(localStorage.getItem("userdata"));
   let kycStatus = JSON.parse(
     localStorage.getItem("userdata")
@@ -20,13 +22,15 @@ export const Userdetails = () => {
   const handleWishlist = () => {
     history("/buyerdashboard/wishlist");
   };
+
+
   const handleDashboard = () => {
-    history("/sellerdashboard/dashboard");
+    history(`/${geo?.country_name}/sellerdashboard/dashboard`);
   };
   return (
     <div className="user_details_main_container">
       <div className="logo">
-        <Link to="/">
+        <Link to={`/${geo?.country_name}`}>
           <img src={logo} alt="texub logo" />
         </Link>
       </div>

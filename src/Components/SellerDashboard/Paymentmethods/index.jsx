@@ -2,13 +2,14 @@ import React, { useState } from 'react'
 import './styles.scss'
 import MUITable from '../../Common/MUITable'
 import { Link } from "react-router-dom";
+import {useStateValue} from '../../../store/state'
 import { ArrowBackIosNew } from "@mui/icons-material";
 import Enquirydetails from '../../SellerDashboard/Directenqueries/Enquirydetails'
 import paypal_image from '../../../Assets/sellerdashboard/dashboard/paypal (1).png'
 import braintree_image from '../../../Assets/sellerdashboard/dashboard/paypal (1).png'
 
 const Index = () => {
-
+  const [{geo}, dispatch] = useStateValue()
   const [isUopup,setisUopup] = useState(false)
   const Popup =() =>{
     setisUopup(true)
@@ -195,7 +196,7 @@ const Index = () => {
     <div className="paymentmethod_container">
       <div className="paymentmethod__footer">
         <div className="paymentmethod__container">
-          <Link to="/sellerdashboard/dashboard">
+          <Link to={`/${geo?.country_name}/sellerdashboard/dashboard`}>
             <ArrowBackIosNew />
             <span>Back</span>
           </Link>

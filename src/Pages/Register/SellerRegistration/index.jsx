@@ -32,7 +32,7 @@ import { useNavigate, Link } from "react-router-dom";
 
 const BuyerRegistration = ({ classes }) => {
   const history = useNavigate();
-  const [{}, dispatch] = useStateValue();
+  const [{geo}, dispatch] = useStateValue();
   let {
     main_container,
     input_fields,
@@ -407,6 +407,7 @@ const BuyerRegistration = ({ classes }) => {
   };
   //API to Register
   const FinalSellerRegistration = () => {
+    let storedata = JSON.parse(localStorage.getItem('storedata'))
     dispatch({
       type: "SET_IS_LOADING",
       value: true,
@@ -415,7 +416,7 @@ const BuyerRegistration = ({ classes }) => {
       customer: {
         group_id: 6,
         website_id: 1,
-        store_id: 2,
+        store_id: storedata?.store_id,
         email: sellerRegistrationData?.email_address,
         first_name: sellerRegistrationData?.first_name,
         last_name: sellerRegistrationData?.last_name,
@@ -889,14 +890,9 @@ const BuyerRegistration = ({ classes }) => {
                 />
                 <p>
                   By using this form you agree with the{" "}
-                  <a href="/termsofuse" target="_blank">
-                    Terms of Use
-                  </a>{" "}
-                  and{" "}
-                  <a href="/privacypolicy" target="_blank">
-                    Privacy Policy
-                  </a>{" "}
-                  by this website.
+                  <Link to={`/${geo?.country_name}/termsofuse`} target="_blank">Terms of Use</Link> and{" "}
+                  <Link to={`/${geo?.country_name}/privacypolicy`} target="_blank">Privacy Policy</Link> by this
+                  website.
                 </p>
               </div>
               <InputLabel className={validation_error}>

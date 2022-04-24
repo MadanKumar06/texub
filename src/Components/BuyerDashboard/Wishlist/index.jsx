@@ -11,7 +11,7 @@ import {useStateValue} from '../../../store/state'
 
 const Whislist = () => {
   const [tableData, setTableData] = useState([]);
-  const [{}, dispatch] = useStateValue()
+  const [{geo}, dispatch] = useStateValue()
   
   const PaginateDataSplit = (event) => {
     if(wishdata.length === 0) return setwishdata([])
@@ -82,7 +82,7 @@ const Whislist = () => {
     <div className="wishlist_main_container">
       <div className="wishlist__footer">
         <div className="wishlist__container">
-          <Link to="/buyerdashboard/dashboard">
+          <Link to={`/${geo?.country_name}/buyerdashboard/dashboard`}>
             <ArrowBackIosNew />
             <span>Back</span>
           </Link>

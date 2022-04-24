@@ -12,8 +12,10 @@ import Request from "./Request";
 import Pagination from "../../Pagination";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import { Link } from "react-router-dom";
+import { useStateValue } from "../../../store/state";
 
 function Index() {
+  const [{geo}, dispatch] =useStateValue()
   const [tableData, setTableData] = useState([]);
   const PaginateDataSplit = (event) => {
     setTableData(event);
@@ -106,7 +108,7 @@ function Index() {
     <div className="sellerservices">
       <div className="sellerservices__footer">
         <div className="sellerservices__container">
-          <Link to="/sellerdashboard/dashboard">
+          <Link to={`/${geo?.country_name}/sellerdashboard/dashboard`}>
             <ArrowBackIosNew />
             <span>Back</span>
           </Link>

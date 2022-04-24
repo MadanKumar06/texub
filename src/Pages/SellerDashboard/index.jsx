@@ -22,14 +22,16 @@ import PendingProduct from "../../Components/SellerDashboard/Inventory/PendingPr
 import SmartRecommendation from "../../Components/SellerDashboard/SmartRecommendation";
 import axios from "axios";
 import Constant from "../../Constant";
+import { useStateValue } from "../../store/state";
 
 function SellerDashboard() {
+  const [{geo}, dispatch] = useStateValue()
   const [currentmenu, setcurrentmenu] = useState();
   let navigate = useNavigate();
 
   const selectmenu = (value) => {
     setcurrentmenu(value);
-    navigate(`/sellerdashboard/${value}`);
+    navigate(`/${geo?.country_name}/sellerdashboard/${value}`);
     setshowregister(false);
     setbarstate(false);
   };
@@ -46,11 +48,11 @@ function SellerDashboard() {
   const registerproduct = (value, value1, value2) => {
     setshowregister(true);
     if (value === "updateproduct") {
-      navigate(`/sellerdashboard/${value}/${value1}`);
+      navigate(`/${geo?.country_name}/sellerdashboard/${value}/${value1}`);
     } else if (value === "addproduct") {
-      navigate(`/sellerdashboard/${value}/${value1}`);
+      navigate(`/${geo?.country_name}/sellerdashboard/${value}/${value1}`);
     } else {
-      navigate(`/sellerdashboard/${value}`);
+      navigate(`/${geo?.country_name}/sellerdashboard/${value}`);
     }
   };
 

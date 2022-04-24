@@ -12,7 +12,7 @@ import { useStateValue } from "../../../../store/state";
 import swal from "sweetalert2";
 
 const WantToBuy = () => {
-  const [{}, dispatch] = useStateValue();
+  const [{geo}, dispatch] = useStateValue();
   const [wantTobuyData, setWantToBuyData] = useState({
     part_number: "",
     model_name_number: "",
@@ -124,6 +124,7 @@ const WantToBuy = () => {
   console.log(dropdownListFromApi?.dropDownList);
   //API to Register
   const FinalWantToBuy = () => {
+    let storedata = JSON.parse(localStorage.getItem('storedata'))
     dispatch({
       type: "SET_IS_LOADING",
       value: true,
@@ -131,7 +132,7 @@ const WantToBuy = () => {
     let id = JSON.parse(localStorage.getItem("userdata"));
     let data = {
       data: {
-        store_id: 1,
+        store_id: storedata?.store_id,
         buyer_id: id?.id,
         part_number: wantTobuyData?.part_number,
         model_number: wantTobuyData?.model_name_number,
@@ -406,7 +407,7 @@ const WantToBuy = () => {
       </div>
       <div className="want_to_buy__footer">
         <div className="want_to_buy__container">
-          <Link to="/buyerdashboard/dashboard">
+          <Link to={`/${geo?.country_name}/buyerdashboard/dashboard`}>
             <ArrowBackIosNew />
             <span>Back</span>
           </Link>

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import MUITable from '../../../Components/Common/MUITable'
-import { Button } from "@mui/material";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import Pagination from "../../Pagination";
 import "./styles.scss";
+import { useStateValue } from "../../../store/state";
 import Vieworders from '../../Common/Vieworders'
 
 function Index() {
@@ -16,7 +16,7 @@ function Index() {
     { name: "Dispatched Orders" },
     { name: "Full-Filled Orders" },
   ];
-
+  const [{geo}, dispatch] = useStateValue();
   const [type, settype] = useState();
 
   const selectorder = (value) => {
@@ -160,7 +160,7 @@ function Index() {
     <div className="myorders">
       <div className="my_orders__footer">
         <div className="my_orders__container">
-          <Link to="/buyerdashboard/dashboard">
+          <Link to={`/${geo?.country_name}/buyerdashboard/dashboard`}>
             <ArrowBackIosNew />
             <span>Back</span>
           </Link>

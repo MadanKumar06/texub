@@ -1,7 +1,7 @@
 import React, {useState}from 'react'
 import TextField from '@mui/material/TextField';
 import './styles.scss'
-// import { useStateValue } from "../../../../../../src/store/state";
+import { useStateValue } from "../../../../../../src/store/state";
 import { Checkbox, FormControlLabel } from '@mui/material';
 import Autocomplete from "@mui/material/Autocomplete";
 import { useParams } from "react-router-dom";
@@ -9,7 +9,7 @@ import { ArrowBackIosNew } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 
 const Index = ({address}) => {  
-  // const [{}, dispatch] = useStateValue();
+  const [{geo}, dispatch] = useStateValue();
   let { type } = useParams();
   const city = ["Banglore", "Chennai","Hyderabad",];
   const state = ["Karnataka", "Tamilnadu","Telangana"];
@@ -216,7 +216,7 @@ const Index = ({address}) => {
         </form>
       </div>
       <div className='my_profile_back'>
-      <Link to="/buyerdashboard/dashboard" className="link">
+      <Link to={`/${geo?.country_name}/buyerdashboard/dashboard`} className="link">
         <ArrowBackIosNew /><span><p className='back'>Back</p></span>
           </Link>
       </div>

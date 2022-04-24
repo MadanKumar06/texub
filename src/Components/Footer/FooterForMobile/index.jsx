@@ -8,9 +8,11 @@ import {
   Typography,
 } from "@mui/material";
 import { ExpandMore } from "@mui/icons-material";
+import { useStateValue } from "../../../store/state";
 
 const MobileFooterAccordions = () => {
   const [expanded, setExpanded] = React.useState(false);
+  const [{geo}, dispatch] = useStateValue()
 
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
@@ -35,22 +37,22 @@ const MobileFooterAccordions = () => {
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Link to="/aboutus" className="link">
+          <Link to={`/${geo?.country_name}/aboutus`} className="link">
             <Typography>About Us</Typography>
           </Link>
-          <Link to="/termsofuse" className="link">
+          <Link to={`/${geo?.country_name}/termsofuse`} className="link">
             <Typography>Terms Of Use</Typography>
           </Link>
-          <Link to="/privacypolicy" className="link">
+          <Link to={`/${geo?.country_name}/privacypolicy`} className="link">
             <Typography>Privacy Policy</Typography>
           </Link>
-          <Link to="/rrpolicy" className="link">
+          <Link to={`/${geo?.country_name}/rrpolicy`} className="link">
             <Typography>Refund Policy</Typography>
           </Link>
-          <Link to="/" className="link">
+          <Link to={`/${geo?.country_name}`} className="link">
             <Typography>Product Listing Policy</Typography>
           </Link>
-          <Link to="/contactus" className="link">
+          <Link to={`/${geo?.country_name}/contactus`} className="link">
             <Typography>Contact Us</Typography>
           </Link>
         </AccordionDetails>
@@ -72,19 +74,19 @@ const MobileFooterAccordions = () => {
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Link to="/training" className="link">
+          <Link to={`/${geo?.country_name}/training`} className="link">
             <Typography>Training</Typography>
           </Link>
-          <Link to="/seller_advantage" className="link">
-            <Typography>Sell on Texub</Typography>
+          <Link to={`/${geo?.country_name}/seller_advantage`} className="link">
+            <Typography>Seller Advantage</Typography>
           </Link>
-          <Link to="/buyer_advantage" className="link">
-            <Typography>Buy On Texub</Typography>
+          <Link to={`/${geo?.country_name}/buyer_advantage`} className="link">
+            <Typography>Buyer Advantage</Typography>
           </Link>
-          <Link to="/career" className="link">
+          <Link to={`/${geo?.country_name}/career`} className="link">
             <Typography>Career</Typography>
           </Link>
-          <Link to="/" className="link">
+          <Link to={`/${geo?.country_name}`} className="link">
             <Typography>How Its Works</Typography>
           </Link>
         </AccordionDetails>
@@ -106,17 +108,17 @@ const MobileFooterAccordions = () => {
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Link to="/legal" className="link">
+          <Link to={`/${geo?.country_name}/legal`} className="link">
             <Typography>Legal </Typography>
           </Link>
           <Typography>Cookies Permission </Typography>
-          <Link to="/gdpr" className="link">
+          <Link to={`/${geo?.country_name}/gdpr`} className="link">
             <Typography>GDPR </Typography>
           </Link>
-          <Link to="/Faqs" className="link">
+          <Link to={`/${geo?.country_name}/Faqs`} className="link">
             <Typography>FAQs </Typography>
           </Link>
-          <Link to="/blogsmain" className="link">
+          <Link to={`/${geo?.country_name}/blogsmain`} className="link">
             <Typography>Blogs</Typography>
           </Link>
         </AccordionDetails>

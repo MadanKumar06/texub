@@ -11,7 +11,7 @@ import { useStateValue } from "../../../store/state";
 const Index = () => {
   const [isUopup, setisUopup] = useState(false);
   const [direct, setdirect] = useState([]);
-  const [{}, dispatch] = useStateValue();
+  const [{geo}, dispatch] = useStateValue();
 
   useEffect(async () => {
     let user = JSON.parse(localStorage.getItem("userdata"));
@@ -204,7 +204,7 @@ const Index = () => {
       )}
       <div className="directenquiries__footer">
         <div className="directenquiries__container">
-          <Link to="/sellerdashboard/dashboard">
+          <Link to={`/${geo?.country_name}/sellerdashboard/dashboard`}>
             <ArrowBackIosNew />
             <span>Back</span>
           </Link>

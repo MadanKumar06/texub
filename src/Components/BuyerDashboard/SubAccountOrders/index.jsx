@@ -5,8 +5,10 @@ import { ArrowBackIosNew } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import Pagination from "../../Pagination";
 import Vieworders from "../../Common/Vieworders";
+import {useStateValue} from '../../../store/state'
 
 function SubAccountOrders() {
+  const [{geo}, dispatch] = useStateValue()
   const [tableData, setTableData] = useState([]);
   const [isOrders, setisOrders] = useState(true);
   const [isVieworders, setisVieworders] = useState(false);
@@ -131,7 +133,7 @@ function SubAccountOrders() {
   return (
     <div className="subaccount__orders">
       <div className="subaccount__orders__back">
-        <Link to="/buyerdashboard/dashboard">
+        <Link to={`/${geo?.country_name}/buyerdashboard/dashboard`}>
           <ArrowBackIosNew />
           <span>Back</span>
         </Link>

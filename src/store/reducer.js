@@ -10,10 +10,17 @@ export const initialState = {
   cart: [],
   gt: false,
   homeSearch: "",
+  geo: "",
 };
 
 const reducer = (state, action) => {
+  // console.log(action);
   switch (action.type) {
+    case "GEO__LOCATION":
+      return {
+        ...state,
+        geo: action.data,
+      };
     case "SET_IS_LOADING":
       return {
         ...state,

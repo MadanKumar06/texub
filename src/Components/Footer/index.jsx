@@ -14,8 +14,10 @@ import User from "../../Assets/Homepage Assets/user.png";
 import Like from "../../Assets/Homepage Assets/like.png";
 import Home from "../../Assets/Homepage Assets/home.png";
 import Shopping from "../../Assets/Homepage Assets/Shoppingbag.png";
+import { useStateValue } from "../../store/state";
 
 export const Footer = () => {
+  const [{geo}, dispatch] = useStateValue()
   const [isCookies, setisCookies] = useState(false);
 
   return (
@@ -41,22 +43,22 @@ export const Footer = () => {
           <div className="Footer_box_col_234">
             <h2 className="Footer_Col_Heading">Company</h2>
             <ul className="Footer_col_list">
-              <Link to="/aboutus" className="to_CMS">
+              <Link to={`/${geo?.country_name}/aboutus`} className="to_CMS">
                 <li>About Us</li>
               </Link>
-              <Link to="/termsofuse" className="to_CMS">
+              <Link to= {`/${geo?.country_name}/termsofuse`} className="to_CMS">
                 <li>Terms Of Use</li>
               </Link>
-              <Link to="/privacypolicy" className="to_CMS">
+              <Link to= {`/${geo?.country_name}/privacypolicy`} className="to_CMS">
                 <li>Privacy Policy</li>
               </Link>
-              <Link to="/rrpolicy" className="to_CMS">
+              <Link to= {`/${geo?.country_name}/rrpolicy`} className="to_CMS">
                 <li>Refund Policy</li>
               </Link>
-              <Link to="/productlistingpolicy" className="to_CMS">
+              <Link to= {`/${geo?.country_name}/productlistingpolicy`} className="to_CMS">
                 <li> Product Listing Policy</li>
               </Link>
-              <Link to="/contactus" className="to_CMS">
+              <Link to= {`/${geo?.country_name}/contactus`} className="to_CMS">
                 <li>Contact Us</li>
               </Link>
             </ul>
@@ -64,19 +66,19 @@ export const Footer = () => {
           <div className="Footer_box_col_234">
             <h2 className="Footer_Col_Heading">Services</h2>
             <ul className="Footer_col_list">
-              <Link to="/training" className="to_CMS">
+              <Link to= {`/${geo?.country_name}/training`} className="to_CMS">
                 <li>Training</li>
               </Link>
-              <Link to="/seller_advantage" className="to_CMS">
-                <li>Sell on Texub</li>
+              <Link to={`/${geo?.country_name}/seller_advantage`} className="to_CMS">
+                <li>Seller Advantage</li>
               </Link>
-              <Link to="/buyer_advantage" className="to_CMS">
-                <li>Buy On Texub</li>
+              <Link to= {`/${geo?.country_name}/buyer_advantage`} className="to_CMS">
+                <li>Buyer Advantage</li>
               </Link>
-              <Link to="/career" className="to_CMS">
+              <Link to= {`/${geo?.country_name}/career`} className="to_CMS">
                 <li>Career</li>
               </Link>
-              <Link to="/" className="to_CMS">
+              <Link to={`/${geo?.country_name}`} className="to_CMS">
                 <li>How Its Works</li>
               </Link>
             </ul>
@@ -84,7 +86,7 @@ export const Footer = () => {
           <div className="Footer_box_col_234">
             <h2 className="Footer_Col_Heading">Resources</h2>
             <ul className="Footer_col_list">
-              <Link to="/legal" className="to_CMS">
+              <Link to={`/${geo?.country_name}/legal`} className="to_CMS">
                 <li>Legal</li>
               </Link>
               <li
@@ -95,13 +97,13 @@ export const Footer = () => {
               >
                 Cookies Permission
               </li>
-              <Link to="/gdpr" className="to_CMS">
+              <Link to= {`/${geo?.country_name}/gdpr`} className="to_CMS">
                 <li>GDPR</li>
               </Link>
-              <Link to="/Faqs" className="to_CMS">
+              <Link to= {`/${geo?.country_name}/Faqs`} className="to_CMS">
                 <li>FAQs</li>
               </Link>
-              <Link to="/blogsmain" className="to_CMS">
+              <Link to= {`/${geo?.country_name}/blogsmain`} className="to_CMS">
                 <li>Blogs</li>
               </Link>
             </ul>
@@ -118,16 +120,16 @@ export const Footer = () => {
         <p>Terms of Use</p>
       </div>
       <div className="User_Details">
-        <Link to="/">
+        <Link to={`/${geo?.country_name}`}>
           <img className="FooterUser" src={User} alt="" />
         </Link>
-        <Link to="/">
+        <Link to={`/${geo?.country_name}`}>
           <img className="FooterLike" src={Like} alt="" />
         </Link>
-        <Link to="/">
+        <Link to={`/${geo?.country_name}`}>
           <img className="FooterHome" src={Home} alt="" />
         </Link>
-        <Link to="/">
+        <Link to={`/${geo?.country_name}`}>
           <img className="FooterShop" src={Shopping} alt="" />
         </Link>
       </div>

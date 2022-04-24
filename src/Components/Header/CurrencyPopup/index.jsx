@@ -28,7 +28,7 @@ import inr from "../../../Assets/CommonImage/Currency switcher/Group 1132.png";
 // ];
 const CurrencyPopup = ({ classes }) => {
   const [anchorEl, setAnchorEl] = useState(null);
-  const [{}, dispatch] = useStateValue();
+  const [{geo}, dispatch] = useStateValue();
   const [apiDropDowns, setApiDropDowns] = useState("");
   const [selectedValue, setSelectedValue] = useState({
     currency_code: "",
@@ -61,32 +61,37 @@ const CurrencyPopup = ({ classes }) => {
   //API for fetch dropdown values
   useEffect(() => {
     const fetchCurrencyDropDownData = () => {
+      let data = {
+        geoCode:geo?.country_code,
+        // storeCode: geo?.country_name
+      }
       axios
-        .get(Constant.baseUrl() + "/getCurrency", {
+        .post(Constant.baseUrl() + "/getCurrency", data, {
           headers: {
             "Content-Type": "application/json",
           },
-        })
+        })  
         .then((res) => {
-          setApiDropDowns(res?.data);
+          setApiDropDowns(res?.data?.[1]?.currency);
+          localStorage.setItem('storedata', JSON.stringify(res.data?.[0]?.store))
           setSelectedValue({
-            currency_code: res?.data?.[0]?.currency_code,
-            currency_id: res?.data?.[0]?.currency_id,
-            currency_symbol: res?.data?.[0]?.currency_symbol,
+            currency_code: res?.data?.[1]?.currency?.[0]?.currency_code,
+            currency_id: res?.data?.[1]?.currency?.[0]?.currency_id,
+            currency_symbol: res?.data?.[1]?.currency?.[0]?.currency_symbol,
           });
           dispatch({
             type: "SET_CURRENCY",
             data: {
-              currency_code: res?.data?.[0]?.currency_code,
-              currency_id: res?.data?.[0]?.currency_id,
-              currency_symbol: res?.data?.[0]?.currency_symbol,
+              currency_code: res?.data?.[1]?.currency?.[0]?.currency_code,
+              currency_id: res?.data?.[1]?.currency?.[0]?.currency_id,
+              currency_symbol: res?.data?.[1]?.currency?.[0]?.currency_symbol,
             },
           });
         })
         .catch((err) => {});
     };
     fetchCurrencyDropDownData();
-  }, []);
+  }, [geo]);
 
   return (
     <div className={classes.header_dropdown}>

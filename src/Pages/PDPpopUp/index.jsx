@@ -125,6 +125,7 @@ const PdpPopup = () => {
   //APi call to addtocart
   const user = JSON.parse(localStorage.getItem("userdata"));
   const AddToCartAndPendingInvoice = (info) => {
+    let storedata = JSON.parse(localStorage.getItem('storedata'))
     let isUserAddData = pdpSellerData?.is_table_one?.filter(
       (itm) => itm?.product_id === pdpSellerData?.product_id
     );
@@ -134,7 +135,7 @@ const PdpPopup = () => {
     });
     let data = {
       pendingProducts: {
-        store_id: 1,
+        store_id: storedata?.store_id,
         customer_id: user?.id,
         productId: isUserAddData?.[0]?.product_id,
         price: isUserAddData?.[0]?.price,

@@ -18,17 +18,17 @@ import MergeCarts from "../../Components/BuyerDashboard/MergeCarts";
 import ApproveCarts from "../../Components/BuyerDashboard/ApproveCarts";
 import SubAccountOrders from "../../Components/BuyerDashboard/SubAccountOrders";
 import NotActivated from "../../Components/BuyerDashboard/NotActivated";
-
-//assets
 import notification from "../../Assets/sellerdashboard/notification.png";
+import { useStateValue } from "../../store/state";
 
 const Index = () => {
+  const [{geo}, dispatch] = useStateValue()
   const [currentmenu, setcurrentmenu] = useState();
   let navigate = useNavigate();
 
   const selectmenu = (value) => {
     setcurrentmenu(value);
-    navigate(`/buyerdashboard/${value}`);
+    navigate(`/${geo?.country_name}/buyerdashboard/${value}`);
     setbarstate(false);
   };
 

@@ -2,8 +2,10 @@ import React from "react";
 import successlogo from "../../../../Assets/Productlist/gratitude_icon.png";
 import "./styles.scss";
 import { Link, useLocation } from "react-router-dom";
+import { useStateValue } from "../../../../store/state";
 
 const SuccesMessage = ({ msg }) => {
+  const [{geo}, dispatch] = useStateValue()
   let userDetails = JSON.parse(localStorage.getItem("userdata"));
   const location = useLocation();
   return (
@@ -30,7 +32,7 @@ const SuccesMessage = ({ msg }) => {
         {location?.state === "update" && (
           <p>You have updated the product details successfully.</p>
         )}
-        <Link to="/sellerdashboard/inventory">
+        <Link to={`/${geo?.country_name}/sellerdashboard/inventory`}>
           <p className="link">Back To Inventory</p>
         </Link>
       </div>
