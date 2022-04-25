@@ -18,7 +18,7 @@ const CurrencyPopup = ({ classes }) => {
   // let { country } = useParams();
   // console.log(country)
   const [anchorEl, setAnchorEl] = useState(null);
-  const [{ geo, customstore }, dispatch] = useStateValue();
+  const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
   const [apiDropDowns, setApiDropDowns] = useState("");
   const [selectedValue, setSelectedValue] = useState({
     currency_code: "",
@@ -56,11 +56,10 @@ const CurrencyPopup = ({ classes }) => {
       let data = {
         geoCode: geo?.country_code,
         storeCode:
-          customstore !== ""
-            ? customstore?.toLowerCase()
+          customnostore !== ""
+            ? customnostore?.toLowerCase()
             : geo?.country_name?.toLowerCase(),
       };
-      debugger;
       axios
         .post(Constant.baseUrl() + "/getCurrency", data, {
           headers: {
@@ -69,13 +68,16 @@ const CurrencyPopup = ({ classes }) => {
         })
         .then((res) => {
           setApiDropDowns(res?.data?.[1]?.currency);
-          debugger;
-          console.log(res.data?.[0]?.store);
           localStorage.setItem(
             "storedata",
             JSON.stringify(res.data?.[0]?.store)
           );
-          navigate(`/${res.data?.[0]?.store?.code}`);
+          dispatch({
+            type: "GEO__CUSTOM__NOTSTORE",
+            data: res.data?.[0]?.store?.code,
+          });
+          let str = window.location.pathname
+          navigate(`/${res.data?.[0]?.store?.code}/${str.split('/').pop().split('/')[0]}`);
           setSelectedValue({
             currency_code: res?.data?.[1]?.currency?.[0]?.currency_code,
             currency_id: res?.data?.[1]?.currency?.[0]?.currency_id,
@@ -94,6 +96,7 @@ const CurrencyPopup = ({ classes }) => {
     };
     fetchCurrencyDropDownData();
   }, [geo, customstore]);
+
 
   return (
     <div className={classes.header_dropdown}>

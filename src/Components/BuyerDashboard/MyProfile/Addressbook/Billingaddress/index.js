@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { useStateValue } from "../../../../../store/state";
 
 const Index = (classes, props) => {
-  const [{ geo, customstore }, dispatch] = useStateValue();
+  const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
   let { type } = useParams();
   let { auto_complete_input } = classes;
   const city = ["Banglore", "Chennai", "Hyderabad"];
@@ -155,7 +155,7 @@ const Index = (classes, props) => {
       <div className="my_profile_back">
         <Link
           to={`/${
-            customstore ? customstore : geo?.country_name
+            customnostore ? customnostore : geo?.country_name
           }/buyerdashboard/dashboard`}
           className="link"
         >

@@ -8,7 +8,7 @@ import { useStateValue } from "../../../store/state";
 import { Link } from "react-router-dom";
 const ThankyouPage = ({ classes }) => {
   const { type } = useParams();
-  const [{geo, customstore}, dispatch] = useStateValue();
+  const [{geo, customstore, customnostore}, dispatch] = useStateValue();
 
   let userData = JSON.parse(localStorage.getItem("userdata"));
   let {
@@ -86,7 +86,7 @@ const ThankyouPage = ({ classes }) => {
             </Button>
           </Box>
         )}
-        <Link to={`/${customstore ? customstore : geo?.country_name}`}>
+        <Link to={`/${customnostore ? customnostore : geo?.country_name}`}>
           <p className={thankyou_backto_home}>Back To Homepage</p>
         </Link>
       </div>

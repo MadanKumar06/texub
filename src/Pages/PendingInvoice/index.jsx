@@ -19,7 +19,7 @@ import { useStateValue } from "../../store/state";
 import pending_invoice_image from "../../Assets/PendingInvoice/Group 1051.png";
 
 const PendingInvoice = () => {
-  const [{geo, customstore}, dispatch] = useStateValue()
+  const [{geo, customstore, customnostore}, dispatch] = useStateValue()
   const [pendingInvoiceList, setPendingInvoiceList] = useState([]);
 
   useEffect(() => {
@@ -53,8 +53,8 @@ const PendingInvoice = () => {
       <div className="pending_invoice_breadcrumbs">
         <Stack spacing={2}>
           <Breadcrumbs separator="››" aria-label="breadcrumb">
-            <Link to={`/${customstore ? customstore : geo?.country_name}`}>Home</Link>
-            <Link to={`/${customstore ? customstore : geo?.country_name}/mycart`}>Cart</Link>
+            <Link to={`/${customnostore ? customnostore : geo?.country_name}`}>Home</Link>
+            <Link to={`/${customnostore ? customnostore : geo?.country_name}/mycart`}>Cart</Link>
             <Typography key="3" color="#002D56">
               Pending Invoice
             </Typography>
@@ -195,7 +195,7 @@ const PendingInvoice = () => {
               </p>
             </div>
           </div>
-          <Link to={`/${customstore ? customstore : geo?.country_name}/checkout`}>
+          <Link to={`/${customnostore ? customnostore : geo?.country_name}/checkout`}>
             <Button className="proceed_btn">Proceed To Checkout</Button>
           </Link>
         </div>

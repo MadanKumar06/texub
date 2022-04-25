@@ -22,13 +22,13 @@ import notification from "../../Assets/sellerdashboard/notification.png";
 import { useStateValue } from "../../store/state";
 
 const Index = () => {
-  const [{geo, customstore}, dispatch] = useStateValue()
+  const [{geo, customstore, customnostore}, dispatch] = useStateValue()
   const [currentmenu, setcurrentmenu] = useState();
   let navigate = useNavigate();
 
   const selectmenu = (value) => {
     setcurrentmenu(value);
-    navigate(`/${customstore ? customstore : geo?.country_name}/buyerdashboard/${value}`);
+    navigate(`/${customnostore ? customnostore : geo?.country_name}/buyerdashboard/${value}`);
     setbarstate(false);
   };
 
