@@ -9,7 +9,7 @@ import Constant from "../../Constant";
 import { useStateValue } from "../../store/state";
 
 const TransitionsModal = ({ classes }) => {
-  const [{}, dispatch] = useStateValue();
+  const [{ geo, customnostore }, dispatch] = useStateValue();
   const history = useNavigate();
   let {
     kyc_detail_container,
@@ -82,7 +82,7 @@ const TransitionsModal = ({ classes }) => {
           type: "SET_IS_LOADING",
           value: false,
         });
-        history("/");
+        history(`/${customnostore ? customnostore : geo?.country_name}`);
       })
       .catch((err) => {
         dispatch({

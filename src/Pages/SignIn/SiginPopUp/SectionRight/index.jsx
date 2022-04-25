@@ -22,7 +22,7 @@ import { useStateValue } from "../../../../store/state";
 import swal from "sweetalert2";
 
 const TransitionsModal = ({ classes }) => {
-  const [{}, dispatch] = useStateValue();
+  const [{geo, customnostore}, dispatch] = useStateValue();
   const history = useNavigate();
   let {
     section_right,
@@ -257,7 +257,7 @@ const TransitionsModal = ({ classes }) => {
           timer: 3000,
         });
         setTimeout(() => {
-          history("/");
+          history(`/${customnostore ? customnostore : geo?.country_name}`);
         }, 1000);
       })
       .catch((err) => {

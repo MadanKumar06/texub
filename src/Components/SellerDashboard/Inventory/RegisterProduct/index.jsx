@@ -298,7 +298,7 @@ function RegisterProduct() {
       })
       .then((res) => {
         if (res.data?.[0]?.status === "true") {
-          history("/sellerdashboard/registersuccess", { state: "add" });
+          history(`${customnostore ? customnostore : geo?.country_name}/sellerdashboard/registersuccess`, { state: "add" });
         } else {
           swal.fire({
             text: `${res.data?.[0]?.message}`,

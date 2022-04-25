@@ -48,11 +48,14 @@ const CurrencyPopup = ({ classes }) => {
     localStorage.setItem("currency", JSON.stringify(selectedValue));
   }, [selectedValue]);
   //API for fetch dropdown values
+
+  // console.log(window.location.pathname)
   useEffect(() => {
     const storedata = JSON.parse(localStorage.getItem('storedata'))
     const str = window.location.pathname
-    if (geo === "" && customstore === "") return;
+    if (geo === "") return;
     const fetchCurrencyDropDownData = () => {
+      console.log(str)
       let data = {
         geoCode: geo?.country_code,
         storeCode:

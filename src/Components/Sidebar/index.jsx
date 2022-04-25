@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { SellerList, BuyerList } from "./image";
 import logout from "../../Assets/sellerdashboard/InactiveDashboardPng/logout.png";
 import swal from "sweetalert2";
+import { useStateValue } from "../../store/state";
 function Index({
   selectmenu,
   setcurrentmenu,
@@ -14,6 +15,7 @@ function Index({
   barstate,
   setbarstate,
 }) {
+  const [{geo, customnostore}, dispatch] = useStateValue()
   useEffect(() => {
     setcurrentmenu(SellerList[0]?.name);
   }, []);
@@ -40,7 +42,7 @@ function Index({
             timer: 3000,
           });
           setTimeout(() => {
-            history("/");
+            history(`/${customnostore ? customnostore : geo?.country_name}`);
             window.location.reload();
           }, 1000);
         }
