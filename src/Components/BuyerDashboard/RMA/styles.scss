@@ -37,7 +37,7 @@
     }
     .MuiTableHead-root {
       .MuiTableCell-root {
-        font-size: 22px;
+        font-size: 16px;
         color: #959595;
         text-align: center;
         font-weight: 600;
@@ -50,7 +50,7 @@
     }
     .MuiTableBody-root {
       .MuiTableCell-root {
-        font-size: 22px;
+        font-size: 14px;
         text-align: center;
         color: #333c42;
       }
@@ -59,7 +59,7 @@
       }
       .return_quantity {
         border: 1px solid #cecece;
-        border-radius: 24px;
+        border-radius: 14px;
         padding: 0.3em 0.9em;
       }
       .rma_products {
@@ -68,12 +68,10 @@
           font-weight: 600;
           color: #002d56;
           background: #f8f0e0;
-          width: max-content;
           padding: 5px 8px;
-          margin-left: auto;
         }
         .rma_product_name {
-          font-size: 22px;
+          font-size: 14px;
           font-weight: 600;
           color: #333c42;
           padding-top: 5px;
@@ -81,7 +79,7 @@
       }
       .rma__pending {
         color: #d9ad59;
-        font-size: 22px;
+        font-size: 14px;
         font-weight: 600;
         background-color: #fff6e5;
         padding: 0.4em 0.9em;
@@ -90,7 +88,7 @@
       .rma__accepted {
         color: #00b91c;
         font-weight: 600;
-        font-size: 22px;
+        font-size: 14px;
         background-color: #e6ffea;
         padding: 0.4em 0.9em;
         border-radius: 28px;
@@ -98,7 +96,7 @@
       .rma__rejected {
         color: #ff0000;
         font-weight: 600;
-        font-size: 22px;
+        font-size: 14px;
         background-color: #ffe2e2;
         padding: 0.4em 0.9em;
         border-radius: 28px;
@@ -106,7 +104,7 @@
       .rma__completed {
         color: #20639b;
         font-weight: 600;
-        font-size: 22px;
+        font-size: 14px;
         background-color: #d5ecff;
         padding: 0.4em 0.9em;
         border-radius: 28px;
@@ -172,7 +170,7 @@
     font-size: 16px;
   }
   .rma_container .rma__table .MuiTableHead-root .MuiTableCell-root {
-    font-size: 20px;
+    font-size: 16px;
   }
   .rma_container .rma__table .MuiTableBody-root .MuiTableCell-root,
   .rma_container
@@ -180,14 +178,14 @@
     .MuiTableBody-root
     .rma_products
     .rma_product_name {
-    font-size: 18px;
+    font-size: 14px;
   }
   .rma_container .rma__table .MuiTableBody-root {
     .rma__completed,
     .rma__rejected,
     .rma__pending,
     .rma__accepted {
-      font-size: 18px;
+      font-size: 16px;
     }
   }
 }
