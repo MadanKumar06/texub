@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 export const Departments = ({ data }) => {
   const [isActive, setIsActive] = useState(true);
   const [search, setSearch] = useState("");
-  const [{}, dispatch] = useStateValue();
+  const [{ geo, customnostore }, dispatch] = useStateValue();
   const history = useNavigate();
 
   const handleSearchClick = (event) => {
@@ -18,7 +18,7 @@ export const Departments = ({ data }) => {
       type: "SET_SEARCH",
       value: search,
     });
-    history("/products");
+    history(`${customnostore ? customnostore : geo?.country_name}/products"`);
   };
 
   return (

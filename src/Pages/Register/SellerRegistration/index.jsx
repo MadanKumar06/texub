@@ -491,7 +491,7 @@ const BuyerRegistration = ({ classes }) => {
           res?.data?.group_id === 1 ? false : true
         );
 
-        history("/");
+        history(`/${customnostore ? customnostore : geo?.country_name}`);
         setTimeout(() => {
           dispatch({
             type: "SET_KYC_OPEN_CLOSE",

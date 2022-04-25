@@ -511,7 +511,7 @@ function Index({ type, pid }) {
           // });
           if (currenttab === "addproduct") {
             setTimeout(() => {
-              history("/sellerdashboard/registersuccess", { state: "add" });
+              history(`${customnostore ? customnostore : geo?.country_name}/sellerdashboard/registersuccess`, { state: "add" });
             }, 1000 / 2);
           }
         } else {
@@ -584,7 +584,7 @@ function Index({ type, pid }) {
           //   timer: 3000,
           // });
           setTimeout(() => {
-            history("/sellerdashboard/registersuccess", { state: "update" });
+            history(`${customnostore ? customnostore : geo?.country_name}/sellerdashboard/registersuccess`, { state: "update" });
           }, 1000 / 2);
         } else {
           swal.fire({

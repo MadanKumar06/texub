@@ -4,6 +4,7 @@ import MUITable from '../../../Common/MUITable'
 import { useNavigate } from "react-router-dom";
 import hp from "../../../../Assets/sellerdashboard/inventory/hp.png";
 import Pagination from "../../../Pagination";
+import {useStateValue} from '../../../../store/state'
 
 function Index({ setrequestform, setformtype }) {
   const [tableData, setTableData] = useState([]);
@@ -11,6 +12,7 @@ function Index({ setrequestform, setformtype }) {
     setTableData(event);
   };
   const history = useNavigate();
+  const [{geo, customnostore}, dispatch] = useStateValue()
 
   const showformnew = () => {
     setrequestform(true);
@@ -23,7 +25,7 @@ function Index({ setrequestform, setformtype }) {
   };
 
   const back = () => {
-    history("/");
+    history(`/${customnostore ? customnostore : geo?.country_name}`);
   };
 
   const options = {

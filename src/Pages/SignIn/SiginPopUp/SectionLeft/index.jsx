@@ -33,7 +33,7 @@ import forgot from "../../../../Assets/Home/forgotpassword.svg";
 
 const TransitionsModal = ({ classes, openPopUp }) => {
   let history = useNavigate();
-  const [{}, dispatch] = useStateValue();
+  const [{geo, customnostore}, dispatch] = useStateValue();
   let {
     forgotpassword,
     forgotpassword__title,
@@ -266,7 +266,7 @@ const TransitionsModal = ({ classes, openPopUp }) => {
         value: false,
       });
       setTimeout(() => {
-        history("/");
+        history(`/${customnostore ? customnostore : geo?.country_name}`);
         dispatch({
           type: "SET_KYC_OPEN_CLOSE",
           value: true,
@@ -293,7 +293,7 @@ const TransitionsModal = ({ classes, openPopUp }) => {
         timer: 3000,
       });
       setTimeout(() => {
-        history("/");
+        history(`/${customnostore ? customnostore : geo?.country_name}`);
       }, 1000);
     }
   };
@@ -333,7 +333,7 @@ const TransitionsModal = ({ classes, openPopUp }) => {
         let iskycFormFilled = res?.data;
         if (iskycFormFilled?.group_id === 1) {
           setTimeout(() => {
-            history("/");
+            history(`/${customnostore ? customnostore : geo?.country_name}`);
           }, 1000 / 2);
           dispatch({
             type: "SET_SIGNIN_OPEN_CLOSE",
