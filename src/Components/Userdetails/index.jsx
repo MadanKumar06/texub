@@ -20,7 +20,7 @@ export const Userdetails = () => {
   )?.custom_attributes?.filter((itm) => itm?.attribute_code === "kyc_status");
   const history = useNavigate();
   const handleWishlist = () => {
-    history(`${customnostore ? customnostore : geo?.country_name}/buyerdashboard/wishlist`);
+    history(`/${customnostore ? customnostore : geo?.country_name}/buyerdashboard/wishlist`);
   };
 
 

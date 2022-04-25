@@ -18,7 +18,7 @@ export const Departments = ({ data }) => {
       type: "SET_SEARCH",
       value: search,
     });
-    history(`${customnostore ? customnostore : geo?.country_name}/products"`);
+    history(`/${customnostore ? customnostore : geo?.country_name}/products"`);
   };
 
   return (
