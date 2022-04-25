@@ -8,7 +8,7 @@ import Vieworders from "../../Common/Vieworders";
 import {useStateValue} from '../../../store/state'
 
 function SubAccountOrders() {
-  const [{geo, customstore}, dispatch] = useStateValue()
+  const [{geo, customstore, customnostore}, dispatch] = useStateValue()
   const [tableData, setTableData] = useState([]);
   const [isOrders, setisOrders] = useState(true);
   const [isVieworders, setisVieworders] = useState(false);
@@ -133,7 +133,7 @@ function SubAccountOrders() {
   return (
     <div className="subaccount__orders">
       <div className="subaccount__orders__back">
-        <Link to={`/${customstore ? customstore : geo?.country_name}/buyerdashboard/dashboard`}>
+        <Link to={`/${customnostore ? customnostore : geo?.country_name}/buyerdashboard/dashboard`}>
           <ArrowBackIosNew />
           <span>Back</span>
         </Link>

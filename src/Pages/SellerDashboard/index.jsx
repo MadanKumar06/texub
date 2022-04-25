@@ -25,13 +25,13 @@ import Constant from "../../Constant";
 import { useStateValue } from "../../store/state";
 
 function SellerDashboard() {
-  const [{geo, customstore}, dispatch] = useStateValue()
+  const [{geo, customstore, customnostore}, dispatch] = useStateValue()
   const [currentmenu, setcurrentmenu] = useState();
   let navigate = useNavigate();
 
   const selectmenu = (value) => {
     setcurrentmenu(value);
-    navigate(`/${customstore ? customstore : geo?.country_name}/sellerdashboard/${value}`);
+    navigate(`/${customnostore ? customnostore : geo?.country_name}/sellerdashboard/${value}`);
     setshowregister(false);
     setbarstate(false);
   };
@@ -48,11 +48,11 @@ function SellerDashboard() {
   const registerproduct = (value, value1, value2) => {
     setshowregister(true);
     if (value === "updateproduct") {
-      navigate(`/${customstore ? customstore : geo?.country_name}/sellerdashboard/${value}/${value1}`);
+      navigate(`/${customnostore ? customnostore : geo?.country_name}/sellerdashboard/${value}/${value1}`);
     } else if (value === "addproduct") {
-      navigate(`/${customstore ? customstore : geo?.country_name}/sellerdashboard/${value}/${value1}`);
+      navigate(`/${customnostore ? customnostore : geo?.country_name}/sellerdashboard/${value}/${value1}`);
     } else {
-      navigate(`/${customstore ? customstore : geo?.country_name}/sellerdashboard/${value}`);
+      navigate(`/${customnostore ? customnostore : geo?.country_name}/sellerdashboard/${value}`);
     }
   };
 

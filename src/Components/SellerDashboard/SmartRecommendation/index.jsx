@@ -14,7 +14,7 @@ function Index() {
     if (apiTableData?.length === 0) return setApiTableData([]);
     setTableData(event);
   };
-  const [{geo, customstore}, dispatch] = useStateValue();
+  const [{geo, customstore, customnostore}, dispatch] = useStateValue();
   const [apiTableData, setApiTableData] = useState([]);
   useEffect(() => {
     const fetchTableData = async () => {
@@ -129,7 +129,7 @@ function Index() {
     <div className="orders">
       <div className="orders__back__footer">
         <div className="orders__back__container">
-          <Link to={`/${customstore ? customstore : geo?.country_name}/buyerdashboard/dashboard`}>
+          <Link to={`/${customnostore ? customnostore : geo?.country_name}/buyerdashboard/dashboard`}>
             <ArrowBackIosNew />
             <span>Back</span>
           </Link>

@@ -12,6 +12,7 @@ export const initialState = {
   homeSearch: "",
   geo: "",
   customstore: "",
+  customnostore: "",
 };
 
 const reducer = (state, action) => {
@@ -26,6 +27,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         customstore: action.data,
+      };
+    case "GEO__CUSTOM__NOTSTORE":
+      return {
+        ...state,
+        customnostore: action.data,
       };
     case "SET_IS_LOADING":
       return {

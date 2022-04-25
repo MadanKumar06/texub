@@ -9,7 +9,7 @@ import { useStateValue } from "../../../../store/state";
 // import axios from "axios";
 
 const Index = () => {
-  const [{ geo, customstore }, dispatch] = useStateValue();
+  const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
   // data state //storage
   //  const [data, setData] = useState([]);
   //  useEffect(() => {

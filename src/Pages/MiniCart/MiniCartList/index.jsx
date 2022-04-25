@@ -25,7 +25,7 @@ function formatToCurrency(amount) {
 }
 
 const MiniCartList = ({ handleSideBarClose }) => {
-  const [{ cart, currency, isSimpleLoading, geo, customstore }, dispatch] =
+  const [{ cart, currency, isSimpleLoading, geo, customstore, customnostore }, dispatch] =
     useStateValue();
   const [value, setValue] = React.useState(4);
   const navigate = useNavigate();
@@ -339,7 +339,7 @@ const MiniCartList = ({ handleSideBarClose }) => {
             </div>
             <div className="minicart_btn">
               <Link
-                to={`/${customstore ? customstore : geo?.country_name}/mycart`}
+                to={`/${customnostore ? customnostore : geo?.country_name}/mycart`}
                 onClick={() => handleSideBarClose("right", false)}
               >
                 <Button className="minicart_bottom_button_cart">

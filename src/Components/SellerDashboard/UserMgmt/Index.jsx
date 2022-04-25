@@ -11,7 +11,7 @@ import Forbidden from "../../SellerDashboard/UserMgmt/PopUps/Forbidden";
 import { useStateValue } from "../../../store/state";
 
 function Index({ setuserform, userform }) {
-  const [{geo, customstore}, dispatch] = useStateValue()
+  const [{geo, customstore, customnostore}, dispatch] = useStateValue()
   const [tableData, setTableData] = useState([]);
   const edituser = () => {
     setuserform(true);
@@ -178,7 +178,7 @@ function Index({ setuserform, userform }) {
         <>
           <div className="user_mgnt__footer">
             <div className="user_mgnt__container">
-              <Link to={`/${customstore ? customstore : geo?.country_name}/sellerdashboard/dashboard`}>
+              <Link to={`/${customnostore ? customnostore : geo?.country_name}/sellerdashboard/dashboard`}>
                 <ArrowBackIosNew />
                 <span>Back</span>
               </Link>

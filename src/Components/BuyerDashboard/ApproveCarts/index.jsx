@@ -8,7 +8,7 @@ import MUITable from "../../../Components/Common/MUITable";
 import { useStateValue } from "../../../store/state";
 
 function ApproveCart() {
-  const [{geo, customstore}, dispatch] = useStateValue();
+  const [{geo, customstore, customnostore}, dispatch] = useStateValue();
   const [tableData, setTableData] = useState([]);
 
   const handleViewChange = () => {
@@ -263,7 +263,7 @@ function ApproveCart() {
     <div className="approve__cart">
       <div className="approve__cart__footer">
         <div className="approve__cart__container">
-          <Link to={`/${customstore ? customstore : geo?.country_name}/buyerdashboard/dashboard`}>
+          <Link to={`/${customnostore ? customnostore : geo?.country_name}/buyerdashboard/dashboard`}>
             <ArrowBackIosNew />
             <span>Back</span>
           </Link>

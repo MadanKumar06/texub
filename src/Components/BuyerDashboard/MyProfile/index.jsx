@@ -11,7 +11,7 @@ import { useStateValue } from '../../../store/state';
 
 const Index = () => {
   const [isAccountinfo, setisAccountinfo] = useState(true)
-  const [{geo, customstore}, dispatch] = useStateValue()
+  const [{geo, customstore, customnostore}, dispatch] = useStateValue()
   const Acinfo = () => {
     setisAccountinfo(!(isAccountinfo))
     setisEdit(false)
@@ -137,7 +137,7 @@ const Index = () => {
             </div>
           </div>
           <div className='my_profile_back'>
-        <Link to={`/${customstore ? customstore : geo?.country_name}/buyerdashboard/dashboard`} className='link'>
+        <Link to={`/${customnostore ? customnostore : geo?.country_name}/buyerdashboard/dashboard`} className='link'>
         <ArrowBackIosNew /><span><p className='back'>Back</p></span>
           </Link>
       </div>

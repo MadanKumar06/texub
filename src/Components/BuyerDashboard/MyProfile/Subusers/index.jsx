@@ -8,7 +8,7 @@ import  MUITable  from '../../../Common/MUITable'
 import { Link } from "react-router-dom";
 import { useStateValue } from '../../../../store/state';
 const Index = () => {
-  const [{geo, customstore}, dispatch] = useStateValue()
+  const [{geo, customstore, customnostore}, dispatch] = useStateValue()
   const [isSub, setisSub] = useState(false)
   const Newsubacc = () => {
     setisSub(!isSub)
@@ -198,7 +198,7 @@ const Index = () => {
         <MUITable columns={columns} table={table} options={options} className="subusers__table" />
           <div className='my_profile_btns'>
             <div className='my_profile_back'>
-            <Link to={`/${customstore ? customstore : geo?.country_name}/buyerdashboard/dashboard`} className="link">
+            <Link to={`/${customnostore ? customnostore : geo?.country_name}/buyerdashboard/dashboard`} className="link">
         <ArrowBackIosNew /><span><p className='back'>Back</p></span>
           </Link>
             </div>

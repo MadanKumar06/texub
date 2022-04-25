@@ -8,7 +8,7 @@ import MUITable from "../../../Components/Common/MUITable";
 import { useStateValue } from "../../../store/state";
 
 function MergeCarts() {
-  const [{geo, customstore}, dispatch] = useStateValue();
+  const [{geo, customstore, customnostore}, dispatch] = useStateValue();
   const [tableData, setTableData] = useState([]);
   const handleViewChange = () => {
     dispatch({
@@ -130,7 +130,7 @@ function MergeCarts() {
     <div className="mergecarts">
       <div className="mergecarts__footer">
         <div className="mergecarts__container">
-          <Link to={`/${customstore ? customstore : geo?.country_name}/buyerdashboard/dashboard`}>
+          <Link to={`/${customnostore ? customnostore : geo?.country_name}/buyerdashboard/dashboard`}>
             <ArrowBackIosNew />
             <span>Back</span>
           </Link>

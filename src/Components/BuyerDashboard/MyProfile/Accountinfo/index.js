@@ -11,7 +11,7 @@ import baseUrl from "../../../../../src/Constant";
 import { useStateValue } from "../../../../store/state";
 
 const Index = (classes) => {
-  const [{ geo, customstore }, dispatch] = useStateValue();
+  const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
   let { validation_error } = classes;
   const [AccountInfoData, setAccountInfoData] = useState({
     first_name: "",
