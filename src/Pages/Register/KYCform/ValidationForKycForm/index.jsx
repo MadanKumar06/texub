@@ -24,7 +24,7 @@ function ValidationForKycForm({
 }) {
   let { validation_error } = classes;
   const history = useNavigate();
-  const [{}, dispatch] = useStateValue();
+  const [{geo, customnostore}, dispatch] = useStateValue();
   let { button_box, button_guest, download_link, agreemnetDowload } = classes;
   const [valid, setValid] = useState(null);
   const [agreementChecked, setAgreementChecked] = useState(false);
@@ -189,7 +189,7 @@ function ValidationForKycForm({
             value: false,
           });
           let user_id = JSON.parse(localStorage.getItem("userdata"));
-          history(`/thankyou/${user_id?.group_id === 5 ? "buyer" : "seller"}`);
+          history(`/${customnostore ? customnostore : geo?.country_name}/thankyou/${user_id?.group_id === 5 ? "buyer" : "seller"}`);
         } else {
           swal.fire({
             text: `${res?.data?.[0]?.message}`,
