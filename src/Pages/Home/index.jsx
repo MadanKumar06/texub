@@ -34,7 +34,7 @@ export const Home = () => {
         type: "GEO__CUSTOM__NOSTORE",
         data: temp?.[0],
       });
-      navigate(`/${customnostore ? customnostore : temp?.[0]}`);
+      navigate(`/${temp?.[0]}`);
     }
   }, [customstore, geo]);
 
