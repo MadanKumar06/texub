@@ -4,12 +4,13 @@ import MUITable from '../../../Common/MUITable'
 import { useNavigate } from "react-router-dom";
 import hp from "../../../../Assets/sellerdashboard/inventory/hp.png";
 import Pagination from "../../../Pagination";
+import { useStateValue } from '../../../../store/state';
 
 function Index() {
   const history = useNavigate();
-
+  const [{geo, customnostore}, dispatch] = useStateValue()
   const back = () => {
-    history("/");
+    history(`/${customnostore ? customnostore : geo?.country_name}`);
   };
   const [tableData, setTableData] = useState([]);
   const PaginateDataSplit = (event) => {

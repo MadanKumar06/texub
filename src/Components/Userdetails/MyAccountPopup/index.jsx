@@ -44,7 +44,7 @@ const MyAccountPopup = () => {
             timer: 3000,
           });
           setTimeout(() => {
-            history("/");
+            history(`/${customnostore ? customnostore : geo?.country_name}`);
             window.location.reload();
           }, 1000);
         }
