@@ -78,12 +78,15 @@ const TransitionsModal = ({ classes, openPopUp }) => {
     forgot_email_address: "",
   });
 
-  const handleClose = () => {
-    setOpen(false);
-    dispatch({
-      type: "SET_SIGNIN_OPEN_CLOSE",
-      value: false,
-    });
+  const handleClose = (event, reason) => {
+    if (reason && reason === "backdropClick") return;
+    else {
+      setOpen(false);
+      dispatch({
+        type: "SET_SIGNIN_OPEN_CLOSE",
+        value: false,
+      });
+    }
   };
   const handleChangeInput = (event) => {
     if (event?.target?.name === "keep_me_logged_in") {
@@ -176,7 +179,7 @@ const TransitionsModal = ({ classes, openPopUp }) => {
     });
   }, []);
   const ForgotPasswordFinalApi = () => {
-    let storedata = JSON.parse(localStorage.getItem('storedata'))
+    let storedata = JSON.parse(localStorage.getItem("storedata"));
     dispatch({
       type: "SET_IS_LOADING",
       value: true,
@@ -222,7 +225,7 @@ const TransitionsModal = ({ classes, openPopUp }) => {
   };
   //API to Register
   const FinalSignin = () => {
-    let storedata = JSON.parse(localStorage.getItem('storedata'))
+    let storedata = JSON.parse(localStorage.getItem("storedata"));
     dispatch({
       type: "SET_IS_LOADING",
       value: true,
@@ -443,7 +446,9 @@ const TransitionsModal = ({ classes, openPopUp }) => {
           className={modal}
           open={open}
           closeAfterTransition
+          disableBackdropClick
           BackdropComponent={Backdrop}
+          onClose={handleClose}
           BackdropProps={{
             timeout: 500,
           }}

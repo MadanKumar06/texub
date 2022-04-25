@@ -28,7 +28,7 @@ export const isLandlineValid = (landline) =>
 export const getAdminToken = (callback) => {
   let data = {
     username: "admin",
-    password: "admin@123",
+    password: "admin@1234",
   };
   axios
     .post(Constant.adminTokenUrl(), data, {
