@@ -279,7 +279,7 @@ const TransitionsModal = ({ classes, openPopUp }) => {
         value: false,
       });
       setTimeout(() => {
-        history(`/thankyou/${user}kyc`);
+        history(`${customnostore ? customnostore : geo?.country_name}/thankyou/${user}kyc`);
       }, 1000 / 2);
     } else if (event?.info === "kyc_filled_success") {
       dispatch({
