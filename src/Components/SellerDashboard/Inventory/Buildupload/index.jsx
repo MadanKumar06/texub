@@ -4,7 +4,6 @@ import "./styles.scss";
 import * as XLSX from "xlsx";
 import axios from "axios";
 import Constant from "../../../../Constant";
-import swal from "sweetalert2";
 
 function Index() {
   const [tableData, setTableDate] = useState(null);
@@ -19,7 +18,6 @@ function Index() {
         handleJSONCreate(resp.cols, resp.rows);
       }
     });
-
     const handleJSONCreate = (cols, rows) => {
       var arrRowEven = [],
         arrRowOdd = [];
@@ -34,7 +32,7 @@ function Index() {
       console.log(arrRowEven);
       arrRowOdd.shift();
       console.log(arrRowOdd);
-      let EventData =
+      let EvenData =
         arrRowEven?.length &&
         arrRowEven?.map((itm) => ({
           model_number: itm?.[0],
@@ -77,7 +75,8 @@ function Index() {
           restriction_region: itm?.[24],
           special_notes: itm?.[25],
         }));
-      BulkUploadEvenData(EventData);
+      BulkUploadEvenData(EvenData);
+      BulkUploadOddData(OddData);
     };
 
     // var reader = new FileReader();
@@ -103,7 +102,6 @@ function Index() {
     // };
     // reader.readAsBinaryString(fileObj);
   };
-  const [errorEvenData, setErrorEvenData] = useState([]);
   const BulkUploadEvenData = (EventData) => {
     EventData?.length &&
       EventData?.map((itm) => {
@@ -135,17 +133,64 @@ function Index() {
           })
           .then((res) => {
             debugger;
-            setErrorEvenData((prev) => ({
-              ...prev,
-              response: res,
-            }));
           })
           .catch((err) => {});
       });
   };
 
-  console.log(errorEvenData);
-  debugger;
+  const BulkUploadOddData = (OddData) => {
+    OddData?.length &&
+      OddData?.map((itm) => {
+        let customerId = JSON.parse(localStorage.getItem("userdata"));
+        let data = {
+          data: {
+            bulk_upload: 1,
+            customer_id: customerId?.id,
+            product_id: itm?.parentSku,
+            product_condition: itm?.condition,
+            other_condition: itm?.other_condition,
+            warranty_type: itm?.warranty_type,
+            warranty_country: itm?.warranty_country,
+            warranty_days: itm?.warranty_days,
+            packing_details: itm?.packing_details,
+            no_pieces_per: itm?.pieces_per_pallet || itm?.pieces_per_carton,
+            width: itm?.product_width,
+            height: itm?.product_height,
+            length: itm?.product_length,
+            weight: itm?.product_weight,
+            restrictions: itm?.restriction,
+            restricted_region: itm?.restricted_region,
+            restricted_country: itm?.restricted_country,
+            description: itm?.special_notes,
+            product_details: [
+              {
+                hub_id: itm?.hub,
+                currency_id: itm?.currency,
+                price: itm?.price,
+                in_stock: itm?.quantity,
+                eta: itm?.eta,
+                moq: itm?.moq,
+                cgst: itm?.cgst,
+                sgst: itm?.sgst,
+                igst: itm?.igst,
+              },
+            ],
+          },
+        };
+        axios
+          .post(Constant.baseUrl() + "/saveProductPrice", data, {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          })
+          .then((res) => {
+            debugger;
+          })
+          .catch((err) => {});
+      });
+  };
+
   return (
     <div className="bulkUpload_container">
       <button>
