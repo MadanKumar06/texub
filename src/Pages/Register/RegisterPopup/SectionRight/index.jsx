@@ -91,7 +91,7 @@ const SectionRight = ({ classes, handleClose, handleClassChange }) => {
         </div>
       )}
       <Link
-        to={`${customnostore ? customnostore : geo?.country_name}/register${userDescription ? "/buyer" : "/seller"}`}
+        to={`/${customnostore ? customnostore : geo?.country_name}/register${userDescription ? "/buyer" : "/seller"}`}
         className={btn_link}
       >
         <Button
