@@ -8,7 +8,7 @@ import ViewOrder from '../../Common/Vieworders'
 import { useStateValue } from "../../../store/state";
 
 function Index() {
-  const [{geo, customstore}, dispatch] = useStateValue()
+  const [{geo, customstore, customnostore}, dispatch] = useStateValue()
   const [tableData, setTableData] = useState([]);
   const ordertype = [
     { name: "All Orders" },
@@ -152,7 +152,7 @@ function Index() {
       {!vieworder ? <>
         <div className="orders__back__footer">
           <div className="orders__back__container">
-            <Link to={`/${customstore ? customstore : geo?.country_name}/buyerdashboard/dashboard`}>
+            <Link to={`/${customnostore ? customnostore : geo?.country_name}/buyerdashboard/dashboard`}>
               <ArrowBackIosNew />
               <span>Back</span>
             </Link>

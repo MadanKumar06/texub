@@ -15,10 +15,8 @@ import usd from "../../../Assets/CommonImage/Currency switcher/dollar-symbol.png
 import inr from "../../../Assets/CommonImage/Currency switcher/Group 1132.png";
 
 const CurrencyPopup = ({ classes }) => {
-  // let { country } = useParams();
-  // console.log(country)
   const [anchorEl, setAnchorEl] = useState(null);
-  const [{ geo, customstore }, dispatch] = useStateValue();
+  const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
   const [apiDropDowns, setApiDropDowns] = useState("");
   const [selectedValue, setSelectedValue] = useState({
     currency_code: "",
@@ -51,16 +49,17 @@ const CurrencyPopup = ({ classes }) => {
   }, [selectedValue]);
   //API for fetch dropdown values
   useEffect(() => {
+    const storedata = JSON.parse(localStorage.getItem('storedata'))
+    const str = window.location.pathname
     if (geo === "" && customstore === "") return;
     const fetchCurrencyDropDownData = () => {
       let data = {
         geoCode: geo?.country_code,
         storeCode:
-          customstore !== ""
-            ? customstore?.toLowerCase()
+        str !== ""
+            ? str.split('/')[1]?.toLowerCase()
             : geo?.country_name?.toLowerCase(),
       };
-      debugger;
       axios
         .post(Constant.baseUrl() + "/getCurrency", data, {
           headers: {
@@ -69,13 +68,25 @@ const CurrencyPopup = ({ classes }) => {
         })
         .then((res) => {
           setApiDropDowns(res?.data?.[1]?.currency);
-          debugger;
-          console.log(res.data?.[0]?.store);
           localStorage.setItem(
             "storedata",
             JSON.stringify(res.data?.[0]?.store)
           );
-          navigate(`/${res.data?.[0]?.store?.code}`);
+          dispatch({
+            type: "GEO__CUSTOM__NOTSTORE",
+            data: res.data?.[0]?.store?.code,
+          });
+          if(storedata?.code === str.split('/')[1]) {
+            // navigate(`/${res.data?.[0]?.store?.code}/${str.split('/').pop().split('/')[0]}`);
+            debugger
+            if(res.data?.[0]?.store?.code === str.split('/').pop().split('/')[0]) {
+              navigate(`/${res.data?.[0]?.store?.code}`);  
+            } else {
+              navigate(`/${res.data?.[0]?.store?.code}/${str.split('/').pop().split('/')[0]}`);
+            }
+          } else  {
+            navigate(`/${res.data?.[0]?.store?.code}`);
+          }
           setSelectedValue({
             currency_code: res?.data?.[1]?.currency?.[0]?.currency_code,
             currency_id: res?.data?.[1]?.currency?.[0]?.currency_id,
@@ -94,6 +105,7 @@ const CurrencyPopup = ({ classes }) => {
     };
     fetchCurrencyDropDownData();
   }, [geo, customstore]);
+
 
   return (
     <div className={classes.header_dropdown}>

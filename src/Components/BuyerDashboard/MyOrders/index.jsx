@@ -16,7 +16,7 @@ function Index() {
     { name: "Dispatched Orders" },
     { name: "Full-Filled Orders" },
   ];
-  const [{geo, customstore}, dispatch] = useStateValue();
+  const [{geo, customstore, customnostore}, dispatch] = useStateValue();
   const [type, settype] = useState();
 
   const selectorder = (value) => {
@@ -160,7 +160,7 @@ function Index() {
     <div className="myorders">
       <div className="my_orders__footer">
         <div className="my_orders__container">
-          <Link to={`/${customstore ? customstore : geo?.country_name}/buyerdashboard/dashboard`}>
+          <Link to={`/${customnostore ? customnostore : geo?.country_name}/buyerdashboard/dashboard`}>
             <ArrowBackIosNew />
             <span>Back</span>
           </Link>

@@ -138,7 +138,7 @@ const App = () => {
               exact
             />
             <Route
-              // path={`/${customstore ? customstore : geo?.country_name}`}
+              // path={`/${customnostore ? customnostore : geo?.country_name}`}
               path="/:country"
               element={
                 <>
@@ -149,7 +149,7 @@ const App = () => {
             />
             <Route
               path="/:country/resetpassword/:token"
-              // path={`/${customstore ? customstore : geo?.country_name}/resetpassword/:token`}
+              // path={`/${customnostore ? customnostore : geo?.country_name}/resetpassword/:token`}
               element={
                 <>
                   <ResetPassword /> <ScrollToTop /> <Footer />
@@ -159,7 +159,7 @@ const App = () => {
             />
             <Route
               path="/:country/register/:type"
-              // path={`/${customstore ? customstore : geo?.country_name}/register/:type`}
+              // path={`/${customnostore ? customnostore : geo?.country_name}/register/:type`}
               element={
                 <>
                   <Registration /> <ScrollToTop /> <Footer />
@@ -169,7 +169,7 @@ const App = () => {
             />
             <Route
               path="/:country/products"
-              // path={`/${customstore ? customstore : geo?.country_name}/products`}
+              // path={`/${customnostore ? customnostore : geo?.country_name}/products`}
               element={
                 <>
                   <Products /> <ScrollToTop /> <Footer />
@@ -179,7 +179,7 @@ const App = () => {
             />
             <Route
               path="/:country/Aboutus"
-              // path={`/${customstore ? customstore : geo?.country_name}/Aboutus`}
+              // path={`/${customnostore ? customnostore : geo?.country_name}/Aboutus`}
               element={
                 <>
                   <Aboutus /> <ScrollToTop /> <Footer />
@@ -189,7 +189,7 @@ const App = () => {
             />
             <Route
               path="/:country/coming-soon"
-              // path={`/${customstore ? customstore : geo?.country_name}/coming-soon`}
+              // path={`/${customnostore ? customnostore : geo?.country_name}/coming-soon`}
               element={
                 <>
                   <ComingSoon /> <ScrollToTop /> <Footer />
@@ -201,7 +201,7 @@ const App = () => {
             {/* Footer section */}
             <Route
               path="/:country/legal"
-              // path={`/${customstore ? customstore : geo?.country_name}/legal`}
+              // path={`/${customnostore ? customnostore : geo?.country_name}/legal`}
               element={
                 <>
                   <Legal /> <ScrollToTop /> <Footer />
@@ -211,7 +211,7 @@ const App = () => {
             />
             <Route
               path="/:country/gdpr"
-              // path={`/${customstore ? customstore : geo?.country_name}/gdpr`}
+              // path={`/${customnostore ? customnostore : geo?.country_name}/gdpr`}
               element={
                 <>
                   <GDPR /> <ScrollToTop /> <Footer />
@@ -221,7 +221,7 @@ const App = () => {
             />
             <Route
               path="/:country/Faqs"
-              // path={`/${customstore ? customstore : geo?.country_name}/Faqs`}
+              // path={`/${customnostore ? customnostore : geo?.country_name}/Faqs`}
               element={
                 <>
                   <FAQ /> <ScrollToTop /> <Footer />
@@ -231,7 +231,7 @@ const App = () => {
             />
             <Route
               path="/:country/Contactus"
-              // path={`/${customstore ? customstore : geo?.country_name}/Contactus`}
+              // path={`/${customnostore ? customnostore : geo?.country_name}/Contactus`}
               element={
                 <>
                   <Contactus /> <ScrollToTop /> <Footer />
@@ -241,7 +241,7 @@ const App = () => {
             />
             <Route
               path="/:country/privacypolicy"
-              // path={`/${customstore ? customstore : geo?.country_name}/privacypolicy`}
+              // path={`/${customnostore ? customnostore : geo?.country_name}/privacypolicy`}
               element={
                 <>
                   <Privacypolicy /> <ScrollToTop /> <Footer />
@@ -251,7 +251,7 @@ const App = () => {
             />
             <Route
               path="/:country/termsofuse"
-              // path={`/${customstore ? customstore : geo?.country_name}/termsofuse`}
+              // path={`/${customnostore ? customnostore : geo?.country_name}/termsofuse`}
               element={
                 <>
                   <Termsofuse /> <ScrollToTop /> <Footer />
@@ -261,7 +261,7 @@ const App = () => {
             />
             <Route
               path="/:country/productlistingpolicy"
-              // path={`/${customstore ? customstore : geo?.country_name}/productlistingpolicy`}
+              // path={`/${customnostore ? customnostore : geo?.country_name}/productlistingpolicy`}
               element={
                 <>
                   <ProductListingPolicy /> <ScrollToTop /> <Footer />
@@ -271,7 +271,7 @@ const App = () => {
             />
             <Route
               path="/:country/rrpolicy"
-              // path={`/${customstore ? customstore : geo?.country_name}/rrpolicy`}
+              // path={`/${customnostore ? customnostore : geo?.country_name}/rrpolicy`}
               element={
                 <>
                   <RRpolicy /> <ScrollToTop /> <Footer />
@@ -281,7 +281,7 @@ const App = () => {
             />
             <Route
               path="/:country/training"
-              // path={`/${customstore ? customstore : geo?.country_name}/training`}
+              // path={`/${customnostore ? customnostore : geo?.country_name}/training`}
               element={
                 <>
                   <Training /> <ScrollToTop /> <Footer />
@@ -291,7 +291,7 @@ const App = () => {
             />
             <Route
               path="/:country/seller_advantage"
-              // path={`/${customstore ? customstore : geo?.country_name}/seller_advantage`}
+              // path={`/${customnostore ? customnostore : geo?.country_name}/seller_advantage`}
               element={
                 <>
                   <Selleradvantage /> <ScrollToTop /> <Footer />
@@ -301,7 +301,7 @@ const App = () => {
             />
             <Route
               path="/:country/buyer_advantage"
-              // path={`/${customstore ? customstore : geo?.country_name}/buyer_advantage`}
+              // path={`/${customnostore ? customnostore : geo?.country_name}/buyer_advantage`}
               element={
                 <>
                   <Buyeradvantage /> <ScrollToTop /> <Footer />
@@ -311,7 +311,7 @@ const App = () => {
             ></Route>
             <Route
               path="/:country/career"
-              // path={`/${customstore ? customstore : geo?.country_name}/career`}
+              // path={`/${customnostore ? customnostore : geo?.country_name}/career`}
               element={
                 <>
                   {" "}
@@ -322,7 +322,7 @@ const App = () => {
             ></Route>
             <Route
               path="/:country/blogsmain"
-              // path={`/${customstore ? customstore : geo?.country_name}/blogsmain`}
+              // path={`/${customnostore ? customnostore : geo?.country_name}/blogsmain`}
               element={
                 <>
                   {" "}
@@ -333,7 +333,7 @@ const App = () => {
             />
             <Route
               path="/:country/blogsdetails/:id"
-              // path={`/${customstore ? customstore : geo?.country_name}/blogsdetails/:id`}
+              // path={`/${customnostore ? customnostore : geo?.country_name}/blogsdetails/:id`}
               element={
                 <>
                   {" "}
@@ -344,7 +344,7 @@ const App = () => {
             />
             <Route
               path="/:country/faqs"
-              // path={`/${customstore ? customstore : geo?.country_name}/faqs`}
+              // path={`/${customnostore ? customnostore : geo?.country_name}/faqs`}
               element={
                 <>
                   {" "}
@@ -357,7 +357,7 @@ const App = () => {
             {/* user section */}
             <Route
               path="/:country/sellerdashboard/:currenttab"
-              // path={`/${customstore ? customstore : geo?.country_name}/sellerdashboard/:currenttab`}
+              // path={`/${customnostore ? customnostore : geo?.country_name}/sellerdashboard/:currenttab`}
               element={
                 <>
                   {" "}
@@ -368,7 +368,7 @@ const App = () => {
             />
             <Route
               path="/:country/sellerdashboard/:currenttab/:id"
-              // path={`/${customstore ? customstore : geo?.country_name}/sellerdashboard/:currenttab/:id`}
+              // path={`/${customnostore ? customnostore : geo?.country_name}/sellerdashboard/:currenttab/:id`}
               element={
                 <>
                   {" "}
@@ -379,7 +379,7 @@ const App = () => {
             />
             <Route
               path="/:country/buyerdashboard/:currenttab"
-              // path={`/${customstore ? customstore : geo?.country_name}/buyerdashboard/:currenttab`}
+              // path={`/${customnostore ? customnostore : geo?.country_name}/buyerdashboard/:currenttab`}
               element={
                 <>
                   {" "}
@@ -390,7 +390,7 @@ const App = () => {
             />
             <Route
               path="/:country/sellerprofile/:id"
-              // path={`/${customstore ? customstore : geo?.country_name}/sellerprofile/:id`}
+              // path={`/${customnostore ? customnostore : geo?.country_name}/sellerprofile/:id`}
               element={
                 <>
                   {" "}
@@ -401,7 +401,7 @@ const App = () => {
             />
             <Route
               path="/:country/pending-invoice"
-              // path={`/${customstore ? customstore : geo?.country_name}/pending-invoice`}
+              // path={`/${customnostore ? customnostore : geo?.country_name}/pending-invoice`}
               element={
                 <>
                   {" "}
@@ -412,7 +412,7 @@ const App = () => {
             />
             <Route
               path="/:country/checkout"
-              // path={`/${customstore ? customstore : geo?.country_name}/checkout`}
+              // path={`/${customnostore ? customnostore : geo?.country_name}/checkout`}
               element={
                 <>
                   {" "}
@@ -423,7 +423,7 @@ const App = () => {
             />
             <Route
               path="/:country/mycart"
-              // path={`/${customstore ? customstore : geo?.country_name}/mycart`}
+              // path={`/${customnostore ? customnostore : geo?.country_name}/mycart`}
               element={
                 <>
                   {" "}
@@ -434,7 +434,7 @@ const App = () => {
             />
             <Route
               path="/:country/thankyou/:type"
-              // path={`/${customstore ? customstore : geo?.country_name}/thankyou/:type`}
+              // path={`/${customnostore ? customnostore : geo?.country_name}/thankyou/:type`}
               element={
                 <>
                   {" "}
@@ -445,7 +445,7 @@ const App = () => {
             ></Route>
             <Route
               path="/:country/edit"
-              // path={`/${customstore ? customstore : geo?.country_name}/edit`}
+              // path={`/${customnostore ? customnostore : geo?.country_name}/edit`}
               element={
                 <>
                   {" "}
@@ -456,7 +456,7 @@ const App = () => {
             />
             <Route
               path="/:country/kycdetails"
-              // path={`/${customstore ? customstore : geo?.country_name}/kycdetails`}
+              // path={`/${customnostore ? customnostore : geo?.country_name}/kycdetails`}
               element={
                 <>
                   {" "}

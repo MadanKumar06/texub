@@ -12,7 +12,7 @@ import { useStateValue } from "../../store/state";
 import { useParams, useNavigate } from "react-router-dom";
 
 export const Home = () => {
-  const [{ geo, customstore }, dispatch] = useStateValue();
+  const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
   const [homedata, sethomedata] = useState({
     homecontent: [],
   });
@@ -21,12 +21,8 @@ export const Home = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    let storedata = JSON.parse(localStorage.getItem("storedata"));
-    console.log(storedata?.code);
-    console.log(geo?.country_name);
     if (geo === "") return;
     let temp = Object.values(history);
-    debugger;
     if (temp.length === 0) {
       navigate(`/${geo?.country_name}`);
     } else {
@@ -34,9 +30,13 @@ export const Home = () => {
         type: "GEO__CUSTOM__STORE",
         data: temp?.[0],
       });
-      navigate(`/${customstore ? customstore : temp?.[0]}`);
+      dispatch({
+        type: "GEO__CUSTOM__NOSTORE",
+        data: temp?.[0],
+      });
+      navigate(`/${temp?.[0]}`);
     }
-  }, [geo, customstore]);
+  }, [customstore, geo]);
 
   useEffect(async () => {
     try {
