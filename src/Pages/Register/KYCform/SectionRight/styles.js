@@ -95,11 +95,18 @@ const styles = (theme) => ({
   agreemnetDowload: {
     fontSize: "14px",
     color: "#5C6369",
+    fontWeight: "600",
     "& span":{
       color: "#002D56",
       textDecoration: "underline",
       whiteSpace: "nowrap",
+      cursor: "pointer",
     }
+  },
+  checkbox_agreement:{
+    display: "flex",
+    marginTop: "1em",
+    fontWeight: "500",
   },
   button_guest: {
     borderRadius: "30px !important",
