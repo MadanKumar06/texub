@@ -54,8 +54,12 @@ const CurrencyPopup = ({ classes }) => {
     const storedata = JSON.parse(localStorage.getItem('storedata'))
     const str = window.location.pathname
     if (geo === "") return;
+    // console.log(str.split('/')[2])
+    // console.log(storedata?.code)
+    // console.log(str.split('/')[1]?.toLowerCase())
+    if(str.split('/')[2] === 'sellerdashboard' && storedata?.code.toLowerCase() === str.split('/')[1].toLowerCase()) return
+    if(str.split('/')[2] === 'buyerdashboard' && storedata?.code.toLowerCase() === str.split('/')[1].toLowerCase()) return
     const fetchCurrencyDropDownData = () => {
-      console.log(str)
       let data = {
         geoCode: geo?.country_code,
         storeCode:
@@ -81,7 +85,6 @@ const CurrencyPopup = ({ classes }) => {
           });
           if(storedata?.code === str.split('/')[1]) {
             // navigate(`/${res.data?.[0]?.store?.code}/${str.split('/').pop().split('/')[0]}`);
-            debugger
             if(res.data?.[0]?.store?.code === str.split('/').pop().split('/')[0]) {
               navigate(`/${res.data?.[0]?.store?.code}`);  
             } else {

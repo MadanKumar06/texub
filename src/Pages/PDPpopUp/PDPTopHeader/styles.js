@@ -140,7 +140,7 @@ const styles = (theme) => ({
     width: "80%",
     fontWeight: "600",
     letterSpacing: "0.6px",
-    fontSize: "20px",
+    fontSize: "16px",
     "@media (max-width:1660px)": {
       fontSize: "16px",
     },

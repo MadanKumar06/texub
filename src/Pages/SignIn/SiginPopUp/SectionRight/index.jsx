@@ -140,7 +140,7 @@ const TransitionsModal = ({ classes }) => {
       document.getElementById("confrim_password")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
-        confrim_password: "Please enter your confrim password.",
+        confrim_password: "Please enter your confirm password.",
       }));
       errorHandle = true;
     } else if (!(guestData?.password === guestData?.confrim_password)) {
@@ -363,10 +363,10 @@ const TransitionsModal = ({ classes }) => {
           </InputLabel>
           <TextField
             id="confrim_password"
-            label="Confrim Password"
+            label="Confirm Password"
             fullWidth
             type="password"
-            placeholder="Confrim Password"
+            placeholder="Confirm Password"
             InputLabelProps={{
               shrink: true,
               required: true,
@@ -386,7 +386,12 @@ const TransitionsModal = ({ classes }) => {
           <FormControlLabel
             value={guestData?.checkbox_confrim}
             control={<Checkbox color="color_third" />}
-            label="I confirm that I am a wholesale buyer, and not a consumer or end user."
+            label={
+              <div>
+                <div>I confirm that I am a wholesale buyer,</div>
+                <div>and not a consumer or end user.</div>
+              </div>
+            }
             labelPlacement="end"
             className={checkbox_label}
             name="checkbox_confrim"

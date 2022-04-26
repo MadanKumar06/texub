@@ -197,7 +197,7 @@ const BuyerRegistration = ({ classes }) => {
       document.getElementById("confrim_password")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
-        confrim_password: "Please enter your confrim password.",
+        confrim_password: "Please enter your confirm password.",
       }));
       errorHandle = true;
     } else if (
@@ -558,11 +558,11 @@ const BuyerRegistration = ({ classes }) => {
             <div className={text_field_container}>
               <TextField
                 id="confrim_password"
-                label="Confrim Password"
+                label="Confirm Password"
                 fullWidth
                 className="inputfield-box"
                 type="password"
-                placeholder="Confrim Password"
+                placeholder="Confirm Password"
                 InputLabelProps={{
                   shrink: true,
                   required: true,
