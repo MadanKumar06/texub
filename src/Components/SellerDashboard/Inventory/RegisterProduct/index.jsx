@@ -200,6 +200,19 @@ function RegisterProduct() {
         other_brands: "Please enter the other brands.",
       }));
       errorHandle = true;
+    } else if (
+      registerNewProductData?.brands?.value === "brand-others" &&
+      !registerNewProductData?.other_brands.match(
+        /^\d*[a-zA-Z][a-zA-Z0-9][a-zA-Z0-9-+\.+()!@#$%^&*'{} ]*$/
+      )
+    ) {
+      document.getElementById("other_brands")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        // other_brands: "Special characters should not contain continuously.",
+        other_brands: "Only special characters will not allow.",
+      }));
+      errorHandle = true;
     }
     if (!registerNewProductData?.description) {
       document.getElementById("description")?.focus();
@@ -384,7 +397,11 @@ function RegisterProduct() {
                 <TextField
                   {...params}
                   fullWidth
-                  className="inputfield-box"
+                  className={`inputfield-box ${
+                    registerNewProductData?.main_category?.value === "mc" &&
+                    "other_main_category_box"
+                  }`}
+                  // className="inputfield-box"
                   placeholder="Select Main Category"
                   InputLabelProps={{
                     shrink: false,
@@ -649,7 +666,11 @@ function RegisterProduct() {
       </div>
 
       <div className="registerproduct__submit">
-        <Link to={`/${customnostore ? customnostore : geo?.country_name}/sellerdashboard/inventory`}>
+        <Link
+          to={`/${
+            customnostore ? customnostore : geo?.country_name
+          }/sellerdashboard/inventory`}
+        >
           <span className="registerproduct__back">Back</span>
         </Link>
         <Box>

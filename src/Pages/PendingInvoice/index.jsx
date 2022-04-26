@@ -2,37 +2,67 @@ import React from 'react'
 import './styles.scss'
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import MUITable from '../../Components/Common/MUITable'
+import { ArrowBackIosNew } from "@mui/icons-material";
+import { Button, IconButton, Typography, Box } from "@mui/material";
+import { Link } from "react-router-dom";
+import Checkout_Texub_logo from "../../Assets/CheckoutPage/checkout_texub_logo.png";
+import image from "../../Assets/buyerdashboard/auctions/hp.png";
+import minicart_new from "../../Assets/Minicart/minicart_new.png";
+
+import Divider from "@mui/material/Divider";
+
 
 function Index() {
 
+
+
+const table = [
+  {
+    productname: {
+      modal: "Pavilion Model14-Dv0054Tu",
+      content:
+        "Hp 14-Dv0054Tu Pavilion Laptop (11Th Gen Intel Core I5-1135G7/…512Gb Sdd/Intel Iris Xe Graphics/Windows 10/Mso/Fhd), 35.56 Cm (14 Inch)",
+    },
+  
+  },
+];
   const tableData = [
     {
-      sellerid: 'INDS20222',
-      description: 'TEST',
+      sellerid: "INDS20222",
+      description: {
+        modal: "Pavilion Model14-Dv0054Tu",
+        content:
+          "Hp 14-Dv0054Tu Pavilion Laptop (11Th Gen Intel Core I5-1135G7/…512Gb <br> Sdd/Intel Iris Xe Graphics/Windows 10/Mso/Fhd), 35.56 Cm (14 Inch)",
+      },
+      //description: 'TEST',
       // description: {
       //     image: '',
       //     title: 'PAVILION MODEL14-DV0054TU',
       //     desc: 'Hp 14-Dv0054Tu Pavilion Laptop (11Th Gen Intel Core I5-1135G7/…512Gb Sdd/Intel Iris Xe Graphics/Windows 10/Mso/Fhd), 35.56 Cm (14 Inch)',
       // },
-      hub: 'Mumbai',
-      unitprice: '66,999',
-      quantity: '60',
-      totalprice: '40,23,490'
+      hub: "Mumbai",
+      unitprice: "66,999",
+      quantity: "60",
+      totalprice: "40,23,490",
     },
     {
-      sellerid: 'INDS2023',
-      description: 'TEST',
+      sellerid: "INDS2023",
+      description: {
+        modal: "Pavilion Model14-Dv0054Tu",
+        content:
+          "Hp 14-Dv0054Tu Pavilion Laptop (11Th Gen Intel Core I5-1135G7/…512Gb Sdd/Intel Iris Xe Graphics/Windows 10/Mso/Fhd), 35.56 Cm (14 Inch)",
+      },
       // description: {
       //     image: '',
       //     title: 'ACER SF314-42 SWIFT 3',
       //     desc: 'Acer Sf314-42 Swift 3 Laptop (Amd R5-4500U/8 Gb/512 Gb Hdd/…',
       // },
-      hub: 'Mumbai',
-      unitprice: '65,999',
-      quantity: '30',
-      totalprice: '19,84,490'
-    }
-  ]
+      hub: "Mumbai",
+      unitprice: "65,999",
+      quantity: "30",
+      totalprice: "19,84,490",
+    },
+  ];
 
   const options = {
     filter: false,
@@ -46,7 +76,7 @@ function Index() {
     search: false,
   };
 
-  const columns = [
+  const columns2 = [
     { name: "sellerid", label: 'SELLER ID',
       options: {
         customBodyRender: (value) => {
@@ -90,11 +120,175 @@ function Index() {
       },
     },
   ]
+
+  const columns = [
+    {
+      name: "sellerid",
+      label: "SELLER ID",
+      options: {
+        customBodyRender: (value) => {
+          return <div className="table__sellerid">{value}</div>;
+        },
+      },
+    },
+    {
+      name: "description",
+      label: "PRODUCT DESCRIPTION",
+      options: {
+        customBodyRender: (value) => {
+          return (
+            <div className="productname">
+              <img src={image} alt="" className="image"></img>
+              <span className="product_name_new">
+                <img src={minicart_new} alt="" />
+              </span>
+              <div className="product">
+                <span className="modal_name">{value?.modal}</span>
+                <span className="modal_content">{value?.content}</span>
+              </div>
+            </div>
+          );
+        },
+      },
+    },
+    {
+      name: "hub",
+      label: "HUB",
+      options: {
+        customBodyRender: (value) => {
+          return <div className="table__hub">{value}</div>;
+        },
+      },
+    },
+
+    {
+      name: "unitprice",
+      label: "UNIT PRICE",
+      options: {
+        customBodyRender: (value) => {
+          return (
+            <div className="vieworders_price">
+              <span className="symbol">INR</span>
+              <span className="price"> {value} </span>
+            </div>
+          );
+        },
+      },
+    },
+    {
+      name: "quantity",
+      label: "QUANTITY",
+      options: {
+        customBodyRender: (value) => {
+          return <div className="vieworders_quantity">{value}</div>;
+        },
+      },
+    },
+    {
+      name: "totalprice",
+      label: "TOTAL PRICE",
+      options: {
+        customBodyRender: (value) => {
+          return (
+            <div className="table__price ">
+              <span className="symbol">INR</span>
+              <span className="price"> {value} </span>
+            </div>
+          );
+        },
+      },
+    },
+  ];
+
+
   return (
-    <div className='pendinginvoice'>
+    <div className="pendinginvoice">
       <div className="pendinginvoice__top">
-        <div className='top__header'>
-          <ArrowBackIosIcon />
+        <div className="top__header">
+          <div className="checkout_info_list">
+            <div className="checkout_back_toggle">
+              <Link to="/">
+                <ArrowBackIosNew />
+              </Link>
+            </div>
+            <div className="order_id_info">
+              <div className="orderid_section">
+                <span className="orderinfo_name">Order ID</span>
+                <span className="orderinfo_value">28739822</span>
+              </div>
+            </div>
+            <div className="order_total_info">
+              <div className="ordertal_section">
+                <span className="orderinfo_name">Total Amount</span>
+
+                <span className="orderinfo_value">
+                  <span className="ordertotal_symbol">INR</span> 10,729,830
+                </span>
+              </div>
+            </div>
+            <div className="order_status_info">
+              <div className="orderstatus_section">
+                <span className="orderinfo_name">Order Status</span>
+                <span className="orderinfo_value">Pending</span>
+              </div>
+            </div>
+            <div className="order_apply-btn">
+              <Button className="button-text btn-primary clear checkout-apply-btn">
+                Continue Shopping
+              </Button>
+            </div>
+            <div className="checkoutlist__download">
+              <svg
+                id="Icon"
+                xmlns="http://www.w3.org/2000/svg"
+                width="35"
+                height="35"
+                viewBox="0 0 40 40"
+              >
+                <rect
+                  id="Area"
+                  width="40"
+                  height="40"
+                  fill="#fff"
+                  opacity="0"
+                />
+                <g id="Icon-2" data-name="Icon" transform="translate(4.5 4.5)">
+                  <path
+                    id="Path"
+                    d="M35.5,22.5v6a3.245,3.245,0,0,1-3.444,3H7.944a3.245,3.245,0,0,1-3.444-3v-6"
+                    transform="translate(-4.5 -0.5)"
+                    fill="none"
+                    stroke="#fff"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="3"
+                  />
+                  <path
+                    id="Path-2"
+                    data-name="Path"
+                    d="M10.5,15,20,22.5,29.5,15"
+                    transform="translate(-4.5 -2.346)"
+                    fill="none"
+                    stroke="#fff"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="3"
+                  />
+                  <line
+                    id="Line"
+                    y1="18"
+                    transform="translate(15.5)"
+                    fill="none"
+                    stroke="#fff"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="3"
+                  />{" "}
+                </g>
+              </svg>
+            </div>
+          </div>
+          {/* <ArrowBackIosIcon />
           <span>
             <p className='label'>Order ID</p>
             <p className='value'>28739822</p>
@@ -107,44 +301,64 @@ function Index() {
             <p className='label'>Order Status</p>
             <p className='value'>Pending</p>
           </span>
-          <p>Continue Shopping</p>
+          <p>Continue Shopping</p> */}
         </div>
-        <div className='top__orderinfo'>
-          <div  className='orderingo__logo'></div>
-          <div className='orderinfo__data'>
+        <div className="top__orderinfo">
+          <div className="orderingo__logo">
+            <img
+              className="checkout_texub_logo"
+              src={Checkout_Texub_logo}
+              alt=""
+            />
+          </div>
+          <div className="orderinfo__data">
             <p>
-              <span className='label'>Order ID</span>
-              <span className='value'>28739822</span>
+              <span className="label">Order ID</span>
+              <Divider orientation="vertical" />
+              <span className="value">28739822</span>
             </p>
             <p>
-              <span className='label'>Date</span>
-              <span className='value'>02/10/2022</span>
+              <span className="label">Date</span>
+              <Divider orientation="vertical" />
+              <span className="value">02/10/2022</span>
             </p>
             <p>
-              <span className='label'>Due Date</span>
-              <span className='value'>13/10/2022</span>
+              <span className="label">Due Date</span>
+              <Divider orientation="vertical" />
+              <span className="value">13/10/2022</span>
             </p>
             <p>
-              <span className='label'>Buyer ID</span>
-              <span className='value'>INDB2025</span>
+              <span className="label">Buyer ID</span>
+              <Divider orientation="vertical" />
+              <span className="value">INDB2025</span>
             </p>
           </div>
         </div>
-        <div className='top__address'>
-          <div className='address__bill'>
+
+        <div className="top__address">
+          <div className="address__bill">
             <h4>BILL TO</h4>
-            <p>Ayush Raj</p>
-            <p>302/1160, Trinity enclave , B-Block, HSR Layout Bangalore-Karanataka 560102</p>
+            <p className="name">Ayush Raj</p>
+            <div className="content">
+              <span>302/1160, Trinity enclave , B-Block, HSR Layout</span>
+              <span> Bangalore-Karanataka </span>
+              <span>560102</span>
+            </div>
           </div>
-          <div className='address__pickup'>
+          <Divider orientation="vertical" />
+          <div className="address__pickup">
             <h4>PICK UP ADDRESS</h4>
-            <p>Xyz Ltd.</p>
-            <p>11 A/2, Upvan Marg , B-Block, Grant Road Mumbai, Maharashtra 400007</p>
+            <p className="name">Xyz Ltd.</p>
+            <div className="content">
+              <span>302/1160, Trinity enclave , B-Block, HSR Layout</span>
+              <span> Bangalore-Karanataka </span>
+              <span>560102</span>
+            </div>
           </div>
         </div>
       </div>
       <div className="pendinginvoice__middle">
-        <div className='middle__table'>
+        <div className="middle__table">
           <MUITable
             columns={columns}
             table={tableData}
@@ -152,81 +366,131 @@ function Index() {
             className="approve__cart__table"
           />
         </div>
-        <div className='middle__tableinfo'>
-          <div className='tableinfo__details'>
-            <p>Beneficiary Bank</p>
-            <p>
-              <span className='label'>Bank Name : </span>
-              <span className='value'>India Overseas Bank</span>
-            </p>
-            <p>
-              <span className='label'>Bank Address : </span>
-              <span className='value'>61/234, HRBR Layout Bangalore - 560043</span>
-            </p>
-            <p>
-              <span className='label'>Account Routing (ABA) : </span>
-              <span className='value'>001234587</span>
-            </p>
-            <p>
-              <span className='label'>ACH : </span>
-              <span className='value'>001234587</span>
-            </p>
-            <p>
-              <span className='label'>SWIFT/BIC CODE : </span>
-              <span className='value'>CNBFUS3M</span>
-            </p>
-            <p>
-              <span className='label'>ACCOUNT NUMBER : </span>
-              <span className='value'>32170023400</span>
-            </p>
-            <p>BENIFICIARY COMPANY</p>
-            <p>
-              <span className='label'>BENIFICIARY NAME : </span>
-              <span className='value'>TEXUB LLC</span>
-            </p>
-            <p>
-              <span className='label'>BENIFICIARY ADDRESS : </span>
-              <span className='value'>61/234, HRBR LAYOUT BANGALORE - 560043</span>
-            </p>
+        <div className="middle__tableinfo">
+          <div className="tableinfo__details">
+            <span className="title">Beneficiary Bank</span>
+            <div className="content">
+              <span className="label">Bank Name : </span>
+              <span className="value">India Overseas Bank</span>
+            </div>
+            <div className="content">
+              <span className="label">Bank Address : </span>
+              <span className="value">
+                61/234, HRBR Layout Bangalore - 560043
+              </span>
+            </div>
+            <div className="content">
+              <span className="label">Account Routing (ABA) : </span>
+              <span className="value">001234587</span>
+            </div>
+            <div className="content">
+              <span className="label">ACH : </span>
+              <span className="value">001234587</span>
+            </div>
+            <div className="content">
+              <span className="label">SWIFT/BIC CODE : </span>
+              <span className="value">CNBFUS3M</span>
+            </div>
+            <div className="content">
+              <span className="label">ACCOUNT NUMBER : </span>
+              <span className="value">32170023400</span>
+            </div>
+            <span className="title">BENIFICIARY COMPANY</span>
+            <div className="content">
+              <span className="label">BENIFICIARY NAME : </span>
+              <span className="value">TEXUB LLC</span>
+            </div>
+            <div className="content">
+              <span className="label">BENIFICIARY ADDRESS : </span>
+              <span className="value">
+                61/234, HRBR LAYOUT BANGALORE - 560043
+              </span>
+            </div>
           </div>
-          <div className='tableinfo__orderdata'>
+          <div className="tableinfo__orderdata">
             <p>
-              <span className='label'>Sub-Total</span>
-              <span className='value'>INR 94,05,510</span>
+              <span className="label">Sub-Total</span>
+              <Divider orientation="vertical" />
+              <span className="value">
+                <span className="value_symobol">INR</span> 94,05,510
+              </span>
             </p>
             <p>
-              <span className='label'>Tax</span>
-              <span className='value'>INR 00.00</span>
+              <span className="label">Tax</span>
+              <Divider orientation="vertical" />
+              <span className="value">
+                <span className="value_symobol">INR</span> 00.00
+              </span>
             </p>
             <p>
-              <span className='label'>Freight</span>
-              <span className='value'>INR 00.00</span>
+              <span className="label">Freight</span>
+              <Divider orientation="vertical" />
+              <span className="value">
+                <span className="value_symobol">INR</span> 00.00
+              </span>
             </p>
             <p>
-              <span className='label'>Payment Processing Charge</span>
-              <span className='value'>INR 00.00</span>
+              <span className="label">Payment Processing Charge</span>
+              <Divider orientation="vertical" />
+              <span className="value">
+                <span className="value_symobol">INR</span> 00.00
+              </span>
             </p>
-            <p>
-              <span className='label'>Total Order value</span>
-              <span className='value'>INR 94,05,510</span>
+            <p className="total_value">
+              <div className="total_value_block">
+                <span className="label">Total Order value</span>
+                <span className="value">
+                  <span className="value_symobol">INR</span> 94,05,510
+                </span>
+              </div>
             </p>
-            <h5>Remarks</h5>
-            <p>FWD & Pick up / R&A International logistics / 61/234, HRBR Layout Bangalore - 560043 DOCS Needed. Provide actual DIMS / provide copy of the invoice and serials, FWD Pick up / R&A internal.</p>
           </div>
         </div>
       </div>
       <div className="pendinginvoice__bottom">
-        <div className='bottom__terms'>
+        <div className="bottom__terms">
           <h4>TERMS & CONDITIONS*</h4>
-          <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod temp or invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+          <p>
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+            nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+            erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
+            et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
+            Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
+            sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
+            et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
+            accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
+            no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum
+            dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+            temp or invidunt ut labore et dolore magna aliquyam erat, sed diam
+            voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+            Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum
+            dolor sit amet. Lorem ipsum dolor sit amet, consetetur Lorem ipsum
+            dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+            tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+            voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+            Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum
+            dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing
+            elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore
+            magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
+            justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+            takimata sanctus est Lorem ipsum dolor sit amet.
+          </p>
         </div>
-        <div className='bottom__buttons'>
-          <p className='button__cancel'>Cancel</p>
-          <p className='button__checkout'>Proceed To Checkout</p>
+        <div className="remark_block">
+          <span className="remark_title">Remarks</span>
+          <p className="remark_content">
+            FWD & Pick up / R&A International logistics / 61/234, HRBR Layout
+            Bangalore - 560043 DOCS Needed. Provide actual DIMS / provide copy
+            of the invoice and serials, FWD Pick up / R&A internal.
+          </p>
+        </div>
+        <div className="bottom__buttons">
+          <Button className="button__cancel">Cancel</Button>
+          <Button className="button__checkout">Proceed To Checkout</Button>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default Index

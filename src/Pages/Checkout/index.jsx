@@ -4,37 +4,46 @@ import { withStyles } from "@mui/styles";
 import "./styles.scss";
 import { Add } from "@mui/icons-material";
 import { Button, IconButton, Typography, Box } from "@mui/material";
+import { Clear } from "@mui/icons-material";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import {
   RadioGroup,
   Radio,
+  Autocomplete,
   FormControlLabel,
   TextField,
   InputLabel,
 } from "@mui/material";
 import Divider from "@mui/material/Divider";
 import { Link } from "react-router-dom";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+
 
 //assets
 import Edit_image from "../../Assets/CheckoutPage/Group 913.png";
 import Devilvery_address_image_1 from "../../Assets/CheckoutPage/Group 911.png";
 import Devilvery_address_image_2 from "../../Assets/CheckoutPage/Group 912.png";
+import Checkout_Texub_logo from "../../Assets/CheckoutPage/checkout_texub_logo.png";
+import Checkout_checkout_com from "../../Assets/CheckoutPage/checkoutcom.png";
+import Checkout_razorpay_logo from "../../Assets/CheckoutPage/razorpay_logo.png";
 import Payment_image_1 from "../../Assets/CheckoutPage/braintree-logo-black.png";
 import Payment_image_2 from "../../Assets/CheckoutPage/paypal (1).png";
 import checkout_mail from "../../Assets/CheckoutPage/checkout_mail.png";
 import checkout_call from "../../Assets/CheckoutPage/telephone.png";
 
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-};
+// const style = {
+//   position: "absolute",
+//   top: "50%",
+//   left: "50%",
+//   transform: "translate(-50%, -50%)",
+//   width: 400,
+//   bgcolor: "background.paper",
+//   border: "2px solid #000",
+//   boxShadow: 24,
+//   p: 4,
+// };
 
 const DeliveryAddressJson = [
   {
@@ -147,55 +156,11 @@ const Checkout = () => {
         <div className="checkout_order-infosection">
           <div className="checkout_logo_img">
             <div className="checklogo_svg">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="284.039"
-                height="87.111"
-                viewBox="0 0 310.039 87.111"
-              >
-                <g
-                  id="Group_1457"
-                  data-name="Group 1457"
-                  transform="translate(3358.13 20621.301)"
-                  opacity="0.251"
-                >
-                  <path
-                    id="_Compound_Path_"
-                    data-name="&lt;Compound Path&gt;"
-                    d="M1399.7,368.25h45.667a10.809,10.809,0,0,1,5.357,1.394,14.445,14.445,0,0,1,4.369,3.745,18.651,18.651,0,0,1,2.954,5.545,21.708,21.708,0,0,1-.427,14.834,16.765,16.765,0,0,1-4.088,6.044,16.632,16.632,0,0,1,4.088,6.034,21.708,21.708,0,0,1,.427,14.834,18.65,18.65,0,0,1-2.954,5.545,14.445,14.445,0,0,1-4.369,3.745,10.809,10.809,0,0,1-5.357,1.394H1399.7Zm41.257,24.977a3.49,3.49,0,0,0,2.913-1.716,7.142,7.142,0,0,0,1.217-4.234,6.618,6.618,0,0,0-1.217-4.015,3.5,3.5,0,0,0-2.913-1.664h-27.192v11.63Zm4.13,19.2a6.991,6.991,0,0,0-1.217-4.151,3.5,3.5,0,0,0-2.913-1.706h-27.192v11.443h27.192a3.533,3.533,0,0,0,2.913-1.623A6.418,6.418,0,0,0,1445.086,412.43Z"
-                    transform="translate(-4507.242 -20977.463)"
-                    fill="#002d56"
-                  />
-                  <path
-                    id="_Path_"
-                    data-name="&lt;Path&gt;"
-                    d="M1267.606,418.049l-9.393,13.44h-35.7a9.063,9.063,0,0,1-9.061-9.071V377a9.061,9.061,0,0,1,9.061-9.061h35.255l9.841,13.43h-40v11.713h31.478v13.44h-31.478v11.526Z"
-                    transform="translate(-4514.74 -20977.477)"
-                    fill="#002d56"
-                  />
-                  <path
-                    id="_Path_2"
-                    data-name="&lt;Path&gt;"
-                    d="M1302.213,387.983l-39.072,55.758h-4.931l30.521-43.774L1266,368.52h22.73l13.544,19.37Zm0,0-39.072,55.758h-4.931l30.521-43.774L1266,368.52h22.73l13.544,19.37Zm42.8-31.135L1314.644,400.4l22.73,31.447h-22.73l-.031-.042L1301.1,412.482l.062-.094,39.083-55.758h4.92Zm-9.831-.218-62.145,87.111h-4.546l62.135-87.111Zm-22.459,13.69h2.268l-10.455,14.657-1.134-1.592Zm-21.856,60.5h-2.278l10.486-14.688,1.1,1.623Z"
-                    transform="translate(-4512.938 -20977.932)"
-                    fill="#ddb363"
-                  />
-                  <path
-                    id="_Path_3"
-                    data-name="&lt;Path&gt;"
-                    d="M1348.155,362.65v48.726a7.681,7.681,0,0,0,1.6,4.92,4.787,4.787,0,0,0,3.88,2.039h25.455v-49.86h14.085V431.7h-42.671a13.136,13.136,0,0,1-6.408-1.633,17.039,17.039,0,0,1-5.232-4.463,22.123,22.123,0,0,1-3.516-6.647,25.231,25.231,0,0,1-1.28-8.124V382.789Z"
-                    transform="translate(-4509.884 -20977.689)"
-                    fill="#002d56"
-                  />
-                  <path
-                    id="_Path_4"
-                    data-name="&lt;Path&gt;"
-                    d="M1209.46,367.94v13.388h-17.549v50.016h-14.106V381.328H1158.81V367.94Z"
-                    transform="translate(-4516.94 -20977.477)"
-                    fill="#002d56"
-                  />
-                </g>
-              </svg>
+              <img
+                className="checkout_texub_logo"
+                src={Checkout_Texub_logo}
+                alt=""
+              />
             </div>
           </div>
           <div className="checkout_order_basic_info">
@@ -236,22 +201,23 @@ const Checkout = () => {
               <div className="shipping_info">
                 <div className="shipping_list_section">
                   <div className="shipping_list">
-                    <FormControlLabel
-                      value="1"
-                      control={<Radio />}
-                      label={""}
-                      // control={<Radio className="radio_button1" />}
-                    />
-                    <p className="shipping_title">Pick Up From The Hub</p>
-                  </div>
-                  <div className="shipping_list">
-                    <FormControlLabel
-                      value="2"
-                      control={<Radio />}
-                      label={""}
-                      // control={<Radio className="radio_button" />}
-                    />
-                    <p className="shipping_title">Pick Up From The Hub</p>
+                    <FormControl className="shipping_list">
+                      <RadioGroup
+                        aria-labelledby="demo-controlled-radio-buttons-group"
+                        name="controlled-radio-buttons-group"
+                      >
+                        <FormControlLabel
+                          value="pick_up_from_hub"
+                          control={<Radio />}
+                          label="Pick Up From The Hub"
+                        />
+                        <FormControlLabel
+                          value="texub_shipping"
+                          control={<Radio />}
+                          label="Texub Shipping"
+                        />
+                      </RadioGroup>
+                    </FormControl>
                   </div>
                 </div>
                 <div className="shipping_charges_info">
@@ -260,6 +226,10 @@ const Checkout = () => {
                     <span className="shipping_price">
                       <span>INR</span> 10,729,830
                     </span>
+                  </div>
+                  <div className="shipping_charges_section">
+                    <span className="shipping_text">Shipping Charges :</span>
+                    <span className="shipping_awit">Awaiting for Prices</span>
                   </div>
                 </div>
               </div>
@@ -283,8 +253,8 @@ const Checkout = () => {
                       ))}
                       <div className="aside_block_B">
                         <div className="delivery_address_add">
-                          <Add className="add_icon" />
-                          <span>Add New Address</span>
+                          <Add className="add_icon" onClick={handleOpen} />
+                          <span onClick={handleOpen}>Add New Address</span>
                         </div>
                       </div>
                     </div>
@@ -351,7 +321,7 @@ const Checkout = () => {
                     />
                     <img
                       className="footer_image"
-                      src={Payment_image_2}
+                      src={Checkout_checkout_com}
                       alt=""
                     />
                   </div>
@@ -365,7 +335,7 @@ const Checkout = () => {
                     />
                     <img
                       className="footer_image"
-                      src={Payment_image_2}
+                      src={Checkout_razorpay_logo}
                       alt=""
                     />
                   </div>
@@ -419,30 +389,169 @@ const Checkout = () => {
             </div>
           </div>
           <div className="checkout_placeorder_section">
+            <div className="remark_section">
+              <span className="remart_title">Remarks :</span>
+              <span className="remart_text">
+                Fwd & Pick Up / R&A International Logistics / 61/234, Hrbr
+                Layout Bangalore - 560043. Docs Needed. Provide Actual Dims /
+                Provide Copy Of The Invoice And Serials, Fwd Pick Up/ R&A
+                Internal
+              </span>
+            </div>
             <div className="checkout_btns">
               <Button className="placeorder_btn">Place Your Order</Button>
-              <Button className="placeorder_cancel_btn">Cancel</Button>
+              <Button className="placeorder_cancel_btn">
+                Go To Pending Invoice
+              </Button>
             </div>
           </div>
         </div>
       </div>
 
       <div>
-        <Button onClick={handleOpen}>Open modal</Button>
+        {/* <Button onClick={handleOpen}>Open modal</Button> */}
         <Modal
           open={open}
           onClose={handleClose}
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
+          className="add_address_popup"
         >
-          <Box sx={style}>
-            <Typography id="modal-modal-title" variant="h6" component="h2">
-              Text in a modal
-            </Typography>
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-            </Typography>
-          </Box>
+          <div className="address_popup_main">
+            <div className="address_popup_block">
+              <Clear
+                className="clear_btn address_popup_clear_btn"
+                onClick={() => handleClose()}
+              />
+              <Box>
+                <Typography
+                  className="address_title"
+                  id="modal-modal-title"
+                  variant="h6"
+                  component="h2"
+                >
+                  Add New Address
+                </Typography>
+                <div className="address_selection_block">
+                  <div className="address_list">
+                    <FormControl className="shipping_list_address">
+                      <RadioGroup
+                        aria-labelledby="demo-controlled-radio-buttons-group"
+                        name="controlled-radio-buttons-group"
+                      >
+                        <FormControlLabel
+                          value="texub_billing"
+                          control={<Radio />}
+                          label="Billing Address"
+                        />
+                        <FormControlLabel
+                          value="texub_shipping"
+                          control={<Radio />}
+                          label="Shipping Address"
+                        />
+                      </RadioGroup>
+                    </FormControl>
+                  </div>
+                </div>
+
+                <div className="address_field_block">
+                  <div className="address_fields">
+                    <InputLabel>Organization Name</InputLabel>
+                    <TextField
+                      id="organization_name"
+                      name="organization_name"
+                      placeholder="Texub product id"
+                      fullWidth
+                      // disabled
+                      className="inputfield-box"
+                      variant="outlined"
+                    />
+                  </div>
+                  <div className="address_fields">
+                    <InputLabel>Address Line 1</InputLabel>
+                    <TextField
+                      id="address_line1"
+                      placeholder="Flat/Building/Block"
+                      className="inputfield-box"
+                      name="address_line1"
+                      variant="outlined"
+                    />
+                  </div>
+                </div>
+                <div className="address_field_block">
+                  <div className="address_fields">
+                    <InputLabel>Address Line 2</InputLabel>
+                    <TextField
+                      id="address_line2"
+                      placeholder="Sub-urb/Town"
+                      className="inputfield-box"
+                      name="address_line2"
+                      variant="outlined"
+                    />
+                  </div>
+                  <div className="address_fields">
+                    <InputLabel>Pincode</InputLabel>
+                    <TextField
+                      id="pincode"
+                      placeholder="Pincode"
+                      className="inputfield-box"
+                      name="pincode"
+                      variant="outlined"
+                    />
+                  </div>
+                </div>
+
+                <div className="address_field_block">
+                  <div className="address_fields">
+                    <InputLabel>City</InputLabel>
+                    <TextField
+                      id="city"
+                      placeholder="City"
+                      className="inputfield-box"
+                      name="city"
+                      variant="outlined"
+                    />
+                  </div>
+                  <div className="address_fields">
+                    <InputLabel id="address_field">State</InputLabel>
+                    <FormControl className="address_select_field_box">
+                      <Select
+                        labelId="demo-simple-select-label"
+                        id="selection_box_block"
+                        label="State"
+                      >
+                        <MenuItem value={10}>Tamil Nadu</MenuItem>
+                        <MenuItem value={20}>Tamil Nadu 2</MenuItem>
+                        <MenuItem value={30}>Tamil Nadu 3</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </div>
+                </div>
+
+                <div className="address_field_block">
+                  <div className="address_fields final_block">
+                    <InputLabel id="address_field">Country</InputLabel>
+                    <FormControl className="address_select_field_box">
+                      <Select
+                        labelId="demo-simple-select-label"
+                        id="selection_box_block"
+                        label="Country"
+                      >
+                        <MenuItem value={10}>Ten</MenuItem>
+                        <MenuItem value={20}>Twenty</MenuItem>
+                        <MenuItem value={30}>Thirty</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </div>
+                </div>
+
+                <div className="address_popup_btns">
+                  <Button className="address_cancel_btn">Cancel</Button>
+                  <Button className="address_save_btn">Save Changes</Button>
+                </div>
+              </Box>
+            </div>
+          </div>
         </Modal>
       </div>
     </div>
