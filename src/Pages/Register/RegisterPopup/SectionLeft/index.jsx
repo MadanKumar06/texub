@@ -64,12 +64,15 @@ const TransitionsModal = ({ classes, openPopUp }) => {
       text: "Simplified Product Upload",
     },
   ];
-  const handleClose = () => {
-    setOpen(false);
-    dispatch({
-      type: "SET_REGISTER_OPEN_CLOSE",
-      value: false,
-    });
+  const handleClose = (event, reason) => {
+    if (reason && reason === "backdropClick") return;
+    else {
+      setOpen(false);
+      dispatch({
+        type: "SET_REGISTER_OPEN_CLOSE",
+        value: false,
+      });
+    }
   };
   const handleClassChange = (event) => {
     setClicked(event);
@@ -80,7 +83,7 @@ const TransitionsModal = ({ classes, openPopUp }) => {
       aria-describedby="transition-modal-description"
       className={modal}
       open={open}
-      // onClose={handleClose}
+      onClose={handleClose}
       closeAfterTransition
       BackdropComponent={Backdrop}
       BackdropProps={{
