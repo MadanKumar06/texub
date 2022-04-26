@@ -293,7 +293,9 @@ const TransitionsModal = ({ classes, openPopUp }) => {
         timer: 3000,
       });
       setTimeout(() => {
-        history(`/${customnostore ? customnostore : geo?.country_name}`);
+        // history(`/${customnostore ? customnostore : geo?.country_name}`);
+        let currentPath = window.location.pathname;
+        history(`${currentPath}`);
       }, 1000);
     }
   };

@@ -30,6 +30,8 @@ import BuyerDashboard from "./Pages/BuyerDashboard";
 import SellerProfile from "./Pages/SellerProfile";
 import PendingInvoice from "./Pages/PendingInvoice/index";
 import Checkout from "./Pages/Checkout";
+import OrderSuccess from "./Pages/Checkout/OrderSuccess";
+
 import KYCDetails from "./Pages/KYCDetails";
 
 //Footer section page
@@ -417,6 +419,17 @@ const App = () => {
                 <>
                   {" "}
                   <Checkout /> <ScrollToTop /> <Footer />{" "}
+                </>
+              }
+              exact
+            />
+             <Route
+              path="/:country/ordersuccess"
+              // path={`/${customnostore ? customnostore : geo?.country_name}/checkout`}
+              element={
+                <>
+                  {" "}
+                  <OrderSuccess /> <ScrollToTop /> <Footer />{" "}
                 </>
               }
               exact

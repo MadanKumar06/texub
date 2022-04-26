@@ -180,12 +180,18 @@ const Index = ({ pdpSellerData, handleOpenClose }) => {
                     Save
                   </button>
                 </span>
-                <p>Cancel</p>
+                <p style={{ cursor: "pointer" }} onClick={() => create()}>
+                  Cancel
+                </p>
               </div>
             )}
             <div className="back_to_pdp">
               <ArrowBackIosIcon />
-              <p className="back">
+              <p
+                style={{ cursor: "pointer" }}
+                onClick={() => handleClose()}
+                 className="back"
+              >
                 Back to {pdpSellerData?.model_number}
                 {pdpSellerData?.product_name}
               </p>
