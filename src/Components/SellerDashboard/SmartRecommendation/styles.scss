@@ -1,0 +1,106 @@
+.smart_main{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    .smart__back__footer{
+        .smart__back__container{
+            a{
+                text-decoration: none;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                .MuiSvgIcon-root {
+                    color: #002d56;
+                }
+            span{
+                font-size: 20px;
+                color: #002D56;
+                font-weight: 600;
+            }
+        }
+        }
+    }
+    .smart__search{
+        .search_input{
+            .css-1o9s3wi-MuiInputBase-input-MuiOutlinedInput-input{
+                 font-size: 20px;
+            }
+            .css-i4bv87-MuiSvgIcon-root{
+                width: 1.3em;
+                height: 1.3em;
+            }
+            .MuiOutlinedInput-root{
+                display: flex;
+                flex-direction: row-reverse;
+            }
+            .smart_searchicon{
+                background: #002D56;
+                border-radius: 3px;
+                color: #fff;
+                padding: 0.7% 2%;
+                width: 70px;
+                height: 40px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    }
+    .smart__table{
+        margin-top: 1em;
+         .tss-gm6zfk-MUIDataTableHeadCell-fixedHeader{
+                background-color: #002D56;
+                color: #fff;
+                font-size: 18px;
+                letter-spacing: 0.54px;
+                font-weight: 600;
+                text-transform: uppercase;
+                opacity: 1;
+            }
+            .smart_icon{
+                display: flex;
+                justify-content: flex-end;
+                .icon{
+                    width: 50px;
+                    height: 50px;
+                }
+           }
+            .MuiTableRow-root:nth-child(odd) {
+                background: #F5F5F5;
+            }
+            .MuiTableRow-root:nth-child(even) {
+                background: #EAEAEA;
+            }
+            .smart_rank{
+                color: #20639B;
+                border: 1px #00000000;
+                font-size: 22px;
+                letter-spacing: .66px;
+                font-weight: 600;
+                .smart_rank_th{
+                    font-size: 12px;
+                    position: absolute;
+                }
+            }
+            .smart_price{
+                width: 110px;
+                padding: 3px 0px;
+                background: #ffffff;
+                border-radius: 22px;
+                display: flex;
+                justify-content: center;
+                align-items: baseline;
+            }
+            .smart__productname,
+            .smart_price{
+                font-size: 18px;
+                color: #333C42;
+                letter-spacing: 0.54px;
+                font-weight: 600;
+                .label{
+                    font-size: 12px;
+                }
+            }
+    }
+}
