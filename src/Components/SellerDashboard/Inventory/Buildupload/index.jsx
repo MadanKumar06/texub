@@ -44,41 +44,40 @@ function Index() {
           upc_number: itm?.[6],
           description: itm?.[7],
         }));
-
+      debugger;
       let OddData =
         arrRowOdd?.length &&
         arrRowOdd?.map((itm) => ({
-          parentSku: itm?.[0],
-          hub: itm?.[1],
-          currency: itm?.[2],
-          price: itm?.[3],
-          quantity: itm?.[4],
-          eta: itm?.[5],
-          moq: itm?.[6],
-          cgst: itm?.[7],
-          igst: itm?.[8],
-          sgst: itm?.[9],
-          condition: itm?.[10],
-          other_condition: itm?.[11],
-          warranty_type: itm?.[12],
-          warranty_country: itm?.[13],
-          warranty_days: itm?.[14],
-          packing_details: itm?.[15],
-          pieces_per_pallet: itm?.[16],
-          pieces_per_carton: itm?.[17],
-          product_length: itm?.[18],
-          product_width: itm?.[19],
-          product_height: itm?.[20],
-          product_weight: itm?.[21],
-          restriction: itm?.[22],
-          restriction_country: itm?.[23],
-          restriction_region: itm?.[24],
-          special_notes: itm?.[25],
+          parentSku: itm?.[8],
+          hub: itm?.[9],
+          currency: itm?.[10],
+          price: itm?.[11],
+          quantity: itm?.[12],
+          eta: itm?.[13],
+          moq: itm?.[14],
+          cgst: itm?.[15],
+          igst: itm?.[16],
+          sgst: itm?.[17],
+          condition: itm?.[18],
+          other_condition: itm?.[19],
+          warranty_type: itm?.[20],
+          warranty_country: itm?.[21],
+          warranty_days: itm?.[22],
+          packing_details: itm?.[23],
+          pieces_per_pallet: itm?.[24],
+          pieces_per_carton: itm?.[25],
+          product_length: itm?.[26],
+          product_width: itm?.[27],
+          product_height: itm?.[28],
+          product_weight: itm?.[29],
+          restriction: itm?.[30],
+          restriction_country: itm?.[31],
+          restriction_region: itm?.[32],
+          special_notes: itm?.[33],
         }));
       BulkUploadEvenData(EvenData);
       BulkUploadOddData(OddData);
     };
-
     // var reader = new FileReader();
     // reader.onload = function (e) {
     //   var data = e.target.result;
@@ -102,9 +101,13 @@ function Index() {
     // };
     // reader.readAsBinaryString(fileObj);
   };
+  // const [evenData, setEvenData] = useState([]);
+  // const [oddData, setOddData] = useState([]);
+  let evenData = [];
+  let oddData = [];
   const BulkUploadEvenData = (EventData) => {
     EventData?.length &&
-      EventData?.map((itm) => {
+      EventData?.map((itm, ind) => {
         let customerId = JSON.parse(localStorage.getItem("userdata"));
         let data = {
           product_data: {
@@ -132,15 +135,20 @@ function Index() {
             },
           })
           .then((res) => {
-            debugger;
+            // setEvenData((prev) => ({
+            //   ...prev,
+            //   [ind]: res?.data?.[0]?.message,
+            // }));
+            evenData?.push({ [ind]: res?.data?.[0]?.message });
           })
           .catch((err) => {});
       });
+    console.log(evenData);
   };
 
   const BulkUploadOddData = (OddData) => {
     OddData?.length &&
-      OddData?.map((itm) => {
+      OddData?.map((itm, ind) => {
         let customerId = JSON.parse(localStorage.getItem("userdata"));
         let data = {
           data: {
@@ -156,7 +164,7 @@ function Index() {
             no_pieces_per: itm?.pieces_per_pallet || itm?.pieces_per_carton,
             width: itm?.product_width,
             height: itm?.product_height,
-            length: itm?.product_length,
+            product_length: itm?.product_length,
             weight: itm?.product_weight,
             restrictions: itm?.restriction,
             restricted_region: itm?.restricted_region,
@@ -185,12 +193,20 @@ function Index() {
             },
           })
           .then((res) => {
-            debugger;
+            // setOddData((prev) => ({
+            //   ...prev,
+            //   [ind]: res?.data?.[0]?.message,
+            // }));
+            oddData?.push({ [ind]: res?.data?.[0]?.message });
           })
           .catch((err) => {});
       });
+    console.log(oddData);
+   
   };
 
+  console.log(evenData,oddData)
+  debugger;
   return (
     <div className="bulkUpload_container">
       <button>
@@ -214,6 +230,13 @@ function Index() {
           />
         </div>
       )}
+
+      <div>
+        {oddData?.length &&
+          oddData?.map((itm) => {
+            return <p>{itm}</p>;
+          })}
+      </div>
     </div>
   );
 }

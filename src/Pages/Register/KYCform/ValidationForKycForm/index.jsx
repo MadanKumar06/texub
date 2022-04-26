@@ -24,8 +24,14 @@ function ValidationForKycForm({
 }) {
   let { validation_error } = classes;
   const history = useNavigate();
-  const [{geo, customnostore}, dispatch] = useStateValue();
-  let { button_box, button_guest, download_link, agreemnetDowload } = classes;
+  const [{ geo, customnostore }, dispatch] = useStateValue();
+  let {
+    button_box,
+    button_guest,
+    download_link,
+    agreemnetDowload,
+    checkbox_agreement,
+  } = classes;
   const [valid, setValid] = useState(null);
   const [agreementChecked, setAgreementChecked] = useState(false);
 
@@ -189,7 +195,11 @@ function ValidationForKycForm({
             value: false,
           });
           let user_id = JSON.parse(localStorage.getItem("userdata"));
-          history(`/${customnostore ? customnostore : geo?.country_name}/thankyou/${user_id?.group_id === 5 ? "buyer" : "seller"}`);
+          history(
+            `/${customnostore ? customnostore : geo?.country_name}/thankyou/${
+              user_id?.group_id === 5 ? "buyer" : "seller"
+            }`
+          );
         } else {
           swal.fire({
             text: `${res?.data?.[0]?.message}`,
@@ -207,46 +217,36 @@ function ValidationForKycForm({
       });
   };
 
-  const handlePdfDownload = (event) => {
-    setAgreementChecked(event.target.checked);
-    if (event.target.checked) {
-      window.location.href =
-        Constant.pdfDowloadUrl() +
-        `/kyc/customer/selleragreement?address1=${
-          values?.address_line_one ? values?.address_line_one : ""
-        }&address2=${
-          values?.address_line_two ? values?.address_line_two : ""
-        }&country=${values?.country}&city=${
-          values?.city ? values?.city : ""
-        }&pin=${
-          values?.pin_zip_code ? values?.pin_zip_code : ""
-        }&trade_license_number=${
-          values?.trade_lic_number ? values?.trade_lic_number : ""
-        }&tax_no=${
-          values?.tax_number ? values?.tax_number : ""
-        }&customer_id=${customer_id}`;
-    }
+  const handlePdfDownload = () => {
+    window.location.href =
+      Constant.pdfDowloadUrl() +
+      `/kyc/customer/selleragreement?address1=${
+        values?.address_line_one ? values?.address_line_one : ""
+      }&address2=${
+        values?.address_line_two ? values?.address_line_two : ""
+      }&country=${values?.country}&city=${
+        values?.city ? values?.city : ""
+      }&pin=${
+        values?.pin_zip_code ? values?.pin_zip_code : ""
+      }&trade_license_number=${
+        values?.trade_lic_number ? values?.trade_lic_number : ""
+      }&tax_no=${
+        values?.tax_number ? values?.tax_number : ""
+      }&customer_id=${customer_id}`;
   };
   return (
     <>
-      <FormControlLabel
-        value="yes"
-        control={
-          <Checkbox
-            color="color_third"
-            checked={agreementChecked}
-            onClick={(event) => handlePdfDownload(event)}
-          />
-        }
-        label={
-          <p className={agreemnetDowload}>
-            By Clicking Here, I state that I have read and understood the{" "}
-            <span>Terms Of Agreement</span>.
-          </p>
-        }
-        labelPlacement="end"
-        className={download_link}
-      />
+      <div className={checkbox_agreement}>
+        <Checkbox
+          color="color_third"
+          checked={agreementChecked}
+          onChange={(event) => setAgreementChecked(event.target.checked)}
+        />
+        <p className={agreemnetDowload}>
+          By Clicking Here, I state that I have read and understood the{" "}
+          <span onClick={() => handlePdfDownload()}>Terms Of Agreement</span>.
+        </p>
+      </div>
       <InputLabel className={validation_error}>
         {valid?.agreementChecked}
       </InputLabel>
