@@ -7,6 +7,8 @@ import Constant from "../../../../Constant";
 
 function Index() {
   const [tableData, setTableDate] = useState(null);
+  const [evenRow, setEvenRow] = useState([]);
+  const [oddRow, setOddRow] = useState([]);
   const fileHandler = (event) => {
     let fileObj = event.target.files[0];
     ExcelRenderer(fileObj, (err, resp) => {
@@ -44,7 +46,6 @@ function Index() {
           upc_number: itm?.[6],
           description: itm?.[7],
         }));
-      debugger;
       let OddData =
         arrRowOdd?.length &&
         arrRowOdd?.map((itm) => ({
@@ -101,11 +102,8 @@ function Index() {
     // };
     // reader.readAsBinaryString(fileObj);
   };
-  // const [evenData, setEvenData] = useState([]);
-  // const [oddData, setOddData] = useState([]);
-  let evenData = [];
-  let oddData = [];
-  const BulkUploadEvenData = (EventData) => {
+  const BulkUploadEvenData = async (EventData) => {
+    let requests = [];
     EventData?.length &&
       EventData?.map((itm, ind) => {
         let customerId = JSON.parse(localStorage.getItem("userdata"));
@@ -127,26 +125,32 @@ function Index() {
             description: itm?.description,
           },
         };
-        axios
-          .post(Constant.baseUrl() + "/createSellerProduct", data, {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-          })
-          .then((res) => {
-            // setEvenData((prev) => ({
-            //   ...prev,
-            //   [ind]: res?.data?.[0]?.message,
-            // }));
-            evenData?.push({ [ind]: res?.data?.[0]?.message });
-          })
-          .catch((err) => {});
+        requests.push(
+          axios
+            .post(Constant.baseUrl() + "/createSellerProduct", data, {
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+              },
+            })
+            .then(async (res) => {
+              // return Promise.resolve({ [ind]: res?.data?.[0]?.message });
+              let temp = `Row ${ind + 1}` + ` ${res?.data?.[0]?.message}`;
+              return Promise.resolve(temp);
+            })
+            .catch((err) => {
+              return Promise.resolve(false);
+            })
+        );
       });
-    console.log(evenData);
+    await Promise.all(requests).then((results) => {
+      console.log("All requests finished!", results);
+      setEvenRow(results);
+    });
   };
 
-  const BulkUploadOddData = (OddData) => {
+  const BulkUploadOddData = async (OddData) => {
+    let requests = [];
     OddData?.length &&
       OddData?.map((itm, ind) => {
         let customerId = JSON.parse(localStorage.getItem("userdata"));
@@ -185,28 +189,29 @@ function Index() {
             ],
           },
         };
-        axios
-          .post(Constant.baseUrl() + "/saveProductPrice", data, {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-          })
-          .then((res) => {
-            // setOddData((prev) => ({
-            //   ...prev,
-            //   [ind]: res?.data?.[0]?.message,
-            // }));
-            oddData?.push({ [ind]: res?.data?.[0]?.message });
-          })
-          .catch((err) => {});
+        requests.push(
+          axios
+            .post(Constant.baseUrl() + "/saveProductPrice", data, {
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+              },
+            })
+            .then((res) => {
+              let temp = `Row ${ind + 1}` + ` ${res?.data?.[0]?.message}`;
+              return Promise.resolve(temp);
+            })
+            .catch((err) => {
+              return Promise.resolve(false);
+            })
+        );
       });
-    console.log(oddData);
-   
+    await Promise.all(requests).then((results) => {
+      console.log("All requests finished!", results);
+      debugger;
+      setOddRow(results);
+    });
   };
-
-  console.log(evenData,oddData)
-  debugger;
   return (
     <div className="bulkUpload_container">
       <button>
@@ -230,13 +235,10 @@ function Index() {
           />
         </div>
       )}
-
-      <div>
-        {oddData?.length &&
-          oddData?.map((itm) => {
-            return <p>{itm}</p>;
-          })}
-      </div>
+      {evenRow?.length &&
+        evenRow?.map((itm) => {
+          <p>{itm}</p>;
+        })}
     </div>
   );
 }
