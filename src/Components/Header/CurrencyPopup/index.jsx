@@ -59,6 +59,11 @@ const CurrencyPopup = ({ classes }) => {
     // console.log(str.split('/')[1]?.toLowerCase())
     if(str.split('/')[2] === 'sellerdashboard' && storedata?.code.toLowerCase() === str.split('/')[1].toLowerCase()) return
     if(str.split('/')[2] === 'buyerdashboard' && storedata?.code.toLowerCase() === str.split('/')[1].toLowerCase()) return
+    if(str.split('/')[2] === 'resetpassword' && storedata?.code.toLowerCase() === str.split('/')[1].toLowerCase()) return
+    if(str.split('/')[2] === 'register' && storedata?.code.toLowerCase() === str.split('/')[1].toLowerCase()) return
+    if(str.split('/')[2] === 'blogsdetails' && storedata?.code.toLowerCase() === str.split('/')[1].toLowerCase()) return
+    if(str.split('/')[2] === 'sellerprofile' && storedata?.code.toLowerCase() === str.split('/')[1].toLowerCase()) return
+    if(str.split('/')[2] === 'thankyou' && storedata?.code.toLowerCase() === str.split('/')[1].toLowerCase()) return
     const fetchCurrencyDropDownData = () => {
       let data = {
         geoCode: geo?.country_code,
