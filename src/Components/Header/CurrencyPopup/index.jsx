@@ -55,7 +55,11 @@ const CurrencyPopup = ({ classes }) => {
     const str = window.location.pathname
     if (geo === "") return;
     const fetchCurrencyDropDownData = () => {
-      console.log(str)
+      console.log(storedata?.code)
+      console.log(customnostore)
+      console.log(geo.country_name)
+      debugger
+      if(storedata?.code.toLowerCase() === geo.country_name.toLowerCase()) return
       let data = {
         geoCode: geo?.country_code,
         storeCode:
@@ -81,7 +85,6 @@ const CurrencyPopup = ({ classes }) => {
           });
           if(storedata?.code === str.split('/')[1]) {
             // navigate(`/${res.data?.[0]?.store?.code}/${str.split('/').pop().split('/')[0]}`);
-            debugger
             if(res.data?.[0]?.store?.code === str.split('/').pop().split('/')[0]) {
               navigate(`/${res.data?.[0]?.store?.code}`);  
             } else {
