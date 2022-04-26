@@ -4,11 +4,13 @@ import "./styles.scss";
 import * as XLSX from "xlsx";
 import axios from "axios";
 import Constant from "../../../../Constant";
+import { useStateValue } from "../../../../store/state";
 
 function Index() {
   const [tableData, setTableDate] = useState(null);
   const [evenRow, setEvenRow] = useState([]);
   const [oddRow, setOddRow] = useState([]);
+  const [{}, dispatch] = useStateValue();
   const fileHandler = (event) => {
     let fileObj = event.target.files[0];
     ExcelRenderer(fileObj, (err, resp) => {
@@ -103,7 +105,12 @@ function Index() {
     // reader.readAsBinaryString(fileObj);
   };
   const BulkUploadEvenData = async (EventData) => {
+    dispatch({
+      type: "SET_IS_LOADING",
+      value: true,
+    });
     let requests = [];
+    let dummyCount = 2;
     EventData?.length &&
       EventData?.map((itm, ind) => {
         let customerId = JSON.parse(localStorage.getItem("userdata"));
@@ -134,23 +141,46 @@ function Index() {
               },
             })
             .then(async (res) => {
-              // return Promise.resolve({ [ind]: res?.data?.[0]?.message });
-              let temp = `Row ${ind + 1}` + ` ${res?.data?.[0]?.message}`;
-              return Promise.resolve(temp);
+              let temp = `Row ${dummyCount} ${res?.data?.[0]?.message}`;
+              dummyCount = dummyCount + 2;
+              if (res?.data?.[0]?.status) {
+                return Promise.resolve({
+                  success_or_error: "success",
+                  message: temp,
+                });
+              } else {
+                return Promise.resolve({
+                  success_or_error: "error",
+                  message: temp,
+                });
+              }
             })
             .catch((err) => {
-              return Promise.resolve(false);
+              Promise.resolve(false);
+              dispatch({
+                type: "SET_IS_LOADING",
+                value: false,
+              });
             })
         );
       });
     await Promise.all(requests).then((results) => {
       console.log("All requests finished!", results);
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
       setEvenRow(results);
     });
   };
 
   const BulkUploadOddData = async (OddData) => {
+    dispatch({
+      type: "SET_IS_LOADING",
+      value: true,
+    });
     let requests = [];
+    let dummyCount = 3;
     OddData?.length &&
       OddData?.map((itm, ind) => {
         let customerId = JSON.parse(localStorage.getItem("userdata"));
@@ -198,47 +228,90 @@ function Index() {
               },
             })
             .then((res) => {
-              let temp = `Row ${ind + 1}` + ` ${res?.data?.[0]?.message}`;
-              return Promise.resolve(temp);
+              let temp = `Row ${dummyCount} ${res?.data?.[0]?.message}`;
+              dummyCount = dummyCount + 2;
+
+              if (res?.data?.[0]?.status) {
+                return Promise.resolve({
+                  success_or_error: "success",
+                  message: temp,
+                });
+              } else {
+                return Promise.resolve({
+                  success_or_error: "error",
+                  message: temp,
+                });
+              }
             })
             .catch((err) => {
-              return Promise.resolve(false);
+              Promise.resolve(false);
+              dispatch({
+                type: "SET_IS_LOADING",
+                value: false,
+              });
             })
         );
       });
     await Promise.all(requests).then((results) => {
       console.log("All requests finished!", results);
-      debugger;
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
       setOddRow(results);
     });
   };
   return (
-    <div className="bulkUpload_container">
-      <button>
-        <a href="/LiveSheetFinal.xlsx" download="LiveSheetFinal.xlsx">
-          Download Sample File
-        </a>
-      </button>
-      <input
-        type="file"
-        accept=".xlsx"
-        onChange={fileHandler}
-        style={{ padding: "10px" }}
-      />
-      {tableData && (
-        <div className="table_container">
-          <OutTable
-            data={tableData?.rows}
-            columns={tableData?.cols}
-            tableClassName="ExcelTable2007"
-            tableHeaderRowClass="heading"
-          />
-        </div>
-      )}
-      {evenRow?.length &&
-        evenRow?.map((itm) => {
-          <p>{itm}</p>;
-        })}
+    <div className="bulk_upload">
+      <div className="bulkUpload_container">
+        <button>
+          <a href="/LiveSheetFinal.xlsx" download="LiveSheetFinal.xlsx">
+            Download Sample File
+          </a>
+        </button>
+        <input
+          type="file"
+          accept=".xlsx"
+          onChange={fileHandler}
+          style={{ padding: "10px" }}
+        />
+        {tableData && (
+          <div className="table_container">
+            <OutTable
+              data={tableData?.rows}
+              columns={tableData?.cols}
+              tableClassName="ExcelTable2007"
+              tableHeaderRowClass="heading"
+            />
+          </div>
+        )}
+      </div>
+      {evenRow?.length
+        ? evenRow?.map((itm) => {
+            return (
+              <div>
+                {itm?.success_or_error === "success" ? (
+                  <p className="success">{itm?.message}</p>
+                ) : (
+                  <p className="error">{itm?.message}</p>
+                )}
+              </div>
+            );
+          })
+        : ""}
+      {oddRow?.length
+        ? oddRow?.map((itm) => {
+            return (
+              <div>
+                {itm?.success_or_error === "success" ? (
+                  <p className="success">{itm?.message}</p>
+                ) : (
+                  <p className="error">{itm?.message}</p>
+                )}
+              </div>
+            );
+          })
+        : ""}
     </div>
   );
 }

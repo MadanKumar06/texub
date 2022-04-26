@@ -16,7 +16,7 @@ const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
 function Index({ type, pid }) {
-  const [{geo, customstore, customnostore}, dispatch] = useStateValue();
+  const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
   const history = useNavigate();
 
   const [count, setcount] = useState([
@@ -511,7 +511,24 @@ function Index({ type, pid }) {
           // });
           if (currenttab === "addproduct") {
             setTimeout(() => {
-              history(`/${customnostore ? customnostore : geo?.country_name}/sellerdashboard/registersuccess`, { state: "add" });
+              history(
+                `/${
+                  customnostore ? customnostore : geo?.country_name
+                }/sellerdashboard/registersuccess`,
+                { state: "add" }
+              );
+            }, 1000 / 2);
+          } else if (
+            currenttab !== "addproduct" &&
+            !productDetailEdit?.length
+          ) {
+            setTimeout(() => {
+              history(
+                `/${
+                  customnostore ? customnostore : geo?.country_name
+                }/sellerdashboard/registersuccess`,
+                { state: "update" }
+              );
             }, 1000 / 2);
           }
         } else {
@@ -584,7 +601,12 @@ function Index({ type, pid }) {
           //   timer: 3000,
           // });
           setTimeout(() => {
-            history(`/${customnostore ? customnostore : geo?.country_name}/sellerdashboard/registersuccess`, { state: "update" });
+            history(
+              `/${
+                customnostore ? customnostore : geo?.country_name
+              }/sellerdashboard/registersuccess`,
+              { state: "update" }
+            );
           }, 1000 / 2);
         } else {
           swal.fire({
@@ -1252,7 +1274,11 @@ function Index({ type, pid }) {
       </div>
 
       <div className="updateproduct__buttons">
-        <Link to={`/${customnostore ? customnostore : geo?.country_name}/sellerdashboard/inventory`}>
+        <Link
+          to={`/${
+            customnostore ? customnostore : geo?.country_name
+          }/sellerdashboard/inventory`}
+        >
           <span className="updateproduct__back">Back</span>
         </Link>
         {/* <Link
