@@ -306,9 +306,22 @@
             display: flex;
             justify-content: space-between;
             gap: 20px;
+            width: 50%;
           .shipping_list{
             display: flex;
             justify-content: space-between;
+            width: 100%;
+              .shipping_list{
+                display: flex;
+                width: 100%;
+              }
+              .MuiFormGroup-root{
+                display: flex;
+                flex-direction: row;
+                  label{
+                    width: 50%;
+                  }
+              }
             label{
               margin: 0;
             }
@@ -326,6 +339,13 @@
             .shipping_text{
               color: #5C6369;
               font-size: 18px;
+            }
+            .shipping_awit{
+              background-color: #d5ecfd;
+              font-size: 18px;
+              padding: 10px 20px;
+              margin-left: 10px;
+              color: #2f6da3;
             }
             .shipping_price{
               background-color: #f8f0e0;
@@ -499,6 +519,28 @@
       
       .checkout_placeorder_section{
         width: 30%;
+        .remark_section{
+          background-color: #f5f5f5;
+          padding: 10px 15px;
+          margin: 10px 0 15px;
+          display: flex;
+          flex-direction: column;
+            .remart_title{
+              color: #002D56;
+              text-transform: capitalize;
+              font-size: 16px;
+              font-weight: 600;
+              width: 100%;
+              margin-bottom: 10px;
+            }
+            .remart_text{
+              letter-spacing: 0.42px;
+              color: #5C6369;
+              text-transform: capitalize;
+              font-size: 14px;
+              font-weight: 400;
+            }
+        }
         .checkout_btns{
           display: flex;
           flex-direction: column;
@@ -536,6 +578,160 @@
       }
     }
   }
+}
+
+
+/* checkout address popup design here */
+.add_address_popup{
+  display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1em;
+  .address_popup_main{
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        max-width: 900px;
+        width: 100%;
+        box-shadow: 0px 3px 6px rgb(0 0 0 / 16%) !important;
+        background-color: #FFFFFF;
+        z-index: 9;
+        padding: 2em 3em 3em;
+        gap: 30px;
+        height: 87vh;
+        z-index: 1;
+        min-height: 70vh;
+        border-radius: 3px;
+        overflow-x: auto;
+        box-shadow: 0 0 12px 2px rgb(0 0 0 / 35%);
+          .address_popup_block{
+            .address_title{
+              padding: 10px 0;
+              letter-spacing: 0.9px;
+              color: #DDB363;
+              text-transform: capitalize;
+              font-weight: 400;
+            }
+          }
+        .address_popup_clear_btn{
+          float: right;
+          background-color: #002d56;
+          width: 30px;
+          height: 30px;
+          color: #fff;
+          font-weight: 800;
+          position: absolute;
+          right: 20px;
+          top: 10px;
+        }
+    .address_selection_block{
+        display: flex;
+        padding: 10px 0;
+          .address_list{
+            width: 100%;
+              .shipping_list_address{
+                width: 100%;
+                .MuiFormGroup-root{
+                  display: flex;
+                  flex-direction: row;
+                   label{
+                     width: 40%;
+                   } 
+                }
+              }
+          }
+      
+    }
+    .address_field_block{
+        gap: 2em;
+        display: flex;
+        padding-bottom: 3%;
+          .address_fields{
+            width: 100%;
+            
+            .MuiFormControl-root{
+              display: inline-flex;
+              flex-direction: column;
+              position: relative;
+              min-width: 0px;
+              padding: 0px;
+              margin: 0px;
+              border: 0px;
+              vertical-align: top;
+              width: 100%;
+              #selection_box_block{
+                padding: 12px 14px;
+              }
+            }
+             label{
+                font-weight: 400;
+                letter-spacing: 0.54px;
+                color: #272727;
+                margin-top: 0em;
+                margin-bottom: 10px;
+                line-height: 1.4375em;
+                padding: 0;
+                position: relative;
+                display: block;
+                transform-origin: top left;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 100%;
+                -webkit-transition: color 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms,-webkit-transform 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms,max-width 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
+                transition: color 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms,transform 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms,max-width 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
+              }
+              
+
+
+          }
+          .final_block{
+                width: 48%;
+              }
+      }
+      .address_popup_btns{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+          button{
+            width: 48%;
+          }
+          .address_cancel_btn{
+            color: #0e4372 !important;
+            cursor: pointer;
+            font-size: 18px !important;
+            min-width: 126px !important;
+            background: #fff;
+            border: 1px solid #0e4372;
+            font-weight: 600 !important;
+            border-radius: 45px !important;
+            letter-spacing: 1px;
+            text-transform: capitalize !important;
+            text-decoration: none !important;
+          }
+          .address_save_btn{
+                color: #ffffff !important;
+                border: none !important;
+                cursor: pointer;
+                font-size: 18px !important;
+                min-width: 126px !important;
+                background: linear-gradient(180deg, #20639B 0%, #002D56 100%);
+                box-shadow: 0px 3px 6px #00000029;
+                font-weight: 600 !important;
+                border-radius: 45px !important;
+                letter-spacing: 1px;
+                text-transform: capitalize !important;
+                text-decoration: none !important;
+          }
+      }
+  }
+}
+.address_select_field_box{
+    fieldset{
+      legend{
+        display: none;
+      }
+    }
 }
 
 @media (max-width: "1600px") {
