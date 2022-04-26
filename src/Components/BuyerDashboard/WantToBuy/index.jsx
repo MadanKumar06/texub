@@ -159,7 +159,6 @@ function Index() {
       label: "QUOTE RECEIVED",
       options: {
         customBodyRender: (value, tablemeta) => {
-          debugger;
           return (
             <div
               className="want_tobuy__action"
