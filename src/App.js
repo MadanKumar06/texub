@@ -28,7 +28,7 @@ import { Userdetails } from "./Components/Userdetails";
 import SellerDashboard from "./Pages/SellerDashboard";
 import BuyerDashboard from "./Pages/BuyerDashboard";
 import SellerProfile from "./Pages/SellerProfile";
-import PendingInvoice from "./Pages/PendingInvoice";
+import PendingInvoice from "./Pages/PendingInvoice/index1";
 import Checkout from "./Pages/Checkout";
 import KYCDetails from "./Pages/KYCDetails";
 
