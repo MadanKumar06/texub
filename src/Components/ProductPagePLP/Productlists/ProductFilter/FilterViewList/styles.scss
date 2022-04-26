@@ -16,7 +16,7 @@
     border-radius: 3px;
   }
   .sub_filter_view_cards {
-    padding: 4em 3em;
+    padding: 3em 2em;
 
     .filter_option_block {
       margin-bottom: 3em;
@@ -132,10 +132,13 @@
         color: #333c42;
         font-size: 23px;
         font-weight: 600;
+        p{
+          font-size: 20px;
         span {
           font-size: 14px;
           margin-right: 5px;
         }
+      }
       }
     }
     .filter_by_price {
