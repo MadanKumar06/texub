@@ -134,8 +134,12 @@ function ValidationForKycForm({
     let Category_id = values?.categorylist?.map(
       (itm) => itm?.texub_category_id
     );
-    let tax_date = moment(values?.tax_expiration_date).format("DD-MM-YYYY");
-    let trade_date = moment(values?.trade_expiration_date).format("DD-MM-YYYY");
+    let tax_date = values?.tax_expiration_date
+      ? moment(values?.tax_expiration_date).format("DD-MM-YYYY")
+      : "";
+    let trade_date = values?.trade_expiration_date
+      ? moment(values?.trade_expiration_date).format("DD-MM-YYYY")
+      : "";
     let data = {
       kyc: {
         customer_id: customer_id,
@@ -144,7 +148,7 @@ function ValidationForKycForm({
         trade_license_number: values?.trade_lic_number
           ? values?.trade_lic_number
           : "",
-        license_expiry_date: trade_date ? trade_date : "",
+        license_expiry_date: trade_date,
         license_expiry_remainder: values?.trade_remainder_check ? 1 : 0,
         license_certificate: values?.trade_image_base64
           ? values?.trade_image_base64
@@ -153,7 +157,7 @@ function ValidationForKycForm({
         tax_certificate: values?.tax_image_base64
           ? values?.tax_image_base64
           : "",
-        tax_expire_date: tax_date ? tax_date : "",
+        tax_expire_date: tax_date,
         tax_expiry_remainder: values?.tax_remainder_check ? 1 : 0,
         full_name: "",
         passport_number: "",
