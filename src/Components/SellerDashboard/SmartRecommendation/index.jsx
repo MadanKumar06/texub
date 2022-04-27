@@ -5,16 +5,19 @@ import { Link } from "react-router-dom";
 import Pagination from "../../Pagination";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import axios from "axios";
-import Constant from "../../../Constant";
+import Constant, { imageBaseUrl } from "../../../Constant";
 // import Vieworders from '../../Common/Vieworders'
 import { useStateValue } from "../../../store/state";
+import { IconButton } from "@mui/material";
+import { Search } from "@mui/icons-material";
+import { TextField, InputAdornment } from "@mui/material";
 function Index() {
   const [tableData, setTableData] = useState([]);
   const PaginateDataSplit = (event) => {
     if (apiTableData?.length === 0) return setApiTableData([]);
     setTableData(event);
   };
-  const [{geo, customstore, customnostore}, dispatch] = useStateValue();
+  const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
   const [apiTableData, setApiTableData] = useState([]);
   useEffect(() => {
     const fetchTableData = async () => {
@@ -54,6 +57,7 @@ function Index() {
     };
     fetchTableData();
   }, []);
+
   const options = {
     filter: false,
     filterType: "dropdown",
@@ -68,38 +72,44 @@ function Index() {
 
   const columns = [
     {
-      name: "product_name",
-      label: "Product Name",
+      name: "product_brand_image",
+      label: " ",
       options: {
         customBodyRender: (value) => {
-          return <div className="orders__code">{value}</div>;
-        },
-      },
-    },
-
-    {
-      name: "price",
-      label: "Price",
-      options: {
-        customBodyRender: (value, tablemeta) => {
-          let currency = tablemeta?.rowData[4];
           return (
-            <div className="orders__ordertotal">
-              <span className="label">{currency}</span>
-              <span className="value">{value}</span>
+            <div className="smart_icon">
+              <img src={value} alt="" className="icon" />
             </div>
           );
         },
       },
     },
     {
-      name: "lowest_price",
-      label: "Lowest Price",
+      name: "product_name",
+      label: "PRODUCT NAME",
+      options: {
+        customBodyRender: (value) => {
+          return <div className="smart__productname">{value}</div>;
+        },
+      },
+    },
+    {
+      name: "product_description",
+      label: "PRODUCT DESCRIPTION",
+      options: {
+        customBodyRender: (value) => {
+          return <div className="smart__productname">{value}</div>;
+        },
+      },
+    },
+    {
+      name: "price",
+      label: "MY PRICE",
       options: {
         customBodyRender: (value, tablemeta) => {
-          let currency = tablemeta?.rowData[4];
+          let currency = tablemeta?.rowData[6];
           return (
-            <div className="orders__ordertotal">
+            <div className="smart_price">
               <span className="label">{currency}</span>
               <span className="value">{value}</span>
             </div>
@@ -109,10 +119,30 @@ function Index() {
     },
     {
       name: "seller_rank",
-      label: "Rank",
+      label: "RANK",
       options: {
         customBodyRender: (value) => {
-          return <div className="orders__buyercode">{value}</div>;
+          return (
+            <div className="smart_rank">
+              {value}
+              <span className="smart_rank_th">th</span>
+            </div>
+          );
+        },
+      },
+    },
+    {
+      name: "lowest_price",
+      label: "LOWEST PRICE",
+      options: {
+        customBodyRender: (value, tablemeta) => {
+          let currency = tablemeta?.rowData[6];
+          return (
+            <div className="smart_price">
+              <span className="label">{currency}</span>
+              <span className="value">{value}</span>
+            </div>
+          );
         },
       },
     },
@@ -124,22 +154,48 @@ function Index() {
       },
     },
   ];
-
   return (
-    <div className="orders">
-      <div className="orders__back__footer">
-        <div className="orders__back__container">
-          <Link to={`/${customnostore ? customnostore : geo?.country_name}/buyerdashboard/dashboard`}>
+    <div className="smart_main">
+      <div className="smart__back__footer">
+        <div className="smart__back__container">
+          <Link
+            to={`/${
+              customnostore ? customnostore : geo?.country_name
+            }/buyerdashboard/dashboard`}
+          >
             <ArrowBackIosNew />
             <span>Back</span>
           </Link>
         </div>
       </div>
+      <div className="smart__search">
+        <TextField
+          placeholder="Search…"
+          variant="outlined"
+          name="search_product"
+          className="search_input"
+          fullWidth
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <IconButton
+                  type="submit"
+                  className="smart_searchicon"
+                  sx={{ p: "10px" }}
+                  aria-label="search"
+                >
+                  <Search className="search_icon"></Search>
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
+        />
+      </div>
       <MUITable
         columns={columns}
         table={tableData?.length ? tableData : []}
         options={options}
-        className="orders__table"
+        className="smart__table"
       />
       {apiTableData?.length > 0 ? (
         <Pagination
