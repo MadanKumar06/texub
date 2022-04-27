@@ -68,7 +68,7 @@ const CurrencyPopup = ({ classes }) => {
       let data = {
         geoCode: geo?.country_code,
         storeCode:
-        str !== ""
+        str.split('/')[1]
             ? str.split('/')[1]?.toLowerCase()
             : geo?.country_name?.toLowerCase(),
       };
@@ -89,14 +89,13 @@ const CurrencyPopup = ({ classes }) => {
             data: res.data?.[0]?.store?.code,
           });
           if(storedata?.code === str.split('/')[1]) {
-            // navigate(`/${res.data?.[0]?.store?.code}/${str.split('/').pop().split('/')[0]}`);
             if(res.data?.[0]?.store?.code === str.split('/').pop().split('/')[0]) {
               navigate(`/${res.data?.[0]?.store?.code}`);  
             } else {
               navigate(`/${res.data?.[0]?.store?.code}/${str.split('/').pop().split('/')[0]}`);
             }
-          } else  {
-            navigate(`/${geo?.country_name}`);
+          } else if(storedata?.code !== str.split('/')[1])  {
+            navigate(`/${str.split('/')[1] ? res.data?.[0]?.store?.code : geo?.country_name}`);
           }
           setSelectedValue({
             currency_code: res?.data?.[1]?.currency?.[0]?.currency_code,
