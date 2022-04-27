@@ -9,7 +9,7 @@
 //     return "https://uat.texub.com/rest/V1/integration/admin/token";
 //   },
 //   customerTokenUrl: function () {
-//     return "https://uat.texub.com/rest/V1/integration/customer/token";
+//     return "https://uat.texub.com/rest/V1/texub/loginCustomer";
 //   },
 //   customerMeDetailUrl: function () {
 //     return "https://uat.texub.com/rest/V1/customers/me";

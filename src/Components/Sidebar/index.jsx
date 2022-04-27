@@ -15,7 +15,7 @@ function Index({
   barstate,
   setbarstate,
 }) {
-  const [{geo, customnostore}, dispatch] = useStateValue()
+  const [{ geo, customnostore }, dispatch] = useStateValue();
   useEffect(() => {
     setcurrentmenu(SellerList[0]?.name);
   }, []);

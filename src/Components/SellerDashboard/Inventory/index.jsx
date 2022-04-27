@@ -10,6 +10,7 @@ import hp from "../../../Assets/sellerdashboard/inventory/hp.png";
 import { Link } from "react-router-dom";
 import Pagination from "../../Pagination";
 import ProductGrid from "./ProductGrid";
+import swal from "sweetalert2";
 
 import axios from "axios";
 import Constant from "../../../Constant";
@@ -21,7 +22,7 @@ function Index({ registerproduct }) {
   const [apiTableData, setApiTableData] = useState([]);
   const [searchList, setSearchList] = useState([]);
   const [search, setSearch] = useState("");
-  const [{geo, customstore, customnostore}, dispatch] = useStateValue();
+  const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
 
   const [offersOpenClose, setOffersOpenClose] = useState({
     isOpenClose: false,
@@ -231,6 +232,10 @@ function Index({ registerproduct }) {
       return setSearchList([]);
     }
     try {
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: true,
+      });
       const searchresults = await axios({
         method: "post",
         url: `${Constant.baseUrl()}/getSearchProduct`,
@@ -244,8 +249,24 @@ function Index({ registerproduct }) {
       });
       setSearchList(searchresults?.data);
       console.log(searchresults?.data);
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
+      if (searchresults?.data?.length === 0) {
+        swal.fire({
+          text: `No Search Result For "${search}" `,
+          icon: "error",
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      }
     } catch (e) {
       console.log(e);
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
     }
   };
 
@@ -323,7 +344,12 @@ function Index({ registerproduct }) {
           offersOpenClose={offersOpenClose}
         />
       )}
-      <Link className="inventory-page-back" to={`/${customnostore ? customnostore : geo?.country_name}/sellerdashboard/dashboard`}>
+      <Link
+        className="inventory-page-back"
+        to={`/${
+          customnostore ? customnostore : geo?.country_name
+        }/sellerdashboard/dashboard`}
+      >
         <ArrowBackIosNew />
         <span>Back</span>
       </Link>

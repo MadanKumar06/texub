@@ -23,7 +23,7 @@ const MyCartTable = ({ cartDataList, deleteCartData }) => {
   console.log(cartDataList[0]?.invoice_items?.length);
 
   const [{ pdpPopUpOpenClose, currency, geo }, dispatch] = useStateValue();
-  
+
   useEffect(() => {
     let temp =
       cartDataList?.[0]?.invoice_items?.length &&

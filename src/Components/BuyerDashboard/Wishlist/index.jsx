@@ -91,16 +91,17 @@ const Whislist = () => {
       </div>
 
       <div>
-        {tableData?.length &&
-          tableData?.map((itm) => (
-            <WhislistTable
-              tableData={itm?.wishlist_data}
-              tableDataHeader={itm?.name}
-              folderdata={folderdata}
-              setWishListAgain={setWishListAgain}
-              wishListAgain={wishListAgain}
-            />
-          ))}
+        {tableData?.length
+          ? tableData?.map((itm) => (
+              <WhislistTable
+                tableData={itm?.wishlist_data}
+                tableDataHeader={itm?.name}
+                folderdata={folderdata}
+                setWishListAgain={setWishListAgain}
+                wishListAgain={wishListAgain}
+              />
+            ))
+          : ""}
       </div>
       {wishdata?.length > 0 ? (
         <Pagination
