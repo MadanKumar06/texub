@@ -187,7 +187,7 @@ const TransitionsModal = ({ classes, openPopUp }) => {
     let data = {
       data: {
         email: signInData?.forgot_email_address,
-        website_id: 1,
+        website_id: storedata?.website_id,
         store_id: storedata?.store_id,
       },
     };

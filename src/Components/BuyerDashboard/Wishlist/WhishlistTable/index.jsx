@@ -7,11 +7,18 @@ import { MoreVert } from "@mui/icons-material";
 import axios from "axios";
 import Constant from "../../../../Constant";
 import { useStateValue } from "../../../../store/state";
+import swal from "sweetalert2";
 
 import WishlistEdit from "../image/wishlist-edit.png";
 import WishlistDelete from "../image/wishlist-delete.png";
 
-const WhislistTable = ({ tableData, tableDataHeader, folderdata }) => {
+const WhislistTable = ({
+  tableData,
+  tableDataHeader,
+  folderdata,
+  setWishListAgain,
+  wishListAgain,
+}) => {
   //open more option at resolution 767px and below
   const [openMoreOPtion, setOpenMoreOption] = useState(null);
   const handleClickForOpenMoreOption = (event) => {
@@ -45,6 +52,10 @@ const WhislistTable = ({ tableData, tableDataHeader, folderdata }) => {
 
   const wishlistdelete = async () => {
     const user = JSON.parse(localStorage.getItem("userdata"));
+    dispatch({
+      type: "SET_IS_LOADING",
+      value: true,
+    });
     try {
       const deletewish = await axios({
         method: "post",
@@ -60,13 +71,41 @@ const WhislistTable = ({ tableData, tableDataHeader, folderdata }) => {
         },
       });
       console.log(deletewish.data);
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
+      if (deletewish?.data?.[0]?.status) {
+        setWishListAgain(!wishListAgain);
+        swal.fire({
+          text: `${deletewish?.data?.[0]?.message}`,
+          icon: "success",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+      } else {
+        swal.fire({
+          text: `${deletewish?.data?.[0]?.message}`,
+          icon: "error",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+      }
     } catch (e) {
       console.log(e);
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
     }
   };
 
   const addalltocart = () => {
     const user = JSON.parse(localStorage.getItem("userdata"));
+    dispatch({
+      type: "SET_IS_LOADING",
+      value: true,
+    });
     wdata?.filter(async (w) => {
       try {
         const addcart = await axios({
@@ -88,10 +127,33 @@ const WhislistTable = ({ tableData, tableDataHeader, folderdata }) => {
           },
         });
         dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+        dispatch({
           type: "CART__TRIGGER",
         });
+        if (addcart?.data?.[0]?.status) {
+          swal.fire({
+            text: `${addcart?.data?.[0]?.message}`,
+            icon: "success",
+            showConfirmButton: false,
+            timer: 2000,
+          });
+        } else {
+          swal.fire({
+            text: `${addcart?.data?.[0]?.message}`,
+            icon: "error",
+            showConfirmButton: false,
+            timer: 2000,
+          });
+        }
       } catch (e) {
         console.log(e);
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
       }
     });
   };
@@ -126,18 +188,66 @@ const WhislistTable = ({ tableData, tableDataHeader, folderdata }) => {
     );
   };
 
-  console.log(wdata);
+  const handleWishlistSingleItemDelete = async (id) => {
+    dispatch({
+      type: "SET_IS_LOADING",
+      value: true,
+    });
+    const user = JSON.parse(localStorage.getItem("userdata"));
+    try {
+      const deleteSinglewishlist = await axios({
+        method: "post",
+        url: `${Constant.baseUrl()}/wishlist/delete`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        data: {
+          requestParams: {
+            item_id: id,
+            customer_id: user?.id,
+          },
+        },
+      });
+      console.log(deleteSinglewishlist?.data);
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
+      if (deleteSinglewishlist?.data?.[0]?.status) {
+        setWishListAgain(!wishListAgain);
+        swal.fire({
+          text: `${deleteSinglewishlist?.data?.[0]?.message}`,
+          icon: "success",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+      } else {
+        swal.fire({
+          text: `${deleteSinglewishlist?.data?.[0]?.message}`,
+          icon: "error",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+      }
+    } catch (e) {
+      console.log(e);
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
+    }
+  };
 
   return (
     <div className="wishlist_table_container">
       <div className="whishlist_table_header">
         <div className="wishlist-first-text">
-        <p className="header_title">{tableDataHeader}</p>
-        <span className="wishlist-edit-img">
+          <p className="header_title">{tableDataHeader}</p>
+          <span className="wishlist-edit-img">
             <img src={WishlistEdit} alt="" />
             <span className="wishlist-edit-text">Edit</span>
-        </span>
-      </div>
+          </span>
+        </div>
         <MoreVert
           className="more_option"
           onClick={handleClickForOpenMoreOption}
@@ -155,7 +265,7 @@ const WhislistTable = ({ tableData, tableDataHeader, folderdata }) => {
         </Menu>
         <div className="header_link">
           <p onClick={addalltocart}>Add All To Cart</p>
-          <p > Add All To Pending Invoice</p>
+          <p> Add All To Pending Invoice</p>
           <p onClick={wishlistdelete}>Delete List</p>
         </div>
       </div>
@@ -245,9 +355,14 @@ const WhislistTable = ({ tableData, tableDataHeader, folderdata }) => {
                     </div>
                   </div>
                   <div className="wishlist-btn-info">
-                    <span className="wishlist-delete-btn"> 
+                    <span
+                      className="wishlist-delete-btn"
+                      onClick={() =>
+                        handleWishlistSingleItemDelete(itm?.wishlit_item_id)
+                      }
+                    >
                       <img src={WishlistDelete} alt="" />
-                      </span>
+                    </span>
                     <Button className="add-cart-btn">
                       <span> Add to Cart</span>
                     </Button>
