@@ -96,7 +96,7 @@ const CurrencyPopup = ({ classes }) => {
               navigate(`/${res.data?.[0]?.store?.code}/${str.split('/').pop().split('/')[0]}`);
             }
           } else  {
-            navigate(`/${res.data?.[0]?.store?.code}`);
+            navigate(`/${geo?.country_name}`);
           }
           setSelectedValue({
             currency_code: res?.data?.[1]?.currency?.[0]?.currency_code,
