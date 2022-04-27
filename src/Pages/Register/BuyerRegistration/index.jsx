@@ -320,7 +320,7 @@ const BuyerRegistration = ({ classes }) => {
     let data = {
       customer: {
         group_id: 5,
-        website_id: 1,
+        website_id: storedata?.website_id,
         store_id: storedata?.store_id,
         email: buyerRegistrationData?.email_address,
         first_name: buyerRegistrationData?.first_name,

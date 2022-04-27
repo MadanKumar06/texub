@@ -22,7 +22,7 @@ import { useStateValue } from "../../../../store/state";
 import swal from "sweetalert2";
 
 const TransitionsModal = ({ classes }) => {
-  const [{geo, customnostore}, dispatch] = useStateValue();
+  const [{ geo, customnostore }, dispatch] = useStateValue();
   const history = useNavigate();
   let {
     section_right,
@@ -174,14 +174,14 @@ const TransitionsModal = ({ classes }) => {
 
   //API to Register
   const FinalGuestRegistration = () => {
-    let storedata = JSON.parse(localStorage.getItem('storedata'))
+    let storedata = JSON.parse(localStorage.getItem("storedata"));
     dispatch({
       type: "SET_IS_LOADING",
       value: true,
     });
     let data = {
       customer: {
-        website_id: 1,
+        website_id: storedata?.website_id,
         store_id: storedata?.store_id,
         email: guestData?.email_address,
         first_name: guestData?.first_name,

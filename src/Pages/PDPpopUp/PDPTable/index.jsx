@@ -54,7 +54,7 @@ const PDPTable = ({ classes, tableData, setPdpSellerData }) => {
 
   const [is_table_one, setIs_table_one] = useState(0);
   const [is_table_two, setIs_table_two] = useState(0);
-  const [{geo, customstore, customnostore}, dispatch] = useStateValue();
+  const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
   //tableValues
   useEffect(() => {
     if (tableData?.tableone?.length) {
@@ -124,7 +124,7 @@ const PDPTable = ({ classes, tableData, setPdpSellerData }) => {
   const [dradio, setdradio] = useState();
 
   const handleRadioGroupChange = (event) => {
-    setdradio(event.seller_code);
+    setdradio(event.product_id);
     setPdpSellerData((prevState) => ({
       ...prevState,
       ...event,
@@ -209,7 +209,7 @@ const PDPTable = ({ classes, tableData, setPdpSellerData }) => {
 
             <RadioGroup
               aria-labelledby="demo-radio-buttons-group-label"
-              defaultValue={tableData?.tableone[0].seller_code}
+              defaultValue={tableData?.tableone[0].product_id}
               name="radio-buttons-group"
               className={radio_btn_group}
             >
@@ -223,7 +223,7 @@ const PDPTable = ({ classes, tableData, setPdpSellerData }) => {
                       <div className={price_list_action}>
                         <div className={list_action_input}>
                           <FormControlLabel
-                            value={item?.seller_code}
+                            value={item?.product_id}
                             label=""
                             // value={dradio}
                             defaultValue={dradio}
@@ -241,7 +241,9 @@ const PDPTable = ({ classes, tableData, setPdpSellerData }) => {
                       <div className={price_list_seller}>
                         <span>
                           <Link
-                            to={`/${customnostore ? customnostore : geo?.country_name}/sellerprofile/${item.seller_code}`}
+                            to={`/${
+                              customnostore ? customnostore : geo?.country_name
+                            }/sellerprofile/${item.seller_code}`}
                             onClick={() => handleClose()}
                           >
                             {item?.seller_code}

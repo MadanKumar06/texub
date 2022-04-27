@@ -229,13 +229,13 @@ const BuyerList = [
     name: "Dashboard",
     url: "dashboard",
   },
-   {
-    image: (
-      <svg xmlns="http://www.w3.org/2000/svg" width="31" height="31" viewBox="0 0 31 31" > <g id="Group_1493" data-name="Group 1493" transform="translate(-75 -463)" > <g id="Rectangle_1690" data-name="Rectangle 1690" transform="translate(75 463)" fill="none" stroke="#000" strokeWidth="1" > <rect width="14" height="10" rx="2" stroke="none" /> <rect x="0.5" y="0.5" width="13" height="9" rx="1.5" fill="none" /> </g> <g id="Rectangle_1692" data-name="Rectangle 1692" transform="translate(75 476)" fill="none" stroke="#000" strokeWidth="1" > <rect width="14" height="18" rx="2" stroke="none" /> <rect x="0.5" y="0.5" width="13" height="17" rx="1.5" fill="none" /> </g> <g id="Rectangle_1691" data-name="Rectangle 1691" transform="translate(92 463)" fill="none" stroke="#000" strokeWidth="1" > <rect width="14" height="18" rx="2" stroke="none" /> <rect x="0.5" y="0.5" width="13" height="17" rx="1.5" fill="none" /> </g> <g id="Rectangle_1693" data-name="Rectangle 1693" transform="translate(92 484)" fill="none" stroke="#000" strokeWidth="1" > <rect width="14" height="10" rx="2" stroke="none" /> <rect x="0.5" y="0.5" width="13" height="9" rx="1.5" fill="none" /> </g> </g> </svg>
-    ),
-    name: "Not Activated",
-    url: "notactived",
-  },
+  //  {
+  //   image: (
+  //     <svg xmlns="http://www.w3.org/2000/svg" width="31" height="31" viewBox="0 0 31 31" > <g id="Group_1493" data-name="Group 1493" transform="translate(-75 -463)" > <g id="Rectangle_1690" data-name="Rectangle 1690" transform="translate(75 463)" fill="none" stroke="#000" strokeWidth="1" > <rect width="14" height="10" rx="2" stroke="none" /> <rect x="0.5" y="0.5" width="13" height="9" rx="1.5" fill="none" /> </g> <g id="Rectangle_1692" data-name="Rectangle 1692" transform="translate(75 476)" fill="none" stroke="#000" strokeWidth="1" > <rect width="14" height="18" rx="2" stroke="none" /> <rect x="0.5" y="0.5" width="13" height="17" rx="1.5" fill="none" /> </g> <g id="Rectangle_1691" data-name="Rectangle 1691" transform="translate(92 463)" fill="none" stroke="#000" strokeWidth="1" > <rect width="14" height="18" rx="2" stroke="none" /> <rect x="0.5" y="0.5" width="13" height="17" rx="1.5" fill="none" /> </g> <g id="Rectangle_1693" data-name="Rectangle 1693" transform="translate(92 484)" fill="none" stroke="#000" strokeWidth="1" > <rect width="14" height="10" rx="2" stroke="none" /> <rect x="0.5" y="0.5" width="13" height="9" rx="1.5" fill="none" /> </g> </g> </svg>
+  //   ),
+  //   name: "Not Activated",
+  //   url: "notactived",
+  // },
   {
     image:(<svg xmlns="http://www.w3.org/2000/svg" width="26" height="33.582" viewBox="0 0 26 33.582"> <g id="Group_1494" data-name="Group 1494" transform="translate(-89 -600.418)"> <g id="Path_1771" data-name="Path 1771" transform="translate(89 607)" fill="none"> <path d="M3,0H23a2,2,0,0,1,2,2l1,19a6,6,0,0,1-6,6H6a6,6,0,0,1-6-6L1,2A2,2,0,0,1,3,0Z" stroke="none"/> <path d="M 3 1 C 2.448600769042969 1 2 1.448600769042969 2 2 L 1.998619079589844 2.052560806274414 L 1.000062942504883 21.02515029907227 C 1.013694763183594 23.77060317993164 3.25140380859375 26 6 26 L 20 26 C 22.74859619140625 26 24.98630523681641 23.77060317993164 24.99993705749512 21.02515029907227 L 24 2 C 24 1.448600769042969 23.55139923095703 1 23 1 L 3 1 M 3 0 L 23 0 C 24.10457038879395 0 25 0.8954296112060547 25 2 L 26 21 C 26 24.3137092590332 23.3137092590332 27 20 27 L 6 27 C 2.686290740966797 27 0 24.3137092590332 0 21 L 1 2 C 1 0.8954296112060547 1.895429611206055 0 3 0 Z" stroke="none" fill="#000"/> </g> <path id="Path_1772" data-name="Path 1772" d="M1916.989,571.545l2.64,2.866,5.355-5.355" transform="translate(-1819.107 48.634)" fill="none" stroke="#000" strokeLinecap="round" stroke-linejoin="round" strokeWidth="1"/> <path id="Subtract" d="M11.192,12V6.921c0-3.313-2.327-6-5.2-6S.8,3.608.8,6.921V12H0V6.921C0,3.1,2.684,0,6,0s6,3.1,6,6.921V12Z" transform="translate(96.072 600.418)" fill-rule="evenodd"/> </g> </svg>),
     name: "My Orders",
