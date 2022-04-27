@@ -202,6 +202,47 @@
                 }
               }
         }
+        .pickup_hub{
+          padding: 2em 3em;
+          .pickup_address_section{
+              display: flex;
+              justify-content: space-between;
+                gap: 2em;
+                padding-bottom: 3%;
+              width: calc(65% - 100px);
+            .address_fields{
+              width: 100%;
+              label{
+               font-weight: 400;
+              letter-spacing: 0.54px;
+              color: #272727;
+              margin-top: 0em;
+              margin-bottom: 10px;
+              line-height: 1.4375em;
+              padding: 0;
+              position: relative;
+              display: block;
+              transform-origin: top left;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              max-width: 100%;
+              transition: color 200ms cubic-bezier(0, 0, 0.2, 1) 0ms, transform 200ms cubic-bezier(0, 0, 0.2, 1) 0ms, max-width 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+              }
+              .MuiTextField-root{
+                  display: inline-flex;
+                  flex-direction: column;
+                  position: relative;
+                  min-width: 0px;
+                  padding: 0px;
+                  margin: 0px;
+                  border: 0px;
+                  vertical-align: top;
+                  width: 100%;
+              }
+            }
+          }
+        }
           .delivery_customer_info{
               display: flex;
               align-items: center;
@@ -300,7 +341,7 @@
       .shipping_info{
           display: flex;
           justify-content: space-between;
-          padding: 2em 3em 1em;
+          padding: 1em 3em 1em;
           align-items: center;
           .shipping_list_section{
             display: flex;
@@ -320,6 +361,9 @@
                 flex-direction: row;
                   label{
                     width: 50%;
+                    .MuiSvgIcon-root{
+                      color: #002d56;
+                    }
                   }
               }
             label{
@@ -360,6 +404,7 @@
         }
       }
     }
+
     .block_B {
       position: relative;
       list-style-type: none;
@@ -389,7 +434,7 @@
           align-items: center;
           justify-content: space-between;
           width: 70%;
-          gap: 10px;
+          gap: 15px;
           .footer_main {
             padding-left: 0 6px;
 
@@ -400,7 +445,8 @@
               height: 55px;
               width: max-content;
               img {
-                width: 60%;
+                width: 175px;
+                height: 100%;
               }
               .MuiFormControlLabel-root {
                 margin: 0;
@@ -576,8 +622,32 @@
           }
         }
       }
+
+      /* texub shipping btns */
+      .texub_shipping_btns{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        button.texub_cancel_btn{
+          box-shadow: 0px 3px 6px #00000029;
+          border: 1px solid #002D56;
+          border-radius: 25px;
+          color: #002d56;
+          font-weight: 600;
+        }
+        button{
+          font-weight: 600;
+          width: 33.3%;
+           box-shadow: 0px 3px 6px #00000029;
+          border-radius: 25px;
+        }
+      }
     }
   }
+}
+
+.checkout_main_container .section_left .block_A.additional::after{
+  display: none;
 }
 
 
@@ -922,7 +992,8 @@
   .checkout_main_container{
     .checkout_info_list{
       flex-wrap: wrap;
-      justify-content: center;
+      justify-content: space-between;
+      gap: 1em;
     }
     .checkout_order_info{
       flex-direction: column;
@@ -941,12 +1012,14 @@
           .shipping_info{
             flex-direction: column;
             padding: 2em 1em 1em;
+              .shipping_list_section{
+                width: 100%;
+                padding-bottom: 10px;
+              }
           }
           .aside_block{
-                            padding: 1em 2em;
-
+              padding: 1em 2em;
             .aside_block_A{
-
               .delivery_address_list{
                 width: 100% !important;
                   .delivery_address_content{
@@ -959,6 +1032,11 @@
                            width: 100%;
                           max-width: 82%;
                         }
+                  }
+                  .aside_block_B{
+                    .delivery_address_add{
+                      margin: 1em;
+                    }
                   }
               }
               .delivery_customer_info{
@@ -1158,11 +1236,27 @@
              padding: 10px 15px;
              .shipping_list_section{
                flex-direction: column;
+               .shipping_list{
+                 .MuiFormGroup-root{
+                   label{
+                     width: 100%;
+                   }
+                 }
+               }
              }
              .shipping_charges_info{
                .shipping_charges_section{
                  .shipping_price{
                        padding: 5px 10px;
+                       font-size: 16px;
+                 }
+                 .shipping_text{
+                   font-size: 16px;
+                 }
+                 .shipping_awit{
+                   padding: 10px 5px;
+                   margin: 0;
+                   font-size: 16px;
                  }
                }
              }
@@ -1183,6 +1277,14 @@
 
                     }
                   }
+                }
+                .pickup_hub{
+                  padding: 10px 15px;
+                    .pickup_address_section{
+                      width: 100%;
+                      flex-direction: column;
+                      gap: 10px;
+                    }
                 }
                 .delivery_customer_info{
                   flex-direction: column;
@@ -1213,9 +1315,45 @@
           }
 
         }
+        .texub_shipping_btns{
+          flex-direction: column;
+          gap: 20px;
+          button{
+            width: 100%;
+          }
+        }
       }
     }
   }
+.add_address_popup{
+  .address_popup_main{
+    padding: 1em 1em 2em;
+    .address_popup_block{
+      .address_selection_block{
+        .address_list{
+          .shipping_list_address{
+            width: 100%;
+            .MuiFormGroup-root{
+              label{
+                width: 100%;
+              }
+            }
+          }
+        }
+      }
+      .address_field_block{
+        flex-direction: column;
+        padding-bottom: 2%;
+        gap: 1em;
+      }
+      .address_fields.final_block{
+        width: 100%;
+        padding-bottom: 10px;
+      }
+    }
+    
+  }
+}
 
 
 }

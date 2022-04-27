@@ -20,6 +20,7 @@ import {
   isCompanyNameValid,
   isRolesValid,
   getAdminToken,
+  isLandlineValid,
 } from "../../../utilities";
 import { withStyles } from "@mui/styles";
 import styles from "./styles";
@@ -259,6 +260,24 @@ const BuyerRegistration = ({ classes }) => {
       }));
       errorHandle = true;
     }
+    if (!sellerRegistrationData?.landline_number) {
+      document.getElementById("landline_number")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        landline_number: "Please enter the landline number.",
+      }));
+      errorHandle = true;
+    } else if (
+      sellerRegistrationData?.landline_number &&
+      !isLandlineValid(sellerRegistrationData?.landline_number)
+    ) {
+      document.getElementById("landline_number")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        landline_number: "Please enter the valid landline number.",
+      }));
+      errorHandle = true;
+    }
     if (!sellerRegistrationData?.password) {
       document.getElementById("password")?.focus();
       setInputValidation((prevState) => ({
@@ -306,7 +325,8 @@ const BuyerRegistration = ({ classes }) => {
       document.getElementById("company")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
-        company: "Please enter Alphabet or (Alphabet and Number)..",
+        company:
+          "Please enter Alphabet or (Alphabet, Special Characters and Number)..",
       }));
       errorHandle = true;
     }
@@ -611,7 +631,7 @@ const BuyerRegistration = ({ classes }) => {
                 label="Landline Number"
                 fullWidth
                 className="inputfield-box"
-                type="number"
+                type="text"
                 placeholder="Landline Number"
                 InputLabelProps={{
                   shrink: true,
@@ -621,6 +641,9 @@ const BuyerRegistration = ({ classes }) => {
                 onChange={handleChangeInput}
                 variant="outlined"
               />
+              <InputLabel className={validation_error}>
+                {inputValidation?.landline_number}
+              </InputLabel>
             </div>
             <div className={text_field_container}>
               <TextField
@@ -889,9 +912,24 @@ const BuyerRegistration = ({ classes }) => {
                 />
                 <p>
                   By using this form you agree with the{" "}
-                  <Link to={`/${customnostore ? customnostore : geo?.country_name}/termsofuse`} target="_blank">Terms of Use</Link> and{" "}
-                  <Link to={`/${customnostore ? customnostore : geo?.country_name}/privacypolicy`} target="_blank">Privacy Policy</Link> by this
-                  website.
+                  <Link
+                    to={`/${
+                      customnostore ? customnostore : geo?.country_name
+                    }/termsofuse`}
+                    target="_blank"
+                  >
+                    Terms of Use
+                  </Link>{" "}
+                  and{" "}
+                  <Link
+                    to={`/${
+                      customnostore ? customnostore : geo?.country_name
+                    }/privacypolicy`}
+                    target="_blank"
+                  >
+                    Privacy Policy
+                  </Link>{" "}
+                  by this website.
                 </p>
               </div>
               <InputLabel className={validation_error}>

@@ -1,0 +1,88 @@
+.paymentfail_dashboard{
+       background-size: cover;
+        background-image: url(../../../Assets/CheckoutPage/ordersuccess_bg.png);
+        background-repeat: no-repeat;
+        background-position: center;
+    .dashboard__top{
+        padding: 2em 3em;
+        .dashboard_center{
+        padding: 2em 6em;
+        float: none;
+        margin: 2em auto;
+        max-width: 900px;
+        width: auto;
+        text-align: center;
+        background-color: #fff;
+            .common-block{
+                padding: 15px 0;
+            }
+            .payment_msg{ 
+                .msg{
+                    color: #5c6369;
+                    font-size: 28px;
+                    font-style: italic;
+                    font-weight: 800;
+                    letter-spacing: 2px;
+                }
+            }
+            .logged_user{
+                .msg{
+                    color: #5c6369;
+                    font-size: 24px;
+                    font-weight: 600;
+                    letter-spacing: 2px;
+                    font-style: italic;
+                }
+            }
+            .custom_msg{
+                .msg{
+                    color: #5c6369;
+                    font-size: 20px;
+                    font-weight: normal;
+                    letter-spacing: 1.2px;
+                }
+            }
+            .backto_home_btn{
+                width: 70%;
+                text-align: center;
+                margin: auto;
+                .home_to_home{
+                    width: 100%;
+                    letter-spacing: 0.66px;
+                    color: #002D56;
+                    text-transform: capitalize;
+                    text-align: center;
+                    text-decoration: underline;
+                    font-size: 18px;
+                    font-weight: 600;
+                }
+            }
+
+            .paymentfail_btns{
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                width: 70%;
+                margin: auto;
+                button{
+                    width: 100%;
+                    max-width: 100%;
+                    border-radius: 25px;
+                    box-shadow: 0px 3px 6px #00000029;
+                    font-weight: 600;
+                    text-transform: capitalize;
+                }
+                .go_to_order_btn{
+                    box-shadow: 0px 3px 6px #00000029;
+                    border: 1px solid #002D56;
+                    border-radius: 25px;
+                    letter-spacing: 0.54px;
+                    color: #002D56;
+                    text-shadow: 0px 3px 6px #00000029;
+                    text-transform: capitalize;
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+}

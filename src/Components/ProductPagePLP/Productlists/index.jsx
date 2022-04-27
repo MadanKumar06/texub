@@ -39,7 +39,7 @@ const Productlists = ({
     eta: [],
   });
   const [filterHeaderImage, setFilterHeaderImage] = useState({
-    today_deal: true,
+    today_deal: false,
     today_deal_image: todays_deal_active,
     just_launch: false,
     just_launch_image: just_launch_inactive,
@@ -197,7 +197,7 @@ const Productlists = ({
         />
       </div>
 
-      <Box sx={{ minWidth: 200 }}>
+      <Box sx={{ minWidth: 150 }}>
         <FormControl fullWidth className="product_dropdown_hub">
           <InputLabel id="demo-simple-select-label">All Hubs</InputLabel>
           <Select
@@ -239,7 +239,7 @@ const Productlists = ({
           </Select>
         </FormControl>
       </Box>
-      <Box sx={{ minWidth: 200 }}>
+      <Box sx={{ minWidth: 120 }}>
         <FormControl fullWidth className="product_dropdown_price">
           <InputLabel id="demo-simple-select-label">ETA</InputLabel>
           <Select

@@ -108,6 +108,9 @@ const styles = (theme) => ({
     marginTop: "1em",
     fontWeight: "500",
   },
+  warning_msg:{
+    color: "red",
+  },
   button_guest: {
     borderRadius: "30px !important",
     background: "linear-gradient(180deg, #20639B 0%, #002D56 100%)",
