@@ -14,7 +14,7 @@ import styles from "./styles";
 import buyer_img from "../../../../Assets/CommonImage/RegisterPopup/user_select_buyer.png";
 import seller_img from "../../../../Assets/CommonImage/RegisterPopup/user_select_seller.png";
 const SectionRight = ({ classes, handleClose, handleClassChange }) => {
-  const [{geo, customstore, customnostore}, dispatch] = useStateValue()
+  const [{ geo, homeContent, customnostore }, dispatch] = useStateValue();
   let {
     radio_btn_container,
     select_text,
@@ -73,25 +73,17 @@ const SectionRight = ({ classes, handleClose, handleClassChange }) => {
       </RadioGroup>
       {userDescription ? (
         <div className={user_description}>
-          Buyer -- Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-          diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-          erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
-          et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-          Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
-          sadipscing elitr, sed diam nonumy eirmod tempor.
+          {homeContent?.popup?.buyer_content}
         </div>
       ) : (
         <div className={user_description}>
-          Seller -- Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-          diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-          erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
-          et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-          Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
-          sadipscing elitr, sed diam nonumy eirmod tempor.
+          {homeContent?.popup?.seller_content}
         </div>
       )}
       <Link
-        to={`/${customnostore ? customnostore : geo?.country_name}/register${userDescription ? "/buyer" : "/seller"}`}
+        to={`/${customnostore ? customnostore : geo?.country_name}/register${
+          userDescription ? "/buyer" : "/seller"
+        }`}
         className={btn_link}
       >
         <Button

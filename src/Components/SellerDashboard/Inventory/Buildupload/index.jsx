@@ -27,6 +27,7 @@ function Index() {
     });
     let requests = [];
     rows.splice(0, 2);
+    let RowCount = 3;
     rows?.map((itm, ind) => {
       if (itm?.length < 15) {
         let customerId = JSON.parse(localStorage.getItem("userdata"));
@@ -57,8 +58,8 @@ function Index() {
               },
             })
             .then(async (res) => {
-              let temp = `Row ${ind} ${res?.data?.[0]?.message}`;
-
+              let temp = `Row ${RowCount} ${res?.data?.[0]?.message}`;
+              RowCount = RowCount + 1;
               if (res?.data?.[0]?.status) {
                 return Promise.resolve({
                   success_or_error: "success",
@@ -125,7 +126,8 @@ function Index() {
               },
             })
             .then((res) => {
-              let temp = `Row ${ind} ${res?.data?.[0]?.message}`;
+              let temp = `Row ${RowCount} ${res?.data?.[0]?.message}`;
+              RowCount = RowCount + 1;
               if (res?.data?.[0]?.status) {
                 return Promise.resolve({
                   success_or_error: "success",

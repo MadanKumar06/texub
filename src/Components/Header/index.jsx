@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import styles from "./styles";
 
@@ -14,19 +14,15 @@ import axios from "axios";
 import Constant from "../../Constant";
 
 const Header = ({ classes }) => {
-  // const history = useParams();
-  // console.log(Object.values(history))
-  const history = useParams()
-
-  useEffect(() => {
-    // if(geo === "") return
-    let temp = Object.values(history)
-    console.log(temp?.country)
-  }, [])
-
-  const [{ currency, cart, gt, geo, customstore, customnostore }, dispatch] = useStateValue();
+  const history = useParams();
+  const [{ currency, gt, geo, customnostore }, dispatch] = useStateValue();
   const navigate = useNavigate();
   let isSignedIn = JSON.parse(localStorage.getItem("userdata"));
+
+  useEffect(() => {
+    let temp = Object.values(history);
+    console.log(temp?.country);
+  }, []);
 
   useEffect(async () => {
     if (currency?.currency_id === undefined) return;
@@ -121,25 +117,57 @@ const Header = ({ classes }) => {
           </div>
           <div className={classes.title_main}>
             <Typography variant="h6" className={classes.title}>
-              <Link to={`/${customnostore ? customnostore : geo?.country_name}/aboutus`} className={classes.middle}>
+              <Link
+                to={`/${
+                  customnostore ? customnostore : geo?.country_name
+                }/aboutus`}
+                className={classes.middle}
+              >
                 About Us
               </Link>
             </Typography>
             <Typography variant="h6" className={classes.title}>
-              <Link to={`/${customnostore ? customnostore : geo?.country_name}/products`}>Products</Link>
+              <Link
+                to={`/${
+                  customnostore ? customnostore : geo?.country_name
+                }/products`}
+              >
+                Products
+              </Link>
               <span>New</span>
             </Typography>
             <Typography variant="h6" className={classes.title}>
-              <Link to={`/${customnostore ? customnostore : geo?.country_name}/coming-soon`}> Sell On TEXUB </Link>
+              <Link
+                to={`/${
+                  customnostore ? customnostore : geo?.country_name
+                }/coming-soon`}
+              >
+                {" "}
+                Sell On TEXUB{" "}
+              </Link>
             </Typography>
             <Typography variant="h6" className={classes.title}>
-              <Link to={`/${customnostore ? customnostore : geo?.country_name}/coming-soon`}> Buy On TEXUB </Link>
+              <Link
+                to={`/${
+                  customnostore ? customnostore : geo?.country_name
+                }/coming-soon`}
+              >
+                {" "}
+                Buy On TEXUB{" "}
+              </Link>
             </Typography>
             {/* <Typography variant="h6" className={classes.title}>
               <Link to={`/${customnostore ? customnostore : geo?.country_name}/Faqs`}> FAQ</Link>
             </Typography> */}
             <Typography variant="h6" className={classes.title}>
-              <Link to={`/${customnostore ? customnostore : geo?.country_name}/Contactus`}> Contact Us </Link>
+              <Link
+                to={`/${
+                  customnostore ? customnostore : geo?.country_name
+                }/Contactus`}
+              >
+                {" "}
+                Contact Us{" "}
+              </Link>
             </Typography>
           </div>
 

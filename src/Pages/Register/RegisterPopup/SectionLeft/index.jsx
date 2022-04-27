@@ -17,7 +17,7 @@ import { useStateValue } from "../../../../store/state";
 const TransitionsModal = ({ classes, openPopUp }) => {
   const [open, setOpen] = useState(true);
   const [clicked, setClicked] = useState("buyer");
-  const [{}, dispatch] = useStateValue();
+  const [{ homeContent }, dispatch] = useStateValue();
   let {
     section_main,
     section_left,
@@ -77,6 +77,7 @@ const TransitionsModal = ({ classes, openPopUp }) => {
   const handleClassChange = (event) => {
     setClicked(event);
   };
+  console.log(homeContent?.popup?.buyer_banner);
   return (
     <Modal
       aria-labelledby="transition-modal-title"
@@ -95,6 +96,13 @@ const TransitionsModal = ({ classes, openPopUp }) => {
           section_main,
           `${clicked === "buyer" ? section_main_buyer : section_main_seller}`
         )}
+        style={{
+          backgroundImage: `${
+            clicked === "buyer"
+              ? `url('${homeContent?.popup?.buyer_banner}')`
+              : `url('${homeContent?.popup?.seller_banner}')`
+          }`,
+        }}
       >
         <Clear
           className={clsx(
