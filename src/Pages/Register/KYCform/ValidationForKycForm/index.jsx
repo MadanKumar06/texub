@@ -5,6 +5,7 @@ import {
   FormControlLabel,
   Checkbox,
   InputLabel,
+  fabClasses,
 } from "@mui/material";
 import styles from "../SectionRight/styles";
 import { withStyles } from "@mui/styles";
@@ -28,22 +29,26 @@ function ValidationForKycForm({
   let {
     button_box,
     button_guest,
+    warning_msg,
     download_link,
     agreemnetDowload,
     checkbox_agreement,
   } = classes;
   const [valid, setValid] = useState(null);
   const [agreementChecked, setAgreementChecked] = useState(false);
+  const [leave, setleave] = useState(false);
 
   useEffect(() => {
     if (valid) {
       handleCallValidation(valid);
+      setleave(true);
     }
   }, [valid]);
 
   const handleValidationClick = () => {
     let endPoint = false;
     setValid("");
+    setleave(false);
     if (!values?.trade_lic_number) {
       setValid((prevState) => ({
         ...prevState,
@@ -255,6 +260,7 @@ function ValidationForKycForm({
         {valid?.agreementChecked}
       </InputLabel>
       <Box className={button_box} fullWidth>
+        {leave && <p className={warning_msg}>Please enter required fields</p>}
         {documentButton === "national_id" ? (
           <Button
             className={button_guest}

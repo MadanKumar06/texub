@@ -24,6 +24,10 @@ function Index({ registerproduct }) {
   const [search, setSearch] = useState("");
   const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
 
+  function formatToCurrency(price) {
+    return price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
+  }
+  
   const [offersOpenClose, setOffersOpenClose] = useState({
     isOpenClose: false,
     product_id: "",
@@ -108,7 +112,9 @@ function Index({ registerproduct }) {
             <div className="inventory__myprice">
               <p>
                 <span className="label">{tablemeta?.rowData?.[10]}</span>
-                <span className="value">{value}</span>
+                <span className="value">
+                  {formatToCurrency(parseInt(value))}
+                </span>
               </p>
             </div>
           );

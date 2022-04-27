@@ -218,6 +218,10 @@
                 .MuiTableRow-root{
                     .MuiTableCell-root {
                         border: 1px solid #CDD5DD;
+                        div{
+                            vertical-align: middle;
+                            text-align: center;
+                        }
                         .table__sellerid{
                             letter-spacing: 0.66px;
                             color: #002D56;
@@ -226,6 +230,8 @@
                             font-weight: 600;
                             background-color: #f8f0e0;
                             padding: 5px 10px;
+                            width: max-content;
+                            border-radius: 2px;
                         }
                         .productname{
                             display: flex;
@@ -273,6 +279,7 @@
                         .vieworders_price{
                             display: flex;
                             align-items: center;
+                            justify-content: center;
                                 .symbol{
                                     font-size: 14px;
                                     font-weight: 400;
@@ -291,16 +298,18 @@
                         .vieworders_quantity{
                             background: #E6E6E6;
                             border-radius: 25px;
-                            padding: 6px 10px;
+                            padding: 10px 20px;
                             font-size: 14px;
                             font-weight: 600;
                             color: #5C6369;
                             text-transform: capitalize;
                             text-align: center;
+                            width: max-content;
                         }
                         .table__price {
                              display: flex;
                             align-items: center;
+                            justify-content: center;
                                 .symbol{
                                     font-size: 14px;
                                     font-weight: 400;
@@ -491,4 +500,185 @@
             }
         }
     }
+}
+@media (max-width: 900px) {
+
+.pendinginvoice{
+    .pendinginvoice__top{
+        .top__header{
+            .checkout_info_list{
+                flex-wrap: wrap;
+                width: 100%;
+                gap: 1em;
+                .checkout_back_toggle{
+                    width: 10%;
+                }
+                .orderid_section{
+                    .orderinfo_name{
+                        font-size: 14px;
+                    }
+                    .orderinfo_value{
+                        font-size: 16px;
+                    }
+                }
+                .order_apply-btn{
+                    .checkout-apply-btn{
+                        padding: 7px 15px;
+                    }
+                }
+            }
+        }
+        .top__orderinfo{
+            padding: 10px 15px;
+            .orderinfo__data{
+                p{
+                    justify-content: space-between;
+                    .label{
+                        width: 100%;
+                    }
+                    .value{
+                        width: 100%;
+                    }
+                }
+            }
+        }
+        .top__address{
+            padding: 10px 15px;
+            margin: 1% 2%;
+            .address__bill{
+                h4{
+                    font-size: 18px;
+                }
+            }
+        }
+    }
+    .pendinginvoice__middle{
+        margin: 1% 2%;
+        .middle__tableinfo{
+            padding: 10px 15px;
+            .tableinfo__orderdata{
+                width: 48%;
+                p{
+                    justify-content: space-between;
+                    .label{
+                        width: 100%;
+                    }
+                    .value{
+                        width: 100%;
+                    }
+                }
+                .total_value{
+                    .total_value_block{
+                        width: 100%;
+                    }
+                }
+            }
+        }
+        .middle__table{
+            .MuiTable-root{
+                .MuiTableBody-root{
+                    .MuiTableRow-root{
+                        .MuiTableCell-root{
+                            div{
+                                text-align: start;
+                            }
+                            .vieworders_price{
+                                justify-content: start;
+                            }
+                            .table__price {
+                                justify-content: start;
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+    .pendinginvoice__bottom{
+         margin: 1% 2%;
+         .bottom__terms{
+             padding: 10px 15px;
+         }
+         .remark_block{
+             width: 70%;
+         }
+         .bottom__buttons{
+             padding-bottom: 2em;
+         }
+    }
+}
+
+}
+
+
+@media (max-width: 580px) {
+
+.pendinginvoice{
+    .pendinginvoice__top{
+        .top__orderinfo{
+            flex-direction: column;
+            .orderingo__logo{
+                width: 100%;
+                padding: 10px 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .orderinfo__data{
+                width: 100%;
+                padding: 10px 0;
+            }
+        }
+    }
+    .pendinginvoice__middle{
+         .middle__table{
+            .MuiTable-root{
+                .MuiTableBody-root{
+                    .MuiTableRow-root{
+                        .MuiTableCell-root{
+                            div{
+                                text-align: start;
+                                font-size: 14px;
+                            }
+                            .productname{
+                                flex-direction: column;
+                            }
+                            .vieworders_price{
+                                justify-content: start;
+                            }
+                            .table__price {
+                                justify-content: start;
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+        .middle__tableinfo{
+            flex-direction: column;
+            .tableinfo__details{
+                width: 100%;
+                padding: 10px 0;
+            }
+            .tableinfo__orderdata{
+                width: 100%;
+                padding: 10px 0;
+            }
+        }
+
+    }
+    .pendinginvoice__bottom{
+        .bottom__buttons{
+            flex-direction: column;
+            gap: 1em;
+            button{
+                width: 100% !important;
+                max-width: 100%;
+            }
+        }
+    }
+}
+
 }
