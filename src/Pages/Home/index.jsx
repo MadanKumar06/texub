@@ -21,6 +21,7 @@ export const Home = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    console.log(customstore)
     if (geo === "" || geo === undefined) return;
     let temp = Object.values(history);
     if (temp.length === 0) {
@@ -34,7 +35,7 @@ export const Home = () => {
         type: "GEO__CUSTOM__NOSTORE",
         data: temp?.[0],
       });
-      navigate(`/${temp?.[0] ? temp?.[0] : geo?.country_name}`);
+      navigate(`/${temp?.[0] !== "" ? temp?.[0] : geo?.country_name}`);
     }
   }, [customstore, geo]);
 
