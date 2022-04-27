@@ -224,21 +224,29 @@ const BuyerRegistration = ({ classes }) => {
       document.getElementById("company")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
-        company: "Please enter Alphabet or (Alphabet and Number)..",
+        company:
+          "Please enter Alphabet or (Alphabet, Special Characters and Number)..",
       }));
       errorHandle = true;
     }
-    // if (
-    //   buyerRegistrationData?.landline_number &&
-    //   !isLandlineValid(buyerRegistrationData?.landline_number)
-    // ) {
-    //   document.getElementById("landline_number")?.focus();
-    //   setInputValidation((prevState) => ({
-    //     ...prevState,
-    //     landline_number: "Please enter the valid landline number.",
-    //   }));
-    //   errorHandle = true;
-    // }
+   if (!buyerRegistrationData?.landline_number) {
+     document.getElementById("landline_number")?.focus();
+     setInputValidation((prevState) => ({
+       ...prevState,
+       landline_number: "Please enter the landline number.",
+     }));
+     errorHandle = true;
+   } else if (
+     buyerRegistrationData?.landline_number &&
+     !isLandlineValid(buyerRegistrationData?.landline_number)
+   ) {
+     document.getElementById("landline_number")?.focus();
+     setInputValidation((prevState) => ({
+       ...prevState,
+       landline_number: "Please enter the valid landline number.",
+     }));
+     errorHandle = true;
+   }
 
     if (!buyerRegistrationData?.designation) {
       document.getElementById("designation")?.focus();
@@ -514,7 +522,7 @@ const BuyerRegistration = ({ classes }) => {
                 label="Landline Number"
                 className="inputfield-box"
                 fullWidth
-                type="number"
+                type="text"
                 placeholder="Landline Number"
                 InputLabelProps={{
                   shrink: true,
@@ -524,9 +532,9 @@ const BuyerRegistration = ({ classes }) => {
                 onChange={handleChangeInput}
                 variant="outlined"
               />
-              {/* <InputLabel className={validation_error}>
+              <InputLabel className={validation_error}>
                 {inputValidation?.landline_number}
-              </InputLabel> */}
+              </InputLabel>
             </div>
             <div className={text_field_container}>
               <TextField

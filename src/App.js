@@ -31,6 +31,10 @@ import SellerProfile from "./Pages/SellerProfile";
 import PendingInvoice from "./Pages/PendingInvoice/index";
 import Checkout from "./Pages/Checkout";
 import OrderSuccess from "./Pages/Checkout/OrderSuccess";
+import PaymentSuccess from "./Pages/Checkout/PaymentSuccess";
+import PaymentFail from "./Pages/Checkout/PaymentFail";
+
+
 
 import KYCDetails from "./Pages/KYCDetails";
 
@@ -430,6 +434,28 @@ const App = () => {
                 <>
                   {" "}
                   <OrderSuccess /> <ScrollToTop /> <Footer />{" "}
+                </>
+              }
+              exact
+            />
+             <Route
+              path="/:country/paymentsuccess"
+              // path={`/${customnostore ? customnostore : geo?.country_name}/checkout`}
+              element={
+                <>
+                  {" "}
+                  <PaymentSuccess /> <ScrollToTop /> <Footer />{" "}
+                </>
+              }
+              exact
+            />
+             <Route
+              path="/:country/paymentfail"
+              // path={`/${customnostore ? customnostore : geo?.country_name}/checkout`}
+              element={
+                <>
+                  {" "}
+                  <PaymentFail /> <ScrollToTop /> <Footer />{" "}
                 </>
               }
               exact

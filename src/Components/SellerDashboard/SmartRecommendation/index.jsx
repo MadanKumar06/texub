@@ -19,6 +19,11 @@ function Index() {
   };
   const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
   const [apiTableData, setApiTableData] = useState([]);
+
+  function formatToCurrency(price) {
+    return price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
+  }
+
   useEffect(() => {
     const fetchTableData = async () => {
       dispatch({
@@ -111,7 +116,8 @@ function Index() {
           return (
             <div className="smart_price">
               <span className="label">{currency}</span>
-              <span className="value">{value}</span>
+              {/* <span className="value">{value}</span> */}
+              <span className="value">{formatToCurrency(parseInt(value))}</span>
             </div>
           );
         },
@@ -140,7 +146,8 @@ function Index() {
           return (
             <div className="smart_price">
               <span className="label">{currency}</span>
-              <span className="value">{value}</span>
+              {/* <span className="value">{value}</span> */}
+              <span className="value">{formatToCurrency(parseInt(value))}</span>
             </div>
           );
         },

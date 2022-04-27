@@ -43,22 +43,22 @@ const Index = () => {
 
               <div className="transaction_block">
                 <div className="transaction_info_section">
-                  <InputLabel>City</InputLabel>
+                  <InputLabel>Reference Number</InputLabel>
                   <TextField
-                    id="city"
-                    placeholder="City"
+                    id="reference_number"
+                    placeholder="324518709"
                     className="inputfield-box"
-                    name="city"
+                    name="reference_number"
                     variant="outlined"
                   />
                 </div>
                 <div className="transaction_info_section">
-                  <InputLabel>City</InputLabel>
+                  <InputLabel>Payment Amount</InputLabel>
                   <TextField
-                    id="city"
-                    placeholder="City"
+                    id="payment_amount"
+                    placeholder="INR 94,05,811"
                     className="inputfield-box"
-                    name="city"
+                    name="payment_amount"
                     variant="outlined"
                   />
                 </div>
@@ -66,17 +66,17 @@ const Index = () => {
 
               <div className="transaction_block">
                 <div className="transaction_info_section">
-                  <InputLabel>City</InputLabel>
+                  <InputLabel>Transaction Date & Time</InputLabel>
                   <TextField
-                    id="city"
-                    placeholder="City"
+                    id="transaction_date_time"
+                    placeholder="00:00:00"
                     className="inputfield-box"
-                    name="city"
+                    name="TextField"
                     variant="outlined"
                   />
                 </div>
                 <div className="transaction_info_section">
-                  <InputLabel>City</InputLabel>
+                  <InputLabel>Remarks</InputLabel>
                   <TextareaAutosize
                     aria-label="Remarks"
                     minRows={3}

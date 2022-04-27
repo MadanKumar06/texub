@@ -169,6 +169,10 @@ const TransitionsModal = ({ classes, openPopUp }) => {
     if (!errorHandle) {
       // Apicall fuction
       ForgotPasswordFinalApi();
+      setSignInData((prev) => ({
+        ...prev,
+        forgot_email_address: "",
+      }));
     }
   };
 
@@ -384,7 +388,13 @@ const TransitionsModal = ({ classes, openPopUp }) => {
               Forgot Password ?
               <Clear
                 className={forgotpassword__clearbtn}
-                onClick={() => setpassopen(false)}
+                onClick={() => {
+                  setpassopen(false);
+                  setSignInData((prev) => ({
+                    ...prev,
+                    forgot_email_address: "",
+                  }));
+                }}
               />
             </div>
             <div className={forgotpassword__container}>

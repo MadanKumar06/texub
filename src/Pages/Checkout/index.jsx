@@ -45,6 +45,8 @@ import checkout_call from "../../Assets/CheckoutPage/telephone.png";
 //   p: 4,
 // };
 
+
+
 const DeliveryAddressJson = [
   {
     name: "Ayush Raj",
@@ -67,6 +69,12 @@ const DeliveryCallJson = [
   },
 ];
 const Checkout = () => {
+  
+    const [shipping_method, setShipping_method] = useState("texub_shipping");
+
+    // const radioHandler = (status) => {
+    //   setStatus(status);
+    // };
 
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
@@ -190,7 +198,11 @@ const Checkout = () => {
       <div className="section_left">
         <div className="section_left_info">
           <ul>
-            <li className="block_A">
+            <li
+              className={`block_A ${
+                shipping_method === "texub_shipping" ? "block_A" : "additional"
+              }`}
+            >
               <img
                 className="delivery_address_img"
                 src={Devilvery_address_image_1}
@@ -203,17 +215,28 @@ const Checkout = () => {
                   <div className="shipping_list">
                     <FormControl className="shipping_list">
                       <RadioGroup
-                        aria-labelledby="demo-controlled-radio-buttons-group"
+                        aria-labelledby="demo-radio-buttons-group-label"
+                        defaultValue={"texub_shipping"}
+                        // aria-labelledby="demo-controlled-radio-buttons-group"
                         name="controlled-radio-buttons-group"
                       >
                         <FormControlLabel
+                          // value={shipping_method}
                           value="pick_up_from_hub"
                           control={<Radio />}
                           label="Pick Up From The Hub"
+                          onClick={() => setShipping_method("pick_up_from_hub")}
                         />
                         <FormControlLabel
                           value="texub_shipping"
-                          control={<Radio />}
+                          // value={shipping_method}
+                          control={
+                            <Radio
+                              onClick={() =>
+                                setShipping_method("texub_shipping")
+                              }
+                            />
+                          }
                           label="Texub Shipping"
                         />
                       </RadioGroup>
@@ -233,179 +256,248 @@ const Checkout = () => {
                   </div>
                 </div>
               </div>
-              <div className="aside_block">
-                <div className="aside_block_A">
-                  <div className="delivery_address_section">
-                    <div className="delivery_address_list">
-                      {DeliveryAddressJson?.map((itm) => (
-                        <div className="delivery_address_content">
-                          <div className="billing_title">
-                            <p>Default Billing Address</p>
-                            <div className="edit_address">
-                              <img src={Edit_image} alt="" />
-                              <span>Edit</span>
-                            </div>
-                          </div>
 
-                          <p className="user_name">{itm?.name}</p>
-                          <p className="item_address">{itm?.address}</p>
+              <div className="aside_block">
+                {shipping_method === "texub_shipping" ? (
+                  <div className="aside_block_A">
+                    <div className="delivery_address_section">
+                      <div className="delivery_address_list">
+                        {DeliveryAddressJson?.map((itm) => (
+                          <div className="delivery_address_content">
+                            <div className="billing_title">
+                              <p>Default Billing Address</p>
+                              <div className="edit_address">
+                                <img src={Edit_image} alt="" />
+                                <span>Edit</span>
+                              </div>
+                            </div>
+
+                            <p className="user_name">{itm?.name}</p>
+                            <p className="item_address">{itm?.address}</p>
+                          </div>
+                        ))}
+                        <div className="aside_block_B">
+                          <div className="delivery_address_add">
+                            <Add className="add_icon" onClick={handleOpen} />
+                            <span onClick={handleOpen}>Add New Address</span>
+                          </div>
                         </div>
-                      ))}
-                      <div className="aside_block_B">
-                        <div className="delivery_address_add">
-                          <Add className="add_icon" onClick={handleOpen} />
-                          <span onClick={handleOpen}>Add New Address</span>
+                      </div>
+                    </div>
+                    <div className="delivery_customer_info">
+                      <div className="delivery_email_info">
+                        {DeliveryEmailJson?.map((itm) => (
+                          <div className="delivery_email_content">
+                            <div className="email_address">
+                              <img src={checkout_mail} alt="" />
+                              <span className="user_name">{itm?.name}</span>
+                            </div>
+                            <p className="item_address">{itm?.address}</p>
+                          </div>
+                        ))}
+                      </div>
+                      <div className="deliverycall_info">
+                        {DeliveryCallJson?.map((itm) => (
+                          <div className="delivery_call_content">
+                            <div className="call_address">
+                              <img src={checkout_call} alt="" />
+                              <span className="user_name">{itm?.name}</span>
+                            </div>
+                            <p className="item_address">{itm?.address}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="aside_block_A">
+                    <div className="delivery_address_section pickup_hub">
+                      <div className="pickup_address_section">
+                        <div className="address_fields">
+                          <InputLabel>Business Name</InputLabel>
+                          <TextField
+                            id="bussiness_name"
+                            placeholder="Business Name (As Per The Trade License)"
+                            className="inputfield-box"
+                            name="bussiness_name"
+                            variant="outlined"
+                          />
+                        </div>
+                        <div className="address_fields">
+                          <InputLabel>Contact Person Name</InputLabel>
+                          <TextField
+                            id="contact_person"
+                            placeholder="Contact Person Name"
+                            className="inputfield-box"
+                            name="contact_person"
+                            variant="outlined"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="pickup_address_section">
+                        <div className="address_fields">
+                          <InputLabel>E-Mail Address</InputLabel>
+                          <TextField
+                            id="email_address"
+                            placeholder="E-Mail Address"
+                            className="inputfield-box"
+                            name="email_address"
+                            variant="outlined"
+                          />
+                        </div>
+                        <div className="address_fields">
+                          <InputLabel>Mobile Number</InputLabel>
+                          <TextField
+                            id="mobile_number"
+                            placeholder="9890985433"
+                            className="inputfield-box"
+                            name="mobile_number"
+                            variant="outlined"
+                          />
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div className="delivery_customer_info">
-                    <div className="delivery_email_info">
-                      {DeliveryEmailJson?.map((itm) => (
-                        <div className="delivery_email_content">
-                          <div className="email_address">
-                            <img src={checkout_mail} alt="" />
-                            <span className="user_name">{itm?.name}</span>
-                          </div>
-                          <p className="item_address">{itm?.address}</p>
-                        </div>
-                      ))}
-                    </div>
-                    <div className="deliverycall_info">
-                      {DeliveryCallJson?.map((itm) => (
-                        <div className="delivery_call_content">
-                          <div className="call_address">
-                            <img src={checkout_call} alt="" />
-                            <span className="user_name">{itm?.name}</span>
-                          </div>
-                          <p className="item_address">{itm?.address}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
+                )}
               </div>
             </li>
-            <li className="block_B">
-              <img
-                className="payment_image"
-                src={Devilvery_address_image_2}
-                alt=""
-              />
-              <p className="payment_title">Select Payment Method</p>
-            </li>
+            {shipping_method === "pick_up_from_hub" ? (
+              <li className="block_B">
+                <img
+                  className="payment_image"
+                  src={Devilvery_address_image_2}
+                  alt=""
+                />
+                <p className="payment_title">Select Payment Method</p>
+
+                <div className="payment_info">
+                  <RadioGroup
+                    aria-labelledby="demo-radio-buttons-group-label"
+                    defaultValue={"1"}
+                    name="radio-buttons-group"
+                  >
+                    <div className="payment_footer_block_1">
+                      <div className="footer_main">
+                        <div className="footer_content">
+                          <FormControlLabel
+                            value="1"
+                            control={<Radio />}
+                            label={""}
+                          />
+                          <p className="footer_title">Wire Transfer</p>
+                        </div>
+                      </div>
+                      <div className="footer_main">
+                        <div className="footer_content">
+                          <FormControlLabel
+                            value="2"
+                            control={<Radio />}
+                            label={""}
+                          />
+                          <img
+                            className="footer_image"
+                            src={Checkout_checkout_com}
+                            alt=""
+                          />
+                        </div>
+                      </div>
+                      <div className="footer_main">
+                        <div className="footer_content">
+                          <FormControlLabel
+                            value="3"
+                            control={<Radio />}
+                            label={""}
+                          />
+                          <img
+                            className="footer_image"
+                            src={Checkout_razorpay_logo}
+                            alt=""
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </RadioGroup>
+                </div>
+              </li>
+            ) : (
+              <p></p>
+            )}
           </ul>
-          <div className="payment_info">
-            <RadioGroup
-              aria-labelledby="demo-radio-buttons-group-label"
-              defaultValue={"1"}
-              name="radio-buttons-group"
-            >
-              <div className="payment_footer_block_1">
-                <div className="footer_main">
-                  <div className="footer_content">
-                    <FormControlLabel
-                      value="1"
-                      control={<Radio />}
-                      label={""}
-                    />
-                    <p className="footer_title">OFFLINE PAYMENT</p>
-                  </div>
-                </div>
-                <div className="footer_main">
-                  <div className="footer_content">
-                    <FormControlLabel
-                      value="2"
-                      control={<Radio />}
-                      label={""}
-                    />
-                    <img
-                      className="footer_image"
-                      src={Checkout_checkout_com}
-                      alt=""
-                    />
-                  </div>
-                </div>
-                <div className="footer_main">
-                  <div className="footer_content">
-                    <FormControlLabel
-                      value="3"
-                      control={<Radio />}
-                      label={""}
-                    />
-                    <img
-                      className="footer_image"
-                      src={Checkout_razorpay_logo}
-                      alt=""
-                    />
-                  </div>
-                </div>
-              </div>
-            </RadioGroup>
-          </div>
         </div>
       </div>
       <div className="checkout_payment_section">
-        <div className="order_details_main">
-          <div className="checkout_order_basic_info">
-            <div className="checkoutorder_basic_info">
-              <span className="checkoutorder_info_title">Sub-Total</span>
-              <Divider orientation="vertical" />
-              <span className="orderinfo_value">
-                <span className="ordertotal_symbol">INR</span> 10,729,830
-              </span>
+        {shipping_method === "pick_up_from_hub" ? (
+          <div className="order_details_main">
+            <div className="checkout_order_basic_info">
+              <div className="checkoutorder_basic_info">
+                <span className="checkoutorder_info_title">Sub-Total</span>
+                <Divider orientation="vertical" />
+                <span className="orderinfo_value">
+                  <span className="ordertotal_symbol">INR</span> 10,729,830
+                </span>
+              </div>
+              <div className="checkoutorder_basic_info">
+                <span className="checkoutorder_info_title">Tax</span>
+                <Divider orientation="vertical" />
+                <span className="orderinfo_value">
+                  <span className="ordertotal_symbol">INR</span> 10,729,830
+                </span>
+              </div>
+              <div className="checkoutorder_basic_info">
+                <span className="checkoutorder_info_title">Freight</span>
+                <Divider orientation="vertical" />
+                <span className="orderinfo_value">
+                  <span className="ordertotal_symbol">INR</span> 10,729,830
+                </span>
+              </div>
+              <div className="checkoutorder_basic_info">
+                <span className="checkoutorder_info_title">
+                  Payment Processing Charge
+                </span>
+                <Divider orientation="vertical" />
+                <span className="orderinfo_value">
+                  <span className="ordertotal_symbol">INR</span> 10,729,830
+                </span>
+              </div>
+              <div className="checkout_total_order_section">
+                <span className="checkout_total_order__info_title">
+                  Payment Processing Charge
+                </span>
+                <span className="checkout_total_order__price">
+                  <span className="checkout_total_orde_symbol">INR</span>
+                  10,729,830
+                </span>
+              </div>
             </div>
-            <div className="checkoutorder_basic_info">
-              <span className="checkoutorder_info_title">Tax</span>
-              <Divider orientation="vertical" />
-              <span className="orderinfo_value">
-                <span className="ordertotal_symbol">INR</span> 10,729,830
-              </span>
-            </div>
-            <div className="checkoutorder_basic_info">
-              <span className="checkoutorder_info_title">Freight</span>
-              <Divider orientation="vertical" />
-              <span className="orderinfo_value">
-                <span className="ordertotal_symbol">INR</span> 10,729,830
-              </span>
-            </div>
-            <div className="checkoutorder_basic_info">
-              <span className="checkoutorder_info_title">
-                Payment Processing Charge
-              </span>
-              <Divider orientation="vertical" />
-              <span className="orderinfo_value">
-                <span className="ordertotal_symbol">INR</span> 10,729,830
-              </span>
-            </div>
-            <div className="checkout_total_order_section">
-              <span className="checkout_total_order__info_title">
-                Payment Processing Charge
-              </span>
-              <span className="checkout_total_order__price">
-                <span className="checkout_total_orde_symbol">INR</span>
-                10,729,830
-              </span>
+            <div className="checkout_placeorder_section">
+              <div className="remark_section">
+                <span className="remart_title">Remarks :</span>
+                <span className="remart_text">
+                  Fwd & Pick Up / R&A International Logistics / 61/234, Hrbr
+                  Layout Bangalore - 560043. Docs Needed. Provide Actual Dims /
+                  Provide Copy Of The Invoice And Serials, Fwd Pick Up/ R&A
+                  Internal
+                </span>
+              </div>
+              <div className="checkout_btns">
+                <Button className="placeorder_btn">Place Your Order</Button>
+                <Button className="placeorder_cancel_btn">
+                  Go To Pending Invoice
+                </Button>
+              </div>
             </div>
           </div>
-          <div className="checkout_placeorder_section">
-            <div className="remark_section">
-              <span className="remart_title">Remarks :</span>
-              <span className="remart_text">
-                Fwd & Pick Up / R&A International Logistics / 61/234, Hrbr
-                Layout Bangalore - 560043. Docs Needed. Provide Actual Dims /
-                Provide Copy Of The Invoice And Serials, Fwd Pick Up/ R&A
-                Internal
-              </span>
-            </div>
-            <div className="checkout_btns">
-              <Button className="placeorder_btn">Place Your Order</Button>
-              <Button className="placeorder_cancel_btn">
-                Go To Pending Invoice
+        ) : (
+          <div className="order_details_main">
+            <div className="texub_shipping_btns">
+              <Button className="texub_cancel_btn">Cancel</Button>
+              <Button className="texub_quote_btn btn-secondary">
+                Request Quote
               </Button>
             </div>
           </div>
-        </div>
+        )}
       </div>
 
       <div>
