@@ -10,15 +10,16 @@ import { useStateValue } from "../../../store/state";
 
 const Whislist = () => {
   const [tableData, setTableData] = useState([]);
-  const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
+  const [{ geo, customnostore }, dispatch] = useStateValue();
   const [wishListAgain, setWishListAgain] = useState(false);
+  const [wishdata, setwishdata] = useState([]);
+  const [folderdata, setfolderdata] = useState([]);
+
 
   const PaginateDataSplit = (event) => {
-    if (wishdata.length === 0) return setwishdata([]);
-    console.log(event);
+    if (wishdata?.length === 0) return setwishdata([]);
     setTableData(event);
   };
-  const [wishdata, setwishdata] = useState([]);
   useEffect(async () => {
     const user = JSON.parse(localStorage.getItem("userdata"));
     try {
@@ -53,7 +54,6 @@ const Whislist = () => {
     }
   }, [wishListAgain]);
 
-  const [folderdata, setfolderdata] = useState([]);
 
   useEffect(async () => {
     let user = JSON.parse(localStorage.getItem("userdata"));

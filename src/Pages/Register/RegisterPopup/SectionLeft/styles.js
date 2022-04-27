@@ -43,14 +43,14 @@ const styles = (theme) => ({
     background: "#DDB363",
   },
   section_main_buyer: {
-    backgroundImage: "url('/Images/bg-min.png')",
+    // backgroundImage: "url('/Images/bg-min.png')",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
     backgroundSize: "cover",
     position: "relative",
   },
   section_main_seller: {
-    backgroundImage: "url('/Images/buyer_regirtration_bg-min.png')",
+    // backgroundImage: "url('/Images/buyer_regirtration_bg-min.png')",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
     backgroundSize: "cover",

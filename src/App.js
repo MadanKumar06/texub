@@ -34,8 +34,6 @@ import OrderSuccess from "./Pages/Checkout/OrderSuccess";
 import PaymentSuccess from "./Pages/Checkout/PaymentSuccess";
 import PaymentFail from "./Pages/Checkout/PaymentFail";
 
-
-
 import KYCDetails from "./Pages/KYCDetails";
 
 //Footer section page
@@ -65,7 +63,7 @@ import SignIn from "./Pages/SignIn/SiginPopUp/SectionLeft";
 import RegisterPopup from "./Pages/Register/RegisterPopup/SectionLeft";
 import MiniCartList from "./Pages/MiniCart/MiniCartList";
 import SimpleBackdrop from "./Components/LoaderBackDrop";
-import { getSigninedUserData } from "./utilities";
+import { getSigninedUserData, GetHomeAPi } from "./utilities";
 import axios from "axios";
 
 const App = () => {
@@ -107,6 +105,22 @@ const App = () => {
   useEffect(() => {
     getSigninedUserData((res) => {
       console.log(res);
+    });
+  }, []);
+  useEffect(() => {
+    dispatch({
+      type: "SET_IS_LOADING",
+      value: true,
+    });
+    GetHomeAPi((res) => {
+      dispatch({
+        type: "SET_HOME_CONTENT",
+        data: res,
+      });
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
     });
   }, []);
 
@@ -427,7 +441,7 @@ const App = () => {
               }
               exact
             />
-             <Route
+            <Route
               path="/:country/ordersuccess"
               // path={`/${customnostore ? customnostore : geo?.country_name}/checkout`}
               element={
@@ -438,7 +452,7 @@ const App = () => {
               }
               exact
             />
-             <Route
+            <Route
               path="/:country/paymentsuccess"
               // path={`/${customnostore ? customnostore : geo?.country_name}/checkout`}
               element={
@@ -449,7 +463,7 @@ const App = () => {
               }
               exact
             />
-             <Route
+            <Route
               path="/:country/paymentfail"
               // path={`/${customnostore ? customnostore : geo?.country_name}/checkout`}
               element={

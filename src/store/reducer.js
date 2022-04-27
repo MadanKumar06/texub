@@ -13,6 +13,7 @@ export const initialState = {
   geo: "",
   customstore: "",
   customnostore: "",
+  homeContent: "",
 };
 
 const reducer = (state, action) => {
@@ -88,6 +89,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         homeSearch: action.value,
+      };
+    case "SET_HOME_CONTENT":
+      return {
+        ...state,
+        homeContent: action.data,
       };
     default:
       return state;

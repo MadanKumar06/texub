@@ -7,7 +7,7 @@ import mycart_image from "../../Assets/User/shopping-bag (2).png";
 import { useStateValue } from "../../store/state";
 
 const MiniCartDrawer = () => {
-  const [{ miniCartOpenClose }, dispatch] = useStateValue();
+  const [{ miniCartOpenClose, cart }, dispatch] = useStateValue();
   const [sideBar, setSideBar] = React.useState({
     left: false,
   });
@@ -60,7 +60,11 @@ const MiniCartDrawer = () => {
     <div className="minicart_drawer_main">
       <React.Fragment key={"right"}>
         <Button onClick={toggleDrawer("right", true)}>
-          <Badge showZero={true} badgeContent={0} className="badge">
+          <Badge
+            showZero={true}
+            badgeContent={cart?.[0]?.invoice_items?.length}
+            className="badge"
+          >
             <div className="mycart_image">
               <img src={mycart_image} alt="" />
             </div>

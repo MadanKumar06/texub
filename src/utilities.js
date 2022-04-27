@@ -19,12 +19,10 @@ export const isCompanyNameValid = (company) =>
   company.match(/^\d*[a-zA-Z][a-zA-Z0-9][a-zA-Z0-9-+\.+()@#$%^&*'{} ]*$/);
 
 export const isRolesValid = (roles) =>
-  // roles.match(/^((?=.*[a-zA-Z])[a-zA-Z0-9]{0,14})$/);
   roles.match(/^((?=.*[a-zA-Z])[a-zA-Z-+\.+()!@#$%^&*'{}]{0,14})$/);
 
 export const isLandlineValid = (landline) =>
-  // landline.match(/^[-]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s\./0-9]*$/g);
-    landline.match(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im);
+  landline.match(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im);
 
 //get adminToken for seller and buyer registration
 export const getAdminToken = (callback) => {
@@ -61,4 +59,16 @@ export const getSigninedUserData = () => {
       );
     })
     .catch((err) => {});
+};
+
+//homePage content
+
+export const GetHomeAPi = async (callback) => {
+  try {
+    const home = await axios({
+      method: "get",
+      url: `${Constant.baseUrl()}/getHomePage`,
+    });
+    callback(Object.assign({}, ...home.data));
+  } catch (e) {}
 };
