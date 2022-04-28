@@ -11,6 +11,7 @@ import { useStateValue } from "../../../store/state";
 const Index = () => {
   const [isUopup, setisUopup] = useState(false);
   const [direct, setdirect] = useState([]);
+  const [refreshdata, setrefreshdata] = useState(false)
   const [{geo, customstore, customnostore}, dispatch] = useStateValue();
 
   useEffect(async () => {
@@ -42,7 +43,7 @@ const Index = () => {
         value: false,
       });
     }
-  }, []);
+  }, [refreshdata]);
 
   const [popid, setpopid] = useState();
   const Popup = (value) => {
@@ -138,7 +139,7 @@ const Index = () => {
       label: "Hub",
     },
     {
-      name: "wtb_status",
+      name: "seller_enquiry_status",
       label: "Status",
       options: {
         customBodyRender: (value) => {
@@ -151,7 +152,7 @@ const Index = () => {
                   ? "directenquiries__accepted"
                   : value === "Closed"
                   ? "directenquiries__closed"
-                  : value === "Pending" && "directenquiries__pending"
+                  : value === "Declined" && "directenquiries__pending"
               } `}
             >
               {value}
@@ -164,10 +165,11 @@ const Index = () => {
       name: "wtb_id",
       label: "Action",
       options: {
-        customBodyRender: (value) => {
+        customBodyRender: (value, tablemeta) => {
+          let status = tablemeta?.rowData?.[6]
           return (
             <div className="actions" onClick={() => Popup(value)}>
-              <span className="value">View Details</span>
+              {status === 'Accepted' ? <span className="value">Update</span> : <span className="value">View Details</span>}
             </div>
           );
         },
@@ -200,7 +202,7 @@ const Index = () => {
         className="directenquiries__table"
       />
       {isUopup && (
-        <Enquirydetails closePOPup={setisUopup} popid={popid} direct={direct} />
+        <Enquirydetails closePOPup={setisUopup} popid={popid} direct={direct} setrefreshdata={setrefreshdata} refreshdata={refreshdata} />
       )}
       <div className="directenquiries__footer">
         <div className="directenquiries__container">
