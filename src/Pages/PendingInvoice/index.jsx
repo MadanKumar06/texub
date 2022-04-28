@@ -420,7 +420,11 @@ function Index() {
               <span className="label">Tax</span>
               <Divider orientation="vertical" />
               <span className="value">
-                <span className="value_symobol">INR</span> 00.00
+                <span className="value_symobol">
+                  {" "}
+                  {currency_id?.currency_code}{" "}
+                </span>{" "}
+                {pendingInvoiceList?.invoice?.tax}
               </span>
             </p>
             <p>

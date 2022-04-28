@@ -250,7 +250,7 @@ const WhislistTable = ({
           <p className="header_title">{tableDataHeader}</p>
           <span className="wishlist-edit-img">
             <img src={WishlistEdit} alt="" />
-            <span className="wishlist-edit-text">Edit</span>
+            {/* <span className="wishlist-edit-text">Edit</span> */}
           </span>
         </div>
         <MoreVert
@@ -266,6 +266,7 @@ const WhislistTable = ({
           className="menulist_item"
         >
           <MenuItem onClick={() => addalltocart()}>Add All To Cart</MenuItem>
+          <MenuItem>Add All To Pending Invoice</MenuItem>
           <MenuItem onClick={() => wishlistdelete()}>Delete List</MenuItem>
         </Menu>
         <div className="header_link">

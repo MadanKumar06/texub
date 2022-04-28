@@ -19,39 +19,43 @@ const Whislist = () => {
     if (wishdata?.length === 0) return setwishdata([]);
     setTableData(event);
   };
-  useEffect(async () => {
-    const user = JSON.parse(localStorage.getItem("userdata"));
-    setwishdata([]);
-    try {
-      dispatch({
-        type: "SET_IS_LOADING",
-        value: true,
-      });
-      const wishlistdata = await axios({
-        method: "post",
-        url: `${Constant.baseUrl()}/getwishlist`,
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-        data: {
-          requestParams: {
-            customer_id: user?.id,
+
+  useEffect(() => {
+    async function fetchData() {
+      const user = JSON.parse(localStorage.getItem("userdata"));
+      setwishdata([]);
+      try {
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: true,
+        });
+        const wishlistdata = await axios({
+          method: "post",
+          url: `${Constant.baseUrl()}/getwishlist`,
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
-        },
-      });
-      dispatch({
-        type: "SET_IS_LOADING",
-        value: false,
-      });
-      // console.log(wishlistdata)
-      setwishdata(wishlistdata.data);
-    } catch (e) {
-      console.log(e);
-      dispatch({
-        type: "SET_IS_LOADING",
-        value: false,
-      });
+          data: {
+            requestParams: {
+              customer_id: user?.id,
+            },
+          },
+        });
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+        // console.log(wishlistdata)
+        setwishdata(wishlistdata.data);
+      } catch (e) {
+        console.log(e);
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+      }
     }
+    fetchData();
   }, [wishListAgain, generalTrigger]);
 
   useEffect(async () => {
