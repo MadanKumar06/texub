@@ -112,6 +112,18 @@
     background-image: linear-gradient(#ffd788, #cc9b3e);
     color: #ffffff;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+    position: relative;
+    & ::before {
+      border: 1px solid #d1cccc;
+      content: "";
+      position: absolute;
+      width: 5px;
+      height: 48px;
+      left: -7px;
+      top: 0;
+      background-color: #ffffff;
+      box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+    }
   }
 
   .buyerbg {
