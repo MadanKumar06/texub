@@ -62,7 +62,11 @@ const MiniCartDrawer = () => {
         <Button onClick={toggleDrawer("right", true)}>
           <Badge
             showZero={true}
-            badgeContent={cart?.[0]?.invoice_items?.length}
+            badgeContent={
+              cart?.[0]?.invoice_items?.length
+                ? cart?.[0]?.invoice_items?.length
+                : 0
+            }
             className="badge"
           >
             <div className="mycart_image">

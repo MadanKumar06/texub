@@ -22,12 +22,11 @@ function Index() {
 
   var currency_id = JSON.parse(localStorage.getItem("currency"));
 
-  // let buyerCode = JSON.parse(
-  //   localStorage.getItem("userdata")
-  // )?.custom_attributes?.filter(
-  //   (itm) => itm?.attribute_code === "customer_code"
-  // );
-
+  let buyerCode = JSON.parse(
+    localStorage.getItem("userdata")
+  )?.custom_attributes?.filter(
+    (itm) => itm?.attribute_code === "customer_code"
+  );
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("userdata"));
     let data = {
@@ -48,43 +47,6 @@ function Index() {
       })
       .catch((error) => {});
   }, [currency]);
-  const tableData = [
-    {
-      sellerid: "INDS20222",
-      description: {
-        modal: "Pavilion Model14-Dv0054Tu",
-        content:
-          "Hp 14-Dv0054Tu Pavilion Laptop (11Th Gen Intel Core I5-1135G7/…512Gb <br> Sdd/Intel Iris Xe Graphics/Windows 10/Mso/Fhd), 35.56 Cm (14 Inch)",
-      },
-      //description: 'TEST',
-      // description: {
-      //     image: '',
-      //     title: 'PAVILION MODEL14-DV0054TU',
-      //     desc: 'Hp 14-Dv0054Tu Pavilion Laptop (11Th Gen Intel Core I5-1135G7/…512Gb Sdd/Intel Iris Xe Graphics/Windows 10/Mso/Fhd), 35.56 Cm (14 Inch)',
-      // },
-      hub: "Mumbai",
-      unitprice: "66,999",
-      quantity: "60",
-      totalprice: "40,23,490",
-    },
-    {
-      sellerid: "INDS2023",
-      description: {
-        modal: "Pavilion Model14-Dv0054Tu",
-        content:
-          "Hp 14-Dv0054Tu Pavilion Laptop (11Th Gen Intel Core I5-1135G7/…512Gb Sdd/Intel Iris Xe Graphics/Windows 10/Mso/Fhd), 35.56 Cm (14 Inch)",
-      },
-      // description: {
-      //     image: '',
-      //     title: 'ACER SF314-42 SWIFT 3',
-      //     desc: 'Acer Sf314-42 Swift 3 Laptop (Amd R5-4500U/8 Gb/512 Gb Hdd/…',
-      // },
-      hub: "Mumbai",
-      unitprice: "65,999",
-      quantity: "30",
-      totalprice: "19,84,490",
-    },
-  ];
 
   const options = {
     filter: false,
@@ -111,16 +73,18 @@ function Index() {
       name: "description",
       label: "PRODUCT DESCRIPTION",
       options: {
-        customBodyRender: (value) => {
+        customBodyRender: (value, tablemeta) => {
+          let product_name = tablemeta?.rowData?.[8];
+          let product_barnd = tablemeta?.rowData?.[7];
           return (
             <div className="productname">
-              <img src={image} alt="" className="image"></img>
+              <img src={`${Constant.imageBaseUrl()}${product_barnd}`} alt="" />
               <span className="product_name_new">
-                <img src={minicart_new} alt="" />
+                {/* <img src={minicart_new} alt="" /> */}
               </span>
               <div className="product">
-                <span className="modal_name">{value?.modal}</span>
-                <span className="modal_content">{value?.content}</span>
+                <span className="modal_name">{product_name}</span>
+                <span className="modal_content">{value}</span>
               </div>
             </div>
           );
@@ -141,10 +105,11 @@ function Index() {
       name: "price",
       label: "UNIT PRICE",
       options: {
-        customBodyRender: (value) => {
+        customBodyRender: (value, tablemeta) => {
+          let currency = tablemeta?.rowData?.[6];
           return (
             <div className="vieworders_price">
-              <span className="symbol">INR</span>
+              <span className="symbol">{currency}</span>
               <span className="price"> {value} </span>
             </div>
           );
@@ -190,7 +155,7 @@ function Index() {
     },
 
     {
-      name: "eta",
+      name: "product_name",
       label: "",
       options: {
         display: false,
@@ -342,7 +307,7 @@ function Index() {
             <p>
               <span className="label">Buyer ID</span>
               <Divider orientation="vertical" />
-              {/* <span className="value">{buyerCode}</span> */}
+              <span className="value">{buyerCode?.[0]?.value}</span>
             </p>
           </div>
         </div>
@@ -392,10 +357,16 @@ function Index() {
             className="approve__cart__table"
           />
         </div>
+
         <div className="middle__tableinfo">
           <div className="tableinfo__details">
             <span className="title">Beneficiary Bank</span>
-            <div className="content">
+            <div
+              dangerouslySetInnerHTML={{
+                __html: pendingInvoiceList?.beneficiary_bank,
+              }}
+            ></div>
+            {/* <div className="content">
               <span className="label">Bank Name : </span>
               <span className="value">India Overseas Bank</span>
             </div>
@@ -431,14 +402,18 @@ function Index() {
               <span className="value">
                 61/234, HRBR LAYOUT BANGALORE - 560043
               </span>
-            </div>
+            </div> */}
           </div>
           <div className="tableinfo__orderdata">
             <p>
               <span className="label">Sub-Total</span>
               <Divider orientation="vertical" />
               <span className="value">
-                <span className="value_symobol">INR</span> 94,05,510
+                <span className="value_symobol">
+                  {" "}
+                  {currency_id?.currency_code}{" "}
+                </span>{" "}
+                {pendingInvoiceList?.invoice?.subtotal}
               </span>
             </p>
             <p>
@@ -466,7 +441,11 @@ function Index() {
               <div className="total_value_block">
                 <span className="label">Total Order value</span>
                 <span className="value">
-                  <span className="value_symobol">INR</span> 94,05,510
+                  <span className="value_symobol">
+                    {" "}
+                    {currency_id?.currency_code}{" "}
+                  </span>
+                  {pendingInvoiceList?.invoice?.grand_total}
                 </span>
               </div>
             </p>
@@ -504,11 +483,7 @@ function Index() {
         </div>
         <div className="remark_block">
           <span className="remark_title">Remarks</span>
-          <p className="remark_content">
-            FWD & Pick up / R&A International logistics / 61/234, HRBR Layout
-            Bangalore - 560043 DOCS Needed. Provide actual DIMS / provide copy
-            of the invoice and serials, FWD Pick up / R&A internal.
-          </p>
+          <p className="remark_content">{pendingInvoiceList?.remarks}</p>
         </div>
         <div className="bottom__buttons">
           <Button className="button__cancel">Cancel</Button>

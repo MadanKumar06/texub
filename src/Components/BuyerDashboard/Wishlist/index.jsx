@@ -10,11 +10,10 @@ import { useStateValue } from "../../../store/state";
 
 const Whislist = () => {
   const [tableData, setTableData] = useState([]);
-  const [{ geo, customnostore }, dispatch] = useStateValue();
+  const [{ geo, customnostore, generalTrigger }, dispatch] = useStateValue();
   const [wishListAgain, setWishListAgain] = useState(false);
   const [wishdata, setwishdata] = useState([]);
   const [folderdata, setfolderdata] = useState([]);
-
 
   const PaginateDataSplit = (event) => {
     if (wishdata?.length === 0) return setwishdata([]);
@@ -22,6 +21,7 @@ const Whislist = () => {
   };
   useEffect(async () => {
     const user = JSON.parse(localStorage.getItem("userdata"));
+    setwishdata([]);
     try {
       dispatch({
         type: "SET_IS_LOADING",
@@ -52,8 +52,7 @@ const Whislist = () => {
         value: false,
       });
     }
-  }, [wishListAgain]);
-
+  }, [wishListAgain, generalTrigger]);
 
   useEffect(async () => {
     let user = JSON.parse(localStorage.getItem("userdata"));
@@ -77,19 +76,6 @@ const Whislist = () => {
   }, []);
   return (
     <div className="wishlist_main_container">
-      <div className="wishlist__footer">
-        <div className="wishlist__container">
-          <Link
-            to={`/${
-              customnostore ? customnostore : geo?.country_name
-            }/buyerdashboard/dashboard`}
-          >
-            <ArrowBackIosNew />
-            <span>Back</span>
-          </Link>
-        </div>
-      </div>
-
       <div>
         {tableData?.length
           ? tableData?.map((itm) => (
@@ -112,6 +98,18 @@ const Whislist = () => {
       ) : (
         ""
       )}
+      <div className="wishlist__footer">
+        <div className="wishlist__container">
+          <Link
+            to={`/${
+              customnostore ? customnostore : geo?.country_name
+            }/buyerdashboard/dashboard`}
+          >
+            <ArrowBackIosNew />
+            <span>Back</span>
+          </Link>
+        </div>
+      </div>
     </div>
   );
 };

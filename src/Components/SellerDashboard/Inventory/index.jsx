@@ -236,6 +236,7 @@ function Index({ registerproduct }) {
 
   const handleSearchInput = async (event) => {
     event.preventDefault();
+    setSearchList([]);
     if (search === "") {
       return setSearchList([]);
     }

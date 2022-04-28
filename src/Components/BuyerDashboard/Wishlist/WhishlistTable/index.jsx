@@ -70,11 +70,14 @@ const WhislistTable = ({
           },
         },
       });
-      console.log(deletewish.data);
+      dispatch({
+        type: "SET_GENERAL_TRINGGER",
+      });
       dispatch({
         type: "SET_IS_LOADING",
         value: false,
       });
+
       if (deletewish?.data?.[0]?.status) {
         setWishListAgain(!wishListAgain);
         swal.fire({
@@ -120,7 +123,7 @@ const WhislistTable = ({
               productId: w?.product_id,
               price: w?.texub_product_price,
               qty: w?.texub_product_moq,
-              hub: w?.texub_product_hub,
+              hub: w?.texub_product_hub_id,
               currency: currency?.currency_id,
               sellerId: w?.seller_id,
             },
@@ -208,7 +211,9 @@ const WhislistTable = ({
           },
         },
       });
-      console.log(deleteSinglewishlist?.data);
+      dispatch({
+        type: "SET_GENERAL_TRINGGER",
+      });
       dispatch({
         type: "SET_IS_LOADING",
         value: false,
@@ -260,13 +265,13 @@ const WhislistTable = ({
           onClose={handleCloseForOpenMoreOption}
           className="menulist_item"
         >
-          <MenuItem onClick={addalltocart}>Add All To Cart</MenuItem>
-          <MenuItem onClick={wishlistdelete}>Delete List</MenuItem>
+          <MenuItem onClick={() => addalltocart()}>Add All To Cart</MenuItem>
+          <MenuItem onClick={() => wishlistdelete()}>Delete List</MenuItem>
         </Menu>
         <div className="header_link">
-          <p onClick={addalltocart}>Add All To Cart</p>
+          <p onClick={() => addalltocart()}>Add All To Cart</p>
           <p> Add All To Pending Invoice</p>
-          <p onClick={wishlistdelete}>Delete List</p>
+          <p onClick={() => wishlistdelete()}>Delete List</p>
         </div>
       </div>
       <div className="table_boby_block">
