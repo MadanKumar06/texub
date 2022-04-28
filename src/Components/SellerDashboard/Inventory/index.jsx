@@ -72,12 +72,10 @@ function Index({ registerproduct }) {
           return (
             <div className="brandOffers">
               <div className="inventory-product-grid-info">{value}</div>
-              {isOfferValid === "1" && parseInt(isOfferPriceValid) >= 1 ? (
+              {isOfferValid === "1" ? (
                 <p className="offer_enabled">Offers</p>
               ) : isOfferValid === "0" && parseInt(isOfferPriceValid) >= 1 ? (
                 <p className="disabled_offer">Offers Inactive</p>
-              ) : isOfferValid === "1" && parseInt(isOfferPriceValid) >= 0 ? (
-                <p className="offer_enabled">Offers</p>
               ) : (
                 ""
               )}
