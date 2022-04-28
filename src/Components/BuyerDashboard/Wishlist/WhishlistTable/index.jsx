@@ -40,7 +40,6 @@ const WhislistTable = ({
   const [wdata, setwdata] = useState();
 
   useEffect(() => {
-    console.log(tableData);
     if (tableData?.length > 0) {
       let temp = tableData?.map((td) => ({
         ...td,
@@ -86,6 +85,7 @@ const WhislistTable = ({
           showConfirmButton: false,
           timer: 2000,
         });
+        setWishListAgain(!wishListAgain);
       } else {
         swal.fire({
           text: `${deletewish?.data?.[0]?.message}`,
@@ -102,6 +102,59 @@ const WhislistTable = ({
       });
     }
   };
+
+  const addwishtocart = async(value) => {
+    debugger
+    const user = JSON.parse(localStorage.getItem("userdata"));
+    try {
+      const addcart = await axios({
+        method: "post",
+        url: `${Constant.baseUrl()}/addToCart`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        data: {
+          pendingProducts: {
+            customer_id: user?.id,
+            productId: value?.product_id,
+            price: value?.texub_product_price,
+            qty: value?.texub_product_moq,
+            hub: value?.texub_product_hub_id,
+            currency: currency?.currency_id,
+            sellerId: value?.seller_id,
+          },
+        },
+      });
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
+      dispatch({
+        type: "CART__TRIGGER",
+      });
+      if (addcart?.data?.[0]?.status) {
+        swal.fire({
+          text: `${addcart?.data?.[0]?.message}`,
+          icon: "success",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+      } else {
+        swal.fire({
+          text: `${addcart?.data?.[0]?.message}`,
+          icon: "error",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+      }
+    } catch (e) {
+      console.log(e);
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
+    }
+  }
 
   const addalltocart = () => {
     const user = JSON.parse(localStorage.getItem("userdata"));
@@ -243,6 +296,85 @@ const WhislistTable = ({
     }
   };
 
+  const addalltopending = () => {
+    console.log(wdata)
+    wdata?.filter((w) => {
+      AddToCartAndPendingInvoice(w)
+    })
+  }
+
+  const AddToCartAndPendingInvoice = (info) => {
+    let storedata = JSON.parse(localStorage.getItem('storedata'))
+    const user = JSON.parse(localStorage.getItem("userdata"));
+    dispatch({
+      type: "SET_IS_LOADING",
+      value: true,
+    });
+    let data = {
+      pendingProducts: {
+        store_id: storedata?.store_id,
+        customer_id: user?.id,
+        productId: info?.product_id,
+        price: info?.texub_product_price,
+        qty: info?.texub_product_moq,
+        hub: info?.texub_product_hub_id,
+        currency: currency?.currency_id,
+        sellerId: info?.seller_id,
+      },
+    };
+    axios
+      .post(
+        `${Constant.baseUrl()}/addToPendingInvoice`,
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      )
+      .then((res) => {
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+        if (res?.data?.[0]?.status) {
+          swal.fire({
+            text: `${res.data?.[0]?.message}`,
+            icon: "success",
+            showConfirmButton: false,
+            timer: 3000,
+          });
+          dispatch({
+            type: "SET_PDP_POPUP_OPEN_CLOSE",
+            value: false,
+          });
+          dispatch({
+            type: "CART__TRIGGER",
+          });
+        } else {
+          swal.fire({
+            text: `${res.data?.[0]?.message}`,
+            icon: "error",
+            showConfirmButton: false,
+            timer: 3000,
+          });
+        }
+      })
+      .catch((error) => {
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+        swal.fire({
+          text: `${error?.response?.data?.message || error.message}`,
+          icon: "error",
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      });
+  };
+
   return (
     <div className="wishlist_table_container">
       <div className="whishlist_table_header">
@@ -266,12 +398,12 @@ const WhislistTable = ({
           className="menulist_item"
         >
           <MenuItem onClick={() => addalltocart()}>Add All To Cart</MenuItem>
-          <MenuItem>Add All To Pending Invoice</MenuItem>
+          <MenuItem onClick={() => addalltopending()}>Add All To Pending Invoice</MenuItem>
           <MenuItem onClick={() => wishlistdelete()}>Delete List</MenuItem>
         </Menu>
         <div className="header_link">
           <p onClick={() => addalltocart()}>Add All To Cart</p>
-          <p> Add All To Pending Invoice</p>
+          <p onClick={() => addalltopending()}>Add All To Pending Invoice</p>
           <p onClick={() => wishlistdelete()}>Delete List</p>
         </div>
       </div>
@@ -369,10 +501,10 @@ const WhislistTable = ({
                     >
                       <img src={WishlistDelete} alt="" />
                     </span>
-                    <Button className="add-cart-btn">
-                      <span> Add to Cart</span>
+                    <Button className="add-cart-btn" onClick={() => addwishtocart(itm)}>
+                      <span>Add to Cart</span>
                     </Button>
-                    <Button className="pending-invoice-btn">
+                    <Button className="pending-invoice-btn" onClick={() => AddToCartAndPendingInvoice(itm)}>
                       <span> Add to Pending Invoice</span>
                     </Button>
                   </div>

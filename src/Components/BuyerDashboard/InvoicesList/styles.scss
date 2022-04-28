@@ -16,7 +16,7 @@
         font-size: 18px;
         border-radius: 25px;
         cursor: pointer;
-        width: calc(90% / 5);
+        width: calc(90% / 3);
         min-width: 150px;
         text-align: center;
         font-weight: 600;
@@ -155,7 +155,6 @@
       }
     }
     .invoices_main .invoices__buttons p {
-      padding: 0.5em 1.2em;
       font-size: 14px;
     }
     .invoices_main .invoices__footer .invoices__container a .MuiSvgIcon-root {
