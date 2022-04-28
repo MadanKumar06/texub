@@ -90,6 +90,10 @@ const TransitionsModal = ({ handleOpenCloseOffers, offersOpenClose }) => {
             showConfirmButton: false,
             timer: 3000,
           });
+          dispatch({
+            type: "SET_GENERAL_TRINGGER",
+          });
+          handleOpenCloseOffers(false);
         } else {
           swal.fire({
             text: `${res?.data?.[0]?.message}`,

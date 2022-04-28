@@ -1,31 +1,53 @@
-import React from 'react'
-import './styles.scss'
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import MUITable from '../../Components/Common/MUITable'
+import React, { useState, useEffect } from "react";
+import "./styles.scss";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import MUITable from "../../Components/Common/MUITable";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import { Button, IconButton, Typography, Box } from "@mui/material";
 import { Link } from "react-router-dom";
 import Checkout_Texub_logo from "../../Assets/CheckoutPage/checkout_texub_logo.png";
 import image from "../../Assets/buyerdashboard/auctions/hp.png";
 import minicart_new from "../../Assets/Minicart/minicart_new.png";
-
+import axios from "axios";
+import Constant from "../../Constant";
+import { useStateValue } from "../../store/state";
 import Divider from "@mui/material/Divider";
-
+var moment = require("moment");
 
 function Index() {
+  const [{ geo, customstore, customnostore, currency }, dispatch] =
+    useStateValue();
 
+  const [pendingInvoiceList, setPendingInvoiceList] = useState([]);
 
+  var currency_id = JSON.parse(localStorage.getItem("currency"));
 
-const table = [
-  {
-    productname: {
-      modal: "Pavilion Model14-Dv0054Tu",
-      content:
-        "Hp 14-Dv0054Tu Pavilion Laptop (11Th Gen Intel Core I5-1135G7/…512Gb Sdd/Intel Iris Xe Graphics/Windows 10/Mso/Fhd), 35.56 Cm (14 Inch)",
-    },
-  
-  },
-];
+  // let buyerCode = JSON.parse(
+  //   localStorage.getItem("userdata")
+  // )?.custom_attributes?.filter(
+  //   (itm) => itm?.attribute_code === "customer_code"
+  // );
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("userdata"));
+    let data = {
+      data: {
+        customer_id: user?.id,
+        currency: currency_id?.currency_id,
+      },
+    };
+    axios
+      .post(Constant.baseUrl() + "/pendingInvoiceList", data, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((res) => {
+        setPendingInvoiceList(res?.data?.[0]);
+      })
+      .catch((error) => {});
+  }, [currency]);
   const tableData = [
     {
       sellerid: "INDS20222",
@@ -75,55 +97,9 @@ const table = [
     viewColumns: false,
     search: false,
   };
-
-  const columns2 = [
-    { name: "sellerid", label: 'SELLER ID',
-      options: {
-        customBodyRender: (value) => {
-          return <div className="table__sellerid">{value}</div>;
-        },
-      },
-    },
-    { name: "description", label: 'PRODUCT DESCRIPTION',
-      options: {
-        customBodyRender: (value) => {
-          return <div className="table__description">{value}</div>;
-        },
-      },
-    },
-    { name: "hub", label: 'HUB',
-      options: {
-        customBodyRender: (value) => {
-          return <div className="table__hub">{value}</div>;
-        },
-      },
-    },
-    { name: "unitprice", label: 'UNIT PRICE',
-      options: {
-        customBodyRender: (value) => {
-          return <div className="table__unitprice">INR {value}</div>;
-        },
-      },
-    },
-    { name: "quantity", label: 'QUANTITY',
-      options: {
-        customBodyRender: (value) => {
-          return <div className="table__quantity">{value}</div>;
-        },
-      },
-    },
-    { name: "totalprice", label: 'TOTAL PRICE',
-      options: {
-        customBodyRender: (value) => {
-          return <div className="table__price ">INR {value}</div>;
-        },
-      },
-    },
-  ]
-
   const columns = [
     {
-      name: "sellerid",
+      name: "seller_id",
       label: "SELLER ID",
       options: {
         customBodyRender: (value) => {
@@ -162,7 +138,7 @@ const table = [
     },
 
     {
-      name: "unitprice",
+      name: "price",
       label: "UNIT PRICE",
       options: {
         customBodyRender: (value) => {
@@ -176,7 +152,7 @@ const table = [
       },
     },
     {
-      name: "quantity",
+      name: "qty",
       label: "QUANTITY",
       options: {
         customBodyRender: (value) => {
@@ -185,7 +161,7 @@ const table = [
       },
     },
     {
-      name: "totalprice",
+      name: "row_total",
       label: "TOTAL PRICE",
       options: {
         customBodyRender: (value) => {
@@ -198,9 +174,29 @@ const table = [
         },
       },
     },
+    {
+      name: "currency",
+      label: "",
+      options: {
+        display: false,
+      },
+    },
+    {
+      name: "brand",
+      label: "",
+      options: {
+        display: false,
+      },
+    },
+
+    {
+      name: "eta",
+      label: "",
+      options: {
+        display: false,
+      },
+    },
   ];
-
-
   return (
     <div className="pendinginvoice">
       <div className="pendinginvoice__top">
@@ -214,7 +210,9 @@ const table = [
             <div className="order_id_info">
               <div className="orderid_section">
                 <span className="orderinfo_name">Order ID</span>
-                <span className="orderinfo_value">28739822</span>
+                <span className="orderinfo_value">
+                  {pendingInvoiceList?.invoice?.pending_invoice_id}
+                </span>
               </div>
             </div>
             <div className="order_total_info">
@@ -222,7 +220,10 @@ const table = [
                 <span className="orderinfo_name">Total Amount</span>
 
                 <span className="orderinfo_value">
-                  <span className="ordertotal_symbol">INR</span> 10,729,830
+                  <span className="ordertotal_symbol">
+                    {currency_id?.currency_code}{" "}
+                  </span>
+                  {pendingInvoiceList?.invoice?.grand_total}
                 </span>
               </div>
             </div>
@@ -315,22 +316,33 @@ const table = [
             <p>
               <span className="label">Order ID</span>
               <Divider orientation="vertical" />
-              <span className="value">28739822</span>
+              <span className="value">
+                {" "}
+                {pendingInvoiceList?.invoice?.pending_invoice_id}
+              </span>
             </p>
             <p>
               <span className="label">Date</span>
               <Divider orientation="vertical" />
-              <span className="value">02/10/2022</span>
+              <span className="value">
+                {" "}
+                {moment(pendingInvoiceList?.invoice?.date).format("DD/MM/YYYY")}
+              </span>
             </p>
             <p>
               <span className="label">Due Date</span>
               <Divider orientation="vertical" />
-              <span className="value">13/10/2022</span>
+              <span className="value">
+                {" "}
+                {moment(pendingInvoiceList?.invoice?.due_date).format(
+                  "DD/MM/YYYY"
+                )}
+              </span>
             </p>
             <p>
               <span className="label">Buyer ID</span>
               <Divider orientation="vertical" />
-              <span className="value">INDB2025</span>
+              {/* <span className="value">{buyerCode}</span> */}
             </p>
           </div>
         </div>
@@ -338,21 +350,35 @@ const table = [
         <div className="top__address">
           <div className="address__bill">
             <h4>BILL TO</h4>
-            <p className="name">Ayush Raj</p>
+            <p className="name">{pendingInvoiceList?.bill_to_name}</p>
             <div className="content">
-              <span>302/1160, Trinity enclave , B-Block, HSR Layout</span>
-              <span> Bangalore-Karanataka </span>
-              <span>560102</span>
+              <span>
+                {pendingInvoiceList?.bill_to_address1},
+                {pendingInvoiceList?.bill_to_address2}
+              </span>
+
+              <span>
+                {pendingInvoiceList?.bill_to_city}-
+                {pendingInvoiceList?.bill_to_country}
+              </span>
+              <span>{pendingInvoiceList?.bill_to_pincode}</span>
             </div>
           </div>
           <Divider orientation="vertical" />
           <div className="address__pickup">
             <h4>PICK UP ADDRESS</h4>
-            <p className="name">Xyz Ltd.</p>
+            <p className="name">{pendingInvoiceList?.pick_up_name}</p>
             <div className="content">
-              <span>302/1160, Trinity enclave , B-Block, HSR Layout</span>
-              <span> Bangalore-Karanataka </span>
-              <span>560102</span>
+              <span>
+                {pendingInvoiceList?.pick_up_address1},
+                {pendingInvoiceList?.pick_up_address2}
+              </span>
+
+              <span>
+                {pendingInvoiceList?.pick_up_city}-
+                {pendingInvoiceList?.pick_up_country}
+              </span>
+              <span>{pendingInvoiceList?.pick_up_pincode}</span>
             </div>
           </div>
         </div>
@@ -361,7 +387,7 @@ const table = [
         <div className="middle__table">
           <MUITable
             columns={columns}
-            table={tableData}
+            table={pendingInvoiceList?.invoice_items}
             options={options}
             className="approve__cart__table"
           />
@@ -493,4 +519,4 @@ const table = [
   );
 }
 
-export default Index
+export default Index;

@@ -14,6 +14,7 @@ export const initialState = {
   customstore: "",
   customnostore: "",
   homeContent: "",
+  generalTrigger: false,
 };
 
 const reducer = (state, action) => {
@@ -94,6 +95,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         homeContent: action.data,
+      };
+    case "SET_GENERAL_TRINGGER":
+      return {
+        ...state,
+        generalTrigger: !state?.generalTrigger,
       };
     default:
       return state;
