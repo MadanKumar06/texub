@@ -347,7 +347,7 @@
             display: flex;
             justify-content: space-between;
             gap: 20px;
-            width: 50%;
+            width: 40%;
           .shipping_list{
             display: flex;
             justify-content: space-between;
@@ -359,10 +359,14 @@
               .MuiFormGroup-root{
                 display: flex;
                 flex-direction: row;
+                justify-content: space-between;
                   label{
-                    width: 50%;
+                    width: auto;
+                    max-width: 50%;
                     .MuiSvgIcon-root{
                       color: #002d56;
+                      width: 30px !important;
+                      height: 30px !important;
                     }
                   }
               }
@@ -403,6 +407,11 @@
           }
         }
       }
+    }
+    .block_A1{
+       &:after {
+         display: none;
+       }
     }
 
     .block_B {
@@ -646,9 +655,9 @@
   }
 }
 
-.checkout_main_container .section_left .block_A.additional::after{
-  display: none;
-}
+// .checkout_main_container .section_left .block_A.block_A::after{
+//   display: none;
+// }
 
 
 /* checkout address popup design here */

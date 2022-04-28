@@ -66,6 +66,46 @@
             color: #333C42;
             font-size: 20px;
         }
+
+        .directenquiries__pending {
+            color: #FF0000;
+            font-size: 16px;
+            font-weight: 600;
+            background-color: #FFE2E2;
+            padding: 0.4em 0.9em;
+            border-radius: 28px;
+          }
+          .directenquiries__accepted {
+            color: #20639b !important;
+            font-weight: 600;
+            font-size: 16px;
+            background-color: #d5ecff !important;
+            padding: 0.4em 0.9em;
+            border-radius: 28px;
+          }
+          .directenquiries__closed {
+            color: #00b91c;
+            font-weight: 600;
+            font-size: 16px;
+            background-color: #e6ffea;
+            padding: 0.4em 0.9em;
+            border-radius: 28px;
+          }
+          .actions {
+            text-decoration: underline;
+            color: #002d56;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+          }
+          .directenquiries__open {
+            color: #d9ad59;
+            font-weight: 600;
+            font-size: 16px;
+            background-color: #fff6e5;
+            padding: 0.4em 0.9em;
+            border-radius: 28px;
+          }
         .enquirydetails{
             display: flex;
             gap: 30px;
@@ -106,12 +146,12 @@
         cursor: pointer;
         text-transform: capitalize;
     }
-    .button_accept{
+    .button_accept, .button_Submit{
         box-shadow: 0px 3px 6px #00000029;
         border-radius: 25px;
         opacity: 1;
         padding: 10px 25px;
-        background: linear-gradient(180deg, #20639B 0%, #002D56 100%);
+        background: linear-gradient(#20639B, #002D56);
         color: #FFFFFF;
         font-size: 18px;
         border: none;
@@ -121,7 +161,21 @@
         cursor: pointer;
         width: 50%;
     }
-
+    .button_closed, .button_declined {
+        color: #5C6369;
+        font-size: 18px;
+        width: 50%;
+        background-color: white;
+        padding: 10px 25px;
+        border-radius: 25px;
+        border: 1px solid #CDD5DD;
+        box-shadow: 0px 3px 6px #00000029;
+        font-weight: 600;
+        letter-spacing: 0.54px;
+        text-shadow: 0px 3px 6px #00000029;
+        cursor: pointer;
+        text-transform: capitalize;
+    }
 }
     
 
