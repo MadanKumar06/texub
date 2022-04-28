@@ -200,7 +200,7 @@ const Checkout = () => {
           <ul>
             <li
               className={`block_A ${
-                shipping_method === "texub_shipping" ? "block_A" : "additional"
+                shipping_method === "texub_shipping" ? "block_A1" : "additional"
               }`}
             >
               <img
