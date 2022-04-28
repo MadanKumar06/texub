@@ -14,6 +14,7 @@ import MyProfile from "../../Components/BuyerDashboard/MyProfile";
 import Wishlist from "../../Components/BuyerDashboard/Wishlist";
 import RMA from "../../Components/BuyerDashboard/RMA";
 import InvoicesList from "../../Components/BuyerDashboard/InvoicesList";
+import OrderDetails from "../../Components/BuyerDashboard/InvoicesList/OrderDetails";
 import MergeCarts from "../../Components/BuyerDashboard/MergeCarts";
 import ApproveCarts from "../../Components/BuyerDashboard/ApproveCarts";
 import SubAccountOrders from "../../Components/BuyerDashboard/SubAccountOrders";
@@ -92,6 +93,7 @@ const Index = () => {
           {currenttab === "mergecarts" && <MergeCarts />}
           {currenttab === "subaccountorders" && <SubAccountOrders />}
           {currenttab === "notactived" && <NotActivated />}
+          {currenttab === "OrderDetails" && <OrderDetails />}
         </div>
       </div>
     </div>
