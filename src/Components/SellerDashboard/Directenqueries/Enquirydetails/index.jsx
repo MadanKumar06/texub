@@ -3,10 +3,12 @@ import "./styles.scss";
 import { Clear } from "@mui/icons-material";
 import { Button, Box } from "@mui/material";
 import {Modal,Backdrop } from "@mui/material";
-const Index = ({ closePOPup, popid, direct }) => {
+import Constant from "../../../../Constant";
+import axios from "axios";
+import swal from "sweetalert2";
+
+const Index = ({ closePOPup, popid, direct, setrefreshdata, refreshdata }) => {
   const [open, setOpen] = useState(true);
-  console.log(popid)
-  console.log(direct)
   const [currentdata, setcurrentdata] = useState()
 
   useEffect(() => {
@@ -14,8 +16,52 @@ const Index = ({ closePOPup, popid, direct }) => {
     setcurrentdata(temp)
   },[direct])
 
-  console.log(currentdata)
-
+  const updatestatus = async(value) => {
+    let storedata = JSON.parse(localStorage.getItem('storedata'))
+    try {
+      const statusid = await axios({
+        method: 'get',
+        url: `${Constant.baseUrl()}/wtbEnquiryStatusList`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+      })
+      let status = statusid.data?.find(sid => sid?.label === value)
+      const update = await axios({
+        method: 'post',
+        url: `${Constant.baseUrl()}/wtbStatusBySeller`,
+        data: {
+          data : {
+            "enquiry_id" : currentdata?.enquiry_id,
+            "status" : status?.value,
+            "store_id":storedata?.store_id
+          }
+        },
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+      })
+      if (update?.data[0]?.status) {
+        swal.fire({
+          text: `Updates Successfully`,
+          icon: "success",
+          showConfirmButton: false,
+          timer: 3000,
+        });
+        setrefreshdata(!refreshdata)
+      } else {
+        swal.fire({
+          text: `Unable to update`,
+          icon: "error",
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      }
+      closePOPup(false)
+    } catch(e) {
+      console.log(e)
+    }
+  }
   return (
     <Modal
       aria-labelledby="transition-modal-title"
@@ -42,8 +88,16 @@ const Index = ({ closePOPup, popid, direct }) => {
               <p className="heading">Buyer Code</p>
               <p className="details">{currentdata?.buyer_code}</p>
             </div>
-            <div className="status">
-              {currentdata?.wtb_status}
+            <div className={`status ${
+                currentdata?.seller_enquiry_status === "Open"
+                  ? "directenquiries__open"
+                  : currentdata?.seller_enquiry_status === "Accepted"
+                  ? "directenquiries__accepted"
+                  : currentdata?.seller_enquiry_status === "Closed"
+                  ? "directenquiries__closed"
+                  : currentdata?.seller_enquiry_status === "Pending" && "directenquiries__pending"
+              } `}>
+              {currentdata?.seller_enquiry_status}
             </div>
             <div className="enquirydetails">
               <p className="heading">Part Number</p>
@@ -82,13 +136,26 @@ const Index = ({ closePOPup, popid, direct }) => {
                 {currentdata?.notes}
               </p>
             </div>
-            {currentdata?.seller_enquiry_status === "Enquiry Received" ? 
+            {currentdata?.seller_enquiry_status === "Open" &&
               <Box className="button_box">
-                <Button className="button_decline">Decline</Button>
-                <Button className="button_accept">Accept</Button>
+                <Button className="button_decline" onClick={() => updatestatus("Declined")}>Decline</Button>
+                <Button className="button_accept" onClick={() => updatestatus("Accepted")}>Accept</Button>
               </Box>
-            :
-            <Box style={{color: "#333C42",fontSize: "20px"}} className="button_box">{currentdata?.seller_enquiry_status}</Box>
+            }
+            {currentdata?.seller_enquiry_status === "Accepted" &&
+              <Box className="button_box">
+                <Button className="button_Submit" onClick={() => updatestatus("Closed")}>Submit</Button>
+              </Box>
+            }
+            {currentdata?.seller_enquiry_status === "Closed" &&
+              <Box className="button_box">
+                <Button className="button_closed">Quote Submitted</Button>
+              </Box>
+            }
+            {currentdata?.seller_enquiry_status === "Declined" &&
+              <Box className="button_box">
+                <Button className="button_declined">Declined</Button>
+              </Box>
             }
           </div>
         </div>
