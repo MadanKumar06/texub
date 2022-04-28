@@ -1,0 +1,109 @@
+.order_summary_top{
+    .orde_summary_title{
+        padding: 0em 0 2em;
+        span{
+            letter-spacing: 0.9px;
+            color: #333C42;
+            text-transform: capitalize;
+            font-size: 18px;
+            font-weight: 400;
+        }
+    }
+    .order_table_info{
+        .invoice_order_list_content{
+            gap: 2em;
+            display: flex;
+            flex-direction: column;
+            border-radius: 4px;
+        .order_summary_section{
+            display: flex;
+             background-color: #F5F5F5;
+            gap: 10px;
+            border-radius: 4px;
+            padding: 2em 20px;
+            .product_img{
+                width: 10%;
+                .logo_tag{
+                    position: relative;
+                }
+                img.logo{
+                    width: 60px;
+                    height: 60px;
+                }
+                img.tag{
+                    position: absolute;
+                    left: 35px;
+                    top: -20px;
+                }
+              
+            }
+            .order_info_section{
+                width: 50%;
+                display: flex;
+                flex-direction: column;
+                .product_name{
+                    letter-spacing: 0.54px;
+                    color: #333C42;
+                    text-transform: uppercase;
+                    font-size: 16px;
+                    font-weight: 400;
+                    padding-bottom: 10px;
+                }
+                .product_description{
+                    letter-spacing: 0.54px;
+                    color: #5C6369;
+                    text-transform: capitalize;
+                    font-weight: 600;
+                    font-size: 16px;
+                    padding-bottom: 10px;
+                }
+                .product_hub_qty{
+                    display: flex;
+                    justify-content: space-between;
+                    padding-bottom: 10px;
+                    .qty{
+                        letter-spacing: 0.6px;
+                        color: #333C42;
+                        text-transform: capitalize;
+                        font-weight: 600;
+                        font-size: 16px;
+                    }
+                    .hub{
+                        letter-spacing: 0.6px;
+                        color: #333C42;
+                        text-transform: capitalize;
+                        font-weight: 600;
+                        font-size: 16px;
+                    }
+                    
+                }
+                .total_block{
+                    display: flex;
+                    align-items: center;
+                    .title{
+                            letter-spacing: 0.6px;
+                        color: #333C42;
+                        text-transform: capitalize;
+                        font-weight: 600;
+                        font-size: 16px;
+                    }
+                    .symbol{
+                        letter-spacing: 0.48px;
+                        color: #002D56;
+                        text-transform: uppercase;
+                        font-size: 14px;
+                        font-weight: 600;
+                    }
+                    .value{
+                        letter-spacing: 0.78px;
+                        color: #002D56;
+                        font-size: 18px;
+                        font-weight: 800;
+                    }
+                }
+            }
+            
+        }
+     }
+    }
+}
