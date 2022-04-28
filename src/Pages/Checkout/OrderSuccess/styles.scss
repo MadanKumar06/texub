@@ -147,22 +147,41 @@
 
     .ordersuccess_dashboard{
         .dashboard__top{
-            .order_msg{ 
-                .msg{
-                     font-size: 26px;   
+            padding: 1em 15px;
+            .dashboard_center{
+                padding: 10px 15px;
+                .order_msg{ 
+                    .msg{
+                        font-size: 26px;   
+                    }
+                }
+                .logged_user{
+                    .msg{
+                        font-size: 20px;
+                    }
+                }
+                .custom_msg{
+                    .msg{
+                        font-size: 16px;  
+                    }
+                }
+                .dashboard_bottom{
+                    .transaction_section{
+                        padding: 10px 15px;
+                        .transaction_title_section{
+                            padding: 5px 0;
+                            span.transaction_title{
+                                font-size: 18px;
+                            }
+                        }
+                        .transaction_block{
+                            flex-direction: column;
+                            padding-bottom: 1%;
+                            gap: 1em;
+                        }
+                    }
                 }
             }
-            .logged_user{
-                .msg{
-                    font-size: 20px;
-                }
-            }
-            .custom_msg{
-                .msg{
-                    font-size: 16px;  
-                }
-            }
-
         }
     }
 
