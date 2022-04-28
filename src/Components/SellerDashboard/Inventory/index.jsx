@@ -68,10 +68,19 @@ function Index({ registerproduct }) {
       options: {
         customBodyRender: (value, tablemeta) => {
           let isOfferValid = tablemeta?.rowData[12];
+          let isOfferPriceValid = tablemeta?.rowData[13];
           return (
             <div className="brandOffers">
               <div className="inventory-product-grid-info">{value}</div>
-              {isOfferValid === "1" && <p>Offers</p>}
+              {isOfferValid === "1" && parseInt(isOfferPriceValid) >= 1 ? (
+                <p className="offer_enabled">Offers</p>
+              ) : isOfferValid === "0" && parseInt(isOfferPriceValid) >= 1 ? (
+                <p className="disabled_offer">Offers Inactive</p>
+              ) : isOfferValid === "1" && parseInt(isOfferPriceValid) >= 0 ? (
+                <p className="offer_enabled">Offers</p>
+              ) : (
+                ""
+              )}
             </div>
           );
         },
@@ -145,6 +154,7 @@ function Index({ registerproduct }) {
       options: {
         customBodyRender: (value, tablemeta) => {
           let isOfferValid = tablemeta?.rowData[12];
+          let isOfferPriceValid = tablemeta?.rowData[13];
           return (
             <div className="action">
               <div
@@ -166,7 +176,9 @@ function Index({ registerproduct }) {
                   })
                 }
               >
-                {isOfferValid === "0" ? "Add Offers" : "View Offers"}
+                {isOfferValid === "0" && isOfferPriceValid === "0"
+                  ? "Add Offers"
+                  : "View Offers"}
               </div>
             </div>
           );
@@ -189,6 +201,13 @@ function Index({ registerproduct }) {
     },
     {
       name: "offer_status",
+      label: " ",
+      options: {
+        display: false,
+      },
+    },
+    {
+      name: "offer_price",
       label: " ",
       options: {
         display: false,

@@ -9,7 +9,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import Dashboard from "../../Components/SellerDashboard/Dashboard";
 import Inventory from "../../Components/SellerDashboard/Inventory";
 import RegisterProduct from "../../Components/SellerDashboard/Inventory/RegisterProduct";
-import Bulkupload from '../../Components/SellerDashboard/Inventory/Buildupload'
+import Bulkupload from "../../Components/SellerDashboard/Inventory/Buildupload";
 import SuccessPage from "../../Components/SellerDashboard/Inventory/SuccessPage";
 import UpdateProduct from "../../Components/SellerDashboard/Inventory/UpdateProduct";
 import Orders from "../../Components/SellerDashboard/Orders";
@@ -25,13 +25,17 @@ import Constant from "../../Constant";
 import { useStateValue } from "../../store/state";
 
 function SellerDashboard() {
-  const [{geo, customstore, customnostore}, dispatch] = useStateValue()
+  const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
   const [currentmenu, setcurrentmenu] = useState();
   let navigate = useNavigate();
 
   const selectmenu = (value) => {
     setcurrentmenu(value);
-    navigate(`/${customnostore ? customnostore : geo?.country_name}/sellerdashboard/${value}`);
+    navigate(
+      `/${
+        customnostore ? customnostore : geo?.country_name
+      }/sellerdashboard/${value}`
+    );
     setshowregister(false);
     setbarstate(false);
   };
@@ -48,11 +52,23 @@ function SellerDashboard() {
   const registerproduct = (value, value1, value2) => {
     setshowregister(true);
     if (value === "updateproduct") {
-      navigate(`/${customnostore ? customnostore : geo?.country_name}/sellerdashboard/${value}/${value1}`);
+      navigate(
+        `/${
+          customnostore ? customnostore : geo?.country_name
+        }/sellerdashboard/${value}/${value1}`
+      );
     } else if (value === "addproduct") {
-      navigate(`/${customnostore ? customnostore : geo?.country_name}/sellerdashboard/${value}/${value1}`);
+      navigate(
+        `/${
+          customnostore ? customnostore : geo?.country_name
+        }/sellerdashboard/${value}/${value1}`
+      );
     } else {
-      navigate(`/${customnostore ? customnostore : geo?.country_name}/sellerdashboard/${value}`);
+      navigate(
+        `/${
+          customnostore ? customnostore : geo?.country_name
+        }/sellerdashboard/${value}`
+      );
     }
   };
 
@@ -83,7 +99,6 @@ function SellerDashboard() {
   const sidebarstate = () => {
     setbarstate(true);
   };
-
   return (
     <div className="sellerdashboard">
       {/* <img src={bg} alt="" /> */}
@@ -99,33 +114,36 @@ function SellerDashboard() {
           currenttab={currenttab}
         />
         <div className="sellerdashboard__maintab">
-          {/* {showregister === false && (
+          {showregister === true || currenttab === "inventory" ? (
+            ""
+          ) : (
             <div className="sellerdashboard__search">
               <Paper
                 className="sellerdashboard__searchinput"
                 component="form"
                 sx={{ p: "2px 4px", display: "flex", alignItems: "center" }}
               >
-                <IconButton
-                  type="submit"
-                  sx={{ p: "10px" }}
-                  aria-label="search"
-                >
-                  <SearchIcon />
-                </IconButton>
                 <InputBase
                   sx={{ ml: 1, flex: 1 }}
                   placeholder="Search..."
                   inputProps={{ "aria-label": "search google maps" }}
                   className="sellerdashboard__input"
                 />
+                <IconButton
+                  type="submit"
+                  sx={{ p: "10px" }}
+                  aria-label="search"
+                  onClick={(event) => event.preventDefault()}
+                >
+                  <SearchIcon />
+                </IconButton>
               </Paper>
-              <div className="sellerdashboard__notiIcon">
+              {/* <div className="sellerdashboard__notiIcon">
                 <img src={notification} alt="" />
               </div>
-              <span>Notification</span>
+              <span>Notification</span> */}
             </div>
-          )} */}
+          )}
 
           {currenttab === "dashboard" && <Dashboard />}
 

@@ -77,12 +77,25 @@
             overflow: hidden;
             white-space: initial;
           }
-          p {
+          .offer_enabled {
             position: absolute;
             bottom: 17px;
             right: 0px;
             margin: 0;
             background-color: #ddb363;
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.8px;
+            padding: 0% 5.7%;
+            border-radius: 40px;
+          }
+          .disabled_offer {
+            position: absolute;
+            bottom: 17px;
+            right: 0px;
+            margin: 0;
+            background-color: #858a8e;
             color: #ffffff;
             font-size: 12px;
             font-weight: 600;

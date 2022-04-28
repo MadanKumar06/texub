@@ -110,7 +110,10 @@ function Index() {
           return (
             <div className="vieworders_price">
               <span className="symbol">{currency}</span>
-              <span className="price"> {value} </span>
+              <span className="price">
+                {" "}
+                {formatToCurrency(parseInt(value))}{" "}
+              </span>
             </div>
           );
         },
@@ -133,7 +136,10 @@ function Index() {
           return (
             <div className="table__price ">
               <span className="symbol">INR</span>
-              <span className="price"> {value} </span>
+              <span className="price">
+                {" "}
+                {formatToCurrency(parseInt(value))}{" "}
+              </span>
             </div>
           );
         },
@@ -162,6 +168,12 @@ function Index() {
       },
     },
   ];
+
+  function formatToCurrency(amount) {
+    return amount
+      .toString()
+      .replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
+  }
   return (
     <div className="pendinginvoice">
       <div className="pendinginvoice__top">
@@ -188,7 +200,10 @@ function Index() {
                   <span className="ordertotal_symbol">
                     {currency_id?.currency_code}{" "}
                   </span>
-                  {pendingInvoiceList?.invoice?.grand_total}
+
+                  {formatToCurrency(
+                    parseInt(pendingInvoiceList?.invoice?.grand_total)
+                  )}
                 </span>
               </div>
             </div>
@@ -413,7 +428,9 @@ function Index() {
                   {" "}
                   {currency_id?.currency_code}{" "}
                 </span>{" "}
-                {pendingInvoiceList?.invoice?.subtotal}
+                {formatToCurrency(
+                  parseInt(pendingInvoiceList?.invoice?.subtotal)
+                )}{" "}
               </span>
             </p>
             <p>
@@ -424,7 +441,7 @@ function Index() {
                   {" "}
                   {currency_id?.currency_code}{" "}
                 </span>{" "}
-                {pendingInvoiceList?.invoice?.tax}
+                {formatToCurrency(parseInt(pendingInvoiceList?.invoice?.tax))}{" "}
               </span>
             </p>
             <p>
@@ -449,7 +466,9 @@ function Index() {
                     {" "}
                     {currency_id?.currency_code}{" "}
                   </span>
-                  {pendingInvoiceList?.invoice?.grand_total}
+                  {formatToCurrency(
+                    parseInt(pendingInvoiceList?.invoice?.grand_total)
+                  )}{" "}
                 </span>
               </div>
             </p>
