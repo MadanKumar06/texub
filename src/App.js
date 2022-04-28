@@ -63,7 +63,11 @@ import SignIn from "./Pages/SignIn/SiginPopUp/SectionLeft";
 import RegisterPopup from "./Pages/Register/RegisterPopup/SectionLeft";
 import MiniCartList from "./Pages/MiniCart/MiniCartList";
 import SimpleBackdrop from "./Components/LoaderBackDrop";
-import { getSigninedUserData, GetHomeAPi } from "./utilities";
+import {
+  getSigninedUserData,
+  GetHomeAPi,
+  GetCategoriesList,
+} from "./utilities";
 import axios from "axios";
 
 const App = () => {
@@ -78,6 +82,7 @@ const App = () => {
       isLoading,
       signInOpenClose,
       customstore,
+      currency,
     },
     dispatch,
   ] = useStateValue();
@@ -138,6 +143,11 @@ const App = () => {
         });
     }
   }, []);
+  useEffect(() => {
+    GetCategoriesList((res) => {
+      localStorage.setItem("all_category_id", res?.[0]?.category?.id);
+    }, currency?.currency_id);
+  }, [currency]);
 
   return (
     <div className="App">

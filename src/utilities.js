@@ -72,3 +72,17 @@ export const GetHomeAPi = async (callback) => {
     callback(Object.assign({}, ...home.data));
   } catch (e) {}
 };
+
+//getCategories List
+export const GetCategoriesList = async (callback, currency) => {
+  try {
+    const home = await axios({
+      method: "post",
+      url: `${Constant.baseUrl()}/getCategoriesList`,
+      data: {
+        currency_id: currency,
+      },
+    });
+    callback(home?.data);
+  } catch (e) {}
+};

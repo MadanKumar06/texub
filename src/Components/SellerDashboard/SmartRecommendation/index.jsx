@@ -3,22 +3,21 @@ import "./styles.scss";
 import MUITable from "../../Common/MUITable";
 import { Link } from "react-router-dom";
 import Pagination from "../../Pagination";
-import { ArrowBackIosNew } from "@mui/icons-material";
+import { ArrowBackIosNew, Search } from "@mui/icons-material";
 import axios from "axios";
-import Constant, { imageBaseUrl } from "../../../Constant";
-// import Vieworders from '../../Common/Vieworders'
+import Constant from "../../../Constant";
 import { useStateValue } from "../../../store/state";
-import { IconButton } from "@mui/material";
-import { Search } from "@mui/icons-material";
-import { TextField, InputAdornment } from "@mui/material";
-function Index() {
+import { TextField, InputAdornment, IconButton } from "@mui/material";
+
+const Index = () => {
   const [tableData, setTableData] = useState([]);
+  const [{ geo, customnostore }, dispatch] = useStateValue();
+  const [apiTableData, setApiTableData] = useState([]);
+
   const PaginateDataSplit = (event) => {
     if (apiTableData?.length === 0) return setApiTableData([]);
     setTableData(event);
   };
-  const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
-  const [apiTableData, setApiTableData] = useState([]);
 
   function formatToCurrency(price) {
     return price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
@@ -81,11 +80,7 @@ function Index() {
       label: " ",
       options: {
         customBodyRender: (value) => {
-          return (
-            <div className="smart_icon">
-              <img src={value} alt="" className="icon" />
-            </div>
-          );
+          return <img src={value} alt="" className="icon" />;
         },
       },
     },
@@ -116,7 +111,6 @@ function Index() {
           return (
             <div className="smart_price">
               <span className="label">{currency}</span>
-              {/* <span className="value">{value}</span> */}
               <span className="value">{formatToCurrency(parseInt(value))}</span>
             </div>
           );
@@ -131,7 +125,7 @@ function Index() {
           return (
             <div className="smart_rank">
               {value}
-              <span className="smart_rank_th">th</span>
+              <p>th</p>
             </div>
           );
         },
@@ -146,7 +140,6 @@ function Index() {
           return (
             <div className="smart_price">
               <span className="label">{currency}</span>
-              {/* <span className="value">{value}</span> */}
               <span className="value">{formatToCurrency(parseInt(value))}</span>
             </div>
           );
@@ -163,41 +156,6 @@ function Index() {
   ];
   return (
     <div className="smart_main">
-      <div className="smart__back__footer">
-        <div className="smart__back__container">
-          <Link
-            to={`/${
-              customnostore ? customnostore : geo?.country_name
-            }/buyerdashboard/dashboard`}
-          >
-            <ArrowBackIosNew />
-            <span>Back</span>
-          </Link>
-        </div>
-      </div>
-      <div className="smart__search">
-        <TextField
-          placeholder="Search…"
-          variant="outlined"
-          name="search_product"
-          className="search_input"
-          fullWidth
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <IconButton
-                  type="submit"
-                  className="smart_searchicon"
-                  sx={{ p: "10px" }}
-                  aria-label="search"
-                >
-                  <Search className="search_icon"></Search>
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
-        />
-      </div>
       <MUITable
         columns={columns}
         table={tableData?.length ? tableData : []}
@@ -213,8 +171,20 @@ function Index() {
       ) : (
         ""
       )}
+      <div className="smart__back__footer">
+        <div className="smart__back__container">
+          <Link
+            to={`/${
+              customnostore ? customnostore : geo?.country_name
+            }/sellerdashboard/dashboard`}
+          >
+            <ArrowBackIosNew />
+            <span>Back</span>
+          </Link>
+        </div>
+      </div>
     </div>
   );
-}
+};
 
 export default Index;

@@ -74,24 +74,7 @@ const Productsbrands = ({
     };
     fetchBrandsData();
   }, []);
-  // useEffect(() => {
-  //   const fetchCategoryData = () => {
-  //     axios
-  //       .get(Constant.baseUrl() + "/getCategoriesList", {
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //       })
-  //       .then((res) => {
-  //         setSliderBrandsAndCategories((prevState) => ({
-  //           ...prevState,
-  //           categories: res?.data,
-  //         }));
-  //       })
-  //       .catch((err) => {});
-  //   };
-  //   fetchCategoryData();
-  // }, []);
+
   const Productsicon = {
     dots: false,
     infinite: false,
