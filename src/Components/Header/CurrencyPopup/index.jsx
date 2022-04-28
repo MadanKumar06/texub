@@ -49,21 +49,18 @@ const CurrencyPopup = ({ classes }) => {
   }, [selectedValue]);
   //API for fetch dropdown values
 
-  // console.log(window.location.pathname)
+  const str = window.location.pathname
   useEffect(() => {
     const storedata = JSON.parse(localStorage.getItem('storedata'))
     const str = window.location.pathname
     if (geo === "") return;
-    // console.log(str.split('/')[2])
-    // console.log(storedata?.code)
-    // console.log(str.split('/')[1]?.toLowerCase())
-    if(str.split('/')[2] === 'sellerdashboard' && storedata?.code.toLowerCase() === str.split('/')[1].toLowerCase()) return
-    if(str.split('/')[2] === 'buyerdashboard' && storedata?.code.toLowerCase() === str.split('/')[1].toLowerCase()) return
-    if(str.split('/')[2] === 'resetpassword' && storedata?.code.toLowerCase() === str.split('/')[1].toLowerCase()) return
-    if(str.split('/')[2] === 'register' && storedata?.code.toLowerCase() === str.split('/')[1].toLowerCase()) return
-    if(str.split('/')[2] === 'blogsdetails' && storedata?.code.toLowerCase() === str.split('/')[1].toLowerCase()) return
-    if(str.split('/')[2] === 'sellerprofile' && storedata?.code.toLowerCase() === str.split('/')[1].toLowerCase()) return
-    if(str.split('/')[2] === 'thankyou' && storedata?.code.toLowerCase() === str.split('/')[1].toLowerCase()) return
+    // if(str.split('/')[2] === 'sellerdashboard' && storedata?.code.toLowerCase() === str.split('/')[1].toLowerCase()) return
+    // if(str.split('/')[2] === 'buyerdashboard' && storedata?.code.toLowerCase() === str.split('/')[1].toLowerCase()) return
+    // if(str.split('/')[2] === 'resetpassword' && storedata?.code.toLowerCase() === str.split('/')[1].toLowerCase()) return
+    // if(str.split('/')[2] === 'register' && storedata?.code.toLowerCase() === str.split('/')[1].toLowerCase()) return
+    // if(str.split('/')[2] === 'blogsdetails' && storedata?.code.toLowerCase() === str.split('/')[1].toLowerCase()) return
+    // if(str.split('/')[2] === 'sellerprofile' && storedata?.code.toLowerCase() === str.split('/')[1].toLowerCase()) return
+    // if(str.split('/')[2] === 'thankyou' && storedata?.code.toLowerCase() === str.split('/')[1].toLowerCase()) return
     const fetchCurrencyDropDownData = () => {
       let data = {
         geoCode: geo?.country_code,
@@ -88,7 +85,9 @@ const CurrencyPopup = ({ classes }) => {
             type: "GEO__CUSTOM__NOTSTORE",
             data: res.data?.[0]?.store?.code,
           });
-          if(storedata?.code === str.split('/')[1]) {
+          if(str.split('/')[2] === 'buyerdashboard' || str.split('/')[2] === 'sellerdashboard' || str.split('/')[2] === 'resetpassword' || str.split('/')[2] === 'blogsdetails' || str.split('/')[2] === 'sellerprofile' || str.split('/')[2] === 'thankyou' && storedata?.code.toLowerCase() === str.split('/')[1].toLowerCase()) {
+            console.log(window.location.href)
+          } else if(storedata?.code === str.split('/')[1]) {
             if(res.data?.[0]?.store?.code === str.split('/').pop().split('/')[0]) {
               navigate(`/${res.data?.[0]?.store?.code}`);  
             } else {
@@ -114,7 +113,7 @@ const CurrencyPopup = ({ classes }) => {
         .catch((err) => {});
     };
     fetchCurrencyDropDownData();
-  }, [geo, customstore]);
+  }, [geo, customstore, str]);
 
 
   return (

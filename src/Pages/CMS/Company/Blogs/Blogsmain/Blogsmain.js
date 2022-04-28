@@ -6,11 +6,13 @@ import { Link } from "react-router-dom";
 import { Blogsmainjson, Blogsmainjson2 } from "./Blogsmainjson";
 import axios from "axios";
 import Constant from "../../../../../Constant";
+import { useStateValue } from "../../../../../store/state";
 
 const Blogsmain = () => {
   const [blogmain, setblogmain] = useState([]);
   const [bloglist, setbloglist] = useState([]);
   const [popularcontent, setpopularcontent] = useState([]);
+  const [{ geo, customnostore }, dispatch] = useStateValue();
   useEffect(async () => {
     try {
       const blogsdata = await axios({
@@ -67,7 +69,9 @@ const Blogsmain = () => {
             <div className="Blogs_description">
               <Box>
                 <Link
-                  to={`/blogsdetails/${blogmain?.postId}`}
+                  to={`/${
+                    customnostore ? customnostore : geo?.country_name
+                  }/blogsdetails/${blogmain?.postId}`}
                   className="Blogs_blog"
                 >
                   <Button className="button-text btn-secondary ">
@@ -107,7 +111,11 @@ const Blogsmain = () => {
                           __html: id?.shortDescription,
                         }}
                       ></span>
-                      <Link to={`/blogsdetails/${id.postId}`}>
+                      <Link
+                        to={`/${
+                          customnostore ? customnostore : geo?.country_name
+                        }/blogsdetails/${id.postId}`}
+                      >
                         <span className="blogs_readblog">Read Blog</span>
                       </Link>
                     </div>
@@ -145,7 +153,11 @@ const Blogsmain = () => {
                       __html: id?.shortDescription,
                     }}
                   ></span>
-                  <Link to={`/blogsdetails/${id.postId}`}>
+                  <Link
+                    to={`/${
+                      customnostore ? customnostore : geo?.country_name
+                    }/blogsdetails/${id.postId}`}
+                  >
                     <span className="blogs_readblog">Read Blog</span>
                   </Link>
                 </div>
