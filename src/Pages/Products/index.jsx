@@ -51,6 +51,7 @@ export const Products = () => {
             max_price: productFetchApi?.max_price
               ? productFetchApi?.max_price
               : 0,
+            seller_id: "0",
           },
         };
         axios

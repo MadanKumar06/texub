@@ -22,12 +22,13 @@ function Index({ registerproduct }) {
   const [apiTableData, setApiTableData] = useState([]);
   const [searchList, setSearchList] = useState([]);
   const [search, setSearch] = useState("");
-  const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
+  const [{ geo, customstore, customnostore, generalTrigger }, dispatch] =
+    useStateValue();
 
   function formatToCurrency(price) {
     return price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
   }
-  
+
   const [offersOpenClose, setOffersOpenClose] = useState({
     isOpenClose: false,
     product_id: "",
@@ -200,6 +201,7 @@ function Index({ registerproduct }) {
   //Api to fetch table values
   useEffect(() => {
     const fetchTableData = async (token) => {
+      setApiTableData({});
       let customerId = JSON.parse(localStorage.getItem("userdata"));
       try {
         dispatch({
@@ -230,10 +232,11 @@ function Index({ registerproduct }) {
       }
     };
     fetchTableData();
-  }, []);
+  }, [generalTrigger]);
 
   const handleSearchInput = async (event) => {
     event.preventDefault();
+    setSearchList([]);
     if (search === "") {
       return setSearchList([]);
     }
@@ -254,7 +257,6 @@ function Index({ registerproduct }) {
         },
       });
       setSearchList(searchresults?.data);
-      console.log(searchresults?.data);
       dispatch({
         type: "SET_IS_LOADING",
         value: false,

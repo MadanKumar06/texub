@@ -24,7 +24,7 @@ export const Favorites = ({ data }) => {
       </div>
       <div className="Favorites_Sections">
         <img className="Favorites_Images" src={data?.image_4} alt="" />
-        <h5 className="Favorites_Deals">J{data?.title_4}</h5>
+        <h5 className="Favorites_Deals">{data?.title_4}</h5>
       </div>
       <div className="Favorites_Sections">
         <img className="Favorites_Images2" src={data?.image_5} alt="" />

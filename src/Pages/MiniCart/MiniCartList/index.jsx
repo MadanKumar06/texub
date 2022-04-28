@@ -25,8 +25,10 @@ function formatToCurrency(amount) {
 }
 
 const MiniCartList = ({ handleSideBarClose }) => {
-  const [{ cart, currency, isSimpleLoading, geo, customstore, customnostore }, dispatch] =
-    useStateValue();
+  const [
+    { cart, currency, isSimpleLoading, geo, customstore, customnostore },
+    dispatch,
+  ] = useStateValue();
   const [value, setValue] = React.useState(4);
   const navigate = useNavigate();
   const [isCartData, setIsCartData] = useState([]);
@@ -174,21 +176,46 @@ const MiniCartList = ({ handleSideBarClose }) => {
   const addpendinginvoice = async () => {
     handleSideBarClose("right", false);
     let storedata = JSON.parse(localStorage.getItem("storedata"));
-    try {
-      const pinvoice = await axios({
-        method: "post",
-        url: `${Constant.baseUrl()}/cartToPendingInvoice`,
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-        data: {
-          quote_id: cart?.[0]?.invoice?.Cart_id,
-          store_id: storedata?.store_id,
-        },
+    if (cart?.[0]?.invoice?.Cart_id) {
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: true,
       });
-      navigate("/pending-invoice");
-    } catch (e) {
-      console.log(e);
+      try {
+        const pinvoice = await axios({
+          method: "post",
+          url: `${Constant.baseUrl()}/cartToPendingInvoice`,
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          data: {
+            quote_id: cart?.[0]?.invoice?.Cart_id,
+            store_id: storedata?.store_id,
+          },
+        });
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+        navigate(
+          `/${
+            customnostore ? customnostore : geo?.country_name
+          }/pending-invoice`
+        );
+      } catch (e) {
+        console.log(e);
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+      }
+    } else {
+      swal.fire({
+        text: `Add product to cart to add pending invoice`,
+        icon: "error",
+        showConfirmButton: false,
+        timer: 3000,
+      });
     }
   };
   return (
@@ -339,7 +366,9 @@ const MiniCartList = ({ handleSideBarClose }) => {
             </div>
             <div className="minicart_btn">
               <Link
-                to={`/${customnostore ? customnostore : geo?.country_name}/mycart`}
+                to={`/${
+                  customnostore ? customnostore : geo?.country_name
+                }/mycart`}
                 onClick={() => handleSideBarClose("right", false)}
               >
                 <Button className="minicart_bottom_button_cart">
