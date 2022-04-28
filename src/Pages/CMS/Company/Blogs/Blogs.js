@@ -4,10 +4,12 @@ import "./Blogs.scss";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import Constant from "../../../../Constant";
+import { useStateValue } from "../../../../store/state";
 
 const Blogs = () => {
   const { id } = useParams();
   const [currentblog, setcurrentblog] = useState([]);
+  const [{ geo, customnostore }, dispatch] = useStateValue();
 
   useEffect(async () => {
     try {
@@ -114,7 +116,11 @@ const Blogs = () => {
               className="blogs_q_text"
               dangerouslySetInnerHTML={{ __html: currentblog[1]?.description }}
             ></span>
-            <Link to={`/blogsdetails/${currentblog[1]?.postId}`}>
+            <Link
+              to={`/${
+                customnostore ? customnostore : geo?.country_name
+              }/blogsdetails/${currentblog[1]?.postId}`}
+            >
               <span className="blogs_readblog">Read Blog</span>
             </Link>
           </div>
@@ -149,7 +155,11 @@ const Blogs = () => {
                       __html: id?.shortDescription,
                     }}
                   ></span>
-                  <Link to={`/blogsdetails/${id.postId}`}>
+                  <Link
+                    to={`/${
+                      customnostore ? customnostore : geo?.country_name
+                    }/blogsdetails/${id.postId}`}
+                  >
                     <span className="blogs_readblog">Read Blog</span>
                   </Link>
                 </div>
