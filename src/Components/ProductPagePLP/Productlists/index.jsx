@@ -32,6 +32,12 @@ const Productlists = ({
   setApplyFilter,
   applyFilter,
 }) => {
+  console.log(productFetchApi?.hub)
+  useEffect(() => {
+    if(productFetchApi?.hub === "") {
+      window.location.reload()
+    }
+  }, [productFetchApi?.hub])
   const [{ homeSearch, currency }, dispatch] = useStateValue();
   const [productlistdropdown, setProductlistdropdown] = useState({
     hub: [],

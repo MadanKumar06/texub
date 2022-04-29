@@ -388,12 +388,13 @@ const TransitionsModal = ({ classes, openPopUp }) => {
               Forgot Password ?
               <Clear
                 className={forgotpassword__clearbtn}
-                onClick={() => {
-                  setpassopen(false);
+               onClick={() =>{
+                  setpassopen(false)
                   setSignInData((prev) => ({
                     ...prev,
-                    forgot_email_address: "",
-                  }));
+                    forgot_email_address: '',
+                  }))
+                  setInputValidation(inputValidation.email_address='')
                 }}
               />
             </div>
