@@ -25,10 +25,11 @@ export const isLandlineValid = (landline) => landline.match(/^[0-9]*$/);
 
 export const isOtherBrands = (value) =>
   value.match(/^\d*[a-zA-Z]\s\.[a-zA-Z0-9][a-zA-Z0-9-+\.+()/[!@#$%^&*()_-]*$/);
+
 export const isOnlySpecialCharacters = (value) =>
   value.match(/^[!@#$%^&*()_-]+$/);
-export const isNumber = (number) =>
-  number.match(/^[0-9]*\d$/);
+
+export const isNumber = (number) => number.match(/^[0-9]*\d$/);
 
 //get adminToken for seller and buyer registration
 export const getAdminToken = (callback) => {
