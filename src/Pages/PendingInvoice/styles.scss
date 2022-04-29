@@ -468,7 +468,11 @@
         text-align: center;
         color: #002d56;
         font-weight: 600;
-        cursor: pointer;
+        cursor: pointer; 
+        a {
+          color: white;
+          text-decoration: none;
+        }
       }
       .button__checkout {
         background: linear-gradient(#20639b, #002d56);
