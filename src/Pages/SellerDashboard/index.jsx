@@ -114,7 +114,9 @@ function SellerDashboard() {
           currenttab={currenttab}
         />
         <div className="sellerdashboard__maintab">
-          {showregister === true || currenttab === "inventory" ? (
+          {showregister === true ||
+          currenttab === "inventory" ||
+          currenttab === "bulkupload" ? (
             ""
           ) : (
             <div className="sellerdashboard__search">
