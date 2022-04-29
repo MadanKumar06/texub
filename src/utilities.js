@@ -21,8 +21,7 @@ export const isCompanyNameValid = (company) =>
 export const isRolesValid = (roles) =>
   roles.match(/^((?=.*[a-zA-Z])[a-zA-Z+\.+\s\.+()!@#$%^&*'{}]{0,14})$/);
 
-export const isLandlineValid = (landline) =>
-  landline.match(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im);
+export const isLandlineValid = (landline) => landline.match(/^[0-9]*$/);
 
 //get adminToken for seller and buyer registration
 export const getAdminToken = (callback) => {
