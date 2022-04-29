@@ -33,7 +33,7 @@ import { useNavigate, Link } from "react-router-dom";
 
 const BuyerRegistration = ({ classes }) => {
   const history = useNavigate();
-  const [{geo, customstore, customnostore}, dispatch] = useStateValue();
+  const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
   let {
     main_container,
     input_fields,
@@ -260,21 +260,14 @@ const BuyerRegistration = ({ classes }) => {
       }));
       errorHandle = true;
     }
-    if (!sellerRegistrationData?.landline_number) {
-      document.getElementById("landline_number")?.focus();
-      setInputValidation((prevState) => ({
-        ...prevState,
-        landline_number: "Please enter the landline number.",
-      }));
-      errorHandle = true;
-    } else if (
+    if (
       sellerRegistrationData?.landline_number &&
       !isLandlineValid(sellerRegistrationData?.landline_number)
     ) {
       document.getElementById("landline_number")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
-        landline_number: "Please enter the valid landline number.",
+        landline_number: "Please enter only numbers.",
       }));
       errorHandle = true;
     }
@@ -427,7 +420,7 @@ const BuyerRegistration = ({ classes }) => {
   };
   //API to Register
   const FinalSellerRegistration = () => {
-    let storedata = JSON.parse(localStorage.getItem('storedata'))
+    let storedata = JSON.parse(localStorage.getItem("storedata"));
     dispatch({
       type: "SET_IS_LOADING",
       value: true,
