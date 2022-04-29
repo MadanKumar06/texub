@@ -48,6 +48,8 @@ function Index() {
       .catch((error) => {});
   }, [currency]);
 
+  console.log(pendingInvoiceList)
+
   const options = {
     filter: false,
     filterType: "dropdown",
@@ -510,7 +512,11 @@ function Index() {
         </div>
         <div className="bottom__buttons">
           <Button className="button__cancel">Cancel</Button>
-          <Button className="button__checkout">Proceed To Checkout</Button>
+          <Button className="button__checkout">
+            <Link to={`/${customnostore ? customnostore : geo?.country_name}/checkout`}>
+              Proceed To Checkout
+            </Link>
+          </Button>
         </div>
       </div>
     </div>

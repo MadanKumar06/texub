@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Modal, Backdrop } from "@mui/material";
 import { withStyles } from "@mui/styles";
 import "./styles.scss";
@@ -32,19 +32,8 @@ import Payment_image_1 from "../../Assets/CheckoutPage/braintree-logo-black.png"
 import Payment_image_2 from "../../Assets/CheckoutPage/paypal (1).png";
 import checkout_mail from "../../Assets/CheckoutPage/checkout_mail.png";
 import checkout_call from "../../Assets/CheckoutPage/telephone.png";
-
-// const style = {
-//   position: "absolute",
-//   top: "50%",
-//   left: "50%",
-//   transform: "translate(-50%, -50%)",
-//   width: 400,
-//   bgcolor: "background.paper",
-//   border: "2px solid #000",
-//   boxShadow: 24,
-//   p: 4,
-// };
-
+import Constant from "../../Constant";
+import axios from "axios";
 
 
 const DeliveryAddressJson = [
@@ -69,16 +58,177 @@ const DeliveryCallJson = [
   },
 ];
 const Checkout = () => {
-  
-    const [shipping_method, setShipping_method] = useState("texub_shipping");
+  const [shipping_method, setShipping_method] = useState("texub_shipping");
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const [quotedata, setqutoedata] = useState([])
 
-    // const radioHandler = (status) => {
-    //   setStatus(status);
-    // };
+  useEffect(async() => {
+    let user = JSON.parse(localStorage.getItem('userdata'))
+    try {
+      const quote = await axios({
+        method: 'post',
+        url: `${Constant.baseUrl()}/getOrderCheckoutData`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        },
+        data: {
+          "orderData":{
+            "quote_id":528,
+            // customerId: user?.id
+          }      
+        }
+      })
+      setqutoedata(quote?.data)
+    } catch(e) {
+      console.log(e)
+    }
+  }, [])
 
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+  console.log(quotedata)
+
+  const raisequote = async() => {
+    let storedata = JSON.parse(localStorage.getItem('storedata'))
+    let itemsdata = []
+    quotedata[0].invoice_items?.filter(qd => {
+      itemsdata.push({
+        "base_discount_amount": 0,
+        "base_original_price": qd?.price,
+        "base_price": qd?.price,
+        "base_price_incl_tax": qd?.price,
+        "base_row_invoiced": 0,
+        "base_row_total": qd?.row_total,
+        "base_tax_amount": 0,
+        "base_tax_invoiced": 0,
+        "discount_amount": 0,
+        "discount_percent": 0,
+        "free_shipping": 0,
+        "is_virtual": 0,
+        "name": qd?.product_name,
+        "original_price": qd?.price,
+        "price": qd?.price,
+        "price_incl_tax": qd?.price,
+        "product_id": 279,
+        "product_type": "simple",
+        "qty_ordered": qd.qty,
+        "row_total": qd?.price,
+        "row_total_incl_tax": qd?.price,
+        "sku": qd?.sku,
+        "store_id": storedata?.store_id,
+        "quote_item_id": 22,
+        "extension_attributes": {
+            "seller_id":qd?.seller_id,
+            "item_hub":2,
+            "item_currency":5
+         }
+    } )
+    })
+    try {
+      const postquote = await axios({
+        method: 'post',
+        url: `${Constant.baseUrl()}/orders`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        },
+        data: {
+          "entity": {
+            "base_currency_code": "INR",
+            "base_discount_amount": 0,
+            "base_grand_total": 1910,
+            "base_shipping_amount": 10,
+            "base_subtotal": 1900,
+            "base_tax_amount": 0,
+            "customer_email": "buyer@check.com",
+            "customer_firstname": "buyer",
+            "customer_group_id": 5,
+            "customer_id": 160,
+            "customer_is_guest": 0,
+            "customer_lastname": "Check",
+            "customer_note_notify": 1,
+            "discount_amount": 0,
+            "email_sent": 1,
+            "coupon_code": "",
+            "discount_description": "",
+            "grand_total": 1910,
+            "is_virtual": 0,
+            "order_currency_code": "INR",
+            "shipping_amount": 7878,
+            "shipping_description": "Flat Rate - Fixed",
+            "state": "new",
+            "status": "pending",
+            "store_currency_code": "INR",
+            "store_id": 1,
+            "store_name": "Main Website\nMain Website Store\nDefault Category",
+            "subtotal": 1900,
+            "subtotal_incl_tax": 1900,
+            "tax_amount": 0,
+            "total_item_count": 1,
+            "total_qty_ordered": 1,
+            "weight": 0,
+            "quote_id": 559,
+            "items": itemsdata,
+            "billing_address": {
+                "address_type": "billing",
+                "city": "Chennai",
+                "country_id": "IN",
+                "customer_address_id": 1,
+                "email": "buyer@check.com",
+                "firstname": "buyer",
+                "lastname": "check",
+                "postcode": "600042",
+                "region": "Tamil Nadu",
+                "region_code": "TN",
+                "region_id": 563,
+                "street": [
+                    "solinganallu"
+                ],
+                "telephone": "1234567890"
+            },
+            "payment": {
+                "method": "cashondelivery"
+            },
+            "extension_attributes": {
+                "pending_invoice_status":"1",
+                "pending_invoice_id" : "PE10310",
+                "invoice_currency" : 5,
+                "contact_business_name" : "BusinessName",
+                "contact_person_name" : "Person",
+                "contact_email_address" : "krk@krk.krk",
+                "contact_phone":"90897665213",
+                "shipping_assignments": [
+                    {
+                        "shipping": {
+                            "address": {
+                                "address_type": "shipping",
+                                "city": "Chennai",
+                                "country_id": "IN",
+                                "customer_address_id": 1,
+                                "email": "buyer@check.com",
+                                "firstname": "buyer",
+                                "lastname": "cehck",
+                                "postcode": "600042",
+                                "region": "Tamil Nadu",
+                                "region_code": "TN",
+                                "region_id": 563,
+                                "street": [
+                                    "solinganallu"
+                                ],
+                                "telephone": "1234567890"
+                            },
+                            "method": "instore_instore"
+                        }
+                    }
+                ]
+            }
+            }
+     
+        }
+      })
+    } catch(e) {
+      console.log(e)
+    }
+  } 
 
   return (
     <div className="checkout_main_container">
@@ -91,7 +241,7 @@ const Checkout = () => {
         <div className="order_id_info">
           <div className="orderid_section">
             <span className="orderinfo_name">Order ID</span>
-            <span className="orderinfo_value">28739822</span>
+            <span className="orderinfo_value">{quotedata[0]?.invoice?.pending_invoice_id}</span>
           </div>
         </div>
         <div className="order_total_info">
@@ -99,7 +249,7 @@ const Checkout = () => {
             <span className="orderinfo_name">Total Amount</span>
 
             <span className="orderinfo_value">
-              <span className="ordertotal_symbol">INR</span> 10,729,830
+              <span className="ordertotal_symbol">INR</span> {quotedata[0]?.invoice?.grand_total}
             </span>
           </div>
         </div>
@@ -175,22 +325,22 @@ const Checkout = () => {
             <div className="order_basic_info">
               <span className="order_basic_title">Order ID</span>
               <Divider orientation="vertical" />
-              <span className="order_basic_value">123123</span>
+              <span className="order_basic_value">{quotedata[0]?.invoice?.pending_invoice_id}</span>
             </div>
             <div className="order_basic_info">
               <span className="order_basic_title">Date</span>
               <Divider orientation="vertical" />
-              <span className="order_basic_value">123123</span>
+              <span className="order_basic_value">{quotedata[0]?.invoice?.date}</span>
             </div>
             <div className="order_basic_info">
-              <span className="order_basic_title">Order ID</span>
+              <span className="order_basic_title">Due Date</span>
               <Divider orientation="vertical" />
-              <span className="order_basic_value">123123</span>
+              <span className="order_basic_value">{quotedata[0]?.invoice?.due_date}</span>
             </div>
             <div className="order_basic_info">
-              <span className="order_basic_title">Order ID</span>{" "}
+              <span className="order_basic_title">Buyer ID</span>
               <Divider orientation="vertical" />
-              <span className="order_basic_value">123123</span>
+              <span className="order_basic_value">{quotedata[0]?.invoice?.due_date}</span>
             </div>
           </div>
         </div>
@@ -247,7 +397,7 @@ const Checkout = () => {
                   <div className="shipping_charges_section">
                     <span className="shipping_text">Shipping Charges :</span>
                     <span className="shipping_price">
-                      <span>INR</span> 10,729,830
+                      <span>INR</span> {parseFloat(quotedata[0]?.invoice?.shipping_amount).toFixed(2)}
                     </span>
                   </div>
                   <div className="shipping_charges_section">
@@ -492,7 +642,7 @@ const Checkout = () => {
           <div className="order_details_main">
             <div className="texub_shipping_btns">
               <Button className="texub_cancel_btn">Cancel</Button>
-              <Button className="texub_quote_btn btn-secondary">
+              <Button className="texub_quote_btn btn-secondary" onClick={raisequote}>
                 Request Quote
               </Button>
             </div>
