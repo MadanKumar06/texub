@@ -49,24 +49,25 @@ const CurrencyPopup = ({ classes }) => {
   }, [selectedValue]);
   //API for fetch dropdown values
 
-  const str = window.location.pathname;
+  const str = window.location.pathname
   useEffect(() => {
-    const storedata = JSON.parse(localStorage.getItem("storedata"));
-    const str = window.location.pathname;
+    const storedata = JSON.parse(localStorage.getItem('storedata'))
+    const str = window.location.pathname
     if (geo === "") return;
-    if(str.split('/')[2] === 'sellerdashboard' && storedata?.code.toLowerCase() === str.split('/')[1].toLowerCase()) return
-    if(str.split('/')[2] === 'buyerdashboard' && storedata?.code.toLowerCase() === str.split('/')[1].toLowerCase()) return
-    if(str.split('/')[2] === 'resetpassword' && storedata?.code.toLowerCase() === str.split('/')[1].toLowerCase()) return
-    if(str.split('/')[2] === 'register' && storedata?.code.toLowerCase() === str.split('/')[1].toLowerCase()) return
-    if(str.split('/')[2] === 'blogsdetails' && storedata?.code.toLowerCase() === str.split('/')[1].toLowerCase()) return
-    if(str.split('/')[2] === 'sellerprofile' && storedata?.code.toLowerCase() === str.split('/')[1].toLowerCase()) return
-    if(str.split('/')[2] === 'thankyou' && storedata?.code.toLowerCase() === str.split('/')[1].toLowerCase()) return
+    // if(str.split('/')[2] === 'sellerdashboard' && storedata?.code.toLowerCase() === str.split('/')[1].toLowerCase()) return
+    // if(str.split('/')[2] === 'buyerdashboard' && storedata?.code.toLowerCase() === str.split('/')[1].toLowerCase()) return
+    // if(str.split('/')[2] === 'resetpassword' && storedata?.code.toLowerCase() === str.split('/')[1].toLowerCase()) return
+    // if(str.split('/')[2] === 'register' && storedata?.code.toLowerCase() === str.split('/')[1].toLowerCase()) return
+    // if(str.split('/')[2] === 'blogsdetails' && storedata?.code.toLowerCase() === str.split('/')[1].toLowerCase()) return
+    // if(str.split('/')[2] === 'sellerprofile' && storedata?.code.toLowerCase() === str.split('/')[1].toLowerCase()) return
+    // if(str.split('/')[2] === 'thankyou' && storedata?.code.toLowerCase() === str.split('/')[1].toLowerCase()) return
     const fetchCurrencyDropDownData = () => {
       let data = {
         geoCode: geo?.country_code,
-        storeCode: str.split("/")[1]
-          ? str.split("/")[1]?.toLowerCase()
-          : geo?.country_name?.toLowerCase(),
+        storeCode:
+        str.split('/')[1]
+            ? str.split('/')[1]?.toLowerCase()
+            : geo?.country_name?.toLowerCase(),
       };
       axios
         .post(Constant.baseUrl() + "/getCurrency", data, {
@@ -84,72 +85,16 @@ const CurrencyPopup = ({ classes }) => {
             type: "GEO__CUSTOM__NOTSTORE",
             data: res.data?.[0]?.store?.code,
           });
-          //   if (
-          //     str.split("/")[2] === "buyerdashboard" ||
-          //     str.split("/")[2] === "sellerdashboard" ||
-          //     str.split("/")[2] === "resetpassword" ||
-          //     str.split("/")[2] === "blogsdetails" ||
-          //     str.split("/")[2] === "sellerprofile" ||
-          //     (str.split("/")[2] === "thankyou" &&
-          //       storedata?.code.toLowerCase() === str.split("/")[1].toLowerCase())
-          //   ) {
-          //     console.log(window.location.href);
-          //   } else if (storedata?.code === str.split("/")[1]) {
-          //     if (
-          //       res.data?.[0]?.store?.code === str.split("/").pop().split("/")[0]
-          //     ) {
-          //       navigate(`/${res.data?.[0]?.store?.code}`);
-          //     } else {
-          //       navigate(
-          //         `/${res.data?.[0]?.store?.code}/${
-          //           str.split("/").pop().split("/")[0]
-          //         }`
-          //       );
-          //     }
-          //   } else if (storedata?.code !== str.split("/")[1]) {
-          //     navigate(
-          //       `/${
-          //         str.split("/")[1]
-          //           ? res.data?.[0]?.store?.code
-          //           : geo?.country_name
-          //       }`
-          //     );
-          //   }
-          //   setSelectedValue({
-          //     currency_code: res?.data?.[1]?.currency?.[0]?.currency_code,
-          //     currency_id: res?.data?.[1]?.currency?.[0]?.currency_id,
-          //     currency_symbol: res?.data?.[1]?.currency?.[0]?.currency_symbol,
-          //   });
-          //   dispatch({
-          //     type: "SET_CURRENCY",
-          //     data: {
-          //       currency_code: res?.data?.[1]?.currency?.[0]?.currency_code,
-          //       currency_id: res?.data?.[1]?.currency?.[0]?.currency_id,
-          //       currency_symbol: res?.data?.[1]?.currency?.[0]?.currency_symbol,
-          //     },
-          //   });
-          // })
-          // .catch((err) => {});
-          if (storedata?.code === str.split("/")[1]) {
-            if (
-              res.data?.[0]?.store?.code === str.split("/").pop().split("/")[0]
-            ) {
-              navigate(`/${res.data?.[0]?.store?.code}`);
+          if(str.split('/')[2] === 'buyerdashboard' || str.split('/')[2] === 'sellerdashboard' || str.split('/')[2] === 'register' || str.split('/')[2] === 'resetpassword' || str.split('/')[2] === 'blogsdetails' || str.split('/')[2] === 'sellerprofile' || str.split('/')[2] === 'thankyou' && storedata?.code.toLowerCase() === str.split('/')[1].toLowerCase()) {
+            console.log(window.location.href)
+          } else if(storedata?.code === str.split('/')[1]) {
+            if(res.data?.[0]?.store?.code === str.split('/').pop().split('/')[0]) {
+              navigate(`/${res.data?.[0]?.store?.code}`);  
             } else {
-              navigate(
-                `/${res.data?.[0]?.store?.code}/${
-                  str.split("/").pop().split("/")[0]
-                }`
-              );
+              navigate(`/${res.data?.[0]?.store?.code}/${str.split('/').pop().split('/')[0]}`);
             }
-          } else if (storedata?.code !== str.split("/")[1]) {
-            navigate(
-              `/${
-                str.split("/")[1]
-                  ? res.data?.[0]?.store?.code
-                  : geo?.country_name
-              }`
-            );
+          } else if(storedata?.code !== str.split('/')[1])  {
+            navigate(`/${str.split('/')[1] ? res.data?.[0]?.store?.code : geo?.country_name}`);
           }
           setSelectedValue({
             currency_code: res?.data?.[1]?.currency?.[0]?.currency_code,
@@ -169,6 +114,7 @@ const CurrencyPopup = ({ classes }) => {
     };
     fetchCurrencyDropDownData();
   }, [geo, customstore, str]);
+
 
   return (
     <div className={classes.header_dropdown}>
