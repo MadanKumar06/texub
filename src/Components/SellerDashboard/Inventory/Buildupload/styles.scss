@@ -82,7 +82,47 @@
   .direction {
     display: flex;
     flex-direction: column;
-    align-items: baseline;
+    align-items: baseline !important;
+    .input_image_name {
+      max-width: 60%;
+      width: 100%;
+      display: flex;
+      position: relative;
+      flex-wrap: wrap;
+      background: #e8e8e8;
+      align-items: center;
+      border-radius: 4px;
+      flex-direction: row;
+      justify-content: center;
+      padding: 13px;
+      text-align: center;
+      height: 48px;
+      margin-top: 12px;
+
+      p {
+        margin: 0;
+        color: #4e4e4e;
+        font-weight: 600;
+      }
+      .input_image_name_clear_btn {
+        position: absolute;
+        top: -6px;
+        font-size: 17px !important;
+        right: -6px;
+        background: #ddb363;
+        color: #ffffff;
+        border-radius: 14px;
+        cursor: pointer;
+      }
+    }
+    .sub_media_upload_label {
+      margin-left: 1em;
+      width: 100%;
+      cursor: pointer;
+      input {
+        display: none;
+      }
+    }
   }
   .first_container {
     box-shadow: 0px 3px 18px #0000001d;
@@ -99,6 +139,20 @@
       display: flex;
       align-items: center;
     }
+    .inputfields {
+      margin: 2em 0em 2em 3.2em;
+      display: flex;
+      gap: 2em;
+      width: 100%;
+      flex-direction: column;
+      .MuiAutocomplete-root {
+        width: 100%;
+        max-width: 60%;
+      }
+      .validate_btn {
+        max-width: 60%;
+      }
+    }
 
     .image {
       width: 20px;
@@ -111,7 +165,7 @@
     }
     .bulk_download_example {
       letter-spacing: 0.6px;
-      margin: 2em 1em 2em 3.5em;
+      margin: 2em 1em 2em 2em;
       color: #002d56;
       font-size: 14px;
       font-weight: 600;
@@ -125,11 +179,14 @@
     .bulk_xlsx_example {
       color: #272727;
       font-size: 14px;
-      margin: 3em 0.5em 3em 5em;
+      margin: 3em 0.5em 3em 2em;
     }
   }
   .upload_file_container {
     display: flex;
+    white-space: nowrap;
+    width: 100%;
+    gap: 5em;
     p {
       display: flex;
       flex-direction: column;
@@ -142,11 +199,32 @@
         font-size: 12px;
       }
     }
+    .file_upload {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: baseline;
+      gap: 2em;
+      margin-bottom: 2em;
+      .btn {
+        width: 100%;
+        max-width: 60%;
+      }
+    }
   }
   .success {
     color: green;
   }
   .error {
     color: red;
+  }
+  .validation_message {
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    padding: 0 3em;
+    margin: 3em 0;
+    max-height: 350px;
   }
 }

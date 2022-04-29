@@ -19,6 +19,8 @@ function Index({
   setIsDetailTabValid,
   setcount,
   settest,
+  inputValidation,
+  setisGST
 }) {
   const [options, setoptions] = useState([]);
   const [currenthub, setcurrenthub] = useState("");
@@ -369,7 +371,7 @@ function Index({
           </p>
         </div>
       )}
-
+      {currentdata?.hub_id === "2" && setisGST(2)}
       {currentdata?.hub_id === "2" && (
         <div className="updateproduct__gst">
           <div className="updateproduct_info_form">
@@ -389,6 +391,10 @@ function Index({
               onChange={(e) => changevalues(e.target.value, "cgst")}
               variant="outlined"
             />
+            <InputLabel className="validation_error">
+              {count?.slice(-1)?.[0]?.cgst === currentdata?.cgst &&
+                isDetailTabValid?.isCGSTValid}
+            </InputLabel>
           </div>
           <div className="updateproduct_info_form">
             <InputLabel>IGST %</InputLabel>
@@ -407,6 +413,10 @@ function Index({
               onChange={(e) => changevalues(e.target.value, "igst")}
               variant="outlined"
             />
+            <InputLabel className="validation_error">
+              {count?.slice(-1)?.[0]?.igst === currentdata?.igst &&
+                isDetailTabValid?.isIGSTValid}
+            </InputLabel>
           </div>
           <div className="updateproduct_info_form">
             <InputLabel>SGST %</InputLabel>
@@ -425,6 +435,10 @@ function Index({
               onChange={(e) => changevalues(e.target.value, "sgst")}
               variant="outlined"
             />
+            <InputLabel className="validation_error">
+              {count?.slice(-1)?.[0]?.sgst === currentdata?.sgst &&
+                isDetailTabValid?.isSGSTValid}
+            </InputLabel>
           </div>
         </div>
       )}
