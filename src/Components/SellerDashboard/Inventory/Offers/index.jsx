@@ -18,7 +18,7 @@ import swal from "sweetalert2";
 var moment = require("moment");
 
 const TransitionsModal = ({ handleOpenCloseOffers, offersOpenClose }) => {
-  const [{}, dispatch] = useStateValue();
+  const [{ currency }, dispatch] = useStateValue();
   const [open, setOpen] = useState(true);
   const [offersData, setOffersData] = useState({
     start_date: "",
@@ -221,7 +221,7 @@ const TransitionsModal = ({ handleOpenCloseOffers, offersOpenClose }) => {
             <TextField
               id="price"
               label=""
-              placeholder="INR 68,99900"
+              placeholder={`${currency?.currency_code} 68,99900`}
               fullWidth
               onChange={(event) =>
                 setOffersData((prevState) => ({
