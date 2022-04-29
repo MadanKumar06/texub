@@ -11,6 +11,7 @@ import Constant from "../../../../Constant";
 import { useStateValue } from "../../../../store/state";
 import swal from "sweetalert2";
 import { Co2Sharp } from "@mui/icons-material";
+import { isNumber } from "../../../../utilities";
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
@@ -18,7 +19,7 @@ const checkedIcon = <CheckBoxIcon fontSize="small" />;
 function Index({ type, pid }) {
   const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
   const history = useNavigate();
-
+  const [isGST,setisGST] = useState(0);
   const [count, setcount] = useState([
     {
       count: 0,
@@ -74,8 +75,13 @@ function Index({ type, pid }) {
     isInStockValid: "",
     isMoqValid: "",
     isETAValid: "",
+    isCGSTValid: "",
+    isIGSTValid: "",
+    isSGSTValid: "",
   });
   const countincrease = () => {
+    const isDecimal = /^\d+\.\d{0,1000000}$/;
+
     if (count?.length) {
       let temp = count?.slice(-1);
       var errorHandle = false;
@@ -125,7 +131,62 @@ function Index({ type, pid }) {
           isETAValid: "Please enter the eta.",
         }));
         errorHandle = true;
+      } else if (isDecimal.test(temp[0]?.eta)) {
+        document.getElementById("isETAValid")?.focus();
+        setIsDetailTabValid((prevState) => ({
+          ...prevState,
+          isETAValid: "Decimal values will not allow.",
+        }));
+        errorHandle = true;
       }
+      // GSTS
+      if(isGST===2){
+        if (!temp[0]?.cgst) {
+          document.getElementById("isCGSTValid")?.focus();
+          setIsDetailTabValid((prevState) => ({
+            ...prevState,
+            isCGSTValid: "Please enter the gst.",
+          }));
+          errorHandle = true;
+        }else if(!isNumber(temp[0]?.cgst)){
+          setIsDetailTabValid((prevState) => ({
+            ...prevState,
+            isCGSTValid: "Please enter only number.",
+          }));
+          errorHandle = true;
+        }
+        if (!temp[0]?.igst) {
+          document.getElementById("isIGSTValid")?.focus();
+          setIsDetailTabValid((prevState) => ({
+            ...prevState,
+            isIGSTValid: "Please enter the igst.",
+          }));
+          errorHandle = true;
+        }else if(!isNumber(temp[0]?.igst)){
+          setIsDetailTabValid((prevState) => ({
+            ...prevState,
+            isIGSTValid: "Please enter only number.",
+          }));
+          errorHandle = true;
+        }
+        if (!temp[0]?.sgst) {
+          document.getElementById("isSGSTValid")?.focus();
+          setIsDetailTabValid((prevState) => ({
+            ...prevState,
+            isSGSTValid: "Please enter the sgst.",
+          }));
+          errorHandle = true;
+        }else if(!isNumber(temp[0]?.sgst)){
+          setIsDetailTabValid((prevState) => ({
+            ...prevState,
+            isSGSTValid: "Please enter only number.",
+          }));
+          errorHandle = true;
+        }
+      }else{
+        console.log('.......................................................')
+      }
+
       if (!errorHandle) {
         setDummyState(dummyState + 1);
         setcount((data) => [
@@ -147,6 +208,7 @@ function Index({ type, pid }) {
         ]);
       }
     }
+    
   };
   const [inputValidation, setInputValidation] = useState({
     conditions: "",
@@ -211,6 +273,13 @@ function Index({ type, pid }) {
       setInputValidation((prevState) => ({
         ...prevState,
         no_pieces_per: "Please enter the no. of piecies.",
+      }));
+      errorHandle = true;
+    }else if (!isNumber(updateform?.no_pieces_per)) {
+      document.getElementById("no_pieces_per")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        no_pieces_per: "Please enter only number.",
       }));
       errorHandle = true;
     }
@@ -716,6 +785,7 @@ function Index({ type, pid }) {
                 index={ind}
                 settest={settest}
                 inputValidation={inputValidation}
+                setisGST={setisGST}
               />
             </div>
           ))}
@@ -962,7 +1032,7 @@ function Index({ type, pid }) {
                     name="no_pieces_per"
                     placeholder="10"
                     fullWidth
-                    type="number"
+                    type="text"
                     autoComplete="off"
                     className="inputfield-box"
                     value={updateform?.no_pieces_per}

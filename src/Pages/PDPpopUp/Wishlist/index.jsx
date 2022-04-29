@@ -4,6 +4,7 @@ import { Clear } from "@mui/icons-material";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import {
   FormControlLabel,
+  InputLabel,
   Checkbox,
   TextField,
   FormGroup,
@@ -44,6 +45,20 @@ const Index = ({ pdpSellerData, handleOpenClose }) => {
     //   }
   };
 
+  const [save_error, setSave_error] = useState('');
+  const handleClickValidation = () => {
+    var errorHandle = false;
+    if (!newwishdata) {
+      document.getElementById("outlined-required")?.focus();
+      setSave_error("Please enter name.",);
+      errorHandle = true;
+    }
+    if (!errorHandle) {
+      newwishlist()
+      setSave_error('')
+    }
+  };
+  
   useEffect(async () => {
     let user = JSON.parse(localStorage.getItem("userdata"));
     try {
@@ -164,6 +179,7 @@ const Index = ({ pdpSellerData, handleOpenClose }) => {
               </Button>
             </div>
             {create1 && (
+              <>
               <div className="inputplace">
                 <span className="inputfield">
                   <TextField
@@ -174,8 +190,8 @@ const Index = ({ pdpSellerData, handleOpenClose }) => {
                     onChange={(e) => setnewwishdata(e.target.value)}
                   />
                   <button
-                    className="wishlist_save_btn"
-                    onClick={() => newwishlist()}
+                    className="wishlist_save_btn" style={{ cursor: 'pointer' }}
+                    onClick={() => handleClickValidation()}
                   >
                     Save
                   </button>
@@ -184,6 +200,10 @@ const Index = ({ pdpSellerData, handleOpenClose }) => {
                   Cancel
                 </p>
               </div>
+              <InputLabel style={{ color: 'red' }}>
+                {save_error}
+              </InputLabel>
+            </>
             )}
             <div className="back_to_pdp">
               <ArrowBackIosIcon />
