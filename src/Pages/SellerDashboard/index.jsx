@@ -9,7 +9,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import Dashboard from "../../Components/SellerDashboard/Dashboard";
 import Inventory from "../../Components/SellerDashboard/Inventory";
 import RegisterProduct from "../../Components/SellerDashboard/Inventory/RegisterProduct";
-import Bulkupload from "../../Components/SellerDashboard/Inventory/Buildupload";
+import Bulkupload from "../../Components/SellerDashboard/Inventory/Bulkupload";
 import SuccessPage from "../../Components/SellerDashboard/Inventory/SuccessPage";
 import UpdateProduct from "../../Components/SellerDashboard/Inventory/UpdateProduct";
 import Orders from "../../Components/SellerDashboard/Orders";
