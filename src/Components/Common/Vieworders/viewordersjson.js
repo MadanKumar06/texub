@@ -26,3 +26,12 @@ export const totalamount=[
     {id:1,subtotal:"Total Amount",amount:"33,49,950",},
 ]
 
+export const transaction_info = [
+    {
+        referencenumber:137789230,
+        symbol: "INR",
+        price:"33,49,950",
+        date: "20/04/22",
+        time: "01:10:45",
+    }
+]

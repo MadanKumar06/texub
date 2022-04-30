@@ -6,6 +6,8 @@ import Pagination from "../../Pagination";
 import "./styles.scss";
 import { useStateValue } from "../../../store/state";
 import Vieworders from '../../Common/Vieworders'
+import OrdersInfo from '../../BuyerDashboard/MyOrders/OrdersInfo'
+
 
 function Index() {
   const [tableData, setTableData] = useState([]);
@@ -188,7 +190,7 @@ function Index() {
         </>
 
       }
-      {isVieworders && <Vieworders />}
+      {isVieworders && <OrdersInfo />}
     </div>
   );
 }
