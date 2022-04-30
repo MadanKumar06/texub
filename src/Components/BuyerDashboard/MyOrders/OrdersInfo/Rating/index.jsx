@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Rating, Button, Menu, MenuItem } from "@mui/material";
 import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
+import {Modal,Backdrop } from "@mui/material";
 import TextareaAutosize from "@mui/base/TextareaAutosize";
 import {
   FormControlLabel,
@@ -39,10 +39,15 @@ export default function BasicModal({Popup}) {
       {/* <Button onClick={handleOpen}>Open modal</Button> */}
       <Modal
         open={open}
-        onClose={handleClose}
+        // onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
         className="rating_number_popup"
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
       >
          <div className="rating_popup_main">
               <Clear
@@ -69,13 +74,13 @@ export default function BasicModal({Popup}) {
                         className= "rating_comment"
                         style={{ height: 100 }}
                       />
-                   </div>
-                    <div className='rating-btns'>
-                        <Button className="rating_comments_cancel">
-                        Cancel
-                      </Button>
-                      <Button className="btn-secondary rating_comments_submit">Submit</Button>
-                    </div>    
+                      <div className='rating-btns'>
+                          <Button className="rating_comments_cancel">
+                          Cancel
+                        </Button>
+                        <Button className="btn-secondary rating_comments_submit">Submit</Button>
+                      </div>  
+                    </div>  
                 </div>
           </div>
       </Modal>
