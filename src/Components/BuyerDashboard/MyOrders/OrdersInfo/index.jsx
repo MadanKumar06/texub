@@ -5,6 +5,11 @@ import { Button, IconButton, Typography, Box } from "@mui/material";
 import { Clear } from "@mui/icons-material";
 import Divider from "@mui/material/Divider";
 import Ratingpopup from "./Rating";
+import TrackOrderpopup from "./TrackOrder";
+
+import TransactionPopup from "./TransactionInfo";
+
+
 import "./styles.scss";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import MUITable from "../../../Common/MUITable";
@@ -32,6 +37,18 @@ const Index = ({ setisVieworders, setisOrders }) => {
       const Popup = (event) => {
         
         setisUopup(event);
+      };
+
+       const [TrackOrder, setisTrackOrder] = useState(false);
+      const PopupTrack = (event) => {
+        
+        setisTrackOrder(event);
+      };
+
+        const [Transaction, setisTransaction] = useState(false);
+      const PopupTransaction = (event) => {
+        
+        setisTransaction(event);
       };
 
 
@@ -268,7 +285,7 @@ const columns = [
                         <img src={download} alt="" className="download"></img>
                         <span className="download_text">Download Invoice</span>
                     </div>
-                    <div className="order_track btn-secondary common-btn" >
+                    <div className="order_track btn-secondary common-btn"  onClick={() => setisTrackOrder(true)}>
                         <img src={track} alt="" className="track"></img>
                         <span className="track_text">Track Orer</span>
                     </div>
@@ -338,7 +355,7 @@ const columns = [
                 <div className="vieworders_shippingaddress_section pay_transaction_block">
                   <div className="vieworders_payment_section payment_block">
                     <p className="payment_heading">Payment Method</p>
-                    <p className="payment_type">Check (Off-Line)</p>
+                    <p className="payment_type">wire Transfer</p>
                   </div>
                   <div className="vieworders_payment_section transaction_block">
                     {transaction_info.map((item) => (
@@ -352,7 +369,9 @@ const columns = [
                         </span>
                       </div>
                     ))}
+                    <span className="update_transaction_block" onClick={() => setisTransaction(true)}>Update Transaction Details</span>
                   </div>
+
                 </div>
               </div>
               <div className="vieworders_total">
@@ -383,8 +402,20 @@ const columns = [
               </div>
             </div>
             <div className="download_document">
-                <img src={download} alt="" className="download"></img>
-                <span className="document_text">Download Handover Documents</span>
+
+              <div className="vieworders_emtpy">
+                  <span></span>
+                </div>
+              <div className="remart_block">
+                <div className="handover_document_section">
+                  <img src={download} alt="" className="download"></img>
+                  <span className="document_text">Download Handover Documents</span>
+                </div>
+                <div className="remkark_section">
+                  <span className="remark_title">Remarks :</span>
+                  <span className="remark_content">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam</span>
+              </div>
+              </div>
             </div>
           </div>
         </div>
@@ -404,9 +435,14 @@ const columns = [
       <div>
     <Modal
           open={open}
-          onClose={handleClose}
+          // onClose={handleClose}
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
+          closeAfterTransition
+          BackdropComponent={Backdrop}
+          BackdropProps={{
+          timeout: 500,
+        }}
           className="serial_number_popup"
           >
             <div className="serial_popup_main">
@@ -429,6 +465,10 @@ const columns = [
         </div>
     </div>
    {isUopup && <Ratingpopup Popup={setisUopup} />}
+      {TrackOrder && <TrackOrderpopup PopupTrack={setisTrackOrder} />}
+      {Transaction && <TransactionPopup PopupTransaction={setisTransaction} />}
+
+
 </>
   );
    

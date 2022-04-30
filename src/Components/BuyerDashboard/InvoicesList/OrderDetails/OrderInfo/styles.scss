@@ -1,104 +1,127 @@
-.order_info_top_section{
-    padding: 15px 0;
-    .order_info_top{
+.order_info_top_section {
+  padding: 15px 0;
+  .order_info_top {
+    display: flex;
+    padding: 0 3em;
+    align-items: center;
+    justify-content: space-between;
+    .order_thanks_info {
+      width: 75%;
+      text-align: center;
+      .report_image {
+        padding-bottom: 10px;
+        img {
+          width: 70px;
+          height: 70px;
+        }
+      }
+      .thanks_text {
+        letter-spacing: 0.9px;
+        color: #5c6369;
+        text-transform: capitalize;
+        font-size: 18px;
+        font-weight: 800;
+        font-style: italic;
+      }
+    }
+    .order_info_download {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      .checklist__download {
+        width: 45px;
+        height: 45px;
+        background-color: #ddb363;
         display: flex;
-        padding: 0 3em;
         align-items: center;
-        justify-content: space-between;
-        .order_thanks_info{
-            width: 75%;
-            text-align: center;
-            .report_image{
-                padding-bottom: 10px;
-                img{
-                width: 70px;
-                height: 70px;
-                }
-            }
-            .thanks_text{
-                letter-spacing: 0.9px;
-                color: #5C6369;
-                text-transform: capitalize;
-                font-size: 18px;
-                font-weight: 800;
-                font-style: italic;
-            }
+        justify-content: center;
+        cursor: pointer;
+        margin-bottom: 10px;
+        border-radius: 50%;
+        svg {
+          width: 25px;
+          height: 25px;
         }
-        .order_info_download{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            .checklist__download{
-                width: 45px;
-                height: 45px;
-                background-color: #ddb363;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                cursor: pointer;
-                margin-bottom: 10px;
-                border-radius: 50%;
-                svg{
-                    width: 25px;
-                    height: 25px;
-                }
-            }
-            .download{
-                letter-spacing: 0px;
-                color: #002D56;
-                text-transform: capitalize;
-                font-size: 16px;
-                font-weight: 600;
-            }
-        }
+      }
+      .download {
+        letter-spacing: 0px;
+        color: #002d56;
+        text-transform: capitalize;
+        font-size: 16px;
+        font-weight: 600;
+      }
     }
+  }
 
-    .order_info_middle{
-        padding: 2em 0 2em;
-        .table_title{
-            background-color: #DDB363;
-            border-radius: 4px;
-            padding: 15px 20px;
-            span{
-                letter-spacing: 0.9px;
-                color: #FFFFFF;
-                text-transform: capitalize;
-                font-size: 16px;
-                font-weight: 600;
-            }
-        }
-        .order_table_info{
-            .order_info_list{
-                margin: 0;
-                .MuiTable-root{
-                     background-color: #F8F0E0;
-                     box-shadow: 0px 3px 6px #00000019;
-                    border-radius: 4px;
-                }
-                .MuiTableHead-root{
-                    .MuiTableRow-root{
-                        .MuiTableCell-root{
-                            background-color: #F8F0E0;
-                           color: #959595;
-                            font-size: 16px;
-                            font-weight: 600;
-                            text-align: center;
-                        }
-                    }
-                }
-                .MuiTableBody-root{
-                    .MuiTableRow-root{
-                        .MuiTableCell-root{
-                            color: #002D56;
-                             font-size: 14px;
-                            font-weight: 600;
-                            text-align: center;
-
-                        }
-                    }
-                }
-            }
-        }
+  .order_info_middle {
+    padding: 2em 0 2em;
+    .table_title {
+      background-color: #ddb363;
+      border-radius: 4px;
+      padding: 15px 20px;
+      span {
+        letter-spacing: 0.9px;
+        color: #ffffff;
+        text-transform: capitalize;
+        font-size: 16px;
+        font-weight: 600;
+      }
     }
+    .order_table_info {
+      .order_info_list {
+        margin: 0;
+        .MuiTable-root {
+          background-color: #f8f0e0;
+          box-shadow: 0px 3px 6px #00000019;
+          border-radius: 4px;
+        }
+        .MuiTableHead-root {
+          .MuiTableRow-root {
+            .MuiTableCell-root {
+              background-color: #f8f0e0;
+              color: #959595;
+              font-size: 16px;
+              font-weight: 600;
+              text-align: center;
+            }
+          }
+        }
+        .MuiTableBody-root {
+          .MuiTableRow-root {
+            .MuiTableCell-root {
+              color: #002d56;
+              font-size: 14px;
+              font-weight: 600;
+              text-align: center;
+            }
+          }
+        }
+      }
+    }
+  }
 }
+
+  @media (max-width: 580px) {
+    .order_info_top_section .order_info_top{
+        padding: 0 10px;
+        flex-direction: column;
+        gap: 1em;
+    }
+    .order_info_top_section .order_info_top .order_thanks_info .thanks_text{
+         font-size: 16px;
+    }
+    .order_summary_top .order_table_info .invoice_order_list_content .order_summary_section{
+        padding: 10px 15px !important;
+    }
+    .order_summary_top .order_table_info .invoice_order_list_content .order_summary_section{
+        flex-direction: column;
+    }
+    .order_summary_top .order_table_info .invoice_order_list_content .order_summary_section .product_img{
+        width: 100% !important;
+    }
+    .order_summary_top .order_table_info .invoice_order_list_content .order_summary_section .order_info_section{
+        width: 100% !important;
+    }
+
+  }
