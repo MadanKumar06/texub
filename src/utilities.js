@@ -19,7 +19,8 @@ export const isCompanyNameValid = (company) =>
   company.match(/^\d*[a-zA-Z][a-zA-Z0-9][a-zA-Z0-9-+\.+()@#$%^&*'{} ]*$/);
 
 export const isRolesValid = (roles) =>
-  roles.match(/^((?=.*[a-zA-Z])[a-zA-Z+\.+\s\.+()!@#$%^&*'{}]{0,14})$/);
+  // roles.match(/^((?=.*[a-zA-Z])[a-zA-Z+\.+\s\.+()!@#$%^&*'{}]{0,14})$/);
+  roles.match(/^((?=.*[a-zA-Z])[a-zA-Z+\.\s+()!@#$%^&*'{}]{0,50})$/);
 
 export const isLandlineValid = (landline) => landline.match(/^[0-9]*$/);
 

@@ -207,6 +207,7 @@ function Index({ type, pid }) {
           },
         ]);
       }
+      return errorHandle;
     }
     
   };
@@ -225,6 +226,8 @@ function Index({ type, pid }) {
   });
   const handleClickValidation = (event) => {
     var errorHandle = false;
+    (countincrease())
+        { errorHandle = true}
     if (!updateProductList?.conditions) {
       document.getElementById("conditions")?.focus();
       setInputValidation((prevState) => ({
@@ -501,8 +504,19 @@ function Index({ type, pid }) {
     } catch (e) {
       console.log(e);
     }
+    // if (!value1) {
+    //   setcount(count.filter((item, i) => i !== value2));
+    // }
     if (!value1) {
-      setcount(count.filter((item, i) => i !== value2));
+      setIsDetailTabValid({
+            isHubValid: "",
+            isPriceValid: "",
+            isInStockValid: "",
+            isMoqValid: "",
+            isETAValid: "",
+      })
+      setTimeout(
+        setcount(count.filter((item, i) => i !== value2)), 500)
     }
   };
 
