@@ -1,0 +1,657 @@
+.vieworders_main {
+  padding-top: 20px;
+  .vieworders_heading_section {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: flex-end;
+    .id_heading {
+      color: #858a8e;
+      font-size: 18px;
+      letter-spacing: 0.9px;
+      margin-right: 5px;
+      margin: 0;
+    }
+    .id {
+      color: #ddb363;
+      font-size: 18px;
+      font-weight: 600;
+      margin-top: 6px;
+      margin: 0;
+      margin-left: 5px;
+    }
+    .status {
+      font-size: 14px;
+      color: #20639b;
+      background-color: #d5ecff;
+      border-radius: 25px;
+      padding: 7px 25px;
+      text-align: center;
+      margin: 0 10px;
+    }
+  }
+  .vieworders__table {
+    margin-top: 1em;
+    box-shadow: unset;
+    .MuiTypography-root {
+      font-size: 20px;
+      letter-spacing: 0.75px;
+    }
+    .MuiTableHead-root {
+      .MuiTableCell-root {
+        font-size: 18px;
+        color: #ffffff;
+        text-align: center;
+        letter-spacing: 0.54px;
+        font-weight: 600;
+        z-index: 9;
+        background-color: #002d56;
+      }
+    }
+    .MuiTable-root {
+      .MuiTableFooter-root {
+        display: none;
+      }
+    }
+    .MuiTableBody-root {
+      .MuiTableCell-root {
+        font-size: 16px;
+        text-align: center;
+        color: #333c42;
+        letter-spacing: 0.54px;
+        padding: 5px 8px;
+      }
+      .productname {
+        display: flex;
+        gap: 10px;
+
+        .image {
+          height: 50px;
+        }
+        .product {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          .modal_name {
+            color: #333c42;
+            font-size: 16px;
+            letter-spacing: 0.6px;
+            font-weight: 600;
+            text-align: left;
+          }
+          .modal_content {
+            color: #333c42;
+            font-size: 16px;
+            letter-spacing: 0.54px;
+            text-align: left;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            text-overflow: ellipsis;
+            overflow: hidden;
+          }
+          .serial_number{
+              text-align: start;
+              padding: 10px 0;
+              span{
+                  color: #002D56;
+                  font-size: 16px;
+                  font-weight: 600;
+              }
+          }
+        }
+      }
+      .vieworders_price {
+        width: max-content;
+        .inr {
+          font-size: 14px;
+          font-weight: 700;
+        }
+        .price {
+          color: #5c6369;
+          font-size: 20px;
+          letter-spacing: 0.84px;
+          font-weight: 600;
+        }
+      }
+      .vieworers_sky {
+        width: max-content;
+      }
+      .vieworders_total {
+        gap: 5px;
+        width: max-content;
+
+        .inr {
+          font-size: 20px;
+          font-weight: 700;
+        }
+        .price {
+          color: #5c6369;
+          font-size: 28px;
+          letter-spacing: 0.84px;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+  .vieworders_detail_section {
+    background-color: #f5f5f5;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    .heading {
+      color: #002d56;
+      font-size: 22px;
+      font-weight: 600;
+      margin: 0;
+    }
+    .details {
+      display: flex;
+      justify-content: flex-start;
+      gap: 20px;
+      flex-direction: column;
+      .hr_line {
+        width: 56%;
+        hr {
+          border: 1px solid #ddb363;
+        }
+      }
+      .vieworder_address {
+        display: grid;
+        grid-template-columns: 64% 34%;
+        grid-gap: 2%;
+        .address_section {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+        }
+        .vieworders_shippingaddress_section {
+          display: flex;
+          gap: 40px;
+          width: 80%;
+          .vieworders_shippingaddress {
+            .vieworders_list {
+              list-style: none;
+              display: flex;
+              flex-direction: column;
+              gap: 10px;
+              .heading {
+                font-size: 22px;
+                color: #20639b;
+                font-weight: 600;
+                opacity: 1;
+              }
+              .name {
+                color: #858a8e;
+                font-size: 24px;
+                letter-spacing: 0.72px;
+                font-style: italic;
+                font-weight: 600;
+                opacity: 1;
+              }
+              .address {
+                color: #959595;
+                font-size: 24px;
+                letter-spacing: 0.6px;
+                white-space: wrap;
+              }
+            }
+          }
+          .vieworders_payment_section {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+            .payment_heading {
+              margin: 0;
+              font-size: 22px;
+              color: #20639b;
+              font-weight: 600;
+              opacity: 1;
+            }
+            .payment_type {
+              margin: 0;
+              color: #959595;
+              font-size: 24px;
+              letter-spacing: 0.6px;
+              font-style: italic;
+              font-weight: 600;
+            }
+          }
+          .payment_block{
+              width: 35%;
+          }
+          .transaction_block{
+              background-color: #fff;
+              padding: 10px 15px;
+              .vieworders_list{
+                  display: flex;
+                  flex-direction: column;
+                  gap: 10px;
+                  .block_title{
+                      color: #333C42;
+                      font-size: 16px;
+                      font-weight: 600;
+                      .value{
+                        color: #333C42;
+                        font-size: 16px;
+                        font-weight: 400;
+                        margin-right: 10px;
+                       
+                      }
+                      .MuiDivider-root{
+                          min-height: 10px;
+                      }
+                       .value_price{
+                            margin-left: 10px;
+                            font-size: 18px;
+                            font-weight: 600;
+                            margin-left: 10px;
+                        }
+                    }
+                    .date_time{
+                        display: flex;
+                    }
+              }
+          }
+        }
+        .vieworders_total {
+          background-color: #ffffff;
+          padding: 30px;
+          height: max-content;
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+          .hr {
+            border: 2px dashed #20639b;
+            width: 100%;
+          }
+          .vieworders_list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 1em;
+            .taxes {
+              display: flex;
+              flex-direction: column;
+              gap: 10px;
+              .total_amount_heading {
+                font-size: 30px;
+                color: #002d56;
+                font-weight: 600;
+              }
+              .gst {
+                font-size: 14px;
+                color: #5c6369;
+                text-align: center;
+              }
+            }
+            .total_heading {
+              color: #878787;
+              font-size: 20px;
+              letter-spacing: 0.66px;
+              font-weight: 600;
+              border: 1px #00000000;
+              text-align: left;
+            }
+            .total_amount {
+              color: #333c42;
+              font-size: 22px;
+              letter-spacing: 0.78px;
+              text-align: right;
+              font-weight: bold;
+              .currency {
+                font-size: 17px;
+                letter-spacing: 0.51px;
+              }
+            }
+          }
+        }
+      }
+
+      .download_document{
+          display: flex;
+          justify-content: flex-end;
+          align-items: center;
+          .document_text{
+              margin-left: 5px;
+              color: #002D56;
+              font-size: 16px;
+              font-weight: 600;
+              text-decoration: underline;
+          }
+      }
+    }
+  }
+
+  .vieworders__bg {
+    margin: 0;
+    height: 8px;
+    background-color: lightgrey;
+  }
+  .order_info_section1{
+      width: 30%;
+      .username{
+          padding: 5px 0;
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+      }
+  }
+  .order_info_section2{
+      width: 70%;
+      .order_track_info{
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          .common-btn{
+            width: calc(100% / 3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 5px 15px;
+            border-radius: 25px;
+            max-width: 100%;
+            .download_text{
+                color: #002D56;
+                text-decoration: underline;
+                font-size: 16px;
+                font-weight: 600;
+                margin-left: 10px;
+            }
+          }
+          .invoice-btn{
+              padding: 0;
+              width: 25%;
+          }
+        }
+        .order_user_info{
+            display: flex;
+            justify-content: end;
+            padding: 10px 0;
+            .username{
+                padding: 5px 0;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                width: 30%;
+            }
+        }
+
+    }
+  
+}
+  /* modal popup design here */
+    .serial_number_popup{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 1em;
+        .serial_popup_main{
+                background: #F8F0E0;
+                z-index: 1;
+                display: flex;
+                width: 100%;
+                flex-direction: column;
+                position: relative;
+                height: 90vh;
+                max-width: 700px;
+                             box-shadow: 0px 3px 6px rgb(0 0 0 / 16%) !important;                 
+
+
+            // position: absolute;
+            // display: flex;
+            // flex-direction: column;
+            // max-width: 700px;
+            // width: 100%;
+            // box-shadow: 0px 3px 6px rgb(0 0 0 / 16%) !important;
+            // background-color: #FFFFFF;
+            // z-index: 9;
+            // padding: 1em;
+            // gap: 30px;
+            // height: 87vh;
+            // z-index: 1;
+            // min-height: 70vh;
+            // border-radius: 3px;
+            // overflow-x: auto;
+            // box-shadow: 0 0 12px 2px rgb(0 0 0 / 35%);
+            // background: #F8F0E0;
+            .serial_popup_block{
+                height: 90vh;
+                min-height: 87vh;
+                overflow-y: auto;
+                padding: 1em 2em;
+
+            .address_title{
+              padding: 10px 0;
+              letter-spacing: 0.9px;
+              color: #DDB363;
+              text-transform: capitalize;
+              font-weight: 400;
+            }
+          }
+            .serial_popup_clear_btn{
+            float: right;
+            background-color: #ffff;
+            box-shadow: 0px 3px 6px #00000029;
+                border-radius: 4px;
+
+            color: black;
+            font-weight: 800;
+            top: -28px;
+            right: -33px;
+
+               
+            width: 1em !important;
+            height: 1em !important;
+            position: absolute;
+            }
+        }
+
+        .serial_number_block{
+          
+            display: grid;
+            grid-auto-flow: row;
+            grid-template-columns: repeat(5, 1fr);
+            grid-gap: 20px;
+            .serial_number_block{
+                border: 1px solid #CECECE;
+                border-radius: 24px;
+                background-color: #fff;
+                text-align: center;
+                padding: 10px 0;  
+                display: flex;
+                justify-content: center;
+                align-items: center; 
+            }
+        }
+    }
+
+@media (max-width: 1660px) {
+  .vieworders_main .vieworders_heading_section .id_heading,
+  .vieworders_main .vieworders_heading_section .id {
+    font-size: 16px;
+  }
+  .vieworders_main .vieworders_heading_section .status {
+    padding: 5px 25px;
+  }
+  .vieworders_main
+    .vieworders__table
+    .MuiTableBody-root
+    .productname
+    .product
+    .modal_name {
+    font-size: 18px;
+  }
+  .vieworders_main
+    .vieworders__table
+    .MuiTableBody-root
+    .productname
+    .product
+    .modal_content {
+    font-size: 14px;
+  }
+  .vieworders_main .vieworders__table .MuiTableBody-root .vieworders_price,
+  .vieworders_main .vieworders__table .MuiTableBody-root .vieworders_total {
+    .inr {
+      font-size: 14px;
+    }
+    .price {
+      font-size: 18px;
+    }
+  }
+  .vieworders_main .vieworders_detail_section .heading {
+    font-size: 20px;
+  }
+  .vieworders_main
+    .vieworders_detail_section
+    .details
+    .vieworder_address
+    .vieworders_shippingaddress_section {
+    .vieworders_payment_section .payment_heading,
+    .vieworders_shippingaddress .vieworders_list {
+      .address,
+      .heading,
+      .name {
+        font-size: 18px;
+      }
+    }
+  }
+  .vieworders_main
+    .vieworders_detail_section
+    .details
+    .vieworder_address
+    .vieworders_shippingaddress_section
+    .vieworders_payment_section
+    .payment_heading {
+    font-size: 18px;
+  }
+  .vieworders_main .vieworders_detail_section .details .vieworder_address {
+    .vieworders_shippingaddress_section
+      .vieworders_payment_section
+      .payment_type,
+    .vieworders_total .vieworders_list .total_heading {
+      font-size: 18px;
+    }
+  }
+
+  .vieworders_main .vieworders_detail_section {
+    gap: unset;
+  }
+  .vieworders_main
+    .vieworders_detail_section
+    .details
+    .vieworder_address
+    .vieworders_total
+    .vieworders_list
+    .total_amount {
+    .currency {
+      font-size: 14px;
+    }
+    font-size: 20px;
+  }
+  .vieworders_main
+    .vieworders_detail_section
+    .details
+    .vieworder_address
+    .vieworders_total
+    .vieworders_list
+    .taxes
+    .total_amount_heading {
+    font-size: 20px;
+  }
+}
+@media (max-width: 1366px) {
+  .vieworders_main {
+    .vieworders_detail_section .details .vieworder_address {
+      grid-template-columns: 53% 45%;
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .vieworders_main
+    .vieworders_detail_section
+    .details
+    .vieworder_address
+    .vieworders_shippingaddress_section {
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 960px) {
+  .vieworders_main
+    .vieworders_detail_section
+    .details
+    .vieworder_address
+    .address_section {
+    width: 100%;
+  }
+  .vieworders_main .vieworders_detail_section .details .vieworder_address {
+    justify-content: center;
+  }
+  .vieworders_main
+    .vieworders_detail_section
+    .details
+    .vieworder_address
+    .vieworders_total
+    .hr {
+    border: 1px dashed #20639b;
+  }
+}
+
+@media (max-width: 768px) {
+  .vieworders_main .vieworders_detail_section .details .vieworder_address {
+    grid-template-columns: 100%;
+    .vieworders_total .vieworders_list .taxes .gst {
+      text-align: left;
+    }
+  }
+}
+
+@media only screen and (max-width: 580px) {
+  .vieworders_main
+    .vieworders_detail_section
+    .details
+    .vieworder_address
+    .vieworders_shippingaddress_section {
+    flex-direction: column;
+  }
+  .vieworders_main .vieworders_detail_section {
+    padding: 20px 10px;
+  }
+  .vieworders_main
+    .vieworders_detail_section
+    .details
+    .vieworder_address
+    .vieworders_total {
+    padding: 10px;
+    margin: 0 10px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .vieworders_main .vieworders_heading_section {
+    flex-direction: column;
+    align-items: center;
+  }
+  .vieworders_main
+    .vieworders_detail_section
+    .details
+    .vieworder_address
+    .vieworders_total
+    .vieworders_list {
+    flex-direction: column;
+  }
+  .vieworders_main
+    .vieworders_detail_section
+    .details
+    .vieworder_address
+    .vieworders_total
+    .vieworders_list
+    .taxes
+    .gst {
+    text-align: left;
+  }
+}
