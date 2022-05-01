@@ -524,11 +524,7 @@ function Index() {
         <div className="bottom__buttons">
           <Button className="button__cancel">Cancel</Button>
           <Button className="button__checkout">
-            <Link
-              to={`/${
-                customnostore ? customnostore : geo?.country_name
-              }/checkout`}
-            >
+            <Link to={`/${customnostore ? customnostore : geo?.country_name}/checkout/${pendingInvoiceList?.invoice?.quote_id}`}>
               Proceed To Checkout
             </Link>
           </Button>
