@@ -14,7 +14,11 @@ const Whislist = () => {
   const [wishListAgain, setWishListAgain] = useState(false);
   const [wishdata, setwishdata] = useState([]);
   const [folderdata, setfolderdata] = useState([]);
-
+  function formatToCurrency(price) {
+      return price
+      .toString()
+      .replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
+  }
   const PaginateDataSplit = (event) => {
     if (wishdata?.length === 0) return setwishdata([]);
     setTableData(event);
