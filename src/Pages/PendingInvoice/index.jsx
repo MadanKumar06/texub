@@ -48,7 +48,7 @@ function Index() {
       .catch((error) => {});
   }, [currency]);
 
-  console.log(pendingInvoiceList)
+  console.log(pendingInvoiceList);
 
   const options = {
     filter: false,
@@ -137,7 +137,10 @@ function Index() {
         customBodyRender: (value) => {
           return (
             <div className="table__price ">
-              <span className="symbol">INR</span>
+              <span className="symbol">
+                {" "}
+                {JSON.parse(localStorage.getItem("currency"))?.currency_code}
+              </span>
               <span className="price">
                 {" "}
                 {formatToCurrency(parseInt(value))}{" "}
@@ -278,7 +281,7 @@ function Index() {
           </span>
           <span>
             <p className='label'>Total Amount</p>
-            <p className='value'>INR 10,729,830</p>
+            <p className='value'> 10,729,830</p>
           </span>
           <span>
             <p className='label'>Order Status</p>
@@ -450,14 +453,22 @@ function Index() {
               <span className="label">Freight</span>
               <Divider orientation="vertical" />
               <span className="value">
-                <span className="value_symobol">INR</span> 00.00
+                <span className="value_symobol">
+                  {" "}
+                  {JSON.parse(localStorage.getItem("currency"))?.currency_code}
+                </span>{" "}
+                00.00
               </span>
             </p>
             <p>
               <span className="label">Payment Processing Charge</span>
               <Divider orientation="vertical" />
               <span className="value">
-                <span className="value_symobol">INR</span> 00.00
+                <span className="value_symobol">
+                  {" "}
+                  {JSON.parse(localStorage.getItem("currency"))?.currency_code}
+                </span>{" "}
+                00.00
               </span>
             </p>
             <p className="total_value">

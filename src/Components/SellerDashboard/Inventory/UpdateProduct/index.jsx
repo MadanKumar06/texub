@@ -19,7 +19,7 @@ const checkedIcon = <CheckBoxIcon fontSize="small" />;
 function Index({ type, pid }) {
   const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
   const history = useNavigate();
-  const [isGST,setisGST] = useState(0);
+  const [isGST, setisGST] = useState(0);
   const [count, setcount] = useState([
     {
       count: 0,
@@ -140,7 +140,7 @@ function Index({ type, pid }) {
         errorHandle = true;
       }
       // GSTS
-      if(isGST===2){
+      if (isGST === 2) {
         if (!temp[0]?.cgst) {
           document.getElementById("isCGSTValid")?.focus();
           setIsDetailTabValid((prevState) => ({
@@ -148,7 +148,7 @@ function Index({ type, pid }) {
             isCGSTValid: "Please enter the gst.",
           }));
           errorHandle = true;
-        }else if(!isNumber(temp[0]?.cgst)){
+        } else if (!isNumber(temp[0]?.cgst)) {
           setIsDetailTabValid((prevState) => ({
             ...prevState,
             isCGSTValid: "Please enter only number.",
@@ -162,7 +162,7 @@ function Index({ type, pid }) {
             isIGSTValid: "Please enter the igst.",
           }));
           errorHandle = true;
-        }else if(!isNumber(temp[0]?.igst)){
+        } else if (!isNumber(temp[0]?.igst)) {
           setIsDetailTabValid((prevState) => ({
             ...prevState,
             isIGSTValid: "Please enter only number.",
@@ -176,15 +176,15 @@ function Index({ type, pid }) {
             isSGSTValid: "Please enter the sgst.",
           }));
           errorHandle = true;
-        }else if(!isNumber(temp[0]?.sgst)){
+        } else if (!isNumber(temp[0]?.sgst)) {
           setIsDetailTabValid((prevState) => ({
             ...prevState,
             isSGSTValid: "Please enter only number.",
           }));
           errorHandle = true;
         }
-      }else{
-        console.log('.......................................................')
+      } else {
+        console.log(".......................................................");
       }
 
       if (!errorHandle) {
@@ -207,8 +207,8 @@ function Index({ type, pid }) {
           },
         ]);
       }
+      return errorHandle;
     }
-    
   };
   const [inputValidation, setInputValidation] = useState({
     conditions: "",
@@ -225,6 +225,10 @@ function Index({ type, pid }) {
   });
   const handleClickValidation = (event) => {
     var errorHandle = false;
+    countincrease();
+    {
+      errorHandle = true;
+    }
     if (!updateProductList?.conditions) {
       document.getElementById("conditions")?.focus();
       setInputValidation((prevState) => ({
@@ -275,7 +279,7 @@ function Index({ type, pid }) {
         no_pieces_per: "Please enter the no. of piecies.",
       }));
       errorHandle = true;
-    }else if (!isNumber(updateform?.no_pieces_per)) {
+    } else if (!isNumber(updateform?.no_pieces_per)) {
       document.getElementById("no_pieces_per")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
@@ -501,8 +505,18 @@ function Index({ type, pid }) {
     } catch (e) {
       console.log(e);
     }
+    // if (!value1) {
+    //   setcount(count.filter((item, i) => i !== value2));
+    // }
     if (!value1) {
-      setcount(count.filter((item, i) => i !== value2));
+      setIsDetailTabValid({
+        isHubValid: "",
+        isPriceValid: "",
+        isInStockValid: "",
+        isMoqValid: "",
+        isETAValid: "",
+      });
+      setTimeout(setcount(count.filter((item, i) => i !== value2)), 500);
     }
   };
 
@@ -1238,6 +1252,7 @@ function Index({ type, pid }) {
                     setUpdateProductList((prevState) => ({
                       ...prevState,
                       resregion: newValue,
+                      restricts_country: [],
                     }));
                     setInputValidation((prevState) => ({
                       ...prevState,

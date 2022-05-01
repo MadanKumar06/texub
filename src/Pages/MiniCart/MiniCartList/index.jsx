@@ -55,6 +55,10 @@ const MiniCartList = ({ handleSideBarClose }) => {
   };
 
   const onCLickDetailsLink = (event) => {
+    dispatch({
+      type: "SET_IS_LOADING",
+      value: true,
+    });
     handleSideBarClose("right", false);
     let customer_id = JSON.parse(localStorage.getItem("userdata"));
     let data = {
@@ -69,6 +73,7 @@ const MiniCartList = ({ handleSideBarClose }) => {
         eta: "0",
         min_price: 0,
         max_price: 0,
+        seller_id: "0",
       },
     };
     axios
@@ -78,16 +83,44 @@ const MiniCartList = ({ handleSideBarClose }) => {
         },
       })
       .then((res) => {
-        dispatch({
-          type: "SET_PDP_POPUP_OPEN_CLOSE",
-          value: true,
-          data: {
-            CartData: res.data[1].products,
-            product_id: event?.product_id,
-          },
-        });
+        if (res?.data[1]?.products?.length) {
+          dispatch({
+            type: "SET_IS_LOADING",
+            value: false,
+          });
+          dispatch({
+            type: "SET_PDP_POPUP_OPEN_CLOSE",
+            value: true,
+            data: {
+              CartData: res?.data[1]?.products,
+              product_id: event?.product_id,
+            },
+          });
+        } else {
+          dispatch({
+            type: "SET_IS_LOADING",
+            value: false,
+          });
+          swal.fire({
+            text: `No data found`,
+            icon: "error",
+            showConfirmButton: false,
+            timer: 3000,
+          });
+        }
       })
-      .catch((err) => {});
+      .catch((error) => {
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+        swal.fire({
+          text: `${error?.response?.data?.message || error.message}`,
+          icon: "error",
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      });
   };
 
   //API to fetch admin token
@@ -265,8 +298,7 @@ const MiniCartList = ({ handleSideBarClose }) => {
                     </p>
                     <div className="price_block">
                       <p className="price">
-                        <span>INR</span>
-                        {/* {itm?.price} */}
+                        <span>{itm?.currency}</span>
                         {formatToCurrency(parseInt(itm?.price))}
                         <span> / Unit</span>
                       </p>
@@ -324,7 +356,12 @@ const MiniCartList = ({ handleSideBarClose }) => {
                     <div className="total_block">
                       <span>TOTAL</span>
                       <p>
-                        <span>INR</span>{" "}
+                        <span>
+                          {
+                            JSON.parse(localStorage.getItem("currency"))
+                              ?.currency_code
+                          }
+                        </span>{" "}
                         {formatToCurrency(parseInt(itm?.price * itm?.qty))}
                       </p>
                     </div>
@@ -336,7 +373,12 @@ const MiniCartList = ({ handleSideBarClose }) => {
             <div className="minicart_total">
               <p className="title_total">TOTAL</p>
               <p className="total_price">
-                <span>INR </span>
+                <span>
+                  {" "}
+                  {
+                    JSON.parse(localStorage.getItem("currency"))?.currency_code
+                  }{" "}
+                </span>
                 {formatToCurrency(cart?.length && cart[0]?.invoice?.subtotal)}
               </p>
             </div>

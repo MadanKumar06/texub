@@ -19,7 +19,7 @@ import { useStateValue } from "../../store/state";
 import pending_invoice_image from "../../Assets/PendingInvoice/Group 1051.png";
 
 const PendingInvoice = () => {
-  const [{geo, customstore, customnostore}, dispatch] = useStateValue()
+  const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
   const [pendingInvoiceList, setPendingInvoiceList] = useState([]);
 
   useEffect(() => {
@@ -53,8 +53,16 @@ const PendingInvoice = () => {
       <div className="pending_invoice_breadcrumbs">
         <Stack spacing={2}>
           <Breadcrumbs separator="››" aria-label="breadcrumb">
-            <Link to={`/${customnostore ? customnostore : geo?.country_name}`}>Home</Link>
-            <Link to={`/${customnostore ? customnostore : geo?.country_name}/mycart`}>Cart</Link>
+            <Link to={`/${customnostore ? customnostore : geo?.country_name}`}>
+              Home
+            </Link>
+            <Link
+              to={`/${
+                customnostore ? customnostore : geo?.country_name
+              }/mycart`}
+            >
+              Cart
+            </Link>
             <Typography key="3" color="#002D56">
               Pending Invoice
             </Typography>
@@ -155,7 +163,14 @@ const PendingInvoice = () => {
                   <FormControlLabel value="1" control={<Radio />} label={""} />
                   <p className="footer_sub_title">Free</p>
                   <p className="footer_value">
-                    <span>INR</span> 0.00
+                    <span>
+                      {" "}
+                      {
+                        JSON.parse(localStorage.getItem("currency"))
+                          ?.currency_code
+                      }
+                    </span>{" "}
+                    0.00
                   </p>
                 </div>
               </div>
@@ -165,7 +180,14 @@ const PendingInvoice = () => {
                   <FormControlLabel value="2" control={<Radio />} label={""} />
                   <p className="footer_sub_title">Fixed</p>
                   <p className="footer_value">
-                    <span>INR</span> 750.00
+                    <span>
+                      {" "}
+                      {
+                        JSON.parse(localStorage.getItem("currency"))
+                          ?.currency_code
+                      }
+                    </span>{" "}
+                    750.00
                   </p>
                 </div>
               </div>
@@ -179,23 +201,39 @@ const PendingInvoice = () => {
             <div className="summary_list">
               <p className="summary_list_title">Subtotal</p>
               <p className="summary_list_value">
-                <span>INR</span> 10,729,830
+                <span>
+                  {" "}
+                  {JSON.parse(localStorage.getItem("currency"))?.currency_code}
+                </span>{" "}
+                10,729,830
               </p>
             </div>
             <div className="summary_list">
               <p className="summary_list_title">Tax</p>
               <p className="summary_list_value">
-                <span>INR</span> 0.00
+                <span>
+                  {" "}
+                  {JSON.parse(localStorage.getItem("currency"))?.currency_code}
+                </span>{" "}
+                0.00
               </p>
             </div>
             <div className="summary_list">
               <p className="summary_list_title">Order Total</p>
               <p className="summary_list_value">
-                <span>INR</span> 10,729,830
+                <span>
+                  {" "}
+                  {JSON.parse(localStorage.getItem("currency"))?.currency_code}
+                </span>{" "}
+                10,729,830
               </p>
             </div>
           </div>
-          <Link to={`/${customnostore ? customnostore : geo?.country_name}/checkout`}>
+          <Link
+            to={`/${
+              customnostore ? customnostore : geo?.country_name
+            }/checkout`}
+          >
             <Button className="proceed_btn">Proceed To Checkout</Button>
           </Link>
         </div>

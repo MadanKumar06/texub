@@ -32,6 +32,7 @@ const PdpHeader = ({ classes, pdpSellerData, dataFromPLP }) => {
     reviews,
     toggle_notification,
     toggle_switch_sub_two,
+    notification_tag,
   } = classes;
 
   const grey = {
@@ -149,7 +150,7 @@ const PdpHeader = ({ classes, pdpSellerData, dataFromPLP }) => {
           </div>
 
           <div className={toggle_switch_sub_two}>
-            <p>*Get notified about the product’s offer & availability</p>
+            <p className={notification_tag}>*Get notified about the product’s offer & availability</p>
           </div>
         </div>
       </div>
