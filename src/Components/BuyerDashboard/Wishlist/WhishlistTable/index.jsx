@@ -36,6 +36,12 @@ const WhislistTable = ({
     });
   }, [folderdata]);
 
+   function formatToCurrency(price) {
+      return price
+      .toString()
+      .replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
+  }
+
   const [{ currency }, dispatch] = useStateValue();
   const [wdata, setwdata] = useState();
 
@@ -419,7 +425,7 @@ const WhislistTable = ({
                     <p className="product_name">{itm?.product_name}</p>
                     <p className="product_price">
                       <span>{itm?.texub_product_currency}</span>
-                      {itm?.texub_product_price}
+                      {formatToCurrency(parseInt(itm?.texub_product_price))}
                     </p>
                   </div>
                   <div className="rating_block">
