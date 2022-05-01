@@ -2,17 +2,16 @@ import React, { useState, useEffect } from "react";
 import "./styles.scss";
 
 import { TextField, InputLabel, Autocomplete, Button } from "@mui/material";
-import { LocalizationProvider, DesktopDatePicker } from "@mui/lab";
-import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import { ArrowBackIosNew } from "@mui/icons-material";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import Constant from "../../../../Constant";
 import { useStateValue } from "../../../../store/state";
 import swal from "sweetalert2";
+import SuccesMessage from "../SuccessPage";
 
-const WantToBuy = () => {
-  const [{geo, customstore, customnostore}, dispatch] = useStateValue();
+const WantToBuy = ({ setisVieworders, setisOrders }) => {
+  const [{}, dispatch] = useStateValue();
+  const [openCloseSuccessMessage, setOpenCloseSuccessMessage] = useState(false);
   const [wantTobuyData, setWantToBuyData] = useState({
     part_number: "",
     model_name_number: "",
@@ -26,10 +25,6 @@ const WantToBuy = () => {
     mainCategoryList: [],
     dropDownList: [],
   });
-  const [dateChange, setDateChange] = useState(new Date());
-  const handleChange = (newValue) => {
-    setDateChange(newValue);
-  };
 
   // input state and onchange events
   const handleFormvalue = (event) => {
@@ -121,10 +116,9 @@ const WantToBuy = () => {
       console.log(e);
     }
   }, []);
-  console.log(dropdownListFromApi?.dropDownList);
   //API to Register
   const FinalWantToBuy = () => {
-    let storedata = JSON.parse(localStorage.getItem('storedata'))
+    let storedata = JSON.parse(localStorage.getItem("storedata"));
     dispatch({
       type: "SET_IS_LOADING",
       value: true,
@@ -156,6 +150,7 @@ const WantToBuy = () => {
           value: false,
         });
         if (res?.data?.[0]?.status) {
+          setOpenCloseSuccessMessage(true);
           swal.fire({
             text: `${res.data?.[0]?.message}`,
             icon: "success",
@@ -310,8 +305,8 @@ const WantToBuy = () => {
             </div>
           </div>
 
-          <div className="input_field">
-            <div className="block_1_input">
+          <div className="input_field ">
+            <div className="block_1_input hub_input">
               <Autocomplete
                 getOptionLabel={(option) =>
                   option?.hub_name ? option.hub_name : ""
@@ -351,35 +346,6 @@ const WantToBuy = () => {
                 {inputValidation?.hub}
               </InputLabel>
             </div>
-            {/* <div className="block_1_input">
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <DesktopDatePicker
-                  label="Closing Date"
-                  inputFormat="dd/MM/yyyy"
-                  minDate={new Date()}
-                  value={dateChange}
-                  onChange={handleChange}
-                  renderInput={(params) => (
-                    <TextField
-                      {...params}
-                      fullWidth
-                      className="inputfield-box"
-                      placeholder="Select Closing Date"
-                      InputLabelProps={{
-                        shrink: true,
-                        required: true,
-                        classes: {
-                          asterisk: "asterisk",
-                        },
-                      }}
-                    />
-                  )}
-                />
-              </LocalizationProvider>
-              <InputLabel className="validation_error">
-                {inputValidation?.closing_date}
-              </InputLabel>
-            </div> */}
           </div>
         </div>
         <div className="block_4 input_block">
@@ -394,10 +360,6 @@ const WantToBuy = () => {
             value={wantTobuyData?.notes}
             InputLabelProps={{
               shrink: true,
-              // required: true,
-              classes: {
-                // asterisk: "asterisk",
-              },
             }}
             onChange={handleFormvalue}
             name="notes"
@@ -407,18 +369,24 @@ const WantToBuy = () => {
       </div>
       <div className="want_to_buy__footer">
         <div className="want_to_buy__container">
-          <Link to={`/${customnostore ? customnostore : geo?.country_name}/buyerdashboard/dashboard`}>
+          <p
+            onClick={() => {
+              setisOrders(true);
+              setisVieworders(false);
+            }}
+          >
             <ArrowBackIosNew />
             <span>Back</span>
-          </Link>
+          </p>
           <Button
-            className="want_to_buy_btn"
+            className="button-text btn-secondary"
             onClick={() => handleClickValidation()}
           >
             Submit
           </Button>
         </div>
       </div>
+      {/* {openCloseSuccessMessage && <SuccesMessage />} */}
     </div>
   );
 };

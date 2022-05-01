@@ -1,5 +1,6 @@
 .want_to_buy__container {
   .want_to_buy__sub_container {
+    width: 90%;
     padding: 3% 1% 1%;
     gap: 1em;
     display: flex;
@@ -10,6 +11,9 @@
       display: flex;
       flex-direction: row;
       gap: 2em;
+    }
+    .hub_input {
+      width: 48.3% !important;
     }
     .auto_complete_input {
       display: flex;
@@ -63,35 +67,22 @@
       justify-content: space-between;
       flex-wrap: wrap;
       margin-top: 2em;
-      a {
+      p {
         text-decoration: none;
         display: flex;
         align-items: center;
+        margin: 0;
         .MuiSvgIcon-root {
           color: #002d56;
+          width: 0.8em;
+          height: 0.8em;
         }
         span {
-          font-size: 20px;
+          font-size: 16px;
           color: #002d56;
           font-weight: 600;
           margin-left: 0.6em;
         }
-      }
-      .want_to_buy_btn {
-        width: 30% !important;
-        text-decoration: none !important;
-        font-size: 18px !important;
-        letter-spacing: 0.54px !important;
-        min-width: 245px !important;
-        border-radius: 45px !important;
-        border: none !important;
-        background: linear-gradient(180deg, #20639b 0%, #002d56 100%);
-        color: #ffffff !important;
-        cursor: pointer;
-        box-shadow: 0px 3px 6px #00000029;
-        font-weight: 600 !important;
-        padding: 10px !important;
-        text-transform: capitalize !important;
       }
     }
   }
@@ -108,14 +99,6 @@
   }
   .want_to_buy__container .want_to_buy__footer .want_to_buy__container a span {
     font-size: 18px;
-  }
-  .want_to_buy__container
-    .want_to_buy__footer
-    .want_to_buy__container
-    .want_to_buy_btn {
-    width: 23% !important;
-    font-size: 16px !important;
-    padding: 8px !important;
   }
 }
 @media (max-width: 580px) {

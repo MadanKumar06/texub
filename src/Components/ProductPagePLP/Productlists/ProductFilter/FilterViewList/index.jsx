@@ -125,12 +125,14 @@ const FilterViewList = ({
                   </div>
                 </div>
               ))}
-            <p
-              className="seemore"
-              onClick={() => seeMoreChange("filter_by_hub")}
-            >
-              see More
-            </p>
+            {dataFromApi?.[0]?.hub?.length > 5 && (
+              <p
+                className="seemore"
+                onClick={() => seeMoreChange("filter_by_hub")}
+              >
+                see More
+              </p>
+            )}
           </div>
           <div className="filter_by_condtion filter_option_block">
             <p className="filter_title">Filter By Condition</p>
@@ -172,12 +174,14 @@ const FilterViewList = ({
                 </div>
               ))}
             {/* </div> */}
-            <p
-              className="seemore"
-              onClick={() => seeMoreChange("filter_by_brand")}
-            >
-              see More
-            </p>
+            {dataFromApi?.[0]?.brands?.length > 5 && (
+              <p
+                className="seemore"
+                onClick={() => seeMoreChange("filter_by_brand")}
+              >
+                see More
+              </p>
+            )}
           </div>
           <div className="filter_by_price filter_option_block">
             <p className="filter_title">Filter By Price</p>
@@ -261,12 +265,14 @@ const FilterViewList = ({
                   </AccordionDetails>
                 </Accordion>
               ))}
-            <p
-              className="seemore"
-              onClick={() => seeMoreChange("filter_by_product")}
-            >
-              see More
-            </p>
+            {dataFromApi?.[3]?.categories?.length > 5 && (
+              <p
+                className="seemore"
+                onClick={() => seeMoreChange("filter_by_product")}
+              >
+                see More
+              </p>
+            )}
           </div>
         </div>
       </div>

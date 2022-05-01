@@ -12,10 +12,10 @@ import axios from "axios";
 import swal from "sweetalert2";
 import Constant from "../../../../Constant";
 import { useStateValue } from "../../../../store/state";
-import { isOtherBrands,isOnlySpecialCharacters } from '../../../../utilities';
+import { isOtherBrands, isOnlySpecialCharacters } from "../../../../utilities";
 
 function RegisterProduct() {
-  const [{geo, customstore, customnostore}, dispatch] = useStateValue()
+  const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
   const history = useNavigate();
   const [openClosePopOver, setOpenClosePopOver] = useState({
     state: false,
@@ -211,7 +211,7 @@ function RegisterProduct() {
         other_brands: "Only special character will not allowed.",
       }));
       errorHandle = true;
-    }else if (
+    } else if (
       registerNewProductData?.brands?.value === "brand-others" &&
       isOtherBrands(registerNewProductData?.other_brands)
     ) {
@@ -291,6 +291,10 @@ function RegisterProduct() {
   //API to Register
   const FinalRegisterNewProduct = () => {
     let user = JSON.parse(localStorage.getItem("userdata"));
+    dispatch({
+      type: "SET_IS_LOADING",
+      value: true,
+    });
     let data = {
       product_data: {
         bulkupload: 0,
@@ -320,8 +324,21 @@ function RegisterProduct() {
       })
       .then((res) => {
         if (res.data?.[0]?.status === "true") {
-          history(`/${customnostore ? customnostore : geo?.country_name}/sellerdashboard/registersuccess`, { state: "add" });
+          dispatch({
+            type: "SET_IS_LOADING",
+            value: false,
+          });
+          history(
+            `/${
+              customnostore ? customnostore : geo?.country_name
+            }/sellerdashboard/registersuccess`,
+            { state: "add" }
+          );
         } else {
+          dispatch({
+            type: "SET_IS_LOADING",
+            value: false,
+          });
           swal.fire({
             text: `${res.data?.[0]?.message}`,
             icon: "error",
@@ -331,6 +348,10 @@ function RegisterProduct() {
         }
       })
       .catch((error) => {
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
         swal.fire({
           text: `${error?.response?.data?.message || error.message}`,
           icon: "error",
