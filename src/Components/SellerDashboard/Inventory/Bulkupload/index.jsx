@@ -27,7 +27,6 @@ function Index() {
     });
   };
   const handleJSONCreate = async (rows) => {
-    debugger;
     dispatch({
       type: "SET_IS_LOADING",
       value: true,

@@ -65,15 +65,15 @@ const Index = () => {
               component="form"
               sx={{ p: "2px 4px", display: "flex", alignItems: "center" }}
             >
-              <IconButton type="submit" sx={{ p: "10px" }} aria-label="search">
-                <SearchIcon />
-              </IconButton>
               <InputBase
                 sx={{ ml: 1, flex: 1 }}
                 placeholder="Search..."
                 inputProps={{ "aria-label": "search google maps" }}
                 className="buyerdashboard__input"
               />
+              <IconButton type="submit"  onClick={(event) => event.preventDefault()} sx={{ p: "10px" }} aria-label="search">
+                <SearchIcon />
+              </IconButton>
             </Paper>
             <div className="buyerdashboard__notiIcon">
               <img src={notification} alt="" />

@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from "react";
 import MUITable from "../../../../Components/Common/MUITable";
-import { Button } from "@mui/material";
-import { ArrowBackIosNew } from "@mui/icons-material";
-import { Link } from "react-router-dom";
 import Pagination from "../../../Pagination";
 import "./styles.scss";
 import axios from "axios";
@@ -77,6 +74,7 @@ function Index({ id }) {
 
   return (
     <div className="want_tobuy">
+      <p className="title">Quotations Received</p>
       <MUITable
         columns={columns}
         table={tableData}

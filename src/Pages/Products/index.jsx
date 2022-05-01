@@ -7,8 +7,11 @@ import axios from "axios";
 import Constant from "../../Constant";
 import { useStateValue } from "../../store/state";
 import { Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 export const Products = () => {
-  const [{ currency, homeSearch }, dispatch] = useStateValue();
+  const navigate = useNavigate();
+  const [{ currency, homeSearch, customnostore, geo }, dispatch] =
+    useStateValue();
   const [productFetchApi, setProductFetchApi] = useState({});
   const [productData, setProductData] = useState([]);
   const [dataFromApi, setDataFromApi] = useState([]);
@@ -122,7 +125,13 @@ export const Products = () => {
     });
     setProductData(productTableData);
   };
-
+  const handleRouteChange = () => {
+    navigate(
+      `/${
+        customnostore ? customnostore : geo?.country_name
+      }/buyerdashboard/wanttobuy`
+    );
+  };
   return (
     <div className="products">
       <Productlists
@@ -166,11 +175,13 @@ export const Products = () => {
         productFetchApi={productFetchApi}
         productData={productData}
       />
-      <div className="products_want_to_buy">
-        <p>
-          <span>Want to buy</span>
-        </p>
-      </div>
+      {JSON.parse(localStorage.getItem("userdata"))?.group_id === 5 && (
+        <div className="products_want_to_buy">
+          <p onClick={() => handleRouteChange()}>
+            <span>Want to buy</span>
+          </p>
+        </div>
+      )}
     </div>
   );
 };

@@ -5,6 +5,7 @@ import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
 import { getAdminToken } from "../../../../utilities";
 import { useStateValue } from "../../../../store/state";
 import axios from "axios";
+import Constant from "../../../../Constant";
 
 const Termstext = [
   {
@@ -33,7 +34,7 @@ export const ProductListingPolicy = () => {
       });
       const termsdata = await axios({
         method: "get",
-        url: "https://texub.uat.a2zportals.co.in/india/rest/V1/cmsPage/30",
+        url: Constant.baseUrl2() + "/cmsPage/30",
         headers: {
           Authorization: `Bearer ${adminToken}`,
         },
