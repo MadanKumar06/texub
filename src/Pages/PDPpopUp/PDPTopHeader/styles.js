@@ -92,9 +92,11 @@ const styles = (theme) => ({
   pdp_top_header_product_name: {
     fontSize: "24px",
     margin: "0",
-    padding: "11px 0px",
     color: "#333C42",
     letterSpacing: "0.78px",
+    padding: "8px 0px",
+    textTransform: "uppercase",
+    margin: "0px",
     "@media (max-width:1660px)": {
       fontSize: "20px",
     },
@@ -178,5 +180,8 @@ const styles = (theme) => ({
       },
     },
   },
+  notification_tag: {
+    margin: "0px",
+  }
 });
 export default styles;
