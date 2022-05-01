@@ -1,20 +1,21 @@
 import XLSX from "xlsx";
+import Constant from "../../../../Constant";
 
 export default function Index({ productData }) {
-  const json = [
-    {
-      name: "jon",
-      surname: "doe",
-    },
-    {
-      name: "jon",
-      surname: "doe",
-    },
-  ];
-  const downloadxls = (e, data, data1) => {
-      debugger
+  const downloadxls = (e, tableData) => {
+    let temp = tableData?.map((itm) => ({
+      brand: `${Constant.imageBaseUrl()}${itm?.main_product?.brand}`,
+      model_number: itm?.main_product?.model_number,
+      part_number: itm?.main_product?.part_number,
+      description: itm?.main_product?.description,
+      condition: itm?.main_product?.condition,
+      hub: itm?.sub_products?.[0]?.hub,
+      moq: itm?.sub_products?.[0]?.moq,
+      price: itm?.sub_products?.[0]?.price,
+      in_stock: itm?.sub_products?.[0]?.in_stock,
+    }));
     e.preventDefault();
-    const ws = XLSX.utils.json_to_sheet(data);
+    const ws = XLSX.utils.json_to_sheet(temp);
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, "SheetJS");
     XLSX.writeFile(wb, "Products Details.xlsx");
@@ -28,7 +29,7 @@ export default function Index({ productData }) {
         height="35"
         viewBox="0 0 40 40"
         onClick={(e) => {
-          downloadxls(e, json, productData);
+          downloadxls(e, productData);
         }}
       >
         <rect id="Area" width="40" height="40" fill="#fff" opacity="0" />

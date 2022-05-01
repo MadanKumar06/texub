@@ -200,11 +200,23 @@ const FilterViewList = ({
               />
               <div className="filter_amount">
                 <p>
-                  <span>INR</span>
+                  <span>
+                    {" "}
+                    {
+                      JSON.parse(localStorage.getItem("currency"))
+                        ?.currency_code
+                    }
+                  </span>
                   {value?.[0]}
                 </p>
                 <p>
-                  <span>INR</span>
+                  <span>
+                    {" "}
+                    {
+                      JSON.parse(localStorage.getItem("currency"))
+                        ?.currency_code
+                    }
+                  </span>
                   {value?.[1]}
                 </p>
               </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, IconButton } from "@mui/material";
+import { Button, IconButton, Paper, InputBase } from "@mui/material";
 import "./styles.scss";
 
 import {
@@ -111,6 +111,7 @@ const Productlists = ({
   }, [currency]);
 
   const handleSearchClick = (event) => {
+    debugger;
     event.preventDefault();
     setApplyFilter(!applyFilter);
   };
@@ -179,30 +180,29 @@ const Productlists = ({
         </div>
       </div>
       <div className="productlist__search">
-        <TextField
-          size="small"
-          placeholder="Search Products Here…"
-          variant="standard"
-          name="search_product"
+        <Paper
+          component="form"
           className="search_input"
-          value={productFetchApi?.search_product}
-          onChange={handleChange}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <IconButton
-                  type="submit"
-                  className="plpsearchicon"
-                  sx={{ p: "10px" }}
-                  aria-label="search"
-                  onClick={(event) => handleSearchClick(event)}
-                >
-                  <Search className="search_icon"></Search>
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
-        />
+          sx={{ p: "2px 4px", display: "flex", alignItems: "center" }}
+        >
+          <InputBase
+            sx={{ ml: 1, flex: 1 }}
+            placeholder="Search..."
+            name="search_product"
+            onChange={handleChange}
+            inputProps={{ "aria-label": "" }}
+            value={productFetchApi?.search_product}
+          />
+          <IconButton
+            type="submit"
+            sx={{ p: "10px" }}
+            className="plpsearchicon"
+            aria-label="search"
+            onClick={(event) => handleSearchClick(event)}
+          >
+            <Search className="search_icon" />
+          </IconButton>
+        </Paper>
       </div>
 
       <Box sx={{ minWidth: 150 }}>

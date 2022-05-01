@@ -80,7 +80,11 @@ const Index = () => {
       label: " ",
       options: {
         customBodyRender: (value) => {
-          return <img src={value} alt="" className="icon" />;
+          return (
+            <div className="brand_image">
+              <img src={value} alt="" className="icon" />
+            </div>
+          );
         },
       },
     },

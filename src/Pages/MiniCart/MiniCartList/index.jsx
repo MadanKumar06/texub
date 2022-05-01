@@ -298,8 +298,7 @@ const MiniCartList = ({ handleSideBarClose }) => {
                     </p>
                     <div className="price_block">
                       <p className="price">
-                        <span>INR</span>
-                        {/* {itm?.price} */}
+                        <span>{itm?.currency}</span>
                         {formatToCurrency(parseInt(itm?.price))}
                         <span> / Unit</span>
                       </p>
@@ -357,7 +356,12 @@ const MiniCartList = ({ handleSideBarClose }) => {
                     <div className="total_block">
                       <span>TOTAL</span>
                       <p>
-                        <span>INR</span>{" "}
+                        <span>
+                          {
+                            JSON.parse(localStorage.getItem("currency"))
+                              ?.currency_code
+                          }
+                        </span>{" "}
                         {formatToCurrency(parseInt(itm?.price * itm?.qty))}
                       </p>
                     </div>
@@ -369,7 +373,12 @@ const MiniCartList = ({ handleSideBarClose }) => {
             <div className="minicart_total">
               <p className="title_total">TOTAL</p>
               <p className="total_price">
-                <span>INR </span>
+                <span>
+                  {" "}
+                  {
+                    JSON.parse(localStorage.getItem("currency"))?.currency_code
+                  }{" "}
+                </span>
                 {formatToCurrency(cart?.length && cart[0]?.invoice?.subtotal)}
               </p>
             </div>

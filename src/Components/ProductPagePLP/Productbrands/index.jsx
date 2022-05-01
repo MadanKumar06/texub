@@ -10,22 +10,12 @@ import axios from "axios";
 import Constant from "../../../Constant";
 import SimpleLoader from "../../../Components/SimpleLoader";
 
-const Productsbrands = ({
-  setProductFetchApi,
-  productFetchApi,
-  getCategories,
-}) => {
+const Productsbrands = ({ setProductFetchApi, getCategories }) => {
   const [{ isSimpleLoading }, dispatch] = useStateValue();
   const [isChange, setisChange] = useState(false);
   const brand = (value) => {
     value && setisChange(value);
   };
-  // useEffect(() => {
-  //   document.addEventListener("mousedown", () => {
-  //     setisChange(false);
-  //   });
-  // }, []);
-
   function Arrow(props) {
     let className =
       props.type === "next" ? "Carosal_nextArrow" : "Carosal_prevArrow";
@@ -206,7 +196,7 @@ const Productsbrands = ({
                                 >
                                   <span>
                                     <p>{e.category_name}</p>
-                                    {/* <p>{e.count}</p> */}
+                                    <p>({e.count})</p>
                                   </span>
                                 </div>
                               ))}

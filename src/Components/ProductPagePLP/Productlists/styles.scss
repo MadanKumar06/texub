@@ -50,43 +50,23 @@
   .productlist__search {
     color: white;
     min-width: 13em;
-    border: 1px solid #D6D8D9;
-    .search_input {
-      .MuiInput-root{
-        display: flex;
-        flex-direction: row-reverse;
-
-        input {
-          padding: 14px 10px;
-          color: #ffffff;
-          font-size: 18px;
-        }
+    border: 1px solid #d6d8d9;
+    .MuiPaper-root {
+      background-color: unset !important;
+      padding: 6px;
+      input {
+        color: #ffffff;
       }
-      .MuiInput-root input::placeholder {
-        color: #858A8E;
+      input::placeholder {
+        color: #ffffff;
         font-size: 16px;
         opacity: 1;
       }
-      .MuiInput-root:before {
-        border-bottom: 0px solid #ffffff;
-      }
-      .MuiInput-root:after {
-        border-bottom: 0px solid #ddb363;
-      }
-      .plpsearchicon {
-        background: #ddb363;
-        border-radius: 3px;
-        color: #fff;
-        padding: .7% 2%;
-        width:60px;
-        height:40px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-      .search_icon {
+      .MuiButtonBase-root {
         color: #ffffff;
-        margin-bottom: 3px;
+        padding: 8px 10px;
+        background: #ddb363;
+        border-radius: 2px;
       }
     }
   }
@@ -100,7 +80,7 @@
         color: #ffffff;
       }
       .MuiOutlinedInput-notchedOutline {
-        border: 1px solid #BFBFBF;
+        border: 1px solid #bfbfbf;
         border-radius: 4px;
       }
       .MuiSvgIcon-root {
@@ -121,7 +101,7 @@
         color: #ffffff;
       }
       .MuiOutlinedInput-notchedOutline {
-        border: 1px solid #BFBFBF;
+        border: 1px solid #bfbfbf;
         border-radius: 4px;
       }
       .MuiSvgIcon-root {
@@ -143,7 +123,7 @@
         color: #ffffff;
       }
       .MuiOutlinedInput-notchedOutline {
-        border: 1px solid #BFBFBF;
+        border: 1px solid #bfbfbf;
         border-radius: 4px;
       }
       .MuiSvgIcon-root {
@@ -154,8 +134,8 @@
       }
     }
   }
-  .apply-btn{
-    .plp-apply-btn{
+  .apply-btn {
+    .plp-apply-btn {
       min-width: 120px;
     }
   }
@@ -195,7 +175,7 @@
     width: 30px;
     height: 30px;
   }
-  .product_menu_filter{
+  .product_menu_filter {
     width: 30px;
     height: 30px;
   }
@@ -203,9 +183,9 @@
     padding: 15px 2%;
     gap: 10px;
   }
-  .productlist .productlist__deal{
+  .productlist .productlist__deal {
     width: auto;
-  
+
     span {
       font-size: 14px;
     }
@@ -223,9 +203,9 @@
       width: 100%;
     }
   }
-.productlist .product_based_deals{
-  gap: 10px;
-}
+  .productlist .product_based_deals {
+    gap: 10px;
+  }
   // .productlist {
   //   justify-content: initial;
   // }

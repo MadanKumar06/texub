@@ -221,7 +221,7 @@ const TransitionsModal = ({ handleOpenCloseOffers, offersOpenClose }) => {
             <TextField
               id="price"
               label=""
-              placeholder={`${currency?.currency_code} 68,99900`}
+              placeholder="68,99900"
               fullWidth
               onChange={(event) =>
                 setOffersData((prevState) => ({

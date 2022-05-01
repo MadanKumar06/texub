@@ -388,7 +388,10 @@ const MyCartTable = ({ cartDataList, deleteCartData }) => {
           return (
             <div className="mycart_table_price_block">
               <div className="mycart_table_price">
-                <span>INR</span>
+                <span>
+                  {" "}
+                  {JSON.parse(localStorage.getItem("currency"))?.currency_code}
+                </span>
                 {formatToCurrency(parseInt(value))}
                 {/* <span>/unit</span> */}
               </div>
@@ -468,7 +471,10 @@ const MyCartTable = ({ cartDataList, deleteCartData }) => {
           return (
             <div className="mycart_table_subtotal_block">
               <div className="mycart_table_subtotal">
-                <span>INR</span>
+                <span>
+                  {" "}
+                  {JSON.parse(localStorage.getItem("currency"))?.currency_code}
+                </span>
                 {formatToCurrency(parseInt(value))}
               </div>
             </div>
