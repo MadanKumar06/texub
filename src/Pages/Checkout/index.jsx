@@ -15,7 +15,7 @@ import {
   InputLabel,
 } from "@mui/material";
 import Divider from "@mui/material/Divider";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
@@ -34,6 +34,7 @@ import checkout_mail from "../../Assets/CheckoutPage/checkout_mail.png";
 import checkout_call from "../../Assets/CheckoutPage/telephone.png";
 import Constant from "../../Constant";
 import axios from "axios";
+import moment from "moment";
 
 
 const DeliveryAddressJson = [
@@ -63,6 +64,12 @@ const Checkout = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [quotedata, setqutoedata] = useState([])
+  const {quoteid} = useParams()
+  const [userid, setuserid] = useState()
+
+  useEffect(() => {
+    setuserid(JSON.parse(localStorage.getItem('userdata')))
+  }, [])
 
   useEffect(async() => {
     let user = JSON.parse(localStorage.getItem('userdata'))
@@ -75,18 +82,17 @@ const Checkout = () => {
         },
         data: {
           "orderData":{
-            "quote_id":528,
+            "quote_id":quoteid,
             // customerId: user?.id
           }      
         }
       })
       setqutoedata(quote?.data)
+      console.log(quote?.data)
     } catch(e) {
       console.log(e)
     }
-  }, [])
-
-  console.log(quotedata)
+  }, [quoteid])
 
   const raisequote = async() => {
     let storedata = JSON.parse(localStorage.getItem('storedata'))
@@ -119,8 +125,8 @@ const Checkout = () => {
         "quote_item_id": 22,
         "extension_attributes": {
             "seller_id":qd?.seller_id,
-            "item_hub":2,
-            "item_currency":5
+            "item_hub":qd?.hub_id,
+            "item_currency":qd?.currency_id
          }
     } )
     })
@@ -330,17 +336,17 @@ const Checkout = () => {
             <div className="order_basic_info">
               <span className="order_basic_title">Date</span>
               <Divider orientation="vertical" />
-              <span className="order_basic_value">{quotedata[0]?.invoice?.date}</span>
+              <span className="order_basic_value">{moment(quotedata[0]?.invoice?.date).format("DD/MM/YYYY")}</span>
             </div>
             <div className="order_basic_info">
               <span className="order_basic_title">Due Date</span>
               <Divider orientation="vertical" />
-              <span className="order_basic_value">{quotedata[0]?.invoice?.due_date}</span>
+              <span className="order_basic_value">{moment(quotedata[0]?.invoice?.due_date).format("DD/MM/YYYY")}</span>
             </div>
             <div className="order_basic_info">
               <span className="order_basic_title">Buyer ID</span>
               <Divider orientation="vertical" />
-              <span className="order_basic_value">{quotedata[0]?.invoice?.due_date}</span>
+              <span className="order_basic_value">{userid?.id}</span>
             </div>
           </div>
         </div>
@@ -528,6 +534,7 @@ const Checkout = () => {
                     name="radio-buttons-group"
                   >
                     <div className="payment_footer_block_1">
+                      {/* {quotedata?.} */}
                       <div className="footer_main">
                         <div className="footer_content">
                           <FormControlLabel
@@ -584,21 +591,21 @@ const Checkout = () => {
                 <span className="checkoutorder_info_title">Sub-Total</span>
                 <Divider orientation="vertical" />
                 <span className="orderinfo_value">
-                  <span className="ordertotal_symbol">INR</span> 10,729,830
+                  <span className="ordertotal_symbol">INR</span>{quotedata[0]?.invoice?.subtotal}
                 </span>
               </div>
               <div className="checkoutorder_basic_info">
                 <span className="checkoutorder_info_title">Tax</span>
                 <Divider orientation="vertical" />
                 <span className="orderinfo_value">
-                  <span className="ordertotal_symbol">INR</span> 10,729,830
+                  <span className="ordertotal_symbol">INR</span>{quotedata[0]?.invoice?.tax}
                 </span>
               </div>
               <div className="checkoutorder_basic_info">
                 <span className="checkoutorder_info_title">Freight</span>
                 <Divider orientation="vertical" />
                 <span className="orderinfo_value">
-                  <span className="ordertotal_symbol">INR</span> 10,729,830
+                  <span className="ordertotal_symbol">INR</span> 0.00
                 </span>
               </div>
               <div className="checkoutorder_basic_info">
@@ -607,7 +614,7 @@ const Checkout = () => {
                 </span>
                 <Divider orientation="vertical" />
                 <span className="orderinfo_value">
-                  <span className="ordertotal_symbol">INR</span> 10,729,830
+                  <span className="ordertotal_symbol">INR</span> 0.00
                 </span>
               </div>
               <div className="checkout_total_order_section">
@@ -616,7 +623,7 @@ const Checkout = () => {
                 </span>
                 <span className="checkout_total_order__price">
                   <span className="checkout_total_orde_symbol">INR</span>
-                  10,729,830
+                  0.00
                 </span>
               </div>
             </div>

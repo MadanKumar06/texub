@@ -441,7 +441,7 @@ const App = () => {
               exact
             />
             <Route
-              path="/:country/checkout"
+              path="/:country/checkout/:quoteid"
               // path={`/${customnostore ? customnostore : geo?.country_name}/checkout`}
               element={
                 <>
