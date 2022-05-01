@@ -1,68 +1,102 @@
-  /* modal popup design here */
-    .rating_number_popup{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 1em;
-        .rating_popup_main{
-                background: #fff;
-                z-index: 1;
-                display: flex;
-                width: 100%;
-                flex-direction: column;
-                position: relative;
-                height: 70vh;
-                max-width: 700px;
-                box-shadow: 0px 3px 6px rgb(0 0 0 / 16%) !important;                 
-            .rating_popup_block{
-                height: 70vh;
-                min-height: 67vh;
-                overflow-y: auto;
-                padding: 3em 2em 2em;
-                text-align: center;
-                .title{
-                   color: #5c6369;
-                font-size: 24px;
-                font-style: italic;
-                font-weight: 800;
-                letter-spacing: 2px;
-                }
-                .rating{
-                    padding : 1em 0;
-                    .MuiRating-root{
-                        font-size: 40px;
-                        color: #ddb363;
-                        
-                    }
-                }
-                .rating_comments_block{
-                    width: 100%;
-                    .MuiInputLabel-root{
-                        text-align: start;
-                        color: #272727;
-                        font-weight: 600;
-                    }
-                    .rating_comment{
-                        width: 100%;
-                    }
-
-                }
-            }
-            .rating_popup_clear_btn{
-            float: right;
-            background-color: #ffff;
-            box-shadow: 0px 3px 6px #00000029;
-                border-radius: 4px;
-
-            color: black;
-            font-weight: 800;
-            top: -28px;
-            right: -33px;
-
-               
-            width: 1em !important;
-            height: 1em !important;
-            position: absolute;
-            }
+/* modal popup design here */
+.rating_number_popup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1em;
+  .rating_popup_main {
+    background: #fff;
+    z-index: 1;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    position: relative;
+    height: 55vh;
+    max-width: 700px;
+    box-shadow: 0px 3px 6px rgb(0 0 0 / 16%) !important;
+    .rating_popup_block {
+      height: 55vh;
+      min-height: 50vh;
+      overflow-y: auto;
+      padding: 2em 2em 2em;
+      text-align: center;
+      .title {
+        color: #5c6369;
+        font-size: 24px;
+        font-style: italic;
+        font-weight: 800;
+        letter-spacing: 2px;
+      }
+      .rating {
+        padding: 1em 0;
+        .MuiRating-root {
+          font-size: 40px;
+          color: #ddb363;
         }
+      }
+      .rating_comments_block {
+        width: 100%;
+        .MuiInputLabel-root {
+          padding-bottom: 10px;
+          text-align: start;
+          color: #272727;
+          font-weight: 600;
+        }
+        .rating_comment {
+          width: 100%;
+        }
+        .rating-btns {
+          display: flex;
+          width: 80%;
+          align-items: center;
+          justify-content: center;
+          margin: auto;
+          gap: 1em;
+          padding: 1em 0;
+          button {
+            width: 100%;
+            max-width: 100%;
+            border-radius: 25px;
+            font-weight: 600;
+          }
+          .rating_comments_cancel {
+            border: 1px solid #1e6097;
+            border-radius: 25px;
+            color: #1e6097;
+            font-weight: 600;
+          }
+        }
+      }
     }
+    .rating_popup_clear_btn {
+      float: right;
+      background-color: #ffff;
+      box-shadow: 0px 3px 6px #00000029;
+      border-radius: 4px;
+
+      color: black;
+      font-weight: 800;
+      top: -28px;
+      right: -33px;
+
+      width: 1em !important;
+      height: 1em !important;
+      position: absolute;
+    }
+  }
+}
+
+
+
+@media (max-width: 900px) {
+
+    .rating_number_popup{
+    margin: 3em;
+    }
+}
+@media (max-width: 580px) {
+
+    .rating_number_popup{
+    margin: 2em;
+    }
+}

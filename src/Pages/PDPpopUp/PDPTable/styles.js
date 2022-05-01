@@ -399,7 +399,7 @@ const styles = () => ({
     },
   },
   price_indicator: {
-    fontSize: "18px",
+    fontSize: "14px",
     fontWeight: "600",
     letterSpacing: "0.6px",
     marginRight: "5px",
