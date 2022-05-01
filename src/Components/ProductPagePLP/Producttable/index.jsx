@@ -84,8 +84,6 @@ const Productstable = ({
           : longExpand_inactive_icon,
     }));
   };
-
-  let isGuestUserSignedIn = JSON.parse(localStorage.getItem("userdata"));
   const columns = [
     {
       name: "main_product",

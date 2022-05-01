@@ -58,19 +58,27 @@
             }
           }
         }
+        .brand_image {
+          width: 50px;
+          height: 50px;
+          margin: auto;
+          img {
+            width: 100%;
+          }
+        }
         .smart_price {
           color: #333c42;
           background-color: white;
           border: 1px solid white;
           border-radius: 24px;
-          padding: 0.5em 2em;
+          padding: 0.5em 1em;
           text-align: center;
           font-weight: 600;
         }
 
         .smart_price {
           display: flex;
-          align-items: center;
+          align-items: baseline;
           justify-content: center;
           gap: 5px;
           p {

@@ -131,6 +131,7 @@ export const Products = () => {
         dataFromApi={dataFromApi}
         setApplyFilter={setApplyFilter}
         applyFilter={applyFilter}
+        productData={productData}
       />
       <Productsbrands
         setProductFetchApi={setProductFetchApi}
