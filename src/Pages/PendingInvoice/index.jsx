@@ -48,7 +48,9 @@ function Index() {
       .catch((error) => {});
   }, [currency]);
 
-  console.log(pendingInvoiceList);
+  function truncate(str, n) {
+    return str?.length > n ? str.substr(0, n - 1) + "..." : str;
+  }
 
   const options = {
     filter: false,
@@ -86,7 +88,7 @@ function Index() {
               </span>
               <div className="product">
                 <span className="modal_name">{product_name}</span>
-                <span className="modal_content">{value}</span>
+                <span className="modal_content">{truncate(value, 100)}</span>
               </div>
             </div>
           );
@@ -471,7 +473,20 @@ function Index() {
                 00.00
               </span>
             </p>
-            <p className="total_value">
+            <p className="total_value_block" style={{backgroundColor: '#f8f0e0', alignItems:'center', marginTop: "10px"}}>
+              <span className="label">Total Order value</span>
+              <Divider style={{visibility: 'hidden'}} orientation="vertical" />
+              <span className="value">
+              <span className="value_symobol">
+                  {" "}
+                  {currency_id?.currency_code}{" "}
+                </span>
+                {formatToCurrency(
+                  parseInt(pendingInvoiceList?.invoice?.grand_total)
+                )}{" "}
+              </span>
+            </p>
+            {/* <p className="total_value">
               <div className="total_value_block">
                 <span className="label">Total Order value</span>
                 <span className="value">
@@ -484,7 +499,7 @@ function Index() {
                   )}{" "}
                 </span>
               </div>
-            </p>
+            </p> */}
           </div>
         </div>
       </div>
