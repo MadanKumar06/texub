@@ -77,7 +77,7 @@ const TransitionsModal = ({ classes, openPopUp }) => {
   const handleClassChange = (event) => {
     setClicked(event);
   };
-  console.log(homeContent?.popup?.buyer_banner);
+
   return (
     <Modal
       aria-labelledby="transition-modal-title"
@@ -103,7 +103,7 @@ const TransitionsModal = ({ classes, openPopUp }) => {
               ? `url('${homeContent?.popup?.buyer_banner}')`
               : `url('${homeContent?.popup?.seller_banner}')`
           }`,
-          outline:"none"
+          outline: "none",
         }}
       >
         <Clear

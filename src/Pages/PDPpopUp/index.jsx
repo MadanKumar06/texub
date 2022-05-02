@@ -125,7 +125,7 @@ const PdpPopup = () => {
   //APi call to addtocart
   const user = JSON.parse(localStorage.getItem("userdata"));
   const AddToCartAndPendingInvoice = (info) => {
-    let storedata = JSON.parse(localStorage.getItem('storedata'))
+    let storedata = JSON.parse(localStorage.getItem("storedata"));
     let isUserAddData = pdpSellerData?.is_table_one?.filter(
       (itm) => itm?.product_id === pdpSellerData?.product_id
     );
@@ -267,9 +267,7 @@ const PdpPopup = () => {
             {tableData && (
               <PDPTable
                 tableData={tableData}
-                pdpSellerData={pdpSellerData}
                 setPdpSellerData={setPdpSellerData}
-                dataFromPLP={pdpPopUpOpenClose?.data}
               />
             )}
           </div>

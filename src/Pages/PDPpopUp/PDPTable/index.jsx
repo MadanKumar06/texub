@@ -8,10 +8,9 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
-import Constant from "../../../Constant";
-import axios from "axios";
 import { useStateValue } from "../../../store/state";
 const PDPTable = ({ classes, tableData, setPdpSellerData }) => {
+  debugger
   //styles
   let {
     table_container,

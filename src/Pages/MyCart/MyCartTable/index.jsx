@@ -22,7 +22,7 @@ const MyCartTable = ({ cartDataList, deleteCartData }) => {
   const [is_table_quantity, setIs_table_quantity] = useState([]);
   console.log(cartDataList[0]?.invoice_items?.length);
 
-  const [{ pdpPopUpOpenClose, currency, geo }, dispatch] = useStateValue();
+  const [{ }, dispatch] = useStateValue();
 
   useEffect(() => {
     let temp =

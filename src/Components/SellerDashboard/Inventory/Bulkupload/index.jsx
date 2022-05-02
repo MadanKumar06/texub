@@ -104,7 +104,23 @@ function Index() {
               });
             })
         );
-      } else {
+      } else if (
+        itm?.__EMPTY_8 ||
+        itm?.__EMPTY_9 ||
+        itm?.__EMPTY_10 ||
+        itm?.__EMPTY_11 ||
+        itm?.__EMPTY_12 ||
+        itm?.__EMPTY_13 ||
+        itm?.__EMPTY_14 ||
+        itm?.__EMPTY_15 ||
+        itm?.__EMPTY_16 ||
+        itm?.__EMPTY_17 ||
+        itm?.__EMPTY_18 ||
+        itm?.__EMPTY_19 ||
+        itm?.__EMPTY_20 ||
+        itm?.__EMPTY_21 ||
+        itm?.__EMPTY_22
+      ) {
         let customerId = JSON.parse(localStorage.getItem("userdata"));
         let data = {
           data: {
