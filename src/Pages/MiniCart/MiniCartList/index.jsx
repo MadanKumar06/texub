@@ -71,6 +71,9 @@ const MiniCartList = ({ handleSideBarClose }) => {
         min_price: 0,
         max_price: 0,
         seller_id: "0",
+        todays_deal: 0,
+        price_drop: 0,
+        new_product: 0,
       },
     };
     axios
