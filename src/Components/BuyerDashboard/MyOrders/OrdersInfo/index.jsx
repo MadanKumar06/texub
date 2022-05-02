@@ -79,7 +79,7 @@ const Index = ({ orders, currentorder }) => {
     }
   }, [currentorder])
 
-  console.log(detailsorder)
+  console.log(detailsorder[0])
 
 
   const options = {
@@ -154,7 +154,7 @@ const columns = [
     },
   },
   {
-    name: "seller_code",
+    name: "sellercode",
     label: "seller Code",
     options: {
       customBodyRender: (value) => {
@@ -190,7 +190,7 @@ const columns = [
         },
     },
   {
-    name: "unitprice",
+    name: "unit_price",
     label: "UNIT PRICE",
     options: {
       customBodyRender: (value) => {
@@ -204,7 +204,7 @@ const columns = [
     },
   },
   {
-    name: "subtotal",
+    name: "sub_total",
     label: "SUB-TOTAL",
     options: {
       customBodyRender: (value) => {
@@ -296,16 +296,16 @@ const columns = [
           <div className="order_info_section1">
                 <div className="username">
                     <span className="id_heading">Order Date #</span>
-                    <span className="id">03/05/21</span>
+                    <span className="id">{detailsorder[0]?.order_details[0]?.created_at}</span>
                 </div>
                 <div className="username">
                     <span className="id_heading">Order ID #</span>
-                    <span className="id">000000021</span>
+                    <span className="id">{currentorder}</span>
                     <span className="status">Confirm</span>
                 </div>
                 <div className="username">
                     <span className="id_heading">Transaction ID #</span>
-                    <span className="id">000000021</span>
+                    <span className="id">{detailsorder[0]?.order_details[0]?.transaction_number}</span>
                     <span className="status">Completed</span>
                 </div>
             </div>
@@ -328,18 +328,18 @@ const columns = [
                 <div className="order_user_info">
                     <div className="username">
                         <span className="id_heading">Order ID #</span>
-                        <span className="id">000000021</span>
+                        <span className="id">{currentorder}</span>
                     </div>
                      <div className="username">
-                        <span className="id_heading">Order ID #</span>
-                        <span className="id">000000021</span>
+                        <span className="id_heading">Approved By</span>
+                        <span className="id">{detailsorder[0]?.order_details[0]?.approved_by}</span>
                     </div>
                 </div>
             </div>
       </div>
       <MUITable
         columns={columns}
-        table={table}
+        table={detailsorder[0]?.productdetails}
         options={options}
         className="vieworders__table"
       />
@@ -363,22 +363,22 @@ const columns = [
 
                 <div className="vieworders_shippingaddress_section">
                   <div className="vieworders_shippingaddress">
-                    {shippingaddress.map((item) => (
-                      <li key={item.id} className="vieworders_list">
-                        <span className="heading">{item.heading}</span>
-                        <span className="name"> {item.name}</span>
-                        <span className="address">{item.address}</span>
+                    {/* {shippingaddress.map((item) => ( */}
+                      <li className="vieworders_list">
+                        <span className="heading">{detailsorder[0]?.order_details[0]?.shipping_name}</span>
+                        <span className="name"> {detailsorder[0]?.order_details[0]?.shipping_name}</span>
+                        <span className="address">{detailsorder[0]?.order_details[0]?.shipping_address}</span>
                       </li>
-                    ))}
+                    {/* ))} */}
                   </div>
                    <div className="vieworders_shippingaddress">
-                    {billingaddress.map((item) => (
-                      <li key={item.id} className="vieworders_list">
-                        <span className="heading">{item.heading}</span>
-                        <span className="name"> {item.name}</span>
-                        <span className="address">{item.address}</span>
+                    {/* {billingaddress.map((item) => ( */}
+                      <li className="vieworders_list">
+                        <span className="heading">{detailsorder[0]?.order_details[0]?.billing_name}</span>
+                        <span className="name"> {detailsorder[0]?.order_details[0]?.billing_name}</span>
+                        <span className="address">{detailsorder[0]?.order_details[0]?.billing_address}</span>
                       </li>
-                    ))}
+                    {/* ))} */}
                   </div>
                  
                 </div>
@@ -388,43 +388,55 @@ const columns = [
                     <p className="payment_type">wire Transfer</p>
                   </div>
                   <div className="vieworders_payment_section transaction_block">
-                    {transaction_info.map((item) => (
+                    {detailsorder[0]?.order_details[0]?.transaction_number ? 
                       <div className="vieworders_list">
-                        <span className="block_title">Transaction Refernece Number : <span className="value">{item.referencenumber}</span></span>
-                        <span className="block_title">Transaction Amount : <span className="value">{item.symbol}</span> <span>{item.price}</span></span>
+                        <span className="block_title">Transaction Refernece Number : <span className="value">{detailsorder[0]?.order_details[0]?.transaction_number}</span></span>
+                        <span className="block_title">Transaction Amount : <span className="value">{detailsorder[0]?.order_details[0]?.transaction_currency}</span> <span>{detailsorder[0]?.order_details[0]?.transaction_amount}</span></span>
                         <span className="block_title date_time">Date & Time : 
-                            <span className="value"> {item.date}</span>      
+                            <span className="value"> {transaction_info[0]?.date}</span>      
                             <Divider orientation="vertical" />
-                            <span className="value_price"> {item.time}</span>
+                            <span className="value_price"> {transaction_info[0]?.time}</span>
                         </span>
                       </div>
-                    ))}
+                    :
                     <span className="update_transaction_block" onClick={() => setisTransaction(true)}>Update Transaction Details</span>
+                  }
                   </div>
 
                 </div>
               </div>
               <div className="vieworders_total">
-                {total.map((item) => (
-                  <li key={item.id} className="vieworders_list">
-                    <span className="total_heading"> {item.subtotal}</span>
+                {/* {total.map((item) => ( */}
+                  <li className="vieworders_list">
+                    <span className="total_heading"> Sub-Total</span>
                     <span className="total_amount">
-                      <span className="currency">INR</span> {item.amount}
+                      <span className="currency">INR</span> {detailsorder[0]?.order_details[0]?.subtotal}
                     </span>
                   </li>
-                ))}
+                  <li className="vieworders_list">
+                    <span className="total_heading"> Shipping Charge</span>
+                    <span className="total_amount">
+                      <span className="currency">INR</span> {detailsorder[0]?.order_details[0]?.shipping_charge}
+                    </span>
+                  </li>
+                  <li className="vieworders_list">
+                    <span className="total_heading"> Discount Price</span>
+                    <span className="total_amount">
+                      <span className="currency">INR</span> 0.00
+                    </span>
+                  </li>
+                {/* ))} */}
                 <hr className="hr"></hr>
                 {totalamount.map((item) => (
                   <li key={item.id} className="vieworders_list">
                     <div className="taxes">
                       <span className="total_amount_heading">
-                        {" "}
-                        {item.subtotal}{" "}
+                      Total Amount
                       </span>
                       <span className="gst">(incl.GST)</span>
                     </div>
                     <span className="total_amount">
-                      <span className="currency">INR</span> {item.amount}
+                      <span className="currency">INR</span> {detailsorder[0]?.order_details[0]?.grand_total}
                     </span>
                   </li>
                 ))}
