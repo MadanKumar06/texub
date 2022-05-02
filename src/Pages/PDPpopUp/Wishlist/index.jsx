@@ -46,6 +46,7 @@ const Index = ({ pdpSellerData, handleOpenClose }) => {
   };
 
   const [save_error, setSave_error] = useState('');
+  debugger
   const handleClickValidation = () => {
     var errorHandle = false;
     if (!newwishdata) {

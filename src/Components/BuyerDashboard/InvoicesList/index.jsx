@@ -8,6 +8,9 @@ import Vieworders from "../../Common/Vieworders";
 import transaction_type from "../../../Assets/buyerdashboard/InvoicesList/paypal (1).png";
 import transaction_type1 from "../../../Assets/buyerdashboard/InvoicesList/braintree-logo-black.png";
 import { useStateValue } from "../../../store/state";
+import axios from "axios";
+import Constant from "../../../Constant";
+import moment from 'moment'
 function Index() {
   const [tableData, setTableData] = useState([]);
   const ordertype = [
@@ -27,6 +30,7 @@ function Index() {
   }, []);
 
   const PaginateDataSplit = (event) => {
+    if (invoicelist?.length === 0) return setTableData([]);
     setTableData(event);
   };
 
@@ -48,6 +52,39 @@ function Index() {
     viewColumns: false,
     search: false,
   };
+
+  const [invoicelist, setinvoicelist] = useState()
+
+  useEffect(async() => {
+    dispatch({
+      type: "SET_IS_LOADING",
+      value: true,
+    });
+    const user = JSON.parse(localStorage.getItem('userdata'))
+    try {
+      const invoice = await axios({
+        method: 'post',
+        url: `${Constant?.baseUrl()}/listPendingInvoices`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        },
+        data: {
+          customer_id: user?.id
+        }
+      })
+      setinvoicelist(invoice?.data)
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
+    } catch(e) {
+      console.log(e)
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
+    }
+  }, [])
 
   const table = [
     {
@@ -94,7 +131,7 @@ function Index() {
 
   const columns = [
     {
-      name: "invoiceno",
+      name: "pending_invoice_id",
       label: "Invoice No",
       options: {
         customBodyRender: (value) => {
@@ -102,39 +139,49 @@ function Index() {
         },
       },
     },
-    { name: "date", label: "Date" },
-    {
-      name: "sellerid",
-      label: "Seller ID",
-      options: {
-        customBodyRender: (value) => {
-          return <div className="invoices__sellerid">{value}</div>;
-        },
+    { name: "created_at", label: "Date",
+    options: {
+      customBodyRender: (value) => {
+        return (
+          <div className="invoices__amount">
+            {moment(value).format("DD/MM/YYYY")}
+          </div>
+        );
       },
     },
+  },
+    // {
+    //   name: "seller_id",
+    //   label: "Seller ID",
+    //   options: {
+    //     customBodyRender: (value) => {
+    //       return <div className="invoices__sellerid">{value}</div>;
+    //     },
+    //   },
+    // },
     {
-      name: "amount",
+      name: "grand_total",
       label: "Amount",
       options: {
         customBodyRender: (value) => {
           return (
             <div className="invoices__amount">
               <span className="currency">INR </span>
-              <span className="price">{value}</span>
+              <span className="price">{parseFloat(value).toFixed(2)}</span>
             </div>
           );
         },
       },
     },
-    {
-      name: "hub",
-      label: "HUB",
-      options: {
-        customBodyRender: (value) => {
-          return <div className="invoices__hub">{value}</div>;
-        },
-      },
-    },
+    // {
+    //   name: "hub",
+    //   label: "HUB",
+    //   options: {
+    //     customBodyRender: (value) => {
+    //       return <div className="invoices__hub">{value}</div>;
+    //     },
+    //   },
+    // },
     {
       name: "transactionmode",
       label: "Transaction Mode",
@@ -149,7 +196,7 @@ function Index() {
       },
     },
     {
-      name: "status",
+      name: "pending_invoice_status",
       label: "Status",
       options: {
         customBodyRender: (value) => {
@@ -167,14 +214,16 @@ function Index() {
       },
     },
     {
-      name: "action",
+      name: "quote_id",
       label: "Action",
       options: {
         customBodyRender: (value) => {
           return (
-            <div className="invoices__action" onClick={orders}>
-              {value}
-            </div>
+            <Link to={`/${customnostore ? customnostore : geo?.country_name}/pendinginvoice/${value}`}>
+              <div className="invoices__action">
+                View Details
+              </div>
+            </Link>
           );
         },
       },
@@ -202,11 +251,15 @@ function Index() {
             options={options}
             className="invoices__table"
           />
+          {invoicelist?.length > 0 ?
           <Pagination
             PaginateData={PaginateDataSplit}
-            DataList={table}
+            DataList={invoicelist?.length ? invoicelist : []}
             PagePerRow={10}
           />
+          :
+            ""
+          }
           <div className="invoices__footer">
             <div className="invoices__container">
               <Link
