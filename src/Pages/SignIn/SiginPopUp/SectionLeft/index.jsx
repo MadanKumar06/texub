@@ -382,7 +382,7 @@ const TransitionsModal = ({ classes, openPopUp }) => {
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
           className={modal}
-          models:disableAutoFocus={true}
+          disableAutoFocus={true}
         >
           <div className={forgotpassword}>
             <div className={forgotpassword__title}>
@@ -463,7 +463,7 @@ const TransitionsModal = ({ classes, openPopUp }) => {
           disableBackdropClick
           BackdropComponent={Backdrop}
           onClose={handleClose}
-          models:disableAutoFocus={true}
+          disableAutoFocus={true}
           BackdropProps={{
             timeout: 500,
           }}
