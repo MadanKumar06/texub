@@ -67,8 +67,10 @@ const styles = (theme) => ({
     padding: "10px 18px",
     width: "fit-content",
     color: "#002D56",
-    marginLeft : "10px",
+    marginLeft : "0px",
     fontSize: "18px",
+    marginTop: "5px",
+    marginBottom: "5px",
     "& span": {
       fontWeight: "600",
     },
@@ -94,7 +96,7 @@ const styles = (theme) => ({
     margin: "0",
     color: "#333C42",
     letterSpacing: "0.78px",
-    padding: "8px 0px",
+    padding: "0 8px 8px 0px",
     textTransform: "uppercase",
     margin: "0px",
     "@media (max-width:1660px)": {

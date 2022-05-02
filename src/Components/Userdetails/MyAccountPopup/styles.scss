@@ -67,6 +67,12 @@
       -webkit-transition: all 0.3s 0s ease-out;
       &:hover {
         color: #002d56;
+        font-weight: 600;
+
+        a{
+          color: #002d56;
+          font-weight: 600;
+        }
       }
       gap: 24px;
       padding: 13px 13px 13px 0px;

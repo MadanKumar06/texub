@@ -12,7 +12,7 @@ import axios from "axios";
 import swal from "sweetalert2";
 import Constant from "../../../../Constant";
 import { useStateValue } from "../../../../store/state";
-import { isOtherBrands, isOnlySpecialCharacters } from "../../../../utilities";
+import { isOtherBrands, isOnlySpecialCharacters ,isRolesValid } from "../../../../utilities";
 
 function RegisterProduct() {
   const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
@@ -213,13 +213,12 @@ function RegisterProduct() {
       errorHandle = true;
     } else if (
       registerNewProductData?.brands?.value === "brand-others" &&
-      isOtherBrands(registerNewProductData?.other_brands)
+      !isRolesValid(registerNewProductData?.other_brands)
     ) {
       document.getElementById("other_brands")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
-        // other_brands: "Special characters should not contain continuously.",
-        other_brands: "Enter only number, alphabet and special character.",
+        other_brands: "Please enter Alphabet or (Alphabet, Special Characters and Number)...",
       }));
       errorHandle = true;
     }

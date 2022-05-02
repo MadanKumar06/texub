@@ -2,6 +2,9 @@
   padding: 0 3%;
   .MuiPaper-root {
     box-shadow: none;
+    .MuiPaper-rounded.MuiPaper-root{
+      display: none;
+    }
   }
   .mycart_table_mui_datatable_main {
     .MuiTableHead-root {

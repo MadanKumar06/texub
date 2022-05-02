@@ -182,8 +182,9 @@ const Productlists = ({
         >
           <InputBase
             sx={{ ml: 1, flex: 1 }}
-            placeholder="Search..."
+            placeholder="Search Products Here…"
             name="search_product"
+            id="search_product"
             onChange={handleChange}
             inputProps={{ "aria-label": "" }}
             value={productFetchApi?.search_product}
