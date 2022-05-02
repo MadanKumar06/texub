@@ -70,7 +70,6 @@ export const getSigninedUserData = () => {
 };
 
 //homePage content
-
 export const GetHomeAPi = async (callback) => {
   try {
     const home = await axios({

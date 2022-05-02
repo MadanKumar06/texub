@@ -55,6 +55,7 @@ const BuyerKYCformSectionLeft = ({ classes }) => {
       aria-describedby="transition-modal-description"
       className={modal}
       open={open}
+      disableRestoreFocus={true}
       closeAfterTransition
       BackdropComponent={Backdrop}
       BackdropProps={{
