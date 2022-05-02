@@ -137,7 +137,7 @@ function Index() {
               </span>
               <div className="product">
                 <span className="modal_name">{product_name}</span>
-                <span className="modal_content">{truncate(value, 100)}</span>
+                <span className="modal_content">{truncate(value, 50)}</span>
               </div>
             </div>
           );
