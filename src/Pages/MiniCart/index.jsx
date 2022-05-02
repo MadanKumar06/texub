@@ -59,7 +59,7 @@ const MiniCartDrawer = () => {
   return (
     <div className="minicart_drawer_main">
       <React.Fragment key={"right"}>
-        <Button onClick={toggleDrawer("right", true)}>
+        <Button onClick={toggleDrawer("right", true)} disableRipple>
           <Badge
             showZero={true}
             badgeContent={

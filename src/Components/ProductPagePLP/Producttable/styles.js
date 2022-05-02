@@ -56,6 +56,7 @@ const styles = () => ({
         textAlign: "center",
         fontSize: "18px",
         fontWeight: "600",
+        padding: "7px 10px",
         "@media (max-width:1680px)": {
           fontSize: "16px",
         },
@@ -96,6 +97,10 @@ const styles = () => ({
   },
   producttable_description: {
     maxWidth: "300px",
+   // textAlign: "left",
+   display: "flex",
+   justifyContent: "start",
+   alignItems : "center",
   },
   producttable_price: {
     width: "110px",
@@ -130,6 +135,7 @@ const styles = () => ({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
+    margin: "10px 0",
     gap: "5px",
 
     // button styles

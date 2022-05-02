@@ -18,10 +18,14 @@
     box-shadow: 0px 3px 6px rgb(0 0 0 / 16%) !important;
     background-color:#FFFFFF;
     z-index: 9;
-    padding: 15px 20px;
+    // padding: 15px 20px;
     gap: 30px;
+    height: 80vh;
         .wishlist_main_block{
-            margin: 2em 3em;
+        padding: 2em 3em;
+        height: 80vh;
+        min-height: 65vh;
+        overflow: auto;
         }
     
     .clear_btn{
@@ -75,7 +79,7 @@
             color: #DDB363;
         }
         .pdpwishlisthceckbox{
-            padding: 9px 9px 9px 0;
+            padding: 9px 9px 9px 9px;
         }
     }
     .wishlist_bts{
@@ -171,7 +175,7 @@
          .wishlist_main{
               max-width: 700px;
              width: 100%;
-             padding: 10px 15px;
+            // padding: 10px 15px;
               .clear_btn{
                 width: 1em !important;
                 height: 1em !important;
@@ -179,7 +183,7 @@
                 right: -33px;
              }
             .wishlist_main_block{
-                margin: 1.5em;
+                padding: 10px 15px;
             }
              .wishlist_product{
                  .description{
@@ -222,7 +226,8 @@
                 right: -33px;
              }
               .wishlist_main_block{
-                 margin: 1.5em;
+                padding: 10px 15px;
+
              }
              .wishlist_product{
                 .wishlist_img {
@@ -240,7 +245,7 @@
 @media (max-width: 599px) {
     .wishlist_modal
          .wishlist_main{
-            padding: 10px 15px;
+           // padding: 10px 15px;
              max-width: 300px;
              width: 100%;
               .clear_btn{
@@ -250,7 +255,7 @@
                 right: -25px;
              }
              .wishlist_main_block{
-                 margin: 10px 20px;
+                //  margin: 10px 20px;
              }
              .wishlist_product{
                 .wishlist_img {

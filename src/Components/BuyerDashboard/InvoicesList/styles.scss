@@ -112,8 +112,12 @@
       padding: 2em 0 0;
       .invoices__container {
         display: flex;
-        justify-content: space-between;
+        // justify-content: space-between;
         flex-wrap: wrap;
+        span{
+           color: #002d56;
+            font-weight: 600;
+          }
         a {
           text-decoration: none;
           display: flex;
