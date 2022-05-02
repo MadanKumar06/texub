@@ -1,5 +1,50 @@
 .vieworders_main {
   padding-top: 30px;
+  .invoices__footer {
+    margin-top: 2em;
+    .invoices__container {
+      display: flex;
+      align-items: center;
+      font-size: 16px;
+      color: #002d56;
+    }
+    svg {
+      width: 0.6em;
+      height: 0.6em;
+    }
+  }
+  .status_change_container {
+    margin-top: 3em;
+    .select_text {
+      font-size: 14px;
+      color: #333c42;
+      font-weight: 600;
+      margin-left: 1.2em;
+    }
+    .status {
+      padding: 0.5em 2em;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 1px;
+    }
+    .confirm {
+      background: #d5ecff;
+      color: #20639b;
+    }
+    .dispatched {
+      background: #fff6e5;
+      color: #d9ad59;
+    }
+    .delivered {
+      background: #e6ffea;
+      color: #00b91c;
+    }
+    .cancelled {
+      background: #ffe2e2;
+      color: #ff0000;
+    }
+  }
   .vieworders_heading_section {
     display: flex;
     gap: 20px;
@@ -52,7 +97,7 @@
     }
     .MuiTableBody-root {
       .MuiTableCell-root {
-        font-size: 18px;
+        font-size: 16px;
         text-align: center;
         color: #333c42;
         letter-spacing: 0.54px;
@@ -111,6 +156,7 @@
           color: #5c6369;
           font-size: 28px;
           letter-spacing: 0.84px;
+          margin-left: 4px;
           font-weight: 600;
         }
       }
@@ -278,7 +324,7 @@
     .productname
     .product
     .modal_name {
-    font-size: 18px;
+    font-size: 14px;
   }
   .vieworders_main
     .vieworders__table
@@ -286,7 +332,7 @@
     .productname
     .product
     .modal_content {
-    font-size: 16px;
+    font-size: 14px;
   }
   .vieworders_main .vieworders__table .MuiTableBody-root .vieworders_price,
   .vieworders_main .vieworders__table .MuiTableBody-root .vieworders_total {
@@ -294,11 +340,11 @@
       font-size: 14px;
     }
     .price {
-      font-size: 22px;
+      font-size: 18px;
     }
   }
   .vieworders_main .vieworders_detail_section .heading {
-    font-size: 22px;
+    font-size: 18px;
   }
   .vieworders_main
     .vieworders_detail_section

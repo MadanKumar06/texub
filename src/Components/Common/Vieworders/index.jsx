@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./styles.scss";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import MUITable from "../../Common/MUITable";
+import axios from "axios";
+import Constant from "../../../Constant";
+import { useStateValue } from "../../../store/state";
+import { getAdminToken } from "../../../utilities";
+import swal from "sweetalert2";
 import {
   Radio,
   RadioGroup,
@@ -25,6 +30,7 @@ const options = {
 function formatToCurrency(price) {
   return price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
 }
+
 const columns = [
   {
     name: "product_name",
@@ -113,19 +119,69 @@ const columns = [
   },
 ];
 const Index = ({ setisVieworders, setisOrders, viewDetail }) => {
-  debugger;
+  const [radiogroup, setRadioGroup] = useState(1);
+  const [{}, dispatch] = useStateValue();
+
+  const [adminToken, setAdminToken] = useState("");
+  useEffect(() => {
+    getAdminToken((res) => {
+      setAdminToken(res);
+    });
+  }, []);
+  const handleAPICall = (event) => {
+    let data = {
+      itemId: viewDetail?.[0]?.item_id,
+      orderStatus: event,
+    };
+    axios
+      .post(Constant.baseUrl() + "/updateSellerOrderStatus", data, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${adminToken}`,
+        },
+      })
+      .then((res) => {
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+        if (res?.data?.[0]?.status) {
+          swal.fire({
+            text: `${res?.data?.[0]?.message}`,
+            icon: "success",
+            showConfirmButton: false,
+            timer: 3000,
+          });
+        } else {
+          swal.fire({
+            text: `${res?.data?.[0]?.message}`,
+            icon: "error",
+            showConfirmButton: false,
+            timer: 3000,
+          });
+        }
+      })
+      .catch((err) => {
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+        swal.fire({
+          text: `${err?.response?.data?.message}`,
+          icon: "error",
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      });
+  };
   return (
     <div className="vieworders_main">
       <div className="vieworders_heading_section">
         <p className="id_heading">
-          Pending Invoice No. #{viewDetail?.[0]?.quote_id}
+          Pending Invoice No. #{" "}
+          <span className="id">{viewDetail?.[0]?.quote_id}</span>
         </p>
-        <Button
-          className="button-text btn-secondary"
-          // onClick={() => orders()}
-        >
-          Attach Invoice
-        </Button>
+        <Button className="button-text btn-secondary">Attach Invoice</Button>
       </div>
       <MUITable
         columns={columns}
@@ -134,78 +190,72 @@ const Index = ({ setisVieworders, setisOrders, viewDetail }) => {
         className="vieworders__table"
       />
       <div className="status_change_container">
-        <FormControl component="fieldset">
-          <FormLabel component="legend">
-            {/* <FormControl component="fieldset" className={radio_btn_container}>
-          <FormLabel component="legend" className={select_text}> */}
+        <FormControl component="fieldset" className="radio_btn_container">
+          <FormLabel component="legend" className="select_text">
             Update the order status
           </FormLabel>
           <RadioGroup
             row
             aria-label="position"
             name="position"
-            defaultValue="buyer"
-            // className={radio_group}
+            defaultValue=""
+            className="radio_group"
           >
             <FormControlLabel
-              value="buyer"
+              value="Confirm"
               control={<Radio color="secondary" />}
               label={
                 <>
-                  {/* <img src={buyer_img} alt="auth" /> */}
-                  <p>Buyer</p>
+                  <p className="confirm status">Confirm</p>
                 </>
               }
               labelPlacement="top"
-              // onClick={() => {
-              //   handleChange("buyer");
-              //   setUserDescription(true);
-              // }}
+              onClick={() => {
+                setRadioGroup(1);
+                handleAPICall(1);
+              }}
             />
             <FormControlLabel
-              value="buyer"
+              value="Dispatched"
               control={<Radio color="secondary" />}
               label={
                 <>
-                  {/* <img src={buyer_img} alt="auth" /> */}
-                  <p>Buyer</p>
+                  <p className="dispatched status">Dispatched</p>
                 </>
               }
               labelPlacement="top"
-              // onClick={() => {
-              //   handleChange("buyer");
-              //   setUserDescription(true);
-              // }}
+              onClick={() => {
+                setRadioGroup(2);
+                handleAPICall(2);
+              }}
             />
             <FormControlLabel
-              value="buyer"
+              value="Delivered"
               control={<Radio color="secondary" />}
               label={
                 <>
-                  {/* <img src={buyer_img} alt="auth" /> */}
-                  <p>Buyer</p>
+                  <p className="delivered status">Delivered</p>
                 </>
               }
               labelPlacement="top"
-              // onClick={() => {
-              //   handleChange("buyer");
-              //   setUserDescription(true);
-              // }}
+              onClick={() => {
+                setRadioGroup(3);
+                handleAPICall(3);
+              }}
             />
             <FormControlLabel
-              value="seller"
+              value="Cancelled"
               control={<Radio color="secondary" />}
               label={
                 <>
-                  {/* <img src={seller_img} alt="auth" /> */}
-                  <p>Seller</p>
+                  <p className="cancelled status">Cancelled</p>
                 </>
               }
               labelPlacement="top"
-              // onClick={() => {
-              //   handleChange("seller");
-              //   setUserDescription(false);
-              // }}
+              onClick={() => {
+                setRadioGroup(4);
+                handleAPICall(4);
+              }}
             />
           </RadioGroup>
         </FormControl>
