@@ -66,7 +66,7 @@ const styles = () => ({
     listStyleType: "none",
     margin: "0",
     paddingLeft: "0",
-    height: "27vh",
+    height: "30vh",
     overflowX: "auto",
     "&::-webkit-scrollbar": {
       width: "10px",
@@ -145,7 +145,7 @@ const styles = () => ({
     },
   },
   title: {
-    padding: "15px 5px !important",
+    padding: "10px 5px !important",
     textAlign: "center",
     fontSize: "20px",
     fontWeight: "600",
@@ -404,7 +404,7 @@ const styles = () => ({
     letterSpacing: "0.6px",
     marginRight: "5px",
     "@media (max-width:1660px)": {
-      fontSize: "14px",
+      fontSize: "12px",
     },
   },
   price_value: {

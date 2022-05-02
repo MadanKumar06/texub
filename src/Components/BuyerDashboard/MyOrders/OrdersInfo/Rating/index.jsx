@@ -1,4 +1,4 @@
-import * as React from 'react';
+import  React, { useState } from 'react';
 import { Rating, Button, Menu, MenuItem } from "@mui/material";
 import Typography from '@mui/material/Typography';
 import {Modal,Backdrop } from "@mui/material";
@@ -10,6 +10,8 @@ import {
 } from "@mui/material";
 import { Clear  } from "@mui/icons-material";
 import "./styles.scss";
+import axios from 'axios';
+import Constant from '../../../../../Constant';
 
 
 const style = {
@@ -24,8 +26,11 @@ const style = {
   p: 4,
 };
 
-export default function BasicModal({Popup}) {
-  
+export default function BasicModal({Popup, currentorder}) {
+  const [rating, setrating] = useState({
+    star: 0,
+    comment: ''
+  })
   const [open, setOpen] = React.useState(true);
     const [value, setValue] = React.useState(2);
   // const handleOpen = () => setOpen(true);
@@ -33,7 +38,31 @@ export default function BasicModal({Popup}) {
       setOpen(false);
       Popup(false)
     }
-
+    console.log(rating)
+  const reviewsubmit = async() => {
+    let user = JSON.parse(localStorage.getItem('userdata'))
+    try {
+      const submit = await axios({
+        method: 'post',
+        url: `${Constant?.baseUrl()}/saveReview`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        },
+        data: {
+          "data":{
+            "buyer_id":user?.id,
+            "order_id":13,
+            "order_number":currentorder,
+            "rating":rating?.star,
+            "review_details":rating?.comment
+          }
+         
+        }
+      })
+    } catch(e) {
+      console.log(e)
+    }
+  }
   return (
     <div>
       {/* <Button onClick={handleOpen}>Open modal</Button> */}
@@ -60,9 +89,12 @@ export default function BasicModal({Popup}) {
                       <Rating
                         className="ratings"
                         name="simple-controlled"
-                        value={2}
+                        value={rating?.star}
                         onChange={(event, newValue) => {
-                          //   setValue(newValue);
+                            setrating(rating => ({
+                              ...rating,
+                              star: newValue
+                            }));
                         }}
                       />
                     </div>
@@ -73,12 +105,17 @@ export default function BasicModal({Popup}) {
                         minRows={3}
                         className= "rating_comment"
                         style={{ height: 100 }}
+                        value={rating?.comment}
+                        onChange={(e) => setrating(rating => ({
+                          ...rating,
+                          comment: e.target.value
+                        }))}
                       />
                       <div className='rating-btns'>
                           <Button className="rating_comments_cancel">
                           Cancel
                         </Button>
-                        <Button className="btn-secondary rating_comments_submit">Submit</Button>
+                        <Button className="btn-secondary rating_comments_submit" onClick={reviewsubmit}>Submit</Button>
                       </div>  
                     </div>  
                 </div>

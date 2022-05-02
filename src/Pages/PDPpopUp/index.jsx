@@ -331,6 +331,13 @@ const PdpPopup = () => {
               </span>
             </div>
             <div className="pdp_footer_model_details">
+              <span className="pdp_footer_model_info">HUB</span>
+              <span className="pdp_footer_model_info_detail">
+                {" "}
+                {pdpSellerData?.hub}
+              </span>
+            </div>
+            <div className="pdp_footer_model_details">
               <span className="pdp_footer_model_info">CONDITION</span>
               <span className="pdp_footer_model_info_detail">
                 {" "}

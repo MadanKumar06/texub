@@ -51,20 +51,12 @@
         text-decoration: none;
         color: #5c6369;
         gap: 24px;
-        transition: all 0.3s 0s ease-out;
-        -o-transition: all 0.3s 0s ease-out;
-        -moz-transition: all 0.3s 0s ease-out;
         text-decoration: none;
-        -webkit-transition: all 0.3s 0s ease-out;
         &:hover {
           color: #002d56;
         }
       }
-      transition: all 0.3s 0s ease-out;
-      -o-transition: all 0.3s 0s ease-out;
-      -moz-transition: all 0.3s 0s ease-out;
       text-decoration: none;
-      -webkit-transition: all 0.3s 0s ease-out;
       &:hover {
         color: #002d56;
         font-weight: 600;
@@ -72,6 +64,42 @@
         a{
           color: #002d56;
           font-weight: 600;
+          svg {
+            g {
+              stroke: #012d56;
+              rect {
+                stroke: #012d56;
+              }
+              path{
+                stroke: #012d56;
+              }
+              line{
+                stroke: #012d56;
+              }
+              g{
+                stroke: #012d56;
+              }
+            }
+            path {
+              stroke: #012d56;
+            }
+          }
+
+
+          svg{
+            path{
+              stroke: #012d56;
+            }
+            line{
+              stroke: #012d56;
+            }
+            g{
+               stroke: #012d56;
+            }
+            fill{
+              stroke: #012d56;
+            }
+          }
         }
       }
       gap: 24px;

@@ -242,7 +242,7 @@ function Index({
               type="number"
               className="inputfield-box price_textbox"
               autoComplete="off"
-              value={currentdata.price}
+             value={parseInt(currentdata.price)}
               InputLabelProps={{
                 shrink: false,
               }}

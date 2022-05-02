@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Modal, Backdrop } from "@mui/material";
 import { Add } from "@mui/icons-material";
 import { Button, IconButton, Typography, Box } from "@mui/material";
@@ -22,30 +22,64 @@ import {
   totalamount,
   transaction_info,
 } from "../../../Common/Vieworders/viewordersjson";
+import axios from "axios";
+import Constant from "../../../../Constant";
 
-const Index = ({ setisVieworders, setisOrders }) => {
+const Index = ({ orders, currentorder }) => {
   const [{}, dispatch] = useStateValue()
-    const [open, setOpen] = useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const [detailsorder, setdetailsorder] = useState([])
+  const [isUopup, setisUopup] = useState(false);
+  const Popup = (event) => {
+      setisUopup(event);
+    };
 
-        const [isUopup, setisUopup] = useState(false);
-      const Popup = (event) => {
-        
-        setisUopup(event);
-      };
+  const [TrackOrder, setisTrackOrder] = useState(false);
+  const PopupTrack = (event) => {  
+    setisTrackOrder(event);
+  };
 
-       const [TrackOrder, setisTrackOrder] = useState(false);
-      const PopupTrack = (event) => {
-        
-        setisTrackOrder(event);
-      };
+  const [Transaction, setisTransaction] = useState(false);
+  const PopupTransaction = (event) => {
+    
+    setisTransaction(event);
+  };
 
-        const [Transaction, setisTransaction] = useState(false);
-      const PopupTransaction = (event) => {
-        
-        setisTransaction(event);
-      };
+  useEffect(async() => {
+    dispatch({
+      type: "SET_IS_LOADING",
+      value: true,
+    });
+    let user = JSON.parse(localStorage.getItem('userdata'))
+    try {
+      const orderdetails = await axios({
+        method: 'post',
+        url: `${Constant?.baseUrl()}/getBuyerOrderDetails`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        },
+        data: {
+          "orderId":currentorder,
+          "customerId":user?.id
+        }
+      })
+      setdetailsorder(orderdetails?.data)
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
+    } catch(e) {
+      console.log(e)
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
+    }
+  }, [currentorder])
+
+  console.log(detailsorder)
 
 
   const options = {
@@ -419,10 +453,7 @@ const columns = [
       <div className="invoices__footer">
         <div
           className="invoices__container"
-          onClick={() => {
-            setisVieworders(false);
-            setisOrders(true);
-          }}
+          onClick={() =>orders()}
         >
           <ArrowBackIosNew />
           <span>Back</span>
@@ -460,7 +491,7 @@ const columns = [
         </Modal>
         </div>
     </div>
-   {isUopup && <Ratingpopup Popup={setisUopup} />}
+   {isUopup && <Ratingpopup Popup={setisUopup} currentorder={currentorder}/>}
       {TrackOrder && <TrackOrderpopup PopupTrack={setisTrackOrder} />}
       {Transaction && <TransactionPopup PopupTransaction={setisTransaction} />}
 

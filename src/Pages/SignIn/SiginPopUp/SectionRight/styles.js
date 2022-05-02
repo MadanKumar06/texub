@@ -12,7 +12,7 @@ const styles = (theme) => ({
     color: "#333333",
     fontSize: "20px",
     opacity: "1",
-    marginBottom: "0",
+    margin: "0 0 10px 0",
     "@media(max-width:1660px)": {
       fontSize: "16px",
       marginTop :"10px",
