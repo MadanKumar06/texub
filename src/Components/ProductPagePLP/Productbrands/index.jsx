@@ -67,19 +67,67 @@ const Productsbrands = ({ setProductFetchApi, getCategories }) => {
 
   const Productsicon = {
     dots: false,
-    infinite: false,
+    infinite: true,
     slidesToShow: 15,
-    slidesToScroll: 2,
+    slidesToScroll: 1,
     initialSlide: 0,
     nextArrow: <Arrow type="next" />,
     prevArrow: <Arrow type="prev" />,
-    responsive: [
+   responsive: [
       {
-        breakpoint: 192,
+        breakpoint: 1921,
         settings: {
-          slidesToShow: 15,
-          slidesToScroll: 2,
-          initialSlide: 0,
+          slidesToShow: 8,
+          slidesToScroll: 1,
+          initialSlide: 8,
+        },
+      },
+      {
+        breakpoint: 1600,
+        settings: {
+          slidesToShow: 7,
+          slidesToScroll: 1,
+          initialSlide: 7,
+        },
+      },
+      {
+        breakpoint: 1440,
+        settings: {
+          slidesToShow: 6,
+          slidesToScroll: 1,
+          initialSlide: 6,
+        },
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 6,
+          slidesToScroll: 1,
+          initialSlide: 4,
+        },
+      },
+      {
+        breakpoint: 769,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          initialSlide: 3,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 320,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          initialSlide: 2,
         },
       },
     ],
@@ -88,41 +136,65 @@ const Productsbrands = ({ setProductFetchApi, getCategories }) => {
     dots: false,
     infinite: true,
     slidesToShow: 15,
-    slidesToScroll: 2,
+    slidesToScroll: 1,
     initialSlide: 0,
     nextArrow: <Arrow type="next" />,
     prevArrow: <Arrow type="prev" />,
     responsive: [
       {
-        breakpoint: 1920,
+        breakpoint: 1921,
         settings: {
-          slidesToShow: 10,
+          slidesToShow: 9,
           slidesToScroll: 1,
-          initialSlide: 0,
+          initialSlide: 9,
         },
       },
       {
-        breakpoint: 1600,
+        breakpoint: 1660,
         settings: {
           slidesToShow: 8,
           slidesToScroll: 1,
-          initialSlide: 0,
+          initialSlide: 8,
+        },
+      },
+      {
+        breakpoint: 1440,
+        settings: {
+          slidesToShow: 6,
+          slidesToScroll: 1,
+          initialSlide: 6,
+        },
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 6,
+          slidesToScroll: 1,
+          initialSlide: 4,
         },
       },
       {
         breakpoint: 769,
         settings: {
-          slidesToShow: 6,
+          slidesToShow: 3,
           slidesToScroll: 1,
-          initialSlide: 0,
+          initialSlide: 3,
         },
       },
       {
-        breakpoint: 540,
+        breakpoint: 480,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
-          initialSlide: 0,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 320,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          initialSlide: 1,
         },
       },
     ],

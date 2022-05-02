@@ -379,7 +379,7 @@ const MiniCartList = ({ handleSideBarClose }) => {
                     JSON.parse(localStorage.getItem("currency"))?.currency_code
                   }{" "}
                 </span>
-                {formatToCurrency(cart?.length && cart[0]?.invoice?.subtotal)}
+                {formatToCurrency(parseInt(cart?.length && cart[0]?.invoice?.subtotal))}
               </p>
             </div>
             <div className="minicart_btn">

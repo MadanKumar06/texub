@@ -8,7 +8,7 @@
   .slick-slider {
     .slick-list {
       width: 100%;
-      overflow: hidden;
+      // overflow: hidden;
       overflow-x: clip !important;
       overflow-y: inherit;
      transform: unset;
@@ -16,7 +16,8 @@
     .slick-track {
       display: flex;
       align-items: center;
-      width: 100% !important;
+      // width: 100% !important;
+      margin: 0;
       .slick-slide {
         width: max-content;
         margin: 0 1em;
@@ -35,7 +36,7 @@
   }
 
   .slick-list {
-    padding: 0 30px;
+    padding: 0 10px;
   }
 
   .slide_Test {
@@ -47,7 +48,7 @@
     user-select: auto;
     z-index: 9;
     .slick-slide {
-      width: max-content !important;
+      width:100% !important;
     }
     .slick-initialized {
       padding: 5px 40px;
@@ -59,6 +60,7 @@
         height: 50px;
         width: 50px;
         cursor: pointer;
+        margin: auto;
       }
     }
     .Slider_brands {

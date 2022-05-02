@@ -97,10 +97,10 @@ const styles = () => ({
   },
   producttable_description: {
     maxWidth: "300px",
-   // textAlign: "left",
    display: "flex",
-   justifyContent: "start",
+   justifyContent: "flex-start",
    alignItems : "center",
+   textAlign: "left",
   },
   producttable_price: {
     width: "110px",
