@@ -60,9 +60,29 @@ const DeliveryCallJson = [
 ];
 const Checkout = () => {
   const [shipping_method, setShipping_method] = useState("texub_shipping");
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const [open, setOpen] = useState({
+    open: "",
+    openClose: false,
+  });
+  const handleOpen = (event) => {
+    if (event === "edit_new_address") {
+      setOpen({
+        open: event,
+        openClose: true,
+      });
+    } else {
+      setOpen({
+        open: event,
+        openClose: true,
+      });
+      setaddressdata({});
+    }
+  };
+  const handleClose = () =>
+    setOpen({
+      open: "",
+      openClose: false,
+    });
   const [quotedata, setqutoedata] = useState([]);
   const { quoteid } = useParams();
   const [userid, setuserid] = useState();
@@ -213,7 +233,7 @@ const Checkout = () => {
       pincode: temp?.[0]?.postcode,
       country: temp?.[0]?.country_id,
     }));
-    handleOpen();
+    handleOpen("edit_new_address");
   };
   console.log(addressdata);
 
@@ -638,9 +658,12 @@ const Checkout = () => {
                           </div>
                         ))}
                         <div className="aside_block_B delivery_address_content">
-                          <div className="delivery_address_add">
-                            <Add className="add_icon" onClick={handleOpen} />
-                            <span onClick={handleOpen}>Add New Address</span>
+                          <div
+                            className="delivery_address_add"
+                            onClick={() => handleOpen("add_new_address")}
+                          >
+                            <Add className="add_icon" />
+                            <span>Add New Address</span>
                           </div>
                         </div>
                       </div>
@@ -918,7 +941,7 @@ const Checkout = () => {
       <div>
         {/* <Button onClick={handleOpen}>Open modal</Button> */}
         <Modal
-          open={open}
+          open={open?.openClose}
           onClose={handleClose}
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
