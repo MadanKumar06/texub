@@ -133,7 +133,11 @@ const Productlists = ({
                   price_drop: false,
                   just_launch: false,
                 });
-                setProductFetchApi({ todays_deal: 0 });
+                setProductFetchApi({
+                  today_deal: 1,
+                  price_drop: 0,
+                  just_launch: 0,
+                });
               }}
             />
           </div>
@@ -150,7 +154,11 @@ const Productlists = ({
                   price_drop: true,
                   just_launch: false,
                 });
-                setProductFetchApi({ price_drop: 0 });
+                setProductFetchApi({
+                  today_deal: 0,
+                  price_drop: 1,
+                  just_launch: 0,
+                });
               }}
             />
           </div>
@@ -167,7 +175,11 @@ const Productlists = ({
                   price_drop: false,
                   just_launch: true,
                 });
-                setProductFetchApi({ new_product: 0 });
+                setProductFetchApi({
+                  today_deal: 0,
+                  price_drop: 0,
+                  just_launch: 1,
+                });
               }}
             />
           </div>

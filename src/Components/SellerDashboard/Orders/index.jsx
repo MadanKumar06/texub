@@ -1,15 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./styles.scss";
 import MUITable from "../../Common/MUITable";
 import { Link } from "react-router-dom";
 import Pagination from "../../Pagination";
 import { ArrowBackIosNew } from "@mui/icons-material";
-import ViewOrder from '../../Common/Vieworders'
+import ViewOrder from "../../Common/Vieworders";
 import { useStateValue } from "../../../store/state";
+import axios from "axios";
+import Constant from "../../../Constant";
+var moment = require("moment");
 
 function Index() {
-  const [{geo, customstore, customnostore}, dispatch] = useStateValue()
+  const [{ geo, customnostore }, dispatch] = useStateValue();
   const [tableData, setTableData] = useState([]);
+  const [apiTableData, setApiTableData] = useState([]);
+  const [viewDetail, setViewDetail] = useState({});
   const ordertype = [
     { name: "All Orders" },
     { name: "Purchase Orders" },
@@ -22,14 +27,56 @@ function Index() {
   const selectorder = (value) => {
     settype(value);
   };
-  const PaginateDataSplit = (event) => {
-    setTableData(event);
-  };
-  const [vieworder, setvieworder] = useState(false)
-  const showorder = () => {
-    setvieworder(true)
+  function formatToCurrency(price) {
+    return price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
   }
 
+  const PaginateDataSplit = (event) => {
+    if (apiTableData?.length === 0) return setApiTableData([]);
+    setTableData(event);
+  };
+  const [vieworder, setvieworder] = useState(false);
+
+  useEffect(() => {
+    const fetchTableData = async () => {
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: true,
+      });
+
+      let seller_id = JSON.parse(localStorage.getItem("userdata"));
+      try {
+        const tabledata = await axios({
+          method: "post",
+          url: `${Constant.baseUrl()}/getSellerOrder`,
+          data: {
+            sellerId: seller_id?.id,
+          },
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+        setApiTableData(tabledata?.data);
+      } catch (e) {
+        console.log(e);
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+      }
+    };
+    fetchTableData();
+  }, []);
+
+  const handleViewOrder = (item_id) => {
+    let temp = apiTableData?.filter((itm) => itm?.item_id === item_id);
+    setViewDetail(temp);
+    setvieworder(true);
+  };
   const options = {
     filter: false,
     filterType: "dropdown",
@@ -42,48 +89,9 @@ function Index() {
     search: false,
   };
 
-  const table = [
-    {
-      order: "#000000006",
-      date: "02/04/2022",
-      buyercode: 220120,
-      hub: "Delhi",
-      ordertotal: 67999,
-      status: "Dispatched",
-      action: "View Order",
-    },
-    {
-      order: "#000000007",
-      date: "05/05/2022",
-      buyercode: 220145,
-      hub: "Pune",
-      ordertotal: 75112,
-      status: "Confirm",
-      action: "View Order",
-    },
-    {
-      order: "#000000006",
-      date: "02/04/2022",
-      buyercode: 220120,
-      hub: "Delhi",
-      ordertotal: 67999,
-      status: "Pending",
-      action: "View Order",
-    },
-    {
-      order: "#000000007",
-      date: "05/05/2022",
-      buyercode: 220145,
-      hub: "Pune",
-      ordertotal: 75112,
-      status: "Delivered",
-      action: "View Order",
-    },
-  ];
-
   const columns = [
     {
-      name: "order",
+      name: "quote_id",
       label: "Order #",
       options: {
         customBodyRender: (value) => {
@@ -91,9 +99,17 @@ function Index() {
         },
       },
     },
-    { name: "date", label: "Date" },
     {
-      name: "buyercode",
+      name: "date",
+      label: "Date",
+      options: {
+        customBodyRender: (value) => {
+          return <div className="">{moment(value).format("DD/MM/YY")}</div>;
+        },
+      },
+    },
+    {
+      name: "buyer_code",
       label: "Buyer Code",
       options: {
         customBodyRender: (value) => {
@@ -103,21 +119,23 @@ function Index() {
     },
     { name: "hub", label: "HUB" },
     {
-      name: "ordertotal",
+      name: "order_total",
       label: "Order Total",
       options: {
         customBodyRender: (value) => {
           return (
             <div className="orders__ordertotal">
-              <span className="label">INR</span>
-              <span className="value">{value}</span>
+              <span className="label">
+                {JSON.parse(localStorage.getItem("currency"))?.currency_code}
+              </span>
+              <span className="value">{formatToCurrency(parseInt(value))}</span>
             </div>
           );
         },
       },
     },
     {
-      name: "status",
+      name: "quote_status",
       label: "Status",
       options: {
         customBodyRender: (value) => {
@@ -140,52 +158,76 @@ function Index() {
       name: "action",
       label: "Action",
       options: {
-        customBodyRender: (value) => {
-          return <div className="orders__action" onClick={showorder}>{value}</div>;
+        customBodyRender: (value, tablemeta) => {
+          let item_id = tablemeta?.rowData?.[7];
+          return (
+            <div
+              className="orders__action"
+              onClick={() => handleViewOrder(item_id)}
+            >
+              View Order
+            </div>
+          );
         },
+      },
+    },
+    {
+      name: "item_id",
+      label: " ",
+      options: {
+        display: false,
       },
     },
   ];
 
   return (
     <div className="orders">
-      {!vieworder ? <>
-        <div className="orders__back__footer">
-          <div className="orders__back__container">
-            <Link to={`/${customnostore ? customnostore : geo?.country_name}/buyerdashboard/dashboard`}>
-              <ArrowBackIosNew />
-              <span>Back</span>
-            </Link>
+      {!vieworder ? (
+        <>
+          <div className="orders__buttons">
+            {ordertype.map((data, i) => (
+              <p
+                className={`ordertypes ${type === i && "ordertype__selected"}`}
+                key={i}
+                onClick={() => selectorder(i)}
+              >
+                {data.name}
+              </p>
+            ))}
           </div>
-        </div>
-        
-        <div className="orders__buttons">
-          {ordertype.map((data, i) => (
-            <p
-              className={`ordertypes ${type === i && "ordertype__selected"}`}
-              key={i}
-              onClick={() => selectorder(i)}
-            >
-              {data.name}
-            </p>
-          ))}
-        </div>
 
-        <MUITable
-          columns={columns}
-          table={tableData}
-          options={options}
-          className="orders__table"
-        />
+          <MUITable
+            columns={columns}
+            table={tableData?.length ? tableData : []}
+            options={options}
+            className="orders__table"
+          />
 
-        <Pagination
-          PaginateData={PaginateDataSplit}
-          DataList={table}
-          PagePerRow={10}
-        />
-
-        </> : <ViewOrder />}
-      
+          {apiTableData?.length > 0 ? (
+            <Pagination
+              PaginateData={PaginateDataSplit}
+              DataList={apiTableData?.length ? apiTableData : []}
+              PagePerRow={10}
+            />
+          ) : (
+            ""
+          )}
+          <div className="orders__back__footer">
+            <div className="orders__back__container">
+              <Link
+                to={`/${
+                  customnostore ? customnostore : geo?.country_name
+                }/buyerdashboard/dashboard`}
+              >
+                <ArrowBackIosNew />
+                <span>Back</span>
+              </Link>
+            </div>
+          </div>
+        </>
+      ) : (
+        <ViewOrder viewDetail={viewDetail} />
+      )}
     </div>
   );
 }
