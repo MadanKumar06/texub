@@ -12,14 +12,15 @@ import axios from "axios";
 import Constant from "../../Constant";
 import { useStateValue } from "../../store/state";
 import Divider from "@mui/material/Divider";
+import { useParams } from "react-router-dom";
 var moment = require("moment");
 
 function Index() {
   const [{ geo, customstore, customnostore, currency }, dispatch] =
     useStateValue();
-
+  const {qid} = useParams()
   const [pendingInvoiceList, setPendingInvoiceList] = useState([]);
-
+  console.log(qid)
   var currency_id = JSON.parse(localStorage.getItem("currency"));
 
   let buyerCode = JSON.parse(
@@ -27,7 +28,27 @@ function Index() {
   )?.custom_attributes?.filter(
     (itm) => itm?.attribute_code === "customer_code"
   );
+  useEffect(async() => {
+    if(qid === undefined) return
+    try {
+      const data = await axios({
+        method:'post',
+        url: `${Constant?.baseUrl()}/pendingInvoicesDetails`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        },
+        data: {
+          quote_id: parseInt(qid)
+        }
+      })
+      setPendingInvoiceList(data?.data)
+      console.log(data?.data)
+    } catch(e) {
+      console.log(e)
+    }
+  }, [qid])
   useEffect(() => {
+    if(qid !== undefined) return
     const user = JSON.parse(localStorage.getItem("userdata"));
     let data = {
       data: {

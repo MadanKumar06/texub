@@ -441,6 +441,17 @@ const App = () => {
               exact
             />
             <Route
+              path="/:country/pendinginvoice/:qid"
+              // path={`/${customnostore ? customnostore : geo?.country_name}/pending-invoice`}
+              element={
+                <>
+                  {" "}
+                  <PendingInvoice /> <ScrollToTop /> <Footer />{" "}
+                </>
+              }
+              exact
+            />
+            <Route
               path="/:country/checkout/:quoteid"
               // path={`/${customnostore ? customnostore : geo?.country_name}/checkout`}
               element={
