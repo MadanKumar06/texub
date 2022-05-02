@@ -187,7 +187,7 @@ const Index = ({ pdpSellerData, handleOpenClose }) => {
                     id="outlined-required"
                     name="save"
                     placeholder="Name"
-                    className="wishlistsave_input"
+                    className="wishlistsave_input inputfield-box"
                     onChange={(e) => setnewwishdata(e.target.value)}
                   />
                   <button
