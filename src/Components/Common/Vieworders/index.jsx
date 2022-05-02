@@ -2,13 +2,15 @@ import React from "react";
 import "./styles.scss";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import MUITable from "../../Common/MUITable";
-import image from "../../../Assets/buyerdashboard/auctions/hp.png";
 import {
-  shippingaddress,
-  billingaddress,
-  total,
-  totalamount,
-} from "./viewordersjson";
+  Radio,
+  RadioGroup,
+  FormControlLabel,
+  FormControl,
+  FormLabel,
+  Button,
+} from "@mui/material";
+
 const options = {
   filter: false,
   filterType: "dropdown",
@@ -20,31 +22,23 @@ const options = {
   viewColumns: false,
   search: false,
 };
-const table = [
-  {
-    productname: {
-      modal: "Pavilion Model14-Dv0054Tu",
-      content:
-        "Hp 14-Dv0054Tu Pavilion Laptop (11Th Gen Intel Core I5-1135G7/…512Gb Sdd/Intel Iris Xe Graphics/Windows 10/Mso/Fhd), 35.56 Cm (14 Inch)",
-    },
-    sku: "SK-3102",
-    quantity: "50",
-    unitprice: "66,999/",
-    subtotal: "33,44,950/",
-  },
-];
+function formatToCurrency(price) {
+  return price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
+}
 const columns = [
   {
-    name: "productname",
+    name: "product_name",
     label: "PRODUCT NAME",
     options: {
-      customBodyRender: (value) => {
+      customBodyRender: (value, tablemeta) => {
+        let brand_image = tablemeta?.rowData[5];
+        let description = tablemeta?.rowData[6];
         return (
           <div className="productname">
-            <img src={image} alt="" className="image"></img>
+            <img src={brand_image} alt="" className="image"></img>
             <div className="product">
-              <span className="modal_name">{value?.modal}</span>
-              <span className="modal_content">{value?.content}</span>
+              <span className="modal_name">{value}</span>
+              <span className="modal_content">{description}</span>
             </div>
           </div>
         );
@@ -70,53 +64,153 @@ const columns = [
     },
   },
   {
-    name: "unitprice",
+    name: "unit_price",
     label: "UNIT PRICE",
     options: {
       customBodyRender: (value) => {
         return (
           <div className="vieworders_price">
-            <span className="inr">INR</span>
-            <span className="price"> {value} </span>
-            <span className="inr">unit</span>
+            <span className="inr">
+              {" "}
+              {JSON.parse(localStorage.getItem("currency"))?.currency_code}
+            </span>
+            <span className="price"> {formatToCurrency(parseInt(value))} </span>
           </div>
         );
       },
     },
   },
   {
-    name: "subtotal",
+    name: "order_total",
     label: "SUB-TOTAL",
     options: {
       customBodyRender: (value) => {
         return (
           <div className="vieworders_total">
-            <span className="inr">INR</span>
-            <span className="price"> {value} </span>
-            <span className="inr">unit</span>
+            <span className="inr">
+              {" "}
+              {JSON.parse(localStorage.getItem("currency"))?.currency_code}
+            </span>
+            <span className="price">{formatToCurrency(parseInt(value))} </span>
           </div>
         );
       },
     },
   },
+  {
+    name: "product_brand_image",
+    label: " ",
+    options: {
+      display: false,
+    },
+  },
+  {
+    name: "description",
+    label: " ",
+    options: {
+      display: false,
+    },
+  },
 ];
-const Index = ({ setisVieworders, setisOrders }) => {
+const Index = ({ setisVieworders, setisOrders, viewDetail }) => {
+  debugger;
   return (
     <div className="vieworders_main">
       <div className="vieworders_heading_section">
-        <p className="id_heading">Order ID #</p>
-        <p className="id">000000021</p>
-        <span>
-          <p className="status">Confirm</p>
-        </span>
+        <p className="id_heading">
+          Pending Invoice No. #{viewDetail?.[0]?.quote_id}
+        </p>
+        <Button
+          className="button-text btn-secondary"
+          // onClick={() => orders()}
+        >
+          Attach Invoice
+        </Button>
       </div>
       <MUITable
         columns={columns}
-        table={table}
+        table={viewDetail?.length ? viewDetail : ""}
         options={options}
         className="vieworders__table"
       />
-      <div className="vieworders__detailscontainer">
+      <div className="status_change_container">
+        <FormControl component="fieldset">
+          <FormLabel component="legend">
+            {/* <FormControl component="fieldset" className={radio_btn_container}>
+          <FormLabel component="legend" className={select_text}> */}
+            Update the order status
+          </FormLabel>
+          <RadioGroup
+            row
+            aria-label="position"
+            name="position"
+            defaultValue="buyer"
+            // className={radio_group}
+          >
+            <FormControlLabel
+              value="buyer"
+              control={<Radio color="secondary" />}
+              label={
+                <>
+                  {/* <img src={buyer_img} alt="auth" /> */}
+                  <p>Buyer</p>
+                </>
+              }
+              labelPlacement="top"
+              // onClick={() => {
+              //   handleChange("buyer");
+              //   setUserDescription(true);
+              // }}
+            />
+            <FormControlLabel
+              value="buyer"
+              control={<Radio color="secondary" />}
+              label={
+                <>
+                  {/* <img src={buyer_img} alt="auth" /> */}
+                  <p>Buyer</p>
+                </>
+              }
+              labelPlacement="top"
+              // onClick={() => {
+              //   handleChange("buyer");
+              //   setUserDescription(true);
+              // }}
+            />
+            <FormControlLabel
+              value="buyer"
+              control={<Radio color="secondary" />}
+              label={
+                <>
+                  {/* <img src={buyer_img} alt="auth" /> */}
+                  <p>Buyer</p>
+                </>
+              }
+              labelPlacement="top"
+              // onClick={() => {
+              //   handleChange("buyer");
+              //   setUserDescription(true);
+              // }}
+            />
+            <FormControlLabel
+              value="seller"
+              control={<Radio color="secondary" />}
+              label={
+                <>
+                  {/* <img src={seller_img} alt="auth" /> */}
+                  <p>Seller</p>
+                </>
+              }
+              labelPlacement="top"
+              // onClick={() => {
+              //   handleChange("seller");
+              //   setUserDescription(false);
+              // }}
+            />
+          </RadioGroup>
+        </FormControl>
+      </div>
+      {/* <div className="vieworders__detailscontainer">
         <p className="vieworders__bg"></p>
         <div className="vieworders_detail_section">
           <p className="heading">Order Details</p>
@@ -185,7 +279,7 @@ const Index = ({ setisVieworders, setisOrders }) => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
       <div className="invoices__footer">
         <div
           className="invoices__container"
