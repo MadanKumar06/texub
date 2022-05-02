@@ -54,12 +54,18 @@
     }
   }
   .table_boby_block {
-    display: flex;
+  display: flex;
     flex-direction: column;
     gap: 20px;
-    overflow-y: scroll;
-		max-height: 500px;
-    height: 292px;
+    overflow-y: auto;
+    .table_body_section{
+         display: flex;
+        flex-direction: column;
+        gap: 20px;
+        max-height: 500px;
+        height: 292px;
+        overflow: auto;
+     }
 
     .table_block {
       display: flex;

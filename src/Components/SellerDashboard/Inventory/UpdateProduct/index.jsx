@@ -139,6 +139,14 @@ function Index({ type, pid }) {
         }));
         errorHandle = true;
       }
+      else if (!isNumber(temp[0]?.eta)) {
+        document.getElementById("isETAValid")?.focus();
+        setIsDetailTabValid((prevState) => ({
+          ...prevState,
+          isETAValid: "Please enter only number.",
+        }));
+        errorHandle = true;
+      }
       // GSTS
       if (isGST === 2) {
         if (!temp[0]?.cgst) {

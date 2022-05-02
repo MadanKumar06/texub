@@ -378,6 +378,11 @@ const TransitionsModal = ({ classes, openPopUp }) => {
   const forgotpass = () => {
     setpassopen(true);
   };
+  useEffect(()=>{
+    if(signInData.forgot_email_address.length===0){
+      setInputValidation(inputValidation.forgot_email_address='');
+    }
+  }, [signInData.forgot_email_address ])
   return (
     <>
       {passopen ? (
@@ -472,7 +477,7 @@ const TransitionsModal = ({ classes, openPopUp }) => {
             timeout: 500,
           }}
         >
-          <div className={section_main}>
+          <div className={section_main} style={{outline:'none'}}>
             <header className={header_section}>
               <p>Welcome !</p>
               <Clear className={clear_btn} onClick={() => handleClose()} />
