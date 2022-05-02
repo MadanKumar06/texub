@@ -37,7 +37,9 @@ function Index() {
   };
 
   const [isVieworders, setisVieworders] = useState(false)
-  const orders = () => {
+  const [currentorder, setcurrentorder] = useState()
+  const orders = (value) => {
+    setcurrentorder(value ? value : '')
     setisVieworders(true)
     setisOrders(false)
   }
@@ -151,7 +153,7 @@ function Index() {
       label: "Action",
       options: {
         customBodyRender: (value) => {
-          return <div className="myorders__action" onClick={orders}>{value}</div>;
+          return <div className="myorders__action" onClick={() => orders(value)}>{value}</div>;
         },
       },
     },
@@ -194,7 +196,7 @@ function Index() {
         </>
 
       }
-      {isVieworders && <OrdersInfo />}
+      {isVieworders && <OrdersInfo currentorder={currentorder} orders={orders} />}
     </div>
   );
 }
