@@ -16,8 +16,10 @@ export const isDesignationValid = (designation) =>
   designation.match(/^[a-zA-Z ]*$/);
 
 export const isCompanyNameValid = (company) =>
-  company.match(/^\d*[a-zA-Z][a-zA-Z0-9][a-zA-Z0-9-+\.+\s\.+!@#$%^&*'~`+{}"?><,.:;/|()_-]*$/);
-  // company.match(/^\d*[a-zA-Z][a-zA-Z0-9][a-zA-Z0-9-+\.+()@#$%^&*'{} ]*$/);
+  company.match(
+    /^\d*[a-zA-Z][a-zA-Z0-9][a-zA-Z0-9-+\.+\s\.+!@#$%^&*'~`+{}"?><,.:;/|()_-]*$/
+  );
+// company.match(/^\d*[a-zA-Z][a-zA-Z0-9][a-zA-Z0-9-+\.+()@#$%^&*'{} ]*$/);
 
 export const isRolesValid = (roles) =>
   // roles.match(/^((?=.*[a-zA-Z])[a-zA-Z+\.+\s\.+()!@#$%^&*'{}]{0,14})$/);
@@ -38,7 +40,7 @@ export const isNumber = (number) => number.match(/^[0-9]*\d$/);
 export const getAdminToken = (callback) => {
   let data = {
     username: "admin",
-    password: "admin@1234",
+    password: "admin@123",
   };
   axios
     .post(Constant.adminTokenUrl(), data, {

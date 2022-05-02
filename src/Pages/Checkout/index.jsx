@@ -257,6 +257,13 @@ const Checkout = () => {
       });
     }
   }, [quoteid, localgt]);
+  const [selectadd, setselectadd] = useState();
+
+  useEffect(() => {
+    if(quotedata[0]?.invoice?.billing_address_id !== null) {
+      setselectadd(quotedata[0]?.invoice?.billing_address_id)
+    }
+  }, [quotedata])
 
   const editaddress = (id) => {
     let temp = quotedata[0]?.address_list?.filter(
@@ -273,9 +280,6 @@ const Checkout = () => {
     }));
     handleOpen("edit_new_address");
   };
-  console.log(addressdata);
-
-  const [selectadd, setselectadd] = useState();
 
   const selectaddress = (itm) => {
     setselectadd(itm?.address_id);
@@ -291,18 +295,24 @@ const Checkout = () => {
   };
 
   const shippingamount = async () => {
-    debugger
     if(quotedata[0]?.invoice?.pending_invoice_status === "1" && shipping_method === "pick_up_from_hub") {
       if(!formerror?.bussiness_name || !formerror?.contact_person || !formerror?.email_address || !formerror?.contact_person) {
         return swal.fire({
-          text: "Please Select Address before requesting quote",
+          text: "Please Fill the form before creating order",
           icon: "error",
           showConfirmButton: false,
           timer: 3000,
         });
       }
     }
-    return
+    if(selectadd === undefined) {
+      return swal.fire({
+        text: "Please Select Address before requesting quote",
+        icon: "error",
+        showConfirmButton: false,
+        timer: 3000,
+      });
+    }
     dispatch({
       type: "SET_IS_LOADING",
       value: true,
@@ -339,13 +349,18 @@ const Checkout = () => {
       });
     }
   };
-  console.log(shipping_method)
-  console.log(addressdata)
+
   const raisequote = async () => {
     debugger
+    console.log(payment)
     if(quotedata[0]?.invoice?.pending_invoice_status !== "3" && shipping_method === "pick_up_from_hub") {
       if(!formerror?.bussiness_name || !formerror?.contact_person || !formerror?.email_address || !formerror?.contact_person) {
-        return
+        return swal.fire({
+          text: "Please Fill the form before creating order",
+          icon: "error",
+          showConfirmButton: false,
+          timer: 3000,
+        });
       }
     }
     if(shipping_method === "texub_shipping" && !selectadd) {
@@ -444,8 +459,8 @@ const Checkout = () => {
               region: "Tamil Nadu",
               region_code: "TN",
               region_id: 563,
-              street: [addressdata?.address_line1, addressadd?.address_line2],
-              telephone: addressdata?.mobile,
+              street: [addressdata?.address_line1, addressdata?.address_line2],
+              telephone: 123,
             },
             payment: {
               method: payment,
@@ -475,7 +490,7 @@ const Checkout = () => {
                       region_code: "TN",
                       region_id: 563,
                       street: [addressdata?.address_line1, addressadd?.address_line2],
-                      telephone: addressdata?.mobile,
+                      telephone: 123,
                     },
                     method: quotedata[0]?.invoice?.pending_invoice_status === "3" ? "flatrate_flatrate" : "instore_instore",
                   },
@@ -485,6 +500,13 @@ const Checkout = () => {
           },
         },
       });
+      swal.fire({
+        text: "Order Placed",
+        icon: "success",
+        showConfirmButton: false,
+        timer: 3000,
+      });
+      navigate(`/${customnostore ? customnostore : geo?.country_name}/ordersuccess`)
     } catch (e) {
       console.log(e);
     }
