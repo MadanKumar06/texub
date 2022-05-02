@@ -15,7 +15,7 @@ import WishlistDelete from "../image/wishlist-delete.png";
 const WhislistTable = ({
   tableData,
   tableDataHeader,
-  folderdata,
+  item_id,
   setWishListAgain,
   wishListAgain,
 }) => {
@@ -27,19 +27,8 @@ const WhislistTable = ({
   const handleCloseForOpenMoreOption = () => {
     setOpenMoreOption(null);
   };
-  const [folderid, setfolderid] = useState();
-  useEffect(() => {
-    folderdata?.filter((fd) => {
-      if (fd.wishlist_name === tableDataHeader) {
-        setfolderid(fd);
-      }
-    });
-  }, [folderdata]);
-
-   function formatToCurrency(price) {
-      return price
-      .toString()
-      .replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
+  function formatToCurrency(price) {
+    return price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
   }
 
   const [{ currency }, dispatch] = useStateValue();
@@ -70,7 +59,7 @@ const WhislistTable = ({
         },
         data: {
           requestParams: {
-            multiwishlist_id: parseInt(folderid?.id),
+            multiwishlist_id: parseInt(item_id),
             customer_id: user?.id,
           },
         },
@@ -109,8 +98,8 @@ const WhislistTable = ({
     }
   };
 
-  const addwishtocart = async(value) => {
-    debugger
+  const addwishtocart = async (value) => {
+    debugger;
     const user = JSON.parse(localStorage.getItem("userdata"));
     try {
       const addcart = await axios({
@@ -160,7 +149,7 @@ const WhislistTable = ({
         value: false,
       });
     }
-  }
+  };
 
   const addalltocart = () => {
     const user = JSON.parse(localStorage.getItem("userdata"));
@@ -303,14 +292,14 @@ const WhislistTable = ({
   };
 
   const addalltopending = () => {
-    console.log(wdata)
+    console.log(wdata);
     wdata?.filter((w) => {
-      AddToCartAndPendingInvoice(w)
-    })
-  }
+      AddToCartAndPendingInvoice(w);
+    });
+  };
 
   const AddToCartAndPendingInvoice = (info) => {
-    let storedata = JSON.parse(localStorage.getItem('storedata'))
+    let storedata = JSON.parse(localStorage.getItem("storedata"));
     const user = JSON.parse(localStorage.getItem("userdata"));
     dispatch({
       type: "SET_IS_LOADING",
@@ -329,16 +318,12 @@ const WhislistTable = ({
       },
     };
     axios
-      .post(
-        `${Constant.baseUrl()}/addToPendingInvoice`,
-        data,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        }
-      )
+      .post(`${Constant.baseUrl()}/addToPendingInvoice`, data, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
       .then((res) => {
         dispatch({
           type: "SET_IS_LOADING",
@@ -404,7 +389,9 @@ const WhislistTable = ({
           className="menulist_item"
         >
           <MenuItem onClick={() => addalltocart()}>Add All To Cart</MenuItem>
-          <MenuItem onClick={() => addalltopending()}>Add All To Pending Invoice</MenuItem>
+          <MenuItem onClick={() => addalltopending()}>
+            Add All To Pending Invoice
+          </MenuItem>
           <MenuItem onClick={() => wishlistdelete()}>Delete List</MenuItem>
         </Menu>
         <div className="header_link">
@@ -415,111 +402,117 @@ const WhislistTable = ({
       </div>
       <div className="table_boby_block">
         <div className="table_body_section">
-        {wdata?.length > 0
-          ? wdata?.map((itm, index) => (
-              <div className="table_block">
-                <div className="product_info_block">
-                  <div className="product_image">
-                    <img src={itm?.texub_product_brand_image} alt="" />
-                  </div>
-                  <div className="products_info">
-                    <p className="product_name">{itm?.product_name}</p>
-                    <p className="product_price">
-                      <span>{itm?.texub_product_currency}</span>
-                      {formatToCurrency(parseInt(itm?.texub_product_price))}
-                    </p>
-                  </div>
-                  <div className="rating_block">
-                    <div className="rating">
-                      <Rating
-                        className="ratings"
-                        name="simple-controlled"
-                        value={3}
-                        onChange={(event, newValue) => {
-                          //   setValue(newValue);
-                        }}
-                      />
-                      <p className="reviews"> 543 Reviews</p>
+          {wdata?.length > 0
+            ? wdata?.map((itm, index) => (
+                <div className="table_block">
+                  <div className="product_info_block">
+                    <div className="product_image">
+                      <img src={itm?.texub_product_brand_image} alt="" />
                     </div>
-                    <p className="seller_id">
-                      <span>Seller ID :</span>
-                      {itm?.seller_id}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="Hub__quantity__block">
-                  <div className="Hub__quantity__sub_block">
-                    <span>Hub</span>
-                    <div className="content">
-                      <div className="hub_info">
-                        <p>{itm?.texub_product_hub_name}</p>
+                    <div className="products_info">
+                      <p className="product_name">{itm?.product_name}</p>
+                      <p className="product_price">
+                        <span>{itm?.texub_product_currency}</span>
+                        {formatToCurrency(parseInt(itm?.texub_product_price))}
+                      </p>
+                    </div>
+                    <div className="rating_block">
+                      <div className="rating">
+                        <Rating
+                          className="ratings"
+                          name="simple-controlled"
+                          value={3}
+                          onChange={(event, newValue) => {
+                            //   setValue(newValue);
+                          }}
+                        />
+                        <p className="reviews"> 543 Reviews</p>
                       </div>
-                      <div className="quantity_info">
-                        <div className="qty_change">
-                          <Remove
-                            className={`${
-                              parseInt(itm.texub_product_moq) >
-                              parseInt(itm.moq)
-                                ? "item_increase"
-                                : "item_decrease"
-                            }`}
-                            onClick={() =>
-                              decrement(
+                      <p className="seller_id">
+                        <span>Seller ID :</span>
+                        {itm?.seller_id}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="Hub__quantity__block">
+                    <div className="Hub__quantity__sub_block">
+                      <span>Hub</span>
+                      <div className="content">
+                        <div className="hub_info">
+                          <p>{itm?.texub_product_hub_name}</p>
+                        </div>
+                        <div className="quantity_info">
+                          <div className="qty_change">
+                            <Remove
+                              className={`${
                                 parseInt(itm.texub_product_moq) >
-                                  parseInt(itm.moq)
-                                  ? parseInt(itm.texub_product_moq) - 1
-                                  : parseInt(itm.moq),
-                                index
-                              )
-                            }
-                          />
-                          <span className="input_text">
-                            {" "}
-                            {itm?.texub_product_moq}
-                          </span>
-                          <Add
-                            className={`${
-                              parseInt(itm.moq) <
-                              parseInt(itm.texub_product_stock)
-                                ? "item_increase"
-                                : "item_decrease"
-                            }`}
-                            onClick={() =>
-                              increment(
-                                parseInt(itm.texub_product_stock) >
-                                  parseInt(itm.texub_product_moq)
-                                  ? parseInt(itm.texub_product_moq) + 1
-                                  : parseInt(itm.texub_product_moq),
-                                index
-                              )
-                            }
-                          />
+                                parseInt(itm.moq)
+                                  ? "item_increase"
+                                  : "item_decrease"
+                              }`}
+                              onClick={() =>
+                                decrement(
+                                  parseInt(itm.texub_product_moq) >
+                                    parseInt(itm.moq)
+                                    ? parseInt(itm.texub_product_moq) - 1
+                                    : parseInt(itm.moq),
+                                  index
+                                )
+                              }
+                            />
+                            <span className="input_text">
+                              {" "}
+                              {itm?.texub_product_moq}
+                            </span>
+                            <Add
+                              className={`${
+                                parseInt(itm.moq) <
+                                parseInt(itm.texub_product_stock)
+                                  ? "item_increase"
+                                  : "item_decrease"
+                              }`}
+                              onClick={() =>
+                                increment(
+                                  parseInt(itm.texub_product_stock) >
+                                    parseInt(itm.texub_product_moq)
+                                    ? parseInt(itm.texub_product_moq) + 1
+                                    : parseInt(itm.texub_product_moq),
+                                  index
+                                )
+                              }
+                            />
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <div className="wishlist-btn-info">
-                    <span
-                      className="wishlist-delete-btn"
-                      onClick={() =>
-                        handleWishlistSingleItemDelete(itm?.wishlit_item_id)
-                      }
-                    >
-                      <img src={WishlistDelete} alt="" />
-                    </span>
-                    <Button className="add-cart-btn" onClick={() => addwishtocart(itm)}>
-                      <span>Add to Cart</span>
-                    </Button>
-                    <Button className="pending-invoice-btn" onClick={() => AddToCartAndPendingInvoice(itm)}>
-                      <span> Add to Pending Invoice</span>
-                    </Button>
+                    <div className="wishlist-btn-info">
+                      <span
+                        className="wishlist-delete-btn"
+                        onClick={() =>
+                          handleWishlistSingleItemDelete(itm?.wishlit_item_id)
+                        }
+                      >
+                        <img src={WishlistDelete} alt="" />
+                      </span>
+                      <Button
+                        className="add-cart-btn"
+                        onClick={() => addwishtocart(itm)}
+                      >
+                        <span>Add to Cart</span>
+                      </Button>
+                      <Button
+                        className="pending-invoice-btn"
+                        onClick={() => AddToCartAndPendingInvoice(itm)}
+                      >
+                        <span> Add to Pending Invoice</span>
+                      </Button>
+                    </div>
                   </div>
                 </div>
-              </div> 
-            ))
-          : ""}
-          </div>
+              ))
+            : ""}
+        </div>
       </div>
     </div>
   );

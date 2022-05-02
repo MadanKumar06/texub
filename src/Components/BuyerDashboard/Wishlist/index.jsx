@@ -14,11 +14,8 @@ const Whislist = () => {
   const [wishListAgain, setWishListAgain] = useState(false);
   const [wishdata, setwishdata] = useState([]);
   const [folderdata, setfolderdata] = useState([]);
-  function formatToCurrency(price) {
-    return price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
-  }
   const PaginateDataSplit = (event) => {
-    if (wishdata?.length === 0) return setwishdata([])
+    if (wishdata?.length === 0) return setwishdata([]);
     else {
       setTableData(event);
     }
@@ -82,15 +79,16 @@ const Whislist = () => {
       console.log(e);
     }
   }, []);
+
   return (
     <div className="wishlist_main_container">
       <div>
         {tableData?.length > 0
           ? tableData?.map((itm) => (
               <WhislistTable
-                tableData={itm?.wishlist_data}
+                tableData={tableData?.length ? itm?.wishlist_data : []}
                 tableDataHeader={itm?.name}
-                folderdata={folderdata}
+                item_id={itm?.id}
                 setWishListAgain={setWishListAgain}
                 wishListAgain={wishListAgain}
               />
