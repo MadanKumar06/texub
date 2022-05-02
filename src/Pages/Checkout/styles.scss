@@ -152,12 +152,17 @@
                   background-color: #fff;
                   width: 100%;
               .delivery_address_list {
-                  display: grid;
-                  grid-template-columns: repeat(auto-fill, minmax(50%, 1fr));
-                  width: calc(65% - 100px);
-
+                  // display: grid;
+                  // grid-template-columns: repeat(auto-fill, minmax(50%, 1fr));
+                  // width: calc(65% - 100px);
+                  display: flex;
+                  flex-wrap: wrap;
+                  .border {
+                    border: 2px solid #ddb363;
+                  } 
                 .delivery_address_content {
-                  border: 2px solid #ddb363;
+                  width: calc(100% / 4 - 20px);
+                  // border: 2px solid #ddb363;
                   padding: 1em;
                   min-height: 200px;
                   margin: 2em;
@@ -319,7 +324,6 @@
             justify-content: center;
             height:200px;
             background: #f5f5f5;
-            margin: 2em;
             border-radius: 4px;
             gap: 15px;
             .add_icon {
@@ -677,7 +681,7 @@
         z-index: 9;
         padding: 2em 3em 3em;
         gap: 30px;
-        height: 87vh;
+        // height: 87vh;
         z-index: 1;
         min-height: 70vh;
         border-radius: 3px;

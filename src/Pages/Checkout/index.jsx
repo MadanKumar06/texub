@@ -76,6 +76,7 @@ const Checkout = () => {
     mobile_number: ''
   })
   const [payment, setpayment] = useState()
+  const [countryList, setCountryList] = useState([]);
 
 
   const onpickup = (e) => {
@@ -105,14 +106,30 @@ const Checkout = () => {
     address_line2: '',
     city: '',
     organization_name: '',
-    pincode: ''
+    pincode: '',
+    billtype: '',
+    country: ''
   })
 
   const addressadd = (e) => {
     setaddressdata({ ...addressdata, [e.target.name]: e.target.value });  
   }
 
-  console.log(addressdata)
+  useEffect(() => {
+    const fetchCountryData = () => {
+      axios
+        .get(Constant.baseUrl() + "/getCountryList", {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => {
+          setCountryList(res?.data);
+        })
+        .catch((err) => {});
+    };
+    fetchCountryData();
+  }, []);
   
   const saveaddress = async() => {
     let user = JSON.parse(localStorage.getItem('userdata'))
@@ -130,24 +147,24 @@ const Checkout = () => {
           "billingAddressId":0,
           "addressInformation": {
                "shipping_address": {
-                "company":"vh",
-                "country_id": "IN",
+                "company":addressdata?.organization_name,
+                "country_id": addressdata?.country,
                 "street": [
-               "No.56 road",
-               "Near  cub"
+                  addressdata?.address_line1,
+                  addressdata?.address_line2
              ],
-             "postcode": "630302",
-             "city": "Devakottai"
+             "postcode": addressdata?.pincode,
+             "city": addressdata?.city
            },
            "billing_address": {
-                "company":"texub",
-                "country_id": "IN",
+                "company":addressdata?.organization_name,
+                "country_id": addressdata?.country,
                 "street": [
-               "No.54 road",
-               "Near tiger cub"
+                  addressdata?.address_line1,
+                  addressdata?.address_line2
              ],
-             "postcode": "630302",
-             "city": "Devakottai"
+             "postcode": addressdata?.pincode,
+             "city": addressdata?.city
            }
           }
         }
@@ -178,8 +195,41 @@ const Checkout = () => {
       console.log(e)
     }
   }, [quoteid])
+
   console.log(quotedata)
 
+  const editaddress = (id) => {
+    quotedata[0]?.address_list?.filter(al => {
+      if(al?.address_id === "21") {
+        console.log(al?.street)
+        setaddressdata({
+          organization_name: "",
+          address_line1: al?.street,
+          address_line2: al?.street,
+          city: al?.city,
+          pincode: al?.postcode,
+          country: al?.country
+        })
+        handleOpen()
+      }
+    })
+  }
+
+  const [selectadd, setselectadd] = useState()
+
+  const selectaddress = (itm) => {
+    setselectadd(itm?.address_id)
+    setaddressdata({
+      organization_name: "",
+      address_line1: itm?.street,
+      address_line2: itm?.street,
+      city: itm?.city,
+      pincode: itm?.pincode,
+      country: itm?.country
+    })
+  }
+
+  console.log(addressdata)
 
   const raisequote = async() => {
     let user = JSON.parse(localStorage.getItem('userdata'))
@@ -488,16 +538,20 @@ const Checkout = () => {
                   </div>
                 </div>
                 <div className="shipping_charges_info">
-                  <div className="shipping_charges_section">
-                    <span className="shipping_text">Shipping Charges :</span>
-                    <span className="shipping_price">
-                      <span>INR</span> {parseFloat(quotedata[0]?.invoice?.shipping_amount).toFixed(2)}
-                    </span>
-                  </div>
-                  <div className="shipping_charges_section">
-                    <span className="shipping_text">Shipping Charges :</span>
-                    <span className="shipping_awit">Awaiting for Prices</span>
-                  </div>
+                {quotedata[0]?.invoice?.pending_invoice_status !== '1' &&
+                  <>
+                    <div className="shipping_charges_section">
+                      <span className="shipping_text">Shipping Charges :</span>
+                      <span className="shipping_price">
+                        <span>INR</span> {parseFloat(quotedata[0]?.invoice?.shipping_amount).toFixed(2)}
+                      </span>
+                    </div>
+                    <div className="shipping_charges_section">
+                      <span className="shipping_text">Shipping Charges :</span>
+                      <span className="shipping_awit">Awaiting for Prices</span>
+                    </div>
+                  </>
+                  }
                 </div>
               </div>
 
@@ -507,10 +561,10 @@ const Checkout = () => {
                     <div className="delivery_address_section">
                       <div className="delivery_address_list">
                         {quotedata[0]?.address_list?.map((itm) => (
-                          <div className="delivery_address_content">
+                          <div className={`delivery_address_content ${selectadd === itm?.address_id && "border"}`} onClick={() => selectaddress(itm)}>
                             <div className="billing_title">
                               <p>Default Billing Address</p>
-                              <div className="edit_address">
+                              <div className="edit_address" onClick={() => editaddress(itm?.address_id)}>
                                 <img src={Edit_image} alt="" />
                                 <span>Edit</span>
                               </div>
@@ -520,7 +574,7 @@ const Checkout = () => {
                             <p className="item_address">{itm?.Street[0]}</p>
                           </div>
                         ))}
-                        <div className="aside_block_B">
+                        <div className="aside_block_B delivery_address_content">
                           <div className="delivery_address_add">
                             <Add className="add_icon" onClick={handleOpen} />
                             <span onClick={handleOpen}>Add New Address</span>
@@ -626,38 +680,38 @@ const Checkout = () => {
                 <div className="payment_info">
                   <RadioGroup
                     aria-labelledby="demo-radio-buttons-group-label"
-                    defaultValue={quotedata[0].payment_methods?.checkmo?.value}
+                    defaultValue={quotedata[0]?.payment_methods?.checkmo?.value}
                     name="radio-buttons-group"
                   >
                     <div className="payment_footer_block_1">
                       <div className="footer_main">
                         <div className="footer_content">
                           <FormControlLabel
-                            value={quotedata[0].payment_methods?.checkmo?.value}
+                            value={quotedata[0]?.payment_methods?.checkmo?.value}
                             control={<Radio onClick={() => setpayment(quotedata[0].payment_methods?.checkmo?.value)} />}
                             label={""}
                           />
-                          <p className="footer_title">{quotedata[0].payment_methods?.checkmo?.label}</p>
+                          <p className="footer_title">{quotedata[0]?.payment_methods?.checkmo?.label}</p>
                         </div>
                       </div>
                       <div className="footer_main">
                         <div className="footer_content">
                           <FormControlLabel
-                            value={quotedata[0].payment_methods?.free?.value}
-                            control={<Radio onClick={() => setpayment(quotedata[0].payment_methods?.free?.value)} />}
+                            value={quotedata[0]?.payment_methods?.free?.value}
+                            control={<Radio onClick={() => setpayment(quotedata[0]?.payment_methods?.free?.value)} />}
                             label={""}
                           />
-                          <p className="footer_title">{quotedata[0].payment_methods?.free?.label}</p>
+                          <p className="footer_title">{quotedata[0]?.payment_methods?.free?.label}</p>
                         </div>
                       </div>
                       <div className="footer_main">
                         <div className="footer_content">
                           <FormControlLabel
-                            value={quotedata[0].payment_methods?.paypal_billing_agreement?.value}
-                            control={<Radio onClick={() => setpayment(quotedata[0].payment_methods?.paypal_billing_agreement?.value)} />}
+                            value={quotedata[0]?.payment_methods?.paypal_billing_agreement?.value}
+                            control={<Radio onClick={() => setpayment(quotedata[0]?.payment_methods?.paypal_billing_agreement?.value)} />}
                             label={""}
                           />
-                          <p className="footer_title">{quotedata[0].payment_methods?.paypal_billing_agreement?.label}</p>
+                          <p className="footer_title">{quotedata[0]?.payment_methods?.paypal_billing_agreement?.label}</p>
                         </div>
                       </div>
                     </div>
@@ -671,7 +725,7 @@ const Checkout = () => {
         </div>
       </div>
       <div className="checkout_payment_section">
-        {shipping_method === "pick_up_from_hub" ? (
+        {shipping_method === "pick_up_from_hub" || quotedata[0].invoice?.pending_invoice_status === '3' ? (
           <div className="order_details_main">
             <div className="checkout_order_basic_info">
               <div className="checkoutorder_basic_info">
@@ -736,9 +790,16 @@ const Checkout = () => {
           <div className="order_details_main">
             <div className="texub_shipping_btns">
               <Button className="texub_cancel_btn">Cancel</Button>
-              <Button className="texub_quote_btn btn-secondary" onClick={raisequote}>
-                Request Quote
-              </Button>
+              {quotedata[0]?.invoice?.pending_invoice_status === '1' && 
+                <Button className="texub_quote_btn btn-secondary" onClick={raisequote}>
+                  Request Quote
+                </Button>
+              }
+              {quotedata[0]?.invoice?.pending_invoice_status === '2' && 
+                <Button className="texub_quote_btn btn-secondary">
+                  Quote Requested
+                </Button>
+              }
             </div>
           </div>
         )}
@@ -773,7 +834,7 @@ const Checkout = () => {
                     <FormControl className="shipping_list_address">
                       <RadioGroup
                         aria-labelledby="demo-controlled-radio-buttons-group"
-                        name="controlled-radio-buttons-group"
+                        name="billtype"
                         onChange={(e) => addressadd(e)}
                       >
                         <FormControlLabel
@@ -803,6 +864,7 @@ const Checkout = () => {
                       className="inputfield-box"
                       variant="outlined"
                       onChange={(e) => addressadd(e)}
+                      value={addressdata?.organization_name}
                     />
                   </div>
                   <div className="address_fields">
@@ -814,6 +876,7 @@ const Checkout = () => {
                       name="address_line1"
                       variant="outlined"
                       onChange={(e) => addressadd(e)}
+                      value={addressdata?.address_line1}
                     />
                   </div>
                 </div>
@@ -827,6 +890,7 @@ const Checkout = () => {
                       name="address_line2"
                       variant="outlined"
                       onChange={(e) => addressadd(e)}
+                      value={addressdata?.address_line2}
                     />
                   </div>
                   <div className="address_fields">
@@ -838,6 +902,7 @@ const Checkout = () => {
                       name="pincode"
                       variant="outlined"
                       onChange={(e) => addressadd(e)}
+                      value={addressdata?.pincode}
                     />
                   </div>
                 </div>
@@ -852,26 +917,27 @@ const Checkout = () => {
                       name="city"
                       variant="outlined"
                       onChange={(e) => addressadd(e)}
+                      value={addressdata?.city}
                     />
                   </div>
                   <div className="address_fields">
-                    <InputLabel id="address_field">State</InputLabel>
+                    <InputLabel id="address_field">Country</InputLabel>
                     <FormControl className="address_select_field_box">
                       <Select
                         labelId="demo-simple-select-label"
                         id="selection_box_block"
-                        label="State"
+                        label="Country"
+                        name="country"
                         onChange={(e) => addressadd(e)}
+                        value={addressdata?.country}
                       >
-                        <MenuItem value={10} >Tamil Nadu</MenuItem>
-                        <MenuItem value={20}>Tamil Nadu 2</MenuItem>
-                        <MenuItem value={30}>Tamil Nadu 3</MenuItem>
+                        {countryList?.map(cl => <MenuItem value={cl?.value} >{cl?.label}</MenuItem>)}
                       </Select>
                     </FormControl>
                   </div>
                 </div>
 
-                <div className="address_field_block">
+                {/* <div className="address_field_block">
                   <div className="address_fields final_block">
                     <InputLabel id="address_field">Country</InputLabel>
                     <FormControl className="address_select_field_box">
@@ -887,7 +953,7 @@ const Checkout = () => {
                       </Select>
                     </FormControl>
                   </div>
-                </div>
+                </div> */}
 
                 <div className="address_popup_btns">
                   <Button className="address_cancel_btn">Cancel</Button>
