@@ -9,6 +9,7 @@ import downnload_image from "../../../../Assets/CommonImage/download.png";
 import question_image from "../../../../Assets/CommonImage/question.png";
 import { useStateValue } from "../../../../store/state";
 import swal from "sweetalert2";
+import XLSX from "xlsx";
 
 function Index() {
   const [Row, setRow] = useState([]);
@@ -18,41 +19,64 @@ function Index() {
   const [choosenFile, setChoosenFile] = useState({});
   const [file, setFile] = useState({});
   const handleUploadApiCall = () => {
-    ExcelRenderer(file, (err, resp) => {
-      if (err) {
-        console.log(err);
-      } else {
-        handleJSONCreate(resp.rows);
-      }
-    });
+    // ExcelRenderer(file, (err, resp) => {
+    //   if (err) {
+    //     console.log(err);
+    //   } else {
+    //     handleJSONCreate(resp.rows);
+    //   }
+    // });
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      var data = e.target.result;
+      var workbook = XLSX.read(data, {
+        type: "binary",
+      });
+      var XL_row_object = XLSX.utils.sheet_to_json(
+        workbook.Sheets[workbook.SheetNames?.[3]]
+      );
+      handleJSONCreate(XL_row_object);
+    };
+    reader.readAsBinaryString(file);
   };
   const handleJSONCreate = async (rows) => {
-    dispatch({
-      type: "SET_IS_LOADING",
-      value: true,
+    // dispatch({
+    //   type: "SET_IS_LOADING",
+    //   value: true,
+    // });
+    var result = rows?.map(function (o) {
+      return convert(o);
     });
+    function convert(obj) {
+      const result = {};
+      Object.keys(obj).forEach(function (key) {
+        result[key.replace(/ /g, "_")] = obj[key];
+      });
+
+      return result;
+    }
     let requests = [];
-    rows.splice(0, 2);
     let RowCount = 3;
-    rows?.map((itm) => {
-      if (itm?.length < 15) {
+    result?.map((itm) => {
+      if (itm?.Brand || itm?.Description) {
+        debugger;
         let customerId = JSON.parse(localStorage.getItem("userdata"));
         let data = {
           product_data: {
             bulkupload: 1,
             customer_id: customerId?.id,
-            main_category: itm?.[1],
+            main_category: itm?.Main_Category,
             other_main_category: "",
-            sub_category: itm?.[2],
+            sub_category: itm?.Sub_Category,
             other_sub_category: "",
             other_brand_number: "",
-            name: itm?.[0],
+            name: itm?.Model_Number,
             texub_product_id: "",
-            mgs_brand: itm?.[3],
-            hsn_code: itm?.[4],
-            sku: itm?.[5],
-            upc_number: itm?.[6],
-            description: itm?.[7],
+            mgs_brand: itm?.Brand,
+            hsn_code: itm?.HSN_Code,
+            sku: itm?.Sku,
+            upc_number: itm?.UPC_Number,
+            description: itm?.Description,
           },
         };
         requests.push(
@@ -87,38 +111,39 @@ function Index() {
             })
         );
       } else {
+        debugger;
         let customerId = JSON.parse(localStorage.getItem("userdata"));
         let data = {
           data: {
             bulk_upload: 1,
             customer_id: customerId?.id,
-            product_id: itm?.[8],
-            product_condition: itm?.[18],
-            other_condition: itm?.[19],
-            warranty_type: itm?.[20],
-            warranty_country: itm?.[21],
-            warranty_days: itm?.[22],
-            packing_details: itm?.[23],
-            no_pieces_per: itm?.[24] || itm?.[25],
-            width: itm?.[27],
-            height: itm?.[28],
-            product_length: itm?.[26],
-            weight: itm?.[29],
-            restrictions: itm?.[30],
-            restricted_region: itm?.[32],
-            restricted_country: itm?.[31],
-            description: itm?.[33],
+            product_id: itm?.Parent_Product_Sku,
+            product_condition: itm?.Condition,
+            other_condition: itm?.Other_Condition,
+            warranty_type: itm?.Warranty_Type,
+            warranty_country: itm?.Warranty_Country,
+            warranty_days: itm?.Warranty_Days,
+            packing_details: itm?.Packing_Details,
+            no_pieces_per: itm?.Pieces_Per_Carton || itm?.Pieces_Per_Pallet,
+            width: itm?.Product_Width,
+            height: itm?.Product_Height,
+            product_length: itm?.Product_Length,
+            weight: itm?.Product_Weight,
+            restrictions: itm?.Restriction,
+            restricted_region: itm?.Restriction_Region,
+            restricted_country: itm?.Restriction_Country,
+            description: itm?.Special_Notes,
             product_details: [
               {
-                hub_id: itm?.[9],
-                currency_id: itm?.[10],
-                price: itm?.[11],
-                in_stock: itm?.[12],
-                eta: itm?.[13],
-                moq: itm?.[14],
-                cgst: itm?.[15],
-                sgst: itm?.[17],
-                igst: itm?.[16],
+                hub_id: itm?.Hub,
+                currency_id: itm?.Currency,
+                price: itm?.Price,
+                in_stock: itm?.Quantity,
+                eta: itm?.Eta,
+                moq: itm?.Moq,
+                cgst: itm?.Cgst,
+                sgst: itm?.Sgst,
+                igst: itm?.Igst,
               },
             ],
           },

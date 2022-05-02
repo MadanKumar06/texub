@@ -86,6 +86,7 @@ const TransitionsModal = ({ classes, openPopUp }) => {
       open={open}
       onClose={handleClose}
       closeAfterTransition
+      disableRestoreFocus={true}
       BackdropComponent={Backdrop}
       BackdropProps={{
         timeout: 500,
