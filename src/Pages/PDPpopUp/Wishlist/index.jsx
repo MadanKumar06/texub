@@ -20,6 +20,7 @@ const Index = ({ pdpSellerData, handleOpenClose }) => {
   const [create1, setcreate1] = useState(false);
   const create = () => {
     setcreate1(!create1);
+    setSave_error(false)
   };
   const [fname, setfname] = useState([]);
   const [newwishdata, setnewwishdata] = useState("");

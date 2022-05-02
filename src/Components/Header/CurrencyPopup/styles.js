@@ -57,6 +57,9 @@ const styles = (theme) => ({
           fontSize: "16px !important",
         },
       },
+      "& .MuiMenuItem-root:last-child": {
+        borderBottom: "none !important",
+      },
     },
   },
 });

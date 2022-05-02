@@ -155,7 +155,7 @@ const TransitionsModal = ({ classes }) => {
       document.getElementById("checkbox_confrim")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
-        checkbox_confrim: "Please confrim.",
+        checkbox_confrim: "Please confirm.",
       }));
       errorHandle = true;
     }
@@ -385,7 +385,7 @@ const TransitionsModal = ({ classes }) => {
           </InputLabel>
           <FormControlLabel
             value={guestData?.checkbox_confrim}
-            control={<Checkbox color="color_third" />}
+            control={<Checkbox color="color_third" defaultChecked={true} />}
             label={
               <div>
                 <div>I confirm that I am a wholesale buyer,</div>
