@@ -215,6 +215,16 @@
           }
         }
         .MuiTableRow-root {
+          &:nth-child(odd) {
+            .vieworders_quantity {
+              background: #e6e6e6;
+            }
+          }
+          &:nth-child(even) {
+            .vieworders_quantity {
+              background: white;
+            }
+          }
           .MuiTableCell-root {
             border: 1px solid #cdd5dd;
             max-width: 300px;
@@ -297,8 +307,8 @@
                 margin-left: 5px;
               }
             }
+            
             .vieworders_quantity {
-              background: #e6e6e6;
               border-radius: 25px;
               padding: 10px 20px;
               font-size: 14px;
@@ -396,6 +406,8 @@
           gap: 10%;
           justify-content: flex-end;
           margin: 0;
+          padding-right: 3%;
+          margin-left: 32%;
           hr {
             min-height: 35px !important;
             background-color: #d6d8d9;
@@ -501,7 +513,7 @@
         text-transform: capitalize;
         font-weight: 600;
         font-size: 16px;
-        padding: 10px 0;
+        padding: 10px;
       }
       .remark_content {
         letter-spacing: 0.42px;
