@@ -92,11 +92,25 @@
 
     .rating_number_popup{
     margin: 3em;
+    .rating_popup_main{
+      height: 60vh;
+      .rating_popup_block{
+        height: 60vh;
+        min-height: 55vh;
+        padding: 10px 15px;
+      }
+    }
     }
 }
 @media (max-width: 580px) {
 
     .rating_number_popup{
     margin: 2em;
+    .rating_popup_main{
+      .rating_popup_clear_btn{
+        top: -25px;
+        right: -25px;
+      }
+    }
     }
 }
