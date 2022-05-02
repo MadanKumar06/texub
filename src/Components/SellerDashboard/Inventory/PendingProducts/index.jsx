@@ -116,44 +116,7 @@ function Index({ registerproduct }) {
     },
   ];
 
-  const table = [
-    {
-      logo: hp,
-      pname:
-        "Hp 14-Dv0054Tu Pavilion Laptop (11Th Gen Intel Core I5-1135G7/…512Gb Sdd/Intel Iris Xe Graphics/Windows 10/Mso/Fhd), 35.56 Cm (14 Inch)",
-      category: "Laptop",
-      status: "Approved",
-      sku: "SK-3102",
-    },
-    {
-      logo: hp,
-      pname: "Lenovo Dpin Yoga 6 Convertible (Amd Ryzen 7-5700U/16Gb/1Tb Ssd/…",
-      category: "Laptop",
-      status: "Disapproved",
-      sku: "SK-3102",
-    },
-    {
-      logo: hp,
-      pname: "Acer Sf314-42 Swift 3 Laptop (Amd R5-4500U/8 Gb/512 Gb Hdd/…",
-      category: "Laptop",
-      status: "Approved",
-      sku: "SK-3102",
-    },
-    {
-      logo: hp,
-      pname: "Apple Macbook Pro Mvvj2Hn/A 2.6Ghz 6-Core 9Th-Gen I7, 16Gb, …",
-      category: "Laptop",
-      status: "Disapproved",
-      sku: "SK-3102",
-    },
-    {
-      logo: hp,
-      pname: "Apple Macbook Pro Mvvj2Hn/A 2.6Ghz 6-Core 9Th-Gen I7, 16Gb, …",
-      category: "Laptop",
-      status: "Approved",
-      sku: "SK-3102",
-    },
-  ];
+
   const PaginateDataSplit = (event) => {
     setTableData(event);
   };

@@ -20,6 +20,7 @@ const Index = ({ pdpSellerData, handleOpenClose }) => {
   const [create1, setcreate1] = useState(false);
   const create = () => {
     setcreate1(!create1);
+    setSave_error(false)
   };
   const [fname, setfname] = useState([]);
   const [newwishdata, setnewwishdata] = useState("");
@@ -187,7 +188,7 @@ const Index = ({ pdpSellerData, handleOpenClose }) => {
                     id="outlined-required"
                     name="save"
                     placeholder="Name"
-                    className="wishlistsave_input"
+                    className="wishlistsave_input inputfield-box"
                     onChange={(e) => setnewwishdata(e.target.value)}
                   />
                   <button
@@ -197,7 +198,10 @@ const Index = ({ pdpSellerData, handleOpenClose }) => {
                     Save
                   </button>
                 </span>
-                <p style={{ cursor: "pointer" }} onClick={() => create()}>
+               <p style={{ cursor: "pointer" }} onClick={() =>{
+                  create()
+                  setSave_error('')
+                  }}>
                   Cancel
                 </p>
               </div>

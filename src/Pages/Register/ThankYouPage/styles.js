@@ -78,6 +78,7 @@ const styles = () => ({
     "& p": {
       margin: "0",
       letterSpacing: "1.3px",
+      fontStyle: "normal",
     },
   },
   thankyou_button_signin: {
