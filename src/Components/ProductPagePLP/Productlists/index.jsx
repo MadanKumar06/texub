@@ -2,15 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button, IconButton, Paper, InputBase } from "@mui/material";
 import "./styles.scss";
 
-import {
-  TextField,
-  InputLabel,
-  FormControl,
-  Select,
-  MenuItem,
-  InputAdornment,
-  Box,
-} from "@mui/material";
+import { InputLabel, FormControl, Select, MenuItem, Box } from "@mui/material";
 import { Search } from "@mui/icons-material";
 import ProductFilterDrawer from "./ProductFilter";
 import axios from "axios";
@@ -135,13 +127,14 @@ const Productlists = ({
               className={
                 filterHeaderImage?.today_deal === false && "image_opactity"
               }
-              onClick={() =>
+              onClick={() => {
                 handleImageChange({
                   today_deal: true,
                   price_drop: false,
                   just_launch: false,
-                })
-              }
+                });
+                setProductFetchApi({ todays_deal: 0 });
+              }}
             />
           </div>
           {filterHeaderImage?.today_deal && <span>Today's Deal</span>}
@@ -151,13 +144,14 @@ const Productlists = ({
             <img
               src={filterHeaderImage?.price_drop_image}
               alt=""
-              onClick={() =>
+              onClick={() => {
                 handleImageChange({
                   today_deal: false,
                   price_drop: true,
                   just_launch: false,
-                })
-              }
+                });
+                setProductFetchApi({ price_drop: 0 });
+              }}
             />
           </div>
           {filterHeaderImage?.price_drop && <span>Price Drop</span>}
@@ -167,13 +161,14 @@ const Productlists = ({
             <img
               src={filterHeaderImage?.just_launch_image}
               alt=""
-              onClick={() =>
+              onClick={() => {
                 handleImageChange({
                   today_deal: false,
                   price_drop: false,
                   just_launch: true,
-                })
-              }
+                });
+                setProductFetchApi({ new_product: 0 });
+              }}
             />
           </div>
           {filterHeaderImage?.just_launch && <span>Just Launch</span>}
