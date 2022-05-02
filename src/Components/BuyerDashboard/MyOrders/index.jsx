@@ -58,6 +58,10 @@ function Index() {
   const [orderlist, setorderlist] = useState([])
 
   useEffect(async() => {
+    dispatch({
+      type: "SET_IS_LOADING",
+      value: true,
+    });
     const user = JSON.parse(localStorage.getItem('userdata'))
     try {
       const orderlist = await axios({
@@ -71,8 +75,16 @@ function Index() {
         }
       })
       setorderlist(orderlist?.data)
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
     } catch(e) {
       console.log(e)
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
     }
   }, [])
 

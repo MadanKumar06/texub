@@ -12,7 +12,7 @@ import axios from "axios";
 import Constant from "../../Constant";
 import { useStateValue } from "../../store/state";
 import Divider from "@mui/material/Divider";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 var moment = require("moment");
 
 function Index() {
@@ -30,10 +30,14 @@ function Index() {
   );
   useEffect(async() => {
     if(qid === undefined) return
+    dispatch({
+      type: "SET_IS_LOADING",
+      value: true,
+    });
     try {
       const data = await axios({
         method:'post',
-        url: `${Constant?.baseUrl()}/pendingInvoicesDetails`,
+        url: `${Constant?.baseUrl()}/pendingInvoiceDetails`,
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`
         },
@@ -41,14 +45,27 @@ function Index() {
           quote_id: parseInt(qid)
         }
       })
-      setPendingInvoiceList(data?.data)
-      console.log(data?.data)
+      setPendingInvoiceList(data?.data[0])
+      console.log(data?.data[0])
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
     } catch(e) {
       console.log(e)
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
     }
   }, [qid])
+
   useEffect(() => {
     if(qid !== undefined) return
+    dispatch({
+      type: "SET_IS_LOADING",
+      value: true,
+    });
     const user = JSON.parse(localStorage.getItem("userdata"));
     let data = {
       data: {
@@ -65,9 +82,20 @@ function Index() {
       })
       .then((res) => {
         setPendingInvoiceList(res?.data?.[0]);
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
       })
-      .catch((error) => {});
+      .catch((error) => {
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+      });
   }, [currency]);
+
+  console.log(pendingInvoiceList)
 
   function truncate(str, n) {
     return str?.length > n ? str.substr(0, n - 1) + "..." : str;
@@ -202,15 +230,19 @@ function Index() {
       .toString()
       .replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
   }
+
+  const navigate = useNavigate();
+
+
   return (
     <div className="pendinginvoice">
       <div className="pendinginvoice__top">
         <div className="top__header">
           <div className="checkout_info_list">
             <div className="checkout_back_toggle">
-              <Link to="/">
-                <ArrowBackIosNew />
-              </Link>
+              <p onClick={() => navigate(-1)} style={{color: 'white', cursor: 'pointer'}}>
+                <ArrowBackIosNew  />
+              </p>
             </div>
             <div className="order_id_info">
               <div className="orderid_section">
