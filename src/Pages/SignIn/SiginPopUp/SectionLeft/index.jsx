@@ -79,6 +79,7 @@ const TransitionsModal = ({ classes, openPopUp }) => {
   });
 
   const handleClose = (event, reason) => {
+    debugger;
     if (reason && reason === "backdropClick") return;
     else {
       setOpen(false);
@@ -464,10 +465,9 @@ const TransitionsModal = ({ classes, openPopUp }) => {
           className={modal}
           open={open}
           closeAfterTransition
-          disableBackdropClick
           BackdropComponent={Backdrop}
           onClose={handleClose}
-          disableAutoFocus={true}
+          disableRestoreFocus={true}
           BackdropProps={{
             timeout: 500,
           }}
