@@ -7,7 +7,9 @@ import "./styles.scss";
 import { useStateValue } from "../../../store/state";
 import Vieworders from '../../Common/Vieworders'
 import OrdersInfo from '../../BuyerDashboard/MyOrders/OrdersInfo'
-
+import axios from "axios";
+import Constant from '../../../Constant'
+import moment from "moment";
 
 function Index() {
   const [tableData, setTableData] = useState([]);
@@ -30,6 +32,7 @@ function Index() {
   }, [])
 
   const PaginateDataSplit = (event) => {
+    if (orderlist?.length === 0) return setTableData([]);
     setTableData(event);
   };
 
@@ -52,48 +55,31 @@ function Index() {
     search: false,
   };
 
-  const table = [
-    {
-      orderid: "000069",
-      date: "11/09/22",
-      sellercode: "220012",
-      hub: "Mumbai",
-      ordertotal: "78999",
-      status: "Pending",
-      action: "View Order",
-    },
-    {
-      orderid: "000088",
-      date: "26/05/22",
-      sellercode: "344598",
-      hub: "Chennai",
-      ordertotal: "67999",
-      status: "Confirm",
-      action: "View Order",
-    },
-    {
-      orderid: "000088",
-      date: "26/05/22",
-      sellercode: "344598",
-      hub: "Chennai",
-      ordertotal: "67999",
-      status: "Delivered",
-      action: "View Order",
-    },
-    {
-      orderid: "000088",
-      date: "26/05/22",
-      sellercode: "344598",
-      hub: "Chennai",
-      ordertotal: "67999",
-      status: "Dispatched",
-      action: "View Order",
-    },
-  ];
+  const [orderlist, setorderlist] = useState([])
+
+  useEffect(async() => {
+    const user = JSON.parse(localStorage.getItem('userdata'))
+    try {
+      const orderlist = await axios({
+        method: 'post',
+        data: {
+          buyerId: user?.id
+        },
+        url: `${Constant?.baseUrl()}/getBuyerOrderList`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+      })
+      setorderlist(orderlist?.data)
+    } catch(e) {
+      console.log(e)
+    }
+  }, [])
+
 
   const columns = [
     {
-      name: "orderid",
+      name: "order_id",
       label: "Order ID",
       options: {
         customBodyRender: (value) => {
@@ -101,33 +87,35 @@ function Index() {
         },
       },
     },
-    { name: "date", label: "Date" },
-    {
-      name: "sellercode",
-      label: "Seller Code",
+    { name: "date",
+      label: "Date",
       options: {
         customBodyRender: (value) => {
-          return <div className="myorders__sellercode">{value}</div>;
+          return (
+            <div className="myorders__date">
+              <span className="price">{moment(value).format("DD/MM/YYYY")}</span>
+            </div>
+          );
         },
-      },
+      }
     },
     { name: "hub", label: "HUB" },
     {
-      name: "ordertotal",
+      name: "order_total",
       label: "Order Total",
       options: {
         customBodyRender: (value) => {
           return (
             <div className="myorders__ordertotal">
               <span className="currency">INR </span>
-              <span className="price">{value}</span>
+              <span className="price">{parseFloat(value).toFixed(2)}</span>
             </div>
           );
         },
       },
     },
     {
-      name: "status",
+      name: "order_status",
       label: "Status",
       options: {
         customBodyRender: (value) => {
@@ -147,7 +135,7 @@ function Index() {
       },
     },
     {
-      name: "action",
+      name: "order_id",
       label: "Action",
       options: {
         customBodyRender: (value) => {
@@ -182,11 +170,15 @@ function Index() {
             ))}
           </div>
           <MUITable columns={columns} table={tableData} options={options} className="myorders__table" />
-          <Pagination
+          {orderlist?.length > 0 ?
+            <Pagination
             PaginateData={PaginateDataSplit}
-            DataList={table}
+            DataList={orderlist?.length ? orderlist : []}
             PagePerRow={10}
           />
+          :
+          ""
+          }
         </>
 
       }

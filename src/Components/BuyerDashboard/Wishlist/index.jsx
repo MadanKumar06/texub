@@ -18,8 +18,10 @@ const Whislist = () => {
     return price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
   }
   const PaginateDataSplit = (event) => {
-    if (wishdata?.length === 0) return setwishdata([]);
-    setTableData(event);
+    if (wishdata?.length === 0) return setwishdata([])
+    else {
+      setTableData(event);
+    }
   };
 
   useEffect(() => {
@@ -83,7 +85,7 @@ const Whislist = () => {
   return (
     <div className="wishlist_main_container">
       <div>
-        {tableData?.length
+        {tableData?.length > 0
           ? tableData?.map((itm) => (
               <WhislistTable
                 tableData={itm?.wishlist_data}
@@ -93,7 +95,7 @@ const Whislist = () => {
                 wishListAgain={wishListAgain}
               />
             ))
-          : ""}
+          : "Currently Wishlist Data is Empty"}
       </div>
       {wishdata?.length > 0 ? (
         <Pagination
