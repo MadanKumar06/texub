@@ -56,6 +56,10 @@ function Index() {
   const [invoicelist, setinvoicelist] = useState()
 
   useEffect(async() => {
+    dispatch({
+      type: "SET_IS_LOADING",
+      value: true,
+    });
     const user = JSON.parse(localStorage.getItem('userdata'))
     try {
       const invoice = await axios({
@@ -69,8 +73,16 @@ function Index() {
         }
       })
       setinvoicelist(invoice?.data)
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
     } catch(e) {
       console.log(e)
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
     }
   }, [])
 

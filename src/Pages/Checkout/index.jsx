@@ -15,7 +15,7 @@ import {
   InputLabel,
 } from "@mui/material";
 import Divider from "@mui/material/Divider";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
@@ -129,9 +129,13 @@ const Checkout = () => {
         .catch((err) => {});
     };
     fetchCountryData();
-  }, []);
+  }, []);  
   
   const saveaddress = async() => {
+    let street = [
+      addressdata?.address_line1,
+      addressdata?.address_line2
+    ]
     let user = JSON.parse(localStorage.getItem('userdata'))
     try {
       const addressadd = await axios({
@@ -143,28 +147,23 @@ const Checkout = () => {
         data: {
           "customerId":user?.id,
           "cartId":quoteid,
-          "shippingAddressId":0,
-          "billingAddressId":0,
+          "shippingAddressId":selectadd ? selectadd : 0,
+          "billingAddressId":selectadd ? selectadd : 0,
           "addressInformation": {
                "shipping_address": {
                 "company":addressdata?.organization_name,
                 "country_id": addressdata?.country,
-                "street": [
-                  addressdata?.address_line1,
-                  addressdata?.address_line2
-             ],
-             "postcode": addressdata?.pincode,
-             "city": addressdata?.city
+                "street": street,
+                "postcode": addressdata?.pincode,
+                "city": addressdata?.city
            },
            "billing_address": {
                 "company":addressdata?.organization_name,
                 "country_id": addressdata?.country,
-                "street": [
-                  addressdata?.address_line1,
-                  addressdata?.address_line2
-             ],
-             "postcode": addressdata?.pincode,
-             "city": addressdata?.city
+                "street": street,
+                "postcode": addressdata?.pincode,
+                "city": addressdata?.city,
+                "postcode": addressdata?.pincode,
            }
           }
         }
@@ -176,6 +175,10 @@ const Checkout = () => {
 
   useEffect(async() => {
     let user = JSON.parse(localStorage.getItem('userdata'))
+    dispatch({
+      type: "SET_IS_LOADING",
+      value: true,
+    });
     try {
       const quote = await axios({
         method: 'post',
@@ -191,14 +194,22 @@ const Checkout = () => {
         }
       })
       setqutoedata(quote?.data)
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
     } catch(e) {
       console.log(e)
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
     }
   }, [quoteid])
 
-  console.log(quotedata)
 
   const editaddress = (id) => {
+    debugger
     quotedata[0]?.address_list?.filter(al => {
       if(al?.address_id === "21") {
         console.log(al?.street)
@@ -214,6 +225,7 @@ const Checkout = () => {
       }
     })
   }
+  console.log(addressdata)
 
   const [selectadd, setselectadd] = useState()
 
@@ -229,7 +241,38 @@ const Checkout = () => {
     })
   }
 
-  console.log(addressdata)
+  const shippingamount = async() => {
+    dispatch({
+      type: "SET_IS_LOADING",
+      value: true,
+    });
+    let storedata = JSON.parse(localStorage.getItem('storedata'))
+    try {
+      const getamount = await axios({
+        method: 'post',
+        url: `${Constant?.baseUrl()}/shippingAmountRequested`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        },
+        data: {
+          "quoteId":quoteid,
+          "storeId":storedata?.store_id,
+          "customer_address_id": selectadd
+        }
+      })
+      console.log(getamount?.data)
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
+    } catch(e) {
+      console.log(e)
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
+    }
+  }
 
   const raisequote = async() => {
     let user = JSON.parse(localStorage.getItem('userdata'))
@@ -373,14 +416,15 @@ const Checkout = () => {
       console.log(e)
     }
   } 
+  const navigate = useNavigate();
 
   return (
     <div className="checkout_main_container">
       <div className="checkout_info_list">
         <div className="checkout_back_toggle">
-          <Link to="/">
-            <ArrowBackIosNew />
-          </Link>
+          <p onClick={() => navigate(-1)} style={{color: 'white', cursor: 'pointer'}}>
+            <ArrowBackIosNew  />
+          </p>
         </div>
         <div className="order_id_info">
           <div className="orderid_section">
@@ -538,19 +582,27 @@ const Checkout = () => {
                   </div>
                 </div>
                 <div className="shipping_charges_info">
-                {quotedata[0]?.invoice?.pending_invoice_status !== '1' &&
-                  <>
+                  {/* {quotedata[0]?.invoice?.pending_invoice_status === '1' &&
                     <div className="shipping_charges_section">
                       <span className="shipping_text">Shipping Charges :</span>
                       <span className="shipping_price">
                         <span>INR</span> {parseFloat(quotedata[0]?.invoice?.shipping_amount).toFixed(2)}
                       </span>
                     </div>
+                  } */}
+                  {quotedata[0]?.invoice?.pending_invoice_status === '2' &&
                     <div className="shipping_charges_section">
                       <span className="shipping_text">Shipping Charges :</span>
-                      <span className="shipping_awit">Awaiting for Prices</span>
+                      <span className="shipping_awit">Waiting for Charges</span>
                     </div>
-                  </>
+                  }
+                  {quotedata[0]?.invoice?.pending_invoice_status === '3' &&
+                    <div className="shipping_charges_section">
+                      <span className="shipping_text">Shipping Charges :</span>
+                      <span className="shipping_price">
+                        <span>INR</span> {parseFloat(quotedata[0]?.invoice?.shipping_amount).toFixed(2)}
+                      </span>
+                    </div>
                   }
                 </div>
               </div>
@@ -725,7 +777,7 @@ const Checkout = () => {
         </div>
       </div>
       <div className="checkout_payment_section">
-        {shipping_method === "pick_up_from_hub" || quotedata[0].invoice?.pending_invoice_status === '3' ? (
+        {shipping_method === "pick_up_from_hub" || quotedata[0]?.invoice?.pending_invoice_status === '3' ? (
           <div className="order_details_main">
             <div className="checkout_order_basic_info">
               <div className="checkoutorder_basic_info">
@@ -791,7 +843,7 @@ const Checkout = () => {
             <div className="texub_shipping_btns">
               <Button className="texub_cancel_btn">Cancel</Button>
               {quotedata[0]?.invoice?.pending_invoice_status === '1' && 
-                <Button className="texub_quote_btn btn-secondary" onClick={raisequote}>
+                <Button className="texub_quote_btn btn-secondary" onClick={shippingamount}>
                   Request Quote
                 </Button>
               }

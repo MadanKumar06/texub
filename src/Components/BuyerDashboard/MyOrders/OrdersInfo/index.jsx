@@ -6,10 +6,7 @@ import { Clear } from "@mui/icons-material";
 import Divider from "@mui/material/Divider";
 import Ratingpopup from "./Rating";
 import TrackOrderpopup from "./TrackOrder";
-
 import TransactionPopup from "./TransactionInfo";
-
-
 import "./styles.scss";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import MUITable from "../../../Common/MUITable";
@@ -17,8 +14,7 @@ import image from "../../../../Assets/buyerdashboard/auctions/hp.png";
 import download from "../../../../Assets/buyerdashboard/orders/download.png"
 import track from "../../../../Assets/buyerdashboard/orders/trackorder.png"
 import rating from "../../../../Assets/buyerdashboard/orders/rating.png"
-
-
+import { useStateValue } from "../../../../store/state";
 import {
   shippingaddress,
   billingaddress,
@@ -28,8 +24,8 @@ import {
 } from "../../../Common/Vieworders/viewordersjson";
 
 const Index = ({ setisVieworders, setisOrders }) => {
-
-     const [open, setOpen] = useState(false);
+  const [{}, dispatch] = useStateValue()
+    const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
@@ -52,17 +48,17 @@ const Index = ({ setisVieworders, setisOrders }) => {
       };
 
 
-    const options = {
-  filter: false,
-  filterType: "dropdown",
-  responsive: "vertical",
-  selectableRows: "none",
-  download: false,
-  print: false,
-  sort: false,
-  viewColumns: false,
-  search: false,
-};
+  const options = {
+    filter: false,
+    filterType: "dropdown",
+    responsive: "vertical",
+    selectableRows: "none",
+    download: false,
+    print: false,
+    sort: false,
+    viewColumns: false,
+    search: false,
+  };
 const table = [
   {
     productname: {
