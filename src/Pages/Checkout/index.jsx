@@ -35,6 +35,8 @@ import checkout_call from "../../Assets/CheckoutPage/telephone.png";
 import Constant from "../../Constant";
 import axios from "axios";
 import moment from "moment";
+import {useStateValue} from '../../store/state'
+import { isEmailValid, getAdminToken } from "../../utilities";
 
 
 const DeliveryAddressJson = [
@@ -66,10 +68,94 @@ const Checkout = () => {
   const [quotedata, setqutoedata] = useState([])
   const {quoteid} = useParams()
   const [userid, setuserid] = useState()
+  const [{currency}, dispatch] = useStateValue()
+  const [pickup, setpickup] = useState({
+    bussiness_name: '',
+    contact_person: '',
+    email_address: '',
+    mobile_number: ''
+  })
+  const [payment, setpayment] = useState()
+
+
+  const onpickup = (e) => {
+    if(e.target.name === 'email_address') {
+      if(isEmailValid(e.target.value)) {
+        setpickup({ ...pickup, [e.target.name]: e.target.value });  
+      }
+    } else {
+      setpickup({ ...pickup, [e.target.name]: e.target.value });
+    }
+  }
 
   useEffect(() => {
     setuserid(JSON.parse(localStorage.getItem('userdata')))
   }, [])
+
+  const [adminToken, setAdminToken] = useState("");
+  useEffect(() => {
+    getAdminToken((res) => {
+      setAdminToken(res);
+    });
+  }, []);
+
+  const [addressdata, setaddressdata] = useState({
+    organization_name: '',
+    address_line1: '',
+    address_line2: '',
+    city: '',
+    organization_name: '',
+    pincode: ''
+  })
+
+  const addressadd = (e) => {
+    setaddressdata({ ...addressdata, [e.target.name]: e.target.value });  
+  }
+
+  console.log(addressdata)
+  
+  const saveaddress = async() => {
+    let user = JSON.parse(localStorage.getItem('userdata'))
+    try {
+      const addressadd = await axios({
+        method: 'post',
+        url: `${Constant.baseUrl()}/saveShippingAddress`,
+        headers: {
+          Authorization: `Bearer ${adminToken}`
+        },
+        data: {
+          "customerId":user?.id,
+          "cartId":quoteid,
+          "shippingAddressId":0,
+          "billingAddressId":0,
+          "addressInformation": {
+               "shipping_address": {
+                "company":"vh",
+                "country_id": "IN",
+                "street": [
+               "No.56 road",
+               "Near  cub"
+             ],
+             "postcode": "630302",
+             "city": "Devakottai"
+           },
+           "billing_address": {
+                "company":"texub",
+                "country_id": "IN",
+                "street": [
+               "No.54 road",
+               "Near tiger cub"
+             ],
+             "postcode": "630302",
+             "city": "Devakottai"
+           }
+          }
+        }
+      })
+    } catch(e) {
+      console.log(e)
+    }
+  }
 
   useEffect(async() => {
     let user = JSON.parse(localStorage.getItem('userdata'))
@@ -88,13 +174,15 @@ const Checkout = () => {
         }
       })
       setqutoedata(quote?.data)
-      console.log(quote?.data)
     } catch(e) {
       console.log(e)
     }
   }, [quoteid])
+  console.log(quotedata)
+
 
   const raisequote = async() => {
+    let user = JSON.parse(localStorage.getItem('userdata'))
     let storedata = JSON.parse(localStorage.getItem('storedata'))
     let itemsdata = []
     quotedata[0].invoice_items?.filter(qd => {
@@ -128,14 +216,14 @@ const Checkout = () => {
             "item_hub":qd?.hub_id,
             "item_currency":qd?.currency_id
          }
-    } )
+      })
     })
     try {
       const postquote = await axios({
         method: 'post',
-        url: `${Constant.baseUrl()}/orders`,
+        url: `${Constant.baseUrl2()}/orders`,
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`
+          Authorization: `Bearer ${adminToken}`
         },
         data: {
           "entity": {
@@ -145,10 +233,10 @@ const Checkout = () => {
             "base_shipping_amount": 10,
             "base_subtotal": 1900,
             "base_tax_amount": 0,
-            "customer_email": "buyer@check.com",
+            "customer_email": user?.email,
             "customer_firstname": "buyer",
             "customer_group_id": 5,
-            "customer_id": 160,
+            "customer_id": user?.id,
             "customer_is_guest": 0,
             "customer_lastname": "Check",
             "customer_note_notify": 1,
@@ -178,7 +266,7 @@ const Checkout = () => {
                 "address_type": "billing",
                 "city": "Chennai",
                 "country_id": "IN",
-                "customer_address_id": 1,
+                "customer_address_id": 21,
                 "email": "buyer@check.com",
                 "firstname": "buyer",
                 "lastname": "check",
@@ -195,13 +283,13 @@ const Checkout = () => {
                 "method": "cashondelivery"
             },
             "extension_attributes": {
-                "pending_invoice_status":"1",
-                "pending_invoice_id" : "PE10310",
-                "invoice_currency" : 5,
-                "contact_business_name" : "BusinessName",
-                "contact_person_name" : "Person",
-                "contact_email_address" : "krk@krk.krk",
-                "contact_phone":"90897665213",
+                "pending_invoice_status":quotedata[0]?.invoice?.pending_invoice_status,
+                "pending_invoice_id" : quotedata[0]?.invoice?.pending_invoice_id,
+                "invoice_currency" : currency?.currency_id,
+                "contact_business_name" : pickup?.bussiness_name,
+                "contact_person_name" : pickup?.contact_person,
+                "contact_email_address" : pickup?.email_address,
+                "contact_phone": pickup?.mobile_number,
                 "shipping_assignments": [
                     {
                         "shipping": {
@@ -209,7 +297,7 @@ const Checkout = () => {
                                 "address_type": "shipping",
                                 "city": "Chennai",
                                 "country_id": "IN",
-                                "customer_address_id": 1,
+                                "customer_address_id": 21,
                                 "email": "buyer@check.com",
                                 "firstname": "buyer",
                                 "lastname": "cehck",
@@ -222,7 +310,7 @@ const Checkout = () => {
                                 ],
                                 "telephone": "1234567890"
                             },
-                            "method": "instore_instore"
+                            "method": payment
                         }
                     }
                 ]
@@ -418,7 +506,7 @@ const Checkout = () => {
                   <div className="aside_block_A">
                     <div className="delivery_address_section">
                       <div className="delivery_address_list">
-                        {DeliveryAddressJson?.map((itm) => (
+                        {quotedata[0]?.address_list?.map((itm) => (
                           <div className="delivery_address_content">
                             <div className="billing_title">
                               <p>Default Billing Address</p>
@@ -428,8 +516,8 @@ const Checkout = () => {
                               </div>
                             </div>
 
-                            <p className="user_name">{itm?.name}</p>
-                            <p className="item_address">{itm?.address}</p>
+                            <p className="user_name">{itm?.firstname} {itm?.lastname}</p>
+                            <p className="item_address">{itm?.Street[0]}</p>
                           </div>
                         ))}
                         <div className="aside_block_B">
@@ -477,6 +565,8 @@ const Checkout = () => {
                             className="inputfield-box"
                             name="bussiness_name"
                             variant="outlined"
+                            value={pickup?.bname}
+                            onChange={(e) => onpickup(e)}
                           />
                         </div>
                         <div className="address_fields">
@@ -487,6 +577,8 @@ const Checkout = () => {
                             className="inputfield-box"
                             name="contact_person"
                             variant="outlined"
+                            value={pickup?.contactname}
+                            onChange={(e) => onpickup(e)}
                           />
                         </div>
                       </div>
@@ -500,6 +592,8 @@ const Checkout = () => {
                             className="inputfield-box"
                             name="email_address"
                             variant="outlined"
+                            value={pickup?.email}
+                            onChange={(e) => onpickup(e)}
                           />
                         </div>
                         <div className="address_fields">
@@ -510,6 +604,8 @@ const Checkout = () => {
                             className="inputfield-box"
                             name="mobile_number"
                             variant="outlined"
+                            value={pickup?.mobile}
+                            onChange={(e) => onpickup(e)}
                           />
                         </div>
                       </div>
@@ -530,47 +626,38 @@ const Checkout = () => {
                 <div className="payment_info">
                   <RadioGroup
                     aria-labelledby="demo-radio-buttons-group-label"
-                    defaultValue={"1"}
+                    defaultValue={quotedata[0].payment_methods?.checkmo?.value}
                     name="radio-buttons-group"
                   >
                     <div className="payment_footer_block_1">
-                      {/* {quotedata?.} */}
                       <div className="footer_main">
                         <div className="footer_content">
                           <FormControlLabel
-                            value="1"
-                            control={<Radio />}
+                            value={quotedata[0].payment_methods?.checkmo?.value}
+                            control={<Radio onClick={() => setpayment(quotedata[0].payment_methods?.checkmo?.value)} />}
                             label={""}
                           />
-                          <p className="footer_title">Wire Transfer</p>
+                          <p className="footer_title">{quotedata[0].payment_methods?.checkmo?.label}</p>
                         </div>
                       </div>
                       <div className="footer_main">
                         <div className="footer_content">
                           <FormControlLabel
-                            value="2"
-                            control={<Radio />}
+                            value={quotedata[0].payment_methods?.free?.value}
+                            control={<Radio onClick={() => setpayment(quotedata[0].payment_methods?.free?.value)} />}
                             label={""}
                           />
-                          <img
-                            className="footer_image"
-                            src={Checkout_checkout_com}
-                            alt=""
-                          />
+                          <p className="footer_title">{quotedata[0].payment_methods?.free?.label}</p>
                         </div>
                       </div>
                       <div className="footer_main">
                         <div className="footer_content">
                           <FormControlLabel
-                            value="3"
-                            control={<Radio />}
+                            value={quotedata[0].payment_methods?.paypal_billing_agreement?.value}
+                            control={<Radio onClick={() => setpayment(quotedata[0].payment_methods?.paypal_billing_agreement?.value)} />}
                             label={""}
                           />
-                          <img
-                            className="footer_image"
-                            src={Checkout_razorpay_logo}
-                            alt=""
-                          />
+                          <p className="footer_title">{quotedata[0].payment_methods?.paypal_billing_agreement?.label}</p>
                         </div>
                       </div>
                     </div>
@@ -638,7 +725,7 @@ const Checkout = () => {
                 </span>
               </div>
               <div className="checkout_btns">
-                <Button className="placeorder_btn">Place Your Order</Button>
+                <Button className="placeorder_btn" onClick={raisequote}>Place Your Order</Button>
                 <Button className="placeorder_cancel_btn">
                   Go To Pending Invoice
                 </Button>
@@ -687,6 +774,7 @@ const Checkout = () => {
                       <RadioGroup
                         aria-labelledby="demo-controlled-radio-buttons-group"
                         name="controlled-radio-buttons-group"
+                        onChange={(e) => addressadd(e)}
                       >
                         <FormControlLabel
                           value="texub_billing"
@@ -714,6 +802,7 @@ const Checkout = () => {
                       // disabled
                       className="inputfield-box"
                       variant="outlined"
+                      onChange={(e) => addressadd(e)}
                     />
                   </div>
                   <div className="address_fields">
@@ -724,6 +813,7 @@ const Checkout = () => {
                       className="inputfield-box"
                       name="address_line1"
                       variant="outlined"
+                      onChange={(e) => addressadd(e)}
                     />
                   </div>
                 </div>
@@ -736,6 +826,7 @@ const Checkout = () => {
                       className="inputfield-box"
                       name="address_line2"
                       variant="outlined"
+                      onChange={(e) => addressadd(e)}
                     />
                   </div>
                   <div className="address_fields">
@@ -746,6 +837,7 @@ const Checkout = () => {
                       className="inputfield-box"
                       name="pincode"
                       variant="outlined"
+                      onChange={(e) => addressadd(e)}
                     />
                   </div>
                 </div>
@@ -759,6 +851,7 @@ const Checkout = () => {
                       className="inputfield-box"
                       name="city"
                       variant="outlined"
+                      onChange={(e) => addressadd(e)}
                     />
                   </div>
                   <div className="address_fields">
@@ -768,8 +861,9 @@ const Checkout = () => {
                         labelId="demo-simple-select-label"
                         id="selection_box_block"
                         label="State"
+                        onChange={(e) => addressadd(e)}
                       >
-                        <MenuItem value={10}>Tamil Nadu</MenuItem>
+                        <MenuItem value={10} >Tamil Nadu</MenuItem>
                         <MenuItem value={20}>Tamil Nadu 2</MenuItem>
                         <MenuItem value={30}>Tamil Nadu 3</MenuItem>
                       </Select>
@@ -785,6 +879,7 @@ const Checkout = () => {
                         labelId="demo-simple-select-label"
                         id="selection_box_block"
                         label="Country"
+                        onChange={(e) => addressadd(e)}
                       >
                         <MenuItem value={10}>Ten</MenuItem>
                         <MenuItem value={20}>Twenty</MenuItem>
@@ -796,7 +891,7 @@ const Checkout = () => {
 
                 <div className="address_popup_btns">
                   <Button className="address_cancel_btn">Cancel</Button>
-                  <Button className="address_save_btn">Save Changes</Button>
+                  <Button className="address_save_btn" onClick={saveaddress}>Save Changes</Button>
                 </div>
               </Box>
             </div>
