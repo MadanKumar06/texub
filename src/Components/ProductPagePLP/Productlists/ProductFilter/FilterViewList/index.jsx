@@ -33,6 +33,11 @@ const FilterViewList = ({
     filter_by_hub: "",
   });
 
+  // price comma split
+  function formatToCurrency(price) {
+    return price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
+  }
+
   useEffect(() => {
     if (dataFromApi?.length) {
       let filterByBrand = dataFromApi?.[0]?.brands?.slice(0, 5);
@@ -211,7 +216,8 @@ const FilterViewList = ({
                         ?.currency_code
                     }
                   </span>
-                  {value?.[0]}
+                  {formatToCurrency(parseInt(value?.[0]))}
+
                 </p>
                 <p>
                   <span>
@@ -221,7 +227,8 @@ const FilterViewList = ({
                         ?.currency_code
                     }
                   </span>
-                  {value?.[1]}
+                  {formatToCurrency(parseInt(value?.[1]))}
+                  
                 </p>
               </div>
             </Box>

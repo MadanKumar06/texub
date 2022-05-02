@@ -103,6 +103,7 @@ const TransitionsModal = ({ classes, openPopUp }) => {
               ? `url('${homeContent?.popup?.buyer_banner}')`
               : `url('${homeContent?.popup?.seller_banner}')`
           }`,
+          outline:"none"
         }}
       >
         <Clear

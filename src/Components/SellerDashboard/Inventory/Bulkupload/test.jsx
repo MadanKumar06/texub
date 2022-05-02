@@ -1,4 +1,6 @@
+
 import React, { useState } from "react";
+import { OutTable, ExcelRenderer } from "react-excel-renderer";
 import "./styles.scss";
 import { Button, TextField, Autocomplete } from "@mui/material";
 import { Clear } from "@mui/icons-material";
@@ -8,7 +10,6 @@ import downnload_image from "../../../../Assets/CommonImage/download.png";
 import question_image from "../../../../Assets/CommonImage/question.png";
 import { useStateValue } from "../../../../store/state";
 import swal from "sweetalert2";
-import XLSX from "xlsx";
 
 function Index() {
   const [Row, setRow] = useState([]);
@@ -18,59 +19,42 @@ function Index() {
   const [choosenFile, setChoosenFile] = useState({});
   const [file, setFile] = useState({});
   const handleUploadApiCall = () => {
-    var reader = new FileReader();
-    reader.onload = function (e) {
-      var data = e.target.result;
-      var workbook = XLSX.read(data, {
-        type: "binary",
-      });
-      let t = workbook.Sheets[workbook.SheetNames?.[3]];
-      var key1 = "A1";
-      var key2 = "I1";
-      delete t[key1];
-      delete t[key2];
-      var XL_row_object = XLSX.utils.sheet_to_json(t);
-
-      handleJSONCreate(XL_row_object);
-    };
-    reader.readAsBinaryString(file);
+    ExcelRenderer(file, (err, resp) => {
+      if (err) {
+        console.log(err);
+      } else {
+        handleJSONCreate(resp.rows);
+      }
+    });
   };
   const handleJSONCreate = async (rows) => {
+    debugger;
     dispatch({
       type: "SET_IS_LOADING",
       value: true,
     });
     let requests = [];
+    rows.splice(0, 2);
     let RowCount = 3;
-    rows.splice(0, 1);
     rows?.map((itm) => {
-      if (
-        itm?.__EMPTY ||
-        itm?.__EMPTY_1 ||
-        itm?.__EMPTY_2 ||
-        itm?.__EMPTY_3 ||
-        itm?.__EMPTY_4 ||
-        itm?.__EMPTY_5 ||
-        itm?.__EMPTY_6 ||
-        itm?.__EMPTY_7
-      ) {
+      if (itm?.length < 15) {
         let customerId = JSON.parse(localStorage.getItem("userdata"));
         let data = {
           product_data: {
             bulkupload: 1,
             customer_id: customerId?.id,
-            main_category: itm?.__EMPTY_1,
+            main_category: itm?.[1],
             other_main_category: "",
-            sub_category: itm?.__EMPTY_2,
+            sub_category: itm?.[2],
             other_sub_category: "",
             other_brand_number: "",
-            name: itm?.__EMPTY,
+            name: itm?.[0],
             texub_product_id: "",
-            mgs_brand: itm?.__EMPTY_3,
-            hsn_code: itm?.__EMPTY_4,
-            sku: itm?.__EMPTY_5,
-            upc_number: itm?.__EMPTY_6,
-            description: itm?.__EMPTY_7,
+            mgs_brand: itm?.[3],
+            hsn_code: itm?.[4],
+            sku: itm?.[5],
+            upc_number: itm?.[6],
+            description: itm?.[7],
           },
         };
         requests.push(
@@ -110,33 +94,33 @@ function Index() {
           data: {
             bulk_upload: 1,
             customer_id: customerId?.id,
-            product_id: itm?.__EMPTY_8,
-            product_condition: itm?.__EMPTY_18,
-            other_condition: itm?.__EMPTY_19,
-            warranty_type: itm?.__EMPTY_20,
-            warranty_country: itm?.__EMPTY_21,
-            warranty_days: itm?.__EMPTY_22,
-            packing_details: itm?.__EMPTY_23,
-            no_pieces_per: itm?.__EMPTY_25 || itm?.__EMPTY_24,
-            width: itm?.__EMPTY_27,
-            height: itm?.__EMPTY_28,
-            product_length: itm?.__EMPTY_26,
-            weight: itm?.__EMPTY_29,
-            restrictions: itm?.__EMPTY_30,
-            restricted_region: itm?.__EMPTY_31,
-            restricted_country: itm?.__EMPTY_32,
-            description: itm?.__EMPTY_33,
+            product_id: itm?.[8],
+            product_condition: itm?.[18],
+            other_condition: itm?.[19],
+            warranty_type: itm?.[20],
+            warranty_country: itm?.[21],
+            warranty_days: itm?.[22],
+            packing_details: itm?.[23],
+            no_pieces_per: itm?.[24] || itm?.[25],
+            width: itm?.[27],
+            height: itm?.[28],
+            product_length: itm?.[26],
+            weight: itm?.[29],
+            restrictions: itm?.[30],
+            restricted_region: itm?.[32],
+            restricted_country: itm?.[31],
+            description: itm?.[33],
             product_details: [
               {
-                hub_id: itm?.__EMPTY_9,
-                currency_id: itm?.__EMPTY_10,
-                price: itm?.__EMPTY_11,
-                in_stock: itm?.__EMPTY_12,
-                eta: itm?.__EMPTY_13,
-                moq: itm?.__EMPTY_14,
-                cgst: itm?.__EMPTY_15,
-                sgst: itm?.__EMPTY_17,
-                igst: itm?.__EMPTY_16,
+                hub_id: itm?.[9],
+                currency_id: itm?.[10],
+                price: itm?.[11],
+                in_stock: itm?.[12],
+                eta: itm?.[13],
+                moq: itm?.[14],
+                cgst: itm?.[15],
+                sgst: itm?.[17],
+                igst: itm?.[16],
               },
             ],
           },
@@ -227,8 +211,8 @@ function Index() {
 
           <a
             className="bulk_download_example link"
-            href="/Example.Xlsx.xlsx"
-            download="Example.Xlsx.xlsx"
+            href="/LiveSheetFinal.xlsx"
+            download="LiveSheetFinal.xlsx"
           >
             Example.Xlsx{" "}
             <div className="image">
@@ -327,3 +311,4 @@ function Index() {
 }
 
 export default Index;
+

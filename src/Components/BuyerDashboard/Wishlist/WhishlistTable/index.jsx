@@ -414,6 +414,7 @@ const WhislistTable = ({
         </div>
       </div>
       <div className="table_boby_block">
+        <div className="table_body_section">
         {wdata?.length > 0
           ? wdata?.map((itm, index) => (
               <div className="table_block">
@@ -515,9 +516,10 @@ const WhislistTable = ({
                     </Button>
                   </div>
                 </div>
-              </div>
+              </div> 
             ))
           : ""}
+          </div>
       </div>
     </div>
   );

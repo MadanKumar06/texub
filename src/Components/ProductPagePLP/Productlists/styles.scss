@@ -57,11 +57,15 @@
       input {
         color: #ffffff;
       }
+      input#search_proudct {
+       color: #858A8E !important;
+      }
       input::placeholder {
-        color: #ffffff;
+        color: #858A8E;
         font-size: 16px;
         opacity: 1;
       }
+
       .MuiButtonBase-root {
         color: #ffffff;
         padding: 8px 22px;

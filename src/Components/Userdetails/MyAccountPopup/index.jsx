@@ -60,7 +60,7 @@ const MyAccountPopup = () => {
       <Button
         aria-controls="simple-menu"
         aria-haspopup="true"
-        onClick={handleClick}
+        onClick={handleClick} disableRipple
       >
         <div className="account_circle_image">
           <img src={account_circle} alt="" />
