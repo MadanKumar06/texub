@@ -198,7 +198,10 @@ const Index = ({ pdpSellerData, handleOpenClose }) => {
                     Save
                   </button>
                 </span>
-                <p style={{ cursor: "pointer" }} onClick={() => create()}>
+               <p style={{ cursor: "pointer" }} onClick={() =>{
+                  create()
+                  setSave_error('')
+                  }}>
                   Cancel
                 </p>
               </div>
