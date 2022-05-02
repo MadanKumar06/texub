@@ -138,5 +138,37 @@
 
     .transaction_number_popup{
     margin: 2em;
+    .transaction_popup_main{
+      height: 90vh;
+      .transaction_popup_clear_btn{
+        top: -25px;
+        right: -25px;
+      }
+      .transaction_popup{
+        padding: 10px 15px;
+        height: 90vh;
+        min-height: 85vh;
+        overflow-y: auto;
+        .transaction_section{
+          padding: 10px 15px;
+          .transaction_block{
+            gap: 1em;
+            display: flex;
+            padding-bottom: 2%;
+            flex-direction: column;
+          }
+          
+        }
+        .ordersuccess_btns{
+            padding-top: 15px;
+            flex-direction: column;
+            gap: 20px;
+            button{
+              width: 100%;
+              max-width: 100%;
+            }
+          }
+      }
+    }
     }
 }

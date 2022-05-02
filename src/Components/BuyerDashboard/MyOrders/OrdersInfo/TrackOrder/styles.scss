@@ -112,6 +112,29 @@
 @media (max-width: 580px) {
 
     .tracking_order_popup{
-    margin: 2em;
+    margin: 2.5em;
+      .order_popup_main{
+        height: 75vh;
+        .track_popup_block{
+          height: 75vh;
+          min-height: 75vh;
+          padding: 10px 15px;
+          .tracking_info_block{
+            padding: 5px 10px;
+            .tracking_info{
+              
+              .tracking_address_info{
+                width: 100% !important;
+                padding: 10px 15px !important;
+              }
+            }
+          }
+        }
+        .tracking_popup_clear_btn{
+          top: -25px;
+          right: -25px;
+        }
+      }
+      
     }
 }

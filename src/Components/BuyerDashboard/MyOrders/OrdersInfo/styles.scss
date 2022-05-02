@@ -744,6 +744,30 @@
     }
   }
 }
+@media (max-width: 900px) {
+  .serial_number_popup{
+    margin: 2.5em;
+    .serial_popup_main{
+        height: 70vh;
+        .serial_popup_block{
+          height: 70vh;
+          min-height: 65vh;
+        }
+
+        .serial_popup_clear_btn{
+            top: -25px;
+            right: -25px;
+        }
+
+        .serial_popup_block{
+          .serial_number_block{
+            grid-template-columns: repeat(4, 1fr);
+          }
+        }
+    }
+  }
+
+}
 
 @media (max-width: 580px) {
   .vieworders_main{
@@ -760,6 +784,7 @@
         justify-content: center;
         .username{
           margin-right: 10px;
+          width: 100%;
         }
       }
     }
@@ -795,5 +820,11 @@
       }
     }
   } 
+  .serial_number_popup{
+    margin: 2em;
+  }
+  .serial_number_popup .serial_popup_main .serial_popup_block .serial_number_block{
+    grid-template-columns: repeat(2, 1fr);
+  }
 
 }
