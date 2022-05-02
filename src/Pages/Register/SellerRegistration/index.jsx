@@ -33,7 +33,7 @@ import { useNavigate, Link } from "react-router-dom";
 
 const BuyerRegistration = ({ classes }) => {
   const history = useNavigate();
-  const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
+  const [{ geo, customnostore }, dispatch] = useStateValue();
   let {
     main_container,
     input_fields,
@@ -122,8 +122,7 @@ const BuyerRegistration = ({ classes }) => {
   useEffect(() => {
     const fetchRoleData = () => {
       axios
-        // .get(Constant.baseUrl() + "/getRoleList", {
-        .get("https://uat.texub.com/rest/V1/texub/getRoleList", {
+        .get(Constant.baseUrl() + "/getRoleList", {
           headers: {
             "Content-Type": "application/json",
           },

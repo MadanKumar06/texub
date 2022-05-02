@@ -33,7 +33,7 @@ import forgot from "../../../../Assets/Home/forgotpassword.svg";
 
 const TransitionsModal = ({ classes, openPopUp }) => {
   let history = useNavigate();
-  const [{geo, customnostore}, dispatch] = useStateValue();
+  const [{ geo, customnostore }, dispatch] = useStateValue();
   let {
     forgotpassword,
     forgotpassword__title,
@@ -283,7 +283,11 @@ const TransitionsModal = ({ classes, openPopUp }) => {
         value: false,
       });
       setTimeout(() => {
-        history(`${customnostore ? customnostore : geo?.country_name}/thankyou/${user}kyc`);
+        history(
+          `${
+            customnostore ? customnostore : geo?.country_name
+          }/thankyou/${user}kyc`
+        );
       }, 1000 / 2);
     } else if (event?.info === "kyc_filled_success") {
       dispatch({
@@ -389,13 +393,13 @@ const TransitionsModal = ({ classes, openPopUp }) => {
               Forgot Password ?
               <Clear
                 className={forgotpassword__clearbtn}
-               onClick={() =>{
-                  setpassopen(false)
+                onClick={() => {
+                  setpassopen(false);
                   setSignInData((prev) => ({
                     ...prev,
-                    forgot_email_address: '',
-                  }))
-                  setInputValidation(inputValidation.email_address='')
+                    forgot_email_address: "",
+                  }));
+                  setInputValidation((inputValidation.email_address = ""));
                 }}
               />
             </div>

@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from "react";
 import "./styles.scss";
-import MUITable from "../../Common/MUITable";
-import { Button, Box } from "@mui/material";
-import { IconButton, InputBase, Paper } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
 
+import MUITable from "../../Common/MUITable";
+import { Button, Box, IconButton, InputBase, Paper } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
 import { ArrowBackIosNew } from "@mui/icons-material";
-import hp from "../../../Assets/sellerdashboard/inventory/hp.png";
 import { Link } from "react-router-dom";
-import Pagination from "../../Pagination";
-import ProductGrid from "./ProductGrid";
 import swal from "sweetalert2";
 
+import Pagination from "../../Pagination";
+import ProductGrid from "./ProductGrid";
 import axios from "axios";
 import Constant from "../../../Constant";
 import { useStateValue } from "../../../store/state";
@@ -22,8 +20,7 @@ function Index({ registerproduct }) {
   const [apiTableData, setApiTableData] = useState([]);
   const [searchList, setSearchList] = useState([]);
   const [search, setSearch] = useState("");
-  const [{ geo, customstore, customnostore, generalTrigger }, dispatch] =
-    useStateValue();
+  const [{ geo, customnostore, generalTrigger }, dispatch] = useStateValue();
 
   function formatToCurrency(price) {
     return price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
@@ -144,7 +141,7 @@ function Index({ registerproduct }) {
         customBodyRender: (value) => {
           return (
             <div className="inventory__rank">
-              {/* {value} */}3<p>th</p>
+              3<p>th</p>
             </div>
           );
         },

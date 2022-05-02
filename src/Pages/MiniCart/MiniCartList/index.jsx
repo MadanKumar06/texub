@@ -7,9 +7,6 @@ import { Clear } from "@mui/icons-material";
 import { Button } from "@mui/material";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
-import brand_logo from "../../../Assets/Productlist/Brand_icon.png";
-import minicart_icon from "../../../Assets/Minicart/minicart_icon.png";
-import minicart_new from "../../../Assets/Minicart/minicart_new.png";
 import { Rating } from "@mui/material";
 import { useStateValue } from "../../../store/state";
 import { getAdminToken } from "../../../utilities";
@@ -17,28 +14,28 @@ import Constant from "../../../Constant";
 import axios from "axios";
 import swal from "sweetalert2";
 import SimpleLoader from "../../../Components/SimpleLoader";
+import minicart_icon from "../../../Assets/Minicart/minicart_icon.png";
+import minicart_new from "../../../Assets/Minicart/minicart_new.png";
 
 function formatToCurrency(amount) {
   return amount.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
-
-  // return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
 const MiniCartList = ({ handleSideBarClose }) => {
-  const [
-    { cart, currency, isSimpleLoading, geo, customstore, customnostore },
-    dispatch,
-  ] = useStateValue();
+  const [{ cart, gt, isSimpleLoading, geo, customnostore }, dispatch] =
+    useStateValue();
   const [value, setValue] = React.useState(4);
   const navigate = useNavigate();
   const [isCartData, setIsCartData] = useState([]);
   useEffect(() => {
+    setIsCartData([]);
     let temp = cart?.[0]?.invoice_items?.map((itm) => ({
       ...itm,
       is_qty: itm?.qty,
     }));
     setIsCartData(temp);
-  }, [cart?.data]);
+  }, [gt, cart?.[0]?.invoice_items]);
+
   const handleChange = (event, index) => {
     setIsCartData(
       isCartData?.map((item, ind) => {
@@ -257,10 +254,10 @@ const MiniCartList = ({ handleSideBarClose }) => {
                     <img src={minicart_icon} alt="" />
                   </div>
                   <div className="section_left">
-                    <img src={brand_logo} alt="" />
-                    <span className="minicart_new">
+                    <img src={Constant.imageBaseUrl() + itm?.brand} alt="" />
+                    {/* <span className="minicart_new">
                       <img src={minicart_new} alt="" />
-                    </span>
+                    </span> */}
                   </div>
                   <div className="section_right">
                     <p className="seller_id">

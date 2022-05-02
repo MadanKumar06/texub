@@ -225,10 +225,6 @@ function Index({ type, pid }) {
   });
   const handleClickValidation = (event) => {
     var errorHandle = false;
-    countincrease();
-    {
-      errorHandle = true;
-    }
     if (!updateProductList?.conditions) {
       document.getElementById("conditions")?.focus();
       setInputValidation((prevState) => ({

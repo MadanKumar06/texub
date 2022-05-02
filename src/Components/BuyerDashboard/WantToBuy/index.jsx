@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import MUITable from "../../../Components/Common/MUITable";
-import { Button } from "@mui/material";
-import { ArrowBackIosNew } from "@mui/icons-material";
-import { Link } from "react-router-dom";
+import { Button, Paper, InputBase, IconButton } from "@mui/material";
+import { ArrowBackIosNew, Search } from "@mui/icons-material";
+import { Link, useNavigate } from "react-router-dom";
 import Pagination from "../../Pagination";
 import "./styles.scss";
 import axios from "axios";
@@ -15,8 +15,9 @@ import QuoteReceivedGrid from "./QuoteRecievedGrid";
 function Index() {
   const [tableData, setTableData] = useState([]);
   const [apiTableData, setApiTableData] = useState([]);
-  const [{geo, customstore, customnostore}, dispatch] = useStateValue();
+  const [{ geo, customnostore }, dispatch] = useStateValue();
   const [isVieworders, setisVieworders] = useState(false);
+  const Navigate = useNavigate();
   const [isViewQuoteReceived, setIsViewQuoteReceived] = useState({
     id: "",
     activeState: false,
@@ -101,7 +102,7 @@ function Index() {
       label: "CATEGORY",
       options: {
         customBodyRender: (value) => {
-          return <div className="want_tobuy__sellercode">{value}</div>;
+          return <div>{value}</div>;
         },
       },
     },
@@ -110,7 +111,7 @@ function Index() {
       label: "QUANTITY",
       options: {
         customBodyRender: (value) => {
-          return <div className="want_tobuy__sellercode">{value}</div>;
+          return <div className="want_tobuy__quantity">{value}</div>;
         },
       },
     },
@@ -139,18 +140,7 @@ function Index() {
       label: "ACTIVE SELERS",
       options: {
         customBodyRender: (value) => {
-          return (
-            <div
-              className={`
-                    ${value === "Pending" && "want_tobuy__pending"}
-                    ${value === "Confirm" && "want_tobuy__confirm"}
-                    ${value === "Delivered" && "want_tobuy__delivered"}
-                    ${value === "Dispatched" && "want_tobuy__dispatched"}
-                    `}
-            >
-              {value}
-            </div>
-          );
+          return <div className="want_tobuy__quantity">{value}</div>;
         },
       },
     },
@@ -178,15 +168,40 @@ function Index() {
       },
     },
   ];
-
+  const handleNavigate = () => {
+    Navigate(
+      `/${
+        customnostore ? customnostore : geo?.country_name
+      }/buyerdashboard/dashboard`
+    );
+  };
   return (
     <div className="want_tobuy">
-      <div className="want_tobuy__footer">
-        <div className="want_tobuy__container">
-          <Link to={`/${customnostore ? customnostore : geo?.country_name}/buyerdashboard/dashboard`}>
-            <ArrowBackIosNew />
-            <span>Back</span>
-          </Link>
+      {isViewQuoteReceived?.activeState || isVieworders ? (
+        ""
+      ) : (
+        <div className="want_tobuy__search">
+          <Paper
+            className="want_tobuy__searchinput"
+            component="form"
+            sx={{ p: "2px 4px", display: "flex", alignItems: "center" }}
+          >
+            <InputBase
+              sx={{ ml: 1, flex: 1 }}
+              placeholder="Search..."
+              inputProps={{ "aria-label": "" }}
+              className="want_tobuy__input"
+            />
+            <IconButton
+              type="submit"
+              sx={{ p: "10px" }}
+              aria-label="search"
+              onClick={(event) => event.preventDefault()}
+            >
+              <Search />
+            </IconButton>
+          </Paper>
+
           <Button
             className="button-text btn-secondary"
             onClick={() => orders()}
@@ -194,7 +209,7 @@ function Index() {
             Want To Buy
           </Button>
         </div>
-      </div>
+      )}
       {isOrders && (
         <>
           <MUITable
@@ -212,11 +227,40 @@ function Index() {
           ) : (
             ""
           )}
+          <div className="want_tobuy__footer">
+            <div className="want_tobuy__container">
+              <p onClick={() => handleNavigate()}>
+                <ArrowBackIosNew />
+                <span>Back</span>
+              </p>
+            </div>
+          </div>
         </>
       )}
-      {isVieworders && <WantToBuy />}
+
+      {isVieworders && (
+        <WantToBuy
+          setisVieworders={setisVieworders}
+          setisOrders={setisOrders}
+        />
+      )}
       {isViewQuoteReceived?.activeState && (
-        <QuoteReceivedGrid id={isViewQuoteReceived?.id} />
+        <>
+          <QuoteReceivedGrid id={isViewQuoteReceived?.id} />
+          <div className="want_tobuy__footer">
+            <div className="want_tobuy__container">
+              <p
+                onClick={() => {
+                  setIsViewQuoteReceived({ activeState: false });
+                  setisOrders(true);
+                }}
+              >
+                <ArrowBackIosNew />
+                <span>Back</span>
+              </p>
+            </div>
+          </div>
+        </>
       )}
     </div>
   );
