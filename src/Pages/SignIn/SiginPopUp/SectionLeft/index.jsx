@@ -170,10 +170,11 @@ const TransitionsModal = ({ classes, openPopUp }) => {
     if (!errorHandle) {
       // Apicall fuction
       ForgotPasswordFinalApi();
-      setSignInData((prev) => ({
-        ...prev,
-        forgot_email_address: "",
-      }));
+      // setSignInData((prev) => ({
+      //   ...prev,
+      //   forgot_email_address: "",
+      // }));
+      setInputValidation(inputValidation.forgot_email_address='')
     }
   };
 
