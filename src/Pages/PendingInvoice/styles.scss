@@ -123,11 +123,12 @@
             text-align: left;
             width: 12%;
             color: #5c6369;
-            font-weight: 400;
           }
           .value {
             text-align: left;
             width: 20%;
+            font-weight: 600;
+            color: #333C42;
           }
           hr.MuiDivider-root {
             min-height: 35px !important;
@@ -216,6 +217,7 @@
         .MuiTableRow-root {
           .MuiTableCell-root {
             border: 1px solid #cdd5dd;
+            max-width: 300px;
             div {
               vertical-align: middle;
               text-align: center;
@@ -230,6 +232,7 @@
               padding: 5px 10px;
               width: max-content;
               border-radius: 2px;
+              margin: 0 auto;
             }
             .productname {
               display: flex;
@@ -253,6 +256,7 @@
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
+                text-align: left;
                 .modal_name {
                   color: #333c42;
                   text-transform: uppercase;
@@ -303,6 +307,7 @@
               text-transform: capitalize;
               text-align: center;
               width: max-content;
+              margin: 0 auto;
             }
             .table__price {
               display: flex;
@@ -373,9 +378,13 @@
             text-align: center;
             display: flex;
             justify-content: space-around;
+            .label {
+              width: 33%;
+            }
             .value {
               display: flex;
               align-items: center;
+              // padding-left: 37px;
               .value_symobol {
                 margin-right: 10px;
               }
@@ -582,7 +591,7 @@
             .MuiTableRow-root {
               .MuiTableCell-root {
                 div {
-                  text-align: start;
+                  text-align: left;
                 }
                 .vieworders_price {
                   justify-content: start;
