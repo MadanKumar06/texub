@@ -157,6 +157,14 @@ const Productsbrands = ({ setProductFetchApi, getCategories }) => {
           initialSlide: 8,
         },
       },
+       {
+        breakpoint: 1550,
+        settings: {
+          slidesToShow: 7,
+          slidesToScroll: 1,
+          initialSlide: 7,
+        },
+      },
       {
         breakpoint: 1440,
         settings: {
