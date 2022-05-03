@@ -376,6 +376,7 @@ function Index() {
         </div>
       </div>
       <div className="validation_message">
+        <div className="check_scroll">
         {Row?.length
           ? Row?.map((itm, ind) => {
               return (
@@ -389,6 +390,7 @@ function Index() {
               );
             })
           : ""}
+          </div>
       </div>
     </div>
   );
