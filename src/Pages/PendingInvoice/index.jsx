@@ -97,10 +97,6 @@ function Index() {
 
   console.log(pendingInvoiceList)
 
-  function truncate(str, n) {
-    return str?.length > n ? str.substr(0, n - 1) + "..." : str;
-  }
-
   const options = {
     filter: false,
     filterType: "dropdown",
@@ -137,7 +133,7 @@ function Index() {
               </span>
               <div className="product">
                 <span className="modal_name">{product_name}</span>
-                <span className="modal_content">{truncate(value, 50)}</span>
+                <span className="modal_content">{value}</span>
               </div>
             </div>
           );

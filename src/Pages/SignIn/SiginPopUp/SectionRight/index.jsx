@@ -385,7 +385,7 @@ const TransitionsModal = ({ classes }) => {
           </InputLabel>
           <FormControlLabel
             value={guestData?.checkbox_confrim}
-            control={<Checkbox color="color_third" defaultChecked={true} />}
+            control={<Checkbox color="color_third" />}
             label={
               <div>
                 <div>I confirm that I am a wholesale buyer,</div>
