@@ -2,12 +2,17 @@
   padding-top: 30px;
   .invoices__footer {
     margin-top: 2em;
+    display: flex;
+    justify-content: space-between;
     .invoices__container {
       display: flex;
       align-items: center;
       font-size: 16px;
-      color: #002d56;
+      color: #002d56; 
     }
+    .order_cancel_btn{
+        width: 25%;
+      }
     svg {
       width: 0.6em;
       height: 0.6em;
@@ -16,7 +21,7 @@
   .status_change_container {
     margin-top: 3em;
     .select_text {
-      font-size: 14px;
+      font-size: 20px;
       color: #333c42;
       font-weight: 600;
       margin-left: 1.2em;
@@ -43,6 +48,64 @@
     .cancelled {
       background: #ffe2e2;
       color: #ff0000;
+    }
+    .MuiFormControl-root{
+      .MuiFormGroup-root{
+        display: flex;
+        flex-wrap: initial;
+        gap: 15px;
+        .inventory_register{
+          height: 35px;
+          margin: 15px 0;
+        }
+      }
+    }
+  }
+
+  /* purchase order status section design */
+  .purchase_order_status{
+    margin: 3em 0 2em;
+    box-shadow: 0px 3px 6px #00000029;
+    border: 1px solid #E6E6E6;
+    border-radius: 4px;
+    background-color: #fff;
+    padding: 2em 3em;
+    .purchase_order_section{
+      padding: 20px 0;
+      text-align: center;
+      .purhcase_order_title{
+        letter-spacing: 0.72px;
+        color: #858A8E;
+        text-transform: uppercase;
+        font-size: 18px;
+        font-weight: 600;
+      }
+    }
+    .purchase_status_stepper{
+      .MuiStepper-root{
+       .MuiStep-root{
+         .MuiStepLabel-root{
+         display: flex;
+         flex-direction: column;
+         .MuiStepLabel-iconContainer{
+           svg{
+             color:#ddb363;
+             circle::after{
+              
+               content: ' \002E';
+               color: #fff;
+               width: 20px;
+               height: 20px;
+
+             }
+             text{
+               display: none;
+             }
+           }
+         }
+         }
+       }
+      }
     }
   }
   .vieworders_heading_section {
@@ -441,6 +504,12 @@
     .hr {
     border: 1px dashed #20639b;
   }
+  .vieworders_main 
+    .status_change_container
+       .MuiFormControl-root 
+       .MuiFormGroup-root{
+         flex-wrap: wrap;
+       }
 }
 
 @media (max-width: 768px) {
