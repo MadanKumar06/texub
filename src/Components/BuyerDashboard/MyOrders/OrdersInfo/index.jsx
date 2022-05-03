@@ -479,6 +479,7 @@ const columns = [
           aria-describedby="modal-modal-description"
           closeAfterTransition
           BackdropComponent={Backdrop}
+          disableRestoreFocus={true}
           BackdropProps={{
           timeout: 500,
         }}

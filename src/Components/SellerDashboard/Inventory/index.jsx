@@ -152,6 +152,7 @@ function Index({ registerproduct }) {
       label: "ACTION",
       options: {
         customBodyRender: (value, tablemeta) => {
+          let assigned_product_id = tablemeta?.rowData[11];
           let isOfferValid = tablemeta?.rowData[12];
           let isOfferPriceValid = tablemeta?.rowData[13];
           return (
@@ -178,6 +179,12 @@ function Index({ registerproduct }) {
                 {isOfferValid === "0" && isOfferPriceValid === "0"
                   ? "Add Offers"
                   : "View Offers"}
+              </div>
+              <div
+                className="inventory__action add_offers"
+                onClick={() => deleterow(assigned_product_id)}
+              >
+                Delete
               </div>
             </div>
           );
@@ -296,6 +303,52 @@ function Index({ registerproduct }) {
     }
   };
 
+  const deleterow = async (value) => {
+    dispatch({
+      type: "SET_IS_LOADING",
+      value: true,
+    });
+    try {
+      const rowdelete = await axios({
+        method: "post",
+        url: `${Constant.baseUrl()}/deleteProduct`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        data: {
+          product_id: value,
+        },
+      });
+      if (rowdelete?.data?.[0]?.status) {
+        dispatch({
+          type: "SET_GENERAL_TRINGGER",
+        });
+        swal.fire({
+          text: `${rowdelete?.data?.[0]?.message}`,
+          icon: "success",
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      } else {
+        swal.fire({
+          text: `${rowdelete?.data?.[0]?.message}`,
+          icon: "error",
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      }
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
+    } catch (e) {
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
+      console.log(e);
+    }
+  };
   return (
     <div className="inventory">
       <div className="inventory__products__footer">

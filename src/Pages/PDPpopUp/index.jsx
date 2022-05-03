@@ -226,6 +226,7 @@ const PdpPopup = () => {
       className="pdp_modal"
       open={open}
       closeAfterTransition
+      disableRestoreFocus={true}
       BackdropComponent={Backdrop}
       BackdropProps={{
         timeout: 500,

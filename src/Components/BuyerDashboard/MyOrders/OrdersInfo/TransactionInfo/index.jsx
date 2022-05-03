@@ -45,6 +45,7 @@ export default function BasicModal({PopupTransaction}) {
         className="transaction_number_popup"
         closeAfterTransition
         BackdropComponent={Backdrop}
+        disableRestoreFocus={true}
         BackdropProps={{
           timeout: 500,
         }}

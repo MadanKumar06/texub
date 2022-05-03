@@ -14,37 +14,34 @@ import {
   FormControl,
   FormLabel,
   Button,
+  StepLabel,
+  Step,
+  Stepper,
+  Box,
 } from "@mui/material";
-import Box from '@mui/material/Box';
-import Stepper from '@mui/material/Stepper';
-import Step from '@mui/material/Step';
-import StepLabel from '@mui/material/StepLabel';
-import Typography from '@mui/material/Typography';
 
-
-const steps = ['PO Received', 'PO Confirmed', 'PO Dispatched' , 'PO Delivered'];
-// const steps = [
-//   {
-//     label: 'PO Received',
-//     date :"02/05/2022",
-//     time: "12:02:22",
-//   },
-//   {
-//     label: 'PO Confirmed',
-//     date :"02/05/2022",
-//     time: "12:02:22",
-//   },
-//   {
-//     label: 'PO Delivered',
-//      date :"02/05/2022",
-//     time: "12:02:22",
-//   },
-//   {
-//     label: 'PO Dispatched',
-//     date :"02/05/2022",
-//     time: "12:02:22",
-//   },
-// ];
+const steps = [
+  {
+    label: "PO Received",
+    date: "02/05/2022",
+    time: "12:02:22",
+  },
+  {
+    label: "PO Confirmed",
+    date: "02/05/2022",
+    time: "12:02:22",
+  },
+  {
+    label: "PO Delivered",
+    date: "02/05/2022",
+    time: "12:02:22",
+  },
+  {
+    label: "PO Dispatched",
+    date: "02/05/2022",
+    time: "12:02:22",
+  },
+];
 
 const options = {
   filter: false,
@@ -214,54 +211,8 @@ const Index = ({ setisVieworders, setisOrders, viewDetail }) => {
       });
   };
 
-
-  // stepper 
-  const [activeStep, setActiveStep] = React.useState(0);
-  const [skipped, setSkipped] = React.useState(new Set());
-
-  // const isStepOptional = (step) => {
-  //   return step === 1;
-  // };
-
-  const isStepSkipped = (step) => {
-    return skipped.has(step);
-  };
-
-  const handleNext = () => {
-    let newSkipped = skipped;
-    if (isStepSkipped(activeStep)) {
-      newSkipped = new Set(newSkipped.values());
-      newSkipped.delete(activeStep);
-    }
-
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    setSkipped(newSkipped);
-  };
-
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
-
-  const handleSkip = () => {
-    // if (!isStepOptional(activeStep)) {
-    //   // You probably want to guard against something like this,
-    //   // it should never occur unless someone's actively trying to break something.
-    //   throw new Error("You can't skip a step that isn't optional.");
-    // }
-
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    setSkipped((prevSkipped) => {
-      const newSkipped = new Set(prevSkipped.values());
-      newSkipped.add(activeStep);
-      return newSkipped;
-    });
-  };
-
-  const handleReset = () => {
-    setActiveStep(0);
-  };
-
-
+  // stepper
+  const [activeStep, setActiveStep] = useState(1);
 
   return (
     <div className="vieworders_main">
@@ -301,7 +252,7 @@ const Index = ({ setisVieworders, setisOrders, viewDetail }) => {
               labelPlacement="top"
               onClick={() => {
                 setRadioGroup(1);
-                handleAPICall(1);
+                setActiveStep(2);
               }}
             />
             <FormControlLabel
@@ -315,7 +266,7 @@ const Index = ({ setisVieworders, setisOrders, viewDetail }) => {
               labelPlacement="top"
               onClick={() => {
                 setRadioGroup(2);
-                handleAPICall(2);
+                setActiveStep(3);
               }}
             />
             <FormControlLabel
@@ -329,156 +280,43 @@ const Index = ({ setisVieworders, setisOrders, viewDetail }) => {
               labelPlacement="top"
               onClick={() => {
                 setRadioGroup(3);
-                handleAPICall(3);
-              }}
-            />
-            <FormControlLabel
-              value="Cancelled"
-              control={<Radio color="secondary" />}
-              label={
-                <>
-                  <p className="cancelled status">Cancelled</p>
-                </>
-              }
-              labelPlacement="top"
-              onClick={() => {
-                setRadioGroup(4);
-                handleAPICall(4);
+                setActiveStep(4);
               }}
             />
             <Button
-                className="button-text btn-secondary inventory_register"
-               
-              >Submit
-              </Button>
-
+              className="button-text btn-secondary inventory_register"
+              onClick={() => handleAPICall(radiogroup)}
+            >
+              Submit
+            </Button>
           </RadioGroup>
         </FormControl>
       </div>
 
       <div className="purchase_order_status">
-              <div className="purchase_order_section">
-                <span className="purhcase_order_title">PURCHASE ORDER STATUS</span>
-              </div>
-               <Box sx={{ width: '100%' }} className="purchase_status_stepper">
-                  <Stepper activeStep={activeStep}>
-                    {steps.map((label, index) => {
-                      const stepProps = {};
-                      const labelProps = {};
-                    
-                      if (isStepSkipped(index)) {
-                        stepProps.completed = false;
-                      }
-                      return (
-                        <Step key={label} {...stepProps}>
-                          <StepLabel {...labelProps}>{label}</StepLabel>
-                        </Step>
-                      );
-                    })}
-                  </Stepper>
-                    {activeStep === steps.length ? (
-                      <React.Fragment>
-                        <Typography sx={{ mt: 2, mb: 1 }}>
-                          All steps completed - you&apos;re finished
-                        </Typography>
-                        <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-                          <Box sx={{ flex: '1 1 auto' }} />
-                          <Button onClick={handleReset}>Reset</Button>
-                        </Box>
-                      </React.Fragment>
-                    ) : (
-                      <React.Fragment>
-                        <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}</Typography>
-                        <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-                          <Button
-                            color="inherit"
-                            disabled={activeStep === 0}
-                            onClick={handleBack}
-                            sx={{ mr: 1 }}
-                          >
-                            Back
-                          </Button>
-                          <Box sx={{ flex: '1 1 auto' }} />
-
-                          <Button onClick={handleNext}>
-                            {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-                          </Button>
-                        </Box>
-                      </React.Fragment>
-                    )}
-              </Box>
-              
-      </div>
-      {/* <div className="vieworders__detailscontainer">
-        <p className="vieworders__bg"></p>
-        <div className="vieworders_detail_section">
-          <p className="heading">Order Details</p>
-          <div className="details">
-            <div className="hr_line">
-              <hr></hr>
-            </div>
-            <div className="vieworder_address">
-              <div className="address_section">
-                <div className="vieworders_shippingaddress_section">
-                  <div className="vieworders_shippingaddress">
-                    {shippingaddress.map((item) => (
-                      <li key={item.id} className="vieworders_list">
-                        <span className="heading">{item.heading}</span>
-                        <span className="name"> {item.name}</span>
-                        <span className="address">{item.address}</span>
-                      </li>
-                    ))}
-                  </div>
-                  <div className="vieworders_payment_section">
-                    <p className="payment_heading">Shipping Method</p>
-                    <p className="payment_type">Flat Rate-Fixed</p>
-                  </div>
-                </div>
-                <div className="vieworders_shippingaddress_section">
-                  <div className="vieworders_shippingaddress">
-                    {billingaddress.map((item) => (
-                      <li key={item.id} className="vieworders_list">
-                        <span className="heading">{item.heading}</span>
-                        <span className="name"> {item.name}</span>
-                        <span className="address">{item.address}</span>
-                      </li>
-                    ))}
-                  </div>
-                  <div className="vieworders_payment_section">
-                    <p className="payment_heading">Payment Method</p>
-                    <p className="payment_type">Check (Off-Line)</p>
-                  </div>
-                </div>
-              </div>
-              <div className="vieworders_total">
-                {total.map((item) => (
-                  <li key={item.id} className="vieworders_list">
-                    <span className="total_heading"> {item.subtotal}</span>
-                    <span className="total_amount">
-                      <span className="currency">INR</span> {item.amount}
-                    </span>
-                  </li>
-                ))}
-                <hr className="hr"></hr>
-                {totalamount.map((item) => (
-                  <li key={item.id} className="vieworders_list">
-                    <div className="taxes">
-                      <span className="total_amount_heading">
-                        {" "}
-                        {item.subtotal}{" "}
-                      </span>
-                      <span className="gst">(incl.GST)</span>
-                    </div>
-                    <span className="total_amount">
-                      <span className="currency">INR</span> {item.amount}
-                    </span>
-                  </li>
-                ))}
-              </div>
-            </div>
-          </div>
+        <div className="purchase_order_section">
+          <span className="purhcase_order_title">PURCHASE ORDER STATUS</span>
         </div>
-      </div> */}
+        <Box sx={{ width: "100%" }} className="purchase_status_stepper">
+          <Stepper activeStep={activeStep}>
+            {steps?.map((label, index) => {
+              const stepProps = {};
+              const labelProps = {};
+              return (
+                <Step key={label} {...stepProps}>
+                  <StepLabel {...labelProps}>
+                    <p className="stepper_label">{label?.label}</p>
+                    <div className="stepper_time_date">
+                      <p className="date">{label?.date}</p>
+                      <p className="time"> {label?.time}</p>
+                    </div>
+                  </StepLabel>
+                </Step>
+              );
+            })}
+          </Stepper>
+        </Box>
+      </div>
       <div className="invoices__footer">
         <div
           className="invoices__container"
@@ -490,11 +328,9 @@ const Index = ({ setisVieworders, setisOrders, viewDetail }) => {
           <ArrowBackIosNew />
           <span>Back</span>
         </div>
-        <Button
-                className="button-text btn-ternary  order_cancel_btn" 
-              >
-                Cancel
-              </Button>
+        <Button className="button-text btn-ternary  order_cancel_btn">
+          Cancel
+        </Button>
       </div>
     </div>
   );

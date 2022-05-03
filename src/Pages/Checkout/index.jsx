@@ -994,6 +994,7 @@ const Checkout = () => {
         <Modal
           open={open?.openClose}
           onClose={handleClose}
+           disableRestoreFocus={true}
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
           className="add_address_popup"

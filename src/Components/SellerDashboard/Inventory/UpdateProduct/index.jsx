@@ -10,7 +10,6 @@ import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import Constant from "../../../../Constant";
 import { useStateValue } from "../../../../store/state";
 import swal from "sweetalert2";
-import { Co2Sharp } from "@mui/icons-material";
 import { isNumber } from "../../../../utilities";
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;

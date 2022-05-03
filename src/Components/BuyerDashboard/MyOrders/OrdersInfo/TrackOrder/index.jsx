@@ -79,6 +79,7 @@ export default function BasicModal({PopupTrack}) {
         aria-describedby="modal-modal-description"
         className="tracking_order_popup"
         closeAfterTransition
+        disableRestoreFocus={true}
         BackdropComponent={Backdrop}
         BackdropProps={{
           timeout: 500,
