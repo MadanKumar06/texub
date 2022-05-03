@@ -282,6 +282,7 @@ const Checkout = () => {
   };
 
   const selectaddress = (itm) => {
+    if(quotedata[0]?.invoice?.pending_invoice_status !== "1") return
     setselectadd(itm?.address_id);
     setaddressdata({
       organization_name: itm?.company,
@@ -748,7 +749,8 @@ const Checkout = () => {
                             <p className="item_address">{itm?.Street[0]}</p>
                           </div>
                         ))}
-                        <div className="aside_block_B delivery_address_content">
+                        {quotedata[0]?.invoice?.pending_invoice_status === "1" &&
+                          <div className="aside_block_B delivery_address_content">
                           <div
                             className="delivery_address_add"
                             onClick={() => handleOpen("add_new_address")}
@@ -757,6 +759,7 @@ const Checkout = () => {
                             <span>Add New Address</span>
                           </div>
                         </div>
+                        }
                       </div>
                     </div>
                     {/* <div className="delivery_customer_info">

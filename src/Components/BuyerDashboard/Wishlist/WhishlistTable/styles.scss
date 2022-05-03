@@ -16,6 +16,14 @@
       align-items: center;
       position: relative;
       height: 100%;
+
+      .folderinput {
+        outline: none;
+        border: none;
+        border-radius: 6px;
+        height: 2em;
+        font-size: 16px;
+      }
     .wishlist-edit-img{
       display: flex;
       align-items: center;
