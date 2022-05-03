@@ -164,7 +164,7 @@
         letter-spacing: 0.72px;
         color: #333c42;
         text-transform: capitalize;
-        font-size: 16px;
+        font-size: 20px;
         font-weight: 600;
         font-style: italic;
         margin: 6px 0;
@@ -175,7 +175,7 @@
         span {
           letter-spacing: 0.5px;
           color: #333c42;
-          font-size: 14px;
+          font-size: 16px;
           font-weight: 400;
         }
       }
@@ -278,6 +278,11 @@
                   text-transform: uppercase;
                   font-size: 14px;
                   font-weight: 600;
+                  display: -webkit-box;
+                  -webkit-line-clamp: 2;
+                  -webkit-box-orient: vertical;
+                  text-overflow: ellipsis;
+                  overflow: hidden;
                 }
               }
             }
@@ -310,13 +315,13 @@
             
             .vieworders_quantity {
               border-radius: 25px;
-              padding: 10px 20px;
-              font-size: 14px;
+              padding: 7px 20px;
+              font-size: 16px;
               font-weight: 600;
               color: #5c6369;
               text-transform: capitalize;
               text-align: center;
-              width: max-content;
+              width: 100px;
               margin: 0 auto;
             }
             .table__price {
@@ -406,7 +411,7 @@
           gap: 10%;
           justify-content: flex-end;
           margin: 0;
-          padding-right: 3%;
+          padding-right: 10%;
           margin-left: 32%;
           hr {
             min-height: 35px !important;
@@ -441,6 +446,10 @@
               font-size: 14px;
             }
           }
+        }
+        .total_value_block{
+          padding-top: 10px;
+          padding-bottom: 10px;
         }
       }
 
@@ -579,10 +588,13 @@
       margin: 1% 2%;
       .middle__tableinfo {
         padding: 10px 15px;
+     
         .tableinfo__orderdata {
           width: 48%;
           p {
             justify-content: space-between;
+            padding-right: 0;
+            margin-left: 0;
             .label {
               width: 100%;
             }
@@ -602,8 +614,13 @@
           .MuiTableBody-root {
             .MuiTableRow-root {
               .MuiTableCell-root {
+                 display: flex !important;
+                align-items: center;
+                max-width: 100%;
+                justify-content: center;
                 div {
                   text-align: left;
+                  margin: 0;
                 }
                 .vieworders_price {
                   justify-content: start;
@@ -647,6 +664,18 @@
         .orderinfo__data {
           width: 100%;
           padding: 10px 0;
+        }
+      }
+      .top__address{
+        flex-direction: column;
+        .address__bill{
+          width: 100%;
+        }
+        hr{
+          display: none;
+        }
+        .address__pickup{
+          width: 100%;
         }
       }
     }
