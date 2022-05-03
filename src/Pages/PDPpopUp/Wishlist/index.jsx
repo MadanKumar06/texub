@@ -133,6 +133,7 @@ const Index = ({ pdpSellerData, handleOpenClose }) => {
       className="wishlist_modal"
       open={open}
       closeAfterTransition
+       disableRestoreFocus={true}
       BackdropComponent={Backdrop}
       BackdropProps={{
         timeout: 500,

@@ -49,7 +49,7 @@
 
   .productlist__search {
     color: white;
-    min-width: 13em;
+    min-width: 13em !important;
     border: 1px solid #d6d8d9;
     .MuiPaper-root {
       background-color: unset !important;

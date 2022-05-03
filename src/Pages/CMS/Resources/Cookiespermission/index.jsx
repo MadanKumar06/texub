@@ -13,6 +13,7 @@ const Index = ({ closePOPup }) => {
          aria-describedby="transition-modal-description"
          open={open}
          className="modal"
+         disableRestoreFocus={true}
          closeAfterTransition
          BackdropComponent={Backdrop}
          BackdropProps={{

@@ -11,8 +11,10 @@ import IMG from "../../../../Assets/FAQ/group7.svg";
 import img from "../../../../Assets/Career/Group 765.png";
 import IMG2 from "../../../../Assets/FAQ/group 6.svg";
 import swal from "sweetalert2";
+import { useStateValue } from "../../../../store/state";
 
 const FAQ = ({ classes }) => {
+  const [{ geo, customnostore }, dispatch] = useStateValue();
   const [description, setdescription] = useState(false);
   const [faqList, setFaqList] = useState({});
   const [toggle, settoggle] = useState(false);
@@ -41,6 +43,10 @@ const FAQ = ({ classes }) => {
       storeId: 3,
       content: askQuestion,
     };
+    dispatch({
+      type: "SET_IS_LOADING",
+      value: true,
+    });
     axios
       .post(Constant.baseUrl() + `/faqRequest`, data, {
         headers: {
@@ -49,6 +55,10 @@ const FAQ = ({ classes }) => {
         },
       })
       .then((res) => {
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
         swal.fire({
           text: `${res?.data?.[0]?.message}`,
           icon: "success",
@@ -56,7 +66,14 @@ const FAQ = ({ classes }) => {
           timer: 3000,
         });
       })
+      .then((res) => {
+        setAskeQuestion('')
+      })
       .catch((error) => {
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
         swal.fire({
           text: `${error?.response?.data?.message || error.message}`,
           icon: "error",

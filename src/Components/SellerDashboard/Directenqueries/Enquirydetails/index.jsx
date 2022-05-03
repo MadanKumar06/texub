@@ -69,6 +69,7 @@ const Index = ({ closePOPup, popid, direct, setrefreshdata, refreshdata }) => {
       open={open}
       className="modal"
       closeAfterTransition
+      disableRestoreFocus={true}
       BackdropComponent={Backdrop}
       BackdropProps={{
         timeout: 500,

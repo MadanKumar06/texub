@@ -172,6 +172,7 @@ const TransitionsModal = ({ handleOpenCloseOffers, offersOpenClose }) => {
       className="modal_offers"
       open={open}
       closeAfterTransition
+      disableRestoreFocus={true}
       BackdropComponent={Backdrop}
       BackdropProps={{
         timeout: 500,
