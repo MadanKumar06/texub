@@ -10,8 +10,6 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
 import { useStateValue } from "../../../store/state";
 const PDPTable = ({ classes, tableData, setPdpSellerData }) => {
-  debugger
-  //styles
   let {
     table_container,
     pdp_middle_wapper,

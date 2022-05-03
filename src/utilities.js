@@ -19,7 +19,9 @@ export const isCompanyNameValid = (company) =>
   company.match(/^\d*[0-9 ][0-9-+\.+\s\.+!@#$%^&*'~`+{}"?><,.:;/|()_-]*$/);
 
 export const isRolesValid = (roles) =>
-  roles.match(/^((?=.*[a-zA-Z])[a-zA-Z+\.\s+!@#$%^&*'~`+{}"?><,.:;/|()_-]{0,50})$/);
+  roles.match(
+    /^((?=.*[a-zA-Z])[a-zA-Z+\.\s+!@#$%^&*'~`+{}"?><,.:;/|()_-]{0,50})$/
+  );
 
 //export const isLandlineValid = (landline) =>  landline.match(/^[0-9]*$/);
 export const isLandlineValid = (landline) => landline.match(/^[0-9+[+-\s]*$/);
@@ -36,7 +38,7 @@ export const isNumber = (number) => number.match(/^[0-9]*\d$/);
 export const getAdminToken = (callback) => {
   let data = {
     username: "admin",
-    password: "admin@1234",
+    password: "admin@123",
   };
   axios
     .post(Constant.adminTokenUrl(), data, {
