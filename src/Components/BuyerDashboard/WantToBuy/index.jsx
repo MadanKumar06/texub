@@ -11,6 +11,10 @@ import Constant from "../../../Constant";
 import { useStateValue } from "../../../store/state";
 import WantToBuy from "./wantToBuyForm";
 import QuoteReceivedGrid from "./QuoteRecievedGrid";
+import ThankyouPage from "./ThankyouPage";
+import AvailablePopup from "./AvailablePopup";
+
+
 
 function Index() {
   const [tableData, setTableData] = useState([]);
@@ -26,6 +30,18 @@ function Index() {
     setisVieworders(true);
     setisOrders(false);
   };
+
+  //sample popup
+ const [isUopup, setisUopup] = useState(false);
+  const Popup = (event) => {
+      setisUopup(event);
+    };
+
+  const [isAvailable, setisAvailable] = useState(false);
+  const PopupAvailable = (event) => {  
+    setisAvailable(event);
+  };
+
 
   const quoteReceived = (value) => {
     setIsViewQuoteReceived((prev) => ({
@@ -233,6 +249,9 @@ function Index() {
                 <ArrowBackIosNew />
                 <span>Back</span>
               </p>
+                 <p className="sample_popup" onClick={() => setisUopup(true)}>sample</p>
+              <p className="sample_popup" onClick={() => setisAvailable(true)}>Available</p>
+
             </div>
           </div>
         </>
@@ -258,10 +277,18 @@ function Index() {
                 <ArrowBackIosNew />
                 <span>Back</span>
               </p>
+              <p className="sample_popup" onClick={() => setisUopup(true)}>sample</p>
+              <p className="sample_popup" onClick={() => setisAvailable(true)}>Available</p>
+
             </div>
           </div>
+
+
         </>
       )}
+            {isUopup && <ThankyouPage Popup={setisUopup} />}
+            {isAvailable && <AvailablePopup PopupAvailable={setisAvailable} />}
+
     </div>
   );
 }
