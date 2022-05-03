@@ -30,24 +30,22 @@ const Index = ({ pdpSellerData, handleOpenClose }) => {
     handleOpenClose(false);
   };
 
-  const [wishcheck, setwishcheck] = useState();
+  const [wishcheck, setwishcheck] = useState([]);
   const wishlistselect = (data, value) => {
-    setwishcheck(data);
-    //   let temp = []
-    //   if(value) {
-    //     setwishcheck(prevState => [
-    //         ...prevState,
-    //         data?.id
-    //     ])
-    //   }
-    //   if(!value) {
-    //     let temp = wishcheck.find(wc => wc !== data?.id)
-    //     setwishcheck(temp)
-    //   }
+      let temp = []
+      if(value) {
+        setwishcheck(prevState => [
+            ...prevState,
+            data?.id
+        ])
+      }
+      if(!value) {
+        let temp = wishcheck.filter(wc => wc !== data?.id)
+        setwishcheck(temp)
+      }
   };
 
   const [save_error, setSave_error] = useState('');
-  debugger
   const handleClickValidation = () => {
     var errorHandle = false;
     if (!newwishdata) {
@@ -98,7 +96,7 @@ const Index = ({ pdpSellerData, handleOpenClose }) => {
           requestParams: {
             customer_id: user?.id,
             product_id: parseInt(pdpSellerData?.product_id),
-            wk_id: wishcheck?.id === undefined ? "" : wishcheck?.id,
+            wk_id: wishcheck?.length ? wishcheck : [],
             wk_name: temp !== undefined ? "" : newwishdata,
           },
         },
