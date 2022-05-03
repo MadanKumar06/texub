@@ -94,6 +94,14 @@ const styles = () => ({
   productable_image: {
     display: "flex",
     justifyContent: "center",
+    width: "50px",
+    height: "50px",
+    margin :"auto",
+    "& img": {
+      width: "100%",
+      height: "100%",
+      cursor: "pointer",
+    },
   },
   producttable_description: {
     maxWidth: "300px",
