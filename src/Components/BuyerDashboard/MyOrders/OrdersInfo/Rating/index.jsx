@@ -73,6 +73,7 @@ export default function BasicModal({Popup, currentorder}) {
         aria-describedby="modal-modal-description"
         className="rating_number_popup"
         closeAfterTransition
+        disableRestoreFocus={true}
         BackdropComponent={Backdrop}
         BackdropProps={{
           timeout: 500,

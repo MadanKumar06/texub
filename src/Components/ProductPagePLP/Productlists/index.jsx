@@ -102,6 +102,15 @@ const Productlists = ({
     fetchProductListDropDownData();
   }, [currency]);
 
+  useEffect(() => {
+    if (productlistdropdown) {
+      setProductFetchApi({
+        hub: productlistdropdown?.hub[0]?.value,
+        conditions: productlistdropdown?.conditions?.[0]?.value,
+        eta: productlistdropdown?.eta?.[0]?.value,
+      });
+    }
+  }, [productlistdropdown]);
   const handleSearchClick = (event) => {
     event.preventDefault();
     setApplyFilter(!applyFilter);
@@ -214,7 +223,7 @@ const Productlists = ({
 
       <Box sx={{ minWidth: 150 }}>
         <FormControl fullWidth className="product_dropdown_hub">
-          <InputLabel id="demo-simple-select-label">All Hubs</InputLabel>
+          <InputLabel id="demo-simple-select-label">Hubs</InputLabel>
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
@@ -225,7 +234,7 @@ const Productlists = ({
           >
             {productlistdropdown?.hub?.length ? (
               productlistdropdown?.hub?.map((itm) => (
-                <MenuItem value={itm?.hub_id}>{itm?.hub_name}</MenuItem>
+                <MenuItem value={itm?.value}>{itm?.label}</MenuItem>
               ))
             ) : (
               <MenuItem>No option</MenuItem>
@@ -235,7 +244,7 @@ const Productlists = ({
       </Box>
       <Box sx={{ minWidth: 200 }}>
         <FormControl fullWidth className="product_dropdown_condition">
-          <InputLabel id="demo-simple-select-label">All Conditions</InputLabel>
+          <InputLabel id="demo-simple-select-label">Conditions</InputLabel>
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
@@ -267,7 +276,7 @@ const Productlists = ({
           >
             {productlistdropdown?.eta?.length ? (
               productlistdropdown?.eta?.map((itm) => (
-                <MenuItem value={itm?.label}>{itm?.label}</MenuItem>
+                <MenuItem value={itm?.value}>{itm?.label}</MenuItem>
               ))
             ) : (
               <MenuItem>No option</MenuItem>

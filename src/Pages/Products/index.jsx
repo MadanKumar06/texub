@@ -12,7 +12,11 @@ export const Products = () => {
   const navigate = useNavigate();
   const [{ currency, homeSearch, customnostore, geo }, dispatch] =
     useStateValue();
-  const [productFetchApi, setProductFetchApi] = useState({});
+  const [productFetchApi, setProductFetchApi] = useState({
+    hub: 0,
+    conditions: 0,
+    eta: 0,
+  });
   const [productData, setProductData] = useState([]);
   const [dataFromApi, setDataFromApi] = useState([]);
   const [getCategories, setGetCategories] = useState([]);

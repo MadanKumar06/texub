@@ -15,6 +15,7 @@ const Index = ({ closePOPup }) => {
         aria-describedby="transition-modal-description"
         open={open}
         closeAfterTransition
+        disableRestoreFocus={true}
         BackdropComponent={Backdrop}
         BackdropProps={{
           timeout: 500,

@@ -394,6 +394,7 @@ const TransitionsModal = ({ classes, openPopUp }) => {
           aria-describedby="modal-modal-description"
           className={modal}
           disableAutoFocus={true}
+          disableRestoreFocus={true}
         >
           <div className={forgotpassword}>
             <div className={forgotpassword__title}>
