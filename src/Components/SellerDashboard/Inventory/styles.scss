@@ -138,6 +138,10 @@
           display: flex;
           align-items: center;
           justify-content: center;
+          background-color: white;
+          border: 1px solid white;
+          border-radius: 24px;
+          padding: 0.3em 2em;
           p {
             margin: 0;
             vertical-align: super;

@@ -6,6 +6,25 @@
     .My_profile_btn_section{
         display: flex;
         justify-content: space-around;
+        p {
+            margin: 0;
+            white-space: nowrap;
+            padding: 0.7em 1.2em;
+            background-color: #f0f0f0;
+            color: #333c42;
+            font-size: 18px;
+            border-radius: 25px;
+            cursor: pointer;
+            width: calc(90% / 5);
+            min-width: 150px;
+            text-align: center;
+            font-weight: 600;
+          }
+      
+          .ordertype__selected {
+            background: linear-gradient(#ffd788, #cc9b3e);
+            color: white;
+          }
         .My_profile_btn{
             background-color: #F0F0F0;
             border-radius: 25px;

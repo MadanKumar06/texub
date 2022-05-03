@@ -1,12 +1,24 @@
-import React ,{useState}from 'react'
+import React ,{ useState, useEffect } from 'react'
 import { Clear } from "@mui/icons-material";
 import './styles.scss'
 import {Modal,Backdrop } from "@mui/material";
 // import Modal from '@mui/material/Modal';
 
-const Index = ({ closePOPup }) => {
+const Index = ({ closePOPup, sublist, cid }) => {
     const [open, setOpen] = useState(true);
-   
+    const [listt, setlistt] = useState([])
+    useEffect(() => {
+        debugger
+        console.log(sublist)
+        console.log(cid)
+        sublist?.map(sl => {
+            if(sl?.entity_id === cid) {
+                setlistt(sl?.available_permissions)
+            }
+        })
+    }, [])
+    console.log(listt)
+
     const list = [
         { id: 1, list: "Cart Approval Required" },
         { id: 2, list: "Can Merge Own Cart To Main Cart" },
@@ -28,6 +40,7 @@ const Index = ({ closePOPup }) => {
         { id: 18, list: "Can Review Products" },
 
     ]
+    console.log(listt)
     return (
         <Modal
         aria-labelledby="transition-modal-title"
@@ -48,9 +61,9 @@ const Index = ({ closePOPup }) => {
                     <p className='heading'>Allowed Permission</p>
                 </div>
                 <div className='permissions_list'>
-                    {list.map((item) => (
-                        <li href={item.id} className='permissions_list_content'>
-                            <span>{item.list}</span>
+                    {listt?.map((item, i) => (
+                        <li href={i} className='permissions_list_content'>
+                            <span>{item}</span>
                         </li>
                     ))}
                 </div>

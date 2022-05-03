@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './styles.scss'
 import Newsubaccount from './Newsubaccount'
 import { ArrowBackIosNew } from "@mui/icons-material";
@@ -7,15 +7,30 @@ import Forbidden from './Popups/Forbidden'
 import  MUITable  from '../../../Common/MUITable'
 import { Link } from "react-router-dom";
 import { useStateValue } from '../../../../store/state';
+import axios from 'axios';
+import Constant from '../../../../Constant';
+import { getAdminToken } from '../../../../utilities'
+import moment from 'moment'
+
 const Index = () => {
   const [{geo, customstore, customnostore}, dispatch] = useStateValue()
   const [isSub, setisSub] = useState(false)
+  let [currentid, setcurrentid] = useState(0)
   const Newsubacc = () => {
+    setcurrentid(0)
+    setisSub(!isSub)
+    setisSubusers(false)
+  }
+
+  const editaccount = (value) => {
+    setcurrentid(value)
     setisSub(!isSub)
     setisSubusers(false)
   }
   const [isPermissions, setisPermissions] = useState(false)
-  const permission = () => {
+  const [cid, setcid] = useState()
+  const permission = (value) => {
+    setcid(value)
     setisPermissions(true)
     setisForbidden(false)
   }
@@ -37,41 +52,39 @@ const Index = () => {
     search: false,
   };
 
-  const table = [
-    {
-      username: "Ayush Raj",
-      status: "Active",
-      orderid: "00000006",
-      hub: "Mumbai",
-      date: "11/09/21",
-      permissions:"View",
-      forbidden:"View",
-      action:{
-       name:"Login",
-       edit:"Edit",
-       delete:"Delete",
-      } 
-      
-    },
-    {
-      username: "Tanvi Gupta",
-      status: "Active",
-      orderid: "000000021",
-      hub: "Mumbai",
-      date: "09/05/21",
-      permissions:"View",
-      forbidden:"View",
-      action: {
-        name:"Login",
-        edit:"Edit",
-        delete:"Delete",
-      }
-    },
-    
-  ];
+  const [adminToken, setAdminToken] = useState("");
+  useEffect(() => {
+    getAdminToken((res) => {
+      setAdminToken(res);
+    });
+  }, []);
+
+  const [sublist, setsublist] = useState([])
+  console.log(isSub)
+  useEffect(async() => {
+    if(adminToken === '') return
+    let user = JSON.parse(localStorage.getItem('userdata'))
+    try {
+      const list = await axios({
+        method: 'post',
+        url: `${Constant?.baseUrl()}/listSubAccounts`,
+        headers: {
+          Authorization: `Bearer ${adminToken}`
+        },
+        data: {
+          customer_id: user?.id
+        }
+      })
+      console.log(list?.data)
+      setsublist(list?.data)
+    } catch(e) {
+      console.log(e)
+    }
+  }, [adminToken, isSub])
+
   const columns = [
     {
-      name: "username",
+      name: "name",
       label: "User Name",
       options: {
         customBodyRender: (value) => {
@@ -85,28 +98,28 @@ const Index = () => {
         customBodyRender: (value) => {
           return (
             <div className="users_status">
-              <span className="value">{value}</span>
+              <span className="value">{value === "1" ? 'Active' : 'InActive'}</span>
             </div>
           );
         },
       },
     },
-    { name: "orderid", label: "Order ID",
-    options: {
-      customBodyRender: (value) => {
-        return (
-          <div className="users_orderid">
-            <span className="value">{value}</span>
-          </div>
-        );
-      },
-    },
+    // { name: "orderid", label: "Order ID",
+    // options: {
+    //   customBodyRender: (value) => {
+    //     return (
+    //       <div className="users_orderid">
+    //         <span className="value">{value}</span>
+    //       </div>
+    //     );
+    //   },
+    // },
   
-    },
-    {
-      name: "hub",
-      label: "Hub",
-    },
+    // },
+    // {
+    //   name: "hub",
+    //   label: "Hub",
+    // },
     {
       name: "date",
       label: "Date",
@@ -114,27 +127,27 @@ const Index = () => {
         customBodyRender: (value) => {
           return (
             <div className="users_date">
-              <span className="value">{value}</span>
+              <span className="value">{moment(value).format("DD/MM/YYYY")}</span>
             </div>
           );
         },
       },
     },
     {
-      name: "permissions",
+      name: "entity_id",
       label: "Permissions",
       options: {
-        customBodyRender: (value) => {
+        customBodyRender: (value, tablemeta) => {
           return (
             <div className="users_permissions">
-              <span className="value" onClick={permission}>{value}</span>
+              <span className="value" onClick={() => permission(tablemeta?.rowData[5])}>View</span>
             </div>
           );
         },
       },
     },
     {
-      name: "forbidden",
+      name: "forbidden_access",
       label: "Forbidden",
       options: {
         customBodyRender: (value) => {
@@ -147,15 +160,15 @@ const Index = () => {
       },
     },
     {
-      name: "action",
+      name: "entity_id",
       label: "Action",
       options: {
         customBodyRender: (value) => {
           return (
             <div className="users_action">
-              <div className="users_action_name">{value?.name}</div>
-              <div className="users_action_name">{value?.edit}</div>
-              <div className="users_action_name">{value?.delete}</div>
+              <div className="users_action_name">Login</div>
+              <div className="users_action_name" onClick={() => editaccount(value)}>Edit</div>
+              <div className="users_action_name">Delete</div>
             </div>
           );
         },
@@ -163,39 +176,11 @@ const Index = () => {
     },    
   ];
 
-  const Users = [
-    {
-      id: 1,
-      username: "Ayush Raj",
-      status: "Active",
-      orderid: "00006",
-      hub: "Mumbai",
-      date: "11/09/21",
-      Permissions: "View",
-      forbidden: "View",
-      auction: "Login ",
-      auction2: "Edit",
-      auction3: "Delete",
-    },
-    {
-      id: 2,
-      username: "Tanvi Gupta",
-      status: "Active",
-      orderid: "00021",
-      hub: "Mumbai",
-      date: "09/05/21",
-      Permissions: "View",
-      forbidden: "View",
-      auction: "Login ",
-      auction2: "Edit",
-      auction3: "Delete",
-    }
-  ]
   return (
     <>
       {isSubusers &&
         <div className='users_main'>
-        <MUITable columns={columns} table={table} options={options} className="subusers__table" />
+        <MUITable columns={columns} table={sublist} options={options} className="subusers__table" />
           <div className='my_profile_btns'>
             <div className='my_profile_back'>
             <Link to={`/${customnostore ? customnostore : geo?.country_name}/buyerdashboard/dashboard`} className="link">
@@ -208,8 +193,8 @@ const Index = () => {
           </div>
         </div>
       }
-      {isSub && <Newsubaccount />}
-      {isPermissions && <Allowedpermissions closePOPup={setisPermissions} />}
+      {isSub && <Newsubaccount currentid={currentid} setisSub={setisSub} setisSubusers={setisSubusers}/>}
+      {isPermissions && <Allowedpermissions closePOPup={setisPermissions} cid={cid} sublist={sublist} />}
       {isForbidden && <Forbidden closePOPup={setisForbidden} />}
     </>
   )

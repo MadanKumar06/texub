@@ -221,6 +221,10 @@ const TransitionsModal = ({ classes, openPopUp }) => {
           type: "SET_IS_LOADING",
           value: false,
         });
+        setSignInData((prev) => ({
+          ...prev,
+          forgot_email_address: "",
+        }));
         swal.fire({
           text: `${error?.data?.message}`,
           icon: "error",
@@ -407,7 +411,10 @@ const TransitionsModal = ({ classes, openPopUp }) => {
                     ...prev,
                     forgot_email_address: "",
                   }));
-                  setInputValidation((inputValidation.email_address = ""));
+                  setInputValidation((prevState) => ({
+                    ...prevState,
+                    forgot_email_address: "........",
+                  }));
                 }}
               />
             </div>

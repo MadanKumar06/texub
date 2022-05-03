@@ -98,6 +98,18 @@
             font-size: 16px;
           }
         }
+        .smart__productname{
+          .product_name,
+           .smart_description{
+            font-size: 16px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-weight: 600;
+           }
+        }
         .smart_rank {
           font-size: 18px;
           color: #20639b;
