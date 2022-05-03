@@ -7,11 +7,10 @@ import axios from "axios";
 import Constant from "../../../../Constant";
 import { useStateValue } from "../../../../store/state";
 import swal from "sweetalert2";
-import SuccesMessage from "../SuccessPage";
-
+import AvailablePopup from "../AvailablePopup";
+import ThankyouPage from "../ThankyouPage";
 const WantToBuy = ({ setisVieworders, setisOrders }) => {
   const [{}, dispatch] = useStateValue();
-  const [openCloseSuccessMessage, setOpenCloseSuccessMessage] = useState(false);
   const [wantTobuyData, setWantToBuyData] = useState({
     part_number: "",
     model_name_number: "",
@@ -25,6 +24,21 @@ const WantToBuy = ({ setisVieworders, setisOrders }) => {
     mainCategoryList: [],
     dropDownList: [],
   });
+  //sample popup
+  const [isUopup, setisUopup] = useState(false);
+  const Popup = (event) => {
+    dispatch({
+      type: "SET_GENERAL_TRINGGER",
+    });
+    setisUopup(event);
+    setisOrders(true);
+    setisVieworders(false);
+  };
+
+  const [isAvailable, setisAvailable] = useState(false);
+  const PopupAvailable = (event) => {
+    setisAvailable(event);
+  };
 
   // input state and onchange events
   const handleFormvalue = (event) => {
@@ -68,14 +82,6 @@ const WantToBuy = ({ setisVieworders, setisOrders }) => {
       }));
       errorHandle = true;
     }
-    // if (wantTobuyData?.closing_date?.toString() === "Invalid Date") {
-    //   document.getElementById("closing_date")?.focus();
-    //   setInputValidation((prevState) => ({
-    //     ...prevState,
-    //     closing_date: "Please select date.",
-    //   }));
-    //   errorHandle = true;
-    // }
     if (!errorHandle) {
       FinalWantToBuy();
     }
@@ -150,13 +156,12 @@ const WantToBuy = ({ setisVieworders, setisOrders }) => {
           value: false,
         });
         if (res?.data?.[0]?.status) {
-          setOpenCloseSuccessMessage(true);
-          swal.fire({
-            text: `${res.data?.[0]?.message}`,
-            icon: "success",
-            showConfirmButton: false,
-            timer: 3000,
-          });
+          debugger;
+          if (res?.data?.[0]?.exist) {
+            setisAvailable(true);
+          } else {
+            setisUopup(true);
+          }
         } else {
           swal.fire({
             text: `${res.data?.[0]?.message}`,
@@ -387,6 +392,8 @@ const WantToBuy = ({ setisVieworders, setisOrders }) => {
         </div>
       </div>
       {/* {openCloseSuccessMessage && <SuccesMessage />} */}
+      {isUopup && <ThankyouPage Popup={Popup} />}
+      {isAvailable && <AvailablePopup PopupAvailable={PopupAvailable} />}
     </div>
   );
 };

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import MUITable from "../../../Components/Common/MUITable";
 import { Button, Paper, InputBase, IconButton } from "@mui/material";
 import { ArrowBackIosNew, Search } from "@mui/icons-material";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Pagination from "../../Pagination";
 import "./styles.scss";
 import axios from "axios";
@@ -11,15 +11,11 @@ import Constant from "../../../Constant";
 import { useStateValue } from "../../../store/state";
 import WantToBuy from "./wantToBuyForm";
 import QuoteReceivedGrid from "./QuoteRecievedGrid";
-import ThankyouPage from "./ThankyouPage";
-import AvailablePopup from "./AvailablePopup";
-
-
 
 function Index() {
   const [tableData, setTableData] = useState([]);
   const [apiTableData, setApiTableData] = useState([]);
-  const [{ geo, customnostore }, dispatch] = useStateValue();
+  const [{ geo, customnostore, generalTrigger }, dispatch] = useStateValue();
   const [isVieworders, setisVieworders] = useState(false);
   const Navigate = useNavigate();
   const [isViewQuoteReceived, setIsViewQuoteReceived] = useState({
@@ -30,18 +26,6 @@ function Index() {
     setisVieworders(true);
     setisOrders(false);
   };
-
-  //sample popup
- const [isUopup, setisUopup] = useState(false);
-  const Popup = (event) => {
-      setisUopup(event);
-    };
-
-  const [isAvailable, setisAvailable] = useState(false);
-  const PopupAvailable = (event) => {  
-    setisAvailable(event);
-  };
-
 
   const quoteReceived = (value) => {
     setIsViewQuoteReceived((prev) => ({
@@ -97,7 +81,7 @@ function Index() {
       }
     };
     fetchTableData();
-  }, []);
+  }, [generalTrigger]);
   const PaginateDataSplit = (event) => {
     if (apiTableData?.length === 0) return setApiTableData([]);
     setTableData(event);
@@ -249,9 +233,6 @@ function Index() {
                 <ArrowBackIosNew />
                 <span>Back</span>
               </p>
-                 <p className="sample_popup" onClick={() => setisUopup(true)}>sample</p>
-              <p className="sample_popup" onClick={() => setisAvailable(true)}>Available</p>
-
             </div>
           </div>
         </>
@@ -277,18 +258,10 @@ function Index() {
                 <ArrowBackIosNew />
                 <span>Back</span>
               </p>
-              <p className="sample_popup" onClick={() => setisUopup(true)}>sample</p>
-              <p className="sample_popup" onClick={() => setisAvailable(true)}>Available</p>
-
             </div>
           </div>
-
-
         </>
       )}
-            {isUopup && <ThankyouPage Popup={setisUopup} />}
-            {isAvailable && <AvailablePopup PopupAvailable={setisAvailable} />}
-
     </div>
   );
 }
