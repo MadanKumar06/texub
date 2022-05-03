@@ -14,6 +14,9 @@ module.exports = {
   customerMeDetailUrl: function () {
     return "https://uat.texub.com/rest/V1/customers/me";
   },
+  permissiondetails: function () {
+    return "https://uat.texub.com/rest/V1/texub/subUserPermission";
+  },
   baseUrl2: function () {
     return "https://uat.texub.com/rest/V1";
   },
@@ -37,6 +40,9 @@ module.exports = {
 //   },
 //   customerMeDetailUrl: function () {
 //     return "https://texub.uat.a2zportals.co.in/rest/V1/customers/me";
+//   },
+//   permissiondetails: function () {
+//     return "https://texub.uat.a2zportals.co.in/rest/V1/texub/subUserPermission";
 //   },
 //   baseUrl2: function () {
 //     return "https://texub.uat.a2zportals.co.in/rest/V1";
