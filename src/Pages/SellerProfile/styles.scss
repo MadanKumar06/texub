@@ -1,25 +1,32 @@
 .sellerprofile {
-  position: relative;
-  padding: 1px 0;
-  background: url("../../Assets/sellerdashboard/bg.png");
-  background-repeat: no-repeat;
-  background-size: cover;
+  // position: relative;
+  // padding: 1px 0;
+  // background: url("../../Assets/sellerdashboard/bg.png");
+  // background-repeat: no-repeat;
+  // background-size: cover;
 
   .sellerprofile__bg {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    margin: 3%;
+    // margin: 3%;
     background-color: white;
 
     .sellerprofile__sidebar {
-      width: 30%;
+      width: 100%;
       background-color: white;
       box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
       display: flex;
       justify-content: center;
 
       ul {
-        padding: 20px 0;
+       display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+      width: 100%;
+      gap: 20px;
+      margin: 0 2em;
 
         li {
           list-style: none;
@@ -60,7 +67,11 @@
         }
 
         .bgcolor3 {
-          background: linear-gradient(#f1e3fe, #a56dd9);
+          background: #ddb363;
+          color: white;
+        }
+         .bgcolor4 {
+          background:  #6ac3ba;
           color: white;
         }
       }
@@ -217,5 +228,34 @@
         }
       }
     }
+  }
+}
+@media (max-width: 780px) {
+  .sellerprofile .sellerprofile__bg .sellerprofile__sidebar ul li .sellerprofile__label{
+    font-size: 20px;
+    text-align: center;
+    padding: 5px 0;
+  }
+  .sellerprofile .sellerprofile__bg .sellerprofile__sidebar ul li .sellerprofile__value{
+    font-size: 22px;
+    text-align: center;
+    padding: 5px 0;
+
+  }
+}
+@media (max-width: 600px) {
+  .sellerprofile .sellerprofile__bg .sellerprofile__sidebar ul{
+      flex-wrap: wrap;
+      margin: 0 1em;
+      gap: 10px;
+  }
+    .sellerprofile .sellerprofile__bg .sellerprofile__sidebar ul li{
+      width: 48%;
+    }
+}
+@media (max-width: 410px) {
+  .sellerprofile .sellerprofile__bg .sellerprofile__sidebar ul li{
+    width: 100%;
+    margin: 5px 0;
   }
 }

@@ -370,6 +370,7 @@ const WhislistTable = ({
   const [name, setname] = useState(false)
   const [newname, setnewname] = useState()
   const editname = () => {
+    setnewname(tableDataHeader)
     setname(!name)
   }
 
@@ -398,6 +399,9 @@ const WhislistTable = ({
         showConfirmButton: false,
         timer: 3000,
       });
+      dispatch({
+        type: "SET_GENERAL_TRINGGER"
+      })
     } catch(e) {
       console.log(e)
       setname(!name)
@@ -410,7 +414,7 @@ const WhislistTable = ({
         <div className="wishlist-first-text">
           {name ? 
             <>
-              <input className="folderinput" onChange={(e) => setnewname(e.target.value)} type="text" />
+              <input className="folderinput" value={newname} onChange={(e) => setnewname(e.target.value)} type="text" />
               <span className="wishlist-edit-img" onClick={savename}>
                 <SaveAsOutlinedIcon />
               </span>
