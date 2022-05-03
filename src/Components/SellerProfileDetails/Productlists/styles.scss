@@ -47,9 +47,9 @@
     }
   }
 
-  .productlist__search {
+  .productlist__search_seller {
     color: white;
-    min-width: 13em !important;
+    min-width: 35em;
     border: 1px solid #d6d8d9;
     .MuiPaper-root {
       background-color: unset !important;
@@ -194,14 +194,14 @@
       font-size: 14px;
     }
   }
-  .productlist .productlist__search .search_input .MuiInput-root input {
+  .productlist .productlist__search_seller .search_input .MuiInput-root input {
     font-size: 16px;
     height: 100%;
   }
 }
 
 @media (max-width: 480px) {
-  .productlist__search {
+  .productlist__search_seller {
     min-width: 100% !important;
     .MuiFormControl-root {
       width: 100%;
