@@ -1,4 +1,4 @@
-import React, { useState} from 'react'
+import React, { useState, useEffect } from 'react'
 import './styles.scss'
 import { ArrowBackIosNew } from "@mui/icons-material";
 import Accountinfo from './Accountinfo'
@@ -12,17 +12,45 @@ import { useStateValue } from '../../../store/state';
 const Index = () => {
   const [isAccountinfo, setisAccountinfo] = useState(true)
   const [{geo, customstore, customnostore}, dispatch] = useStateValue()
-  const Acinfo = () => {
-    setisAccountinfo(!(isAccountinfo))
-    setisEdit(false)
-    setisCompany(false)
-    setisAddress(false)
-    setisUser(false)
 
-  }
+  const [type, settype] = useState();
+
+  const selectorder = (value) => {
+    settype(value);
+  };
+  useEffect(() => {
+    selectorder(0)
+    setisAccountinfo(!isAccountinfo)
+  }, [])
+  const profiletype = [
+    { name: "Account Information" },
+    { name: "Address Book" },
+    { name: "Sub-Users" },
+  ];
+  useEffect(() => {
+    if(type === 0) {
+      setisAccountinfo(!isAccountinfo)
+      setisEdit(false)
+      setisCompany(false)
+      setisAddress(false)
+      setisUser(false)
+    } else if(type === 1) {
+      setisAddress(true)
+      setisAccountinfo(false)
+      setisEdit(false)
+      setisCompany(false)
+      setisUser(false)
+    } else if(type === 2) {
+      setisUser(true)
+      setisAddress(false)
+      setisAccountinfo(false)
+      setisEdit(false)
+      setisCompany(false)
+    }
+  }, [type])
+
   const [isAddress, setisAddress] = useState(false)
   const Address1 = () => {
-
     setisAddress(true)
     setisAccountinfo(false)
     setisEdit(false)
@@ -30,13 +58,6 @@ const Index = () => {
     setisUser(false)
   }
   const [isUser, setisUser] = useState(false)
-  const Subuser = () => {
-    setisUser(true)
-    setisAddress(false)
-    setisAccountinfo(false)
-    setisEdit(false)
-    setisCompany(false)
-  }
 
   const [isEdit, setisEdit] = useState(false)
   const Edit = () => {
@@ -59,9 +80,15 @@ const Index = () => {
   return (
     <div className='My_profile_main'>
       <div className='My_profile_btn_section'>
-        <button className='My_profile_btn' onClick={Acinfo}>Account Information</button>
-        <button className='My_profile_btn' onClick={Address1}>Address Book</button>
-        <button className='My_profile_btn' onClick={Subuser}>Sub-Users</button>
+        {profiletype.map((data, i) => (
+          <p
+            className={`ordertypes ${type === i && "ordertype__selected"}`}
+            key={i}
+            onClick={() => selectorder(i)}
+          >
+            {data.name}
+          </p>
+        ))}
       </div>
       {isAddress && <Addressbook open={Address1} />}
 
