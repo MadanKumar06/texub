@@ -103,7 +103,6 @@ const Productlists = ({
   }, [currency]);
 
   const handleSearchClick = (event) => {
-    debugger;
     event.preventDefault();
     setApplyFilter(!applyFilter);
   };
