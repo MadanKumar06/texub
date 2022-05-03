@@ -138,7 +138,7 @@ const Mycart = () => {
 
       <div className="my_cart_footer">
         <Button className="my_cart_bottom_button_shopping">
-          <span>Continue Shopping</span>
+        <Link style={{textDecoration: 'none', color: 'white'}} to={`/${customnostore ? customnostore : geo?.country_name}/products`}>Continue Shopping</Link>
         </Button>
         <Button
           className="my_cart_bottom_button_pending_invoice"

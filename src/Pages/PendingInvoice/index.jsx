@@ -242,7 +242,7 @@ function Index() {
             </div>
             <div className="order_id_info">
               <div className="orderid_section">
-                <span className="orderinfo_name">Order ID</span>
+                <span className="orderinfo_name">Pending Invoice ID</span>
                 <span className="orderinfo_value">
                   {pendingInvoiceList?.invoice?.pending_invoice_id}
                 </span>
@@ -270,9 +270,11 @@ function Index() {
               </div>
             </div>
             <div className="order_apply-btn">
-              <Button className="button-text btn-primary clear checkout-apply-btn">
-                Continue Shopping
-              </Button>
+              <Link to={`/${customnostore ? customnostore : geo?.country_name}/products`} style={{textDecoration: 'none'}}>
+                <Button className="button-text btn-primary clear checkout-apply-btn">
+                  Continue Shopping
+                </Button>
+              </Link>
             </div>
             <div className="checkoutlist__download">
               <svg
@@ -350,7 +352,7 @@ function Index() {
           </div>
           <div className="orderinfo__data">
             <p>
-              <span className="label">Order ID</span>
+              <span className="label">Pending Invoice ID</span>
               <Divider orientation="vertical" />
               <span className="value">
                 {" "}

@@ -11,6 +11,7 @@ import swal from "sweetalert2";
 
 import WishlistEdit from "../image/wishlist-edit.png";
 import WishlistDelete from "../image/wishlist-delete.png";
+import SaveAsOutlinedIcon from '@mui/icons-material/SaveAsOutlined';
 
 const WhislistTable = ({
   tableData,
@@ -366,15 +367,62 @@ const WhislistTable = ({
       });
   };
 
+  const [name, setname] = useState(false)
+  const [newname, setnewname] = useState()
+  const editname = () => {
+    setname(!name)
+  }
+
+  const savename = async() => {
+    if(newname === undefined) return
+    let user = JSON.parse(localStorage.getItem('userdata'))
+    try {
+      const change = await axios({
+        method: 'post',
+        url: `${Constant?.baseUrl()}/wishlist/editName`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        },
+        data: {
+          "requestParams":{
+              "customer_id":user?.id,
+              "wishlist_id":item_id,
+              "name":newname
+          }
+       }
+      })
+      setname(!name)
+      swal.fire({
+        text: "Folder Name Changed Successfully",
+        icon: "success",
+        showConfirmButton: false,
+        timer: 3000,
+      });
+    } catch(e) {
+      console.log(e)
+      setname(!name)
+    }
+  }
+
   return (
     <div className="wishlist_table_container">
       <div className="whishlist_table_header">
         <div className="wishlist-first-text">
-          <p className="header_title">{tableDataHeader}</p>
-          <span className="wishlist-edit-img">
-            <img src={WishlistEdit} alt="" />
-            {/* <span className="wishlist-edit-text">Edit</span> */}
-          </span>
+          {name ? 
+            <>
+              <input className="folderinput" onChange={(e) => setnewname(e.target.value)} type="text" />
+              <span className="wishlist-edit-img" onClick={savename}>
+                <SaveAsOutlinedIcon />
+              </span>
+            </>
+          :
+            <>
+              <p className="header_title">{tableDataHeader}</p>
+              <span className="wishlist-edit-img" onClick={editname}>
+                <img src={WishlistEdit} alt="" />
+              </span>
+            </>
+          }
         </div>
         <MoreVert
           className="more_option"
