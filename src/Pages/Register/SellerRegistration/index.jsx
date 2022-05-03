@@ -483,6 +483,8 @@ const BuyerRegistration = ({ classes }) => {
         });
       });
   };
+
+  const [customerdata, setcustomerdata] = useState(false)
   const getUserData = (token) => {
     axios
       .get(Constant.customerMeDetailUrl(), {
@@ -501,7 +503,7 @@ const BuyerRegistration = ({ classes }) => {
           "isLoggedIn_auth",
           res?.data?.group_id === 1 ? false : true
         );
-
+        setcustomerdata(!customerdata)
         history(`/${customnostore ? customnostore : geo?.country_name}`);
         setTimeout(() => {
           dispatch({
@@ -517,6 +519,27 @@ const BuyerRegistration = ({ classes }) => {
         });
       });
   };
+
+  useEffect(async() => {
+    let user = JSON.parse(localStorage.getItem('userdata'))
+    if(adminToken === null) return
+    try {
+      const permission = await axios({
+        method: 'post',
+        url: `${Constant?.permissiondetails()}`,
+        headers: {
+          Authorization: `Bearer ${adminToken}`
+        },
+        data: {
+          "customer_id" : user?.id
+       }       
+      })
+      console.log(permission?.data)
+      localStorage.setItem('permissions', JSON.stringify(permission?.data))
+    } catch(e) {
+      console.log(e)
+    }
+  }, [customerdata, adminToken])
   return (
     <div className={main_container}>
       <div className={input_fields}>

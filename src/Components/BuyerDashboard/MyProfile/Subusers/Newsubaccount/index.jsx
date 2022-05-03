@@ -471,7 +471,7 @@ const Index = ({ currentid, setisSub, setisSubusers }) => {
     <div className='users_active_section'>
       <p>Active</p>
       <Autocomplete
-        value={value}
+        value={NewSubAccountData?.active}
         inputValue={inputValue}
         id="controllable-states-demo"
         options={options ? options : []}

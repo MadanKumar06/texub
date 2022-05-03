@@ -79,7 +79,6 @@ const TransitionsModal = ({ classes, openPopUp }) => {
   });
 
   const handleClose = (event, reason) => {
-    debugger;
     if (reason && reason === "backdropClick") return;
     else {
       setOpen(false);
@@ -178,7 +177,7 @@ const TransitionsModal = ({ classes, openPopUp }) => {
     }
   };
 
-  const [adminToken, setAdminToken] = useState("");
+  const [adminToken, setAdminToken] = useState(null);
   useEffect(() => {
     getAdminToken((res) => {
       setAdminToken(res);
@@ -236,6 +235,7 @@ const TransitionsModal = ({ classes, openPopUp }) => {
   //API to Register
   const FinalSignin = () => {
     let storedata = JSON.parse(localStorage.getItem("storedata"));
+    debugger
     dispatch({
       type: "SET_IS_LOADING",
       value: true,
@@ -327,6 +327,8 @@ const TransitionsModal = ({ classes, openPopUp }) => {
         ? handleKyc({ info: "kyc_filled_success", id: group_id })
         : "";
   };
+
+  const [customerdata, setcustomerdata] = useState(false)
   const getSigninedUserData = (token) => {
     axios
       .get(Constant.customerMeDetailUrl(), {
@@ -345,7 +347,7 @@ const TransitionsModal = ({ classes, openPopUp }) => {
           "isLoggedIn_auth",
           res?.data?.group_id === 1 ? false : true
         );
-
+        setcustomerdata(!customerdata)
         let iskycFormFilled = res?.data;
         if (iskycFormFilled?.group_id === 1) {
           setTimeout(() => {
@@ -378,6 +380,27 @@ const TransitionsModal = ({ classes, openPopUp }) => {
         });
       });
   };
+
+  useEffect(async() => {
+    let user = JSON.parse(localStorage.getItem('userdata'))
+    if(adminToken === null) return
+    try {
+      const permission = await axios({
+        method: 'post',
+        url: `${Constant?.permissiondetails()}`,
+        headers: {
+          Authorization: `Bearer ${adminToken}`
+        },
+        data: {
+          "customer_id" : user?.id
+       }       
+      })
+      console.log(permission?.data)
+      localStorage.setItem('permissions', JSON.stringify(permission?.data))
+    } catch(e) {
+      console.log(e)
+    }
+  }, [customerdata, adminToken])
   //// Forgor Password ///
   const [passopen, setpassopen] = useState(false);
   const forgotpass = () => {
