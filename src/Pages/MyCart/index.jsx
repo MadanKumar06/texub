@@ -91,7 +91,7 @@ const Mycart = () => {
       type: "SET_IS_LOADING",
       value: true,
     });
-    let storedata = JSON.parse(localStorage.getItem('storedata'))
+    let storedata = JSON.parse(localStorage.getItem("storedata"));
     try {
       const pinvoice = await axios({
         method: "post",
@@ -104,7 +104,9 @@ const Mycart = () => {
           store_id: storedata?.store_id,
         },
       });
-      navigate("/pending-invoice");
+      navigate(
+        `/${customnostore ? customnostore : geo?.country_name}/pending-invoice`
+      );
       dispatch({
         type: "SET_IS_LOADING",
         value: false,
@@ -127,7 +129,9 @@ const Mycart = () => {
       <div className="my_cart_breadcrumbs">
         <Stack spacing={2}>
           <Breadcrumbs separator=">>" aria-label="breadcrumb">
-            <Link to={`/${customnostore ? customnostore : geo?.country_name}`}>Home</Link>
+            <Link to={`/${customnostore ? customnostore : geo?.country_name}`}>
+              Home
+            </Link>
             <Typography key="4" color="#002D56">
               Cart
             </Typography>
@@ -138,7 +142,14 @@ const Mycart = () => {
 
       <div className="my_cart_footer">
         <Button className="my_cart_bottom_button_shopping">
-        <Link style={{textDecoration: 'none', color: 'white'}} to={`/${customnostore ? customnostore : geo?.country_name}/products`}>Continue Shopping</Link>
+          <Link
+            style={{ textDecoration: "none", color: "white" }}
+            to={`/${
+              customnostore ? customnostore : geo?.country_name
+            }/products`}
+          >
+            Continue Shopping
+          </Link>
         </Button>
         <Button
           className="my_cart_bottom_button_pending_invoice"
