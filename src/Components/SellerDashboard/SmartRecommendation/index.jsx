@@ -102,7 +102,9 @@ const Index = () => {
       label: "PRODUCT DESCRIPTION",
       options: {
         customBodyRender: (value) => {
-          return <div className="smart__productname">{value}</div>;
+         return <div className="smart__productname">
+                  <span className="smart_description">{value}</span>
+                </div>
         },
       },
     },
