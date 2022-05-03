@@ -213,7 +213,7 @@ function RegisterProduct() {
       errorHandle = true;
     } else if (
       registerNewProductData?.brands?.value === "brand-others" &&
-      !isRolesValid(registerNewProductData?.other_brands)
+      isRolesValid(registerNewProductData?.other_brands)
     ) {
       document.getElementById("other_brands")?.focus();
       setInputValidation((prevState) => ({

@@ -300,6 +300,7 @@ function Index({
           <TextField
             id="part_number"
             name="part_nymber"
+            type="number"
             placeholder="05"
             className="inputfield-box"
             fullWidth

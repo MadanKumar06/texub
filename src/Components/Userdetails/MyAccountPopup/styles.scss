@@ -42,6 +42,10 @@
   }
 }
 .menulist_items {
+  // svg:hover{
+  //   // color: red;
+  //   stroke:blue;
+  // }
   .MuiList-root {
     margin: 0 20px;
     .MuiMenuItem-root {
@@ -64,6 +68,17 @@
         a{
           color: #002d56;
           font-weight: 600;
+          // svg{
+          //   g{
+          //     stroke: #012d56;
+          //     path{
+          //       stroke: #012d56;
+          //     }
+          //     g{
+          //       stroke: #012d56;
+          //     }
+          //   }
+          // }
           svg {
             g {
               stroke: #012d56;
@@ -84,8 +99,6 @@
               stroke: #012d56;
             }
           }
-
-
           svg{
             path{
               stroke: #012d56;
@@ -101,6 +114,19 @@
             }
           }
         }
+        svg{
+          path{
+            stroke: #012d56;
+          }
+          g{
+            stroke: #012d56;
+          }
+        }
+        svg{
+          path{
+            stroke: #012d56;
+          }
+        }
       }
       gap: 24px;
       padding: 13px 13px 13px 0px;
@@ -111,6 +137,9 @@
     }
     .MuiMenuItem-root:last-child {
       border: none;
+    }
+    &:hover {
+      color: #002d56;
     }
   }
 }
