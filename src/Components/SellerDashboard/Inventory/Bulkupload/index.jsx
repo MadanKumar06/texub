@@ -17,6 +17,54 @@ function Index() {
   const [uploadFile, setUploadFile] = useState({ files: [] });
   const [choosenFile, setChoosenFile] = useState({});
   const [file, setFile] = useState({});
+
+  const ExportXlsxDetails = async () => {
+    const user = JSON.parse(localStorage.getItem("userdata"));
+    dispatch({
+      type: "SET_IS_LOADING",
+      value: true,
+    });
+    try {
+      const exportProduct = await axios({
+        method: "post",
+        url: `${Constant.baseUrl()}/productExport`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        data: {
+          product_data: {
+            customer_id: user?.id,
+          },
+        },
+      });
+
+      if (exportProduct?.status === 200) {
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+        let link = exportProduct?.data?.[0]?.export_file_path;
+        window.location.href = link;
+      } else {
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+        swal.fire({
+          text: `${exportProduct?.data?.[0]?.message}`,
+          icon: "error",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+      }
+    } catch (e) {
+      console.log(e);
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
+    }
+  };
   const handleUploadApiCall = () => {
     var reader = new FileReader();
     reader.onload = function (e) {
@@ -219,7 +267,6 @@ function Index() {
       setUploadFile(saveuploadFile);
     }
   };
-  console.log(uploadFile);
   return (
     <div className="bulk_upload">
       <div className="bulkUpload_container">
@@ -227,7 +274,12 @@ function Index() {
       </div>
       <div className="first_container">
         <p className="bulk_download">BULK DOWNLOAD</p>
-        <p className="bulk_download_example">Download XLSX Uploaded Product</p>
+        <p
+          className="bulk_download_example"
+          onClick={() => ExportXlsxDetails()}
+        >
+          Download XLSX Uploaded Product
+        </p>
         <div className="image">
           <img src={downnload_image} alt="download" />
         </div>
