@@ -542,7 +542,7 @@ const TransitionsModal = ({ classes, openPopUp }) => {
                     </InputLabel>
                     <FormControlLabel
                       value={signInData?.keep_me_logged_in}
-                      control={<Checkbox color="color_third" defaultChecked={true}/>}
+                      control={<Checkbox color="color_third" />}
                       label="Keep me signed in."
                       labelPlacement="end"
                       className={checkbox_label}
