@@ -38,6 +38,11 @@ import moment from "moment";
 import { useStateValue } from "../../store/state";
 import { isEmailValid, getAdminToken } from "../../utilities";
 
+					
+	function formatToCurrency(price) {
+    return price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
+  }
+
 const DeliveryAddressJson = [
   {
     name: "Ayush Raj",
@@ -557,7 +562,7 @@ const Checkout = () => {
         </div>
         <div className="order_id_info">
           <div className="orderid_section">
-            <span className="orderinfo_name">Pending Invoice ID</span>
+            <span className="orderinfo_name">Order ID</span>
             <span className="orderinfo_value">
               {quotedata[0]?.invoice?.pending_invoice_id}
             </span>
@@ -569,7 +574,7 @@ const Checkout = () => {
 
             <span className="orderinfo_value">
               <span className="ordertotal_symbol">INR</span>{" "}
-              {quotedata[0]?.invoice?.grand_total}
+                {formatToCurrency(parseInt(quotedata[0]?.invoice?.grand_total))}
             </span>
           </div>
         </div>
@@ -771,7 +776,7 @@ const Checkout = () => {
                             onClick={() => selectaddress(itm)}
                           >
                             <div className="billing_title">
-                              <p>Default Billing Address</p>
+                              <p>Default Shipping Address</p>
                               <div
                                 className="edit_address"
                                 onClick={() => editaddress(itm?.address_id)}

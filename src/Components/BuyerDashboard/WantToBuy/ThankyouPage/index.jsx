@@ -3,14 +3,27 @@ import { Modal, Backdrop } from "@mui/material";
 import checkoutmark from "../../../../Assets/CheckoutPage/check-mark.png";
 import { Clear } from "@mui/icons-material";
 import { Button } from "@mui/material";
+import { useStateValue } from "../../../../store/state";
+import { FormControlLabel, TextField, InputLabel } from "@mui/material";
 import "./styles.scss";
 
 export default function BasicModal({ Popup, PopupAvailable }) {
-  const [open, setOpen] = useState(true);
-  const handleClose = () => {
-    setOpen(false);
-    Popup(false);
-    PopupAvailable(false);
+  const [{}, dispatch] = useStateValue();
+
+  const [open, setOpen] = React.useState(true);
+
+  const handleClose = (event, reason) => {
+    if (reason && reason === "backdropClick") return;
+    else {
+      setOpen(false);
+      dispatch({
+        type: "SET_PDP_POPUP_OPEN_CLOSE",
+        value: false,
+      });
+      setOpen(false);
+      Popup(false);
+      PopupAvailable(false);
+    }
   };
 
   useEffect(() => {
@@ -18,7 +31,6 @@ export default function BasicModal({ Popup, PopupAvailable }) {
       handleClose();
     }, 3000);
   }, []);
-
   return (
     <div>
       <Modal
@@ -27,12 +39,14 @@ export default function BasicModal({ Popup, PopupAvailable }) {
         aria-describedby="modal-modal-description"
         className="thankyou_popup"
         closeAfterTransition
+        onClose={handleClose}
+        disableRestoreFocus={true}
         BackdropComponent={Backdrop}
         BackdropProps={{
           timeout: 500,
         }}
       >
-        <div className="thankyou_popup_main">
+        <div className="thankyou_popup_main" style={{ outline: "none" }}>
           <Clear
             className="clear_btn thankyou_popup_clear_btn"
             onClick={() => handleClose()}

@@ -20,6 +20,9 @@ function Index() {
     { name: "Dispatched Orders" },
     { name: "Full-Filled Orders" },
   ];
+  function formatToCurrency(price) {
+    return price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
+  }
   const [{geo, customstore, customnostore}, dispatch] = useStateValue();
   const [type, settype] = useState();
 
@@ -122,7 +125,7 @@ function Index() {
           return (
             <div className="myorders__ordertotal">
               <span className="currency">INR </span>
-              <span className="price">{parseFloat(value).toFixed(2)}</span>
+              <span className="price"> {formatToCurrency(parseInt(value))}</span>
             </div>
           );
         },

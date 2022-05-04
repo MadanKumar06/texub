@@ -61,7 +61,7 @@ const Productstable = ({
     return str?.length > n ? str.substr(0, n - 1) + "..." : str;
   }
   const [textsize, settextsize] = useState({
-    size: 30,
+    size: 60,
     long_expand_view: true,
     short_expand_view: false,
     short_image: shortExpand_active_icon,

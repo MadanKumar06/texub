@@ -545,12 +545,17 @@
           .checkout_back_toggle {
             width: 10%;
           }
-          .orderid_section {
+         
             .orderinfo_name {
               font-size: 14px;
             }
             .orderinfo_value {
               font-size: 16px;
+            }
+          
+          .order_total_info{
+            .orderinfo_value{
+                font-size: 16px;
             }
           }
           .order_apply-btn {
