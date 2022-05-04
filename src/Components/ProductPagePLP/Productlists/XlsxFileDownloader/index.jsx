@@ -1,10 +1,9 @@
 import XLSX from "xlsx";
-import Constant from "../../../../Constant";
 
 export default function Index({ productData }) {
   const downloadxls = (e, tableData) => {
     let temp = tableData?.map((itm) => ({
-      brand: `${Constant.imageBaseUrl()}${itm?.main_product?.brand}`,
+      brand: `${itm?.main_product?.brand_name}`,
       model_number: itm?.main_product?.model_number,
       part_number: itm?.main_product?.part_number,
       description: itm?.main_product?.description,
