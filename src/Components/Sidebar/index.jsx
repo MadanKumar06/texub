@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./styles.scss";
 import { Clear } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
@@ -19,6 +19,30 @@ function Index({
   useEffect(() => {
     setcurrentmenu(SellerList[0]?.name);
   }, []);
+
+  useEffect(() => {
+    let permission = JSON.parse(localStorage.getItem('permissions'))
+    if(permission === null || permission === undefined || permission === '') return
+    let temp = []
+    SellerList?.filter((sl, i) => {
+      if(sl?.name === 'Inventory') {
+        permission?.filter(p => {
+          if(p?.value === 'manage-catalog' && p?.permission_value === 0) {
+            SellerList?.splice(i, 1)
+          }
+        })
+      }
+    })
+    SellerList?.filter((sl, i) => {
+      if(sl?.name === 'Orders') {
+        permission?.filter(p => {
+          if(p?.value === 'manage-orders' && p?.permission_value === 0) {
+            SellerList?.splice(i, 1)
+          }
+        })
+      }
+    })
+  }, [])
 
   const history = useNavigate();
   const SignOut = () => {
@@ -89,14 +113,6 @@ function Index({
                 ) : (
                   <span className="inActive_image">{data.image}</span>
                 )}
-                {/* <img
-                  src={
-                    currentmenu === data?.url
-                      ? data.image_Active
-                      : data.image_Inactive
-                  }
-                  alt=""
-                /> */}
                 {data.name}
               </li>
             ))}
@@ -128,15 +144,6 @@ function Index({
                 ) : (
                   <span className="inActive_image">{data.image}</span>
                 )}
-
-                {/* <img
-                  src={
-                    currentmenu === data.url
-                      ? data.image
-                      : ""
-                  }
-                  alt=""
-                /> */}
                 {data.name}
               </li>
             ))}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./styles.scss";
 import { Button } from "@mui/material";
 import { ArrowBackIosNew } from "@mui/icons-material";
@@ -6,6 +6,9 @@ import { Link } from "react-router-dom";
 import Pagination from "../../Pagination";
 import MUITable from "../../../Components/Common/MUITable";
 import { useStateValue } from "../../../store/state";
+import axios from "axios";
+import Constant from '../../../Constant'
+import moment from 'moment'
 
 function MergeCarts() {
   const [{geo, customstore, customnostore}, dispatch] = useStateValue();
@@ -17,61 +20,47 @@ function MergeCarts() {
       open: true,
     });
   };
-  const table = [
-    {
-      user_name: "Srikant Verma",
-      order_id: "000000006",
-      date: "02/04/2022",
-      sub_total: "₹ 3200.0",
-      hub: "Delhi",
-      item_qty: 60,
-      status: "Delivered",
-    },
-    {
-      user_name: "Ravi Malhotra",
-      order_id: "000000006",
-      date: "05/05/2022",
-      sub_total: "₹ 3200.0",
-      hub: "Pune",
-      item_qty: 30,
-      ordertotal: 75112,
-      status: "Confirm",
-    },
-    {
-      user_name: "Ranga",
-      order_id: "000000006",
-      date: "02/04/2022",
-      sub_total: " ₹ 3200.0",
-      hub: "Delhi",
-      item_qty: 60,
-      status: "Pending",
-    },
-  ];
+
+  const [mergetable, setmergetable] = useState([])
+  useEffect(async() => {
+    let user = JSON.parse(localStorage.getItem('userdata'))
+    try {
+      const mergecart = await axios({
+        method: 'post',
+        url: `${Constant?.baseUrl()}/cartRequestLists`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        },
+        data:{
+          "data":{
+              "customer_id":user?.id,
+              "type_id":2
+          }
+       }       
+      })
+      console.log(mergecart?.data)
+      setmergetable(mergecart?.data)
+    } catch(e) {
+      console.log(e)
+    }
+  }, [])
+
 
   const columns = [
     { name: "user_name", label: "User Name" },
-    {
-      name: "order_id",
-      label: "Order ID",
-      options: {
-        customBodyRender: (value) => {
-          return <div className="mergecarts__order_id">{value}</div>;
-        },
-      },
-    },
     { name: "hub", label: "HUB" },
     {
       name: "date",
       label: "Date",
       options: {
         customBodyRender: (value) => {
-          return <div className="mergecarts__date">{value}</div>;
+          return <div className="mergecarts__date">{moment(value).format("DD/MM/YYYY")}</div>;
         },
       },
     },
-    { name: "item_qty", label: "Items Qty" },
+    { name: "items_qty", label: "Items Qty" },
     {
-      name: "sub_total",
+      name: "subtotal",
       label: "Subtotal",
       options: {
         customBodyRender: (value) => {
@@ -96,14 +85,14 @@ function MergeCarts() {
       },
     },
     {
-      name: "sub_total",
+      name: "id",
       label: "Action",
       options: {
         customBodyRender: (value) => {
           return (
             <div className="mergecart__action_main">
-              <div className="mergecarts__action">Merge</div>
-              <div className="mergecarts__action delete">Delete</div>
+              <div className="mergecarts__action" onClick={() => merge(value)}>Merge</div>
+              <div className="mergecarts__action delete" onClick={() => deletecart(value)}>Delete</div>
             </div>
           );
         },
@@ -124,8 +113,53 @@ function MergeCarts() {
   };
 
   const PaginateDataSplit = (event) => {
+    if (mergetable?.length === 0) return setTableData([]);
     setTableData(event);
   };
+
+  const merge = async(value) => {
+    let user = JSON.parse(localStorage.getItem('userdata'))
+    try {
+      const mergerequest = await axios({
+        method: 'post',
+        url: `${Constant?.baseUrl()}/cartMergeByMainUser`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        },
+        data: {
+          "data" :{
+              "id" : value,
+              "login_id": user?.id
+          }
+       }
+      })
+      console.log(mergerequest?.data)
+    } catch(e) {
+      console.log(e)
+    }
+  }
+
+  const deletecart = async(value) => {
+    let user = JSON.parse(localStorage.getItem('userdata'))
+    try {
+      const mergerequest = await axios({
+        method: 'post',
+        url: `${Constant?.baseUrl()}/deleteRequests`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        },
+        data: {
+          "data" :{
+              "id" : value,
+              "login_id": user?.id
+          }
+       }
+      })
+      console.log(mergerequest?.data)
+    } catch(e) {
+      console.log(e)
+    }
+  }
   return (
     <div className="mergecarts">
       <div className="mergecarts__footer">
@@ -134,10 +168,10 @@ function MergeCarts() {
             <ArrowBackIosNew />
             <span>Back</span>
           </Link>
-          <div className="merge__cart_button">
-            <Button className="merge_btn">Merge</Button>
+          {/* <div className="merge__cart_button">
+            <Button className="merge_btn" >Merge</Button>
             <Button className="Delete_btn">Delete</Button>
-          </div>
+          </div> */}
         </div>
       </div>
       <MUITable
@@ -146,11 +180,15 @@ function MergeCarts() {
         options={options}
         className="mergecarts__table"
       />
-      <Pagination
-        PaginateData={PaginateDataSplit}
-        DataList={table}
-        PagePerRow={10}
-      />
+      {mergetable?.length > 0 ?
+        <Pagination
+          PaginateData={PaginateDataSplit}
+          DataList={mergetable?.length ? mergetable : []}
+          PagePerRow={10}
+        />
+        :
+        ""
+      }
     </div>
   );
 }

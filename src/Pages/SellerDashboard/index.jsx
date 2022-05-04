@@ -20,6 +20,7 @@ import Directenqueries from "../../Components/SellerDashboard/Directenqueries";
 import Paymentmethods from "../../Components/SellerDashboard/Paymentmethods";
 import PendingProduct from "../../Components/SellerDashboard/Inventory/PendingProducts";
 import SmartRecommendation from "../../Components/SellerDashboard/SmartRecommendation";
+import MyProfile from "../../Components/SellerDashboard/MyProfile";
 import axios from "axios";
 import Constant from "../../Constant";
 import { useStateValue } from "../../store/state";
@@ -71,8 +72,6 @@ function SellerDashboard() {
       );
     }
   };
-
-  console.log(editdata);
 
   useEffect(() => {
     if (
@@ -152,7 +151,7 @@ function SellerDashboard() {
           {currenttab === "inventory" && (
             <Inventory registerproduct={registerproduct} />
           )}
-
+          {currenttab === "myprofile" && <MyProfile />}
           {currenttab === "registerproduct" && <RegisterProduct />}
           {currenttab === "bulkupload" && <Bulkupload />}
           {currenttab === "registersuccess" && (

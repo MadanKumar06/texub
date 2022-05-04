@@ -1,0 +1,441 @@
+.My_profile_main{
+    margin: 50px 0px 0px 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    .My_profile_btn_section{
+        display: flex;
+        justify-content: space-around;
+        p {
+            margin: 0;
+            white-space: nowrap;
+            padding: 0.7em 1.2em;
+            background-color: #f0f0f0;
+            color: #333c42;
+            font-size: 18px;
+            border-radius: 25px;
+            cursor: pointer;
+            width: calc(90% / 5);
+            min-width: 150px;
+            text-align: center;
+            font-weight: 600;
+          }
+      
+          .ordertype__selected {
+            background: linear-gradient(#ffd788, #cc9b3e);
+            color: white;
+          }
+        .My_profile_btn{
+            background-color: #F0F0F0;
+            border-radius: 25px;
+            border: none;
+            padding: 10px 25px;
+            width: 30%;
+            color: #333C42;
+            font-size: 14px;
+            font-weight: 600;
+            opacity: 1;
+            cursor: pointer;
+        }
+        .My_profile_btn:focus{
+            background: linear-gradient(#FFD788, #CC9B3E);
+            color: #FFFFFF;
+            opacity: 1;
+        }
+    }
+    .My_profile_ac{
+        display: flex;
+        justify-content: space-around;
+        flex-direction: column;
+        .My_profile_main_heading{
+            color: #002D56;
+            letter-spacing: 0.54px;
+            opacity: 1;
+            font-weight: 600;
+            font-family: "Source Sans Pro";
+            font-size: 16px;
+            background-color: #F8F0E0;
+            width: 30%;
+            text-align: center;
+        }
+        .My_profile_ac_table{
+            box-shadow: rgb(0 0 0 / 15%) 0px 5px 15px 0px;
+            width: 100%;
+            min-height: 150px;
+            padding: 12px 10px 50px 9px;
+            gap: 10px;
+            .my_profile_edit{
+                display: flex;
+                justify-content: flex-end;
+                gap: 10px;
+                align-items: center;
+                .profile_edit{
+                    margin: 0;
+                    font-size: 18px;
+                    color: #002D56;
+                    font-weight: 600;
+                    text-decoration: underline;
+                    cursor: pointer;
+                }
+            }
+            .my_profile_data{
+                display: flex;
+                gap: 4em;
+                flex-wrap: wrap;
+                padding: 0 61px;
+                .my_profile_data_section_heading{
+                    color: #8B8B8B;
+                    font-size: 14px;
+                    letter-spacing: 0.54px;
+                    font-weight: 600;
+                    font-family: "Source Sans Pro";
+                    text-align: start;
+                    margin: 0;
+                }
+                .my_profile_data_section_tag{
+                    text-align: start;
+                    color: #4E4E4E;
+                    letter-spacing: 0.66px;
+                    opacity: 1;
+                    font-weight: 600;
+                    font-size: 16px;
+                    margin: 0;
+                }
+            }
+        }
+        .my_profile_company{
+            margin-top: 80px;
+            display: flex;
+            justify-content: space-around;
+            flex-direction: column;
+            .My_profile_main_heading{
+                color: #002D56;
+                letter-spacing: 0.54px;
+                opacity: 1;
+                font-weight: 600;
+                font-family: "Source Sans Pro";
+                font-size: 16px;
+                background-color: #F8F0E0;
+                width: 30%;
+                text-align: center;
+            }
+            .My_profile_ac_table{
+                box-shadow: rgb(0 0 0 / 15%) 0px 5px 15px 0px;
+                width: 100%;
+                min-height: 150px;
+                padding: 12px 10px 50px 9px;
+                gap: 10px;
+               
+                
+                .my_profile_edit{
+                    display: flex;
+                    justify-content: flex-end;
+                    gap: 10px;
+                    align-items: center;
+                    .profile_edit{
+                        margin: 0;
+                        font-size: 18px;
+                        color: #002D56;
+                        font-weight: 600;
+                        text-decoration: underline;
+                        cursor: pointer;
+                    }
+                }
+                .my_profile_table{
+                    display: flex;
+                     flex-direction: column;
+                    gap: 40px;
+                    .my_profile_data{
+                        display: flex;
+                        gap: 4em;
+                        padding: 0 61px;
+                        flex-wrap: wrap;
+                        .my_profile_data_section{
+                            .my_profile_data_section_heading{
+                                color: #8B8B8B;
+                                font-size: 14px;
+                                letter-spacing: 0.54px;
+                                font-weight: 600;
+                                font-family: "Source Sans Pro";
+                                text-align: start;
+                                margin: 0;
+                            }
+                            .my_profile_data_section_tag{
+                                text-align: start;
+                                color: #4E4E4E;
+                                letter-spacing: 0.66px;
+                                opacity: 1;
+                                font-weight: 600;
+                                font-size: 16px;
+                                margin: 0;
+                            }
+                        }
+                    }
+                    .my_profile_data1{
+                        display: flex;
+                        gap: 4em;
+                        padding: 0 61px;
+                        flex-wrap: wrap;
+                       
+                        .my_profile_data_section_heading{
+                            color: #8B8B8B;
+                            font-size: 14px;
+                            letter-spacing: 0.54px;
+                            font-weight: 600;
+                            font-family: "Source Sans Pro";
+                            text-align: start;
+                            margin: 0;
+                        }
+                        .my_profile_data_section_tag{
+                            text-align: start;
+                            color: #4E4E4E;
+                            letter-spacing: 0.66px;
+                            opacity: 1;
+                            font-weight: 600;
+                            font-size: 16px;
+                            margin: 0;
+                        }
+                    }
+                }        
+            }    
+        }
+    }
+    .my_profile_back{
+                display: flex;
+                gap: 20px;
+                margin-top: 30px;
+                .link{
+                    display: flex;
+                    text-decoration: none;
+                    gap: 10px;
+                    color: #002D56;
+                    
+                .back{
+                    color: #002D56;
+                    font-size: 20px;
+                    margin: 0;
+                    opacity: 1;
+                    font-weight: 600;
+                    cursor: pointer;
+                }
+            }
+            }
+
+}
+   
+
+@media only screen and(max-width:1530px){
+    .My_profile_main .My_profile_ac .my_profile_company .My_profile_ac_table .my_profile_table .my_profile_data1{
+        gap: 4em;
+        
+    }
+}
+
+ 
+ @media only screen and(max-width:1440px){
+    .My_profile_main .my_profile_company .My_profile_main_heading, .My_profile_main .My_profile_ac .My_profile_main_heading{
+        width: 25%;
+    }
+    
+ }
+
+@media only screen and(max-width:1336px) {
+    .My_profile_main .My_profile_ac .My_profile_main_heading {
+        width: 28%;
+    }
+    .My_profile_main .my_profile_heading{
+        font-size: 15px;
+    }
+}
+
+@media only screen and(max-width:768px){
+    .My_profile_main .My_profile_ac .My_profile_ac_table{
+        display: flex;
+        flex-direction: column;
+    }
+    .My_profile_main .My_profile_btn_section .My_profile_btn{
+        width: 32%;
+    }
+    
+.My_profile_main .My_profile_ac .my_profile_company .My_profile_ac_table .my_profile_table .my_profile_data{
+    width: 100%;
+   
+}
+    
+    .My_profile_main .My_profile_ac .My_profile_ac_table tr{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .My_profile_main .My_profile_ac .My_profile_ac_table tr .my_profile_edit{
+        position: absolute;
+        right: 5%;
+    }
+    .My_profile_main .my_profile_heading{
+        font-size: 18px;
+    }
+    .My_profile_main .my_profile_details{
+        font-size: 19px;
+    }
+}
+
+@media only screen and(max-width:580px){
+
+    .My_profile_main .My_profile_ac .My_profile_ac_table .my_profile_data{
+        flex-direction: column;
+        width: 100%;
+        gap: 20px;
+    }
+    .My_profile_main .My_profile_ac .my_profile_company .My_profile_ac_table .my_profile_table .my_profile_data{
+        gap: 1em;
+    }
+    .My_profile_main .My_profile_ac .My_profile_ac_table .my_profile_data .my_profile_data_section{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .My_profile_main .My_profile_ac .My_profile_ac_table .my_profile_data .my_profile_data_section_heading{
+        width: 100%;
+        margin: 0;
+    }
+    .My_profile_main .My_profile_ac .My_profile_ac_table .my_profile_data .my_profile_data_section_tag {
+        margin: 0;
+    }
+    // .My_profile_main .My_profile_ac .My_profile_ac_table {
+    //     padding: 20px 0px 20px 22px;
+    // }
+    .My_profile_main .My_profile_ac .my_profile_company .My_profile_ac_table .my_profile_table .my_profile_data1{
+        flex-direction: column;
+        width: 100%;
+        gap: 1em;
+        // padding: 0 22px;
+    }
+    .My_profile_main .My_profile_ac .my_profile_company .My_profile_ac_table .my_profile_table .my_profile_data1 .my_profile_data_section{
+         display: flex;
+         flex-direction: column;
+    }
+    .My_profile_main .My_profile_ac .my_profile_company .My_profile_ac_table .my_profile_table .my_profile_data1 .my_profile_data_section_heading{
+        width: 100%;
+        margin: 0;
+    }
+    .My_profile_main .My_profile_ac .my_profile_company .My_profile_ac_table .my_profile_table .my_profile_data1 .my_profile_data_section_tag{
+        margin: 0;
+    }
+    .My_profile_main .My_profile_ac .my_profile_company .My_profile_main_heading{
+        width: 100%;
+    }
+    .My_profile_main .My_profile_ac .my_profile_company .My_profile_ac_table .my_profile_table{
+        gap: 1em;
+    }
+    .My_profile_main .My_profile_btn_section{
+        flex-direction: column;
+        justify-content: center;
+        gap: 20px;
+        margin: 0 10px;
+    }
+    .My_profile_main .My_profile_btn_section .My_profile_btn {
+        width: 100%;
+        padding: 15px 25px;
+    }
+    .My_profile_main .My_profile_ac .My_profile_main_heading{
+        width: 100%;
+    }
+    .My_profile_main .My_profile_ac .My_profile_ac_table tr .my_profile_edit{
+        right: 2%;
+    }
+}
+@media only screen and(max-width:480px){
+    .My_profile_main .my_profile_company .My_profile_ac_table{
+        // padding: 20px 0px 20px 0px;
+        gap: 2px;
+    }
+    // .My_profile_main .My_profile_ac .My_profile_ac_table {
+    //     padding: 20px 0px 20px 0px;
+    // }
+    .My_profile_main .my_profile_company{
+        margin-top: 17px;
+
+    }
+    .My_profile_main .my_profile_heading{
+        font-size: 15px;
+    }
+    .My_profile_main .my_profile_details{
+        font-size: 15px;
+    }
+    .My_profile_main .My_profile_ac .My_profile_ac_table .my_profile_data{
+        padding: 0 10px !important;
+    }
+    .My_profile_main .My_profile_ac .my_profile_company .My_profile_ac_table .my_profile_table .my_profile_data1{
+        padding: 0 10px !important;
+    }
+}
+
+@media only screen and(max-width:425px){
+    .My_profile_main .my_profile_company .My_profile_ac_table{
+        // padding: 20px 0px 20px 0px;
+        gap: 2px;
+    }
+    // .My_profile_main .My_profile_ac .My_profile_ac_table {
+    //     padding: 20px 0px 20px 0px;
+    // }
+    .My_profile_main .My_profile_ac .My_profile_ac_table .my_profile_data .my_profile_data_section {
+        flex-direction: column;
+    }
+    .My_profile_main .my_profile_company{
+        margin-top: 17px;
+
+    }
+    .My_profile_main .my_profile_heading{
+        font-size: 15px;
+    }
+    .My_profile_main .my_profile_details{
+        font-size: 15px;
+    }
+}
+
+@media only screen and(max-width:375px){
+    .My_profile_main .my_profile_company .My_profile_ac_table{
+        // padding: 20px 0px 20px 0px;
+        gap: 2px;
+    }
+    // .My_profile_main .My_profile_ac .My_profile_ac_table {
+    //     padding: 20px 0px 20px 0px;
+    // }
+    .My_profile_main .my_profile_company{
+        margin-top: 17px;
+
+    }
+    .My_profile_main .my_profile_heading{
+        font-size: 15px;
+    }
+    .My_profile_main .my_profile_details{
+        font-size: 15px;
+    }
+}
+
+@media only screen and(max-width:320px){
+    .My_profile_main .my_profile_company .My_profile_ac_table{
+        // padding: 20px 0px 20px 0px;
+        gap: 2px;
+    }
+    .My_profile_main .My_profile_ac .my_profile_company .My_profile_ac_table .my_profile_table .my_profile_data{
+        padding-left: 5px;
+    }
+    // .My_profile_main .My_profile_ac .My_profile_ac_table {
+    //     padding: 20px 0px 20px 0px;
+    // }
+    .My_profile_main .my_profile_company{
+        margin-top: 17px;
+
+    }
+    .My_profile_main .My_profile_ac .my_profile_company .My_profile_ac_table .my_profile_table .my_profile_data1{
+        padding:0 7px ;
+    }
+    .My_profile_main .my_profile_heading{
+        font-size: 15px;
+    }
+    .My_profile_main .my_profile_details{
+        font-size: 15px;
+    }
+}

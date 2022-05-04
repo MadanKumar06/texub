@@ -120,6 +120,69 @@ const Mycart = () => {
     }
   };
 
+  const [permission, setpermission] = useState()
+
+  useEffect(() => {
+    setpermission(JSON.parse(localStorage.getItem('permissions')))
+  }, [])
+
+  const [userpermission, setuserpermission] = useState(false)
+  const [approvepermission, setapprovepermission] = useState(false)
+
+  useEffect(() => {
+    let temp = permission?.some(p => p?.value === 'can-merge-own-cart-to-main-cart' && p?.permission_value === 1)
+    setuserpermission(temp)
+    let temp1 = permission?.some(p => p?.value === 'cart-approval-required' && p?.permission_value === 1)
+    setapprovepermission(temp1)
+  }, [permission])
+
+  console.log(cart)
+
+  const mergecart = async() => {
+    let user = JSON.parse(localStorage.getItem('userdata'))
+    try {
+      const postcart = await axios({
+        method: 'post',
+        url: `${Constant?.baseUrl()}/cartRequest`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        },
+        data: {
+          "data":{
+            "type": 2,
+            "customer_id": user?.id,
+            "status": 0,
+            "quote_id": cart[0]?.invoice?.Cart_id
+          }
+        }       
+      })
+    } catch(e) {
+      console.log(e)
+    }
+  }
+  const approvecart = async() => {
+    let user = JSON.parse(localStorage.getItem('userdata'))
+    try {
+      const postcart = await axios({
+        method: 'post',
+        url: `${Constant?.baseUrl()}/cartRequest`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        },
+        data: {
+          "data":{
+            "type": 1,
+            "customer_id": user?.id,
+            "status": 0,
+            "quote_id": cart[0]?.invoice?.Cart_id
+          }
+        }       
+      })
+    } catch(e) {
+      console.log(e)
+    }
+  }
+
   return (
     <div className="my_cart_main">
       <div className="my_cart_image_block">
@@ -151,12 +214,33 @@ const Mycart = () => {
             Continue Shopping
           </Link>
         </Button>
+        {userpermission ? 
+          <Button
+            className="my_cart_bottom_button_pending_invoice"
+            onClick={() => mergecart()}
+          >
+            <span>Merge Cart</span>
+          </Button>
+        :
+          ""
+        }
+        {approvepermission ? 
+          <Button
+            className="my_cart_bottom_button_pending_invoice"
+            onClick={() => approvecart()}
+          >
+            <span>Request for Approval</span>
+          </Button>
+        :
+          ""
+        }
         <Button
           className="my_cart_bottom_button_pending_invoice"
           onClick={() => addpendinginvoice()}
         >
           <span>Add To Pending Invoice</span>
         </Button>
+        
       </div>
     </div>
   );
