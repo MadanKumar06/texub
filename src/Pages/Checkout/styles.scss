@@ -62,6 +62,7 @@
         letter-spacing: 0px;
         color: #D6D8D9;
         font-size: 14px;
+        text-align: center;
         font-weight: normal;
       }
       .orderinfo_value{
@@ -83,6 +84,7 @@
       .checkout_order_basic_info{
           width: 20%;
           display: grid;
+          cursor: pointer;
         .order_basic_info{
           display: flex;
           justify-content: space-between;
@@ -369,9 +371,19 @@
                     width: auto;
                     max-width: 50%;
                     .MuiSvgIcon-root{
-                      color: #002d56;
+                      // color: #002d56;
                       width: 30px !important;
                       height: 30px !important;
+                    }
+                    .MuiRadio-root.Mui-checked{
+                      color: #002d56;
+                    }
+                    .MuiTypography-root{
+                      letter-spacing: 0px;
+                      color: #002D56;
+                      text-transform: capitalize;
+                      font-size: 16px;
+                      font-weight: 600;
                     }
                   }
               }
@@ -466,11 +478,14 @@
                 margin: 0;
                 .MuiRadio-root {
                   padding: 0;
-                  .MuiSvgIcon-root {
-                    color: #002d56;
-                    width: 34px !important;
-                    height: 34px !important;
-                  }
+                   .MuiSvgIcon-root{
+                      // color: #002d56;
+                      width: 30px !important;
+                      height: 30px !important;
+                    }
+                    .MuiRadio-root.Mui-checked{
+                      color: #002d56;
+                    }
                 }
               }
               .footer_title {
