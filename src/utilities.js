@@ -34,6 +34,7 @@ export const isOnlySpecialCharacters = (value) =>
 
 export const isNumber = (number) => number.match(/^[0-9]*\d$/);
 
+
 //get adminToken for seller and buyer registration
 export const getAdminToken = (callback) => {
   let data = {
