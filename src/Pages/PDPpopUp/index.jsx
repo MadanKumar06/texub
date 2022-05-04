@@ -29,12 +29,15 @@ const PdpPopup = () => {
     tabletwo: "",
   });
   const [pdpSellerData, setPdpSellerData] = useState({});
-  const handleClose = () => {
-    setOpen(false);
-    dispatch({
-      type: "SET_PDP_POPUP_OPEN_CLOSE",
-      value: false,
-    });
+  const handleClose = (event, reason) => {
+    if (reason && reason === "backdropClick") return;
+     else {
+      setOpen(false);
+      dispatch({
+        type: "SET_PDP_POPUP_OPEN_CLOSE",
+        value: false,
+      });
+    }
   };
 
   useEffect(() => {
@@ -262,6 +265,7 @@ const PdpPopup = () => {
       aria-describedby="transition-modal-description"
       className="pdp_modal"
       open={open}
+      onClose={handleClose}
       closeAfterTransition
       disableRestoreFocus={true}
       BackdropComponent={Backdrop}

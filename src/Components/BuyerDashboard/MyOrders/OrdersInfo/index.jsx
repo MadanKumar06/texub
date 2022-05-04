@@ -29,7 +29,17 @@ const Index = ({ orders, currentorder }) => {
   const [{}, dispatch] = useStateValue()
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  //const handleClose = () => setOpen(false);
+    const handleClose = (event, reason) => {
+    if (reason && reason === "backdropClick") return;
+     else {
+      setOpen(false);
+      dispatch({
+        type: "SET_PDP_POPUP_OPEN_CLOSE",
+        value: false,
+      });
+    }
+  };
   const [detailsorder, setdetailsorder] = useState([])
   const [isUopup, setisUopup] = useState(false);
   const Popup = (event) => {
@@ -79,7 +89,7 @@ const Index = ({ orders, currentorder }) => {
     }
   }, [currentorder])
 
-  console.log(detailsorder[0])
+  // console.log(detailsorder[0])
 
 
   const options = {
@@ -296,7 +306,7 @@ const columns = [
           <div className="order_info_section1">
                 <div className="username">
                     <span className="id_heading">Order Date #</span>
-                    <span className="id">{detailsorder[0]?.order_details[0]?.created_at}</span>
+                    <span className="id">{detailsorder?.[0]?.order_details?.[0]?.created_at}</span>
                 </div>
                 <div className="username">
                     <span className="id_heading">Order ID #</span>
@@ -305,7 +315,7 @@ const columns = [
                 </div>
                 <div className="username">
                     <span className="id_heading">Transaction ID #</span>
-                    <span className="id">{detailsorder[0]?.order_details[0]?.transaction_number}</span>
+                    <span className="id">{detailsorder?.[0]?.order_details?.[0]?.transaction_number}</span>
                     <span className="status">Completed</span>
                 </div>
             </div>
@@ -332,14 +342,14 @@ const columns = [
                     </div>
                      <div className="username">
                         <span className="id_heading">Approved By</span>
-                        <span className="id">{detailsorder[0]?.order_details[0]?.approved_by}</span>
+                        <span className="id">{detailsorder?.[0]?.order_details?.[0]?.approved_by}</span>
                     </div>
                 </div>
             </div>
       </div>
       <MUITable
         columns={columns}
-        table={detailsorder[0]?.productdetails}
+        table={detailsorder?.[0]?.productdetails}
         options={options}
         className="vieworders__table"
       />
@@ -365,18 +375,18 @@ const columns = [
                   <div className="vieworders_shippingaddress">
                     {/* {shippingaddress.map((item) => ( */}
                       <li className="vieworders_list">
-                        <span className="heading">{detailsorder[0]?.order_details[0]?.shipping_name}</span>
-                        <span className="name"> {detailsorder[0]?.order_details[0]?.shipping_name}</span>
-                        <span className="address">{detailsorder[0]?.order_details[0]?.shipping_address}</span>
+                        <span className="heading">{detailsorder?.[0]?.order_details?.[0]?.shipping_name}</span>
+                        <span className="name"> {detailsorder?.[0]?.order_details?.[0]?.shipping_name}</span>
+                        <span className="address">{detailsorder?.[0]?.order_details?.[0]?.shipping_address}</span>
                       </li>
                     {/* ))} */}
                   </div>
                    <div className="vieworders_shippingaddress">
                     {/* {billingaddress.map((item) => ( */}
                       <li className="vieworders_list">
-                        <span className="heading">{detailsorder[0]?.order_details[0]?.billing_name}</span>
-                        <span className="name"> {detailsorder[0]?.order_details[0]?.billing_name}</span>
-                        <span className="address">{detailsorder[0]?.order_details[0]?.billing_address}</span>
+                        <span className="heading">{detailsorder?.[0]?.order_details?.[0]?.billing_name}</span>
+                        <span className="name"> {detailsorder?.[0]?.order_details?.[0]?.billing_name}</span>
+                        <span className="address">{detailsorder?.[0]?.order_details?.[0]?.billing_address}</span>
                       </li>
                     {/* ))} */}
                   </div>
@@ -388,14 +398,14 @@ const columns = [
                     <p className="payment_type">wire Transfer</p>
                   </div>
                   <div className="vieworders_payment_section transaction_block">
-                    {detailsorder[0]?.order_details[0]?.transaction_number ? 
+                    {detailsorder?.[0]?.order_details?.[0]?.transaction_number ? 
                       <div className="vieworders_list">
-                        <span className="block_title">Transaction Refernece Number : <span className="value">{detailsorder[0]?.order_details[0]?.transaction_number}</span></span>
-                        <span className="block_title">Transaction Amount : <span className="value">{detailsorder[0]?.order_details[0]?.transaction_currency}</span> <span>{detailsorder[0]?.order_details[0]?.transaction_amount}</span></span>
+                        <span className="block_title">Transaction Refernece Number : <span className="value">{detailsorder?.[0]?.order_details?.[0]?.transaction_number}</span></span>
+                        <span className="block_title">Transaction Amount : <span className="value">{detailsorder?.[0]?.order_details?.[0]?.transaction_currency}</span> <span>{detailsorder?.[0]?.order_details?.[0]?.transaction_amount}</span></span>
                         <span className="block_title date_time">Date & Time : 
-                            <span className="value"> {transaction_info[0]?.date}</span>      
+                            <span className="value"> {transaction_info?.[0]?.date}</span>      
                             <Divider orientation="vertical" />
-                            <span className="value_price"> {transaction_info[0]?.time}</span>
+                            <span className="value_price"> {transaction_info?.[0]?.time}</span>
                         </span>
                       </div>
                     :
@@ -410,13 +420,13 @@ const columns = [
                   <li className="vieworders_list">
                     <span className="total_heading"> Sub-Total</span>
                     <span className="total_amount">
-                      <span className="currency">INR</span> {detailsorder[0]?.order_details[0]?.subtotal}
+                      <span className="currency">INR</span> {detailsorder?.[0]?.order_details[0]?.subtotal}
                     </span>
                   </li>
                   <li className="vieworders_list">
                     <span className="total_heading"> Shipping Charge</span>
                     <span className="total_amount">
-                      <span className="currency">INR</span> {detailsorder[0]?.order_details[0]?.shipping_charge}
+                      <span className="currency">INR</span> {detailsorder?.[0]?.order_details[0]?.shipping_charge}
                     </span>
                   </li>
                   <li className="vieworders_list">
@@ -436,7 +446,7 @@ const columns = [
                       <span className="gst">(incl.GST)</span>
                     </div>
                     <span className="total_amount">
-                      <span className="currency">INR</span> {detailsorder[0]?.order_details[0]?.grand_total}
+                      <span className="currency">INR</span> {detailsorder?.[0]?.order_details?.[0]?.grand_total}
                     </span>
                   </li>
                 ))}
@@ -474,7 +484,7 @@ const columns = [
       <div>
     <Modal
           open={open}
-          // onClose={handleClose}
+           onClose={handleClose}
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
           closeAfterTransition
@@ -483,9 +493,9 @@ const columns = [
           BackdropProps={{
           timeout: 500,
         }}
-          className="serial_number_popup"
+          className="serial_number_popup" 
           >
-            <div className="serial_popup_main">
+            <div className="serial_popup_main" style={{outline:'none'}}>
                  <Clear
                         className="clear_btn serial_popup_clear_btn"
                         onClick={() => handleClose()}

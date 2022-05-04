@@ -9,10 +9,23 @@ export default function BasicModal({ PopupAvailable }) {
   const [open, setOpen] = React.useState(true);
   const [{ customnostore, geo }, dispatch] = useStateValue();
   const Navigate = useNavigate();
-  const handleClose = () => {
-    setOpen(false);
-    PopupAvailable(false);
-  };
+
+    const handleClose = (event, reason) => {
+    if (reason && reason === "backdropClick") return;
+      else {
+        setOpen(false);
+          dispatch({
+          type: "SET_PDP_POPUP_OPEN_CLOSE",
+          value: false,
+        });
+        PopupAvailable(false)
+      }
+    }
+
+  // const handleClose = () => {
+  //   setOpen(false);
+  //   PopupAvailable(false);
+  // };
   const linkToRoute = () => {
     Navigate(`/${customnostore ? customnostore : geo?.country_name}/products`);
   };
@@ -25,11 +38,13 @@ export default function BasicModal({ PopupAvailable }) {
         className="thankyou_popup"
         closeAfterTransition
         BackdropComponent={Backdrop}
+        onClose={handleClose}
+        disableRestoreFocus={true}
         BackdropProps={{
           timeout: 500,
         }}
       >
-        <div className="thankyou_popup_main">
+        <div className="thankyou_popup_main" style={{outline:'none'}}>
           <Clear
             className="clear_btn thankyou_popup_clear_btn"
             onClick={() => handleClose()}

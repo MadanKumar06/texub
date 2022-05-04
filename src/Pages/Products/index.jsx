@@ -138,6 +138,7 @@ export const Products = () => {
     });
     setProductData(productTableData);
   };
+  console.log(productData);
   const handleRouteChange = () => {
     navigate(
       `/${
