@@ -11,7 +11,7 @@
       // overflow: hidden;
       overflow-x: clip !important;
       overflow-y: inherit;
-     transform: unset;
+      transform: unset;
     }
     .slick-track {
       display: flex;
@@ -48,7 +48,8 @@
     user-select: auto;
     z-index: 9;
     .slick-slide {
-      width:100% !important;
+      width: 100% !important;
+      // max-width: fit-content;
     }
     .slick-initialized {
       padding: 5px 40px;
@@ -63,6 +64,18 @@
         margin: auto;
       }
     }
+    .selected_category {
+      background: transparent linear-gradient(180deg, #ffd788 0%, #cc9b3e 100%);
+      color: #ffffff;
+    }
+    .brand_slider {
+      max-width: fit-content;
+    }
+    .selected_slider {
+      border-radius: 1px 20px;
+      padding: 3px 10px;
+      background: linear-gradient(180deg, #20639b 0%, #002d56 100%);
+    }
     .Slider_brands {
       list-style: none;
       font-size: 14px;
@@ -76,19 +89,18 @@
       width: max-content !important;
       min-width: 140px;
       position: relative;
-      .list{
+      .list {
         display: none;
       }
     }
     .Slider_brands:hover {
       background: transparent linear-gradient(180deg, #ffd788 0%, #cc9b3e 100%);
       color: #ffffff;
-      .list{
+      .list {
         display: block;
-        width: 300px
+        width: 300px;
       }
     }
-
 
     .Productbrands_Laptops_btn {
       .Productbrands_btn_content_list {
@@ -185,9 +197,8 @@
     }
   }
 }
-@media only screen and (max-width:580px) {
-  .Productsbrands .slick-list{
+@media only screen and (max-width: 580px) {
+  .Productsbrands .slick-list {
     padding: 0;
   }
-
 }

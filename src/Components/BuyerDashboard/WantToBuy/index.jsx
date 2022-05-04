@@ -51,6 +51,7 @@ function Index() {
   };
   useEffect(() => {
     const fetchTableData = async () => {
+      setApiTableData([]);
       dispatch({
         type: "SET_IS_LOADING",
         value: true,

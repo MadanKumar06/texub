@@ -26,7 +26,6 @@ const Productlists = ({
   applyFilter,
   productData,
 }) => {
-  console.log(productFetchApi?.hub);
   useEffect(() => {
     if (productFetchApi?.hub === "") {
       window.location.reload();
@@ -104,11 +103,12 @@ const Productlists = ({
 
   useEffect(() => {
     if (productlistdropdown) {
-      setProductFetchApi({
+      setProductFetchApi((prev) => ({
+        ...prev,
         hub: productlistdropdown?.hub[0]?.value,
         conditions: productlistdropdown?.conditions?.[0]?.value,
         eta: productlistdropdown?.eta?.[0]?.value,
-      });
+      }));
     }
   }, [productlistdropdown]);
   const handleSearchClick = (event) => {
@@ -141,11 +141,12 @@ const Productlists = ({
                   price_drop: false,
                   just_launch: false,
                 });
-                setProductFetchApi({
+                setProductFetchApi((prev) => ({
+                  ...prev,
                   today_deal: 1,
                   price_drop: 0,
                   just_launch: 0,
-                });
+                }));
               }}
             />
           </div>
@@ -162,11 +163,12 @@ const Productlists = ({
                   price_drop: true,
                   just_launch: false,
                 });
-                setProductFetchApi({
+                setProductFetchApi((prev) => ({
+                  ...prev,
                   today_deal: 0,
                   price_drop: 1,
                   just_launch: 0,
-                });
+                }));
               }}
             />
           </div>
@@ -183,11 +185,12 @@ const Productlists = ({
                   price_drop: false,
                   just_launch: true,
                 });
-                setProductFetchApi({
+                setProductFetchApi((prev) => ({
+                  ...prev,
                   today_deal: 0,
                   price_drop: 0,
                   just_launch: 1,
-                });
+                }));
               }}
             />
           </div>
