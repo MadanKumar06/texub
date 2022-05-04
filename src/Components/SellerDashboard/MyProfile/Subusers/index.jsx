@@ -75,6 +75,7 @@ const Index = () => {
           customer_id: user?.id
         }
       })
+
       setsublist(list?.data)
     } catch(e) {
       console.log(e)
@@ -181,14 +182,14 @@ const Index = () => {
         <div className='users_main'>
         <MUITable columns={columns} table={sublist} options={options} className="subusers__table" />
           <div className='my_profile_btns'>
-            <div className='my_profile_back'>
-            <Link to={`/${customnostore ? customnostore : geo?.country_name}/buyerdashboard/dashboard`} className="link">
-        <ArrowBackIosNew /><span><p className='back'>Back</p></span>
+          <div className='my_profile_back'>
+          <Link to={`/${customnostore ? customnostore : geo?.country_name}/buyerdashboard/dashboard`} className="link">
+            <ArrowBackIosNew /><span><p className='back'>Back</p></span>
           </Link>
             </div>
-            <div className='user_sub-account'>
-              <button onClick={Newsubacc}>Add New Sub-Account</button>
-            </div>
+              <div className='user_sub-account'>
+                <button onClick={Newsubacc}>Add New Sub-Account</button>
+              </div>
           </div>
         </div>
       }

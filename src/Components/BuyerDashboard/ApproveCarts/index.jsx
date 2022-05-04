@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./styles.scss";
 import { Button } from "@mui/material";
 import { ArrowBackIosNew } from "@mui/icons-material";
@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import Pagination from "../../Pagination";
 import MUITable from "../../../Components/Common/MUITable";
 import { useStateValue } from "../../../store/state";
+import axios from "axios";
+import Constant from '../../../Constant'
 
 function ApproveCart() {
   const [{geo, customstore, customnostore}, dispatch] = useStateValue();
@@ -18,181 +20,33 @@ function ApproveCart() {
       open: true,
     });
   };
-  const table = [
-    {
-      user_name: "Srikant Verma",
-      order_id: "000000006",
-      date: "02/04/2022",
-      sub_total: "₹ 3200.0",
-      hub: "Delhi",
-      item_qty: 60,
-      status: "Delivered",
-    },
-    {
-      user_name: "Ravi Malhotra",
-      order_id: "000000006",
-      date: "05/05/2022",
-      sub_total: "₹ 3200.0",
-      hub: "Pune",
-      item_qty: 30,
-      ordertotal: 75112,
-      status: "Confirm",
-    },
-    {
-      user_name: "Ranga",
-      order_id: "000000006",
-      date: "02/04/2022",
-      sub_total: " ₹ 3200.0",
-      hub: "Delhi",
-      item_qty: 60,
-      status: "Pending",
-    },
-    {
-      user_name: "Ravi Malhotra",
-      order_id: "000000006",
-      date: "05/05/2022",
-      sub_total: "₹ 3200.0",
-      hub: "Pune",
-      item_qty: 30,
-      ordertotal: 75112,
-      status: "Confirm",
-    },
-    {
-      user_name: "Ranga",
-      order_id: "000000006",
-      date: "02/04/2022",
-      sub_total: " ₹ 3200.0",
-      hub: "Delhi",
-      item_qty: 60,
-      status: "Pending",
-    },
-    {
-      user_name: "Ravi Malhotra",
-      order_id: "000000006",
-      date: "05/05/2022",
-      sub_total: "₹ 3200.0",
-      hub: "Pune",
-      item_qty: 30,
-      ordertotal: 75112,
-      status: "Confirm",
-    },
-    {
-      user_name: "Ranga",
-      order_id: "000000006",
-      date: "02/04/2022",
-      sub_total: " ₹ 3200.0",
-      hub: "Delhi",
-      item_qty: 60,
-      status: "Pending",
-    },
-    {
-      user_name: "Ravi Malhotra",
-      order_id: "000000006",
-      date: "05/05/2022",
-      sub_total: "₹ 3200.0",
-      hub: "Pune",
-      item_qty: 30,
-      ordertotal: 75112,
-      status: "Confirm",
-    },
-    {
-      user_name: "Ranga",
-      order_id: "000000006",
-      date: "02/04/2022",
-      sub_total: " ₹ 3200.0",
-      hub: "Delhi",
-      item_qty: 60,
-      status: "Pending",
-    },
-    {
-      user_name: "Ravi Malhotra",
-      order_id: "000000006",
-      date: "05/05/2022",
-      sub_total: "₹ 3200.0",
-      hub: "Pune",
-      item_qty: 30,
-      ordertotal: 75112,
-      status: "Confirm",
-    },
-    {
-      user_name: "Ranga",
-      order_id: "000000006",
-      date: "02/04/2022",
-      sub_total: " ₹ 3200.0",
-      hub: "Delhi",
-      item_qty: 60,
-      status: "Pending",
-    },
-    {
-      user_name: "Ravi Malhotra",
-      order_id: "000000006",
-      date: "05/05/2022",
-      sub_total: "₹ 3200.0",
-      hub: "Pune",
-      item_qty: 30,
-      ordertotal: 75112,
-      status: "Confirm",
-    },
-    {
-      user_name: "Ranga",
-      order_id: "000000006",
-      date: "02/04/2022",
-      sub_total: " ₹ 3200.0",
-      hub: "Delhi",
-      item_qty: 60,
-      status: "Pending",
-    },
-    {
-      user_name: "Ravi Malhotra",
-      order_id: "000000006",
-      date: "05/05/2022",
-      sub_total: "₹ 3200.0",
-      hub: "Pune",
-      item_qty: 30,
-      ordertotal: 75112,
-      status: "Confirm",
-    },
-    {
-      user_name: "Ranga",
-      order_id: "000000006",
-      date: "02/04/2022",
-      sub_total: " ₹ 3200.0",
-      hub: "Delhi",
-      item_qty: 60,
-      status: "Pending",
-    },
-    {
-      user_name: "Ravi Malhotra",
-      order_id: "000000006",
-      date: "05/05/2022",
-      sub_total: "₹ 3200.0",
-      hub: "Pune",
-      item_qty: 30,
-      ordertotal: 75112,
-      status: "Confirm",
-    },
-    {
-      user_name: "Ranga",
-      order_id: "000000006",
-      date: "02/04/2022",
-      sub_total: " ₹ 3200.0",
-      hub: "Delhi",
-      item_qty: 60,
-      status: "Pending",
-    },
-  ];
+  const [approvetable, setapprovetable] = useState([])
+  useEffect(async() => {
+    let user = JSON.parse(localStorage.getItem('userdata'))
+    try {
+      const approvelist = await axios({
+        method: 'post',
+        url: `${Constant?.baseUrl()}/cartRequestLists`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        },
+        data: {
+          "data":{
+            "customer_id": user?.id,
+            "type_id":1
+          }     
+        }
+      })
+      setapprovetable(approvelist?.data)
+      console.log(approvelist?.data)
+    } catch(e) {
+      console.log(e)
+    }
+  }, [])
+
 
   const columns = [
     { name: "user_name", label: "User Name" },
-    {
-      name: "order_id",
-      label: "Order ID",
-      options: {
-        customBodyRender: (value) => {
-          return <div className="approve__cart__order_id">{value}</div>;
-        },
-      },
-    },
     { name: "hub", label: "HUB" },
     {
       name: "date",
@@ -205,7 +59,7 @@ function ApproveCart() {
     },
     { name: "item_qty", label: "Items Qty" },
     {
-      name: "sub_total",
+      name: "subtotal",
       label: "Subtotal",
       options: {
         customBodyRender: (value) => {
@@ -230,14 +84,14 @@ function ApproveCart() {
       },
     },
     {
-      name: "sub_total",
+      name: "id",
       label: "Action",
       options: {
         customBodyRender: (value) => {
           return (
             <div className="approve__cart__action_main">
-              <div className="approve__cart__action">Approve</div>
-              <div className="approve__cart__action delete">Delete</div>
+              <div className="approve__cart__action" onClick={() => approve(value)}>Approve</div>
+              <div className="approve__cart__action delete" onClick={() => deletecart(value)}>Delete</div>
             </div>
           );
         },
@@ -257,8 +111,52 @@ function ApproveCart() {
   };
 
   const PaginateDataSplit = (event) => {
+    if (approvetable?.length === 0) return setTableData([]);
     setTableData(event);
   };
+
+  const approve = async(value) => {
+    let user = JSON.parse(localStorage.getItem('userdata'))
+    try {
+      const mergerequest = await axios({
+        method: 'post',
+        url: `${Constant?.baseUrl()}/cartApproveByMainUser`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        },
+        data: {
+          "data" :{
+              "id" : value
+          }
+       }
+      })
+      console.log(mergerequest?.data)
+    } catch(e) {
+      console.log(e)
+    }
+  }
+
+  const deletecart = async(value) => {
+    let user = JSON.parse(localStorage.getItem('userdata'))
+    try {
+      const mergerequest = await axios({
+        method: 'post',
+        url: `${Constant?.baseUrl()}/deleteRequests`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        },
+        data: {
+          "data" :{
+              "id" : value,
+              "quote_id": user?.id
+          }
+       }
+      })
+      console.log(mergerequest?.data)
+    } catch(e) {
+      console.log(e)
+    }
+  }
   return (
     <div className="approve__cart">
       <div className="approve__cart__footer">
@@ -267,10 +165,10 @@ function ApproveCart() {
             <ArrowBackIosNew />
             <span>Back</span>
           </Link>
-          <div className="approve__cart_button">
+          {/* <div className="approve__cart_button">
             <Button className="approve__cart_btn">Approve</Button>
             <Button className="Delete_btn">Delete</Button>
-          </div>
+          </div> */}
         </div>
       </div>
       <MUITable
@@ -279,11 +177,15 @@ function ApproveCart() {
         options={options}
         className="approve__cart__table"
       />
-      <Pagination
-        PaginateData={PaginateDataSplit}
-        DataList={table}
-        PagePerRow={10}
-      />
+      {approvetable?.length > 0 ?
+        <Pagination
+          PaginateData={PaginateDataSplit}
+          DataList={approvetable?.length > 0 ? approvetable : []}
+          PagePerRow={10}
+        />
+        :
+        ""
+      }
     </div>
   );
 }

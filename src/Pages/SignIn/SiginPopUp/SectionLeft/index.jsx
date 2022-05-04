@@ -383,24 +383,23 @@ const TransitionsModal = ({ classes, openPopUp }) => {
 
   useEffect(async() => {
     let user = JSON.parse(localStorage.getItem('userdata'))
-    if(adminToken === null) return
+    if(localStorage.getItem('token') === null) return
     try {
       const permission = await axios({
         method: 'post',
         url: `${Constant?.permissiondetails()}`,
         headers: {
-          Authorization: `Bearer ${adminToken}`
+          Authorization: `Bearer ${localStorage.getItem('token')}`
         },
         data: {
           "customer_id" : user?.id
        }       
       })
-      console.log(permission?.data)
       localStorage.setItem('permissions', JSON.stringify(permission?.data))
     } catch(e) {
       console.log(e)
     }
-  }, [customerdata, adminToken])
+  }, [customerdata, localStorage.getItem('token')])
   //// Forgor Password ///
   const [passopen, setpassopen] = useState(false);
   const forgotpass = () => {

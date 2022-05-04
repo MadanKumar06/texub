@@ -1,0 +1,136 @@
+.Address_main{
+        
+    .heading{
+        background-color: #F8F0E0;
+        width: 28%;
+        color: #002D56;
+        font-size: 16px;
+        letter-spacing: 0.54px;
+        font-weight: 600;
+        margin: 0;
+        text-align: center;
+        height: 50px;
+        padding-top: 17px;
+    } 
+    .Address_map{
+        box-shadow: rgb(0 0 0 / 15%) 0px 5px 15px 0px;
+        display: flex;
+        justify-content: space-around;
+        padding-top: 20px;
+        .Address_Billing{
+            display: flex;
+            gap: 10px;
+            p{
+                font-size: 24px;
+                letter-spacing: 0.6px;
+                opacity: 1;
+                color: #959595;
+                margin: 10px 0 0 39px;
+            }
+        .edit_section{
+            display: flex;
+            gap: 10px;
+            margin-top: 17px;
+            .profile_edit{
+                color: #002D56;
+                font-size: 18px;
+                font-weight: 600;
+                opacity: 1;
+                text-decoration: underline;
+                margin: 0;
+            }
+        }
+     }
+     .Address_Shipping{
+        display: flex;
+        gap: 10px;
+    .edit_section{
+        display: flex;
+        gap: 10px;
+        margin-top: 17px;
+        .Edit_image{
+            height: 20px !important;
+        }
+        .profile_edit{
+            color: #002D56;
+            font-size: 18px;
+            font-weight: 600;
+            opacity: 1;
+            text-decoration: underline;
+            margin: 0;
+            cursor: pointer;
+        }
+    }
+     }
+     .vl {
+        border-left: 2px solid  #0000001D;
+        height: 231px;
+        margin: 20px;
+      }
+        ul{
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            .address_type{
+                color: #858A8E;
+                font-size: 18px;
+                font-weight: 600px;
+                opacity: 1;
+            }
+            .address_name{
+                color: #858A8E;
+                font-size: 16px;
+                letter-spacing: 0.72px;
+                font-weight: 600px;
+                opacity: 1;
+            }
+            .address_block{
+                font-size: 16px;
+                letter-spacing: 0.6px;
+                opacity: 1;
+                color: #959595;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width:580px){
+    .Address_main .heading {
+        width: 100%;
+    }
+    .Address_main .Address_map{
+        flex-direction: column;
+    }
+    .Address_main .Address_map .vl{
+        display: none;
+    }
+    
+    .Address_main .Address_map .Address_Billing{
+        justify-content: space-around;
+    }
+    .Address_main .Address_map .Address_Shipping{
+        justify-content: space-around;
+    }
+}
+
+@media only screen and (max-width:480px){
+    .Address_main .Address_map ul{
+        padding: 2px;
+    }
+}
+@media only screen and (max-width:425px){
+    .Address_main .Address_map ul{
+        padding: 2px;
+    }
+}
+@media only screen and (max-width:375px){
+    .Address_main .Address_map ul{
+        padding: 2px;
+    }
+}
+@media only screen and (max-width:320px){
+    .Address_main .Address_map ul{
+        padding: 2px;
+    }
+}

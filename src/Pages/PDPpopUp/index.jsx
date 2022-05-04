@@ -79,10 +79,10 @@ const PdpPopup = () => {
   };
 
   const handleIsValidUser = async (event) => {
-    let isValidUser = JSON.parse(localStorage.getItem("userdata"))?.group_id;
     let isDataValid = user?.custom_attributes?.filter(
       (itm) => itm?.attribute_code === "kyc_status"
     );
+    let isValidUser = JSON.parse(localStorage.getItem("userdata"))?.group_id;
     if (isValidUser === 5) {
       if (isDataValid[0]?.value === "2") {
         let temp =
@@ -118,6 +118,23 @@ const PdpPopup = () => {
   };
 
   const list = (event) => {
+    // debugger
+    let permissions = JSON.parse(localStorage.getItem('permissions'))
+    let isValidUser = JSON.parse(localStorage.getItem("userdata"))?.group_id;
+    if (isValidUser === 5) {
+      let wishpermission = permissions?.some(per => {
+        if(per?.value === 'can-add-to-multiple-wishlist' && per?.permission_value === 0) {
+          swal.fire({
+            text: `Your Account doesn't have access to add products to wishlist`,
+            icon: "error",
+            showConfirmButton: true,
+          });
+        }
+      })
+      if(wishpermission === true) {
+        return
+      }
+    }
     if (event === "add_to_wishlist") {
       setopenwishlist({ open: true });
     }
@@ -125,6 +142,34 @@ const PdpPopup = () => {
   //APi call to addtocart
   const user = JSON.parse(localStorage.getItem("userdata"));
   const AddToCartAndPendingInvoice = (info) => {
+    let permissions = JSON.parse(localStorage.getItem('permissions'))
+    let isValidUser = JSON.parse(localStorage.getItem("userdata"))?.group_id;
+    if (isValidUser === 5) {
+      let cartpermission = permissions?.some(per => {
+        if(per?.value === 'can-add-to-cart' && per?.permission_value === 0) {
+          return swal.fire({
+            text: `Your Account doesn't have access to add products to the cart`,
+            icon: "error",
+            showConfirmButton: true,
+          });
+        }
+      })
+      if(cartpermission === true) {
+        return
+      }
+      let pendingpermission = permissions?.some(per => {
+        if(per?.value === 'can-add-to-pending-invoice' && per?.permission_value === 0) {
+          return swal.fire({
+            text: `Your Account doesn't have access to add products to Pending Invoice`,
+            icon: "error",
+            showConfirmButton: true,
+          });
+        }
+      })
+      if(pendingpermission === true) {
+        return
+      }
+    }
     let storedata = JSON.parse(localStorage.getItem("storedata"));
     let isUserAddData = pdpSellerData?.is_table_one?.filter(
       (itm) => itm?.product_id === pdpSellerData?.product_id
@@ -177,15 +222,6 @@ const PdpPopup = () => {
           dispatch({
             type: "CART__TRIGGER",
           });
-          // if (info === "add_to_cart") {
-          //   setTimeout(() => {
-          //     history("/mycart");
-          //   }, 1000 / 2);
-          // } else {
-          //   setTimeout(() => {
-          //     history("/pending-invoice");
-          //   }, 1000 / 2);
-          // }
         } else {
           swal.fire({
             text: `${res.data?.[0]?.message}`,
@@ -207,6 +243,7 @@ const PdpPopup = () => {
           timer: 3000,
         });
       });
+    // }
   };
 
   function truncate(str, n) {
