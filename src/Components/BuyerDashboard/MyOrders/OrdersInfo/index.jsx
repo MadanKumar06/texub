@@ -26,6 +26,10 @@ import axios from "axios";
 import Constant from "../../../../Constant";
 
 const Index = ({ orders, currentorder }) => {
+
+  function formatToCurrency(price) {
+    return price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
+  }
   const [{}, dispatch] = useStateValue()
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -159,7 +163,7 @@ const columns = [
     label: "Quantity",
     options: {
       customBodyRender: (value) => {
-        return <div className="vieworders_quantity">{value}</div>;
+        return <div className="vieworders_quantity">{parseInt(value)}</div>;
       },
     },
   },
@@ -207,7 +211,7 @@ const columns = [
         return (
           <div className="vieworders_price">
             <span className="inr">INR</span>
-            <span className="price"> {value} </span>
+            <span className="price">   {formatToCurrency(parseInt(value))} </span>
           </div>
         );
       },
@@ -221,7 +225,7 @@ const columns = [
         return (
           <div className="vieworders_total">
             <span className="inr">INR</span>
-            <span className="price"> {value} </span>
+            <span className="price">   {formatToCurrency(parseInt(value))} </span>
           </div>
         );
       },
@@ -419,14 +423,14 @@ const columns = [
                 {/* {total.map((item) => ( */}
                   <li className="vieworders_list">
                     <span className="total_heading"> Sub-Total</span>
-                    <span className="total_amount">
-                      <span className="currency">INR</span> {detailsorder?.[0]?.order_details[0]?.subtotal}
+                    <span className="total_amount">  
+                      <span className="currency">INR</span> {formatToCurrency(parseInt(detailsorder?.[0]?.order_details[0]?.subtotal))}
                     </span>
                   </li>
                   <li className="vieworders_list">
                     <span className="total_heading"> Shipping Charge</span>
                     <span className="total_amount">
-                      <span className="currency">INR</span> {detailsorder?.[0]?.order_details[0]?.shipping_charge}
+                      <span className="currency">INR</span> {formatToCurrency(parseInt(detailsorder?.[0]?.order_details[0]?.shipping_charge))}
                     </span>
                   </li>
                   <li className="vieworders_list">
@@ -446,7 +450,7 @@ const columns = [
                       <span className="gst">(incl.GST)</span>
                     </div>
                     <span className="total_amount">
-                      <span className="currency">INR</span> {detailsorder?.[0]?.order_details?.[0]?.grand_total}
+                      <span className="currency">INR</span> {formatToCurrency(parseInt(detailsorder?.[0]?.order_details[0]?.grand_total))}
                     </span>
                   </li>
                 ))}

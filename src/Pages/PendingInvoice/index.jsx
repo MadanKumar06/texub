@@ -173,7 +173,7 @@ function Index() {
       label: "QUANTITY",
       options: {
         customBodyRender: (value) => {
-          return <div className="vieworders_quantity">{value}</div>;
+          return <div className="vieworders_quantity">{parseInt(value)}</div>;
         },
       },
     },
