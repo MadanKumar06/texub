@@ -58,10 +58,10 @@
         color: #ffffff;
       }
       input#search_proudct {
-       color: #858A8E !important;
+        color: #858a8e !important;
       }
       input::placeholder {
-        color: #858A8E;
+        color: #858a8e;
         font-size: 16px;
         opacity: 1;
       }
@@ -69,7 +69,7 @@
       .MuiButtonBase-root {
         color: #ffffff;
         padding: 8px 22px;
-        background: #ddb363;
+        background: linear-gradient(180deg, #ffd788 0%, #ad7c20 100%);
         border-radius: 2px;
       }
     }

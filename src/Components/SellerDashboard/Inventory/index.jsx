@@ -48,12 +48,20 @@ function Index({ registerproduct }) {
   const handleOpenCloseOffers = () => {
     setOffersOpenClose({ isOpenClose: false });
   };
-  const [registeraccess, setregisteraccess] = useState(false)
+  const [registeraccess, setregisteraccess] = useState(false);
   useEffect(() => {
-    let permission = JSON.parse(localStorage.getItem('permissions'))
-    let temp1 = permission?.some(p => p?.value === 'raise-product-registratio' && p?.permission_value === 1)
-    setregisteraccess(temp1)
-  },[])
+    let permission = JSON.parse(localStorage.getItem("permissions"));
+    let temp;
+    if (permission?.length !== 0) {
+      temp = permission?.some(
+        (p) =>
+          p?.value === "raise-product-registratio" && p?.permission_value === 1
+      );
+    } else if (permission?.length === 0) {
+      temp = true;
+    }
+    setregisteraccess(temp);
+  }, []);
 
   const columns = [
     {
@@ -381,14 +389,14 @@ function Index({ registerproduct }) {
               </IconButton>
             </Paper>
             <Box className="button-box-container inventory-hedaer-btn">
-              {registeraccess &&
+              {registeraccess && (
                 <Button
                   className="button-text btn-secondary inventory_register"
                   onClick={() => registerproduct("registerproduct")}
                 >
                   Register New Product
                 </Button>
-              }
+              )}
               <Button
                 className="button-text btn-ternary  inventory_product_upload"
                 onClick={() => registerproduct("pending-product")}

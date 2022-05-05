@@ -10,6 +10,7 @@ import {
   InputLabel,
 } from "@mui/material";
 import "./styles.scss";
+import { useStateValue } from "../../../../../store/state";
 
 
 const style = {
@@ -25,13 +26,20 @@ const style = {
 };
 
 export default function BasicModal({PopupTransaction}) {
-  
+  const [{  }, dispatch] = useStateValue();
   const [open, setOpen] = React.useState(true);
     const [value, setValue] = React.useState(2);
   // const handleOpen = () => setOpen(true);
-  const handleClose = () => {
-      setOpen(false);
-      PopupTransaction(false)
+  const handleClose = (event, reason) => {
+    if (reason && reason === "backdropClick") return;
+      else {
+        setOpen(false);
+          dispatch({
+          type: "SET_PDP_POPUP_OPEN_CLOSE",
+          value: false,
+        });
+        PopupTransaction(false)
+      }
     }
 
   return (
@@ -39,7 +47,7 @@ export default function BasicModal({PopupTransaction}) {
       {/* <Button onClick={handleOpen}>Open modal</Button> */}
       <Modal
         open={open}
-        // onClose={handleClose}
+         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
         className="transaction_number_popup"
@@ -50,7 +58,7 @@ export default function BasicModal({PopupTransaction}) {
           timeout: 500,
         }}
       >
-         <div className="transaction_popup_main">
+         <div className="transaction_popup_main" style={{outline:'none'}}>
               <Clear
                     className="clear_btn transaction_popup_clear_btn"
                     onClick={() => handleClose()}

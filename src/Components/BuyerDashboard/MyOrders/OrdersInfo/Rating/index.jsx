@@ -12,6 +12,8 @@ import { Clear  } from "@mui/icons-material";
 import "./styles.scss";
 import axios from 'axios';
 import Constant from '../../../../../Constant';
+import { useStateValue } from "../../../../../store/state";
+
 
 
 const style = {
@@ -27,6 +29,8 @@ const style = {
 };
 
 export default function BasicModal({Popup, currentorder}) {
+  const [{  }, dispatch] = useStateValue();
+
   const [rating, setrating] = useState({
     star: 0,
     comment: ''
@@ -34,10 +38,23 @@ export default function BasicModal({Popup, currentorder}) {
   const [open, setOpen] = React.useState(true);
     const [value, setValue] = React.useState(2);
   // const handleOpen = () => setOpen(true);
-  const handleClose = () => {
-      setOpen(false);
-      Popup(false)
+
+   const handleClose = (event, reason) => {
+    if (reason && reason === "backdropClick") return;
+      else {
+        setOpen(false);
+          dispatch({
+          type: "SET_PDP_POPUP_OPEN_CLOSE",
+          value: false,
+        });
+        Popup(false)
+      }
     }
+
+  // const handleClose = () => {
+  //     setOpen(false);
+  //     Popup(false)
+  //   }
     console.log(rating)
   const reviewsubmit = async() => {
     let user = JSON.parse(localStorage.getItem('userdata'))
@@ -68,7 +85,7 @@ export default function BasicModal({Popup, currentorder}) {
       {/* <Button onClick={handleOpen}>Open modal</Button> */}
       <Modal
         open={open}
-        // onClose={handleClose}
+        onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
         className="rating_number_popup"
@@ -79,7 +96,7 @@ export default function BasicModal({Popup, currentorder}) {
           timeout: 500,
         }}
       >
-         <div className="rating_popup_main">
+         <div className="rating_popup_main" style={{outline:'none'}}>
               <Clear
                     className="clear_btn rating_popup_clear_btn"
                     onClick={() => handleClose()}

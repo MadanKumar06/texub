@@ -11,6 +11,7 @@ import {
 import { Clear  } from "@mui/icons-material";
 import Divider from "@mui/material/Divider";
 import "./styles.scss";
+import { useStateValue } from "../../../../../store/state";
 
 
 const style = {
@@ -26,6 +27,7 @@ const style = {
 };
 
 export default function BasicModal({PopupTrack}) {
+  const [{  }, dispatch] = useStateValue();
 
     // serial number popup id here
  const TrackInfo = [
@@ -64,9 +66,16 @@ export default function BasicModal({PopupTrack}) {
   const [open, setOpen] = React.useState(true);
     const [value, setValue] = React.useState(2);
   // const handleOpen = () => setOpen(true);
-  const handleClose = () => {
-      setOpen(false);
-      PopupTrack(false)
+  const handleClose = (event, reason) => {
+    if (reason && reason === "backdropClick") return;
+      else {
+        setOpen(false);
+          dispatch({
+          type: "SET_PDP_POPUP_OPEN_CLOSE",
+          value: false,
+        });
+        PopupTrack(false)
+      }
     }
 
   return (
@@ -79,6 +88,7 @@ export default function BasicModal({PopupTrack}) {
         aria-describedby="modal-modal-description"
         className="tracking_order_popup"
         closeAfterTransition
+        onClose={handleClose}
         disableRestoreFocus={true}
         BackdropComponent={Backdrop}
         BackdropProps={{
@@ -91,7 +101,7 @@ export default function BasicModal({PopupTrack}) {
                     onClick={() => handleClose()}
                 />
                   
-                        <div className="track_popup_block">
+                        <div className="track_popup_block" style={{outline:'none'}}>
 
                         <div className='title'>Delivery By Aramex</div>
                         <div className='sub-title'><span>Tracking ID : </span>

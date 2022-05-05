@@ -138,6 +138,7 @@ export const Products = () => {
     });
     setProductData(productTableData);
   };
+  console.log(productData);
   const handleRouteChange = () => {
     navigate(
       `/${
@@ -159,6 +160,8 @@ export const Products = () => {
         setProductFetchApi={setProductFetchApi}
         productFetchApi={productFetchApi}
         getCategories={getCategories}
+        setApplyFilter={setApplyFilter}
+        applyFilter={applyFilter}
       />
       <div className="clear-btn">
         <Button

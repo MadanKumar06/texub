@@ -10,12 +10,20 @@ import axios from "axios";
 import Constant from "../../../Constant";
 import SimpleLoader from "../../../Components/SimpleLoader";
 
-const Productsbrands = ({ setProductFetchApi, getCategories }) => {
+const Productsbrands = ({
+  setProductFetchApi,
+  getCategories,
+  setApplyFilter,
+  applyFilter,
+}) => {
   const [{ isSimpleLoading }, dispatch] = useStateValue();
   const [isChange, setisChange] = useState(false);
+  const [isBrandSelected, setIsBrandSelected] = useState(null);
+  const [isCategorySelected, setIsCategorySelected] = useState(null);
   const brand = (value) => {
     value && setisChange(value);
   };
+
   function Arrow(props) {
     let className =
       props.type === "next" ? "Carosal_nextArrow" : "Carosal_prevArrow";
@@ -65,15 +73,22 @@ const Productsbrands = ({ setProductFetchApi, getCategories }) => {
     fetchBrandsData();
   }, []);
 
+  useEffect(() => {
+    if (getCategories?.length) {
+      setIsCategorySelected(
+        JSON.parse(localStorage.getItem("all_category_id"))
+      );
+    }
+  }, [getCategories]);
   const Productsicon = {
     dots: false,
-    infinite: true,
+    infinite: false,
     slidesToShow: 15,
     slidesToScroll: 1,
     initialSlide: 0,
     nextArrow: <Arrow type="next" />,
     prevArrow: <Arrow type="prev" />,
-   responsive: [
+    responsive: [
       {
         breakpoint: 1921,
         settings: {
@@ -157,7 +172,7 @@ const Productsbrands = ({ setProductFetchApi, getCategories }) => {
           initialSlide: 8,
         },
       },
-       {
+      {
         breakpoint: 1550,
         settings: {
           slidesToShow: 7,
@@ -207,7 +222,6 @@ const Productsbrands = ({ setProductFetchApi, getCategories }) => {
       },
     ],
   };
-
   return (
     <div className="Productsbrands">
       <>
@@ -219,13 +233,17 @@ const Productsbrands = ({ setProductFetchApi, getCategories }) => {
               {sliderBrandsAndCategories?.brands?.length &&
                 sliderBrandsAndCategories?.brands?.map((itm) => (
                   <div
-                    className="ProductBrand_first_Slider"
-                    onClick={() =>
+                    className={`ProductBrand_first_Slider brand_slider ${
+                      isBrandSelected === itm?.option_id && "selected_slider"
+                    }`}
+                    onClick={() => {
                       setProductFetchApi((prevState) => ({
                         ...prevState,
                         brand_id: itm?.option_id,
-                      }))
-                    }
+                      }));
+                      setIsBrandSelected(itm?.option_id);
+                      setApplyFilter(!applyFilter);
+                    }}
                   >
                     <img
                       src={`${Constant.imageBaseUrl()}${itm?.image}`}
@@ -248,13 +266,18 @@ const Productsbrands = ({ setProductFetchApi, getCategories }) => {
                 getCategories?.map((item) => (
                   <li
                     key={item?.category?.id}
-                    className="Slider_brands"
-                    onClick={() =>
+                    className={`Slider_brands ${
+                      isCategorySelected === item?.category?.id &&
+                      "selected_category"
+                    }`}
+                    onClick={() => {
                       setProductFetchApi((prevState) => ({
                         ...prevState,
                         category_id: item?.category?.id,
-                      }))
-                    }
+                      }));
+                      setIsCategorySelected(item?.category?.id);
+                      setApplyFilter(!applyFilter);
+                    }}
                     onMouseOver={() => brand(item?.category?.id)}
                   >
                     <span>{item?.category?.category_name}</span>
@@ -267,12 +290,13 @@ const Productsbrands = ({ setProductFetchApi, getCategories }) => {
                               item?.subcategories?.map((e) => (
                                 <div
                                   className="content"
-                                  onClick={() =>
+                                  onClick={() => {
                                     setProductFetchApi((prevState) => ({
                                       ...prevState,
                                       category_id: item?.id,
-                                    }))
-                                  }
+                                    }));
+                                    setApplyFilter(!applyFilter);
+                                  }}
                                 >
                                   <span>
                                     <p>{e.category_name}</p>

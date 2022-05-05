@@ -74,6 +74,9 @@ const styles = () => ({
          "& div ": {
             "@media (max-width:900px)": {
               fontSize:"14px",
+              textAlign :"center",
+              display:'grid',
+             justifyContent: "center",
             },
          },
            
