@@ -55,11 +55,11 @@ const CurrencyPopup = ({ classes }) => {
     localStorage.setItem("currency", JSON.stringify(selectedValue));
   }, [selectedValue]);
   
-   useEffect(() => {
-     let storedcurrency = JSON.parse(localStorage.getItem('selectedcurrency'))
-     console.log(storedcurrency);
-   handleChange(storedcurrency);
-  }, []);
+  //  useEffect(() => {
+  //    let storedcurrency = JSON.parse(localStorage.getItem('selectedcurrency'))
+  //    console.log(storedcurrency);
+  //  handleChange(storedcurrency);
+  // }, []);
   //API for fetch dropdown values
 
   const str = window.location.pathname
