@@ -21,7 +21,6 @@ function Index() {
   const [file, setFile] = useState({});
   const [{ geo, customnostore, generalTrigger }, dispatch] = useStateValue();
 
-
   const ExportXlsxDetails = async () => {
     const user = JSON.parse(localStorage.getItem("userdata"));
     dispatch({
@@ -293,21 +292,21 @@ function Index() {
         <div className="download_content">
           <p className="bulk_download">BULK UPLOAD</p>
           <div className="bulk_xlsx_sample">
-          <span className="bulk_xlsx_example">Example XLSX File</span>
-          <div className="image">
-            <img src={question_image} alt="question" />
-          </div>
-
-          <a
-            className="bulk_download_example link"
-            href="/Example.Xlsx.xlsx"
-            download="Example.Xlsx.xlsx"
-          >
-            Example.Xlsx{" "}
+            <span className="bulk_xlsx_example">Example XLSX File</span>
             <div className="image">
-              <img src={downnload_image} alt="download" />
+              <img src={question_image} alt="question" />
             </div>
-          </a>
+
+            <a
+              className="bulk_download_example link"
+              href="/Example.Xlsx.xlsx"
+              download="Example.Xlsx.xlsx"
+            >
+              Example.Xlsx{" "}
+              <div className="image">
+                <img src={downnload_image} alt="download" />
+              </div>
+            </a>
           </div>
         </div>
 
@@ -381,7 +380,7 @@ function Index() {
           </div>
         </div>
       </div>
-        <Link
+      <Link
         className="inventory-page-back"
         to={`/${
           customnostore ? customnostore : geo?.country_name
@@ -392,20 +391,20 @@ function Index() {
       </Link>
       <div className="validation_message">
         <div className="check_scroll">
-        {Row?.length
-          ? Row?.map((itm, ind) => {
-              return (
-                <div>
-                  {itm?.success_or_error === "success" ? (
-                    <p className="success">{itm?.message}</p>
-                  ) : (
-                    <p className="error">{itm?.message}</p>
-                  )}
-                </div>
-              );
-            })
-          : ""}
-          </div>
+          {Row?.length
+            ? Row?.map((itm, ind) => {
+                return (
+                  <div>
+                    {itm?.success_or_error === "success" ? (
+                      <p className="success">{itm?.message}</p>
+                    ) : (
+                      <p className="error">{itm?.message}</p>
+                    )}
+                  </div>
+                );
+              })
+            : ""}
+        </div>
       </div>
     </div>
   );
