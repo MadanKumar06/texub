@@ -135,7 +135,7 @@
       font-size: 14px;
       font-weight: 600;
     }
-    .bulk_xlsx_sample{
+    .bulk_xlsx_sample {
       display: flex;
       align-items: center;
     }
@@ -231,7 +231,7 @@
     margin: 1.5em 0;
     max-height: 350px;
     overflow-y: auto;
-    .check_scroll{
+    .check_scroll {
       max-height: 500px;
       overflow: auto;
       // height: 250px;
@@ -240,54 +240,54 @@
 }
 
 @media (max-width: "580px") {
-.bulk_upload {
-  .first_container{
-    flex-wrap: wrap;
-  }
-  .upload_file_container{
-     flex-direction: column;
+  .bulk_upload {
+    .first_container {
+      flex-wrap: wrap;
+    }
+    .upload_file_container {
+      flex-direction: column;
       gap: 0;
-      .file_upload{
-           align-items: center;
+      .file_upload {
+        align-items: center;
       }
-      .inputfields{
+      .inputfields {
         width: auto;
-         margin: 2em 0em;
+        margin: 2em 0em;
         justify-content: center;
-          align-items: center;
-          .validate_btn{
-           max-width: 60%;
-           width: 100%;
-          }
-          .MuiAutocomplete-root{
-            max-width: 60%;
-            width: 100%;
-          }
+        align-items: center;
+        .validate_btn {
+          max-width: 60%;
+          width: 100%;
+        }
+        .MuiAutocomplete-root {
+          max-width: 60%;
+          width: 100%;
+        }
       }
+    }
   }
-}
 
-// .bulk_upload .upload_file_container{
-//   flex-direction: column;
-//   gap: 0;
-// }
-// .bulk_upload .upload_file_container .file_upload{
-//   align-items: center;
-// }
-// .bulk_upload .first_container .inputfields{
-//   width: auto;
-//  margin: 2em 0em;
-//   justify-content: center;
-//     align-items: center;
-// }
-// .bulk_upload .first_container .inputfields .validate_btn{
-//  max-width: 60%;
-//  width: 100%;
-// } 
+  // .bulk_upload .upload_file_container{
+  //   flex-direction: column;
+  //   gap: 0;
+  // }
+  // .bulk_upload .upload_file_container .file_upload{
+  //   align-items: center;
+  // }
+  // .bulk_upload .first_container .inputfields{
+  //   width: auto;
+  //  margin: 2em 0em;
+  //   justify-content: center;
+  //     align-items: center;
+  // }
+  // .bulk_upload .first_container .inputfields .validate_btn{
+  //  max-width: 60%;
+  //  width: 100%;
+  // }
 
-// .bulk_upload .first_container .inputfields .MuiAutocomplete-root{
-//   max-width: 60%;
-//    width: 100%;
+  // .bulk_upload .first_container .inputfields .MuiAutocomplete-root{
+  //   max-width: 60%;
+  //    width: 100%;
 
-// }
+  // }
 }

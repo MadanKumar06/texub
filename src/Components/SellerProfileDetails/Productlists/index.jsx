@@ -26,7 +26,6 @@ const Productlists = ({
   applyFilter,
   productData,
 }) => {
-  console.log(productFetchApi?.hub);
   useEffect(() => {
     if (productFetchApi?.hub === "") {
       window.location.reload();
@@ -102,16 +101,103 @@ const Productlists = ({
     fetchProductListDropDownData();
   }, [currency]);
 
+  useEffect(() => {
+    if (productlistdropdown) {
+      setProductFetchApi((prev) => ({
+        ...prev,
+        hub: productlistdropdown?.hub[0]?.value,
+        conditions: productlistdropdown?.conditions?.[0]?.value,
+        eta: productlistdropdown?.eta?.[0]?.value,
+      }));
+    }
+  }, [productlistdropdown]);
   const handleSearchClick = (event) => {
-    debugger;
     event.preventDefault();
     setApplyFilter(!applyFilter);
   };
   return (
     <div className="productlist">
-      
-      
-      <div className="productlist__search_seller">
+      <div className="sidebar-toggle">
+        <ProductFilterDrawer
+          dataFromApi={dataFromApi}
+          setProductFetchApi={setProductFetchApi}
+          setApplyFilter={setApplyFilter}
+          productFetchApi={productFetchApi}
+          applyFilter={applyFilter}
+        />
+      </div>
+      <div className="product_based_deals">
+        <div className="productlist__deal">
+          <div className="productlist__deal image">
+            <img
+              src={filterHeaderImage?.today_deal_image}
+              alt=""
+              className={
+                filterHeaderImage?.today_deal === false && "image_opactity"
+              }
+              onClick={() => {
+                handleImageChange({
+                  today_deal: true,
+                  price_drop: false,
+                  just_launch: false,
+                });
+                setProductFetchApi((prev) => ({
+                  ...prev,
+                  today_deal: 1,
+                  price_drop: 0,
+                  just_launch: 0,
+                }));
+              }}
+            />
+          </div>
+          {filterHeaderImage?.today_deal && <span>Today's Deal</span>}
+        </div>
+        <div className="productlist__deal">
+          <div className="productlist__down image">
+            <img
+              src={filterHeaderImage?.price_drop_image}
+              alt=""
+              onClick={() => {
+                handleImageChange({
+                  today_deal: false,
+                  price_drop: true,
+                  just_launch: false,
+                });
+                setProductFetchApi((prev) => ({
+                  ...prev,
+                  today_deal: 0,
+                  price_drop: 1,
+                  just_launch: 0,
+                }));
+              }}
+            />
+          </div>
+          {filterHeaderImage?.price_drop && <span>Price Drop</span>}
+        </div>
+        <div className="productlist__deal">
+          <div className="productlist__up image">
+            <img
+              src={filterHeaderImage?.just_launch_image}
+              alt=""
+              onClick={() => {
+                handleImageChange({
+                  today_deal: false,
+                  price_drop: false,
+                  just_launch: true,
+                });
+                setProductFetchApi((prev) => ({
+                  ...prev,
+                  today_deal: 0,
+                  price_drop: 0,
+                  just_launch: 1,
+                }));
+              }}
+            />
+          </div>
+          {filterHeaderImage?.just_launch && <span>Just Launch</span>}
+        </div>
+      </div>
+      <div className="productlist__search">
         <Paper
           component="form"
           className="search_input"
@@ -138,9 +224,9 @@ const Productlists = ({
         </Paper>
       </div>
 
-      <Box sx={{ minWidth: 200 }}>
+      <Box sx={{ minWidth: 150 }}>
         <FormControl fullWidth className="product_dropdown_hub">
-          <InputLabel id="demo-simple-select-label">All Hubs</InputLabel>
+          <InputLabel id="demo-simple-select-label">Hubs</InputLabel>
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
@@ -151,7 +237,7 @@ const Productlists = ({
           >
             {productlistdropdown?.hub?.length ? (
               productlistdropdown?.hub?.map((itm) => (
-                <MenuItem value={itm?.hub_id}>{itm?.hub_name}</MenuItem>
+                <MenuItem value={itm?.value}>{itm?.label}</MenuItem>
               ))
             ) : (
               <MenuItem>No option</MenuItem>
@@ -161,7 +247,7 @@ const Productlists = ({
       </Box>
       <Box sx={{ minWidth: 200 }}>
         <FormControl fullWidth className="product_dropdown_condition">
-          <InputLabel id="demo-simple-select-label">All Conditions</InputLabel>
+          <InputLabel id="demo-simple-select-label">Conditions</InputLabel>
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
@@ -180,7 +266,7 @@ const Productlists = ({
           </Select>
         </FormControl>
       </Box>
-      <Box sx={{ minWidth: 200 }}>
+      <Box sx={{ minWidth: 120 }}>
         <FormControl fullWidth className="product_dropdown_price">
           <InputLabel id="demo-simple-select-label">ETA</InputLabel>
           <Select
@@ -193,7 +279,7 @@ const Productlists = ({
           >
             {productlistdropdown?.eta?.length ? (
               productlistdropdown?.eta?.map((itm) => (
-                <MenuItem value={itm?.label}>{itm?.label}</MenuItem>
+                <MenuItem value={itm?.value}>{itm?.label}</MenuItem>
               ))
             ) : (
               <MenuItem>No option</MenuItem>
