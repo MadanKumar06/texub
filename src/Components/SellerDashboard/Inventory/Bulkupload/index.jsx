@@ -9,14 +9,18 @@ import question_image from "../../../../Assets/CommonImage/question.png";
 import { useStateValue } from "../../../../store/state";
 import swal from "sweetalert2";
 import XLSX from "xlsx";
+import { ArrowBackIosNew } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 
 function Index() {
   const [Row, setRow] = useState([]);
-  const [{}, dispatch] = useStateValue();
+  //const [{}, dispatch] = useStateValue();
   const [saveuploadFile, setSaveUploadFile] = useState({ files: [] });
   const [uploadFile, setUploadFile] = useState({ files: [] });
   const [choosenFile, setChoosenFile] = useState({});
   const [file, setFile] = useState({});
+  const [{ geo, customnostore, generalTrigger }, dispatch] = useStateValue();
+
 
   const ExportXlsxDetails = async () => {
     const user = JSON.parse(localStorage.getItem("userdata"));
@@ -288,6 +292,7 @@ function Index() {
       <div className="first_container direction">
         <div className="download_content">
           <p className="bulk_download">BULK UPLOAD</p>
+          <div className="bulk_xlsx_sample">
           <span className="bulk_xlsx_example">Example XLSX File</span>
           <div className="image">
             <img src={question_image} alt="question" />
@@ -303,6 +308,7 @@ function Index() {
               <img src={downnload_image} alt="download" />
             </div>
           </a>
+          </div>
         </div>
 
         <div className="upload_file_container">
@@ -375,6 +381,15 @@ function Index() {
           </div>
         </div>
       </div>
+        <Link
+        className="inventory-page-back"
+        to={`/${
+          customnostore ? customnostore : geo?.country_name
+        }/sellerdashboard/inventory`}
+      >
+        <ArrowBackIosNew />
+        <span>Back</span>
+      </Link>
       <div className="validation_message">
         <div className="check_scroll">
         {Row?.length

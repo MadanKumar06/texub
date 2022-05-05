@@ -130,14 +130,19 @@
     align-items: center;
     margin-top: 3em;
     .bulk_download {
-      margin: 2em;
+      margin: 2em 2em 1em 2em;
       color: #272727;
       font-size: 14px;
       font-weight: 600;
     }
-    .download_content {
+    .bulk_xlsx_sample{
       display: flex;
       align-items: center;
+    }
+    .download_content {
+      display: flex;
+      // align-items: center;
+      flex-direction: column;
     }
     .inputfields {
       margin: 2em 0em 2em 3.2em;
@@ -179,7 +184,7 @@
     .bulk_xlsx_example {
       color: #272727;
       font-size: 14px;
-      margin: 3em 0.5em 3em 2em;
+      margin: 2em 1em 2em 2em;
     }
   }
   .upload_file_container {
@@ -223,13 +228,66 @@
     width: 100%;
     height: 100%;
     padding: 0 3em;
-    margin: 3em 0;
+    margin: 1.5em 0;
     max-height: 350px;
     overflow-y: auto;
     .check_scroll{
       max-height: 500px;
       overflow: auto;
-      height: 250px;
+      // height: 250px;
     }
   }
+}
+
+@media (max-width: "580px") {
+.bulk_upload {
+  .first_container{
+    flex-wrap: wrap;
+  }
+  .upload_file_container{
+     flex-direction: column;
+      gap: 0;
+      .file_upload{
+           align-items: center;
+      }
+      .inputfields{
+        width: auto;
+         margin: 2em 0em;
+        justify-content: center;
+          align-items: center;
+          .validate_btn{
+           max-width: 60%;
+           width: 100%;
+          }
+          .MuiAutocomplete-root{
+            max-width: 60%;
+            width: 100%;
+          }
+      }
+  }
+}
+
+// .bulk_upload .upload_file_container{
+//   flex-direction: column;
+//   gap: 0;
+// }
+// .bulk_upload .upload_file_container .file_upload{
+//   align-items: center;
+// }
+// .bulk_upload .first_container .inputfields{
+//   width: auto;
+//  margin: 2em 0em;
+//   justify-content: center;
+//     align-items: center;
+// }
+// .bulk_upload .first_container .inputfields .validate_btn{
+//  max-width: 60%;
+//  width: 100%;
+// } 
+
+// .bulk_upload .first_container .inputfields .MuiAutocomplete-root{
+//   max-width: 60%;
+//    width: 100%;
+
+// }
 }
