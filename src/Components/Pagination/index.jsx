@@ -17,33 +17,6 @@ const PaginationControlled = ({ PaginateData, DataList, PagePerRow }) => {
   });
 
   useEffect(() => {
-    if(window.location.pathname === '/india/buyerdashboard/wishlist') {
-      if(page?.page === 1) return
-      localStorage.setItem('wishpage', page?.page)
-    }
-  }, [page])
-
-  useEffect(() => {
-    let wishpage = localStorage.getItem('wishpage')
-    if(window.location.pathname === '/india/buyerdashboard/wishlist') {
-      debugger
-      setPage({
-        page: wishpage,
-        jumptopage: wishpage,
-        option: [],
-      })
-      setPage((prevState) => ({
-        ...prevState,
-        page: wishpage,
-        jumptopage: wishpage?.toString,
-      }));
-      PaginateData(
-        DataList?.slice(firstIndex + PagePerRow * (wishpage - 1), PagePerRow * wishpage)
-      );
-    }
-  }, [])
-
-  useEffect(() => {
     //pagination data as props
     PaginateData(DataList?.slice(0, PagePerRow));
 
