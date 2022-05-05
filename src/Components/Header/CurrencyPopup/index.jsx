@@ -23,6 +23,7 @@ const CurrencyPopup = ({ classes }) => {
     currency_id: "",
   });
   let { curreny_image } = classes;
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -32,11 +33,17 @@ const CurrencyPopup = ({ classes }) => {
     setAnchorEl(null);
   };
   const handleChange = (event) => {
+    debugger
     setSelectedValue({
       currency_code: event?.currency_code,
       currency_id: event?.currency_id,
       currency_symbol: event.currency_symbol,
     });
+     localStorage.setItem("selectedcurrency", JSON.stringify({
+       currency_code: event?.currency_code,
+      currency_id: event?.currency_id,
+      currency_symbol: event.currency_symbol,
+     }));
     dispatch({
       type: "SET_CURRENCY",
       data: event,
@@ -47,6 +54,12 @@ const CurrencyPopup = ({ classes }) => {
   useEffect(() => {
     localStorage.setItem("currency", JSON.stringify(selectedValue));
   }, [selectedValue]);
+  
+   useEffect(() => {
+     let storedcurrency = JSON.parse(localStorage.getItem('selectedcurrency'))
+     console.log(storedcurrency);
+   handleChange(storedcurrency);
+  }, []);
   //API for fetch dropdown values
 
   const str = window.location.pathname
