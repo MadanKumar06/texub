@@ -78,7 +78,9 @@ function Index({ type, pid }) {
     isIGSTValid: "",
     isSGSTValid: "",
   });
+  const [countcheck, setcountcheck] = useState(false)
   const countincrease = () => {
+    debugger
     const isDecimal = /^\d+\.\d{0,1000000}$/;
 
     if (count?.length) {
@@ -146,6 +148,7 @@ function Index({ type, pid }) {
         }));
         errorHandle = true;
       }
+      setcountcheck(errorHandle)
       // GSTS
       if (isGST === 2) {
         if (!temp[0]?.cgst) {
@@ -190,8 +193,9 @@ function Index({ type, pid }) {
           }));
           errorHandle = true;
         }
+        setcountcheck(errorHandle)
       } else {
-        console.log(".......................................................");
+        setcountcheck(errorHandle)
       }
 
       if (!errorHandle) {
@@ -524,6 +528,9 @@ function Index({ type, pid }) {
   };
 
   const updateProduct = async () => {
+    if(!countcheck) {
+      return countincrease()
+    }
     let productdata = [];
     count.filter((data) => {
       if (data?.hub_id) {
@@ -541,7 +548,6 @@ function Index({ type, pid }) {
     let user = JSON.parse(localStorage.getItem("userdata"));
     let productDetailSave = productdata?.filter((itm) => !itm?.assign_id);
     let productDetailEdit = productdata?.filter((itm) => itm?.assign_id);
-
     if (productDetailSave?.length) {
       try {
         dispatch({
