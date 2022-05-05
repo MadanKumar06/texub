@@ -113,6 +113,8 @@ const Checkout = () => {
     pincode: "",
     billtype: "",
     country: "",
+    lastname: "",
+    firstname: "",
   });
 
   const addressadd = (e) => {
@@ -272,6 +274,8 @@ const Checkout = () => {
       pincode: itm?.postcode,
       country: itm?.country_id,
       id: itm?.address_id,
+      firstname: itm?.firstname,
+      lastname: itm?.lastname,
     });
   };
 
@@ -330,6 +334,7 @@ const Checkout = () => {
         showConfirmButton: false,
         timer: 3000,
       });
+      window.location.reload();
     } catch (e) {
       console.log(e);
       dispatch({
@@ -369,7 +374,11 @@ const Checkout = () => {
       type: "SET_IS_LOADING",
       value: true,
     });
-    quotedata[0].invoice_items?.filter((qd) => {
+
+    var country = user?.custom_attributes?.filter(
+      (itm) => itm?.attribute_code === "customer_country"
+    );
+    quotedata[0]?.invoice_items?.filter((qd) => {
       itemsdata.push({
         base_discount_amount: 0,
         base_original_price: qd?.price,
@@ -394,7 +403,7 @@ const Checkout = () => {
         row_total_incl_tax: qd?.price,
         sku: qd?.sku,
         store_id: storedata?.store_id,
-        quote_item_id: 22,
+        quote_item_id: qd?.item_id,
         extension_attributes: {
           seller_id: qd?.seller_id,
           item_hub: qd?.hub_id,
@@ -411,45 +420,45 @@ const Checkout = () => {
         },
         data: {
           entity: {
-            base_currency_code: "INR",
+            base_currency_code: currency?.currency_code,
             base_discount_amount: 0,
-            base_grand_total: 1910,
-            base_shipping_amount: 10,
-            base_subtotal: 1900,
-            base_tax_amount: 0,
+            base_grand_total: quotedata[0]?.invoice?.grand_total,
+            base_shipping_amount: quotedata[0]?.invoice?.shipping_amount,
+            base_subtotal: quotedata[0]?.invoice?.subtotal,
+            base_tax_amount: quotedata?.[0]?.invoice?.tax,
             customer_email: user?.email,
-            customer_firstname: "buyer",
+            customer_firstname: addressdata?.firstname,
             customer_group_id: 5,
             customer_id: user?.id,
             customer_is_guest: 0,
-            customer_lastname: "Check",
+            customer_lastname: addressdata?.lastname,
             customer_note_notify: 1,
             discount_amount: 0,
             email_sent: 1,
             coupon_code: "",
             discount_description: "",
-            grand_total: 1910,
+            grand_total: quotedata[0]?.invoice?.grand_total,
             is_virtual: 0,
-            order_currency_code: "INR",
-            shipping_amount: 7878,
-            shipping_description: "Flat Rate - Fixed",
+            order_currency_code: currency?.currency_code,
+            shipping_amount: quotedata[0]?.invoice?.shipping_amount,
+            shipping_description: "",
             state: "new",
             status: "pending",
-            store_currency_code: "INR",
+            store_currency_code: currency?.currency_code,
             store_id: 1,
-            store_name: "Main Website\nMain Website Store\nDefault Category",
-            subtotal: 1900,
-            subtotal_incl_tax: 1900,
-            tax_amount: 0,
-            total_item_count: 1,
+            store_name: storedata?.name,
+            subtotal: quotedata[0]?.invoice?.subtotal,
+            subtotal_incl_tax: quotedata?.[0]?.invoice?.subtotal_with_tax,
+            tax_amount: quotedata?.[0]?.invoice?.tax,
+            total_item_count: quotedata?.[0]?.invoice_items?.length,
             total_qty_ordered: 1,
             weight: 0,
-            quote_id: 559,
+            quote_id: quotedata[0]?.invoice?.quote_id,
             items: itemsdata,
             billing_address: {
               address_type: "billing",
               city: addressdata?.city,
-              country_id: "IN",
+              country_id: country,
               customer_address_id:
                 shipping_method === "texub_shipping" && addressdata?.id
                   ? addressdata?.id
@@ -485,7 +494,7 @@ const Checkout = () => {
                     address: {
                       address_type: "shipping",
                       city: addressdata?.city,
-                      country_id: "IN",
+                      country_id: country,
                       customer_address_id:
                         shipping_method === "texub_shipping" && addressdata?.id
                           ? addressdata?.id
@@ -568,7 +577,9 @@ const Checkout = () => {
             <span className="orderinfo_name">Total Amount</span>
 
             <span className="orderinfo_value">
-              <span className="ordertotal_symbol">INR</span>{" "}
+              <span className="ordertotal_symbol">
+                {currency?.currency_code}
+              </span>{" "}
               {formatToCurrency(parseInt(quotedata[0]?.invoice?.grand_total))}
             </span>
           </div>
@@ -748,7 +759,7 @@ const Checkout = () => {
                     <div className="shipping_charges_section">
                       <span className="shipping_text">Shipping Charges :</span>
                       <span className="shipping_price">
-                        <span>INR</span>{" "}
+                        <span>{currency?.currency_code}</span>{" "}
                         {parseFloat(
                           quotedata[0]?.invoice?.shipping_amount
                         ).toFixed(2)}
@@ -971,7 +982,9 @@ const Checkout = () => {
                 <span className="checkoutorder_info_title">Sub-Total</span>
                 <Divider orientation="vertical" />
                 <span className="orderinfo_value">
-                  <span className="ordertotal_symbol">INR</span>
+                  <span className="ordertotal_symbol">
+                    {currency?.currency_code}
+                  </span>
                   {quotedata[0]?.invoice?.subtotal}
                 </span>
               </div>
@@ -979,7 +992,9 @@ const Checkout = () => {
                 <span className="checkoutorder_info_title">Tax</span>
                 <Divider orientation="vertical" />
                 <span className="orderinfo_value">
-                  <span className="ordertotal_symbol">INR</span>
+                  <span className="ordertotal_symbol">
+                    {currency?.currency_code}
+                  </span>
                   {quotedata[0]?.invoice?.tax}
                 </span>
               </div>
@@ -987,7 +1002,10 @@ const Checkout = () => {
                 <span className="checkoutorder_info_title">Freight</span>
                 <Divider orientation="vertical" />
                 <span className="orderinfo_value">
-                  <span className="ordertotal_symbol">INR</span> 0.00
+                  <span className="ordertotal_symbol">
+                    {currency?.currency_code}
+                  </span>{" "}
+                  {quotedata?.[0]?.invoice?.shipping_amount}
                 </span>
               </div>
               <div className="checkoutorder_basic_info">
@@ -996,7 +1014,10 @@ const Checkout = () => {
                 </span>
                 <Divider orientation="vertical" />
                 <span className="orderinfo_value">
-                  <span className="ordertotal_symbol">INR</span> 0.00
+                  <span className="ordertotal_symbol">
+                    {currency?.currency_code}
+                  </span>{" "}
+                  0.00
                 </span>
               </div>
               <div className="checkout_total_order_section">
@@ -1004,7 +1025,9 @@ const Checkout = () => {
                   Payment Processing Charge
                 </span>
                 <span className="checkout_total_order__price">
-                  <span className="checkout_total_orde_symbol">INR</span>
+                  <span className="checkout_total_orde_symbol">
+                    {currency?.currency_code}
+                  </span>
                   0.00
                 </span>
               </div>
