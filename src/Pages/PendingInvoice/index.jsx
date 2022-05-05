@@ -434,7 +434,7 @@ function Index() {
         <div className="middle__tableinfo">
           <div className="tableinfo__details">
             <span className="title">Beneficiary Bank</span>
-            <div
+            <div className="payment_info_return"
               dangerouslySetInnerHTML={{
                 __html: pendingInvoiceList?.beneficiary_bank,
               }}
