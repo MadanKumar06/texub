@@ -23,24 +23,25 @@ const Index = () => {
     setisAccountinfo(!isAccountinfo)
   }, [])
 
-  const profiletype = [
+  const [profiletype, setprofiletype] = useState([
     { name: "Account Information" },
     { name: "Address Book" },
     { name: "Sub-Users" },
-  ];
+  ])
 
   useEffect(() => {
     let permission = JSON.parse(localStorage.getItem('permissions'))
-    if(permission === null || permission === undefined || permission === '') return
-    profiletype?.filter((pt, i) => {
+    // if(permission === null || permission === undefined || permission === '') return
+    {permission?.length && profiletype?.filter((pt, i) => {
       if(pt?.name === 'Sub-Users') {
         permission?.filter(p => {
-          if(p?.value === 'can-create-sub-accounts' && p?.permission_value === 0) {
+          if(p?.value === 'can-manage-sub-accounts' && p?.permission_value === 0) {
             profiletype?.splice(i, 1)
+            setprofiletype(profiletype.filter(pt => pt?.name !== "Sub-Users"))
           }
         })
       }
-    })
+    })}
   }, [])
 
   useEffect(() => {
