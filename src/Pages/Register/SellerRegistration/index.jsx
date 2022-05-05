@@ -318,7 +318,7 @@ const BuyerRegistration = ({ classes }) => {
       setInputValidation((prevState) => ({
         ...prevState,
         company:
-          "Please enter Alphabet or (Alphabet, Special Characters and Number)..",
+          "Please enter Alphabet or (Alphabet, Special Characters and Number).",
       }));
       errorHandle = true;
     }

@@ -16,14 +16,14 @@ export const isDesignationValid = (designation) =>
   designation.match(/^[a-zA-Z ]*$/);
 
 export const isCompanyNameValid = (company) =>
-  company.match(/^\d*[0-9 ][0-9-+\.+\s\.+!@#$%^&*'~`+{}"?><,.:;/|()_-]*$/);
+  company.match(/^\d*[a-zA-Z][a-zA-Z0-9][a-zA-Z0-9-+()!@#$%^&*'{}.,: ]*$/);
+// /^\d*[0-9 ][0-9-+\.+\s\.+!@#$%^&*'~`+{}"?><,.:;/|()_-]*$/
 
 export const isRolesValid = (roles) =>
   roles.match(
     /^((?=.*[a-zA-Z])[a-zA-Z+\.\s+!@#$%^&*'~`+{}"?><,.:;/|()_-]{0,50})$/
   );
 
-//export const isLandlineValid = (landline) =>  landline.match(/^[0-9]*$/);
 export const isLandlineValid = (landline) => landline.match(/^[0-9+[+-\s]*$/);
 
 export const isOtherBrands = (value) =>
