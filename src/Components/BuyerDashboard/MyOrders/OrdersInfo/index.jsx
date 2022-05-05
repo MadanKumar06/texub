@@ -24,6 +24,8 @@ import {
 } from "../../../Common/Vieworders/viewordersjson";
 import axios from "axios";
 import Constant from "../../../../Constant";
+import moment from "moment";
+
 
 const Index = ({ orders, currentorder }) => {
   function formatToCurrency(price) {
@@ -110,8 +112,8 @@ const Index = ({ orders, currentorder }) => {
       label: "Product Name",
       options: {
         customBodyRender: (value, tablemeta) => {
-          let name = tablemeta?.rowData[10];
-          let discription = tablemeta?.rowData[11];
+          let name = tablemeta?.rowData[9];
+          let discription = tablemeta?.rowData[10];
           return (
             <div className="productname">
               <img src={image} alt="" className="image"></img>
@@ -215,15 +217,15 @@ const Index = ({ orders, currentorder }) => {
         },
       },
     },
-    {
-      name: "hub",
-      label: "Hub",
-      options: {
-        customBodyRender: (value) => {
-          return <div className="vieworders_hub">{value}</div>;
-        },
-      },
-    },
+    // {
+    //   name: "hub",
+    //   label: "Hub",
+    //   options: {
+    //     customBodyRender: (value) => {
+    //       return <div className="vieworders_hub">{value}</div>;
+    //     },
+    //   },
+    // },
     {
       name: "name",
       label: " ",
@@ -318,7 +320,8 @@ const Index = ({ orders, currentorder }) => {
             <div className="username">
               <span className="id_heading">Order Date #</span>
               <span className="id">
-                {detailsorder?.[0]?.order_details?.[0]?.created_at}
+                {moment(detailsorder?.[0]?.order_details?.[0]?.created_at).format("DD/MM/YYYY")}
+                {/* {detailsorder?.[0]?.order_details?.[0]?.created_at} */}
               </span>
             </div>
             <div className="username">
