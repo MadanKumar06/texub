@@ -75,6 +75,18 @@ const BuyerRegistration = ({ classes }) => {
     other_role: false,
     recaptcha: false,
   });
+  useEffect(()=>{
+    if(!sellerRegistrationData?.region){
+      setsellerRegistrationData((prevState) => ({
+        ...prevState,
+      country: "",
+      }));
+      setDropdownListFromApi((prevState) => ({
+        ...prevState,
+        countryList: []
+      }));
+    }
+  },[sellerRegistrationData.region ])
   const [inputValidation, setInputValidation] = useState({
     first_name: "",
     last_name: "",
