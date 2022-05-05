@@ -848,7 +848,7 @@ const Checkout = () => {
                           />
                           {!formerror?.bussiness_name && (
                             <p style={{ color: "red" }}>
-                              Please Enter yout Business name
+                              Please Enter your Business name
                             </p>
                           )}
                         </div>
@@ -865,7 +865,7 @@ const Checkout = () => {
                           />
                           {!formerror?.contact_person && (
                             <p style={{ color: "red" }}>
-                              Please Enter yout Business name
+                              Please Enter your Contact Person name
                             </p>
                           )}
                         </div>
@@ -885,7 +885,7 @@ const Checkout = () => {
                           />
                           {!formerror?.email_address && (
                             <p style={{ color: "red" }}>
-                              Please Enter yout Business name
+                              Please Enter your Email Address
                             </p>
                           )}
                         </div>
@@ -902,7 +902,7 @@ const Checkout = () => {
                           />
                           {!formerror?.mobile_number && (
                             <p style={{ color: "red" }}>
-                              Please Enter yout Business name
+                              Please Enter your Mobile Number
                             </p>
                           )}
                         </div>
@@ -1107,7 +1107,7 @@ const Checkout = () => {
                     <TextField
                       id="organization_name"
                       name="organization_name"
-                      placeholder="Texub product id"
+                      placeholder="Organization Name"
                       fullWidth
                       className="inputfield-box"
                       variant="outlined"
@@ -1168,6 +1168,25 @@ const Checkout = () => {
                       value={addressdata?.city}
                     />
                   </div>
+                  {/* <div className="address_fields">
+                    <InputLabel id="address_field">State</InputLabel>
+                    <FormControl className="address_select_field_box">
+                      <Select
+                        labelId="demo-simple-select-label"
+                        id="selection_box_block"
+                        label="state"
+                        name="state"
+                        placeholder="State"
+                        onChange={(e) => addressadd(e)}
+                        value={addressdata?.state}
+                      >
+                        {countryList?.map((cl) => (
+                          <MenuItem value={cl?.value}>{cl?.label}</MenuItem>
+                        ))}
+                      </Select>
+                    </FormControl>
+                  </div>
+                   */}
                   <div className="address_fields">
                     <InputLabel id="address_field">Country</InputLabel>
                     <FormControl className="address_select_field_box">
@@ -1187,22 +1206,27 @@ const Checkout = () => {
                   </div>
                 </div>
 
-                {/* <div className="address_field_block">
-                  <div className="address_fields final_block">
+               {/* <div className="address_field_block">
+                  <div className="address_fields">
                     <InputLabel id="address_field">Country</InputLabel>
                     <FormControl className="address_select_field_box">
                       <Select
                         labelId="demo-simple-select-label"
                         id="selection_box_block"
                         label="Country"
+                        name="country"
+                        fullWidth
+                        placeholder="Country"
                         onChange={(e) => addressadd(e)}
+                        value={addressdata?.country}
                       >
-                        <MenuItem value={10}>Ten</MenuItem>
-                        <MenuItem value={20}>Twenty</MenuItem>
-                        <MenuItem value={30}>Thirty</MenuItem>
+                        {countryList?.map((cl) => (
+                          <MenuItem value={cl?.value}>{cl?.label}</MenuItem>
+                        ))}
                       </Select>
                     </FormControl>
                   </div>
+                  <div className="empty_div"></div>
                 </div> */}
 
                 <div className="address_popup_btns">

@@ -58,7 +58,14 @@ const Index = ({ pdpSellerData, handleOpenClose }) => {
       setSave_error('')
     }
   };
-  
+  // Enter EVENT
+  const elem = document.getElementById("outlined-required");
+  elem?.addEventListener("keypress", (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      document.getElementById("save_wishlist").click();
+    }
+  });
   useEffect(async () => {
     let user = JSON.parse(localStorage.getItem("userdata"));
     try {
