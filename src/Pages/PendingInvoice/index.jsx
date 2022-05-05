@@ -242,7 +242,7 @@ function Index() {
             </div>
             <div className="order_id_info">
               <div className="orderid_section">
-                <span className="orderinfo_name">Pending Invoice ID</span>
+                <span className="orderinfo_name">Pending Invoice No.</span>
                 <span className="orderinfo_value">
                   {pendingInvoiceList?.invoice?.pending_invoice_id}
                 </span>
@@ -352,7 +352,7 @@ function Index() {
           </div>
           <div className="orderinfo__data">
             <p>
-              <span className="label">Pending Invoice ID</span>
+              <span className="label">Pending Invoice No.</span>
               <Divider orientation="vertical" />
               <span className="value">
                 {" "}
@@ -434,7 +434,7 @@ function Index() {
         <div className="middle__tableinfo">
           <div className="tableinfo__details">
             <span className="title">Beneficiary Bank</span>
-            <div
+            <div className="payment_info_return"
               dangerouslySetInnerHTML={{
                 __html: pendingInvoiceList?.beneficiary_bank,
               }}
@@ -525,7 +525,7 @@ function Index() {
               </span>
             </p>
             <p className="total_value_block" style={{backgroundColor: '#f8f0e0', alignItems:'center', marginTop: "10px"}}>
-              <span className="label">Total Order value</span>
+              <span className="total label">Total Order value</span>
               <Divider style={{visibility: 'hidden'}} orientation="vertical" />
               <span className="value">
               <span className="value_symobol">
@@ -567,7 +567,9 @@ function Index() {
             et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
             accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
             no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum
-            dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+            dolor sit amet, consetetur sadipscing elitr, 
+            </p>
+            <p>sed diam nonumy eirmod
             temp or invidunt ut labore et dolore magna aliquyam erat, sed diam
             voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
             Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum

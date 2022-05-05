@@ -589,7 +589,7 @@ const TransitionsModal = ({ classes, openPopUp }) => {
                       </Button>
                     </Box>
                     <p className={forgot_password} onClick={forgotpass}>
-                      Forgot Password?
+                      Forgot Password ?
                     </p>
                   </div>
                   <div className={logo_svg}>
