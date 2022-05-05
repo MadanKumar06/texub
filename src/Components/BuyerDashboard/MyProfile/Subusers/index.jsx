@@ -165,7 +165,7 @@ const Index = () => {
         customBodyRender: (value) => {
           return (
             <div className="users_action">
-              <div className="users_action_name">Login</div>
+              {/* <div className="users_action_name">Login</div> */}
               <div className="users_action_name" onClick={() => editaccount(value)}>Edit</div>
               <div className="users_action_name">Delete</div>
             </div>

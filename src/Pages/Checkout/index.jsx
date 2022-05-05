@@ -38,10 +38,9 @@ import moment from "moment";
 import { useStateValue } from "../../store/state";
 import { isEmailValid, getAdminToken } from "../../utilities";
 
-					
-	function formatToCurrency(price) {
-    return price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
-  }
+function formatToCurrency(price) {
+  return price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
+}
 
 const DeliveryAddressJson = [
   {
@@ -574,7 +573,7 @@ const Checkout = () => {
 
             <span className="orderinfo_value">
               <span className="ordertotal_symbol">INR</span>{" "}
-                {formatToCurrency(parseInt(quotedata[0]?.invoice?.grand_total))}
+              {formatToCurrency(parseInt(quotedata[0]?.invoice?.grand_total))}
             </span>
           </div>
         </div>
@@ -777,13 +776,16 @@ const Checkout = () => {
                           >
                             <div className="billing_title">
                               <p>Default Shipping Address</p>
-                              <div
-                                className="edit_address"
-                                onClick={() => editaddress(itm?.address_id)}
-                              >
-                                <img src={Edit_image} alt="" />
-                                <span>Edit</span>
-                              </div>
+                              {quotedata[0]?.invoice?.pending_invoice_status ===
+                                "1" && (
+                                <div
+                                  className="edit_address"
+                                  onClick={() => editaddress(itm?.address_id)}
+                                >
+                                  <img src={Edit_image} alt="" />
+                                  <span>Edit</span>
+                                </div>
+                              )}
                             </div>
 
                             <p className="user_name">

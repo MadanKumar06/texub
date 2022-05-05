@@ -41,6 +41,7 @@ const styles = (theme) => ({
     "& .MuiList-root ": {
       padding: "15px",
       "& .MuiMenuItem-root ": {
+        background: "none",
         padding: "15px",
         borderBottom: "1px solid #e6e6e6",
         color: "#5c6369",
