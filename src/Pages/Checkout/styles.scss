@@ -191,6 +191,7 @@
                       display: flex;
                       flex-direction: column;
                       align-items: center;
+                      cursor: pointer;
                       span {
                         text-decoration: underline;
                         font-size: 14px;
@@ -735,6 +736,16 @@
                   flex-direction: row;
                    label{
                      width: 40%;
+                     .MuiRadio-root.Mui-checked{
+                           color: #002d56;
+                     }
+                     .MuiTypography-root{
+                       letter-spacing: 0px;
+                        color: #002D56;
+                        text-transform: capitalize;
+                        font-size: 16px;
+                        font-weight: 600;
+                     }
                    } 
                 }
               }

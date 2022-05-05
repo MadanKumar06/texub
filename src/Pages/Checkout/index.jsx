@@ -661,7 +661,7 @@ const Checkout = () => {
           </div>
           <div className="checkout_order_basic_info">
             <div className="order_basic_info">
-              <span className="order_basic_title">Pending Invoice ID</span>
+              <span className="order_basic_title">Order No</span>
               <Divider orientation="vertical" />
               <span className="order_basic_value">
                 {quotedata[0]?.invoice?.pending_invoice_id}
