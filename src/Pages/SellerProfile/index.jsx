@@ -6,12 +6,12 @@ import { Button } from "@mui/material";
 
 import { useParams } from "react-router-dom";
 import { useStateValue } from "../../store/state";
-import Productsbrands from "../../Components/SellerProfileDetails/Productbrands";
+
 import Productlists from "../../Components/SellerProfileDetails/Productlists";
 import Productstable from "../../Components/SellerProfileDetails/Producttable";
 
 const Index = () => {
-  const { id } = useParams();
+  const { id, seller_id } = useParams();
   const [serllerProfileList, setSellerProfileList] = useState([]);
   const [{ currency, homeSearch }, dispatch] = useStateValue();
   const [productFetchApi, setProductFetchApi] = useState({});
@@ -72,7 +72,7 @@ const Index = () => {
             max_price: productFetchApi?.max_price
               ? productFetchApi?.max_price
               : 0,
-            seller_id: "0",
+            seller_id: seller_id,
             todays_deal: productFetchApi?.today_deal
               ? productFetchApi?.today_deal
               : 0,
@@ -190,34 +190,6 @@ const Index = () => {
             applyFilter={applyFilter}
             productData={productData}
           />
-          <Productsbrands
-            setProductFetchApi={setProductFetchApi}
-            productFetchApi={productFetchApi}
-            getCategories={getCategories}
-          />
-          <div className="clear-btn">
-            <Button
-              className="button-text btn-primary clear"
-              onClick={() => {
-                setProductFetchApi((prev) => ({
-                  ...prev,
-                  conditions: "",
-                  eta: "",
-                  hub: "",
-                  search_product: "",
-                  brand_id: "",
-                  category_id: "",
-                }));
-                setApplyFilter(!applyFilter);
-                dispatch({
-                  type: "SET_SEARCH",
-                  value: "",
-                });
-              }}
-            >
-              Clear All
-            </Button>
-          </div>
           <Productstable
             setProductFetchApi={setProductFetchApi}
             productFetchApi={productFetchApi}

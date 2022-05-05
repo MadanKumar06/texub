@@ -419,7 +419,7 @@ const App = () => {
               exact
             />
             <Route
-              path="/:country/sellerprofile/:id"
+              path="/:country/sellerprofile/:id/:seller_id"
               // path={`/${customnostore ? customnostore : geo?.country_name}/sellerprofile/:id`}
               element={
                 <>

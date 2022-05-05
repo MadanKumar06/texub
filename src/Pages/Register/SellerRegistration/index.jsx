@@ -325,7 +325,7 @@ const BuyerRegistration = ({ classes }) => {
         company: "Please enter the company.",
       }));
       errorHandle = true;
-    } else if (!isCompanyNameValid(sellerRegistrationData?.company)) {
+    } else if (isCompanyNameValid(sellerRegistrationData?.company)) {
       document.getElementById("company")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
