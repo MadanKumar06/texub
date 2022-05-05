@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Modal, Backdrop } from "@mui/material";
-import { withStyles } from "@mui/styles";
+import { Modal } from "@mui/material";
 import "./styles.scss";
 import { Add } from "@mui/icons-material";
-import { Button, IconButton, Typography, Box } from "@mui/material";
+import { Button, Typography, Box } from "@mui/material";
 import { Clear } from "@mui/icons-material";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import {
   RadioGroup,
   Radio,
-  Autocomplete,
   FormControlLabel,
   TextField,
   InputLabel,
@@ -20,49 +18,21 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import swal from "sweetalert2";
+import { useStateValue } from "../../store/state";
 
 //assets
 import Edit_image from "../../Assets/CheckoutPage/Group 913.png";
 import Devilvery_address_image_1 from "../../Assets/CheckoutPage/Group 911.png";
 import Devilvery_address_image_2 from "../../Assets/CheckoutPage/Group 912.png";
 import Checkout_Texub_logo from "../../Assets/CheckoutPage/checkout_texub_logo.png";
-import Checkout_checkout_com from "../../Assets/CheckoutPage/checkoutcom.png";
-import Checkout_razorpay_logo from "../../Assets/CheckoutPage/razorpay_logo.png";
-import Payment_image_1 from "../../Assets/CheckoutPage/braintree-logo-black.png";
-import Payment_image_2 from "../../Assets/CheckoutPage/paypal (1).png";
-import checkout_mail from "../../Assets/CheckoutPage/checkout_mail.png";
-import checkout_call from "../../Assets/CheckoutPage/telephone.png";
 import Constant from "../../Constant";
 import axios from "axios";
 import moment from "moment";
-import { useStateValue } from "../../store/state";
 import { isEmailValid, getAdminToken } from "../../utilities";
 
 function formatToCurrency(price) {
   return price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
 }
-
-const DeliveryAddressJson = [
-  {
-    name: "Ayush Raj",
-    address:
-      "302/1160, Trinity enclave B- Block, HSR Layout Bangalore-Karanataka 560102",
-  },
-];
-const DeliveryEmailJson = [
-  {
-    img: { checkout_mail },
-    name: "Email Address",
-    address: "info@texub.com",
-  },
-];
-const DeliveryCallJson = [
-  {
-    img: { checkout_call },
-    name: "Call Us",
-    address: "+9714 2227300 / +9714 2227279",
-  },
-];
 
 const Checkout = () => {
   const [shipping_method, setShipping_method] = useState("texub_shipping");
@@ -101,7 +71,6 @@ const Checkout = () => {
     });
   const [quotedata, setqutoedata] = useState([]);
   const { quoteid } = useParams();
-  const [userid, setuserid] = useState();
   const [{ currency, geo, customnostore }, dispatch] = useStateValue();
   const [pickup, setpickup] = useState({
     bussiness_name: "",
@@ -128,10 +97,6 @@ const Checkout = () => {
       setformerror({ ...formerror, [e.target.name]: true });
     }
   };
-
-  useEffect(() => {
-    setuserid(JSON.parse(localStorage.getItem("userdata")));
-  }, []);
 
   const [adminToken, setAdminToken] = useState("");
   useEffect(() => {
@@ -174,6 +139,10 @@ const Checkout = () => {
   const saveaddress = async () => {
     let street = [addressdata?.address_line1, addressdata?.address_line2];
     let user = JSON.parse(localStorage.getItem("userdata"));
+    dispatch({
+      type: "SET_IS_LOADING",
+      value: true,
+    });
     try {
       const addressadd = await axios({
         method: "post",
@@ -205,6 +174,10 @@ const Checkout = () => {
           },
         },
       });
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
       if (selectadd) {
         swal.fire({
           text: "Address Updated Successfully",
@@ -223,6 +196,10 @@ const Checkout = () => {
       setlocalgt(!localgt);
       handleClose();
     } catch (e) {
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
       console.log(e);
     }
   };
@@ -343,15 +320,15 @@ const Checkout = () => {
           customer_address_id: selectadd,
         },
       });
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
       swal.fire({
         text: "Quote Requested Successfully",
         icon: "success",
         showConfirmButton: false,
         timer: 3000,
-      });
-      dispatch({
-        type: "SET_IS_LOADING",
-        value: false,
       });
     } catch (e) {
       console.log(e);
@@ -388,6 +365,10 @@ const Checkout = () => {
     let user = JSON.parse(localStorage.getItem("userdata"));
     let storedata = JSON.parse(localStorage.getItem("storedata"));
     let itemsdata = [];
+    dispatch({
+      type: "SET_IS_LOADING",
+      value: true,
+    });
     quotedata[0].invoice_items?.filter((qd) => {
       itemsdata.push({
         base_discount_amount: 0,
@@ -533,6 +514,10 @@ const Checkout = () => {
           },
         },
       });
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
       swal.fire({
         text: "Order Placed",
         icon: "success",
@@ -543,11 +528,22 @@ const Checkout = () => {
         `/${customnostore ? customnostore : geo?.country_name}/ordersuccess`
       );
     } catch (e) {
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
       console.log(e);
     }
   };
   const navigate = useNavigate();
-
+  let permissions = JSON.parse(localStorage.getItem("permissions"));
+  let placeorder =
+    permissions?.length === 0
+      ? false
+      : permissions?.some(
+          (per) =>
+            per?.value === "can-place-order" && per?.permission_value === 0
+        );
   return (
     <div className="checkout_main_container">
       <div className="checkout_info_list">
@@ -1024,9 +1020,11 @@ const Checkout = () => {
                 </span>
               </div>
               <div className="checkout_btns">
-                <Button className="placeorder_btn" onClick={raisequote}>
-                  Place Your Order
-                </Button>
+                {!placeorder && (
+                  <Button className="placeorder_btn" onClick={raisequote}>
+                    Place Your Order
+                  </Button>
+                )}
                 <Button className="placeorder_cancel_btn">
                   Go To Pending Invoice
                 </Button>
@@ -1208,7 +1206,7 @@ const Checkout = () => {
                   </div>
                 </div>
 
-               {/* <div className="address_field_block">
+                {/* <div className="address_field_block">
                   <div className="address_fields">
                     <InputLabel id="address_field">Country</InputLabel>
                     <FormControl className="address_select_field_box">
