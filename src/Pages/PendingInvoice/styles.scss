@@ -217,6 +217,7 @@
           }
         }
         .MuiTableRow-root {
+          border-bottom: 3px solid #fff;
           &:nth-child(odd) {
             .vieworders_quantity {
               background: #e6e6e6;
@@ -230,6 +231,7 @@
           .MuiTableCell-root {
             border: 1px solid #cdd5dd;
             max-width: 300px;
+            padding: 8px 12px;
             div {
               vertical-align: middle;
               text-align: center;
@@ -285,6 +287,7 @@
                   -webkit-box-orient: vertical;
                   text-overflow: ellipsis;
                   overflow: hidden;
+                  min-height: 42px;
                 }
               }
             }

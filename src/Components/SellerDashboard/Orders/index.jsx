@@ -92,7 +92,7 @@ function Index() {
   const columns = [
     {
       name: "quote_id",
-      label: "Order #",
+      label: "Purchase Order ID",
       options: {
         customBodyRender: (value) => {
           return <div className="orders__code">{value}</div>;
