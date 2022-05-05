@@ -15,7 +15,8 @@ import Constant from "../../Constant";
 
 const Header = ({ classes }) => {
   const history = useParams();
-  const [{ currency, gt, geo, customnostore }, dispatch] = useStateValue();
+  const [{ currency, gt, geo, customnostore, generalTrigger }, dispatch] =
+    useStateValue();
   const navigate = useNavigate();
   let isSignedIn = JSON.parse(localStorage.getItem("userdata"));
 
@@ -64,6 +65,44 @@ const Header = ({ classes }) => {
     }
   }, [currency, gt, localStorage.getItem("userdata")]);
 
+  useEffect(() => {
+    async function fetchData() {
+      const user = JSON.parse(localStorage.getItem("userdata"));
+      try {
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: true,
+        });
+        const wishlistdata = await axios({
+          method: "post",
+          url: `${Constant.baseUrl()}/getwishlist`,
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          data: {
+            requestParams: {
+              customer_id: user?.id,
+            },
+          },
+        });
+        dispatch({
+          type: "WHISHLIST_DATA",
+          data: wishlistdata?.data,
+        });
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+      } catch (e) {
+        console.log(e);
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+      }
+    }
+    fetchData();
+  }, [generalTrigger]);
   const SigninPopUP = () => {
     dispatch({
       type: "SET_SIGNIN_OPEN_CLOSE",
