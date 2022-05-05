@@ -52,12 +52,12 @@ function Index({ registerproduct }) {
   useEffect(() => {
     let permission = JSON.parse(localStorage.getItem("permissions"));
     let temp;
-    if (permission?.length !== 0) {
+    if (permission?.length) {
       temp = permission?.some(
         (p) =>
-          p?.value === "raise-product-registratio" && p?.permission_value === 1
+          p?.value === "raise-product-registration" && p?.permission_value === 1
       );
-    } else if (permission?.length === 0) {
+    } else {
       temp = true;
     }
     setregisteraccess(temp);
