@@ -380,15 +380,7 @@ function Index() {
           </div>
         </div>
       </div>
-      <Link
-        className="inventory-page-back"
-        to={`/${
-          customnostore ? customnostore : geo?.country_name
-        }/sellerdashboard/inventory`}
-      >
-        <ArrowBackIosNew />
-        <span>Back</span>
-      </Link>
+     
       <div className="validation_message">
         <div className="check_scroll">
           {Row?.length
@@ -406,6 +398,15 @@ function Index() {
             : ""}
         </div>
       </div>
+       <Link
+        className="inventory-page-back"
+        to={`/${
+          customnostore ? customnostore : geo?.country_name
+        }/sellerdashboard/inventory`}
+      >
+        <ArrowBackIosNew />
+        <span>Back</span>
+      </Link>
     </div>
   );
 }
