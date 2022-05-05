@@ -328,7 +328,7 @@
             }
             .table__price {
               display: flex;
-              align-items: center;
+              align-items: baseline;
               justify-content: center;
               .symbol {
                 font-size: 14px;
@@ -412,12 +412,12 @@
           }
         }
         p {
-          display: flex;
-          gap: 10%;
-          justify-content: flex-end;
-          margin: 0;
-          padding-right: 10%;
-          margin-left: 32%;
+             display: flex;
+            gap: 10%;
+            justify-content: flex-end;
+            margin: 0;
+            padding-right: 8%;
+            margin-left: 8%;
           hr {
             min-height: 35px !important;
             background-color: #d6d8d9;
