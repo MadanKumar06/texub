@@ -32,17 +32,17 @@ const Index = ({ pdpSellerData, handleOpenClose }) => {
 
   const [wishcheck, setwishcheck] = useState([]);
   const wishlistselect = (data, value) => {
-      let temp = []
-      if(value) {
-        setwishcheck(prevState => [
-            ...prevState,
-            data?.id
-        ])
-      }
-      if(!value) {
-        let temp = wishcheck.filter(wc => wc !== data?.id)
-        setwishcheck(temp)
-      }
+    let temp = []
+    if (value) {
+      setwishcheck(prevState => [
+        ...prevState,
+        data?.id
+      ])
+    }
+    if (!value) {
+      let temp = wishcheck.filter(wc => wc !== data?.id)
+      setwishcheck(temp)
+    }
   };
 
   const [save_error, setSave_error] = useState('');
@@ -58,7 +58,14 @@ const Index = ({ pdpSellerData, handleOpenClose }) => {
       setSave_error('')
     }
   };
-  
+  // Enter EVENT
+  const elem = document.getElementById("outlined-required");
+  elem?.addEventListener("keypress", (event) => {
+    if (event.key === "Enter") { 
+      event.preventDefault();
+      document.getElementById("save_wishlist").click();
+    }
+  });
   useEffect(async () => {
     let user = JSON.parse(localStorage.getItem("userdata"));
     try {
@@ -131,7 +138,7 @@ const Index = ({ pdpSellerData, handleOpenClose }) => {
       className="wishlist_modal"
       open={open}
       closeAfterTransition
-       disableRestoreFocus={true}
+      disableRestoreFocus={true}
       BackdropComponent={Backdrop}
       BackdropProps={{
         timeout: 500,
@@ -181,40 +188,40 @@ const Index = ({ pdpSellerData, handleOpenClose }) => {
             </div>
             {create1 && (
               <>
-              <div className="inputplace">
-                <span className="inputfield">
-                  <TextField
-                    id="outlined-required"
-                    name="save"
-                    placeholder="Name"
-                    className="wishlistsave_input inputfield-box"
-                    onChange={(e) => setnewwishdata(e.target.value)}
-                  />
-                  <button
-                    className="wishlist_save_btn" style={{ cursor: 'pointer' }}
-                    onClick={() => handleClickValidation()}
-                  >
-                    Save
-                  </button>
-                </span>
-               <p style={{ cursor: "pointer" }} onClick={() =>{
-                  create()
-                  setSave_error('')
+                <div className="inputplace">
+                  <span className="inputfield">
+                    <TextField
+                      id="outlined-required"
+                      name="save"
+                      placeholder="Name"
+                      className="wishlistsave_input inputfield-box"
+                      onChange={(e) => setnewwishdata(e.target.value)}
+                    />
+                    <button
+                      id="save_wishlist" className="wishlist_save_btn" style={{ cursor: 'pointer' }}
+                      onClick={() => handleClickValidation()}
+                    >
+                      Save
+                    </button>
+                  </span>
+                  <p style={{ cursor: "pointer" }} onClick={() => {
+                    create()
+                    setSave_error('')
                   }}>
-                  Cancel
-                </p>
-              </div>
-              <InputLabel style={{ color: 'red' }}>
-                {save_error}
-              </InputLabel>
-            </>
+                    Cancel
+                  </p>
+                </div>
+                <InputLabel style={{ color: 'red' }}>
+                  {save_error}
+                </InputLabel>
+              </>
             )}
             <div className="back_to_pdp">
               <ArrowBackIosIcon />
               <p
                 style={{ cursor: "pointer" }}
                 onClick={() => handleClose()}
-                 className="back"
+                className="back"
               >
                 Back to {pdpSellerData?.model_number}
                 {pdpSellerData?.product_name}
