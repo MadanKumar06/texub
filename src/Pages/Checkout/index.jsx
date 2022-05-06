@@ -908,7 +908,7 @@ const Checkout = () => {
                         </div>
                         <div className="address_fields">
                           <InputLabel>Mobile Number</InputLabel>
-                          <PhoneInput
+                          {/* <PhoneInput
                             country={"in"}
                             id="mobile_number"
                             fullWidth
@@ -923,9 +923,9 @@ const Checkout = () => {
                             }}
                             onChange={(e) => onpickup(e)}
                             variant="outlined"
-                          />
+                          /> */}
 
-                          {/* <TextField
+                          <TextField
                             id="mobile_number"
                             placeholder="9890985433"
                             className="inputfield-box"
@@ -933,7 +933,7 @@ const Checkout = () => {
                             variant="outlined"
                             value={pickup?.mobile}
                             onChange={(e) => onpickup(e)}
-                          /> */}
+                          />
                           {!formerror?.mobile_number && (
                             <p style={{ color: "red" }}>
                               Please Enter your Mobile Number
