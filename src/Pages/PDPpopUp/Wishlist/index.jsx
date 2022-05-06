@@ -91,7 +91,7 @@ const Index = ({ pdpSellerData, handleOpenClose }) => {
     let temp = fname?.find((fd) => fd.wishlist_name === newwishdata);
     if (wishcheck?.length === 0 && newwishdata === "") {
       swal.fire({
-        text: "Select the folder to add",
+        text: "Please select atleast one folder to add the product to the wishlist",
         icon: "error",
         showConfirmButton: false,
         timer: 3000,
