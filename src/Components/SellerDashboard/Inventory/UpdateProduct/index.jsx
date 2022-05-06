@@ -78,9 +78,8 @@ function Index({ type, pid }) {
     isIGSTValid: "",
     isSGSTValid: "",
   });
-  const [countcheck, setcountcheck] = useState(false)
-  const countincrease = () => {
-    debugger
+  const [countcheck, setcountcheck] = useState(true)
+  const countincrease = (checking) => {
     const isDecimal = /^\d+\.\d{0,1000000}$/;
 
     if (count?.length) {
@@ -195,9 +194,12 @@ function Index({ type, pid }) {
         }
         setcountcheck(errorHandle)
       } else {
-        setcountcheck(errorHandle)
+        setcountcheck(!errorHandle)
       }
 
+      if(checking === 'checking-validation') {
+        return
+      }
       if (!errorHandle) {
         setDummyState(dummyState + 1);
         setcount((data) => [
@@ -214,13 +216,14 @@ function Index({ type, pid }) {
             igst: "",
             cgst: "",
             sgst: "",
-            count: dummyState,
+            count: dummyState + 1,
           },
         ]);
       }
       return errorHandle;
     }
   };
+
   const [inputValidation, setInputValidation] = useState({
     conditions: "",
     other_condition: "",
@@ -472,10 +475,6 @@ function Index({ type, pid }) {
     country?.filter((d) => console.log(d));
   }, [restricts_country]);
 
-  console.log(olddata);
-  console.log(restricts_country);
-  console.log(updateProductList?.restricts_country);
-
   const [dropdownListFromApi, setDropdownListFromApi] = useState({
     dropDownList: [],
   });
@@ -528,9 +527,12 @@ function Index({ type, pid }) {
   };
 
   const updateProduct = async () => {
-    if(!countcheck) {
-      return countincrease()
+    debugger
+    countincrease('checking-validation')
+    if(countcheck) {
+      return
     }
+    return
     let productdata = [];
     count.filter((data) => {
       if (data?.hub_id) {

@@ -33,7 +33,6 @@ const CurrencyPopup = ({ classes }) => {
     setAnchorEl(null);
   };
   const handleChange = (event) => {
-    debugger
     setSelectedValue({
       currency_code: event?.currency_code,
       currency_id: event?.currency_id,
@@ -56,10 +55,11 @@ const CurrencyPopup = ({ classes }) => {
   }, [selectedValue]);
   
   //  useEffect(() => {
+  //    console.log(storedcurrency)
   //    let storedcurrency = JSON.parse(localStorage.getItem('selectedcurrency'))
-  //    console.log(storedcurrency);
-  //  handleChange(storedcurrency);
-  // }, []);
+  //    if(selectedValue?.currency_code === storedcurrency?.currency_code) return
+  //    handleChange(storedcurrency);
+  // }, [selectedValue]);
   //API for fetch dropdown values
 
   const str = window.location.pathname
@@ -109,19 +109,57 @@ const CurrencyPopup = ({ classes }) => {
           } else if(storedata?.code !== str.split('/')[1])  {
             navigate(`/${str.split('/')[1] ? res.data?.[0]?.store?.code : geo?.country_name}`);
           }
-          setSelectedValue({
-            currency_code: res?.data?.[1]?.currency?.[0]?.currency_code,
-            currency_id: res?.data?.[1]?.currency?.[0]?.currency_id,
-            currency_symbol: res?.data?.[1]?.currency?.[0]?.currency_symbol,
-          });
-          dispatch({
-            type: "SET_CURRENCY",
-            data: {
+          let storedcurrency = JSON.parse(localStorage.getItem('selectedcurrency'))
+          
+          if(storedcurrency?.currency_code === "") {
+            setSelectedValue({
               currency_code: res?.data?.[1]?.currency?.[0]?.currency_code,
               currency_id: res?.data?.[1]?.currency?.[0]?.currency_id,
               currency_symbol: res?.data?.[1]?.currency?.[0]?.currency_symbol,
-            },
-          });
+            });
+          } else {
+            setSelectedValue({
+              currency_code: storedcurrency?.currency_code,
+              currency_id: storedcurrency?.currency_id,
+              currency_symbol: storedcurrency?.currency_symbol,
+            });
+          }
+
+          if(storedcurrency?.currency_code === "") {
+            dispatch({
+              type: "SET_CURRENCY",
+              data: {
+                currency_code: res?.data?.[1]?.currency?.[0]?.currency_code,
+                currency_id: res?.data?.[1]?.currency?.[0]?.currency_id,
+                currency_symbol: res?.data?.[1]?.currency?.[0]?.currency_symbol,
+              },
+            });
+          } else {
+            dispatch({
+              type: "SET_CURRENCY",
+              data: {
+                currency_code: storedcurrency?.currency_code,
+                currency_id: storedcurrency?.currency_id,
+                currency_symbol: storedcurrency?.currency_symbol,
+              },
+            });
+          }
+
+          if(storedcurrency === null) {
+            setSelectedValue({
+              currency_code: res?.data?.[1]?.currency?.[0]?.currency_code,
+              currency_id: res?.data?.[1]?.currency?.[0]?.currency_id,
+              currency_symbol: res?.data?.[1]?.currency?.[0]?.currency_symbol,
+            });
+            dispatch({
+              type: "SET_CURRENCY",
+              data: {
+                currency_code: res?.data?.[1]?.currency?.[0]?.currency_code,
+                currency_id: res?.data?.[1]?.currency?.[0]?.currency_id,
+                currency_symbol: res?.data?.[1]?.currency?.[0]?.currency_symbol,
+              },
+            });
+          }
         })
         .catch((err) => {});
     };
