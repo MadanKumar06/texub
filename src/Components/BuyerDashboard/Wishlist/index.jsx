@@ -43,6 +43,10 @@ const Whislist = () => {
           },
         });
         dispatch({
+          type: "WHISHLIST_DATA",
+          data: wishlistdata?.data,
+        });
+        dispatch({
           type: "SET_IS_LOADING",
           value: false,
         });
