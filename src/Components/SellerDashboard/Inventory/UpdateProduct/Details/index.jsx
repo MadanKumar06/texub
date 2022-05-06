@@ -385,11 +385,17 @@ function Index({
               className="inputfield-box"
               fullWidth
               autoComplete="off"
-              // value={signInData?.email_address}
+              value={currentdata?.cgst}
               InputLabelProps={{
                 shrink: false,
               }}
-              onChange={(e) => changevalues(e.target.value, "cgst")}
+              onChange={(e) => {
+                setIsDetailTabValid((prevState) => ({
+                  ...prevState,
+                  isCGSTValid: "",
+                }))
+                changevalues(e.target.value, "cgst")}
+              }
               variant="outlined"
             />
             <InputLabel className="validation_error">
@@ -407,11 +413,17 @@ function Index({
               type="number"
               className="inputfield-box"
               autoComplete="off"
-              // value={signInData?.email_address}
+              value={currentdata?.igst}
               InputLabelProps={{
                 shrink: false,
               }}
-              onChange={(e) => changevalues(e.target.value, "igst")}
+              onChange={(e) => {
+                setIsDetailTabValid((prevState) => ({
+                  ...prevState,
+                  isIGSTValid: "",
+                }))
+                changevalues(e.target.value, "igst")}
+              }
               variant="outlined"
             />
             <InputLabel className="validation_error">
@@ -429,11 +441,17 @@ function Index({
               type="number"
               autoComplete="off"
               className="inputfield-box"
-              // value={signInData?.email_address}
+              value={currentdata?.sgst}
               InputLabelProps={{
                 shrink: false,
               }}
-              onChange={(e) => changevalues(e.target.value, "sgst")}
+              onChange={(e) => {
+                setIsDetailTabValid((prevState) => ({
+                  ...prevState,
+                  isSGSTValid: "",
+                }))
+                changevalues(e.target.value, "sgst")}
+              }
               variant="outlined"
             />
             <InputLabel className="validation_error">
