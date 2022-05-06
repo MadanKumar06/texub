@@ -87,6 +87,7 @@ function Index() {
     reader.readAsBinaryString(file);
   };
   const handleJSONCreate = async (rows) => {
+    setRow([]);
     dispatch({
       type: "SET_IS_LOADING",
       value: true,
@@ -380,7 +381,7 @@ function Index() {
           </div>
         </div>
       </div>
-     
+
       <div className="validation_message">
         <div className="check_scroll">
           {Row?.length
@@ -398,7 +399,7 @@ function Index() {
             : ""}
         </div>
       </div>
-       <Link
+      <Link
         className="inventory-page-back"
         to={`/${
           customnostore ? customnostore : geo?.country_name

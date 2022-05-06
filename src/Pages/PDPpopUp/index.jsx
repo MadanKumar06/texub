@@ -55,8 +55,7 @@ const PdpPopup = () => {
     if (pdpPopUpOpenClose?.data?.tableData?.length) {
       detailsData.current = pdpPopUpOpenClose?.data?.tableData?.filter(
         (itm) =>
-          itm?.main_product?.main_product_id ===
-          pdpPopUpOpenClose?.data?.row?.[10]?.main_product_id
+          itm?.main_product?.main_product_id === pdpPopUpOpenClose?.data?.event
       );
       setPdpSellerData((prev) => ({
         ...prev,
@@ -268,7 +267,7 @@ const PdpPopup = () => {
   function truncate(str, n) {
     return str?.length > n ? str.substr(0, n - 1) + "..." : str;
   }
- const [allert, setallert] = useState(false);
+  const [allert, setallert] = useState(false);
 
   const [openwishlist, setopenwishlist] = useState({ open: false });
 
@@ -374,9 +373,8 @@ const PdpPopup = () => {
                 <span> Add to Pending Invoice</span>
               </Button>
             </div>
-            <p onClick={()=> setallert(true)}>Alert</p>
-             {allert && 
-             <AllertMessage Open={setallert}/>}
+            <p onClick={() => setallert(true)}>Alert</p>
+            {allert && <AllertMessage Open={setallert} />}
           </div>
           <div className="pdp_modal_footer">
             <div className="pdp_footer_model_details">

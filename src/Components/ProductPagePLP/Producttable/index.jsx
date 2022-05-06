@@ -35,11 +35,11 @@ const Productstable = ({
     guest_login,
   } = classes;
 
-  const onRowHandleClick = (row, rowState, rowMeta) => {
+  const onRowHandleClick = (event, rowState, rowMeta) => {
     dispatch({
       type: "SET_PDP_POPUP_OPEN_CLOSE",
       value: true,
-      data: { row, tableData },
+      data: { event, tableData },
     });
   };
 
@@ -223,6 +223,7 @@ const Productstable = ({
             <p
               className={producttable_add_to_cart}
               value={value?.main_product_id}
+              onClick={() => onRowHandleClick(value?.main_product_id)}
             >
               View Product
             </p>
@@ -249,7 +250,7 @@ const Productstable = ({
     sort: false,
     viewColumns: false,
     // onCellClick: onRowHandleClick,
-    onRowClick: onRowHandleClick,
+    // onRowClick: onRowHandleClick,
     search: false,
     textLabels: {
       body: {
