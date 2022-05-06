@@ -168,7 +168,7 @@ const Index = () => {
               </p>
             </li>
             <li className="bgcolor3">
-              <p className="sellerprofile__label">Total Orders</p>
+              <p className="sellerprofile__label">Total Products</p>
               <p className="sellerprofile__value">
                 {serllerProfileList?.[0]?.product_count}
               </p>

@@ -44,9 +44,20 @@
           align-items: center;
         }
       }
+       .order_apply_btns{
+              width: 25%;
+            flex-direction: row;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            gap: 20px;
+        }
       .order_apply-btn{
+         width: 100%;
+         max-width: 100%;
           .checkout-apply-btn{
             max-width: 100%;
+            width: 100%;
             padding: 10px 25px;
           }
       }
@@ -1055,6 +1066,9 @@
       flex-wrap: wrap;
       justify-content: space-between;
       gap: 1em;
+        .order_apply_btns{
+            width: auto;
+          }
     }
     .checkout_order_info{
       flex-direction: column;
