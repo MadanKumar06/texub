@@ -116,6 +116,7 @@
         .action {
           display: flex;
           gap: 1em;
+          justify-content: space-between;
           .inventory__action {
             text-decoration: underline;
             cursor: pointer;
@@ -141,7 +142,7 @@
           background-color: white;
           border: 1px solid white;
           border-radius: 24px;
-          padding: 0.3em 2em;
+          padding: 0.3em 1.2em;
           p {
             margin: 0;
             vertical-align: super;
@@ -257,6 +258,7 @@
   display: flex;
   align-items: center;
   text-decoration: none;
+  padding: 15px 0;
 }
 .inventory-page-back .MuiSvgIcon-root {
   width: 0.6em;
@@ -342,6 +344,7 @@
     .inventory__table
     .MuiTable-root
     .MuiTableBody-root
+     .MuiTableRow-root 
     .MuiTableCell-root {
     width: 100%;
   }
@@ -413,5 +416,11 @@
     .inventory__button
     .inventory_product_upload {
     padding: 5px 1em !important;
+  }
+  .inventory .inventory__table .MuiTable-root .MuiTableBody-root .action{
+    flex-wrap: wrap;
+    width: 50%;
+    justify-content: space-around;
+    align-items: center;
   }
 }

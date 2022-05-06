@@ -217,6 +217,7 @@
           }
         }
         .MuiTableRow-root {
+          border-bottom: 3px solid #fff;
           &:nth-child(odd) {
             .vieworders_quantity {
               background: #e6e6e6;
@@ -230,6 +231,7 @@
           .MuiTableCell-root {
             border: 1px solid #cdd5dd;
             max-width: 300px;
+            padding: 8px 12px;
             div {
               vertical-align: middle;
               text-align: center;
@@ -285,6 +287,7 @@
                   -webkit-box-orient: vertical;
                   text-overflow: ellipsis;
                   overflow: hidden;
+                  min-height: 42px;
                 }
               }
             }
@@ -328,7 +331,7 @@
             }
             .table__price {
               display: flex;
-              align-items: center;
+              align-items: baseline;
               justify-content: center;
               .symbol {
                 font-size: 14px;
@@ -364,6 +367,9 @@
           font-size: 16px;
           font-weight: 600;
           padding: 5px 0;
+        }
+        .payment_info_return{
+              line-height: 30px;
         }
         .content {
           padding: 5px 0;
@@ -409,12 +415,12 @@
           }
         }
         p {
-          display: flex;
-          gap: 10%;
-          justify-content: flex-end;
-          margin: 0;
-          padding-right: 10%;
-          margin-left: 32%;
+             display: flex;
+            gap: 10%;
+            justify-content: flex-end;
+            margin: 0;
+            padding-right: 8%;
+            margin-left: 8%;
           hr {
             min-height: 35px !important;
             background-color: #d6d8d9;
@@ -528,6 +534,7 @@
         font-weight: 600;
         font-size: 16px;
         padding: 10px;
+        padding-left: 0;
       }
       .remark_content {
         letter-spacing: 0.42px;

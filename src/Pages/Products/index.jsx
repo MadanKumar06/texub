@@ -13,7 +13,7 @@ export const Products = () => {
   const [{ currency, homeSearch, customnostore, geo }, dispatch] =
     useStateValue();
   const [productFetchApi, setProductFetchApi] = useState({
-    hub: 0,
+    hub: [0],
     conditions: 0,
     eta: 0,
   });

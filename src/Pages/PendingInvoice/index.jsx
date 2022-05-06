@@ -18,9 +18,9 @@ var moment = require("moment");
 function Index() {
   const [{ geo, customstore, customnostore, currency }, dispatch] =
     useStateValue();
-  const {qid} = useParams()
+  const { qid } = useParams();
   const [pendingInvoiceList, setPendingInvoiceList] = useState([]);
-  console.log(qid)
+  console.log(qid);
   var currency_id = JSON.parse(localStorage.getItem("currency"));
 
   let buyerCode = JSON.parse(
@@ -28,40 +28,40 @@ function Index() {
   )?.custom_attributes?.filter(
     (itm) => itm?.attribute_code === "customer_code"
   );
-  useEffect(async() => {
-    if(qid === undefined) return
+  useEffect(async () => {
+    if (qid === undefined) return;
     dispatch({
       type: "SET_IS_LOADING",
       value: true,
     });
     try {
       const data = await axios({
-        method:'post',
+        method: "post",
         url: `${Constant?.baseUrl()}/pendingInvoiceDetails`,
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         data: {
-          quote_id: parseInt(qid)
-        }
-      })
-      setPendingInvoiceList(data?.data[0])
-      console.log(data?.data[0])
+          quote_id: parseInt(qid),
+        },
+      });
+      setPendingInvoiceList(data?.data[0]);
+      console.log(data?.data[0]);
       dispatch({
         type: "SET_IS_LOADING",
         value: false,
       });
-    } catch(e) {
-      console.log(e)
+    } catch (e) {
+      console.log(e);
       dispatch({
         type: "SET_IS_LOADING",
         value: false,
       });
     }
-  }, [qid])
+  }, [qid]);
 
   useEffect(() => {
-    if(qid !== undefined) return
+    if (qid !== undefined) return;
     dispatch({
       type: "SET_IS_LOADING",
       value: true,
@@ -95,7 +95,7 @@ function Index() {
       });
   }, [currency]);
 
-  console.log(pendingInvoiceList)
+  console.log(pendingInvoiceList);
 
   const options = {
     filter: false,
@@ -228,16 +228,25 @@ function Index() {
   }
 
   const navigate = useNavigate();
-
-
+  let permissions = JSON.parse(localStorage.getItem("permissions"));
+  let placeorder =
+    permissions?.length === 0
+      ? false
+      : permissions?.some(
+          (per) =>
+            per?.value === "can-place-order" && per?.permission_value === 0
+        );
   return (
     <div className="pendinginvoice">
       <div className="pendinginvoice__top">
         <div className="top__header">
           <div className="checkout_info_list">
             <div className="checkout_back_toggle">
-              <p onClick={() => navigate(-1)} style={{color: 'white', cursor: 'pointer'}}>
-                <ArrowBackIosNew  />
+              <p
+                onClick={() => navigate(-1)}
+                style={{ color: "white", cursor: "pointer" }}
+              >
+                <ArrowBackIosNew />
               </p>
             </div>
             <div className="order_id_info">
@@ -270,7 +279,12 @@ function Index() {
               </div>
             </div>
             <div className="order_apply-btn">
-              <Link to={`/${customnostore ? customnostore : geo?.country_name}/products`} style={{textDecoration: 'none'}}>
+              <Link
+                to={`/${
+                  customnostore ? customnostore : geo?.country_name
+                }/products`}
+                style={{ textDecoration: "none" }}
+              >
                 <Button className="button-text btn-primary clear checkout-apply-btn">
                   Continue Shopping
                 </Button>
@@ -435,6 +449,7 @@ function Index() {
           <div className="tableinfo__details">
             <span className="title">Beneficiary Bank</span>
             <div
+              className="payment_info_return"
               dangerouslySetInnerHTML={{
                 __html: pendingInvoiceList?.beneficiary_bank,
               }}
@@ -508,9 +523,10 @@ function Index() {
               <span className="value">
                 <span className="value_symobol">
                   {" "}
-                  {JSON.parse(localStorage.getItem("currency"))?.currency_code}
+                  {currency_id?.currency_code}{" "}
                 </span>{" "}
-                00.00
+                    {formatToCurrency(parseInt(pendingInvoiceList?.invoice?.shipping_amount))}{" "}
+
               </span>
             </p>
             <p>
@@ -519,16 +535,26 @@ function Index() {
               <span className="value">
                 <span className="value_symobol">
                   {" "}
-                  {JSON.parse(localStorage.getItem("currency"))?.currency_code}
+                  {currency_id?.currency_code}{" "}
                 </span>{" "}
                 00.00
               </span>
             </p>
-            <p className="total_value_block" style={{backgroundColor: '#f8f0e0', alignItems:'center', marginTop: "10px"}}>
+            <p
+              className="total_value_block"
+              style={{
+                backgroundColor: "#f8f0e0",
+                alignItems: "center",
+                marginTop: "10px",
+              }}
+            >
               <span className="total label">Total Order value</span>
-              <Divider style={{visibility: 'hidden'}} orientation="vertical" />
+              <Divider
+                style={{ visibility: "hidden" }}
+                orientation="vertical"
+              />
               <span className="value">
-              <span className="value_symobol">
+                <span className="value_symobol">
                   {" "}
                   {currency_id?.currency_code}{" "}
                 </span>
@@ -567,22 +593,22 @@ function Index() {
             et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
             accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
             no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum
-            dolor sit amet, consetetur sadipscing elitr, 
-            </p>
-            <p>sed diam nonumy eirmod
-            temp or invidunt ut labore et dolore magna aliquyam erat, sed diam
-            voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
-            Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum
-            dolor sit amet. Lorem ipsum dolor sit amet, consetetur Lorem ipsum
-            dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-            tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-            voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
-            Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum
-            dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing
-            elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore
-            magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
-            justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-            takimata sanctus est Lorem ipsum dolor sit amet.
+            dolor sit amet, consetetur sadipscing elitr,
+          </p>
+          <p>
+            sed diam nonumy eirmod temp or invidunt ut labore et dolore magna
+            aliquyam erat, sed diam voluptua. At vero eos et accusam et justo
+            duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
+            sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
+            consetetur Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+            sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
+            aliquyam erat, sed diam voluptua. At vero eos et accusam et justo
+            duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
+            sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
+            consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt
+            ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
+            eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
+            gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
           </p>
         </div>
         <div className="remark_block">
@@ -590,12 +616,18 @@ function Index() {
           <p className="remark_content">{pendingInvoiceList?.remarks}</p>
         </div>
         <div className="bottom__buttons">
-          <Button className="button__cancel">Cancel</Button>
-          <Button className="button__checkout">
-            <Link to={`/${customnostore ? customnostore : geo?.country_name}/checkout/${pendingInvoiceList?.invoice?.quote_id}`}>
-              Proceed To Checkout
-            </Link>
-          </Button>
+          <Button className="button__cancel" onClick={()=> window.history.back()}>Cancel</Button>
+          {!placeorder && (
+            <Button className="button__checkout">
+              <Link
+                to={`/${
+                  customnostore ? customnostore : geo?.country_name
+                }/checkout/${pendingInvoiceList?.invoice?.quote_id}`}
+              >
+                Proceed To Checkout
+              </Link>
+            </Button>
+          )}
         </div>
       </div>
     </div>

@@ -191,6 +191,7 @@
                       display: flex;
                       flex-direction: column;
                       align-items: center;
+                      cursor: pointer;
                       span {
                         text-decoration: underline;
                         font-size: 14px;
@@ -220,8 +221,15 @@
               width: calc(65% - 100px);
             .address_fields{
               width: 100%;
+              .react-tel-input .form-control{
+                width: 100%;
+                padding: 13.5px 14px 12.5px 58px;
+              }
+              .special-label{
+                display: none !important;
+              }
               label{
-               font-weight: 400;
+               font-weight: 600;
               letter-spacing: 0.54px;
               color: #272727;
               margin-top: 0em;
@@ -335,11 +343,13 @@
               color: #002d56;
               width: 2em !important;
               height: 2em !important;
+              cursor: pointer;
             }
             span {
               text-decoration: underline;
               font-size: 21px;
               color: #002d56;
+              cursor: pointer;
             }
           }
         }
@@ -411,6 +421,8 @@
               padding: 10px 20px;
               margin-left: 10px;
               color: #2f6da3;
+              box-shadow: 0px 3px 6px #00000029;
+              border-radius: 24px;
             }
             .shipping_price{
               background-color: #f8f0e0;
@@ -566,6 +578,8 @@
                 text-transform: uppercase;
                 .ordertotal_symbol{
                   font-size: 14px;
+                  margin-right: 5px;
+                  font-weight: 400;
                 }
               }
             }
@@ -586,6 +600,7 @@
                   .checkout_total_orde_symbol{
                     font-size: 14px;
                     color: #333C42;
+                    margin-right: 5px;
                   }
               }
             }
@@ -663,12 +678,14 @@
           border-radius: 25px;
           color: #002d56;
           font-weight: 600;
+          cursor: pointer;
         }
         button{
           font-weight: 600;
           width: 33.3%;
            box-shadow: 0px 3px 6px #00000029;
           border-radius: 25px;
+          cursor: pointer;
         }
       }
     }
@@ -697,9 +714,9 @@
         z-index: 9;
         padding: 2em 3em 3em;
         gap: 30px;
-        height: 80vh;
+        height: 65vh;
         z-index: 1;
-        min-height: 70vh;
+        min-height: 65vh;
         border-radius: 3px;
         overflow-x: auto;
         box-shadow: 0 0 12px 2px rgb(0 0 0 / 35%);
@@ -734,9 +751,19 @@
                   display: flex;
                   flex-direction: row;
                   column-gap: 70px;
-                  //  label{
-                  //    width: 40%;
-                  //  } 
+                   label{
+                    //  width: 40%;
+                     .MuiRadio-root.Mui-checked{
+                           color: #002d56;
+                     }
+                     .MuiTypography-root{
+                       letter-spacing: 0px;
+                        color: #002D56;
+                        text-transform: capitalize;
+                        font-size: 16px;
+                        font-weight: 600;
+                     }
+                   } 
                 }
               }
           }
@@ -1376,6 +1403,7 @@
   }
 .add_address_popup{
   .address_popup_main{
+    height: 80vh;
     padding: 1em 1em 2em;
     .address_popup_block{
       .address_selection_block{

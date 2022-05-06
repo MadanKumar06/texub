@@ -6,6 +6,7 @@ import { Todaysdeal } from "../../Components/Home/Todaysdeal/Todaysdeal";
 import { Benfits } from "../../Components/Home/Benfits/Benfits";
 // import { Auctions } from "../../Components/Home/Auctions/Auctions";
 import { B2Bconnect } from "../../Components/Home/B2Bconnect/B2Bconnect";
+import { SubscriptionInfo } from "../../Components/Home/SubscriptionInfo/SubscriptionInfo";
 import { useStateValue } from "../../store/state";
 import { useParams, useNavigate } from "react-router-dom";
 
@@ -40,8 +41,9 @@ export const Home = () => {
           <Todaysdeal data={homeContent?.todays_deal} />
           <Benfits data={homeContent?.block_4} />
           <Todaysdeal data={homeContent?.block_5} />
+          <SubscriptionInfo data={homeContent?.block_6} />
           {/* <Auctions data={homedata?.banner} /> */}
-          <B2Bconnect data={homeContent?.block_6} />
+          {/* <B2Bconnect data={homeContent?.block_6} /> */}
         </>
       ) : (
         <div className="blank_page_companyLogo">

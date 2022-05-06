@@ -21,28 +21,29 @@ function Index({
   }, [currentmenu ]);
 
   useEffect(() => {
-    let permission = JSON.parse(localStorage.getItem('permissions'))
-    if(permission === null || permission === undefined || permission === '') return
-    let temp = []
+    let permission = JSON.parse(localStorage.getItem("permissions"));
+    if (permission === null || permission === undefined || permission === "")
+      return;
+    let temp = [];
     SellerList?.filter((sl, i) => {
-      if(sl?.name === 'Inventory') {
-        permission?.filter(p => {
-          if(p?.value === 'manage-catalog' && p?.permission_value === 0) {
-            SellerList?.splice(i, 1)
+      if (sl?.name === "Inventory") {
+        permission?.filter((p) => {
+          if (p?.value === "manage-catalog" && p?.permission_value === 0) {
+            SellerList?.splice(i, 1);
           }
-        })
+        });
       }
-    })
+    });
     SellerList?.filter((sl, i) => {
-      if(sl?.name === 'Orders') {
-        permission?.filter(p => {
-          if(p?.value === 'manage-orders' && p?.permission_value === 0) {
-            SellerList?.splice(i, 1)
+      if (sl?.name === "Orders") {
+        permission?.filter((p) => {
+          if (p?.value === "manage-orders" && p?.permission_value === 0) {
+            SellerList?.splice(i, 1);
           }
-        })
+        });
       }
-    })
-  }, [])
+    });
+  }, []);
 
   const history = useNavigate();
   const SignOut = () => {
@@ -78,6 +79,22 @@ function Index({
   )?.custom_attributes?.filter(
     (itm) => itm?.attribute_code === "customer_code"
   );
+  let permissions = JSON.parse(localStorage.getItem("permissions"));
+  let Wtbpermission =
+    permissions?.length === 0
+      ? false
+      : permissions?.some(
+          (per) =>
+            per?.value === "can-raise-wtb-request" &&
+            per?.permission_value === 0
+        );
+  let placeorder =
+    permissions?.length === 0
+      ? false
+      : permissions?.some(
+          (per) =>
+            per?.value === "can-place-order" && per?.permission_value === 0
+        );
   return (
     <div className={`${barstate ? "sidebaropen" : "sellerdashboard__sidebar"}`}>
       <Clear className="sidebar__close" onClick={() => setbarstate(false)} />
@@ -124,29 +141,37 @@ function Index({
         )}
         {color === "blue" && (
           <>
-            {BuyerList?.map((data, i) => (
-              <li
-                className={`${
-                  (currenttab === data.url &&
-                    "sellerdashboard__currentselection" &&
-                    color === "yellow" &&
-                    "sellerbg") ||
-                  (currenttab === data.url &&
-                    "sellerdashboard__currentselection" &&
-                    color === "blue" &&
-                    "buyerbg")
-                } `}
-                key={i}
-                onClick={() => selectmenu(data.url)}
-              >
-                {currentmenu === data.url ? (
-                  <span className="active_image">{data.image}</span>
-                ) : (
-                  <span className="inActive_image">{data.image}</span>
-                )}
-                {data.name}
-              </li>
-            ))}
+            {BuyerList?.map((data, i) => {
+              if (
+                (Wtbpermission && data?.url === "wanttobuy") ||
+                (placeorder && data?.url === "myorder")
+              ) {
+              } else {
+                return (
+                  <li
+                    className={`${
+                      (currenttab === data.url &&
+                        "sellerdashboard__currentselection" &&
+                        color === "yellow" &&
+                        "sellerbg") ||
+                      (currenttab === data.url &&
+                        "sellerdashboard__currentselection" &&
+                        color === "blue" &&
+                        "buyerbg")
+                    } `}
+                    key={i}
+                    onClick={() => selectmenu(data.url)}
+                  >
+                    {currentmenu === data.url ? (
+                      <span className="active_image">{data.image}</span>
+                    ) : (
+                      <span className="inActive_image">{data.image}</span>
+                    )}
+                    {data.name}
+                  </li>
+                );
+              }
+            })}
             <li onClick={() => SignOut()}>
               <img src={logout} alt="" />
               Logout

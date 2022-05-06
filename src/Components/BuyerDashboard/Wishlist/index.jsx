@@ -43,6 +43,10 @@ const Whislist = () => {
           },
         });
         dispatch({
+          type: "WHISHLIST_DATA",
+          data: wishlistdata?.data,
+        });
+        dispatch({
           type: "SET_IS_LOADING",
           value: false,
         });
@@ -95,14 +99,14 @@ const Whislist = () => {
             ))
           : "Currently Wishlist Data is Empty"}
       </div>
-      {wishdata?.length > 0 ? (
+      {wishdata?.length === 0 ? (
+        ""
+      ) : (
         <Pagination
           PaginateData={PaginateDataSplit}
           DataList={wishdata?.length > 0 ? wishdata : []}
           PagePerRow={2}
         />
-      ) : (
-        ""
       )}
       <div className="wishlist__footer">
         <div className="wishlist__container">

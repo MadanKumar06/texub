@@ -133,7 +133,7 @@ function Index() {
     },
     {
       name: "order_status",
-      label: "Status",
+      label: "Order Status",
       options: {
         customBodyRender: (value) => {
           return (
@@ -156,7 +156,7 @@ function Index() {
       label: "Action",
       options: {
         customBodyRender: (value) => {
-          return <div className="myorders__action" onClick={() => orders(value)}>{value}</div>;
+          return <div className="myorders__action" onClick={() => orders(value)}>View Order</div>;
         },
       },
     },

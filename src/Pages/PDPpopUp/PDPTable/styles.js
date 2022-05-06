@@ -66,7 +66,7 @@ const styles = () => ({
     listStyleType: "none",
     margin: "0",
     paddingLeft: "0",
-    height: "30vh",
+    height: "28vh",
     overflowX: "auto",
     "&::-webkit-scrollbar": {
       width: "10px",
@@ -406,6 +406,9 @@ const styles = () => ({
     "@media (max-width:1660px)": {
       fontSize: "12px",
     },
+    "@media (min-width:1600px)": {
+      fontSize: "12px",
+    },
   },
   price_value: {
     fontSize: "24px",
@@ -413,6 +416,9 @@ const styles = () => ({
     letterSpacing: "0.9px",
     "@media (max-width:1660px)": {
       fontSize: "18px",
+    },
+    "@media (min-width:1600px)": {
+      fontSize: "22px",
     },
   },
 });

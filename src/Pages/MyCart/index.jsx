@@ -120,68 +120,83 @@ const Mycart = () => {
     }
   };
 
-  const [permission, setpermission] = useState()
+  const [permission, setpermission] = useState();
 
   useEffect(() => {
-    setpermission(JSON.parse(localStorage.getItem('permissions')))
-  }, [])
+    setpermission(JSON.parse(localStorage.getItem("permissions")));
+  }, []);
 
-  const [userpermission, setuserpermission] = useState(false)
-  const [approvepermission, setapprovepermission] = useState(false)
+  const [userpermission, setuserpermission] = useState(false);
+  const [approvepermission, setapprovepermission] = useState(false);
 
   useEffect(() => {
-    let temp = permission?.some(p => p?.value === 'can-merge-own-cart-to-main-cart' && p?.permission_value === 1)
-    setuserpermission(temp)
-    let temp1 = permission?.some(p => p?.value === 'cart-approval-required' && p?.permission_value === 1)
-    setapprovepermission(temp1)
-  }, [permission])
+    let temp = permission?.some(
+      (p) =>
+        p?.value === "can-merge-own-cart-to-main-cart" &&
+        p?.permission_value === 1
+    );
+    setuserpermission(temp);
+    let temp1 = permission?.some(
+      (p) => p?.value === "cart-approval-required" && p?.permission_value === 1
+    );
+    setapprovepermission(temp1);
+  }, [permission]);
 
-  console.log(cart)
+  console.log(cart);
 
-  const mergecart = async() => {
-    let user = JSON.parse(localStorage.getItem('userdata'))
+  const mergecart = async () => {
+    let user = JSON.parse(localStorage.getItem("userdata"));
     try {
       const postcart = await axios({
-        method: 'post',
+        method: "post",
         url: `${Constant?.baseUrl()}/cartRequest`,
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         data: {
-          "data":{
-            "type": 2,
-            "customer_id": user?.id,
-            "status": 0,
-            "quote_id": cart[0]?.invoice?.Cart_id
-          }
-        }       
-      })
-    } catch(e) {
-      console.log(e)
+          data: {
+            type: 2,
+            customer_id: user?.id,
+            status: 0,
+            quote_id: cart[0]?.invoice?.Cart_id,
+          },
+        },
+      });
+    } catch (e) {
+      console.log(e);
     }
-  }
-  const approvecart = async() => {
-    let user = JSON.parse(localStorage.getItem('userdata'))
+  };
+  const approvecart = async () => {
+    let user = JSON.parse(localStorage.getItem("userdata"));
     try {
       const postcart = await axios({
-        method: 'post',
+        method: "post",
         url: `${Constant?.baseUrl()}/cartRequest`,
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         data: {
-          "data":{
-            "type": 1,
-            "customer_id": user?.id,
-            "status": 0,
-            "quote_id": cart[0]?.invoice?.Cart_id
-          }
-        }       
-      })
-    } catch(e) {
-      console.log(e)
+          data: {
+            type: 1,
+            customer_id: user?.id,
+            status: 0,
+            quote_id: cart[0]?.invoice?.Cart_id,
+          },
+        },
+      });
+    } catch (e) {
+      console.log(e);
     }
-  }
+  };
+ const handleOnNavigate=() =>{
+      navigate(`/${
+                    customnostore ? customnostore : geo?.country_name
+                  }/products`);
+
+ }
+
+
+  
 
   return (
     <div className="my_cart_main">
@@ -204,43 +219,38 @@ const Mycart = () => {
       <MyCartTable cartDataList={cart} deleteCartData={deleteCartData} />
 
       <div className="my_cart_footer">
-        <Button className="my_cart_bottom_button_shopping">
-          <Link
-            style={{ textDecoration: "none", color: "white" }}
-            to={`/${
-              customnostore ? customnostore : geo?.country_name
-            }/products`}
-          >
+
+        <Button className="my_cart_bottom_button_shopping" onClick={()=>handleOnNavigate()}>
+       
             Continue Shopping
-          </Link>
+         
         </Button>
-        {userpermission ? 
+        {userpermission ? (
           <Button
             className="my_cart_bottom_button_pending_invoice"
             onClick={() => mergecart()}
           >
             <span>Merge Cart</span>
           </Button>
-        :
+        ) : (
           ""
-        }
-        {approvepermission ? 
+        )}
+        {approvepermission ? (
           <Button
             className="my_cart_bottom_button_pending_invoice"
             onClick={() => approvecart()}
           >
             <span>Request for Approval</span>
           </Button>
-        :
+        ) : (
           ""
-        }
+        )}
         <Button
           className="my_cart_bottom_button_pending_invoice"
           onClick={() => addpendinginvoice()}
         >
           <span>Add To Pending Invoice</span>
         </Button>
-        
       </div>
     </div>
   );

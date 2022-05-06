@@ -257,8 +257,10 @@ const Productlists = ({
             onChange={handleChange}
           >
             {productlistdropdown?.conditions?.length ? (
-              productlistdropdown?.conditions?.map((itm) => (
-                <MenuItem value={itm?.value}>{itm?.label}</MenuItem>
+              productlistdropdown?.conditions?.map((itm, ind) => (
+                <MenuItem key={ind} value={itm?.value}>
+                  {itm?.label}
+                </MenuItem>
               ))
             ) : (
               <MenuItem>No option</MenuItem>

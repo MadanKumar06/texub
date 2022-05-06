@@ -225,7 +225,7 @@ const BuyerRegistration = ({ classes }) => {
       setInputValidation((prevState) => ({
         ...prevState,
         company:
-          "Please enter Alphabet or (Alphabet, Special Characters and Number)..",
+          "Please enter Alphabet or (Alphabet, Special Characters and Number).",
       }));
       errorHandle = true;
     }
@@ -374,7 +374,7 @@ const BuyerRegistration = ({ classes }) => {
       });
   };
 
-  const [customerdata, setcustomerdata] = useState(false)
+  const [customerdata, setcustomerdata] = useState(false);
 
   const getUserData = (token) => {
     axios
@@ -394,7 +394,7 @@ const BuyerRegistration = ({ classes }) => {
           "isLoggedIn_auth",
           res?.data?.group_id === 1 ? false : true
         );
-        setcustomerdata(!customerdata)
+        setcustomerdata(!customerdata);
         history(`/${customnostore ? customnostore : geo?.country_name}`);
         setTimeout(() => {
           dispatch({
@@ -411,26 +411,26 @@ const BuyerRegistration = ({ classes }) => {
       });
   };
 
-  useEffect(async() => {
-    let user = JSON.parse(localStorage.getItem('userdata'))
-    if(adminToken === null) return
+  useEffect(async () => {
+    let user = JSON.parse(localStorage.getItem("userdata"));
+    if (adminToken === null) return;
     try {
       const permission = await axios({
-        method: 'post',
+        method: "post",
         url: `${Constant?.permissiondetails()}`,
         headers: {
-          Authorization: `Bearer ${adminToken}`
+          Authorization: `Bearer ${adminToken}`,
         },
         data: {
-          "customer_id" : user?.id
-       }       
-      })
-      console.log(permission?.data)
-      localStorage.setItem('permissions', JSON.stringify(permission?.data))
-    } catch(e) {
-      console.log(e)
+          customer_id: user?.id,
+        },
+      });
+      console.log(permission?.data);
+      localStorage.setItem("permissions", JSON.stringify(permission?.data));
+    } catch (e) {
+      console.log(e);
     }
-  }, [customerdata, adminToken])
+  }, [customerdata, adminToken]);
   return (
     <div className={main_container}>
       <div className={input_fields}>

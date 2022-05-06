@@ -78,7 +78,8 @@ function Index({ type, pid }) {
     isIGSTValid: "",
     isSGSTValid: "",
   });
-  const countincrease = () => {
+  const [countcheck, setcountcheck] = useState(true)
+  const countincrease = (checking) => {
     const isDecimal = /^\d+\.\d{0,1000000}$/;
 
     if (count?.length) {
@@ -146,6 +147,7 @@ function Index({ type, pid }) {
         }));
         errorHandle = true;
       }
+      setcountcheck(errorHandle)
       // GSTS
       if (isGST === 2) {
         if (!temp[0]?.cgst) {
@@ -190,10 +192,14 @@ function Index({ type, pid }) {
           }));
           errorHandle = true;
         }
+        setcountcheck(errorHandle)
       } else {
-        console.log(".......................................................");
+        setcountcheck(!errorHandle)
       }
 
+      if(checking === 'checking-validation') {
+        return
+      }
       if (!errorHandle) {
         setDummyState(dummyState + 1);
         setcount((data) => [
@@ -210,13 +216,14 @@ function Index({ type, pid }) {
             igst: "",
             cgst: "",
             sgst: "",
-            count: dummyState,
+            count: dummyState + 1,
           },
         ]);
       }
       return errorHandle;
     }
   };
+
   const [inputValidation, setInputValidation] = useState({
     conditions: "",
     other_condition: "",
@@ -468,10 +475,6 @@ function Index({ type, pid }) {
     country?.filter((d) => console.log(d));
   }, [restricts_country]);
 
-  console.log(olddata);
-  console.log(restricts_country);
-  console.log(updateProductList?.restricts_country);
-
   const [dropdownListFromApi, setDropdownListFromApi] = useState({
     dropDownList: [],
   });
@@ -524,6 +527,12 @@ function Index({ type, pid }) {
   };
 
   const updateProduct = async () => {
+    debugger
+    countincrease('checking-validation')
+    if(countcheck) {
+      return
+    }
+    return
     let productdata = [];
     count.filter((data) => {
       if (data?.hub_id) {
@@ -541,7 +550,6 @@ function Index({ type, pid }) {
     let user = JSON.parse(localStorage.getItem("userdata"));
     let productDetailSave = productdata?.filter((itm) => !itm?.assign_id);
     let productDetailEdit = productdata?.filter((itm) => itm?.assign_id);
-
     if (productDetailSave?.length) {
       try {
         dispatch({

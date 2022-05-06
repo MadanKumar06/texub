@@ -240,7 +240,9 @@ const PDPTable = ({ classes, tableData, setPdpSellerData }) => {
                           <Link
                             to={`/${
                               customnostore ? customnostore : geo?.country_name
-                            }/sellerprofile/${item.seller_code}`}
+                            }/sellerprofile/${item.seller_code}/${
+                              item.seller_id
+                            }`}
                             onClick={() => handleClose()}
                           >
                             {item?.seller_code}

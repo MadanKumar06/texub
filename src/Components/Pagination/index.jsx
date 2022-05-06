@@ -17,33 +17,6 @@ const PaginationControlled = ({ PaginateData, DataList, PagePerRow }) => {
   });
 
   useEffect(() => {
-    if(window.location.pathname === '/india/buyerdashboard/wishlist') {
-      if(page?.page === 1) return
-      localStorage.setItem('wishpage', page?.page)
-    }
-  }, [page])
-
-  useEffect(() => {
-    let wishpage = localStorage.getItem('wishpage')
-    if(window.location.pathname === '/india/buyerdashboard/wishlist') {
-      debugger
-      setPage({
-        page: wishpage,
-        jumptopage: wishpage,
-        option: [],
-      })
-      setPage((prevState) => ({
-        ...prevState,
-        page: wishpage,
-        jumptopage: wishpage?.toString,
-      }));
-      PaginateData(
-        DataList?.slice(firstIndex + PagePerRow * (wishpage - 1), PagePerRow * wishpage)
-      );
-    }
-  }, [])
-
-  useEffect(() => {
     //pagination data as props
     PaginateData(DataList?.slice(0, PagePerRow));
 
@@ -66,24 +39,13 @@ const PaginationControlled = ({ PaginateData, DataList, PagePerRow }) => {
     setPage((prevState) => ({
       ...prevState,
       page: value,
-      jumptopage: value?.toString,
+      jumptopage: value?.toString(),
     }));
     PaginateData(
       DataList?.slice(firstIndex + PagePerRow * (value - 1), PagePerRow * value)
     );
   };
 
-  //Jump to page
-  const handleJumpToPage = (event, value) => {
-    setPage((prevState) => ({
-      ...prevState,
-      page: value,
-      jumptopage: value?.toString,
-    }));
-    PaginateData(
-      DataList?.slice(firstIndex + PagePerRow * (value - 1), PagePerRow * value)
-    );
-  };
   return (
     <div className="pagination_top_container">
       <div className="pagination_sub_container">
@@ -100,13 +62,14 @@ const PaginationControlled = ({ PaginateData, DataList, PagePerRow }) => {
       <div className="jump_to_page">
         <p>Jump to page :</p>
         <Autocomplete
-          value={page?.jumptopage?.toString()}
+          value={page?.jumptopage}
           name="jump_to_page"
           onChange={(event, newValue) => {
-            handleJumpToPage(event, newValue);
+            handleChange(event, newValue);
           }}
           id="controllable-states-demo"
           options={page?.option}
+          filterOptions={(options) => options}
           getOptionLabel={(option) => option?.toString()}
           renderInput={(params) => (
             <TextField

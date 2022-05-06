@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Modal, Backdrop } from "@mui/material";
-import { withStyles } from "@mui/styles";
+import { Modal } from "@mui/material";
 import "./styles.scss";
 import { Add } from "@mui/icons-material";
-import { Button, IconButton, Typography, Box } from "@mui/material";
+import { Button, Typography, Box } from "@mui/material";
 import { Clear } from "@mui/icons-material";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import {
   RadioGroup,
   Radio,
-  Autocomplete,
   FormControlLabel,
   TextField,
   InputLabel,
@@ -20,50 +18,22 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import swal from "sweetalert2";
+import { useStateValue } from "../../store/state";
+import PhoneInput from "react-phone-input-2";
 
 //assets
 import Edit_image from "../../Assets/CheckoutPage/Group 913.png";
 import Devilvery_address_image_1 from "../../Assets/CheckoutPage/Group 911.png";
 import Devilvery_address_image_2 from "../../Assets/CheckoutPage/Group 912.png";
 import Checkout_Texub_logo from "../../Assets/CheckoutPage/checkout_texub_logo.png";
-import Checkout_checkout_com from "../../Assets/CheckoutPage/checkoutcom.png";
-import Checkout_razorpay_logo from "../../Assets/CheckoutPage/razorpay_logo.png";
-import Payment_image_1 from "../../Assets/CheckoutPage/braintree-logo-black.png";
-import Payment_image_2 from "../../Assets/CheckoutPage/paypal (1).png";
-import checkout_mail from "../../Assets/CheckoutPage/checkout_mail.png";
-import checkout_call from "../../Assets/CheckoutPage/telephone.png";
 import Constant from "../../Constant";
 import axios from "axios";
 import moment from "moment";
-import { useStateValue } from "../../store/state";
 import { isEmailValid, getAdminToken } from "../../utilities";
-
 
 function formatToCurrency(price) {
   return price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
 }
-
-const DeliveryAddressJson = [
-  {
-    name: "Ayush Raj",
-    address:
-      "302/1160, Trinity enclave B- Block, HSR Layout Bangalore-Karanataka 560102",
-  },
-];
-const DeliveryEmailJson = [
-  {
-    img: { checkout_mail },
-    name: "Email Address",
-    address: "info@texub.com",
-  },
-];
-const DeliveryCallJson = [
-  {
-    img: { checkout_call },
-    name: "Call Us",
-    address: "+9714 2227300 / +9714 2227279",
-  },
-];
 
 const Checkout = () => {
   const [shipping_method, setShipping_method] = useState("texub_shipping");
@@ -102,7 +72,6 @@ const Checkout = () => {
     });
   const [quotedata, setqutoedata] = useState([]);
   const { quoteid } = useParams();
-  const [userid, setuserid] = useState();
   const [{ currency, geo, customnostore }, dispatch] = useStateValue();
   const [pickup, setpickup] = useState({
     bussiness_name: "",
@@ -118,6 +87,13 @@ const Checkout = () => {
     email_address: false,
     mobile_number: false,
   });
+   const handleMobileChangeInput = (event) => {
+    pickup((prevState) => ({
+      ...prevState,
+      mobile_number: event,
+    }));
+    onpickup("");
+  };
   const onpickup = (e) => {
     if (e.target.name === "email_address") {
       if (isEmailValid(e.target.value)) {
@@ -129,10 +105,6 @@ const Checkout = () => {
       setformerror({ ...formerror, [e.target.name]: true });
     }
   };
-
-  useEffect(() => {
-    setuserid(JSON.parse(localStorage.getItem("userdata")));
-  }, []);
 
   const [adminToken, setAdminToken] = useState("");
   useEffect(() => {
@@ -149,6 +121,8 @@ const Checkout = () => {
     pincode: "",
     billtype: "",
     country: "",
+    lastname: "",
+    firstname: "",
   });
 
   const addressadd = (e) => {
@@ -175,6 +149,10 @@ const Checkout = () => {
   const saveaddress = async () => {
     let street = [addressdata?.address_line1, addressdata?.address_line2];
     let user = JSON.parse(localStorage.getItem("userdata"));
+    dispatch({
+      type: "SET_IS_LOADING",
+      value: true,
+    });
     try {
       const addressadd = await axios({
         method: "post",
@@ -206,6 +184,10 @@ const Checkout = () => {
           },
         },
       });
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
       if (selectadd) {
         swal.fire({
           text: "Address Updated Successfully",
@@ -224,6 +206,10 @@ const Checkout = () => {
       setlocalgt(!localgt);
       handleClose();
     } catch (e) {
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
       console.log(e);
     }
   };
@@ -296,6 +282,8 @@ const Checkout = () => {
       pincode: itm?.postcode,
       country: itm?.country_id,
       id: itm?.address_id,
+      firstname: itm?.firstname,
+      lastname: itm?.lastname,
     });
   };
 
@@ -344,16 +332,17 @@ const Checkout = () => {
           customer_address_id: selectadd,
         },
       });
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
       swal.fire({
         text: "Quote Requested Successfully",
         icon: "success",
         showConfirmButton: false,
         timer: 3000,
       });
-      dispatch({
-        type: "SET_IS_LOADING",
-        value: false,
-      });
+      window.location.reload();
     } catch (e) {
       console.log(e);
       dispatch({
@@ -389,7 +378,15 @@ const Checkout = () => {
     let user = JSON.parse(localStorage.getItem("userdata"));
     let storedata = JSON.parse(localStorage.getItem("storedata"));
     let itemsdata = [];
-    quotedata[0].invoice_items?.filter((qd) => {
+    dispatch({
+      type: "SET_IS_LOADING",
+      value: true,
+    });
+
+    var country = user?.custom_attributes?.filter(
+      (itm) => itm?.attribute_code === "customer_country"
+    );
+    quotedata[0]?.invoice_items?.filter((qd) => {
       itemsdata.push({
         base_discount_amount: 0,
         base_original_price: qd?.price,
@@ -414,7 +411,7 @@ const Checkout = () => {
         row_total_incl_tax: qd?.price,
         sku: qd?.sku,
         store_id: storedata?.store_id,
-        quote_item_id: 22,
+        quote_item_id: qd?.item_id,
         extension_attributes: {
           seller_id: qd?.seller_id,
           item_hub: qd?.hub_id,
@@ -431,45 +428,45 @@ const Checkout = () => {
         },
         data: {
           entity: {
-            base_currency_code: "INR",
+            base_currency_code: currency?.currency_code,
             base_discount_amount: 0,
-            base_grand_total: 1910,
-            base_shipping_amount: 10,
-            base_subtotal: 1900,
-            base_tax_amount: 0,
+            base_grand_total: quotedata[0]?.invoice?.grand_total,
+            base_shipping_amount: quotedata[0]?.invoice?.shipping_amount,
+            base_subtotal: quotedata[0]?.invoice?.subtotal,
+            base_tax_amount: quotedata?.[0]?.invoice?.tax,
             customer_email: user?.email,
-            customer_firstname: "buyer",
+            customer_firstname: addressdata?.firstname,
             customer_group_id: 5,
             customer_id: user?.id,
             customer_is_guest: 0,
-            customer_lastname: "Check",
+            customer_lastname: addressdata?.lastname,
             customer_note_notify: 1,
             discount_amount: 0,
             email_sent: 1,
             coupon_code: "",
             discount_description: "",
-            grand_total: 1910,
+            grand_total: quotedata[0]?.invoice?.grand_total,
             is_virtual: 0,
-            order_currency_code: "INR",
-            shipping_amount: 7878,
-            shipping_description: "Flat Rate - Fixed",
+            order_currency_code: currency?.currency_code,
+            shipping_amount: quotedata[0]?.invoice?.shipping_amount,
+            shipping_description: "",
             state: "new",
             status: "pending",
-            store_currency_code: "INR",
+            store_currency_code: currency?.currency_code,
             store_id: 1,
-            store_name: "Main Website\nMain Website Store\nDefault Category",
-            subtotal: 1900,
-            subtotal_incl_tax: 1900,
-            tax_amount: 0,
-            total_item_count: 1,
-            total_qty_ordered: 1,
+            store_name: storedata?.name,
+            subtotal: quotedata[0]?.invoice?.subtotal,
+            subtotal_incl_tax: quotedata?.[0]?.invoice?.subtotal_with_tax,
+            tax_amount: quotedata?.[0]?.invoice?.tax,
+            total_item_count: quotedata?.[0]?.invoice?.items_qty,
+            total_qty_ordered: quotedata?.[0]?.invoice?.items_qty,
             weight: 0,
-            quote_id: 559,
+            quote_id: quotedata[0]?.invoice?.quote_id,
             items: itemsdata,
             billing_address: {
               address_type: "billing",
               city: addressdata?.city,
-              country_id: "IN",
+              country_id: country,
               customer_address_id:
                 shipping_method === "texub_shipping" && addressdata?.id
                   ? addressdata?.id
@@ -505,7 +502,7 @@ const Checkout = () => {
                     address: {
                       address_type: "shipping",
                       city: addressdata?.city,
-                      country_id: "IN",
+                      country_id: country,
                       customer_address_id:
                         shipping_method === "texub_shipping" && addressdata?.id
                           ? addressdata?.id
@@ -534,6 +531,10 @@ const Checkout = () => {
           },
         },
       });
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
       swal.fire({
         text: "Order Placed",
         icon: "success",
@@ -544,11 +545,22 @@ const Checkout = () => {
         `/${customnostore ? customnostore : geo?.country_name}/ordersuccess`
       );
     } catch (e) {
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
       console.log(e);
     }
   };
   const navigate = useNavigate();
-
+  let permissions = JSON.parse(localStorage.getItem("permissions"));
+  let placeorder =
+    permissions?.length === 0
+      ? false
+      : permissions?.some(
+          (per) =>
+            per?.value === "can-place-order" && per?.permission_value === 0
+        );
   return (
     <div className="checkout_main_container">
       <div className="checkout_info_list">
@@ -573,7 +585,9 @@ const Checkout = () => {
             <span className="orderinfo_name">Total Amount</span>
 
             <span className="orderinfo_value">
-              <span className="ordertotal_symbol">INR</span>{" "}
+              <span className="ordertotal_symbol">
+                {currency?.currency_code}
+              </span>{" "}
               {formatToCurrency(parseInt(quotedata[0]?.invoice?.grand_total))}
             </span>
           </div>
@@ -654,7 +668,7 @@ const Checkout = () => {
           </div>
           <div className="checkout_order_basic_info">
             <div className="order_basic_info">
-              <span className="order_basic_title">Pending Invoice ID</span>
+              <span className="order_basic_title">Order No</span>
               <Divider orientation="vertical" />
               <span className="order_basic_value">
                 {quotedata[0]?.invoice?.pending_invoice_id}
@@ -744,14 +758,14 @@ const Checkout = () => {
                   {quotedata[0]?.invoice?.pending_invoice_status === "2" && (
                     <div className="shipping_charges_section">
                       <span className="shipping_text">Shipping Charges :</span>
-                      <span className="shipping_awit">Waiting for Charges</span>
+                      <span className="shipping_awit">Awaiting for Prices</span>
                     </div>
                   )}
                   {quotedata[0]?.invoice?.pending_invoice_status === "3" && (
                     <div className="shipping_charges_section">
                       <span className="shipping_text">Shipping Charges :</span>
                       <span className="shipping_price">
-                        <span>INR</span>{" "}
+                        <span>{currency?.currency_code}</span>{" "}
                         {parseFloat(
                           quotedata[0]?.invoice?.shipping_amount
                         ).toFixed(2)}
@@ -774,19 +788,25 @@ const Checkout = () => {
                           >
                             <div className="billing_title">
                               <p>Default Shipping Address</p>
-                              <div
-                                className="edit_address"
-                                onClick={() => editaddress(itm?.address_id)}
-                              >
-                                <img src={Edit_image} alt="" />
-                                <span>Edit</span>
-                              </div>
+                              {quotedata[0]?.invoice?.pending_invoice_status ===
+                                "1" && (
+                                <div
+                                  className="edit_address"
+                                  onClick={() => editaddress(itm?.address_id)}
+                                >
+                                  <img src={Edit_image} alt="" />
+                                  <span>Edit</span>
+                                </div>
+                              )}
                             </div>
 
                             <p className="user_name">
                               {itm?.firstname} {itm?.lastname}
                             </p>
-                            <p className="item_address">{itm?.Street[0]}</p>
+                            <p className="item_address">{itm?.Street[0]} {itm?.Street[1]}</p>
+                            <span className="item_address">{itm?.city} </span>
+                            <span className="item_address">{itm?.country_id} </span>
+                            <span className="item_address">{itm?.postcode} </span>
                           </div>
                         ))}
                         {quotedata[0]?.invoice?.pending_invoice_status ===
@@ -888,6 +908,23 @@ const Checkout = () => {
                         </div>
                         <div className="address_fields">
                           <InputLabel>Mobile Number</InputLabel>
+                          {/* <PhoneInput
+                            country={"in"}
+                            id="mobile_number"
+                            fullWidth
+                            enableSearch={true}
+                            countryCodeEditable={false}
+                            className="inputfield-box"
+                            name="mobile_number"
+                            value={pickup?.mobile}
+                            InputLabelProps={{
+                              shrink: true,
+                              required: true,
+                            }}
+                            onChange={(e) => onpickup(e)}
+                            variant="outlined"
+                          /> */}
+
                           <TextField
                             id="mobile_number"
                             placeholder="9890985433"
@@ -970,7 +1007,9 @@ const Checkout = () => {
                 <span className="checkoutorder_info_title">Sub-Total</span>
                 <Divider orientation="vertical" />
                 <span className="orderinfo_value">
-                  <span className="ordertotal_symbol">INR</span>
+                  <span className="ordertotal_symbol">
+                    {currency?.currency_code}
+                  </span>
                   {quotedata[0]?.invoice?.subtotal}
                 </span>
               </div>
@@ -978,7 +1017,9 @@ const Checkout = () => {
                 <span className="checkoutorder_info_title">Tax</span>
                 <Divider orientation="vertical" />
                 <span className="orderinfo_value">
-                  <span className="ordertotal_symbol">INR</span>
+                  <span className="ordertotal_symbol">
+                    {currency?.currency_code}
+                  </span>
                   {quotedata[0]?.invoice?.tax}
                 </span>
               </div>
@@ -986,7 +1027,10 @@ const Checkout = () => {
                 <span className="checkoutorder_info_title">Freight</span>
                 <Divider orientation="vertical" />
                 <span className="orderinfo_value">
-                  <span className="ordertotal_symbol">INR</span> 0.00
+                  <span className="ordertotal_symbol">
+                    {currency?.currency_code}
+                  </span>{" "}
+                  {quotedata?.[0]?.invoice?.shipping_amount}
                 </span>
               </div>
               <div className="checkoutorder_basic_info">
@@ -995,7 +1039,10 @@ const Checkout = () => {
                 </span>
                 <Divider orientation="vertical" />
                 <span className="orderinfo_value">
-                  <span className="ordertotal_symbol">INR</span> 0.00
+                  <span className="ordertotal_symbol">
+                    {currency?.currency_code}
+                  </span>{" "}
+                  0.00
                 </span>
               </div>
               <div className="checkout_total_order_section">
@@ -1003,7 +1050,9 @@ const Checkout = () => {
                   Payment Processing Charge
                 </span>
                 <span className="checkout_total_order__price">
-                  <span className="checkout_total_orde_symbol">INR</span>
+                  <span className="checkout_total_orde_symbol">
+                    {currency?.currency_code}
+                  </span>
                   0.00
                 </span>
               </div>
@@ -1019,9 +1068,11 @@ const Checkout = () => {
                 </span>
               </div>
               <div className="checkout_btns">
-                <Button className="placeorder_btn" onClick={raisequote}>
-                  Place Your Order
-                </Button>
+                {!placeorder && (
+                  <Button className="placeorder_btn" onClick={raisequote}>
+                    Place Your Order
+                  </Button>
+                )}
                 <Button className="placeorder_cancel_btn">
                   Go To Pending Invoice
                 </Button>
@@ -1032,6 +1083,7 @@ const Checkout = () => {
           <div className="order_details_main">
             <div className="texub_shipping_btns">
               <Button className="texub_cancel_btn" onClick={() => window.history.back()}>Cancel</Button>
+              {/* <Button className="texub_cancel_btn">Cancel</Button> */}
               {quotedata[0]?.invoice?.pending_invoice_status === "1" && (
                 <Button
                   className="texub_quote_btn btn-secondary"
@@ -1198,7 +1250,7 @@ const Checkout = () => {
                         renderValue={(value) => value ? value : <em>Country</em>}
                       >
                         {countryList?.map((cl) => (
-                          <MenuItem value={cl?.value}>{cl?.label}</MenuItem>
+                          <MenuItem value={cl?.label}>{cl?.label}</MenuItem>
                         ))}
                       </Select>
                     </FormControl>
@@ -1229,7 +1281,7 @@ const Checkout = () => {
                 </div> */}
 
                 <div className="address_popup_btns">
-                  <Button className="address_cancel_btn" onClick={() => handleClose()}>Cancel</Button>
+                  <Button className="address_cancel_btn" onClick={()=>handleClose()}>Cancel</Button>
                   <Button className="address_save_btn" onClick={saveaddress}>
                     Save Changes
                   </Button>

@@ -10,6 +10,7 @@ import Constant from "../../Constant";
 import axios from "axios";
 import swal from "sweetalert2";
 import Wishlist from "./Wishlist";
+import AllertMessage from "./AllertMessage";
 
 import header_bottom_image_1 from "../../Assets/Productlist/warranty.png";
 import header_bottom_image_2 from "../../Assets/Productlist/Delivery.png";
@@ -31,7 +32,7 @@ const PdpPopup = () => {
   const [pdpSellerData, setPdpSellerData] = useState({});
   const handleClose = (event, reason) => {
     if (reason && reason === "backdropClick") return;
-     else {
+    else {
       setOpen(false);
       dispatch({
         type: "SET_PDP_POPUP_OPEN_CLOSE",
@@ -121,58 +122,75 @@ const PdpPopup = () => {
   };
 
   const list = (event) => {
-    // debugger
-    let permissions = JSON.parse(localStorage.getItem('permissions'))
+    let permissions = JSON.parse(localStorage.getItem("permissions"));
     let isValidUser = JSON.parse(localStorage.getItem("userdata"))?.group_id;
     if (isValidUser === 5) {
-      let wishpermission = permissions?.some(per => {
-        if(per?.value === 'can-add-to-multiple-wishlist' && per?.permission_value === 0) {
-          swal.fire({
-            text: `Your Account doesn't have access to add products to wishlist`,
-            icon: "error",
-            showConfirmButton: true,
-          });
-        }
-      })
-      if(wishpermission === true) {
-        return
+      let wishpermission =
+        permissions?.length === 0
+          ? false
+          : permissions?.some(
+              (per) =>
+                per?.value === "can-add-to-multiple-wishlist" &&
+                per?.permission_value === 0
+            );
+      if (wishpermission) {
+        swal.fire({
+          text: `Your Account doesn't have access to add products to wishlist`,
+          icon: "error",
+          showConfirmButton: true,
+        });
+      } else {
+        setopenwishlist({ open: true });
       }
-    }
-    if (event === "add_to_wishlist") {
-      setopenwishlist({ open: true });
     }
   };
   //APi call to addtocart
   const user = JSON.parse(localStorage.getItem("userdata"));
   const AddToCartAndPendingInvoice = (info) => {
-    let permissions = JSON.parse(localStorage.getItem('permissions'))
+    let permissions = JSON.parse(localStorage.getItem("permissions"));
     let isValidUser = JSON.parse(localStorage.getItem("userdata"))?.group_id;
     if (isValidUser === 5) {
-      let cartpermission = permissions?.some(per => {
-        if(per?.value === 'can-add-to-cart' && per?.permission_value === 0) {
-          return swal.fire({
+      if (info === "add_to_cart") {
+        let cartpermission =
+          permissions?.length === 0
+            ? false
+            : permissions?.some(
+                (per) =>
+                  per?.value === "can-add-to-cart" &&
+                  per?.permission_value === 0
+              );
+        if (cartpermission) {
+          swal.fire({
             text: `Your Account doesn't have access to add products to the cart`,
             icon: "error",
             showConfirmButton: true,
           });
+        } else {
+          handleApiCall("add_to_cart");
         }
-      })
-      if(cartpermission === true) {
-        return
       }
-      let pendingpermission = permissions?.some(per => {
-        if(per?.value === 'can-add-to-pending-invoice' && per?.permission_value === 0) {
-          return swal.fire({
+      if (info === "pending_invoice") {
+        let pendingpermission =
+          permissions?.length === 0
+            ? false
+            : permissions?.some(
+                (per) =>
+                  per?.value === "can-add-to-pending-invoice" &&
+                  per?.permission_value === 0
+              );
+        if (pendingpermission) {
+          swal.fire({
             text: `Your Account doesn't have access to add products to Pending Invoice`,
             icon: "error",
             showConfirmButton: true,
           });
+        } else {
+          handleApiCall("pending_invoice");
         }
-      })
-      if(pendingpermission === true) {
-        return
       }
     }
+  };
+  const handleApiCall = (info) => {
     let storedata = JSON.parse(localStorage.getItem("storedata"));
     let isUserAddData = pdpSellerData?.is_table_one?.filter(
       (itm) => itm?.product_id === pdpSellerData?.product_id
@@ -246,12 +264,11 @@ const PdpPopup = () => {
           timer: 3000,
         });
       });
-    // }
   };
-
   function truncate(str, n) {
     return str?.length > n ? str.substr(0, n - 1) + "..." : str;
   }
+ const [allert, setallert] = useState(false);
 
   const [openwishlist, setopenwishlist] = useState({ open: false });
 
@@ -357,6 +374,9 @@ const PdpPopup = () => {
                 <span> Add to Pending Invoice</span>
               </Button>
             </div>
+            <p onClick={()=> setallert(true)}>Alert</p>
+             {allert && 
+             <AllertMessage Open={setallert}/>}
           </div>
           <div className="pdp_modal_footer">
             <div className="pdp_footer_model_details">

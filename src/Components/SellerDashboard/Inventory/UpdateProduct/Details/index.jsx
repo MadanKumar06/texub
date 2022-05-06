@@ -373,7 +373,7 @@ function Index({
         </div>
       )}
       {currentdata?.hub_id === "2" && setisGST(2)}
-      {currentdata?.hub_id === "2" && (
+      {currentdata?.hub_id === "2" ? (
         <div className="updateproduct__gst">
           <div className="updateproduct_info_form">
             <InputLabel>GST %</InputLabel>
@@ -442,7 +442,7 @@ function Index({
             </InputLabel>
           </div>
         </div>
-      )}
+      ) : ""}
     </>
   );
 }

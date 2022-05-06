@@ -108,7 +108,7 @@ function Index({ setuserform, userform }) {
         customBodyRender: (value) => {
           return (
             <div className="usermgmt__action">
-              <p>Login</p>
+              {/* <p>Login</p> */}
               {/* onClick={edituser} */}
               <p>Edit</p>
               <p>Delete</p>

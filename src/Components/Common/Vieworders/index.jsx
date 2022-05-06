@@ -64,8 +64,8 @@ const columns = [
     label: "PRODUCT NAME",
     options: {
       customBodyRender: (value, tablemeta) => {
-        let brand_image = tablemeta?.rowData[5];
-        let description = tablemeta?.rowData[6];
+        let brand_image = tablemeta?.rowData[7];
+        let description = tablemeta?.rowData[8];
         return (
           <div className="productname">
             <img src={brand_image} alt="" className="image"></img>
@@ -105,6 +105,15 @@ const columns = [
       },
     },
   },
+    {
+      name: "hub",
+      label: "Hub",
+      options: {
+        customBodyRender: (value) => {
+          return <div className="vieworders_hub">{value}</div>;
+        },
+      },
+    },
   {
     name: "unit_price",
     label: "UNIT PRICE",

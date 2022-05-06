@@ -235,7 +235,6 @@ const TransitionsModal = ({ classes, openPopUp }) => {
   //API to Register
   const FinalSignin = () => {
     let storedata = JSON.parse(localStorage.getItem("storedata"));
-    debugger
     dispatch({
       type: "SET_IS_LOADING",
       value: true,
@@ -405,7 +404,7 @@ const TransitionsModal = ({ classes, openPopUp }) => {
   const forgotpass = () => {
     setpassopen(true);
   };
-  useEffect(()=>{
+useEffect(()=>{
     if(signInData.forgot_email_address.length===0){
       setSignInData((prev) => ({
         ...prev,
@@ -592,7 +591,7 @@ const TransitionsModal = ({ classes, openPopUp }) => {
                       </Button>
                     </Box>
                     <p className={forgot_password} onClick={forgotpass}>
-                      Forgot Password?
+                      Forgot Password ?
                     </p>
                   </div>
                   <div className={logo_svg}>
