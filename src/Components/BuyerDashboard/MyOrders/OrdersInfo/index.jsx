@@ -1,31 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { Modal, Backdrop } from "@mui/material";
-import { Add } from "@mui/icons-material";
-import { Button, IconButton, Typography, Box } from "@mui/material";
-import { Clear } from "@mui/icons-material";
-import Divider from "@mui/material/Divider";
+import { Modal, Backdrop, Divider } from "@mui/material";
+import { Clear, ArrowBackIosNew } from "@mui/icons-material";
 import Ratingpopup from "./Rating";
 import TrackOrderpopup from "./TrackOrder";
 import TransactionPopup from "./TransactionInfo";
 import "./styles.scss";
-import { ArrowBackIosNew } from "@mui/icons-material";
+import { useStateValue } from "../../../../store/state";
 import MUITable from "../../../Common/MUITable";
+
 import image from "../../../../Assets/buyerdashboard/auctions/hp.png";
 import download from "../../../../Assets/buyerdashboard/orders/download.png";
 import track from "../../../../Assets/buyerdashboard/orders/trackorder.png";
 import rating from "../../../../Assets/buyerdashboard/orders/rating.png";
-import { useStateValue } from "../../../../store/state";
 import {
-  shippingaddress,
-  billingaddress,
-  total,
   totalamount,
   transaction_info,
 } from "../../../Common/Vieworders/viewordersjson";
 import axios from "axios";
 import Constant from "../../../../Constant";
 import moment from "moment";
-
+import swal from "sweetalert2";
 
 const Index = ({ orders, currentorder }) => {
   function formatToCurrency(price) {
@@ -79,7 +73,16 @@ const Index = ({ orders, currentorder }) => {
           customerId: user?.id,
         },
       });
-      setdetailsorder(orderdetails?.data);
+      if (orderdetails?.data?.[0]?.status) {
+        setdetailsorder(orderdetails?.data);
+      } else {
+        swal.fire({
+          text: `${orderdetails?.data?.[0]?.message}`,
+          icon: "error",
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      }
       dispatch({
         type: "SET_IS_LOADING",
         value: false,
@@ -258,58 +261,6 @@ const Index = ({ orders, currentorder }) => {
     { number: "Hp0000006" },
     { number: "Hp0000006" },
     { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
   ];
 
   return (
@@ -320,8 +271,9 @@ const Index = ({ orders, currentorder }) => {
             <div className="username">
               <span className="id_heading">Order Date #</span>
               <span className="id">
-                {moment(detailsorder?.[0]?.order_details?.[0]?.created_at).format("DD/MM/YYYY")}
-                {/* {detailsorder?.[0]?.order_details?.[0]?.created_at} */}
+                {moment(
+                  detailsorder?.[0]?.order_details?.[0]?.created_at
+                ).format("DD/MM/YYYY")}
               </span>
             </div>
             <div className="username">
@@ -397,7 +349,6 @@ const Index = ({ orders, currentorder }) => {
 
                   <div className="vieworders_shippingaddress_section">
                     <div className="vieworders_shippingaddress">
-                      {/* {shippingaddress.map((item) => ( */}
                       <li className="vieworders_list">
                         <span className="heading">
                           {detailsorder?.[0]?.order_details?.[0]?.shipping_name}
@@ -413,10 +364,8 @@ const Index = ({ orders, currentorder }) => {
                           }
                         </span>
                       </li>
-                      {/* ))} */}
                     </div>
                     <div className="vieworders_shippingaddress">
-                      {/* {billingaddress.map((item) => ( */}
                       <li className="vieworders_list">
                         <span className="heading">
                           {detailsorder?.[0]?.order_details?.[0]?.billing_name}
@@ -432,7 +381,6 @@ const Index = ({ orders, currentorder }) => {
                           }
                         </span>
                       </li>
-                      {/* ))} */}
                     </div>
                   </div>
                   <div className="vieworders_shippingaddress_section pay_transaction_block">
@@ -493,7 +441,6 @@ const Index = ({ orders, currentorder }) => {
                   </div>
                 </div>
                 <div className="vieworders_total">
-                  {/* {total.map((item) => ( */}
                   <li className="vieworders_list">
                     <span className="total_heading"> Sub-Total</span>
                     <span className="total_amount">
@@ -520,7 +467,6 @@ const Index = ({ orders, currentorder }) => {
                       <span className="currency">INR</span> 0.00
                     </span>
                   </li>
-                  {/* ))} */}
                   <hr className="hr"></hr>
                   {totalamount.map((item) => (
                     <li key={item.id} className="vieworders_list">
@@ -605,11 +551,9 @@ const Index = ({ orders, currentorder }) => {
           </Modal>
         </div>
       </div>
-      {isUopup && (
-        <Ratingpopup Popup={setisUopup} currentorder={currentorder} />
-      )}
-      {TrackOrder && <TrackOrderpopup PopupTrack={setisTrackOrder} />}
-      {Transaction && <TransactionPopup PopupTransaction={setisTransaction} />}
+      {isUopup && <Ratingpopup Popup={Popup} currentorder={currentorder} />}
+      {TrackOrder && <TrackOrderpopup PopupTrack={PopupTrack} />}
+      {Transaction && <TransactionPopup PopupTransaction={PopupTransaction} />}
     </>
   );
 };

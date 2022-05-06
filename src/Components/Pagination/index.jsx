@@ -39,24 +39,13 @@ const PaginationControlled = ({ PaginateData, DataList, PagePerRow }) => {
     setPage((prevState) => ({
       ...prevState,
       page: value,
-      jumptopage: value?.toString,
+      jumptopage: value?.toString(),
     }));
     PaginateData(
       DataList?.slice(firstIndex + PagePerRow * (value - 1), PagePerRow * value)
     );
   };
 
-  //Jump to page
-  const handleJumpToPage = (event, value) => {
-    setPage((prevState) => ({
-      ...prevState,
-      page: value,
-      jumptopage: value?.toString,
-    }));
-    PaginateData(
-      DataList?.slice(firstIndex + PagePerRow * (value - 1), PagePerRow * value)
-    );
-  };
   return (
     <div className="pagination_top_container">
       <div className="pagination_sub_container">
@@ -73,13 +62,14 @@ const PaginationControlled = ({ PaginateData, DataList, PagePerRow }) => {
       <div className="jump_to_page">
         <p>Jump to page :</p>
         <Autocomplete
-          value={page?.jumptopage?.toString()}
+          value={page?.jumptopage}
           name="jump_to_page"
           onChange={(event, newValue) => {
-            handleJumpToPage(event, newValue);
+            handleChange(event, newValue);
           }}
           id="controllable-states-demo"
           options={page?.option}
+          filterOptions={(options) => options}
           getOptionLabel={(option) => option?.toString()}
           renderInput={(params) => (
             <TextField
