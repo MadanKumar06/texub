@@ -1073,7 +1073,7 @@ const Checkout = () => {
                     Place Your Order
                   </Button>
                 )}
-                <Button className="placeorder_cancel_btn">
+                <Button className="placeorder_cancel_btn" onClick={() => navigate(-1)}>
                   Go To Pending Invoice
                 </Button>
               </div>
