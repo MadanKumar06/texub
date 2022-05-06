@@ -19,6 +19,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import swal from "sweetalert2";
 import { useStateValue } from "../../store/state";
+import PhoneInput from "react-phone-input-2";
 
 //assets
 import Edit_image from "../../Assets/CheckoutPage/Group 913.png";
@@ -86,6 +87,13 @@ const Checkout = () => {
     email_address: false,
     mobile_number: false,
   });
+   const handleMobileChangeInput = (event) => {
+    pickup((prevState) => ({
+      ...prevState,
+      mobile_number: event,
+    }));
+    onpickup("");
+  };
   const onpickup = (e) => {
     if (e.target.name === "email_address") {
       if (isEmailValid(e.target.value)) {
@@ -900,7 +908,24 @@ const Checkout = () => {
                         </div>
                         <div className="address_fields">
                           <InputLabel>Mobile Number</InputLabel>
-                          <TextField
+                          <PhoneInput
+                            country={"in"}
+                            id="mobile_number"
+                            fullWidth
+                            enableSearch={true}
+                            countryCodeEditable={false}
+                            className="inputfield-box"
+                            name="mobile_number"
+                            value={pickup?.mobile}
+                            InputLabelProps={{
+                              shrink: true,
+                              required: true,
+                            }}
+                            onChange={(e) => onpickup(e)}
+                            variant="outlined"
+                          />
+
+                          {/* <TextField
                             id="mobile_number"
                             placeholder="9890985433"
                             className="inputfield-box"
@@ -908,7 +933,7 @@ const Checkout = () => {
                             variant="outlined"
                             value={pickup?.mobile}
                             onChange={(e) => onpickup(e)}
-                          />
+                          /> */}
                           {!formerror?.mobile_number && (
                             <p style={{ color: "red" }}>
                               Please Enter your Mobile Number
