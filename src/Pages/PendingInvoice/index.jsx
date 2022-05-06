@@ -560,8 +560,32 @@ function Index() {
                   )}{" "}
                 </span>
             </p> */}
+               <p
+              className="total_value_block"
+              style={{
+                alignItems: "center",
+                marginTop: "10px",
+              }}
+            >
+              <div className="total_value_section">
+                <span className="total label">Total Order value</span>
+                <Divider
+                  style={{ visibility: "hidden" }}
+                  orientation="vertical"
+                />
+                <span className="value">
+                  <span className="value_symobol">
+                    {" "}
+                      {pendingInvoiceList?.invoice?.quote_currency}
+                  </span>
+                  {formatToCurrency(
+                    parseInt(pendingInvoiceList?.invoice?.grand_total)
+                  )}{" "}
+                </span>
+              </div>
+            </p>
 
-            <p
+            {/* <p
               className="total_value_block"
               style={{
                 alignItems: "center",
@@ -578,8 +602,11 @@ function Index() {
                   {" "}
                   {pendingInvoiceList?.invoice?.quote_currency}
                 </span>
+                {formatToCurrency(
+                    parseInt(pendingInvoiceList?.invoice?.grand_total)
+                  )}{" "}
               </span>
-            </p>
+            </p> */}
             {/* <p className="total_value">
               <div className="total_value_block">
                 <span className="label">Total Order value</span>
