@@ -173,7 +173,7 @@ const TransitionsModal = ({ classes, openPopUp }) => {
       //   ...prev,
       //   forgot_email_address: "",
       // }));
-      setInputValidation(inputValidation.forgot_email_address='')
+     // setInputValidation(inputValidation.forgot_email_address='')
     }
   };
 
@@ -214,16 +214,20 @@ const TransitionsModal = ({ classes, openPopUp }) => {
           showConfirmButton: false,
           timer: 3000,
         });
+        setSignInData((prev) => ({
+          ...prev,
+          forgot_email_address: "",
+        }));
       })
       .catch((error) => {
         dispatch({
           type: "SET_IS_LOADING",
           value: false,
         });
-        setSignInData((prev) => ({
-          ...prev,
-          forgot_email_address: "",
-        }));
+        // setSignInData((prev) => ({
+        //   ...prev,
+        //   forgot_email_address: "",
+        // }));
         swal.fire({
           text: `${error?.data?.message}`,
           icon: "error",
@@ -404,9 +408,12 @@ const TransitionsModal = ({ classes, openPopUp }) => {
   const forgotpass = () => {
     setpassopen(true);
   };
-  useEffect(()=>{
+useEffect(()=>{
     if(signInData.forgot_email_address.length===0){
-      setInputValidation(inputValidation.forgot_email_address='');
+      setSignInData((prev) => ({
+        ...prev,
+        forgot_email_address: "",
+      }));
     }
   }, [signInData.forgot_email_address ])
   return (
@@ -434,7 +441,7 @@ const TransitionsModal = ({ classes, openPopUp }) => {
                   }));
                   setInputValidation((prevState) => ({
                     ...prevState,
-                    forgot_email_address: "........",
+                    forgot_email_address: "",
                   }));
                 }}
               />
