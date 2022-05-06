@@ -78,8 +78,9 @@ function Index({ type, pid }) {
     isIGSTValid: "",
     isSGSTValid: "",
   });
-  const [countcheck, setcountcheck] = useState(true)
+  const [countcheck, setcountcheck] = useState(false)
   const countincrease = (checking) => {
+    debugger
     const isDecimal = /^\d+\.\d{0,1000000}$/;
 
     if (count?.length) {
@@ -532,7 +533,6 @@ function Index({ type, pid }) {
     if(countcheck) {
       return
     }
-    return
     let productdata = [];
     count.filter((data) => {
       if (data?.hub_id) {

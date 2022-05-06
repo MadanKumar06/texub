@@ -33,6 +33,9 @@ function Index() {
     if (invoicelist?.length === 0) return setTableData([]);
     setTableData(event);
   };
+  function formatToCurrency(price) {
+    return price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
+  }
 
   const [isVieworders, setisVieworders] = useState(false);
   const orders = () => {
@@ -86,48 +89,6 @@ function Index() {
     }
   }, [])
 
-  const table = [
-    {
-      invoiceno: "00000022",
-      date: "08/05/21",
-      sellerid: "INDS2013",
-      hub: "Mumbai",
-      amount: "30,427,563",
-      transactionmode: transaction_type,
-      status: "Pending",
-      action: "View Details",
-    },
-    {
-      invoiceno: "00000034",
-      date: "28/09/21",
-      sellerid: "INDS2019",
-      hub: "New Delhi",
-      amount: "42,427,563",
-      transactionmode: transaction_type1,
-      status: "Pending",
-      action: "View Details",
-    },
-    {
-      invoiceno: "00000045",
-      date: "26/02/21",
-      sellerid: "SINS20537",
-      hub: "Singapore",
-      amount: "23,427,563",
-      transactionmode: transaction_type,
-      status: "Paid",
-      action: "View Details",
-    },
-    {
-      invoiceno: "00000065",
-      date: "26/04/21",
-      sellerid: "UAES2517",
-      hub: "Dubai",
-      amount: "3,427,563",
-      transactionmode: transaction_type1,
-      status: "Paid",
-      action: "View Details",
-    },
-  ];
 
   const columns = [
     {
@@ -167,7 +128,7 @@ function Index() {
           return (
             <div className="invoices__amount">
               <span className="currency">INR </span>
-              <span className="price">{parseFloat(value).toFixed(2)}</span>
+              <span className="price">{formatToCurrency(parseFloat(value).toFixed(2))}</span>
             </div>
           );
         },
