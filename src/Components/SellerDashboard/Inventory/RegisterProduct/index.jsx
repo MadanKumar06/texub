@@ -192,7 +192,7 @@ function RegisterProduct() {
       }));
       errorHandle = true;
     } else if (
-      registerNewProductData?.brands?.value === "brand-others" &&
+      registerNewProductData?.brands?.value === "10" &&
       !registerNewProductData?.other_brands
     ) {
       document.getElementById("other_brands")?.focus();
@@ -202,7 +202,7 @@ function RegisterProduct() {
       }));
       errorHandle = true;
     } else if (
-      registerNewProductData?.brands?.value === "brand-others" &&
+      registerNewProductData?.brands?.value === "10" &&
       isOnlySpecialCharacters(registerNewProductData?.other_brands)
     ) {
       document.getElementById("other_brands")?.focus();
@@ -212,8 +212,8 @@ function RegisterProduct() {
       }));
       errorHandle = true;
     } else if (
-      registerNewProductData?.brands?.value === "brand-others" &&
-      isRolesValid(registerNewProductData?.other_brands)
+      registerNewProductData?.brands?.value === "10" &&
+      isOtherBrands(registerNewProductData?.other_brands)
     ) {
       document.getElementById("other_brands")?.focus();
       setInputValidation((prevState) => ({
@@ -571,7 +571,7 @@ function RegisterProduct() {
               {inputValidation?.brands}
             </InputLabel>
 
-            {registerNewProductData?.brands?.value === "brand-others" && (
+            {registerNewProductData?.brands?.value === "10" && (
               <div className="registerproducts_inputfields">
                 {/* <InputLabel>
                   Other Brands <small className="asterisk">*</small>

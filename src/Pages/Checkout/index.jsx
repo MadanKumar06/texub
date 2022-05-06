@@ -38,10 +38,10 @@ import moment from "moment";
 import { useStateValue } from "../../store/state";
 import { isEmailValid, getAdminToken } from "../../utilities";
 
-					
-	function formatToCurrency(price) {
-    return price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
-  }
+
+function formatToCurrency(price) {
+  return price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
+}
 
 const DeliveryAddressJson = [
   {
@@ -166,7 +166,7 @@ const Checkout = () => {
         .then((res) => {
           setCountryList(res?.data);
         })
-        .catch((err) => {});
+        .catch((err) => { });
     };
     fetchCountryData();
   }, []);
@@ -574,7 +574,7 @@ const Checkout = () => {
 
             <span className="orderinfo_value">
               <span className="ordertotal_symbol">INR</span>{" "}
-                {formatToCurrency(parseInt(quotedata[0]?.invoice?.grand_total))}
+              {formatToCurrency(parseInt(quotedata[0]?.invoice?.grand_total))}
             </span>
           </div>
         </div>
@@ -586,9 +586,8 @@ const Checkout = () => {
         </div>
         <div className="order_apply-btn">
           <Link
-            to={`/${
-              customnostore ? customnostore : geo?.country_name
-            }/products`}
+            to={`/${customnostore ? customnostore : geo?.country_name
+              }/products`}
             style={{ textDecoration: "none" }}
           >
             <Button className="button-text btn-primary clear checkout-apply-btn">
@@ -687,12 +686,11 @@ const Checkout = () => {
         <div className="section_left_info">
           <ul>
             <li
-              className={`block_A ${
-                shipping_method === "texub_shipping" ||
+              className={`block_A ${shipping_method === "texub_shipping" ||
                 quotedata[0]?.invoice?.pending_invoice_status === "3"
-                  ? "block_A1"
-                  : "additional"
-              }`}
+                ? "block_A1"
+                : "additional"
+                }`}
             >
               <img
                 className="delivery_address_img"
@@ -770,9 +768,8 @@ const Checkout = () => {
                       <div className="delivery_address_list">
                         {quotedata[0]?.address_list?.map((itm) => (
                           <div
-                            className={`delivery_address_content ${
-                              selectadd === itm?.address_id && "border"
-                            }`}
+                            className={`delivery_address_content ${selectadd === itm?.address_id && "border"
+                              }`}
                             onClick={() => selectaddress(itm)}
                           >
                             <div className="billing_title">
@@ -794,16 +791,16 @@ const Checkout = () => {
                         ))}
                         {quotedata[0]?.invoice?.pending_invoice_status ===
                           "1" && (
-                          <div className="aside_block_B delivery_address_content">
-                            <div
-                              className="delivery_address_add"
-                              onClick={() => handleOpen("add_new_address")}
-                            >
-                              <Add className="add_icon" />
-                              <span>Add New Address</span>
+                            <div className="aside_block_B delivery_address_content">
+                              <div
+                                className="delivery_address_add"
+                                onClick={() => handleOpen("add_new_address")}
+                              >
+                                <Add className="add_icon" />
+                                <span>Add New Address</span>
+                              </div>
                             </div>
-                          </div>
-                        )}
+                          )}
                       </div>
                     </div>
                     {/* <div className="delivery_customer_info">
@@ -848,7 +845,7 @@ const Checkout = () => {
                           />
                           {!formerror?.bussiness_name && (
                             <p style={{ color: "red" }}>
-                              Please Enter yout Business name
+                              Please Enter your Business name
                             </p>
                           )}
                         </div>
@@ -865,7 +862,7 @@ const Checkout = () => {
                           />
                           {!formerror?.contact_person && (
                             <p style={{ color: "red" }}>
-                              Please Enter yout Business name
+                              Please Enter your Contact Person name
                             </p>
                           )}
                         </div>
@@ -885,7 +882,7 @@ const Checkout = () => {
                           />
                           {!formerror?.email_address && (
                             <p style={{ color: "red" }}>
-                              Please Enter yout Business name
+                              Please Enter your Email Address
                             </p>
                           )}
                         </div>
@@ -902,7 +899,7 @@ const Checkout = () => {
                           />
                           {!formerror?.mobile_number && (
                             <p style={{ color: "red" }}>
-                              Please Enter yout Business name
+                              Please Enter your Mobile Number
                             </p>
                           )}
                         </div>
@@ -913,7 +910,7 @@ const Checkout = () => {
               </div>
             </li>
             {shipping_method === "pick_up_from_hub" ||
-            quotedata[0]?.invoice?.pending_invoice_status === "3" ? (
+              quotedata[0]?.invoice?.pending_invoice_status === "3" ? (
               <li className="block_B">
                 <img
                   className="payment_image"
@@ -966,7 +963,7 @@ const Checkout = () => {
       </div>
       <div className="checkout_payment_section">
         {shipping_method === "pick_up_from_hub" ||
-        quotedata[0]?.invoice?.pending_invoice_status === "3" ? (
+          quotedata[0]?.invoice?.pending_invoice_status === "3" ? (
           <div className="order_details_main">
             <div className="checkout_order_basic_info">
               <div className="checkoutorder_basic_info">
@@ -1034,7 +1031,7 @@ const Checkout = () => {
         ) : (
           <div className="order_details_main">
             <div className="texub_shipping_btns">
-              <Button className="texub_cancel_btn">Cancel</Button>
+              <Button className="texub_cancel_btn" onClick={() => window.history.back()}>Cancel</Button>
               {quotedata[0]?.invoice?.pending_invoice_status === "1" && (
                 <Button
                   className="texub_quote_btn btn-secondary"
@@ -1107,7 +1104,7 @@ const Checkout = () => {
                     <TextField
                       id="organization_name"
                       name="organization_name"
-                      placeholder="Texub product id"
+                      placeholder="Organization Name"
                       fullWidth
                       className="inputfield-box"
                       variant="outlined"
@@ -1168,6 +1165,25 @@ const Checkout = () => {
                       value={addressdata?.city}
                     />
                   </div>
+                  {/* <div className="address_fields">
+                    <InputLabel id="address_field">State</InputLabel>
+                    <FormControl className="address_select_field_box">
+                      <Select
+                        labelId="demo-simple-select-label"
+                        id="selection_box_block"
+                        label="state"
+                        name="state"
+                        placeholder="State"
+                        onChange={(e) => addressadd(e)}
+                        value={addressdata?.state}
+                      >
+                        {countryList?.map((cl) => (
+                          <MenuItem value={cl?.value}>{cl?.label}</MenuItem>
+                        ))}
+                      </Select>
+                    </FormControl>
+                  </div>
+                   */}
                   <div className="address_fields">
                     <InputLabel id="address_field">Country</InputLabel>
                     <FormControl className="address_select_field_box">
@@ -1178,6 +1194,8 @@ const Checkout = () => {
                         name="country"
                         onChange={(e) => addressadd(e)}
                         value={addressdata?.country}
+                        displayEmpty
+                        renderValue={(value) => value ? value : <em>Country</em>}
                       >
                         {countryList?.map((cl) => (
                           <MenuItem value={cl?.value}>{cl?.label}</MenuItem>
@@ -1188,25 +1206,30 @@ const Checkout = () => {
                 </div>
 
                 {/* <div className="address_field_block">
-                  <div className="address_fields final_block">
+                  <div className="address_fields">
                     <InputLabel id="address_field">Country</InputLabel>
                     <FormControl className="address_select_field_box">
                       <Select
                         labelId="demo-simple-select-label"
                         id="selection_box_block"
                         label="Country"
+                        name="country"
+                        fullWidth
+                        placeholder="Country"
                         onChange={(e) => addressadd(e)}
+                        value={addressdata?.country}
                       >
-                        <MenuItem value={10}>Ten</MenuItem>
-                        <MenuItem value={20}>Twenty</MenuItem>
-                        <MenuItem value={30}>Thirty</MenuItem>
+                        {countryList?.map((cl) => (
+                          <MenuItem value={cl?.value}>{cl?.label}</MenuItem>
+                        ))}
                       </Select>
                     </FormControl>
                   </div>
+                  <div className="empty_div"></div>
                 </div> */}
 
                 <div className="address_popup_btns">
-                  <Button className="address_cancel_btn">Cancel</Button>
+                  <Button className="address_cancel_btn" onClick={() => handleClose()}>Cancel</Button>
                   <Button className="address_save_btn" onClick={saveaddress}>
                     Save Changes
                   </Button>

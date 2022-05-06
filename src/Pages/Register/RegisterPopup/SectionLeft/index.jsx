@@ -13,6 +13,7 @@ import Register_section_Logo_arrow from "../../../../Assets/CommonImage/Register
 import SectionRight from "../SectionRight";
 import { Clear } from "@mui/icons-material";
 import { useStateValue } from "../../../../store/state";
+import './Style.css';
 
 const TransitionsModal = ({ classes, openPopUp }) => {
   const [open, setOpen] = useState(true);
@@ -36,6 +37,7 @@ const TransitionsModal = ({ classes, openPopUp }) => {
     clear_btn,
     clearbuyer,
     clearseller,
+    register_popup
   } = classes;
   const Images = [
     {
@@ -92,54 +94,53 @@ const TransitionsModal = ({ classes, openPopUp }) => {
         timeout: 500,
       }}
     >
-      <div
-        className={clsx(
-          section_main,
-          `${clicked === "buyer" ? section_main_buyer : section_main_seller}`
-        )}
-        style={{
-          backgroundImage: `${
-            clicked === "buyer"
-              ? `url('${homeContent?.popup?.buyer_banner}')`
-              : `url('${homeContent?.popup?.seller_banner}')`
-          }`,
-          outline: "none",
-        }}
-      >
-        <Clear
+      <div className={register_popup}>
+        <img src={`${clicked === "buyer"
+                ? homeContent?.popup?.buyer_banner
+                : homeContent?.popup?.seller_banner
+              }`} id="register_bg_image"/>
+        <div
           className={clsx(
-            clear_btn,
-            `${clicked === "buyer" ? clearseller : clearseller}`
+            section_main,
+            `${clicked === "buyer" ? section_main_buyer : section_main_seller}`
           )}
-          onClick={() => handleClose()}
-        />
-        <div className={section_left}>
-          <div className={welcome_column}>
-            <div className={welcome_text}>Welcome to</div>
-            <div className={welcome_texub_logo}>
-              <img src={logo} alt="auth" />
-            </div>
-          </div>
-          <div className={tagline_text}>
-            A Secure, Safe And Seamless Digital Marketplace
-          </div>
-          {Images?.map((itm) => (
-            <div className={row_info_points}>
-              <div className={thumb_image}>
-                <img src={itm?.content_img} alt="auth" />
-              </div>
-              <div className={arrow_image}>
-                <img src={itm?.arrow_img} alt="auth" />
-              </div>
-              <div className={point_info_text}>{itm?.text}</div>
-            </div>
-          ))}
-        </div>
-        <div className={section_right}>
-          <SectionRight
-            handleClose={handleClose}
-            handleClassChange={handleClassChange}
+          style={{outline:'none'}} id="reg_form"
+        >
+          <Clear
+            className={clsx(
+              clear_btn,
+              `${clicked === "buyer" ? clearseller : clearseller}`
+            )}
+            onClick={() => handleClose()}
           />
+          <div className={section_left}>
+            <div className={welcome_column}>
+              <div className={welcome_text}>Welcome to</div>
+              <div className={welcome_texub_logo}>
+                <img src={logo} alt="auth" />
+              </div>
+            </div>
+            <div className={tagline_text}>
+              A Secure, Safe And Seamless Digital Marketplace
+            </div>
+            {Images?.map((itm) => (
+              <div className={row_info_points}>
+                <div className={thumb_image}>
+                  <img src={itm?.content_img} alt="auth" />
+                </div>
+                <div className={arrow_image}>
+                  <img src={itm?.arrow_img} alt="auth" />
+                </div>
+                <div className={point_info_text}>{itm?.text}</div>
+              </div>
+            ))}
+          </div>
+          <div className={section_right}>
+            <SectionRight
+              handleClose={handleClose}
+              handleClassChange={handleClassChange}
+            />
+          </div>
         </div>
       </div>
     </Modal>

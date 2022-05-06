@@ -697,7 +697,7 @@
         z-index: 9;
         padding: 2em 3em 3em;
         gap: 30px;
-        // height: 87vh;
+        height: 80vh;
         z-index: 1;
         min-height: 70vh;
         border-radius: 3px;
@@ -733,9 +733,10 @@
                 .MuiFormGroup-root{
                   display: flex;
                   flex-direction: row;
-                   label{
-                     width: 40%;
-                   } 
+                  column-gap: 70px;
+                  //  label{
+                  //    width: 40%;
+                  //  } 
                 }
               }
           }
@@ -762,6 +763,7 @@
                 padding: 12px 14px;
               }
             }
+           
              label{
                 font-weight: 400;
                 letter-spacing: 0.54px;
@@ -784,6 +786,9 @@
 
 
           }
+           .empty_div{
+                    width: 100%;
+              }
           .final_block{
                 width: 48%;
               }
@@ -1044,12 +1049,13 @@
               }
           }
           .aside_block{
-              padding: 1em 2em;
+              padding: 1em 15px;
             .aside_block_A{
               .delivery_address_list{
                 width: 100% !important;
                   .delivery_address_content{
                         margin: 1em;
+                        width: calc(45% - 20px);
                         .user_name{
                           width: 100%;
                           max-width: 82%;
@@ -1074,6 +1080,12 @@
                   width: 100%;
                 }
               }
+               .delivery_address_section.pickup_hub{
+                    padding: 1em 15px;
+                    .pickup_address_section{
+                      width: 100%;
+                    }
+                }
             }
           }
         }
@@ -1255,7 +1267,7 @@
       }
     }
     .section_left{
-       padding: 10px 15px;
+       padding: 0;
        .section_left_info{
          .block_A{
            .shipping_info{
@@ -1264,8 +1276,10 @@
                flex-direction: column;
                .shipping_list{
                  .MuiFormGroup-root{
+                   flex-direction: column;
                    label{
                      width: 100%;
+                     max-width: 100%;
                    }
                  }
                }
@@ -1294,11 +1308,12 @@
                   .delivery_address_list{
                     grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
                     .delivery_address_content{
-                      margin: 10px 15px;
+                      margin: 5px 0;
+                      width: 100%;
                     }
                     .aside_block_B{
                       .delivery_address_add{
-                         margin: 10px 15px;
+                         margin: 5px 0;
                       }
 
                     }
@@ -1326,18 +1341,26 @@
     }
     .checkout_payment_section{
       .order_details_main{
+        padding: 10px 15px !important;
         flex-direction: column;
         .checkout_order_basic_info{
           width: 100%;
+          .orderinfo_value{
+            text-align: right;
+          }
+          .checkoutorder_info_title{
+            text-align: right;
+          }
         }
         .checkout_placeorder_section{
           width: 100%;
           padding: 10px 0;
         }
+        
         .checkout_total_order_section{
           .checkout_total_order__info_title{
             width: 100% !important;
-            padding: 0 1em;
+            padding: 0 15px !important;
           }
 
         }
@@ -1388,14 +1411,15 @@
     padding: 1em;
   }
   .checkout_main_container .section_left .block_A .delivery_address_img {
-    width: 44px;
+    width: 35px;
     left: -39px;
   }
   .checkout_main_container .section_left .block_A:after {
-    top: 50px;
+    top: 35px;
+    left: -23px;
   }
   .checkout_main_container .section_left .block_B .payment_image {
-    width: 44px;
+    width: 35px;
     left: -39px;
   }
   .checkout_main_container .section_left .block_A .delivery_address_title,

@@ -18,7 +18,7 @@ function Index({
   const [{ geo, customnostore }, dispatch] = useStateValue();
   useEffect(() => {
     setcurrentmenu(SellerList[0]?.name);
-  }, []);
+  }, [currentmenu ]);
 
   useEffect(() => {
     let permission = JSON.parse(localStorage.getItem('permissions'))
