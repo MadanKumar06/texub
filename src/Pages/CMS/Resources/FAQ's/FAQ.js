@@ -38,6 +38,15 @@ const FAQ = ({ classes }) => {
   }, []);
 
   const handleCall = () => {
+    let token = localStorage.getItem("token");
+    if (token === null) {
+      return swal.fire({
+        text: "Please Login before submitting your FAQ",
+        icon: "error",
+        showConfirmButton: false,
+        timer: 3000,
+      });
+    }
     let data = {
       customerId: JSON.parse(localStorage.getItem("userdata"))?.id,
       storeId: 3,
@@ -67,7 +76,7 @@ const FAQ = ({ classes }) => {
         });
       })
       .then((res) => {
-        setAskeQuestion('')
+        setAskeQuestion("");
       })
       .catch((error) => {
         dispatch({
