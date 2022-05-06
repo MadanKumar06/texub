@@ -1250,7 +1250,7 @@ const Checkout = () => {
                         renderValue={(value) => value ? value : <em>Country</em>}
                       >
                         {countryList?.map((cl) => (
-                          <MenuItem value={cl?.value}>{cl?.label}</MenuItem>
+                          <MenuItem value={cl?.label}>{cl?.label}</MenuItem>
                         ))}
                       </Select>
                     </FormControl>
