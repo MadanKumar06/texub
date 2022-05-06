@@ -20,7 +20,7 @@ const Index = ({ pdpSellerData, handleOpenClose }) => {
   const [create1, setcreate1] = useState(false);
   const create = () => {
     setcreate1(!create1);
-    setSave_error(false)
+    setSave_error(false);
   };
   const [fname, setfname] = useState([]);
   const [newwishdata, setnewwishdata] = useState("");
@@ -32,30 +32,27 @@ const Index = ({ pdpSellerData, handleOpenClose }) => {
 
   const [wishcheck, setwishcheck] = useState([]);
   const wishlistselect = (data, value) => {
-      let temp = []
-      if(value) {
-        setwishcheck(prevState => [
-            ...prevState,
-            data?.id
-        ])
-      }
-      if(!value) {
-        let temp = wishcheck.filter(wc => wc !== data?.id)
-        setwishcheck(temp)
-      }
+    let temp = [];
+    if (value) {
+      setwishcheck((prevState) => [...prevState, data?.id]);
+    }
+    if (!value) {
+      let temp = wishcheck.filter((wc) => wc !== data?.id);
+      setwishcheck(temp);
+    }
   };
 
-  const [save_error, setSave_error] = useState('');
+  const [save_error, setSave_error] = useState("");
   const handleClickValidation = () => {
     var errorHandle = false;
     if (!newwishdata) {
       document.getElementById("outlined-required")?.focus();
-      setSave_error("Please enter name.",);
+      setSave_error("Please enter name.");
       errorHandle = true;
     }
     if (!errorHandle) {
-      newwishlist()
-      setSave_error('')
+      newwishlist();
+      setSave_error("");
     }
   };
   // Enter EVENT
@@ -91,43 +88,52 @@ const Index = ({ pdpSellerData, handleOpenClose }) => {
 
   const newwishlist = async () => {
     let user = JSON.parse(localStorage.getItem("userdata"));
-    try {
-      let temp = fname?.find((fd) => fd.wishlist_name === newwishdata);
-      const wishdata = await axios({
-        method: "post",
-        url: `${Constant.baseUrl()}/wishlist`,
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-        data: {
-          requestParams: {
-            customer_id: user?.id,
-            product_id: parseInt(pdpSellerData?.product_id),
-            wk_id: wishcheck?.length ? wishcheck : [],
-            wk_name: temp !== undefined ? "" : newwishdata,
-          },
-        },
+    let temp = fname?.find((fd) => fd.wishlist_name === newwishdata);
+    if (wishcheck?.length === 0 && newwishdata === "") {
+      swal.fire({
+        text: "Please select atleast one folder to add the product to the wishlist",
+        icon: "error",
+        showConfirmButton: false,
+        timer: 3000,
       });
-      if (wishdata?.data?.[0]?.status) {
-        handleOpenClose(false);
-        setTimeout(() => {
+    } else {
+      try {
+        const wishdata = await axios({
+          method: "post",
+          url: `${Constant.baseUrl()}/wishlist`,
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          data: {
+            requestParams: {
+              customer_id: user?.id,
+              product_id: parseInt(pdpSellerData?.product_id),
+              wk_id: wishcheck?.length ? wishcheck : [],
+              wk_name: temp !== undefined ? "" : newwishdata,
+            },
+          },
+        });
+        if (wishdata?.data?.[0]?.status) {
+          handleOpenClose(false);
+          setTimeout(() => {
+            swal.fire({
+              text: wishdata?.data?.[0]?.message,
+              icon: "success",
+              showConfirmButton: false,
+              timer: 3000,
+            });
+          }, 1000 / 2);
+        } else {
           swal.fire({
             text: wishdata?.data?.[0]?.message,
-            icon: "success",
+            icon: "error",
             showConfirmButton: false,
             timer: 3000,
           });
-        }, 1000 / 2);
-      } else {
-        swal.fire({
-          text: wishdata?.data?.[0]?.message,
-          icon: "error",
-          showConfirmButton: false,
-          timer: 3000,
-        });
+        }
+      } catch (e) {
+        console.log(e);
       }
-    } catch (e) {
-      console.log(e);
     }
   };
 
@@ -138,7 +144,7 @@ const Index = ({ pdpSellerData, handleOpenClose }) => {
       className="wishlist_modal"
       open={open}
       closeAfterTransition
-       disableRestoreFocus={true}
+      disableRestoreFocus={true}
       BackdropComponent={Backdrop}
       BackdropProps={{
         timeout: 500,
@@ -179,49 +185,54 @@ const Index = ({ pdpSellerData, handleOpenClose }) => {
               </FormGroup>
             </div>
             <div className="wishlist_bts">
-              <Button className="wishlist_create_btn" onClick={create}>
+              <Button className="wishlist_create_btn" onClick={() => create()}>
                 Create New Wishlist
               </Button>
-              <Button className="wishlist_add_btn" onClick={newwishlist}>
+              <Button
+                className="wishlist_add_btn"
+                onClick={() => newwishlist()}
+              >
                 Add
               </Button>
             </div>
             {create1 && (
               <>
-              <div className="inputplace">
-                <span className="inputfield">
-                  <TextField
-                    id="outlined-required"
-                    name="save"
-                    placeholder="Name"
-                    className="wishlistsave_input inputfield-box"
-                    onChange={(e) => setnewwishdata(e.target.value)}
-                  />
-                  <button
-                    className="wishlist_save_btn" style={{ cursor: 'pointer' }}
-                    onClick={() => handleClickValidation()}
+                <div className="inputplace">
+                  <span className="inputfield">
+                    <TextField
+                      id="outlined-required"
+                      name="save"
+                      placeholder="Name"
+                      className="wishlistsave_input inputfield-box"
+                      onChange={(e) => setnewwishdata(e.target.value)}
+                    />
+                    <button
+                      className="wishlist_save_btn"
+                      style={{ cursor: "pointer" }}
+                      onClick={() => handleClickValidation()}
+                    >
+                      Save
+                    </button>
+                  </span>
+                  <p
+                    style={{ cursor: "pointer" }}
+                    onClick={() => {
+                      create();
+                      setSave_error("");
+                    }}
                   >
-                    Save
-                  </button>
-                </span>
-               <p style={{ cursor: "pointer" }} onClick={() =>{
-                  create()
-                  setSave_error('')
-                  }}>
-                  Cancel
-                </p>
-              </div>
-              <InputLabel style={{ color: 'red' }}>
-                {save_error}
-              </InputLabel>
-            </>
+                    Cancel
+                  </p>
+                </div>
+                <InputLabel style={{ color: "red" }}>{save_error}</InputLabel>
+              </>
             )}
             <div className="back_to_pdp">
               <ArrowBackIosIcon />
               <p
                 style={{ cursor: "pointer" }}
                 onClick={() => handleClose()}
-                 className="back"
+                className="back"
               >
                 Back to {pdpSellerData?.model_number}
                 {pdpSellerData?.product_name}
