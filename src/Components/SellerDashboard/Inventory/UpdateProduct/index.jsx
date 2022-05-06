@@ -472,10 +472,6 @@ function Index({ type, pid }) {
     country?.filter((d) => console.log(d));
   }, [restricts_country]);
 
-  console.log(olddata);
-  console.log(restricts_country);
-  console.log(updateProductList?.restricts_country);
-
   const [dropdownListFromApi, setDropdownListFromApi] = useState({
     dropDownList: [],
   });
