@@ -8,6 +8,7 @@ export const initialState = {
   currency: {},
   isSimpleLoading: false,
   cart: [],
+  wishListData: [],
   gt: false,
   homeSearch: "",
   geo: "",
@@ -80,7 +81,11 @@ const reducer = (state, action) => {
         ...state,
         cart: action.data,
       };
-
+    case "WHISHLIST_DATA":
+      return {
+        ...state,
+        wishListData: action.data,
+      };
     case "CART__TRIGGER":
       return {
         ...state,

@@ -908,7 +908,7 @@ const Checkout = () => {
                         </div>
                         <div className="address_fields">
                           <InputLabel>Mobile Number</InputLabel>
-                          <PhoneInput
+                          {/* <PhoneInput
                             country={"in"}
                             id="mobile_number"
                             fullWidth
@@ -923,9 +923,9 @@ const Checkout = () => {
                             }}
                             onChange={(e) => onpickup(e)}
                             variant="outlined"
-                          />
+                          /> */}
 
-                          {/* <TextField
+                          <TextField
                             id="mobile_number"
                             placeholder="9890985433"
                             className="inputfield-box"
@@ -933,7 +933,7 @@ const Checkout = () => {
                             variant="outlined"
                             value={pickup?.mobile}
                             onChange={(e) => onpickup(e)}
-                          /> */}
+                          />
                           {!formerror?.mobile_number && (
                             <p style={{ color: "red" }}>
                               Please Enter your Mobile Number
@@ -1082,7 +1082,8 @@ const Checkout = () => {
         ) : (
           <div className="order_details_main">
             <div className="texub_shipping_btns">
-              <Button className="texub_cancel_btn">Cancel</Button>
+              <Button className="texub_cancel_btn" onClick={() => window.history.back()}>Cancel</Button>
+              {/* <Button className="texub_cancel_btn">Cancel</Button> */}
               {quotedata[0]?.invoice?.pending_invoice_status === "1" && (
                 <Button
                   className="texub_quote_btn btn-secondary"
@@ -1245,6 +1246,8 @@ const Checkout = () => {
                         name="country"
                         onChange={(e) => addressadd(e)}
                         value={addressdata?.country}
+                        displayEmpty
+                        renderValue={(value) => value ? value : <em>Country</em>}
                       >
                         {countryList?.map((cl) => (
                           <MenuItem value={cl?.value}>{cl?.label}</MenuItem>
@@ -1278,7 +1281,7 @@ const Checkout = () => {
                 </div> */}
 
                 <div className="address_popup_btns">
-                  <Button className="address_cancel_btn">Cancel</Button>
+                  <Button className="address_cancel_btn" onClick={()=>handleClose()}>Cancel</Button>
                   <Button className="address_save_btn" onClick={saveaddress}>
                     Save Changes
                   </Button>

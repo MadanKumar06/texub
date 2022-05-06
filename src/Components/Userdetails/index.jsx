@@ -13,19 +13,26 @@ import notification from "../../Assets/sellerdashboard/notification.png";
 import dashboardLogo from "../../Assets/CommonImage/MyAccountMegamenu/menu.png";
 
 export const Userdetails = () => {
-  const [{geo, customstore, customnostore}, dispatch] = useStateValue()
+  const [{ geo, wishListData, customnostore }, dispatch] = useStateValue();
   let isSignedIn = JSON.parse(localStorage.getItem("userdata"));
   let kycStatus = JSON.parse(
     localStorage.getItem("userdata")
   )?.custom_attributes?.filter((itm) => itm?.attribute_code === "kyc_status");
   const history = useNavigate();
   const handleWishlist = () => {
-    history(`/${customnostore ? customnostore : geo?.country_name}/buyerdashboard/wishlist`);
+    history(
+      `/${
+        customnostore ? customnostore : geo?.country_name
+      }/buyerdashboard/wishlist`
+    );
   };
 
-
   const handleDashboard = () => {
-    history(`/${customnostore ? customnostore : geo?.country_name}/sellerdashboard/dashboard`);
+    history(
+      `/${
+        customnostore ? customnostore : geo?.country_name
+      }/sellerdashboard/dashboard`
+    );
   };
   return (
     <div className="user_details_main_container">
@@ -83,7 +90,11 @@ export const Userdetails = () => {
           {isSignedIn?.group_id === 5 && kycStatus?.[0]?.value === "2" ? (
             <>
               <div className="user_wishlist" onClick={() => handleWishlist()}>
-                <Badge showZero={true} badgeContent={0} className="badge_user">
+                <Badge
+                  showZero={true}
+                  badgeContent={wishListData?.length ? wishListData?.length : 0}
+                  className="badge_user"
+                >
                   <div className="whishlist_image">
                     <img src={whishlist_image} alt="" />
                   </div>
