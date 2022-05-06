@@ -523,9 +523,10 @@ function Index() {
               <span className="value">
                 <span className="value_symobol">
                   {" "}
-                  {JSON.parse(localStorage.getItem("currency"))?.currency_code}
+                  {currency_id?.currency_code}{" "}
                 </span>{" "}
-                {parseInt(pendingInvoiceList?.invoice?.shipping_amount)}
+                    {formatToCurrency(parseInt(pendingInvoiceList?.invoice?.shipping_amount))}{" "}
+
               </span>
             </p>
             <p>
@@ -534,7 +535,7 @@ function Index() {
               <span className="value">
                 <span className="value_symobol">
                   {" "}
-                  {JSON.parse(localStorage.getItem("currency"))?.currency_code}
+                  {currency_id?.currency_code}{" "}
                 </span>{" "}
                 00.00
               </span>

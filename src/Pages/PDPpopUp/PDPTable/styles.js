@@ -66,7 +66,7 @@ const styles = () => ({
     listStyleType: "none",
     margin: "0",
     paddingLeft: "0",
-    height: "30vh",
+    height: "28vh",
     overflowX: "auto",
     "&::-webkit-scrollbar": {
       width: "10px",
