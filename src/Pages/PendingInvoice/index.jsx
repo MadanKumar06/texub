@@ -276,6 +276,7 @@ function Index() {
                 <span className="orderinfo_value">Pending</span>
               </div>
             </div>
+            <div className="order_apply_btns">
             <div className="order_apply-btn">
               <Link
                 to={`/${
@@ -337,6 +338,7 @@ function Index() {
                   />{" "}
                 </g>
               </svg>
+            </div>
             </div>
           </div>
           {/* <ArrowBackIosIcon />
@@ -536,10 +538,32 @@ function Index() {
                 00.00
               </span>
             </p>
+             {/* <p className="total_value_section_block" style={{position:"relative",
+                      paddingTop:"10px",
+                      paddingBottom:"10px",
+                      alignIteems:" center",
+                      marginTop: "10px",
+                 }}>
+               <div className="total_value_additional"></div>
+               <span className="total label">Total Order value</span>
+                <Divider
+                  style={{ visibility: "hidden" }}
+                  orientation="vertical"
+                />
+                <span className="value">
+                  <span className="value_symobol">
+                    {" "}
+                    {currency_id?.currency_code}{" "}
+                  </span>
+                  {formatToCurrency(
+                    parseInt(pendingInvoiceList?.invoice?.grand_total)
+                  )}{" "}
+                </span>
+            </p> */}
+
             <p
               className="total_value_block"
               style={{
-                backgroundColor: "#f8f0e0",
                 alignItems: "center",
                 marginTop: "10px",
               }}
@@ -554,9 +578,6 @@ function Index() {
                   {" "}
                   {pendingInvoiceList?.invoice?.quote_currency}
                 </span>
-                {formatToCurrency(
-                  parseInt(pendingInvoiceList?.invoice?.grand_total)
-                )}{" "}
               </span>
             </p>
             {/* <p className="total_value">
