@@ -760,7 +760,7 @@ const Checkout = () => {
                   {quotedata[0]?.invoice?.pending_invoice_status === "2" && (
                     <div className="shipping_charges_section">
                       <span className="shipping_text">Shipping Charges :</span>
-                      <span className="shipping_awit">Waiting for Charges</span>
+                      <span className="shipping_awit">Awaiting for Prices</span>
                     </div>
                   )}
                   {quotedata[0]?.invoice?.pending_invoice_status === "3" && (

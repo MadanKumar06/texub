@@ -263,4 +263,16 @@
       }
     }
   }
+
+  .want_tobuy{
+    .want_tobuy__table{
+      .MuiTableBody-root{
+          .MuiTableRow-root{
+              .MuiTableCell-root{
+                width: 100%;
+              }
+          }
+      }
+    }
+  } 
 }

@@ -421,6 +421,8 @@
               padding: 10px 20px;
               margin-left: 10px;
               color: #2f6da3;
+              box-shadow: 0px 3px 6px #00000029;
+              border-radius: 24px;
             }
             .shipping_price{
               background-color: #f8f0e0;
@@ -577,6 +579,7 @@
                 .ordertotal_symbol{
                   font-size: 14px;
                   margin-right: 5px;
+                  font-weight: 400;
                 }
               }
             }
@@ -711,9 +714,9 @@
         z-index: 9;
         padding: 2em 3em 3em;
         gap: 30px;
-        height: 80vh;
+        height: 65vh;
         z-index: 1;
-        min-height: 70vh;
+        min-height: 65vh;
         border-radius: 3px;
         overflow-x: auto;
         box-shadow: 0 0 12px 2px rgb(0 0 0 / 35%);
@@ -1400,6 +1403,7 @@
   }
 .add_address_popup{
   .address_popup_main{
+    height: 80vh;
     padding: 1em 1em 2em;
     .address_popup_block{
       .address_selection_block{
