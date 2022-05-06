@@ -598,6 +598,7 @@ const Checkout = () => {
             <span className="orderinfo_value">Pending</span>
           </div>
         </div>
+         <div className="order_apply_btns">
         <div className="order_apply-btn">
           <Link
             to={`/${
@@ -653,6 +654,7 @@ const Checkout = () => {
               />{" "}
             </g>
           </svg>
+        </div>
         </div>
       </div>
 
