@@ -143,7 +143,7 @@ function Index() {
     options: {
       customBodyRender: (value) => {
         return (
-          <div className="invoices__amount">
+          <div className="invoices__date">
             {moment(value).format("DD/MM/YYYY")}
           </div>
         );
