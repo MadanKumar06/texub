@@ -525,7 +525,7 @@ function Index() {
                   {" "}
                   {JSON.parse(localStorage.getItem("currency"))?.currency_code}
                 </span>{" "}
-                00.00
+                {parseInt(pendingInvoiceList?.invoice?.shipping_amount)}
               </span>
             </p>
             <p>
