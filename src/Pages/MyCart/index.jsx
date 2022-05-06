@@ -188,6 +188,15 @@ const Mycart = () => {
       console.log(e);
     }
   };
+ const handleOnNavigate=() =>{
+      navigate(`/${
+                    customnostore ? customnostore : geo?.country_name
+                  }/products`);
+
+ }
+
+
+  
 
   return (
     <div className="my_cart_main">
@@ -210,15 +219,11 @@ const Mycart = () => {
       <MyCartTable cartDataList={cart} deleteCartData={deleteCartData} />
 
       <div className="my_cart_footer">
-        <Button className="my_cart_bottom_button_shopping">
-          <Link
-            style={{ textDecoration: "none", color: "white" }}
-            to={`/${
-              customnostore ? customnostore : geo?.country_name
-            }/products`}
-          >
+
+        <Button className="my_cart_bottom_button_shopping" onClick={()=>handleOnNavigate()}>
+       
             Continue Shopping
-          </Link>
+         
         </Button>
         {userpermission ? (
           <Button

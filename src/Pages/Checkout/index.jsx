@@ -806,7 +806,10 @@ const Checkout = () => {
                             <p className="user_name">
                               {itm?.firstname} {itm?.lastname}
                             </p>
-                            <p className="item_address">{itm?.Street[0]}</p>
+                            <p className="item_address">{itm?.Street[0]} {itm?.Street[1]}</p>
+                            <span className="item_address">{itm?.city} </span>
+                            <span className="item_address">{itm?.country_id} </span>
+                            <span className="item_address">{itm?.postcode} </span>
                           </div>
                         ))}
                         {quotedata[0]?.invoice?.pending_invoice_status ===
