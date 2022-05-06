@@ -15,14 +15,12 @@ import {
 import axios from "axios";
 import Constant from "../../../Constant";
 import swal from "sweetalert2";
-import { useStateValue } from "../../../store/state";
 
 const Index = ({ pdpSellerData, handleOpenClose }) => {
-  const [{}, dispatch] = useStateValue();
   const [create1, setcreate1] = useState(false);
   const create = () => {
     setcreate1(!create1);
-    setSave_error(false);
+    setSave_error(false)
   };
   const [fname, setfname] = useState([]);
   const [newwishdata, setnewwishdata] = useState("");
@@ -34,27 +32,30 @@ const Index = ({ pdpSellerData, handleOpenClose }) => {
 
   const [wishcheck, setwishcheck] = useState([]);
   const wishlistselect = (data, value) => {
-    let temp = [];
-    if (value) {
-      setwishcheck((prevState) => [...prevState, data?.id]);
-    }
-    if (!value) {
-      let temp = wishcheck.filter((wc) => wc !== data?.id);
-      setwishcheck(temp);
-    }
+      let temp = []
+      if(value) {
+        setwishcheck(prevState => [
+            ...prevState,
+            data?.id
+        ])
+      }
+      if(!value) {
+        let temp = wishcheck.filter(wc => wc !== data?.id)
+        setwishcheck(temp)
+      }
   };
 
-  const [save_error, setSave_error] = useState("");
+  const [save_error, setSave_error] = useState('');
   const handleClickValidation = () => {
     var errorHandle = false;
     if (!newwishdata) {
       document.getElementById("outlined-required")?.focus();
-      setSave_error("Please enter name.");
+      setSave_error("Please enter name.",);
       errorHandle = true;
     }
     if (!errorHandle) {
-      newwishlist();
-      setSave_error("");
+      newwishlist()
+      setSave_error('')
     }
   };
   // Enter EVENT
@@ -108,9 +109,6 @@ const Index = ({ pdpSellerData, handleOpenClose }) => {
         },
       });
       if (wishdata?.data?.[0]?.status) {
-        dispatch({
-          type: "SET_GENERAL_TRINGGER",
-        });
         handleOpenClose(false);
         setTimeout(() => {
           swal.fire({
@@ -140,7 +138,7 @@ const Index = ({ pdpSellerData, handleOpenClose }) => {
       className="wishlist_modal"
       open={open}
       closeAfterTransition
-      disableRestoreFocus={true}
+       disableRestoreFocus={true}
       BackdropComponent={Backdrop}
       BackdropProps={{
         timeout: 500,
@@ -190,42 +188,40 @@ const Index = ({ pdpSellerData, handleOpenClose }) => {
             </div>
             {create1 && (
               <>
-                <div className="inputplace">
-                  <span className="inputfield">
-                    <TextField
-                      id="outlined-required"
-                      name="save"
-                      placeholder="Name"
-                      className="wishlistsave_input inputfield-box"
-                      onChange={(e) => setnewwishdata(e.target.value)}
-                    />
-                    <button
-                      className="wishlist_save_btn"
-                      style={{ cursor: "pointer" }}
-                      onClick={() => handleClickValidation()}
-                    >
-                      Save
-                    </button>
-                  </span>
-                  <p
-                    style={{ cursor: "pointer" }}
-                    onClick={() => {
-                      create();
-                      setSave_error("");
-                    }}
+              <div className="inputplace">
+                <span className="inputfield">
+                  <TextField
+                    id="outlined-required"
+                    name="save"
+                    placeholder="Name"
+                    className="wishlistsave_input inputfield-box"
+                    onChange={(e) => setnewwishdata(e.target.value)}
+                  />
+                  <button
+                    className="wishlist_save_btn" style={{ cursor: 'pointer' }}
+                    onClick={() => handleClickValidation()}
                   >
-                    Cancel
-                  </p>
-                </div>
-                <InputLabel style={{ color: "red" }}>{save_error}</InputLabel>
-              </>
+                    Save
+                  </button>
+                </span>
+               <p style={{ cursor: "pointer" }} onClick={() =>{
+                  create()
+                  setSave_error('')
+                  }}>
+                  Cancel
+                </p>
+              </div>
+              <InputLabel style={{ color: 'red' }}>
+                {save_error}
+              </InputLabel>
+            </>
             )}
             <div className="back_to_pdp">
               <ArrowBackIosIcon />
               <p
                 style={{ cursor: "pointer" }}
                 onClick={() => handleClose()}
-                className="back"
+                 className="back"
               >
                 Back to {pdpSellerData?.model_number}
                 {pdpSellerData?.product_name}

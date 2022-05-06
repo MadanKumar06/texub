@@ -69,10 +69,6 @@ const Header = ({ classes }) => {
     async function fetchData() {
       const user = JSON.parse(localStorage.getItem("userdata"));
       try {
-        dispatch({
-          type: "SET_IS_LOADING",
-          value: true,
-        });
         const wishlistdata = await axios({
           method: "post",
           url: `${Constant.baseUrl()}/getwishlist`,
@@ -89,20 +85,12 @@ const Header = ({ classes }) => {
           type: "WHISHLIST_DATA",
           data: wishlistdata?.data,
         });
-        dispatch({
-          type: "SET_IS_LOADING",
-          value: false,
-        });
       } catch (e) {
         console.log(e);
-        dispatch({
-          type: "SET_IS_LOADING",
-          value: false,
-        });
       }
     }
     fetchData();
-  }, [generalTrigger]);
+  }, [currency, generalTrigger, localStorage.getItem("userdata")]);
   const SigninPopUP = () => {
     dispatch({
       type: "SET_SIGNIN_OPEN_CLOSE",

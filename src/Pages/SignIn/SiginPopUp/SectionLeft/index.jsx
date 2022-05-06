@@ -235,7 +235,6 @@ const TransitionsModal = ({ classes, openPopUp }) => {
   //API to Register
   const FinalSignin = () => {
     let storedata = JSON.parse(localStorage.getItem("storedata"));
-    debugger
     dispatch({
       type: "SET_IS_LOADING",
       value: true,
