@@ -747,8 +747,9 @@
                 .MuiFormGroup-root{
                   display: flex;
                   flex-direction: row;
+                  column-gap: 70px;
                    label{
-                     width: 40%;
+                    //  width: 40%;
                      .MuiRadio-root.Mui-checked{
                            color: #002d56;
                      }
