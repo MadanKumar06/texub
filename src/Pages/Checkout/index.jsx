@@ -1063,15 +1063,17 @@ const Checkout = () => {
               </div>
             </div>
             <div className="checkout_placeorder_section">
-              <div className="remark_section">
-                <span className="remart_title">Remarks :</span>
-                <span className="remart_text">
-                  Fwd & Pick Up / R&A International Logistics / 61/234, Hrbr
-                  Layout Bangalore - 560043. Docs Needed. Provide Actual Dims /
-                  Provide Copy Of The Invoice And Serials, Fwd Pick Up/ R&A
-                  Internal
-                </span>
-              </div>
+              {quotedata[0]?.invoice?.pending_invoice_status === "3" && shipping_method === "pick_up_from_hub" && 
+                <div className="remark_section">
+                  <span className="remart_title">Remarks :</span>
+                  <span className="remart_text">
+                    Fwd & Pick Up / R&A International Logistics / 61/234, Hrbr
+                    Layout Bangalore - 560043. Docs Needed. Provide Actual Dims /
+                    Provide Copy Of The Invoice And Serials, Fwd Pick Up/ R&A
+                    Internal
+                  </span>
+                </div>
+              }
               <div className="checkout_btns">
                 {!placeorder && (
                   <Button className="placeorder_btn" onClick={raisequote}>

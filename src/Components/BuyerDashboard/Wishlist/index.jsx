@@ -84,11 +84,16 @@ const Whislist = () => {
     }
   }, []);
 
+  console.log(wishdata)
+
   return (
     <div className="wishlist_main_container">
       <div>
-        {tableData?.length > 0
-          ? tableData?.map((itm) => (
+        {wishdata?.length === 0
+          ? 
+            "Currently Wishlist Data is Empty"
+          : 
+          tableData?.map((itm) => (
               <WhislistTable
                 tableData={tableData?.length ? itm?.wishlist_data : []}
                 tableDataHeader={itm?.name}
@@ -97,7 +102,7 @@ const Whislist = () => {
                 wishListAgain={wishListAgain}
               />
             ))
-          : "Currently Wishlist Data is Empty"}
+          }
       </div>
       {wishdata?.length === 0 ? (
         ""
