@@ -373,8 +373,15 @@ const PdpPopup = () => {
                 <span> Add to Pending Invoice</span>
               </Button>
             </div>
-            <p onClick={() => setallert(true)}>Alert</p>
-            {allert && <AllertMessage Open={setallert} />}
+
+            {/*  pending invoice popup alert here */}
+            {/* <p onClick={()=> setallert(true)}>Alert</p> */}
+             {allert && 
+             <AllertMessage Open={setallert}/>}
+            {/*  pending invoice popup alert end here */}
+
+
+
           </div>
           <div className="pdp_modal_footer">
             <div className="pdp_footer_model_details">
