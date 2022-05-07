@@ -804,6 +804,14 @@
               width: 100%;
               #selection_box_block{
                 padding: 12px 14px;
+                em{
+                  font-style: normal;
+                  letter-spacing: 0.6px;
+                  color: #BABABA;
+                  text-transform: capitalize;
+                  font-weight: 600;
+                  font-size: 14px;
+                }
               }
             }
            
