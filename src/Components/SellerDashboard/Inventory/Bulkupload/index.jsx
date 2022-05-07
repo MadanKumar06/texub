@@ -256,9 +256,12 @@ function Index() {
   };
   const fileHandler = (event) => {
     setChoosenFile(event?.target?.files[0]);
-    setSaveUploadFile({ files: [...uploadFile?.files, ...event.target.files] });
+    // setSaveUploadFile({ files: [...uploadFile?.files, ...event.target.files] });
+    setSaveUploadFile({ files: [...event.target.files] });
   };
   const handleSaveFile = () => {
+    setRow([]);
+    setFile({});
     if (choosenFile !== "") {
       swal.fire({
         text: `File has been uploaded successfully`,
@@ -380,7 +383,7 @@ function Index() {
           </div>
         </div>
       </div>
-     
+
       <div className="validation_message">
         <div className="check_scroll">
           {Row?.length
@@ -398,7 +401,7 @@ function Index() {
             : ""}
         </div>
       </div>
-       <Link
+      <Link
         className="inventory-page-back"
         to={`/${
           customnostore ? customnostore : geo?.country_name
