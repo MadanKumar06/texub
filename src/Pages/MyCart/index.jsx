@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import shopping_image from "../../Assets/MyCart/Group 956.png";
 import { useStateValue } from "../../store/state";
 import { getAdminToken } from "../../utilities";
-
+import AllertMessage from "../../Components/PendingInvoiceAlertPopup";
 import axios from "axios";
 import Constant from "../../Constant";
 import swal from "sweetalert2";
@@ -22,6 +22,11 @@ const Mycart = () => {
     });
   }, []);
 
+  const [allert, setallert] = useState(false);
+
+  const AddpendingInvoiceAlert = (event) => {
+    setallert(event);
+  };
   //Delete cart
   const [localcart, setlocalcart] = useState(false);
 
@@ -188,15 +193,9 @@ const Mycart = () => {
       console.log(e);
     }
   };
- const handleOnNavigate=() =>{
-      navigate(`/${
-                    customnostore ? customnostore : geo?.country_name
-                  }/products`);
-
- }
-
-
-  
+  const handleOnNavigate = () => {
+    navigate(`/${customnostore ? customnostore : geo?.country_name}/products`);
+  };
 
   return (
     <div className="my_cart_main">
@@ -219,11 +218,11 @@ const Mycart = () => {
       <MyCartTable cartDataList={cart} deleteCartData={deleteCartData} />
 
       <div className="my_cart_footer">
-
-        <Button className="my_cart_bottom_button_shopping" onClick={()=>handleOnNavigate()}>
-       
-            Continue Shopping
-         
+        <Button
+          className="my_cart_bottom_button_shopping"
+          onClick={() => handleOnNavigate()}
+        >
+          Continue Shopping
         </Button>
         {userpermission ? (
           <Button
@@ -247,11 +246,17 @@ const Mycart = () => {
         )}
         <Button
           className="my_cart_bottom_button_pending_invoice"
-          onClick={() => addpendinginvoice()}
+          onClick={() => cart?.length && setallert(true)}
         >
           <span>Add To Pending Invoice</span>
         </Button>
       </div>
+      {allert && (
+        <AllertMessage
+          AddpendingInvoiceAlert={AddpendingInvoiceAlert}
+          handleIsValidUser={addpendinginvoice}
+        />
+      )}
     </div>
   );
 };
