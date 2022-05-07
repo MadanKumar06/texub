@@ -13,14 +13,10 @@ function Index({
   deleterow,
   hubDropDownValues,
   count,
-  hubname,
   currentdata,
   isDetailTabValid,
   setIsDetailTabValid,
-  setcount,
   settest,
-  inputValidation,
-  setisGST
 }) {
   const [options, setoptions] = useState([]);
   const [currenthub, setcurrenthub] = useState("");
@@ -372,7 +368,6 @@ function Index({
           </p>
         </div>
       )}
-      {currentdata?.hub_id === "2" && setisGST(2)}
       {currentdata?.hub_id === "2" ? (
         <div className="updateproduct__gst">
           <div className="updateproduct_info_form">

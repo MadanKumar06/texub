@@ -10,7 +10,7 @@ import Constant from "../../Constant";
 import axios from "axios";
 import swal from "sweetalert2";
 import Wishlist from "./Wishlist";
-import AllertMessage from "./AllertMessage";
+import AllertMessage from "../../Components/PendingInvoiceAlertPopup";
 
 import header_bottom_image_1 from "../../Assets/Productlist/warranty.png";
 import header_bottom_image_2 from "../../Assets/Productlist/Delivery.png";
@@ -82,6 +82,9 @@ const PdpPopup = () => {
   };
 
   const handleIsValidUser = async (event) => {
+    //pending invoice acknowledgement useState
+    setallert(false);
+
     let isDataValid = user?.custom_attributes?.filter(
       (itm) => itm?.attribute_code === "kyc_status"
     );
@@ -235,10 +238,10 @@ const PdpPopup = () => {
             showConfirmButton: false,
             timer: 3000,
           });
-          dispatch({
-            type: "SET_PDP_POPUP_OPEN_CLOSE",
-            value: false,
-          });
+          // dispatch({
+          //   type: "SET_PDP_POPUP_OPEN_CLOSE",
+          //   value: false,
+          // });
           dispatch({
             type: "CART__TRIGGER",
           });
@@ -275,6 +278,9 @@ const PdpPopup = () => {
     setopenwishlist({ open: event });
   };
 
+  const AddpendingInvoiceAlert = (event) => {
+    setallert(event);
+  };
   return (
     <Modal
       aria-labelledby="transition-modal-title"
@@ -367,21 +373,12 @@ const PdpPopup = () => {
               <Button
                 className="modal_bottom_button_pending_invoice"
                 // onClick={() => handleRouteOnButtonClick("pending_invoice")}
-                onClick={() => handleIsValidUser("pending_invoice")}
+                onClick={() => setallert(true)}
               >
                 <img width="21px" src={invoice_image} alt="" />
                 <span> Add to Pending Invoice</span>
               </Button>
             </div>
-
-            {/*  pending invoice popup alert here */}
-            {/* <p onClick={()=> setallert(true)}>Alert</p> */}
-             {allert && 
-             <AllertMessage Open={setallert}/>}
-            {/*  pending invoice popup alert end here */}
-
-
-
           </div>
           <div className="pdp_modal_footer">
             <div className="pdp_footer_model_details">
@@ -419,6 +416,12 @@ const PdpPopup = () => {
             </div>
           </div>
         </div>
+        {allert && (
+          <AllertMessage
+            AddpendingInvoiceAlert={AddpendingInvoiceAlert}
+            handleIsValidUser={handleIsValidUser}
+          />
+        )}
       </div>
     </Modal>
   );
