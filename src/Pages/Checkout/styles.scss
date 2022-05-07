@@ -44,9 +44,20 @@
           align-items: center;
         }
       }
+       .order_apply_btns{
+              width: 25%;
+            flex-direction: row;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            gap: 20px;
+        }
       .order_apply-btn{
+         width: 100%;
+         max-width: 100%;
           .checkout-apply-btn{
             max-width: 100%;
+            width: 100%;
             padding: 10px 25px;
           }
       }
@@ -590,6 +601,7 @@
               background-color: #f8f0e0;
               padding: 15px 0;
               margin-top: 10px;
+              width: 80%;
               .checkout_total_order__info_title{
                 width: 40%;
                 padding: 0 3em;
@@ -618,6 +630,7 @@
           margin: 10px 0 15px;
           display: flex;
           flex-direction: column;
+          display: none;
             .remart_title{
               color: #002D56;
               text-transform: capitalize;
@@ -791,6 +804,14 @@
               width: 100%;
               #selection_box_block{
                 padding: 12px 14px;
+                em{
+                  font-style: normal;
+                  letter-spacing: 0.6px;
+                  color: #BABABA;
+                  text-transform: capitalize;
+                  font-weight: 600;
+                  font-size: 14px;
+                }
               }
             }
            
@@ -1055,6 +1076,9 @@
       flex-wrap: wrap;
       justify-content: space-between;
       gap: 1em;
+        .order_apply_btns{
+            width: auto;
+          }
     }
     .checkout_order_info{
       flex-direction: column;

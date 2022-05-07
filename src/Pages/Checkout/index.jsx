@@ -598,6 +598,7 @@ const Checkout = () => {
             <span className="orderinfo_value">Pending</span>
           </div>
         </div>
+         <div className="order_apply_btns">
         <div className="order_apply-btn">
           <Link
             to={`/${
@@ -653,6 +654,7 @@ const Checkout = () => {
               />{" "}
             </g>
           </svg>
+        </div>
         </div>
       </div>
 
@@ -1013,7 +1015,7 @@ const Checkout = () => {
                   <span className="ordertotal_symbol">
                     {currency?.currency_code}
                   </span>
-                  {quotedata[0]?.invoice?.subtotal}
+                   {formatToCurrency(parseInt(quotedata[0]?.invoice?.subtotal))}
                 </span>
               </div>
               <div className="checkoutorder_basic_info">
@@ -1023,7 +1025,7 @@ const Checkout = () => {
                   <span className="ordertotal_symbol">
                     {currency?.currency_code}
                   </span>
-                  {quotedata[0]?.invoice?.tax}
+                  {formatToCurrency(parseInt(quotedata[0]?.invoice?.tax))}
                 </span>
               </div>
               <div className="checkoutorder_basic_info">
@@ -1033,7 +1035,7 @@ const Checkout = () => {
                   <span className="ordertotal_symbol">
                     {currency?.currency_code}
                   </span>{" "}
-                  {quotedata?.[0]?.invoice?.shipping_amount}
+                  {formatToCurrency(parseInt(quotedata[0]?.invoice?.shipping_amount))}
                 </span>
               </div>
               <div className="checkoutorder_basic_info">
@@ -1045,7 +1047,7 @@ const Checkout = () => {
                   <span className="ordertotal_symbol">
                     {currency?.currency_code}
                   </span>{" "}
-                  0.00
+                  0
                 </span>
               </div>
               <div className="checkout_total_order_section">
@@ -1056,7 +1058,7 @@ const Checkout = () => {
                   <span className="checkout_total_orde_symbol">
                     {currency?.currency_code}
                   </span>
-                  0.00
+                  {formatToCurrency(parseInt(quotedata[0]?.invoice?.grand_total))}
                 </span>
               </div>
             </div>
