@@ -100,7 +100,6 @@ const WhislistTable = ({
   };
 
   const addwishtocart = async (value) => {
-    debugger;
     const user = JSON.parse(localStorage.getItem("userdata"));
     try {
       const addcart = await axios({
@@ -487,7 +486,7 @@ const WhislistTable = ({
                       </div>
                       <p className="seller_id">
                         <span>Seller ID :</span>
-                        {itm?.seller_id}
+                        {itm?.seller_code}
                       </p>
                     </div>
                   </div>

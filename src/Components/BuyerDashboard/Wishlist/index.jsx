@@ -21,6 +21,13 @@ const Whislist = () => {
     }
   };
 
+  const [filterwishdata, setfilterwishdata] = useState([])
+  useEffect(() => {
+    let temp = wishdata?.filter(wd => wd?.wishlist_data?.length > 0)
+    console.log(temp)
+    setfilterwishdata(temp)
+  }, [wishdata])
+
   useEffect(() => {
     async function fetchData() {
       const user = JSON.parse(localStorage.getItem("userdata"));
@@ -84,12 +91,11 @@ const Whislist = () => {
     }
   }, []);
 
-  console.log(wishdata)
 
   return (
     <div className="wishlist_main_container">
       <div>
-        {wishdata?.length === 0
+        {filterwishdata?.length === 0
           ? 
             "Currently Wishlist Data is Empty"
           : 
@@ -104,12 +110,12 @@ const Whislist = () => {
             ))
           }
       </div>
-      {wishdata?.length === 0 ? (
+      {filterwishdata?.length === 0 ? (
         ""
       ) : (
         <Pagination
           PaginateData={PaginateDataSplit}
-          DataList={wishdata?.length > 0 ? wishdata : []}
+          DataList={filterwishdata?.length > 0 ? filterwishdata : []}
           PagePerRow={2}
         />
       )}
