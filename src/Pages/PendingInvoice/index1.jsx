@@ -29,6 +29,10 @@ const PendingInvoice = () => {
         customer_id: user?.id,
       },
     };
+    dispatch({
+      type: "SET_IS_LOADING",
+      value: true,
+    });
     axios
       .post(Constant.baseUrl() + "/pendingInvoiceList", data, {
         headers: {
@@ -37,9 +41,18 @@ const PendingInvoice = () => {
         },
       })
       .then((res) => {
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
         setPendingInvoiceList(res?.data);
       })
-      .catch((error) => {});
+      .catch((error) => {
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+      });
   }, []);
   const options = ["Option 1", "Option 2"];
   const [value, setValue] = useState();

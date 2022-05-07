@@ -15,7 +15,7 @@ import axios from "axios";
 import swal from "sweetalert2";
 import SimpleLoader from "../../../Components/SimpleLoader";
 import minicart_icon from "../../../Assets/Minicart/minicart_icon.png";
-import minicart_new from "../../../Assets/Minicart/minicart_new.png";
+import AllertMessage from "../../../Components/PendingInvoiceAlertPopup";
 
 function formatToCurrency(amount) {
   return amount.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
@@ -27,6 +27,11 @@ const MiniCartList = ({ handleSideBarClose }) => {
   const [value, setValue] = React.useState(4);
   const navigate = useNavigate();
   const [isCartData, setIsCartData] = useState([]);
+  const [allert, setallert] = useState(false);
+
+  const AddpendingInvoiceAlert = (event) => {
+    setallert(event);
+  };
   useEffect(() => {
     setIsCartData([]);
     let temp = cart?.[0]?.invoice_items?.map((itm) => ({
@@ -379,7 +384,9 @@ const MiniCartList = ({ handleSideBarClose }) => {
                     JSON.parse(localStorage.getItem("currency"))?.currency_code
                   }{" "}
                 </span>
-                {formatToCurrency(parseInt(cart?.length && cart[0]?.invoice?.subtotal))}
+                {formatToCurrency(
+                  parseInt(cart?.length && cart[0]?.invoice?.subtotal)
+                )}
               </p>
             </div>
             <div className="minicart_btn">
@@ -395,12 +402,18 @@ const MiniCartList = ({ handleSideBarClose }) => {
               </Link>
               <Button
                 className="minicart_bottom_button_pending_invoice"
-                onClick={() => addpendinginvoice()}
+                onClick={() => cart?.length && setallert(true)}
               >
                 <span>Add To Pending Invoice</span>
               </Button>
             </div>
           </footer>
+          {allert && (
+            <AllertMessage
+              AddpendingInvoiceAlert={AddpendingInvoiceAlert}
+              handleIsValidUser={addpendinginvoice}
+            />
+          )}
         </>
       )}
     </div>

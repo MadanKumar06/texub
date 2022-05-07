@@ -147,6 +147,7 @@ const Productlists = ({
                   price_drop: 0,
                   just_launch: 0,
                 }));
+                setApplyFilter(!applyFilter);
               }}
             />
           </div>
@@ -169,6 +170,7 @@ const Productlists = ({
                   price_drop: 1,
                   just_launch: 0,
                 }));
+                setApplyFilter(!applyFilter);
               }}
             />
           </div>
@@ -191,6 +193,7 @@ const Productlists = ({
                   price_drop: 0,
                   just_launch: 1,
                 }));
+                setApplyFilter(!applyFilter);
               }}
             />
           </div>

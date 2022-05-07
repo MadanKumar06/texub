@@ -287,23 +287,25 @@ const Productsbrands = ({
                           <span>
                             {item.category?.id === isChange &&
                               item?.subcategories?.length &&
-                              item?.subcategories?.map((e) => (
-                                <div
-                                  className="content"
-                                  onClick={() => {
-                                    setProductFetchApi((prevState) => ({
-                                      ...prevState,
-                                      category_id: item?.id,
-                                    }));
-                                    setApplyFilter(!applyFilter);
-                                  }}
-                                >
-                                  <span>
-                                    <p>{e.category_name}</p>
-                                    <p>({e.count})</p>
-                                  </span>
-                                </div>
-                              ))}
+                              item?.subcategories?.map((e) => {
+                                return (
+                                  <div
+                                    className="content"
+                                    onClick={() => {
+                                      setProductFetchApi((prevState) => ({
+                                        ...prevState,
+                                        category_id: e?.id,
+                                      }));
+                                      setApplyFilter(!applyFilter);
+                                    }}
+                                  >
+                                    <span>
+                                      <p>{e.category_name}</p>
+                                      <p>({e.count})</p>
+                                    </span>
+                                  </div>
+                                );
+                              })}
                           </span>
                         </li>
                       </div>

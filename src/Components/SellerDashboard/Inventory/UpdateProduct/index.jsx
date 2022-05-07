@@ -78,14 +78,13 @@ function Index({ type, pid }) {
     isIGSTValid: "",
     isSGSTValid: "",
   });
-  const [countcheck, setcountcheck] = useState(false)
+  let errorHandle = false;
   const countincrease = (checking) => {
-    debugger
     const isDecimal = /^\d+\.\d{0,1000000}$/;
 
     if (count?.length) {
       let temp = count?.slice(-1);
-      var errorHandle = false;
+
       if (!temp[0]?.hub_id) {
         document.getElementById("isHubValid")?.focus();
         setIsDetailTabValid((prevState) => ({
@@ -139,8 +138,7 @@ function Index({ type, pid }) {
           isETAValid: "Decimal values will not allow.",
         }));
         errorHandle = true;
-      }
-      else if (!isNumber(temp[0]?.eta)) {
+      } else if (!isNumber(temp[0]?.eta)) {
         document.getElementById("isETAValid")?.focus();
         setIsDetailTabValid((prevState) => ({
           ...prevState,
@@ -148,9 +146,8 @@ function Index({ type, pid }) {
         }));
         errorHandle = true;
       }
-      setcountcheck(errorHandle)
       // GSTS
-      if (isGST === 2) {
+      if (temp[0]?.hub_id === "2") {
         if (!temp[0]?.cgst) {
           document.getElementById("isCGSTValid")?.focus();
           setIsDetailTabValid((prevState) => ({
@@ -193,15 +190,15 @@ function Index({ type, pid }) {
           }));
           errorHandle = true;
         }
-        setcountcheck(errorHandle)
-      } else {
-        setcountcheck(!errorHandle)
+        // setcountcheck(errorHandle);
       }
+      //  else {
+      //   setcountcheck(errorHandle);
+      // }
 
-      if(checking === 'checking-validation') {
-        return
-      }
-      if (!errorHandle) {
+      if (checking === "checking-validation") {
+        return;
+      } else if (!errorHandle) {
         setDummyState(dummyState + 1);
         setcount((data) => [
           ...data,
@@ -523,16 +520,16 @@ function Index({ type, pid }) {
         isMoqValid: "",
         isETAValid: "",
       });
-      setTimeout(setcount(count.filter((item, i) => i !== value2)), 500);
+      setTimeout(setcount(count?.filter((item, i) => i !== value2)), 500);
     }
   };
 
   const updateProduct = async () => {
-    debugger
-    countincrease('checking-validation')
-    if(countcheck) {
-      return
+    countincrease("checking-validation");
+    if (errorHandle) {
+      return;
     }
+
     let productdata = [];
     count.filter((data) => {
       if (data?.hub_id) {
@@ -805,12 +802,9 @@ function Index({ type, pid }) {
                 hubDropDownValues={dropdownListFromApi?.dropDownList?.hub_list}
                 setcount={setcount}
                 count={count}
-                hubname={data?.hubname}
                 currentdata={data}
                 index={ind}
                 settest={settest}
-                inputValidation={inputValidation}
-                setisGST={setisGST}
               />
             </div>
           ))}
