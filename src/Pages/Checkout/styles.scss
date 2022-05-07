@@ -601,6 +601,7 @@
               background-color: #f8f0e0;
               padding: 15px 0;
               margin-top: 10px;
+              width: 80%;
               .checkout_total_order__info_title{
                 width: 40%;
                 padding: 0 3em;
@@ -629,6 +630,7 @@
           margin: 10px 0 15px;
           display: flex;
           flex-direction: column;
+          display: none;
             .remart_title{
               color: #002D56;
               text-transform: capitalize;
