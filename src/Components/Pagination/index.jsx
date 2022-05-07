@@ -33,6 +33,7 @@ const PaginationControlled = ({ PaginateData, DataList, PagePerRow }) => {
       ...prevState,
       option: JumpToPageOptionValues,
     }));
+    console.log(JumpToPageOptionValues)
   }, [PagePerRow]);
 
   const handleChange = (event, value) => {
@@ -44,7 +45,21 @@ const PaginationControlled = ({ PaginateData, DataList, PagePerRow }) => {
     PaginateData(
       DataList?.slice(firstIndex + PagePerRow * (value - 1), PagePerRow * value)
     );
+    localStorage.setItem('wishpage', JSON.stringify(value))
   };
+
+  useEffect(() => {
+    let storedpage = JSON.parse(localStorage.getItem('wishpage'))
+    if(storedpage === null) return
+    setPage((prevState) => ({
+      ...prevState,
+      page: storedpage,
+      jumptopage: storedpage?.toString(),
+    }));
+    PaginateData(
+      DataList?.slice(firstIndex + PagePerRow * (storedpage - 1), PagePerRow * storedpage)
+    );
+  }, [localStorage.getItem('wishpage'), PagePerRow])
 
   return (
     <div className="pagination_top_container">
