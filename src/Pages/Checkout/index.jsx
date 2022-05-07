@@ -561,6 +561,8 @@ const Checkout = () => {
           (per) =>
             per?.value === "can-place-order" && per?.permission_value === 0
         );
+      console.log(quotedata[0]?.payment_methods);
+      
   return (
     <div className="checkout_main_container">
       <div className="checkout_info_list">
@@ -913,6 +915,22 @@ const Checkout = () => {
                         </div>
                         <div className="address_fields">
                           <InputLabel>Mobile Number</InputLabel>
+                           <PhoneInput
+                              country={"in"}
+                              id="mobile_number"
+                              fullWidth
+                              label="Mobile Number"
+                             className="inputfield-box"
+                              name="mobile_number"
+                              placeholder="Mobile number"
+                              value={pickup?.mobile}
+                              inputProps={{
+                                label: "Mobile Number",
+                                required: true,
+                              }}
+                             onChange={(e) => onpickup(e)}
+                              variant="outlined"
+                            />
                           {/* <PhoneInput
                             country={"in"}
                             id="mobile_number"
@@ -960,28 +978,32 @@ const Checkout = () => {
                   alt=""
                 />
                 <p className="payment_title">Select Payment Method</p>
-
-                <div className="payment_info">
                   <RadioGroup
                     aria-labelledby="demo-radio-buttons-group-label"
                     defaultValue={
-                      quotedata[0]?.payment_methods?.banktransfer?.value
+                      //item.value
+                      quotedata[0]?.payment_methods[0]?.value
                     }
                     name="radio-buttons-group"
                   >
+                <div className="payment_info">
+                   {quotedata[0]?.payment_methods.map((item) => (
+                 
                     <div className="payment_footer_block_1">
                       <div className="footer_main">
                         <div className="footer_content">
                           <FormControlLabel
                             value={
-                              quotedata[0]?.payment_methods?.banktransfer?.value
+                               item.value
+                              //quotedata[0]?.payment_methods?.banktransfer?.value
                             }
                             control={
                               <Radio
                                 onClick={() =>
                                   setpayment(
-                                    quotedata[0].payment_methods?.banktransfer
-                                      ?.value
+                                     item.value
+                                    // quotedata[0].payment_methods?.banktransfer
+                                    //   ?.value
                                   )
                                 }
                               />
@@ -989,13 +1011,16 @@ const Checkout = () => {
                             label={""}
                           />
                           <p className="footer_title">
-                            {quotedata[0]?.payment_methods?.banktransfer?.label}
+                            {item.label}
+                            {/* {quotedata[0]?.payment_methods?.label} */}
                           </p>
                         </div>
                       </div>
                     </div>
-                  </RadioGroup>
+                 
+                    ))}
                 </div>
+                 </RadioGroup>
               </li>
             ) : (
               <p></p>
