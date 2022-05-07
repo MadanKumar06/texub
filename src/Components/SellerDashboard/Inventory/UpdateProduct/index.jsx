@@ -78,15 +78,13 @@ function Index({ type, pid }) {
     isIGSTValid: "",
     isSGSTValid: "",
   });
-  const [countcheck, setcountcheck] = useState(true);
+  let errorHandle = false;
   const countincrease = (checking) => {
-    debugger;
     const isDecimal = /^\d+\.\d{0,1000000}$/;
 
     if (count?.length) {
       let temp = count?.slice(-1);
-      var errorHandle = false;
-      debugger;
+
       if (!temp[0]?.hub_id) {
         document.getElementById("isHubValid")?.focus();
         setIsDetailTabValid((prevState) => ({
@@ -148,9 +146,8 @@ function Index({ type, pid }) {
         }));
         errorHandle = true;
       }
-      setcountcheck(!errorHandle);
       // GSTS
-      if (isGST === 2) {
+      if (temp[0]?.hub_id === "2") {
         if (!temp[0]?.cgst) {
           document.getElementById("isCGSTValid")?.focus();
           setIsDetailTabValid((prevState) => ({
@@ -193,10 +190,11 @@ function Index({ type, pid }) {
           }));
           errorHandle = true;
         }
-        setcountcheck(!errorHandle);
-      } else {
-        setcountcheck(!errorHandle);
+        // setcountcheck(errorHandle);
       }
+      //  else {
+      //   setcountcheck(errorHandle);
+      // }
 
       if (checking === "checking-validation") {
         return;
@@ -527,14 +525,11 @@ function Index({ type, pid }) {
   };
 
   const updateProduct = async () => {
-    debugger;
     countincrease("checking-validation");
-    if (!countcheck) {
-      debugger;
+    if (errorHandle) {
       return;
     }
-    debugger;
-    return;
+
     let productdata = [];
     count.filter((data) => {
       if (data?.hub_id) {
@@ -807,12 +802,9 @@ function Index({ type, pid }) {
                 hubDropDownValues={dropdownListFromApi?.dropDownList?.hub_list}
                 setcount={setcount}
                 count={count}
-                hubname={data?.hubname}
                 currentdata={data}
                 index={ind}
                 settest={settest}
-                inputValidation={inputValidation}
-                setisGST={setisGST}
               />
             </div>
           ))}
