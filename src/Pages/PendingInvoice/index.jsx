@@ -81,7 +81,8 @@ function Index() {
         },
       })
       .then((res) => {
-        setPendingInvoiceList(res?.data?.[0]);
+        let length = res?.data?.length - 1
+        setPendingInvoiceList(res?.data?.[length]);
         dispatch({
           type: "SET_IS_LOADING",
           value: false,

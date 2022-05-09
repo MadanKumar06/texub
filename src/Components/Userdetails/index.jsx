@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import "./styles.scss";
 import logo from "../../Assets/Homepage Assets/Group.png";
 import { Badge } from "@mui/material";
@@ -26,6 +26,15 @@ export const Userdetails = () => {
       }/buyerdashboard/wishlist`
     );
   };
+
+  const [wishlength, setwishlength] = useState(0)
+  useEffect(() => {
+    let temp = []
+    wishListData?.filter(wld => temp.push(wld?.wishlist_data?.length))
+    console.log(temp)
+    let templength = temp.reduce((initial, final) => initial + final, 0)
+    setwishlength(templength)
+  }, [wishListData])
 
   const handleDashboard = () => {
     history(
@@ -92,7 +101,8 @@ export const Userdetails = () => {
               <div className="user_wishlist" onClick={() => handleWishlist()}>
                 <Badge
                   showZero={true}
-                  badgeContent={wishListData?.length ? wishListData?.length : 0}
+                  // badgeContent={wishListData?.length ? wishListData?.length : 0}
+                  badgeContent={wishlength}
                   className="badge_user"
                 >
                   <div className="whishlist_image">
