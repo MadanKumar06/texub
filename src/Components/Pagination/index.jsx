@@ -7,9 +7,11 @@ import {
   PaginationItem,
 } from "@mui/material";
 import "./styles.scss";
+import { useStateValue } from '../../store/state'
 
 const firstIndex = 0;
 const PaginationControlled = ({ PaginateData, DataList, PagePerRow }) => {
+  const [{ geo, customnostore }, dispatch] = useStateValue();
   const [page, setPage] = useState({
     page: 1,
     jumptopage: "1",
@@ -44,33 +46,42 @@ const PaginationControlled = ({ PaginateData, DataList, PagePerRow }) => {
     PaginateData(
       DataList?.slice(firstIndex + PagePerRow * (value - 1), PagePerRow * value)
     );
-    if(window.location.pathname === '/india/buyerdashboard/invoiceslist') {
+    if(window.location.pathname === `/${customnostore ? customnostore : geo?.country_name}/buyerdashboard/invoiceslist`) {
       localStorage.setItem('invoicepage', JSON.stringify(value))
     } else {
       localStorage.setItem('invoicepage', JSON.stringify(1))
     }
-    if(window.location.pathname === '/india/buyerdashboard/wishlist') {
+    if(window.location.pathname === `/${customnostore ? customnostore : geo?.country_name}/buyerdashboard/wishlist`) {
       localStorage.setItem('wishpage', JSON.stringify(value))
     } else {
       localStorage.setItem('wishpage', JSON.stringify(1))
     }
-    if(window.location.pathname === '/india/buyerdashboard/wanttobuy') {
+    if(window.location.pathname === `/${customnostore ? customnostore : geo?.country_name}/buyerdashboard/wanttobuy`) {
       localStorage.setItem('wtbpage', JSON.stringify(value))
     } else {
       localStorage.setItem('wtbpage', JSON.stringify(1))
     }
+    if(window.location.pathname === `/${customnostore ? customnostore : geo?.country_name}/products`) {
+      localStorage.setItem('productpage', JSON.stringify(value))
+    } else {
+      localStorage.setItem('productpage', JSON.stringify(1))
+    }
   };
-
+  console.log(`/${customnostore ? customnostore : geo?.country_name}/products`)
+  console.log(window.location.pathname)
   useEffect(() => {
     let storedpage = 1
-    if(window.location.pathname === '/india/buyerdashboard/invoiceslist') {
+    if(window.location.pathname === `/${customnostore ? customnostore : geo?.country_name}/buyerdashboard/invoiceslist`) {
       storedpage = JSON.parse(localStorage.getItem('invoicepage'))
     }
-    if(window.location.pathname === '/india/buyerdashboard/wishlist') {
+    if(window.location.pathname === `/${customnostore ? customnostore : geo?.country_name}/buyerdashboard/wishlist`) {
       storedpage = JSON.parse(localStorage.getItem('wishpage'))
     }
-    if(window.location.pathname === '/india/buyerdashboard/wanttobuy') {
+    if(window.location.pathname === `/${customnostore ? customnostore : geo?.country_name}/buyerdashboard/wanttobuy`) {
       storedpage = JSON.parse(localStorage.getItem('wanttobuy'))
+    }
+    if(window.location.pathname === `/${customnostore ? customnostore : geo?.country_name}/products`) {
+      storedpage = JSON.parse(localStorage.getItem('productpage'))
     }
     if(storedpage === null) return
     setPage((prevState) => ({
@@ -81,7 +92,7 @@ const PaginationControlled = ({ PaginateData, DataList, PagePerRow }) => {
     PaginateData(
       DataList?.slice(firstIndex + PagePerRow * (storedpage - 1), PagePerRow * storedpage)
     );
-  }, [localStorage.getItem('wishpage'), PagePerRow])
+  }, [localStorage.getItem('wishpage'), PagePerRow, customnostore, geo])
 
   return (
     <div className="pagination_top_container">
