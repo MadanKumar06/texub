@@ -193,6 +193,7 @@
                     font-size: 16px;
                     letter-spacing: 0.5px;
                     max-width: 80%;
+                    line-break: anywhere;
                   }
                   .billing_title {
                     display: flex;
@@ -599,6 +600,9 @@
                 color: #333C42;
                 letter-spacing: 0.78px;
                 text-transform: uppercase;
+                display: flex;
+                justify-content: start;
+                align-items: baseline;
                 .ordertotal_symbol{
                   font-size: 14px;
                   margin-right: 5px;
@@ -813,6 +817,9 @@
               border: 0px;
               vertical-align: top;
               width: 100%;
+              fieldset{
+                top: 0;
+              }
               #selection_box_block{
                 padding: 12px 14px;
                 em{

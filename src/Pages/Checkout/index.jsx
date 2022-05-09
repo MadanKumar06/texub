@@ -1280,7 +1280,19 @@ const Checkout = () => {
                    */}
                   <div className="address_fields">
                     <InputLabel id="address_field">Country</InputLabel>
-                    <FormControl className="address_select_field_box">
+                    <FormControl className="address_select_field_box"
+                      sx={{
+                        "& .MuiOutlinedInput-root:hover": {
+                          "& > fieldset": {
+                            borderColor: "#DDB363"
+                          }
+                        },
+                        "& .MuiOutlinedInput-root.Mui-focused": {
+                          "& > fieldset": {
+                            border: "1px solid #DDB363"
+                          }
+                        }
+                      }}>
                       <Select
                         labelId="demo-simple-select-label"
                         id="selection_box_block"

@@ -117,6 +117,18 @@ function Index({
                     "sellerdashboard__currentselection" &&
                     color === "yellow" &&
                     "sellerbg") ||
+                    (currenttab === data.registerproduct &&
+                      "sellerdashboard__currentselection" &&
+                      color === "yellow" &&
+                      "sellerbg") ||
+                    (currenttab === data.pendingProduct &&
+                      "sellerdashboard__currentselection" &&
+                      color === "yellow" &&
+                      "sellerbg") ||
+                    (currenttab === data.bulkupload &&
+                      "sellerdashboard__currentselection" &&
+                      color === "yellow" &&
+                      "sellerbg") ||
                   (currenttab === data.url &&
                     "sellerdashboard__currentselection" &&
                     color === "blue" &&

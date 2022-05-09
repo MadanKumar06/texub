@@ -127,15 +127,22 @@
         text-decoration: underline;
         cursor: pointer;
       }
+      .want_tobuy__category{
+          font-weight: 400;
+        }
 
       .want_tobuy__quantity {
         color: #333c42;
         background-color: white;
         border: 1px solid white;
         border-radius: 24px;
-        padding: 0.5em 2em;
+        padding: 5px 2em;
         text-align: center;
         font-weight: 600;
+        width: 70px;
+        margin-left: 20%;
+				display: flex;
+        justify-content: center;
       }
 
       .want_tobuy__ordertotal {
@@ -216,6 +223,7 @@
 }
 
 @media (max-width: 1660px) {
+
   .want_tobuy .want_tobuy__table {
     .MuiTableHead-root .MuiTableCell-root {
       font-size: 16px;
@@ -253,6 +261,10 @@
   .want_tobuy .want_tobuy__buttons p {
     font-size: 14px;
   }
+    .want_tobuy .want_tobuy__table .MuiTableBody-root .want_tobuy__quantity {
+			width: 100%;
+      margin-left: 0;
+  }	
 }
 
 @media (max-width: 900px) {

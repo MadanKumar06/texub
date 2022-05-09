@@ -76,6 +76,8 @@
             box-shadow: 0px 3px 6px #00000029;
             opacity: 1;
             cursor: pointer;
+            width: 25%;
+            height: 47px;
         }
         .Termsofuse_accept{
             background: linear-gradient(180deg, #20639B 0%, #002D56 100%);
@@ -88,6 +90,8 @@
             box-shadow: 0px 3px 6px #00000029;
             opacity: 1;
             cursor: pointer;
+            width: 25%;
+            height: 47px;
         }
     
     }
@@ -107,12 +111,12 @@
 @media only screen and (max-width:768px){
     .Termsofuse_main .Termsofuse_Description_section 
     .Termsofuse_btn_section .Termsofuse_decline{
-        padding: 10px 70px;
+       
     }
 
     .Termsofuse_main .Termsofuse_Description_section 
     .Termsofuse_btn_section .Termsofuse_accept{
-        padding: 10px 70px;
+       
     }
 }
 
@@ -142,6 +146,16 @@
       font-size: xx-large;
       margin-top: 22px;
   }
+   .Termsofuse_main .Termsofuse_Description_section 
+    .Termsofuse_btn_section .Termsofuse_decline{
+        width: 100%;
+       
+    }
+
+    .Termsofuse_main .Termsofuse_Description_section 
+    .Termsofuse_btn_section .Termsofuse_accept{
+        width: 100%;
+    }
 }
 
 @media only screen and (max-width:320px){

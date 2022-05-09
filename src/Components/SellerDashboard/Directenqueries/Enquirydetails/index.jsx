@@ -141,6 +141,10 @@ const Index = ({ closePOPup, popid, direct, setrefreshdata, refreshdata }) => {
               <p className="details">12/03/22</p>
             </div>
             <div className="enquirydetails">
+                <p className="heading">Closing Date</p>
+                <p className="details">15/03/22</p>
+            </div>
+            <div className="enquirydetails">
               <p className="heading">Notes</p>
               <p className="details">
                 {currentdata?.notes}
