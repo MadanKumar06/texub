@@ -1,28 +1,28 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import RemoveIcon from "@mui/icons-material/Remove";
+import AddIcon from "@mui/icons-material/Add";
+import swal from "sweetalert2";
+import axios from "axios";
+
 import "./styles.scss";
 import MUITable from "../../../Components/Common/MUITable";
 import Constant from "../../../Constant";
-import RemoveIcon from "@mui/icons-material/Remove";
-import AddIcon from "@mui/icons-material/Add";
 import { getAdminToken } from "../../../utilities";
 import { useStateValue } from "../../../store/state";
-import swal from "sweetalert2";
 import Wishlist from "../../PDPpopUp/Wishlist";
-
-import axios from "axios";
 
 function formatToCurrency(amount) {
   return amount.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
-
-  // return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
 const MyCartTable = ({ cartDataList, deleteCartData }) => {
   const [is_table_quantity, setIs_table_quantity] = useState([]);
-  console.log(cartDataList[0]?.invoice_items?.length);
+  const [openwishlist, setopenwishlist] = useState({
+    open: false,
+    dataFromPLP: "",
+  });
 
-  const [{ }, dispatch] = useStateValue();
+  const [{}, dispatch] = useStateValue();
 
   useEffect(() => {
     let temp =
@@ -33,6 +33,7 @@ const MyCartTable = ({ cartDataList, deleteCartData }) => {
       }));
     setIs_table_quantity(temp);
   }, [cartDataList]);
+
   //API to fetch admin token
   const [adminToken, setAdminToken] = useState("");
   useEffect(() => {
@@ -41,10 +42,6 @@ const MyCartTable = ({ cartDataList, deleteCartData }) => {
     });
   }, []);
 
-  const [openwishlist, setopenwishlist] = useState({
-    open: false,
-    dataFromPLP: "",
-  });
   const list = (product_id) => {
     let temp;
     if (product_id) {
@@ -123,20 +120,23 @@ const MyCartTable = ({ cartDataList, deleteCartData }) => {
   };
 
   const onCLickDetailsLink = (event) => {
-    let permissions = JSON.parse(localStorage.getItem('permissions'))
+    let permissions = JSON.parse(localStorage.getItem("permissions"));
     let isValidUser = JSON.parse(localStorage.getItem("userdata"))?.group_id;
     if (isValidUser === 5) {
-      let wishpermission = permissions?.some(per => {
-        if(per?.value === 'can-add-to-multiple-wishlist' && per?.permission_value === 0) {
+      let wishpermission = permissions?.some((per) => {
+        if (
+          per?.value === "can-add-to-multiple-wishlist" &&
+          per?.permission_value === 0
+        ) {
           swal.fire({
             text: `Your Account doesn't have access to add products to wishlist`,
             icon: "error",
             showConfirmButton: true,
           });
         }
-      })
-      if(wishpermission === true) {
-        return
+      });
+      if (wishpermission === true) {
+        return;
       }
     }
     dispatch({

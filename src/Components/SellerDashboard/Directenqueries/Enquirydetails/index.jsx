@@ -4,6 +4,7 @@ import { Clear } from "@mui/icons-material";
 import { Button, Box } from "@mui/material";
 import {Modal,Backdrop } from "@mui/material";
 import Constant from "../../../../Constant";
+import eye_icon from "../../../../Assets/sellerdashboard/enquiry/eye_icon.png";
 import axios from "axios";
 import swal from "sweetalert2";
 
@@ -83,7 +84,13 @@ const Index = ({ closePOPup, popid, direct, setrefreshdata, refreshdata }) => {
             </p>
             <Clear onClick={() => closePOPup(false)} />
           </div>
-          <p className="p1">12 Sellers are viewing at this enquiry right now.</p>
+          <p className="p1">
+            <img
+                className="eye_icon"
+                src={eye_icon}
+                alt=""
+              />
+              12 Sellers are viewing at this enquiry right now.</p>
           <div className="enquirydetails_section">
             <div className="enquirydetails">
               <p className="heading">Buyer Code</p>
@@ -97,6 +104,8 @@ const Index = ({ closePOPup, popid, direct, setrefreshdata, refreshdata }) => {
                   : currentdata?.seller_enquiry_status === "Closed"
                   ? "directenquiries__closed"
                   : currentdata?.seller_enquiry_status === "Pending" && "directenquiries__pending"
+                  ? "directenquiries__decline"
+                  : currentdata?.seller_enquiry_status === "Declined" && "directenquiries__decline"
               } `}>
               {currentdata?.seller_enquiry_status}
             </div>

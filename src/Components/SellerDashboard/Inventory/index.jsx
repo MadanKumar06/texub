@@ -63,6 +63,16 @@ function Index({ registerproduct }) {
     setregisteraccess(temp);
   }, []);
 
+  const isOfferValidOrExpired = (offer_end_date) => {
+    if (offer_end_date === null) {
+      return false;
+    } else {
+      let date = new Date(offer_end_date);
+      var date1Updated = new Date();
+      var date2Updated = new Date(date);
+      return date1Updated > date2Updated;
+    }
+  };
   const columns = [
     {
       name: "brand_image_url",
@@ -84,11 +94,17 @@ function Index({ registerproduct }) {
         customBodyRender: (value, tablemeta) => {
           let isOfferValid = tablemeta?.rowData[12];
           let isOfferPriceValid = tablemeta?.rowData[13];
+          let offerExpired = tablemeta?.rowData[14];
           return (
             <div className="brandOffers">
               <div className="inventory-product-grid-info">{value}</div>
+
               {isOfferValid === "1" ? (
-                <p className="offer_enabled">Offers</p>
+                isOfferValidOrExpired(offerExpired) ? (
+                  <p className="offer_disabled">Offers Expired</p>
+                ) : (
+                  <p className="offer_enabled">Offers</p>
+                )
               ) : isOfferValid === "0" && parseInt(isOfferPriceValid) >= 1 ? (
                 <p className="disabled_offer">Offers Inactive</p>
               ) : (
@@ -228,6 +244,13 @@ function Index({ registerproduct }) {
     },
     {
       name: "offer_price",
+      label: " ",
+      options: {
+        display: false,
+      },
+    },
+    {
+      name: "offer_end_date",
       label: " ",
       options: {
         display: false,
