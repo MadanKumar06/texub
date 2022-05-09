@@ -90,7 +90,16 @@
       }
     }
 }
+@media  (max-width:1660px) {
 
+    .allert_modal {
+        .allert_main{
+            height: 50vh;
+
+        }
+
+    }
+}
 @media  (max-width:768px) {
     .allert_modal{
         .allert_main{
