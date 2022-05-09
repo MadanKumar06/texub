@@ -868,7 +868,7 @@ function Index({ type, pid }) {
               )}
             </div>
 
-            <div className="updateproduct_inputfields info">
+            <div className="updateproduct_inputfields info warranty_type_section">
               <InputLabel>
                 Warranty Type<small className="asterisk">*</small>
               </InputLabel>
