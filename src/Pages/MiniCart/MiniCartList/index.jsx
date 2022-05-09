@@ -232,6 +232,12 @@ const MiniCartList = ({ handleSideBarClose }) => {
       });
     }
   };
+
+  const [review, setreview] = useState()
+  useEffect(() => {
+    setreview(localStorage.getItem('review_status'))
+  }, [localStorage.getItem('review_status')])
+
   return (
     <div className="minicart_list_main">
       <header className="minicart_header">
@@ -279,15 +285,20 @@ const MiniCartList = ({ handleSideBarClose }) => {
                       </p>
                     </div>
                     <div className="rating_main">
-                      <Rating
-                        className="ratings"
-                        name="simple-controlled"
-                        value={value}
-                        onChange={(event, newValue) => {
-                          setValue(newValue);
-                        }}
-                      />
-                      <p className="reviews"> 543 Reviews</p>
+                      {review == 0 ? ""
+                      :
+                        <>
+                          <Rating
+                            className="ratings"
+                            name="simple-controlled"
+                            value={value}
+                            onChange={(event, newValue) => {
+                              setValue(newValue);
+                            }}
+                          />
+                          <p className="reviews"> 543 Reviews</p>
+                        </>
+                      }
                     </div>
                     <p
                       className="detail_link"

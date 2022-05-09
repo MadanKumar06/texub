@@ -282,7 +282,7 @@ function Index({ type, pid }) {
       }));
       errorHandle = true;
     }
-    if (!updateProductList?.restrictions) {
+    if (updateProductList?.restrictions?.length === 0) {
       document.getElementById("restrictions")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,

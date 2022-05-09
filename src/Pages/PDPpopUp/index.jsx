@@ -336,7 +336,7 @@ const PdpPopup = () => {
             )}
           </div>
           <div className="modal_bottom_container">
-            {(pdpPopUpOpenClose?.data?.tableData?.length > 3 ||
+            {/* {(pdpPopUpOpenClose?.data?.tableData?.length > 3 ||
               table_two_data?.length > 3) && (
               <div
                 className="modal_bottom_image_container"
@@ -345,7 +345,19 @@ const PdpPopup = () => {
                 <img src={more_offer_image} alt="" />
                 <span>More Offers</span>
               </div>
-            )}
+            )} */}
+            {(pdpPopUpOpenClose?.data?.tableData?.length > 3 ||
+              table_two_data?.length > 3) && tableData.tableone.length>=3?
+              (
+                <div
+                  className="modal_bottom_image_container"
+                  onClick={() => MoreOfferChange()}
+                >
+                  <img src={more_offer_image} alt="" />
+                  <span>More Offers</span>
+                </div>
+              ):
+              <></>}
 
             <div
               className="modal_bottom_image_container"

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { Rating } from "@mui/material";
 import { withStyles } from "@mui/styles";
 import styles from "./styles";
@@ -103,6 +103,12 @@ const PdpHeader = ({ classes, pdpSellerData, dataFromPLP }) => {
       margin: 0;
     }
   `;
+
+  const [review, setreview] = useState()
+  useEffect(() => {
+    setreview(localStorage.getItem('review_status'))
+  }, [localStorage.getItem('review_status')])
+
   return (
     <div className={pdp_top_header_container}>
       <div className={pdp_page_brands_images_container}>
@@ -122,22 +128,27 @@ const PdpHeader = ({ classes, pdpSellerData, dataFromPLP }) => {
               Seller ID :<span>{pdpSellerData?.seller_code} </span>
             </p>
           )}
-          <div className={pdp_top_header_products}>
-            <p className={pdp_top_header_product_name}>
-              {pdpSellerData?.model_number}
-            </p>
-            <div className={pdp_top_header_rating_reviews_container}>
-              <Rating
-                className={ratings}
-                name="simple-controlled"
-                value={value}
-                // onChange={(event, newValue) => {
-                //   setValue(newValue);
-                // }}
-              />
-              <p className={reviews}> 543 Reviews</p>
+
+            <div className={pdp_top_header_products}>
+            {review == 0 ? "" :
+              <>
+                <p className={pdp_top_header_product_name}>
+                  {pdpSellerData?.model_number}
+                </p>
+                <div className={pdp_top_header_rating_reviews_container}>
+                  <Rating
+                    className={ratings}
+                    name="simple-controlled"
+                    value={value}
+                    // onChange={(event, newValue) => {
+                    //   setValue(newValue);
+                    // }}
+                  />
+                  <p className={reviews}> 543 Reviews</p>
+                </div>
+              </>
+            }
             </div>
-          </div>
 
           <p className={pdp_top_header_model_details}>
             {pdpSellerData?.description}
