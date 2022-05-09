@@ -915,7 +915,7 @@ const Checkout = () => {
                         </div>
                         <div className="address_fields">
                           <InputLabel>Mobile Number</InputLabel>
-                           <PhoneInput
+                           {/* <PhoneInput
                               country={"in"}
                               id="mobile_number"
                               fullWidth
@@ -930,7 +930,7 @@ const Checkout = () => {
                               }}
                              onChange={(e) => onpickup(e)}
                               variant="outlined"
-                            />
+                            /> */}
                           {/* <PhoneInput
                             country={"in"}
                             id="mobile_number"

@@ -16,9 +16,8 @@ const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
 function Index({ type, pid }) {
-  const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
+  const [{ geo, customnostore }, dispatch] = useStateValue();
   const history = useNavigate();
-  const [isGST, setisGST] = useState(0);
   const [count, setcount] = useState([
     {
       count: 0,
@@ -53,7 +52,6 @@ function Index({ type, pid }) {
   const [country, setcountry] = useState([]);
   const [restricts_country, setRestricts_country] = useState([]);
   const { id, currenttab } = useParams();
-  const [dummyState, setDummyState] = useState(1);
   const [updateform, setupdateform] = useState({
     product_length: "",
     width: "",
@@ -199,7 +197,6 @@ function Index({ type, pid }) {
       if (checking === "checking-validation") {
         return;
       } else if (!errorHandle) {
-        setDummyState(dummyState + 1);
         setcount((data) => [
           ...data,
           {
@@ -214,7 +211,7 @@ function Index({ type, pid }) {
             igst: "",
             cgst: "",
             sgst: "",
-            count: dummyState + 1,
+            count: count?.length + 1,
           },
         ]);
       }
