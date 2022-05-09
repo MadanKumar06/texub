@@ -11,7 +11,6 @@ import { useStateValue } from "../../store/state";
 import { useParams, useNavigate } from "react-router-dom";
 
 export const Home = () => {
-  console.log(window.history)
   const [{ geo, customstore, homeContent }, dispatch] = useStateValue();
   const history = useParams();
   const navigate = useNavigate();
@@ -32,6 +31,10 @@ export const Home = () => {
       });
       navigate(`/${temp?.[0] ? temp?.[0] : geo?.country_name}`);
     }
+    localStorage.setItem("invoicepage", JSON.stringify(1));
+    localStorage.setItem("wishpage", JSON.stringify(1));
+    localStorage.setItem("wtbpage", JSON.stringify(1));
+    localStorage.setItem("productpage", JSON.stringify(1));
   }, [customstore, geo]);
 
   useEffect(() => {
