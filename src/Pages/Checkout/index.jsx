@@ -1087,7 +1087,7 @@ const Checkout = () => {
               </div>
               <div className="checkout_total_order_section">
                 <span className="checkout_total_order__info_title">
-                  Payment Processing Charge
+                  Total Order value
                 </span>
                 <span className="checkout_total_order__price">
                   <span className="checkout_total_orde_symbol">
