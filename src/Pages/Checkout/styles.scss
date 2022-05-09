@@ -246,7 +246,7 @@
                 display: none !important;
               }
               label{
-               font-weight: 600;
+               font-weight: 400;
               letter-spacing: 0.54px;
               color: #272727;
               margin-top: 0em;
@@ -899,7 +899,15 @@
       }
     }
 }
-
+@media (min-width: "1660px") {
+  .add_address_popup .address_popup_main .address_field_block .address_fields .MuiFormControl-root #selection_box_block em{
+    font-size: 20px;
+  }
+  .add_address_popup .address_popup_main{
+      height: 60vh;
+      min-height: 60vh;
+  }
+}
 @media (max-width: "1600px") {
   .checkout_main_container {
     .section_left {

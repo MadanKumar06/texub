@@ -78,11 +78,8 @@ function Index({ type, pid }) {
   });
   let errorHandle = false;
   const countincrease = (checking) => {
-    const isDecimal = /^\d+\.\d{0,1000000}$/;
-
     if (count?.length) {
       let temp = count?.slice(-1);
-
       if (!temp[0]?.hub_id) {
         document.getElementById("isHubValid")?.focus();
         setIsDetailTabValid((prevState) => ({
@@ -127,13 +124,6 @@ function Index({ type, pid }) {
         setIsDetailTabValid((prevState) => ({
           ...prevState,
           isETAValid: "Please enter the eta.",
-        }));
-        errorHandle = true;
-      } else if (isDecimal.test(temp[0]?.eta)) {
-        document.getElementById("isETAValid")?.focus();
-        setIsDetailTabValid((prevState) => ({
-          ...prevState,
-          isETAValid: "Decimal values will not allow.",
         }));
         errorHandle = true;
       } else if (!isNumber(temp[0]?.eta)) {

@@ -121,7 +121,7 @@ function Index({ registerproduct }) {
     setTableData(event);
   };
   return (
-    <div className="productGrid_inventory">
+    <div className="productGrid_inventory pending_product_grid">
       <MUITable
         columns={columns}
         table={tableData}
