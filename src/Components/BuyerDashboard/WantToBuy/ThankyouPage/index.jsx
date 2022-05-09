@@ -9,6 +9,7 @@ import "./styles.scss";
 
 export default function BasicModal({ Popup, PopupAvailable }) {
   const [{}, dispatch] = useStateValue();
+  let userDetails = JSON.parse(localStorage.getItem("userdata"));
 
   const [open, setOpen] = React.useState(true);
 
@@ -26,11 +27,7 @@ export default function BasicModal({ Popup, PopupAvailable }) {
     }
   };
 
-  useEffect(() => {
-    setTimeout(() => {
-      handleClose();
-    }, 3000);
-  }, []);
+
   return (
     <div>
       <Modal
@@ -57,16 +54,16 @@ export default function BasicModal({ Popup, PopupAvailable }) {
                 <img src={checkoutmark} alt="" />
               </div>
               <div className="order_msg common-block">
-                <span className="msg">Order Successful!!</span>
+                <span className="msg">Thank You!</span>
               </div>
               <div className="logged_user common-block">
-                <span className="msg">Dear Customer</span>
+                <span className="msg">Dear {userDetails?.firstname} {userDetails?.lastname}</span>
               </div>
               <div className="custom_msg common-block">
                 <span className="msg">
                   You Have submitted the Want To Buy request successfully. You
                   will be notified through e-mail once the product is added with
-                  the quoation by the sellers
+                  the quotation by the sellers.
                 </span>
               </div>
               <div className="backto_home_btn common-block">
