@@ -87,13 +87,13 @@ const Checkout = () => {
     email_address: false,
     mobile_number: false,
   });
-   const handleMobileChangeInput = (event) => {
-    pickup((prevState) => ({
-      ...prevState,
-      mobile_number: event,
-    }));
-    onpickup("");
-  };
+  //  const handleMobileChangeInput = (event) => {
+  //   pickup((prevState) => ({
+  //     ...prevState,
+  //     mobile_number: event,
+  //   }));
+  //   onpickup("");
+  // };
   const onpickup = (e) => {
     if (e.target.name === "email_address") {
       if (isEmailValid(e.target.value)) {
@@ -112,7 +112,16 @@ const Checkout = () => {
       setAdminToken(res);
     });
   }, []);
-
+  const handleMobileChangeInput = (event) => {
+      setpickup((prevState) => ({
+        ...prevState,
+        mobile_number: event
+      }));
+      if(event.length === 12)
+        {setformerror({ ...formerror, mobile_number: true });}
+    else if (event.length !== 12)
+      {setformerror({ ...formerror, mobile_number: false });}
+  };
   const [addressdata, setaddressdata] = useState({
     organization_name: "",
     address_line1: "",
@@ -818,7 +827,8 @@ const Checkout = () => {
                         ))}
                         {quotedata[0]?.invoice?.pending_invoice_status ===
                           "1" && (
-                          <div className="aside_block_B delivery_address_content">
+                          <div className={`aside_block_B delivery_address_content ${quotedata[0]?.invoice?.pending_invoice_status ===
+                                                            "1" && "add_address"}`}>
                             <div
                               className="delivery_address_add"
                               onClick={() => handleOpen("add_new_address")}
@@ -931,7 +941,7 @@ const Checkout = () => {
                              onChange={(e) => onpickup(e)}
                               variant="outlined"
                             /> */}
-                          {/* <PhoneInput
+                          <PhoneInput
                             country={"in"}
                             id="mobile_number"
                             fullWidth
@@ -944,11 +954,11 @@ const Checkout = () => {
                               shrink: true,
                               required: true,
                             }}
-                            onChange={(e) => onpickup(e)}
+                            onChange={(e) => handleMobileChangeInput(e)}
                             variant="outlined"
-                          /> */}
+                          />
 
-                          <TextField
+                          {/* <TextField
                             id="mobile_number"
                             placeholder="9890985433"
                             className="inputfield-box"
@@ -956,7 +966,7 @@ const Checkout = () => {
                             variant="outlined"
                             value={pickup?.mobile}
                             onChange={(e) => onpickup(e)}
-                          />
+                          /> */}
                           {!formerror?.mobile_number && (
                             <p style={{ color: "red" }}>
                               Please Enter your Mobile Number
@@ -1077,7 +1087,7 @@ const Checkout = () => {
               </div>
               <div className="checkout_total_order_section">
                 <span className="checkout_total_order__info_title">
-                  Payment Processing Charge
+                  Total Order value
                 </span>
                 <span className="checkout_total_order__price">
                   <span className="checkout_total_orde_symbol">
@@ -1276,6 +1286,7 @@ const Checkout = () => {
                         id="selection_box_block"
                         label="Country"
                         name="country"
+                        className="inputfield-box"                        
                         onChange={(e) => addressadd(e)}
                         value={addressdata?.country}
                         displayEmpty

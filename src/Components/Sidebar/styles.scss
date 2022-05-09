@@ -6,6 +6,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-radius: 0 0 0 4px;
 
   .active_image {
     fill: #ffffff;
@@ -50,6 +51,7 @@
     justify-content: center;
     padding: 2em 0;
     background: linear-gradient(180deg, #f4f9ff 0%, #ffffff 100%);
+    border-radius: 4px 0 0 0;
   }
   ul {
     padding: 0;
@@ -86,15 +88,15 @@
     .sellerlabel {
       color: #5c6369;
       font-size: 18px;
-      font-weight: 600;
+      font-weight: 400;
       letter-spacing: 0.96px;
     }
 
     .sellervalue {
       background-color: #f8f0e0;
       color: #5c6369;
-      font-size: 20px;
-      font-weight: 600;
+      font-size: 22px;
+      font-weight: bold;
       padding: 0.3em 1em;
       box-shadow: rgb(99 99 99 / 20%) 0px 2px 8px 0px;
     }
@@ -153,7 +155,7 @@
     font-size: 16px;
   }
   .sellerdashboard__sidebar p .sellervalue {
-    font-size: 18px;
+    font-size: 20px;
   }
   .sellerdashboard__sidebar ul li {
     font-size: 14px;
