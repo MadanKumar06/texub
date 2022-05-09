@@ -1,19 +1,13 @@
 import React, { useState, useEffect } from "react";
-import {
-  Box,
-  Button,
-  FormControlLabel,
-  Checkbox,
-  InputLabel,
-  fabClasses,
-} from "@mui/material";
-import styles from "../SectionRight/styles";
+import { Box, Button, Checkbox, InputLabel } from "@mui/material";
 import { withStyles } from "@mui/styles";
 import { useNavigate } from "react-router-dom";
-import { useStateValue } from "../../../../store/state";
 import axios from "axios";
-import Constant from "../../../../Constant";
 import swal from "sweetalert2";
+
+import styles from "../SectionRight/styles";
+import { useStateValue } from "../../../../store/state";
+import Constant from "../../../../Constant";
 var moment = require("moment");
 
 function ValidationForKycForm({
@@ -30,7 +24,6 @@ function ValidationForKycForm({
     button_box,
     button_guest,
     warning_msg,
-    download_link,
     agreemnetDowload,
     checkbox_agreement,
   } = classes;
@@ -129,7 +122,6 @@ function ValidationForKycForm({
   let company_name = localUserData?.custom_attributes?.filter(
     (itm) => itm?.attribute_code === "customer_company_name"
   );
-  let customer_id = localUserData?.id;
   const FinalKYCFormSavaData = () => {
     dispatch({
       type: "SET_IS_LOADING",
@@ -147,7 +139,7 @@ function ValidationForKycForm({
       : "";
     let data = {
       kyc: {
-        customer_id: customer_id,
+        customer_id: localUserData?.id,
         bussiness_name: company_name?.[0]?.value,
         group_id: localUserData?.group_id,
         trade_license_number: values?.trade_lic_number
@@ -204,6 +196,7 @@ function ValidationForKycForm({
             value: false,
           });
           let user_id = JSON.parse(localStorage.getItem("userdata"));
+          localStorage.setItem("kycSubmitted", JSON.stringify(true));
           history(
             `/${customnostore ? customnostore : geo?.country_name}/thankyou/${
               user_id?.group_id === 5 ? "buyer" : "seller"
@@ -239,9 +232,9 @@ function ValidationForKycForm({
         values?.pin_zip_code ? values?.pin_zip_code : ""
       }&trade_license_number=${
         values?.trade_lic_number ? values?.trade_lic_number : ""
-      }&tax_no=${
-        values?.tax_number ? values?.tax_number : ""
-      }&customer_id=${customer_id}`;
+      }&tax_no=${values?.tax_number ? values?.tax_number : ""}&customer_id=${
+        localUserData?.id
+      }`;
   };
   return (
     <>

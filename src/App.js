@@ -71,8 +71,6 @@ import {
 import axios from "axios";
 
 const App = () => {
-  const [geo, setgeo] = useState([]);
-
   const [
     {
       kycOpenClose,
@@ -95,7 +93,6 @@ const App = () => {
       });
     } else {
       const res = await axios.get("https://geolocation-db.com/json/");
-      setgeo(res.data);
       dispatch({
         type: "GEO__LOCATION",
         data: res.data,
@@ -130,17 +127,22 @@ const App = () => {
   }, []);
 
   let isKYCSubmitted = JSON.parse(localStorage.getItem("userdata"));
+  let SubmittedKYC = JSON.parse(localStorage.getItem("kycSubmitted"));
   useEffect(() => {
     if (isKYCSubmitted) {
       let kycValue = isKYCSubmitted?.custom_attributes?.filter(
         (itm) => itm?.attribute_code === "kyc_status"
       );
-      isKYCSubmitted?.group_id !== 1 &&
-        kycValue?.[0]?.value === "0" &&
-        dispatch({
-          type: "SET_KYC_OPEN_CLOSE",
-          value: true,
-        });
+      if (SubmittedKYC === true) {
+        return;
+      } else {
+        isKYCSubmitted?.group_id !== 1 &&
+          kycValue?.[0]?.value === "0" &&
+          dispatch({
+            type: "SET_KYC_OPEN_CLOSE",
+            value: true,
+          });
+      }
     }
   }, []);
   useEffect(() => {
