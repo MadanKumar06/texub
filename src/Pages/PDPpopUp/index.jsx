@@ -281,6 +281,7 @@ const PdpPopup = () => {
   const AddpendingInvoiceAlert = (event) => {
     setallert(event);
   };
+
   return (
     <Modal
       aria-labelledby="transition-modal-title"
@@ -347,7 +348,7 @@ const PdpPopup = () => {
               </div>
             )} */}
             {(pdpPopUpOpenClose?.data?.tableData?.length > 3 ||
-              table_two_data?.length > 3) && tableData.tableone.length>=3?
+              table_two_data?.length > 3) && tableData.tableone.length > 3?
               (
                 <div
                   className="modal_bottom_image_container"
