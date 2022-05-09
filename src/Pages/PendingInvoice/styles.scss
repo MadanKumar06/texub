@@ -208,7 +208,7 @@
         .MuiTableCell-root {
           background-color: #002d56;
           color: white;
-          font-size: 16px;
+          font-size: 18px;
           font-weight: 600;
           letter-spacing: 1px;
           text-align: center;
@@ -466,6 +466,7 @@
             z-index: 1;
             display: flex;
             align-items: baseline;
+            justify-content: start;
             .value_symobol {
               letter-spacing: 0.51px;
               margin-right: 3px;

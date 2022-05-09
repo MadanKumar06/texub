@@ -95,6 +95,20 @@
   }
   .info {
     width: 100%;
+
+    
+
+
+  }
+  .warranty_type_section{
+    .MuiAutocomplete-option[aria-selected="true"].Mui-focused{
+        color: #fff;
+        background-color: #cda049;
+    }
+    .MuiAutocomplete-option[aria-selected="true"].Mui-focused:hover{
+        color: #fff;
+        background-color: #cda049;
+    }
   }
   .country_selection {
     // justify-content: flex-end;

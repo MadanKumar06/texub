@@ -827,7 +827,7 @@
                   letter-spacing: 0.6px;
                   color: #cdd5dd;
                   text-transform: capitalize;
-                  font-weight: 600;
+                  font-weight: 400;
                   font-size: 14px;
                 }
               }
@@ -851,9 +851,6 @@
                 -webkit-transition: color 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms,-webkit-transform 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms,max-width 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
                 transition: color 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms,transform 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms,max-width 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
               }
-              
-
-
           }
            .empty_div{
                     width: 100%;
