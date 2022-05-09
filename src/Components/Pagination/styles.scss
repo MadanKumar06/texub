@@ -42,10 +42,14 @@
       margin-left: 10px;
       .MuiFormControl-root {
         .MuiOutlinedInput-root {
-          padding-right: 20px;
+          padding-right: 25px;
           padding-top: 2px;
            padding-bottom: 2px;
           background-color: #ffffff;
+          .MuiAutocomplete-input{
+            min-width: 25px;
+            padding: 6.5px 4px 6.5px 6px;
+          }
         }
       }
     }

@@ -63,7 +63,7 @@ export const Termsofuse = () => {
           <h2 className="Termsofuse_heading">Terms Of Use</h2>
         </div>
         <span dangerouslySetInnerHTML={{ __html: terms?.content }}></span>
-        {/* <div className="Termsofuse_description">
+        <div className="Termsofuse_description">
           {Termstext.map((item) => (
             <li key={item.id} className="Termsofuse_text">
               {item.description}
@@ -91,7 +91,7 @@ export const Termsofuse = () => {
           </div>
           <button className="Termsofuse_decline">Decline</button>
           <button className="Termsofuse_accept">Accept</button>
-        </div> */}
+        </div>
       </div>
     </div>
   );
