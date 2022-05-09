@@ -72,6 +72,7 @@ const BuyerKYCformSectionLeft = ({ classes }) => {
             <p className={info_text_lineNote_one}>Required Documents</p>
             <Box className={box}>
               <Button
+                id="trade_image_container"
                 className={`${
                   documentButton === "trade_license"
                     ? button_selected
@@ -82,6 +83,7 @@ const BuyerKYCformSectionLeft = ({ classes }) => {
                 Trade License
               </Button>
               <Button
+                id="tax_image_container"
                 className={`${
                   documentButton === "tax_certificate"
                     ? button_selected
@@ -92,6 +94,7 @@ const BuyerKYCformSectionLeft = ({ classes }) => {
                 Tax Certificate
               </Button>
               <Button
+                id="national_image_container"
                 className={`${
                   documentButton === "national_id"
                     ? button_selected

@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
+import { Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
 import "./styles.scss";
 import Productsbrands from "../../Components/ProductPagePLP/Productbrands";
 import Productlists from "../../Components/ProductPagePLP/Productlists";
 import Productstable from "../../Components/ProductPagePLP/Producttable";
-import axios from "axios";
 import Constant from "../../Constant";
 import { useStateValue } from "../../store/state";
-import { Button } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+
 export const Products = () => {
   const navigate = useNavigate();
   const [{ currency, homeSearch, customnostore, geo }, dispatch] =
@@ -20,9 +22,10 @@ export const Products = () => {
   const [productData, setProductData] = useState([]);
   const [dataFromApi, setDataFromApi] = useState([]);
   const [getCategories, setGetCategories] = useState([]);
-
   const [applyFilter, setApplyFilter] = useState(false);
+
   let customer_id = JSON.parse(localStorage.getItem("userdata"));
+
   useEffect(() => {
     dispatch({
       type: "SET_IS_LOADING",
@@ -31,9 +34,7 @@ export const Products = () => {
     if (getCategories && currency?.currency_id) {
       const fetchProductData = () => {
         setProductData([]);
-        let data;
-        debugger
-        data = {
+        let data = {
           data: {
             currency_id: parseInt(currency?.currency_id),
             customer_id: customer_id?.id ? customer_id?.id : 0,
