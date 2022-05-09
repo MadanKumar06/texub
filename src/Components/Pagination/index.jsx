@@ -67,21 +67,24 @@ const PaginationControlled = ({ PaginateData, DataList, PagePerRow }) => {
       localStorage.setItem('productpage', JSON.stringify(1))
     }
   };
-  console.log(`/${customnostore ? customnostore : geo?.country_name}/products`)
-  console.log(window.location.pathname)
+
   useEffect(() => {
     let storedpage = 1
     if(window.location.pathname === `/${customnostore ? customnostore : geo?.country_name}/buyerdashboard/invoiceslist`) {
-      storedpage = JSON.parse(localStorage.getItem('invoicepage'))
+      let invoicepage = JSON.parse(localStorage.getItem('invoicepage'))
+      storedpage = parseInt(invoicepage) > page?.option?.length ? page?.option?.length : parseInt(invoicepage)
     }
     if(window.location.pathname === `/${customnostore ? customnostore : geo?.country_name}/buyerdashboard/wishlist`) {
-      storedpage = JSON.parse(localStorage.getItem('wishpage'))
+      let wishpage = JSON.parse(localStorage.getItem('wishpage'))
+      storedpage = parseInt(wishpage) > page?.option?.length ? page?.option?.length : parseInt(wishpage)
     }
     if(window.location.pathname === `/${customnostore ? customnostore : geo?.country_name}/buyerdashboard/wanttobuy`) {
-      storedpage = JSON.parse(localStorage.getItem('wanttobuy'))
+      let wanttobuy = JSON.parse(localStorage.getItem('wanttobuy'))
+      storedpage = parseInt(wanttobuy) > page?.option?.length ? page?.option?.length : parseInt(wanttobuy)
     }
     if(window.location.pathname === `/${customnostore ? customnostore : geo?.country_name}/products`) {
-      storedpage = JSON.parse(localStorage.getItem('productpage'))
+      let productpage = JSON.parse(localStorage.getItem('productpage'))
+      storedpage = parseInt(productpage) > page?.option?.length ? page?.option?.length : parseInt(productpage)
     }
     if(storedpage === null) return
     setPage((prevState) => ({
@@ -92,7 +95,7 @@ const PaginationControlled = ({ PaginateData, DataList, PagePerRow }) => {
     PaginateData(
       DataList?.slice(firstIndex + PagePerRow * (storedpage - 1), PagePerRow * storedpage)
     );
-  }, [localStorage.getItem('wishpage'), PagePerRow, customnostore, geo])
+  }, [localStorage.getItem('wishpage'), PagePerRow, customnostore, geo, page?.option?.length])
 
   return (
     <div className="pagination_top_container">
