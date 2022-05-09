@@ -63,16 +63,16 @@ function Index({ registerproduct }) {
     setregisteraccess(temp);
   }, []);
 
-  // const isOfferValidOrExpired = (offer_end_date) => {
-  //   if (offer_end_date === null) {
-  //     return false;
-  //   } else {
-  //     let date = new Date(offer_end_date);
-  //     var date1Updated = new Date();
-  //     var date2Updated = new Date(date);
-  //     return date1Updated > date2Updated;
-  //   }
-  // };
+  const isOfferValidOrExpired = (offer_end_date) => {
+    if (offer_end_date === null) {
+      return false;
+    } else {
+      let date = new Date(offer_end_date);
+      var date1Updated = new Date();
+      var date2Updated = new Date(date);
+      return date1Updated > date2Updated;
+    }
+  };
   const columns = [
     {
       name: "brand_image_url",
@@ -98,9 +98,13 @@ function Index({ registerproduct }) {
           return (
             <div className="brandOffers">
               <div className="inventory-product-grid-info">{value}</div>
-              {/* {isOfferValidOrExpired(offerExpired)} */}
+
               {isOfferValid === "1" ? (
-                <p className="offer_enabled">Offers</p>
+                isOfferValidOrExpired(offerExpired) ? (
+                  <p className="offer_disabled">Offers Expired</p>
+                ) : (
+                  <p className="offer_enabled">Offers</p>
+                )
               ) : isOfferValid === "0" && parseInt(isOfferPriceValid) >= 1 ? (
                 <p className="disabled_offer">Offers Inactive</p>
               ) : (

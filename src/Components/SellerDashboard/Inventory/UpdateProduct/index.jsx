@@ -63,8 +63,8 @@ function Index({ type, pid }) {
   });
 
   const [restrictvalue, setrestrictvalue] = useState([
-    { label: "Yes", value: "Yes" },
-    { label: "No", value: "No" },
+    { label: "Yes", value: "2" },
+    { label: "No", value: "1" },
   ]);
   const [isDetailTabValid, setIsDetailTabValid] = useState({
     isHubValid: "",
@@ -1219,7 +1219,7 @@ function Index({ type, pid }) {
               </InputLabel>
             </div>
           </div>
-          {updateProductList?.restrictions?.value === "Yes" ? (
+          {updateProductList?.restrictions?.value === "2" ? (
             <div className="input_separator">
               <div className="updateproduct_inputfields info ">
                 <InputLabel>
