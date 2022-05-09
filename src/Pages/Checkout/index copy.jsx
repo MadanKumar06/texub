@@ -1276,7 +1276,6 @@ const Checkout = () => {
                         },
                         "& .MuiOutlinedInput-root.Mui-focused": {
                           "& > fieldset": {
-                            borderColor: "orange",
                             border: "1px solid #ddb363"
                           }
                         }

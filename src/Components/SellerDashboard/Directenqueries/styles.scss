@@ -170,7 +170,22 @@
     }
   }
 }
-
+.directenquiries_container thead{
+  border-top: 1px solid rgb(224 224 224);
+}
+.directenquiries_container thead th div{
+  font-size: 20px;
+}
+.directenquiries_container tbody td:nth-child(1n),
+.directenquiries_container tbody td:nth-child(2n),
+.directenquiries_container tbody td:nth-child(3n),
+.directenquiries_container tbody td:nth-child(4n),
+.directenquiries_container tbody td:nth-child(5n),
+.directenquiries_container tbody td:nth-child(6n),
+.directenquiries_container tbody td .directenquiries_product_name
+{
+  font-size: 18px !important;
+}
 @media (max-width: 1660px) {
   .directenquiries__table {
     .MuiTable-root {

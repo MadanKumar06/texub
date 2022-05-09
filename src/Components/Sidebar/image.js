@@ -140,6 +140,9 @@ const SellerList = [
     ),
     name: "Inventory",
     url: "inventory",
+    pendingProduct:"pending-product",
+    registerproduct:"registerproduct",
+    bulkupload:"bulkupload"
   },
   {
     image: (

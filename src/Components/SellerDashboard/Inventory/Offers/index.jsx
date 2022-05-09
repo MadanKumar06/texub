@@ -191,12 +191,16 @@ const TransitionsModal = ({ handleOpenCloseOffers, offersOpenClose }) => {
                       inputFormat="dd-MM-yyyy"
                       minDate={new Date()}
                       value={offersData?.start_date ? offersData?.start_date : null}
-                      onChange={(newValue) =>
+                      onChange={(newValue) =>{
                         setOffersData((prevState) => ({
                           ...prevState,
                           start_date: newValue,
                         }))
-                      }
+                        setSave_error((prevState) => ({
+                          ...prevState,
+                          start_date: "",
+                        }))
+                      }}
                       renderInput={(params) => (
                         <TextField
                           {...params}
@@ -238,12 +242,16 @@ const TransitionsModal = ({ handleOpenCloseOffers, offersOpenClose }) => {
                       inputFormat="dd-MM-yyyy"
                       minDate={new Date()}
                       value={offersData?.end_date ? offersData?.end_date : null}
-                      onChange={(newValue) =>
+                      onChange={(newValue) =>{
                         setOffersData((prevState) => ({
                           ...prevState,
                           end_date: newValue,
                         }))
-                      }
+                        setSave_error((prevState) => ({
+                          ...prevState,
+                          end_date: "",
+                        }))
+                      }}
                       renderInput={(params) => (
                         <TextField
                           {...params}
@@ -283,12 +291,16 @@ const TransitionsModal = ({ handleOpenCloseOffers, offersOpenClose }) => {
               label=""
               placeholder="68,99900"
               fullWidth
-              onChange={(event) =>
+              onChange={(event) =>{
                 setOffersData((prevState) => ({
                   ...prevState,
                   price: event.target.value,
                 }))
-              }
+                setSave_error((prevState) => ({
+                  ...prevState,
+                  price: "",
+                }))
+              }}
               value={offersData?.price}
               className="inputfield-box"
               name="price"

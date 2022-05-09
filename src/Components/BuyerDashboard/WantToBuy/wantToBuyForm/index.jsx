@@ -10,7 +10,7 @@ import swal from "sweetalert2";
 import AvailablePopup from "../AvailablePopup";
 import ThankyouPage from "../ThankyouPage";
 const WantToBuy = ({ setisVieworders, setisOrders }) => {
-  const [{}, dispatch] = useStateValue();
+  const [{ }, dispatch] = useStateValue();
   const [wantTobuyData, setWantToBuyData] = useState({
     part_number: "",
     model_name_number: "",
@@ -103,7 +103,7 @@ const WantToBuy = ({ setisVieworders, setisOrders }) => {
             mainCategoryList: res?.data,
           }));
         })
-        .catch((err) => {});
+        .catch((err) => { });
     };
     fetchMainCategoryData();
   }, []);

@@ -95,10 +95,10 @@ const PdpPopup = () => {
           event === "add_to_cart"
             ? AddToCartAndPendingInvoice("add_to_cart")
             : event === "pending_invoice"
-            ? AddToCartAndPendingInvoice("pending_invoice")
-            : event === "add_to_wishlist"
-            ? list("add_to_wishlist")
-            : "";
+              ? AddToCartAndPendingInvoice("pending_invoice")
+              : event === "add_to_wishlist"
+                ? list("add_to_wishlist")
+                : "";
       } else {
         swal.fire({
           text: `Your account is not yet activated, so kindly visit again once you receive
@@ -109,13 +109,12 @@ const PdpPopup = () => {
       }
     } else {
       swal.fire({
-        text: `${
-          event === "add_to_cart"
+        text: `${event === "add_to_cart"
             ? "Login as a buyer to add cart"
             : event === "add_to_wishlist"
-            ? "Login as a buyer to add wishlist"
-            : "Login as a buyer to add pending invoice"
-        }`,
+              ? "Login as a buyer to add wishlist"
+              : "Login as a buyer to add pending invoice"
+          }`,
         icon: "error",
         showConfirmButton: false,
         timer: 3000,
@@ -131,10 +130,10 @@ const PdpPopup = () => {
         permissions?.length === 0
           ? false
           : permissions?.some(
-              (per) =>
-                per?.value === "can-add-to-multiple-wishlist" &&
-                per?.permission_value === 0
-            );
+            (per) =>
+              per?.value === "can-add-to-multiple-wishlist" &&
+              per?.permission_value === 0
+          );
       if (wishpermission) {
         swal.fire({
           text: `Your Account doesn't have access to add products to wishlist`,
@@ -157,10 +156,10 @@ const PdpPopup = () => {
           permissions?.length === 0
             ? false
             : permissions?.some(
-                (per) =>
-                  per?.value === "can-add-to-cart" &&
-                  per?.permission_value === 0
-              );
+              (per) =>
+                per?.value === "can-add-to-cart" &&
+                per?.permission_value === 0
+            );
         if (cartpermission) {
           swal.fire({
             text: `Your Account doesn't have access to add products to the cart`,
@@ -176,10 +175,10 @@ const PdpPopup = () => {
           permissions?.length === 0
             ? false
             : permissions?.some(
-                (per) =>
-                  per?.value === "can-add-to-pending-invoice" &&
-                  per?.permission_value === 0
-              );
+              (per) =>
+                per?.value === "can-add-to-pending-invoice" &&
+                per?.permission_value === 0
+            );
         if (pendingpermission) {
           swal.fire({
             text: `Your Account doesn't have access to add products to Pending Invoice`,
@@ -215,8 +214,7 @@ const PdpPopup = () => {
     };
     axios
       .post(
-        `${Constant.baseUrl()}${
-          info === "add_to_cart" ? `/addToCart` : `/addToPendingInvoice`
+        `${Constant.baseUrl()}${info === "add_to_cart" ? `/addToCart` : `/addToPendingInvoice`
         }`,
         data,
         {
@@ -281,6 +279,7 @@ const PdpPopup = () => {
   const AddpendingInvoiceAlert = (event) => {
     setallert(event);
   };
+  console.log(tableData.tableone.length)
   return (
     <Modal
       aria-labelledby="transition-modal-title"
@@ -337,15 +336,27 @@ const PdpPopup = () => {
           </div>
           <div className="modal_bottom_container">
             {(pdpPopUpOpenClose?.data?.tableData?.length > 3 ||
+              table_two_data?.length > 3) && tableData.tableone.length>1?
+              (
+                <div
+                  className="modal_bottom_image_container"
+                  onClick={() => MoreOfferChange()}
+                >
+                  <img src={more_offer_image} alt="" />
+                  <span>More Offers</span>
+                </div>
+              ):
+              <></>}
+            {/* {(pdpPopUpOpenClose?.data?.tableData?.length > 3 ||
               table_two_data?.length > 3) && (
-              <div
-                className="modal_bottom_image_container"
-                onClick={() => MoreOfferChange()}
-              >
-                <img src={more_offer_image} alt="" />
-                <span>More Offers</span>
-              </div>
-            )}
+                <div
+                  className="modal_bottom_image_container"
+                  onClick={() => MoreOfferChange()}
+                >
+                  <img src={more_offer_image} alt="" />
+                  <span>More Offers</span>
+                </div>
+              )} */}
 
             <div
               className="modal_bottom_image_container"
