@@ -44,7 +44,44 @@ const PaginationControlled = ({ PaginateData, DataList, PagePerRow }) => {
     PaginateData(
       DataList?.slice(firstIndex + PagePerRow * (value - 1), PagePerRow * value)
     );
+    if(window.location.pathname === '/india/buyerdashboard/invoiceslist') {
+      localStorage.setItem('invoicepage', JSON.stringify(value))
+    } else {
+      localStorage.setItem('invoicepage', JSON.stringify(1))
+    }
+    if(window.location.pathname === '/india/buyerdashboard/wishlist') {
+      localStorage.setItem('wishpage', JSON.stringify(value))
+    } else {
+      localStorage.setItem('wishpage', JSON.stringify(1))
+    }
+    if(window.location.pathname === '/india/buyerdashboard/wanttobuy') {
+      localStorage.setItem('wtbpage', JSON.stringify(value))
+    } else {
+      localStorage.setItem('wtbpage', JSON.stringify(1))
+    }
   };
+
+  useEffect(() => {
+    let storedpage = 1
+    if(window.location.pathname === '/india/buyerdashboard/invoiceslist') {
+      storedpage = JSON.parse(localStorage.getItem('invoicepage'))
+    }
+    if(window.location.pathname === '/india/buyerdashboard/wishlist') {
+      storedpage = JSON.parse(localStorage.getItem('wishpage'))
+    }
+    if(window.location.pathname === '/india/buyerdashboard/wanttobuy') {
+      storedpage = JSON.parse(localStorage.getItem('wanttobuy'))
+    }
+    if(storedpage === null) return
+    setPage((prevState) => ({
+      ...prevState,
+      page: storedpage,
+      jumptopage: storedpage?.toString(),
+    }));
+    PaginateData(
+      DataList?.slice(firstIndex + PagePerRow * (storedpage - 1), PagePerRow * storedpage)
+    );
+  }, [localStorage.getItem('wishpage'), PagePerRow])
 
   return (
     <div className="pagination_top_container">

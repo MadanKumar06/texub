@@ -38,6 +38,7 @@ const styles = () => ({
         textAlign: "center",
         whiteSpace: "nowrap",
         fontSize: "18px",
+        letterSpacing: "0.64px",
         "@media (max-width:1399px)": {
           fontSize: "16px",
         },

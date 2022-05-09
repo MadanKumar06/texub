@@ -561,6 +561,8 @@ const Checkout = () => {
           (per) =>
             per?.value === "can-place-order" && per?.permission_value === 0
         );
+      console.log(quotedata[0]?.payment_methods);
+      
   return (
     <div className="checkout_main_container">
       <div className="checkout_info_list">
@@ -598,6 +600,7 @@ const Checkout = () => {
             <span className="orderinfo_value">Pending</span>
           </div>
         </div>
+         <div className="order_apply_btns">
         <div className="order_apply-btn">
           <Link
             to={`/${customnostore ? customnostore : geo?.country_name
@@ -652,6 +655,7 @@ const Checkout = () => {
               />{" "}
             </g>
           </svg>
+        </div>
         </div>
       </div>
 
@@ -908,6 +912,22 @@ const Checkout = () => {
                         </div>
                         <div className="address_fields">
                           <InputLabel>Mobile Number</InputLabel>
+                           {/* <PhoneInput
+                              country={"in"}
+                              id="mobile_number"
+                              fullWidth
+                              label="Mobile Number"
+                             className="inputfield-box"
+                              name="mobile_number"
+                              placeholder="Mobile number"
+                              value={pickup?.mobile}
+                              inputProps={{
+                                label: "Mobile Number",
+                                required: true,
+                              }}
+                             onChange={(e) => onpickup(e)}
+                              variant="outlined"
+                            /> */}
                           {/* <PhoneInput
                             country={"in"}
                             id="mobile_number"
@@ -955,28 +975,32 @@ const Checkout = () => {
                   alt=""
                 />
                 <p className="payment_title">Select Payment Method</p>
-
-                <div className="payment_info">
                   <RadioGroup
                     aria-labelledby="demo-radio-buttons-group-label"
                     defaultValue={
-                      quotedata[0]?.payment_methods?.banktransfer?.value
+                      //item.value
+                      quotedata[0]?.payment_methods[0]?.value
                     }
                     name="radio-buttons-group"
                   >
+                <div className="payment_info">
+                   {quotedata[0]?.payment_methods.map((item) => (
+                 
                     <div className="payment_footer_block_1">
                       <div className="footer_main">
                         <div className="footer_content">
                           <FormControlLabel
                             value={
-                              quotedata[0]?.payment_methods?.banktransfer?.value
+                               item.value
+                              //quotedata[0]?.payment_methods?.banktransfer?.value
                             }
                             control={
                               <Radio
                                 onClick={() =>
                                   setpayment(
-                                    quotedata[0].payment_methods?.banktransfer
-                                      ?.value
+                                     item.value
+                                    // quotedata[0].payment_methods?.banktransfer
+                                    //   ?.value
                                   )
                                 }
                               />
@@ -984,13 +1008,16 @@ const Checkout = () => {
                             label={""}
                           />
                           <p className="footer_title">
-                            {quotedata[0]?.payment_methods?.banktransfer?.label}
+                            {item.label}
+                            {/* {quotedata[0]?.payment_methods?.label} */}
                           </p>
                         </div>
                       </div>
                     </div>
-                  </RadioGroup>
+                 
+                    ))}
                 </div>
+                 </RadioGroup>
               </li>
             ) : (
               <p></p>
@@ -1010,7 +1037,7 @@ const Checkout = () => {
                   <span className="ordertotal_symbol">
                     {currency?.currency_code}
                   </span>
-                  {quotedata[0]?.invoice?.subtotal}
+                   {formatToCurrency(parseInt(quotedata[0]?.invoice?.subtotal))}
                 </span>
               </div>
               <div className="checkoutorder_basic_info">
@@ -1020,7 +1047,7 @@ const Checkout = () => {
                   <span className="ordertotal_symbol">
                     {currency?.currency_code}
                   </span>
-                  {quotedata[0]?.invoice?.tax}
+                  {formatToCurrency(parseInt(quotedata[0]?.invoice?.tax))}
                 </span>
               </div>
               <div className="checkoutorder_basic_info">
@@ -1030,7 +1057,7 @@ const Checkout = () => {
                   <span className="ordertotal_symbol">
                     {currency?.currency_code}
                   </span>{" "}
-                  {quotedata?.[0]?.invoice?.shipping_amount}
+                  {formatToCurrency(parseInt(quotedata[0]?.invoice?.shipping_amount))}
                 </span>
               </div>
               <div className="checkoutorder_basic_info">
@@ -1042,7 +1069,7 @@ const Checkout = () => {
                   <span className="ordertotal_symbol">
                     {currency?.currency_code}
                   </span>{" "}
-                  0.00
+                  0
                 </span>
               </div>
               <div className="checkout_total_order_section">
@@ -1053,27 +1080,29 @@ const Checkout = () => {
                   <span className="checkout_total_orde_symbol">
                     {currency?.currency_code}
                   </span>
-                  0.00
+                  {formatToCurrency(parseInt(quotedata[0]?.invoice?.grand_total))}
                 </span>
               </div>
             </div>
             <div className="checkout_placeorder_section">
-              <div className="remark_section">
-                <span className="remart_title">Remarks :</span>
-                <span className="remart_text">
-                  Fwd & Pick Up / R&A International Logistics / 61/234, Hrbr
-                  Layout Bangalore - 560043. Docs Needed. Provide Actual Dims /
-                  Provide Copy Of The Invoice And Serials, Fwd Pick Up/ R&A
-                  Internal
-                </span>
-              </div>
+              {quotedata[0]?.invoice?.pending_invoice_status === "3" && shipping_method === "pick_up_from_hub" && 
+                <div className="remark_section">
+                  <span className="remart_title">Remarks :</span>
+                  <span className="remart_text">
+                    Fwd & Pick Up / R&A International Logistics / 61/234, Hrbr
+                    Layout Bangalore - 560043. Docs Needed. Provide Actual Dims /
+                    Provide Copy Of The Invoice And Serials, Fwd Pick Up/ R&A
+                    Internal
+                  </span>
+                </div>
+              }
               <div className="checkout_btns">
                 {!placeorder && (
                   <Button className="placeorder_btn" onClick={raisequote}>
                     Place Your Order
                   </Button>
                 )}
-                <Button className="placeorder_cancel_btn">
+                <Button className="placeorder_cancel_btn" onClick={() => navigate(-1)}>
                   Go To Pending Invoice
                 </Button>
               </div>

@@ -181,13 +181,11 @@ function Index() {
       name: "row_total",
       label: "TOTAL PRICE",
       options: {
-        customBodyRender: (value) => {
+        customBodyRender: (value, tablemeta) => {
+          let currency = tablemeta?.rowData?.[6];
           return (
             <div className="table__price ">
-              <span className="symbol">
-                {" "}
-                {JSON.parse(localStorage.getItem("currency"))?.currency_code}
-              </span>
+              <span className="symbol">{currency}</span>
               <span className="price">
                 {" "}
                 {formatToCurrency(parseInt(value))}{" "}
@@ -263,7 +261,7 @@ function Index() {
 
                 <span className="orderinfo_value">
                   <span className="ordertotal_symbol">
-                    {currency_id?.currency_code}{" "}
+                    {pendingInvoiceList?.invoice?.quote_currency}
                   </span>
 
                   {formatToCurrency(
@@ -278,6 +276,7 @@ function Index() {
                 <span className="orderinfo_value">Pending</span>
               </div>
             </div>
+            <div className="order_apply_btns">
             <div className="order_apply-btn">
               <Link
                 to={`/${
@@ -339,6 +338,7 @@ function Index() {
                   />{" "}
                 </g>
               </svg>
+            </div>
             </div>
           </div>
           {/* <ArrowBackIosIcon />
@@ -499,7 +499,7 @@ function Index() {
               <span className="value">
                 <span className="value_symobol">
                   {" "}
-                  {currency_id?.currency_code}{" "}
+                  {pendingInvoiceList?.invoice?.quote_currency}
                 </span>{" "}
                 {formatToCurrency(
                   parseInt(pendingInvoiceList?.invoice?.subtotal)
@@ -512,7 +512,7 @@ function Index() {
               <span className="value">
                 <span className="value_symobol">
                   {" "}
-                  {currency_id?.currency_code}{" "}
+                  {pendingInvoiceList?.invoice?.quote_currency}
                 </span>{" "}
                 {formatToCurrency(parseInt(pendingInvoiceList?.invoice?.tax))}{" "}
               </span>
@@ -522,9 +522,8 @@ function Index() {
               <Divider orientation="vertical" />
               <span className="value">
                 <span className="value_symobol">
-                  {" "}
-                  {currency_id?.currency_code}{" "}
-                </span>{" "}
+                  {pendingInvoiceList?.invoice?.quote_currency}
+                </span>
                     {formatToCurrency(parseInt(pendingInvoiceList?.invoice?.shipping_amount))}{" "}
 
               </span>
@@ -534,16 +533,61 @@ function Index() {
               <Divider orientation="vertical" />
               <span className="value">
                 <span className="value_symobol">
-                  {" "}
-                  {currency_id?.currency_code}{" "}
-                </span>{" "}
+                  {pendingInvoiceList?.invoice?.quote_currency}
+                </span>
                 00.00
               </span>
             </p>
-            <p
+             {/* <p className="total_value_section_block" style={{position:"relative",
+                      paddingTop:"10px",
+                      paddingBottom:"10px",
+                      alignIteems:" center",
+                      marginTop: "10px",
+                 }}>
+               <div className="total_value_additional"></div>
+               <span className="total label">Total Order value</span>
+                <Divider
+                  style={{ visibility: "hidden" }}
+                  orientation="vertical"
+                />
+                <span className="value">
+                  <span className="value_symobol">
+                    {" "}
+                    {currency_id?.currency_code}{" "}
+                  </span>
+                  {formatToCurrency(
+                    parseInt(pendingInvoiceList?.invoice?.grand_total)
+                  )}{" "}
+                </span>
+            </p> */}
+               <p
               className="total_value_block"
               style={{
-                backgroundColor: "#f8f0e0",
+                alignItems: "center",
+                marginTop: "10px",
+              }}
+            >
+              <div className="total_value_section">
+                <span className="total label">Total Order value</span>
+                <Divider
+                  style={{ visibility: "hidden" }}
+                  orientation="vertical"
+                />
+                <span className="value">
+                  <span className="value_symobol">
+                    {" "}
+                      {pendingInvoiceList?.invoice?.quote_currency}
+                  </span>
+                  {formatToCurrency(
+                    parseInt(pendingInvoiceList?.invoice?.grand_total)
+                  )}{" "}
+                </span>
+              </div>
+            </p>
+
+            {/* <p
+              className="total_value_block"
+              style={{
                 alignItems: "center",
                 marginTop: "10px",
               }}
@@ -556,13 +600,13 @@ function Index() {
               <span className="value">
                 <span className="value_symobol">
                   {" "}
-                  {currency_id?.currency_code}{" "}
+                  {pendingInvoiceList?.invoice?.quote_currency}
                 </span>
                 {formatToCurrency(
-                  parseInt(pendingInvoiceList?.invoice?.grand_total)
-                )}{" "}
+                    parseInt(pendingInvoiceList?.invoice?.grand_total)
+                  )}{" "}
               </span>
-            </p>
+            </p> */}
             {/* <p className="total_value">
               <div className="total_value_block">
                 <span className="label">Total Order value</span>

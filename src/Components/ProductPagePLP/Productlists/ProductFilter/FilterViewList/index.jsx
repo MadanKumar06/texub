@@ -26,8 +26,8 @@ const FilterViewList = ({
     setExpanded(isExpanded ? panel : false);
   };
 
-  const [see1, setsee1] = useState(true)
-  const [see2, setsee2] = useState(true)
+  const [see1, setsee1] = useState(true);
+  const [see2, setsee2] = useState(true);
 
   //slice filter data
   const [seeMoreData, setSeeMoreData] = useState({
@@ -102,6 +102,9 @@ const FilterViewList = ({
       ...prev,
       [event.e.target.name]: event?.value,
     }));
+    // setProductFetchApi({
+    //   hub: [...productFetchApi?.hub, e.value],
+    // })
     setApplyFilter(!applyFilter);
     setTimeout(() => {
       handleSideBarClose("left", false);
@@ -182,17 +185,16 @@ const FilterViewList = ({
                 </div>
               ))}
             {/* </div> */}
-            {dataFromApi?.[0]?.brands?.length > 5 && (
-              (see1 &&
-                    <p
-                      className="seemore"
-                        onClick={() =>{
-                          setsee1(false);
-                      seeMoreChange("filter_by_brand")}}
-                    >
-                  see More
-                </p>
-              )
+            {dataFromApi?.[0]?.brands?.length > 5 && see1 && (
+              <p
+                className="seemore"
+                onClick={() => {
+                  setsee1(false);
+                  seeMoreChange("filter_by_brand");
+                }}
+              >
+                see More
+              </p>
             )}
           </div>
           <div className="filter_by_price filter_option_block">
@@ -224,7 +226,6 @@ const FilterViewList = ({
                     }
                   </span>
                   {formatToCurrency(parseInt(value?.[0]))}
-
                 </p>
                 <p>
                   <span>
@@ -235,7 +236,6 @@ const FilterViewList = ({
                     }
                   </span>
                   {formatToCurrency(parseInt(value?.[1]))}
-                  
                 </p>
               </div>
             </Box>
@@ -279,18 +279,16 @@ const FilterViewList = ({
                   </AccordionDetails>
                 </Accordion>
               ))}
-            {dataFromApi?.[3]?.categories?.length > 5 && (
-              (see2 &&
-                <p
-                  className="seemore"
-                    onClick={() => {
-                    setsee2(false);
-                    seeMoreChange("filter_by_product")
-                    }}
-                  >
+            {dataFromApi?.[3]?.categories?.length > 5 && see2 && (
+              <p
+                className="seemore"
+                onClick={() => {
+                  setsee2(false);
+                  seeMoreChange("filter_by_product");
+                }}
+              >
                 see More
               </p>
-              )
             )}
           </div>
         </div>

@@ -25,6 +25,7 @@
           display: flex;
           flex-direction: column;
           gap: 10px;
+          align-items: center;
         }
       }
       .order_total_info{
@@ -32,6 +33,7 @@
           display: flex;
           flex-direction: column;
           gap: 10px;
+          align-items: center;
         }
       }
       .order_status_info{
@@ -39,11 +41,23 @@
           display: flex;
           flex-direction: column;
           gap: 10px;
+          align-items: center;
         }
       }
+       .order_apply_btns{
+              width: 25%;
+            flex-direction: row;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            gap: 20px;
+        }
       .order_apply-btn{
+         width: 100%;
+         max-width: 100%;
           .checkout-apply-btn{
             max-width: 100%;
+            width: 100%;
             padding: 10px 25px;
           }
       }
@@ -462,16 +476,20 @@
         padding-left: 1.4em;
       }
     }
-    .payment_info {
-      padding: 1em 3em;
+   
 
       .MuiFormGroup-root {
         gap: 4em;
+         .payment_info {
+          padding: 1em 3em;
+          display: flex;
+          align-items: center;
+         }
         .payment_footer_block_1 {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          width: 70%;
+          width: 20%;
           gap: 15px;
           .footer_main {
             padding-left: 0 6px;
@@ -544,7 +562,7 @@
           }
         }
       }
-    }
+    
   }
   .checkout_payment_section {
     width: 100%;
@@ -575,6 +593,7 @@
                 font-size: 18px;
                 font-weight: 600;
                 color: #333C42;
+                letter-spacing: 0.78px;
                 text-transform: uppercase;
                 .ordertotal_symbol{
                   font-size: 14px;
@@ -587,6 +606,7 @@
               background-color: #f8f0e0;
               padding: 15px 0;
               margin-top: 10px;
+              width: 80%;
               .checkout_total_order__info_title{
                 width: 40%;
                 padding: 0 3em;
@@ -686,6 +706,7 @@
            box-shadow: 0px 3px 6px #00000029;
           border-radius: 25px;
           cursor: pointer;
+          text-transform: capitalize;
         }
       }
     }
@@ -788,6 +809,14 @@
               width: 100%;
               #selection_box_block{
                 padding: 12px 14px;
+                em{
+                  font-style: normal;
+                  letter-spacing: 0.6px;
+                  color: #BABABA;
+                  text-transform: capitalize;
+                  font-weight: 600;
+                  font-size: 14px;
+                }
               }
             }
            
@@ -909,44 +938,46 @@
           font-size: 20px;
         }
       }
-      .payment_info {
+     
         .MuiFormGroup-root {
-          .payment_footer_block_1 {
-            .footer_main {
-              .footer_content {
-                .MuiFormControlLabel-root {
-                  .MuiRadio-root {
-                    .MuiSvgIcon-root {
-                      width: 30px !important;
-                      height: 30px !important;
+           .payment_info {
+            .payment_footer_block_1 {
+              .footer_main {
+                .footer_content {
+                  .MuiFormControlLabel-root {
+                    .MuiRadio-root {
+                      .MuiSvgIcon-root {
+                        width: 30px !important;
+                        height: 30px !important;
+                      }
                     }
                   }
-                }
-                .footer_title {
-                  font-size: 18px;
+                  .footer_title {
+                    font-size: 18px;
+                  }
                 }
               }
             }
-          }
-          .payment_footer_block_2 {
-            .footer_main {
-              .footer_content {
-                .MuiFormControlLabel-root {
-                  .MuiRadio-root {
-                    .MuiSvgIcon-root {
-                      width: 30px !important;
-                      height: 30px !important;
+            .payment_footer_block_2 {
+              .footer_main {
+                .footer_content {
+                  .MuiFormControlLabel-root {
+                    .MuiRadio-root {
+                      .MuiSvgIcon-root {
+                        width: 30px !important;
+                        height: 30px !important;
+                      }
                     }
                   }
-                }
-                .footer_title {
-                  font-size: 20px;
+                  .footer_title {
+                    font-size: 20px;
+                  }
                 }
               }
             }
-          }
         }
-      }
+        }
+     
     }
     .section_right {
       .order_details_main {
@@ -1013,7 +1044,11 @@
     grid-template-columns: none;
   }
 }
-
+@media (max-width: "1280px") {
+.checkout_main_container .checkout_payment_section .order_details_main .checkout_order_basic_info .checkout_total_order_section{
+  width: 100%;
+}
+}
 @media (max-width: "1200px") {
   .checkout_main_container {
     flex-direction: column;
@@ -1052,6 +1087,9 @@
       flex-wrap: wrap;
       justify-content: space-between;
       gap: 1em;
+        .order_apply_btns{
+            width: auto;
+          }
     }
     .checkout_order_info{
       flex-direction: column;
@@ -1177,44 +1215,45 @@
           font-size: 18px;
         }
       }
-      .payment_info {
         .MuiFormGroup-root {
-          .payment_footer_block_1 {
-            .footer_main {
-              .footer_content {
-                .MuiFormControlLabel-root {
-                  .MuiRadio-root {
-                    .MuiSvgIcon-root {
-                      width: 24px !important;
-                      height: 24px !important;
+          .payment_info {
+            .payment_footer_block_1 {
+              .footer_main {
+                .footer_content {
+                  .MuiFormControlLabel-root {
+                    .MuiRadio-root {
+                      .MuiSvgIcon-root {
+                        width: 24px !important;
+                        height: 24px !important;
+                      }
                     }
                   }
-                }
-                .footer_title {
-                  font-size: 16px;
+                  .footer_title {
+                    font-size: 16px;
+                  }
                 }
               }
             }
-          }
-          .payment_footer_block_2 {
-            .footer_main {
-              .footer_content {
-                .MuiFormControlLabel-root {
-                  .MuiRadio-root {
-                    .MuiSvgIcon-root {
-                      width: 24px !important;
-                      height: 24px !important;
+            .payment_footer_block_2 {
+              .footer_main {
+                .footer_content {
+                  .MuiFormControlLabel-root {
+                    .MuiRadio-root {
+                      .MuiSvgIcon-root {
+                        width: 24px !important;
+                        height: 24px !important;
+                      }
                     }
                   }
-                }
-                .footer_title {
-                  font-size: 18px;
+                  .footer_title {
+                    font-size: 18px;
+                  }
                 }
               }
             }
           }
         }
-      }
+      
     }
     .section_right {
       .order_details_main {
@@ -1434,6 +1473,14 @@
 
 
 }
+@media (max-width: 630px) {
+  .checkout_main_container .section_left .MuiFormGroup-root .payment_info{
+    flex-direction: column;
+  }
+  .checkout_main_container .section_left .MuiFormGroup-root .payment_footer_block_1{
+    width: 100% !important;
+  }
+}
 @media (max-width: 580px) {
   .checkout_main_container {
     padding: 1em;
@@ -1493,7 +1540,7 @@
       width: 34px;
     }
   }
-  .checkout_main_container .section_left .payment_info .MuiFormGroup-root {
+  .checkout_main_container .section_left  .MuiFormGroup-root {
     gap: 1em !important;
   }
   .checkout_main_container
