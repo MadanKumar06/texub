@@ -1,8 +1,8 @@
-import React ,{useEffect, useState}from "react";
+import React, { useEffect, useState } from "react";
 import "./styles.scss";
 import { Clear } from "@mui/icons-material";
 import { Button, Box } from "@mui/material";
-import {Modal,Backdrop } from "@mui/material";
+import { Modal, Backdrop } from "@mui/material";
 import Constant from "../../../../Constant";
 import eye_icon from "../../../../Assets/sellerdashboard/enquiry/eye_icon.png";
 import axios from "axios";
@@ -15,9 +15,9 @@ const Index = ({ closePOPup, popid, direct, setrefreshdata, refreshdata }) => {
   useEffect(() => {
     let temp = direct.find(d => d?.wtb_id === popid)
     setcurrentdata(temp)
-  },[direct])
+  }, [direct])
 
-  const updatestatus = async(value) => {
+  const updatestatus = async (value) => {
     let storedata = JSON.parse(localStorage.getItem('storedata'))
     try {
       const statusid = await axios({
@@ -32,10 +32,10 @@ const Index = ({ closePOPup, popid, direct, setrefreshdata, refreshdata }) => {
         method: 'post',
         url: `${Constant.baseUrl()}/wtbStatusBySeller`,
         data: {
-          data : {
-            "enquiry_id" : currentdata?.enquiry_id,
-            "status" : status?.value,
-            "store_id":storedata?.store_id
+          data: {
+            "enquiry_id": currentdata?.enquiry_id,
+            "status": status?.value,
+            "store_id": storedata?.store_id
           }
         },
         headers: {
@@ -59,10 +59,17 @@ const Index = ({ closePOPup, popid, direct, setrefreshdata, refreshdata }) => {
         });
       }
       closePOPup(false)
-    } catch(e) {
+    } catch (e) {
       console.log(e)
     }
   }
+  useEffect(() => {
+    document.addEventListener('keyup', (e) => {
+      if (e.keyCode === 27){
+        closePOPup(false)
+      }
+    })
+  }, [])
   return (
     <Modal
       aria-labelledby="transition-modal-title"
@@ -86,26 +93,25 @@ const Index = ({ closePOPup, popid, direct, setrefreshdata, refreshdata }) => {
           </div>
           <p className="p1">
             <img
-                className="eye_icon"
-                src={eye_icon}
-                alt=""
-              />
-              12 Sellers are viewing at this enquiry right now.</p>
+              className="eye_icon"
+              src={eye_icon}
+              alt=""
+            />
+            12 Sellers are viewing at this enquiry right now.</p>
           <div className="enquirydetails_section">
             <div className="enquirydetails">
               <p className="heading">Buyer Code</p>
               <p className="details">{currentdata?.buyer_code}</p>
             </div>
-            <div className={`status ${
-                currentdata?.seller_enquiry_status === "Open"
-                  ? "directenquiries__open"
-                  : currentdata?.seller_enquiry_status === "Accepted"
+            <div className={`status ${currentdata?.seller_enquiry_status === "Open"
+                ? "directenquiries__open"
+                : currentdata?.seller_enquiry_status === "Accepted"
                   ? "directenquiries__accepted"
                   : currentdata?.seller_enquiry_status === "Closed"
-                  ? "directenquiries__closed"
-                  : currentdata?.seller_enquiry_status === "Pending" && "directenquiries__pending"
-                  ? "directenquiries__decline"
-                  : currentdata?.seller_enquiry_status === "Declined" && "directenquiries__decline"
+                    ? "directenquiries__closed"
+                    : currentdata?.seller_enquiry_status === "Pending" && "directenquiries__pending"
+                      ? "directenquiries__decline"
+                      : currentdata?.seller_enquiry_status === "Declined" && "directenquiries__decline"
               } `}>
               {currentdata?.seller_enquiry_status}
             </div>
@@ -141,8 +147,8 @@ const Index = ({ closePOPup, popid, direct, setrefreshdata, refreshdata }) => {
               <p className="details">12/03/22</p>
             </div>
             <div className="enquirydetails">
-                <p className="heading">Closing Date</p>
-                <p className="details">15/03/22</p>
+              <p className="heading">Closing Date</p>
+              <p className="details">15/03/22</p>
             </div>
             <div className="enquirydetails">
               <p className="heading">Notes</p>

@@ -23,7 +23,8 @@ const FAQ = ({ classes }) => {
     setdescription(value);
     settoggle(value);
   };
-
+console.log(description)
+console.log(toggle)
   useEffect(() => {
     axios
       .get(Constant.baseUrl() + `/getFaq`, {
@@ -91,6 +92,7 @@ const FAQ = ({ classes }) => {
         });
       });
   };
+  // console.log(faqList)
   return (
     <div className="faqs_main">
       <div className="faqs_heading_section">
@@ -108,7 +110,12 @@ const FAQ = ({ classes }) => {
             <li
               key={ind}
               onClick={() => {
-                text(ind);
+                if(description === false && toggle === false){
+                  text(ind)
+                }else if(description === ind && toggle === ind){
+                  setdescription(false)
+                  settoggle(false)
+                }
               }}
               className="faqs_table_adding"
             >

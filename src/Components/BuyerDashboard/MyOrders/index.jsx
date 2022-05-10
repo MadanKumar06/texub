@@ -40,13 +40,13 @@ function Index() {
   };
 
   const [isVieworders, setisVieworders] = useState(false)
+  const [isOrders, setisOrders] = useState(true)
   const [currentorder, setcurrentorder] = useState()
   const orders = (value) => {
     setcurrentorder(value ? value : '')
     setisVieworders(true)
     setisOrders(false)
   }
-  const [isOrders, setisOrders] = useState(true)
 
   const options = {
     filter: false,

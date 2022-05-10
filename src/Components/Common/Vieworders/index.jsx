@@ -105,15 +105,15 @@ const columns = [
       },
     },
   },
-    {
-      name: "hub",
-      label: "Hub",
-      options: {
-        customBodyRender: (value) => {
-          return <div className="vieworders_hub">{value}</div>;
-        },
+  {
+    name: "hub",
+    label: "Hub",
+    options: {
+      customBodyRender: (value) => {
+        return <div className="vieworders_hub">{value}</div>;
       },
     },
+  },
   {
     name: "unit_price",
     label: "UNIT PRICE",
@@ -165,7 +165,7 @@ const columns = [
 ];
 const Index = ({ setisVieworders, setisOrders, viewDetail }) => {
   const [radiogroup, setRadioGroup] = useState(1);
-  const [{}, dispatch] = useStateValue();
+  const [{ }, dispatch] = useStateValue();
 
   const [adminToken, setAdminToken] = useState("");
   useEffect(() => {
@@ -222,11 +222,11 @@ const Index = ({ setisVieworders, setisOrders, viewDetail }) => {
 
   // stepper
   const [activeStep, setActiveStep] = useState(1);
-
   return (
     <div className="vieworders_main">
       <div className="vieworders_heading_section">
         <p className="id_heading">
+          <span className="purchase_date">{viewDetail?.[0]?.date.split(' ')[0]}</span> <br/>
           Pending Invoice No. #{" "}
           <span className="id">{viewDetail?.[0]?.quote_id}</span>
         </p>
@@ -249,6 +249,11 @@ const Index = ({ setisVieworders, setisOrders, viewDetail }) => {
             name="position"
             defaultValue=""
             className="radio_group"
+            sx={{
+              '& .MuiSvgIcon-root': {
+                fontSize: 30,
+              },
+            }}
           >
             <FormControlLabel
               value="Confirm"
@@ -329,6 +334,7 @@ const Index = ({ setisVieworders, setisOrders, viewDetail }) => {
       <div className="invoices__footer">
         <div
           className="invoices__container"
+          style={{ cursor: 'pointer' }}
           onClick={() => {
             setisVieworders(false);
             setisOrders(true);
@@ -337,7 +343,8 @@ const Index = ({ setisVieworders, setisOrders, viewDetail }) => {
           <ArrowBackIosNew />
           <span>Back</span>
         </div>
-        <Button className="button-text btn-ternary  order_cancel_btn">
+        <Button className="button-text btn-ternary  order_cancel_btn"
+          style={{ cursor: 'pointer' }}>
           Cancel
         </Button>
       </div>

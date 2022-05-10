@@ -6,13 +6,14 @@ import { Button } from "@mui/material";
 import { useStateValue } from "../../../../store/state";
 import { FormControlLabel, TextField, InputLabel } from "@mui/material";
 import "./styles.scss";
+import { useNavigate } from "react-router-dom";
 
 export default function BasicModal({ Popup, PopupAvailable }) {
-  const [{}, dispatch] = useStateValue();
+  /* const [{}, dispatch] = useStateValue(); */
   let userDetails = JSON.parse(localStorage.getItem("userdata"));
-
+  const navigate = useNavigate();
+  const [{ geo, customnostore }, dispatch] = useStateValue();
   const [open, setOpen] = React.useState(true);
-
   const handleClose = (event, reason) => {
     if (reason && reason === "backdropClick") return;
     else {
@@ -26,8 +27,9 @@ export default function BasicModal({ Popup, PopupAvailable }) {
       PopupAvailable(false);
     }
   };
-
-
+  const back_to_Dashboard = ()=>{
+    navigate(`/${customnostore ? customnostore : geo?.country_name}/buyerdashboard/dashboard`)
+  }
   return (
     <div>
       <Modal
@@ -67,7 +69,7 @@ export default function BasicModal({ Popup, PopupAvailable }) {
                 </span>
               </div>
               <div className="backto_home_btn common-block">
-                <Button className="home_to_home">Back To Dashboard</Button>
+                <Button className="home_to_home" onClick={()=> back_to_Dashboard()}>Back To Dashboard</Button>
               </div>
             </div>
           </div>
