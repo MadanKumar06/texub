@@ -254,6 +254,10 @@ const WantToBuy = ({ setisVieworders, setisOrders }) => {
                     ...prevState,
                     main_category: newValue,
                   }));
+                  setInputValidation((prevState)=>({
+                    ...prevState,
+                    main_category:''
+                  }))
                 }}
                 autocomplete="off"
                 id="controllable-states-demo"
@@ -299,6 +303,10 @@ const WantToBuy = ({ setisVieworders, setisOrders }) => {
                     ...prevState,
                     quantity: event.target.value,
                   }));
+                  setInputValidation((prevState)=>({
+                    ...prevState,
+                    quantity:''
+                  }))
                 }}
                 value={wantTobuyData?.quantity}
                 variant="outlined"
@@ -326,6 +334,10 @@ const WantToBuy = ({ setisVieworders, setisOrders }) => {
                     ...prevState,
                     hub: newValue,
                   }));
+                  setInputValidation((prevState)=>({
+                    ...prevState,
+                    hub:''
+                  }))
                 }}
                 value={wantTobuyData?.hub}
                 id="controllable-states-demo"
