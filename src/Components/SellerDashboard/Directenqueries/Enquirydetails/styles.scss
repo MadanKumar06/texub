@@ -207,21 +207,21 @@
     overflow-y: scroll;
  }
  .modal .enquirydetails_main{
-     margin: 10em 0;
+     margin: 1em 15px;
  }
 }
 @media (max-width:580px) {
     .enquirydetails_main{
         //    position:fixed;
-           max-height: 50vh;
+        //    max-height: 50vh;
            height: 100%;
-           width: 100%;
+           width: -webkit-fill-available !important;
           
            
               
     }
     .enquirydetails_main .enquirydetails_box .enquirydetails_section .enquirydetails{
-        flex-direction: column;
+        // flex-direction: column;
     }
     .enquirydetails_main .enquirydetails_box .enquirydetails_section .button_box{
         flex-direction: column;
@@ -237,12 +237,31 @@
     }
     .enquirydetails_main .enquirydetails_box .enquirydetails_section .enquirydetails .details{
         width: auto;
-        text-align: center;
     }
     .enquirydetails_main .enquirydetails_box .enquirydetails_section .enquirydetails .heading{
         width: auto;
     }
     .enquirydetails_main .enquirydetails_box .enquirydetails_section .button_box{
         align-items: center;
+        button{
+            font-size: 16px !important;
+            padding: initial !important;
+        }
+    }
+    .modal .enquirydetails_main .enquirydetails_box .enquirydetails_section{
+        margin: 10px 15px 20px 15px;
+    }
+    .modal .enquirydetails_main .enquirydetails_box .enquirydetails_section .enquirydetails .heading{
+        font-size: 14px;
+    }
+    .modal .enquirydetails_main .enquirydetails_box .enquirydetails_section .enquirydetails .details{
+        font-size: 14px;
+        text-align: left;
+    }
+    .modal .enquirydetails_main .enquirydetails_box .enquirydetails_section .status{
+        right: 1em;
+    }
+    .modal .enquirydetails_main .enquirydetails_box .enquirydetails_heading{
+        padding: 10px 15px;
     }
 }
