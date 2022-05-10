@@ -31,7 +31,7 @@
           .datepicker {
             position: absolute;
             right: 8%;
-            bottom: 15%;
+            bottom: 0.5em;
             cursor: pointer;
             opacity: 0.5;
           }
@@ -56,9 +56,9 @@
     }
   }
 }
-.datepicker{
+.datepicker {
   right: 33px !important;
 }
-.field_box{
+.field_box {
   position: relative;
 }

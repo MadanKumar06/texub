@@ -205,6 +205,7 @@ const PdpPopup = () => {
     let data = {
       pendingProducts: {
         store_id: storedata?.store_id,
+        item_id: "0",
         customer_id: user?.id,
         productId: isUserAddData?.[0]?.product_id,
         price: isUserAddData?.[0]?.price,

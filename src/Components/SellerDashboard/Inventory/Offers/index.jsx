@@ -15,11 +15,11 @@ import { LocalizationProvider, DesktopDatePicker } from "@mui/lab";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import { useStateValue } from "../../../../store/state";
 import swal from "sweetalert2";
-import { isNumber } from '../../../../utilities';
+import { isNumber } from "../../../../utilities";
 var moment = require("moment");
 
 const TransitionsModal = ({ handleOpenCloseOffers, offersOpenClose }) => {
-  const [{ currency }, dispatch] = useStateValue();
+  const [{}, dispatch] = useStateValue();
   const [open, setOpen] = useState(true);
   const [offersData, setOffersData] = useState({
     start_date: "",
@@ -33,7 +33,10 @@ const TransitionsModal = ({ handleOpenCloseOffers, offersOpenClose }) => {
   };
   useEffect(() => {
     let customerId = JSON.parse(localStorage.getItem("userdata"));
-    if (offersOpenClose?.isOfferValid === "1") {
+    if (
+      offersOpenClose?.isOfferValid === "1" ||
+      offersOpenClose?.isOfferValid === "2"
+    ) {
       let data = {
         sellerData: {
           customer_id: customerId?.id,
@@ -51,8 +54,12 @@ const TransitionsModal = ({ handleOpenCloseOffers, offersOpenClose }) => {
         .then((res) => {
           setOffersData({
             price: res?.data?.[0]?.offer_price,
-            start_date: new Date(res?.data?.[0]?.offer_start_date),
-            end_date: new Date(res?.data?.[0]?.offer_end_date),
+            start_date: res?.data?.[0]?.offer_start_date
+              ? new Date(res?.data?.[0]?.offer_start_date)
+              : null,
+            end_date: res?.data?.[0]?.offer_end_date
+              ? new Date(res?.data?.[0]?.offer_end_date)
+              : "",
           });
         })
         .catch((err) => {});
@@ -62,7 +69,7 @@ const TransitionsModal = ({ handleOpenCloseOffers, offersOpenClose }) => {
   const [save_error, setSave_error] = useState({
     start_date: "",
     end_date: "",
-    price: ""
+    price: "",
   });
   const handleClickValidation = () => {
     var errorHandle = false;
@@ -98,12 +105,12 @@ const TransitionsModal = ({ handleOpenCloseOffers, offersOpenClose }) => {
       errorHandle = true;
     }
     if (!errorHandle) {
-      OffersAPICall()
+      OffersAPICall();
       setSave_error({
-        start_date: '',
-        end_date: '',
-        price: ''
-      })
+        start_date: "",
+        end_date: "",
+        price: "",
+      });
     }
   };
   const OffersAPICall = () => {
@@ -179,109 +186,117 @@ const TransitionsModal = ({ handleOpenCloseOffers, offersOpenClose }) => {
       }}
     >
       <div className="offers_section">
-        <p>Add Offers</p>
+        {offersOpenClose?.isOfferValid === "1" ||
+        offersOpenClose?.isOfferValid === "2" ? (
+          <p>View Offers</p>
+        ) : (
+          <p>Add Offers</p>
+        )}
+
         <div className="offers_sub_container">
           <div className="textbox-fields">
             <div className="sub-textbox">
               <InputLabel>Start Date</InputLabel>
               <div className="field_box">
-                  <LocalizationProvider dateAdapter={AdapterDateFns}>
-                    <DesktopDatePicker
-                      label=""
-                      inputFormat="dd-MM-yyyy"
-                      minDate={new Date()}
-                      value={offersData?.start_date ? offersData?.start_date : null}
-                      onChange={(newValue) =>{
-                        setOffersData((prevState) => ({
-                          ...prevState,
-                          start_date: newValue,
-                        }))
-                        setSave_error((prevState) => ({
-                          ...prevState,
-                          start_date: "",
-                        }))
-                      }}
-                      renderInput={(params) => (
-                        <TextField
-                          {...params}
-                          fullWidth
-                          className="inputfield-box"
-                          id="start_date"
-                          inputProps={{
-                            ...params.inputProps,
-                            readOnly: true,
-                            placeholder: "DD-MM-YYYY",
-                          }}
-                        />
-                      )}
-                    />
-                    {offersData?.start_date ? (
-                      <Clear
-                        className="datepicker"
-                        onClick={() => {
-                          setOffersData((prev) => ({
-                            ...prev,
-                            start_date: null,
-                          }));
+                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                  <DesktopDatePicker
+                    label=""
+                    inputFormat="dd-MM-yyyy"
+                    minDate={new Date()}
+                    value={
+                      offersData?.start_date ? offersData?.start_date : null
+                    }
+                    onChange={(newValue) => {
+                      setOffersData((prevState) => ({
+                        ...prevState,
+                        start_date: newValue,
+                      }));
+                      setSave_error((prevState) => ({
+                        ...prevState,
+                        start_date: "",
+                      }));
+                    }}
+                    renderInput={(params) => (
+                      <TextField
+                        {...params}
+                        fullWidth
+                        className="inputfield-box"
+                        id="start_date"
+                        inputProps={{
+                          ...params.inputProps,
+                          readOnly: true,
+                          placeholder: "DD-MM-YYYY",
                         }}
                       />
-                    ) : null}
-                  </LocalizationProvider>
-              </div>  
-              <InputLabel style={{ color: 'red' }}>
-                  {save_error.start_date}
-                </InputLabel>
+                    )}
+                  />
+                  {offersData?.start_date ? (
+                    <Clear
+                      className="datepicker"
+                      onClick={() => {
+                        setOffersData((prev) => ({
+                          ...prev,
+                          start_date: null,
+                        }));
+                      }}
+                    />
+                  ) : null}
+                </LocalizationProvider>
+              </div>
+              <InputLabel style={{ color: "red" }}>
+                {save_error.start_date}
+              </InputLabel>
             </div>
 
             <div className="sub-textbox">
               <InputLabel>End Date</InputLabel>
               <div className="field_box">
-                  <LocalizationProvider dateAdapter={AdapterDateFns}>
-                    <DesktopDatePicker
-                      label=""
-                      inputFormat="dd-MM-yyyy"
-                      minDate={new Date()}
-                      value={offersData?.end_date ? offersData?.end_date : null}
-                      onChange={(newValue) =>{
-                        setOffersData((prevState) => ({
-                          ...prevState,
-                          end_date: newValue,
-                        }))
-                        setSave_error((prevState) => ({
-                          ...prevState,
-                          end_date: "",
-                        }))
-                      }}
-                      renderInput={(params) => (
-                        <TextField
-                          {...params}
-                          fullWidth
-                          className="inputfield-box"
-                          id="end_date"
-                          inputProps={{
-                            ...params.inputProps,
-                            readOnly: true,
-                            placeholder: "DD-MM-YYYY",
-                          }}
-                        />
-                      )}
-                    />
-                    {offersData?.end_date ? (
-                      <Clear
-                        className="datepicker"
-                        onClick={() => {
-                          setOffersData((prev) => ({
-                            ...prev,
-                            end_date: null,
-                          }));
+                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                  <DesktopDatePicker
+                    label=""
+                    inputFormat="dd-MM-yyyy"
+                    minDate={new Date()}
+                    value={offersData?.end_date ? offersData?.end_date : null}
+                    onChange={(newValue) => {
+                      setOffersData((prevState) => ({
+                        ...prevState,
+                        end_date: newValue,
+                      }));
+                      setSave_error((prevState) => ({
+                        ...prevState,
+                        end_date: "",
+                      }));
+                    }}
+                    renderInput={(params) => (
+                      <TextField
+                        {...params}
+                        fullWidth
+                        className="inputfield-box"
+                        id="end_date"
+                        inputProps={{
+                          ...params.inputProps,
+                          readOnly: true,
+                          placeholder: "DD-MM-YYYY",
                         }}
                       />
-                    ) : null}
-                  </LocalizationProvider>
+                    )}
+                  />
+                  {offersData?.end_date ? (
+                    <Clear
+                      className="datepicker"
+                      onClick={() => {
+                        setOffersData((prev) => ({
+                          ...prev,
+                          end_date: null,
+                        }));
+                      }}
+                    />
+                  ) : null}
+                </LocalizationProvider>
               </div>
-              <InputLabel style={{ color: 'red' }}>
-                  {save_error.end_date}
-                </InputLabel>
+              <InputLabel style={{ color: "red" }}>
+                {save_error.end_date}
+              </InputLabel>
             </div>
           </div>
           <div className="offers_price">
@@ -291,36 +306,34 @@ const TransitionsModal = ({ handleOpenCloseOffers, offersOpenClose }) => {
               label=""
               placeholder="68,99900"
               fullWidth
-              onChange={(event) =>{
+              onChange={(event) => {
                 setOffersData((prevState) => ({
                   ...prevState,
                   price: event.target.value,
-                }))
+                }));
                 setSave_error((prevState) => ({
                   ...prevState,
                   price: "",
-                }))
+                }));
               }}
               value={offersData?.price}
               className="inputfield-box"
               name="price"
               variant="outlined"
             />
-            <InputLabel style={{ color: 'red' }}>
-              {save_error.price}
-            </InputLabel>
+            <InputLabel style={{ color: "red" }}>{save_error.price}</InputLabel>
           </div>
         </div>
         <Box className="button-box-container">
           <Button
             className="button-text btn-ternary offers_button"
             onClick={() => {
-              handleClose()
+              handleClose();
               setSave_error({
-                start_date: '',
-                end_date: '',
-                price: ''
-              })
+                start_date: "",
+                end_date: "",
+                price: "",
+              });
             }}
           >
             Cancel
