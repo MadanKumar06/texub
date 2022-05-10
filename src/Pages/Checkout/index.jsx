@@ -82,10 +82,10 @@ const Checkout = () => {
   const [payment, setpayment] = useState(null);
   const [countryList, setCountryList] = useState([]);
   const [formerror, setformerror] = useState({
-    bussiness_name: false,
-    contact_person: false,
-    email_address: false,
-    mobile_number: false,
+    bussiness_name: true,
+    contact_person: true,
+    email_address: true,
+    mobile_number: true,
   });
   //  const handleMobileChangeInput = (event) => {
   //   pickup((prevState) => ({
@@ -94,16 +94,20 @@ const Checkout = () => {
   //   }));
   //   onpickup("");
   // };
+  // const onpickup = (e) => {
+  //   if (e.target.name === "email_address") {
+  //     if (isEmailValid(e.target.value)) {
+  //       setpickup({ ...pickup, [e.target.name]: e.target.value });
+  //       setformerror({ ...formerror, [e.target.name]: true });
+  //     }
+  //   } else {
+  //     setpickup({ ...pickup, [e.target.name]: e.target.value });
+  //     setformerror({ ...formerror, [e.target.name]: true });
+  //   }
+  // };
   const onpickup = (e) => {
-    if (e.target.name === "email_address") {
-      if (isEmailValid(e.target.value)) {
-        setpickup({ ...pickup, [e.target.name]: e.target.value });
-        setformerror({ ...formerror, [e.target.name]: true });
-      }
-    } else {
       setpickup({ ...pickup, [e.target.name]: e.target.value });
       setformerror({ ...formerror, [e.target.name]: true });
-    }
   };
 
   const [adminToken, setAdminToken] = useState("");
@@ -117,11 +121,11 @@ const Checkout = () => {
       ...prevState,
       mobile_number: event,
     }));
-    if (event.length === 12) {
-      setformerror({ ...formerror, mobile_number: true });
-    } else if (event.length !== 12) {
-      setformerror({ ...formerror, mobile_number: false });
-    }
+    // if (event.length === 12) {
+    //   setformerror({ ...formerror, mobile_number: true });
+    // } else if (event.length !== 12) {
+    //   setformerror({ ...formerror, mobile_number: false });
+    // }
   };
   const [addressdata, setaddressdata] = useState({
     organization_name: "",
@@ -379,22 +383,66 @@ const Checkout = () => {
   };
 
   const raisequote = async () => {
+    // if (
+    //   quotedata[0]?.invoice?.pending_invoice_status !== "3" &&
+    //   shipping_method === "pick_up_from_hub"
+    // ) {
+    //   if (
+    //     !formerror?.bussiness_name ||
+    //     !formerror?.contact_person ||
+    //     !formerror?.email_address ||
+    //     !formerror?.contact_person
+    //   ) {
+    //     return swal.fire({
+    //       text: "Please Fill the form before creating order",
+    //       icon: "error",
+    //       showConfirmButton: false,
+    //       timer: 3000,
+    //     });
+    //   }
+    // }
     if (
       quotedata[0]?.invoice?.pending_invoice_status !== "3" &&
       shipping_method === "pick_up_from_hub"
     ) {
-      if (
-        !formerror?.bussiness_name ||
-        !formerror?.contact_person ||
-        !formerror?.email_address ||
-        !formerror?.contact_person
-      ) {
-        return swal.fire({
-          text: "Please Fill the form before creating order",
-          icon: "error",
-          showConfirmButton: false,
-          timer: 3000,
-        });
+      if (!pickup.bussiness_name) {
+        setformerror((prevState)=>({
+          ...prevState,
+          bussiness_name:false
+        }))
+      }
+      if(!pickup.contact_person){
+        setformerror((prevState)=>({
+          ...prevState,
+          contact_person:false
+        }))
+      }
+      if(!pickup.email_address){
+        setformerror((prevState)=>({
+          ...prevState,
+          email_address:false
+        }))
+      }else if (!isEmailValid(pickup?.email_address)) {
+        setformerror((prevState) => ({
+          ...prevState,
+          email_address: false
+        }));
+      }
+      if(!pickup.mobile_number){
+        setformerror((prevState)=>({
+          ...prevState,
+          mobile_number:false
+        }))
+      }else if (pickup?.mobile_number.length<5) {
+        setformerror((prevState) => ({
+          ...prevState,
+          mobile_number: false
+        }));
+      }else {
+        setformerror((prevState) => ({
+          ...prevState,
+          mobile_number: true
+        }));
       }
     }
     if (shipping_method === "texub_shipping" && !selectadd) {
@@ -570,6 +618,12 @@ const Checkout = () => {
       navigate(
         `/${customnostore ? customnostore : geo?.country_name}/ordersuccess`
       );
+      setpickup({
+        bussiness_name:'',
+        contact_person:'',
+        email_address:'',
+        mobile_number:''
+      })
     } catch (e) {
       dispatch({
         type: "SET_IS_LOADING",
@@ -904,7 +958,7 @@ const Checkout = () => {
                             className="inputfield-box"
                             name="bussiness_name"
                             variant="outlined"
-                            value={pickup?.bname}
+                            value={pickup?.bussiness_name}
                             onChange={(e) => onpickup(e)}
                           />
                           {!formerror?.bussiness_name && (
@@ -921,7 +975,7 @@ const Checkout = () => {
                             className="inputfield-box"
                             name="contact_person"
                             variant="outlined"
-                            value={pickup?.contactname}
+                            value={pickup?.contact_person}
                             onChange={(e) => onpickup(e)}
                           />
                           {!formerror?.contact_person && (
@@ -941,7 +995,7 @@ const Checkout = () => {
                             className="inputfield-box"
                             name="email_address"
                             variant="outlined"
-                            value={pickup?.email}
+                            value={pickup?.email_address}
                             onChange={(e) => onpickup(e)}
                           />
                           {!formerror?.email_address && (
@@ -976,7 +1030,7 @@ const Checkout = () => {
                             countryCodeEditable={false}
                             className="inputfield-box"
                             name="mobile_number"
-                            value={pickup?.mobile}
+                            value={pickup?.mobile_number}
                             InputLabelProps={{
                               shrink: true,
                               required: true,
