@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./styles.scss";
-import { ArrowBackIosNew } from "@mui/icons-material";
+import { ArrowBackIosNew, Search } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import Pagination from "../../Pagination";
 import WhislistTable from "./WhishlistTable";
 import axios from "axios";
 import Constant from "../../../Constant";
 import { useStateValue } from "../../../store/state";
+import { Button, IconButton, InputBase, Paper } from "@mui/material";
 
 const Whislist = () => {
   const [tableData, setTableData] = useState([]);
@@ -57,7 +58,6 @@ const Whislist = () => {
           type: "SET_IS_LOADING",
           value: false,
         });
-        // console.log(wishlistdata)
         setwishdata(wishlistdata.data);
       } catch (e) {
         console.log(e);
@@ -94,6 +94,36 @@ const Whislist = () => {
 
   return (
     <div className="wishlist_main_container">
+      <div className="want_wish__search">
+          <Paper
+            className="want_tobuy__searchinput"
+            component="form"
+            sx={{ p: "2px 4px", display: "flex", alignItems: "center" }}
+          >
+            <InputBase
+              sx={{ ml: 1, flex: 1 }}
+              placeholder="Search..."
+              inputProps={{ "aria-label": "" }}
+              className="want_tobuy__input"
+            />
+            <IconButton
+              type="submit"
+              sx={{ p: "10px" }}
+              aria-label="search"
+              onClick={(event) => event.preventDefault()}
+            >
+              <Search />
+            </IconButton>
+          </Paper>
+          <Link style={{textDecoration: 'none'}} className="button-text btn-secondary" to={`/${customnostore ? customnostore : geo?.country_name}/products`}>
+            <Button
+              className="button-text btn-secondary"
+              style={{ width: '100%', margin: '0 auto' }}
+            >
+              Create New Wishlist
+            </Button>
+          </Link>
+        </div>
       <div>
         {filterwishdata?.length === 0
           ? 

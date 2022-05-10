@@ -1,18 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import {
-  InputLabel,
-  TextField,
-  Autocomplete,
-  Box,
-  Button,
-} from "@mui/material";
+import { InputLabel, TextField, Box, Button } from "@mui/material";
+import Autocomplete from "@mui/material/Autocomplete";
 import "./styles.scss";
 import axios from "axios";
 import swal from "sweetalert2";
 import Constant from "../../../../Constant";
 import { useStateValue } from "../../../../store/state";
-import { isOtherBrands, isOnlySpecialCharacters ,isRolesValid } from "../../../../utilities";
+import { isOtherBrands, isOnlySpecialCharacters } from "../../../../utilities";
 
 function RegisterProduct() {
   const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
@@ -192,6 +187,8 @@ function RegisterProduct() {
       }));
       errorHandle = true;
     } else if (
+      // registerNewProductData?.brands?.value === "brand-others" &&
+
       registerNewProductData?.brands?.value === "10" &&
       !registerNewProductData?.other_brands
     ) {
@@ -202,6 +199,7 @@ function RegisterProduct() {
       }));
       errorHandle = true;
     } else if (
+      // registerNewProductData?.brands?.value === "brand-others" &&
       registerNewProductData?.brands?.value === "10" &&
       isOnlySpecialCharacters(registerNewProductData?.other_brands)
     ) {
@@ -218,7 +216,8 @@ function RegisterProduct() {
       document.getElementById("other_brands")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
-        other_brands: "Please enter Alphabet or (Alphabet, Special Characters and Number)...",
+        other_brands:
+          "Please enter Alphabet or (Alphabet, Special Characters and Number)...",
       }));
       errorHandle = true;
     }
@@ -331,7 +330,7 @@ function RegisterProduct() {
             `/${
               customnostore ? customnostore : geo?.country_name
             }/sellerdashboard/registersuccess`,
-            { state: "add" }
+            { state: "register" }
           );
         } else {
           dispatch({
@@ -419,8 +418,6 @@ function RegisterProduct() {
                 }));
               }}
               id="main_category"
-              getOptionLabel={(option) => (option.label ? option.label : "")}
-              filterOptions={(options) => options}
               options={dropdownListFromApi?.mainCategoryList}
               renderInput={(params) => (
                 <TextField
@@ -553,8 +550,6 @@ function RegisterProduct() {
               }}
               id="brands"
               options={dropdownListFromApi?.brandsList}
-              getOptionLabel={(option) => (option.label ? option.label : "")}
-              filterOptions={(options) => options}
               fullWidth
               renderInput={(params) => (
                 <TextField

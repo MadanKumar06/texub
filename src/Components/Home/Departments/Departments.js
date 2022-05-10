@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Departments.scss";
 import Departments1 from "../../Data";
 import { IconButton, InputBase, Paper } from "@mui/material";
+import HighlightOffOutlinedIcon from "@mui/icons-material/HighlightOffOutlined";
 import { Menu, Search } from "@mui/icons-material";
 import { useStateValue } from "../../../store/state";
 import { useNavigate } from "react-router-dom";
@@ -10,6 +11,7 @@ export const Departments = ({ data }) => {
   const [isActive, setIsActive] = useState(true);
   const [search, setSearch] = useState("");
   const [{ geo, customnostore }, dispatch] = useStateValue();
+  const [Bar, setBar] = useState(false);
   const history = useNavigate();
 
   const handleSearchClick = (event) => {
@@ -20,6 +22,23 @@ export const Departments = ({ data }) => {
     });
     history(`/${customnostore ? customnostore : geo?.country_name}/products`);
   };
+
+  const searchinput = (e) => {
+    if (e.key === "Enter") {
+      debugger;
+      dispatch({
+        type: "SET_SEARCH",
+        value: search,
+      });
+      history(`/${customnostore ? customnostore : geo?.country_name}/products`);
+    }
+  };
+
+  const [savedsearch, setsavedsearch] = useState();
+
+  useEffect(() => {
+    setsavedsearch(localStorage.getItem("searchhistory"));
+  }, []);
 
   return (
     <div className="Departments">
@@ -67,26 +86,50 @@ export const Departments = ({ data }) => {
         </div>
         <div className="search_bar">
           <div className="body__search_bar">
-            <Paper
-              className="search_bar_paper"
-              component="form"
-              sx={{ p: "2px 4px", display: "flex", alignItems: "center" }}
-            >
-              <InputBase
-                sx={{ ml: 1, flex: 1 }}
-                placeholder="Search Entire Store Here…"
-                inputProps={{ "aria-label": " " }}
-                onChange={(event) => setSearch(event.target.value)}
-              />
-              <IconButton
-                type="submit"
-                onClick={(event) => handleSearchClick(event)}
-                sx={{ p: "10px" }}
-                aria-label="search"
+            {Bar ? (
+              <Paper
+                className="search_bar_paper focused"
+                component="form"
+                sx={{ p: "2px 4px", display: "flex", alignItems: "center" }}
               >
-                <Search />
-              </IconButton>
-            </Paper>
+                <InputBase
+                  sx={{ ml: 1, flex: 1 }}
+                  placeholder="Search Entire Store Here"
+                  inputProps={{ "aria-label": " " }}
+                  onChange={(event) => setSearch(event.target.value)}
+                  onFocus={() => setBar(true)}
+                  onKeyPress={(e) => searchinput(e)}
+                />
+                <HighlightOffOutlinedIcon onClick={() => setBar(false)} />
+                {/* <ul className="searchhistory">
+                  {savedsearch?.map((ss, i) => (
+                    <li key={i}>{ss}</li>
+                  ))}
+                </ul> */}
+              </Paper>
+            ) : (
+              <Paper
+                className="search_bar_paper"
+                component="form"
+                sx={{ p: "2px 4px", display: "flex", alignItems: "center" }}
+              >
+                <InputBase
+                  sx={{ ml: 1, flex: 1 }}
+                  placeholder="Search Entire Store Here…"
+                  inputProps={{ "aria-label": " " }}
+                  // onChange={(event) => setSearch(event.target.value)}
+                  onFocus={() => setBar(true)}
+                />
+                <IconButton
+                  type="submit"
+                  onClick={(event) => handleSearchClick(event)}
+                  sx={{ p: "10px" }}
+                  aria-label="search"
+                >
+                  <Search />
+                </IconButton>
+              </Paper>
+            )}
           </div>
           <div className="Body_Searchbar_Down_images">
             <div className="Body_Searchbar_Down_img1_div">

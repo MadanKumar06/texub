@@ -44,7 +44,7 @@ const Index = ({ closePOPup, popid, direct, setrefreshdata, refreshdata }) => {
       })
       if (update?.data[0]?.status) {
         swal.fire({
-          text: `Updates Successfully`,
+          text: `Submitted Successfully`,
           icon: "success",
           showConfirmButton: false,
           timer: 3000,
@@ -52,9 +52,9 @@ const Index = ({ closePOPup, popid, direct, setrefreshdata, refreshdata }) => {
         setrefreshdata(!refreshdata)
       } else {
         swal.fire({
-          text: `Unable to update`,
+          text: `Unable to Submit`,
           icon: "error",
-          showConfirmButton: false,
+          showConfirmButton: true,
           timer: 3000,
         });
       }

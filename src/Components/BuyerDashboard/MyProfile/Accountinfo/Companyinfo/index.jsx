@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
-import './styles.scss'
-import { TextField } from '@mui/material';
-import  styles from './styles'
+import React, { useState, useEffect } from "react";
+import "./styles.scss";
+import { TextField } from "@mui/material";
+import styles from "./styles";
 import { withStyles } from "@mui/styles";
 import Autocomplete from "@mui/material/Autocomplete";
 import { ArrowBackIosNew } from "@mui/icons-material";
@@ -9,10 +9,10 @@ import uploadImage from "../../../../../Assets/CommonImage/KYC Form/Icon.png";
 import { Clear } from "@mui/icons-material";
 import { InputLabel } from "@mui/material";
 import { Link } from "react-router-dom";
-import { useStateValue } from '../../../../../store/state';
+import { useStateValue } from "../../../../../store/state";
 
-const Index = ({classes}) => {
-   const [{geo, customstore, customnostore}, dispatch] = useStateValue()
+const Index = ({ classes }) => {
+  const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
   let {
     auto_complete_input,
     input_image_name,
@@ -20,7 +20,7 @@ const Index = ({classes}) => {
     validation_error,
   } = classes;
   const options = ["Option 1", "Option 2"];
-  const [form,setform]=useState(false)
+  const [form, setform] = useState(false);
   const handleImageChange = (event) => {
     setform((prevState) => ({
       ...prevState,
@@ -46,9 +46,7 @@ const Index = ({classes}) => {
         break;
     }
   };
-  
- 
-  
+
   // const [value, setValue] = React.useState();
   // const [inputValue, setInputValue] = React.useState("");
 
@@ -122,25 +120,27 @@ const Index = ({classes}) => {
   // };
 
   return (
-    <div className='companyinfo_main'>
-      <span className='Account_heading'> <p >EDIT COMPANY INFORMATION</p></span>
-      <div className='company_information'>
-        <div className='form'>
-          <div className='inputfield_section'>
-            <div className='inputfield'>
+    <div className="companyinfo_main">
+      <span className="Account_heading">
+        {" "}
+        <p>EDIT COMPANY INFORMATION</p>
+      </span>
+      <div className="company_information">
+        <div className="form">
+          <div className="inputfield_section">
+            <div className="inputfield">
               <p>Organization Name</p>
               <TextField
                 id="organization_name"
-                name='organization_name'
-                placeholder='Organization Name'
-              // value={CompanyInfoData?.organization_name}
+                name="organization_name"
+                placeholder="Organization Name"
+                // value={CompanyInfoData?.organization_name}
               />
               {/* <InputLabel className={validation_error}>
               {inputValidation?.organization_name}
             </InputLabel> */}
             </div>
-            <div className='inputfield'>
-
+            <div className="inputfield">
               <p>Organization Type</p>
               <Autocomplete
                 // value={value}
@@ -159,13 +159,12 @@ const Index = ({classes}) => {
                   <TextField
                     {...params}
                     id="organization_type"
-                    name='organization_type'
+                    name="organization_type"
                     placeholder="Organization Type"
                     // value={CompanyInfoData?.organization_type}
                     InputLabelProps={{
                       shrink: true,
                       required: true,
-
                     }}
                   />
                 )}
@@ -175,21 +174,20 @@ const Index = ({classes}) => {
             </InputLabel> */}
             </div>
           </div>
-          <div className='inputfield_section'>
-            <div className='inputfield'>
+          <div className="inputfield_section">
+            <div className="inputfield">
               <p>GST Number</p>
               <TextField
                 id="gst_number"
                 name="gst_number"
-                placeholder='GST Number'
-              // value={CompanyInfoData?.gst_number}
+                placeholder="GST Number"
+                // value={CompanyInfoData?.gst_number}
               />
               {/* <InputLabel className={validation_error}>
               {inputValidation?.gst_number}
             </InputLabel> */}
             </div>
-            <div className='inputfield'>
-
+            <div className="inputfield">
               <p>Speciality</p>
               <Autocomplete
                 // value={value}
@@ -208,13 +206,12 @@ const Index = ({classes}) => {
                   <TextField
                     {...params}
                     id="speciality"
-                    name='speciality'
+                    name="speciality"
                     placeholder="Speciality"
                     // value={CompanyInfoData?.speciality}
                     InputLabelProps={{
                       shrink: true,
                       required: true,
-
                     }}
                   />
                 )}
@@ -224,41 +221,41 @@ const Index = ({classes}) => {
             </InputLabel> */}
             </div>
           </div>
-          <div className='inputfield_section'>
-            <div className='inputfield'>
+          <div className="inputfield_section">
+            <div className="inputfield">
               <p>Number Of Branches & Department</p>
               <TextField
                 id="no_of_branches"
-                name='no_of_branches'
-                placeholder='Number Of Branches & Departments'
-              // value={CompanyInfoData?.no_of_branches}
+                name="no_of_branches"
+                placeholder="Number Of Branches & Departments"
+                // value={CompanyInfoData?.no_of_branches}
               />
               {/* <InputLabel className={validation_error}>
               {inputValidation?.no_of_branches}
             </InputLabel> */}
             </div>
-            <div className='inputfield'>
+            <div className="inputfield">
               <p>Average Revenue</p>
               <TextField
                 id="average_revenue"
-                name='average_revenue'
-                placeholder='Average Revenue'
-              // value={CompanyInfoData?.average_revenue}
+                name="average_revenue"
+                placeholder="Average Revenue"
+                // value={CompanyInfoData?.average_revenue}
               />
               {/* <InputLabel className={validation_error}>
               {inputValidation?.average_revenue}
             </InputLabel> */}
             </div>
           </div>
-          <div className='accountinfo_btn'>
+          <div className="accountinfo_btn">
             <div className="media_upload">
               <div className="sub_media_upload_container">
                 <div className="sub_media_upload_part">
-                  <div className='heading'>
+                  <div className="heading">
                     <p>Upload Documents</p>
                     <small>(Supported format : .jpg/.png/.pdf)</small>
                   </div>
-                  <div className='label_section'>
+                  <div className="label_section">
                     <p>GST Certificate</p>
                     <label
                       className="sub_media_upload_label"
@@ -277,43 +274,50 @@ const Index = ({classes}) => {
                         name="Documents"
                         onChange={handleImageChange}
                       />
-                      
                     </label>
                     <InputLabel className={validation_error}>
-            {inputValidation?.national_id_image}
-          </InputLabel>
+                      {inputValidation?.national_id_image}
+                    </InputLabel>
                   </div>
                 </div>
               </div>
               {form?.Documents?.name && (
                 <div className={input_image_name}>
-                    <p>{form?.Documents?.name}</p>
-                    <Clear
-                      className={input_image_name_clear_btn}
-                      onClick={() =>
-                        setform((prevState) => ({
-                          ...prevState,
-                          Documents: "",
-                        }))
-                      }
-                    />
+                  <p>{form?.Documents?.name}</p>
+                  <Clear
+                    className={input_image_name_clear_btn}
+                    onClick={() =>
+                      setform((prevState) => ({
+                        ...prevState,
+                        Documents: "",
+                      }))
+                    }
+                  />
                 </div>
               )}
             </div>
 
-            <div className='accountinfo_btn_section'>
-              <button className='account_info_cancel'>Cancel</button>
-              <button className='account_info_save'>Save Changes</button>
+            <div className="accountinfo_btn_section">
+              <button className="account_info_cancel">Cancel</button>
+              <button className="account_info_save">Save Changes</button>
             </div>
           </div>
         </div>
       </div>
-      <div className='my_profile_back'>
-      <Link to={`/${customnostore ? customnostore : geo?.country_name}/buyerdashboard/dashboard`} className="link">
-        <ArrowBackIosNew /><span><p className='back'>Back</p></span>
-          </Link>
+      <div className="my_profile_back">
+        <Link
+          to={`/${
+            customnostore ? customnostore : geo?.country_name
+          }/buyerdashboard/dashboard`}
+          className="link"
+        >
+          <ArrowBackIosNew />
+          <span>
+            <p className="back">Back</p>
+          </span>
+        </Link>
       </div>
     </div>
-  )
-}
+  );
+};
 export default withStyles(styles)(Index);

@@ -38,12 +38,13 @@
         color: #959595;
         text-align: center;
         font-weight: 600;
+        border-top: 1px solid rgba(224, 224, 224, 1);
       }
     }
 
     .MuiTableBody-root {
       .MuiTableCell-root {
-        font-size: 14px;
+        font-size: 16px;
         text-align: center;
         color: #333c42;
       }
@@ -68,7 +69,7 @@
         }
 
         .value {
-          font-size: 16px;
+          font-size: 22px;
           font-weight: 600;
         }
       }
@@ -156,11 +157,11 @@
 
     .MuiTableBody-root {
       .orders__action {
-        font-size: 14px;
+        font-size: 16px;
       }
       .orders__ordertotal {
         .value {
-          font-size: 16px;
+          font-size: 18px;
         }
 
         .label {
@@ -170,12 +171,19 @@
 
       .MuiTableCell-root,
       .orders__action {
-        font-size: 14px;
+        font-size: 16px;
       }
     }
   }
 }
-
+@media (max-width: 1400px) {
+.orders .orders__table .MuiTableBody-root .MuiTableCell-root{
+    font-size: 14px;
+}
+.orders .orders__table .MuiTableBody-root .orders__action{
+  font-size: 14px;
+}
+}
 @media (max-width: 926px) {
   .orders__table {
     .MuiTable-root {
@@ -186,7 +194,7 @@
       .MuiTableBody-root {
         .MuiTableCell-root {
           display: flex;
-          flex-direction: column;
+          // flex-direction: column;
           justify-content: center;
         }
       }

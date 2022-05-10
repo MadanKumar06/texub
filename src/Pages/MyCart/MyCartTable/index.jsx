@@ -160,6 +160,7 @@ const MyCartTable = ({ cartDataList, deleteCartData }) => {
         todays_deal: 0,
         price_drop: 0,
         new_product: 0,
+        details: event?.product_id,
       },
     };
     axios

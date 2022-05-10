@@ -2,17 +2,28 @@ import React, { useState, useEffect } from "react";
 import "./styles.scss";
 import MUITable from "../../Common/MUITable";
 import { Link } from "react-router-dom";
-import { ArrowBackIosNew } from "@mui/icons-material";
+import { ArrowBackIosNew, ClosedCaptionDisabledOutlined } from "@mui/icons-material";
 import Enquirydetails from "../../SellerDashboard/Directenqueries/Enquirydetails";
 import axios from "axios";
 import Constant from "../../../Constant";
 import { useStateValue } from "../../../store/state";
+import Pagination from "../../Pagination";
 
 const Index = () => {
   const [isUopup, setisUopup] = useState(false);
   const [direct, setdirect] = useState([]);
+  const [tableData, setTableData] = useState([]);
+  const [filtereddirect, setfiltereddirect] = useState([])
   const [refreshdata, setrefreshdata] = useState(false)
-  const [{geo, customstore, customnostore}, dispatch] = useStateValue();
+  const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
+  // const PaginateDataSplit = (event) => {
+  //   if (directList?.length === 0) return setdirect([]);
+  //   setdirect(event);
+  // };
+  const PaginateDataSplit = (event) => {
+    setTableData(event);
+  };
+  const [directList, setdirectList] = useState([])
 
   useEffect(async () => {
     let user = JSON.parse(localStorage.getItem("userdata"));
@@ -31,7 +42,8 @@ const Index = () => {
           seller_id: user?.id,
         },
       });
-      setdirect(ddlist?.data);
+      setfiltereddirect(ddlist?.data)
+      setdirectList(ddlist?.data);
       dispatch({
         type: "SET_IS_LOADING",
         value: false,
@@ -63,6 +75,28 @@ const Index = () => {
   const selectorder = (value) => {
     settype(value);
   };
+
+  useEffect(() => {
+    settype(0)
+  }, [])
+
+  useEffect(() => {
+    if (type === 0) {
+      setfiltereddirect(direct)
+    }
+    if (type === 1) {
+      const pending = direct?.filter(d => d?.seller_enquiry_status === "Open")
+      setfiltereddirect(pending)
+    }
+    if (type === 2) {
+      const accepted = direct?.filter(d => d?.seller_enquiry_status === "Accepted")
+      setfiltereddirect(accepted)
+    }
+    if (type === 3) {
+      const declined = direct?.filter(d => d?.seller_enquiry_status === "Declined")
+      setfiltereddirect(declined)
+    }
+  }, [type])
 
   const options = {
     filter: false,
@@ -145,15 +179,14 @@ const Index = () => {
         customBodyRender: (value) => {
           return (
             <div
-              className={`${
-                value === "Open"
+              className={`${value === "Open"
                   ? "directenquiries__open"
                   : value === "Accepted"
-                  ? "directenquiries__accepted"
-                  : value === "Closed"
-                  ? "directenquiries__closed"
-                  : value === "Declined" && "directenquiries__pending"
-              } `}
+                    ? "directenquiries__accepted"
+                    : value === "Closed"
+                      ? "directenquiries__closed"
+                      : value === "Declined" && "directenquiries__pending"
+                } `}
             >
               {value}
             </div>
@@ -176,16 +209,14 @@ const Index = () => {
       },
     },
   ];
-
   return (
     <div className="directenquiries_container">
       <div className="directenquiries__buttons">
         {ordertype.map((data, i) => (
           <div className="directenquiries__btton_content">
             <p
-              className={`directenquiriestypes ${
-                type === i && "directenquiries__selected"
-              }`}
+              className={`directenquiriestypes ${type === i && "directenquiries__selected"
+                }`}
               key={i}
               onClick={() => selectorder(i)}
             >
@@ -197,12 +228,22 @@ const Index = () => {
 
       <MUITable
         columns={columns}
-        table={direct}
+        // table={filtereddirect}
+        table={tableData?.length ? tableData : []}
         options={options}
         className="directenquiries__table"
       />
+      {directList?.length > 0 ?
+        <Pagination
+          PaginateData={PaginateDataSplit}
+          DataList={directList?.length ? directList : []}
+          PagePerRow={10}
+        />
+        :
+        ""
+      }
       {isUopup && (
-        <Enquirydetails closePOPup={setisUopup} popid={popid} direct={direct} setrefreshdata={setrefreshdata} refreshdata={refreshdata} />
+        <Enquirydetails closePOPup={setisUopup} popid={popid} direct={filtereddirect} setrefreshdata={setrefreshdata} refreshdata={refreshdata} />
       )}
       <div className="directenquiries__footer">
         <div className="directenquiries__container">

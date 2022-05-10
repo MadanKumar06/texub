@@ -38,7 +38,7 @@
     }
     .MuiTableHead-root {
       .MuiTableCell-root {
-        font-size: 16px;
+        font-size: 18px;
         color: #959595;
         text-align: center;
         font-weight: 600;
@@ -54,7 +54,7 @@
     }
     .MuiTableBody-root {
       .MuiTableCell-root {
-        font-size: 14px;
+        font-size: 16px;
         text-align: center;
         color: #333c42;
       }
@@ -113,7 +113,7 @@
       .actions {
         text-decoration: underline;
         color: #002d56;
-        font-size: 14px;
+        font-size: 16px;
         font-weight: 600;
         cursor: pointer;
       }
@@ -177,6 +177,59 @@
     .MuiTable-root {
       .MuiTableHead-root {
         .MuiTableCell-root {
+          font-size: 18px;
+        }
+      }
+
+      .MuiTableBody-root {
+        .MuiTableCell-root {
+          font-size: 16px;
+        }
+
+        .directenquiries_products .directenquiries_product_name {
+          font-size: 16px;
+        }
+      }
+    }
+  }
+
+  .directenquiries_container .directenquiries__table .MuiTableBody-root {
+    .directenquiries__accepted,
+    .directenquiries__closed,
+    .directenquiries__open,
+    .actions {
+      font-size: 16px;
+    }
+  }
+  .directenquiries_container
+    .directenquiries__footer
+    .directenquiries__container
+    a
+    span {
+    font-size: 16px;
+  }
+  .directenquiries_container
+    .directenquiries__footer
+    .directenquiries__container
+    a
+    .MuiSvgIcon-root {
+    width: 0.6em;
+    height: 0.6em;
+  }
+  .directenquiries_container
+    .directenquiries__buttons
+    .directenquiries__btton_content
+    p {
+    padding: 0.5em 1.2em;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 1440px) {
+  .directenquiries__table {
+    .MuiTable-root {
+      .MuiTableHead-root {
+        .MuiTableCell-root {
           font-size: 16px;
         }
       }
@@ -206,7 +259,7 @@
     .directenquiries__container
     a
     span {
-    font-size: 16px;
+    font-size: 14px;
   }
   .directenquiries_container
     .directenquiries__footer
@@ -221,9 +274,11 @@
     .directenquiries__btton_content
     p {
     padding: 0.5em 1.2em;
-    font-size: 16px;
+    font-size: 14px;
   }
 }
+
+
 
 @media (max-width: 926px) {
   .directenquiries__table {
