@@ -136,6 +136,7 @@ const Checkout = () => {
   });
 
   const addressadd = (e) => {
+    debugger
     setaddressdata((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
@@ -171,28 +172,41 @@ const Checkout = () => {
           Authorization: `Bearer ${adminToken}`,
         },
         data: {
-          customerId: user?.id,
-          cartId: quoteid,
-          shippingAddressId: selectadd ? selectadd : 0,
-          billingAddressId: selectadd ? selectadd : 0,
-          addressInformation: {
-            shipping_address: {
-              company: addressdata?.organization_name,
-              country_id: addressdata?.country,
-              street: street,
-              postcode: addressdata?.pincode,
-              city: addressdata?.city,
-            },
-            billing_address: {
-              company: addressdata?.organization_name,
-              country_id: addressdata?.country,
-              street: street,
-              postcode: addressdata?.pincode,
-              city: addressdata?.city,
-              postcode: addressdata?.pincode,
-            },
-          },
-        },
+          "customerId":user?.id,
+          "addressId":0,
+          "addressType":addressdata?.billtype === "texub_shipping" ? 1 : 0,
+          "address":{
+            "company":addressdata?.organization_name,
+            "country_id": addressdata?.country,
+            "street": street,
+            "postcode": addressdata?.pincode,
+            "city": addressdata?.city,
+          }
+        }
+        
+        // data: {
+        //   customerId: user?.id,
+        //   cartId: quoteid,
+        //   shippingAddressId: selectadd ? selectadd : 0,
+        //   billingAddressId: selectadd ? selectadd : 0,
+        //   addressInformation: {
+        //     shipping_address: {
+        //       company: addressdata?.organization_name,
+        //       country_id: addressdata?.country,
+        //       street: street,
+        //       postcode: addressdata?.pincode,
+        //       city: addressdata?.city,
+        //     },
+        //     billing_address: {
+        //       company: addressdata?.organization_name,
+        //       country_id: addressdata?.country,
+        //       street: street,
+        //       postcode: addressdata?.pincode,
+        //       city: addressdata?.city,
+        //       postcode: addressdata?.pincode,
+        //     },
+        //   },
+        // },
       });
       dispatch({
         type: "SET_IS_LOADING",
@@ -277,11 +291,13 @@ const Checkout = () => {
       city: temp?.[0]?.city,
       pincode: temp?.[0]?.postcode,
       country: temp?.[0]?.country_id,
+      // billtype: temp?.[0]?.billtype
     }));
     handleOpen("edit_new_address");
   };
 
   const selectaddress = (itm) => {
+    debugger
     if (quotedata[0]?.invoice?.pending_invoice_status !== "1") return;
     setselectadd(itm?.address_id);
     setaddressdata({

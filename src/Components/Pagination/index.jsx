@@ -118,7 +118,7 @@ const PaginationControlled = ({ PaginateData, DataList, PagePerRow }) => {
         customnostore ? customnostore : geo?.country_name
       }/buyerdashboard/wanttobuy`
     ) {
-      let wanttobuy = JSON.parse(localStorage.getItem("wanttobuy"));
+      let wanttobuy = JSON.parse(localStorage.getItem("wtbpage"));
       storedpage =
         parseInt(wanttobuy) > page?.option?.length
           ? page?.option?.length

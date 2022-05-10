@@ -214,7 +214,7 @@ const Index = ({ pdpSellerData, handleOpenClose }) => {
                       placeholder="Name"
                       className="wishlistsave_input inputfield-box"
                       onChange={(e) => setnewwishdata(e.target.value)}
-                      onKeyPress={(e) => e.key === 'Enter' &&  handleClickValidation()()}
+                      onKeyPress={(e) => e.key === 'Enter' &&  handleClickValidation()}
                     />
                     <button
                       className="wishlist_save_btn"

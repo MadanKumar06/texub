@@ -123,9 +123,17 @@
         position: relative;
         font-size: 20px;
         color: #858a8e;
+        .searchmodal {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+        }
         .MuiPaper-root {
           height: 100%;
         }
+
         .search_bar_paper {
           border: 1px solid #d6d8d9;
           box-shadow: none;
@@ -141,6 +149,19 @@
             color: #ffffff;
             padding: 0.7% 2%;
             border-radius: 3px;
+          }
+        }
+
+        .focused {
+          border-radius: 25px;
+          position: relative;
+
+          .searchhistory {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            top: 1em;
           }
         }
       }
