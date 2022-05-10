@@ -14,6 +14,7 @@ import axios from "axios";
 import Constant from "../../../Constant";
 import { useStateValue } from "../../../store/state";
 import Offers from "./Offers";
+import moment from "moment";
 
 function Index({ registerproduct }) {
   const [tableData, setTableData] = useState([]);
@@ -67,10 +68,9 @@ function Index({ registerproduct }) {
     if (offer_end_date === null) {
       return false;
     } else {
-      let date = new Date(offer_end_date);
-      var date1Updated = new Date();
-      var date2Updated = new Date(date);
-      return date1Updated > date2Updated;
+      let d1 = moment(new Date()).format("YYYY-MM-DD");
+      let d2 = moment(new Date(offer_end_date)).format("YYYY-MM-DD");
+      return moment(d1).isAfter(d2);
     }
   };
   const columns = [
@@ -93,19 +93,18 @@ function Index({ registerproduct }) {
       options: {
         customBodyRender: (value, tablemeta) => {
           let isOfferValid = tablemeta?.rowData[12];
-          let isOfferPriceValid = tablemeta?.rowData[13];
           let offerExpired = tablemeta?.rowData[14];
           return (
             <div className="brandOffers">
               <div className="inventory-product-grid-info">{value}</div>
 
-              {isOfferValid === "1" ? (
+              {isOfferValid === "1" || isOfferValid === "2" ? (
                 isOfferValidOrExpired(offerExpired) ? (
                   <p className="offer_disabled">Offers Expired</p>
                 ) : (
                   <p className="offer_enabled">Offers</p>
                 )
-              ) : isOfferValid === "0" && parseInt(isOfferPriceValid) >= 1 ? (
+              ) : offerExpired === null && isOfferValid === "2" ? (
                 <p className="disabled_offer">Offers Inactive</p>
               ) : (
                 ""
@@ -171,7 +170,8 @@ function Index({ registerproduct }) {
         customBodyRender: (value) => {
           return (
             <div className="inventory__rank">
-              3<p>th</p>
+              {value}
+              <p>th</p>
             </div>
           );
         },
@@ -184,7 +184,6 @@ function Index({ registerproduct }) {
         customBodyRender: (value, tablemeta) => {
           let assigned_product_id = tablemeta?.rowData[11];
           let isOfferValid = tablemeta?.rowData[12];
-          let isOfferPriceValid = tablemeta?.rowData[13];
           return (
             <div className="action">
               <div
@@ -206,9 +205,7 @@ function Index({ registerproduct }) {
                   })
                 }
               >
-                {isOfferValid === "0" && isOfferPriceValid === "0"
-                  ? "Add Offers"
-                  : "View Offers"}
+                {isOfferValid === "0" ? "Add Offers" : "View Offers"}
               </div>
               <div
                 className="inventory__action add_offers"
