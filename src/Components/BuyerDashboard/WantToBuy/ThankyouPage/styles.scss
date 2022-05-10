@@ -107,7 +107,7 @@
     text-align: center;
     margin: auto;
     .home_to_home {
-      width: 100%;
+      width: fit-content;
       letter-spacing: 0.66px;
       color: #002d56;
       text-transform: capitalize;
@@ -115,6 +115,7 @@
       text-decoration: underline;
       font-size: 18px;
       font-weight: 600;
+      background-color: transparent;
     }
   }
 

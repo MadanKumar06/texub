@@ -230,7 +230,7 @@ const Index = ({ setisVieworders, setisOrders, viewDetail }) => {
           Pending Invoice No. #{" "}
           <span className="id">{viewDetail?.[0]?.quote_id}</span>
         </p>
-        <Button className="button-text btn-secondary">Attach Invoice</Button>
+        <Button className="button-text btn-secondary attach_invoice_btn">Attach Invoice</Button>
       </div>
       <MUITable
         columns={columns}
@@ -339,7 +339,7 @@ const Index = ({ setisVieworders, setisOrders, viewDetail }) => {
           <span>Back</span>
         </div>
         <Button className="button-text btn-ternary  order_cancel_btn">
-          Cancel
+          Cancel Order
         </Button>
       </div>
     </div>
