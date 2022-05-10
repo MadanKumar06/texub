@@ -327,6 +327,7 @@ const Index = ({ setisVieworders, setisOrders, viewDetail }) => {
         </Box>
       </div>
       <div className="invoices__footer">
+        {/* <Button className="button__cancel" onClick={()=> window.history.back()}>Cancel</Button> */}
         <div
           className="invoices__container"
           onClick={() => {

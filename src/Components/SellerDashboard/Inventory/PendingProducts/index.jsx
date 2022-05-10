@@ -50,7 +50,7 @@ function Index({ registerproduct }) {
       label: " ",
       options: {
         customBodyRender: (value) => {
-          return <img src={value} alt="" />;
+          return <img src={value} alt="" style={{height:"50px"}} />;
         },
       },
     },

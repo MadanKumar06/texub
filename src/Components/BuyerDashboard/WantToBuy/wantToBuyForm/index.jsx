@@ -255,6 +255,7 @@ const WantToBuy = ({ setisVieworders, setisOrders }) => {
                     main_category: newValue,
                   }));
                 }}
+                autocomplete="off"
                 id="controllable-states-demo"
                 getOptionLabel={(option) => (option.label ? option.label : "")}
                 filterOptions={(options) => options}
@@ -322,6 +323,7 @@ const WantToBuy = ({ setisVieworders, setisOrders }) => {
                     ? dropdownListFromApi?.dropDownList
                     : []
                 }
+                autocomplete="off"
                 onChange={(event, newValue) => {
                   setWantToBuyData((prevState) => ({
                     ...prevState,
