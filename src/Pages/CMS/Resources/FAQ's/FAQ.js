@@ -108,7 +108,12 @@ const FAQ = ({ classes }) => {
             <li
               key={ind}
               onClick={() => {
-                text(ind);
+                if (description === false && toggle === false) {
+                  text(ind)
+                } else if (description === ind && toggle === ind) {
+                  setdescription(false)
+                  settoggle(false)
+                }
               }}
               className="faqs_table_adding"
             >
