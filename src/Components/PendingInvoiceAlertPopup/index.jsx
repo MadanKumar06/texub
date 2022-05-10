@@ -6,6 +6,7 @@ import "./styles.scss";
 
 const Index = ({ AddpendingInvoiceAlert, handleIsValidUser }) => {
   const [open, setOpen] = useState(true);
+  let userDetails = JSON.parse(localStorage.getItem("userdata"));
   const handleClose = () => {
     setOpen(false);
     AddpendingInvoiceAlert(false);
@@ -31,13 +32,15 @@ const Index = ({ AddpendingInvoiceAlert, handleIsValidUser }) => {
           <p className="important">Important !</p>
         </div>
         <div className="allert_name">
-          <p className="name">Dear Nikhil</p>
+          <p className="name">Dear {userDetails?.firstname} {userDetails?.lastname}</p>
         </div>
         <div className="allert_text">
           <p className="text">
-            Once the product ie added to pending invoice,nothing can be
-            editable. You won't be able to modify the product quantity or remove
-            the product from the pending invoice.
+            <span>Once the product ie added to pending invoice,nothing can be
+            editable.</span> 
+            <span>You won't be able to modify the product quantity or remove
+            the product </span>
+            <span>from the pending invoice.</span>
           </p>
         </div>
         <div className="button_section">

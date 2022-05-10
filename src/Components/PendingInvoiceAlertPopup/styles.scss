@@ -70,7 +70,7 @@
                 letter-spacing: 0.54px;
                 text-shadow: 0px 3px 6px rgb(0 0 0 / 16%);
                 cursor: pointer;
-                
+                line-height: initial;   
             }
             .button_add{
                 box-shadow: 0px 3px 6px rgb(0 0 0 / 16%);
@@ -85,6 +85,7 @@
                 font-weight: 600;
                 text-shadow: 0px 3px 6px rgb(0 0 0 / 16%);
                 cursor: pointer;
+                 line-height: initial;   
             }
         }
       }

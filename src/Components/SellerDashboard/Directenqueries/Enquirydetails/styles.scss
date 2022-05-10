@@ -61,7 +61,7 @@
     .enquirydetails_section{
         background-color: #FFFFFF;
         margin:  10px 30px 20px 30px;
-        padding: 20px;
+        padding: 20px 20px 10px 20px;
         display: flex;
         flex-direction: column;
         gap: 20px;
@@ -150,7 +150,7 @@
         .button_decline{
             color: #002D56;
             font-size: 18px;
-            width: 50%;
+            width: 30%;
             background-color: white;
             padding: 5px 25px;
             border-radius: 25px;
@@ -161,7 +161,7 @@
             text-shadow: 0px 3px 6px #00000029;
             cursor: pointer;
             text-transform: capitalize;
-            height: 47px;
+            line-height: initial;
         }
         .button_accept, .button_Submit{
             box-shadow: 0px 3px 6px #00000029;
@@ -176,13 +176,13 @@
             text-shadow: 0px 3px 6px #00000029;
             text-transform: capitalize;
             cursor: pointer;
-            width: 50%;
-            height: 47px;
+            width: 30%;
+            line-height: initial;
         }
         .button_closed, .button_declined {
             color: #5C6369;
             font-size: 18px;
-            width: 50%;
+            width: 40%;
             background-color: white;
             padding: 5px 25px;
             border-radius: 25px;
@@ -193,7 +193,7 @@
             text-shadow: 0px 3px 6px #00000029;
             cursor: pointer;
             text-transform: capitalize;
-            height: 47px;
+            line-height: initial;
         }
     }
     
