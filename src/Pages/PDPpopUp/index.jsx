@@ -24,7 +24,7 @@ const PdpPopup = () => {
   const [open, setOpen] = useState(true);
   let detailsData = useRef();
   const [{ pdpPopUpOpenClose }, dispatch] = useStateValue();
-  const [moreOffers, setMoreOffers] = useState({ tableone: 3, tabletwo: 3 });
+  const [moreOffers, setMoreOffers] = useState({ tableone: 3, tabletwo: 0 });
   const [tableData, setTableData] = useState({
     tableone: "",
     tabletwo: "",
@@ -65,18 +65,19 @@ const PdpPopup = () => {
         a.price > b.price ? 1 : -1
       );
       let tempTable_one = sortData?.slice(0, moreOffers?.tableone);
-      let tempTable_two = table_two_data?.slice(0, moreOffers?.tabletwo);
-      setTableData({ tableone: tempTable_one, tabletwo: tempTable_two });
+      // let tempTable_two = table_two_data?.slice(0, moreOffers?.tabletwo);
+      setTableData({ tableone: tempTable_one, tabletwo: "" });
     }
   }, [moreOffers]);
 
   const MoreOfferChange = () => {
-    let table_one =
-      pdpPopUpOpenClose?.data?.tableData?.[0]?.sub_products?.length;
-    let table_two = table_two_data?.length;
+    // let table_one =
+    //   pdpPopUpOpenClose?.data?.tableData?.[0]?.sub_products?.length;
+    // let table_two = table_two_data?.length;
+    debugger;
     setMoreOffers({
-      tableone: table_one,
-      tabletwo: table_two,
+      tableone: detailsData?.current?.[0]?.sub_products?.length,
+      tabletwo: "",
       show_scroll: "show_scroll",
     });
   };
@@ -337,8 +338,7 @@ const PdpPopup = () => {
             )}
           </div>
           <div className="modal_bottom_container">
-            {/* {(pdpPopUpOpenClose?.data?.tableData?.length > 3 ||
-              table_two_data?.length > 3) && (
+            {detailsData?.current?.[0]?.sub_products?.length > 3 ? (
               <div
                 className="modal_bottom_image_container"
                 onClick={() => MoreOfferChange()}
@@ -346,19 +346,9 @@ const PdpPopup = () => {
                 <img src={more_offer_image} alt="" />
                 <span>More Offers</span>
               </div>
-            )} */}
-            {(pdpPopUpOpenClose?.data?.tableData?.length > 3 ||
-              table_two_data?.length > 3) && tableData.tableone.length > 3?
-              (
-                <div
-                  className="modal_bottom_image_container"
-                  onClick={() => MoreOfferChange()}
-                >
-                  <img src={more_offer_image} alt="" />
-                  <span>More Offers</span>
-                </div>
-              ):
-              <></>}
+            ) : (
+              ""
+            )}
 
             <div
               className="modal_bottom_image_container"

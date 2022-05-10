@@ -70,7 +70,7 @@
                 letter-spacing: 0.54px;
                 text-shadow: 0px 3px 6px rgb(0 0 0 / 16%);
                 cursor: pointer;
-                
+                line-height: initial;   
             }
             .button_add{
                 box-shadow: 0px 3px 6px rgb(0 0 0 / 16%);
@@ -85,6 +85,7 @@
                 font-weight: 600;
                 text-shadow: 0px 3px 6px rgb(0 0 0 / 16%);
                 cursor: pointer;
+                 line-height: initial;   
             }
         }
       }
@@ -95,8 +96,45 @@
     .allert_modal {
         .allert_main{
             height: 50vh;
+            overflow: auto;
 
         }
+
+    }
+}
+@media  (max-width:1440px) {
+
+    .allert_modal {
+        .allert_main{
+            height: 60vh;
+            overflow: auto;
+            .allert_important{
+                .important{
+                    font-size: 24px;
+                }
+            }
+            .allert_name{
+                .name{
+                    font-size: 20px;
+                }
+            }
+            .allert_text{
+                .text{
+                    font-size: 16px;
+                }
+            }
+            .button_section{
+            .button_box{
+                button{
+                    font-size: 16px !important;
+                }
+
+            }
+        } 
+        
+
+        }
+      
 
     }
 }
@@ -114,12 +152,12 @@
         .allert_main{
             .allert_important{
                 .important{
-                    font-size: 24px;
+                    font-size: 22px;
                 }
             }
             .allert_name{
                 .name{
-                    font-size: 20px;
+                    font-size: 17px;
                 }
             }
             .allert_text{

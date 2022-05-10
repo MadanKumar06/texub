@@ -10,7 +10,7 @@
     width: 100%;
     flex-direction: column;
     position: relative;
-    height: 75vh;
+    max-height: 75vh;
     .clear_btn {
       position: absolute;
       top: -37px;
@@ -23,7 +23,7 @@
       height: 1.5em !important;
     }
     .section_main_sub {
-      height: 80vh;
+      max-height: 80vh;
       overflow-x: auto;
       box-shadow: 0 0 12px 2px rgb(0 0 0 / 35%);
       .section_main_sub_container {

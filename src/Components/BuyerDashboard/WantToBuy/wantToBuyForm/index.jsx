@@ -256,10 +256,13 @@ const WantToBuy = ({ setisVieworders, setisOrders }) => {
                     ...prevState,
                     main_category: newValue,
                   }));
+                  setInputValidation((prevState)=>({
+                    ...prevState,
+                    main_category:''
+                  }))
                 }}
+                autocomplete="off"
                 id="controllable-states-demo"
-                getOptionLabel={(option) => (option.label ? option.label : "")}
-                filterOptions={(options) => options}
                 options={dropdownListFromApi?.mainCategoryList}
                 fullWidth
                 className="inputfield-box auto_complete_input"
@@ -302,6 +305,10 @@ const WantToBuy = ({ setisVieworders, setisOrders }) => {
                     ...prevState,
                     quantity: event.target.value,
                   }));
+                  setInputValidation((prevState)=>({
+                    ...prevState,
+                    quantity:''
+                  }))
                 }}
                 value={wantTobuyData?.quantity}
                 variant="outlined"
@@ -318,17 +325,21 @@ const WantToBuy = ({ setisVieworders, setisOrders }) => {
                 getOptionLabel={(option) =>
                   option?.hub_name ? option.hub_name : ""
                 }
-                filterOptions={(options) => options}
                 options={
                   dropdownListFromApi?.dropDownList
                     ? dropdownListFromApi?.dropDownList
                     : []
                 }
+                autocomplete="off"
                 onChange={(event, newValue) => {
                   setWantToBuyData((prevState) => ({
                     ...prevState,
                     hub: newValue,
                   }));
+                  setInputValidation((prevState)=>({
+                    ...prevState,
+                    hub:''
+                  }))
                 }}
                 value={wantTobuyData?.hub}
                 id="controllable-states-demo"

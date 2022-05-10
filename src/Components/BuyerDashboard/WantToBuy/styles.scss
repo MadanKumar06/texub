@@ -255,6 +255,9 @@
   .want_tobuy .want_tobuy__footer .want_tobuy__container a span {
     font-size: 18px;
   }
+  .want_tobuy .want_tobuy__table .MuiTableBody-root .MuiTableRow-root .MuiTableCell-root > *{
+    font-size: 14px;
+  }
 }
 
 @media (max-width: 1024px) {

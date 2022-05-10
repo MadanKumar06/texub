@@ -7,7 +7,7 @@ import {
   PaginationItem,
 } from "@mui/material";
 import "./styles.scss";
-import { useStateValue } from '../../store/state'
+import { useStateValue } from "../../store/state";
 
 const firstIndex = 0;
 const PaginationControlled = ({ PaginateData, DataList, PagePerRow }) => {
@@ -46,56 +46,113 @@ const PaginationControlled = ({ PaginateData, DataList, PagePerRow }) => {
     PaginateData(
       DataList?.slice(firstIndex + PagePerRow * (value - 1), PagePerRow * value)
     );
-    if(window.location.pathname === `/${customnostore ? customnostore : geo?.country_name}/buyerdashboard/invoiceslist`) {
-      localStorage.setItem('invoicepage', JSON.stringify(value))
+    if (
+      window.location.pathname ===
+      `/${
+        customnostore ? customnostore : geo?.country_name
+      }/buyerdashboard/invoiceslist`
+    ) {
+      localStorage.setItem("invoicepage", JSON.stringify(value));
     } else {
-      localStorage.setItem('invoicepage', JSON.stringify(1))
+      localStorage.setItem("invoicepage", JSON.stringify(1));
     }
-    if(window.location.pathname === `/${customnostore ? customnostore : geo?.country_name}/buyerdashboard/wishlist`) {
-      localStorage.setItem('wishpage', JSON.stringify(value))
+    if (
+      window.location.pathname ===
+      `/${
+        customnostore ? customnostore : geo?.country_name
+      }/buyerdashboard/wishlist`
+    ) {
+      localStorage.setItem("wishpage", JSON.stringify(value));
     } else {
-      localStorage.setItem('wishpage', JSON.stringify(1))
+      localStorage.setItem("wishpage", JSON.stringify(1));
     }
-    if(window.location.pathname === `/${customnostore ? customnostore : geo?.country_name}/buyerdashboard/wanttobuy`) {
-      localStorage.setItem('wtbpage', JSON.stringify(value))
+    if (
+      window.location.pathname ===
+      `/${
+        customnostore ? customnostore : geo?.country_name
+      }/buyerdashboard/wanttobuy`
+    ) {
+      localStorage.setItem("wtbpage", JSON.stringify(value));
     } else {
-      localStorage.setItem('wtbpage', JSON.stringify(1))
+      localStorage.setItem("wtbpage", JSON.stringify(1));
     }
-    if(window.location.pathname === `/${customnostore ? customnostore : geo?.country_name}/products`) {
-      localStorage.setItem('productpage', JSON.stringify(value))
+    if (
+      window.location.pathname ===
+      `/${customnostore ? customnostore : geo?.country_name}/products`
+    ) {
+      localStorage.setItem("productpage", JSON.stringify(value));
     } else {
-      localStorage.setItem('productpage', JSON.stringify(1))
+      localStorage.setItem("productpage", JSON.stringify(1));
     }
   };
 
   useEffect(() => {
-    let storedpage = 1
-    if(window.location.pathname === `/${customnostore ? customnostore : geo?.country_name}/buyerdashboard/invoiceslist`) {
-      let invoicepage = JSON.parse(localStorage.getItem('invoicepage'))
-      storedpage = parseInt(invoicepage) > page?.option?.length ? page?.option?.length : parseInt(invoicepage)
+    let storedpage = 1;
+    if (
+      window.location.pathname ===
+      `/${
+        customnostore ? customnostore : geo?.country_name
+      }/buyerdashboard/invoiceslist`
+    ) {
+      let invoicepage = JSON.parse(localStorage.getItem("invoicepage"));
+      storedpage =
+        parseInt(invoicepage) > page?.option?.length
+          ? page?.option?.length
+          : parseInt(invoicepage);
     }
-    if(window.location.pathname === `/${customnostore ? customnostore : geo?.country_name}/buyerdashboard/wishlist`) {
-      let wishpage = JSON.parse(localStorage.getItem('wishpage'))
-      storedpage = parseInt(wishpage) > page?.option?.length ? page?.option?.length : parseInt(wishpage)
+    if (
+      window.location.pathname ===
+      `/${
+        customnostore ? customnostore : geo?.country_name
+      }/buyerdashboard/wishlist`
+    ) {
+      let wishpage = JSON.parse(localStorage.getItem("wishpage"));
+      storedpage =
+        parseInt(wishpage) > page?.option?.length
+          ? page?.option?.length
+          : parseInt(wishpage);
     }
-    if(window.location.pathname === `/${customnostore ? customnostore : geo?.country_name}/buyerdashboard/wanttobuy`) {
-      let wanttobuy = JSON.parse(localStorage.getItem('wtbpage'))
-      storedpage = parseInt(wanttobuy) > page?.option?.length ? page?.option?.length : parseInt(wanttobuy)
+    if (
+      window.location.pathname ===
+      `/${
+        customnostore ? customnostore : geo?.country_name
+      }/buyerdashboard/wanttobuy`
+    ) {
+      let wanttobuy = JSON.parse(localStorage.getItem("wtbpage"));
+      storedpage =
+        parseInt(wanttobuy) > page?.option?.length
+          ? page?.option?.length
+          : parseInt(wanttobuy);
     }
-    if(window.location.pathname === `/${customnostore ? customnostore : geo?.country_name}/products`) {
-      let productpage = JSON.parse(localStorage.getItem('productpage'))
-      storedpage = parseInt(productpage) > page?.option?.length ? page?.option?.length : parseInt(productpage)
+    if (
+      window.location.pathname ===
+      `/${customnostore ? customnostore : geo?.country_name}/products`
+    ) {
+      let productpage = JSON.parse(localStorage.getItem("productpage"));
+      storedpage =
+        parseInt(productpage) > page?.option?.length
+          ? page?.option?.length
+          : parseInt(productpage);
     }
-    if(storedpage === null) return
+    if (storedpage === null) return;
     setPage((prevState) => ({
       ...prevState,
       page: storedpage,
       jumptopage: storedpage?.toString(),
     }));
     PaginateData(
-      DataList?.slice(firstIndex + PagePerRow * (storedpage - 1), PagePerRow * storedpage)
+      DataList?.slice(
+        firstIndex + PagePerRow * (storedpage - 1),
+        PagePerRow * storedpage
+      )
     );
-  }, [localStorage.getItem('wishpage'), PagePerRow, customnostore, geo, page?.option?.length])
+  }, [
+    localStorage.getItem("wishpage"),
+    PagePerRow,
+    customnostore,
+    geo,
+    page?.option?.length,
+  ]);
 
   return (
     <div className="pagination_top_container">
@@ -120,7 +177,6 @@ const PaginationControlled = ({ PaginateData, DataList, PagePerRow }) => {
           }}
           id="controllable-states-demo"
           options={page?.option}
-          filterOptions={(options) => options}
           getOptionLabel={(option) => option?.toString()}
           renderInput={(params) => (
             <TextField
