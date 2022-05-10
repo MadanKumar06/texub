@@ -50,6 +50,14 @@ const Productlists = ({
       ...prevState,
       [event.target.name]: event.target.value,
     }));
+    if(event.target.name === 'search_product') {
+      let temp = []
+      if(localStorage.getItem('searchhistory') !== undefined) {
+        temp.push(localStorage.getItem('searchhistory'))
+      }
+      temp.push(homeSearch)
+      localStorage.setItem('searchhistory', temp)
+    }
   };
   useEffect(() => {
     if (homeSearch !== "") {
@@ -57,6 +65,12 @@ const Productlists = ({
         ...prev,
         search_product: homeSearch,
       }));
+      let temp = []
+      if(localStorage.getItem('searchhistory') !== undefined) {
+        temp.push(localStorage.getItem('searchhistory'))
+      }
+      temp.push(homeSearch)
+      localStorage.setItem('searchhistory', temp)
     }
   }, [homeSearch]);
   const handleImageChange = (event) => {

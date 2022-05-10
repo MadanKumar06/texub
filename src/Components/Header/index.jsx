@@ -56,7 +56,16 @@ const Header = ({ classes }) => {
           value: false,
         });
       } catch (e) {
-        console.log(e);
+        console.log(e.message);
+        if(e.message === "Request failed with status code 401") {
+          swal.fire({
+            text: "Due to Session expiry, Logging out",
+            icon: "success",
+            showConfirmButton: false,
+            timer: 3000,
+          });
+          localStorage.clear()
+        }
         dispatch({
           type: "SET_IS_SIMPLE_LOADING",
           value: false,

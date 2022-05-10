@@ -79,7 +79,7 @@ const PaginationControlled = ({ PaginateData, DataList, PagePerRow }) => {
       storedpage = parseInt(wishpage) > page?.option?.length ? page?.option?.length : parseInt(wishpage)
     }
     if(window.location.pathname === `/${customnostore ? customnostore : geo?.country_name}/buyerdashboard/wanttobuy`) {
-      let wanttobuy = JSON.parse(localStorage.getItem('wanttobuy'))
+      let wanttobuy = JSON.parse(localStorage.getItem('wtbpage'))
       storedpage = parseInt(wanttobuy) > page?.option?.length ? page?.option?.length : parseInt(wanttobuy)
     }
     if(window.location.pathname === `/${customnostore ? customnostore : geo?.country_name}/products`) {
