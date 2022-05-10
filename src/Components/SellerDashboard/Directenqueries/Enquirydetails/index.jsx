@@ -63,6 +63,13 @@ const Index = ({ closePOPup, popid, direct, setrefreshdata, refreshdata }) => {
       console.log(e)
     }
   }
+  useEffect(() => {
+    document.addEventListener('keyup', (e) => {
+      if (e.keyCode === 27){
+        closePOPup(false)
+      }
+    })
+  }, [])
   return (
     <Modal
       aria-labelledby="transition-modal-title"

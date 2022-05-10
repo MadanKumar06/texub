@@ -227,10 +227,14 @@ const Index = ({ setisVieworders, setisOrders, viewDetail }) => {
     <div className="vieworders_main">
       <div className="vieworders_heading_section">
         <p className="id_heading">
+          Purchase Order Date #{" "}
+          <span className="purchase_date">{viewDetail?.[0]?.date.split(' ')[0]}</span> <br/>
+        </p>
+        <p className="id_heading">
           Pending Invoice No. #{" "}
           <span className="id">{viewDetail?.[0]?.quote_id}</span>
         </p>
-        <Button className="button-text btn-secondary">Attach Invoice</Button>
+        <Button className="button-text btn-secondary attach_invoice_btn">Attach Invoice</Button>
       </div>
       <MUITable
         columns={columns}
@@ -249,6 +253,11 @@ const Index = ({ setisVieworders, setisOrders, viewDetail }) => {
             name="position"
             defaultValue=""
             className="radio_group"
+            sx={{
+              '& .MuiSvgIcon-root': {
+                fontSize: 30,
+              },
+            }}
           >
             <FormControlLabel
               value="Confirm"
@@ -339,7 +348,7 @@ const Index = ({ setisVieworders, setisOrders, viewDetail }) => {
           <span>Back</span>
         </div>
         <Button className="button-text btn-ternary  order_cancel_btn">
-          Cancel
+          Cancel Order
         </Button>
       </div>
     </div>

@@ -20,7 +20,7 @@
         text-transform: capitalize;
       }
       .MuiButtonBase-root {
-        background: #002d56;
+        background: linear-gradient(#20639B, #002D56);
         color: #ffffff;
         padding: 1% 3%;
         border-radius: 3px;
@@ -254,6 +254,9 @@
   }
   .want_tobuy .want_tobuy__footer .want_tobuy__container a span {
     font-size: 18px;
+  }
+  .want_tobuy .want_tobuy__table .MuiTableBody-root .MuiTableRow-root .MuiTableCell-root > *{
+    font-size: 14px;
   }
 }
 

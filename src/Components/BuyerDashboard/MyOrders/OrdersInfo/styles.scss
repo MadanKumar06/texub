@@ -12,6 +12,9 @@
       margin-right: 5px;
       margin: 0;
     }
+    .attach_invoice_btn{
+      min-width: 25% !important;
+    }
     .id {
       color: #ddb363;
       font-size: 18px;
@@ -707,7 +710,7 @@
 @media (max-width: 1100px) {
   .vieworders_main{
     .vieworders_heading_section{
-      flex-direction: column;
+     // flex-direction: column;
       .order_info_section1{
         width: 100%;
       }
@@ -771,6 +774,9 @@
 
 @media (max-width: 580px) {
   .vieworders_main{
+    .vieworders_heading_section{
+      flex-direction: column;
+    }
     .order_info_section2 {
       .order_track_info{
         flex-direction: column;
@@ -825,6 +831,9 @@
   }
   .serial_number_popup .serial_popup_main .serial_popup_block .serial_number_block{
     grid-template-columns: repeat(2, 1fr);
+  }
+  .vieworders_main .vieworders_heading_section .attach_invoice_btn{
+    min-width: 100% !important;
   }
 
 }
