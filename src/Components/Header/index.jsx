@@ -62,9 +62,13 @@ const Header = ({ classes }) => {
             text: "Due to Session expiry, Logging out",
             icon: "success",
             showConfirmButton: false,
-            timer: 3000,
+            timer: 2000,
           });
           localStorage.clear()
+          setTimeout(() => {
+            navigate("/");
+            window.location.reload();
+          }, 2000);
         }
         dispatch({
           type: "SET_IS_SIMPLE_LOADING",

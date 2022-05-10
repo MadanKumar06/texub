@@ -302,6 +302,7 @@ const WantToBuy = ({ setisVieworders, setisOrders }) => {
                 }}
                 className="inputfield-box"
                 onChange={(event) => {
+                  if(wantTobuyData?.quantity?.length === 5) return
                   setWantToBuyData((prevState) => ({
                     ...prevState,
                     quantity: event.target.value,
@@ -312,6 +313,7 @@ const WantToBuy = ({ setisVieworders, setisOrders }) => {
                   }));
                 }}
                 value={wantTobuyData?.quantity}
+                maxLength="5"
                 variant="outlined"
               />
               <InputLabel className="validation_error">
