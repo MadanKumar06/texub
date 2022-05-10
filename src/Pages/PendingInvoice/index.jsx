@@ -661,7 +661,7 @@ function Index() {
           <p className="remark_content">{pendingInvoiceList?.remarks}</p>
         </div>
         <div className="bottom__buttons">
-          <Button className="button__cancel" onClick={()=> window.history.back()}>Cancel</Button>
+          <Button className="button__cancel" onClick={()=> window.history.back()}>Back</Button>
           {!placeorder && (
             <Button className="button__checkout">
               <Link

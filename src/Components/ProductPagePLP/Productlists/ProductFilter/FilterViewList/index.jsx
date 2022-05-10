@@ -59,6 +59,23 @@ const FilterViewList = ({
     }
   }, [dataFromApi]);
 
+  useEffect(() => {
+    let userfilters = JSON.parse(localStorage.getItem('filters'))
+    setProductFetchApi((prev) => ({
+      ...prev,
+      hub: userfilters?.hub_id,
+      brand_id: userfilters?.brand_id,
+      conditions: userfilters?.condition_id,
+      min_price: userfilters?.min_price,
+      max_price: userfilters?.max_price,
+    }));
+    if(userfilters?.max_price == 0 && userfilters?.min_price == 0) return
+    setValue([
+      userfilters?.min_price,
+      userfilters?.max_price,
+    ]);
+  }, [dataFromApi])
+
   const seeMoreChange = (event) => {
     let FilteredData =
       event === "filter_by_brand"
@@ -81,6 +98,7 @@ const FilterViewList = ({
   }
   const minDistance = 10;
   const handleChange = (event, newValue, activeThumb) => {
+    debugger
     setProductFetchApi((prev) => ({
       ...prev,
       min_price: newValue[0],
@@ -125,7 +143,7 @@ const FilterViewList = ({
                 <div className="map_container">
                   <Checkbox
                     name="hub"
-                    // checked={productFetchApi?.hub}
+                    checked={productFetchApi?.hub == item?.hub_id ? true : false}
                     onChange={(e) =>
                       handleChangeChecbox({ e, value: item?.hub_id })
                     }
@@ -151,7 +169,7 @@ const FilterViewList = ({
               <div className="map_container">
                 <Checkbox
                   name="conditions"
-                  // checked={productFetchApi?.conditions}
+                  checked={productFetchApi?.conditions == item?.value ? true : false}
                   onChange={(e) =>
                     handleChangeChecbox({ e, value: item?.value })
                   }
@@ -172,7 +190,7 @@ const FilterViewList = ({
                 <div className="map_container">
                   <Checkbox
                     name="brand_id"
-                    // checked={productFetchApi?.brand_id}
+                    checked={productFetchApi?.brand_id == item?.value ? true : false}
                     onChange={(e) =>
                       handleChangeChecbox({ e, value: item?.value })
                     }
@@ -260,6 +278,7 @@ const FilterViewList = ({
                     >
                       <Checkbox
                         // checked={productFetchApi?.category_id}
+                        // checked={productFetchApi?.category_id == item?.value ? true : false}
                         name="category_id"
                         onChange={(e) =>
                           handleChangeChecbox({ e, value: item?.id })

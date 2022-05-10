@@ -125,9 +125,10 @@ function Index() {
             <div
               className={`
                     ${value === "Pending" && "want_tobuy__pending"}
-                    ${value === "Confirm" && "want_tobuy__confirm"}
-                    ${value === "Delivered" && "want_tobuy__delivered"}
-                    ${value === "Dispatched" && "want_tobuy__dispatched"}
+                    ${value === "Assigned" && "want_tobuy__confirm"}
+                    ${value === "Accepted" && "want_tobuy__delivered"}
+                    ${value === "Approved" && "want_tobuy__approved"}
+                    ${value === "Rejected" && "want_tobuy__dispatched"}
                     `}
             >
               {value}
