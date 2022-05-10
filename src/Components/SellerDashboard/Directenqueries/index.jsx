@@ -7,12 +7,18 @@ import Enquirydetails from "../../SellerDashboard/Directenqueries/Enquirydetails
 import axios from "axios";
 import Constant from "../../../Constant";
 import { useStateValue } from "../../../store/state";
+import Pagination from "../../Pagination";
 
 const Index = () => {
   const [isUopup, setisUopup] = useState(false);
   const [direct, setdirect] = useState([]);
   const [refreshdata, setrefreshdata] = useState(false)
   const [{geo, customstore, customnostore}, dispatch] = useStateValue();
+  const PaginateDataSplit = (event) => {
+    if (directList?.length === 0) return setdirect([]);
+      setdirect(event);
+          };
+  const [directList, setdirectList] = useState([])
 
   useEffect(async () => {
     let user = JSON.parse(localStorage.getItem("userdata"));
@@ -31,7 +37,7 @@ const Index = () => {
           seller_id: user?.id,
         },
       });
-      setdirect(ddlist?.data);
+      setdirectList(ddlist?.data);
       dispatch({
         type: "SET_IS_LOADING",
         value: false,
@@ -201,6 +207,15 @@ const Index = () => {
         options={options}
         className="directenquiries__table"
       />
+      {directList?.length > 0  ?
+          <Pagination
+            PaginateData={PaginateDataSplit}
+            DataList={directList?.length ? directList : []}
+            PagePerRow={10}
+          />
+            :
+            ""
+			}
       {isUopup && (
         <Enquirydetails closePOPup={setisUopup} popid={popid} direct={direct} setrefreshdata={setrefreshdata} refreshdata={refreshdata} />
       )}
