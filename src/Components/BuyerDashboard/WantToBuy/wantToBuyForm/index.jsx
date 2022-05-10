@@ -82,9 +82,9 @@ const WantToBuy = ({ setisVieworders, setisOrders }) => {
       }));
       errorHandle = true;
     }
-    console.log(wantTobuyData)
+    console.log(wantTobuyData);
     if (!errorHandle) {
-      debugger
+      debugger;
       FinalWantToBuy();
     }
   };
@@ -186,7 +186,7 @@ const WantToBuy = ({ setisVieworders, setisOrders }) => {
         });
       });
   };
-
+  console.log(wantTobuyData);
   return (
     <div className="want_to_buy__container">
       <div className="want_to_buy__sub_container">
@@ -256,10 +256,10 @@ const WantToBuy = ({ setisVieworders, setisOrders }) => {
                     ...prevState,
                     main_category: newValue,
                   }));
-                  setInputValidation((prevState)=>({
+                  setInputValidation((prevState) => ({
                     ...prevState,
-                    main_category:''
-                  }))
+                    main_category: "",
+                  }));
                 }}
                 autocomplete="off"
                 id="controllable-states-demo"
@@ -291,6 +291,7 @@ const WantToBuy = ({ setisVieworders, setisOrders }) => {
                 label="Quantity"
                 fullWidth
                 name="quantity"
+                type="number"
                 placeholder="Enter Quantity"
                 InputLabelProps={{
                   shrink: true,
@@ -305,10 +306,10 @@ const WantToBuy = ({ setisVieworders, setisOrders }) => {
                     ...prevState,
                     quantity: event.target.value,
                   }));
-                  setInputValidation((prevState)=>({
+                  setInputValidation((prevState) => ({
                     ...prevState,
-                    quantity:''
-                  }))
+                    quantity: "",
+                  }));
                 }}
                 value={wantTobuyData?.quantity}
                 variant="outlined"
@@ -336,10 +337,10 @@ const WantToBuy = ({ setisVieworders, setisOrders }) => {
                     ...prevState,
                     hub: newValue,
                   }));
-                  setInputValidation((prevState)=>({
+                  setInputValidation((prevState) => ({
                     ...prevState,
-                    hub:''
-                  }))
+                    hub: "",
+                  }));
                 }}
                 value={wantTobuyData?.hub}
                 id="controllable-states-demo"
