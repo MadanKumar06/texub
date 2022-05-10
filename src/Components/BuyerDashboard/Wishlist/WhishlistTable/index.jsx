@@ -308,6 +308,7 @@ const WhislistTable = ({
     let data = {
       pendingProducts: {
         store_id: storedata?.store_id,
+        item_id: "0",
         customer_id: user?.id,
         productId: info?.product_id,
         price: info?.texub_product_price,
