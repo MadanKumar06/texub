@@ -82,6 +82,7 @@ const Index = () => {
             new_product: productFetchApi?.just_launch
               ? productFetchApi?.just_launch
               : 0,
+            details: 0,
           },
         };
         axios

@@ -181,7 +181,6 @@ function Index({
             getOptionLabel={(option) =>
               option.hub_name ? option.hub_name : ""
             }
-            filterOptions={(options) => options}
             renderInput={(params) => (
               <TextField
                 {...params}

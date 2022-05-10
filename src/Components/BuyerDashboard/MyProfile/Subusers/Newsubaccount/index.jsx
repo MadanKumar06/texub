@@ -408,7 +408,6 @@ const Index = ({ currentid, setisSub, setisSubusers }) => {
               ? NewSubAccountData?.allowed_permissions
               : ""
           }
-          getOptionLabel={(option) => (option.label ? option.label : "")}
           disableCloseOnSelect
           renderOption={(props, option, { selected }) => (
             <li {...props}>

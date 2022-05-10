@@ -270,17 +270,20 @@ const Productsbrands = ({
                       isCategorySelected === item?.category?.id &&
                       "selected_category"
                     }`}
-                    onClick={() => {
-                      setProductFetchApi((prevState) => ({
-                        ...prevState,
-                        category_id: item?.category?.id,
-                      }));
-                      setIsCategorySelected(item?.category?.id);
-                      setApplyFilter(!applyFilter);
-                    }}
                     onMouseOver={() => brand(item?.category?.id)}
                   >
-                    <span>{item?.category?.category_name}</span>
+                    <span
+                      onClick={() => {
+                        setProductFetchApi((prevState) => ({
+                          ...prevState,
+                          category_id: item?.category?.id,
+                        }));
+                        setIsCategorySelected(item?.category?.id);
+                        setApplyFilter(!applyFilter);
+                      }}
+                    >
+                      {item?.category?.category_name}
+                    </span>
                     {isChange && (
                       <div className="list">
                         <li className="list_content">

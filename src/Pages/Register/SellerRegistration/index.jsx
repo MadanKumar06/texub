@@ -800,7 +800,6 @@ const BuyerRegistration = ({ classes }) => {
                 getOptionLabel={(option) =>
                   option.role_name ? option.role_name : ""
                 }
-                filterOptions={(options) => options}
                 renderInput={(params) => (
                   <TextField
                     {...params}
@@ -868,7 +867,6 @@ const BuyerRegistration = ({ classes }) => {
                 getOptionLabel={(option) =>
                   option.region_name ? option.region_name : ""
                 }
-                filterOptions={(options) => options}
                 renderInput={(params) => (
                   <TextField
                     {...params}
