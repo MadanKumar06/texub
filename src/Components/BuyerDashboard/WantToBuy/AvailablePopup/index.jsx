@@ -9,6 +9,7 @@ export default function BasicModal({ PopupAvailable }) {
   const [open, setOpen] = React.useState(true);
   const [{ customnostore, geo }, dispatch] = useStateValue();
   const Navigate = useNavigate();
+  let userDetails = JSON.parse(localStorage.getItem("userdata"));
 
     const handleClose = (event, reason) => {
     if (reason && reason === "backdropClick") return;
@@ -58,7 +59,7 @@ export default function BasicModal({ PopupAvailable }) {
                 <span className="msg">Available</span>
               </div>
               <div className="logged_user common-block">
-                <span className="msg">Dear Customer</span>
+                <span className="msg">Dear {userDetails?.firstname} {userDetails?.lastname}</span>
               </div>
               <div className="custom_msg common-block">
                 <span className="msg">
