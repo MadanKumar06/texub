@@ -255,6 +255,7 @@ const WantToBuy = ({ setisVieworders, setisOrders }) => {
                     main_category: newValue,
                   }));
                 }}
+                autocomplete="off"
                 id="controllable-states-demo"
                 options={dropdownListFromApi?.mainCategoryList}
                 fullWidth
@@ -319,6 +320,7 @@ const WantToBuy = ({ setisVieworders, setisOrders }) => {
                     ? dropdownListFromApi?.dropDownList
                     : []
                 }
+                autocomplete="off"
                 onChange={(event, newValue) => {
                   setWantToBuyData((prevState) => ({
                     ...prevState,
