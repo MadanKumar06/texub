@@ -1,19 +1,13 @@
 import React, { useState, useEffect } from "react";
-import {
-  Box,
-  Button,
-  FormControlLabel,
-  Checkbox,
-  InputLabel,
-  fabClasses,
-} from "@mui/material";
-import styles from "../SectionRight/styles";
+import { Box, Button, Checkbox, InputLabel } from "@mui/material";
 import { withStyles } from "@mui/styles";
 import { useNavigate } from "react-router-dom";
-import { useStateValue } from "../../../../store/state";
 import axios from "axios";
-import Constant from "../../../../Constant";
 import swal from "sweetalert2";
+
+import styles from "../SectionRight/styles";
+import { useStateValue } from "../../../../store/state";
+import Constant from "../../../../Constant";
 var moment = require("moment");
 
 function ValidationForKycForm({
@@ -26,44 +20,32 @@ function ValidationForKycForm({
   let { validation_error } = classes;
   const history = useNavigate();
   const [{ geo, customnostore }, dispatch] = useStateValue();
-  let {
-    button_box,
-    button_guest,
-    warning_msg,
-    download_link,
-    agreemnetDowload,
-    checkbox_agreement,
-  } = classes;
+  let { button_box, button_guest, agreemnetDowload, checkbox_agreement } =
+    classes;
   const [valid, setValid] = useState(null);
   const [agreementChecked, setAgreementChecked] = useState(false);
-  const [leave, setleave] = useState(false);
 
   useEffect(() => {
     if (valid) {
       handleCallValidation(valid);
-      setleave(true);
     }
   }, [valid]);
 
   const handleValidationClick = () => {
     let endPoint = false;
     setValid("");
-    setleave(false);
     if (!values?.trade_lic_number) {
+      setDocumentButton("trade_license");
+      document.getElementById("trade_lic_number")?.focus();
       setValid((prevState) => ({
         ...prevState,
         trade_lic_number: "Please enter the trade lic number.",
       }));
       endPoint = true;
     }
-    if (values.toString() === "Invalid Date") {
-      setValid((prevState) => ({
-        ...prevState,
-        trade_expiration_date: "Please select valid date.",
-      }));
-      endPoint = true;
-    }
     if (!values?.trade_image?.name) {
+      setDocumentButton("trade_license");
+      document.getElementById("trade_image_container")?.focus();
       setValid((prevState) => ({
         ...prevState,
         trade_image: "Please attach the License details.",
@@ -71,6 +53,8 @@ function ValidationForKycForm({
       endPoint = true;
     }
     if (!values?.tax_number) {
+      setDocumentButton("tax_certificate");
+      document.getElementById("tax_number")?.focus();
       setValid((prevState) => ({
         ...prevState,
         tax_number: "Please enter the tax number.",
@@ -78,6 +62,8 @@ function ValidationForKycForm({
       endPoint = true;
     }
     if (!values?.tax_image?.name) {
+      setDocumentButton("tax_certificate");
+      document.getElementById("tax_image_container")?.focus();
       setValid((prevState) => ({
         ...prevState,
         tax_image: "Please attatch certificate.",
@@ -85,6 +71,8 @@ function ValidationForKycForm({
       endPoint = true;
     }
     if (!values?.national_id_image?.name) {
+      setDocumentButton("national_id");
+      document.getElementById("national_image_container")?.focus();
       setValid((prevState) => ({
         ...prevState,
         national_id_image: "Please attach National id details.",
@@ -92,6 +80,7 @@ function ValidationForKycForm({
       endPoint = true;
     }
     if (!values?.address_line_one) {
+      document.getElementById("address_line_one")?.focus();
       setValid((prevState) => ({
         ...prevState,
         address_line_one: "Please enter the address line one.",
@@ -99,6 +88,7 @@ function ValidationForKycForm({
       endPoint = true;
     }
     if (!values?.pin_zip_code) {
+      document.getElementById("pin_zip_code")?.focus();
       setValid((prevState) => ({
         ...prevState,
         pin_zip_code: "Please enter the pincode.",
@@ -106,6 +96,7 @@ function ValidationForKycForm({
       endPoint = true;
     }
     if (!values?.city) {
+      document.getElementById("city")?.focus();
       setValid((prevState) => ({
         ...prevState,
         city: "Please enter the city.",
@@ -113,15 +104,19 @@ function ValidationForKycForm({
       endPoint = true;
     }
     if (!agreementChecked) {
+      document.getElementById("agreementChecked")?.focus();
       setValid((prevState) => ({
         ...prevState,
         agreementChecked: "Please agree the terms of agreement",
       }));
       endPoint = true;
     }
-    if (!endPoint) {
+    if (!endPoint && documentButton === "national_id") {
       //API call
       FinalKYCFormSavaData();
+    }
+    if (!endPoint) {
+      setDocumentButton("national_id");
     }
   };
 
@@ -129,13 +124,11 @@ function ValidationForKycForm({
   let company_name = localUserData?.custom_attributes?.filter(
     (itm) => itm?.attribute_code === "customer_company_name"
   );
-  let customer_id = localUserData?.id;
   const FinalKYCFormSavaData = () => {
     dispatch({
       type: "SET_IS_LOADING",
       value: true,
     });
-
     let Category_id = values?.categorylist?.map(
       (itm) => itm?.texub_category_id
     );
@@ -147,7 +140,7 @@ function ValidationForKycForm({
       : "";
     let data = {
       kyc: {
-        customer_id: customer_id,
+        customer_id: localUserData?.id,
         bussiness_name: company_name?.[0]?.value,
         group_id: localUserData?.group_id,
         trade_license_number: values?.trade_lic_number
@@ -204,6 +197,7 @@ function ValidationForKycForm({
             value: false,
           });
           let user_id = JSON.parse(localStorage.getItem("userdata"));
+          localStorage.setItem("kycSubmitted", JSON.stringify(true));
           history(
             `/${customnostore ? customnostore : geo?.country_name}/thankyou/${
               user_id?.group_id === 5 ? "buyer" : "seller"
@@ -239,14 +233,15 @@ function ValidationForKycForm({
         values?.pin_zip_code ? values?.pin_zip_code : ""
       }&trade_license_number=${
         values?.trade_lic_number ? values?.trade_lic_number : ""
-      }&tax_no=${
-        values?.tax_number ? values?.tax_number : ""
-      }&customer_id=${customer_id}`;
+      }&tax_no=${values?.tax_number ? values?.tax_number : ""}&customer_id=${
+        localUserData?.id
+      }`;
   };
   return (
     <>
       <div className={checkbox_agreement}>
         <Checkbox
+          id="agreementChecked"
           color="color_third"
           checked={agreementChecked}
           onChange={(event) => setAgreementChecked(event.target.checked)}
@@ -260,7 +255,6 @@ function ValidationForKycForm({
         {valid?.agreementChecked}
       </InputLabel>
       <Box className={button_box} fullWidth>
-        {leave && <p className={warning_msg}>Please enter required fields</p>}
         {documentButton === "national_id" ? (
           <Button
             className={button_guest}
@@ -271,11 +265,9 @@ function ValidationForKycForm({
         ) : (
           <Button
             className={button_guest}
-            onClick={() =>
-              documentButton === "trade_license"
-                ? setDocumentButton("tax_certificate")
-                : setDocumentButton("national_id")
-            }
+            onClick={() => {
+              handleValidationClick();
+            }}
           >
             <span>Continue</span>
           </Button>

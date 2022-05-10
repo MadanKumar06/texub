@@ -83,7 +83,7 @@ export const Termsofuse = () => {
               {item.description}
             </li>
           ))}
-        </div>
+        </div> */}
         <div className="Termsofuse_btn_section">
           <div className="Termsofuse_btn_download">
             <FileDownloadOutlinedIcon className="Termsofuse_download" />
@@ -91,7 +91,7 @@ export const Termsofuse = () => {
           </div>
           <button className="Termsofuse_decline">Decline</button>
           <button className="Termsofuse_accept">Accept</button>
-        </div> */}
+        </div>
       </div>
     </div>
   );

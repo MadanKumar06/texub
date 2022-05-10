@@ -1,7 +1,7 @@
 .pagination_top_container {
   display: flex;
   align-items: center;
-  padding: 1em 2em;
+  padding: 5px 2em;
   background: #f8f0e0;
   border: 1px solid #cdd5dd;
   margin-top: 3em;
@@ -42,8 +42,14 @@
       margin-left: 10px;
       .MuiFormControl-root {
         .MuiOutlinedInput-root {
-          padding-right: 30px;
+          padding-right: 25px;
+          padding-top: 2px;
+           padding-bottom: 2px;
           background-color: #ffffff;
+          .MuiAutocomplete-input{
+            min-width: 25px;
+            padding: 6.5px 4px 6.5px 6px;
+          }
         }
       }
     }

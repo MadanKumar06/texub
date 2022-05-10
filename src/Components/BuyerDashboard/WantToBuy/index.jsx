@@ -103,7 +103,7 @@ function Index() {
       label: "CATEGORY",
       options: {
         customBodyRender: (value) => {
-          return <div>{value}</div>;
+          return <div className="want_tobuy__category">{value}</div>;
         },
       },
     },

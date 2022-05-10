@@ -87,13 +87,13 @@ const Checkout = () => {
     email_address: false,
     mobile_number: false,
   });
-  const handleMobileChangeInput = (event) => {
-    pickup((prevState) => ({
-      ...prevState,
-      mobile_number: event,
-    }));
-    onpickup("");
-  };
+  //  const handleMobileChangeInput = (event) => {
+  //   pickup((prevState) => ({
+  //     ...prevState,
+  //     mobile_number: event,
+  //   }));
+  //   onpickup("");
+  // };
   const onpickup = (e) => {
     if (e.target.name === "email_address") {
       if (isEmailValid(e.target.value)) {
@@ -112,7 +112,16 @@ const Checkout = () => {
       setAdminToken(res);
     });
   }, []);
-
+  const handleMobileChangeInput = (event) => {
+      setpickup((prevState) => ({
+        ...prevState,
+        mobile_number: event
+      }));
+      if(event.length === 12)
+        {setformerror({ ...formerror, mobile_number: true });}
+    else if (event.length !== 12)
+      {setformerror({ ...formerror, mobile_number: false });}
+  };
   const [addressdata, setaddressdata] = useState({
     organization_name: "",
     address_line1: "",
@@ -140,7 +149,7 @@ const Checkout = () => {
         .then((res) => {
           setCountryList(res?.data);
         })
-        .catch((err) => { });
+        .catch((err) => {});
     };
     fetchCountryData();
   }, []);
@@ -558,11 +567,11 @@ const Checkout = () => {
     permissions?.length === 0
       ? false
       : permissions?.some(
-        (per) =>
-          per?.value === "can-place-order" && per?.permission_value === 0
-      );
-  console.log(quotedata[0]?.payment_methods);
-
+          (per) =>
+            per?.value === "can-place-order" && per?.permission_value === 0
+        );
+      console.log(quotedata[0]?.payment_methods);
+      
   return (
     <div className="checkout_main_container">
       <div className="checkout_info_list">
@@ -600,62 +609,63 @@ const Checkout = () => {
             <span className="orderinfo_value">Pending</span>
           </div>
         </div>
-        <div className="order_apply_btns">
-          <div className="order_apply-btn">
-            <Link
-              to={`/${customnostore ? customnostore : geo?.country_name
-                }/products`}
-              style={{ textDecoration: "none" }}
-            >
-              <Button className="button-text btn-primary clear checkout-apply-btn">
-                Continue Shopping
-              </Button>
-            </Link>
-          </div>
-          <div className="checkoutlist__download">
-            <svg
-              id="Icon"
-              xmlns="http://www.w3.org/2000/svg"
-              width="35"
-              height="35"
-              viewBox="0 0 40 40"
-            >
-              <rect id="Area" width="40" height="40" fill="#fff" opacity="0" />
-              <g id="Icon-2" data-name="Icon" transform="translate(4.5 4.5)">
-                <path
-                  id="Path"
-                  d="M35.5,22.5v6a3.245,3.245,0,0,1-3.444,3H7.944a3.245,3.245,0,0,1-3.444-3v-6"
-                  transform="translate(-4.5 -0.5)"
-                  fill="none"
-                  stroke="#fff"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="3"
-                />
-                <path
-                  id="Path-2"
-                  data-name="Path"
-                  d="M10.5,15,20,22.5,29.5,15"
-                  transform="translate(-4.5 -2.346)"
-                  fill="none"
-                  stroke="#fff"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="3"
-                />
-                <line
-                  id="Line"
-                  y1="18"
-                  transform="translate(15.5)"
-                  fill="none"
-                  stroke="#fff"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="3"
-                />{" "}
-              </g>
-            </svg>
-          </div>
+         <div className="order_apply_btns">
+        <div className="order_apply-btn">
+          <Link
+            to={`/${
+              customnostore ? customnostore : geo?.country_name
+            }/products`}
+            style={{ textDecoration: "none" }}
+          >
+            <Button className="button-text btn-primary clear checkout-apply-btn">
+              Continue Shopping
+            </Button>
+          </Link>
+        </div>
+        <div className="checkoutlist__download">
+          <svg
+            id="Icon"
+            xmlns="http://www.w3.org/2000/svg"
+            width="35"
+            height="35"
+            viewBox="0 0 40 40"
+          >
+            <rect id="Area" width="40" height="40" fill="#fff" opacity="0" />
+            <g id="Icon-2" data-name="Icon" transform="translate(4.5 4.5)">
+              <path
+                id="Path"
+                d="M35.5,22.5v6a3.245,3.245,0,0,1-3.444,3H7.944a3.245,3.245,0,0,1-3.444-3v-6"
+                transform="translate(-4.5 -0.5)"
+                fill="none"
+                stroke="#fff"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="3"
+              />
+              <path
+                id="Path-2"
+                data-name="Path"
+                d="M10.5,15,20,22.5,29.5,15"
+                transform="translate(-4.5 -2.346)"
+                fill="none"
+                stroke="#fff"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="3"
+              />
+              <line
+                id="Line"
+                y1="18"
+                transform="translate(15.5)"
+                fill="none"
+                stroke="#fff"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="3"
+              />{" "}
+            </g>
+          </svg>
+        </div>
         </div>
       </div>
 
@@ -704,11 +714,12 @@ const Checkout = () => {
         <div className="section_left_info">
           <ul>
             <li
-              className={`block_A ${shipping_method === "texub_shipping" ||
+              className={`block_A ${
+                shipping_method === "texub_shipping" ||
                 quotedata[0]?.invoice?.pending_invoice_status === "3"
-                ? "block_A1"
-                : "additional"
-                }`}
+                  ? "block_A1"
+                  : "additional"
+              }`}
             >
               <img
                 className="delivery_address_img"
@@ -786,22 +797,23 @@ const Checkout = () => {
                       <div className="delivery_address_list">
                         {quotedata[0]?.address_list?.map((itm) => (
                           <div
-                            className={`delivery_address_content ${selectadd === itm?.address_id && "border"
-                              }`}
+                            className={`delivery_address_content ${
+                              selectadd === itm?.address_id && "border"
+                            }`}
                             onClick={() => selectaddress(itm)}
                           >
                             <div className="billing_title">
                               <p>Default Shipping Address</p>
                               {quotedata[0]?.invoice?.pending_invoice_status ===
                                 "1" && (
-                                  <div
-                                    className="edit_address"
-                                    onClick={() => editaddress(itm?.address_id)}
-                                  >
-                                    <img src={Edit_image} alt="" />
-                                    <span>Edit</span>
-                                  </div>
-                                )}
+                                <div
+                                  className="edit_address"
+                                  onClick={() => editaddress(itm?.address_id)}
+                                >
+                                  <img src={Edit_image} alt="" />
+                                  <span>Edit</span>
+                                </div>
+                              )}
                             </div>
 
                             <p className="user_name">
@@ -815,16 +827,17 @@ const Checkout = () => {
                         ))}
                         {quotedata[0]?.invoice?.pending_invoice_status ===
                           "1" && (
-                            <div className="aside_block_B delivery_address_content">
-                              <div
-                                className="delivery_address_add"
-                                onClick={() => handleOpen("add_new_address")}
-                              >
-                                <Add className="add_icon" />
-                                <span>Add New Address</span>
-                              </div>
+                          <div className={`aside_block_B delivery_address_content ${quotedata[0]?.invoice?.pending_invoice_status ===
+                                                            "1" && "add_address"}`}>
+                            <div
+                              className="delivery_address_add"
+                              onClick={() => handleOpen("add_new_address")}
+                            >
+                              <Add className="add_icon" />
+                              <span>Add New Address</span>
                             </div>
-                          )}
+                          </div>
+                        )}
                       </div>
                     </div>
                     {/* <div className="delivery_customer_info">
@@ -912,7 +925,7 @@ const Checkout = () => {
                         </div>
                         <div className="address_fields">
                           <InputLabel>Mobile Number</InputLabel>
-                          {/* <PhoneInput
+                           {/* <PhoneInput
                               country={"in"}
                               id="mobile_number"
                               fullWidth
@@ -928,7 +941,7 @@ const Checkout = () => {
                              onChange={(e) => onpickup(e)}
                               variant="outlined"
                             /> */}
-                          {/* <PhoneInput
+                          <PhoneInput
                             country={"in"}
                             id="mobile_number"
                             fullWidth
@@ -941,11 +954,11 @@ const Checkout = () => {
                               shrink: true,
                               required: true,
                             }}
-                            onChange={(e) => onpickup(e)}
+                            onChange={(e) => handleMobileChangeInput(e)}
                             variant="outlined"
-                          /> */}
+                          />
 
-                          <TextField
+                          {/* <TextField
                             id="mobile_number"
                             placeholder="9890985433"
                             className="inputfield-box"
@@ -953,7 +966,7 @@ const Checkout = () => {
                             variant="outlined"
                             value={pickup?.mobile}
                             onChange={(e) => onpickup(e)}
-                          />
+                          /> */}
                           {!formerror?.mobile_number && (
                             <p style={{ color: "red" }}>
                               Please Enter your Mobile Number
@@ -967,7 +980,7 @@ const Checkout = () => {
               </div>
             </li>
             {shipping_method === "pick_up_from_hub" ||
-              quotedata[0]?.invoice?.pending_invoice_status === "3" ? (
+            quotedata[0]?.invoice?.pending_invoice_status === "3" ? (
               <li className="block_B">
                 <img
                   className="payment_image"
@@ -975,49 +988,49 @@ const Checkout = () => {
                   alt=""
                 />
                 <p className="payment_title">Select Payment Method</p>
-                <RadioGroup
-                  aria-labelledby="demo-radio-buttons-group-label"
-                  defaultValue={
-                    //item.value
-                    quotedata[0]?.payment_methods[0]?.value
-                  }
-                  name="radio-buttons-group"
-                >
-                  <div className="payment_info">
-                    {quotedata[0]?.payment_methods.map((item) => (
-
-                      <div className="payment_footer_block_1">
-                        <div className="footer_main">
-                          <div className="footer_content">
-                            <FormControlLabel
-                              value={
-                                item.value
-                                //quotedata[0]?.payment_methods?.banktransfer?.value
-                              }
-                              control={
-                                <Radio
-                                  onClick={() =>
-                                    setpayment(
-                                      item.value
-                                      // quotedata[0].payment_methods?.banktransfer
-                                      //   ?.value
-                                    )
-                                  }
-                                />
-                              }
-                              label={""}
-                            />
-                            <p className="footer_title">
-                              {item.label}
-                              {/* {quotedata[0]?.payment_methods?.label} */}
-                            </p>
-                          </div>
+                  <RadioGroup
+                    aria-labelledby="demo-radio-buttons-group-label"
+                    defaultValue={
+                      //item.value
+                      quotedata[0]?.payment_methods[0]?.value
+                    }
+                    name="radio-buttons-group"
+                  >
+                <div className="payment_info">
+                   {quotedata[0]?.payment_methods.map((item) => (
+                 
+                    <div className="payment_footer_block_1">
+                      <div className="footer_main">
+                        <div className="footer_content">
+                          <FormControlLabel
+                            value={
+                               item.value
+                              //quotedata[0]?.payment_methods?.banktransfer?.value
+                            }
+                            control={
+                              <Radio
+                                onClick={() =>
+                                  setpayment(
+                                     item.value
+                                    // quotedata[0].payment_methods?.banktransfer
+                                    //   ?.value
+                                  )
+                                }
+                              />
+                            }
+                            label={""}
+                          />
+                          <p className="footer_title">
+                            {item.label}
+                            {/* {quotedata[0]?.payment_methods?.label} */}
+                          </p>
                         </div>
                       </div>
-
+                    </div>
+                 
                     ))}
-                  </div>
-                </RadioGroup>
+                </div>
+                 </RadioGroup>
               </li>
             ) : (
               <p></p>
@@ -1027,7 +1040,7 @@ const Checkout = () => {
       </div>
       <div className="checkout_payment_section">
         {shipping_method === "pick_up_from_hub" ||
-          quotedata[0]?.invoice?.pending_invoice_status === "3" ? (
+        quotedata[0]?.invoice?.pending_invoice_status === "3" ? (
           <div className="order_details_main">
             <div className="checkout_order_basic_info">
               <div className="checkoutorder_basic_info">
@@ -1037,7 +1050,7 @@ const Checkout = () => {
                   <span className="ordertotal_symbol">
                     {currency?.currency_code}
                   </span>
-                  {formatToCurrency(parseInt(quotedata[0]?.invoice?.subtotal))}
+                   {formatToCurrency(parseInt(quotedata[0]?.invoice?.subtotal))}
                 </span>
               </div>
               <div className="checkoutorder_basic_info">
@@ -1074,7 +1087,7 @@ const Checkout = () => {
               </div>
               <div className="checkout_total_order_section">
                 <span className="checkout_total_order__info_title">
-                  Payment Processing Charge
+                  Total Order value
                 </span>
                 <span className="checkout_total_order__price">
                   <span className="checkout_total_orde_symbol">
@@ -1085,7 +1098,7 @@ const Checkout = () => {
               </div>
             </div>
             <div className="checkout_placeorder_section">
-              {quotedata[0]?.invoice?.pending_invoice_status === "3" && shipping_method === "pick_up_from_hub" &&
+              {quotedata[0]?.invoice?.pending_invoice_status === "3" && shipping_method === "pick_up_from_hub" && 
                 <div className="remark_section">
                   <span className="remart_title">Remarks :</span>
                   <span className="remart_text">
@@ -1271,22 +1284,21 @@ const Checkout = () => {
                       sx={{
                         "& .MuiOutlinedInput-root:hover": {
                           "& > fieldset": {
-                            borderColor: "#ddb363"
+                            borderColor: "#DDB363"
                           }
                         },
                         "& .MuiOutlinedInput-root.Mui-focused": {
                           "& > fieldset": {
-                            borderColor: "orange",
-                            border: "1px solid #ddb363"
+                            border: "1px solid #DDB363"
                           }
                         }
-                      }}
-                    >
+                      }}>
                       <Select
                         labelId="demo-simple-select-label"
                         id="selection_box_block"
                         label="Country"
                         name="country"
+                        className="inputfield-box"                        
                         onChange={(e) => addressadd(e)}
                         value={addressdata?.country}
                         displayEmpty
@@ -1324,7 +1336,7 @@ const Checkout = () => {
                 </div> */}
 
                 <div className="address_popup_btns">
-                  <Button className="address_cancel_btn" onClick={() => handleClose()}>Cancel</Button>
+                  <Button className="address_cancel_btn" onClick={()=>handleClose()}>Cancel</Button>
                   <Button className="address_save_btn" onClick={saveaddress}>
                     Save Changes
                   </Button>

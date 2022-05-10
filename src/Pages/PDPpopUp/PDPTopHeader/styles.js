@@ -59,7 +59,7 @@ const styles = (theme) => ({
     padding: "0px 22px",
     width: "80%",
     "@media (max-width:925px)": {
-      padding: "0px 10px"
+      padding: "0px 10px",
     },
   },
   pdp_top_header_seller_id: {
@@ -67,7 +67,7 @@ const styles = (theme) => ({
     padding: "10px 18px",
     width: "fit-content",
     color: "#002D56",
-    marginLeft : "0px",
+    marginLeft: "0px",
     fontSize: "18px",
     marginTop: "5px",
     marginBottom: "5px",
@@ -79,6 +79,7 @@ const styles = (theme) => ({
     },
   },
   pdp_top_header_products: {
+    minHeight: "2em",
     display: "flex",
     width: "80%",
     gap: "20px",
@@ -184,6 +185,6 @@ const styles = (theme) => ({
   },
   notification_tag: {
     margin: "0px",
-  }
+  },
 });
 export default styles;

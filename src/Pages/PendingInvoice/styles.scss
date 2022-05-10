@@ -210,6 +210,7 @@
           color: white;
           font-size: 16px;
           font-weight: 600;
+          letter-spacing: 1px;
           text-align: center;
           border: 1px solid #cdd5dd;
         }
@@ -313,7 +314,7 @@
             }
             .vieworders_price {
               display: flex;
-              align-items: center;
+              align-items: baseline;
               justify-content: center;
               .symbol {
                 font-size: 14px;
@@ -326,7 +327,7 @@
                 color: #5c6369;
                 text-transform: uppercase;
                 font-size: 18px;
-                font-weight: 600;
+                font-weight: 900;
                 margin-left: 5px;
               }
             }
@@ -357,7 +358,7 @@
                 color: #5c6369;
                 text-transform: uppercase;
                 font-size: 18px;
-                font-weight: 600;
+                font-weight: 900;
                 margin-left: 5px;
               }
             }
@@ -463,9 +464,11 @@
             font-size: 20px;
             font-weight: 600;
             z-index: 1;
+            display: flex;
+            align-items: baseline;
             .value_symobol {
               letter-spacing: 0.51px;
-              margin-right: 10px;
+              margin-right: 3px;
               color: #333c42;
               font-weight: 400;
               font-size: 14px;
@@ -555,6 +558,7 @@
         a {
           color: white;
           text-decoration: none;
+          width: 100%;
         }
       }
       .button__checkout {

@@ -135,7 +135,7 @@ function Index({
   const [currentcurrency, setcurrentcurrency] = useState([]);
 
   useEffect(() => {
-    if(currentdata?.currency_id === "") return
+    if (currentdata?.currency_id === "") return;
     if (hubDropDownValues?.length === 0) return;
     let temp = {
       label: "",
@@ -150,7 +150,6 @@ function Index({
       });
     setcurrentcurrency(temp);
   }, [currentdata?.currency_id, options]);
-
 
   return (
     <>
@@ -238,7 +237,7 @@ function Index({
               type="number"
               className="inputfield-box price_textbox"
               autoComplete="off"
-             value={parseInt(currentdata.price)}
+              value={parseInt(currentdata.price)}
               InputLabelProps={{
                 shrink: false,
               }}
@@ -301,7 +300,7 @@ function Index({
             className="inputfield-box"
             fullWidth
             autoComplete="off"
-            value={currentdata?.eta}
+            value={parseInt(currentdata?.eta)}
             InputLabelProps={{
               shrink: false,
             }}
@@ -331,7 +330,7 @@ function Index({
             fullWidth
             type="number"
             autoComplete="off"
-            value={currentdata?.moq}
+            value={parseInt(currentdata?.moq)}
             InputLabelProps={{
               shrink: false,
             }}
@@ -380,7 +379,7 @@ function Index({
               className="inputfield-box"
               fullWidth
               autoComplete="off"
-              value={currentdata?.cgst}
+              value={parseInt(currentdata?.cgst)}
               InputLabelProps={{
                 shrink: false,
               }}
@@ -388,9 +387,9 @@ function Index({
                 setIsDetailTabValid((prevState) => ({
                   ...prevState,
                   isCGSTValid: "",
-                }))
-                changevalues(e.target.value, "cgst")}
-              }
+                }));
+                changevalues(e.target.value, "cgst");
+              }}
               variant="outlined"
             />
             <InputLabel className="validation_error">
@@ -408,7 +407,7 @@ function Index({
               type="number"
               className="inputfield-box"
               autoComplete="off"
-              value={currentdata?.igst}
+              value={parseInt(currentdata?.igst)}
               InputLabelProps={{
                 shrink: false,
               }}
@@ -416,9 +415,9 @@ function Index({
                 setIsDetailTabValid((prevState) => ({
                   ...prevState,
                   isIGSTValid: "",
-                }))
-                changevalues(e.target.value, "igst")}
-              }
+                }));
+                changevalues(e.target.value, "igst");
+              }}
               variant="outlined"
             />
             <InputLabel className="validation_error">
@@ -436,7 +435,7 @@ function Index({
               type="number"
               autoComplete="off"
               className="inputfield-box"
-              value={currentdata?.sgst}
+              value={parseInt(currentdata?.sgst)}
               InputLabelProps={{
                 shrink: false,
               }}
@@ -444,9 +443,9 @@ function Index({
                 setIsDetailTabValid((prevState) => ({
                   ...prevState,
                   isSGSTValid: "",
-                }))
-                changevalues(e.target.value, "sgst")}
-              }
+                }));
+                changevalues(e.target.value, "sgst");
+              }}
               variant="outlined"
             />
             <InputLabel className="validation_error">
@@ -455,7 +454,9 @@ function Index({
             </InputLabel>
           </div>
         </div>
-      ) : ""}
+      ) : (
+        ""
+      )}
     </>
   );
 }

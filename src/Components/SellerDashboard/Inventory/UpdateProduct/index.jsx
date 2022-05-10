@@ -63,8 +63,8 @@ function Index({ type, pid }) {
   });
 
   const [restrictvalue, setrestrictvalue] = useState([
-    { label: "Yes", value: "Yes" },
-    { label: "No", value: "No" },
+    { label: "Yes", value: "2" },
+    { label: "No", value: "1" },
   ]);
   const [isDetailTabValid, setIsDetailTabValid] = useState({
     isHubValid: "",
@@ -78,11 +78,8 @@ function Index({ type, pid }) {
   });
   let errorHandle = false;
   const countincrease = (checking) => {
-    const isDecimal = /^\d+\.\d{0,1000000}$/;
-
     if (count?.length) {
       let temp = count?.slice(-1);
-
       if (!temp[0]?.hub_id) {
         document.getElementById("isHubValid")?.focus();
         setIsDetailTabValid((prevState) => ({
@@ -127,13 +124,6 @@ function Index({ type, pid }) {
         setIsDetailTabValid((prevState) => ({
           ...prevState,
           isETAValid: "Please enter the eta.",
-        }));
-        errorHandle = true;
-      } else if (isDecimal.test(temp[0]?.eta)) {
-        document.getElementById("isETAValid")?.focus();
-        setIsDetailTabValid((prevState) => ({
-          ...prevState,
-          isETAValid: "Decimal values will not allow.",
         }));
         errorHandle = true;
       } else if (!isNumber(temp[0]?.eta)) {
@@ -292,7 +282,7 @@ function Index({ type, pid }) {
       }));
       errorHandle = true;
     }
-    if (!updateProductList?.restrictions) {
+    if (updateProductList?.restrictions?.length === 0) {
       document.getElementById("restrictions")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
@@ -1219,7 +1209,7 @@ function Index({ type, pid }) {
               </InputLabel>
             </div>
           </div>
-          {updateProductList?.restrictions?.value === "Yes" ? (
+          {updateProductList?.restrictions?.value === "2" ? (
             <div className="input_separator">
               <div className="updateproduct_inputfields info ">
                 <InputLabel>

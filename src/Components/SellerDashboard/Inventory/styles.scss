@@ -39,7 +39,7 @@
           width: 50px;
           height: 50px;
           margin: auto;
-          img{
+          img {
             width: 100%;
           }
         }
@@ -92,6 +92,19 @@
             right: 0px;
             margin: 0;
             background-color: #ddb363;
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.8px;
+            padding: 0% 5.7%;
+            border-radius: 40px;
+          }
+          .offer_disabled {
+            position: absolute;
+            bottom: 17px;
+            right: 0px;
+            margin: 0;
+            background-color: #f24525;
             color: #ffffff;
             font-size: 12px;
             font-weight: 600;
@@ -344,7 +357,7 @@
     .inventory__table
     .MuiTable-root
     .MuiTableBody-root
-     .MuiTableRow-root 
+    .MuiTableRow-root
     .MuiTableCell-root {
     width: 100%;
   }
@@ -417,7 +430,7 @@
     .inventory_product_upload {
     padding: 5px 1em !important;
   }
-  .inventory .inventory__table .MuiTable-root .MuiTableBody-root .action{
+  .inventory .inventory__table .MuiTable-root .MuiTableBody-root .action {
     flex-wrap: wrap;
     width: 50%;
     justify-content: space-around;

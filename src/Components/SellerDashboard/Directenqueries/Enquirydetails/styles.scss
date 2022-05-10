@@ -17,12 +17,20 @@
         margin-left: 30px;
         color: #333C42;
         font-size: 12px;
+        display: flex;
+        align-items: center;
         font-weight: 600;
+        img{
+            width: 28px;
+            height:28px;
+            margin-right: 5px;
+        }
     }
     .enquirydetails_box{
         background-color: #F8F0E0;
         max-width: 665px;
         width: 100%;
+        overflow: auto;
         box-shadow: 0px 3px 16px #0000001C;
         
     .enquirydetails_heading{
@@ -66,13 +74,21 @@
             color: #333C42;
             font-size: 20px;
         }
+         .directenquiries__decline {
+            color: #FF0000;
+            font-size: 16px;
+            font-weight: 600;
+            background-color: #FFE2E2;
+            padding: 0.4em 2em;
+            border-radius: 28px;
+         }
 
         .directenquiries__pending {
             color: #FF0000;
             font-size: 16px;
             font-weight: 600;
             background-color: #FFE2E2;
-            padding: 0.4em 0.9em;
+            padding: 0.4em 2em;
             border-radius: 28px;
           }
           .directenquiries__accepted {
@@ -80,7 +96,7 @@
             font-weight: 600;
             font-size: 16px;
             background-color: #d5ecff !important;
-            padding: 0.4em 0.9em;
+            padding: 0.4em 2em;
             border-radius: 28px;
           }
           .directenquiries__closed {
@@ -88,7 +104,7 @@
             font-weight: 600;
             font-size: 16px;
             background-color: #e6ffea;
-            padding: 0.4em 0.9em;
+            padding: 0.4em 2em;
             border-radius: 28px;
           }
           .actions {

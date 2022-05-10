@@ -41,15 +41,14 @@
           font-size: 20px;
           color: #959595;
           text-align: center;
-          padding: 10px 15px;
           font-weight: 600;
+          border-top: 1px solid rgba(224, 224, 224, 1);
         }
       }
   
       .MuiTableBody-root {
         .MuiTableCell-root {
           font-size: 18px;
-          padding: 10px 15px;
           text-align: center;
           color: #333c42;
         }
@@ -63,7 +62,11 @@
           font-weight: 600;
           letter-spacing: 0.48px;
           .currency {
-            font-size: 16px;
+            font-size: 14px;
+          }
+           .price {
+            font-size: 24px;
+            font-weight: bold;
           }
         }
   
@@ -156,7 +159,10 @@
     }
     .invoices_main .invoices__table .MuiTableBody-root .invoices__amount {
       .currency {
-        font-size: 14px;
+        font-size: 12px;
+      }
+      .price {
+        font-size: 20px;
       }
     }
     .invoices_main .invoices__buttons p {

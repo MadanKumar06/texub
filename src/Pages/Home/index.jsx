@@ -31,7 +31,16 @@ export const Home = () => {
       });
       navigate(`/${temp?.[0] ? temp?.[0] : geo?.country_name}`);
     }
+    localStorage.setItem("invoicepage", JSON.stringify(1));
+    localStorage.setItem("wishpage", JSON.stringify(1));
+    localStorage.setItem("wtbpage", JSON.stringify(1));
+    localStorage.setItem("productpage", JSON.stringify(1));
   }, [customstore, geo]);
+
+  useEffect(() => {
+    localStorage.setItem('review_status', homeContent?.review?.review_status)
+  }, [homeContent])
+
   return (
     <div className="Home">
       {homeContent !== "" ? (

@@ -15,8 +15,10 @@ import {
 import axios from "axios";
 import Constant from "../../../Constant";
 import swal from "sweetalert2";
+import { useStateValue } from "../../../store/state";
 
 const Index = ({ pdpSellerData, handleOpenClose }) => {
+  const [{}, dispatch] = useStateValue()
   const [create1, setcreate1] = useState(false);
   const create = () => {
     setcreate1(!create1);
@@ -54,6 +56,9 @@ const Index = ({ pdpSellerData, handleOpenClose }) => {
       newwishlist();
       setSave_error("");
     }
+    dispatch({
+      type: "SET_GENERAL_TRINGGER",
+    });
   };
   // Enter EVENT
   const elem = document.getElementById("outlined-required");
@@ -115,6 +120,9 @@ const Index = ({ pdpSellerData, handleOpenClose }) => {
         });
         if (wishdata?.data?.[0]?.status) {
           handleOpenClose(false);
+          dispatch({
+            type: "SET_GENERAL_TRINGGER",
+          });
           setTimeout(() => {
             swal.fire({
               text: wishdata?.data?.[0]?.message,
@@ -206,6 +214,7 @@ const Index = ({ pdpSellerData, handleOpenClose }) => {
                       placeholder="Name"
                       className="wishlistsave_input inputfield-box"
                       onChange={(e) => setnewwishdata(e.target.value)}
+                      onKeyPress={(e) => e.key === 'Enter' &&  handleClickValidation()()}
                     />
                     <button
                       className="wishlist_save_btn"

@@ -82,7 +82,7 @@ const Productsbrands = ({
   }, [getCategories]);
   const Productsicon = {
     dots: false,
-    infinite: false,
+    infinite: true,
     slidesToShow: 15,
     slidesToScroll: 1,
     initialSlide: 0,

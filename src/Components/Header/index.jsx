@@ -65,6 +65,8 @@ const Header = ({ classes }) => {
     }
   }, [currency, gt, localStorage.getItem("userdata")]);
 
+  console.log(generalTrigger)
+
   useEffect(() => {
     async function fetchData() {
       const user = JSON.parse(localStorage.getItem("userdata"));
