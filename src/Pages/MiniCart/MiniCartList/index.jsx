@@ -79,6 +79,7 @@ const MiniCartList = ({ handleSideBarClose }) => {
         todays_deal: 0,
         price_drop: 0,
         new_product: 0,
+        details: event?.product_id,
       },
     };
     axios
@@ -233,10 +234,10 @@ const MiniCartList = ({ handleSideBarClose }) => {
     }
   };
 
-  const [review, setreview] = useState()
+  const [review, setreview] = useState();
   useEffect(() => {
-    setreview(localStorage.getItem('review_status'))
-  }, [localStorage.getItem('review_status')])
+    setreview(localStorage.getItem("review_status"));
+  }, [localStorage.getItem("review_status")]);
 
   return (
     <div className="minicart_list_main">
@@ -285,8 +286,9 @@ const MiniCartList = ({ handleSideBarClose }) => {
                       </p>
                     </div>
                     <div className="rating_main">
-                      {review == 0 ? ""
-                      :
+                      {review == 0 ? (
+                        ""
+                      ) : (
                         <>
                           <Rating
                             className="ratings"
@@ -298,7 +300,7 @@ const MiniCartList = ({ handleSideBarClose }) => {
                           />
                           <p className="reviews"> 543 Reviews</p>
                         </>
-                      }
+                      )}
                     </div>
                     <p
                       className="detail_link"

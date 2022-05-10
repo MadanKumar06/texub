@@ -257,8 +257,6 @@ const WantToBuy = ({ setisVieworders, setisOrders }) => {
                 }}
                 autocomplete="off"
                 id="controllable-states-demo"
-                getOptionLabel={(option) => (option.label ? option.label : "")}
-                filterOptions={(options) => options}
                 options={dropdownListFromApi?.mainCategoryList}
                 fullWidth
                 className="inputfield-box auto_complete_input"
@@ -317,7 +315,6 @@ const WantToBuy = ({ setisVieworders, setisOrders }) => {
                 getOptionLabel={(option) =>
                   option?.hub_name ? option.hub_name : ""
                 }
-                filterOptions={(options) => options}
                 options={
                   dropdownListFromApi?.dropDownList
                     ? dropdownListFromApi?.dropDownList

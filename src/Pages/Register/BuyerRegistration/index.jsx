@@ -5,7 +5,6 @@ import "./popupstyle.scss";
 import {
   TextField,
   Checkbox,
-  FormControlLabel,
   Button,
   InputLabel,
   Box,

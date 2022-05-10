@@ -5,7 +5,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useStateValue } from "../../../../store/state";
 
 const SuccesMessage = ({ msg }) => {
-  const [{geo, customstore, customnostore}, dispatch] = useStateValue()
+  const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
   let userDetails = JSON.parse(localStorage.getItem("userdata"));
   const location = useLocation();
   return (
@@ -17,7 +17,7 @@ const SuccesMessage = ({ msg }) => {
           Dear {userDetails?.firstname} {userDetails?.lastname}
         </h4>
         {/* <h5>{msg}</h5> */}
-        {location.state === "add" && (
+        {location.state === "register" && (
           <>
             <p>
               You have submitted the product registration form successfully.
@@ -29,10 +29,19 @@ const SuccesMessage = ({ msg }) => {
             <p>to update product details.</p>
           </>
         )}
+        {location.state === "add" && (
+          <>
+            <p>You have Added the product details successfully.</p>
+          </>
+        )}
         {location?.state === "update" && (
           <p>You have updated the product details successfully.</p>
         )}
-        <Link to={`/${customnostore ? customnostore : geo?.country_name}/sellerdashboard/inventory`}>
+        <Link
+          to={`/${
+            customnostore ? customnostore : geo?.country_name
+          }/sellerdashboard/inventory`}
+        >
           <p className="link">Back To Inventory</p>
         </Link>
       </div>
