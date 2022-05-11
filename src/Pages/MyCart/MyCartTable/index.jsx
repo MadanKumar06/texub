@@ -211,7 +211,7 @@ const MyCartTable = ({ cartDataList, deleteCartData }) => {
   };
   const columns = [
     {
-      name: "seller_id",
+      name: "seller_code",
       label: "SELLER ID",
       options: {
         customBodyRender: (value) => {
