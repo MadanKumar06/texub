@@ -93,7 +93,7 @@ const Index = ({ closePOPup, popid, direct, setrefreshdata, refreshdata }) => {
           </div>
           <p className="p1">
             <img className="eye_icon" src={eye_icon} alt="" />
-            12 Sellers are viewing at this enquiry right now.
+            {currentdata?.viewers_count ? currentdata?.viewers_count : 0} Sellers are viewing at this enquiry right now.
           </p>
           <div className="enquirydetails_section">
             <div className="enquirydetails">
