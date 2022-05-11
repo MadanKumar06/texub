@@ -90,8 +90,12 @@ const Mycart = () => {
     }
   };
   const navigate = useNavigate();
+  const [rowselect, setrowselect] = useState([])
+  console.log(rowselect)
 
   const addpendinginvoice = async () => {
+    console.log(rowselect?.length)
+    return
     dispatch({
       type: "SET_IS_LOADING",
       value: true,
@@ -217,7 +221,7 @@ const Mycart = () => {
           </Breadcrumbs>
         </Stack>
       </div>
-      <MyCartTable cartDataList={cart} deleteCartData={deleteCartData} />
+      <MyCartTable cartDataList={cart} deleteCartData={deleteCartData} setrowselect={setrowselect} />
 
       <div className="my_cart_footer">
         <Button
