@@ -138,6 +138,20 @@
     }
   }
 }
+.orders__back__footer .back_button{
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: #002d56;
+}
+.orders__back__footer .back_button span{
+  margin-left: 0.6em;
+  font-weight: 600;
+}
+.orders__back__footer .back_button .css-i4bv87-MuiSvgIcon-root{
+  width: 0.6em;
+  height: 0.6em;
+} 
 @media (max-width: 1660px) {
   .orders .orders__back__footer .orders__back__container a span {
     font-size: 16px;

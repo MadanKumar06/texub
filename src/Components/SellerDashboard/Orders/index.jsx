@@ -214,19 +214,25 @@ function Index() {
           )}
           <div className="orders__back__footer">
             <div className="orders__back__container">
-              <Link
+              <div className="back_button"
+              onClick={()=> window.history.back() }
+              >
+                <ArrowBackIosNew />
+                <span>Back</span>
+              </div>
+              {/* <Link
                 to={`/${
                   customnostore ? customnostore : geo?.country_name
                 }/buyerdashboard/dashboard`}
               >
                 <ArrowBackIosNew />
                 <span>Back</span>
-              </Link>
+              </Link> */}
             </div>
           </div>
         </>
       ) : (
-        <ViewOrder viewDetail={viewDetail} />
+        <ViewOrder viewDetail={viewDetail} setvieworder={setvieworder} />
       )}
     </div>
   );

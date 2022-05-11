@@ -26,7 +26,6 @@ const TransitionsModal = ({ handleOpenCloseOffers, offersOpenClose }) => {
     end_date: "",
     price: "",
   });
-
   const handleClose = () => {
     setOpen(false);
     handleOpenCloseOffers(false);

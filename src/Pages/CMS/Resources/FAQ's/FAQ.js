@@ -113,8 +113,9 @@ console.log(toggle)
                 if(description === false && toggle === false){
                   text(ind)
                 }else if(description === ind && toggle === ind){
-                  setdescription(false)
-                  settoggle(false)
+                  text(false)
+                }else if(description !== ind && toggle !== ind){
+                  text(ind)
                 }
               }}
               className="faqs_table_adding"
@@ -128,7 +129,7 @@ console.log(toggle)
                 <span className="faq_qns_heading">{item.title}</span>
               </div>
               <span>
-                {ind === description && (
+                {ind === description &&  (
                   <div className="faqs_description">
                     <div
                       className="content"

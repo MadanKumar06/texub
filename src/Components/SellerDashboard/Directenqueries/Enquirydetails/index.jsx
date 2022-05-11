@@ -70,6 +70,7 @@ const Index = ({ closePOPup, popid, direct, setrefreshdata, refreshdata }) => {
       }
     });
   }, []);
+  console.log(currentdata)
   return (
     <Modal
       aria-labelledby="transition-modal-title"
