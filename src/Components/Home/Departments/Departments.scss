@@ -151,7 +151,12 @@
             border-radius: 3px;
           }
         }
-
+        .cancel {
+          width: 1.5em;
+          height: 1.5em;
+          color: #002d56;
+          cursor: pointer;
+        }
         .focused {
           border-radius: 25px;
           position: relative;
@@ -161,8 +166,29 @@
             left: 0;
             right: 0;
             bottom: 0;
-            top: 1em;
+            top: 2em;
             z-index: 1;
+            overflow: auto;
+            width: 100%;
+            background: #ffffff;
+            height: 100vh;
+            max-height: 225px;
+            list-style-type: none;
+            padding: 0;
+            li {
+              padding: 10px 20px;
+              cursor: pointer;
+              display: flex;
+              align-items: center;
+              gap: 1em;
+              color: #797979;
+              svg {
+                color: #002d56;
+              }
+              &:hover {
+                background-color: #e6e6e6;
+              }
+            }
           }
         }
       }
