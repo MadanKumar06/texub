@@ -18,7 +18,7 @@ var moment = require("moment");
 function Index() {
   const [{ geo, customstore, customnostore, currency }, dispatch] =
     useStateValue();
-  const { qid, quote_id } = useParams();
+  const { qid } = useParams();
   const [pendingInvoiceList, setPendingInvoiceList] = useState([]);
   console.log(qid);
   var currency_id = JSON.parse(localStorage.getItem("currency"));
@@ -71,7 +71,7 @@ function Index() {
       data: {
         customer_id: user?.id,
         currency: currency_id?.currency_id,
-        quote_id: quote_id,
+        quote_id: qid,
       },
     };
     axios

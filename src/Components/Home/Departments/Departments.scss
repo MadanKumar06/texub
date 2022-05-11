@@ -171,8 +171,10 @@
             overflow: auto;
             width: 100%;
             background: #ffffff;
-            height: 100vh;
+            // height: 100vh;
+            min-height: max-content;
             max-height: 225px;
+            overflow: scroll;
             list-style-type: none;
             padding: 0;
             li {
