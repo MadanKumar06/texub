@@ -110,7 +110,9 @@ const Mycart = () => {
         },
       });
       navigate(
-        `/${customnostore ? customnostore : geo?.country_name}/pending-invoice`
+        `/${
+          customnostore ? customnostore : geo?.country_name
+        }/pending-invoice/${pinvoice?.data?.[0]?.quote_id}`
       );
       dispatch({
         type: "SET_IS_LOADING",
