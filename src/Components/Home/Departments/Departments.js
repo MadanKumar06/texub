@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Departments.scss";
 import Departments1 from "../../Data";
 import { IconButton, InputBase, Paper } from "@mui/material";
-import HighlightOffOutlinedIcon from "@mui/icons-material/HighlightOffOutlined";
+import CancelIcon from "@mui/icons-material/Cancel";
 import { Menu, Search } from "@mui/icons-material";
 import { useStateValue } from "../../../store/state";
 import { useNavigate } from "react-router-dom";
@@ -37,7 +37,7 @@ export const Departments = ({ data }) => {
   const [savedsearch, setsavedsearch] = useState();
 
   useEffect(() => {
-    setsavedsearch(localStorage.getItem("searchhistory"));
+    setsavedsearch(JSON.parse(localStorage.getItem("searchhistory")));
   }, []);
 
   return (
@@ -100,11 +100,11 @@ export const Departments = ({ data }) => {
                   onFocus={() => setBar(true)}
                   onKeyPress={(e) => searchinput(e)}
                 />
-                <HighlightOffOutlinedIcon onClick={() => setBar(false)} />
+                <CancelIcon onClick={() => setBar(false)} />
                 {/* <ul className="searchhistory">
-                  {savedsearch?.map((ss, i) => (
-                    <li key={i}>{ss}</li>
-                  ))}
+                  {savedsearch?.length
+                    ? savedsearch?.map((ss, i) => <li key={i}>{ss}</li>)
+                    : ""}
                 </ul> */}
               </Paper>
             ) : (

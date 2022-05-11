@@ -432,7 +432,7 @@ const App = () => {
               exact
             />
             <Route
-              path="/:country/pending-invoice"
+              path="/:country/pending-invoice/:quote_id"
               // path={`/${customnostore ? customnostore : geo?.country_name}/pending-invoice`}
               element={
                 <>

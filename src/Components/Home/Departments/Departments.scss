@@ -155,13 +155,14 @@
         .focused {
           border-radius: 25px;
           position: relative;
-
+          border: 2px solid #002d56;
           .searchhistory {
             position: absolute;
             left: 0;
             right: 0;
             bottom: 0;
             top: 1em;
+            z-index: 1;
           }
         }
       }
