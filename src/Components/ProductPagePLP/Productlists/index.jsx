@@ -50,14 +50,22 @@ const Productlists = ({
       ...prevState,
       [event.target.name]: event.target.value,
     }));
-    if(event.target.name === 'search_product') {
-      let temp = []
-      if(localStorage.getItem('searchhistory') !== undefined) {
-        temp.push(localStorage.getItem('searchhistory'))
+  };
+  const handleSearchClick = (event) => {
+    if (productFetchApi?.search_product !== "") {
+      let temp = [];
+      if (localStorage.getItem("searchhistory") !== null) {
+        let t = JSON.parse(localStorage.getItem("searchhistory"));
+        temp?.push(...t);
       }
-      temp.push(homeSearch)
-      localStorage.setItem('searchhistory', temp)
+      if (temp?.some((itm) => itm === productFetchApi?.search_product)) {
+      } else {
+        temp.push(productFetchApi?.search_product);
+        localStorage.setItem("searchhistory", JSON.stringify(temp));
+      }
     }
+    event.preventDefault();
+    setApplyFilter(!applyFilter);
   };
   useEffect(() => {
     if (homeSearch !== "") {
@@ -65,12 +73,18 @@ const Productlists = ({
         ...prev,
         search_product: homeSearch,
       }));
-      let temp = []
-      if(localStorage.getItem('searchhistory') !== undefined) {
-        temp.push(localStorage.getItem('searchhistory'))
+      if (productFetchApi?.search_product !== "") {
+        let temp = [];
+        if (localStorage.getItem("searchhistory") !== null) {
+          let t = JSON.parse(localStorage.getItem("searchhistory"));
+          temp?.push(...t);
+        }
+        if (temp?.some((itm) => itm === homeSearch)) {
+        } else {
+          temp.push(homeSearch);
+          localStorage.setItem("searchhistory", JSON.stringify(temp));
+        }
       }
-      temp.push(homeSearch)
-      localStorage.setItem('searchhistory', temp)
     }
   }, [homeSearch]);
   const handleImageChange = (event) => {
@@ -125,10 +139,7 @@ const Productlists = ({
       }));
     }
   }, [productlistdropdown]);
-  const handleSearchClick = (event) => {
-    event.preventDefault();
-    setApplyFilter(!applyFilter);
-  };
+
   return (
     <div className="productlist">
       <div className="sidebar-toggle">
