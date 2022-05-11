@@ -71,6 +71,7 @@ function Index() {
       data: {
         customer_id: user?.id,
         currency: currency_id?.currency_id,
+        quote_id: qid,
       },
     };
     axios
@@ -81,7 +82,7 @@ function Index() {
         },
       })
       .then((res) => {
-        let length = res?.data?.length - 1
+        let length = res?.data?.length - 1;
         setPendingInvoiceList(res?.data?.[length]);
         dispatch({
           type: "SET_IS_LOADING",
@@ -235,6 +236,16 @@ function Index() {
           (per) =>
             per?.value === "can-place-order" && per?.permission_value === 0
         );
+  const [pendinginvoicestatus, setpendinginvoicestatus] = useState(false);
+  useEffect(() => {
+    if (!pendingInvoiceList) return;
+    if (pendingInvoiceList?.invoice?.status === "Cancelled") {
+      setpendinginvoicestatus(true);
+    } else {
+      setpendinginvoicestatus(false);
+    }
+  }, [pendingInvoiceList]);
+  console.log(pendinginvoicestatus);
   return (
     <div className="pendinginvoice">
       <div className="pendinginvoice__top">
@@ -278,68 +289,72 @@ function Index() {
               </div>
             </div>
             <div className="order_apply_btns">
-            <div className="order_apply-btn">
-              <Link
-                to={`/${
-                  customnostore ? customnostore : geo?.country_name
-                }/products`}
-                style={{ textDecoration: "none" }}
-              >
-                <Button className="button-text btn-primary clear checkout-apply-btn">
-                  Continue Shopping
-                </Button>
-              </Link>
-            </div>
-            <div className="checkoutlist__download">
-              <svg
-                id="Icon"
-                xmlns="http://www.w3.org/2000/svg"
-                width="35"
-                height="35"
-                viewBox="0 0 40 40"
-              >
-                <rect
-                  id="Area"
-                  width="40"
-                  height="40"
-                  fill="#fff"
-                  opacity="0"
-                />
-                <g id="Icon-2" data-name="Icon" transform="translate(4.5 4.5)">
-                  <path
-                    id="Path"
-                    d="M35.5,22.5v6a3.245,3.245,0,0,1-3.444,3H7.944a3.245,3.245,0,0,1-3.444-3v-6"
-                    transform="translate(-4.5 -0.5)"
-                    fill="none"
-                    stroke="#fff"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="3"
+              <div className="order_apply-btn">
+                <Link
+                  to={`/${
+                    customnostore ? customnostore : geo?.country_name
+                  }/products`}
+                  style={{ textDecoration: "none" }}
+                >
+                  <Button className="button-text btn-primary clear checkout-apply-btn">
+                    Continue Shopping
+                  </Button>
+                </Link>
+              </div>
+              <div className="checkoutlist__download">
+                <svg
+                  id="Icon"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="35"
+                  height="35"
+                  viewBox="0 0 40 40"
+                >
+                  <rect
+                    id="Area"
+                    width="40"
+                    height="40"
+                    fill="#fff"
+                    opacity="0"
                   />
-                  <path
-                    id="Path-2"
-                    data-name="Path"
-                    d="M10.5,15,20,22.5,29.5,15"
-                    transform="translate(-4.5 -2.346)"
-                    fill="none"
-                    stroke="#fff"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="3"
-                  />
-                  <line
-                    id="Line"
-                    y1="18"
-                    transform="translate(15.5)"
-                    fill="none"
-                    stroke="#fff"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="3"
-                  />{" "}
-                </g>
-              </svg>
-            </div>
+                  <g
+                    id="Icon-2"
+                    data-name="Icon"
+                    transform="translate(4.5 4.5)"
+                  >
+                    <path
+                      id="Path"
+                      d="M35.5,22.5v6a3.245,3.245,0,0,1-3.444,3H7.944a3.245,3.245,0,0,1-3.444-3v-6"
+                      transform="translate(-4.5 -0.5)"
+                      fill="none"
+                      stroke="#fff"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="3"
+                    />
+                    <path
+                      id="Path-2"
+                      data-name="Path"
+                      d="M10.5,15,20,22.5,29.5,15"
+                      transform="translate(-4.5 -2.346)"
+                      fill="none"
+                      stroke="#fff"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="3"
+                    />
+                    <line
+                      id="Line"
+                      y1="18"
+                      transform="translate(15.5)"
+                      fill="none"
+                      stroke="#fff"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="3"
+                    />{" "}
+                  </g>
+                </svg>
+              </div>
             </div>
           </div>
           {/* <ArrowBackIosIcon />
@@ -525,8 +540,9 @@ function Index() {
                 <span className="value_symobol">
                   {pendingInvoiceList?.invoice?.quote_currency}
                 </span>
-                    {formatToCurrency(parseInt(pendingInvoiceList?.invoice?.shipping_amount))}{" "}
-
+                {formatToCurrency(
+                  parseInt(pendingInvoiceList?.invoice?.shipping_amount)
+                )}{" "}
               </span>
             </p>
             <p>
@@ -539,7 +555,7 @@ function Index() {
                 00.00
               </span>
             </p>
-             {/* <p className="total_value_section_block" style={{position:"relative",
+            {/* <p className="total_value_section_block" style={{position:"relative",
                       paddingTop:"10px",
                       paddingBottom:"10px",
                       alignIteems:" center",
@@ -561,7 +577,7 @@ function Index() {
                   )}{" "}
                 </span>
             </p> */}
-               <p
+            <p
               className="total_value_block"
               style={{
                 alignItems: "center",
@@ -577,7 +593,7 @@ function Index() {
                 <span className="value">
                   <span className="value_symobol">
                     {" "}
-                      {pendingInvoiceList?.invoice?.quote_currency}
+                    {pendingInvoiceList?.invoice?.quote_currency}
                   </span>
                   {formatToCurrency(
                     parseInt(pendingInvoiceList?.invoice?.grand_total)
@@ -661,8 +677,13 @@ function Index() {
           <p className="remark_content">{pendingInvoiceList?.remarks}</p>
         </div>
         <div className="bottom__buttons">
-          <Button className="button__cancel" onClick={()=> window.history.back()}>Back</Button>
-          {!placeorder && (
+          <Button
+            className="button__cancel"
+            onClick={() => window.history.back()}
+          >
+            Back
+          </Button>
+          {!placeorder && !pendinginvoicestatus && (
             <Button className="button__checkout">
               <Link
                 to={`/${

@@ -15,7 +15,7 @@ function formatToCurrency(amount) {
   return amount.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
 }
 
-const MyCartTable = ({ cartDataList, deleteCartData }) => {
+const MyCartTable = ({ cartDataList, deleteCartData, setrowselect }) => {
   const [is_table_quantity, setIs_table_quantity] = useState([]);
   const [openwishlist, setopenwishlist] = useState({
     open: false,
@@ -209,9 +209,12 @@ const MyCartTable = ({ cartDataList, deleteCartData }) => {
         });
       });
   };
+  const onCellHandleClick = (event) => {
+    console.log(event)
+  }
   const columns = [
     {
-      name: "seller_id",
+      name: "seller_code",
       label: "SELLER ID",
       options: {
         customBodyRender: (value) => {
@@ -584,10 +587,14 @@ const MyCartTable = ({ cartDataList, deleteCartData }) => {
   ];
 
   const options = {
-    filter: true,
+    filter: false,
     filterType: "dropdown",
     responsive: "vertical",
     selectableRows: true,
+    // selectableRowsOnClick: true,
+    onRowsSelect: (rowsSelected, allRows) => {
+      setrowselect(allRows)
+    },
     download: false,
     print: false,
     sort: false,
@@ -602,6 +609,7 @@ const MyCartTable = ({ cartDataList, deleteCartData }) => {
       },
     },
   };
+  
   return (
     <div className="mycart_table_main_container">
       <MUITable

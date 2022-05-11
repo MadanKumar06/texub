@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./styles.scss";
 import { Button, TextField, Autocomplete } from "@mui/material";
 import { Clear } from "@mui/icons-material";
@@ -273,6 +273,19 @@ function Index() {
       setUploadFile(saveuploadFile);
     }
   };
+
+  const [samplefile, setsamplefile] = useState()
+  useEffect(async() => {
+    try {
+      const sample = await axios({
+        method: 'get',
+        url: `${Constant?.baseUrl()}/getBulkUploadFile`
+      })
+      setsamplefile(sample?.data[0]?.bulkupload_sample)
+    } catch(e) {
+      console.log(e)
+    }
+  }, [])
   return (
     <div className="bulk_upload">
       <div className="bulkUpload_container">
@@ -302,8 +315,8 @@ function Index() {
 
             <a
               className="bulk_download_example link"
-              href="/Example.Xlsx.xlsx"
-              download="Example.Xlsx.xlsx"
+              href={samplefile}
+              download="Example.Xlsx"
             >
               Example.Xlsx{" "}
               <div className="image">

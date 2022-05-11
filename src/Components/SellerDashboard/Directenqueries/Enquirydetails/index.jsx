@@ -7,6 +7,7 @@ import Constant from "../../../../Constant";
 import eye_icon from "../../../../Assets/sellerdashboard/enquiry/eye_icon.png";
 import axios from "axios";
 import swal from "sweetalert2";
+import moment from 'moment'
 
 const Index = ({ closePOPup, popid, direct, setrefreshdata, refreshdata }) => {
   const [open, setOpen] = useState(true);
@@ -94,7 +95,7 @@ const Index = ({ closePOPup, popid, direct, setrefreshdata, refreshdata }) => {
           </div>
           <p className="p1">
             <img className="eye_icon" src={eye_icon} alt="" />
-            12 Sellers are viewing at this enquiry right now.
+            {currentdata?.viewers_count ? currentdata?.viewers_count : 0} Sellers are viewing at this enquiry right now.
           </p>
           <div className="enquirydetails_section">
             <div className="enquirydetails">
@@ -145,7 +146,7 @@ const Index = ({ closePOPup, popid, direct, setrefreshdata, refreshdata }) => {
             </div>
             <div className="enquirydetails">
               <p className="heading">Enquiry Date</p>
-              <p className="details">12/03/22</p>
+              <p className="details">{moment(currentdata?.enquiry_date).format("DD/MM/YYYY")}</p>
             </div>
             <div className="enquirydetails">
               <p className="heading">Notes</p>
