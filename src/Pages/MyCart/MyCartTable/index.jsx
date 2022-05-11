@@ -209,6 +209,9 @@ const MyCartTable = ({ cartDataList, deleteCartData }) => {
         });
       });
   };
+  const onCellHandleClick = (event) => {
+    console.log(event)
+  }
   const columns = [
     {
       name: "seller_code",
@@ -584,10 +587,12 @@ const MyCartTable = ({ cartDataList, deleteCartData }) => {
   ];
 
   const options = {
-    filter: true,
+    filter: false,
     filterType: "dropdown",
     responsive: "vertical",
     selectableRows: true,
+    // selectableRowsOnClick: true,
+    onRowClick: onCellHandleClick,
     download: false,
     print: false,
     sort: false,
