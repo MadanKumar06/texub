@@ -230,11 +230,21 @@ function Index() {
   let permissions = JSON.parse(localStorage.getItem("permissions"));
   let placeorder =
     permissions?.length === 0
-      ? false
-      : permissions?.some(
-          (per) =>
-            per?.value === "can-place-order" && per?.permission_value === 0
-        );
+    ? false
+    : permissions?.some(
+        (per) =>
+          per?.value === "can-place-order" && per?.permission_value === 0
+    );
+  const [pendinginvoicestatus, setpendinginvoicestatus] = useState(false)
+  useEffect(() => {
+    if(!pendingInvoiceList) return
+    if(pendingInvoiceList?.invoice?.status === "Cancelled") {
+      setpendinginvoicestatus(true)
+    } else {
+      setpendinginvoicestatus(false)
+    }
+  }, [pendingInvoiceList])
+  console.log(pendinginvoicestatus)
   return (
     <div className="pendinginvoice">
       <div className="pendinginvoice__top">
@@ -662,7 +672,7 @@ function Index() {
         </div>
         <div className="bottom__buttons">
           <Button className="button__cancel" onClick={()=> window.history.back()}>Back</Button>
-          {!placeorder && (
+          {!placeorder && !pendinginvoicestatus && (
             <Button className="button__checkout">
               <Link
                 to={`/${
