@@ -14,18 +14,17 @@ export const Departments = ({ data }) => {
   const [Bar, setBar] = useState(false);
   const history = useNavigate();
 
-  const handleSearchClick = (event) => {
+  const handleSearchClick = (event, item) => {
     event.preventDefault();
     dispatch({
       type: "SET_SEARCH",
-      value: search,
+      value: search !== "" ? search : item,
     });
     history(`/${customnostore ? customnostore : geo?.country_name}/products`);
   };
 
   const searchinput = (e) => {
     if (e.key === "Enter") {
-      debugger;
       dispatch({
         type: "SET_SEARCH",
         value: search,
@@ -39,7 +38,7 @@ export const Departments = ({ data }) => {
   useEffect(() => {
     setsavedsearch(JSON.parse(localStorage.getItem("searchhistory")));
   }, []);
-
+  console.log(search);
   return (
     <div className="Departments">
       <div className="Departments_Body_Search">
@@ -99,13 +98,24 @@ export const Departments = ({ data }) => {
                   onChange={(event) => setSearch(event.target.value)}
                   onFocus={() => setBar(true)}
                   onKeyPress={(e) => searchinput(e)}
+                  value={search}
                 />
-                <CancelIcon onClick={() => setBar(false)} />
-                {/* <ul className="searchhistory">
+                <CancelIcon className="cancel" onClick={() => setBar(false)} />
+                <ul className="searchhistory">
                   {savedsearch?.length
-                    ? savedsearch?.map((ss, i) => <li key={i}>{ss}</li>)
+                    ? savedsearch?.map((item, i) => (
+                        <li
+                          key={i}
+                          onClick={(event) => {
+                            handleSearchClick(event, item);
+                          }}
+                        >
+                          <Search />
+                          {item}
+                        </li>
+                      ))
                     : ""}
-                </ul> */}
+                </ul>
               </Paper>
             ) : (
               <Paper
@@ -117,7 +127,7 @@ export const Departments = ({ data }) => {
                   sx={{ ml: 1, flex: 1 }}
                   placeholder="Search Entire Store Here…"
                   inputProps={{ "aria-label": " " }}
-                  // onChange={(event) => setSearch(event.target.value)}
+                  onChange={(event) => setSearch(event.target.value)}
                   onFocus={() => setBar(true)}
                 />
                 <IconButton
