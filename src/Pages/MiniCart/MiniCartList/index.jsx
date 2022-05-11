@@ -215,7 +215,7 @@ const MiniCartList = ({ handleSideBarClose }) => {
         navigate(
           `/${
             customnostore ? customnostore : geo?.country_name
-          }/pending-invoice/${pinvoice?.data?.[0]?.quote_id}`
+          }/pendinginvoice/${pinvoice?.data?.[0]?.quote_id}`
         );
       } catch (e) {
         console.log(e);

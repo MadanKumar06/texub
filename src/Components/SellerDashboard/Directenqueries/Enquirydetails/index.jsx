@@ -7,6 +7,7 @@ import Constant from "../../../../Constant";
 import eye_icon from "../../../../Assets/sellerdashboard/enquiry/eye_icon.png";
 import axios from "axios";
 import swal from "sweetalert2";
+import moment from 'moment'
 
 const Index = ({ closePOPup, popid, direct, setrefreshdata, refreshdata }) => {
   const [open, setOpen] = useState(true);
@@ -70,6 +71,7 @@ const Index = ({ closePOPup, popid, direct, setrefreshdata, refreshdata }) => {
       }
     });
   }, []);
+  console.log(currentdata)
   return (
     <Modal
       aria-labelledby="transition-modal-title"
@@ -144,7 +146,7 @@ const Index = ({ closePOPup, popid, direct, setrefreshdata, refreshdata }) => {
             </div>
             <div className="enquirydetails">
               <p className="heading">Enquiry Date</p>
-              <p className="details">12/03/22</p>
+              <p className="details">{moment(currentdata?.enquiry_date).format("DD/MM/YYYY")}</p>
             </div>
             <div className="enquirydetails">
               <p className="heading">Notes</p>

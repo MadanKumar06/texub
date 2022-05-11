@@ -15,7 +15,7 @@ function formatToCurrency(amount) {
   return amount.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
 }
 
-const MyCartTable = ({ cartDataList, deleteCartData }) => {
+const MyCartTable = ({ cartDataList, deleteCartData, setrowselect }) => {
   const [is_table_quantity, setIs_table_quantity] = useState([]);
   const [openwishlist, setopenwishlist] = useState({
     open: false,
@@ -592,7 +592,9 @@ const MyCartTable = ({ cartDataList, deleteCartData }) => {
     responsive: "vertical",
     selectableRows: true,
     // selectableRowsOnClick: true,
-    onRowClick: onCellHandleClick,
+    onRowsSelect: (rowsSelected, allRows) => {
+      setrowselect(allRows)
+    },
     download: false,
     print: false,
     sort: false,
@@ -607,6 +609,7 @@ const MyCartTable = ({ cartDataList, deleteCartData }) => {
       },
     },
   };
+  
   return (
     <div className="mycart_table_main_container">
       <MUITable
