@@ -32,12 +32,12 @@ const steps = [
     time: "12:02:22",
   },
   {
-    label: "PO Delivered",
+    label: "PO Dispatched",
     date: "02/05/2022",
     time: "12:02:22",
   },
   {
-    label: "PO Dispatched",
+    label: "PO Delivered",
     date: "02/05/2022",
     time: "12:02:22",
   },
@@ -105,15 +105,15 @@ const columns = [
       },
     },
   },
-    {
-      name: "hub",
-      label: "Hub",
-      options: {
-        customBodyRender: (value) => {
-          return <div className="vieworders_hub">{value}</div>;
-        },
+  {
+    name: "hub",
+    label: "Hub",
+    options: {
+      customBodyRender: (value) => {
+        return <div className="vieworders_hub">{value}</div>;
       },
     },
+  },
   {
     name: "unit_price",
     label: "UNIT PRICE",
@@ -163,6 +163,7 @@ const columns = [
     },
   },
 ];
+
 const Index = ({ setisVieworders, setisOrders, viewDetail }) => {
   const [radiogroup, setRadioGroup] = useState(1);
   const [{}, dispatch] = useStateValue();
@@ -221,20 +222,61 @@ const Index = ({ setisVieworders, setisOrders, viewDetail }) => {
   };
 
   // stepper
-  const [activeStep, setActiveStep] = useState(1);
+  const [activeStep, setActiveStep] = useState(0);
 
+  const [statusFromAPI, setStatusFromAPI] = useState([]);
+  useEffect(() => {
+    const fetchTableData = async () => {
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: true,
+      });
+      try {
+        const tabledata = await axios({
+          method: "post",
+          url: `${Constant.baseUrl()}/OrderStatusLogList`,
+          data: {
+            itemId: viewDetail?.[0]?.item_id,
+          },
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+        setStatusFromAPI(tabledata?.data);
+        if (tabledata?.data?.length) {
+          tabledata?.data?.map((itm) => setActiveStep(parseInt(itm?.status)));
+        }
+      } catch (e) {
+        console.log(e);
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+      }
+    };
+    fetchTableData();
+  }, []);
   return (
     <div className="vieworders_main">
       <div className="vieworders_heading_section">
         <p className="id_heading">
           Purchase Order Date #{" "}
-          <span className="purchase_date">{viewDetail?.[0]?.date.split(' ')[0]}</span> <br/>
+          <span className="purchase_date">
+            {viewDetail?.[0]?.date.split(" ")[0]}
+          </span>{" "}
+          <br />
         </p>
         <p className="id_heading">
           Pending Invoice No. #{" "}
           <span className="id">{viewDetail?.[0]?.quote_id}</span>
         </p>
-        <Button className="button-text btn-secondary attach_invoice_btn">Attach Invoice</Button>
+        <Button className="button-text btn-secondary attach_invoice_btn">
+          Attach Invoice
+        </Button>
       </div>
       <MUITable
         columns={columns}
@@ -254,7 +296,7 @@ const Index = ({ setisVieworders, setisOrders, viewDetail }) => {
             defaultValue=""
             className="radio_group"
             sx={{
-              '& .MuiSvgIcon-root': {
+              "& .MuiSvgIcon-root": {
                 fontSize: 30,
               },
             }}
@@ -270,7 +312,6 @@ const Index = ({ setisVieworders, setisOrders, viewDetail }) => {
               labelPlacement="top"
               onClick={() => {
                 setRadioGroup(1);
-                setActiveStep(2);
               }}
             />
             <FormControlLabel
@@ -284,7 +325,6 @@ const Index = ({ setisVieworders, setisOrders, viewDetail }) => {
               labelPlacement="top"
               onClick={() => {
                 setRadioGroup(2);
-                setActiveStep(3);
               }}
             />
             <FormControlLabel
@@ -298,7 +338,6 @@ const Index = ({ setisVieworders, setisOrders, viewDetail }) => {
               labelPlacement="top"
               onClick={() => {
                 setRadioGroup(3);
-                setActiveStep(4);
               }}
             />
             <Button
