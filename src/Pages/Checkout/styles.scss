@@ -243,6 +243,13 @@
                 width: 100%;
                 padding: 13.5px 14px 12.5px 58px;
               }
+              .react-tel-input .form-control:hover{
+                    border-color:#ddb363;
+                }
+                .form-control:focus{
+                  border-color:#ddb363 !important;
+                  box-shadow:unset !important;
+                }
               .special-label{
                 display: none !important;
               }
