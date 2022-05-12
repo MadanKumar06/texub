@@ -73,7 +73,7 @@
       min-height: 65px;
       cursor: pointer;
       &:last-child {
-        margin-top: 15px;
+        margin-top: 10px;
         gap: 18px;
       }
 
@@ -177,6 +177,11 @@
   .sellerdashboard__sidebar .buyerbg ::before {
     height: 49px;
   }
+}
+@media (max-width: 1440px) {
+.sellerdashboard__sidebar ul li{
+  padding-left: 20px;
+}
 }
 @media (max-width: 1375px) {
   .sellerdashboard__sidebar {
