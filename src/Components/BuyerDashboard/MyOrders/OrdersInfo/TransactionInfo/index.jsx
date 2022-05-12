@@ -1,7 +1,8 @@
-import * as React from 'react';
+import React, { useState } from "react";
 import {Modal,Backdrop } from "@mui/material";
 import TextareaAutosize from "@mui/base/TextareaAutosize";
-
+import swal from "sweetalert2";
+import moment from 'moment'
 import { Clear  } from "@mui/icons-material";
 import { Button } from "@mui/material";
 import {
@@ -11,6 +12,10 @@ import {
 } from "@mui/material";
 import "./styles.scss";
 import { useStateValue } from "../../../../../store/state";
+import { DesktopDatePicker, LocalizationProvider } from '@mui/lab';
+import axios from "axios";
+import Constant from "../../../../../Constant";
+import AdapterDateFns from "@mui/lab/AdapterDateFns";
 
 
 const style = {
@@ -26,7 +31,7 @@ const style = {
 };
 
 export default function BasicModal({PopupTransaction}) {
-  const [{  }, dispatch] = useStateValue();
+  const [{}, dispatch] = useStateValue();
   const [open, setOpen] = React.useState(true);
     const [value, setValue] = React.useState(2);
   // const handleOpen = () => setOpen(true);
@@ -41,6 +46,82 @@ export default function BasicModal({PopupTransaction}) {
         PopupTransaction(false)
       }
     }
+
+  const [transactiondetails, settransactiondetails] = useState({})
+  const [transactionvalidation, settransactionvalidation] = useState({})
+
+  const handleTransaction = (e) => {
+    settransactiondetails((prevState) => ({ ...prevState, [e.target.name]: e.target.value, }))
+  }
+
+  const handletransactionvalidation = () => {
+    let errorhandle = false
+    if(!transactiondetails?.reference_number) {
+      settransactionvalidation(prevstate => ({
+        ...prevstate,
+        reference_number: 'Please fill the Reference Number'
+      }))
+      errorhandle = true
+    }
+    if(!transactiondetails?.payment_amount) {
+      settransactionvalidation(prevstate => ({
+        ...prevstate,
+        payment_amount: 'Please fill the Payment Amount'
+      }))
+      errorhandle = true
+    }
+    if(!transactiondetails?.transaction_date_time) {
+      settransactionvalidation(prevstate => ({
+        ...prevstate,
+        transaction_date_time: 'Please select Date'
+      }))
+      errorhandle = true
+    }
+    if(!transactiondetails?.remarks) {
+      settransactionvalidation(prevstate => ({
+        ...prevstate,
+        remarks: 'Please fill Remarks'
+      }))
+      errorhandle = true
+    }
+
+    if(!errorhandle) {
+      submittransaction()
+    }
+  }
+
+  const submittransaction = async() => {
+    let user = JSON.parse(localStorage.getItem('userdata'))
+    let date = moment(transactiondetails?.remarks).format("DD/MM/YYYY")
+    try {
+      const submitdata = await axios({
+        method: "post",
+        url: `${Constant?.baseUrl()}/order/orderPayment`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        },
+        data: {
+          "requestParam":{
+              "customer_id":user?.id,
+              "order_id":"",
+              "reference_number":transactiondetails?.reference_number,
+              "payment_amount":transactiondetails?.payment_amount,
+              "payment_date":transactiondetails?.transaction_date_time,
+              "payment_remarks": date
+          }
+       }
+      })
+      swal.fire({
+        text: submitdata?.data[0]?.message,
+        icon: "success",
+        showConfirmButton: false,
+        timer: 3000,
+      });
+      handleClose()
+    } catch(e) {
+      console.log(e)
+    }
+  }
 
   return (
     <div>
@@ -73,45 +154,70 @@ export default function BasicModal({PopupTransaction}) {
 
                         <div className="transaction_block">
                             <div className="transaction_info_section">
-                            <InputLabel>Reference Number</InputLabel>
-                            <TextField
+                              <InputLabel>Reference Number</InputLabel>
+                              <TextField
                                 id="reference_number"
                                 placeholder="324518709"
                                 className="inputfield-box"
                                 name="reference_number"
                                 variant="outlined"
-                            />
+                                value={transactiondetails?.referencenumber}
+                                onChange={(e) => handleTransaction(e)}
+                              />
+                              <p style={{ color: "red" }}>{transactionvalidation?.reference_number ? transactionvalidation?.reference_number : ""}</p>
                             </div>
                             <div className="transaction_info_section">
-                            <InputLabel>Payment Amount</InputLabel>
-                            <TextField
+                              <InputLabel>Payment Amount</InputLabel>
+                              <TextField
                                 id="payment_amount"
                                 placeholder="INR 94,05,811"
                                 className="inputfield-box"
                                 name="payment_amount"
+                                type="number"
                                 variant="outlined"
-                            />
+                                value={transactiondetails?.payment_amount}
+                                onChange={(e) => handleTransaction(e)}
+                              />
+                              <p style={{ color: "red" }}>{transactionvalidation?.payment_amount ? transactionvalidation?.payment_amount : ""}</p>
                             </div>
                         </div>
                         <div className="transaction_block">
                             <div className="transaction_info_section">
-                            <InputLabel>Transaction Date & Time</InputLabel>
-                            <TextField
-                                id="transaction_date_time"
-                                placeholder="00:00:00"
-                                className="inputfield-box"
-                                name="TextField"
-                                variant="outlined"
-                            />
+                              <InputLabel>Transaction Date & Time</InputLabel>
+                              <LocalizationProvider dateAdapter={AdapterDateFns}>
+                                <DesktopDatePicker
+                                  id="transaction_date_time"
+                                  name="transaction_date_time"
+                                  inputFormat="MM/dd/yyyy"
+                                  value={transactiondetails?.transaction_date_time ? transactiondetails?.transaction_date_time : null}
+                                  onChange={(newValue) => {
+                                    settransactiondetails((prevState) => ({
+                                      ...prevState,
+                                      transaction_date_time: newValue,
+                                    }));
+                                  }}
+                                  renderInput={(params) => <TextField {...params} inputProps={{
+                                    ...params.inputProps,
+                                    readOnly: true,
+                                    placeholder: "DD-MM-YYYY",
+                                  }} />}
+                                />
+                              </LocalizationProvider>
+                              <p style={{ color: "red" }}>{transactionvalidation?.transaction_date_time ? transactionvalidation?.transaction_date_time : ""}</p>
                             </div>
                             <div className="transaction_info_section">
-                            <InputLabel>Remarks</InputLabel>
-                            <TextareaAutosize
+                              <InputLabel>Remarks</InputLabel>
+                              <TextareaAutosize
+                                id="remarks"
+                                name="remarks"
                                 aria-label="Remarks"
                                 minRows={3}
                                 placeholder="Remarks"
                                 style={{ height: 100 }}
-                            />
+                                value={transactiondetails?.remarks}
+                                onChange={(e) => handleTransaction(e)}
+                              />
+                              <p style={{ color: "red" }}>{transactionvalidation?.remarks ? transactionvalidation?.remarks : ""}</p>
                             </div>
                         </div>
                     </div>
