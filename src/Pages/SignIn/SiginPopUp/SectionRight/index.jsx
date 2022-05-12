@@ -233,7 +233,7 @@ const TransitionsModal = ({ classes }) => {
       });
   };
 
-  const [customerdata, setcustomerdata] = useState(false)
+  const [customerdata, setcustomerdata] = useState(false);
   const getUserData = (token) => {
     axios
       .get(Constant.customerMeDetailUrl(), {
@@ -252,7 +252,7 @@ const TransitionsModal = ({ classes }) => {
           "isLoggedIn_auth",
           res?.data?.group_id === 1 ? false : true
         );
-        setcustomerdata(!customerdata)
+        setcustomerdata(!customerdata);
         swal.fire({
           text: "You have Successfully loggedIn !",
           icon: "success",
@@ -271,26 +271,26 @@ const TransitionsModal = ({ classes }) => {
       });
   };
 
-  useEffect(async() => {
-    let user = JSON.parse(localStorage.getItem('userdata'))
-    if(adminToken === null) return
+  useEffect(async () => {
+    let user = JSON.parse(localStorage.getItem("userdata"));
+    if (adminToken === null) return;
     try {
       const permission = await axios({
-        method: 'post',
+        method: "post",
         url: `${Constant?.permissiondetails()}`,
         headers: {
-          Authorization: `Bearer ${adminToken}`
+          Authorization: `Bearer ${adminToken}`,
         },
         data: {
-          "customer_id" : user?.id
-       }       
-      })
-      console.log(permission?.data)
-      localStorage.setItem('permissions', JSON.stringify(permission?.data))
-    } catch(e) {
-      console.log(e)
+          customer_id: user?.id,
+        },
+      });
+      console.log(permission?.data);
+      localStorage.setItem("permissions", JSON.stringify(permission?.data));
+    } catch (e) {
+      console.log(e);
     }
-  }, [customerdata, adminToken])
+  }, [customerdata, adminToken]);
   return (
     <div className={section_right}>
       <p className={info_text_lineNote}>

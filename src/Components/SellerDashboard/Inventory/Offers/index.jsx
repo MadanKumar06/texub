@@ -37,6 +37,10 @@ const TransitionsModal = ({ handleOpenCloseOffers, offersOpenClose }) => {
       offersOpenClose?.isOfferValid === "1" ||
       offersOpenClose?.isOfferValid === "2"
     ) {
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: true,
+      });
       let data = {
         sellerData: {
           customer_id: customerId?.id,
@@ -61,8 +65,17 @@ const TransitionsModal = ({ handleOpenCloseOffers, offersOpenClose }) => {
               ? new Date(res?.data?.[0]?.offer_end_date)
               : "",
           });
+          dispatch({
+            type: "SET_IS_LOADING",
+            value: false,
+          });
         })
-        .catch((err) => {});
+        .catch((err) => {
+          dispatch({
+            type: "SET_IS_LOADING",
+            value: false,
+          });
+        });
     }
   }, []);
   // Validation
@@ -114,6 +127,10 @@ const TransitionsModal = ({ handleOpenCloseOffers, offersOpenClose }) => {
     }
   };
   const OffersAPICall = () => {
+    dispatch({
+      type: "SET_IS_LOADING",
+      value: true,
+    });
     let start_date = moment(offersData?.start_date).format("DD/MM/YYYY");
     let end_date = moment(offersData?.end_date).format("DD/MM/YYYY");
     let d = moment(new Date()).format("YYYY-MM-DD");
