@@ -111,8 +111,9 @@ const FAQ = ({ classes }) => {
                 if (description === false && toggle === false) {
                   text(ind)
                 } else if (description === ind && toggle === ind) {
-                  setdescription(false)
-                  settoggle(false)
+                  text(false)
+                } else if (description !== ind && toggle !== ind) {
+                  text(ind)
                 }
               }}
               className="faqs_table_adding"

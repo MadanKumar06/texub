@@ -141,7 +141,7 @@ const columns = [
   },
 ];
 
-const Index = ({ setisVieworders, setisOrders, viewDetail }) => {
+const Index = ({viewDetail, setvieworder }) => {
   const [radiogroup, setRadioGroup] = useState(1);
   const [trigger, setTrigger] = useState(false);
   const [{}, dispatch] = useStateValue();
@@ -253,17 +253,19 @@ const Index = ({ setisVieworders, setisOrders, viewDetail }) => {
   return (
     <div className="vieworders_main">
       <div className="vieworders_heading_section">
-        <p className="id_heading">
-          Purchase Order Date #{" "}
-          <span className="purchase_date">
-            {viewDetail?.[0]?.date.split(" ")[0]}
-          </span>{" "}
-          <br />
-        </p>
-        <p className="id_heading">
-          Pending Invoice No. #{" "}
-          <span className="id">{viewDetail?.[0]?.quote_id}</span>
-        </p>
+        <div className="header_section">
+          <p className="id_heading purchase_date">
+            Purchase Order Date #{" "}
+            <span className="id">
+              {viewDetail?.[0]?.date.split(" ")[0]}
+            </span>{" "}
+            <br />
+          </p>
+          <p className="id_heading">
+            Pending Invoice No. #{" "}
+            <span className="id">{viewDetail?.[0]?.quote_id}</span>
+          </p>
+        </div>
         <Button className="button-text btn-secondary attach_invoice_btn">
           Attach Invoice
         </Button>
@@ -366,11 +368,12 @@ const Index = ({ setisVieworders, setisOrders, viewDetail }) => {
         </Box>
       </div>
       <div className="invoices__footer">
-        <div
+       <div
           className="invoices__container"
+          style={{ cursor: 'pointer' }}
           onClick={() => {
-            setisVieworders(false);
-            setisOrders(true);
+            setvieworder(false);
+            // setisOrders(true);
           }}
         >
           <ArrowBackIosNew />
