@@ -91,7 +91,7 @@ function Index() {
 
   const columns = [
     {
-      name: "quote_id",
+      name: "po_number",
       label: "Purchase Order ID",
       options: {
         customBodyRender: (value) => {

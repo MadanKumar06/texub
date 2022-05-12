@@ -78,7 +78,7 @@ const Checkout = () => {
     email_address: "",
     mobile_number: "",
   });
-  const [payment, setpayment] = useState(null);
+  const [payment, setpayment] = useState({method: "cashondelivery"});
   const [countryList, setCountryList] = useState([]);
   const [formerror, setformerror] = useState({
     bussiness_name: true,
@@ -109,6 +109,7 @@ const Checkout = () => {
     setformerror({ ...formerror, [e.target.name]: true });
   };
 
+  console.log(payment)
   const [adminToken, setAdminToken] = useState("");
   useEffect(() => {
     getAdminToken((res) => {
@@ -139,8 +140,8 @@ const Checkout = () => {
   });
 
   const addressadd = (e) => {
-    debugger;
-    setaddressdata((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    debugger
+    setaddressdata((prev) => ({ ...prev, [e.target.name]: e.target.value,  }));
   };
 
   useEffect(() => {
@@ -158,6 +159,7 @@ const Checkout = () => {
     };
     fetchCountryData();
   }, []);
+  
 
   const [localgt, setlocalgt] = useState(false);
   const saveaddress = async () => {
@@ -176,7 +178,7 @@ const Checkout = () => {
         },
         data: {
           customerId: user?.id,
-          addressId: 0,
+          addressId: addressdata?.id ? addressdata?.id : 0,
           addressType: addressdata?.billtype === "texub_shipping" ? 1 : 0,
           address: {
             company: addressdata?.organization_name,
@@ -186,30 +188,6 @@ const Checkout = () => {
             city: addressdata?.city,
           },
         },
-
-        // data: {
-        //   customerId: user?.id,
-        //   cartId: quoteid,
-        //   shippingAddressId: selectadd ? selectadd : 0,
-        //   billingAddressId: selectadd ? selectadd : 0,
-        //   addressInformation: {
-        //     shipping_address: {
-        //       company: addressdata?.organization_name,
-        //       country_id: addressdata?.country,
-        //       street: street,
-        //       postcode: addressdata?.pincode,
-        //       city: addressdata?.city,
-        //     },
-        //     billing_address: {
-        //       company: addressdata?.organization_name,
-        //       country_id: addressdata?.country,
-        //       street: street,
-        //       postcode: addressdata?.pincode,
-        //       city: addressdata?.city,
-        //       postcode: addressdata?.pincode,
-        //     },
-        //   },
-        // },
       });
       dispatch({
         type: "SET_IS_LOADING",
@@ -231,6 +209,7 @@ const Checkout = () => {
         });
       }
       setlocalgt(!localgt);
+      seteditradio(false)
       handleClose();
     } catch (e) {
       dispatch({
@@ -282,6 +261,7 @@ const Checkout = () => {
     }
   }, [quotedata]);
 
+  const [editradio, seteditradio] = useState(false)
   const editaddress = (id) => {
     let temp = quotedata[0]?.address_list?.filter(
       (al) => al?.address_id === id
@@ -294,13 +274,17 @@ const Checkout = () => {
       city: temp?.[0]?.city,
       pincode: temp?.[0]?.postcode,
       country: temp?.[0]?.country_id,
-      // billtype: temp?.[0]?.billtype
+      id: temp?.[0]?.address_id,
+      billtype: "texub_shipping"
     }));
+    debugger
+    seteditradio(true)
     handleOpen("edit_new_address");
   };
 
+  console.log(addressdata)
+
   const selectaddress = (itm) => {
-    debugger;
     if (quotedata[0]?.invoice?.pending_invoice_status !== "1") return;
     setselectadd(itm?.address_id);
     setaddressdata({
@@ -884,7 +868,7 @@ const Checkout = () => {
                             onClick={() => selectaddress(itm)}
                           >
                             <div className="billing_title">
-                              <p>Default Shipping Address</p>
+                              {itm?.shipping_billing == 1 ? <p>Default Shipping Address</p> : <p></p>}
                               {quotedata[0]?.invoice?.pending_invoice_status ===
                                 "1" && (
                                 <div
@@ -1082,7 +1066,6 @@ const Checkout = () => {
                 <RadioGroup
                   aria-labelledby="demo-radio-buttons-group-label"
                   defaultValue={
-                    //item.value
                     quotedata[0]?.payment_methods[0]?.value
                   }
                   name="radio-buttons-group"
@@ -1093,17 +1076,12 @@ const Checkout = () => {
                         <div className="footer_main">
                           <div className="footer_content">
                             <FormControlLabel
-                              value={
-                                item.value
-                                //quotedata[0]?.payment_methods?.banktransfer?.value
-                              }
+                              value={item.value}
                               control={
                                 <Radio
                                   onClick={() =>
                                     setpayment(
                                       item.value
-                                      // quotedata[0].payment_methods?.banktransfer
-                                      //   ?.value
                                     )
                                   }
                                 />
@@ -1278,11 +1256,13 @@ const Checkout = () => {
                         aria-labelledby="demo-controlled-radio-buttons-group"
                         name="billtype"
                         onChange={(e) => addressadd(e)}
+                        defaultValue={"texub_shipping"}
                       >
                         <FormControlLabel
                           value="texub_billing"
                           control={<Radio />}
                           label="Billing Address"
+                          disabled={editradio}
                         />
                         <FormControlLabel
                           value="texub_shipping"
@@ -1411,7 +1391,7 @@ const Checkout = () => {
                         }
                       >
                         {countryList?.map((cl) => (
-                          <MenuItem value={cl?.label}>{cl?.label}</MenuItem>
+                          <MenuItem value={cl?.value}>{cl?.label}</MenuItem>
                         ))}
                       </Select>
                     </FormControl>
