@@ -127,10 +127,6 @@ const TransitionsModal = ({ handleOpenCloseOffers, offersOpenClose }) => {
     }
   };
   const OffersAPICall = () => {
-    dispatch({
-      type: "SET_IS_LOADING",
-      value: true,
-    });
     let start_date = moment(offersData?.start_date).format("DD/MM/YYYY");
     let end_date = moment(offersData?.end_date).format("DD/MM/YYYY");
     let d = moment(new Date()).format("YYYY-MM-DD");
@@ -155,6 +151,10 @@ const TransitionsModal = ({ handleOpenCloseOffers, offersOpenClose }) => {
           end_date: end_date,
         },
       };
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: true,
+      });
       axios
         .post(Constant.baseUrl() + "/setOfferprice", data, {
           headers: {
@@ -200,6 +200,10 @@ const TransitionsModal = ({ handleOpenCloseOffers, offersOpenClose }) => {
           });
         });
     } else {
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
       swal.fire({
         text: `End Date Must be greater than or Equal to Start Date`,
         icon: "error",

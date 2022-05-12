@@ -78,7 +78,7 @@ const Checkout = () => {
     email_address: "",
     mobile_number: "",
   });
-  const [payment, setpayment] = useState({ method: "cashondelivery" });
+  const [payment, setpayment] = useState(null);
   const [countryList, setCountryList] = useState([]);
   const [formerror, setformerror] = useState({
     bussiness_name: true,
@@ -541,7 +541,7 @@ const Checkout = () => {
               method:
                 payment !== null
                   ? payment
-                  : quotedata[0]?.payment_methods?.banktransfer?.value,
+                  : quotedata[0]?.payment_methods?.[0]?.value,
             },
             extension_attributes: {
               pending_invoice_status:
