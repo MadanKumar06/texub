@@ -30,12 +30,28 @@ const Index = (classes) => {
     new_password: "",
     new_confrim_password: "",
   });
+  useEffect(() => {
+    const userData = JSON.parse(localStorage.getItem('userdata'))
+    let company_name = userData?.custom_attributes?.filter(
+      (itm) => itm?.attribute_code === "customer_company_name");
+    let mobile_number = userData?.custom_attributes?.filter(
+      (itm) => itm?.attribute_code === "customer_mobile_number");
+    setAccountInfoData({
+      first_name: userData.firstname,
+      last_name: userData.lastname,
+      mobile_number: mobile_number[0]?.value,
+      email_address: userData.email,
+      new_password: "",
+      new_confrim_password: "",
+    })
 
-  const userData = JSON.parse(localStorage.getItem('userdata'))
-  let company_name = userData?.custom_attributes?.filter(
-    (itm) => itm?.attribute_code === "customer_company_name");
-  let mobile_number = userData?.custom_attributes?.filter(
-    (itm) => itm?.attribute_code === "customer_mobile_number");
+
+  }, []);
+  // const userData = JSON.parse(localStorage.getItem('userdata'))
+  // let company_name = userData?.custom_attributes?.filter(
+  //   (itm) => itm?.attribute_code === "customer_company_name");
+  // let mobile_number = userData?.custom_attributes?.filter(
+  //   (itm) => itm?.attribute_code === "customer_mobile_number");
 
 
   const handleChangeInput = (event) => {
@@ -223,7 +239,7 @@ const Index = (classes) => {
                 name="first_name"
                 className="inputfield-box"
                 placeholder="First Name"
-                value={userData['firstname']}
+                value={AccountInfoData?.first_name}
                 InputLabelProps={{
                   shrink: false,
                 }}
@@ -240,7 +256,7 @@ const Index = (classes) => {
                 name="last_name"
                 className="inputfield-box"
                 placeholder="Last Name"
-                value={userData['lastname']}
+                value={AccountInfoData?.last_name}
                 InputLabelProps={{
                   shrink: false,
                 }}
@@ -262,7 +278,7 @@ const Index = (classes) => {
                 countryCodeEditable={false}
                 className="inputfield-box"
                 name="mobile_number"
-                value={mobile_number?.[0]?.value}
+                value={AccountInfoData?.mobile_number}
                 InputLabelProps={{
                   shrink: true,
                   required: true,
@@ -294,7 +310,7 @@ const Index = (classes) => {
                 name="email_address"
                 className="inputfield-box"
                 placeholder="E-Mail"
-                value={userData['email']}
+                value={AccountInfoData?.email_address}
                 InputLabelProps={{
                   shrink: false,
                 }}
