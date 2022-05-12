@@ -209,9 +209,7 @@ const MyCartTable = ({ cartDataList, deleteCartData, setrowselect }) => {
         });
       });
   };
-  const onCellHandleClick = (event) => {
-    console.log(event)
-  }
+
   const columns = [
     {
       name: "seller_code",
@@ -593,7 +591,7 @@ const MyCartTable = ({ cartDataList, deleteCartData, setrowselect }) => {
     selectableRows: true,
     // selectableRowsOnClick: true,
     onRowsSelect: (rowsSelected, allRows) => {
-      setrowselect(allRows)
+      setrowselect(allRows);
     },
     download: false,
     print: false,
@@ -609,7 +607,7 @@ const MyCartTable = ({ cartDataList, deleteCartData, setrowselect }) => {
       },
     },
   };
-  
+
   return (
     <div className="mycart_table_main_container">
       <MUITable

@@ -4,11 +4,13 @@ import MUITable from "../../../Common/MUITable";
 import hp from "../../../../Assets/sellerdashboard/inventory/hp.png";
 import Pagination from "../../../Pagination";
 import axios from "axios";
+import { useStateValue } from "../../../../store/state";
 import Constant from "../../../../Constant";
 
 function Index({ registerproduct }) {
   const [tableData, setTableData] = useState([]);
   const [apiTableData, setApiTableData] = useState([]);
+  const [{}, dispatch] = useStateValue();
   const options = {
     filter: false,
     filterType: "dropdown",
@@ -22,6 +24,10 @@ function Index({ registerproduct }) {
   };
   useEffect(() => {
     const fetchTableData = async () => {
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: true,
+      });
       let customerId = JSON.parse(localStorage.getItem("userdata"));
       try {
         const tabledata = await axios({
@@ -37,8 +43,16 @@ function Index({ registerproduct }) {
           },
         });
         setApiTableData(tabledata.data);
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
       } catch (e) {
         console.log(e);
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
       }
     };
     fetchTableData();
@@ -50,7 +64,7 @@ function Index({ registerproduct }) {
       label: " ",
       options: {
         customBodyRender: (value) => {
-          return <img src={value} alt="" style={{height:"50px"}} />;
+          return <img src={value} alt="" style={{ height: "50px" }} />;
         },
       },
     },
@@ -115,7 +129,6 @@ function Index({ registerproduct }) {
       },
     },
   ];
-
 
   const PaginateDataSplit = (event) => {
     setTableData(event);
