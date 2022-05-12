@@ -14,7 +14,7 @@ const Index = () => {
   const [direct, setdirect] = useState([]);
   const [filtereddirect, setfiltereddirect] = useState([])
   const [refreshdata, setrefreshdata] = useState(false)
-  const [{geo, customstore, customnostore}, dispatch] = useStateValue();
+  const [{geo, customstore, customnostore, generalTrigger}, dispatch] = useStateValue();
   const PaginateDataSplit = (event) => {
     if (directList?.length === 0) return setdirect([]);
       setdirect(event);
@@ -38,7 +38,6 @@ const Index = () => {
           seller_id: user?.id,
         },
       });
-      setfiltereddirect(ddlist?.data)
       setdirectList(ddlist?.data);
       dispatch({
         type: "SET_IS_LOADING",
@@ -92,7 +91,7 @@ const Index = () => {
       const declined = direct?.filter(d => d?.seller_enquiry_status === "Declined")
       setfiltereddirect(declined)
     }
-  }, [type])
+  }, [type, refreshdata, direct])
 
   const options = {
     filter: false,

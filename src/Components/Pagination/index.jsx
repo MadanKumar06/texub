@@ -84,6 +84,15 @@ const PaginationControlled = ({ PaginateData, DataList, PagePerRow }) => {
     } else {
       localStorage.setItem("productpage", JSON.stringify(1));
     }
+
+    if (
+      window.location.pathname ===
+      `/${customnostore ? customnostore : geo?.country_name}/sellerdashboard/directenquiries`
+    ) {
+      localStorage.setItem("enquirypage", JSON.stringify(value));
+    } else {
+      localStorage.setItem("enquirypage", JSON.stringify(1));
+    }
   };
 
   useEffect(() => {
@@ -123,6 +132,18 @@ const PaginationControlled = ({ PaginateData, DataList, PagePerRow }) => {
         parseInt(wanttobuy) > page?.option?.length
           ? page?.option?.length
           : parseInt(wanttobuy);
+    }
+    if (
+      window.location.pathname ===
+      `/${
+        customnostore ? customnostore : geo?.country_name
+      }/sellerdashboard/directenquiries`
+    ) {
+      let enquirypage = JSON.parse(localStorage.getItem("enquirypage"));
+      storedpage =
+        parseInt(enquirypage) > page?.option?.length
+          ? page?.option?.length
+          : parseInt(enquirypage);
     }
     if (
       window.location.pathname ===
