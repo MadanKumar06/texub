@@ -1,95 +1,92 @@
-.Termsofuse_main{
-    background-color: #FBFBFB;
-    
-   .Termsofuse_Description_section{
-       background-color: #FFFFFF;
-       padding: 3%;
-       margin: 1% 3%;
-    .Termsofuse_heading_section{
-        display: flex;
-        justify-content: center;
-        gap: 40px;
-        .Termsofuse_terms{
-            height: 81px;
-        }
-        .Termsofuse_heading{
-            font-size: 50px;
-            color: #DDB363;
-            letter-spacing: 1.5px;
-            margin-top: 10px;
-            opacity: 1;
-            font-weight: 600;
-        }
-    }
-    .Termsofuse_description{
-        padding: 50px 0 0 0;
-        .Termsofuse_text1,
-        .Termsofuse_text{
-            list-style: none;
-            font-size: 20px;
-            text-align: center;
-            letter-spacing: 0.66px;
-            color: #333333;
-            opacity: 1;
-        }
-        .Termsofuse_text::first-letter {
-            font-size: 200%;
-            color: #333333;
-            font-weight: bold;
-          }
+.Termsofuse_main {
+  background-color: #fbfbfb;
 
-    }
-    .Termsofuse_btn_section{
-        display: flex;
-        justify-content: space-around;
-        background-color: #F2F4F6;
-        min-height: 112px;
-        padding: 30px 0 30px 0;
-        margin: 7% 0 0 0;
-        box-shadow: 0px 3px 6px #00000029;
-        border: 1px solid #D2DFEE;
-        border-radius: 0px 0px 4px 4px;
+  .Termsofuse_Description_section {
+    background-color: #ffffff;
+    padding: 3%;
+    margin: 1% 3%;
+    .Termsofuse_heading_section {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      .Termsofuse_terms {
+        height: 81px;
+      }
+      .Termsofuse_heading {
+        font-size: 50px;
+        color: #ddb363;
+        letter-spacing: 1.5px;
+        margin-top: 10px;
         opacity: 1;
+        font-weight: 600;
+      }
+    }
+    .Termsofuse_description {
+      padding: 50px 0 0 0;
+      .Termsofuse_text1,
+      .Termsofuse_text {
+        list-style: none;
+        font-size: 20px;
+        text-align: center;
+        letter-spacing: 0.66px;
+        color: #333333;
+        opacity: 1;
+      }
+      .Termsofuse_text::first-letter {
+        font-size: 200%;
+        color: #333333;
+        font-weight: bold;
+      }
+    }
+    .Termsofuse_btn_section {
+      display: flex;
+      justify-content: space-around;
+      background-color: #f2f4f6;
+      min-height: 112px;
+      padding: 30px 0 30px 0;
+      margin: 7% 0 0 0;
+      box-shadow: 0px 3px 6px #00000029;
+      border: 1px solid #d2dfee;
+      border-radius: 0px 0px 4px 4px;
+      opacity: 1;
 
-
-        .Termsofuse_btn_download{
-            display: flex;
-            gap: 10px;
-            padding-top: 16px;
-            .download{
-                color: #002D56;
-                opacity: 1;
-                font-size: 18px;
-                font-weight: 600;
-                cursor: pointer;
-            }
+      .Termsofuse_btn_download {
+        display: flex;
+        gap: 10px;
+        padding-top: 16px;
+        .download {
+          color: #002d56;
+          opacity: 1;
+          font-size: 18px;
+          font-weight: 600;
+          cursor: pointer;
         }
-        .Termsofuse_decline{
-           background: linear-gradient(180deg, #FFD788 0%, #CC9B3E 100%);
-            // background: transparent linear-gradient(179deg, #FFD788 0%, #CC9B3E 100%) 0% 0% no-repeat padding-box;
-            border: none;
-            border-radius: 25px;
-            padding: 10px 50px;
-            font-size: 18px;
-            color: #FFFFFF;
-            letter-spacing: 0.45px;
-            box-shadow: 0px 3px 6px #00000029;
-            opacity: 1;
-            cursor: pointer;
-        }
-        .Termsofuse_accept{
-            background: linear-gradient(180deg, #20639B 0%, #002D56 100%);
-            border: none;
-            border-radius: 25px;
-            padding: 10px 50px;
-            font-size: 18px;
-            color: #FFFFFF;
-            letter-spacing: 0.45px;
-            box-shadow: 0px 3px 6px #00000029;
-            opacity: 1;
-            cursor: pointer;
-        }
-    
+      }
+      .Termsofuse_decline {
+        background: linear-gradient(180deg, #ffd788 0%, #cc9b3e 100%);
+        // background: transparent linear-gradient(179deg, #FFD788 0%, #CC9B3E 100%) 0% 0% no-repeat padding-box;
+        border: none;
+        border-radius: 25px;
+        padding: 10px 50px;
+        font-size: 18px;
+        color: #ffffff;
+        letter-spacing: 0.45px;
+        box-shadow: 0px 3px 6px #00000029;
+        opacity: 1;
+        cursor: pointer;
+      }
+      .Termsofuse_accept {
+        background: linear-gradient(180deg, #20639b 0%, #002d56 100%);
+        border: none;
+        border-radius: 25px;
+        padding: 10px 50px;
+        font-size: 18px;
+        color: #ffffff;
+        letter-spacing: 0.45px;
+        box-shadow: 0px 3px 6px #00000029;
+        opacity: 1;
+        cursor: pointer;
+      }
     }
   }
 }
@@ -104,54 +101,126 @@
 //     }
 // }
 
-@media only screen and (max-width:768px){
-    .Termsofuse_main .Termsofuse_Description_section 
-    .Termsofuse_btn_section .Termsofuse_decline{
-        padding: 10px 70px;
-    }
+@media only screen and (max-width: 768px) {
+  .Termsofuse_main
+    .Termsofuse_Description_section
+    .Termsofuse_btn_section
+    .Termsofuse_decline {
+    padding: 10px 70px;
+  }
 
-    .Termsofuse_main .Termsofuse_Description_section 
-    .Termsofuse_btn_section .Termsofuse_accept{
-        padding: 10px 70px;
-    }
+  .Termsofuse_main
+    .Termsofuse_Description_section
+    .Termsofuse_btn_section
+    .Termsofuse_accept {
+    padding: 10px 70px;
+  }
 }
 
-@media only screen and (max-width:580px) {
-.Termsofuse_main .Termsofuse_Description_section .Termsofuse_btn_section{
+@media only screen and (max-width: 580px) {
+  .Termsofuse_main .Termsofuse_Description_section .Termsofuse_btn_section {
     flex-direction: column;
     justify-content: center;
     padding: 0 20px 10px 20px;
     gap: 20px;
   }
-  .Termsofuse_main .Termsofuse_Description_section .Termsofuse_heading_section{
-      gap: 15px;
+  .Termsofuse_main .Termsofuse_Description_section .Termsofuse_heading_section {
+    gap: 15px;
   }
-  .Termsofuse_main .Termsofuse_Description_section .Termsofuse_description{
+  .Termsofuse_main .Termsofuse_Description_section .Termsofuse_description {
     padding: 16px 0 0 0;
   }
-  .Termsofuse_main .Termsofuse_Description_section .Termsofuse_description .Termsofuse_text{
-      font-size: 15px;
+  .Termsofuse_main
+    .Termsofuse_Description_section
+    .Termsofuse_description
+    .Termsofuse_text {
+    font-size: 15px;
   }
-  .Termsofuse_main .Termsofuse_Description_section .Termsofuse_btn_section .Termsofuse_btn_download {
-      justify-content: center;
+  .Termsofuse_main
+    .Termsofuse_Description_section
+    .Termsofuse_btn_section
+    .Termsofuse_btn_download {
+    justify-content: center;
   }
-  .Termsofuse_main .Termsofuse_Description_section .Termsofuse_heading_section .Termsofuse_terms{
-      height: 80px;
+  .Termsofuse_main
+    .Termsofuse_Description_section
+    .Termsofuse_heading_section
+    .Termsofuse_terms {
+    height: 80px;
   }
-  .Termsofuse_main .Termsofuse_Description_section .Termsofuse_heading_section .Termsofuse_heading{
-      font-size: xx-large;
-      margin-top: 22px;
+  .Termsofuse_main
+    .Termsofuse_Description_section
+    .Termsofuse_heading_section
+    .Termsofuse_heading {
+    font-size: xx-large;
+    margin-top: 22px;
   }
 }
 
-@media only screen and (max-width:320px){
-    .Termsofuse_main .Termsofuse_Description_section .Termsofuse_heading_section .Termsofuse_heading{
-        font-size: x-large;
+@media only screen and (max-width: 320px) {
+  .Termsofuse_main
+    .Termsofuse_Description_section
+    .Termsofuse_heading_section
+    .Termsofuse_heading {
+    font-size: x-large;
+  }
+  .Termsofuse_main
+    .Termsofuse_Description_section
+    .Termsofuse_heading_section
+    .Termsofuse_terms {
+    height: 65px;
+  }
+  .Termsofuse_main
+    .Termsofuse_Description_section
+    .Termsofuse_description
+    .Termsofuse_text {
+    font-size: 16px;
+  }
+}
+
+//For Print Screen
+.Termsofuse_main_on_print {
+  background-color: #fbfbfb;
+
+  .Termsofuse_Description_section {
+    background-color: #ffffff;
+    padding: 3%;
+    margin: 1% 3%;
+    .Termsofuse_heading_section {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      .Termsofuse_terms {
+        height: 81px;
+      }
+      .Termsofuse_heading {
+        font-size: 50px;
+        color: #ddb363;
+        letter-spacing: 1.5px;
+        margin-top: 10px;
+        opacity: 1;
+        font-weight: 600;
+      }
     }
-    .Termsofuse_main .Termsofuse_Description_section .Termsofuse_heading_section .Termsofuse_terms{
-        height: 65px;
+    .Termsofuse_description {
+      padding: 50px 0 0 0;
+      .Termsofuse_text1,
+      .Termsofuse_text {
+        list-style: none;
+        font-size: 20px;
+        text-align: center;
+        letter-spacing: 0.66px;
+        color: #333333;
+        opacity: 1;
+      }
+      .Termsofuse_text::first-letter {
+        font-size: 200%;
+        color: #333333;
+        font-weight: bold;
+      }
     }
-    .Termsofuse_main .Termsofuse_Description_section .Termsofuse_description .Termsofuse_text{
-        font-size: 16px;
+    .Termsofuse_btn_section {
+      display: none;
     }
+  }
 }

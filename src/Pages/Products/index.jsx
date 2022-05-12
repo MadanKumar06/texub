@@ -18,7 +18,7 @@ export const Products = () => {
     hub: 0,
     conditions: 0,
     eta: 0,
-    brand_id: 0
+    brand_id: 0,
   });
   const [productData, setProductData] = useState([]);
   const [dataFromApi, setDataFromApi] = useState([]);
@@ -26,14 +26,14 @@ export const Products = () => {
   const [applyFilter, setApplyFilter] = useState(false);
 
   let customer_id = JSON.parse(localStorage.getItem("userdata"));
-  const [userfilter, setuserfilter] = useState()
+  const [userfilter, setuserfilter] = useState();
 
   useEffect(() => {
-    dispatch({
-      type: "SET_IS_LOADING",
-      value: true,
-    });
     if (getCategories && currency?.currency_id) {
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: true,
+      });
       const fetchProductData = () => {
         setProductData([]);
         let data = {
@@ -82,8 +82,8 @@ export const Products = () => {
             },
           })
           .then((res) => {
-            console.log(res?.data?.[2]?.filterArray)
-            setuserfilter(res?.data?.[2]?.filterArray)
+            console.log(res?.data?.[2]?.filterArray);
+            setuserfilter(res?.data?.[2]?.filterArray);
             sortCall(res?.data?.[1]?.products);
             setDataFromApi(res?.data?.[0]?.layered);
             dispatch({
@@ -102,11 +102,11 @@ export const Products = () => {
     }
   }, [currency, getCategories, homeSearch, applyFilter]);
 
-  console.log(userfilter)
+  console.log(userfilter);
 
   useEffect(() => {
-    localStorage.setItem('filters', JSON.stringify(userfilter))
-  }, [userfilter])
+    localStorage.setItem("filters", JSON.stringify(userfilter));
+  }, [userfilter]);
 
   useEffect(() => {
     const fetchCategoryData = () => {

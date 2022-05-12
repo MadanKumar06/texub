@@ -1,129 +1,19 @@
-.pendinginvoice {
+.pendinginvoice_print {
   background-color: #fbfbfb;
   .pendinginvoice__top {
     .top__header {
-      background-color: #002d56;
-      display: flex;
-      align-items: center;
-      color: white;
-      // min-height: 8em;
-      justify-content: space-around;
-
-      .checkout_info_list {
-        background-color: #002d56;
-        display: flex;
-        align-items: center;
-        height: max-content;
-        padding: 15px 2%;
-        gap: 2em;
-        width: 100%;
-        justify-content: space-between;
-        .checkout_back_toggle {
-          width: 15%;
-          a {
-            color: white;
-          }
-        }
-        .order_id_info {
-          .orderid_section {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            align-items: center;
-          }
-        }
-        .order_total_info {
-          .ordertal_section {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            align-items: center;
-          }
-        }
-        .order_status_info {
-          .orderstatus_section {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            align-items: center;
-          }
-        }
-        .order_apply_btns{
-              width: 25%;
-            flex-direction: row;
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
-            gap: 20px;
-        }
-        .order_apply-btn {
-          width: 100%;
-          .checkout-apply-btn {
-            max-width: 100%;
-            padding: 10px 25px;
-            width: 100%;
-          }
-        }
-        .checkoutlist__download {
-          min-width: 56px;
-          height: 56px;
-          background-color: #ddb363;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          cursor: pointer;
-          border-radius: 50%;
-        }
-
-        .orderinfo_name {
-          letter-spacing: 0px;
-          color: #d6d8d9;
-          font-size: 18px;
-          font-weight: normal;
-          text-align: center;
-        }
-        .orderinfo_value {
-          letter-spacing: 0px;
-          color: #ffffff;
-          font-size: 22px;
-          font-weight: 600;
-          .ordertotal_symbol {
-            font-size: 16px;
-          }
-        }
-      }
-
-      .label {
-        color: #d6d8d9;
-        font-weight: 500px;
-        font-size: 20px;
-        text-align: center;
-        margin: 0;
-      }
-
-      .value {
-        color: #ffffff;
-        font-weight: 500px;
-        font-size: 30px;
-        text-align: center;
-        margin: 0;
-      }
-
-      & > p {
-        background: linear-gradient(#ffd788, #cc9b3e);
-        border-radius: 25px;
-        color: white;
-        font-size: 18px;
-        padding: 0.75em 3em;
-      }
+      display: none;
     }
     .top__orderinfo {
       display: flex;
-      justify-content: space-between;
+      justify-content: space-around;
       padding: 2em 3em 0;
       align-items: center;
-      & > * {
-        width: 50%;
+      .orderingo__logo {
+        width: 200px;
+        img {
+          width: 100%;
+        }
       }
       .orderinfo__data {
         p {
@@ -134,7 +24,7 @@
 
           .label {
             text-align: left;
-            width: 20%;
+            white-space: nowrap;
             font-size: 18px;
             color: #5c6369;
           }
@@ -143,7 +33,7 @@
             width: 20%;
             font-size: 18px;
             font-weight: 600;
-            color: #333C42;
+            color: #333c42;
           }
           hr.MuiDivider-root {
             min-height: 35px !important;
@@ -152,11 +42,11 @@
       }
     }
     .top__address {
-      margin: 2em 3%;
+      margin: 2em 14%;
       display: flex;
       background-color: #f8f0e0;
       align-items: center;
-      justify-content: space-between;
+      justify-content: space-around;
       padding: 1em 3em;
       box-shadow: 0px 3px 6px #00000019;
       border-radius: 4px;
@@ -201,8 +91,7 @@
   }
 
   .pendinginvoice__middle {
-    margin: 0 3%;
-
+    margin: 0px 14%;
     .MuiTable-root {
       .MuiTableHead-root {
         .MuiTableCell-root {
@@ -331,7 +220,7 @@
                 margin-left: 5px;
               }
             }
-            
+
             .vieworders_quantity {
               border-radius: 25px;
               padding: 7px 20px;
@@ -382,8 +271,8 @@
           font-weight: 600;
           padding: 5px 0;
         }
-        .payment_info_return{
-              line-height: 30px;
+        .payment_info_return {
+          line-height: 30px;
         }
         .content {
           padding: 5px 0;
@@ -429,19 +318,19 @@
           }
         }
         p {
-             display: flex;
-            gap: 8%;
-            justify-content: flex-end;
-            margin: 0;
-            // padding-right: 8%;
-            margin-left: 8%;
+          display: flex;
+          gap: 8%;
+          justify-content: flex-end;
+          margin: 0;
+          // padding-right: 8%;
+          margin-left: 8%;
           hr {
             min-height: 35px !important;
             background-color: #d6d8d9;
           }
-          .total{
-                font-weight: 600;
-            }
+          .total {
+            font-weight: 600;
+          }
           .label {
             text-align: right;
             width: 50%;
@@ -476,37 +365,37 @@
             }
           }
         }
-        .total_value_block{
+        .total_value_block {
           padding-top: 10px;
           padding-bottom: 10px;
-            .total_value_section{
-              background-color: rgb(248, 240, 224);
-              width: 65%;
-              display: flex;
-              align-items: center;
-              padding-top: 10px;
-              padding-bottom: 10px;
-              gap: 10%;
-              .value{
-                width: initial;
-              }
+          .total_value_section {
+            background-color: rgb(248, 240, 224);
+            width: 65%;
+            display: flex;
+            align-items: center;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            gap: 10%;
+            .value {
+              width: initial;
             }
+          }
         }
 
-        .total_value_additional{  
-             position: absolute;
-            top: 0;
-            right: 0;
-            left: 0;
-            bottom: 0;
-            background: #f8f0e0;
-            z-index: 0;
-            opacity: 0.9;
+        .total_value_additional {
+          position: absolute;
+          top: 0;
+          right: 0;
+          left: 0;
+          bottom: 0;
+          background: #f8f0e0;
+          z-index: 0;
+          opacity: 0.9;
         }
       }
-      .total_value_section_block{
+      .total_value_section_block {
         padding-right: 8%;
-           margin-left: 8%;
+        margin-left: 8%;
       }
 
       .tableinfo__details {
@@ -524,7 +413,7 @@
   }
 
   .pendinginvoice__bottom {
-    margin: 2em 3% 3em;
+    margin: 2em 14% 3em;
     .bottom__terms {
       background-color: white;
       padding: 1em 1.5em;
@@ -542,33 +431,7 @@
       }
     }
     .bottom__buttons {
-      display: flex;
-      justify-content: space-between;
-
-      // .button__cancel {
-      //   visibility: hidden;
-      // }
-      .button__cancel,
-      .button__checkout {
-        border: 1px solid #002d56;
-        box-shadow: 0px 3px 6px #00000029;
-        border-radius: 25px;
-        width: 25%;
-        text-align: center;
-        color: #002d56;
-        font-weight: 600;
-        text-transform: capitalize;
-        cursor: pointer; 
-        a {
-          color: white;
-          text-decoration: none;
-          width: 100%;
-        }
-      }
-      .button__checkout {
-        background: linear-gradient(#20639b, #002d56);
-        color: white;
-      }
+      display: none;
     }
     .remark_block {
       width: 40%;
@@ -592,222 +455,6 @@
         font-size: 14px;
         font-weight: 400;
         margin-top: 0;
-      }
-    }
-  }
-}
-@media (max-width: 899px) {
-  .pendinginvoice {
-    .pendinginvoice__top {
-      .top__header {
-        .checkout_info_list {
-          flex-wrap: wrap;
-          width: 100%;
-          gap: 1em;
-          .checkout_back_toggle {
-            width: 10%;
-          }
-         
-            .orderinfo_name {
-              font-size: 14px;
-            }
-            .orderinfo_value {
-              font-size: 16px;
-            }
-          
-          .order_total_info{
-            .orderinfo_value{
-                font-size: 16px;
-            }
-          }
-          .order_apply_btns{
-            width: auto;
-          }
-          .order_apply-btn {
-            .checkout-apply-btn {
-              padding: 7px 15px;
-            }
-          }
-        }
-      }
-      .top__orderinfo {
-        padding: 10px 15px;
-        .orderinfo__data {
-          p {
-            justify-content: space-between;
-            .label {
-              width: 100%;
-            }
-            .value {
-              width: 100%;
-            }
-          }
-        }
-      }
-      .top__address {
-        padding: 10px 15px;
-        margin: 1% 2%;
-        .address__bill {
-          h4 {
-            font-size: 18px;
-          }
-        }
-      }
-    }
-    .pendinginvoice__middle {
-      margin: 1% 2%;
-      .middle__tableinfo {
-        padding: 10px 15px;
-     
-        .tableinfo__orderdata {
-          width: 48%;
-          p {
-            justify-content: space-between;
-            padding-right: 0;
-            margin-left: 0;
-            .label {
-              width: 100%;
-            }
-            .value {
-              width: 100% !important;
-            }
-            .total_value_section{
-              width: 100% !important;
-              gap: 10%;
-              .total.label{
-                display: flex;
-                justify-content: center;
-                align-items: center;
-              }
-              // .value{
-              //   margin-left: 10px;
-              //    display: flex;
-              //   justify-content: center;
-              //   align-items: center;
-              // }
-            }
-          }
-          .total_value {
-            .total_value_block {
-              width: 100%;
-            }
-          }
-        }
-      }
-      .middle__table {
-        .MuiTable-root {
-          .MuiTableBody-root {
-            .MuiTableRow-root {
-              .MuiTableCell-root {
-                 display: flex !important;
-                align-items: center;
-                max-width: 100%;
-                justify-content: center;
-                div {
-                  text-align: left;
-                  margin: 0;
-                }
-                .vieworders_price {
-                  justify-content: start;
-                }
-                .table__price {
-                  justify-content: start;
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-    .pendinginvoice__bottom {
-      margin: 1% 2%;
-      .bottom__terms {
-        padding: 10px 15px;
-      }
-      .remark_block {
-        width: 70%;
-      }
-      .bottom__buttons {
-        padding-bottom: 2em;
-      }
-    }
-  }
-}
-
-@media (max-width: 580px) {
-  .pendinginvoice {
-    .pendinginvoice__top {
-      .top__orderinfo {
-        flex-direction: column;
-        .orderingo__logo {
-          width: 100%;
-          padding: 10px 0;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-        .orderinfo__data {
-          width: 100%;
-          padding: 10px 0;
-        }
-      }
-      .top__address{
-        flex-direction: column;
-        .address__bill{
-          width: 100%;
-        }
-        hr{
-          display: none;
-        }
-        .address__pickup{
-          width: 100%;
-        }
-      }
-    }
-    .pendinginvoice__middle {
-      .middle__table {
-        .MuiTable-root {
-          .MuiTableBody-root {
-            .MuiTableRow-root {
-              .MuiTableCell-root {
-                div {
-                  text-align: start;
-                  font-size: 14px;
-                }
-                .productname {
-                  flex-direction: column;
-                }
-                .vieworders_price {
-                  justify-content: start;
-                }
-                .table__price {
-                  justify-content: start;
-                }
-              }
-            }
-          }
-        }
-      }
-      .middle__tableinfo {
-        flex-direction: column;
-        .tableinfo__details {
-          width: 100%;
-          padding: 10px 0;
-        }
-        .tableinfo__orderdata {
-          width: 100%;
-          padding: 10px 0;
-        }
-      }
-    }
-    .pendinginvoice__bottom {
-      .bottom__buttons {
-        flex-direction: column;
-        gap: 1em;
-        button {
-          width: 100% !important;
-          max-width: 100%;
-        }
       }
     }
   }
