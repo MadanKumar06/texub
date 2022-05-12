@@ -83,13 +83,19 @@
     border: 1px solid #ddb363;
   }
 }
+
+///* dropdown selection background change*/
+  .MuiAutocomplete-option.Mui-focused{
+    color: #fff;
+    background-image: linear-gradient(#ffd788, #cc9b3e) !important;
+  }
   .MuiAutocomplete-option[aria-selected="true"].Mui-focused{
     color: #fff;
-    background-color: #cda049 !important;
+    background-image: linear-gradient(#ffd788, #cc9b3e) !important;
   }
   .MuiAutocomplete-option[aria-selected="true"].Mui-focused:hover{
       color: #fff;
-      background-color: #cda049;
+      background-image: linear-gradient(#ffd788, #cc9b3e);
   }
 @media (max-width: 1660px) {
   .button-text {

@@ -159,25 +159,25 @@ const Productsbrands = ({
       {
         breakpoint: 1921,
         settings: {
-          slidesToShow: 9,
-          slidesToScroll: 1,
-          initialSlide: 9,
-        },
-      },
-      {
-        breakpoint: 1660,
-        settings: {
           slidesToShow: 8,
           slidesToScroll: 1,
           initialSlide: 8,
         },
       },
       {
-        breakpoint: 1550,
+        breakpoint: 1660,
         settings: {
           slidesToShow: 7,
           slidesToScroll: 1,
           initialSlide: 7,
+        },
+      },
+      {
+        breakpoint: 1550,
+        settings: {
+          slidesToShow: 6,
+          slidesToScroll: 1,
+          initialSlide: 6,
         },
       },
       {

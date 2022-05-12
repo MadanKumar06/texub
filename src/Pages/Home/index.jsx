@@ -35,6 +35,7 @@ export const Home = () => {
     localStorage.setItem("wishpage", JSON.stringify(1));
     localStorage.setItem("wtbpage", JSON.stringify(1));
     localStorage.setItem("productpage", JSON.stringify(1));
+    localStorage.setItem("enquirypage", JSON.stringify(1));
   }, [customstore, geo]);
 
   useEffect(() => {

@@ -15,6 +15,7 @@ const Whislist = () => {
   const [wishListAgain, setWishListAgain] = useState(false);
   const [wishdata, setwishdata] = useState([]);
   const [folderdata, setfolderdata] = useState([]);
+  const [wishsearch,setwishsearch] = useState("")
   const PaginateDataSplit = (event) => {
     if (wishdata?.length === 0) return setwishdata([]);
     else {
@@ -28,6 +29,19 @@ const Whislist = () => {
     console.log(temp)
     setfilterwishdata(temp)
   }, [wishdata])
+
+  const handlewishsearch = () => {
+    dispatch({
+      type: "SET_GENERAL_TRINGGER",
+    });
+  }
+
+  const buttonsearch = (event) => {
+    event.preventDefault()
+    dispatch({
+      type: "SET_GENERAL_TRINGGER",
+    });
+  }
 
   useEffect(() => {
     async function fetchData() {
@@ -47,6 +61,7 @@ const Whislist = () => {
           data: {
             requestParams: {
               customer_id: user?.id,
+              search_term: wishsearch
             },
           },
         });
@@ -105,12 +120,14 @@ const Whislist = () => {
               placeholder="Search..."
               inputProps={{ "aria-label": "" }}
               className="want_tobuy__input"
+              onChange={(e) => setwishsearch(e.target.value)}
+              onKeyPress={(e) => e.key === 'Enter' &&  handlewishsearch()}
             />
             <IconButton
               type="submit"
               sx={{ p: "10px" }}
               aria-label="search"
-              onClick={(event) => event.preventDefault()}
+              onClick={(event) => buttonsearch(event)}
             >
               <Search />
             </IconButton>
