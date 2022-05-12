@@ -33,6 +33,7 @@ const Index = (classes, props) => {
               <TextField
                 fullWidth
                 id="outlined-error"
+                className="inputfield-box"
                 placeholder="Organization Name"
               />
             </div>
@@ -40,6 +41,7 @@ const Index = (classes, props) => {
               <p>Address Line 1</p>
               <TextField
                 fullWidth
+                className="inputfield-box"
                 id="outlined-error"
                 placeholder="Flat/Building/Block"
               />
@@ -50,6 +52,7 @@ const Index = (classes, props) => {
               <p>Address Line 2</p>
               <TextField
                 fullWidth
+                className="inputfield-box"
                 id="outlined-error"
                 placeholder="Sub-urb/Town"
               />
@@ -58,6 +61,7 @@ const Index = (classes, props) => {
               <p>Pincode</p>
               <TextField
                 fullWidth
+                className="inputfield-box"
                 id="outlined-error"
                 defaultValue="Pincode"
                 type="number"
@@ -83,6 +87,7 @@ const Index = (classes, props) => {
                   <TextField
                     {...params}
                     placeholder="City"
+                    className="inputfield-box"
                     InputLabelProps={{
                       shrink: true,
                       required: true,
@@ -108,6 +113,7 @@ const Index = (classes, props) => {
                   <TextField
                     {...params}
                     placeholder="state"
+                    className="inputfield-box"
                     InputLabelProps={{
                       shrink: true,
                       required: true,
@@ -136,7 +142,7 @@ const Index = (classes, props) => {
                     {...params}
                     fullWidth
                     placeholder="Country"
-                    className="text"
+                    className="inputfield-box text"
                     InputLabelProps={{
                       shrink: true,
                       required: true,
