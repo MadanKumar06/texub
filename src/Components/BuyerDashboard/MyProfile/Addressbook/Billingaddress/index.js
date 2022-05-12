@@ -33,6 +33,7 @@ const Index = (classes, props) => {
               <TextField
                 fullWidth
                 id="outlined-error"
+                className="inputfield-box"
                 placeholder="Organization Name"
               />
             </div>
@@ -41,6 +42,7 @@ const Index = (classes, props) => {
               <TextField
                 fullWidth
                 id="outlined-error"
+                className="inputfield-box"
                 placeholder="Flat/Building/Block"
               />
             </div>
@@ -51,6 +53,7 @@ const Index = (classes, props) => {
               <TextField
                 fullWidth
                 id="outlined-error"
+                className="inputfield-box"
                 placeholder="Sub-urb/Town"
               />
             </div>
@@ -59,6 +62,7 @@ const Index = (classes, props) => {
               <TextField
                 fullWidth
                 id="outlined-error"
+                className="inputfield-box"
                 defaultValue="Pincode"
                 type="number"
                 placeholder="Pin Code"
@@ -83,6 +87,7 @@ const Index = (classes, props) => {
                   <TextField
                     {...params}
                     placeholder="City"
+                    className="inputfield-box"
                     InputLabelProps={{
                       shrink: true,
                       required: true,
@@ -108,6 +113,7 @@ const Index = (classes, props) => {
                   <TextField
                     {...params}
                     placeholder="state"
+                    className="inputfield-box"
                     InputLabelProps={{
                       shrink: true,
                       required: true,
@@ -133,10 +139,10 @@ const Index = (classes, props) => {
                 id="controllable-states-demo"
                 renderInput={(params) => (
                   <TextField
-                    {...params}
+                    {...params} text
                     fullWidth
+                    className="inputfield-box text"
                     placeholder="Country"
-                    className="text"
                     InputLabelProps={{
                       shrink: true,
                       required: true,

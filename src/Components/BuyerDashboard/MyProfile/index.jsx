@@ -12,6 +12,11 @@ import { useStateValue } from "../../../store/state";
 const Index = () => {
   const [isAccountinfo, setisAccountinfo] = useState(true);
   const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
+    const userData = JSON.parse(localStorage.getItem('userdata'))
+   let company_name = userData?.custom_attributes?.filter(
+    (itm) => itm?.attribute_code === "customer_company_name" );
+     let mobile_number = userData?.custom_attributes?.filter(
+    (itm) => itm?.attribute_code === "customer_mobile_number" );
 
   const [type, settype] = useState();
 
@@ -76,8 +81,6 @@ const Index = () => {
     setisAddress(false);
   };
   let permissions = JSON.parse(localStorage.getItem("permissions"));
-  const user123 = JSON.parse(localStorage.getItem('userdata'))
-  console.log(user123);
 
   let cartpermission =
     permissions?.length === 0
@@ -125,15 +128,15 @@ const Index = () => {
             <div className="my_profile_data">
               <div className="my_profile_data_section">
                 <p className="my_profile_data_section_heading">NAME</p>
-                <p className="my_profile_data_section_tag">Ayush Raj</p>
+                <p className="my_profile_data_section_tag">{userData['firstname']} {userData['lastname']}</p>
               </div>
               <div className="my_profile_data_section">
                 <p className="my_profile_data_section_heading">E-Mail</p>
-                <p className="my_profile_data_section_tag">ayush@ymail.com</p>
+                <p className="my_profile_data_section_tag">{userData['email']}</p>
               </div>
               <div className="my_profile_data_section">
                 <p className="my_profile_data_section_heading">MOBILE NUMBER</p>
-                <p className="my_profile_data_section_tag">+91-8684692367</p>
+                <p className="my_profile_data_section_tag">{mobile_number?.[0]?.value}</p>
               </div>
               <div className="my_profile_data_section">
                 <p className="my_profile_data_section_heading">PASSWORD</p>
@@ -159,7 +162,7 @@ const Index = () => {
                     <p className="my_profile_data_section_heading">
                       ORGANIZATION NAME
                     </p>
-                    <p className="my_profile_data_section_tag">Tech World</p>
+                    <p className="my_profile_data_section_tag">{company_name?.[0]?.value}</p>
                   </div>
                   <div className="my_profile_data_section">
                     <p className="my_profile_data_section_heading">

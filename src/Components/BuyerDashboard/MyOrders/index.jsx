@@ -10,6 +10,9 @@ import OrdersInfo from '../../BuyerDashboard/MyOrders/OrdersInfo'
 import axios from "axios";
 import Constant from '../../../Constant'
 import moment from "moment";
+import { IconButton, InputBase, Paper } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
+
 
 function Index() {
   const [tableData, setTableData] = useState([]);
@@ -165,16 +168,35 @@ function Index() {
   return (
 
     <div className="myorders">
-      <div className="my_orders__footer">
-        <div className="my_orders__container">
-          <Link to={`/${customnostore ? customnostore : geo?.country_name}/buyerdashboard/dashboard`}>
-            <ArrowBackIosNew />
-            <span>Back</span>
-          </Link>
-        </div>
-      </div>
+
+     
       {isOrders &&
-        <>
+        <> <div className="myordersection__search">
+              <Paper
+                className="myordersection__searchinput"
+                component="form"
+                sx={{ p: "2px 4px", display: "flex", alignItems: "center" }}
+              >
+                <InputBase
+                  sx={{ ml: 1, flex: 1 }}
+                  placeholder="Search..."
+                  inputProps={{ "aria-label": "search google maps" }}
+                  className="myordersection_input"
+                />
+                <IconButton
+                  type="submit"
+                  sx={{ p: "10px" }}
+                  aria-label="search"
+                  onClick={(event) => event.preventDefault()}
+                >
+                  <SearchIcon />
+                </IconButton>
+              </Paper>
+              {/* <div className="sellerdashboard__notiIcon">
+                <img src={notification} alt="" />
+              </div>
+              <span>Notification</span> */}
+            </div>
           <div className="myorders__buttons">
             {ordertype.map((data, i) => (
               <p
@@ -200,6 +222,14 @@ function Index() {
 
       }
       {isVieworders && <OrdersInfo currentorder={currentorder} orders={orders} />}
+       <div className="my_orders__footer">
+        <div className="my_orders__container">
+          <Link to={`/${customnostore ? customnostore : geo?.country_name}/buyerdashboard/dashboard`}>
+            <ArrowBackIosNew />
+            <span>Back</span>
+          </Link>
+        </div>
+      </div>
     </div>
   );
 }
