@@ -1,23 +1,20 @@
 import React, { useState, useEffect } from "react";
 import "./styles.scss";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import MUITable from "../../Components/Common/MUITable";
 import { ArrowBackIosNew } from "@mui/icons-material";
-import { Button, IconButton, Typography, Box } from "@mui/material";
+import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import Checkout_Texub_logo from "../../Assets/CheckoutPage/checkout_texub_logo.png";
-import image from "../../Assets/buyerdashboard/auctions/hp.png";
-import minicart_new from "../../Assets/Minicart/minicart_new.png";
 import axios from "axios";
 import Constant from "../../Constant";
 import { useStateValue } from "../../store/state";
 import Divider from "@mui/material/Divider";
 import { useParams, useNavigate } from "react-router-dom";
+import "./stylesPrint.scss";
 var moment = require("moment");
 
 function Index() {
-  const [{ geo, customstore, customnostore, currency }, dispatch] =
-    useStateValue();
+  const [{ geo, customnostore, currency }, dispatch] = useStateValue();
   const { qid } = useParams();
   const [pendingInvoiceList, setPendingInvoiceList] = useState([]);
   console.log(qid);

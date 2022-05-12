@@ -189,7 +189,7 @@ function RegisterProduct() {
     } else if (
       // registerNewProductData?.brands?.value === "brand-others" &&
 
-      registerNewProductData?.brands?.value === "10" &&
+      registerNewProductData?.brands?.value === "other_brands" &&
       !registerNewProductData?.other_brands
     ) {
       document.getElementById("other_brands")?.focus();
@@ -200,7 +200,7 @@ function RegisterProduct() {
       errorHandle = true;
     } else if (
       // registerNewProductData?.brands?.value === "brand-others" &&
-      registerNewProductData?.brands?.value === "10" &&
+      registerNewProductData?.brands?.value === "other_brands" &&
       isOnlySpecialCharacters(registerNewProductData?.other_brands)
     ) {
       document.getElementById("other_brands")?.focus();
@@ -211,7 +211,7 @@ function RegisterProduct() {
       errorHandle = true;
     } else if (
       ///registerNewProductData?.brands?.value === "brand-others" &&
-      registerNewProductData?.brands?.value === "10" &&
+      registerNewProductData?.brands?.value === "other_brands" &&
       // isRolesValid(registerNewProductData?.other_brands)
       isOtherBrands(registerNewProductData?.other_brands)
     ) {
@@ -568,7 +568,7 @@ function RegisterProduct() {
               {inputValidation?.brands}
             </InputLabel>
 
-            {registerNewProductData?.brands?.value === "10" && (
+            {registerNewProductData?.brands?.value === "other_brand" && (
               <div className="registerproducts_inputfields">
                 {/* <InputLabel>
                   Other Brands <small className="asterisk">*</small>

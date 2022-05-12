@@ -96,6 +96,8 @@ const Index = () => {
   const userData = JSON.parse(localStorage.getItem('userdata'))
    let company_name = userData?.custom_attributes?.filter(
     (itm) => itm?.attribute_code === "customer_company_name" );
+     let mobile_number = userData?.custom_attributes?.filter(
+    (itm) => itm?.attribute_code === "customer_mobile_number" );
   
 
   return (
@@ -133,7 +135,7 @@ const Index = () => {
               </div>
               <div className='my_profile_data_section'>
                 <p className='my_profile_data_section_heading'>MOBILE NUMBER</p>
-                <p className='my_profile_data_section_tag'>+91-8684692367</p>
+                <p className='my_profile_data_section_tag'>{mobile_number?.[0]?.value}</p>
               </div>
               <div className='my_profile_data_section'>
                 <p className='my_profile_data_section_heading'>PASSWORD</p>

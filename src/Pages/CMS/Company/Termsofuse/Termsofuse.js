@@ -54,16 +54,24 @@ export const Termsofuse = () => {
   }, [adminToken]);
 
   console.log(terms);
-  const handleChange = () => {
-    var printContents = document.getElementById("Termsofuse_main").innerHTML;
-    var originalContents = document.body.innerHTML;
-    document.body.innerHTML = printContents;
-    document.body.className = "Termsofuse_main";
-    window.print();
-    document.body.innerHTML = originalContents;
+  const [temp, settemp] = useState(false);
+  const handleChange = (divName) => {
+    settemp(true);
+    setTimeout(() => {
+      var printContents = document.getElementById(divName).innerHTML;
+      var originalContents = document.body.innerHTML;
+      document.body.innerHTML = printContents;
+      document.body.className = "Termsofuse_main_on_print";
+      window.print();
+      document.body.innerHTML = originalContents;
+    }, 1000);
+    settemp(false);
   };
   return (
-    <div className="Termsofuse_main" id="Termsofuse_main">
+    <div
+      className={!temp ? "Termsofuse_main" : "Termsofuse_main_on_print"}
+      id="Termsofuse_main"
+    >
       <div className="Termsofuse_Description_section">
         <div className="Termsofuse_heading_section">
           <img src={Terms} alt="" className="Termsofuse_terms" />
@@ -94,7 +102,7 @@ export const Termsofuse = () => {
         <div className="Termsofuse_btn_section">
           <div
             className="Termsofuse_btn_download"
-            onClick={() => handleChange()}
+            onClick={() => handleChange("Termsofuse_main")}
           >
             <FileDownloadOutlinedIcon className="Termsofuse_download" />
             <spam className="download">Download PDF</spam>

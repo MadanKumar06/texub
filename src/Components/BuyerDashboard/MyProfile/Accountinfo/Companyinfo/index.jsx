@@ -133,6 +133,7 @@ const Index = ({ classes }) => {
               <TextField
                 id="organization_name"
                 name="organization_name"
+                 className="inputfield-box"
                 placeholder="Organization Name"
                 // value={CompanyInfoData?.organization_name}
               />
@@ -160,6 +161,7 @@ const Index = ({ classes }) => {
                     {...params}
                     id="organization_type"
                     name="organization_type"
+                     className="inputfield-box"
                     placeholder="Organization Type"
                     // value={CompanyInfoData?.organization_type}
                     InputLabelProps={{
@@ -180,6 +182,7 @@ const Index = ({ classes }) => {
               <TextField
                 id="gst_number"
                 name="gst_number"
+                 className="inputfield-box"
                 placeholder="GST Number"
                 // value={CompanyInfoData?.gst_number}
               />
@@ -207,6 +210,7 @@ const Index = ({ classes }) => {
                     {...params}
                     id="speciality"
                     name="speciality"
+                     className="inputfield-box"
                     placeholder="Speciality"
                     // value={CompanyInfoData?.speciality}
                     InputLabelProps={{
@@ -226,6 +230,7 @@ const Index = ({ classes }) => {
               <p>Number Of Branches & Department</p>
               <TextField
                 id="no_of_branches"
+                 className="inputfield-box"
                 name="no_of_branches"
                 placeholder="Number Of Branches & Departments"
                 // value={CompanyInfoData?.no_of_branches}
@@ -239,6 +244,7 @@ const Index = ({ classes }) => {
               <TextField
                 id="average_revenue"
                 name="average_revenue"
+                 className="inputfield-box"
                 placeholder="Average Revenue"
                 // value={CompanyInfoData?.average_revenue}
               />

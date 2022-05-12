@@ -109,7 +109,7 @@ const Index = () => {
             <span className="msg">Order Successful!!</span>
           </div>
           <div className="logged_user common-block">
-            <span className="msg">Dear Customer</span>
+            <span className="msg">Dear {JSON.parse(localStorage.getItem('firstname'))} {JSON.parse(localStorage.getItem('lastname'))}</span>
           </div>
           <div className="custom_msg common-block">
             <span className="msg">

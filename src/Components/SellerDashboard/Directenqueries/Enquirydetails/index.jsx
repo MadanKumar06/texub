@@ -11,6 +11,7 @@ import moment from 'moment'
 import { useStateValue } from "../../../../store/state";
 
 const Index = ({ closePOPup, popid, direct, setrefreshdata, refreshdata }) => {
+  debugger
   const [open, setOpen] = useState(true);
   const [currentdata, setcurrentdata] = useState();
   const [{ geo, customnostore }, dispatch] = useStateValue();

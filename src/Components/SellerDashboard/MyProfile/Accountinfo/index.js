@@ -30,10 +30,28 @@ const Index = (classes) => {
     new_password: "",
     new_confrim_password: "",
   });
+  useEffect(() => {
+    const userData = JSON.parse(localStorage.getItem('userdata'))
+    let company_name = userData?.custom_attributes?.filter(
+      (itm) => itm?.attribute_code === "customer_company_name");
+    let mobile_number = userData?.custom_attributes?.filter(
+      (itm) => itm?.attribute_code === "customer_mobile_number");
+    setAccountInfoData({
+      first_name: userData.firstname,
+      last_name: userData.lastname,
+      mobile_number: mobile_number[0]?.value,
+      email_address: userData.email,
+      new_password: "",
+      new_confrim_password: "",
+    })
 
-  const userData = JSON.parse(localStorage.getItem('userdata'))
-  let company_name = userData?.custom_attributes?.filter(
-    (itm) => itm?.attribute_code === "customer_company_name");
+
+  }, []);
+  // const userData = JSON.parse(localStorage.getItem('userdata'))
+  // let company_name = userData?.custom_attributes?.filter(
+  //   (itm) => itm?.attribute_code === "customer_company_name");
+  // let mobile_number = userData?.custom_attributes?.filter(
+  //   (itm) => itm?.attribute_code === "customer_mobile_number");
 
 
   const handleChangeInput = (event) => {
@@ -219,8 +237,9 @@ const Index = (classes) => {
               <TextField
                 id="first_name"
                 name="first_name"
+                className="inputfield-box"
                 placeholder="First Name"
-                value={userData['firstname']}
+                value={AccountInfoData?.first_name}
                 InputLabelProps={{
                   shrink: false,
                 }}
@@ -235,8 +254,9 @@ const Index = (classes) => {
               <TextField
                 id="last_name"
                 name="last_name"
+                className="inputfield-box"
                 placeholder="Last Name"
-                value={userData['lastname']}
+                value={AccountInfoData?.last_name}
                 InputLabelProps={{
                   shrink: false,
                 }}
@@ -288,8 +308,9 @@ const Index = (classes) => {
               <TextField
                 id="email_address"
                 name="email_address"
+                className="inputfield-box"
                 placeholder="E-Mail"
-                value={userData['email']}
+                value={AccountInfoData?.email_address}
                 InputLabelProps={{
                   shrink: false,
                 }}
@@ -306,6 +327,7 @@ const Index = (classes) => {
               <TextField
                 id="new_password"
                 name="new_password"
+                className="inputfield-box"
                 value={AccountInfoData?.new_password}
                 type="password"
                 placeholder="New Password"
@@ -323,6 +345,7 @@ const Index = (classes) => {
               <TextField
                 id="new_confrim_password"
                 name="new_confrim_password"
+                className="inputfield-box"
                 placeholder="New Confirm Password"
                 value={AccountInfoData?.new_confrim_password}
                 type="password"

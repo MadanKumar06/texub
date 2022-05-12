@@ -244,7 +244,10 @@ function ValidationForKycForm({
           id="agreementChecked"
           color="color_third"
           checked={agreementChecked}
-          onChange={(event) => setAgreementChecked(event.target.checked)}
+          onChange={(event) => {
+            setAgreementChecked(event.target.checked);
+            setValid((prev) => ({ ...prev, agreementChecked: "" }));
+          }}
         />
         <p className={agreemnetDowload}>
           By Clicking Here, I state that I have read and understood the{" "}

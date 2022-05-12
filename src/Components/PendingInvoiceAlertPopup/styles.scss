@@ -11,7 +11,7 @@
         width: 100%;
         flex-direction: column;
         position: relative;
-        height: 45vh;
+        height: 50vh;
         max-width: 800px;
         padding: 25px 30px;
         box-shadow: 0px 3px 6px rgb(0 0 0 / 16%) !important;
@@ -44,6 +44,9 @@
                letter-spacing: 0.54px;
                margin: 0;
                text-align: center;
+               p{
+                  margin: 5px 0;
+               }
             }
         }
         .button_section{
@@ -95,7 +98,7 @@
 
     .allert_modal {
         .allert_main{
-            height: 50vh;
+            height: 58vh;
             overflow: auto;
 
         }

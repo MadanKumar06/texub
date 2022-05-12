@@ -6,6 +6,8 @@ import TextareaAutosize from "@mui/base/TextareaAutosize";
 import { TextField, InputLabel } from "@mui/material";
 
 const Index = () => {
+  let userDetails = JSON.parse(localStorage.getItem("userdata"));
+
   return (
     <div className="paymentfail_dashboard">
       <div className="dashboard__top">
@@ -17,7 +19,7 @@ const Index = () => {
             <span className="msg">Payment Failed!</span>
           </div>
           <div className="logged_user common-block">
-            <span className="msg">Dear Customer</span>
+            <span className="msg">Dear {userDetails?.firstname} {userDetails?.lastname}</span>
           </div>
           <div className="custom_msg common-block">
             <span className="msg">
