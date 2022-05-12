@@ -98,7 +98,7 @@ const CurrencyPopup = ({ classes }) => {
             type: "GEO__CUSTOM__NOTSTORE",
             data: res.data?.[0]?.store?.code,
           });
-          if(str.split('/')[2] === 'pendinginvoice' || str.split('/')[2] === 'buyerdashboard' || str.split('/')[2] === 'sellerdashboard' || str.split('/')[2] === "checkout" || str.split('/')[2] === 'register' || str.split('/')[2] === 'resetpassword' || str.split('/')[2] === 'blogsdetails' || str.split('/')[2] === 'sellerprofile' || str.split('/')[2] === 'thankyou' && storedata?.code.toLowerCase() === str.split('/')[1].toLowerCase()) {
+          if(str.split('/')[2] === 'pendinginvoice' || str.split('/')[2] === 'buyerdashboard' || str.split('/')[2] === 'sellerdashboard' || str.split('/')[2] === "checkout" || str.split('/')[2] === "ordersuccess" || str.split('/')[2] === 'register' || str.split('/')[2] === 'resetpassword' || str.split('/')[2] === 'blogsdetails' || str.split('/')[2] === 'sellerprofile' || str.split('/')[2] === 'thankyou' && storedata?.code.toLowerCase() === str.split('/')[1].toLowerCase()) {
             console.log(window.location.href)
           } else if(storedata?.code === str.split('/')[1]) {
             if(res.data?.[0]?.store?.code === str.split('/').pop().split('/')[0]) {

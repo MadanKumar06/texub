@@ -465,7 +465,7 @@ const App = () => {
               exact
             />
             <Route
-              path="/:country/ordersuccess"
+              path="/:country/ordersuccess/:id"
               // path={`/${customnostore ? customnostore : geo?.country_name}/checkout`}
               element={
                 <>

@@ -21,6 +21,8 @@ const Index = ({ closePOPup, popid, direct, setrefreshdata, refreshdata }) => {
     setcurrentdata(temp);
   }, [direct]);
 
+  console.log(direct)
+
   const updatestatus = async (value) => {
     let storedata = JSON.parse(localStorage.getItem("storedata"));
     try {

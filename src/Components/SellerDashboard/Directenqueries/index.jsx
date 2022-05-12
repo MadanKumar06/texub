@@ -245,7 +245,7 @@ const Index = () => {
         ""
       }
       {isUopup && (
-        <Enquirydetails closePOPup={setisUopup} popid={popid} direct={filtereddirect} setrefreshdata={setrefreshdata} refreshdata={refreshdata} />
+        <Enquirydetails closePOPup={setisUopup} popid={popid} direct={directList} setrefreshdata={setrefreshdata} refreshdata={refreshdata} />
       )}
       <div className="directenquiries__footer">
         <div className="directenquiries__container">
