@@ -13,7 +13,6 @@ import Constant from "../../Constant";
 import { useStateValue } from "../../store/state";
 import Divider from "@mui/material/Divider";
 import { useParams, useNavigate } from "react-router-dom";
-import DownLoadInvoice from "../Checkout/DownLoadInvoice";
 var moment = require("moment");
 
 function Index() {
@@ -246,9 +245,16 @@ function Index() {
       setpendinginvoicestatus(false);
     }
   }, [pendingInvoiceList]);
-  console.log(pendinginvoicestatus);
+  const handleChange = () => {
+    var printContents = document.getElementById("pendinginvoice").innerHTML;
+    var originalContents = document.body.innerHTML;
+    document.body.innerHTML = printContents;
+    document.body.className = "pendinginvoice";
+    window.print();
+    document.body.innerHTML = originalContents;
+  };
   return (
-    <div className="pendinginvoice">
+    <div className="pendinginvoice" id="pendinginvoice">
       <div className="pendinginvoice__top">
         <div className="top__header">
           <div className="checkout_info_list">
@@ -302,8 +308,11 @@ function Index() {
                   </Button>
                 </Link>
               </div>
-              <DownLoadInvoice />
-              {/* <div className="checkoutlist__download">
+
+              <div
+                className="checkoutlist__download"
+                onClick={() => handleChange()}
+              >
                 <svg
                   id="Icon"
                   xmlns="http://www.w3.org/2000/svg"
@@ -356,7 +365,7 @@ function Index() {
                     />{" "}
                   </g>
                 </svg>
-              </div> */}
+              </div>
             </div>
           </div>
           {/* <ArrowBackIosIcon />
