@@ -24,11 +24,9 @@ function Index({ registerproduct, gridData }) {
       label: " ",
       options: {
         customBodyRender: (value) => {
-          return (
-            <div className="brand_image">
-              <img src={value} alt="" />
-            </div>
-          );
+         return <div className="brand_image">
+            <img src={value} alt="" />;
+          </div>
         },
       },
     },

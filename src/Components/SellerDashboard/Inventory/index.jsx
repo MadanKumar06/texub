@@ -73,6 +73,23 @@ function Index({ registerproduct }) {
       return moment(d1).isAfter(d2);
     }
   };
+  const deleteHandler = (assigned_product_id) => {
+    swal
+      .fire({
+        title: "Are you sure?",
+        text: "Want to Delete!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085D6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Delete",
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          deleterow(assigned_product_id)
+        }
+      });
+  };
   const columns = [
     {
       name: "brand_image_url",
@@ -209,7 +226,8 @@ function Index({ registerproduct }) {
               </div>
               <div
                 className="inventory__action add_offers"
-                onClick={() => deleterow(assigned_product_id)}
+                onClick={() => deleteHandler(assigned_product_id)}
+                // onClick={() => deleterow(assigned_product_id)}
               >
                 Delete
               </div>
