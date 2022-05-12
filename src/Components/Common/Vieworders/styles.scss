@@ -21,11 +21,16 @@
   .status_change_container {
     margin-top: 3em;
     .radio-btn-color {
-      color: #002d56;
+      color: #878787;
+      
       .MuiSvgIcon-root {
-        width: 0.8em;
-        height: 0.8em;
+        width: 30px;
+        height: 30px;
       }
+    
+    }
+    .MuiRadio-root.Mui-checked{
+      color: #002d56;
     }
     .select_text {
       font-size: 20px;
@@ -37,7 +42,7 @@
       padding: 0.5em 2em;
       border-radius: 30px;
       font-weight: 600;
-      font-size: 14px;
+      font-size: 16px;
       letter-spacing: 1px;
     }
     .confirm {
@@ -148,11 +153,22 @@
     display: flex;
     gap: 20px;
     align-items: center;
+    .header_section{
+      gap: 10px;
+      display: flex;
+      flex-direction: column;
+    }
     .id_heading {
       color: #858a8e;
       font-size: 30px;
       letter-spacing: 0.9px;
       margin: 0;
+    }
+    .purchase_date{
+      font-size: 16px !important;
+      .id{
+        font-size: 16px !important;
+      }
     }
     .id {
       color: #ddb363;
@@ -172,7 +188,7 @@
     }
   }
   .vieworders__table {
-    margin-top: 3em;
+    margin-top: 1em;
     box-shadow: unset;
     .MuiTypography-root {
       font-size: 20px;
@@ -240,12 +256,12 @@
           font-weight: 600;
         }
       }
-      .vieworers_sky {
-        width: max-content;
-      }
+      // .vieworers_sky {
+      //   width: max-content;
+      // }
       .vieworders_total {
         gap: 5px;
-        width: max-content;
+        // width: max-content;
 
         .inr {
           font-size: 20px;

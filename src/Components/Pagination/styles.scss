@@ -59,6 +59,13 @@
       }
     }
   }
+  /* jump to page selection color change */
+::selection {
+  background: #fff; /* WebKit/Blink Browsers */
+}
+::-moz-selection {
+  background: #fff; /* Gecko Browsers */
+}
 }
 
 @media (max-width: 1660px) {
@@ -70,11 +77,4 @@
   .pagination_top_container {
     padding: 0.5em 10px;
   }
-}
-/* jump to page selection color change */
-::selection {
-  background: #fff; /* WebKit/Blink Browsers */
-}
-::-moz-selection {
-  background: #fff; /* Gecko Browsers */
 }

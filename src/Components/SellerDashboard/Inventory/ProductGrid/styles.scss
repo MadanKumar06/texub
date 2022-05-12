@@ -53,7 +53,14 @@
     }
   }
 }
-
+.inventory .productGrid_inventory .productGrid__table .MuiTableBody-root .brand_image{
+  width: 50px;
+  height: 50px;
+  // margin: auto;
+}
+.inventory .productGrid_inventory .productGrid__table .MuiTableBody-root .brand_image img{
+  width: 100%;
+}
 @media (max-width: 1660px) {
   .productGrid_inventory
     .productGrid__table
