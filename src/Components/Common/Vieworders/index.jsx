@@ -7,6 +7,8 @@ import Constant from "../../../Constant";
 import { useStateValue } from "../../../store/state";
 import { getAdminToken } from "../../../utilities";
 import swal from "sweetalert2";
+import moment from 'moment'
+
 import {
   Radio,
   RadioGroup,
@@ -257,7 +259,8 @@ const Index = ({viewDetail, setvieworder }) => {
           <p className="id_heading purchase_date">
             Purchase Order Date #{" "}
             <span className="id">
-              {viewDetail?.[0]?.date.split(" ")[0]}
+              {moment(viewDetail?.[0].date).format("DD/MM/YYYY")}
+              {/* {viewDetail?.[0]?.date.split(" ")[0]} */}
             </span>{" "}
             <br />
           </p>

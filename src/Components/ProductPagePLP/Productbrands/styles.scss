@@ -22,6 +22,9 @@
         width: max-content;
         margin: 0 1em;
       }
+       .slick-slide:first-child{
+         margin-left: 0;
+       }
     }
   }
   .arrow {
@@ -86,7 +89,7 @@
       box-shadow: 0px 3px 6px #00000029;
       padding: 10px;
       text-align: center;
-      width: max-content !important;
+      // width: max-content !important;
       min-width: 140px;
       position: relative;
       .list {
@@ -197,8 +200,17 @@
     }
   }
 }
+@media only screen and (max-width: 900px) {
+
+.Productsbrands .slide_Test .Slider_brands:hover .list{
+    width: auto;
+}
+}
 @media only screen and (max-width: 580px) {
   .Productsbrands .slick-list {
     padding: 0;
+  }
+  .Productsbrands .slick-slider .slick-track .slick-slide:first-child{
+    margin-left: 1em;
   }
 }
