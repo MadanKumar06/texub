@@ -78,7 +78,7 @@ const Checkout = () => {
     email_address: "",
     mobile_number: "",
   });
-  const [payment, setpayment] = useState({method: "cashondelivery"});
+  const [payment, setpayment] = useState({ method: "cashondelivery" });
   const [countryList, setCountryList] = useState([]);
   const [formerror, setformerror] = useState({
     bussiness_name: true,
@@ -109,7 +109,7 @@ const Checkout = () => {
     setformerror({ ...formerror, [e.target.name]: true });
   };
 
-  console.log(payment)
+  console.log(payment);
   const [adminToken, setAdminToken] = useState("");
   useEffect(() => {
     getAdminToken((res) => {
@@ -140,8 +140,8 @@ const Checkout = () => {
   });
 
   const addressadd = (e) => {
-    debugger
-    setaddressdata((prev) => ({ ...prev, [e.target.name]: e.target.value,  }));
+    debugger;
+    setaddressdata((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   useEffect(() => {
@@ -159,7 +159,6 @@ const Checkout = () => {
     };
     fetchCountryData();
   }, []);
-  
 
   const [localgt, setlocalgt] = useState(false);
   const saveaddress = async () => {
@@ -209,7 +208,7 @@ const Checkout = () => {
         });
       }
       setlocalgt(!localgt);
-      seteditradio(false)
+      seteditradio(false);
       handleClose();
     } catch (e) {
       dispatch({
@@ -261,7 +260,7 @@ const Checkout = () => {
     }
   }, [quotedata]);
 
-  const [editradio, seteditradio] = useState(false)
+  const [editradio, seteditradio] = useState(false);
   const editaddress = (id) => {
     let temp = quotedata[0]?.address_list?.filter(
       (al) => al?.address_id === id
@@ -275,14 +274,14 @@ const Checkout = () => {
       pincode: temp?.[0]?.postcode,
       country: temp?.[0]?.country_id,
       id: temp?.[0]?.address_id,
-      billtype: "texub_shipping"
+      billtype: "texub_shipping",
     }));
-    debugger
-    seteditradio(true)
+    debugger;
+    seteditradio(true);
     handleOpen("edit_new_address");
   };
 
-  console.log(addressdata)
+  console.log(addressdata);
 
   const selectaddress = (itm) => {
     if (quotedata[0]?.invoice?.pending_invoice_status !== "1") return;
@@ -868,7 +867,11 @@ const Checkout = () => {
                             onClick={() => selectaddress(itm)}
                           >
                             <div className="billing_title">
-                              {itm?.shipping_billing == 1 ? <p>Default Shipping Address</p> : <p></p>}
+                              {itm?.shipping_billing == 1 ? (
+                                <p>Default Shipping Address</p>
+                              ) : (
+                                <p></p>
+                              )}
                               {quotedata[0]?.invoice?.pending_invoice_status ===
                                 "1" && (
                                 <div
@@ -1065,9 +1068,7 @@ const Checkout = () => {
                 <p className="payment_title">Select Payment Method</p>
                 <RadioGroup
                   aria-labelledby="demo-radio-buttons-group-label"
-                  defaultValue={
-                    quotedata[0]?.payment_methods[0]?.value
-                  }
+                  defaultValue={quotedata[0]?.payment_methods[0]?.value}
                   name="radio-buttons-group"
                 >
                   <div className="payment_info">
@@ -1078,13 +1079,7 @@ const Checkout = () => {
                             <FormControlLabel
                               value={item.value}
                               control={
-                                <Radio
-                                  onClick={() =>
-                                    setpayment(
-                                      item.value
-                                    )
-                                  }
-                                />
+                                <Radio onClick={() => setpayment(item.value)} />
                               }
                               label={""}
                             />
@@ -1383,7 +1378,7 @@ const Checkout = () => {
                         label="Country"
                         name="country"
                         className="inputfield-box"
-                        onChange={(e) => addressadd(e)}
+                        onChange={addressadd}
                         value={addressdata?.country}
                         displayEmpty
                         renderValue={(value) =>
