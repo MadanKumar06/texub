@@ -57,6 +57,9 @@
       }
     }
     .MuiTableBody-root {
+      .MuiTableRow-root:last-child .MuiTableCell-root{
+        border-bottom: 0;
+      }
       .MuiTableCell-root {
         font-size: 16px;
         text-align: center;

@@ -31,6 +31,11 @@ const Index = (classes) => {
     new_confrim_password: "",
   });
 
+  const userData = JSON.parse(localStorage.getItem('userdata'))
+  let company_name = userData?.custom_attributes?.filter(
+    (itm) => itm?.attribute_code === "customer_company_name");
+
+
   const handleChangeInput = (event) => {
     setAccountInfoData((prevState) => ({
       ...prevState,
@@ -215,7 +220,7 @@ const Index = (classes) => {
                 id="first_name"
                 name="first_name"
                 placeholder="First Name"
-                value={AccountInfoData?.first_name}
+                value={userData['firstname']}
                 InputLabelProps={{
                   shrink: false,
                 }}
@@ -231,7 +236,7 @@ const Index = (classes) => {
                 id="last_name"
                 name="last_name"
                 placeholder="Last Name"
-                value={AccountInfoData?.last_name}
+                value={userData['lastname']}
                 InputLabelProps={{
                   shrink: false,
                 }}
@@ -284,7 +289,7 @@ const Index = (classes) => {
                 id="email_address"
                 name="email_address"
                 placeholder="E-Mail"
-                value={AccountInfoData?.email_address}
+                value={userData['email']}
                 InputLabelProps={{
                   shrink: false,
                 }}
