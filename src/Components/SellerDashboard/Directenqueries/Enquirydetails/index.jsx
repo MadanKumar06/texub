@@ -8,10 +8,12 @@ import eye_icon from "../../../../Assets/sellerdashboard/enquiry/eye_icon.png";
 import axios from "axios";
 import swal from "sweetalert2";
 import moment from 'moment'
+import { useStateValue } from "../../../../store/state";
 
 const Index = ({ closePOPup, popid, direct, setrefreshdata, refreshdata }) => {
   const [open, setOpen] = useState(true);
   const [currentdata, setcurrentdata] = useState();
+  const [{ geo, customnostore }, dispatch] = useStateValue();
 
   useEffect(() => {
     let temp = direct.find((d) => d?.wtb_id === popid);
@@ -29,6 +31,10 @@ const Index = ({ closePOPup, popid, direct, setrefreshdata, refreshdata }) => {
         },
       });
       let status = statusid.data?.find((sid) => sid?.label === value);
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: true,
+      });
       const update = await axios({
         method: "post",
         url: `${Constant.baseUrl()}/wtbStatusBySeller`,
@@ -51,6 +57,10 @@ const Index = ({ closePOPup, popid, direct, setrefreshdata, refreshdata }) => {
           timer: 3000,
         });
         setrefreshdata(!refreshdata);
+        dispatch({
+          type: "SET_IS_LOADING",
+           value: false,
+      });
       } else {
         swal.fire({
           text: `Unable to Submit`,
@@ -62,6 +72,10 @@ const Index = ({ closePOPup, popid, direct, setrefreshdata, refreshdata }) => {
       closePOPup(false);
     } catch (e) {
       console.log(e);
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
     }
   };
   useEffect(() => {
@@ -71,7 +85,6 @@ const Index = ({ closePOPup, popid, direct, setrefreshdata, refreshdata }) => {
       }
     });
   }, []);
-  console.log(currentdata)
   return (
     <Modal
       aria-labelledby="transition-modal-title"
