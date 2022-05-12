@@ -93,6 +93,9 @@ const Index = () => {
     setisUser(false)
     setisAddress(false)
   }
+  const userData = JSON.parse(localStorage.getItem('userdata'))
+   let company_name = userData?.custom_attributes?.filter(
+    (itm) => itm?.attribute_code === "customer_company_name" );
   
 
   return (
@@ -122,11 +125,11 @@ const Index = () => {
             <div className='my_profile_data'>
               <div className='my_profile_data_section'>
                 <p className='my_profile_data_section_heading'>NAME</p>
-                <p className='my_profile_data_section_tag'>Ayush Raj</p>
+                <p className='my_profile_data_section_tag'>{userData['firstname']} {userData['lastname']}</p>
               </div>
               <div className='my_profile_data_section'>
                 <p className='my_profile_data_section_heading'>E-Mail</p>
-                <p className='my_profile_data_section_tag'>ayush@ymail.com</p>
+                <p className='my_profile_data_section_tag'>{userData['email']}</p>
               </div>
               <div className='my_profile_data_section'>
                 <p className='my_profile_data_section_heading'>MOBILE NUMBER</p>
@@ -149,7 +152,7 @@ const Index = () => {
                 <div className='my_profile_data'>
                   <div className='my_profile_data_section'>
                     <p className='my_profile_data_section_heading'>ORGANIZATION NAME</p>
-                    <p className='my_profile_data_section_tag'>Tech World</p>
+                    <p className='my_profile_data_section_tag'> {company_name?.[0]?.value}</p>
                   </div>
                   <div className='my_profile_data_section'>
                     <p className='my_profile_data_section_heading'>ORGANIZATION TYPE</p>
