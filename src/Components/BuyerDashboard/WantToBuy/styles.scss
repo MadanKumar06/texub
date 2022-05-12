@@ -111,7 +111,7 @@
           width: 10%;
 
           & > * {
-            font-size: 16px;
+            font-size: 18px;
             letter-spacing: 0.48px;
             font-weight: 600;
             color: #333c42;
@@ -242,13 +242,16 @@
       }
 
       .MuiTableCell-root {
-        font-size: 18px;
+        font-size: 16px;
+        .want_tobuy__orderid{
+          font-size: 18px;
+        }
       }
     }
   }
   .want_tobuy .want_tobuy__table .MuiTableBody-root .want_tobuy__ordertotal {
     .currency {
-      font-size: 18px;
+      font-size: 16px;
     }
   }
   .want_tobuy .want_tobuy__buttons p {
@@ -263,7 +266,7 @@
     font-size: 18px;
   }
   .want_tobuy .want_tobuy__table .MuiTableBody-root .MuiTableRow-root .MuiTableCell-root > *{
-    font-size: 18px;
+    font-size: 16px;
   }
 }
 @media (max-width: 1440px) {
@@ -271,6 +274,9 @@
   .want_tobuy .want_tobuy__table {
     .MuiTableHead-root .MuiTableCell-root {
       font-size: 14px !important;
+       .want_tobuy__orderid{
+          font-size: 14px;
+        }
     }
 
     .MuiTableBody-root {
@@ -282,6 +288,12 @@
         font-size: 14px;
       }
     }
+    .MuiTableCell-root {
+        font-size: 14px;
+        .want_tobuy__orderid{
+          font-size: 14px !important;
+        }
+      }
   }
   .want_tobuy .want_tobuy__table .MuiTableBody-root .want_tobuy__ordertotal {
     .currency {

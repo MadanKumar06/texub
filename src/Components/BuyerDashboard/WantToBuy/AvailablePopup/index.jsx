@@ -58,12 +58,12 @@ export default function BasicModal({ PopupAvailable }) {
               <div className="order_msg common-block">
                 <span className="msg">Available</span>
               </div>
-              <div className="logged_user common-block">
+              {/* <div className="logged_user common-block">
                 <span className="msg">Dear {userDetails?.firstname} {userDetails?.lastname}</span>
-              </div>
+              </div> */}
               <div className="custom_msg common-block">
                 <span className="msg">
-                  This product is already available in our product listing page.
+                  This product is already available in our product listing page.<br/>
                   Please go to the page for more info
                 </span>
               </div>
