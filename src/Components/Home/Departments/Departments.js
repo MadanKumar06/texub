@@ -101,21 +101,23 @@ export const Departments = ({ data }) => {
                   value={search}
                 />
                 <CancelIcon className="cancel" onClick={() => setBar(false)} />
-                <ul className="searchhistory">
-                  {savedsearch?.length
-                    ? savedsearch?.map((item, i) => (
-                        <li
-                          key={i}
-                          onClick={(event) => {
-                            handleSearchClick(event, item);
-                          }}
-                        >
-                          <Search />
-                          {item}
-                        </li>
-                      ))
-                    : ""}
-                </ul>
+                {savedsearch?.length ? (
+                  <ul className="searchhistory">
+                    {savedsearch?.map((item, i) => (
+                      <li
+                        key={i}
+                        onClick={(event) => {
+                          handleSearchClick(event, item);
+                        }}
+                      >
+                        <Search />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  ""
+                )}
               </Paper>
             ) : (
               <Paper

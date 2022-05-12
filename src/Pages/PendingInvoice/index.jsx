@@ -13,6 +13,7 @@ import Constant from "../../Constant";
 import { useStateValue } from "../../store/state";
 import Divider from "@mui/material/Divider";
 import { useParams, useNavigate } from "react-router-dom";
+import DownLoadInvoice from "../Checkout/DownLoadInvoice";
 var moment = require("moment");
 
 function Index() {
@@ -301,7 +302,8 @@ function Index() {
                   </Button>
                 </Link>
               </div>
-              <div className="checkoutlist__download">
+              <DownLoadInvoice />
+              {/* <div className="checkoutlist__download">
                 <svg
                   id="Icon"
                   xmlns="http://www.w3.org/2000/svg"
@@ -354,7 +356,7 @@ function Index() {
                     />{" "}
                   </g>
                 </svg>
-              </div>
+              </div> */}
             </div>
           </div>
           {/* <ArrowBackIosIcon />

@@ -7,6 +7,8 @@ import Constant from "../../../Constant";
 import { useStateValue } from "../../../store/state";
 import { getAdminToken } from "../../../utilities";
 import swal from "sweetalert2";
+import moment from 'moment'
+
 import {
   Radio,
   RadioGroup,
@@ -19,29 +21,6 @@ import {
   Stepper,
   Box,
 } from "@mui/material";
-
-const steps = [
-  {
-    label: "PO Received",
-    date: "02/05/2022",
-    time: "12:02:22",
-  },
-  {
-    label: "PO Confirmed",
-    date: "02/05/2022",
-    time: "12:02:22",
-  },
-  {
-    label: "PO Dispatched",
-    date: "02/05/2022",
-    time: "12:02:22",
-  },
-  {
-    label: "PO Delivered",
-    date: "02/05/2022",
-    time: "12:02:22",
-  },
-];
 
 const options = {
   filter: false,
@@ -164,8 +143,9 @@ const columns = [
   },
 ];
 
-const Index = ({ setisVieworders, setisOrders, viewDetail }) => {
+const Index = ({viewDetail, setvieworder }) => {
   const [radiogroup, setRadioGroup] = useState(1);
+  const [trigger, setTrigger] = useState(false);
   const [{}, dispatch] = useStateValue();
 
   const [adminToken, setAdminToken] = useState("");
@@ -192,6 +172,7 @@ const Index = ({ setisVieworders, setisOrders, viewDetail }) => {
           value: false,
         });
         if (res?.data?.[0]?.status) {
+          setTrigger(!trigger);
           swal.fire({
             text: `${res?.data?.[0]?.message}`,
             icon: "success",
@@ -248,7 +229,18 @@ const Index = ({ setisVieworders, setisOrders, viewDetail }) => {
         });
         setStatusFromAPI(tabledata?.data);
         if (tabledata?.data?.length) {
-          tabledata?.data?.map((itm) => setActiveStep(parseInt(itm?.status)));
+          let temp =
+            tabledata?.data?.[3]?.status === "3"
+              ? 4
+              : tabledata?.data?.[2]?.status === "2"
+              ? 3
+              : tabledata?.data?.[1]?.status === "1"
+              ? 2
+              : tabledata?.data?.[0]?.status === "0"
+              ? 1
+              : 1;
+
+          setActiveStep(temp);
         }
       } catch (e) {
         console.log(e);
@@ -259,21 +251,24 @@ const Index = ({ setisVieworders, setisOrders, viewDetail }) => {
       }
     };
     fetchTableData();
-  }, []);
+  }, [trigger]);
   return (
     <div className="vieworders_main">
       <div className="vieworders_heading_section">
-        <p className="id_heading">
-          Purchase Order Date #{" "}
-          <span className="purchase_date">
-            {viewDetail?.[0]?.date.split(" ")[0]}
-          </span>{" "}
-          <br />
-        </p>
-        <p className="id_heading">
-          Pending Invoice No. #{" "}
-          <span className="id">{viewDetail?.[0]?.quote_id}</span>
-        </p>
+        <div className="header_section">
+          <p className="id_heading purchase_date">
+            Purchase Order Date #{" "}
+            <span className="id">
+              {moment(viewDetail?.[0].date).format("DD/MM/YYYY")}
+              {/* {viewDetail?.[0]?.date.split(" ")[0]} */}
+            </span>{" "}
+            <br />
+          </p>
+          <p className="id_heading">
+            Pending Invoice No. #{" "}
+            <span className="id">{viewDetail?.[0]?.quote_id}</span>
+          </p>
+        </div>
         <Button className="button-text btn-secondary attach_invoice_btn">
           Attach Invoice
         </Button>
@@ -303,7 +298,7 @@ const Index = ({ setisVieworders, setisOrders, viewDetail }) => {
           >
             <FormControlLabel
               value="Confirm"
-              control={<Radio color="secondary" />}
+              control={<Radio className="radio-btn-color" />}
               label={
                 <>
                   <p className="confirm status">Confirm</p>
@@ -316,7 +311,7 @@ const Index = ({ setisVieworders, setisOrders, viewDetail }) => {
             />
             <FormControlLabel
               value="Dispatched"
-              control={<Radio color="secondary" />}
+              control={<Radio className="radio-btn-color" />}
               label={
                 <>
                   <p className="dispatched status">Dispatched</p>
@@ -329,7 +324,7 @@ const Index = ({ setisVieworders, setisOrders, viewDetail }) => {
             />
             <FormControlLabel
               value="Delivered"
-              control={<Radio color="secondary" />}
+              control={<Radio className="radio-btn-color" />}
               label={
                 <>
                   <p className="delivered status">Delivered</p>
@@ -356,37 +351,41 @@ const Index = ({ setisVieworders, setisOrders, viewDetail }) => {
         </div>
         <Box sx={{ width: "100%" }} className="purchase_status_stepper">
           <Stepper activeStep={activeStep}>
-            {steps?.map((label, index) => {
-              const stepProps = {};
-              const labelProps = {};
-              return (
-                <Step key={label} {...stepProps}>
-                  <StepLabel {...labelProps}>
-                    <p className="stepper_label">{label?.label}</p>
-                    <div className="stepper_time_date">
-                      <p className="date">{label?.date}</p>
-                      <p className="time"> {label?.time}</p>
-                    </div>
-                  </StepLabel>
-                </Step>
-              );
-            })}
+            {statusFromAPI?.length &&
+              statusFromAPI?.map((label, index) => {
+                const stepProps = {};
+                const labelProps = {};
+                return (
+                  <Step key={label} {...stepProps}>
+                    <StepLabel {...labelProps}>
+                      <p className="stepper_label">{label?.label}</p>
+                      <div className="stepper_time_date">
+                        <p className="date">{label?.date}</p>
+                        <p className="time"> {label?.time}</p>
+                      </div>
+                    </StepLabel>
+                  </Step>
+                );
+              })}
           </Stepper>
         </Box>
       </div>
       <div className="invoices__footer">
-        {/* <Button className="button__cancel" onClick={()=> window.history.back()}>Cancel</Button> */}
-        <div
+       <div
           className="invoices__container"
+          style={{ cursor: 'pointer' }}
           onClick={() => {
-            setisVieworders(false);
-            setisOrders(true);
+            setvieworder(false);
+            // setisOrders(true);
           }}
         >
           <ArrowBackIosNew />
           <span>Back</span>
         </div>
-        <Button className="button-text btn-ternary  order_cancel_btn">
+        <Button
+          className="button-text btn-ternary  order_cancel_btn"
+          onClick={() => handleAPICall(4)}
+        >
           Cancel Order
         </Button>
       </div>

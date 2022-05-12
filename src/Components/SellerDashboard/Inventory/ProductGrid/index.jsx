@@ -16,15 +16,17 @@ function Index({ registerproduct, gridData }) {
     search: false,
   };
 
-  console.log(gridData)
-  console.log(tableData)
+  console.log(gridData);
+  console.log(tableData);
   const columns = [
     {
       name: "brand_image_url",
       label: " ",
       options: {
         customBodyRender: (value) => {
-          return <img src={value} alt="" />;
+         return <div className="brand_image">
+            <img src={value} alt="" />;
+          </div>
         },
       },
     },
@@ -63,7 +65,7 @@ function Index({ registerproduct, gridData }) {
     },
   ];
   const PaginateDataSplit = (event) => {
-    console.log(event)
+    console.log(event);
     if (event?.length === 0) return setTableData([]);
     setTableData(event);
   };

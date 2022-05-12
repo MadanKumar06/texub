@@ -160,7 +160,7 @@
         .focused {
           border-radius: 25px;
           position: relative;
-          border: 2px solid #002d56;
+          border: 1px solid #002d56;
           .searchhistory {
             position: absolute;
             left: 0;
@@ -171,10 +171,8 @@
             overflow: auto;
             width: 100%;
             background: #ffffff;
-            // height: 100vh;
             min-height: max-content;
             max-height: 225px;
-            overflow: scroll;
             list-style-type: none;
             padding: 0;
             li {

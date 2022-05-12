@@ -282,13 +282,29 @@ function Index({ type, pid }) {
       }));
       errorHandle = true;
     }
-    if (updateProductList?.restrictions?.length === 0) {
+    if (!updateProductList?.restrictions?.value) {
       document.getElementById("restrictions")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
         restrictions: "Please select the restrictions.",
       }));
       errorHandle = true;
+    }
+    if (updateProductList?.restrictions?.value === "2") {
+      if (updateProductList?.resregion?.length === 0) {
+        setInputValidation((prevState) => ({
+          ...prevState,
+          resregion: "Please enter the region.",
+        }));
+        errorHandle = true;
+      }
+      if (updateProductList?.restricts_country?.length === 0) {
+        setInputValidation((prevState) => ({
+          ...prevState,
+          rescountry: "Please enter the country.",
+        }));
+        errorHandle = true;
+      }
     }
     if (
       !updateform?.product_length ||
@@ -1214,7 +1230,7 @@ function Index({ type, pid }) {
               <div className="updateproduct_inputfields info ">
                 <InputLabel>
                   Region
-                  {/* <small className="asterisk">*</small> */}
+                  <small className="asterisk">*</small>
                 </InputLabel>
                 <Autocomplete
                   multiple
@@ -1263,11 +1279,14 @@ function Index({ type, pid }) {
                     />
                   )}
                 />
+                <InputLabel className="validation_error">
+                  {inputValidation?.resregion}
+                </InputLabel>
               </div>
               <div className="updateproduct_inputfields info">
                 <InputLabel>
                   Country
-                  {/* <small className="asterisk">*</small> */}
+                  <small className="asterisk">*</small>
                 </InputLabel>
 
                 <Autocomplete
@@ -1308,6 +1327,9 @@ function Index({ type, pid }) {
                     />
                   )}
                 />
+                <InputLabel className="validation_error">
+                  {inputValidation?.rescountry}
+                </InputLabel>
               </div>
             </div>
           ) : (

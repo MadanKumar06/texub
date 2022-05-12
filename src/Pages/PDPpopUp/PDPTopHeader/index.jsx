@@ -1,9 +1,8 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Rating } from "@mui/material";
 import { withStyles } from "@mui/styles";
 import styles from "./styles";
-import brand_logo from "../../../Assets/Productlist/Brand_icon.png";
-import brand_tag from "../../../Assets/Productlist/Tag.png";
+// import brand_tag from "../../../Assets/Productlist/Tag.png";
 import SwitchUnstyled, {
   switchUnstyledClasses,
 } from "@mui/base/SwitchUnstyled";
@@ -11,15 +10,16 @@ import { styled } from "@mui/system";
 import Constant from "../../../Constant";
 
 const PdpHeader = ({ classes, pdpSellerData, dataFromPLP }) => {
+  debugger;
   const label = { componentsProps: { input: { "aria-label": "Demo switch" } } };
-  const [value, setValue] = React.useState(2);
+
   let {
     pdp_top_header_container,
     pdp_top_header_sub_container,
     pdp_page_brands_images_container,
     pdp_page_brands_images,
     pdp_brand_icon_1,
-    pdp_brand_icon_2,
+    // pdp_brand_icon_2,
     pdp_toggle_switch_container,
     pdp_top_header_product_details,
     pdp_top_header_seller_id,
@@ -104,10 +104,10 @@ const PdpHeader = ({ classes, pdpSellerData, dataFromPLP }) => {
     }
   `;
 
-  const [review, setreview] = useState()
+  const [review, setreview] = useState();
   useEffect(() => {
-    setreview(localStorage.getItem('review_status'))
-  }, [localStorage.getItem('review_status')])
+    setreview(localStorage.getItem("review_status"));
+  }, [localStorage.getItem("review_status")]);
 
   return (
     <div className={pdp_top_header_container}>
@@ -129,17 +129,19 @@ const PdpHeader = ({ classes, pdpSellerData, dataFromPLP }) => {
             </p>
           )}
 
-            <div className={pdp_top_header_products}>
-            {review == 0 ? "" :
+          <div className={pdp_top_header_products}>
+            <p className={pdp_top_header_product_name}>
+              {pdpSellerData?.model_number}
+            </p>
+            {review == 0 ? (
+              ""
+            ) : (
               <>
-                <p className={pdp_top_header_product_name}>
-                  {pdpSellerData?.model_number}
-                </p>
                 <div className={pdp_top_header_rating_reviews_container}>
                   <Rating
                     className={ratings}
                     name="simple-controlled"
-                    value={value}
+                    value={2}
                     // onChange={(event, newValue) => {
                     //   setValue(newValue);
                     // }}
@@ -147,8 +149,8 @@ const PdpHeader = ({ classes, pdpSellerData, dataFromPLP }) => {
                   <p className={reviews}> 543 Reviews</p>
                 </div>
               </>
-            }
-            </div>
+            )}
+          </div>
 
           <p className={pdp_top_header_model_details}>
             {pdpSellerData?.description}
@@ -161,7 +163,9 @@ const PdpHeader = ({ classes, pdpSellerData, dataFromPLP }) => {
           </div>
 
           <div className={toggle_switch_sub_two}>
-            <p className={notification_tag}>*Get notified about the product’s offer & availability</p>
+            <p className={notification_tag}>
+              *Get notified about the product’s offer & availability
+            </p>
           </div>
         </div>
       </div>

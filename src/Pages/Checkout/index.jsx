@@ -20,6 +20,7 @@ import FormControl from "@mui/material/FormControl";
 import swal from "sweetalert2";
 import { useStateValue } from "../../store/state";
 import PhoneInput from "react-phone-input-2";
+import DownloadInvoice from "./DownLoadInvoice";
 
 //assets
 import Edit_image from "../../Assets/CheckoutPage/Group 913.png";
@@ -106,8 +107,8 @@ const Checkout = () => {
   //   }
   // };
   const onpickup = (e) => {
-      setpickup({ ...pickup, [e.target.name]: e.target.value });
-      setformerror({ ...formerror, [e.target.name]: true });
+    setpickup({ ...pickup, [e.target.name]: e.target.value });
+    setformerror({ ...formerror, [e.target.name]: true });
   };
 
   const [adminToken, setAdminToken] = useState("");
@@ -140,7 +141,7 @@ const Checkout = () => {
   });
 
   const addressadd = (e) => {
-    debugger
+    debugger;
     setaddressdata((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
@@ -176,18 +177,18 @@ const Checkout = () => {
           Authorization: `Bearer ${adminToken}`,
         },
         data: {
-          "customerId":user?.id,
-          "addressId":0,
-          "addressType":addressdata?.billtype === "texub_shipping" ? 1 : 0,
-          "address":{
-            "company":addressdata?.organization_name,
-            "country_id": addressdata?.country,
-            "street": street,
-            "postcode": addressdata?.pincode,
-            "city": addressdata?.city,
-          }
-        }
-        
+          customerId: user?.id,
+          addressId: 0,
+          addressType: addressdata?.billtype === "texub_shipping" ? 1 : 0,
+          address: {
+            company: addressdata?.organization_name,
+            country_id: addressdata?.country,
+            street: street,
+            postcode: addressdata?.pincode,
+            city: addressdata?.city,
+          },
+        },
+
         // data: {
         //   customerId: user?.id,
         //   cartId: quoteid,
@@ -301,7 +302,7 @@ const Checkout = () => {
   };
 
   const selectaddress = (itm) => {
-    debugger
+    debugger;
     if (quotedata[0]?.invoice?.pending_invoice_status !== "1") return;
     setselectadd(itm?.address_id);
     setaddressdata({
@@ -406,42 +407,42 @@ const Checkout = () => {
       shipping_method === "pick_up_from_hub"
     ) {
       if (!pickup.bussiness_name) {
-        setformerror((prevState)=>({
-          ...prevState,
-          bussiness_name:false
-        }))
-      }
-      if(!pickup.contact_person){
-        setformerror((prevState)=>({
-          ...prevState,
-          contact_person:false
-        }))
-      }
-      if(!pickup.email_address){
-        setformerror((prevState)=>({
-          ...prevState,
-          email_address:false
-        }))
-      }else if (!isEmailValid(pickup?.email_address)) {
         setformerror((prevState) => ({
           ...prevState,
-          email_address: false
+          bussiness_name: false,
         }));
       }
-      if(!pickup.mobile_number){
-        setformerror((prevState)=>({
-          ...prevState,
-          mobile_number:false
-        }))
-      }else if (pickup?.mobile_number.length<5) {
+      if (!pickup.contact_person) {
         setformerror((prevState) => ({
           ...prevState,
-          mobile_number: false
+          contact_person: false,
         }));
-      }else {
+      }
+      if (!pickup.email_address) {
         setformerror((prevState) => ({
           ...prevState,
-          mobile_number: true
+          email_address: false,
+        }));
+      } else if (!isEmailValid(pickup?.email_address)) {
+        setformerror((prevState) => ({
+          ...prevState,
+          email_address: false,
+        }));
+      }
+      if (!pickup.mobile_number) {
+        setformerror((prevState) => ({
+          ...prevState,
+          mobile_number: false,
+        }));
+      } else if (pickup?.mobile_number.length < 5) {
+        setformerror((prevState) => ({
+          ...prevState,
+          mobile_number: false,
+        }));
+      } else {
+        setformerror((prevState) => ({
+          ...prevState,
+          mobile_number: true,
         }));
       }
     }
@@ -540,7 +541,7 @@ const Checkout = () => {
             billing_address: {
               address_type: "billing",
               city: addressdata?.city,
-              country_id: country,
+              country_id: country?.[0]?.value,
               customer_address_id:
                 shipping_method === "texub_shipping" && addressdata?.id
                   ? addressdata?.id
@@ -619,11 +620,11 @@ const Checkout = () => {
         `/${customnostore ? customnostore : geo?.country_name}/ordersuccess`
       );
       setpickup({
-        bussiness_name:'',
-        contact_person:'',
-        email_address:'',
-        mobile_number:''
-      })
+        bussiness_name: "",
+        contact_person: "",
+        email_address: "",
+        mobile_number: "",
+      });
     } catch (e) {
       dispatch({
         type: "SET_IS_LOADING",
@@ -693,50 +694,7 @@ const Checkout = () => {
               </Button>
             </Link>
           </div>
-          <div className="checkoutlist__download">
-            <svg
-              id="Icon"
-              xmlns="http://www.w3.org/2000/svg"
-              width="35"
-              height="35"
-              viewBox="0 0 40 40"
-            >
-              <rect id="Area" width="40" height="40" fill="#fff" opacity="0" />
-              <g id="Icon-2" data-name="Icon" transform="translate(4.5 4.5)">
-                <path
-                  id="Path"
-                  d="M35.5,22.5v6a3.245,3.245,0,0,1-3.444,3H7.944a3.245,3.245,0,0,1-3.444-3v-6"
-                  transform="translate(-4.5 -0.5)"
-                  fill="none"
-                  stroke="#fff"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="3"
-                />
-                <path
-                  id="Path-2"
-                  data-name="Path"
-                  d="M10.5,15,20,22.5,29.5,15"
-                  transform="translate(-4.5 -2.346)"
-                  fill="none"
-                  stroke="#fff"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="3"
-                />
-                <line
-                  id="Line"
-                  y1="18"
-                  transform="translate(15.5)"
-                  fill="none"
-                  stroke="#fff"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="3"
-                />{" "}
-              </g>
-            </svg>
-          </div>
+          <DownloadInvoice />
         </div>
       </div>
 

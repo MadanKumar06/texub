@@ -116,61 +116,80 @@ const TransitionsModal = ({ handleOpenCloseOffers, offersOpenClose }) => {
   const OffersAPICall = () => {
     let start_date = moment(offersData?.start_date).format("DD/MM/YYYY");
     let end_date = moment(offersData?.end_date).format("DD/MM/YYYY");
-    let customerId = JSON.parse(localStorage.getItem("userdata"));
-    let data = {
-      sellerData: {
-        customer_id: customerId?.id,
-        product_id: parseInt(offersOpenClose?.product_id),
-        assign_product_id: parseInt(offersOpenClose?.assigned_product_id),
-        offer_value: parseInt(offersData?.price),
-        from_date: start_date,
-        end_date: end_date,
-      },
-    };
-    axios
-      .post(Constant.baseUrl() + "/setOfferprice", data, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+    let d = moment(new Date()).format("YYYY-MM-DD");
+    let d1 = moment(offersData?.start_date).format("YYYY-MM-DD");
+    let d2 = moment(offersData?.end_date).format("YYYY-MM-DD");
+    if (moment(d).isAfter(d1)) {
+      swal.fire({
+        text: `Please Select Future Date to Apply Offers`,
+        icon: "error",
+        showConfirmButton: false,
+        timer: 3000,
+      });
+    } else if (moment(d1).isSame(d2) || moment(d1).isBefore(d2)) {
+      let customerId = JSON.parse(localStorage.getItem("userdata"));
+      let data = {
+        sellerData: {
+          customer_id: customerId?.id,
+          product_id: parseInt(offersOpenClose?.product_id),
+          assign_product_id: parseInt(offersOpenClose?.assigned_product_id),
+          offer_value: parseInt(offersData?.price),
+          from_date: start_date,
+          end_date: end_date,
         },
-      })
-      .then((res) => {
-        dispatch({
-          type: "SET_IS_LOADING",
-          value: false,
-        });
-        if (res?.data?.[0]?.status) {
-          swal.fire({
-            text: `${res?.data?.[0]?.message}`,
-            icon: "success",
-            showConfirmButton: false,
-            timer: 3000,
-          });
+      };
+      axios
+        .post(Constant.baseUrl() + "/setOfferprice", data, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        })
+        .then((res) => {
           dispatch({
-            type: "SET_GENERAL_TRINGGER",
+            type: "SET_IS_LOADING",
+            value: false,
           });
-          handleOpenCloseOffers(false);
-        } else {
+          if (res?.data?.[0]?.status) {
+            swal.fire({
+              text: `${res?.data?.[0]?.message}`,
+              icon: "success",
+              showConfirmButton: false,
+              timer: 3000,
+            });
+            dispatch({
+              type: "SET_GENERAL_TRINGGER",
+            });
+            handleOpenCloseOffers(false);
+          } else {
+            swal.fire({
+              text: `${res?.data?.[0]?.message}`,
+              icon: "error",
+              showConfirmButton: false,
+              timer: 3000,
+            });
+          }
+        })
+        .catch((err) => {
+          dispatch({
+            type: "SET_IS_LOADING",
+            value: false,
+          });
           swal.fire({
-            text: `${res?.data?.[0]?.message}`,
+            text: `${err?.response?.data?.message}`,
             icon: "error",
             showConfirmButton: false,
             timer: 3000,
           });
-        }
-      })
-      .catch((err) => {
-        dispatch({
-          type: "SET_IS_LOADING",
-          value: false,
         });
-        swal.fire({
-          text: `${err?.response?.data?.message}`,
-          icon: "error",
-          showConfirmButton: false,
-          timer: 3000,
-        });
+    } else {
+      swal.fire({
+        text: `End Date Must be greater than or Equal to Start Date`,
+        icon: "error",
+        showConfirmButton: false,
+        timer: 3000,
       });
+    }
   };
   return (
     <Modal

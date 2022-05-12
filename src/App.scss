@@ -83,6 +83,14 @@
     border: 1px solid #ddb363;
   }
 }
+  .MuiAutocomplete-option[aria-selected="true"].Mui-focused{
+    color: #fff;
+    background-color: #cda049 !important;
+  }
+  .MuiAutocomplete-option[aria-selected="true"].Mui-focused:hover{
+      color: #fff;
+      background-color: #cda049;
+  }
 @media (max-width: 1660px) {
   .button-text {
     font-size: 16px !important;

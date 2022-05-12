@@ -62,7 +62,7 @@ const Header = ({ classes }) => {
             text: "Due to Session expiry, Logging out",
             icon: "success",
             showConfirmButton: false,
-            timer: 2000,
+            timer: 4000,
           });
           localStorage.clear()
           setTimeout(() => {
