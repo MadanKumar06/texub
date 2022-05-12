@@ -20,29 +20,6 @@ import {
   Box,
 } from "@mui/material";
 
-const steps = [
-  {
-    label: "PO Received",
-    date: "02/05/2022",
-    time: "12:02:22",
-  },
-  {
-    label: "PO Confirmed",
-    date: "02/05/2022",
-    time: "12:02:22",
-  },
-  {
-    label: "PO Dispatched",
-    date: "02/05/2022",
-    time: "12:02:22",
-  },
-  {
-    label: "PO Delivered",
-    date: "02/05/2022",
-    time: "12:02:22",
-  },
-];
-
 const options = {
   filter: false,
   filterType: "dropdown",
@@ -166,6 +143,7 @@ const columns = [
 
 const Index = ({ setisVieworders, setisOrders, viewDetail }) => {
   const [radiogroup, setRadioGroup] = useState(1);
+  const [trigger, setTrigger] = useState(false);
   const [{}, dispatch] = useStateValue();
 
   const [adminToken, setAdminToken] = useState("");
@@ -192,6 +170,7 @@ const Index = ({ setisVieworders, setisOrders, viewDetail }) => {
           value: false,
         });
         if (res?.data?.[0]?.status) {
+          setTrigger(!trigger);
           swal.fire({
             text: `${res?.data?.[0]?.message}`,
             icon: "success",
@@ -248,9 +227,18 @@ const Index = ({ setisVieworders, setisOrders, viewDetail }) => {
         });
         setStatusFromAPI(tabledata?.data);
         if (tabledata?.data?.length) {
-          tabledata?.data?.map((itm) =>
-            setActiveStep(parseInt(itm?.status) + 1)
-          );
+          let temp =
+            tabledata?.data?.[3]?.status === "3"
+              ? 4
+              : tabledata?.data?.[2]?.status === "2"
+              ? 3
+              : tabledata?.data?.[1]?.status === "1"
+              ? 2
+              : tabledata?.data?.[0]?.status === "0"
+              ? 1
+              : 1;
+
+          setActiveStep(temp);
         }
       } catch (e) {
         console.log(e);
@@ -261,7 +249,7 @@ const Index = ({ setisVieworders, setisOrders, viewDetail }) => {
       }
     };
     fetchTableData();
-  }, []);
+  }, [trigger]);
   return (
     <div className="vieworders_main">
       <div className="vieworders_heading_section">
