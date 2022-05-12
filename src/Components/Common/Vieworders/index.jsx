@@ -265,8 +265,8 @@ const Index = ({viewDetail, setvieworder }) => {
             <br />
           </p>
           <p className="id_heading">
-            Pending Invoice No. #{" "}
-            <span className="id">{viewDetail?.[0]?.quote_id}</span>
+            Purchase Order No. #{" "}
+            <span className="id">{viewDetail?.[0]?.po_number}</span>
           </p>
         </div>
         <Button className="button-text btn-secondary attach_invoice_btn">
