@@ -248,7 +248,9 @@ const Index = ({ setisVieworders, setisOrders, viewDetail }) => {
         });
         setStatusFromAPI(tabledata?.data);
         if (tabledata?.data?.length) {
-          tabledata?.data?.map((itm) => setActiveStep(parseInt(itm?.status)));
+          tabledata?.data?.map((itm) =>
+            setActiveStep(parseInt(itm?.status) + 1)
+          );
         }
       } catch (e) {
         console.log(e);
@@ -303,7 +305,7 @@ const Index = ({ setisVieworders, setisOrders, viewDetail }) => {
           >
             <FormControlLabel
               value="Confirm"
-              control={<Radio color="secondary" />}
+              control={<Radio className="radio-btn-color" />}
               label={
                 <>
                   <p className="confirm status">Confirm</p>
@@ -316,7 +318,7 @@ const Index = ({ setisVieworders, setisOrders, viewDetail }) => {
             />
             <FormControlLabel
               value="Dispatched"
-              control={<Radio color="secondary" />}
+              control={<Radio className="radio-btn-color" />}
               label={
                 <>
                   <p className="dispatched status">Dispatched</p>
@@ -329,7 +331,7 @@ const Index = ({ setisVieworders, setisOrders, viewDetail }) => {
             />
             <FormControlLabel
               value="Delivered"
-              control={<Radio color="secondary" />}
+              control={<Radio className="radio-btn-color" />}
               label={
                 <>
                   <p className="delivered status">Delivered</p>
@@ -356,26 +358,26 @@ const Index = ({ setisVieworders, setisOrders, viewDetail }) => {
         </div>
         <Box sx={{ width: "100%" }} className="purchase_status_stepper">
           <Stepper activeStep={activeStep}>
-            {steps?.map((label, index) => {
-              const stepProps = {};
-              const labelProps = {};
-              return (
-                <Step key={label} {...stepProps}>
-                  <StepLabel {...labelProps}>
-                    <p className="stepper_label">{label?.label}</p>
-                    <div className="stepper_time_date">
-                      <p className="date">{label?.date}</p>
-                      <p className="time"> {label?.time}</p>
-                    </div>
-                  </StepLabel>
-                </Step>
-              );
-            })}
+            {statusFromAPI?.length &&
+              statusFromAPI?.map((label, index) => {
+                const stepProps = {};
+                const labelProps = {};
+                return (
+                  <Step key={label} {...stepProps}>
+                    <StepLabel {...labelProps}>
+                      <p className="stepper_label">{label?.label}</p>
+                      <div className="stepper_time_date">
+                        <p className="date">{label?.date}</p>
+                        <p className="time"> {label?.time}</p>
+                      </div>
+                    </StepLabel>
+                  </Step>
+                );
+              })}
           </Stepper>
         </Box>
       </div>
       <div className="invoices__footer">
-        {/* <Button className="button__cancel" onClick={()=> window.history.back()}>Cancel</Button> */}
         <div
           className="invoices__container"
           onClick={() => {
@@ -386,7 +388,10 @@ const Index = ({ setisVieworders, setisOrders, viewDetail }) => {
           <ArrowBackIosNew />
           <span>Back</span>
         </div>
-        <Button className="button-text btn-ternary  order_cancel_btn">
+        <Button
+          className="button-text btn-ternary  order_cancel_btn"
+          onClick={() => handleAPICall(4)}
+        >
           Cancel Order
         </Button>
       </div>

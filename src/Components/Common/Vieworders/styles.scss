@@ -20,6 +20,13 @@
   }
   .status_change_container {
     margin-top: 3em;
+    .radio-btn-color {
+      color: #002d56;
+      .MuiSvgIcon-root {
+        width: 0.8em;
+        height: 0.8em;
+      }
+    }
     .select_text {
       font-size: 20px;
       color: #333c42;

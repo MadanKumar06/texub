@@ -7,7 +7,7 @@
           .MuiTableCell-root {
             background-color: #002d56;
             color: white;
-            text-align: left;
+            text-align: center;
             font-weight: 600;
             font-size: 16px;
             letter-spacing: 0.6px;
@@ -15,23 +15,45 @@
         }
       }
       .MuiTableBody-root {
-        .MuiTableCell-body {
-          .product {
-        
+        .MuiTableRow-root {
+          border-bottom: 2px solid #ffffff;
+          &:nth-child(odd) {
+            background-color: #f5f5f5;
           }
-          .productGrid__action {
-            text-decoration: underline;
-            cursor: pointer;
-            color: #002d56;
-            font-size: 18px;
-            font-weight: 600;
-            letter-spacing: 0.66px;
+          &:nth-child(even) {
+            background-color: #eaeaea;
           }
+          .MuiTableCell-root {
+            text-align: center;
+            padding: 8px 10px;
+
+            & > * {
+              font-size: 14px;
+              letter-spacing: 0.48px;
+            }
+          }
+        }
+        .brand_image {
+          width: 50px;
+          height: 50px;
+          margin: auto;
+          img {
+            width: 100%;
+          }
+        }
+        .productGrid__action {
+          text-decoration: underline;
+          cursor: pointer;
+          color: #002d56;
+          font-size: 18px;
+          font-weight: 600;
+          letter-spacing: 0.66px;
         }
       }
     }
   }
 }
+
 @media (max-width: 1660px) {
   .productGrid_inventory
     .productGrid__table

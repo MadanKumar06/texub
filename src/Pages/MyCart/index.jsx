@@ -90,66 +90,72 @@ const Mycart = () => {
     }
   };
   const navigate = useNavigate();
-  const [rowselect, setrowselect] = useState([])
-  console.log(rowselect)
-  console.log(cart[0]?.invoice_items[0])
-  const [selecteddata, setselecteddata] = useState([])
+  const [rowselect, setrowselect] = useState([]);
+  console.log(rowselect);
+  console.log(cart[0]?.invoice_items[0]);
+  const [selecteddata, setselecteddata] = useState([]);
 
   useEffect(() => {
-    if(rowselect?.length === 0) return
-    let temp = []
-    rowselect?.map(rs => temp.push(cart[0]?.invoice_items[rs?.index]))
-    setselecteddata(temp)
-  }, [rowselect])
+    if (rowselect?.length === 0) return;
+    let temp = [];
+    rowselect?.map((rs) => temp.push(cart[0]?.invoice_items[rs?.index]));
+    setselecteddata(temp);
+  }, [rowselect]);
 
   const addpendinginvoice = async () => {
-    if(rowselect?.length > 0 && rowselect?.length !== cart[0]?.invoice_items?.length) {
+    setallert(false);
+    if (
+      rowselect?.length > 0 &&
+      rowselect?.length !== cart[0]?.invoice_items?.length
+    ) {
       dispatch({
         type: "SET_IS_LOADING",
         value: true,
       });
       let storedata = JSON.parse(localStorage.getItem("storedata"));
-      let user = JSON.parse(localStorage.getItem('userdata'))
-      {selecteddata?.map(async(sd) => {
-        try {
-          const selectedinvoice = await axios({
-            method: 'post',
-            url: `${Constant?.baseUrl()}/addToPendingInvoice`,
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem('token')}`
-            },
-            data: {
-              "pendingProducts" : {
-                "store_id" : storedata?.store_id,
-                "item_id": sd?.item_id,
-                "customer_id" : user?.id,
-                "productId" : sd?.product_id,
-                "price" : sd?.price,
-                "qty" : sd?.qty,
-                "hub" : sd?.hub_id,
-                "currency" : sd?.currency_id,
-                "sellerId" : sd?.seller_id
-              }
-           }
-          })
-          console.log(selectedinvoice?.data)
-          navigate(
-            `/${
-              customnostore ? customnostore : geo?.country_name
-            }/pending-invoice`
-          );
-          dispatch({
-            type: "SET_IS_LOADING",
-            value: false,
-          });
-        } catch(e) {
-          console.log(e)
-          dispatch({
-            type: "SET_IS_LOADING",
-            value: false,
-          });
-        }
-      })}
+      let user = JSON.parse(localStorage.getItem("userdata"));
+      {
+        selecteddata?.map(async (sd) => {
+          try {
+            const selectedinvoice = await axios({
+              method: "post",
+              url: `${Constant?.baseUrl()}/addToPendingInvoice`,
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+              },
+              data: {
+                pendingProducts: {
+                  store_id: storedata?.store_id,
+                  item_id: sd?.item_id,
+                  customer_id: user?.id,
+                  productId: sd?.product_id,
+                  price: sd?.price,
+                  qty: sd?.qty,
+                  hub: sd?.hub_id,
+                  currency: sd?.currency_id,
+                  sellerId: sd?.seller_id,
+                },
+              },
+            });
+            console.log(selectedinvoice?.data);
+            navigate(
+              `/${
+                customnostore ? customnostore : geo?.country_name
+              }/pending-invoice`
+            );
+            dispatch({
+              type: "SET_IS_LOADING",
+              value: false,
+            });
+          } catch (e) {
+            console.log(e);
+            dispatch({
+              type: "SET_IS_LOADING",
+              value: false,
+            });
+          }
+        });
+      }
     } else {
       dispatch({
         type: "SET_IS_LOADING",
@@ -185,7 +191,6 @@ const Mycart = () => {
         console.log(e);
       }
     }
-    
   };
 
   const [permission, setpermission] = useState();
@@ -278,7 +283,11 @@ const Mycart = () => {
           </Breadcrumbs>
         </Stack>
       </div>
-      <MyCartTable cartDataList={cart} deleteCartData={deleteCartData} setrowselect={setrowselect} />
+      <MyCartTable
+        cartDataList={cart}
+        deleteCartData={deleteCartData}
+        setrowselect={setrowselect}
+      />
 
       <div className="my_cart_footer">
         <Button

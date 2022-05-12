@@ -106,8 +106,8 @@ const Checkout = () => {
   //   }
   // };
   const onpickup = (e) => {
-      setpickup({ ...pickup, [e.target.name]: e.target.value });
-      setformerror({ ...formerror, [e.target.name]: true });
+    setpickup({ ...pickup, [e.target.name]: e.target.value });
+    setformerror({ ...formerror, [e.target.name]: true });
   };
 
   const [adminToken, setAdminToken] = useState("");
@@ -140,7 +140,7 @@ const Checkout = () => {
   });
 
   const addressadd = (e) => {
-    debugger
+    debugger;
     setaddressdata((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
@@ -176,18 +176,18 @@ const Checkout = () => {
           Authorization: `Bearer ${adminToken}`,
         },
         data: {
-          "customerId":user?.id,
-          "addressId":0,
-          "addressType":addressdata?.billtype === "texub_shipping" ? 1 : 0,
-          "address":{
-            "company":addressdata?.organization_name,
-            "country_id": addressdata?.country,
-            "street": street,
-            "postcode": addressdata?.pincode,
-            "city": addressdata?.city,
-          }
-        }
-        
+          customerId: user?.id,
+          addressId: 0,
+          addressType: addressdata?.billtype === "texub_shipping" ? 1 : 0,
+          address: {
+            company: addressdata?.organization_name,
+            country_id: addressdata?.country,
+            street: street,
+            postcode: addressdata?.pincode,
+            city: addressdata?.city,
+          },
+        },
+
         // data: {
         //   customerId: user?.id,
         //   cartId: quoteid,
@@ -301,7 +301,7 @@ const Checkout = () => {
   };
 
   const selectaddress = (itm) => {
-    debugger
+    debugger;
     if (quotedata[0]?.invoice?.pending_invoice_status !== "1") return;
     setselectadd(itm?.address_id);
     setaddressdata({
@@ -406,42 +406,42 @@ const Checkout = () => {
       shipping_method === "pick_up_from_hub"
     ) {
       if (!pickup.bussiness_name) {
-        setformerror((prevState)=>({
-          ...prevState,
-          bussiness_name:false
-        }))
-      }
-      if(!pickup.contact_person){
-        setformerror((prevState)=>({
-          ...prevState,
-          contact_person:false
-        }))
-      }
-      if(!pickup.email_address){
-        setformerror((prevState)=>({
-          ...prevState,
-          email_address:false
-        }))
-      }else if (!isEmailValid(pickup?.email_address)) {
         setformerror((prevState) => ({
           ...prevState,
-          email_address: false
+          bussiness_name: false,
         }));
       }
-      if(!pickup.mobile_number){
-        setformerror((prevState)=>({
-          ...prevState,
-          mobile_number:false
-        }))
-      }else if (pickup?.mobile_number.length<5) {
+      if (!pickup.contact_person) {
         setformerror((prevState) => ({
           ...prevState,
-          mobile_number: false
+          contact_person: false,
         }));
-      }else {
+      }
+      if (!pickup.email_address) {
         setformerror((prevState) => ({
           ...prevState,
-          mobile_number: true
+          email_address: false,
+        }));
+      } else if (!isEmailValid(pickup?.email_address)) {
+        setformerror((prevState) => ({
+          ...prevState,
+          email_address: false,
+        }));
+      }
+      if (!pickup.mobile_number) {
+        setformerror((prevState) => ({
+          ...prevState,
+          mobile_number: false,
+        }));
+      } else if (pickup?.mobile_number.length < 5) {
+        setformerror((prevState) => ({
+          ...prevState,
+          mobile_number: false,
+        }));
+      } else {
+        setformerror((prevState) => ({
+          ...prevState,
+          mobile_number: true,
         }));
       }
     }
@@ -540,7 +540,7 @@ const Checkout = () => {
             billing_address: {
               address_type: "billing",
               city: addressdata?.city,
-              country_id: country,
+              country_id: country?.[0]?.value,
               customer_address_id:
                 shipping_method === "texub_shipping" && addressdata?.id
                   ? addressdata?.id
@@ -619,11 +619,11 @@ const Checkout = () => {
         `/${customnostore ? customnostore : geo?.country_name}/ordersuccess`
       );
       setpickup({
-        bussiness_name:'',
-        contact_person:'',
-        email_address:'',
-        mobile_number:''
-      })
+        bussiness_name: "",
+        contact_person: "",
+        email_address: "",
+        mobile_number: "",
+      });
     } catch (e) {
       dispatch({
         type: "SET_IS_LOADING",
