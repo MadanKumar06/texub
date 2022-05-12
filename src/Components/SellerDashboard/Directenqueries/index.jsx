@@ -42,7 +42,6 @@ const Index = () => {
           seller_id: user?.id,
         },
       });
-      setfiltereddirect(ddlist?.data)
       setdirectList(ddlist?.data);
       dispatch({
         type: "SET_IS_LOADING",
@@ -96,7 +95,7 @@ const Index = () => {
       const declined = direct?.filter(d => d?.seller_enquiry_status === "Declined")
       setfiltereddirect(declined)
     }
-  }, [type])
+  }, [type, refreshdata, direct])
 
   const options = {
     filter: false,

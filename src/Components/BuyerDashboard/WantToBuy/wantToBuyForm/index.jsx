@@ -302,7 +302,7 @@ const WantToBuy = ({ setisVieworders, setisOrders }) => {
                 }}
                 className="inputfield-box"
                 onChange={(event) => {
-                  if(wantTobuyData?.quantity?.length === 5) return
+                  if(wantTobuyData?.quantity?.length === 6) return
                   setWantToBuyData((prevState) => ({
                     ...prevState,
                     quantity: event.target.value,

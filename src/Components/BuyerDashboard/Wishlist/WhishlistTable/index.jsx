@@ -45,6 +45,12 @@ const WhislistTable = ({
     }
   }, [tableData]);
 
+
+  const [review, setreview] = useState();
+  useEffect(() => {
+    setreview(localStorage.getItem("review_status"));
+  }, [localStorage.getItem("review_status")]);
+
   const wishlistdelete = async () => {
     const user = JSON.parse(localStorage.getItem("userdata"));
     dispatch({
@@ -475,15 +481,20 @@ const WhislistTable = ({
                     </div>
                     <div className="rating_block">
                       <div className="rating">
-                        <Rating
-                          className="ratings"
-                          name="simple-controlled"
-                          value={3}
-                          onChange={(event, newValue) => {
-                            //   setValue(newValue);
-                          }}
-                        />
-                        <p className="reviews"> 543 Reviews</p>
+                      {review == 0 ?
+                         "" : 
+                         <>
+                          <Rating
+                            className="ratings"
+                            name="simple-controlled"
+                            value={3}
+                            onChange={(event, newValue) => {
+                              //   setValue(newValue);
+                            }}
+                          />
+                          <p className="reviews"> 543 Reviews</p>
+                        </>
+                        }
                       </div>
                       <p className="seller_id">
                         <span>Seller ID :</span>
