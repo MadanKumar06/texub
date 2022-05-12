@@ -36,11 +36,11 @@ const Index = ({ AddpendingInvoiceAlert, handleIsValidUser }) => {
         </div>
         <div className="allert_text">
           <p className="text">
-            <span>Once the product ie added to pending invoice,nothing can be
-            editable.</span> 
-            <span>You won't be able to modify the product quantity or remove
-            the product </span>
-            <span>from the pending invoice.</span>
+            <p>Once the product ie added to pending invoice, nothing can be
+            editable.</p> 
+            <p> You won't be able to modify the product quantity or remove
+            the product </p>
+            <p> from the pending invoice.</p>
           </p>
         </div>
         <div className="button_section">

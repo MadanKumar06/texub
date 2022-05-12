@@ -89,7 +89,7 @@ function Index() {
       });
     }
   }, [])
-
+// console.log(invoicelist['quote_currency']);
 
   const columns = [
     {
@@ -112,6 +112,13 @@ function Index() {
       },
     },
   },
+   {
+      name: "quote_currency",
+      label: " ",
+      options: {
+        display: false,
+      },
+    },
     // {
     //   name: "seller_id",
     //   label: "Seller ID",
@@ -125,10 +132,12 @@ function Index() {
       name: "grand_total",
       label: "Amount",
       options: {
-        customBodyRender: (value) => {
+        customBodyRender: (value, tableMeta) => {
+          let currency_id = tableMeta?.rowData[2];
+
           return (
             <div className="invoices__amount">
-              <span className="currency">INR </span>
+              <span className="currency">{currency_id} </span>
               <span className="price">{formatToCurrency(parseFloat(value).toFixed(2))}</span>
             </div>
           );
