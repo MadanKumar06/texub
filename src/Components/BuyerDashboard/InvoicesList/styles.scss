@@ -1,4 +1,29 @@
 .invoices_main {
+  
+  .invoices__search{
+    .invoices__searchinput{
+      box-shadow: unset;
+      border: 1px solid #d6d8d9;
+      padding: 3px;
+      .MuiInputBase-root {
+        padding: 5px;
+      }
+      .MuiButtonBase-root{
+        background: #002d56;
+        color: #ffffff;
+        padding: 1% 3%;
+        border-radius: 3px;
+      }
+      ::placeholder {
+        color: #858a8e;
+        opacity: 0.8;
+        font-size: 16px;
+        font-weight: 600;
+        text-transform: capitalize;
+      }
+    }
+  }
+
     .invoices__buttons {
       display: flex;
       align-items: center;

@@ -76,6 +76,9 @@ const Index = () => {
     setisAddress(false);
   };
   let permissions = JSON.parse(localStorage.getItem("permissions"));
+  const user123 = JSON.parse(localStorage.getItem('userdata'))
+  console.log(user123);
+
   let cartpermission =
     permissions?.length === 0
       ? false

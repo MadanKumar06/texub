@@ -148,7 +148,12 @@
     }
   }
 }
+@media (min-width: 1660px) {
+  .sellerdashboard__sidebar ul li:last-child{
+    gap: 30px;
+  }
 
+}
 @media (max-width: 1660px) {
   .sellerdashboard__sidebar {
     min-width: 20%;

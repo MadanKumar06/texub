@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import MUITable from "../../../Components/Common/MUITable";
-import { ArrowBackIosNew } from "@mui/icons-material";
+import { ArrowBackIosNew,Search } from "@mui/icons-material";
+import { Button, Paper, InputBase, IconButton } from "@mui/material";
 import { Link } from "react-router-dom";
 import Pagination from "../../Pagination";
 import "./styles.scss";
@@ -193,6 +194,27 @@ function Index() {
 
   return (
     <div className="invoices_main">
+      <div className="invoices__search">
+          <Paper
+            className="invoices__searchinput"
+            component="form"
+            sx={{ p: "2px 4px", display: "flex", alignItems: "center" }}
+          >
+            <InputBase
+              sx={{ ml: 1, flex: 1 }}
+              placeholder="Search..."
+              inputProps={{ "aria-label": "" }}
+              className="invoices__input"
+            />
+            <IconButton
+              type="submit"
+              sx={{ p: "10px" }}
+              aria-label="search"
+            >
+              <Search />
+            </IconButton>
+          </Paper>
+        </div>
       {isOrders && (
         <>
           <div className="invoices__buttons">

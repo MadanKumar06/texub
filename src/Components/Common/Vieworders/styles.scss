@@ -138,6 +138,7 @@
                 display: flex;
                 gap: 1em;
                 color: #ddb363;
+                margin-left: -25px;
                 .time {
                   border-left: 1px solid #cdd5dd;
                   padding-left: 14px;
@@ -591,6 +592,13 @@
     .vieworders_total {
     padding: 10px;
     margin: 0 10px;
+  }
+  .vieworders_main .purchase_order_status .purchase_status_stepper .MuiStepper-root{
+    flex-direction: column;
+    min-height: 400px;
+  }
+  .vieworders_main .purchase_order_status{
+    min-height: 600px;
   }
 }
 

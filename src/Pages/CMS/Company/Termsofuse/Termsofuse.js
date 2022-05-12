@@ -54,9 +54,16 @@ export const Termsofuse = () => {
   }, [adminToken]);
 
   console.log(terms);
-
+  const handleChange = () => {
+    var printContents = document.getElementById("Termsofuse_main").innerHTML;
+    var originalContents = document.body.innerHTML;
+    document.body.innerHTML = printContents;
+    document.body.className = "Termsofuse_main";
+    window.print();
+    document.body.innerHTML = originalContents;
+  };
   return (
-    <div className="Termsofuse_main">
+    <div className="Termsofuse_main" id="Termsofuse_main">
       <div className="Termsofuse_Description_section">
         <div className="Termsofuse_heading_section">
           <img src={Terms} alt="" className="Termsofuse_terms" />
@@ -85,7 +92,10 @@ export const Termsofuse = () => {
           ))}
         </div> */}
         <div className="Termsofuse_btn_section">
-          <div className="Termsofuse_btn_download">
+          <div
+            className="Termsofuse_btn_download"
+            onClick={() => handleChange()}
+          >
             <FileDownloadOutlinedIcon className="Termsofuse_download" />
             <spam className="download">Download PDF</spam>
           </div>
