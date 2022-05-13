@@ -811,6 +811,7 @@
         gap: 2em;
         display: flex;
         padding-bottom: 3%;
+        align-items: center;
           .address_fields{
             width: 100%;
             
@@ -828,7 +829,7 @@
                 top: 0;
               }
               #selection_box_block{
-                padding: 12px 14px;
+                padding: 8.2px 14px;
                 em{
                   font-style: normal;
                   letter-spacing: 0.6px;

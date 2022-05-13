@@ -118,7 +118,7 @@ const Index = () => {
             </span>
           </div>
           <div className="backto_home_btn common-block">
-            <Button className="home_to_home">Back To Homepage</Button>
+            <Button className="home_to_home" onClick={()=>navigate('/')}>Back To Homepage</Button>
           </div>
 
           <div className="dashboard_bottom">
@@ -191,6 +191,7 @@ const Index = () => {
                     aria-label="Remarks"
                     minRows={3}
                     placeholder="Remarks"
+                    className="textArea"
                     style={{ height: 100 }}
                     value={transactiondetails?.remarks}
                     onChange={(e) => handleTransaction(e)}

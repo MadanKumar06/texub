@@ -73,7 +73,8 @@
                 letter-spacing: 0.54px;
                 text-shadow: 0px 3px 6px rgb(0 0 0 / 16%);
                 cursor: pointer;
-                line-height: initial;   
+                line-height: initial;  
+                text-transform: capitalize;
             }
             .button_add{
                 box-shadow: 0px 3px 6px rgb(0 0 0 / 16%);
@@ -89,6 +90,7 @@
                 text-shadow: 0px 3px 6px rgb(0 0 0 / 16%);
                 cursor: pointer;
                  line-height: initial;   
+                 text-transform: capitalize;
             }
         }
       }
@@ -111,6 +113,7 @@
         .allert_main{
             height: 60vh;
             overflow: auto;
+            padding: 10px 15px 20px;
             .allert_important{
                 .important{
                     font-size: 24px;
@@ -127,6 +130,7 @@
                 }
             }
             .button_section{
+                margin-top: 10px;
             .button_box{
                 button{
                     font-size: 16px !important;
