@@ -36,7 +36,7 @@ const PaginationControlled = ({ PaginateData, DataList, PagePerRow }) => {
       option: JumpToPageOptionValues,
     }));
     window.scrollTo(0, 0);
-  }, [PagePerRow]);
+  }, [PagePerRow, DataList]);
 
   const handleChange = (event, value) => {
     setPage((prevState) => ({
@@ -93,6 +93,14 @@ const PaginationControlled = ({ PaginateData, DataList, PagePerRow }) => {
       localStorage.setItem("enquirypage", JSON.stringify(value));
     } else {
       localStorage.setItem("enquirypage", JSON.stringify(1));
+    }
+    if (
+      window.location.pathname ===
+      `/${customnostore ? customnostore : geo?.country_name}/sellerdashboard/smart-recommendation`
+    ) {
+      localStorage.setItem("smartpage", JSON.stringify(value));
+    } else {
+      localStorage.setItem("smartpage", JSON.stringify(1));
     }
     window.scrollTo(0, 0);
   };
@@ -156,6 +164,18 @@ const PaginationControlled = ({ PaginateData, DataList, PagePerRow }) => {
         parseInt(productpage) > page?.option?.length
           ? page?.option?.length
           : parseInt(productpage);
+    }
+    if (
+      window.location.pathname ===
+      `/${
+        customnostore ? customnostore : geo?.country_name
+      }/sellerdashboard/smart-recommendation`
+    ) {
+      let smartpage = JSON.parse(localStorage.getItem("smartpage"));
+      storedpage =
+        parseInt(smartpage) > page?.option?.length
+          ? page?.option?.length
+          : parseInt(smartpage);
     }
     if (storedpage === null) return;
     setPage((prevState) => ({

@@ -98,6 +98,13 @@ function SellerDashboard() {
   const sidebarstate = () => {
     setbarstate(true);
   };
+  const [searchupdate, setsearchupdate] = useState(false)
+  const updatesearch = (e) => {
+    e.preventDefault()
+    setsearchupdate(!searchupdate)
+  }
+
+  const [search, setSearch] = useState("")
   return (
     <div className="sellerdashboard">
       {/* <img src={bg} alt="" /> */}
@@ -118,33 +125,34 @@ function SellerDashboard() {
           currenttab === "bulkupload" ? (
             ""
           ) : (
-            <div></div>
-            // <div className="sellerdashboard__search">
-            //   <Paper
-            //     className="sellerdashboard__searchinput"
-            //     component="form"
-            //     sx={{ p: "2px 4px", display: "flex", alignItems: "center" }}
-            //   >
-            //     <InputBase
-            //       sx={{ ml: 1, flex: 1 }}
-            //       placeholder="Search..."
-            //       inputProps={{ "aria-label": "search google maps" }}
-            //       className="sellerdashboard__input"
-            //     />
-            //     <IconButton
-            //       type="submit"
-            //       sx={{ p: "10px" }}
-            //       aria-label="search"
-            //       onClick={(event) => event.preventDefault()}
-            //     >
-            //       <SearchIcon />
-            //     </IconButton>
-            //   </Paper>
-            //   {/* <div className="sellerdashboard__notiIcon">
-            //     <img src={notification} alt="" />
-            //   </div>
-            //   <span>Notification</span> */}
-            // </div>
+            <div className="sellerdashboard__search">
+              <Paper
+                className="sellerdashboard__searchinput"
+                component="form"
+                sx={{ p: "2px 4px", display: "flex", alignItems: "center" }}
+              >
+                <InputBase
+                  sx={{ ml: 1, flex: 1 }}
+                  placeholder="Search..."
+                  inputProps={{ "aria-label": "search google maps" }}
+                  className="sellerdashboard__input"
+                  onChange={(e) => setSearch(e.target.value)}
+                  onKeyPress={(e) => e.key === 'Enter' && updatesearch(e)}
+                />
+                <IconButton
+                  type="submit"
+                  sx={{ p: "10px" }}
+                  aria-label="search"
+                  onClick={(e) => updatesearch(e)}
+                >
+                  <SearchIcon />
+                </IconButton>
+              </Paper>
+              {/* <div className="sellerdashboard__notiIcon">
+                <img src={notification} alt="" />
+              </div>
+              <span>Notification</span> */}
+            </div>
           )}
 
           {currenttab === "dashboard" && <Dashboard />}
@@ -183,7 +191,7 @@ function SellerDashboard() {
 
           {currenttab === "directenquiries" && <Directenqueries />}
           {currenttab === "paymentmethods" && <Paymentmethods />}
-          {currenttab === "smart-recommendation" && <SmartRecommendation />}
+          {currenttab === "smart-recommendation" && <SmartRecommendation searchdata={search} searchupdate={searchupdate} />}
         </div>
       </div>
     </div>
