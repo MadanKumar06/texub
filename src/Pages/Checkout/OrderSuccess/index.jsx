@@ -177,7 +177,7 @@ const Index = () => {
                       renderInput={(params) => <TextField {...params} inputProps={{
                         ...params.inputProps,
                         readOnly: true,
-                        placeholder: "DD-MM-YYYY",
+                       placeholder :"DD/MM/YY      |      00:00:00",
                       }} />}
                     />
                   </LocalizationProvider>
