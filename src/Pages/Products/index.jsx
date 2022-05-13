@@ -82,7 +82,6 @@ export const Products = () => {
             },
           })
           .then((res) => {
-            console.log(res?.data?.[2]?.filterArray);
             setuserfilter(res?.data?.[2]?.filterArray);
             sortCall(res?.data?.[1]?.products);
             setDataFromApi(res?.data?.[0]?.layered);
@@ -103,7 +102,22 @@ export const Products = () => {
   }, [currency, getCategories, homeSearch, applyFilter]);
 
   useEffect(() => {
-    localStorage.setItem("filters", JSON.stringify(userfilter));
+    if(userfilter === undefined) return
+    if(localStorage.getItem('filters') == "undefined" || !localStorage.getItem('filters')) {
+      localStorage.setItem("filters", JSON.stringify(userfilter));
+    } else {
+      let currentfilter = JSON.parse(localStorage.getItem('filters'))
+      if(JSON.stringify(userfilter) !== JSON.stringify(currentfilter)) {
+        if(userfilter?.hub_id == "0" && userfilter?.condition_id == "0" && userfilter?.brand_id == "0" || userfilter?.eta == "0") return
+        localStorage.setItem("filters", JSON.stringify(userfilter));
+        setProductFetchApi({
+          hub: userfilter?.hub_id,
+          conditions: userfilter?.condition_id,
+          eta: userfilter?.eta == "0",
+          brand_id: userfilter?.brand_id == "0",
+        })
+      }
+    }
   }, [userfilter]);
 
   useEffect(() => {
@@ -149,7 +163,6 @@ export const Products = () => {
     });
     setProductData(productTableData);
   };
-  console.log(productData);
   const handleRouteChange = () => {
     navigate(
       `/${
