@@ -13,7 +13,7 @@ import { ArrowBackIosNew } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 
 function Index() {
-  const [Row, setRow] = useState([]);
+  const [Row, setRow] = useState([{ Validation: "", ErrorAndSuccess: "" }]);
   //const [{}, dispatch] = useStateValue();
   const [saveuploadFile, setSaveUploadFile] = useState({ files: [] });
   const [uploadFile, setUploadFile] = useState({ files: [] });
@@ -61,7 +61,6 @@ function Index() {
         });
       }
     } catch (e) {
-      console.log(e);
       dispatch({
         type: "SET_IS_LOADING",
         value: false,
@@ -69,6 +68,7 @@ function Index() {
     }
   };
   const handleUploadApiCall = () => {
+    setRow([{ Validation: "", ErrorAndSuccess: "" }]);
     var reader = new FileReader();
     reader.onload = function (e) {
       var data = e.target.result;
@@ -81,178 +81,158 @@ function Index() {
       delete t[key1];
       delete t[key2];
       var XL_row_object = XLSX.utils.sheet_to_json(t);
-
-      handleJSONCreate(XL_row_object);
+      handleBulkUpload(XL_row_object);
     };
     reader.readAsBinaryString(file);
   };
-  const handleJSONCreate = async (rows) => {
-    dispatch({
-      type: "SET_IS_LOADING",
-      value: true,
-    });
-    let requests = [];
-    let RowCount = 3;
-    rows.splice(0, 1);
-    rows?.map((itm) => {
-      if (
-        itm?.__EMPTY ||
-        itm?.__EMPTY_1 ||
-        itm?.__EMPTY_2 ||
-        itm?.__EMPTY_3 ||
-        itm?.__EMPTY_4 ||
-        itm?.__EMPTY_5 ||
-        itm?.__EMPTY_6 ||
-        itm?.__EMPTY_7
-      ) {
-        let customerId = JSON.parse(localStorage.getItem("userdata"));
-        let data = {
-          product_data: {
-            bulkupload: 1,
-            customer_id: customerId?.id,
-            main_category: itm?.__EMPTY_1,
-            other_main_category: "",
-            sub_category: itm?.__EMPTY_2,
-            other_sub_category: "",
-            other_brand_number: "",
-            name: itm?.__EMPTY,
-            texub_product_id: "",
-            mgs_brand: itm?.__EMPTY_3,
-            hsn_code: itm?.__EMPTY_4,
-            sku: itm?.__EMPTY_5,
-            upc_number: itm?.__EMPTY_6,
-            description: itm?.__EMPTY_7,
-          },
-        };
-        requests.push(
-          axios
-            .post(Constant.baseUrl() + "/createSellerProduct", data, {
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${localStorage.getItem("token")}`,
-              },
-            })
-            .then(async (res) => {
-              let temp = `Row ${RowCount} ${res?.data?.[0]?.message}`;
-              RowCount = RowCount + 1;
-              if (res?.data?.[0]?.status) {
-                return Promise.resolve({
-                  success_or_error: "success",
-                  message: temp,
-                });
-              } else {
-                return Promise.resolve({
-                  success_or_error: "error",
-                  message: temp,
-                });
-              }
-            })
-            .catch((err) => {
-              Promise.resolve(false);
-              dispatch({
-                type: "SET_IS_LOADING",
-                value: false,
-              });
-            })
-        );
-      } else if (
-        itm?.__EMPTY_8 ||
-        itm?.__EMPTY_9 ||
-        itm?.__EMPTY_10 ||
-        itm?.__EMPTY_11 ||
-        itm?.__EMPTY_12 ||
-        itm?.__EMPTY_13 ||
-        itm?.__EMPTY_14 ||
-        itm?.__EMPTY_15 ||
-        itm?.__EMPTY_16 ||
-        itm?.__EMPTY_17 ||
-        itm?.__EMPTY_18 ||
-        itm?.__EMPTY_19 ||
-        itm?.__EMPTY_20 ||
-        itm?.__EMPTY_21 ||
-        itm?.__EMPTY_22
-      ) {
-        let customerId = JSON.parse(localStorage.getItem("userdata"));
-        let data = {
-          data: {
-            bulk_upload: 1,
-            customer_id: customerId?.id,
-            product_id: itm?.__EMPTY_8,
-            product_condition: itm?.__EMPTY_18,
-            other_condition: itm?.__EMPTY_19,
-            warranty_type: itm?.__EMPTY_20,
-            warranty_country: itm?.__EMPTY_21,
-            warranty_days: itm?.__EMPTY_22,
-            packing_details: itm?.__EMPTY_23,
-            no_pieces_per: itm?.__EMPTY_25 || itm?.__EMPTY_24,
-            width: itm?.__EMPTY_27,
-            height: itm?.__EMPTY_28,
-            product_length: itm?.__EMPTY_26,
-            weight: itm?.__EMPTY_29,
-            restrictions: itm?.__EMPTY_30,
-            restricted_region: itm?.__EMPTY_31,
-            restricted_country: itm?.__EMPTY_32,
-            description: itm?.__EMPTY_33,
-            product_details: [
-              {
-                hub_id: itm?.__EMPTY_9,
-                currency_id: itm?.__EMPTY_10,
-                price: itm?.__EMPTY_11,
-                in_stock: itm?.__EMPTY_12,
-                eta: itm?.__EMPTY_13,
-                moq: itm?.__EMPTY_14,
-                cgst: itm?.__EMPTY_15,
-                sgst: itm?.__EMPTY_17,
-                igst: itm?.__EMPTY_16,
-              },
-            ],
-          },
-        };
-        requests.push(
-          axios
-            .post(Constant.baseUrl() + "/saveProductPrice", data, {
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${localStorage.getItem("token")}`,
-              },
-            })
-            .then((res) => {
-              let temp = `Row ${RowCount} ${res?.data?.[0]?.message}`;
-              RowCount = RowCount + 1;
-              if (res?.data?.[0]?.status) {
-                return Promise.resolve({
-                  success_or_error: "success",
-                  message: temp,
-                });
-              } else {
-                return Promise.resolve({
-                  success_or_error: "error",
-                  message: temp,
-                });
-              }
-            })
-            .catch((err) => {
-              Promise.resolve({
-                success_or_error: "error",
-                message: err.response.data.message,
-              });
-              dispatch({
-                type: "SET_IS_LOADING",
-                value: false,
-              });
-            })
-        );
-      }
-    });
 
-    await Promise.all(requests).then((results) => {
-      console.log("All requests finished!", results);
-      dispatch({
-        type: "SET_IS_LOADING",
-        value: false,
-      });
-      setRow(results);
-    });
+  async function handleBulkUpload(rows) {
+    rows.splice(0, 1);
+    for (let i = 0; i < rows?.length; i++) {
+      handleJSONCreate(rows, i);
+    }
+  }
+  let RowCount = 3;
+  const handleJSONCreate = async (rows, i) => {
+    if (
+      rows[i]?.__EMPTY ||
+      rows[i]?.__EMPTY_1 ||
+      rows[i]?.__EMPTY_2 ||
+      rows[i]?.__EMPTY_3 ||
+      rows[i]?.__EMPTY_4 ||
+      rows[i]?.__EMPTY_5 ||
+      rows[i]?.__EMPTY_6 ||
+      rows[i]?.__EMPTY_7
+    ) {
+      let customerId = JSON.parse(localStorage.getItem("userdata"));
+      let data = {
+        product_data: {
+          bulkupload: 1,
+          customer_id: customerId?.id,
+          main_category: rows[i]?.__EMPTY_1,
+          other_main_category: "",
+          sub_category: rows[i]?.__EMPTY_2,
+          other_sub_category: "",
+          other_brand_number: "",
+          name: rows[i]?.__EMPTY,
+          texub_product_id: "",
+          mgs_brand: rows[i]?.__EMPTY_3,
+          hsn_code: rows[i]?.__EMPTY_4,
+          sku: rows[i]?.__EMPTY_5,
+          upc_number: rows[i]?.__EMPTY_6,
+          description: rows[i]?.__EMPTY_7,
+        },
+      };
+      await axios
+        .post(Constant.baseUrl() + "/createSellerProduct", data, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        })
+        .then((res) => {
+          let temp = `Row ${RowCount} ${res?.data?.[0]?.message}`;
+          RowCount = RowCount + 1;
+          if (res?.data?.[0]?.status) {
+            setRow((prev) => [
+              ...prev,
+              { Validation: temp, ErrorAndSuccess: "success" },
+            ]);
+          } else {
+            setRow((prev) => [
+              ...prev,
+              { Validation: temp, ErrorAndSuccess: "error" },
+            ]);
+          }
+        })
+        .catch((err) => {
+          dispatch({
+            type: "SET_IS_LOADING",
+            value: false,
+          });
+        });
+    } else if (
+      rows[i]?.__EMPTY_8 ||
+      rows[i]?.__EMPTY_9 ||
+      rows[i]?.__EMPTY_10 ||
+      rows[i]?.__EMPTY_11 ||
+      rows[i]?.__EMPTY_12 ||
+      rows[i]?.__EMPTY_13 ||
+      rows[i]?.__EMPTY_14 ||
+      rows[i]?.__EMPTY_15 ||
+      rows[i]?.__EMPTY_16 ||
+      rows[i]?.__EMPTY_17 ||
+      rows[i]?.__EMPTY_18 ||
+      rows[i]?.__EMPTY_19 ||
+      rows[i]?.__EMPTY_20 ||
+      rows[i]?.__EMPTY_21 ||
+      rows[i]?.__EMPTY_22
+    ) {
+      let customerId = JSON.parse(localStorage.getItem("userdata"));
+      let data = {
+        data: {
+          bulk_upload: 1,
+          customer_id: customerId?.id,
+          product_id: rows[i]?.__EMPTY_8,
+          product_condition: rows[i]?.__EMPTY_18,
+          other_condition: rows[i]?.__EMPTY_19,
+          warranty_type: rows[i]?.__EMPTY_20,
+          warranty_country: rows[i]?.__EMPTY_21,
+          warranty_days: rows[i]?.__EMPTY_22,
+          packing_details: rows[i]?.__EMPTY_23,
+          no_pieces_per: rows[i]?.__EMPTY_25 || rows[i]?.__EMPTY_24,
+          width: rows[i]?.__EMPTY_27,
+          height: rows[i]?.__EMPTY_28,
+          product_length: rows[i]?.__EMPTY_26,
+          weight: rows[i]?.__EMPTY_29,
+          restrictions: rows[i]?.__EMPTY_30,
+          restricted_region: rows[i]?.__EMPTY_31,
+          restricted_country: rows[i]?.__EMPTY_32,
+          description: rows[i]?.__EMPTY_33,
+          product_details: [
+            {
+              hub_id: rows[i]?.__EMPTY_9,
+              currency_id: rows[i]?.__EMPTY_10,
+              price: rows[i]?.__EMPTY_11,
+              in_stock: rows[i]?.__EMPTY_12,
+              eta: rows[i]?.__EMPTY_13,
+              moq: rows[i]?.__EMPTY_14,
+              cgst: rows[i]?.__EMPTY_15,
+              sgst: rows[i]?.__EMPTY_17,
+              igst: rows[i]?.__EMPTY_16,
+            },
+          ],
+        },
+      };
+      await axios
+        .post(Constant.baseUrl() + "/saveProductPrice", data, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        })
+        .then((res) => {
+          let temp = `Row ${RowCount} ${res?.data?.[0]?.message}`;
+          RowCount = RowCount + 1;
+          if (res?.data?.[0]?.status) {
+            setRow((prev) => [
+              ...prev,
+              { Validation: temp, ErrorAndSuccess: "success" },
+            ]);
+          } else {
+            setRow((prev) => [
+              ...prev,
+              { Validation: temp, ErrorAndSuccess: "error" },
+            ]);
+          }
+        })
+        .catch((err) => {
+          dispatch({
+            type: "SET_IS_LOADING",
+            value: false,
+          });
+        });
+    }
   };
   const fileHandler = (event) => {
     setChoosenFile(event?.target?.files[0]);
@@ -260,7 +240,7 @@ function Index() {
     setSaveUploadFile({ files: [...event.target.files] });
   };
   const handleSaveFile = () => {
-    setRow([]);
+    setRow([{ Validation: "", ErrorAndSuccess: "" }]);
     setFile({});
     if (choosenFile !== "") {
       swal.fire({
@@ -282,10 +262,10 @@ function Index() {
         url: `${Constant?.baseUrl()}/getBulkUploadFile`,
       });
       setsamplefile(sample?.data[0]?.bulkupload_sample);
-    } catch (e) {
-      console.log(e);
-    }
+    } catch (e) {}
   }, []);
+
+  console.log(Row);
   return (
     <div className="bulk_upload">
       <div className="bulkUpload_container">
@@ -403,10 +383,10 @@ function Index() {
             ? Row?.map((itm, ind) => {
                 return (
                   <div>
-                    {itm?.success_or_error === "success" ? (
-                      <p className="success">{itm?.message}</p>
+                    {itm?.ErrorAndSuccess === "success" ? (
+                      <p className="success">{itm?.Validation}</p>
                     ) : (
-                      <p className="error">{itm?.message}</p>
+                      <p className="error">{itm?.Validation}</p>
                     )}
                   </div>
                 );

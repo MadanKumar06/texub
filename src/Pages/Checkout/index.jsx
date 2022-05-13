@@ -693,7 +693,7 @@ const Checkout = () => {
           (per) =>
             per?.value === "can-place-order" && per?.permission_value === 0
         );
-  console.log(quotedata[0]?.payment_methods);
+  console.log(quotedata[0]);
 
   const handleChange = () => {
     var printContents = document.getElementById("Checkout_page").innerHTML;
