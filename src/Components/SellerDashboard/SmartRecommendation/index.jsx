@@ -9,15 +9,29 @@ import Constant from "../../../Constant";
 import { useStateValue } from "../../../store/state";
 import { TextField, InputAdornment, IconButton } from "@mui/material";
 
-const Index = () => {
+const Index = ({ searchdata, searchupdate }) => {
   const [tableData, setTableData] = useState([]);
   const [{ geo, customnostore }, dispatch] = useStateValue();
   const [apiTableData, setApiTableData] = useState([]);
+  const [filteredata, setfiltereddata] = useState([])
+
+  useEffect(() => {
+    if(apiTableData?.length === 0) return
+    if(searchdata === '') {
+      setfiltereddata(apiTableData)
+    } else {
+      let temp = apiTableData?.filter(td => td?.product_name?.toLowerCase()?.includes(searchdata?.toLowerCase()))
+      setfiltereddata(temp)
+    }
+  }, [searchupdate, apiTableData])
+  console.log(filteredata)
 
   const PaginateDataSplit = (event) => {
-    if (apiTableData?.length === 0) return setApiTableData([]);
+    debugger
+    if (filteredata?.length === 0) return setfiltereddata([]);
     setTableData(event);
   };
+  console.log(tableData)
 
   function formatToCurrency(price) {
     return price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
@@ -162,16 +176,19 @@ const Index = () => {
   ];
   return (
     <div className="smart_main">
-      <MUITable
-        columns={columns}
-        table={tableData?.length ? tableData : []}
-        options={options}
-        className="smart__table"
-      />
-      {apiTableData?.length > 0 ? (
+      {tableData?.length ? 
+        <MUITable
+          columns={columns}
+          table={tableData?.length ? tableData : []}
+          options={options}
+          className="smart__table"
+        />
+        : ""
+      }
+      {filteredata?.length > 0 ? (
         <Pagination
           PaginateData={PaginateDataSplit}
-          DataList={apiTableData?.length ? apiTableData : []}
+          DataList={filteredata?.length ? filteredata : []}
           PagePerRow={10}
         />
       ) : (

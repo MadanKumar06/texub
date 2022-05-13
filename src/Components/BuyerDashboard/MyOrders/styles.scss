@@ -42,7 +42,7 @@
         color: #959595;
         text-align: center;
         font-weight: 600;
-        padding: 10px 15px;
+        border-top: 1px solid rgba(224, 224, 224, 1);
       }
     }
 
@@ -51,7 +51,7 @@
         font-size: 18px;
         text-align: center;
         color: #333c42;
-        padding: 10px 15px;
+        
       }
 
       .myorders__orderid {
@@ -68,7 +68,11 @@
         font-weight: 600;
         letter-spacing: 0.48px;
         .currency {
-          font-size: 16px;
+          font-size: 14px;
+          font-weight: normal;
+        }
+         .price {
+          font-size: 22px;
         }
       }
 
@@ -206,7 +210,45 @@
 @media (max-width: 1660px) {
   .myorders .myorders__table {
     .MuiTableHead-root .MuiTableCell-root {
-      font-size: 16px;
+      font-size: 20px;
+    }
+
+    .MuiTableBody-root {
+      .myorders__action {
+        font-size: 18px;
+        
+      }
+
+      .MuiTableCell-root {
+        font-size: 18px;
+      }
+    }
+  }
+  .myorders .myorders__table .MuiTableBody-root .myorders__ordertotal {
+     .currency {
+          font-size: 14px;
+        }
+         .price {
+          font-size: 20px;
+        }
+  }
+  .myorders .myorders__buttons p {
+    padding: 0.5em 1.2em;
+    font-size: 18px;
+  }
+  .myorders .my_orders__footer .my_orders__container a .MuiSvgIcon-root {
+    width: 0.6em;
+    height: 0.6em;
+  }
+  .myorders .my_orders__footer .my_orders__container a span {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 1440px) {
+ .myorders .myorders__table {
+    .MuiTableHead-root .MuiTableCell-root {
+      font-size: 14px;
     }
 
     .MuiTableBody-root {
@@ -221,8 +263,12 @@
   }
   .myorders .myorders__table .MuiTableBody-root .myorders__ordertotal {
     .currency {
-      font-size: 14px;
-    }
+          font-size: 12px;
+          font-weight: normal;
+        }
+         .price {
+          font-size: 18px;
+        }
   }
   .myorders .myorders__buttons p {
     padding: 0.5em 1.2em;
@@ -233,7 +279,7 @@
     height: 0.6em;
   }
   .myorders .my_orders__footer .my_orders__container a span {
-    font-size: 18px;
+    font-size: 14px;
   }
 }
 
