@@ -140,9 +140,78 @@ const Checkout = () => {
     firstname: "",
   });
 
+  const [addressvalidation, setaddressvalidation] = useState({
+    organization_name: "",
+    address_line1: "",
+    address_line2: "",
+    city: "",
+    pincode: "",
+    billtype: "",
+    country: "",
+    lastname: "",
+    firstname: "",
+  });
+
   const addressadd = (e) => {
     setaddressdata((prev) => ({ ...prev, [e.target.name]: e.target.value,  }));
   };
+
+  const handleaddressvalidation = () => {
+    let errorhandle = false
+    // if(!addressdata?.billtype) {
+    //   setaddressvalidation(prevstate => ({
+    //     ...prevstate,
+    //     billtype: 'Please select Address Type'
+    //   }))
+    //   errorhandle = true
+    // }
+    if(!addressdata?.address_line1) {
+      setaddressvalidation(prevstate => ({
+        ...prevstate,
+        address_line1: 'Please type Address Line 1'
+      }))
+      errorhandle = true
+    }
+    if(!addressdata?.address_line2) {
+      setaddressvalidation(prevstate => ({
+        ...prevstate,
+        address_line2: 'Please type Address Line 1'
+      }))
+      errorhandle = true
+    }
+    if(!addressdata?.organization_name) {
+      setaddressvalidation(prevstate => ({
+        ...prevstate,
+        organization_name: 'Please type Organization Name'
+      }))
+      errorhandle = true
+    }
+    if(!addressdata?.country) {
+      setaddressvalidation(prevstate => ({
+        ...prevstate,
+        country: 'Please type Country'
+      }))
+      errorhandle = true
+    }
+    if(!addressdata?.pincode) {
+      setaddressvalidation(prevstate => ({
+        ...prevstate,
+        pincode: 'Please type Pincode'
+      }))
+      errorhandle = true
+    }
+    if(!addressdata?.city) {
+      setaddressvalidation(prevstate => ({
+        ...prevstate,
+        city: 'Please type Pincode'
+      }))
+      errorhandle = true
+    }
+
+    if(!errorhandle) {
+      saveaddress()
+    }
+  }
 
   useEffect(() => {
     const fetchCountryData = () => {
@@ -1267,6 +1336,7 @@ const Checkout = () => {
                         />
                       </RadioGroup>
                     </FormControl>
+                    {/* {addressvalidation?.billtype ? <p style={{ color: 'red' }}>{addressvalidation?.billtype}</p> : ""} */}
                   </div>
                 </div>
 
@@ -1283,6 +1353,7 @@ const Checkout = () => {
                       onChange={(e) => addressadd(e)}
                       value={addressdata?.organization_name}
                     />
+                    {addressvalidation?.organization_name ? <p style={{ color: 'red' }}>{addressvalidation?.organization_name}</p> : ""}
                   </div>
                   <div className="address_fields">
                     <InputLabel>Address Line 1</InputLabel>
@@ -1295,6 +1366,7 @@ const Checkout = () => {
                       onChange={(e) => addressadd(e)}
                       value={addressdata?.address_line1}
                     />
+                    {addressvalidation?.address_line1 ? <p style={{ color: 'red' }}>{addressvalidation?.address_line1}</p> : ""}
                   </div>
                 </div>
                 <div className="address_field_block">
@@ -1309,6 +1381,7 @@ const Checkout = () => {
                       onChange={(e) => addressadd(e)}
                       value={addressdata?.address_line2}
                     />
+                    {addressvalidation?.address_line2 ? <p style={{ color: 'red' }}>{addressvalidation?.address_line2}</p> : ""}
                   </div>
                   <div className="address_fields">
                     <InputLabel>Pincode</InputLabel>
@@ -1321,6 +1394,7 @@ const Checkout = () => {
                       onChange={(e) => addressadd(e)}
                       value={addressdata?.pincode}
                     />
+                    {addressvalidation?.pincode ? <p style={{ color: 'red' }}>{addressvalidation?.pincode}</p> : ""}
                   </div>
                 </div>
 
@@ -1336,26 +1410,8 @@ const Checkout = () => {
                       onChange={(e) => addressadd(e)}
                       value={addressdata?.city}
                     />
+                    {addressvalidation?.city ? <p style={{ color: 'red' }}>{addressvalidation?.city}</p> : ""}
                   </div>
-                  {/* <div className="address_fields">
-                    <InputLabel id="address_field">State</InputLabel>
-                    <FormControl className="address_select_field_box">
-                      <Select
-                        labelId="demo-simple-select-label"
-                        id="selection_box_block"
-                        label="state"
-                        name="state"
-                        placeholder="State"
-                        onChange={(e) => addressadd(e)}
-                        value={addressdata?.state}
-                      >
-                        {countryList?.map((cl) => (
-                          <MenuItem value={cl?.value}>{cl?.label}</MenuItem>
-                        ))}
-                      </Select>
-                    </FormControl>
-                  </div>
-                   */}
                   <div className="address_fields">
                     <InputLabel id="address_field">Country</InputLabel>
                     <FormControl
@@ -1391,6 +1447,7 @@ const Checkout = () => {
                         ))}
                       </Select>
                     </FormControl>
+                    {addressvalidation?.country ? <p style={{ color: 'red' }}>{addressvalidation?.country}</p> : ""}
                   </div>
                 </div>
 
@@ -1424,7 +1481,7 @@ const Checkout = () => {
                   >
                     Cancel
                   </Button>
-                  <Button className="address_save_btn" onClick={saveaddress}>
+                  <Button className="address_save_btn" onClick={handleaddressvalidation}>
                     Save Changes
                   </Button>
                 </div>
