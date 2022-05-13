@@ -341,8 +341,9 @@ const Index = ({ orders, currentorder }) => {
                   <div className="vieworders_shippingaddress_section">
                     <div className="vieworders_shippingaddress">
                       <li className="vieworders_list">
-                        <span className="heading">
-                          {detailsorder?.[0]?.order_details?.[0]?.shipping_name}
+                        <span className="heading address_heading">
+                          Shipping Address
+                          {/* {detailsorder?.[0]?.order_details?.[0]?.shipping_name} */}
                         </span>
                         <span className="name">
                           {" "}
@@ -358,8 +359,9 @@ const Index = ({ orders, currentorder }) => {
                     </div>
                     <div className="vieworders_shippingaddress">
                       <li className="vieworders_list">
-                        <span className="heading">
-                          {detailsorder?.[0]?.order_details?.[0]?.billing_name}
+                        <span className="heading address_heading">
+                          Billing Address
+                          {/* {detailsorder?.[0]?.order_details?.[0]?.billing_name} */}
                         </span>
                         <span className="name">
                           {" "}
@@ -506,12 +508,12 @@ const Index = ({ orders, currentorder }) => {
             </div>
           </div>
         </div>
-        <div className="invoices__footer">
+        {/* <div className="invoices__footer">
           <div className="invoices__container" onClick={() => orders()}>
             <ArrowBackIosNew />
             <span>Back</span>
           </div>
-        </div>
+        </div> */}
         <div>
           <Modal
             open={open}

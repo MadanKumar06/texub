@@ -189,6 +189,9 @@
                 font-weight: 600;
                 opacity: 1;
               }
+              .address_heading{
+                color: #e9be6c;
+              }
               .name {
                 color: #858a8e;
                 font-size: 24px;
@@ -527,7 +530,8 @@
     font-size: 16px;
   }
   .vieworders_main .vieworders_heading_section .status {
-    padding: 5px 25px;
+    padding: 5px 20px;
+    margin: 0 10px 5px;
   }
   .vieworders_main
     .vieworders__table
