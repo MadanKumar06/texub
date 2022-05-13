@@ -38,7 +38,7 @@
     }
     .MuiTableHead-root {
       .MuiTableCell-root {
-        font-size: 18px;
+        font-size: 20px;
         color: #959595;
         text-align: center;
         font-weight: 600;
@@ -60,6 +60,9 @@
       }
       .directenquiries__order_id {
         font-weight: 600;
+      }
+      .enq_id{
+        font-size: 18px;
       }
       .return_quantity {
         border: 1px solid #cecece;
@@ -178,7 +181,7 @@
     .MuiTable-root {
       .MuiTableHead-root {
         .MuiTableCell-root {
-          font-size: 18px;
+          font-size: 20px;
         }
       }
 
@@ -238,6 +241,9 @@
       .MuiTableBody-root {
         .MuiTableCell-root {
           font-size: 14px;
+          .enq_id{
+              font-size: 14px;
+            }
         }
 
         .directenquiries_products .directenquiries_product_name {

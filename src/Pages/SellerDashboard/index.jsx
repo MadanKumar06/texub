@@ -118,32 +118,33 @@ function SellerDashboard() {
           currenttab === "bulkupload" ? (
             ""
           ) : (
-            <div className="sellerdashboard__search">
-              <Paper
-                className="sellerdashboard__searchinput"
-                component="form"
-                sx={{ p: "2px 4px", display: "flex", alignItems: "center" }}
-              >
-                <InputBase
-                  sx={{ ml: 1, flex: 1 }}
-                  placeholder="Search..."
-                  inputProps={{ "aria-label": "search google maps" }}
-                  className="sellerdashboard__input"
-                />
-                <IconButton
-                  type="submit"
-                  sx={{ p: "10px" }}
-                  aria-label="search"
-                  onClick={(event) => event.preventDefault()}
-                >
-                  <SearchIcon />
-                </IconButton>
-              </Paper>
-              {/* <div className="sellerdashboard__notiIcon">
-                <img src={notification} alt="" />
-              </div>
-              <span>Notification</span> */}
-            </div>
+            <div></div>
+            // <div className="sellerdashboard__search">
+            //   <Paper
+            //     className="sellerdashboard__searchinput"
+            //     component="form"
+            //     sx={{ p: "2px 4px", display: "flex", alignItems: "center" }}
+            //   >
+            //     <InputBase
+            //       sx={{ ml: 1, flex: 1 }}
+            //       placeholder="Search..."
+            //       inputProps={{ "aria-label": "search google maps" }}
+            //       className="sellerdashboard__input"
+            //     />
+            //     <IconButton
+            //       type="submit"
+            //       sx={{ p: "10px" }}
+            //       aria-label="search"
+            //       onClick={(event) => event.preventDefault()}
+            //     >
+            //       <SearchIcon />
+            //     </IconButton>
+            //   </Paper>
+            //   {/* <div className="sellerdashboard__notiIcon">
+            //     <img src={notification} alt="" />
+            //   </div>
+            //   <span>Notification</span> */}
+            // </div>
           )}
 
           {currenttab === "dashboard" && <Dashboard />}

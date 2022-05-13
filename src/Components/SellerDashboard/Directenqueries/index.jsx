@@ -115,7 +115,7 @@ const Index = () => {
       label: "Enq. No.",
       options: {
         customBodyRender: (value) => {
-          return <div className="directenquiries__order_id">{value}</div>;
+          return <div className="directenquiries__order_id enq_id">{value}</div>;
         },
       },
     },

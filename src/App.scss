@@ -79,6 +79,15 @@
       }
     }
   }
+  .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline{
+     border-color: #ddb363;
+  }
+  .MuiOutlinedInput-root{
+    &:hover fieldset {
+      border-color: #ddb363;
+      color: #ddb363 ;
+    }
+  }
   .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
     border: 1px solid #ddb363;
   }
