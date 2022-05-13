@@ -205,7 +205,7 @@ function Index({
           <div className="price_customize">
             <Autocomplete
               name=""
-              id="controllable-states-demo"
+              id="price_currency"
               value={currentcurrency}
               options={options ? options : []}
               onChange={(event, newValue) => {
@@ -292,7 +292,8 @@ function Index({
             ETA (Days)<small className="asterisk">*</small>
           </InputLabel>
           <TextField
-            id="part_number"
+           // id="part_number"
+            id="eta_field"
             name="part_nymber"
             type="number"
             placeholder="05"
@@ -322,7 +323,7 @@ function Index({
             MOQ<small className="asterisk">*</small>
           </InputLabel>
           <TextField
-            id="part_number"
+            id="moq_field"
             name="part_nymber"
             className="inputfield-box"
             placeholder="50"
