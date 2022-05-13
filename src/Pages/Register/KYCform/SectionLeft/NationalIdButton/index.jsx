@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "../styles";
-import { TextField, Autocomplete, InputLabel } from "@mui/material";
+import { InputLabel } from "@mui/material";
 import { withStyles } from "@mui/styles";
 import { Clear } from "@mui/icons-material";
 import uploadImage from "../../../../../Assets/CommonImage/KYC Form/Icon.png";

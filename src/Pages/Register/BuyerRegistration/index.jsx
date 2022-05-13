@@ -57,7 +57,7 @@ const BuyerRegistration = ({ classes }) => {
     password: "",
     company: "",
     designation: "",
-    country: "",
+    country: null,
     confrim_password: "",
     mobile_valid: "",
     checkbox_confrim: false,
