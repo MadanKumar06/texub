@@ -35,6 +35,7 @@ const PaginationControlled = ({ PaginateData, DataList, PagePerRow }) => {
       ...prevState,
       option: JumpToPageOptionValues,
     }));
+    window.scrollTo(0, 0);
   }, [PagePerRow]);
 
   const handleChange = (event, value) => {
@@ -93,6 +94,7 @@ const PaginationControlled = ({ PaginateData, DataList, PagePerRow }) => {
     } else {
       localStorage.setItem("enquirypage", JSON.stringify(1));
     }
+    window.scrollTo(0, 0);
   };
 
   useEffect(() => {

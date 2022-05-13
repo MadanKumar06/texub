@@ -64,11 +64,13 @@ const Checkout = () => {
       setaddressdata({});
     }
   };
-  const handleClose = () =>
+  const handleClose = () => {
+    seteditradio(false)
     setOpen({
       open: "",
       openClose: false,
     });
+  }
   const [quotedata, setqutoedata] = useState([]);
   const { quoteid } = useParams();
   const [{ currency, geo, customnostore }, dispatch] = useStateValue();
@@ -78,7 +80,7 @@ const Checkout = () => {
     email_address: "",
     mobile_number: "",
   });
-  const [payment, setpayment] = useState(null);
+  const [payment, setpayment] = useState("banktransfer");
   const [countryList, setCountryList] = useState([]);
   const [formerror, setformerror] = useState({
     bussiness_name: true,
@@ -109,7 +111,6 @@ const Checkout = () => {
     setformerror({ ...formerror, [e.target.name]: true });
   };
 
-  console.log(payment);
   const [adminToken, setAdminToken] = useState("");
   useEffect(() => {
     getAdminToken((res) => {
@@ -140,8 +141,7 @@ const Checkout = () => {
   });
 
   const addressadd = (e) => {
-    debugger;
-    setaddressdata((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    setaddressdata((prev) => ({ ...prev, [e.target.name]: e.target.value,  }));
   };
 
   useEffect(() => {
@@ -215,6 +215,7 @@ const Checkout = () => {
         type: "SET_IS_LOADING",
         value: false,
       });
+      seteditradio(false)
       console.log(e);
     }
   };
@@ -276,12 +277,9 @@ const Checkout = () => {
       id: temp?.[0]?.address_id,
       billtype: "texub_shipping",
     }));
-    debugger;
-    seteditradio(true);
+    seteditradio(true)
     handleOpen("edit_new_address");
   };
-
-  console.log(addressdata);
 
   const selectaddress = (itm) => {
     if (quotedata[0]?.invoice?.pending_invoice_status !== "1") return;
@@ -538,10 +536,7 @@ const Checkout = () => {
               telephone: 123,
             },
             payment: {
-              method:
-                payment !== null
-                  ? payment
-                  : quotedata[0]?.payment_methods?.[0]?.value,
+              method: payment
             },
             extension_attributes: {
               pending_invoice_status:
@@ -597,9 +592,13 @@ const Checkout = () => {
         showConfirmButton: false,
         timer: 3000,
       });
-      navigate(
-        `/${customnostore ? customnostore : geo?.country_name}/ordersuccess`
-      );
+      if(payment === 'banktransfer') {
+        navigate(
+          `/${customnostore ? customnostore : geo?.country_name}/ordersuccess/${postquote?.data?.entity_id}`
+        );
+      } else {
+        navigate(`/${customnostore ? customnostore : geo?.country_name}/buyerdashboard/myorder`)
+      }
       setpickup({
         bussiness_name: "",
         contact_person: "",
@@ -614,6 +613,8 @@ const Checkout = () => {
       console.log(e);
     }
   };
+
+  console.log(payment)
   const navigate = useNavigate();
   let permissions = JSON.parse(localStorage.getItem("permissions"));
   let placeorder =

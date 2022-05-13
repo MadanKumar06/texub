@@ -102,8 +102,6 @@ export const Products = () => {
     }
   }, [currency, getCategories, homeSearch, applyFilter]);
 
-  console.log(userfilter);
-
   useEffect(() => {
     localStorage.setItem("filters", JSON.stringify(userfilter));
   }, [userfilter]);

@@ -289,7 +289,9 @@ function Index() {
             <div className="order_status_info">
               <div className="orderstatus_section">
                 <span className="orderinfo_name">Order Status</span>
-                <span className="orderinfo_value">Pending</span>
+                <span className="orderinfo_value">
+                  {pendingInvoiceList?.invoice?.status}
+                </span>
               </div>
             </div>
             <div className="order_apply_btns">

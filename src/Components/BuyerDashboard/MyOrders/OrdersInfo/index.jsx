@@ -73,16 +73,7 @@ const Index = ({ orders, currentorder }) => {
           customerId: user?.id,
         },
       });
-      if (orderdetails?.data?.[0]?.status) {
-        setdetailsorder(orderdetails?.data);
-      } else {
-        swal.fire({
-          text: `${orderdetails?.data?.[0]?.message}`,
-          icon: "error",
-          showConfirmButton: false,
-          timer: 3000,
-        });
-      }
+      setdetailsorder(orderdetails?.data);
       dispatch({
         type: "SET_IS_LOADING",
         value: false,
@@ -432,9 +423,11 @@ const Index = ({ orders, currentorder }) => {
                       ) : (
                         <span
                           className="update_transaction_block"
+                          style={{ curosr: 'pointer' }}
                           onClick={() => setisTransaction(true)}
                         >
-                          Update Transaction Details
+                        {detailsorder?.[0]?.order_details?.[0]
+                          ?.payment_method === "banktransfer" && "Update Transaction Details"}
                         </span>
                       )}
                     </div>
@@ -492,11 +485,11 @@ const Index = ({ orders, currentorder }) => {
                 <div className="vieworders_emtpy">
                   <span></span>
                 </div>
-                <div className="remart_block">
+                {detailsorder?.[0]?.order_details?.[0]?.delivery_doc && <div className="remart_block">
                   <div className="handover_document_section">
                     <img src={download} alt="" className="download"></img>
                     <span className="document_text">
-                      Download Handover Documents
+                      <a style={{ color: 'inherit' }} href={detailsorder?.[0]?.order_details?.[0]?.delivery_doc}>Download Handover Documents</a>
                     </span>
                   </div>
                   <div className="remkark_section">
@@ -508,7 +501,7 @@ const Index = ({ orders, currentorder }) => {
                       accusam
                     </span>
                   </div>
-                </div>
+                </div>}
               </div>
             </div>
           </div>
