@@ -38,7 +38,7 @@
                 .msg{
                     color: #5c6369;
                     font-size: 20px;
-                    font-weight: normal;
+                    font-weight: 600;
                     letter-spacing: 1.2px;
                 }
             }
@@ -140,6 +140,14 @@
                 }
             }
         }
+    }
+    .textArea{
+        outline: none;
+        border: 1px solid rgb(0 0 0 / 26%) !important;
+        border-radius: 5px;
+    }
+    .textArea:hover{
+         border: 1px solid #DDB363 !important;
     }
 }
 
