@@ -138,7 +138,7 @@ function Index() {
           return (
             <div className="invoices__amount">
               <span className="currency">{currency_id} </span>
-              <span className="price">{formatToCurrency(parseFloat(value).toFixed(2))}</span>
+              <span className="price">{formatToCurrency(parseFloat(value))}</span>
             </div>
           );
         },
