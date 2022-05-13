@@ -108,13 +108,13 @@ export const Products = () => {
     } else {
       let currentfilter = JSON.parse(localStorage.getItem('filters'))
       if(JSON.stringify(userfilter) !== JSON.stringify(currentfilter)) {
-        if(userfilter?.hub_id == "0" && userfilter?.condition_id == "0" && userfilter?.brand_id == "0" || userfilter?.eta == "0") return
+        if(userfilter?.hub_id == "0" && userfilter?.condition_id == "0" && userfilter?.brand_id == "0" && userfilter?.eta == "0") return
         localStorage.setItem("filters", JSON.stringify(userfilter));
         setProductFetchApi({
           hub: userfilter?.hub_id,
           conditions: userfilter?.condition_id,
-          eta: userfilter?.eta == "0",
-          brand_id: userfilter?.brand_id == "0",
+          eta: userfilter?.eta,
+          brand_id: userfilter?.brand_id,
         })
       }
     }
