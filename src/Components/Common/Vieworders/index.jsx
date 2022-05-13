@@ -7,7 +7,7 @@ import Constant from "../../../Constant";
 import { useStateValue } from "../../../store/state";
 import { getAdminToken } from "../../../utilities";
 import swal from "sweetalert2";
-import moment from 'moment'
+import moment from "moment";
 
 import {
   Radio,
@@ -21,6 +21,7 @@ import {
   Stepper,
   Box,
 } from "@mui/material";
+import uploadImage from "../../../Assets/CommonImage/KYC Form/Export.png";
 
 const options = {
   filter: false,
@@ -143,7 +144,7 @@ const columns = [
   },
 ];
 
-const Index = ({viewDetail, setvieworder }) => {
+const Index = ({ viewDetail, setvieworder }) => {
   const [radiogroup, setRadioGroup] = useState(1);
   const [trigger, setTrigger] = useState(false);
   const [{}, dispatch] = useStateValue();
@@ -154,7 +155,107 @@ const Index = ({viewDetail, setvieworder }) => {
       setAdminToken(res);
     });
   }, []);
+
+  const ConfirmAttachment = (File, temp) => {
+    swal
+      .fire({
+        title: "Are you sure?",
+        text: `You Need to Attach ${File?.name} File!`,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Attach Invoice!",
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          handleAttachment(temp);
+        }
+      });
+  };
+  const handleImageChange = (event) => {
+    toBase64(event.target?.files[0], event.target?.files[0]?.type);
+  };
+  const toBase64 = (File, type) => {
+    var reader = new FileReader();
+    reader.readAsDataURL(File);
+    reader.onload = function () {
+      if (type === "image/png") {
+        let temp = reader.result?.replace("data:image/png;base64,", "png;");
+
+        ConfirmAttachment(File, temp);
+      } else if (type === "application/pdf") {
+        let temp = reader.result?.replace(
+          "data:application/pdf;base64,",
+          "pdf;"
+        );
+
+        ConfirmAttachment(File, temp);
+      } else if (type === "image/jpeg") {
+        let temp = reader.result?.replace("data:image/jpeg;base64,", "jpeg;");
+        ConfirmAttachment(File, temp);
+      }
+    };
+    reader.onerror = function (error) {
+      console.log("Error: ", error);
+    };
+  };
+  const handleAttachment = (event) => {
+    dispatch({
+      type: "SET_IS_LOADING",
+      value: true,
+    });
+    let data = {
+      item_id: viewDetail?.[0]?.item_id,
+      attachment: event,
+    };
+    axios
+      .post(Constant.baseUrl() + "/invoiceAttachment", data, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((res) => {
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+        if (res?.data?.[0]?.status) {
+          swal.fire({
+            text: `${res?.data?.[0]?.message}`,
+            icon: "success",
+            showConfirmButton: false,
+            timer: 3000,
+          });
+        } else {
+          swal.fire({
+            text: `${res?.data?.[0]?.message}`,
+            icon: "error",
+            showConfirmButton: false,
+            timer: 3000,
+          });
+        }
+      })
+      .catch((err) => {
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+        swal.fire({
+          text: `${err?.response?.data?.message}`,
+          icon: "error",
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      });
+  };
+
   const handleAPICall = (event) => {
+    dispatch({
+      type: "SET_IS_LOADING",
+      value: true,
+    });
     let data = {
       itemId: viewDetail?.[0]?.item_id,
       orderStatus: event,
@@ -270,7 +371,22 @@ const Index = ({viewDetail, setvieworder }) => {
           </p>
         </div>
         <Button className="button-text btn-secondary attach_invoice_btn">
-          Attach Invoice
+          <label className="sub_media_upload_label" htmlFor="icon-button-file">
+            Attach Invoice
+            <input
+              accept="image/jpeg,image/png,application/pdf"
+              id="icon-button-file"
+              type="file"
+              name="national_id_image"
+              onChange={handleImageChange}
+            />
+            <img
+              src={uploadImage}
+              alt="auth"
+              aria-label="upload picture"
+              component="span"
+            />
+          </label>
         </Button>
       </div>
       <MUITable
@@ -371,9 +487,9 @@ const Index = ({viewDetail, setvieworder }) => {
         </Box>
       </div>
       <div className="invoices__footer">
-       <div
+        <div
           className="invoices__container"
-          style={{ cursor: 'pointer' }}
+          style={{ cursor: "pointer" }}
           onClick={() => {
             setvieworder(false);
             // setisOrders(true);

@@ -65,10 +65,10 @@ const BuyerRegistration = ({ classes }) => {
     password: "",
     company: "",
     designation: "",
-    country: "",
-    roles: "",
+    country: null,
+    roles: null,
     other_roles: "",
-    region: "",
+    region: null,
     confrim_password: "",
     mobile_valid: "",
     checkbox_confrim: false,
@@ -79,7 +79,7 @@ const BuyerRegistration = ({ classes }) => {
     if (!sellerRegistrationData?.region) {
       setsellerRegistrationData((prevState) => ({
         ...prevState,
-        country: "",
+        country: null,
       }));
       setDropdownListFromApi((prevState) => ({
         ...prevState,

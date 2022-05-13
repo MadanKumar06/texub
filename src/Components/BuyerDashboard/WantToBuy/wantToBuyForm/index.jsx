@@ -17,8 +17,8 @@ const WantToBuy = ({ setisVieworders, setisOrders }) => {
     product_description: "",
     quantity: "",
     notes: "",
-    hub: "",
-    main_category: "",
+    hub: null,
+    main_category: null,
   });
   const [dropdownListFromApi, setDropdownListFromApi] = useState({
     mainCategoryList: [],

@@ -18,6 +18,7 @@ import { useStateValue } from "../../../store/state";
 import swal from "sweetalert2";
 
 const Index = () => {
+  let userDetails = JSON.parse(localStorage.getItem("userdata"));
   const [transactiondetails, settransactiondetails] = useState({})
   const [transactionvalidation, settransactionvalidation] = useState({})
   const { id } = useParams()
@@ -109,7 +110,7 @@ const Index = () => {
             <span className="msg">Order Successful!!</span>
           </div>
           <div className="logged_user common-block">
-            <span className="msg">Dear {JSON.parse(localStorage.getItem('firstname'))} {JSON.parse(localStorage.getItem('lastname'))}</span>
+            <span className="msg">Dear {userDetails?.firstname} {userDetails?.lastname}</span>
           </div>
           <div className="custom_msg common-block">
             <span className="msg">
@@ -167,6 +168,7 @@ const Index = () => {
                       id="transaction_date_time"
                       name="transaction_date_time"
                       inputFormat="MM/dd/yyyy"
+                       className="inputfield-box"
                       value={transactiondetails?.transaction_date_time ? transactiondetails?.transaction_date_time : null}
                       onChange={(newValue) => {
                         settransactiondetails((prevState) => ({

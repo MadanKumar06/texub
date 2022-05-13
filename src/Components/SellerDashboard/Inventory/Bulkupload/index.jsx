@@ -19,7 +19,7 @@ function Index() {
   const [uploadFile, setUploadFile] = useState({ files: [] });
   const [choosenFile, setChoosenFile] = useState({});
   const [file, setFile] = useState({});
-  const [{ geo, customnostore, generalTrigger }, dispatch] = useStateValue();
+  const [{ geo, customnostore }, dispatch] = useStateValue();
 
   const ExportXlsxDetails = async () => {
     const user = JSON.parse(localStorage.getItem("userdata"));
@@ -274,18 +274,18 @@ function Index() {
     }
   };
 
-  const [samplefile, setsamplefile] = useState()
-  useEffect(async() => {
+  const [samplefile, setsamplefile] = useState();
+  useEffect(async () => {
     try {
       const sample = await axios({
-        method: 'get',
-        url: `${Constant?.baseUrl()}/getBulkUploadFile`
-      })
-      setsamplefile(sample?.data[0]?.bulkupload_sample)
-    } catch(e) {
-      console.log(e)
+        method: "get",
+        url: `${Constant?.baseUrl()}/getBulkUploadFile`,
+      });
+      setsamplefile(sample?.data[0]?.bulkupload_sample);
+    } catch (e) {
+      console.log(e);
     }
-  }, [])
+  }, []);
   return (
     <div className="bulk_upload">
       <div className="bulkUpload_container">

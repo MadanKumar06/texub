@@ -22,14 +22,13 @@
     margin-top: 3em;
     .radio-btn-color {
       color: #878787;
-      
+
       .MuiSvgIcon-root {
         width: 30px;
         height: 30px;
       }
-    
     }
-    .MuiRadio-root.Mui-checked{
+    .MuiRadio-root.Mui-checked {
       color: #002d56;
     }
     .select_text {
@@ -154,10 +153,24 @@
     display: flex;
     gap: 20px;
     align-items: center;
-    .header_section{
+    .header_section {
       gap: 10px;
       display: flex;
       flex-direction: column;
+    }
+    .attach_invoice_btn {
+      .sub_media_upload_label {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        input {
+          display: none;
+        }
+        img {
+          width: 26px;
+        }
+      }
     }
     .id_heading {
       color: #858a8e;
@@ -165,9 +178,9 @@
       letter-spacing: 0.9px;
       margin: 0;
     }
-    .purchase_date{
+    .purchase_date {
       font-size: 16px !important;
-      .id{
+      .id {
         font-size: 16px !important;
       }
     }
@@ -593,11 +606,14 @@
     padding: 10px;
     margin: 0 10px;
   }
-  .vieworders_main .purchase_order_status .purchase_status_stepper .MuiStepper-root{
+  .vieworders_main
+    .purchase_order_status
+    .purchase_status_stepper
+    .MuiStepper-root {
     flex-direction: column;
     min-height: 400px;
   }
-  .vieworders_main .purchase_order_status{
+  .vieworders_main .purchase_order_status {
     min-height: 600px;
   }
 }
