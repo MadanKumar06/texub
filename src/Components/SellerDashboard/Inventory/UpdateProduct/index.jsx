@@ -81,7 +81,7 @@ function Index({ type, pid }) {
     if (count?.length) {
       let temp = count?.slice(-1);
       if (!temp[0]?.hub_id) {
-        document.getElementById("isHubValid")?.focus();
+        document.getElementById("currenthub")?.focus();
         setIsDetailTabValid((prevState) => ({
           ...prevState,
           isHubValid: "Please select the hub.",
@@ -89,14 +89,14 @@ function Index({ type, pid }) {
         errorHandle = true;
       }
       if (!temp[0]?.price) {
-        document.getElementById("isPriceValid")?.focus();
+        document.getElementById("price")?.focus();
         setIsDetailTabValid((prevState) => ({
           ...prevState,
           isPriceValid: "Please enter the price.",
         }));
         errorHandle = true;
       } else if (!temp[0]?.currency_id) {
-        document.getElementById("isPriceValid")?.focus();
+        document.getElementById("price_currency")?.focus();
         setIsDetailTabValid((prevState) => ({
           ...prevState,
           isPriceValid: "Please select the currency.",
@@ -104,7 +104,7 @@ function Index({ type, pid }) {
         errorHandle = true;
       }
       if (!temp[0]?.in_stock) {
-        document.getElementById("isInStockValid")?.focus();
+        document.getElementById("in_stock")?.focus();
         setIsDetailTabValid((prevState) => ({
           ...prevState,
           isInStockValid: "Please enter the instock.",
@@ -112,7 +112,7 @@ function Index({ type, pid }) {
         errorHandle = true;
       }
       if (!temp[0]?.moq) {
-        document.getElementById("isMoqValid")?.focus();
+        document.getElementById("moq_field")?.focus();
         setIsDetailTabValid((prevState) => ({
           ...prevState,
           isMoqValid: "Please enter the moq.",
@@ -120,14 +120,14 @@ function Index({ type, pid }) {
         errorHandle = true;
       }
       if (!temp[0]?.eta) {
-        document.getElementById("isETAValid")?.focus();
+        document.getElementById("eta_field")?.focus();
         setIsDetailTabValid((prevState) => ({
           ...prevState,
           isETAValid: "Please enter the eta.",
         }));
         errorHandle = true;
       } else if (!isNumber(temp[0]?.eta)) {
-        document.getElementById("isETAValid")?.focus();
+        document.getElementById("eta_field")?.focus();
         setIsDetailTabValid((prevState) => ({
           ...prevState,
           isETAValid: "Please enter only number.",
@@ -137,13 +137,14 @@ function Index({ type, pid }) {
       // GSTS
       if (temp[0]?.hub_id === "2") {
         if (!temp[0]?.cgst) {
-          document.getElementById("isCGSTValid")?.focus();
+          document.getElementById("gst")?.focus();
           setIsDetailTabValid((prevState) => ({
             ...prevState,
             isCGSTValid: "Please enter the gst.",
           }));
           errorHandle = true;
         } else if (!isNumber(temp[0]?.cgst)) {
+          document.getElementById("gst")?.focus();
           setIsDetailTabValid((prevState) => ({
             ...prevState,
             isCGSTValid: "Please enter only number.",
@@ -151,13 +152,14 @@ function Index({ type, pid }) {
           errorHandle = true;
         }
         if (!temp[0]?.igst) {
-          document.getElementById("isIGSTValid")?.focus();
+          document.getElementById("igst")?.focus();
           setIsDetailTabValid((prevState) => ({
             ...prevState,
             isIGSTValid: "Please enter the igst.",
           }));
           errorHandle = true;
         } else if (!isNumber(temp[0]?.igst)) {
+          document.getElementById("igst")?.focus();
           setIsDetailTabValid((prevState) => ({
             ...prevState,
             isIGSTValid: "Please enter only number.",
@@ -165,13 +167,14 @@ function Index({ type, pid }) {
           errorHandle = true;
         }
         if (!temp[0]?.sgst) {
-          document.getElementById("isSGSTValid")?.focus();
+         document.getElementById("sgst")?.focus();
           setIsDetailTabValid((prevState) => ({
             ...prevState,
             isSGSTValid: "Please enter the sgst.",
           }));
           errorHandle = true;
         } else if (!isNumber(temp[0]?.sgst)) {
+          document.getElementById("sgst")?.focus();
           setIsDetailTabValid((prevState) => ({
             ...prevState,
             isSGSTValid: "Please enter only number.",
@@ -244,7 +247,7 @@ function Index({ type, pid }) {
       errorHandle = true;
     }
     if (!updateProductList?.warranty) {
-      document.getElementById("warranty")?.focus();
+      document.getElementById("warranty_type")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
         warranty: "Please select the warranty type.",
@@ -292,6 +295,7 @@ function Index({ type, pid }) {
     }
     if (updateProductList?.restrictions?.value === "2") {
       if (updateProductList?.resregion?.length === 0) {
+        document.getElementById("res_region")?.focus();
         setInputValidation((prevState) => ({
           ...prevState,
           resregion: "Please enter the region.",
@@ -299,6 +303,7 @@ function Index({ type, pid }) {
         errorHandle = true;
       }
       if (updateProductList?.restricts_country?.length === 0) {
+        document.getElementById("res_country")?.focus();
         setInputValidation((prevState) => ({
           ...prevState,
           rescountry: "Please enter the country.",
@@ -1234,7 +1239,7 @@ function Index({ type, pid }) {
                 </InputLabel>
                 <Autocomplete
                   multiple
-                  id="checkboxes-tags-demo"
+                  id="res_region"
                   options={region?.length ? region : []}
                   disableCloseOnSelect
                   value={
@@ -1291,7 +1296,7 @@ function Index({ type, pid }) {
 
                 <Autocomplete
                   multiple
-                  id="checkboxes-tags-demo"
+                  id="res_country"
                   options={restricts_country ? restricts_country : []}
                   disableCloseOnSelect
                   value={updateProductList?.restricts_country}
