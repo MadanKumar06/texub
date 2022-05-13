@@ -93,6 +93,7 @@ const App = () => {
       });
     } else {
       const res = await axios.get("https://geolocation-db.com/json/");
+      console.log(res.data);
       dispatch({
         type: "GEO__LOCATION",
         data: res.data,

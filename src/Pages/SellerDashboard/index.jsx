@@ -98,6 +98,13 @@ function SellerDashboard() {
   const sidebarstate = () => {
     setbarstate(true);
   };
+  const [searchupdate, setsearchupdate] = useState(false)
+  const updatesearch = (e) => {
+    e.preventDefault()
+    setsearchupdate(!searchupdate)
+  }
+
+  const [search, setSearch] = useState("")
   return (
     <div className="sellerdashboard">
       {/* <img src={bg} alt="" /> */}
@@ -129,12 +136,14 @@ function SellerDashboard() {
                   placeholder="Search..."
                   inputProps={{ "aria-label": "search google maps" }}
                   className="sellerdashboard__input"
+                  onChange={(e) => setSearch(e.target.value)}
+                  onKeyPress={(e) => e.key === 'Enter' && updatesearch(e)}
                 />
                 <IconButton
                   type="submit"
                   sx={{ p: "10px" }}
                   aria-label="search"
-                  onClick={(event) => event.preventDefault()}
+                  onClick={(e) => updatesearch(e)}
                 >
                   <SearchIcon />
                 </IconButton>
@@ -182,7 +191,7 @@ function SellerDashboard() {
 
           {currenttab === "directenquiries" && <Directenqueries />}
           {currenttab === "paymentmethods" && <Paymentmethods />}
-          {currenttab === "smart-recommendation" && <SmartRecommendation />}
+          {currenttab === "smart-recommendation" && <SmartRecommendation searchdata={search} searchupdate={searchupdate} />}
         </div>
       </div>
     </div>
