@@ -34,6 +34,11 @@ export const Departments = ({ data }) => {
   };
 
   const [savedsearch, setsavedsearch] = useState();
+  useEffect(() => {
+    document.addEventListener("mousedown", () => {
+      setBar(false);
+    })
+  }, []);
 
   useEffect(() => {
     setsavedsearch(JSON.parse(localStorage.getItem("searchhistory")));

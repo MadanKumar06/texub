@@ -13,16 +13,16 @@ const Index = () => {
   const [isUopup, setisUopup] = useState(false);
   const [direct, setdirect] = useState([]);
   const [filtereddirect, setfiltereddirect] = useState([])
-  const [tableData, setTableData] = useState([]);
+ // const [tableData, setTableData] = useState([]);
   const [refreshdata, setrefreshdata] = useState(false)
   const [{geo, customstore, customnostore}, dispatch] = useStateValue();
-  // const PaginateDataSplit = (event) => {
-  //   if (directList?.length === 0) return setdirect([]);
-  //     setdirect(event);
-  //         };
   const PaginateDataSplit = (event) => {
-    setTableData(event);
-  };
+    if (directList?.length === 0) return setdirect([]);
+      setdirect(event);
+          };
+  // const PaginateDataSplit = (event) => {
+  //   setTableData(event);
+  // };
   const [directList, setdirectList] = useState([])
 
   useEffect(async () => {
@@ -230,8 +230,8 @@ const Index = () => {
 
       <MUITable
         columns={columns}
-        // table={filtereddirect}
-        table={tableData?.length ? tableData : []}
+        table={filtereddirect}
+        //table={tableData?.length ? tableData : []}
         options={options}
         className="directenquiries__table"
       />
