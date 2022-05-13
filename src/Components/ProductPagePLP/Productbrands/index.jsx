@@ -196,7 +196,7 @@ const Productsbrands = ({
           initialSlide: 4,
         },
       },
-       {
+      {
         breakpoint: 900,
         settings: {
           slidesToShow: 4,
@@ -270,59 +270,63 @@ const Productsbrands = ({
         ) : (
           <div className="Slider_Section">
             <Slider {...Productsbtns} className="slide_Test">
-              {getCategories?.length &&
-                getCategories?.map((item) => (
-                  <li
-                    key={item?.category?.id}
-                    className={`Slider_brands ${
-                      isCategorySelected === item?.category?.id &&
-                      "selected_category"
-                    }`}
-                    onMouseOver={() => brand(item?.category?.id)}
-                  >
-                    <span
-                      onClick={() => {
-                        setProductFetchApi((prevState) => ({
-                          ...prevState,
-                          category_id: item?.category?.id,
-                        }));
-                        setIsCategorySelected(item?.category?.id);
-                        setApplyFilter(!applyFilter);
-                      }}
+              {getCategories?.length
+                ? getCategories?.map((item) => (
+                    <li
+                      key={item?.category?.id}
+                      className={`Slider_brands ${
+                        isCategorySelected === item?.category?.id &&
+                        "selected_category"
+                      }`}
+                      onMouseOver={() => brand(item?.category?.id)}
                     >
-                      {item?.category?.category_name}
-                    </span>
-                    {isChange && (
-                      <div className="list">
-                        <li className="list_content">
-                          <span>
-                            {item.category?.id === isChange &&
-                              item?.subcategories?.length &&
-                              item?.subcategories?.map((e) => {
-                                return (
-                                  <div
-                                    className="content"
-                                    onClick={() => {
-                                      setProductFetchApi((prevState) => ({
-                                        ...prevState,
-                                        category_id: e?.id,
-                                      }));
-                                      setApplyFilter(!applyFilter);
-                                    }}
-                                  >
-                                    <span>
-                                      <p>{e.category_name}</p>
-                                      <p>({e.count})</p>
-                                    </span>
-                                  </div>
-                                );
-                              })}
-                          </span>
-                        </li>
-                      </div>
-                    )}
-                  </li>
-                ))}
+                      <span
+                        onClick={() => {
+                          setProductFetchApi((prevState) => ({
+                            ...prevState,
+                            category_id: item?.category?.id,
+                          }));
+                          setIsCategorySelected(item?.category?.id);
+                          setApplyFilter(!applyFilter);
+                        }}
+                      >
+                        {item?.category?.category_name}
+                      </span>
+                      {isChange ? (
+                        <div className="list">
+                          <li className="list_content">
+                            <span>
+                              {item.category?.id === isChange &&
+                              item?.subcategories?.length
+                                ? item?.subcategories?.map((e) => {
+                                    return (
+                                      <div
+                                        className="content"
+                                        onClick={() => {
+                                          setProductFetchApi((prevState) => ({
+                                            ...prevState,
+                                            category_id: e?.id,
+                                          }));
+                                          setApplyFilter(!applyFilter);
+                                        }}
+                                      >
+                                        <span>
+                                          <p>{e.category_name}</p>
+                                          <p>({e.count})</p>
+                                        </span>
+                                      </div>
+                                    );
+                                  })
+                                : ""}
+                            </span>
+                          </li>
+                        </div>
+                      ) : (
+                        ""
+                      )}
+                    </li>
+                  ))
+                : ""}
             </Slider>
           </div>
         )}

@@ -22,9 +22,9 @@ function Index({ type, pid }) {
     {
       count: 0,
       assign_id: "",
-      currency_id: "",
+      currency_id: null,
       eta: "",
-      hub_id: "",
+      hub_id: null,
       in_stock: "",
       moq: "",
       mp_id: "",
@@ -39,10 +39,10 @@ function Index({ type, pid }) {
   const [test, settest] = useState([]);
   const [updateProductList, setUpdateProductList] = useState({
     width: "",
-    conditions: "",
-    other_condition: "",
-    warranty: "",
-    packing: "",
+    conditions: null,
+    other_condition: null,
+    warranty: null,
+    packing: null,
     restrictions: [],
     warcountry: [],
     restricts_country: [],
@@ -167,7 +167,7 @@ function Index({ type, pid }) {
           errorHandle = true;
         }
         if (!temp[0]?.sgst) {
-         document.getElementById("sgst")?.focus();
+          document.getElementById("sgst")?.focus();
           setIsDetailTabValid((prevState) => ({
             ...prevState,
             isSGSTValid: "Please enter the sgst.",

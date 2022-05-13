@@ -10,7 +10,7 @@ import { useStateValue } from "../../../../store/state";
 import { isOtherBrands, isOnlySpecialCharacters } from "../../../../utilities";
 
 function RegisterProduct() {
-  const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
+  const [{ geo, customnostore }, dispatch] = useStateValue();
   const history = useNavigate();
   const [openClosePopOver, setOpenClosePopOver] = useState({
     state: false,
@@ -25,16 +25,16 @@ function RegisterProduct() {
     texub_product_id: "",
   });
   const [registerNewProductData, setRegisterNewProductData] = useState({
-    main_category: "",
-    sub_category: "",
-    brands: "",
-    other_brands: "",
-    modal_number: "",
-    description: "",
-    upc_number: "",
-    other_main_category: "",
-    other_sub_category: "",
-    vendor_manufacturer_part_number: "",
+    main_category: null,
+    sub_category: null,
+    brands: null,
+    other_brands: null,
+    modal_number: null,
+    description: null,
+    upc_number: null,
+    other_main_category: null,
+    other_sub_category: null,
+    vendor_manufacturer_part_number: null,
   });
   const [inputValidation, setInputValidation] = useState({
     main_category: "",
@@ -465,7 +465,7 @@ function RegisterProduct() {
                   <TextField
                     {...params}
                     className="inputfield-box"
-                    placeholder="Select Sub-Catrgory"
+                    placeholder="Select Sub Category"
                     fullWidth
                     InputLabelProps={{
                       shrink: false,

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import styles from "./styles";
 
 import PropTypes from "prop-types";
@@ -33,6 +33,7 @@ import auctionsLogo from "../../../../Assets/CommonImage/MyAccountMegamenu/aucti
 import logoutLogo from "../../../../Assets/CommonImage/MyAccountMegamenu/logout.png";
 import account_circle from "../../../../Assets/User/user (3).png";
 import { useStateValue } from "../../../../store/state";
+import swal from "sweetalert2";
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -61,8 +62,11 @@ TabPanel.propTypes = {
 
 const BasicTabs = ({ classes, handleSideBarClose }) => {
   const [value, setValue] = React.useState(0);
-  const [{geo, customstore, customnostore}, dispatch] = useStateValue();
+  const [{ geo, customnostore }, dispatch] = useStateValue();
   const [open, setOpen] = useState(false);
+  let isSignedIn = JSON.parse(localStorage.getItem("userdata"));
+  const navigate = useNavigate();
+
   const RegistrationPop = (event) => {
     handleSideBarClose("left", false);
     setTimeout(() => {
@@ -107,6 +111,33 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
       name: "Logout",
     },
   ];
+  const SignOut = () => {
+    swal
+      .fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Sign Out!",
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          localStorage.clear();
+          swal.fire({
+            text: "You have Successfully logged out !",
+            icon: "success",
+            showConfirmButton: false,
+            timer: 3000,
+          });
+          setTimeout(() => {
+            navigate("/");
+            window.location.reload();
+          }, 1000);
+        }
+      });
+  };
   return (
     <Box sx={{ width: "100%" }} className={classes.main_boxt_conatainer}>
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
@@ -169,24 +200,46 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
             <ListItemText primary={"My Cart"} />
           </ListItem>
         </Link>
-        <Stack direction="row" spacing={2} className={classes.stackmenu_button}>
-          <Button
-            variant="contained"
-            startIcon={<AppRegistration />}
-            className={classes.menuButton}
-            onClick={() => RegistrationPop()}
+
+        {!isSignedIn?.group_id ? (
+          <Stack
+            direction="row"
+            spacing={2}
+            className={classes.stackmenu_button}
           >
-            Register
-          </Button>
-          <Button
-            variant="contained"
-            endIcon={<ExitToApp />}
-            className={classes.menuButton}
-            onClick={() => SigninPopUP()}
+            <Button
+              variant="contained"
+              startIcon={<AppRegistration />}
+              className={classes.menuButton}
+              onClick={() => RegistrationPop()}
+            >
+              Register
+            </Button>
+            <Button
+              variant="contained"
+              endIcon={<ExitToApp />}
+              className={classes.menuButton}
+              onClick={() => SigninPopUP()}
+            >
+              SignIn
+            </Button>
+          </Stack>
+        ) : (
+          <Stack
+            direction="row"
+            spacing={2}
+            className={classes.stackmenu_button}
           >
-            SignIn
-          </Button>
-        </Stack>
+            <Button
+              variant="contained"
+              endIcon={<ExitToApp />}
+              className={classes.menuButton}
+              onClick={() => SignOut()}
+            >
+              Sign Out
+            </Button>
+          </Stack>
+        )}
       </TabPanel>
       <TabPanel value={value} index={1} className={classes.sub_tab_conatainer}>
         <List className={classes.dropdowm_list_menu}>
@@ -216,22 +269,40 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
           </Collapse>
         </List>
         <List onClick={() => handleSideBarClose("left", false)}>
-          <Link className={classes.link_in_tab} to={`/${customnostore ? customnostore : geo?.country_name}/aboutus`}>
+          <Link
+            className={classes.link_in_tab}
+            to={`/${customnostore ? customnostore : geo?.country_name}/aboutus`}
+          >
             <ListItem button>
               <ListItemText primary={"About Us"} />
             </ListItem>
           </Link>
-          <Link className={classes.link_in_tab} to={`/${customnostore ? customnostore : geo?.country_name}/products`}>
+          <Link
+            className={classes.link_in_tab}
+            to={`/${
+              customnostore ? customnostore : geo?.country_name
+            }/products`}
+          >
             <ListItem button>
               <ListItemText primary={"Products"} />
             </ListItem>
           </Link>
-          <Link className={classes.link_in_tab} to={`/${customnostore ? customnostore : geo?.country_name}/Sellontexhub`}>
+          <Link
+            className={classes.link_in_tab}
+            to={`/${
+              customnostore ? customnostore : geo?.country_name
+            }/coming-soon`}
+          >
             <ListItem button>
               <ListItemText primary={"Sell On TEXUB"} />
             </ListItem>
           </Link>
-          <Link className={classes.link_in_tab} to={`/${customnostore ? customnostore : geo?.country_name}/Buyontexhub`}>
+          <Link
+            className={classes.link_in_tab}
+            to={`/${
+              customnostore ? customnostore : geo?.country_name
+            }/coming-soon`}
+          >
             <ListItem button>
               <ListItemText primary={"Buy On TEXUB"} />
             </ListItem>
@@ -242,7 +313,12 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
             </ListItem>
           </Link> */}
 
-          <Link className={classes.link_in_tab} to={`/${customnostore ? customnostore : geo?.country_name}/Contactus`}>
+          <Link
+            className={classes.link_in_tab}
+            to={`/${
+              customnostore ? customnostore : geo?.country_name
+            }/Contactus`}
+          >
             <ListItem button>
               <ListItemText primary={"Contact Us"} />
             </ListItem>
