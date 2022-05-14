@@ -9,7 +9,7 @@ import Constant from "../../../Constant";
 import { useStateValue } from "../../../store/state";
 import Pagination from "../../Pagination";
 
-const Index = () => {
+const Index = ({ searchdata, searchupdate }) => {
   const [isUopup, setisUopup] = useState(false);
   const [direct, setdirect] = useState([]);
   const [filtereddirect, setfiltereddirect] = useState([])
@@ -19,11 +19,23 @@ const Index = () => {
   const PaginateDataSplit = (event) => {
     if (directList?.length === 0) return setdirect([]);
       setdirect(event);
-          };
+    };
   // const PaginateDataSplit = (event) => {
   //   setTableData(event);
   // };
   const [directList, setdirectList] = useState([])
+
+    useEffect(() => {
+    if(directList?.length === 0) return
+    if(searchdata === '') {
+      setfiltereddirect(directList)
+    } else {
+      let temp = directList?.filter(td => td?.texub_wtb_id?.toLowerCase()?.includes(searchdata?.toLowerCase()))
+      setfiltereddirect(temp)
+
+    }
+  }, [searchupdate, directList])
+
 
   useEffect(async () => {
     let user = JSON.parse(localStorage.getItem("userdata"));

@@ -21,6 +21,7 @@
       font-weight: 600;
       margin-top: 6px;
       margin: 0;
+      letter-spacing: 1px;
       margin-left: 5px;
     }
     .status {
@@ -149,7 +150,7 @@
     gap: 20px;
     .heading {
       color: #002d56;
-      font-size: 22px;
+      font-size: 28px;
       font-weight: 600;
       margin: 0;
     }
@@ -184,7 +185,7 @@
               flex-direction: column;
               gap: 10px;
               .heading {
-                font-size: 22px;
+                font-size: 20px;
                 color: #20639b;
                 font-weight: 600;
                 opacity: 1;
@@ -194,7 +195,7 @@
               }
               .name {
                 color: #858a8e;
-                font-size: 24px;
+                font-size: 22px;
                 letter-spacing: 0.72px;
                 font-style: italic;
                 font-weight: 600;
@@ -202,7 +203,7 @@
               }
               .address {
                 color: #959595;
-                font-size: 24px;
+                font-size: 16px;
                 letter-spacing: 0.6px;
                 white-space: wrap;
               }
@@ -215,7 +216,7 @@
             width: 100%;
             .payment_heading {
               margin: 0;
-              font-size: 22px;
+              font-size: 20px;
               color: #20639b;
               font-weight: 600;
               opacity: 1;
@@ -223,7 +224,7 @@
             .payment_type {
               margin: 0;
               color: #959595;
-              font-size: 24px;
+              font-size: 20px;
               letter-spacing: 0.6px;
               font-style: italic;
               font-weight: 600;
@@ -247,7 +248,7 @@
                   color: #333c42;
                   font-size: 16px;
                   font-weight: 400;
-                  margin-right: 10px;
+                  margin: 0 10px;
                 }
                 .MuiDivider-root {
                   min-height: 10px;
@@ -255,7 +256,7 @@
                 .value_price {
                   margin-left: 10px;
                   font-size: 18px;
-                  font-weight: 600;
+                  font-weight: 400;
                   margin-left: 10px;
                 }
               }
@@ -279,7 +280,7 @@
           flex-direction: column;
           gap: 20px;
           .hr {
-            border: 2px dashed #20639b;
+            border: 0.5px dashed #20639b;
             width: 100%;
           }
           .vieworders_list {
@@ -292,7 +293,7 @@
               flex-direction: column;
               gap: 10px;
               .total_amount_heading {
-                font-size: 30px;
+                font-size: 26px;
                 color: #002d56;
                 font-weight: 600;
               }
@@ -317,7 +318,7 @@
               text-align: right;
               font-weight: bold;
               .currency {
-                font-size: 17px;
+                font-size: 14px;
                 letter-spacing: 0.51px;
               }
             }
@@ -416,7 +417,7 @@
       .invoice-btn {
         padding: 0;
         width: fit-content;
-        max-width: 25%;
+        // max-width: 25%;
         cursor: pointer;
       }
     }
@@ -429,7 +430,7 @@
         display: flex;
         justify-content: flex-end;
         align-items: center;
-        width: 30%;
+        width: 40%;
       }
     }
   }
@@ -747,6 +748,13 @@
   }
 }
 @media (max-width: 900px) {
+
+    .vieworders_main {
+    .vieworders_heading_section {
+      flex-direction: column;
+
+    }
+  }
   .serial_number_popup {
     margin: 2.5em;
     .serial_popup_main {

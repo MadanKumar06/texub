@@ -142,10 +142,10 @@ function Index() {
           return (
             <div
               className={`
-                    ${value === "Pending" && "myorders__pending"}
-                    ${value === "Confirm" && "myorders__confirm"}
-                    ${value === "Delivered" && "myorders__delivered"}
-                    ${value === "Dispatched" && "myorders__dispatched"}
+                    ${value === "pending" && "myorders__pending"}
+                    ${value === "confirm" && "myorders__confirm"}
+                    ${value === "delivered" && "myorders__delivered"}
+                    ${value === "dispatched" && "myorders__dispatched"}
                     `}
             >
               {value}

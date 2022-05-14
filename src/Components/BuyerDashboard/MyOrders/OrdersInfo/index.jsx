@@ -163,7 +163,7 @@ const Index = ({ orders, currentorder }) => {
       label: "ETA",
       options: {
         customBodyRender: (value) => {
-          return <div className="vieworders_eta">{value}</div>;
+          return <div className="vieworders_eta">{value} Days</div>;
         },
       },
     },
@@ -172,7 +172,7 @@ const Index = ({ orders, currentorder }) => {
       label: "Warranty",
       options: {
         customBodyRender: (value) => {
-          return <div className="vieworders_warranty">{value}</div>;
+          return <div className="vieworders_warranty">{value} Days</div>;
         },
       },
     },
