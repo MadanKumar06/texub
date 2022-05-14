@@ -27,7 +27,6 @@ const Index = ({ searchdata, searchupdate }) => {
   console.log(filteredata)
 
   const PaginateDataSplit = (event) => {
-    debugger
     if (filteredata?.length === 0) return setfiltereddata([]);
     setTableData(event);
   };

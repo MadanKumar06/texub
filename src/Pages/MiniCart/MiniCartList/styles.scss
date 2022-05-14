@@ -246,7 +246,7 @@
     padding: 0 1em 1.5em;
     position: fixed;
     bottom: 0px;
-    width: 424px;
+     width: 615px;
     .minicart_total {
       display: flex;
       justify-content: space-between;
@@ -367,7 +367,9 @@
       font-size: 18px;
     }
   }
-  .minicart_list_main .minicart_footer .minicart_total {
+  .minicart_list_main .minicart_footer{
+    width: 424px;
+  } .minicart_total {
     .title_total {
       font-size: 18px;
     }

@@ -187,7 +187,7 @@ function Index() {
     <div className="orders">
       {!vieworder ? (
         <>
-        <div className="sellerdashboard__search">
+          {/* <div className="sellerdashboard__search">
               <Paper
                 className="sellerdashboard__searchinput"
                 component="form"
@@ -208,11 +208,8 @@ function Index() {
                   <SearchIcon />
                 </IconButton>
               </Paper>
-              {/* <div className="sellerdashboard__notiIcon">
-                <img src={notification} alt="" />
-              </div>
-              <span>Notification</span> */}
-            </div>
+             
+            </div> */}
           <div className="orders__buttons">
             {ordertype.map((data, i) => (
               <p
