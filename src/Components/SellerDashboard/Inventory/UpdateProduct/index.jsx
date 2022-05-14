@@ -1214,7 +1214,7 @@ function Index({ type, pid }) {
                   <TextField
                     {...params}
                     className="inputfield-box"
-                    placeholder="Select Packing Details"
+                    placeholder="Select Restrictions"
                     fullWidth
                     InputLabelProps={{
                       shrink: false,
