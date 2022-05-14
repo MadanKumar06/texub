@@ -65,12 +65,12 @@ const Checkout = () => {
     }
   };
   const handleClose = () => {
-    seteditradio(false)
+    seteditradio(false);
     setOpen({
       open: "",
       openClose: false,
     });
-  }
+  };
   const [quotedata, setqutoedata] = useState([]);
   const { quoteid } = useParams();
   const [{ currency, geo, customnostore }, dispatch] = useStateValue();
@@ -153,11 +153,11 @@ const Checkout = () => {
   });
 
   const addressadd = (e) => {
-    setaddressdata((prev) => ({ ...prev, [e.target.name]: e.target.value,  }));
+    setaddressdata((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   const handleaddressvalidation = () => {
-    let errorhandle = false
+    let errorhandle = false;
     // if(!addressdata?.billtype) {
     //   setaddressvalidation(prevstate => ({
     //     ...prevstate,
@@ -165,53 +165,53 @@ const Checkout = () => {
     //   }))
     //   errorhandle = true
     // }
-    if(!addressdata?.address_line1) {
-      setaddressvalidation(prevstate => ({
+    if (!addressdata?.address_line1) {
+      setaddressvalidation((prevstate) => ({
         ...prevstate,
-        address_line1: 'Please type Address Line 1'
-      }))
-      errorhandle = true
+        address_line1: "Please type Address Line 1",
+      }));
+      errorhandle = true;
     }
-    if(!addressdata?.address_line2) {
-      setaddressvalidation(prevstate => ({
+    if (!addressdata?.address_line2) {
+      setaddressvalidation((prevstate) => ({
         ...prevstate,
-        address_line2: 'Please type Address Line 1'
-      }))
-      errorhandle = true
+        address_line2: "Please type Address Line 1",
+      }));
+      errorhandle = true;
     }
-    if(!addressdata?.organization_name) {
-      setaddressvalidation(prevstate => ({
+    if (!addressdata?.organization_name) {
+      setaddressvalidation((prevstate) => ({
         ...prevstate,
-        organization_name: 'Please type Organization Name'
-      }))
-      errorhandle = true
+        organization_name: "Please type Organization Name",
+      }));
+      errorhandle = true;
     }
-    if(!addressdata?.country) {
-      setaddressvalidation(prevstate => ({
+    if (!addressdata?.country) {
+      setaddressvalidation((prevstate) => ({
         ...prevstate,
-        country: 'Please type Country'
-      }))
-      errorhandle = true
+        country: "Please type Country",
+      }));
+      errorhandle = true;
     }
-    if(!addressdata?.pincode) {
-      setaddressvalidation(prevstate => ({
+    if (!addressdata?.pincode) {
+      setaddressvalidation((prevstate) => ({
         ...prevstate,
-        pincode: 'Please type Pincode'
-      }))
-      errorhandle = true
+        pincode: "Please type Pincode",
+      }));
+      errorhandle = true;
     }
-    if(!addressdata?.city) {
-      setaddressvalidation(prevstate => ({
+    if (!addressdata?.city) {
+      setaddressvalidation((prevstate) => ({
         ...prevstate,
-        city: 'Please type Pincode'
-      }))
-      errorhandle = true
+        city: "Please type Pincode",
+      }));
+      errorhandle = true;
     }
 
-    if(!errorhandle) {
-      saveaddress()
+    if (!errorhandle) {
+      saveaddress();
     }
-  }
+  };
 
   useEffect(() => {
     const fetchCountryData = () => {
@@ -284,7 +284,7 @@ const Checkout = () => {
         type: "SET_IS_LOADING",
         value: false,
       });
-      seteditradio(false)
+      seteditradio(false);
       console.log(e);
     }
   };
@@ -346,7 +346,7 @@ const Checkout = () => {
       id: temp?.[0]?.address_id,
       billtype: "texub_shipping",
     }));
-    seteditradio(true)
+    seteditradio(true);
     handleOpen("edit_new_address");
   };
 
@@ -605,7 +605,7 @@ const Checkout = () => {
               telephone: 123,
             },
             payment: {
-              method: payment
+              method: payment,
             },
             extension_attributes: {
               pending_invoice_status:
@@ -661,12 +661,18 @@ const Checkout = () => {
         showConfirmButton: false,
         timer: 3000,
       });
-      if(payment === 'banktransfer') {
+      if (payment === "banktransfer") {
         navigate(
-          `/${customnostore ? customnostore : geo?.country_name}/ordersuccess/${postquote?.data?.entity_id}`
+          `/${customnostore ? customnostore : geo?.country_name}/ordersuccess/${
+            postquote?.data?.entity_id
+          }`
         );
       } else {
-        navigate(`/${customnostore ? customnostore : geo?.country_name}/buyerdashboard/myorder`)
+        navigate(
+          `/${
+            customnostore ? customnostore : geo?.country_name
+          }/buyerdashboard/myorder`
+        );
       }
       setpickup({
         bussiness_name: "",
@@ -683,7 +689,7 @@ const Checkout = () => {
     }
   };
 
-  console.log(payment)
+  console.log(payment);
   const navigate = useNavigate();
   let permissions = JSON.parse(localStorage.getItem("permissions"));
   let placeorder =
@@ -753,6 +759,13 @@ const Checkout = () => {
               </Button>
             </Link>
           </div>
+          {/* <a
+            href={`/${
+              customnostore ? customnostore : geo?.country_name
+            }/checkout-invoice/${quoteid}`}
+            target="_blank"
+            rel="noopener noreferrer" */}
+          {/* > */}
           <div
             className="checkoutlist__download"
             onClick={() => handleChange()}
@@ -800,6 +813,7 @@ const Checkout = () => {
               </g>
             </svg>
           </div>
+          {/* </a> */}
         </div>
       </div>
 
@@ -1353,7 +1367,13 @@ const Checkout = () => {
                       onChange={(e) => addressadd(e)}
                       value={addressdata?.organization_name}
                     />
-                    {addressvalidation?.organization_name ? <p style={{ color: 'red' }}>{addressvalidation?.organization_name}</p> : ""}
+                    {addressvalidation?.organization_name ? (
+                      <p style={{ color: "red" }}>
+                        {addressvalidation?.organization_name}
+                      </p>
+                    ) : (
+                      ""
+                    )}
                   </div>
                   <div className="address_fields">
                     <InputLabel>Address Line 1</InputLabel>
@@ -1366,7 +1386,13 @@ const Checkout = () => {
                       onChange={(e) => addressadd(e)}
                       value={addressdata?.address_line1}
                     />
-                    {addressvalidation?.address_line1 ? <p style={{ color: 'red' }}>{addressvalidation?.address_line1}</p> : ""}
+                    {addressvalidation?.address_line1 ? (
+                      <p style={{ color: "red" }}>
+                        {addressvalidation?.address_line1}
+                      </p>
+                    ) : (
+                      ""
+                    )}
                   </div>
                 </div>
                 <div className="address_field_block">
@@ -1381,7 +1407,13 @@ const Checkout = () => {
                       onChange={(e) => addressadd(e)}
                       value={addressdata?.address_line2}
                     />
-                    {addressvalidation?.address_line2 ? <p style={{ color: 'red' }}>{addressvalidation?.address_line2}</p> : ""}
+                    {addressvalidation?.address_line2 ? (
+                      <p style={{ color: "red" }}>
+                        {addressvalidation?.address_line2}
+                      </p>
+                    ) : (
+                      ""
+                    )}
                   </div>
                   <div className="address_fields">
                     <InputLabel>Pincode</InputLabel>
@@ -1394,7 +1426,13 @@ const Checkout = () => {
                       onChange={(e) => addressadd(e)}
                       value={addressdata?.pincode}
                     />
-                    {addressvalidation?.pincode ? <p style={{ color: 'red' }}>{addressvalidation?.pincode}</p> : ""}
+                    {addressvalidation?.pincode ? (
+                      <p style={{ color: "red" }}>
+                        {addressvalidation?.pincode}
+                      </p>
+                    ) : (
+                      ""
+                    )}
                   </div>
                 </div>
 
@@ -1410,7 +1448,11 @@ const Checkout = () => {
                       onChange={(e) => addressadd(e)}
                       value={addressdata?.city}
                     />
-                    {addressvalidation?.city ? <p style={{ color: 'red' }}>{addressvalidation?.city}</p> : ""}
+                    {addressvalidation?.city ? (
+                      <p style={{ color: "red" }}>{addressvalidation?.city}</p>
+                    ) : (
+                      ""
+                    )}
                   </div>
                   <div className="address_fields">
                     <InputLabel id="address_field">Country</InputLabel>
@@ -1447,7 +1489,13 @@ const Checkout = () => {
                         ))}
                       </Select>
                     </FormControl>
-                    {addressvalidation?.country ? <p style={{ color: 'red' }}>{addressvalidation?.country}</p> : ""}
+                    {addressvalidation?.country ? (
+                      <p style={{ color: "red" }}>
+                        {addressvalidation?.country}
+                      </p>
+                    ) : (
+                      ""
+                    )}
                   </div>
                 </div>
 
@@ -1481,7 +1529,10 @@ const Checkout = () => {
                   >
                     Cancel
                   </Button>
-                  <Button className="address_save_btn" onClick={handleaddressvalidation}>
+                  <Button
+                    className="address_save_btn"
+                    onClick={handleaddressvalidation}
+                  >
                     Save Changes
                   </Button>
                 </div>

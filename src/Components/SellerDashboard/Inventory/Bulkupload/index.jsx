@@ -92,8 +92,13 @@ function Index() {
       handleJSONCreate(rows, i);
     }
   }
-  let RowCount = 3;
+
   const handleJSONCreate = async (rows, i) => {
+    dispatch({
+      type: "SET_IS_LOADING",
+      value: true,
+    });
+    let Count = i + 3;
     if (
       rows[i]?.__EMPTY ||
       rows[i]?.__EMPTY_1 ||
@@ -131,8 +136,7 @@ function Index() {
           },
         })
         .then((res) => {
-          let temp = `Row ${RowCount} ${res?.data?.[0]?.message}`;
-          RowCount = RowCount + 1;
+          let temp = `Row ${Count} ${res?.data?.[0]?.message}`;
           if (res?.data?.[0]?.status) {
             setRow((prev) => [
               ...prev,
@@ -144,6 +148,10 @@ function Index() {
               { Validation: temp, ErrorAndSuccess: "error" },
             ]);
           }
+          dispatch({
+            type: "SET_IS_LOADING",
+            value: false,
+          });
         })
         .catch((err) => {
           dispatch({
@@ -212,8 +220,7 @@ function Index() {
           },
         })
         .then((res) => {
-          let temp = `Row ${RowCount} ${res?.data?.[0]?.message}`;
-          RowCount = RowCount + 1;
+          let temp = `Row ${Count} ${res?.data?.[0]?.message}`;
           if (res?.data?.[0]?.status) {
             setRow((prev) => [
               ...prev,
@@ -225,6 +232,10 @@ function Index() {
               { Validation: temp, ErrorAndSuccess: "error" },
             ]);
           }
+          dispatch({
+            type: "SET_IS_LOADING",
+            value: false,
+          });
         })
         .catch((err) => {
           dispatch({
@@ -264,8 +275,18 @@ function Index() {
       setsamplefile(sample?.data[0]?.bulkupload_sample);
     } catch (e) {}
   }, []);
-
-  console.log(Row);
+  const sampleFile = () => {
+    if (samplefile?.bulkupload_sample === "") {
+      swal.fire({
+        text: `File does not exist. Try again later`,
+        icon: "error",
+        showConfirmButton: false,
+        timer: 3000,
+      });
+    } else {
+      window.location.href = samplefile;
+    }
+  };
   return (
     <div className="bulk_upload">
       <div className="bulkUpload_container">
@@ -293,16 +314,15 @@ function Index() {
               <img src={question_image} alt="question" />
             </div>
 
-            <a
+            <div
               className="bulk_download_example link"
-              href={samplefile}
-              download="Example.Xlsx"
+              onClick={() => sampleFile()}
             >
               Example.Xlsx{" "}
               <div className="image">
                 <img src={downnload_image} alt="download" />
               </div>
-            </a>
+            </div>
           </div>
         </div>
 

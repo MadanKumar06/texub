@@ -57,14 +57,14 @@ const Header = ({ classes }) => {
         });
       } catch (e) {
         console.log(e.message);
-        if(e.message === "Request failed with status code 401") {
+        if (e.message === "Request failed with status code 401") {
           swal.fire({
             text: "Due to Session expiry, Logging out",
             icon: "success",
             showConfirmButton: false,
             timer: 4000,
           });
-          localStorage.clear()
+          localStorage.clear();
           setTimeout(() => {
             navigate("/");
             window.location.reload();
@@ -145,7 +145,7 @@ const Header = ({ classes }) => {
       });
   };
   return (
-    <div className={classes.header_main}>
+    <div className={classes.header_main} id="Header-header_main-2">
       <AppBar position="static">
         <Toolbar className={classes.header_toolbar}>
           <MenuList />

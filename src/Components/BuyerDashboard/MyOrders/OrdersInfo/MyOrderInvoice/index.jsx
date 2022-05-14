@@ -1,58 +1,28 @@
 import React, { useEffect, useState } from "react";
-import { Modal, Backdrop, Divider } from "@mui/material";
-import { Clear, ArrowBackIosNew } from "@mui/icons-material";
-import Ratingpopup from "./Rating";
-import TrackOrderpopup from "./TrackOrder";
-import TransactionPopup from "./TransactionInfo";
+import { Divider, Button } from "@mui/material";
 import "./styles.scss";
-import { useStateValue } from "../../../../store/state";
-import MUITable from "../../../Common/MUITable";
+import { useStateValue } from "../../../../../store/state";
+import MUITable from "../../../../Common/MUITable";
 
-import image from "../../../../Assets/buyerdashboard/auctions/hp.png";
-import download from "../../../../Assets/buyerdashboard/orders/download.png";
-import track from "../../../../Assets/buyerdashboard/orders/trackorder.png";
-import rating from "../../../../Assets/buyerdashboard/orders/rating.png";
+import image from "../../../../../Assets/buyerdashboard/auctions/hp.png";
+import logo from "../../../../../Assets/Homepage Assets/Group.png";
 import {
   totalamount,
   transaction_info,
-} from "../../../Common/Vieworders/viewordersjson";
+} from "../../../../Common/Vieworders/viewordersjson";
 import axios from "axios";
-import Constant from "../../../../Constant";
+import Constant from "../../../../../Constant";
 import moment from "moment";
-import swal from "sweetalert2";
-const Index = ({ orders, currentorder }) => {
+import { useParams } from "react-router-dom";
+
+const Index = ({ orders }) => {
+  const { order_id } = useParams();
   function formatToCurrency(price) {
     return price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
   }
-  const [{ customnostore, geo }, dispatch] = useStateValue();
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  //const handleClose = () => setOpen(false);
-  const handleClose = (event, reason) => {
-    if (reason && reason === "backdropClick") return;
-    else {
-      setOpen(false);
-      dispatch({
-        type: "SET_PDP_POPUP_OPEN_CLOSE",
-        value: false,
-      });
-    }
-  };
+  const [{}, dispatch] = useStateValue();
+
   const [detailsorder, setdetailsorder] = useState([]);
-  const [isUopup, setisUopup] = useState(false);
-  const Popup = (event) => {
-    setisUopup(event);
-  };
-
-  const [TrackOrder, setisTrackOrder] = useState(false);
-  const PopupTrack = (event) => {
-    setisTrackOrder(event);
-  };
-
-  const [Transaction, setisTransaction] = useState(false);
-  const PopupTransaction = (event) => {
-    setisTransaction(event);
-  };
 
   useEffect(async () => {
     dispatch({
@@ -68,7 +38,7 @@ const Index = ({ orders, currentorder }) => {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         data: {
-          orderId: currentorder,
+          orderId: order_id,
           customerId: user?.id,
         },
       });
@@ -84,9 +54,7 @@ const Index = ({ orders, currentorder }) => {
         value: false,
       });
     }
-  }, [currentorder]);
-
-  // console.log(detailsorder[0])
+  }, [order_id]);
 
   const options = {
     filter: false,
@@ -113,9 +81,6 @@ const Index = ({ orders, currentorder }) => {
               <div className="product">
                 <span className="modal_name">{name}</span>
                 <span className="modal_content">{discription}</span>
-                <div className="serial_number">
-                  <span onClick={() => handleOpen()}>Show Serial Numbers</span>
-                </div>
               </div>
             </div>
           );
@@ -210,15 +175,6 @@ const Index = ({ orders, currentorder }) => {
         },
       },
     },
-    // {
-    //   name: "hub",
-    //   label: "Hub",
-    //   options: {
-    //     customBodyRender: (value) => {
-    //       return <div className="vieworders_hub">{value}</div>;
-    //     },
-    //   },
-    // },
     {
       name: "name",
       label: " ",
@@ -234,32 +190,57 @@ const Index = ({ orders, currentorder }) => {
       },
     },
   ];
+  const handleChange = () => {
+    window.onbeforeprint = function (event) {
+      document
+        .getElementById("Header-header_main-2")
+        .classList.remove("Header-header_main-2");
+      document
+        .getElementById("Header-header_main-2")
+        .classList.add("Header-header_main-2_no_display");
 
-  // serial number popup id here
-  const serialNumbers = [
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-  ];
+      document
+        .getElementById("user_details_main_container")
+        .classList.remove("user_details_main_container");
+      document
+        .getElementById("user_details_main_container")
+        .classList.add("user_details_main_container_no_display");
+      document.getElementById("print_btn").classList.remove("print_btn");
+      document
+        .getElementById("print_btn")
+        .classList.add("print_btn_no_display");
+    };
+    window.onafterprint = function (event) {
+      document
+        .getElementById("Header-header_main-2")
+        .classList.remove("btn_invoice_no_display");
+      document
+        .getElementById("Header-header_main-2_no_display")
+        .classList.add("Header-header_main-2");
 
+      document
+        .getElementById("user_details_main_container")
+        .classList.remove("user_details_main_container_no_display");
+      document
+        .getElementById("user_details_main_container")
+        .classList.add("user_details_main_container");
+      document
+        .getElementById("print_btn")
+        .classList.remove("print_btn_no_display");
+      document.getElementById("print_btn").classList.add("print_btn");
+    };
+    window.print();
+  };
   return (
     <>
-      <div className="vieworders_main">
+      <div className="vieworders_main_invoice" id="vieworders_main">
+        <div className="logo">
+          <img src={logo} alt="texub logo" />
+        </div>
         <div className="vieworders_heading_section">
           <div className="order_info_section1">
             <div className="username">
-              <span className="id_heading">Order Date #</span>
+              <span className="id_heading">Order Date :</span>
               <span className="id">
                 {moment(
                   detailsorder?.[0]?.order_details?.[0]?.created_at
@@ -267,51 +248,21 @@ const Index = ({ orders, currentorder }) => {
               </span>
             </div>
             <div className="username">
-              <span className="id_heading">Order ID #</span>
-              <span className="id">{currentorder}</span>
-              <span className="status">Confirm</span>
+              <span className="id_heading">Order ID :</span>
+              <span className="id">{order_id}</span>
             </div>
             <div className="username">
-              <span className="id_heading">Transaction ID #</span>
+              <span className="id_heading">Transaction ID :</span>
               <span className="id">
                 {detailsorder?.[0]?.order_details?.[0]?.transaction_number}
               </span>
-              <span className="status">Completed</span>
             </div>
           </div>
           <div className="order_info_section2">
-            <div className="order_track_info">
-              <a
-                href={`/${
-                  customnostore ? customnostore : geo?.country_name
-                }/buyerdashboard/myorder-invoice/${currentorder}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <div className="order_invoice_download common-btn invoice-btn">
-                  <img src={download} alt="" className="download"></img>
-                  <span className="download_text">Download Invoice</span>
-                </div>
-              </a>
-              <div
-                className="order_track btn-secondary common-btn"
-                onClick={() => setisTrackOrder(true)}
-              >
-                <img src={track} alt="" className="track"></img>
-                <span className="track_text">Track Orer</span>
-              </div>
-              <div
-                className="order_rating_info btn-primary common-btn"
-                onClick={() => setisUopup(true)}
-              >
-                <img src={rating} alt="" className="rating"></img>
-                <span className="rate_text">Rate Us</span>
-              </div>
-            </div>
             <div className="order_user_info">
               <div className="username">
-                <span className="id_heading">Order ID #</span>
-                <span className="id">{currentorder}</span>
+                <span className="id_heading">Order ID :</span>
+                <span className="id">{order_id}</span>
               </div>
               <div className="username">
                 <span className="id_heading">Approved By</span>
@@ -437,7 +388,6 @@ const Index = ({ orders, currentorder }) => {
                         <span
                           className="update_transaction_block"
                           style={{ curosr: "pointer" }}
-                          onClick={() => setisTransaction(true)}
                         >
                           {detailsorder?.[0]?.order_details?.[0]
                             ?.payment_method === "banktransfer" &&
@@ -475,102 +425,39 @@ const Index = ({ orders, currentorder }) => {
                     </span>
                   </li>
                   <hr className="hr"></hr>
-                  {totalamount.map((item) => (
-                    <li key={item.id} className="vieworders_list">
-                      <div className="taxes">
-                        <span className="total_amount_heading">
-                          Total Amount
+                  {totalamount?.length &&
+                    totalamount?.map((item) => (
+                      <li key={item.id} className="vieworders_list">
+                        <div className="taxes">
+                          <span className="total_amount_heading">
+                            Total Amount
+                          </span>
+                          <span className="gst">(incl.GST)</span>
+                        </div>
+                        <span className="total_amount">
+                          <span className="currency">INR</span>{" "}
+                          {formatToCurrency(
+                            parseInt(
+                              detailsorder?.[0]?.order_details[0]?.grand_total
+                            )
+                          )}
                         </span>
-                        <span className="gst">(incl.GST)</span>
-                      </div>
-                      <span className="total_amount">
-                        <span className="currency">INR</span>{" "}
-                        {formatToCurrency(
-                          parseInt(
-                            detailsorder?.[0]?.order_details[0]?.grand_total
-                          )
-                        )}
-                      </span>
-                    </li>
-                  ))}
-                </div>
-              </div>
-              <div className="download_document">
-                <div className="vieworders_emtpy">
-                  <span></span>
-                </div>
-                {detailsorder?.[0]?.order_details?.[0]?.delivery_doc && (
-                  <div className="remart_block">
-                    <div className="handover_document_section">
-                      <img src={download} alt="" className="download"></img>
-                      <span className="document_text">
-                        <a
-                          style={{ color: "inherit" }}
-                          href={
-                            detailsorder?.[0]?.order_details?.[0]?.delivery_doc
-                          }
-                        >
-                          Download Handover Documents
-                        </a>
-                      </span>
-                    </div>
-                    <div className="remkark_section">
-                      <span className="remark_title">Remarks :</span>
-                      <span className="remark_content">
-                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                        sed diam nonumy eirmod tempor invidunt ut labore et
-                        dolore magna aliquyam erat, sed diam voluptua. At vero
-                        eos et accusam
-                      </span>
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-        {/* <div className="invoices__footer">
-          <div className="invoices__container" onClick={() => orders()}>
-            <ArrowBackIosNew />
-            <span>Back</span>
-          </div>
-        </div> */}
-        <div>
-          <Modal
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-            closeAfterTransition
-            BackdropComponent={Backdrop}
-            disableRestoreFocus={true}
-            BackdropProps={{
-              timeout: 500,
-            }}
-            className="serial_number_popup"
-          >
-            <div className="serial_popup_main" style={{ outline: "none" }}>
-              <Clear
-                className="clear_btn serial_popup_clear_btn"
-                onClick={() => handleClose()}
-              />
-              <div className="serial_popup_block">
-                <div className="serial_number_block">
-                  {serialNumbers?.length &&
-                    serialNumbers?.map((item) => (
-                      <div className="serial_number_block">
-                        <span className="heading">{item.number}</span>
-                      </div>
+                      </li>
                     ))}
                 </div>
               </div>
             </div>
-          </Modal>
+          </div>
+        </div>
+        <div className="print_btn" id="print_btn">
+          <Button
+            className="button-text btn-secondary"
+            onClick={() => handleChange()}
+          >
+            Print
+          </Button>
         </div>
       </div>
-      {isUopup && <Ratingpopup Popup={Popup} currentorder={currentorder} />}
-      {TrackOrder && <TrackOrderpopup PopupTrack={PopupTrack} />}
-      {Transaction && <TransactionPopup PopupTransaction={PopupTransaction} />}
     </>
   );
 };
