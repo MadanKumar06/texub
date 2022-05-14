@@ -84,8 +84,6 @@ const PdpPopup = () => {
 
   const handleIsValidUser = async (event) => {
     //pending invoice acknowledgement useState
-    setallert(false);
-
     let isDataValid = user?.custom_attributes?.filter(
       (itm) => itm?.attribute_code === "kyc_status"
     );
@@ -96,7 +94,7 @@ const PdpPopup = () => {
           event === "add_to_cart"
             ? AddToCartAndPendingInvoice("add_to_cart")
             : event === "pending_invoice"
-            ? AddToCartAndPendingInvoice("pending_invoice")
+            ? setallert(true)
             : event === "add_to_wishlist"
             ? list("add_to_wishlist")
             : "";
@@ -150,6 +148,7 @@ const PdpPopup = () => {
   //APi call to addtocart
   const user = JSON.parse(localStorage.getItem("userdata"));
   const AddToCartAndPendingInvoice = (info) => {
+    setallert(false);
     let permissions = JSON.parse(localStorage.getItem("permissions"));
     let isValidUser = JSON.parse(localStorage.getItem("userdata"))?.group_id;
     if (isValidUser === 5) {
@@ -376,8 +375,7 @@ const PdpPopup = () => {
               </Button>
               <Button
                 className="modal_bottom_button_pending_invoice"
-                // onClick={() => handleRouteOnButtonClick("pending_invoice")}
-                onClick={() => setallert(true)}
+                onClick={() => handleIsValidUser("pending_invoice")}
               >
                 <img width="21px" src={invoice_image} alt="" />
                 <span> Add to Pending Invoice</span>
@@ -423,7 +421,7 @@ const PdpPopup = () => {
         {allert && (
           <AllertMessage
             AddpendingInvoiceAlert={AddpendingInvoiceAlert}
-            handleIsValidUser={handleIsValidUser}
+            handleIsValidUser={AddToCartAndPendingInvoice}
           />
         )}
       </div>
