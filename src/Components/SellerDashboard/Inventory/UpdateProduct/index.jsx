@@ -77,73 +77,74 @@ function Index({ type, pid }) {
     isSGSTValid: "",
   });
   let errorHandle = false;
+  console.log(count)
   const countincrease = (checking) => {
     if (count?.length) {
-      let temp = count?.slice(-1);
-      if (!temp[0]?.hub_id) {
-        document.getElementById("currenthub")?.focus();
-        setIsDetailTabValid((prevState) => ({
-          ...prevState,
-          isHubValid: "Please select the hub.",
-        }));
-        errorHandle = true;
-      }
-      if (!temp[0]?.price) {
-        document.getElementById("price")?.focus();
-        setIsDetailTabValid((prevState) => ({
-          ...prevState,
-          isPriceValid: "Please enter the price.",
-        }));
-        errorHandle = true;
-      } else if (!temp[0]?.currency_id) {
-        document.getElementById("price_currency")?.focus();
-        setIsDetailTabValid((prevState) => ({
-          ...prevState,
-          isPriceValid: "Please select the currency.",
-        }));
-        errorHandle = true;
-      }
-      if (!temp[0]?.in_stock) {
-        document.getElementById("in_stock")?.focus();
-        setIsDetailTabValid((prevState) => ({
-          ...prevState,
-          isInStockValid: "Please enter the instock.",
-        }));
-        errorHandle = true;
-      }
-      if (!temp[0]?.moq) {
-        document.getElementById("moq_field")?.focus();
-        setIsDetailTabValid((prevState) => ({
-          ...prevState,
-          isMoqValid: "Please enter the moq.",
-        }));
-        errorHandle = true;
-      }
-      if (!temp[0]?.eta) {
-        document.getElementById("eta_field")?.focus();
-        setIsDetailTabValid((prevState) => ({
-          ...prevState,
-          isETAValid: "Please enter the eta.",
-        }));
-        errorHandle = true;
-      } else if (!isNumber(temp[0]?.eta)) {
-        document.getElementById("eta_field")?.focus();
-        setIsDetailTabValid((prevState) => ({
-          ...prevState,
-          isETAValid: "Please enter only number.",
-        }));
-        errorHandle = true;
-      }
-      // GSTS
-      if (temp[0]?.hub_id === "2") {
-        if (!temp[0]?.cgst) {
+      count?.map(ct => {
+        if (!ct?.hub_id) {
+          document.getElementById("currenthub")?.focus();
+          setIsDetailTabValid((prevState) => ({
+            ...prevState,
+            isHubValid: "Please select the hub.",
+          }));
+          errorHandle = true;
+        }
+        if (!ct?.price) {
+          document.getElementById("price")?.focus();
+          setIsDetailTabValid((prevState) => ({
+            ...prevState,
+            isPriceValid: "Please enter the price.",
+          }));
+          errorHandle = true;
+        } else if (!ct?.currency_id) {
+          document.getElementById("price_currency")?.focus();
+          setIsDetailTabValid((prevState) => ({
+            ...prevState,
+            isPriceValid: "Please select the currency.",
+          }));
+          errorHandle = true;
+        }
+        if (!ct?.in_stock) {
+          document.getElementById("in_stock")?.focus();
+          setIsDetailTabValid((prevState) => ({
+            ...prevState,
+            isInStockValid: "Please enter the instock.",
+          }));
+          errorHandle = true;
+        }
+        if (!ct?.moq) {
+          document.getElementById("moq_field")?.focus();
+          setIsDetailTabValid((prevState) => ({
+            ...prevState,
+            isMoqValid: "Please enter the moq.",
+          }));
+          errorHandle = true;
+        }
+        if (!ct?.eta) {
+          document.getElementById("eta_field")?.focus();
+          setIsDetailTabValid((prevState) => ({
+            ...prevState,
+            isETAValid: "Please enter the eta.",
+          }));
+          errorHandle = true;
+        } else if (!isNumber(ct?.eta)) {
+          document.getElementById("eta_field")?.focus();
+          setIsDetailTabValid((prevState) => ({
+            ...prevState,
+            isETAValid: "Please enter only number.",
+          }));
+          errorHandle = true;
+        }
+        // GSTS
+      if (ct?.hub_id === "2") {
+        if (!ct?.cgst) {
           document.getElementById("gst")?.focus();
           setIsDetailTabValid((prevState) => ({
             ...prevState,
             isCGSTValid: "Please enter the gst.",
           }));
           errorHandle = true;
-        } else if (!isNumber(temp[0]?.cgst)) {
+        } else if (!isNumber(ct?.cgst)) {
           document.getElementById("gst")?.focus();
           setIsDetailTabValid((prevState) => ({
             ...prevState,
@@ -151,14 +152,14 @@ function Index({ type, pid }) {
           }));
           errorHandle = true;
         }
-        if (!temp[0]?.igst) {
+        if (!ct?.igst) {
           document.getElementById("igst")?.focus();
           setIsDetailTabValid((prevState) => ({
             ...prevState,
             isIGSTValid: "Please enter the igst.",
           }));
           errorHandle = true;
-        } else if (!isNumber(temp[0]?.igst)) {
+        } else if (!isNumber(ct?.igst)) {
           document.getElementById("igst")?.focus();
           setIsDetailTabValid((prevState) => ({
             ...prevState,
@@ -166,14 +167,14 @@ function Index({ type, pid }) {
           }));
           errorHandle = true;
         }
-        if (!temp[0]?.sgst) {
+        if (!ct?.sgst) {
           document.getElementById("sgst")?.focus();
           setIsDetailTabValid((prevState) => ({
             ...prevState,
-            isSGSTValid: "Please enter the sgst.",
+            isSGSTValid: "Please en    returnter the sgst.",
           }));
           errorHandle = true;
-        } else if (!isNumber(temp[0]?.sgst)) {
+        } else if (!isNumber(ct?.sgst)) {
           document.getElementById("sgst")?.focus();
           setIsDetailTabValid((prevState) => ({
             ...prevState,
@@ -181,12 +182,10 @@ function Index({ type, pid }) {
           }));
           errorHandle = true;
         }
-        // setcountcheck(errorHandle);
       }
-      //  else {
-      //   setcountcheck(errorHandle);
-      // }
-
+      })
+      // let temp = count?.slice(-1);
+      
       if (checking === "checking-validation") {
         return;
       } else if (!errorHandle) {
@@ -478,7 +477,6 @@ function Index({ type, pid }) {
   useEffect(() => {
     if (country?.length === 0) return;
     if (updateProduct?.resregion?.length === 0) return;
-    country?.filter((d) => console.log(d));
   }, [restricts_country]);
 
   const [dropdownListFromApi, setDropdownListFromApi] = useState({
@@ -537,7 +535,6 @@ function Index({ type, pid }) {
     if (errorHandle) {
       return;
     }
-
     let productdata = [];
     count.filter((data) => {
       if (data?.hub_id) {

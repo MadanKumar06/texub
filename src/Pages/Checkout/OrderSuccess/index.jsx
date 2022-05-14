@@ -204,7 +204,7 @@ const Index = () => {
             </div>
 
             <div className="ordersuccess_btns">
-              <Button className="payment_later_btn btn-primary">
+              <Button className="payment_later_btn btn-primary" onClick={() => navigate(`/${customnostore ? customnostore : geo?.country_name}/buyerdashboard/myorder`)}>
                 Confirm & Update Payment Details Later
               </Button>
               <Button className="btn-secondary" onClick={() => handletransactionvalidation()}>Submit</Button>
