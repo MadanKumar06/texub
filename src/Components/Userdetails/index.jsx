@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import "./styles.scss";
 import logo from "../../Assets/Homepage Assets/Group.png";
 import { Badge } from "@mui/material";
@@ -27,14 +27,14 @@ export const Userdetails = () => {
     );
   };
 
-  const [wishlength, setwishlength] = useState(0)
+  const [wishlength, setwishlength] = useState(0);
   useEffect(() => {
-    let temp = []
-    wishListData?.filter(wld => temp.push(wld?.wishlist_data?.length))
-    console.log(temp)
-    let templength = temp.reduce((initial, final) => initial + final, 0)
-    setwishlength(templength)
-  }, [wishListData])
+    let temp = [];
+    wishListData?.filter((wld) => temp.push(wld?.wishlist_data?.length));
+    console.log(temp);
+    let templength = temp.reduce((initial, final) => initial + final, 0);
+    setwishlength(templength);
+  }, [wishListData]);
 
   const handleDashboard = () => {
     history(
@@ -44,7 +44,10 @@ export const Userdetails = () => {
     );
   };
   return (
-    <div className="user_details_main_container">
+    <div
+      className="user_details_main_container"
+      id="user_details_main_container"
+    >
       <div className="logo">
         <Link to={`/${customnostore ? customnostore : geo?.country_name}`}>
           <img src={logo} alt="texub logo" />
