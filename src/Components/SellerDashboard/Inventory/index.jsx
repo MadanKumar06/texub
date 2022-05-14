@@ -27,6 +27,21 @@ function Index({ registerproduct }) {
     return price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
   }
 
+
+function getOrdinalSuffix(value) {
+        
+   	if(/^[2-3]?1$/.test(value)){
+   		return 'st';
+   	} else if(/^[2-3]?2$/.test(value)){
+   		return 'nd';
+   	} else if(/^[2-3]?3$/.test(value)){
+   		return 'rd';
+   	} else {
+   		return 'th';
+   	}
+        
+}
+
   const [offersOpenClose, setOffersOpenClose] = useState({
     isOpenClose: false,
     product_id: "",
@@ -188,7 +203,7 @@ function Index({ registerproduct }) {
           return (
             <div className="inventory__rank">
               {value}
-              <p>th</p>
+              <p> {getOrdinalSuffix(value)}</p>
             </div>
           );
         },
