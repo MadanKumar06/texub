@@ -160,7 +160,7 @@ function SellerDashboard() {
           {currenttab === "inventory" && (
             <Inventory registerproduct={registerproduct} />
           )}
-          {currenttab === "myprofile" && <MyProfile />}
+          {/* {currenttab === "myprofile" && <MyProfile />} */}
           {currenttab === "registerproduct" && <RegisterProduct />}
           {currenttab === "bulkupload" && <Bulkupload />}
           {currenttab === "registersuccess" && (
@@ -184,7 +184,8 @@ function SellerDashboard() {
           {currenttab === "orders" && <Orders />}
 
           {currenttab === "usermgmt" && (
-            <UserMgmt setuserform={setuserform} userform={userform} />
+            <MyProfile />
+            // <UserMgmt setuserform={setuserform} userform={userform} />
           )}
 
           {currenttab === "sellerservices" && <Sellerservices />}
