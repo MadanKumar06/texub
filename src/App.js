@@ -70,6 +70,10 @@ import {
 } from "./utilities";
 import axios from "axios";
 
+// invoice download
+import MyOrderInvoice from "./Components/BuyerDashboard/MyOrders/OrdersInfo/MyOrderInvoice";
+import CheckoutInvoice from "./Pages/Checkout/CheckoutInvoice";
+
 const App = () => {
   const [
     {
@@ -538,6 +542,26 @@ const App = () => {
                 <>
                   {" "}
                   <KYCDetails /> <ScrollToTop /> <Footer />{" "}
+                </>
+              }
+              exact
+            />
+
+            {/* Invoice download */}
+            <Route
+              path="/:country/checkout-invoice/:quoteid"
+              element={
+                <>
+                  <CheckoutInvoice /> <ScrollToTop />
+                </>
+              }
+              exact
+            />
+            <Route
+              path="/:country/buyerdashboard/myorder-invoice/:order_id"
+              element={
+                <>
+                  <MyOrderInvoice /> <ScrollToTop />
                 </>
               }
               exact

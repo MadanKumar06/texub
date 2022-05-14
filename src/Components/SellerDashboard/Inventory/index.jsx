@@ -86,7 +86,7 @@ function Index({ registerproduct }) {
       })
       .then((result) => {
         if (result.isConfirmed) {
-          deleterow(assigned_product_id)
+          deleterow(assigned_product_id);
         }
       });
   };
@@ -115,13 +115,13 @@ function Index({ registerproduct }) {
             <div className="brandOffers">
               <div className="inventory-product-grid-info">{value}</div>
 
-              {isOfferValid === "1" || isOfferValid === "2" ? (
+              {isOfferValid === "1" ? (
                 isOfferValidOrExpired(offerExpired) ? (
                   <p className="offer_disabled">Offers Expired</p>
                 ) : (
                   <p className="offer_enabled">Offers</p>
                 )
-              ) : offerExpired === null && isOfferValid === "2" ? (
+              ) : isOfferValid === "2" ? (
                 <p className="disabled_offer">Offers Inactive</p>
               ) : (
                 ""

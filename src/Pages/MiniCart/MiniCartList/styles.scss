@@ -1,5 +1,5 @@
 .minicart_list_main {
-    width: 615px;
+  width: 615px;
   .minicart_header {
     height: 72px;
     background: #000000;
@@ -36,7 +36,7 @@
       background-color: #f5f5f5;
       margin-bottom: 12px;
       position: relative;
-      .minicart_icon{
+      .minicart_icon {
         position: absolute;
         left: 0;
       }
@@ -50,14 +50,14 @@
         img {
           width: 100%;
         }
-        .minicart_new{
-            position: absolute;
-            right: 8px;
-            top: 18px;
-            left: 25px;
-            img{
-              width: 30px;
-            }
+        .minicart_new {
+          position: absolute;
+          right: 8px;
+          top: 18px;
+          left: 25px;
+          img {
+            width: 30px;
+          }
         }
       }
       .section_right {
@@ -100,7 +100,7 @@
               color: #ddb363;
               font-size: 12px;
             }
-            .hub_name{
+            .hub_name {
               text-transform: uppercase;
             }
           }
@@ -152,9 +152,9 @@
             .update {
               cursor: pointer;
               position: absolute;
-              right: 0;
+              right: -27px;
               background: #ddb363;
-              top: -51px;
+              top: -44px;
               color: #ffffff;
               border-radius: 5%;
               padding: 3px 5px;
@@ -231,11 +231,22 @@
     }
   }
   .minicart_footer {
+    // background: #ffffff;
+    // width: auto;
+    // padding: 0 9% 1.5em;
+    // position: sticky;
+    // bottom: 0;
+
+    // background: #ffffff;
+    // padding: 0 9% 1.5em;
+    // position: absolute;
+    // bottom: 0px;
+    // width: 100%;
     background: #ffffff;
-    width: auto;
-    padding: 0 9% 1.5em;
-    position: sticky;
-    bottom: 0;
+    padding: 0 1em 1.5em;
+    position: fixed;
+    bottom: 0px;
+    width: 424px;
     .minicart_total {
       display: flex;
       justify-content: space-between;
@@ -416,12 +427,11 @@
             }
             font-size: 16px;
           }
-          .total_block{
-            span{
+          .total_block {
+            span {
               font-size: 16px;
             }
           }
-
         }
       }
     }

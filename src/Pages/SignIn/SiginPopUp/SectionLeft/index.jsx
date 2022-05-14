@@ -173,7 +173,7 @@ const TransitionsModal = ({ classes, openPopUp }) => {
       //   ...prev,
       //   forgot_email_address: "",
       // }));
-     // setInputValidation(inputValidation.forgot_email_address='')
+      // setInputValidation(inputValidation.forgot_email_address='')
     }
   };
 
@@ -331,7 +331,7 @@ const TransitionsModal = ({ classes, openPopUp }) => {
         : "";
   };
 
-  const [customerdata, setcustomerdata] = useState(false)
+  const [customerdata, setcustomerdata] = useState(false);
   const getSigninedUserData = (token) => {
     axios
       .get(Constant.customerMeDetailUrl(), {
@@ -350,8 +350,17 @@ const TransitionsModal = ({ classes, openPopUp }) => {
           "isLoggedIn_auth",
           res?.data?.group_id === 1 ? false : true
         );
-        setcustomerdata(!customerdata)
+        setcustomerdata(!customerdata);
         let iskycFormFilled = res?.data;
+
+        //Redirect to home page.
+        let isValidPage =
+          window.location?.pathname.includes("/products") ||
+          window.location?.pathname.includes("/sellerprofile");
+        if (!isValidPage) {
+          history(`/${customnostore ? customnostore : geo?.country_name}`);
+        }
+
         if (iskycFormFilled?.group_id === 1) {
           setTimeout(() => {
             history(`/${customnostore ? customnostore : geo?.country_name}`);
@@ -384,38 +393,38 @@ const TransitionsModal = ({ classes, openPopUp }) => {
       });
   };
 
-  useEffect(async() => {
-    let user = JSON.parse(localStorage.getItem('userdata'))
-    if(localStorage.getItem('token') === null) return
+  useEffect(async () => {
+    let user = JSON.parse(localStorage.getItem("userdata"));
+    if (localStorage.getItem("token") === null) return;
     try {
       const permission = await axios({
-        method: 'post',
+        method: "post",
         url: `${Constant?.permissiondetails()}`,
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         data: {
-          "customer_id" : user?.id
-       }       
-      })
-      localStorage.setItem('permissions', JSON.stringify(permission?.data))
-    } catch(e) {
-      console.log(e)
+          customer_id: user?.id,
+        },
+      });
+      localStorage.setItem("permissions", JSON.stringify(permission?.data));
+    } catch (e) {
+      console.log(e);
     }
-  }, [customerdata, localStorage.getItem('token')])
+  }, [customerdata, localStorage.getItem("token")]);
   //// Forgor Password ///
   const [passopen, setpassopen] = useState(false);
   const forgotpass = () => {
     setpassopen(true);
   };
-useEffect(()=>{
-    if(signInData.forgot_email_address.length===0){
+  useEffect(() => {
+    if (signInData.forgot_email_address.length === 0) {
       setSignInData((prev) => ({
         ...prev,
         forgot_email_address: "",
       }));
     }
-  }, [signInData.forgot_email_address ])
+  }, [signInData.forgot_email_address]);
   return (
     <>
       {passopen ? (
@@ -514,7 +523,7 @@ useEffect(()=>{
             timeout: 500,
           }}
         >
-          <div className={section_main} style={{outline:'none'}}>
+          <div className={section_main} style={{ outline: "none" }}>
             <header className={header_section}>
               <p>Welcome !</p>
               <Clear className={clear_btn} onClick={() => handleClose()} />
