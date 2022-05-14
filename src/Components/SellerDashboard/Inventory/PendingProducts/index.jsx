@@ -7,7 +7,11 @@ import axios from "axios";
 import { useStateValue } from "../../../../store/state";
 import Constant from "../../../../Constant";
 
+import { ArrowBackIosNew } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
+
 function Index({ registerproduct }) {
+  const navigate = useNavigate();
   const [tableData, setTableData] = useState([]);
   const [apiTableData, setApiTableData] = useState([]);
   const [{}, dispatch] = useStateValue();
@@ -149,6 +153,10 @@ function Index({ registerproduct }) {
           PagePerRow={8}
         />
       )}
+      <p className="pending_product_back" onClick={() => navigate(-1)}>
+        <ArrowBackIosNew />
+        <span>Back</span>
+      </p>
     </div>
   );
 }

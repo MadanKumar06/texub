@@ -1,22 +1,37 @@
-.pending_product_grid .MuiTable-root .MuiTableBody-root .MuiTableRow-root:nth-child(odd){
-    background-color: #f5f5f5;
+.pending_product_grid
+  .MuiTable-root
+  .MuiTableBody-root
+  .MuiTableRow-root:nth-child(odd) {
+  background-color: #f5f5f5;
 }
-.pending_product_grid .MuiTable-root .MuiTableBody-root .MuiTableRow-root:nth-child(even){
-    background-color: #eaeaea;
+.pending_product_grid
+  .MuiTable-root
+  .MuiTableBody-root
+  .MuiTableRow-root:nth-child(even) {
+  background-color: #eaeaea;
 }
-
 
 .pending_product_grid {
- .MuiTableBody-root {
-        .MuiTableRow-root {
-          border-bottom: 2px solid #ffffff;
-          &:nth-child(odd) {
-            background-color: #f5f5f5;
-          }
-          &:nth-child(even) {
-            background-color: #eaeaea;
-          }
-
-        }
+  .MuiTableBody-root {
+    .MuiTableRow-root {
+      border-bottom: 2px solid #ffffff;
+      &:nth-child(odd) {
+        background-color: #f5f5f5;
+      }
+      &:nth-child(even) {
+        background-color: #eaeaea;
+      }
     }
+  }
+  .pending_product_back {
+    display: flex;
+    align-items: center;
+    color: #002d56;
+    cursor: pointer;
+    font-weight: 600;
+    .MuiSvgIcon-root {
+      width: 0.6em;
+      height: 0.6em;
+    }
+  }
 }
