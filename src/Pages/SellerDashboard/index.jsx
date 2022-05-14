@@ -105,6 +105,12 @@ function SellerDashboard() {
   }
 
   const [search, setSearch] = useState("")
+
+  useEffect(() => {
+    debugger
+    setSearch("")
+  }, [window.location.pathname])
+  console.log(search)
   return (
     <div className="sellerdashboard">
       {/* <img src={bg} alt="" /> */}
