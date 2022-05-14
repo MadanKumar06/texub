@@ -31,6 +31,7 @@
   }
   .minicart_list_content {
     padding: 1em 1em 0 1em;
+    overflow: scroll;
     .minicart_section_container {
       display: flex;
       background-color: #f5f5f5;
@@ -231,11 +232,22 @@
     }
   }
   .minicart_footer {
+    // background: #ffffff;
+    // width: auto;
+    // padding: 0 9% 1.5em;
+    // position: sticky;
+    // bottom: 0;
+
+    // background: #ffffff;
+    // padding: 0 9% 1.5em;
+    // position: absolute;
+    // bottom: 0px;
+    // width: 100%;
     background: #ffffff;
-    width: auto;
-    padding: 0 9% 1.5em;
-    position: sticky;
-    bottom: 0;
+    padding: 0 2% 1.5em;
+    position: fixed;
+    bottom: 0px;
+    width: 424px;
     .minicart_total {
       display: flex;
       justify-content: space-between;

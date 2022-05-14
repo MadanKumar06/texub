@@ -329,33 +329,32 @@
 //   }
 // }
 
-
-
-
 .mycart_table_main_container {
   padding: 0 3%;
   .MuiPaper-root {
     box-shadow: none;
   }
   .mycart_table_mui_datatable_main {
+    .MuiPaper-root {
+      display: none;
+    }
     .MuiTable-root {
       .MuiTableHead-root {
         .MuiTableRow-root {
-           border: 1px solid #d6d8d9;
+          border: 1px solid #d6d8d9;
           .MuiTableCell-root {
             &:nth-child(1) {
-             border-right: none !important;
-            border-bottom: none !important;
-            position: absolute;
-            left: 0;
-            right: 0;
-            top: 7px;
-            border-top: none !important;
+              border-right: none !important;
+              border-bottom: none !important;
+              position: absolute;
+              left: 0;
+              right: 0;
+              top: 7px;
+              border-top: none !important;
             }
             &:nth-child(2) {
               border-left: none !important;
               border-top: 1px solid #d6d8d9;
-              
             }
             &:not(:nth-child(2)) {
               border: 1px solid #d6d8d9;
@@ -365,7 +364,7 @@
       }
       .MuiTableBody-root {
         .MuiTableRow-root {
-           border: 1px solid #d6d8d9;
+          border: 1px solid #d6d8d9;
           .MuiTableCell-root {
             &:nth-child(1) {
               border-right: none;
@@ -375,21 +374,21 @@
               /* right: -8rem; */
               // width: 100%;
               border: 0;
-              div{
-                  position: absolute;
-                 left: 4.5rem;
-                 top: 2rem;
+              div {
+                position: absolute;
+                left: 4.5rem;
+                top: 2rem;
               }
             }
-             &:nth-child(2) {
-               .mycart_table_seller_id{
-                 position: absolute;
-                 left: 3rem;
-                 display: flex;
-                 justify-content: center;
-                 align-items: center;
-               }
-             }
+            &:nth-child(2) {
+              .mycart_table_seller_id {
+                position: absolute;
+                left: 3rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+              }
+            }
           }
         }
       }
@@ -567,29 +566,25 @@
   }
 }
 
-
 @media (max-width: "900px") {
-
-
-    .mycart_table_mui_datatable_main {
+  .mycart_table_mui_datatable_main {
     .MuiTable-root {
       .MuiTableHead-root {
         .MuiTableRow-root {
-           border: 1px solid #d6d8d9;
+          border: 1px solid #d6d8d9;
           .MuiTableCell-root {
             &:nth-child(1) {
-             border-right: none !important;
-            border-bottom: none !important;
-            position: initial;
-            left: 0;
-            right: 0;
-            top: 7px;
-            border-top: none !important;
+              border-right: none !important;
+              border-bottom: none !important;
+              position: initial;
+              left: 0;
+              right: 0;
+              top: 7px;
+              border-top: none !important;
             }
             &:nth-child(2) {
               border-left: none !important;
               border-top: 1px solid #d6d8d9;
-              
             }
             &:not(:nth-child(2)) {
               border: 1px solid #d6d8d9;
@@ -599,7 +594,7 @@
       }
       .MuiTableBody-root {
         .MuiTableRow-root {
-           border: 1px solid #d6d8d9;
+          border: 1px solid #d6d8d9;
           .MuiTableCell-root {
             &:nth-child(1) {
               border-right: none;
@@ -609,27 +604,24 @@
               /* right: -8rem; */
               // width: 100%;
               border: 0;
-              div{
-                  position: initial !important;
-                 left: 5rem;
-                 top: 2rem;
-                 justify-content: center;
+              div {
+                position: initial !important;
+                left: 5rem;
+                top: 2rem;
+                justify-content: center;
               }
             }
-             &:nth-child(2) {
-               .mycart_table_seller_id{
-                 position: initial !important;
-                 left: 4rem;
-               }
-             }
+            &:nth-child(2) {
+              .mycart_table_seller_id {
+                position: initial !important;
+                left: 4rem;
+              }
+            }
           }
         }
       }
     }
-
   }
-
-
 }
 
 @media (max-width: "1600px") {
@@ -666,7 +658,6 @@
   }
 }
 
-
 @media (max-width: "1440px") {
   .mycart_table_main_container
     .mycart_table_mui_datatable_main
@@ -700,13 +691,24 @@
     }
   }
 
-  .mycart_table_main_container .mycart_table_mui_datatable_main .MuiTable-root .MuiTableBody-root .MuiTableRow-root .MuiTableCell-root:nth-child(1) div{
-        left: 2.5rem;
+  .mycart_table_main_container
+    .mycart_table_mui_datatable_main
+    .MuiTable-root
+    .MuiTableBody-root
+    .MuiTableRow-root
+    .MuiTableCell-root:nth-child(1)
+    div {
+    left: 2.5rem;
   }
-  .mycart_table_main_container .mycart_table_mui_datatable_main .MuiTable-root .MuiTableBody-root .MuiTableRow-root .MuiTableCell-root:nth-child(2) .mycart_table_seller_id{
+  .mycart_table_main_container
+    .mycart_table_mui_datatable_main
+    .MuiTable-root
+    .MuiTableBody-root
+    .MuiTableRow-root
+    .MuiTableCell-root:nth-child(2)
+    .mycart_table_seller_id {
     left: 1.5em;
   }
- 
 }
 
 @media (max-width: "1199px") and (min-width: "900px") {
