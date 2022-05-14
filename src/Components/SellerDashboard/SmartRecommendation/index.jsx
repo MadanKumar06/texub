@@ -75,6 +75,18 @@ const Index = ({ searchdata, searchupdate }) => {
     fetchTableData();
   }, []);
 
+  function getOrdinalSuffix(value) {      
+    if(/^[2-3]?1$/.test(value)){
+      return 'st';
+    } else if(/^[2-3]?2$/.test(value)){
+      return 'nd';
+    } else if(/^[2-3]?3$/.test(value)){
+      return 'rd';
+    } else {
+      return 'th';
+    }      
+  }
+
   const options = {
     filter: false,
     filterType: "dropdown",
@@ -143,8 +155,7 @@ const Index = ({ searchdata, searchupdate }) => {
         customBodyRender: (value) => {
           return (
             <div className="smart_rank">
-              {value}
-              <p>th</p>
+              {value}{getOrdinalSuffix(value)}
             </div>
           );
         },
@@ -175,24 +186,22 @@ const Index = ({ searchdata, searchupdate }) => {
   ];
   return (
     <div className="smart_main">
-      {tableData?.length ? 
-        <MUITable
-          columns={columns}
-          table={tableData?.length ? tableData : []}
-          options={options}
-          className="smart__table"
-        />
-        : ""
-      }
-      {filteredata?.length > 0 ? (
+      <MUITable
+        columns={columns}
+        table={tableData}
+        //table={tableData?.length ? tableData : []}
+        options={options}
+        className="smart__table"
+      />
+      {filteredata?.length > 0 ?
         <Pagination
           PaginateData={PaginateDataSplit}
           DataList={filteredata?.length ? filteredata : []}
           PagePerRow={10}
         />
-      ) : (
+        :
         ""
-      )}
+      }
       <div className="smart__back__footer">
         <div className="smart__back__container">
           <Link

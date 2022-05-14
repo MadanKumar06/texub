@@ -36,7 +36,7 @@ export const Home = () => {
     localStorage.setItem("wtbpage", JSON.stringify(1));
     localStorage.setItem("productpage", JSON.stringify(1));
     localStorage.setItem("enquirypage", JSON.stringify(1));
-    localStorage.setItem("smart-recommendation", JSON.stringify(1));
+    localStorage.setItem("smartpage", JSON.stringify(1));
   }, [customstore, geo]);
 
   useEffect(() => {

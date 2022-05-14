@@ -19,7 +19,7 @@ const Index = ({ searchdata, searchupdate }) => {
   const PaginateDataSplit = (event) => {
     if (directList?.length === 0) return setdirect([]);
       setdirect(event);
-          };
+    };
   // const PaginateDataSplit = (event) => {
   //   setTableData(event);
   // };
