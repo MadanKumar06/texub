@@ -186,7 +186,7 @@ const WantToBuy = ({ setisVieworders, setisOrders }) => {
         });
       });
   };
-  console.log(wantTobuyData);
+  
   return (
     <div className="want_to_buy__container">
       <div className="want_to_buy__sub_container">
@@ -302,18 +302,20 @@ const WantToBuy = ({ setisVieworders, setisOrders }) => {
                 }}
                 className="inputfield-box"
                 onChange={(event) => {
-                  if(wantTobuyData?.quantity?.length >= 7) return
-                  setWantToBuyData((prevState) => ({
-                    ...prevState,
-                    quantity: event.target.value,
-                  }));
-                  setInputValidation((prevState) => ({
-                    ...prevState,
-                    quantity: "",
-                  }));
+                  // if(wantTobuyData?.quantity?.length > 5) {
+                  //   return
+                  // } else if(wantTobuyData?.quantity?.length !== 6 && wantTobuyData?.quantity?.length <= 6) {
+                    setWantToBuyData((prevState) => ({
+                      ...prevState,
+                      quantity: event.target.value,
+                    }));
+                    setInputValidation((prevState) => ({
+                      ...prevState,
+                      quantity: "",
+                    }));
+                  // }
                 }}
                 value={wantTobuyData?.quantity}
-                maxLength="5"
                 variant="outlined"
               />
               <InputLabel className="validation_error">
