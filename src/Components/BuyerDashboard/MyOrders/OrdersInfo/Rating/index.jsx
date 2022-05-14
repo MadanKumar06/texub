@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Modal, Backdrop, InputLabel, Rating, Button } from "@mui/material";
 import TextareaAutosize from "@mui/base/TextareaAutosize";
+import { TextField } from "@mui/material";
 
 import { Clear } from "@mui/icons-material";
 import "./styles.scss";
@@ -90,19 +91,33 @@ export default function BasicModal({ Popup, currentorder }) {
             </div>
             <div className="rating_comments_block">
               <InputLabel>Comments</InputLabel>
-              <TextareaAutosize
-                aria-label="comments"
-                minRows={3}
-                className="rating_comment"
-                style={{ height: 100 }}
-                value={rating?.comment}
-                onChange={(e) =>
-                  setrating((rating) => ({
-                    ...rating,
-                    comment: e.target.value,
-                  }))
-                }
-              />
+
+               <TextField
+                  className="inputfield-box contact-form-inputfieldbox"
+                  fullWidth
+                  aria-label="comments"
+                  placeholder="Type your message"
+                  name="your_message"
+                  id="your_message"
+                  multiline
+                  minRows={3}
+                  style={{ height: 100 }}
+                    value={rating?.comment}
+                    onChange={(e) =>
+                      setrating((rating) => ({
+                        ...rating,
+                        comment: e.target.value,
+                      }))
+                    }
+                  InputLabelProps={{
+                    shrink: true,
+                    required: true,
+                    classes: {
+                      asterisk: "asterisk",
+                    },
+                  }}
+                  variant="outlined"
+               />
               <div className="rating-btns">
                 <Button className="rating_comments_cancel">Cancel</Button>
                 <Button
