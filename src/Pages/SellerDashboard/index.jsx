@@ -181,7 +181,7 @@ function SellerDashboard() {
           )}
           {currenttab === "addsuccess" && <SuccessPage msg={addsuccess} />}
 
-          {currenttab === "orders" && <Orders />}
+          {currenttab === "orders" && <Orders searchdata={search} searchupdate={searchupdate}/>}
 
           {currenttab === "usermgmt" && (
             <MyProfile />
@@ -190,7 +190,7 @@ function SellerDashboard() {
 
           {currenttab === "sellerservices" && <Sellerservices />}
 
-          {currenttab === "directenquiries" && <Directenqueries />}
+          {currenttab === "directenquiries" && <Directenqueries searchdata={search} searchupdate={searchupdate}/>}
           {currenttab === "paymentmethods" && <Paymentmethods />}
           {currenttab === "smart-recommendation" && <SmartRecommendation searchdata={search} searchupdate={searchupdate} />}
         </div>
