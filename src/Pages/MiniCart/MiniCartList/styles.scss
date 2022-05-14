@@ -231,11 +231,22 @@
     }
   }
   .minicart_footer {
+    // background: #ffffff;
+    // width: auto;
+    // padding: 0 9% 1.5em;
+    // position: sticky;
+    // bottom: 0;
+
+    // background: #ffffff;
+    // padding: 0 9% 1.5em;
+    // position: absolute;
+    // bottom: 0px;
+    // width: 100%;
     background: #ffffff;
-    width: auto;
-    padding: 0 9% 1.5em;
-    position: sticky;
-    bottom: 0;
+    padding: 0 1em 1.5em;
+    position: fixed;
+    bottom: 0px;
+    width: 424px;
     .minicart_total {
       display: flex;
       justify-content: space-between;
