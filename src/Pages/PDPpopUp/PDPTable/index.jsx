@@ -96,6 +96,14 @@ const PDPTable = ({ classes, tableData, setPdpSellerData }) => {
       })
     );
   };
+  useEffect(() => {
+    if (is_table_one) {
+      setPdpSellerData((prevState) => ({
+        ...prevState,
+        is_table_one: is_table_one,
+      }));
+    }
+  }, [is_table_one]);
   const handleClose = () => {
     dispatch({
       type: "SET_PDP_POPUP_OPEN_CLOSE",
@@ -122,6 +130,7 @@ const PDPTable = ({ classes, tableData, setPdpSellerData }) => {
 
   const handleRadioGroupChange = (event) => {
     setdradio(event.product_id);
+    debugger;
     setPdpSellerData((prevState) => ({
       ...prevState,
       ...event,
@@ -135,7 +144,7 @@ const PDPTable = ({ classes, tableData, setPdpSellerData }) => {
   }
   useEffect(() => {
     if (is_table_one.length) {
-      handleRadioGroupChange(is_table_one[0]);
+      // handleRadioGroupChange(is_table_one[0]);
     }
   }, [is_table_one]);
 

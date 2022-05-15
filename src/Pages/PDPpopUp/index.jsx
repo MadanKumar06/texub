@@ -197,6 +197,7 @@ const PdpPopup = () => {
     let isUserAddData = pdpSellerData?.is_table_one?.filter(
       (itm) => itm?.product_id === pdpSellerData?.product_id
     );
+
     dispatch({
       type: "SET_IS_LOADING",
       value: true,
@@ -214,6 +215,7 @@ const PdpPopup = () => {
         sellerId: isUserAddData?.[0]?.seller_id,
       },
     };
+    debugger;
     axios
       .post(
         `${Constant.baseUrl()}${
