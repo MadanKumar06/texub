@@ -262,130 +262,131 @@ const MiniCartList = ({ handleSideBarClose }) => {
       ) : (
         <>
           <div className="minicart_list_content">
-            {isCartData?.length &&
-              isCartData?.map((itm, index) => (
-                <div className="minicart_section_container">
-                  <div className="minicart_icon">
-                    <img src={minicart_icon} alt="" />
-                  </div>
-                  <div className="section_left">
-                    <img src={Constant.imageBaseUrl() + itm?.brand} alt="" />
-                    {/* <span className="minicart_new">
+            {isCartData?.length
+              ? isCartData?.map((itm, index) => (
+                  <div className="minicart_section_container">
+                    <div className="minicart_icon">
+                      <img src={minicart_icon} alt="" />
+                    </div>
+                    <div className="section_left">
+                      <img src={Constant.imageBaseUrl() + itm?.brand} alt="" />
+                      {/* <span className="minicart_new">
                       <img src={minicart_new} alt="" />
                     </span> */}
-                  </div>
-                  <div className="section_right">
-                    <p className="seller_id">
-                      Seller ID : <span>{itm?.seller_code} </span>
-                    </p>
-                    <div className="modal__hub">
-                      <p className="modal_name">{itm?.product_name}</p>
-                      <p className="hub">
-                        <span>Hub</span>
-                        <div className="hub_name">{itm?.hub}</div>
-                      </p>
                     </div>
-                    <div className="rating_main">
-                      {review == 0 ? (
-                        ""
-                      ) : (
-                        <>
-                          <Rating
-                            className="ratings"
-                            name="simple-controlled"
-                            value={value}
-                            onChange={(event, newValue) => {
-                              setValue(newValue);
-                            }}
-                          />
-                          <p className="reviews"> 543 Reviews</p>
-                        </>
-                      )}
-                    </div>
-                    <p
-                      className="detail_link"
-                      onClick={() =>
-                        onCLickDetailsLink({
-                          sku: itm?.sku,
-                          currency_id: itm?.currency_id,
-                          product_id: itm?.product_id,
-                        })
-                      }
-                    >
-                      Details
-                    </p>
-                    <div className="price_block">
-                      <p className="price">
-                        <span>{itm?.currency}</span>
-                        {formatToCurrency(parseInt(itm?.price))}
-                        <span> / Unit</span>
+                    <div className="section_right">
+                      <p className="seller_id">
+                        Seller ID : <span>{itm?.seller_code} </span>
                       </p>
-                      <div className="quantity">
-                        {parseInt(itm?.is_qty) !== parseInt(itm?.qty) && (
-                          <p
-                            className="update"
-                            onClick={() =>
-                              handleUpdate(
-                                itm?.qty,
-                                itm?.sku,
-                                cart?.[0]?.invoice?.Cart_id,
-                                itm?.item_id
-                              )
-                            }
-                          >
-                            Update
-                          </p>
+                      <div className="modal__hub">
+                        <p className="modal_name">{itm?.product_name}</p>
+                        <p className="hub">
+                          <span>Hub</span>
+                          <div className="hub_name">{itm?.hub}</div>
+                        </p>
+                      </div>
+                      <div className="rating_main">
+                        {review == 0 ? (
+                          ""
+                        ) : (
+                          <>
+                            <Rating
+                              className="ratings"
+                              name="simple-controlled"
+                              value={value}
+                              onChange={(event, newValue) => {
+                                setValue(newValue);
+                              }}
+                            />
+                            <p className="reviews"> 543 Reviews</p>
+                          </>
                         )}
-                        <div className="qty_change">
-                          <RemoveIcon
-                            className={`${
-                              parseInt(itm.moq) < parseInt(itm.qty)
-                                ? "item_increase"
-                                : "item_decrease"
-                            }`}
-                            onClick={() =>
-                              handleChange(
-                                parseInt(itm?.moq) >= parseInt(itm?.qty)
-                                  ? parseInt(itm?.qty)
-                                  : parseInt(itm?.qty) - 1,
-                                index
-                              )
-                            }
-                          />
-                          <span className="input_text">{itm?.qty}</span>
-                          <AddIcon
-                            className={`${
-                              parseInt(itm.qty) < parseInt(itm.in_stock)
-                                ? "item_increase"
-                                : "item_decrease"
-                            }`}
-                            onClick={() =>
-                              handleChange(
-                                parseInt(itm?.in_stock) > parseInt(itm?.qty)
-                                  ? parseInt(itm?.qty) + 1
-                                  : parseInt(itm?.qty),
-                                index
-                              )
-                            }
-                          />
+                      </div>
+                      <p
+                        className="detail_link"
+                        onClick={() =>
+                          onCLickDetailsLink({
+                            sku: itm?.sku,
+                            currency_id: itm?.currency_id,
+                            product_id: itm?.product_id,
+                          })
+                        }
+                      >
+                        Details
+                      </p>
+                      <div className="price_block">
+                        <p className="price">
+                          <span>{itm?.currency}</span>
+                          {formatToCurrency(parseInt(itm?.price))}
+                          <span> / Unit</span>
+                        </p>
+                        <div className="quantity">
+                          {parseInt(itm?.is_qty) !== parseInt(itm?.qty) && (
+                            <p
+                              className="update"
+                              onClick={() =>
+                                handleUpdate(
+                                  itm?.qty,
+                                  itm?.sku,
+                                  cart?.[0]?.invoice?.Cart_id,
+                                  itm?.item_id
+                                )
+                              }
+                            >
+                              Update
+                            </p>
+                          )}
+                          <div className="qty_change">
+                            <RemoveIcon
+                              className={`${
+                                parseInt(itm.moq) < parseInt(itm.qty)
+                                  ? "item_increase"
+                                  : "item_decrease"
+                              }`}
+                              onClick={() =>
+                                handleChange(
+                                  parseInt(itm?.moq) >= parseInt(itm?.qty)
+                                    ? parseInt(itm?.qty)
+                                    : parseInt(itm?.qty) - 1,
+                                  index
+                                )
+                              }
+                            />
+                            <span className="input_text">{itm?.qty}</span>
+                            <AddIcon
+                              className={`${
+                                parseInt(itm.qty) < parseInt(itm.in_stock)
+                                  ? "item_increase"
+                                  : "item_decrease"
+                              }`}
+                              onClick={() =>
+                                handleChange(
+                                  parseInt(itm?.in_stock) > parseInt(itm?.qty)
+                                    ? parseInt(itm?.qty) + 1
+                                    : parseInt(itm?.qty),
+                                  index
+                                )
+                              }
+                            />
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <div className="total_block">
-                      <span>TOTAL</span>
-                      <p>
-                        <span>
-                          {
-                            JSON.parse(localStorage.getItem("currency"))
-                              ?.currency_code
-                          }
-                        </span>{" "}
-                        {formatToCurrency(parseInt(itm?.price * itm?.qty))}
-                      </p>
+                      <div className="total_block">
+                        <span>TOTAL</span>
+                        <p>
+                          <span>
+                            {
+                              JSON.parse(localStorage.getItem("currency"))
+                                ?.currency_code
+                            }
+                          </span>{" "}
+                          {formatToCurrency(parseInt(itm?.price * itm?.qty))}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))
+              : ""}
           </div>
           <footer className="minicart_footer">
             <div className="minicart_total">
