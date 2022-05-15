@@ -24,13 +24,12 @@ const Index = ({ searchdata, searchupdate }) => {
       setfiltereddata(temp)
     }
   }, [searchupdate, apiTableData])
-  console.log(filteredata)
 
   const PaginateDataSplit = (event) => {
-    if (filteredata?.length === 0) return setfiltereddata([]);
+    debugger
+    if (filteredata?.length === 0) return setTableData([]);
     setTableData(event);
   };
-  console.log(tableData)
 
   function formatToCurrency(price) {
     return price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
@@ -188,20 +187,16 @@ const Index = ({ searchdata, searchupdate }) => {
     <div className="smart_main">
       <MUITable
         columns={columns}
-        table={tableData}
-        //table={tableData?.length ? tableData : []}
+        // table={tableData}
+        table={tableData?.length ? tableData : []}
         options={options}
         className="smart__table"
       />
-      {filteredata?.length > 0 ?
-        <Pagination
-          PaginateData={PaginateDataSplit}
-          DataList={filteredata?.length ? filteredata : []}
-          PagePerRow={10}
-        />
-        :
-        ""
-      }
+      <Pagination
+        PaginateData={PaginateDataSplit}
+        DataList={filteredata}
+        PagePerRow={10}
+      />
       <div className="smart__back__footer">
         <div className="smart__back__container">
           <Link
