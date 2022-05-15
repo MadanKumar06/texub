@@ -108,7 +108,7 @@ function SellerDashboard() {
 
   useEffect(() => {
     setSearch("")
-  }, [window.location.pathname])
+  }, [currenttab])
   console.log(search)
   return (
     <div className="sellerdashboard">
