@@ -157,7 +157,8 @@ const Checkout = () => {
     contact_person: "",
     email_address: "",
     mobile_number: "",
-  });const [pickup_form_data_valid, setpickup_form_data_valid] = useState({
+  });
+  const [pickup_form_data_valid, setpickup_form_data_valid] = useState({
     bussiness_name: "",
     contact_person: "",
     email_address: "",
@@ -170,14 +171,6 @@ const Checkout = () => {
       quotedata[0]?.invoice?.pending_invoice_status !== "3" &&
       shipping_method === "pick_up_from_hub"
     ) {
-      if (!pickup_form_data?.bussiness_name) {
-        document.getElementById("bussiness_name")?.focus();
-        setpickup_form_data_valid((prevState) => ({
-          ...prevState,
-          bussiness_name: "Please enter the business name.",
-        }));
-        errorHandle = true;
-      }
       if (!pickup_form_data?.contact_person) {
         document.getElementById("contact_person")?.focus();
         setpickup_form_data_valid((prevState) => ({
@@ -313,18 +306,21 @@ const Checkout = () => {
                   region: "Tamil Nadu",
                   region_code: "TN",
                   region_id: 563,
-                  street: [addressdata?.address_line1, addressdata?.address_line2],
+                  street: [
+                    addressdata?.address_line1,
+                    addressdata?.address_line2,
+                  ],
                   telephone: 123,
                 },
                 payment: {
-                  method: payment
+                  method: payment,
                 },
                 extension_attributes: {
                   pending_invoice_status:
                     quotedata[0]?.invoice?.pending_invoice_status,
                   pending_invoice_id: quotedata[0]?.invoice?.pending_invoice_id,
                   invoice_currency: currency?.currency_id,
-                  contact_business_name: pickup_form_data?.bussiness_name,
+                  contact_business_name: company_name?.[0]?.value,
                   contact_person_name: pickup_form_data?.contact_person,
                   contact_email_address: pickup_form_data?.email_address,
                   contact_phone: pickup_form_data?.mobile_number,
@@ -336,7 +332,8 @@ const Checkout = () => {
                           city: addressdata?.city,
                           country_id: country?.[0]?.value,
                           customer_address_id:
-                            shipping_method === "texub_shipping" && addressdata?.id
+                            shipping_method === "texub_shipping" &&
+                            addressdata?.id
                               ? addressdata?.id
                               : user?.default_shipping,
                           email: user?.email,
@@ -373,12 +370,18 @@ const Checkout = () => {
             showConfirmButton: false,
             timer: 3000,
           });
-          if (payment === 'banktransfer') {
+          if (payment === "banktransfer") {
             navigate(
-              `/${customnostore ? customnostore : geo?.country_name}/ordersuccess/${postquote?.data?.entity_id}`
+              `/${
+                customnostore ? customnostore : geo?.country_name
+              }/ordersuccess/${postquote?.data?.entity_id}`
             );
           } else {
-            navigate(`/${customnostore ? customnostore : geo?.country_name}/buyerdashboard/myorder`)
+            navigate(
+              `/${
+                customnostore ? customnostore : geo?.country_name
+              }/buyerdashboard/myorder`
+            );
           }
           setpickup_form_data_valid({
             bussiness_name: "",
@@ -400,7 +403,6 @@ const Checkout = () => {
       return console.log(selectadd);
     }
   };
-
 
   const addressadd = (e) => {
     setaddressdata((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -622,7 +624,7 @@ const Checkout = () => {
       shipping_method === "pick_up_from_hub"
     ) {
       if (
-         !pickup_form_data_valid?.bussiness_name ||
+        !pickup_form_data_valid?.bussiness_name ||
         !pickup_form_data_valid?.contact_person ||
         !pickup_form_data_valid?.email_address ||
         !pickup_form_data_valid?.contact_person
@@ -959,6 +961,13 @@ const Checkout = () => {
     window.print();
     document.body.innerHTML = originalContents;
   };
+
+  //BusinessName from Registration
+  var company_name = JSON.parse(
+    localStorage.getItem("userdata")
+  )?.custom_attributes?.filter(
+    (itm) => itm?.attribute_code === "customer_company_name"
+  );
   return (
     <div className="checkout_main_container" id="Checkout_page">
       <div className="checkout_info_list">
@@ -1289,25 +1298,9 @@ const Checkout = () => {
                             className="inputfield-box"
                             name="bussiness_name"
                             variant="outlined"
-                            // value={pickup?.bussiness_name}
-                            // onChange={(e) => onpickup(e)}
-                            value={pickup_form_data?.bussiness_name}
-                            onChange={(e) => {
-                              setpickup_form_data((prevState) => ({
-                                ...prevState,
-                                bussiness_name: e.target.value
-                              }));
-                              setpickup_form_data_valid((prevState) => ({
-                                ...prevState,
-                                bussiness_name: ''
-                              }));
-                            }}
+                            disabled
+                            value={company_name?.[0]?.value}
                           />
-                         {pickup_form_data_valid?.bussiness_name && (
-                            <p style={{ color: "red" }}>
-                              {pickup_form_data_valid?.bussiness_name}
-                            </p>
-                          )}
                         </div>
                         <div className="address_fields">
                           <InputLabel>Contact Person Name</InputLabel>
@@ -1323,11 +1316,11 @@ const Checkout = () => {
                             onChange={(e) => {
                               setpickup_form_data((prevState) => ({
                                 ...prevState,
-                                contact_person: e.target.value
+                                contact_person: e.target.value,
                               }));
                               setpickup_form_data_valid((prevState) => ({
                                 ...prevState,
-                                contact_person: ''
+                                contact_person: "",
                               }));
                             }}
                           />
@@ -1354,11 +1347,11 @@ const Checkout = () => {
                             onChange={(e) => {
                               setpickup_form_data((prevState) => ({
                                 ...prevState,
-                                email_address: e.target.value
+                                email_address: e.target.value,
                               }));
                               setpickup_form_data_valid((prevState) => ({
                                 ...prevState,
-                                email_address: ''
+                                email_address: "",
                               }));
                             }}
                           />
@@ -1404,11 +1397,11 @@ const Checkout = () => {
                             onChange={(e) => {
                               setpickup_form_data((prevState) => ({
                                 ...prevState,
-                                mobile_number: e
+                                mobile_number: e,
                               }));
                               setpickup_form_data_valid((prevState) => ({
                                 ...prevState,
-                                mobile_number: ''
+                                mobile_number: "",
                               }));
                             }}
                             variant="outlined"
@@ -1556,7 +1549,10 @@ const Checkout = () => {
                 )}
               <div className="checkout_btns">
                 {!placeorder && (
-                  <Button className="placeorder_btn" onClick={() => pickupFormValidation()}>
+                  <Button
+                    className="placeorder_btn"
+                    onClick={() => pickupFormValidation()}
+                  >
                     Place Your Order
                   </Button>
                 )}
