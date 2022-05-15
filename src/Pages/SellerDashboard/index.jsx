@@ -98,18 +98,18 @@ function SellerDashboard() {
   const sidebarstate = () => {
     setbarstate(true);
   };
-  const [searchupdate, setsearchupdate] = useState(false)
+  const [searchupdate, setsearchupdate] = useState(false);
   const updatesearch = (e) => {
-    e.preventDefault()
-    setsearchupdate(!searchupdate)
-  }
+    e.preventDefault();
+    setsearchupdate(!searchupdate);
+  };
 
-  const [search, setSearch] = useState("")
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
-    setSearch("")
-  }, [currenttab])
-  console.log(search)
+    setSearch("");
+  }, [currenttab]);
+
   return (
     <div className="sellerdashboard">
       {/* <img src={bg} alt="" /> */}
@@ -142,7 +142,8 @@ function SellerDashboard() {
                   inputProps={{ "aria-label": "search google maps" }}
                   className="sellerdashboard__input"
                   onChange={(e) => setSearch(e.target.value)}
-                  onKeyPress={(e) => e.key === 'Enter' && updatesearch(e)}
+                  value={search}
+                  onKeyPress={(e) => e.key === "Enter" && updatesearch(e)}
                 />
                 <IconButton
                   type="submit"
@@ -186,7 +187,9 @@ function SellerDashboard() {
           )}
           {currenttab === "addsuccess" && <SuccessPage msg={addsuccess} />}
 
-          {currenttab === "orders" && <Orders searchdata={search} searchupdate={searchupdate}/>}
+          {currenttab === "orders" && (
+            <Orders searchdata={search} searchupdate={searchupdate} />
+          )}
 
           {currenttab === "usermgmt" && (
             <MyProfile />
@@ -195,9 +198,16 @@ function SellerDashboard() {
 
           {currenttab === "sellerservices" && <Sellerservices />}
 
-          {currenttab === "directenquiries" && <Directenqueries searchdata={search} searchupdate={searchupdate}/>}
+          {currenttab === "directenquiries" && (
+            <Directenqueries searchdata={search} searchupdate={searchupdate} />
+          )}
           {currenttab === "paymentmethods" && <Paymentmethods />}
-          {currenttab === "smart-recommendation" && <SmartRecommendation searchdata={search} searchupdate={searchupdate} />}
+          {currenttab === "smart-recommendation" && (
+            <SmartRecommendation
+              searchdata={search}
+              searchupdate={searchupdate}
+            />
+          )}
         </div>
       </div>
     </div>
