@@ -264,7 +264,6 @@ const Mycart = () => {
   const handleOnNavigate = () => {
     navigate(`/${customnostore ? customnostore : geo?.country_name}/products`);
   };
-
   return (
     <div className="my_cart_main">
       <div className="my_cart_image_block">
@@ -318,7 +317,9 @@ const Mycart = () => {
         )}
         <Button
           className="my_cart_bottom_button_pending_invoice"
-          onClick={() => cart?.length && setallert(true)}
+          onClick={() =>
+            cart?.length && cart?.[0]?.invoice_items?.length && setallert(true)
+          }
         >
           <span>Add To Pending Invoice</span>
         </Button>
