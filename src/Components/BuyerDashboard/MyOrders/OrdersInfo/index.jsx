@@ -310,8 +310,8 @@ const Index = ({ orders, currentorder }) => {
             </div>
             <div className="order_user_info">
               <div className="username">
-                <span className="id_heading">Order ID #</span>
-                <span className="id">{currentorder}</span>
+               <span className="id_heading">Username #</span>
+                <span className="id">{detailsorder?.[0]?.order_details?.[0]?.customer_name}</span>
               </div>
               <div className="username">
                 <span className="id_heading">Approved By</span>
