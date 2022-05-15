@@ -23,6 +23,7 @@ const Index = ({ pdpSellerData, handleOpenClose }) => {
   const create = () => {
     setcreate1(!create1);
     setSave_error(false);
+    document.getElementById("wishbutton")?.focus();
   };
   const [fname, setfname] = useState([]);
   const [newwishdata, setnewwishdata] = useState("");
@@ -237,7 +238,7 @@ const Index = ({ pdpSellerData, handleOpenClose }) => {
                 <InputLabel style={{ color: "red" }}>{save_error}</InputLabel>
               </>
             )}
-            <div className="back_to_pdp">
+            <div className="back_to_pdp" id="wishbutton">
               <ArrowBackIosIcon />
               <p
                 style={{ cursor: "pointer" }}

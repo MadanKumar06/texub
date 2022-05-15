@@ -125,6 +125,7 @@ const PaginationControlled = ({ PaginateData, DataList, PagePerRow }) => {
         customnostore ? customnostore : geo?.country_name
       }/buyerdashboard/wishlist`
     ) {
+      debugger
       let wishpage = JSON.parse(localStorage.getItem("wishpage"));
       storedpage =
         parseInt(wishpage) > page?.option?.length

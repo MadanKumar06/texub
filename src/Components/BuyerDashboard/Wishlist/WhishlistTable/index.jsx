@@ -425,6 +425,7 @@ const WhislistTable = ({
                 value={newname}
                 onChange={(e) => setnewname(e.target.value)}
                 type="text"
+                onKeyPress={(e) => e.key === 'Enter' && savename()}
               />
               <span className="wishlist-edit-img" onClick={savename}>
                 <SaveAsOutlinedIcon />
