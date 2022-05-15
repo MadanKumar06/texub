@@ -32,7 +32,6 @@ const Index = ({ searchdata, searchupdate }) => {
     } else {
       let temp = directList?.filter(td => td?.texub_wtb_id?.toLowerCase()?.includes(searchdata?.toLowerCase()))
       setfiltereddirect(temp)
-
     }
   }, [searchupdate, directList])
 
@@ -92,22 +91,23 @@ const Index = ({ searchdata, searchupdate }) => {
   }, [])
 
   useEffect(() => {
+    localStorage.setItem("enquirypage", JSON.stringify(1));
     if (type === 0) {
-      setfiltereddirect(direct)
+      setfiltereddirect(directList)
     }
     if (type === 1) {
-      const pending = direct?.filter(d => d?.seller_enquiry_status === "Open")
+      const pending = directList?.filter(d => d?.seller_enquiry_status === "Open")
       setfiltereddirect(pending)
     }
     if (type === 2) {
-      const accepted = direct?.filter(d => d?.seller_enquiry_status === "Accepted")
+      const accepted = directList?.filter(d => d?.seller_enquiry_status === "Accepted")
       setfiltereddirect(accepted)
     }
     if (type === 3) {
-      const declined = direct?.filter(d => d?.seller_enquiry_status === "Declined")
+      const declined = directList?.filter(d => d?.seller_enquiry_status === "Declined")
       setfiltereddirect(declined)
     }
-  }, [type, refreshdata, direct])
+  }, [type])
 
   const options = {
     filter: false,
@@ -242,15 +242,15 @@ const Index = ({ searchdata, searchupdate }) => {
 
       <MUITable
         columns={columns}
-        table={filtereddirect}
+        table={direct}
         //table={tableData?.length ? tableData : []}
         options={options}
         className="directenquiries__table"
       />
-      {directList?.length > 0 ?
+      {filtereddirect?.length > 0 ?
         <Pagination
           PaginateData={PaginateDataSplit}
-          DataList={directList?.length ? directList : []}
+          DataList={filtereddirect?.length ? filtereddirect : []}
           PagePerRow={10}
         />
         :
