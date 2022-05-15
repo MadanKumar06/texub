@@ -596,6 +596,7 @@ const MyCartTable = ({ cartDataList, deleteCartData, setrowselect }) => {
     download: false,
     print: false,
     sort: false,
+    pagination: false,
     viewColumns: false,
     search: false,
     textLabels: {

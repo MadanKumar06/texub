@@ -23,7 +23,6 @@ const Index = ({ pdpSellerData, handleOpenClose }) => {
   const create = () => {
     setcreate1(!create1);
     setSave_error(false);
-    document.getElementById("wishbutton")?.focus();
   };
   const [fname, setfname] = useState([]);
   const [newwishdata, setnewwishdata] = useState("");
