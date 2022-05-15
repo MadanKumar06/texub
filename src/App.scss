@@ -92,6 +92,11 @@
     border: 1px solid #ddb363;
   }
 }
+.check_country{
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
 
 ///* dropdown selection background change*/
   .MuiAutocomplete-option.Mui-focused{

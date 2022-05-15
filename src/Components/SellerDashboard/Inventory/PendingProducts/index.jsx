@@ -68,7 +68,7 @@ function Index({ registerproduct }) {
       label: " ",
       options: {
         customBodyRender: (value) => {
-          return <img src={value} alt="" style={{ height: "50px" }} />;
+          return <img src={value} className="brand_img_section" alt="No Brands" style={{ height: "50px" }} />;
         },
       },
     },

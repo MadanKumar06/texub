@@ -74,20 +74,20 @@ const Checkout = () => {
   const [quotedata, setqutoedata] = useState([]);
   const { quoteid } = useParams();
   const [{ currency, geo, customnostore }, dispatch] = useStateValue();
-  const [pickup, setpickup] = useState({
-    bussiness_name: "",
-    contact_person: "",
-    email_address: "",
-    mobile_number: "",
-  });
+  // const [pickup, setpickup] = useState({
+  //   bussiness_name: "",
+  //   contact_person: "",
+  //   email_address: "",
+  //   mobile_number: "",
+  // });
   const [payment, setpayment] = useState("banktransfer");
   const [countryList, setCountryList] = useState([]);
-  const [formerror, setformerror] = useState({
-    bussiness_name: true,
-    contact_person: true,
-    email_address: true,
-    mobile_number: true,
-  });
+  // const [formerror, setformerror] = useState({
+  //   bussiness_name: true,
+  //   contact_person: true,
+  //   email_address: true,
+  //   mobile_number: true,
+  // });
   //  const handleMobileChangeInput = (event) => {
   //   pickup((prevState) => ({
   //     ...prevState,
@@ -106,10 +106,10 @@ const Checkout = () => {
   //     setformerror({ ...formerror, [e.target.name]: true });
   //   }
   // };
-  const onpickup = (e) => {
-    setpickup({ ...pickup, [e.target.name]: e.target.value });
-    setformerror({ ...formerror, [e.target.name]: true });
-  };
+  // const onpickup = (e) => {
+  //   setpickup({ ...pickup, [e.target.name]: e.target.value });
+  //   setformerror({ ...formerror, [e.target.name]: true });
+  // };
 
   const [adminToken, setAdminToken] = useState("");
   useEffect(() => {
@@ -117,17 +117,17 @@ const Checkout = () => {
       setAdminToken(res);
     });
   }, []);
-  const handleMobileChangeInput = (event) => {
-    setpickup((prevState) => ({
-      ...prevState,
-      mobile_number: event,
-    }));
-    // if (event.length === 12) {
-    //   setformerror({ ...formerror, mobile_number: true });
-    // } else if (event.length !== 12) {
-    //   setformerror({ ...formerror, mobile_number: false });
-    // }
-  };
+  // const handleMobileChangeInput = (event) => {
+  //   setpickup((prevState) => ({
+  //     ...prevState,
+  //     mobile_number: event,
+  //   }));
+  //   // if (event.length === 12) {
+  //   //   setformerror({ ...formerror, mobile_number: true });
+  //   // } else if (event.length !== 12) {
+  //   //   setformerror({ ...formerror, mobile_number: false });
+  //   // }
+  // };
   const [addressdata, setaddressdata] = useState({
     organization_name: "",
     address_line1: "",
@@ -151,6 +151,256 @@ const Checkout = () => {
     lastname: "",
     firstname: "",
   });
+
+  const [pickup_form_data, setpickup_form_data] = useState({
+    bussiness_name: "",
+    contact_person: "",
+    email_address: "",
+    mobile_number: "",
+  });const [pickup_form_data_valid, setpickup_form_data_valid] = useState({
+    bussiness_name: "",
+    contact_person: "",
+    email_address: "",
+    mobile_number: "",
+  });
+
+  const pickupFormValidation = async (event) => {
+    let errorHandle = false;
+    if (
+      quotedata[0]?.invoice?.pending_invoice_status !== "3" &&
+      shipping_method === "pick_up_from_hub"
+    ) {
+      if (!pickup_form_data?.bussiness_name) {
+        document.getElementById("bussiness_name")?.focus();
+        setpickup_form_data_valid((prevState) => ({
+          ...prevState,
+          bussiness_name: "Please enter the business name.",
+        }));
+        errorHandle = true;
+      }
+      if (!pickup_form_data?.contact_person) {
+        document.getElementById("contact_person")?.focus();
+        setpickup_form_data_valid((prevState) => ({
+          ...prevState,
+          contact_person: "Please enter the contact person.",
+        }));
+        errorHandle = true;
+      }
+      if (!pickup_form_data?.email_address) {
+        document.getElementById("email_address")?.focus();
+        setpickup_form_data_valid((prevState) => ({
+          ...prevState,
+          email_address: "Please enter the email.",
+        }));
+        errorHandle = true;
+      } else if (!isEmailValid(pickup_form_data?.email_address)) {
+        document.getElementById("email_address")?.focus();
+        setpickup_form_data_valid((prevState) => ({
+          ...prevState,
+          email_address: "Please enter the valid email.",
+        }));
+        errorHandle = true;
+      }
+      if (!pickup_form_data?.mobile_number) {
+        document.getElementById("mobile_number")?.focus();
+        setpickup_form_data_valid((prevState) => ({
+          ...prevState,
+          mobile_number: "Please enter the mobile number.",
+        }));
+        errorHandle = true;
+      }
+      if (!errorHandle) {
+        //.............
+        let user = JSON.parse(localStorage.getItem("userdata"));
+        let storedata = JSON.parse(localStorage.getItem("storedata"));
+        let itemsdata = [];
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: true,
+        });
+        var country = user?.custom_attributes?.filter(
+          (itm) => itm?.attribute_code === "customer_country"
+        );
+        quotedata[0]?.invoice_items?.filter((qd) => {
+          itemsdata.push({
+            base_discount_amount: 0,
+            base_original_price: qd?.price,
+            base_price: qd?.price,
+            base_price_incl_tax: qd?.price,
+            base_row_invoiced: 0,
+            base_row_total: qd?.row_total,
+            base_tax_amount: 0,
+            base_tax_invoiced: 0,
+            discount_amount: 0,
+            discount_percent: 0,
+            free_shipping: 0,
+            is_virtual: 0,
+            name: qd?.product_name,
+            original_price: qd?.price,
+            price: qd?.price,
+            price_incl_tax: qd?.price,
+            product_id: qd?.product_id,
+            product_type: "simple",
+            qty_ordered: qd.qty,
+            row_total: qd?.price,
+            row_total_incl_tax: qd?.price,
+            sku: qd?.sku,
+            store_id: storedata?.store_id,
+            quote_item_id: qd?.item_id,
+            extension_attributes: {
+              seller_id: qd?.seller_id,
+              item_hub: qd?.hub_id,
+              item_currency: qd?.currency_id,
+            },
+          });
+        });
+        try {
+          const postquote = await axios({
+            method: "post",
+            url: `${Constant.baseUrl2()}/orders`,
+            headers: {
+              Authorization: `Bearer ${adminToken}`,
+            },
+            data: {
+              entity: {
+                base_currency_code: currency?.currency_code,
+                base_discount_amount: 0,
+                base_grand_total: quotedata[0]?.invoice?.grand_total,
+                base_shipping_amount: quotedata[0]?.invoice?.shipping_amount,
+                base_subtotal: quotedata[0]?.invoice?.subtotal,
+                base_tax_amount: quotedata?.[0]?.invoice?.tax,
+                customer_email: user?.email,
+                customer_firstname: addressdata?.firstname,
+                customer_group_id: 5,
+                customer_id: user?.id,
+                customer_is_guest: 0,
+                customer_lastname: addressdata?.lastname,
+                customer_note_notify: 1,
+                discount_amount: 0,
+                email_sent: 1,
+                coupon_code: "",
+                discount_description: "",
+                grand_total: quotedata[0]?.invoice?.grand_total,
+                is_virtual: 0,
+                order_currency_code: currency?.currency_code,
+                shipping_amount: quotedata[0]?.invoice?.shipping_amount,
+                shipping_description: "",
+                state: "new",
+                status: "pending",
+                store_currency_code: currency?.currency_code,
+                store_id: 1,
+                store_name: storedata?.name,
+                subtotal: quotedata[0]?.invoice?.subtotal,
+                subtotal_incl_tax: quotedata?.[0]?.invoice?.subtotal_with_tax,
+                tax_amount: quotedata?.[0]?.invoice?.tax,
+                total_item_count: quotedata?.[0]?.invoice?.items_qty,
+                total_qty_ordered: quotedata?.[0]?.invoice?.items_qty,
+                weight: 0,
+                quote_id: quotedata[0]?.invoice?.quote_id,
+                items: itemsdata,
+                billing_address: {
+                  address_type: "billing",
+                  city: addressdata?.city,
+                  country_id: country?.[0]?.value,
+                  customer_address_id:
+                    shipping_method === "texub_shipping" && addressdata?.id
+                      ? addressdata?.id
+                      : user?.default_shipping,
+                  email: user?.email,
+                  firstname: user?.firstname,
+                  lastname: user?.lastname,
+                  postcode: addressdata?.pincode,
+                  region: "Tamil Nadu",
+                  region_code: "TN",
+                  region_id: 563,
+                  street: [addressdata?.address_line1, addressdata?.address_line2],
+                  telephone: 123,
+                },
+                payment: {
+                  method: payment
+                },
+                extension_attributes: {
+                  pending_invoice_status:
+                    quotedata[0]?.invoice?.pending_invoice_status,
+                  pending_invoice_id: quotedata[0]?.invoice?.pending_invoice_id,
+                  invoice_currency: currency?.currency_id,
+                  contact_business_name: pickup_form_data?.bussiness_name,
+                  contact_person_name: pickup_form_data?.contact_person,
+                  contact_email_address: pickup_form_data?.email_address,
+                  contact_phone: pickup_form_data?.mobile_number,
+                  shipping_assignments: [
+                    {
+                      shipping: {
+                        address: {
+                          address_type: "shipping",
+                          city: addressdata?.city,
+                          country_id: country?.[0]?.value,
+                          customer_address_id:
+                            shipping_method === "texub_shipping" && addressdata?.id
+                              ? addressdata?.id
+                              : user?.default_shipping,
+                          email: user?.email,
+                          firstname: user?.firstname,
+                          lastname: user?.lastname,
+                          postcode: addressdata?.pincode,
+                          region: "Tamil Nadu",
+                          region_code: "TN",
+                          region_id: 563,
+                          street: [
+                            addressdata?.address_line1,
+                            addressadd?.address_line2,
+                          ],
+                          telephone: 123,
+                        },
+                        method:
+                          quotedata[0]?.invoice?.pending_invoice_status === "3"
+                            ? "flatrate_flatrate"
+                            : "instore_instore",
+                      },
+                    },
+                  ],
+                },
+              },
+            },
+          });
+          dispatch({
+            type: "SET_IS_LOADING",
+            value: false,
+          });
+          swal.fire({
+            text: "Order Placed",
+            icon: "success",
+            showConfirmButton: false,
+            timer: 3000,
+          });
+          if (payment === 'banktransfer') {
+            navigate(
+              `/${customnostore ? customnostore : geo?.country_name}/ordersuccess/${postquote?.data?.entity_id}`
+            );
+          } else {
+            navigate(`/${customnostore ? customnostore : geo?.country_name}/buyerdashboard/myorder`)
+          }
+          setpickup_form_data_valid({
+            bussiness_name: "",
+            contact_person: "",
+            email_address: "",
+            mobile_number: "",
+          });
+        } catch (e) {
+          dispatch({
+            type: "SET_IS_LOADING",
+            value: false,
+          });
+          console.log(e);
+        }
+      }
+    }
+    //.............
+    if (shipping_method === "texub_shipping" && !selectadd) {
+      return console.log(selectadd);
+    }
+  };
+
 
   const addressadd = (e) => {
     setaddressdata((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -372,10 +622,10 @@ const Checkout = () => {
       shipping_method === "pick_up_from_hub"
     ) {
       if (
-        !formerror?.bussiness_name ||
-        !formerror?.contact_person ||
-        !formerror?.email_address ||
-        !formerror?.contact_person
+         !pickup_form_data_valid?.bussiness_name ||
+        !pickup_form_data_valid?.contact_person ||
+        !pickup_form_data_valid?.email_address ||
+        !pickup_form_data_valid?.contact_person
       ) {
         return swal.fire({
           text: "Please Fill the form before creating order",
@@ -431,263 +681,263 @@ const Checkout = () => {
     }
   };
 
-  const raisequote = async () => {
-    // if (
-    //   quotedata[0]?.invoice?.pending_invoice_status !== "3" &&
-    //   shipping_method === "pick_up_from_hub"
-    // ) {
-    //   if (
-    //     !formerror?.bussiness_name ||
-    //     !formerror?.contact_person ||
-    //     !formerror?.email_address ||
-    //     !formerror?.contact_person
-    //   ) {
-    //     return swal.fire({
-    //       text: "Please Fill the form before creating order",
-    //       icon: "error",
-    //       showConfirmButton: false,
-    //       timer: 3000,
-    //     });
-    //   }
-    // }
-    if (
-      quotedata[0]?.invoice?.pending_invoice_status !== "3" &&
-      shipping_method === "pick_up_from_hub"
-    ) {
-      if (!pickup.bussiness_name) {
-        setformerror((prevState) => ({
-          ...prevState,
-          bussiness_name: false,
-        }));
-      }
-      if (!pickup.contact_person) {
-        setformerror((prevState) => ({
-          ...prevState,
-          contact_person: false,
-        }));
-      }
-      if (!pickup.email_address) {
-        setformerror((prevState) => ({
-          ...prevState,
-          email_address: false,
-        }));
-      } else if (!isEmailValid(pickup?.email_address)) {
-        setformerror((prevState) => ({
-          ...prevState,
-          email_address: false,
-        }));
-      }
-      if (!pickup.mobile_number) {
-        setformerror((prevState) => ({
-          ...prevState,
-          mobile_number: false,
-        }));
-      } else if (pickup?.mobile_number.length < 5) {
-        setformerror((prevState) => ({
-          ...prevState,
-          mobile_number: false,
-        }));
-      } else {
-        setformerror((prevState) => ({
-          ...prevState,
-          mobile_number: true,
-        }));
-      }
-    }
-    if (shipping_method === "texub_shipping" && !selectadd) {
-      return console.log(selectadd);
-    }
-    // return console.log(selectadd)
-    let user = JSON.parse(localStorage.getItem("userdata"));
-    let storedata = JSON.parse(localStorage.getItem("storedata"));
-    let itemsdata = [];
-    dispatch({
-      type: "SET_IS_LOADING",
-      value: true,
-    });
+  // const raisequote = async () => {
+  //   // if (
+  //   //   quotedata[0]?.invoice?.pending_invoice_status !== "3" &&
+  //   //   shipping_method === "pick_up_from_hub"
+  //   // ) {
+  //   //   if (
+  //   //     !formerror?.bussiness_name ||
+  //   //     !formerror?.contact_person ||
+  //   //     !formerror?.email_address ||
+  //   //     !formerror?.contact_person
+  //   //   ) {
+  //   //     return swal.fire({
+  //   //       text: "Please Fill the form before creating order",
+  //   //       icon: "error",
+  //   //       showConfirmButton: false,
+  //   //       timer: 3000,
+  //   //     });
+  //   //   }
+  //   // }
+  //   if (
+  //     quotedata[0]?.invoice?.pending_invoice_status !== "3" &&
+  //     shipping_method === "pick_up_from_hub"
+  //   ) {
+  //     if (!pickup.bussiness_name) {
+  //       setformerror((prevState) => ({
+  //         ...prevState,
+  //         bussiness_name: false,
+  //       }));
+  //     }
+  //     if (!pickup.contact_person) {
+  //       setformerror((prevState) => ({
+  //         ...prevState,
+  //         contact_person: false,
+  //       }));
+  //     }
+  //     if (!pickup.email_address) {
+  //       setformerror((prevState) => ({
+  //         ...prevState,
+  //         email_address: false,
+  //       }));
+  //     } else if (!isEmailValid(pickup?.email_address)) {
+  //       setformerror((prevState) => ({
+  //         ...prevState,
+  //         email_address: false,
+  //       }));
+  //     }
+  //     if (!pickup.mobile_number) {
+  //       setformerror((prevState) => ({
+  //         ...prevState,
+  //         mobile_number: false,
+  //       }));
+  //     } else if (pickup?.mobile_number.length < 5) {
+  //       setformerror((prevState) => ({
+  //         ...prevState,
+  //         mobile_number: false,
+  //       }));
+  //     } else {
+  //       setformerror((prevState) => ({
+  //         ...prevState,
+  //         mobile_number: true,
+  //       }));
+  //     }
+  //   }
+  //   if (shipping_method === "texub_shipping" && !selectadd) {
+  //     return console.log(selectadd);
+  //   }
+  //   // return console.log(selectadd)
+  //   let user = JSON.parse(localStorage.getItem("userdata"));
+  //   let storedata = JSON.parse(localStorage.getItem("storedata"));
+  //   let itemsdata = [];
+  //   dispatch({
+  //     type: "SET_IS_LOADING",
+  //     value: true,
+  //   });
 
-    var country = user?.custom_attributes?.filter(
-      (itm) => itm?.attribute_code === "customer_country"
-    );
-    quotedata[0]?.invoice_items?.filter((qd) => {
-      itemsdata.push({
-        base_discount_amount: 0,
-        base_original_price: qd?.price,
-        base_price: qd?.price,
-        base_price_incl_tax: qd?.price,
-        base_row_invoiced: 0,
-        base_row_total: qd?.row_total,
-        base_tax_amount: 0,
-        base_tax_invoiced: 0,
-        discount_amount: 0,
-        discount_percent: 0,
-        free_shipping: 0,
-        is_virtual: 0,
-        name: qd?.product_name,
-        original_price: qd?.price,
-        price: qd?.price,
-        price_incl_tax: qd?.price,
-        product_id: qd?.product_id,
-        product_type: "simple",
-        qty_ordered: qd.qty,
-        row_total: qd?.price,
-        row_total_incl_tax: qd?.price,
-        sku: qd?.sku,
-        store_id: storedata?.store_id,
-        quote_item_id: qd?.item_id,
-        extension_attributes: {
-          seller_id: qd?.seller_id,
-          item_hub: qd?.hub_id,
-          item_currency: qd?.currency_id,
-        },
-      });
-    });
-    try {
-      const postquote = await axios({
-        method: "post",
-        url: `${Constant.baseUrl2()}/orders`,
-        headers: {
-          Authorization: `Bearer ${adminToken}`,
-        },
-        data: {
-          entity: {
-            base_currency_code: currency?.currency_code,
-            base_discount_amount: 0,
-            base_grand_total: quotedata[0]?.invoice?.grand_total,
-            base_shipping_amount: quotedata[0]?.invoice?.shipping_amount,
-            base_subtotal: quotedata[0]?.invoice?.subtotal,
-            base_tax_amount: quotedata?.[0]?.invoice?.tax,
-            customer_email: user?.email,
-            customer_firstname: addressdata?.firstname,
-            customer_group_id: 5,
-            customer_id: user?.id,
-            customer_is_guest: 0,
-            customer_lastname: addressdata?.lastname,
-            customer_note_notify: 1,
-            discount_amount: 0,
-            email_sent: 1,
-            coupon_code: "",
-            discount_description: "",
-            grand_total: quotedata[0]?.invoice?.grand_total,
-            is_virtual: 0,
-            order_currency_code: currency?.currency_code,
-            shipping_amount: quotedata[0]?.invoice?.shipping_amount,
-            shipping_description: "",
-            state: "new",
-            status: "pending",
-            store_currency_code: currency?.currency_code,
-            store_id: 1,
-            store_name: storedata?.name,
-            subtotal: quotedata[0]?.invoice?.subtotal,
-            subtotal_incl_tax: quotedata?.[0]?.invoice?.subtotal_with_tax,
-            tax_amount: quotedata?.[0]?.invoice?.tax,
-            total_item_count: quotedata?.[0]?.invoice?.items_qty,
-            total_qty_ordered: quotedata?.[0]?.invoice?.items_qty,
-            weight: 0,
-            quote_id: quotedata[0]?.invoice?.quote_id,
-            items: itemsdata,
-            billing_address: {
-              address_type: "billing",
-              city: addressdata?.city,
-              country_id: country?.[0]?.value,
-              customer_address_id:
-                shipping_method === "texub_shipping" && addressdata?.id
-                  ? addressdata?.id
-                  : user?.default_shipping,
-              email: user?.email,
-              firstname: user?.firstname,
-              lastname: user?.lastname,
-              postcode: addressdata?.pincode,
-              region: "Tamil Nadu",
-              region_code: "TN",
-              region_id: 563,
-              street: [addressdata?.address_line1, addressdata?.address_line2],
-              telephone: 123,
-            },
-            payment: {
-              method: payment,
-            },
-            extension_attributes: {
-              pending_invoice_status:
-                quotedata[0]?.invoice?.pending_invoice_status,
-              pending_invoice_id: quotedata[0]?.invoice?.pending_invoice_id,
-              invoice_currency: currency?.currency_id,
-              contact_business_name: pickup?.bussiness_name,
-              contact_person_name: pickup?.contact_person,
-              contact_email_address: pickup?.email_address,
-              contact_phone: pickup?.mobile_number,
-              shipping_assignments: [
-                {
-                  shipping: {
-                    address: {
-                      address_type: "shipping",
-                      city: addressdata?.city,
-                      country_id: country?.[0]?.value,
-                      customer_address_id:
-                        shipping_method === "texub_shipping" && addressdata?.id
-                          ? addressdata?.id
-                          : user?.default_shipping,
-                      email: user?.email,
-                      firstname: user?.firstname,
-                      lastname: user?.lastname,
-                      postcode: addressdata?.pincode,
-                      region: "Tamil Nadu",
-                      region_code: "TN",
-                      region_id: 563,
-                      street: [
-                        addressdata?.address_line1,
-                        addressadd?.address_line2,
-                      ],
-                      telephone: 123,
-                    },
-                    method:
-                      quotedata[0]?.invoice?.pending_invoice_status === "3"
-                        ? "flatrate_flatrate"
-                        : "instore_instore",
-                  },
-                },
-              ],
-            },
-          },
-        },
-      });
-      dispatch({
-        type: "SET_IS_LOADING",
-        value: false,
-      });
-      swal.fire({
-        text: "Order Placed",
-        icon: "success",
-        showConfirmButton: false,
-        timer: 3000,
-      });
-      if (payment === "banktransfer") {
-        navigate(
-          `/${customnostore ? customnostore : geo?.country_name}/ordersuccess/${
-            postquote?.data?.entity_id
-          }`
-        );
-      } else {
-        navigate(
-          `/${
-            customnostore ? customnostore : geo?.country_name
-          }/buyerdashboard/myorder`
-        );
-      }
-      setpickup({
-        bussiness_name: "",
-        contact_person: "",
-        email_address: "",
-        mobile_number: "",
-      });
-    } catch (e) {
-      dispatch({
-        type: "SET_IS_LOADING",
-        value: false,
-      });
-      console.log(e);
-    }
-  };
+  //   var country = user?.custom_attributes?.filter(
+  //     (itm) => itm?.attribute_code === "customer_country"
+  //   );
+  //   quotedata[0]?.invoice_items?.filter((qd) => {
+  //     itemsdata.push({
+  //       base_discount_amount: 0,
+  //       base_original_price: qd?.price,
+  //       base_price: qd?.price,
+  //       base_price_incl_tax: qd?.price,
+  //       base_row_invoiced: 0,
+  //       base_row_total: qd?.row_total,
+  //       base_tax_amount: 0,
+  //       base_tax_invoiced: 0,
+  //       discount_amount: 0,
+  //       discount_percent: 0,
+  //       free_shipping: 0,
+  //       is_virtual: 0,
+  //       name: qd?.product_name,
+  //       original_price: qd?.price,
+  //       price: qd?.price,
+  //       price_incl_tax: qd?.price,
+  //       product_id: qd?.product_id,
+  //       product_type: "simple",
+  //       qty_ordered: qd.qty,
+  //       row_total: qd?.price,
+  //       row_total_incl_tax: qd?.price,
+  //       sku: qd?.sku,
+  //       store_id: storedata?.store_id,
+  //       quote_item_id: qd?.item_id,
+  //       extension_attributes: {
+  //         seller_id: qd?.seller_id,
+  //         item_hub: qd?.hub_id,
+  //         item_currency: qd?.currency_id,
+  //       },
+  //     });
+  //   });
+  //   try {
+  //     const postquote = await axios({
+  //       method: "post",
+  //       url: `${Constant.baseUrl2()}/orders`,
+  //       headers: {
+  //         Authorization: `Bearer ${adminToken}`,
+  //       },
+  //       data: {
+  //         entity: {
+  //           base_currency_code: currency?.currency_code,
+  //           base_discount_amount: 0,
+  //           base_grand_total: quotedata[0]?.invoice?.grand_total,
+  //           base_shipping_amount: quotedata[0]?.invoice?.shipping_amount,
+  //           base_subtotal: quotedata[0]?.invoice?.subtotal,
+  //           base_tax_amount: quotedata?.[0]?.invoice?.tax,
+  //           customer_email: user?.email,
+  //           customer_firstname: addressdata?.firstname,
+  //           customer_group_id: 5,
+  //           customer_id: user?.id,
+  //           customer_is_guest: 0,
+  //           customer_lastname: addressdata?.lastname,
+  //           customer_note_notify: 1,
+  //           discount_amount: 0,
+  //           email_sent: 1,
+  //           coupon_code: "",
+  //           discount_description: "",
+  //           grand_total: quotedata[0]?.invoice?.grand_total,
+  //           is_virtual: 0,
+  //           order_currency_code: currency?.currency_code,
+  //           shipping_amount: quotedata[0]?.invoice?.shipping_amount,
+  //           shipping_description: "",
+  //           state: "new",
+  //           status: "pending",
+  //           store_currency_code: currency?.currency_code,
+  //           store_id: 1,
+  //           store_name: storedata?.name,
+  //           subtotal: quotedata[0]?.invoice?.subtotal,
+  //           subtotal_incl_tax: quotedata?.[0]?.invoice?.subtotal_with_tax,
+  //           tax_amount: quotedata?.[0]?.invoice?.tax,
+  //           total_item_count: quotedata?.[0]?.invoice?.items_qty,
+  //           total_qty_ordered: quotedata?.[0]?.invoice?.items_qty,
+  //           weight: 0,
+  //           quote_id: quotedata[0]?.invoice?.quote_id,
+  //           items: itemsdata,
+  //           billing_address: {
+  //             address_type: "billing",
+  //             city: addressdata?.city,
+  //             country_id: country?.[0]?.value,
+  //             customer_address_id:
+  //               shipping_method === "texub_shipping" && addressdata?.id
+  //                 ? addressdata?.id
+  //                 : user?.default_shipping,
+  //             email: user?.email,
+  //             firstname: user?.firstname,
+  //             lastname: user?.lastname,
+  //             postcode: addressdata?.pincode,
+  //             region: "Tamil Nadu",
+  //             region_code: "TN",
+  //             region_id: 563,
+  //             street: [addressdata?.address_line1, addressdata?.address_line2],
+  //             telephone: 123,
+  //           },
+  //           payment: {
+  //             method: payment,
+  //           },
+  //           extension_attributes: {
+  //             pending_invoice_status:
+  //               quotedata[0]?.invoice?.pending_invoice_status,
+  //             pending_invoice_id: quotedata[0]?.invoice?.pending_invoice_id,
+  //             invoice_currency: currency?.currency_id,
+  //             contact_business_name: pickup?.bussiness_name,
+  //             contact_person_name: pickup?.contact_person,
+  //             contact_email_address: pickup?.email_address,
+  //             contact_phone: pickup?.mobile_number,
+  //             shipping_assignments: [
+  //               {
+  //                 shipping: {
+  //                   address: {
+  //                     address_type: "shipping",
+  //                     city: addressdata?.city,
+  //                     country_id: country?.[0]?.value,
+  //                     customer_address_id:
+  //                       shipping_method === "texub_shipping" && addressdata?.id
+  //                         ? addressdata?.id
+  //                         : user?.default_shipping,
+  //                     email: user?.email,
+  //                     firstname: user?.firstname,
+  //                     lastname: user?.lastname,
+  //                     postcode: addressdata?.pincode,
+  //                     region: "Tamil Nadu",
+  //                     region_code: "TN",
+  //                     region_id: 563,
+  //                     street: [
+  //                       addressdata?.address_line1,
+  //                       addressadd?.address_line2,
+  //                     ],
+  //                     telephone: 123,
+  //                   },
+  //                   method:
+  //                     quotedata[0]?.invoice?.pending_invoice_status === "3"
+  //                       ? "flatrate_flatrate"
+  //                       : "instore_instore",
+  //                 },
+  //               },
+  //             ],
+  //           },
+  //         },
+  //       },
+  //     });
+  //     dispatch({
+  //       type: "SET_IS_LOADING",
+  //       value: false,
+  //     });
+  //     swal.fire({
+  //       text: "Order Placed",
+  //       icon: "success",
+  //       showConfirmButton: false,
+  //       timer: 3000,
+  //     });
+  //     if (payment === "banktransfer") {
+  //       navigate(
+  //         `/${customnostore ? customnostore : geo?.country_name}/ordersuccess/${
+  //           postquote?.data?.entity_id
+  //         }`
+  //       );
+  //     } else {
+  //       navigate(
+  //         `/${
+  //           customnostore ? customnostore : geo?.country_name
+  //         }/buyerdashboard/myorder`
+  //       );
+  //     }
+  //     setpickup({
+  //       bussiness_name: "",
+  //       contact_person: "",
+  //       email_address: "",
+  //       mobile_number: "",
+  //     });
+  //   } catch (e) {
+  //     dispatch({
+  //       type: "SET_IS_LOADING",
+  //       value: false,
+  //     });
+  //     console.log(e);
+  //   }
+  // };
 
   console.log(payment);
   const navigate = useNavigate();
@@ -1039,12 +1289,23 @@ const Checkout = () => {
                             className="inputfield-box"
                             name="bussiness_name"
                             variant="outlined"
-                            value={pickup?.bussiness_name}
-                            onChange={(e) => onpickup(e)}
+                            // value={pickup?.bussiness_name}
+                            // onChange={(e) => onpickup(e)}
+                            value={pickup_form_data?.bussiness_name}
+                            onChange={(e) => {
+                              setpickup_form_data((prevState) => ({
+                                ...prevState,
+                                bussiness_name: e.target.value
+                              }));
+                              setpickup_form_data_valid((prevState) => ({
+                                ...prevState,
+                                bussiness_name: ''
+                              }));
+                            }}
                           />
-                          {!formerror?.bussiness_name && (
+                         {pickup_form_data_valid?.bussiness_name && (
                             <p style={{ color: "red" }}>
-                              Please Enter your Business name
+                              {pickup_form_data_valid?.bussiness_name}
                             </p>
                           )}
                         </div>
@@ -1056,12 +1317,23 @@ const Checkout = () => {
                             className="inputfield-box"
                             name="contact_person"
                             variant="outlined"
-                            value={pickup?.contact_person}
-                            onChange={(e) => onpickup(e)}
+                            // value={pickup?.contact_person}
+                            // onChange={(e) => onpickup(e)}
+                            value={pickup_form_data?.contact_person}
+                            onChange={(e) => {
+                              setpickup_form_data((prevState) => ({
+                                ...prevState,
+                                contact_person: e.target.value
+                              }));
+                              setpickup_form_data_valid((prevState) => ({
+                                ...prevState,
+                                contact_person: ''
+                              }));
+                            }}
                           />
-                          {!formerror?.contact_person && (
+                          {pickup_form_data_valid?.contact_person && (
                             <p style={{ color: "red" }}>
-                              Please Enter your Contact Person name
+                              {pickup_form_data_valid?.contact_person}
                             </p>
                           )}
                         </div>
@@ -1076,12 +1348,23 @@ const Checkout = () => {
                             className="inputfield-box"
                             name="email_address"
                             variant="outlined"
-                            value={pickup?.email_address}
-                            onChange={(e) => onpickup(e)}
+                            // value={pickup?.email_address}
+                            // onChange={(e) => onpickup(e)}
+                            value={pickup_form_data?.email_address}
+                            onChange={(e) => {
+                              setpickup_form_data((prevState) => ({
+                                ...prevState,
+                                email_address: e.target.value
+                              }));
+                              setpickup_form_data_valid((prevState) => ({
+                                ...prevState,
+                                email_address: ''
+                              }));
+                            }}
                           />
-                          {!formerror?.email_address && (
+                          {pickup_form_data_valid?.email_address && (
                             <p style={{ color: "red" }}>
-                              Please Enter your Email Address
+                              {pickup_form_data_valid?.email_address}
                             </p>
                           )}
                         </div>
@@ -1111,12 +1394,23 @@ const Checkout = () => {
                             countryCodeEditable={false}
                             className="inputfield-box"
                             name="mobile_number"
-                            value={pickup?.mobile_number}
+                            // value={pickup?.mobile_number}
                             InputLabelProps={{
                               shrink: true,
                               required: true,
                             }}
-                            onChange={(e) => handleMobileChangeInput(e)}
+                            // onChange={(e) => handleMobileChangeInput(e)}
+                            value={pickup_form_data?.mobile_number}
+                            onChange={(e) => {
+                              setpickup_form_data((prevState) => ({
+                                ...prevState,
+                                mobile_number: e
+                              }));
+                              setpickup_form_data_valid((prevState) => ({
+                                ...prevState,
+                                mobile_number: ''
+                              }));
+                            }}
                             variant="outlined"
                           />
 
@@ -1129,9 +1423,9 @@ const Checkout = () => {
                             value={pickup?.mobile}
                             onChange={(e) => onpickup(e)}
                           /> */}
-                          {!formerror?.mobile_number && (
+                          {pickup_form_data_valid?.mobile_number && (
                             <p style={{ color: "red" }}>
-                              Please Enter your Mobile Number
+                              {pickup_form_data_valid?.mobile_number}
                             </p>
                           )}
                         </div>
@@ -1262,7 +1556,7 @@ const Checkout = () => {
                 )}
               <div className="checkout_btns">
                 {!placeorder && (
-                  <Button className="placeorder_btn" onClick={raisequote}>
+                  <Button className="placeorder_btn" onClick={() => pickupFormValidation()}>
                     Place Your Order
                   </Button>
                 )}
@@ -1454,7 +1748,7 @@ const Checkout = () => {
                       ""
                     )}
                   </div>
-                  <div className="address_fields">
+                  <div className="address_fields check_country">
                     <InputLabel id="address_field">Country</InputLabel>
                     <FormControl
                       className="address_select_field_box"
@@ -1485,7 +1779,7 @@ const Checkout = () => {
                         }
                       >
                         {countryList?.map((cl) => (
-                          <MenuItem value={cl?.value}>{cl?.label}</MenuItem>
+                          <MenuItem value={cl?.label}>{cl?.label}</MenuItem>
                         ))}
                       </Select>
                     </FormControl>

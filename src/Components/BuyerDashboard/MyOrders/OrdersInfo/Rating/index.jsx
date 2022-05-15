@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import { Modal, Backdrop, InputLabel, Rating, Button } from "@mui/material";
 import TextareaAutosize from "@mui/base/TextareaAutosize";
+import { TextField } from "@mui/material";
 
 import { Clear } from "@mui/icons-material";
 import "./styles.scss";
 import axios from "axios";
 import Constant from "../../../../../Constant";
 import { useStateValue } from "../../../../../store/state";
+import swal from "sweetalert2";
 
 export default function BasicModal({ Popup, currentorder }) {
-  const [{}, dispatch] = useStateValue();
+  // const [{}, dispatch] = useStateValue();
 
+  const [{ geo, customnostore }, dispatch] = useStateValue();
   const [rating, setrating] = useState({
     star: 0,
     comment: "",
@@ -29,9 +32,12 @@ export default function BasicModal({ Popup, currentorder }) {
     }
   };
 
-  console.log(rating);
   const reviewsubmit = async () => {
     let user = JSON.parse(localStorage.getItem("userdata"));
+    dispatch({
+      type: "SET_IS_LOADING",
+      value: true,
+    });
     try {
       const submit = await axios({
         method: "post",
@@ -49,7 +55,28 @@ export default function BasicModal({ Popup, currentorder }) {
           },
         },
       });
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
+      swal.fire({
+        text: `Review successfully submited`,
+        icon: "success",
+        showConfirmButton: false,
+        timer: 3000,
+      });
+      handleClose();
     } catch (e) {
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
+      swal.fire({
+        text: "Submiting review failed",
+        icon: "error",
+        showConfirmButton: false,
+        timer: 3000,
+      });
       console.log(e);
     }
   };
@@ -90,21 +117,35 @@ export default function BasicModal({ Popup, currentorder }) {
             </div>
             <div className="rating_comments_block">
               <InputLabel>Comments</InputLabel>
-              <TextareaAutosize
-                aria-label="comments"
-                minRows={3}
-                className="rating_comment"
-                style={{ height: 100 }}
-                value={rating?.comment}
-                onChange={(e) =>
-                  setrating((rating) => ({
-                    ...rating,
-                    comment: e.target.value,
-                  }))
-                }
-              />
+
+               <TextField
+                  className="inputfield-box contact-form-inputfieldbox"
+                  fullWidth
+                  aria-label="comments"
+                  placeholder="Type your message"
+                  name="your_message"
+                  id="your_message"
+                  multiline
+                  minRows={3}
+                  style={{ height: 100 }}
+                    value={rating?.comment}
+                    onChange={(e) =>
+                      setrating((rating) => ({
+                        ...rating,
+                        comment: e.target.value,
+                      }))
+                    }
+                  InputLabelProps={{
+                    shrink: true,
+                    required: true,
+                    classes: {
+                      asterisk: "asterisk",
+                    },
+                  }}
+                  variant="outlined"
+               />
               <div className="rating-btns">
-                <Button className="rating_comments_cancel">Cancel</Button>
+                <Button className="rating_comments_cancel" onClick={()=>handleClose()}>Cancel</Button>
                 <Button
                   className="btn-secondary rating_comments_submit"
                   onClick={reviewsubmit}
