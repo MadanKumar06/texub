@@ -8,6 +8,8 @@ import ViewOrder from "../../Common/Vieworders";
 import { useStateValue } from "../../../store/state";
 import axios from "axios";
 import Constant from "../../../Constant";
+import NodataFound from "../../../Assets/CommonImage/NodataFound.webp.png";
+
 import { IconButton, InputBase, Paper } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 
@@ -90,6 +92,16 @@ function Index() {
     sort: false,
     viewColumns: false,
     search: false,
+    textLabels: {
+      body: {
+        noMatch: (
+          <div className="no_data_found">
+            <img src={NodataFound} alt="No data Found" />
+            <p>No data Found...</p>
+          </div>
+        ),
+      },
+    },
   };
 
   const columns = [

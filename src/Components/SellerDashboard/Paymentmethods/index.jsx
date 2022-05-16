@@ -7,6 +7,8 @@ import { ArrowBackIosNew } from "@mui/icons-material";
 import Enquirydetails from '../../SellerDashboard/Directenqueries/Enquirydetails'
 import paypal_image from '../../../Assets/sellerdashboard/dashboard/paypal (1).png'
 import braintree_image from '../../../Assets/sellerdashboard/dashboard/paypal (1).png'
+import NodataFound from "../../../Assets/CommonImage/NodataFound.webp.png";
+
 
 const Index = () => {
   const [{geo, customstore, customnostore}, dispatch] = useStateValue()
@@ -36,6 +38,16 @@ const Index = () => {
     sort: false,
     viewColumns: false,
     search: false,
+    textLabels: {
+      body: {
+        noMatch: (
+          <div className="no_data_found">
+            <img src={NodataFound} alt="No data Found" />
+            <p>No data Found...</p>
+          </div>
+        ),
+      },
+    },
   };
 
   const table = [

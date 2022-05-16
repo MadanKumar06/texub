@@ -6,9 +6,10 @@ import { ArrowBackIosNew } from "@mui/icons-material";
 import payment_type from "../../../Assets/buyerdashboard/paymentMethods/visa (1).png";
 import { Link } from "react-router-dom";
 import { useStateValue } from "../../../store/state";
+import NodataFound from "../../../Assets/CommonImage/NodataFound.webp.png";
 
 function PaymentMethod() {
-  const [{geo, customstore, customnostore}, dispatch] = useStateValue()
+  const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
   const table = [
     {
       card_number: "Ending with….1789",
@@ -63,13 +64,27 @@ function PaymentMethod() {
     sort: false,
     viewColumns: false,
     search: false,
+    textLabels: {
+      body: {
+        noMatch: (
+          <div className="no_data_found">
+            <img src={NodataFound} alt="No data Found" />
+            <p>No data Found...</p>
+          </div>
+        ),
+      },
+    },
   };
 
   return (
     <div className="payment_method">
       <div className="payment_method__footer">
         <div className="payment_method__container">
-          <Link to={`/${customnostore ? customnostore : geo?.country_name}/buyerdashboard/dashboard`}>
+          <Link
+            to={`/${
+              customnostore ? customnostore : geo?.country_name
+            }/buyerdashboard/dashboard`}
+          >
             <ArrowBackIosNew />
             <span>Back</span>
           </Link>

@@ -12,6 +12,8 @@ import Pagination from "../../Pagination";
 import ProductGrid from "./ProductGrid";
 import axios from "axios";
 import Constant from "../../../Constant";
+import NodataFound from "../../../Assets/CommonImage/NodataFound.webp.png";
+
 import { useStateValue } from "../../../store/state";
 import Offers from "./Offers";
 import moment from "moment";
@@ -59,6 +61,16 @@ function getOrdinalSuffix(value) {
     sort: false,
     viewColumns: false,
     search: false,
+    textLabels: {
+      body: {
+        noMatch: (
+          <div className="no_data_found">
+            <img src={NodataFound} alt="No data Found" />
+            <p>No data Found...</p>
+          </div>
+        ),
+      },
+    },
   };
 
   const handleOpenCloseOffers = () => {

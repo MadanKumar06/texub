@@ -4,6 +4,8 @@ import MUITable from '../../../Common/MUITable'
 import { useNavigate } from "react-router-dom";
 import Pagination from "../../../Pagination";
 import { useStateValue } from '../../../../store/state';
+import NodataFound from "../../../../Assets/CommonImage/NodataFound.webp.png";
+
 
 function Index() {
   const history = useNavigate();
@@ -26,6 +28,16 @@ function Index() {
     sort: false,
     viewColumns: false,
     search: false,
+    textLabels: {
+      body: {
+        noMatch: (
+          <div className="no_data_found">
+            <img src={NodataFound} alt="No data Found" />
+            <p>No data Found...</p>
+          </div>
+        ),
+      },
+    },
   };
 
   const table = [

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "./styles.scss";
 import MUITable from "../../../Common/MUITable";
 import Pagination from "../../../Pagination";
+import NodataFound from "../../../../Assets/CommonImage/NodataFound.webp.png";
+
 function Index({ registerproduct, gridData }) {
   const [tableData, setTableData] = useState([]);
   const options = {
@@ -14,6 +16,16 @@ function Index({ registerproduct, gridData }) {
     sort: false,
     viewColumns: false,
     search: false,
+    textLabels: {
+      body: {
+        noMatch: (
+          <div className="no_data_found">
+            <img src={NodataFound} alt="No data Found" />
+            <p>No data Found...</p>
+          </div>
+        ),
+      },
+    },
   };
 
   console.log(gridData);

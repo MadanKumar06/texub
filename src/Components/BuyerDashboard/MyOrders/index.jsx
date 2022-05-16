@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
-import MUITable from '../../../Components/Common/MUITable'
+import MUITable from "../../../Components/Common/MUITable";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import Pagination from "../../Pagination";
 import "./styles.scss";
 import { useStateValue } from "../../../store/state";
-import Vieworders from '../../Common/Vieworders'
-import OrdersInfo from '../../BuyerDashboard/MyOrders/OrdersInfo'
+import Vieworders from "../../Common/Vieworders";
+import OrdersInfo from "../../BuyerDashboard/MyOrders/OrdersInfo";
 import axios from "axios";
-import Constant from '../../../Constant'
+import Constant from "../../../Constant";
 import moment from "moment";
 import { IconButton, InputBase, Paper } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-
+import NodataFound from "../../../Assets/CommonImage/NodataFound.webp.png";
 
 function Index() {
   const [tableData, setTableData] = useState([]);
@@ -26,30 +26,30 @@ function Index() {
   function formatToCurrency(price) {
     return price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
   }
-  const [{geo, customstore, customnostore}, dispatch] = useStateValue();
+  const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
   const [type, settype] = useState();
 
   const selectorder = (value) => {
     settype(value);
   };
-  
+
   useEffect(() => {
-    selectorder(0)
-  }, [])
+    selectorder(0);
+  }, []);
 
   const PaginateDataSplit = (event) => {
     if (orderlist?.length === 0) return setTableData([]);
     setTableData(event);
   };
 
-  const [isVieworders, setisVieworders] = useState(false)
-  const [currentorder, setcurrentorder] = useState()
+  const [isVieworders, setisVieworders] = useState(false);
+  const [currentorder, setcurrentorder] = useState();
   const orders = (value) => {
-    setcurrentorder(value ? value : '')
-    setisVieworders(true)
-    setisOrders(false)
-  }
-  const [isOrders, setisOrders] = useState(true)
+    setcurrentorder(value ? value : "");
+    setisVieworders(true);
+    setisOrders(false);
+  };
+  const [isOrders, setisOrders] = useState(true);
 
   const options = {
     filter: false,
@@ -61,41 +61,50 @@ function Index() {
     sort: false,
     viewColumns: false,
     search: false,
+    textLabels: {
+      body: {
+        noMatch: (
+          <div className="no_data_found">
+            <img src={NodataFound} alt="No data Found" />
+            <p>No data Found...</p>
+          </div>
+        ),
+      },
+    },
   };
 
-  const [orderlist, setorderlist] = useState([])
+  const [orderlist, setorderlist] = useState([]);
 
-  useEffect(async() => {
+  useEffect(async () => {
     dispatch({
       type: "SET_IS_LOADING",
       value: true,
     });
-    const user = JSON.parse(localStorage.getItem('userdata'))
+    const user = JSON.parse(localStorage.getItem("userdata"));
     try {
       const orderlist = await axios({
-        method: 'post',
+        method: "post",
         data: {
-          buyerId: user?.id
+          buyerId: user?.id,
         },
         url: `${Constant?.baseUrl()}/getBuyerOrderList`,
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`
-        }
-      })
-      setorderlist(orderlist?.data)
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+      setorderlist(orderlist?.data);
       dispatch({
         type: "SET_IS_LOADING",
         value: false,
       });
-    } catch(e) {
-      console.log(e)
+    } catch (e) {
+      console.log(e);
       dispatch({
         type: "SET_IS_LOADING",
         value: false,
       });
     }
-  }, [])
-
+  }, []);
 
   const columns = [
     {
@@ -107,17 +116,20 @@ function Index() {
         },
       },
     },
-    { name: "date",
+    {
+      name: "date",
       label: "Date",
       options: {
         customBodyRender: (value) => {
           return (
             <div className="myorders__date">
-              <span className="price">{moment(value).format("DD/MM/YYYY")}</span>
+              <span className="price">
+                {moment(value).format("DD/MM/YYYY")}
+              </span>
             </div>
           );
         },
-      }
+      },
     },
     { name: "hub", label: "HUB" },
     {
@@ -128,7 +140,10 @@ function Index() {
           return (
             <div className="myorders__ordertotal">
               <span className="currency">INR </span>
-              <span className="price"> {formatToCurrency(parseInt(value))}</span>
+              <span className="price">
+                {" "}
+                {formatToCurrency(parseInt(value))}
+              </span>
             </div>
           );
         },
@@ -159,44 +174,47 @@ function Index() {
       label: "Action",
       options: {
         customBodyRender: (value) => {
-          return <div className="myorders__action" onClick={() => orders(value)}>View Order</div>;
+          return (
+            <div className="myorders__action" onClick={() => orders(value)}>
+              View Order
+            </div>
+          );
         },
       },
     },
   ];
 
   return (
-
     <div className="myorders">
-
-     
-      {isOrders &&
-        <> <div className="myordersection__search">
-              <Paper
-                className="myordersection__searchinput"
-                component="form"
-                sx={{ p: "2px 4px", display: "flex", alignItems: "center" }}
+      {isOrders && (
+        <>
+          {" "}
+          <div className="myordersection__search">
+            <Paper
+              className="myordersection__searchinput"
+              component="form"
+              sx={{ p: "2px 4px", display: "flex", alignItems: "center" }}
+            >
+              <InputBase
+                sx={{ ml: 1, flex: 1 }}
+                placeholder="Search..."
+                inputProps={{ "aria-label": "search google maps" }}
+                className="myordersection_input"
+              />
+              <IconButton
+                type="submit"
+                sx={{ p: "10px" }}
+                aria-label="search"
+                onClick={(event) => event.preventDefault()}
               >
-                <InputBase
-                  sx={{ ml: 1, flex: 1 }}
-                  placeholder="Search..."
-                  inputProps={{ "aria-label": "search google maps" }}
-                  className="myordersection_input"
-                />
-                <IconButton
-                  type="submit"
-                  sx={{ p: "10px" }}
-                  aria-label="search"
-                  onClick={(event) => event.preventDefault()}
-                >
-                  <SearchIcon />
-                </IconButton>
-              </Paper>
-              {/* <div className="sellerdashboard__notiIcon">
+                <SearchIcon />
+              </IconButton>
+            </Paper>
+            {/* <div className="sellerdashboard__notiIcon">
                 <img src={notification} alt="" />
               </div>
               <span>Notification</span> */}
-            </div>
+          </div>
           <div className="myorders__buttons">
             {ordertype.map((data, i) => (
               <p
@@ -208,23 +226,33 @@ function Index() {
               </p>
             ))}
           </div>
-          <MUITable columns={columns} table={tableData} options={options} className="myorders__table" />
-          {orderlist?.length > 0 ?
-            <Pagination
-            PaginateData={PaginateDataSplit}
-            DataList={orderlist?.length ? orderlist : []}
-            PagePerRow={10}
+          <MUITable
+            columns={columns}
+            table={tableData}
+            options={options}
+            className="myorders__table"
           />
-          :
-          ""
-          }
+          {orderlist?.length > 0 ? (
+            <Pagination
+              PaginateData={PaginateDataSplit}
+              DataList={orderlist?.length ? orderlist : []}
+              PagePerRow={10}
+            />
+          ) : (
+            ""
+          )}
         </>
-
-      }
-      {isVieworders && <OrdersInfo currentorder={currentorder} orders={orders} />}
-       <div className="my_orders__footer">
+      )}
+      {isVieworders && (
+        <OrdersInfo currentorder={currentorder} orders={orders} />
+      )}
+      <div className="my_orders__footer">
         <div className="my_orders__container">
-          <Link to={`/${customnostore ? customnostore : geo?.country_name}/buyerdashboard/dashboard`}>
+          <Link
+            to={`/${
+              customnostore ? customnostore : geo?.country_name
+            }/buyerdashboard/dashboard`}
+          >
             <ArrowBackIosNew />
             <span>Back</span>
           </Link>

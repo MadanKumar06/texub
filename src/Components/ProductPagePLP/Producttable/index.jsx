@@ -8,6 +8,8 @@ import Pagination from "../../Pagination";
 import Constant from "../../../Constant";
 
 //Basic Need
+import NodataFound from "../../../Assets/CommonImage/NodataFound.webp.png";
+
 import shortExpand_active_icon from "../../../Assets/BasicNeeded/PLPIcons/Group 1175.png";
 import shortExpand_inactive_icon from "../../../Assets/BasicNeeded/PLPIcons/Group 1177.png";
 import longExpand_active_icon from "../../../Assets/BasicNeeded/PLPIcons/Group 1178.png";
@@ -254,7 +256,12 @@ const Productstable = ({
     search: false,
     textLabels: {
       body: {
-        noMatch: "Sorry, No data found",
+        noMatch: (
+          <div className="no_data_found">
+            <img src={NodataFound} alt="No data Found" />
+            <p>No data Found...</p>
+          </div>
+        ),
       },
     },
   };

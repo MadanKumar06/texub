@@ -5,6 +5,7 @@ import Constant from "../../../Constant";
 
 import HP from "./../../../Assets/Productlist/hp_td_icon.png";
 import Acer from "../../../Assets/Productlist/acer_icon_td.png";
+import NodataFound from "../../../Assets/CommonImage/NodataFound.webp.png";
 
 const PendingInvoiceTable = ({ pendingInvoiceList }) => {
   const [is_table_quantity, setIs_table_quantity] = useState([]);
@@ -80,10 +81,10 @@ const PendingInvoiceTable = ({ pendingInvoiceList }) => {
           return (
             <div className="pending_invoice_table_price_block">
               <div className="pending_invoice_table_price">
-                <span> {
-                            JSON.parse(localStorage.getItem("currency"))
-                              ?.currency_code
-                          }</span>
+                <span>
+                  {" "}
+                  {JSON.parse(localStorage.getItem("currency"))?.currency_code}
+                </span>
                 {value}
                 <span>/unit</span>
               </div>
@@ -113,10 +114,10 @@ const PendingInvoiceTable = ({ pendingInvoiceList }) => {
           return (
             <div className="pending_invoice_table_subtotal_block">
               <div className="pending_invoice_table_subtotal">
-                <span> {
-                            JSON.parse(localStorage.getItem("currency"))
-                              ?.currency_code
-                          }</span>
+                <span>
+                  {" "}
+                  {JSON.parse(localStorage.getItem("currency"))?.currency_code}
+                </span>
                 {value}
               </div>
             </div>
@@ -155,41 +156,6 @@ const PendingInvoiceTable = ({ pendingInvoiceList }) => {
       },
     },
   ];
-
-  const Productstablelist = [
-    {
-      id: 1,
-      seller_id: "1135G7",
-      products: {
-        id: 11,
-        eta: "3 days",
-        model_name: "PAVILION MODEL14-DV0054TU",
-        model_desc:
-          "Hp 14-Dv0054Tu Pavilion Laptop (11Th Gen Intel Core I5-1135G7/…512Gb Sdd/Intel Iris Xe Graphics/Windows 10/Mso/Fhd), 35.56 Cm (14 Inch)",
-        product_img: HP,
-      },
-      hub: "Dubai",
-      price: "66,999 ",
-      quantity: "100",
-      sub_total: "4,019,943",
-    },
-    {
-      id: 2,
-      seller_id: "1235G7",
-      products: {
-        id: 22,
-        eta: "5 days",
-        model_name: "PAVILION MODEL14-DV0054TU",
-        model_desc:
-          "Hp 14-Dv0054Tu Pavilion Laptop (11Th Gen Intel Core I5-1135G7/…512Gb Sdd/Intel Iris Xe Graphics/Windows 10/Mso/Fhd), 35.56 Cm (14 Inch)",
-        product_img: Acer,
-      },
-      hub: "Mumbai",
-      price: "66,399 ",
-      quantity: "120",
-      sub_total: "4,019,940",
-    },
-  ];
   const options = {
     filter: true,
     filterType: "dropdown",
@@ -200,6 +166,16 @@ const PendingInvoiceTable = ({ pendingInvoiceList }) => {
     sort: false,
     viewColumns: false,
     search: false,
+    textLabels: {
+      body: {
+        noMatch: (
+          <div className="no_data_found">
+            <img src={NodataFound} alt="No data Found" />
+            <p>No data Found...</p>
+          </div>
+        ),
+      },
+    },
   };
 
   return (

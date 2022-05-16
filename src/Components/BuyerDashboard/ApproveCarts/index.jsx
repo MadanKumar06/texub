@@ -7,10 +7,11 @@ import Pagination from "../../Pagination";
 import MUITable from "../../../Components/Common/MUITable";
 import { useStateValue } from "../../../store/state";
 import axios from "axios";
-import Constant from '../../../Constant'
+import Constant from "../../../Constant";
+import NodataFound from "../../../Assets/CommonImage/NodataFound.webp.png";
 
 function ApproveCart() {
-  const [{geo, customstore, customnostore}, dispatch] = useStateValue();
+  const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
   const [tableData, setTableData] = useState([]);
 
   const handleViewChange = () => {
@@ -20,30 +21,29 @@ function ApproveCart() {
       open: true,
     });
   };
-  const [approvetable, setapprovetable] = useState([])
-  useEffect(async() => {
-    let user = JSON.parse(localStorage.getItem('userdata'))
+  const [approvetable, setapprovetable] = useState([]);
+  useEffect(async () => {
+    let user = JSON.parse(localStorage.getItem("userdata"));
     try {
       const approvelist = await axios({
-        method: 'post',
+        method: "post",
         url: `${Constant?.baseUrl()}/cartRequestLists`,
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         data: {
-          "data":{
-            "customer_id": user?.id,
-            "type_id":1
-          }     
-        }
-      })
-      setapprovetable(approvelist?.data)
-      console.log(approvelist?.data)
-    } catch(e) {
-      console.log(e)
+          data: {
+            customer_id: user?.id,
+            type_id: 1,
+          },
+        },
+      });
+      setapprovetable(approvelist?.data);
+      console.log(approvelist?.data);
+    } catch (e) {
+      console.log(e);
     }
-  }, [])
-
+  }, []);
 
   const columns = [
     { name: "user_name", label: "User Name" },
@@ -90,8 +90,18 @@ function ApproveCart() {
         customBodyRender: (value) => {
           return (
             <div className="approve__cart__action_main">
-              <div className="approve__cart__action" onClick={() => approve(value)}>Approve</div>
-              <div className="approve__cart__action delete" onClick={() => deletecart(value)}>Delete</div>
+              <div
+                className="approve__cart__action"
+                onClick={() => approve(value)}
+              >
+                Approve
+              </div>
+              <div
+                className="approve__cart__action delete"
+                onClick={() => deletecart(value)}
+              >
+                Delete
+              </div>
             </div>
           );
         },
@@ -108,6 +118,16 @@ function ApproveCart() {
     sort: false,
     viewColumns: false,
     search: false,
+    textLabels: {
+      body: {
+        noMatch: (
+          <div className="no_data_found">
+            <img src={NodataFound} alt="No data Found" />
+            <p>No data Found...</p>
+          </div>
+        ),
+      },
+    },
   };
 
   const PaginateDataSplit = (event) => {
@@ -115,53 +135,57 @@ function ApproveCart() {
     setTableData(event);
   };
 
-  const approve = async(value) => {
-    let user = JSON.parse(localStorage.getItem('userdata'))
+  const approve = async (value) => {
+    let user = JSON.parse(localStorage.getItem("userdata"));
     try {
       const mergerequest = await axios({
-        method: 'post',
+        method: "post",
         url: `${Constant?.baseUrl()}/cartApproveByMainUser`,
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         data: {
-          "data" :{
-              "id" : value
-          }
-       }
-      })
-      console.log(mergerequest?.data)
-    } catch(e) {
-      console.log(e)
+          data: {
+            id: value,
+          },
+        },
+      });
+      console.log(mergerequest?.data);
+    } catch (e) {
+      console.log(e);
     }
-  }
+  };
 
-  const deletecart = async(value) => {
-    let user = JSON.parse(localStorage.getItem('userdata'))
+  const deletecart = async (value) => {
+    let user = JSON.parse(localStorage.getItem("userdata"));
     try {
       const mergerequest = await axios({
-        method: 'post',
+        method: "post",
         url: `${Constant?.baseUrl()}/deleteRequests`,
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         data: {
-          "data" :{
-              "id" : value,
-              "quote_id": user?.id
-          }
-       }
-      })
-      console.log(mergerequest?.data)
-    } catch(e) {
-      console.log(e)
+          data: {
+            id: value,
+            quote_id: user?.id,
+          },
+        },
+      });
+      console.log(mergerequest?.data);
+    } catch (e) {
+      console.log(e);
     }
-  }
+  };
   return (
     <div className="approve__cart">
       <div className="approve__cart__footer">
         <div className="approve__cart__container">
-          <Link to={`/${customnostore ? customnostore : geo?.country_name}/buyerdashboard/dashboard`}>
+          <Link
+            to={`/${
+              customnostore ? customnostore : geo?.country_name
+            }/buyerdashboard/dashboard`}
+          >
             <ArrowBackIosNew />
             <span>Back</span>
           </Link>
@@ -177,15 +201,15 @@ function ApproveCart() {
         options={options}
         className="approve__cart__table"
       />
-      {approvetable?.length > 0 ?
+      {approvetable?.length > 0 ? (
         <Pagination
           PaginateData={PaginateDataSplit}
           DataList={approvetable?.length > 0 ? approvetable : []}
           PagePerRow={10}
         />
-        :
+      ) : (
         ""
-      }
+      )}
     </div>
   );
 }

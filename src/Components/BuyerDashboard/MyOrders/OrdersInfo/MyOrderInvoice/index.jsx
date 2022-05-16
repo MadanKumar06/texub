@@ -12,6 +12,8 @@ import {
 } from "../../../../Common/Vieworders/viewordersjson";
 import axios from "axios";
 import Constant from "../../../../../Constant";
+import NodataFound from "../../../../../Assets/CommonImage/NodataFound.webp.png";
+
 import moment from "moment";
 import { useParams } from "react-router-dom";
 
@@ -66,6 +68,16 @@ const Index = ({ orders }) => {
     sort: false,
     viewColumns: false,
     search: false,
+    textLabels: {
+      body: {
+        noMatch: (
+          <div className="no_data_found">
+            <img src={NodataFound} alt="No data Found" />
+            <p>No data Found...</p>
+          </div>
+        ),
+      },
+    },
   };
   const columns = [
     {
@@ -190,40 +202,44 @@ const Index = ({ orders }) => {
       },
     },
   ];
+  useEffect(() => {
+    document
+      .getElementById("Header-header_main-2")
+      .classList.remove("Header-header_main-2");
+    document
+      .getElementById("Header-header_main-2")
+      .classList.add("Header-header_main-2_no_display");
+
+    document
+      .getElementById("user_details_main_container")
+      .classList.remove("user_details_main_container");
+    document
+      .getElementById("user_details_main_container")
+      .classList.add("user_details_main_container_no_display");
+  }, []);
+
+  //   document
+  //   .getElementById("Header-header_main-2")
+  //   .classList.remove("btn_invoice_no_display");
+  // document
+  //   .getElementById("Header-header_main-2_no_display")
+  //   .classList.add("Header-header_main-2");
+
+  // document
+  //   .getElementById("user_details_main_container")
+  //   .classList.remove("user_details_main_container_no_display");
+  // document
+  //   .getElementById("user_details_main_container")
+  //   .classList.add("user_details_main_container");
+
   const handleChange = () => {
     window.onbeforeprint = function (event) {
-      document
-        .getElementById("Header-header_main-2")
-        .classList.remove("Header-header_main-2");
-      document
-        .getElementById("Header-header_main-2")
-        .classList.add("Header-header_main-2_no_display");
-
-      document
-        .getElementById("user_details_main_container")
-        .classList.remove("user_details_main_container");
-      document
-        .getElementById("user_details_main_container")
-        .classList.add("user_details_main_container_no_display");
       document.getElementById("print_btn").classList.remove("print_btn");
       document
         .getElementById("print_btn")
         .classList.add("print_btn_no_display");
     };
     window.onafterprint = function (event) {
-      document
-        .getElementById("Header-header_main-2")
-        .classList.remove("btn_invoice_no_display");
-      document
-        .getElementById("Header-header_main-2_no_display")
-        .classList.add("Header-header_main-2");
-
-      document
-        .getElementById("user_details_main_container")
-        .classList.remove("user_details_main_container_no_display");
-      document
-        .getElementById("user_details_main_container")
-        .classList.add("user_details_main_container");
       document
         .getElementById("print_btn")
         .classList.remove("print_btn_no_display");

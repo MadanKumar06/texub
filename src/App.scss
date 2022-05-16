@@ -52,7 +52,6 @@
   }
 }
 // material ui textbox
-
 .inputfield-box {
   & ::placeholder {
     text-transform: capitalize !important;
@@ -79,38 +78,55 @@
       }
     }
   }
-  .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline{
-     border-color: #ddb363;
+  .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+    border-color: #ddb363;
   }
-  .MuiOutlinedInput-root{
+  .MuiOutlinedInput-root {
     &:hover fieldset {
       border-color: #ddb363;
-      color: #ddb363 ;
+      color: #ddb363;
     }
   }
   .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
     border: 1px solid #ddb363;
   }
 }
-.check_country{
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
+.check_country {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
 }
 
 ///* dropdown selection background change*/
-  .MuiAutocomplete-option.Mui-focused{
-    color: #fff;
-    background-image: linear-gradient(#ffd788, #cc9b3e) !important;
+.MuiAutocomplete-option.Mui-focused {
+  color: #fff;
+  background-image: linear-gradient(#ffd788, #cc9b3e) !important;
+}
+.MuiAutocomplete-option[aria-selected="true"].Mui-focused {
+  color: #fff;
+  background-image: linear-gradient(#ffd788, #cc9b3e) !important;
+}
+.MuiAutocomplete-option[aria-selected="true"].Mui-focused:hover {
+  color: #fff;
+  background-image: linear-gradient(#ffd788, #cc9b3e);
+}
+
+// Nodata found image
+.no_data_found {
+  width: 280px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  img {
+    width: 100%;
   }
-  .MuiAutocomplete-option[aria-selected="true"].Mui-focused{
-    color: #fff;
-    background-image: linear-gradient(#ffd788, #cc9b3e) !important;
+  p {
+    font-size: 16px;
+    font-weight: 600;
+    color: #002d56;
   }
-  .MuiAutocomplete-option[aria-selected="true"].Mui-focused:hover{
-      color: #fff;
-      background-image: linear-gradient(#ffd788, #cc9b3e);
-  }
+}
 @media (max-width: 1660px) {
   .button-text {
     font-size: 16px !important;
@@ -126,5 +142,3 @@
     font-size: 12px !important;
   }
 }
-
-

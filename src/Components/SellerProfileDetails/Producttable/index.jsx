@@ -6,6 +6,7 @@ import MUITable from "../../Common/MUITable";
 import { useStateValue } from "../../../store/state";
 import Pagination from "../../Pagination";
 import Constant from "../../../Constant";
+import NodataFound from "../../../Assets/CommonImage/NodataFound.webp.png";
 
 //Basic Need
 import shortExpand_active_icon from "../../../Assets/BasicNeeded/PLPIcons/Group 1175.png";
@@ -254,7 +255,12 @@ const Productstable = ({
     search: false,
     textLabels: {
       body: {
-        noMatch: "Sorry, No data found",
+        noMatch: (
+          <div className="no_data_found">
+            <img src={NodataFound} alt="No data Found" />
+            <p>No data Found...</p>
+          </div>
+        ),
       },
     },
   };

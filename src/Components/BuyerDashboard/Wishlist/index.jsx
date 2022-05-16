@@ -8,6 +8,7 @@ import axios from "axios";
 import Constant from "../../../Constant";
 import { useStateValue } from "../../../store/state";
 import { Button, IconButton, InputBase, Paper } from "@mui/material";
+import NodataFound from "../../../Assets/CommonImage/NodataFound.webp.png";
 
 const Whislist = () => {
   const [tableData, setTableData] = useState([]);
@@ -15,7 +16,7 @@ const Whislist = () => {
   const [wishListAgain, setWishListAgain] = useState(false);
   const [wishdata, setwishdata] = useState([]);
   const [folderdata, setfolderdata] = useState([]);
-  const [wishsearch,setwishsearch] = useState("")
+  const [wishsearch, setwishsearch] = useState("");
   const PaginateDataSplit = (event) => {
     if (wishdata?.length === 0) return setwishdata([]);
     else {
@@ -23,25 +24,25 @@ const Whislist = () => {
     }
   };
 
-  const [filterwishdata, setfilterwishdata] = useState([])
+  const [filterwishdata, setfilterwishdata] = useState([]);
   useEffect(() => {
-    let temp = wishdata?.filter(wd => wd?.wishlist_data?.length > 0)
-    console.log(temp)
-    setfilterwishdata(temp)
-  }, [wishdata])
+    let temp = wishdata?.filter((wd) => wd?.wishlist_data?.length > 0);
+    console.log(temp);
+    setfilterwishdata(temp);
+  }, [wishdata]);
 
   const handlewishsearch = () => {
     dispatch({
       type: "SET_GENERAL_TRINGGER",
     });
-  }
+  };
 
   const buttonsearch = (event) => {
-    event.preventDefault()
+    event.preventDefault();
     dispatch({
       type: "SET_GENERAL_TRINGGER",
     });
-  }
+  };
 
   useEffect(() => {
     async function fetchData() {
@@ -61,7 +62,7 @@ const Whislist = () => {
           data: {
             requestParams: {
               customer_id: user?.id,
-              search_term: wishsearch
+              search_term: wishsearch,
             },
           },
         });
@@ -106,56 +107,61 @@ const Whislist = () => {
     }
   }, []);
 
-
   return (
     <div className="wishlist_main_container">
       <div className="want_wish__search">
-          <Paper
-            className="want_tobuy__searchinput"
-            component="form"
-            sx={{ p: "2px 4px", display: "flex", alignItems: "center" }}
+        <Paper
+          className="want_tobuy__searchinput"
+          component="form"
+          sx={{ p: "2px 4px", display: "flex", alignItems: "center" }}
+        >
+          <InputBase
+            sx={{ ml: 1, flex: 1 }}
+            placeholder="Search..."
+            inputProps={{ "aria-label": "" }}
+            className="want_tobuy__input"
+            onChange={(e) => setwishsearch(e.target.value)}
+            onKeyPress={(e) => e.key === "Enter" && handlewishsearch()}
+          />
+          <IconButton
+            type="submit"
+            sx={{ p: "10px" }}
+            aria-label="search"
+            onClick={(event) => buttonsearch(event)}
           >
-            <InputBase
-              sx={{ ml: 1, flex: 1 }}
-              placeholder="Search..."
-              inputProps={{ "aria-label": "" }}
-              className="want_tobuy__input"
-              onChange={(e) => setwishsearch(e.target.value)}
-              onKeyPress={(e) => e.key === 'Enter' &&  handlewishsearch()}
-            />
-            <IconButton
-              type="submit"
-              sx={{ p: "10px" }}
-              aria-label="search"
-              onClick={(event) => buttonsearch(event)}
-            >
-              <Search />
-            </IconButton>
-          </Paper>
-          <Link style={{textDecoration: 'none'}} className="button-text btn-secondary" to={`/${customnostore ? customnostore : geo?.country_name}/products`}>
-            <Button
-              className="button-text btn-secondary"
-              style={{ width: '100%', margin: '0 auto' }}
-            >
-              Create New Wishlist
-            </Button>
-          </Link>
-        </div>
+            <Search />
+          </IconButton>
+        </Paper>
+        <Link
+          style={{ textDecoration: "none" }}
+          className="button-text btn-secondary"
+          to={`/${customnostore ? customnostore : geo?.country_name}/products`}
+        >
+          <Button
+            className="button-text btn-secondary"
+            style={{ width: "100%", margin: "0 auto" }}
+          >
+            Create New Wishlist
+          </Button>
+        </Link>
+      </div>
       <div>
-        {filterwishdata?.length === 0
-          ? 
-            "Currently Wishlist Data is Empty"
-          : 
+        {filterwishdata?.length === 0 ? (
+          <div className="no_data_found">
+            <img src={NodataFound} alt="No data Found" />
+            <p>No data Found...</p>
+          </div>
+        ) : (
           tableData?.map((itm) => (
-              <WhislistTable
-                tableData={tableData?.length ? itm?.wishlist_data : []}
-                tableDataHeader={itm?.name}
-                item_id={itm?.id}
-                setWishListAgain={setWishListAgain}
-                wishListAgain={wishListAgain}
-              />
-            ))
-          }
+            <WhislistTable
+              tableData={tableData?.length ? itm?.wishlist_data : []}
+              tableDataHeader={itm?.name}
+              item_id={itm?.id}
+              setWishListAgain={setWishListAgain}
+              wishListAgain={wishListAgain}
+            />
+          ))
+        )}
       </div>
       {filterwishdata?.length === 0 ? (
         ""

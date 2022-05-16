@@ -8,6 +8,8 @@ import Checkout_Texub_logo from "../../Assets/CheckoutPage/checkout_texub_logo.p
 import axios from "axios";
 import Constant from "../../Constant";
 import { useStateValue } from "../../store/state";
+import NodataFound from "../../Assets/CommonImage/NodataFound.webp.png";
+
 import Divider from "@mui/material/Divider";
 import { useParams, useNavigate } from "react-router-dom";
 import "./stylesPrint.scss";
@@ -106,6 +108,16 @@ function Index() {
     sort: false,
     viewColumns: false,
     search: false,
+    textLabels: {
+      body: {
+        noMatch: (
+          <div className="no_data_found">
+            <img src={NodataFound} alt="No data Found" />
+            <p>No data Found...</p>
+          </div>
+        ),
+      },
+    },
   };
   const columns = [
     {

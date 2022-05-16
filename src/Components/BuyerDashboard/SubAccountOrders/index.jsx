@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import Pagination from "../../Pagination";
 import Vieworders from "../../Common/Vieworders";
 import {useStateValue} from '../../../store/state'
+import NodataFound from "../../../Assets/CommonImage/NodataFound.webp.png";
+
 
 function SubAccountOrders() {
   const [{geo, customstore, customnostore}, dispatch] = useStateValue()
@@ -126,6 +128,16 @@ function SubAccountOrders() {
     sort: false,
     viewColumns: false,
     search: false,
+    textLabels: {
+      body: {
+        noMatch: (
+          <div className="no_data_found">
+            <img src={NodataFound} alt="No data Found" />
+            <p>No data Found...</p>
+          </div>
+        ),
+      },
+    },
   };
   const PaginateDataSplit = (event) => {
     setTableData(event);

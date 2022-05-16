@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import MUITable from "../../../Components/Common/MUITable";
-import { ArrowBackIosNew,Search } from "@mui/icons-material";
+import { ArrowBackIosNew, Search } from "@mui/icons-material";
 import { Button, Paper, InputBase, IconButton } from "@mui/material";
 import { Link } from "react-router-dom";
 import Pagination from "../../Pagination";
@@ -9,9 +9,11 @@ import Vieworders from "../../Common/Vieworders";
 import transaction_type from "../../../Assets/buyerdashboard/InvoicesList/paypal (1).png";
 import transaction_type1 from "../../../Assets/buyerdashboard/InvoicesList/braintree-logo-black.png";
 import { useStateValue } from "../../../store/state";
+import NodataFound from "../../../Assets/CommonImage/NodataFound.webp.png";
+
 import axios from "axios";
 import Constant from "../../../Constant";
-import moment from 'moment'
+import moment from "moment";
 function Index() {
   const [tableData, setTableData] = useState([]);
   const ordertype = [
@@ -55,41 +57,51 @@ function Index() {
     sort: false,
     viewColumns: false,
     search: false,
+    textLabels: {
+      body: {
+        noMatch: (
+          <div className="no_data_found">
+            <img src={NodataFound} alt="No data Found" />
+            <p>No data Found...</p>
+          </div>
+        ),
+      },
+    },
   };
 
-  const [invoicelist, setinvoicelist] = useState()
+  const [invoicelist, setinvoicelist] = useState();
 
-  useEffect(async() => {
+  useEffect(async () => {
     dispatch({
       type: "SET_IS_LOADING",
       value: true,
     });
-    const user = JSON.parse(localStorage.getItem('userdata'))
+    const user = JSON.parse(localStorage.getItem("userdata"));
     try {
       const invoice = await axios({
-        method: 'post',
+        method: "post",
         url: `${Constant?.baseUrl()}/listPendingInvoices`,
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         data: {
-          customer_id: user?.id
-        }
-      })
-      setinvoicelist(invoice?.data)
+          customer_id: user?.id,
+        },
+      });
+      setinvoicelist(invoice?.data);
       dispatch({
         type: "SET_IS_LOADING",
         value: false,
       });
-    } catch(e) {
-      console.log(e)
+    } catch (e) {
+      console.log(e);
       dispatch({
         type: "SET_IS_LOADING",
         value: false,
       });
     }
-  }, [])
-// console.log(invoicelist['quote_currency']);
+  }, []);
+  // console.log(invoicelist['quote_currency']);
 
   const columns = [
     {
@@ -101,18 +113,20 @@ function Index() {
         },
       },
     },
-    { name: "created_at", label: "Date",
-    options: {
-      customBodyRender: (value) => {
-        return (
-          <div className="invoices__date">
-            {moment(value).format("DD/MM/YYYY")}
-          </div>
-        );
+    {
+      name: "created_at",
+      label: "Date",
+      options: {
+        customBodyRender: (value) => {
+          return (
+            <div className="invoices__date">
+              {moment(value).format("DD/MM/YYYY")}
+            </div>
+          );
+        },
       },
     },
-  },
-   {
+    {
       name: "quote_currency",
       label: " ",
       options: {
@@ -190,10 +204,12 @@ function Index() {
       options: {
         customBodyRender: (value) => {
           return (
-            <Link to={`/${customnostore ? customnostore : geo?.country_name}/pendinginvoice/${value}`}>
-              <div className="invoices__action">
-                View Details
-              </div>
+            <Link
+              to={`/${
+                customnostore ? customnostore : geo?.country_name
+              }/pendinginvoice/${value}`}
+            >
+              <div className="invoices__action">View Details</div>
             </Link>
           );
         },
@@ -204,26 +220,22 @@ function Index() {
   return (
     <div className="invoices_main">
       <div className="invoices__search">
-          <Paper
-            className="invoices__searchinput"
-            component="form"
-            sx={{ p: "2px 4px", display: "flex", alignItems: "center" }}
-          >
-            <InputBase
-              sx={{ ml: 1, flex: 1 }}
-              placeholder="Search..."
-              inputProps={{ "aria-label": "" }}
-              className="invoices__input"
-            />
-            <IconButton
-              type="submit"
-              sx={{ p: "10px" }}
-              aria-label="search"
-            >
-              <Search />
-            </IconButton>
-          </Paper>
-        </div>
+        <Paper
+          className="invoices__searchinput"
+          component="form"
+          sx={{ p: "2px 4px", display: "flex", alignItems: "center" }}
+        >
+          <InputBase
+            sx={{ ml: 1, flex: 1 }}
+            placeholder="Search..."
+            inputProps={{ "aria-label": "" }}
+            className="invoices__input"
+          />
+          <IconButton type="submit" sx={{ p: "10px" }} aria-label="search">
+            <Search />
+          </IconButton>
+        </Paper>
+      </div>
       {isOrders && (
         <>
           <div className="invoices__buttons">
@@ -243,15 +255,15 @@ function Index() {
             options={options}
             className="invoices__table"
           />
-          {invoicelist?.length > 0 ?
-          <Pagination
-            PaginateData={PaginateDataSplit}
-            DataList={invoicelist?.length ? invoicelist : []}
-            PagePerRow={10}
-          />
-          :
+          {invoicelist?.length > 0 ? (
+            <Pagination
+              PaginateData={PaginateDataSplit}
+              DataList={invoicelist?.length ? invoicelist : []}
+              PagePerRow={10}
+            />
+          ) : (
             ""
-          }
+          )}
           <div className="invoices__footer">
             <div className="invoices__container">
               <Link

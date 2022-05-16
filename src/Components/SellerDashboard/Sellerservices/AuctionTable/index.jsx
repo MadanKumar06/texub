@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import hp from "../../../../Assets/sellerdashboard/inventory/hp.png";
 import Pagination from "../../../Pagination";
 import {useStateValue} from '../../../../store/state'
+import NodataFound from "../../../../Assets/CommonImage/NodataFound.webp.png";
+
 
 function Index({ setrequestform, setformtype }) {
   const [tableData, setTableData] = useState([]);
@@ -38,6 +40,16 @@ function Index({ setrequestform, setformtype }) {
     sort: false,
     viewColumns: false,
     search: false,
+    textLabels: {
+      body: {
+        noMatch: (
+          <div className="no_data_found">
+            <img src={NodataFound} alt="No data Found" />
+            <p>No data Found...</p>
+          </div>
+        ),
+      },
+    },
   };
 
   const table = [

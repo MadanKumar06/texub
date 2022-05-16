@@ -8,6 +8,8 @@ import "./styles.scss";
 import MUITable from "../../../Components/Common/MUITable";
 import Constant from "../../../Constant";
 import { getAdminToken } from "../../../utilities";
+import NodataFound from "../../../Assets/CommonImage/NodataFound.webp.png";
+
 import { useStateValue } from "../../../store/state";
 import Wishlist from "../../PDPpopUp/Wishlist";
 
@@ -601,10 +603,13 @@ const MyCartTable = ({ cartDataList, deleteCartData, setrowselect }) => {
     search: false,
     textLabels: {
       body: {
-        noMatch:
-          is_table_quantity?.length > 0
-            ? "Loading data ..."
-            : "Sorry, No data found",
+        noMatch: "No data Found...",
+        // (
+        //   <div className="no_data_found">
+        //     <img src={NodataFound} alt="No data Found" />
+        //     <p>No data Found...</p>
+        //   </div>
+        // ),
       },
     },
   };
