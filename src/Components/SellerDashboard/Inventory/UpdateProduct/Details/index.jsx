@@ -19,22 +19,22 @@ function Index({
   settest,
 }) {
   const [options, setoptions] = useState([]);
-  const [currenthub, setcurrenthub] = useState("");
+  const [currenthub, setcurrenthub] = useState(null);
 
   const hubselect = (e, value) => {
-    let temp = count.filter((c) => {
+    let temp = count?.filter((c) => {
       if (c.count === i) {
-        c.hub_id = value.hub_id;
-        c.hubname = value.hub_name;
+        c.hub_id = value?.hub_id;
+        c.hubname = value?.hub_name;
       }
     });
     settest(temp);
   };
 
   const selectcurrency = (e, value) => {
-    let temp = count.filter((c) => {
+    let temp = count?.filter((c) => {
       if (c.count === i) {
-        c.currency_id = value.value;
+        c.currency_id = value?.value;
       }
     });
     settest(temp);
@@ -52,7 +52,7 @@ function Index({
   // }
 
   const changevalues = (value, type) => {
-    let temp = count.filter((c) => {
+    let temp = count?.filter((c) => {
       if (c.count === i) {
         if (type === "price") {
           return (c.price = value);
@@ -292,7 +292,7 @@ function Index({
             ETA (Days)<small className="asterisk">*</small>
           </InputLabel>
           <TextField
-           // id="part_number"
+            // id="part_number"
             id="eta_field"
             name="part_nymber"
             type="number"

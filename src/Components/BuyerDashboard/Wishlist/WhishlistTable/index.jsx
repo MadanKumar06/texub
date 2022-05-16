@@ -8,6 +8,7 @@ import axios from "axios";
 import Constant from "../../../../Constant";
 import { useStateValue } from "../../../../store/state";
 import swal from "sweetalert2";
+import AllertMessage from "../../../../Components/PendingInvoiceAlertPopup";
 
 import WishlistEdit from "../image/wishlist-edit.png";
 import WishlistDelete from "../image/wishlist-delete.png";
@@ -25,6 +26,8 @@ const WhislistTable = ({
   const handleClickForOpenMoreOption = (event) => {
     setOpenMoreOption(event.currentTarget);
   };
+  const [allert, setallert] = useState(false);
+  const [allertData, setallertData] = useState("");
   const handleCloseForOpenMoreOption = () => {
     setOpenMoreOption(null);
   };
@@ -44,7 +47,6 @@ const WhislistTable = ({
       setwdata(temp);
     }
   }, [tableData]);
-
 
   const [review, setreview] = useState();
   useEffect(() => {
@@ -298,13 +300,13 @@ const WhislistTable = ({
   };
 
   const addalltopending = () => {
-    console.log(wdata);
     wdata?.filter((w) => {
       AddToCartAndPendingInvoice(w);
     });
   };
 
   const AddToCartAndPendingInvoice = (info) => {
+    setallert(false);
     let storedata = JSON.parse(localStorage.getItem("storedata"));
     const user = JSON.parse(localStorage.getItem("userdata"));
     dispatch({
@@ -316,12 +318,22 @@ const WhislistTable = ({
         store_id: storedata?.store_id,
         item_id: "0",
         customer_id: user?.id,
-        productId: info?.product_id,
-        price: info?.texub_product_price,
-        qty: info?.texub_product_moq,
-        hub: info?.texub_product_hub_id,
+        productId: info?.data?.product_id
+          ? info?.data?.product_id
+          : info?.product_id,
+        price: info?.data?.texub_product_price
+          ? info?.data?.texub_product_price
+          : info?.texub_product_price,
+        qty: info?.data?.texub_product_moq
+          ? info?.data?.texub_product_moq
+          : info?.texub_product_moq,
+        hub: info?.data?.texub_product_hub_id
+          ? info?.data?.texub_product_hub_id
+          : info?.texub_product_hub_id,
         currency: currency?.currency_id,
-        sellerId: info?.seller_id,
+        sellerId: info?.data?.seller_id
+          ? info?.data?.seller_id
+          : info?.seller_id,
       },
     };
     axios
@@ -414,6 +426,9 @@ const WhislistTable = ({
     }
   };
 
+  const AddpendingInvoiceAlert = (event) => {
+    setallert(event);
+  };
   return (
     <div className="wishlist_table_container">
       <div className="whishlist_table_header">
@@ -425,7 +440,7 @@ const WhislistTable = ({
                 value={newname}
                 onChange={(e) => setnewname(e.target.value)}
                 type="text"
-                onKeyPress={(e) => e.key === 'Enter' && savename()}
+                onKeyPress={(e) => e.key === "Enter" && savename()}
               />
               <span className="wishlist-edit-img" onClick={savename}>
                 <SaveAsOutlinedIcon />
@@ -482,20 +497,21 @@ const WhislistTable = ({
                     </div>
                     <div className="rating_block">
                       <div className="rating">
-                      {review == 0 ?
-                         "" : 
-                         <>
-                          <Rating
-                            className="ratings"
-                            name="simple-controlled"
-                            value={3}
-                            onChange={(event, newValue) => {
-                              //   setValue(newValue);
-                            }}
-                          />
-                          <p className="reviews"> 543 Reviews</p>
-                        </>
-                        }
+                        {review == 0 ? (
+                          ""
+                        ) : (
+                          <>
+                            <Rating
+                              className="ratings"
+                              name="simple-controlled"
+                              value={3}
+                              onChange={(event, newValue) => {
+                                //   setValue(newValue);
+                              }}
+                            />
+                            <p className="reviews"> 543 Reviews</p>
+                          </>
+                        )}
                       </div>
                       <p className="seller_id">
                         <span>Seller ID :</span>
@@ -572,7 +588,10 @@ const WhislistTable = ({
                       </Button>
                       <Button
                         className="pending-invoice-btn"
-                        onClick={() => AddToCartAndPendingInvoice(itm)}
+                        onClick={() => {
+                          setallert(true);
+                          setallertData(itm);
+                        }}
                       >
                         <span> Add to Pending Invoice</span>
                       </Button>
@@ -583,6 +602,13 @@ const WhislistTable = ({
             : ""}
         </div>
       </div>
+      {allert && (
+        <AllertMessage
+          AddpendingInvoiceAlert={AddpendingInvoiceAlert}
+          handleIsValidUser={AddToCartAndPendingInvoice}
+          allertData={allertData}
+        />
+      )}
     </div>
   );
 };
