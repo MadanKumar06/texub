@@ -17,7 +17,7 @@ const PaginationControlled = ({ PaginateData, DataList, PagePerRow }) => {
     jumptopage: "1",
     option: [],
   });
-  console.log(DataList)
+
   useEffect(() => {
     //pagination data as props
     PaginateData(DataList?.slice(0, PagePerRow));

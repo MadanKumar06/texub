@@ -9,6 +9,7 @@ import PhoneInput from "react-phone-input-2";
 import axios from "axios";
 import baseUrl from "../../../../../src/Constant";
 import { useStateValue } from "../../../../store/state";
+import Constant from "../../../../../src/Constant";
 
 const Index = (classes) => {
   const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
@@ -30,12 +31,14 @@ const Index = (classes) => {
     new_password: "",
     new_confrim_password: "",
   });
-  useEffect(()=>{
-    const userData = JSON.parse(localStorage.getItem('userdata'))
+  useEffect(() => {
+    const userData = JSON.parse(localStorage.getItem("userdata"));
     let company_name = userData?.custom_attributes?.filter(
-      (itm) => itm?.attribute_code === "customer_company_name");
+      (itm) => itm?.attribute_code === "customer_company_name"
+    );
     let mobile_number = userData?.custom_attributes?.filter(
-      (itm) => itm?.attribute_code === "customer_mobile_number");
+      (itm) => itm?.attribute_code === "customer_mobile_number"
+    );
     setAccountInfoData({
       first_name: userData.firstname,
       last_name: userData.lastname,
@@ -43,10 +46,8 @@ const Index = (classes) => {
       email_address: userData.email,
       new_password: "",
       new_confrim_password: "",
-    })
-
-
-  },[]);
+    });
+  }, []);
 
   const handleChangeInput = (event) => {
     setAccountInfoData((prevState) => ({
@@ -196,7 +197,38 @@ const Index = (classes) => {
       }));
       errorHandle = true;
     }
+
+    if (!errorHandle) {
+      updateprofile();
+    }
   };
+
+  // update API
+  const updateprofile = async () => {
+    let user = JSON.parse(localStorage.getItem("userdata"));
+    try {
+      const updatedata = await axios({
+        method: "post",
+        url: `${Constant?.baseUrl()}/editProfile`,
+        // headers: {
+        //   Authorization: `Bearer ${localStorage.getItem("token")}`,
+        // },
+        data: {
+          customer: {
+            customer_id: user?.id,
+            email: AccountInfoData?.email_address,
+            first_name: AccountInfoData?.first_name,
+            last_name: AccountInfoData?.last_name,
+            password: AccountInfoData?.new_password,
+            mobile_number: AccountInfoData?.mobile_number,
+          },
+        },
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   //Api
   useEffect(() => {
     const fetchCountryList = () => {
@@ -213,8 +245,8 @@ const Index = (classes) => {
     };
     fetchCountryList();
   }, []);
-  {
-  }
+
+  console.log(AccountInfoData);
 
   return (
     <div className="account_ifo_main">
@@ -272,7 +304,7 @@ const Index = (classes) => {
                 countryCodeEditable={false}
                 className="inputfield-box"
                 name="mobile_number"
-                 value={AccountInfoData?.mobile_number}
+                value={AccountInfoData?.mobile_number}
                 InputLabelProps={{
                   shrink: true,
                   required: true,

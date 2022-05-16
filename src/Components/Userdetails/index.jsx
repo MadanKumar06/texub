@@ -31,7 +31,6 @@ export const Userdetails = () => {
   useEffect(() => {
     let temp = [];
     wishListData?.filter((wld) => temp.push(wld?.wishlist_data?.length));
-    console.log(temp);
     let templength = temp.reduce((initial, final) => initial + final, 0);
     setwishlength(templength);
   }, [wishListData]);
