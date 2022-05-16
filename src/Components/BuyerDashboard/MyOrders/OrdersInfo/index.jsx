@@ -407,13 +407,13 @@ const Index = ({ orders, currentorder }) => {
                           </span>
                           <span className="block_title">
                             Transaction Amount :{" "}
-                            <span className="value">
+                            <span className="value symbol_value">
                               {
                                 detailsorder?.[0]?.order_details?.[0]
                                   ?.transaction_currency
                               }
                             </span>{" "}
-                            <span>
+                            <span className="price_value">
                               {
                                 detailsorder?.[0]?.order_details?.[0]
                                   ?.transaction_amount
