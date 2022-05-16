@@ -248,14 +248,16 @@ function Index() {
       )}
       <div className="my_orders__footer">
         <div className="my_orders__container">
-          <Link
-            to={`/${
-              customnostore ? customnostore : geo?.country_name
-            }/buyerdashboard/dashboard`}
+        <div className="back_button"
+            onClick={() => {
+              setisVieworders(false)
+              setisOrders(true)
+            }}
+            style={{ cursor: 'pointer' }}
           >
             <ArrowBackIosNew />
-            <span>Back</span>
-          </Link>
+            <span className="back">Back</span>
+          </div>
         </div>
       </div>
     </div>

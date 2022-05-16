@@ -212,6 +212,7 @@ const Index = ({ pdpSellerData, handleOpenClose }) => {
                       id="outlined-required"
                       name="save"
                       placeholder="Name"
+                      autoFocus={true}
                       className="wishlistsave_input inputfield-box"
                       onChange={(e) => setnewwishdata(e.target.value)}
                       onKeyPress={(e) => e.key === 'Enter' &&  handleClickValidation()}

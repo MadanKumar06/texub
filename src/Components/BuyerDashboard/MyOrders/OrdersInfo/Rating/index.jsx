@@ -18,7 +18,7 @@ export default function BasicModal({ Popup, currentorder }) {
     comment: "",
   });
   const [open, setOpen] = React.useState(true);
-
+const [commentValidation, setcommentValidation] = useState("");
   const handleClose = (event, reason) => {
     if (reason && reason === "backdropClick") return;
     else {
@@ -79,6 +79,16 @@ export default function BasicModal({ Popup, currentorder }) {
       console.log(e);
     }
   };
+  const checkRatingValidation = () => {
+    let errorHandler = false;
+    if (!rating?.comment) {
+      setcommentValidation("Please enter comments.")
+      errorHandler = true;
+    }
+    if (!errorHandler) {
+      reviewsubmit()
+    }
+  }
   return (
     <div>
       <Modal
@@ -128,12 +138,19 @@ export default function BasicModal({ Popup, currentorder }) {
                 rows={3}
                 style={{ height: 100 }}
                 value={rating?.comment}
-                onChange={(e) =>
+                // onChange={(e) =>
+                //   setrating((rating) => ({
+                //     ...rating,
+                //     comment: e.target.value,
+                //   }))
+                // }
+                onChange={(e) =>{
                   setrating((rating) => ({
                     ...rating,
                     comment: e.target.value,
                   }))
-                }
+                  setcommentValidation("")
+                }}
                 InputLabelProps={{
                   shrink: true,
                   required: true,
@@ -143,6 +160,11 @@ export default function BasicModal({ Popup, currentorder }) {
                 }}
                 variant="outlined"
               />
+              {commentValidation && (
+                <p style={{ color: "red", textAlign:'left' }}>
+                  {commentValidation}
+                </p>
+              )}
               <div className="rating-btns">
                 <Button
                   className="rating_comments_cancel"
@@ -152,7 +174,8 @@ export default function BasicModal({ Popup, currentorder }) {
                 </Button>
                 <Button
                   className="btn-secondary rating_comments_submit"
-                  onClick={reviewsubmit}
+                  // onClick={reviewsubmit}
+                  onClick={() => checkRatingValidation()}
                 >
                   Submit
                 </Button>

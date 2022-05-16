@@ -1497,7 +1497,8 @@ const Checkout = () => {
                 <Divider orientation="vertical" />
                 <span className="orderinfo_value">
                   <span className="ordertotal_symbol">
-                    {currency?.currency_code}
+                    {/* {currency?.currency_code} */}
+                    {quotedata?.[0]?.invoice_items?.[0]?.currency}
                   </span>
                   {formatToCurrency(parseInt(quotedata[0]?.invoice?.subtotal))}
                 </span>
@@ -1507,7 +1508,8 @@ const Checkout = () => {
                 <Divider orientation="vertical" />
                 <span className="orderinfo_value">
                   <span className="ordertotal_symbol">
-                    {currency?.currency_code}
+                    {/* {currency?.currency_code} */}
+                    {quotedata?.[0]?.invoice_items?.[0]?.currency}
                   </span>
                   {formatToCurrency(parseInt(quotedata[0]?.invoice?.tax))}
                 </span>
@@ -1517,7 +1519,8 @@ const Checkout = () => {
                 <Divider orientation="vertical" />
                 <span className="orderinfo_value">
                   <span className="ordertotal_symbol">
-                    {currency?.currency_code}
+                    {/* {currency?.currency_code} */}
+                    {quotedata?.[0]?.invoice_items?.[0]?.currency}
                   </span>{" "}
                   {formatToCurrency(
                     parseInt(quotedata[0]?.invoice?.shipping_amount)
@@ -1531,7 +1534,8 @@ const Checkout = () => {
                 <Divider orientation="vertical" />
                 <span className="orderinfo_value">
                   <span className="ordertotal_symbol">
-                    {currency?.currency_code}
+                    {/* {currency?.currency_code} */}
+                    {quotedata?.[0]?.invoice_items?.[0]?.currency}
                   </span>{" "}
                   0
                 </span>

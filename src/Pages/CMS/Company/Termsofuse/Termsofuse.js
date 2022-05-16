@@ -99,7 +99,7 @@ export const Termsofuse = () => {
             </li>
           ))}
         </div> */}
-        <div className="Termsofuse_btn_section">
+        {/* <div className="Termsofuse_btn_section">
           <div
             className="Termsofuse_btn_download"
             onClick={() => handleChange("Termsofuse_main")}
@@ -109,7 +109,7 @@ export const Termsofuse = () => {
           </div>
           <button className="Termsofuse_decline">Decline</button>
           <button className="Termsofuse_accept">Accept</button>
-        </div>
+        </div> */}
       </div>
     </div>
   );
