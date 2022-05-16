@@ -494,6 +494,7 @@
          .payment_info {
           padding: 1em 3em;
           display: flex;
+          flex-wrap: wrap;
           align-items: center;
          }
         .payment_footer_block_1 {
@@ -826,10 +827,10 @@
               vertical-align: top;
               width: 100%;
               fieldset{
-                top: 0;
+                //top: 0;
               }
               #selection_box_block{
-                padding: 8.5px 14px;
+                padding: 11.5px 14px;
                 em{
                   font-style: normal;
                   letter-spacing: 0.6px;
@@ -911,6 +912,10 @@
       }
     }
 }
+ .add_address_popup .address_popup_main .address_field_block .address_fields.check_country .MuiFormControl-root fieldset{
+   top: 0;
+ }
+
 @media (min-width: "1660px") {
   .add_address_popup .address_popup_main .address_field_block .address_fields .MuiFormControl-root #selection_box_block em{
     font-size: 20px;
@@ -1071,6 +1076,10 @@
     .aside_block_A
     .delivery_address_list {
     grid-template-columns: none;
+  }
+
+  .add_address_popup .address_popup_main .address_field_block .address_fields .MuiFormControl-root #selection_box_block{
+    padding: 12px 14px;
   }
 }
 @media (max-width: "1280px") {
@@ -1589,4 +1598,9 @@
     .delivery_address_add {
     margin: 1em 0;
   }
+}
+@media (min-width: 1680px) {
+.add_address_popup .address_popup_main .address_field_block .address_fields .MuiFormControl-root #selection_box_block{
+  padding: 12px 14px;
+}
 }

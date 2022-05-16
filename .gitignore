@@ -15,6 +15,8 @@
 /.firebaserc
 /firebase.json
 /.firebase
+/src/utilities.js
+/src/Constant.js
 # misc
 .DS_Store
 .env.local
