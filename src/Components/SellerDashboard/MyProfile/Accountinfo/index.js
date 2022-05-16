@@ -9,6 +9,7 @@ import PhoneInput from "react-phone-input-2";
 import axios from "axios";
 import baseUrl from "../../../../Constant";
 import { useStateValue } from "../../../../store/state";
+import Constant from "../../../../Constant";
 
 const Index = (classes) => {
   const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
@@ -31,11 +32,13 @@ const Index = (classes) => {
     new_confrim_password: "",
   });
   useEffect(() => {
-    const userData = JSON.parse(localStorage.getItem('userdata'))
+    const userData = JSON.parse(localStorage.getItem("userdata"));
     let company_name = userData?.custom_attributes?.filter(
-      (itm) => itm?.attribute_code === "customer_company_name");
+      (itm) => itm?.attribute_code === "customer_company_name"
+    );
     let mobile_number = userData?.custom_attributes?.filter(
-      (itm) => itm?.attribute_code === "customer_mobile_number");
+      (itm) => itm?.attribute_code === "customer_mobile_number"
+    );
     setAccountInfoData({
       first_name: userData.firstname,
       last_name: userData.lastname,
@@ -43,16 +46,13 @@ const Index = (classes) => {
       email_address: userData.email,
       new_password: "",
       new_confrim_password: "",
-    })
-
-
+    });
   }, []);
   // const userData = JSON.parse(localStorage.getItem('userdata'))
   // let company_name = userData?.custom_attributes?.filter(
   //   (itm) => itm?.attribute_code === "customer_company_name");
   // let mobile_number = userData?.custom_attributes?.filter(
   //   (itm) => itm?.attribute_code === "customer_mobile_number");
-
 
   const handleChangeInput = (event) => {
     setAccountInfoData((prevState) => ({
@@ -201,6 +201,44 @@ const Index = (classes) => {
         new_confrim_password: "Please enter the new confirm password.",
       }));
       errorHandle = true;
+    }
+    if (
+      AccountInfoData?.new_password !== AccountInfoData?.new_confrim_password
+    ) {
+      document.getElementById("new_confrim_password")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        new_confrim_password: "Password and Confirm Password not matching",
+      }));
+      errorHandle = true;
+    }
+    if (!errorHandle) {
+      updateprofile();
+    }
+  };
+  //API to update
+  const updateprofile = async () => {
+    let user = JSON.parse(localStorage.getItem("userdata"));
+    try {
+      const updatedata = await axios({
+        method: "post",
+        url: `${Constant?.baseUrl()}/editProfile`,
+        // headers: {
+        //   Authorization: `Bearer ${localStorage.getItem("token")}`,
+        // },
+        data: {
+          customer: {
+            customer_id: user?.id,
+            email: AccountInfoData?.email_address,
+            first_name: AccountInfoData?.first_name,
+            last_name: AccountInfoData?.last_name,
+            password: AccountInfoData?.new_password,
+            mobile_number: AccountInfoData?.mobile_number,
+          },
+        },
+      });
+    } catch (e) {
+      console.log(e);
     }
   };
   //Api

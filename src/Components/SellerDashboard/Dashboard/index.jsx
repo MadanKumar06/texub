@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./styles.scss";
 import red from "../../../Assets/sellerdashboard/dashboard/red.png";
 import blue from "../../../Assets/sellerdashboard/dashboard/blue.png";
@@ -9,6 +9,8 @@ import green from "../../../Assets/sellerdashboard/dashboard/green.png";
 import exchangeoffer from "../../../Assets/sellerdashboard/dashboard/exchangeoffer.png";
 
 import DashboardChartSection from "../../DashboardChartSection";
+import axios from "axios";
+import Constant from "../../../Constant";
 
 function Dashboard() {
   const dashboarddata = [
@@ -19,6 +21,26 @@ function Dashboard() {
     { image: orange, text: "Best Sellers", count: 18 },
     { image: green, text: "Low Inventory Products", count: 55 },
   ];
+
+  const [sellerdashboard, setsellerdashboard] = useState([])
+  useEffect(async() => {
+    let user = JSON.parse(localStorage.getItem('userdata'))
+    try {
+      const dashdata = await axios({
+        method: 'post',
+        url: `${Constant?.baseUrl()}/sellerDashboard`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        },
+        data: {
+          "sellerId" : user?.id
+        }        
+      })
+      setsellerdashboard(dashdata?.data)
+    } catch(e) {
+      console.log(e)
+    }
+  }, [])
   return (
     <div className="seller_dashboard">
       <div className="dashboard__data">

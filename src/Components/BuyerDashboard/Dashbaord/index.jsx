@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./styles.scss";
-
+import Constant from '../../../Constant'
 import red from "../../../Assets/buyerdashboard/dashboard/red.png";
 import blue from "../../../Assets/buyerdashboard/dashboard/blue.png";
 import green from "../../../Assets/buyerdashboard/dashboard/green.png";
@@ -11,6 +11,7 @@ import acer from "../../../Assets/buyerdashboard/dashboard/acer.png";
 import hp from "../../../Assets/buyerdashboard/dashboard/hp.png";
 
 import DashboardChart from "../../DashboardChartSection";
+import axios from "axios";
 
 const BuyerDashboard = () => {
   const pricelist = [
@@ -19,17 +20,43 @@ const BuyerDashboard = () => {
     { image: acer, name: "Pavilion Model14-Dv0054Tu", price: "66,999" },
   ];
 
+  const [dashboarddata, setdashboarddata] = useState([])
+  useEffect(async() => {
+    let user = JSON.parse(localStorage.getItem('userdata'))
+    try {
+      const dashdata = await axios({
+        method: 'post',
+        url: `${Constant?.baseUrl()}/buyerDashboard`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        },
+        data: {
+          "buyerId" : user?.id
+        }        
+      })
+      setdashboarddata(dashdata?.data)
+    } catch(e) {
+      console.log(e)
+    }
+  }, [])
+
   return (
     <div className="buyer_dashboard">
       <div className="dashboard__top">
         <div className="overview_image">
+          <span className="header">Today's Deal</span>
           <img src={red} alt="" />
+          <span className="value">{dashboarddata[0]?.todays_deal}</span>
         </div>
         <div className="overview_image">
+          <span className="header">What's New</span>
           <img src={blue} alt="" />
+          <span className="value">{dashboarddata[0]?.new_product}</span>
         </div>
         <div className="overview_image">
+          <span className="header">Price Drop</span>
           <img src={green} alt="" />
+          <span className="value">{dashboarddata[0]?.price_drop}</span>
         </div>
       </div>
 
