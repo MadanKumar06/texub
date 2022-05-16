@@ -166,6 +166,7 @@ const Checkout = () => {
   });
 
   const pickupFormValidation = async (event) => {
+    debugger
     let errorHandle = false;
     if (
       quotedata[0]?.invoice?.pending_invoice_status !== "3" &&
@@ -215,6 +216,7 @@ const Checkout = () => {
         let user = JSON.parse(localStorage.getItem("userdata"));
         let storedata = JSON.parse(localStorage.getItem("storedata"));
         let itemsdata = [];
+        debugger
         dispatch({
           type: "SET_IS_LOADING",
           value: true,
