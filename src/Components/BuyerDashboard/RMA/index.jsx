@@ -6,9 +6,11 @@ import { Button } from "@mui/material";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import Pagination from "../../Pagination";
 import { useStateValue } from "../../../store/state";
+import NodataFound from "../../../Assets/CommonImage/NodataFound.webp.png";
+
 
 function RMA() {
-  const [{geo, customstore, customnostore}, dispatch] = useStateValue()
+  const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
   const [tableData, setTableData] = useState([]);
   const ordertype = [
     { name: "All RMA" },
@@ -33,6 +35,16 @@ function RMA() {
     sort: false,
     viewColumns: false,
     search: false,
+    textLabels: {
+      body: {
+        noMatch: (
+          <div className="no_data_found">
+            <img src={NodataFound} alt="No data Found" />
+            <p>No data Found...</p>
+          </div>
+        ),
+      },
+    },
   };
 
   const table = [
@@ -158,14 +170,18 @@ function RMA() {
     <div className="rma_container">
       <div className="rma__footer">
         <div className="rma__container">
-          <Link to={`/${customnostore ? customnostore : geo?.country_name}/buyerdashboard/dashboard`}>
+          <Link
+            to={`/${
+              customnostore ? customnostore : geo?.country_name
+            }/buyerdashboard/dashboard`}
+          >
             <ArrowBackIosNew />
             <span>Back</span>
           </Link>
           <Button className="rma_btn">Request RMA</Button>
         </div>
       </div>
-      
+
       <div className="rma__buttons">
         {ordertype.map((data, i) => (
           <div className="rma__btton_content">
@@ -190,7 +206,6 @@ function RMA() {
         DataList={table}
         PagePerRow={10}
       />
-      
     </div>
   );
 }

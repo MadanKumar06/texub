@@ -5,6 +5,8 @@ import { Button, Box } from "@mui/material";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import Pagination from "../../Pagination";
+import NodataFound from "../../../Assets/CommonImage/NodataFound.webp.png";
+
 import { MenuItem, Select } from "@mui/material";
 import Allowedpermissions from "../../SellerDashboard/UserMgmt/PopUps/Allowedpermissions";
 import Forbidden from "../../SellerDashboard/UserMgmt/PopUps/Forbidden";
@@ -36,6 +38,16 @@ function Index({ setuserform, userform }) {
     sort: false,
     viewColumns: false,
     search: false,
+    textLabels: {
+      body: {
+        noMatch: (
+          <div className="no_data_found">
+            <img src={NodataFound} alt="No data Found" />
+            <p>No data Found...</p>
+          </div>
+        ),
+      },
+    },
   };
 
   const table = [

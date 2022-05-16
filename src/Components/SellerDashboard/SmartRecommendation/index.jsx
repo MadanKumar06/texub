@@ -7,6 +7,8 @@ import { ArrowBackIosNew, Search } from "@mui/icons-material";
 import axios from "axios";
 import Constant from "../../../Constant";
 import { useStateValue } from "../../../store/state";
+import NodataFound from "../../../Assets/CommonImage/NodataFound.webp.png";
+
 import { TextField, InputAdornment, IconButton } from "@mui/material";
 
 const Index = ({ searchdata, searchupdate }) => {
@@ -96,6 +98,16 @@ const Index = ({ searchdata, searchupdate }) => {
     sort: false,
     viewColumns: false,
     search: false,
+    textLabels: {
+      body: {
+        noMatch: (
+          <div className="no_data_found">
+            <img src={NodataFound} alt="No data Found" />
+            <p>No data Found...</p>
+          </div>
+        ),
+      },
+    },
   };
 
   const columns = [

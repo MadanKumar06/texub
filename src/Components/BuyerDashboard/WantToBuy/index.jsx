@@ -7,6 +7,8 @@ import Pagination from "../../Pagination";
 import "./styles.scss";
 import axios from "axios";
 import Constant from "../../../Constant";
+import NodataFound from "../../../Assets/CommonImage/NodataFound.webp.png";
+
 // import Vieworders from '../../Common/Vieworders'
 import { useStateValue } from "../../../store/state";
 import WantToBuy from "./wantToBuyForm";
@@ -48,6 +50,16 @@ function Index() {
     sort: false,
     viewColumns: false,
     search: false,
+    textLabels: {
+      body: {
+        noMatch: (
+          <div className="no_data_found">
+            <img src={NodataFound} alt="No data Found" />
+            <p>No data Found...</p>
+          </div>
+        ),
+      },
+    },
   };
   useEffect(() => {
     const fetchTableData = async () => {

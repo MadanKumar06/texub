@@ -4,6 +4,8 @@ import MUITable from "../../Common/MUITable";
 import { Link } from "react-router-dom";
 import { ArrowBackIosNew, ClosedCaptionDisabledOutlined } from "@mui/icons-material";
 import Enquirydetails from "../../SellerDashboard/Directenqueries/Enquirydetails";
+import NodataFound from "../../../Assets/CommonImage/NodataFound.webp.png";
+
 import axios from "axios";
 import Constant from "../../../Constant";
 import { useStateValue } from "../../../store/state";
@@ -132,6 +134,16 @@ const Index = ({ searchdata, searchupdate }) => {
     sort: false,
     viewColumns: false,
     search: false,
+    textLabels: {
+      body: {
+        noMatch: (
+          <div className="no_data_found">
+            <img src={NodataFound} alt="No data Found" />
+            <p>No data Found...</p>
+          </div>
+        ),
+      },
+    },
   };
 
   const columns = [
