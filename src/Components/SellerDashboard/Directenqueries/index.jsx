@@ -84,7 +84,7 @@ const Index = ({ searchdata, searchupdate }) => {
 
   const selectorder = (value) => {
     settype(value);
-  };
+  };  
 
   useEffect(() => {
     settype(0)
@@ -96,16 +96,29 @@ const Index = ({ searchdata, searchupdate }) => {
       setfiltereddirect(directList)
     }
     if (type === 1) {
-      const pending = directList?.filter(d => d?.seller_enquiry_status === "Open")
-      setfiltereddirect(pending)
+      const pending = directList?.filter(d => d?.seller_enquiry_status === "Open")      
+      if(pending) {
+        setfiltereddirect(pending)
+      } else {
+        setdirect([])
+      }
     }
     if (type === 2) {
       const accepted = directList?.filter(d => d?.seller_enquiry_status === "Accepted")
-      setfiltereddirect(accepted)
+      if(accepted) {
+        setfiltereddirect(accepted)
+      } else {
+        setdirect([])
+      }
     }
     if (type === 3) {
+      debugger
       const declined = directList?.filter(d => d?.seller_enquiry_status === "Declined")
-      setfiltereddirect(declined)
+      if(declined?.length) {
+        setfiltereddirect(declined)
+      } else {
+        setdirect([])
+      }
     }
   }, [type])
 
@@ -222,6 +235,8 @@ const Index = ({ searchdata, searchupdate }) => {
     },
   ];
 
+  console.log(direct?.length)
+
   return (
     <div className="directenquiries_container">
       <div className="directenquiries__buttons">
@@ -239,22 +254,19 @@ const Index = ({ searchdata, searchupdate }) => {
           </div>
         ))}
       </div>
-
-      <MUITable
-        columns={columns}
-        table={direct}
-        //table={tableData?.length ? tableData : []}
-        options={options}
-        className="directenquiries__table"
-      />
-      {filtereddirect?.length > 0 ?
+        <MUITable
+          columns={columns}
+          table={direct?.length ? direct : []}
+          options={options}
+          className="directenquiries__table"
+        />
+      
+      {filtereddirect?.length &&
         <Pagination
           PaginateData={PaginateDataSplit}
-          DataList={filtereddirect?.length ? filtereddirect : []}
+          DataList={filtereddirect}
           PagePerRow={10}
         />
-        :
-        ""
       }
       {isUopup && (
         <Enquirydetails closePOPup={setisUopup} popid={popid} direct={directList} setrefreshdata={setrefreshdata} refreshdata={refreshdata} />

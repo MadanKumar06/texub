@@ -7,6 +7,27 @@
     padding-top: 8px;
     margin-top: 2em;
 
+    .overview_image {
+      position: relative;
+
+      .header, .value {
+        position: absolute;
+        color: white;
+        bottom: 0;
+        top: 0;
+        display: flex;
+        align-items: center;
+      }
+      .header {
+        left: 3em;
+        font-size: 24px;
+      }
+      .value {
+        right: 1em;
+        font-size: 32px;
+      }
+    }
+
     div {
       max-width: 360px;
       width: calc(100% / 3 - 20px);
