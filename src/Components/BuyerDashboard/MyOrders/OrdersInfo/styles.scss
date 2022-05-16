@@ -67,6 +67,7 @@
         color: #333c42;
         letter-spacing: 0.54px;
         padding: 5px 8px;
+        vertical-align: baseline;
       }
       .productname {
         display: flex;
@@ -250,6 +251,17 @@
                   font-weight: 400;
                   margin: 0 10px;
                 }
+                .symbol_value{
+                    color: #333c42;
+                  font-size: 12px;
+                  font-weight: 400;
+                  margin: 0 0px 0 10px;
+                }
+                .price_value{
+                  font-size: 20px;
+                  font-weight: 400;
+                  color: #333c42;
+                }
                 .MuiDivider-root {
                   min-height: 10px;
                 }
@@ -291,6 +303,7 @@
             .taxes {
               display: flex;
               flex-direction: column;
+              width: fit-content;
               gap: 10px;
               .total_amount_heading {
                 font-size: 26px;
@@ -318,8 +331,9 @@
               text-align: right;
               font-weight: bold;
               .currency {
-                font-size: 14px;
+                font-size: 12px;
                 letter-spacing: 0.51px;
+                font-weight: 400;
               }
             }
           }
@@ -599,7 +613,7 @@
     .vieworders_list
     .total_amount {
     .currency {
-      font-size: 14px;
+      font-size: 12px;
     }
     font-size: 20px;
   }
@@ -729,7 +743,7 @@
             .vieworders_list {
               .taxes {
                 span {
-                  text-align: start !important;
+                  text-align: center !important;
                 }
               }
             }
