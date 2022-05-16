@@ -167,7 +167,7 @@ const Productsbrands = ({
       {
         breakpoint: 1660,
         settings: {
-          slidesToShow: 7,
+          slidesToShow: 6,
           slidesToScroll: 1,
           initialSlide: 7,
         },
@@ -183,15 +183,15 @@ const Productsbrands = ({
       {
         breakpoint: 1440,
         settings: {
-          slidesToShow: 6,
+          slidesToShow: 5,
           slidesToScroll: 1,
-          initialSlide: 6,
+          initialSlide: 5,
         },
       },
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 5,
+          slidesToShow: 4,
           slidesToScroll: 1,
           initialSlide: 4,
         },

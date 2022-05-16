@@ -328,6 +328,10 @@ const styles = (theme) => ({
     alignItems: "center",
     backgroundColor: "white",
     boxShadow: "0px 3px 6px #00000029",
+    "@media (max-width: 580px)": {
+      padding: "2em 1em",
+      flexDirection: "column",
+    },
   },
 
   forgotpassword__email: {
@@ -335,6 +339,10 @@ const styles = (theme) => ({
     display: "flex",
     flexDirection: "column",
     padding: "2em",
+    "@media (max-width: 580px)": {
+      width: "100%",
+      padding: "10px 15px",
+    },
   },
 
   forgotpassword__image: {

@@ -288,7 +288,7 @@ const Index = ({ orders, currentorder }) => {
               <span className="id">
                 {detailsorder?.[0]?.order_details?.[0]?.transaction_number}
               </span>
-              <span className="status">Completed</span>
+              <span className="status">{detailsorder?.[0]?.order_details?.[0]?.order_status}</span>   
             </div>
           </div>
           <div className="order_info_section2">

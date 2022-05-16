@@ -206,7 +206,19 @@
       }
     }
 }
-
+.my_orders__footer .back_button{
+  color: #002d56;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+}
+.my_orders__footer .back_button span.back{
+  margin-left: 0.6em;
+}
+.my_orders__footer .back_button .MuiSvgIcon-root{
+  width: 0.6em;
+  height: 0.6em;
+}
 @media (max-width: 1660px) {
   .myorders .myorders__table {
     .MuiTableHead-root .MuiTableCell-root {
