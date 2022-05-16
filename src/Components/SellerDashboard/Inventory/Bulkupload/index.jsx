@@ -275,10 +275,11 @@ function Index() {
       setsamplefile(sample?.data[0]?.bulkupload_sample);
     } catch (e) {}
   }, []);
+
   const sampleFile = () => {
-    if (samplefile?.bulkupload_sample === "") {
+    if (samplefile === "") {
       swal.fire({
-        text: `File does not exist. Try again later`,
+        text: `Example.Xlsx file does not exist. Please try again later`,
         icon: "error",
         showConfirmButton: false,
         timer: 3000,

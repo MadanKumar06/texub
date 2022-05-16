@@ -171,6 +171,14 @@ const Checkout = () => {
       quotedata[0]?.invoice?.pending_invoice_status !== "3" &&
       shipping_method === "pick_up_from_hub"
     ) {
+      if (!pickup_form_data?.bussiness_name) {
+        document.getElementById("bussiness_name")?.focus();
+        setpickup_form_data_valid((prevState) => ({
+          ...prevState,
+          bussiness_name: "Please enter the business name.",
+        }));
+        errorHandle = true;
+      }
       if (!pickup_form_data?.contact_person) {
         document.getElementById("contact_person")?.focus();
         setpickup_form_data_valid((prevState) => ({
@@ -320,7 +328,7 @@ const Checkout = () => {
                     quotedata[0]?.invoice?.pending_invoice_status,
                   pending_invoice_id: quotedata[0]?.invoice?.pending_invoice_id,
                   invoice_currency: currency?.currency_id,
-                  contact_business_name: company_name?.[0]?.value,
+                  contact_business_name: pickup_form_data?.bussiness_name,
                   contact_person_name: pickup_form_data?.contact_person,
                   contact_email_address: pickup_form_data?.email_address,
                   contact_phone: pickup_form_data?.mobile_number,
@@ -940,8 +948,6 @@ const Checkout = () => {
   //     console.log(e);
   //   }
   // };
-
-  console.log(payment);
   const navigate = useNavigate();
   let permissions = JSON.parse(localStorage.getItem("permissions"));
   let placeorder =
@@ -951,7 +957,6 @@ const Checkout = () => {
           (per) =>
             per?.value === "can-place-order" && per?.permission_value === 0
         );
-  console.log(quotedata[0]);
 
   const handleChange = () => {
     var printContents = document.getElementById("Checkout_page").innerHTML;
@@ -961,13 +966,6 @@ const Checkout = () => {
     window.print();
     document.body.innerHTML = originalContents;
   };
-
-  //BusinessName from Registration
-  var company_name = JSON.parse(
-    localStorage.getItem("userdata")
-  )?.custom_attributes?.filter(
-    (itm) => itm?.attribute_code === "customer_company_name"
-  );
   return (
     <div className="checkout_main_container" id="Checkout_page">
       <div className="checkout_info_list">
@@ -1298,9 +1296,25 @@ const Checkout = () => {
                             className="inputfield-box"
                             name="bussiness_name"
                             variant="outlined"
-                            disabled
-                            value={company_name?.[0]?.value}
+                            // value={pickup?.bussiness_name}
+                            // onChange={(e) => onpickup(e)}
+                            value={pickup_form_data?.bussiness_name}
+                            onChange={(e) => {
+                              setpickup_form_data((prevState) => ({
+                                ...prevState,
+                                bussiness_name: e.target.value,
+                              }));
+                              setpickup_form_data_valid((prevState) => ({
+                                ...prevState,
+                                bussiness_name: "",
+                              }));
+                            }}
                           />
+                          {pickup_form_data_valid?.bussiness_name && (
+                            <p style={{ color: "red" }}>
+                              {pickup_form_data_valid?.bussiness_name}
+                            </p>
+                          )}
                         </div>
                         <div className="address_fields">
                           <InputLabel>Contact Person Name</InputLabel>

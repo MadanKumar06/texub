@@ -77,10 +77,10 @@ function Index({ type, pid }) {
     isSGSTValid: "",
   });
   let errorHandle = false;
-  console.log(count)
+  console.log(count);
   const countincrease = (checking) => {
     if (count?.length) {
-      count?.map(ct => {
+      count?.map((ct) => {
         if (!ct?.hub_id) {
           document.getElementById("currenthub")?.focus();
           setIsDetailTabValid((prevState) => ({
@@ -136,56 +136,56 @@ function Index({ type, pid }) {
           errorHandle = true;
         }
         // GSTS
-      if (ct?.hub_id === "2") {
-        if (!ct?.cgst) {
-          document.getElementById("gst")?.focus();
-          setIsDetailTabValid((prevState) => ({
-            ...prevState,
-            isCGSTValid: "Please enter the gst.",
-          }));
-          errorHandle = true;
-        } else if (!isNumber(ct?.cgst)) {
-          document.getElementById("gst")?.focus();
-          setIsDetailTabValid((prevState) => ({
-            ...prevState,
-            isCGSTValid: "Please enter only number.",
-          }));
-          errorHandle = true;
+        if (ct?.hub_id === "2") {
+          if (!ct?.cgst) {
+            document.getElementById("gst")?.focus();
+            setIsDetailTabValid((prevState) => ({
+              ...prevState,
+              isCGSTValid: "Please enter the gst.",
+            }));
+            errorHandle = true;
+          } else if (!isNumber(ct?.cgst)) {
+            document.getElementById("gst")?.focus();
+            setIsDetailTabValid((prevState) => ({
+              ...prevState,
+              isCGSTValid: "Please enter only number.",
+            }));
+            errorHandle = true;
+          }
+          if (!ct?.igst) {
+            document.getElementById("igst")?.focus();
+            setIsDetailTabValid((prevState) => ({
+              ...prevState,
+              isIGSTValid: "Please enter the igst.",
+            }));
+            errorHandle = true;
+          } else if (!isNumber(ct?.igst)) {
+            document.getElementById("igst")?.focus();
+            setIsDetailTabValid((prevState) => ({
+              ...prevState,
+              isIGSTValid: "Please enter only number.",
+            }));
+            errorHandle = true;
+          }
+          if (!ct?.sgst) {
+            document.getElementById("sgst")?.focus();
+            setIsDetailTabValid((prevState) => ({
+              ...prevState,
+              isSGSTValid: "Please en    returnter the sgst.",
+            }));
+            errorHandle = true;
+          } else if (!isNumber(ct?.sgst)) {
+            document.getElementById("sgst")?.focus();
+            setIsDetailTabValid((prevState) => ({
+              ...prevState,
+              isSGSTValid: "Please enter only number.",
+            }));
+            errorHandle = true;
+          }
         }
-        if (!ct?.igst) {
-          document.getElementById("igst")?.focus();
-          setIsDetailTabValid((prevState) => ({
-            ...prevState,
-            isIGSTValid: "Please enter the igst.",
-          }));
-          errorHandle = true;
-        } else if (!isNumber(ct?.igst)) {
-          document.getElementById("igst")?.focus();
-          setIsDetailTabValid((prevState) => ({
-            ...prevState,
-            isIGSTValid: "Please enter only number.",
-          }));
-          errorHandle = true;
-        }
-        if (!ct?.sgst) {
-          document.getElementById("sgst")?.focus();
-          setIsDetailTabValid((prevState) => ({
-            ...prevState,
-            isSGSTValid: "Please en    returnter the sgst.",
-          }));
-          errorHandle = true;
-        } else if (!isNumber(ct?.sgst)) {
-          document.getElementById("sgst")?.focus();
-          setIsDetailTabValid((prevState) => ({
-            ...prevState,
-            isSGSTValid: "Please enter only number.",
-          }));
-          errorHandle = true;
-        }
-      }
-      })
+      });
       // let temp = count?.slice(-1);
-      
+
       if (checking === "checking-validation") {
         return;
       } else if (!errorHandle) {
@@ -796,7 +796,7 @@ function Index({ type, pid }) {
 
       <div className="updateproduct__topform">
         {count?.length > 0 &&
-          count.map((data, ind) => (
+          count?.map((data, ind) => (
             <div className="topform__details">
               <Details
                 countincrease={countincrease}
