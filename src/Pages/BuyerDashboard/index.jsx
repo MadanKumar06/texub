@@ -25,13 +25,13 @@ import { useStateValue } from "../../store/state";
 const Index = () => {
   const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
   const [currentmenu, setcurrentmenu] = useState();
-    const [searchupdate, setsearchupdate] = useState(false)
+  const [searchupdate, setsearchupdate] = useState(false);
   const updatesearch = (e) => {
-    e.preventDefault()
-    setsearchupdate(!searchupdate)
-  }
+    e.preventDefault();
+    setsearchupdate(!searchupdate);
+  };
 
-  const [search, setSearch] = useState("")
+  const [search, setSearch] = useState("");
   let navigate = useNavigate();
 
   const selectmenu = (value) => {
@@ -88,7 +88,9 @@ const Index = () => {
             <span>Notification</span>
           </div> */}
           {currenttab === "dashboard" && <Dashboard />}
-          {currenttab === "myorder" && <MyOrders searchdata={search} searchupdate={searchupdate}/>}
+          {currenttab === "myorder" && (
+            <MyOrders searchdata={search} searchupdate={searchupdate} />
+          )}
           {currenttab === "invoiceslist" && <InvoicesList />}
           {currenttab === "auctions" && <Auctions />}
           {currenttab === "wanttobuy" && <WantToBuy />}
