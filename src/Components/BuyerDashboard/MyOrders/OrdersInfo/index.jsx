@@ -7,6 +7,7 @@ import TransactionPopup from "./TransactionInfo";
 import "./styles.scss";
 import { useStateValue } from "../../../../store/state";
 import MUITable from "../../../Common/MUITable";
+import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
 
 import image from "../../../../Assets/buyerdashboard/auctions/hp.png";
 import download from "../../../../Assets/buyerdashboard/orders/download.png";
@@ -104,7 +105,7 @@ const Index = ({ orders, currentorder }) => {
       body: {
         noMatch: (
           <div className="no_data_found">
-            <img src={NodataFound} alt="No data Found" />
+            {/* <img src={NodataFound} alt="No data Found" /> */}
             <p>No data Found...</p>
           </div>
         ),
@@ -126,7 +127,9 @@ const Index = ({ orders, currentorder }) => {
                 <span className="modal_name">{name}</span>
                 <span className="modal_content">{discription}</span>
                 <div className="serial_number">
-                  <span onClick={() => handleOpen()}>Show Serial Numbers</span>
+                  <span onClick={() => handleOpen()}>
+                    Show Serial Numbers <KeyboardArrowDownOutlinedIcon />
+                  </span>
                 </div>
               </div>
             </div>

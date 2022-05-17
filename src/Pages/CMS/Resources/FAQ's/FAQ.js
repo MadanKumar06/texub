@@ -47,6 +47,14 @@ const FAQ = ({ classes }) => {
         timer: 3000,
       });
     }
+    if (askQuestion === "") {
+      return swal.fire({
+        text: "Please fill the required input before submitting your FAQ",
+        icon: "error",
+        showConfirmButton: false,
+        timer: 3000,
+      });
+    }
     let data = {
       customerId: JSON.parse(localStorage.getItem("userdata"))?.id,
       storeId: 3,
@@ -109,11 +117,11 @@ const FAQ = ({ classes }) => {
               key={ind}
               onClick={() => {
                 if (description === false && toggle === false) {
-                  text(ind)
+                  text(ind);
                 } else if (description === ind && toggle === ind) {
-                  text(false)
+                  text(false);
                 } else if (description !== ind && toggle !== ind) {
-                  text(ind)
+                  text(ind);
                 }
               }}
               className="faqs_table_adding"

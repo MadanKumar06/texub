@@ -65,7 +65,7 @@ function getOrdinalSuffix(value) {
       body: {
         noMatch: (
           <div className="no_data_found">
-            <img src={NodataFound} alt="No data Found" />
+            {/* <img src={NodataFound} alt="No data Found" /> */}
             <p>No data Found...</p>
           </div>
         ),

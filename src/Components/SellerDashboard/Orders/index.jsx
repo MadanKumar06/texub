@@ -22,8 +22,8 @@ function Index() {
   const [viewDetail, setViewDetail] = useState({});
   const ordertype = [
     { name: "All Orders" },
-    { name: "Purchase Orders" },
-    { name: "Full-Filled Orders" },
+    { name: "On-Going Orders" },
+    { name: "Delivered Orders" },
     { name: "Cancelled Orders" },
   ];
 
@@ -96,7 +96,7 @@ function Index() {
       body: {
         noMatch: (
           <div className="no_data_found">
-            <img src={NodataFound} alt="No data Found" />
+            {/* <img src={NodataFound} alt="No data Found" /> */}
             <p>No data Found...</p>
           </div>
         ),
@@ -157,13 +157,16 @@ function Index() {
           return (
             <div
               className={`
-              ${value === "Pending" && "orders__pending"}
-              ${value === "Confirm" && "orders__confirmed"}
-              ${value === "Delivered" && "orders__delivered"}
-              ${value === "Dispatched" && "orders__dispatched"}
+              ${value === "4" && "orders__canceled"}
+              ${value === "1" && "orders__confirmed"}
+              ${value === "2" && "orders__dispatched"}
+              ${value === "3" && "orders__delivered"}
               `}
             >
-              {value}
+              {value === "4" ? "Canceled" : ""}
+              {value === "1" ? "Confirm" : ""}
+              {value === "2" ? "Dispatched" : ""}
+              {value === "3" ? "Delivered" : ""}
             </div>
           );
         },
@@ -252,8 +255,9 @@ function Index() {
           )}
           <div className="orders__back__footer">
             <div className="orders__back__container">
-              <div className="back_button"
-              onClick={()=> window.history.back() }
+              <div
+                className="back_button"
+                onClick={() => window.history.back()}
               >
                 <ArrowBackIosNew />
                 <span>Back</span>
@@ -270,7 +274,7 @@ function Index() {
           </div>
         </>
       ) : (
-        <ViewOrder viewDetail={viewDetail} setvieworder={setvieworder}/>
+        <ViewOrder viewDetail={viewDetail} setvieworder={setvieworder} />
       )}
     </div>
   );
