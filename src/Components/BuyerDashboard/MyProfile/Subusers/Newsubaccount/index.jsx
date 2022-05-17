@@ -68,8 +68,8 @@ const Index = ({ currentid, setisSub, setisSubusers }) => {
       });
       console.log(getformdata?.data);
       let temp = [];
-      getformdata?.data[0]?.availablePermissions?.map((d) => {
-        plist?.map((p) => {
+      getformdata?.data[0]?.availablePermissions?.filter((d) => {
+        plist?.filter((p) => {
           if (d === p?.value) {
             temp.push({
               label: p?.label,
@@ -78,6 +78,7 @@ const Index = ({ currentid, setisSub, setisSubusers }) => {
           }
         });
       });
+      console.log(temp)
       setNewSubAccountData({
         first_name: getformdata?.data[0]?.firstname,
         last_name: getformdata?.data[0]?.lastname,
@@ -408,6 +409,9 @@ const Index = ({ currentid, setisSub, setisSubusers }) => {
               ? NewSubAccountData?.allowed_permissions
               : ""
           }
+          getOptionLabel={(option) =>
+            option.label ? option.label : ""
+          }
           disableCloseOnSelect
           renderOption={(props, option, { selected }) => (
             <li {...props}>
@@ -427,7 +431,10 @@ const Index = ({ currentid, setisSub, setisSubusers }) => {
             }));
           }}
           renderInput={(params) => (
-            <TextField {...params} placeholder="" className="inputfield-box" />
+            <TextField {...params} placeholder="" className="inputfield-box" fullWidth
+            InputLabelProps={{
+              shrink: false,
+            }} />
           )}
         />
         <InputLabel className="validation_error">

@@ -88,6 +88,14 @@ function Index({
             per?.value === "can-raise-wtb-request" &&
             per?.permission_value === 0
         );
+  let wishlistpermission =
+    permissions?.length === 0
+      ? false
+      : permissions?.some(
+          (per) =>
+            per?.value === "can-add-to-multiple-wishlist" &&
+            per?.permission_value === 0
+        );
   let placeorder =
     permissions?.length === 0
       ? false
@@ -156,7 +164,8 @@ function Index({
             {BuyerList?.map((data, i) => {
               if (
                 (Wtbpermission && data?.url === "wanttobuy") ||
-                (placeorder && data?.url === "myorder")
+                (placeorder && data?.url === "myorder") ||
+                (wishlistpermission && data?.url === 'wishlist')
               ) {
               } else {
                 return (
