@@ -114,7 +114,6 @@ const Index = ({ searchdata, searchupdate }) => {
       }
     }
     if (type === 3) {
-      debugger
       const declined = directList?.filter(d => d?.seller_enquiry_status === "Declined")
       if(declined?.length) {
         setfiltereddirect(declined)

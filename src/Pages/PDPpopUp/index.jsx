@@ -74,7 +74,6 @@ const PdpPopup = () => {
     // let table_one =
     //   pdpPopUpOpenClose?.data?.tableData?.[0]?.sub_products?.length;
     // let table_two = table_two_data?.length;
-    debugger;
     setMoreOffers({
       tableone: detailsData?.current?.[0]?.sub_products?.length,
       tabletwo: "",
@@ -83,6 +82,7 @@ const PdpPopup = () => {
   };
 
   const handleIsValidUser = async (event) => {
+    debugger
     //pending invoice acknowledgement useState
     let isDataValid = user?.custom_attributes?.filter(
       (itm) => itm?.attribute_code === "kyc_status"
@@ -277,6 +277,22 @@ const PdpPopup = () => {
   const [openwishlist, setopenwishlist] = useState({ open: false });
 
   const handleOpenClose = (event) => {
+    let permissions = JSON.parse(localStorage.getItem("permissions"));
+    let pendingpermission =
+      permissions?.length === 0
+        ? false
+        : permissions?.some(
+            (per) =>
+              per?.value === "can-add-to-multiple-wishlist" &&
+              per?.permission_value === 0
+          );
+    if (pendingpermission) {
+      return swal.fire({
+        text: `Your Account doesn't have access to add products to Wishinglist`,
+        icon: "error",
+        showConfirmButton: true,
+      });
+    }
     setopenwishlist({ open: event });
   };
 

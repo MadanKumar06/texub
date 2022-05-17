@@ -42,6 +42,19 @@ export const Userdetails = () => {
       }/sellerdashboard/dashboard`
     );
   };
+  let [permission, setpermission] = useState()
+  useEffect(() => {
+    let permissions = JSON.parse(localStorage.getItem("permissions"));
+    let pendingpermission =
+      permissions?.length === 0
+        ? false
+        : permissions?.some(
+            (per) =>
+              per?.value === "can-add-to-multiple-wishlist" &&
+              per?.permission_value === 0
+          );
+          setpermission(pendingpermission)
+  }, [])
   return (
     <div
       className="user_details_main_container"
@@ -100,19 +113,21 @@ export const Userdetails = () => {
           )}
           {isSignedIn?.group_id === 5 && kycStatus?.[0]?.value === "2" ? (
             <>
-              <div className="user_wishlist" onClick={() => handleWishlist()}>
-                <Badge
-                  showZero={true}
-                  // badgeContent={wishListData?.length ? wishListData?.length : 0}
-                  badgeContent={wishlength}
-                  className="badge_user"
-                >
-                  <div className="whishlist_image">
-                    <img src={whishlist_image} alt="" />
-                  </div>
-                </Badge>
-                <li className="user_account_wishlist_cart">My Wishlist</li>
-              </div>
+              {!permission && 
+                <div className="user_wishlist" onClick={() => handleWishlist()}>
+                  <Badge
+                    showZero={true}
+                    // badgeContent={wishListData?.length ? wishListData?.length : 0}
+                    badgeContent={wishlength}
+                    className="badge_user"
+                  >
+                    <div className="whishlist_image">
+                      <img src={whishlist_image} alt="" />
+                    </div>
+                  </Badge>
+                  <li className="user_account_wishlist_cart">My Wishlist</li>
+                </div>
+              }
               <div className="user_cart">
                 <MiniCartDrawer />
               </div>

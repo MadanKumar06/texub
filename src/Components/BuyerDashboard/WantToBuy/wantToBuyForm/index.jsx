@@ -84,7 +84,6 @@ const WantToBuy = ({ setisVieworders, setisOrders }) => {
     }
     console.log(wantTobuyData);
     if (!errorHandle) {
-      debugger;
       FinalWantToBuy();
     }
   };
@@ -158,7 +157,6 @@ const WantToBuy = ({ setisVieworders, setisOrders }) => {
           value: false,
         });
         if (res?.data?.[0]?.status) {
-          debugger;
           if (res?.data?.[0]?.exist) {
             setisAvailable(true);
           } else {

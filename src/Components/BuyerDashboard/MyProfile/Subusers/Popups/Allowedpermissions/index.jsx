@@ -8,9 +8,6 @@ const Index = ({ closePOPup, sublist, cid }) => {
     const [open, setOpen] = useState(true);
     const [listt, setlistt] = useState([])
     useEffect(() => {
-        debugger
-        console.log(sublist)
-        console.log(cid)
         sublist?.map(sl => {
             if(sl?.entity_id === cid) {
                 setlistt(sl?.available_permissions)
