@@ -164,6 +164,8 @@
         display: flex;
         align-items: center;
         gap: 12px;
+        width: -webkit-fill-available;
+        justify-content: center;
         input {
           display: none;
         }
