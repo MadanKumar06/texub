@@ -106,6 +106,10 @@
               color: #002d56;
               font-size: 16px;
               font-weight: 600;
+              text-decoration: underline;
+              align-items: center;
+              display: flex;
+          
             }
           }
         }
@@ -267,7 +271,7 @@
                 }
                 .value_price {
                   margin-left: 10px;
-                  font-size: 16px;
+                  font-size: 18px;
                   font-weight: 400;
                   margin-left: 10px;
                 }
@@ -329,7 +333,6 @@
               color: #333c42;
               font-size: 22px;
               letter-spacing: 0.78px;
-              // text-align: right;
               margin-left: 4%;
               font-weight: bold;
               .currency {

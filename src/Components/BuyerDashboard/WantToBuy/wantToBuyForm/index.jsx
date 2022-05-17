@@ -186,7 +186,7 @@ const WantToBuy = ({ setisVieworders, setisOrders }) => {
         });
       });
   };
-  
+
   return (
     <div className="want_to_buy__container">
       <div className="want_to_buy__sub_container">
@@ -305,14 +305,19 @@ const WantToBuy = ({ setisVieworders, setisOrders }) => {
                   // if(wantTobuyData?.quantity?.length > 5) {
                   //   return
                   // } else if(wantTobuyData?.quantity?.length !== 6 && wantTobuyData?.quantity?.length <= 6) {
-                    setWantToBuyData((prevState) => ({
-                      ...prevState,
-                      quantity: event.target.value,
-                    }));
-                    setInputValidation((prevState) => ({
-                      ...prevState,
-                      quantity: "",
-                    }));
+                  setWantToBuyData((prevState) => ({
+                    ...prevState,
+                    quantity: (event.target.value = Math.max(
+                      0,
+                      parseInt(event.target.value)
+                    )
+                      .toString()
+                      .slice(0, 6)),
+                  }));
+                  setInputValidation((prevState) => ({
+                    ...prevState,
+                    quantity: "",
+                  }));
                   // }
                 }}
                 value={wantTobuyData?.quantity}
