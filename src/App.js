@@ -151,9 +151,11 @@ const App = () => {
     }
   }, []);
   useEffect(() => {
-    GetCategoriesList((res) => {
-      localStorage.setItem("all_category_id", res?.[0]?.category?.id);
-    }, currency?.currency_id);
+    if (currency?.currency_id) {
+      GetCategoriesList((res) => {
+        localStorage.setItem("all_category_id", res?.[0]?.category?.id);
+      }, currency?.currency_id);
+    }
   }, [currency]);
 
   return (

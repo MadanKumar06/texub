@@ -111,22 +111,24 @@ const Index = () => {
   }, [currency, getCategories, homeSearch, applyFilter]);
 
   useEffect(() => {
-    const fetchCategoryData = () => {
-      let data = {
-        currency_id: parseInt(currency?.currency_id),
+    if (currency?.currency_id) {
+      const fetchCategoryData = () => {
+        let data = {
+          currency_id: parseInt(currency?.currency_id),
+        };
+        axios
+          .post(Constant.baseUrl() + "/getCategoriesList", data, {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+          .then((res) => {
+            setGetCategories(res?.data);
+          })
+          .catch((err) => {});
       };
-      axios
-        .post(Constant.baseUrl() + "/getCategoriesList", data, {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
-        .then((res) => {
-          setGetCategories(res?.data);
-        })
-        .catch((err) => {});
-    };
-    fetchCategoryData();
+      fetchCategoryData();
+    }
   }, [currency]);
   const sortCall = (data) => {
     var productTableData = [];

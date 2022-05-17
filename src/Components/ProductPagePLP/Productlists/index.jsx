@@ -106,27 +106,29 @@ const Productlists = ({
   };
 
   //API for fetch dropdown values
+  var currency_id = JSON.parse(localStorage.getItem("currency"));
   useEffect(() => {
-    var currency_id = JSON.parse(localStorage.getItem("currency"));
-    const fetchProductListDropDownData = () => {
-      let data = {
-        currency_id: currency_id?.currency_id,
+    if (currency_id?.currency_id) {
+      const fetchProductListDropDownData = () => {
+        let data = {
+          currency_id: currency_id?.currency_id,
+        };
+        axios
+          .post(Constant.baseUrl() + "/getSearchItemsInPlp", data, {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+          .then((res) => {
+            if (res?.data?.length) {
+              var object = Object.assign({}, ...res?.data);
+              setProductlistdropdown(object);
+            }
+          })
+          .catch((err) => {});
       };
-      axios
-        .post(Constant.baseUrl() + "/getSearchItemsInPlp", data, {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
-        .then((res) => {
-          if (res?.data?.length) {
-            var object = Object.assign({}, ...res?.data);
-            setProductlistdropdown(object);
-          }
-        })
-        .catch((err) => {});
-    };
-    fetchProductListDropDownData();
+      fetchProductListDropDownData();
+    }
   }, [currency]);
 
   useEffect(() => {

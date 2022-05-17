@@ -58,7 +58,6 @@ const CurrencyPopup = ({ classes }) => {
   }, [selectedValue]);
 
   //  useEffect(() => {
-  //    console.log(storedcurrency)
   //    let storedcurrency = JSON.parse(localStorage.getItem('selectedcurrency'))
   //    if(selectedValue?.currency_code === storedcurrency?.currency_code) return
   //    handleChange(storedcurrency);
@@ -68,7 +67,6 @@ const CurrencyPopup = ({ classes }) => {
   const str = window.location.pathname;
   useEffect(() => {
     const storedata = JSON.parse(localStorage.getItem("storedata"));
-    const str = window.location.pathname;
     if (geo === "") return;
     // if(str.split('/')[2] === 'sellerdashboard' && storedata?.code.toLowerCase() === str.split('/')[1].toLowerCase()) return
     // if(str.split('/')[2] === 'buyerdashboard' && storedata?.code.toLowerCase() === str.split('/')[1].toLowerCase()) return
@@ -114,7 +112,6 @@ const CurrencyPopup = ({ classes }) => {
             (str.split("/")[2] === "thankyou" &&
               storedata?.code.toLowerCase() === str.split("/")[1].toLowerCase())
           ) {
-            console.log(window.location.href);
           } else if (storedata?.code === str.split("/")[1]) {
             if (
               res.data?.[0]?.store?.code === str.split("/").pop().split("/")[0]
@@ -193,7 +190,7 @@ const CurrencyPopup = ({ classes }) => {
         .catch((err) => {});
     };
     fetchCurrencyDropDownData();
-  }, [geo, customstore, str]);
+  }, [geo, customstore]);
 
   return (
     <div className={classes.header_dropdown}>
