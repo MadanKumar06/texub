@@ -10,7 +10,6 @@ import { styled } from "@mui/system";
 import Constant from "../../../Constant";
 
 const PdpHeader = ({ classes, pdpSellerData, dataFromPLP }) => {
-  debugger;
   const label = { componentsProps: { input: { "aria-label": "Demo switch" } } };
 
   let {

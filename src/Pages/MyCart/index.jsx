@@ -91,8 +91,7 @@ const Mycart = () => {
   };
   const navigate = useNavigate();
   const [rowselect, setrowselect] = useState([]);
-  console.log(rowselect);
-  console.log(cart[0]?.invoice_items[0]);
+
   const [selecteddata, setselecteddata] = useState([]);
 
   useEffect(() => {
@@ -102,6 +101,24 @@ const Mycart = () => {
     setselecteddata(temp);
   }, [rowselect]);
 
+  const isDataAdded = () => {
+    if (cart?.[0]?.invoice_items?.length === 0 || cart?.length === 0) {
+      return swal.fire({
+        text: `No product to add pending invoice`,
+        icon: "error",
+        showConfirmButton: false,
+        timer: 3000,
+      });
+    } else if (rowselect?.length === 0) {
+      return swal.fire({
+        text: `Select minimum one product to add to pending invoice`,
+        icon: "error",
+        showConfirmButton: false,
+        timer: 3000,
+      });
+    }
+    setallert(true);
+  };
   const addpendinginvoice = async () => {
     setallert(false);
     if (
@@ -114,48 +131,47 @@ const Mycart = () => {
       });
       let storedata = JSON.parse(localStorage.getItem("storedata"));
       let user = JSON.parse(localStorage.getItem("userdata"));
-      {
-        selecteddata?.map(async (sd) => {
-          try {
-            const selectedinvoice = await axios({
-              method: "post",
-              url: `${Constant?.baseUrl()}/addToPendingInvoice`,
-              headers: {
-                Authorization: `Bearer ${localStorage.getItem("token")}`,
+
+      selecteddata?.map(async (sd) => {
+        try {
+          const selectedinvoice = await axios({
+            method: "post",
+            url: `${Constant?.baseUrl()}/addToPendingInvoice`,
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+            data: {
+              pendingProducts: {
+                store_id: storedata?.store_id,
+                item_id: sd?.item_id,
+                customer_id: user?.id,
+                productId: sd?.product_id,
+                price: sd?.price,
+                qty: sd?.qty,
+                hub: sd?.hub_id,
+                currency: sd?.currency_id,
+                sellerId: sd?.seller_id,
               },
-              data: {
-                pendingProducts: {
-                  store_id: storedata?.store_id,
-                  item_id: sd?.item_id,
-                  customer_id: user?.id,
-                  productId: sd?.product_id,
-                  price: sd?.price,
-                  qty: sd?.qty,
-                  hub: sd?.hub_id,
-                  currency: sd?.currency_id,
-                  sellerId: sd?.seller_id,
-                },
-              },
-            });
-            console.log(selectedinvoice?.data);
-            navigate(
-              `/${
-                customnostore ? customnostore : geo?.country_name
-              }/pending-invoice`
-            );
-            dispatch({
-              type: "SET_IS_LOADING",
-              value: false,
-            });
-          } catch (e) {
-            console.log(e);
-            dispatch({
-              type: "SET_IS_LOADING",
-              value: false,
-            });
-          }
-        });
-      }
+            },
+          });
+          console.log(selectedinvoice?.data);
+          navigate(
+            `/${
+              customnostore ? customnostore : geo?.country_name
+            }/pending-invoice`
+          );
+          dispatch({
+            type: "SET_IS_LOADING",
+            value: false,
+          });
+        } catch (e) {
+          console.log(e);
+          dispatch({
+            type: "SET_IS_LOADING",
+            value: false,
+          });
+        }
+      });
     } else {
       dispatch({
         type: "SET_IS_LOADING",
@@ -317,9 +333,7 @@ const Mycart = () => {
         )}
         <Button
           className="my_cart_bottom_button_pending_invoice"
-          onClick={() =>
-            cart?.length && cart?.[0]?.invoice_items?.length && setallert(true)
-          }
+          onClick={() => isDataAdded()}
         >
           <span>Add To Pending Invoice</span>
         </Button>

@@ -74,7 +74,6 @@ const PdpPopup = () => {
     // let table_one =
     //   pdpPopUpOpenClose?.data?.tableData?.[0]?.sub_products?.length;
     // let table_two = table_two_data?.length;
-    debugger;
     setMoreOffers({
       tableone: detailsData?.current?.[0]?.sub_products?.length,
       tabletwo: "",
