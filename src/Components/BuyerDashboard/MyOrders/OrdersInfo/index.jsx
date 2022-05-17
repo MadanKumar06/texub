@@ -288,7 +288,9 @@ const Index = ({ orders, currentorder }) => {
               <span className="id">
                 {detailsorder?.[0]?.order_details?.[0]?.transaction_number}
               </span>
-              <span className="status">{detailsorder?.[0]?.order_details?.[0]?.order_status}</span>   
+              <span className="status">
+                {detailsorder?.[0]?.order_details?.[0]?.order_status}
+              </span>
             </div>
           </div>
           <div className="order_info_section2">
@@ -322,8 +324,10 @@ const Index = ({ orders, currentorder }) => {
             </div>
             <div className="order_user_info">
               <div className="username">
-               <span className="id_heading">Username #</span>
-                <span className="id">{detailsorder?.[0]?.order_details?.[0]?.customer_name}</span>
+                <span className="id_heading">Username #</span>
+                <span className="id">
+                  {detailsorder?.[0]?.order_details?.[0]?.customer_name}
+                </span>
               </div>
               <div className="username">
                 <span className="id_heading">Approved By</span>
@@ -426,10 +430,12 @@ const Index = ({ orders, currentorder }) => {
                               }
                             </span>{" "}
                             <span className="price_value">
-                              {
-                                detailsorder?.[0]?.order_details?.[0]
-                                  ?.transaction_amount
-                              }
+                              {formatToCurrency(
+                                parseInt(
+                                  detailsorder?.[0]?.order_details?.[0]
+                                    ?.transaction_amount
+                                )
+                              )}
                             </span>
                           </span>
                           <span className="block_title date_time">

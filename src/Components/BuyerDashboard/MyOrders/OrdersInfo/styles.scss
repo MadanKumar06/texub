@@ -247,18 +247,18 @@
                 font-weight: 600;
                 .value {
                   color: #333c42;
-                  font-size: 16px;
+                  font-size: 18px;
                   font-weight: 400;
                   margin: 0 10px;
                 }
-                .symbol_value{
-                    color: #333c42;
+                .symbol_value {
+                  color: #333c42;
                   font-size: 12px;
                   font-weight: 400;
                   margin: 0 0px 0 10px;
                 }
-                .price_value{
-                  font-size: 20px;
+                .price_value {
+                  font-size: 18px;
                   font-weight: 400;
                   color: #333c42;
                 }
@@ -274,6 +274,7 @@
               }
               .date_time {
                 display: flex;
+                align-items: center;
               }
             }
             .update_transaction_block {
@@ -328,7 +329,8 @@
               color: #333c42;
               font-size: 22px;
               letter-spacing: 0.78px;
-              text-align: right;
+              // text-align: right;
+              margin-left: 4%;
               font-weight: bold;
               .currency {
                 font-size: 12px;
@@ -763,11 +765,9 @@
   }
 }
 @media (max-width: 900px) {
-
-    .vieworders_main {
+  .vieworders_main {
     .vieworders_heading_section {
       flex-direction: column;
-
     }
   }
   .serial_number_popup {
