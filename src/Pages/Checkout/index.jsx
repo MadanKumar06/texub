@@ -167,10 +167,7 @@ const Checkout = () => {
 
   const pickupFormValidation = () => {
     let errorHandle = false;
-    if (
-      quotedata[0]?.invoice?.pending_invoice_status !== "3" &&
-      shipping_method === "pick_up_from_hub"
-    ) {
+    if (shipping_method === "pick_up_from_hub") {
       if (!pickup_form_data?.bussiness_name) {
         document.getElementById("bussiness_name")?.focus();
         setpickup_form_data_valid((prevState) => ({
@@ -214,7 +211,7 @@ const Checkout = () => {
         placeOrderApicCall();
       }
     } else if (
-      quotedata[0]?.invoice?.pending_invoice_status !== "3" &&
+      quotedata[0]?.invoice?.pending_invoice_status === "3" &&
       shipping_method === "texub_shipping"
     ) {
       placeOrderApicCall();
