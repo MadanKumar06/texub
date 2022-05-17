@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./styles.scss";
-import Constant from '../../../Constant'
+import Constant from "../../../Constant";
 import red from "../../../Assets/buyerdashboard/dashboard/red.png";
 import blue from "../../../Assets/buyerdashboard/dashboard/blue.png";
 import green from "../../../Assets/buyerdashboard/dashboard/green.png";
@@ -12,34 +12,45 @@ import hp from "../../../Assets/buyerdashboard/dashboard/hp.png";
 
 import DashboardChart from "../../DashboardChartSection";
 import axios from "axios";
+import { useStateValue } from "../../../store/state";
+import { useNavigate } from "react-router-dom";
 
 const BuyerDashboard = () => {
+  const [{ geo, customnostore }, dispatch] = useStateValue();
+  let navigate = useNavigate();
   const pricelist = [
     { image: apple, name: "Apple Macbook Pro", price: "1,87,999" },
     { image: hp, name: "Acer Sf314-42 Swift 3", price: "66,999" },
     { image: acer, name: "Pavilion Model14-Dv0054Tu", price: "66,999" },
   ];
 
-  const [dashboarddata, setdashboarddata] = useState([])
-  useEffect(async() => {
-    let user = JSON.parse(localStorage.getItem('userdata'))
+  const [dashboarddata, setdashboarddata] = useState([]);
+  useEffect(async () => {
+    let user = JSON.parse(localStorage.getItem("userdata"));
     try {
       const dashdata = await axios({
-        method: 'post',
+        method: "post",
         url: `${Constant?.baseUrl()}/buyerDashboard`,
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         data: {
-          "buyerId" : user?.id
-        }        
-      })
-      setdashboarddata(dashdata?.data)
-    } catch(e) {
-      console.log(e)
+          buyerId: user?.id,
+        },
+      });
+      setdashboarddata(dashdata?.data);
+    } catch (e) {
+      console.log(e);
     }
-  }, [])
+  }, []);
 
+  const handleNavigate = () => {
+    navigate(
+      `/${
+        customnostore ? customnostore : geo?.country_name
+      }/buyerdashboard/wanttobuy`
+    );
+  };
   return (
     <div className="buyer_dashboard">
       <div className="dashboard__top">
@@ -65,7 +76,7 @@ const BuyerDashboard = () => {
           <div className="images__offer">
             <img src={exchangeoffer} alt="" />
           </div>
-          <div className="images__buy">
+          <div className="images__buy" onClick={() => handleNavigate()}>
             <img src={wanttobuy} alt="" />
             <p>Want to buy</p>
           </div>
