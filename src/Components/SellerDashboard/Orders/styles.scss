@@ -89,12 +89,12 @@
         border-radius: 16px;
       }
 
-      .orders__pending {
-        color: #dd9b63;
+      .orders__canceled {
         font-weight: 600;
         padding: 0.3em 1.2em;
-        background-color: #fff4eb;
         border-radius: 16px;
+        color: #ff3900;
+        background-color: #ffe2e2;
       }
       .orders__dispatched {
         color: #d9ad59;
@@ -138,17 +138,17 @@
     }
   }
 }
-.orders__back__footer .back_button{
+.orders__back__footer .back_button {
   display: flex;
   align-items: center;
   cursor: pointer;
-  color: #002D56;
+  color: #002d56;
 }
-.orders__back__footer .back_button span{
+.orders__back__footer .back_button span {
   margin-left: 0.6em;
   font-weight: 600;
 }
-.orders__back__footer .back_button .css-i4bv87-MuiSvgIcon-root{
+.orders__back__footer .back_button .css-i4bv87-MuiSvgIcon-root {
   width: 0.6em;
   height: 0.6em;
 }
@@ -191,12 +191,12 @@
   }
 }
 @media (max-width: 1400px) {
-.orders .orders__table .MuiTableBody-root .MuiTableCell-root{
+  .orders .orders__table .MuiTableBody-root .MuiTableCell-root {
     font-size: 14px;
-}
-.orders .orders__table .MuiTableBody-root .orders__action{
-  font-size: 14px;
-}
+  }
+  .orders .orders__table .MuiTableBody-root .orders__action {
+    font-size: 14px;
+  }
 }
 @media (max-width: 926px) {
   .orders__table {

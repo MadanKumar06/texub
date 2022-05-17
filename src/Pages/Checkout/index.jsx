@@ -134,10 +134,10 @@ const Checkout = () => {
     address_line2: "",
     city: "",
     pincode: "",
-    billtype: "",
     country: "",
     lastname: "",
     firstname: "",
+    billtype: "texub_shipping",
   });
 
   const [addressvalidation, setaddressvalidation] = useState({
@@ -166,7 +166,6 @@ const Checkout = () => {
   });
 
   const pickupFormValidation = async (event) => {
-    debugger
     let errorHandle = false;
     if (
       quotedata[0]?.invoice?.pending_invoice_status !== "3" &&
@@ -216,7 +215,7 @@ const Checkout = () => {
         let user = JSON.parse(localStorage.getItem("userdata"));
         let storedata = JSON.parse(localStorage.getItem("storedata"));
         let itemsdata = [];
-        debugger
+
         dispatch({
           type: "SET_IS_LOADING",
           value: true,
@@ -417,6 +416,7 @@ const Checkout = () => {
   const addressadd = (e) => {
     setaddressdata((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
+  console.log(addressdata);
 
   const handleaddressvalidation = () => {
     let errorhandle = false;
@@ -499,6 +499,8 @@ const Checkout = () => {
       type: "SET_IS_LOADING",
       value: true,
     });
+    console.log(addressdata);
+
     try {
       const addressadd = await axios({
         method: "post",
@@ -509,7 +511,10 @@ const Checkout = () => {
         data: {
           customerId: user?.id,
           addressId: addressdata?.id ? addressdata?.id : 0,
-          addressType: addressdata?.billtype === "texub_shipping" ? 1 : 0,
+          addressType:
+            (addressdata?.billtype === "texub_shipping" && 1) ||
+            (addressdata?.billtype === undefined && 1) ||
+            (addressdata?.billtype === "texub_billing" && 0),
           address: {
             company: addressdata?.organization_name,
             country_id: addressdata?.country,
@@ -1468,12 +1473,8 @@ const Checkout = () => {
                               control={
                                 <Radio onClick={() => setpayment(item.value)} />
                               }
-                              label={""}
+                              label={item.label}
                             />
-                            <p className="footer_title">
-                              {item.label}
-                              {/* {quotedata[0]?.payment_methods?.label} */}
-                            </p>
                           </div>
                         </div>
                       </div>
@@ -1787,15 +1788,21 @@ const Checkout = () => {
                         label="Country"
                         name="country"
                         className="inputfield-box"
-                        onChange={addressadd}
+                        onChange={(e) => addressadd(e)}
                         value={addressdata?.country}
                         displayEmpty
                         renderValue={(value) =>
-                          value ? value : <em>Country</em>
+                          value ? (
+                            countryList?.filter(
+                              (cl) => cl?.value === value
+                            )?.[0]?.label
+                          ) : (
+                            <em>Country</em>
+                          )
                         }
                       >
                         {countryList?.map((cl) => (
-                          <MenuItem value={cl?.label}>{cl?.label}</MenuItem>
+                          <MenuItem value={cl?.value}>{cl?.label}</MenuItem>
                         ))}
                       </Select>
                     </FormControl>

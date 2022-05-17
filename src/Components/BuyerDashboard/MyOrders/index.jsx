@@ -18,15 +18,15 @@ function Index() {
   const [tableData, setTableData] = useState([]);
   const ordertype = [
     { name: "All Orders" },
-    { name: "Open Invoice" },
-    { name: "On-Going Orders" },
+    { name: "Pending Orders" },
+    { name: "Confirmed Orders" },
     { name: "Dispatched Orders" },
-    { name: "Full-Filled Orders" },
+    { name: "Delivered Orders" },
   ];
   function formatToCurrency(price) {
     return price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
   }
-  const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
+  const [{}, dispatch] = useStateValue();
   const [type, settype] = useState();
 
   const selectorder = (value) => {
@@ -65,7 +65,7 @@ function Index() {
       body: {
         noMatch: (
           <div className="no_data_found">
-            <img src={NodataFound} alt="No data Found" />
+            {/* <img src={NodataFound} alt="No data Found" /> */}
             <p>No data Found...</p>
           </div>
         ),
@@ -157,13 +157,37 @@ function Index() {
           return (
             <div
               className={`
-                    ${value === "pending" && "myorders__pending"}
-                    ${value === "confirm" && "myorders__confirm"}
-                    ${value === "delivered" && "myorders__delivered"}
-                    ${value === "dispatched" && "myorders__dispatched"}
+                    ${value === "1" && "myorders__pending"}
+                    ${value === "2" && "myorders__confirm"}
+                    ${value === "4" && "myorders__delivered"}
+                    ${value === "3" && "myorders__dispatched"}
                     `}
             >
-              {value}
+              {value === "1" ? "Pending" : ""}
+              {value === "2" ? "Confirm" : ""}
+              {value === "3" ? "Dispatched" : ""}
+              {value === "4" ? "Delivered" : ""}
+            </div>
+          );
+        },
+      },
+    },
+    {
+      name: "payment_status",
+      label: "Payment Status",
+      options: {
+        customBodyRender: (value) => {
+          return (
+            <div
+              className={`
+            ${value === "1" && "myorders__pending"}
+            ${value === "2" && "myorders__delivered"}
+            ${value === "3" && "myorders__failed"}
+            `}
+            >
+              {value === "1" ? "Pending" : ""}
+              {value === "2" ? "Completed" : ""}
+              {value === "3" ? "Failed" : ""}
             </div>
           );
         },
@@ -248,12 +272,13 @@ function Index() {
       )}
       <div className="my_orders__footer">
         <div className="my_orders__container">
-        <div className="back_button"
+          <div
+            className="back_button"
             onClick={() => {
-              setisVieworders(false)
-              setisOrders(true)
+              setisVieworders(false);
+              setisOrders(true);
             }}
-            style={{ cursor: 'pointer' }}
+            style={{ cursor: "pointer" }}
           >
             <ArrowBackIosNew />
             <span className="back">Back</span>

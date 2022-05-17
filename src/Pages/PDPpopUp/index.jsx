@@ -171,7 +171,7 @@ const PdpPopup = () => {
           handleApiCall("add_to_cart");
         }
       }
-      if (info === "pending_invoice") {
+      if (info?.info === "pending_invoice" || info === "pending_invoice") {
         let pendingpermission =
           permissions?.length === 0
             ? false
@@ -215,7 +215,6 @@ const PdpPopup = () => {
         sellerId: isUserAddData?.[0]?.seller_id,
       },
     };
-    debugger;
     axios
       .post(
         `${Constant.baseUrl()}${
