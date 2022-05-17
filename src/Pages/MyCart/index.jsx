@@ -91,8 +91,7 @@ const Mycart = () => {
   };
   const navigate = useNavigate();
   const [rowselect, setrowselect] = useState([]);
-  console.log(rowselect);
-  console.log(cart[0]?.invoice_items[0]);
+
   const [selecteddata, setselecteddata] = useState([]);
 
   useEffect(() => {
@@ -103,7 +102,14 @@ const Mycart = () => {
   }, [rowselect]);
 
   const isDataAdded = () => {
-    if (rowselect?.length === 0) {
+    if (cart?.[0]?.invoice_items?.length === 0 || cart?.length === 0) {
+      return swal.fire({
+        text: `No product to add pending invoice`,
+        icon: "error",
+        showConfirmButton: false,
+        timer: 3000,
+      });
+    } else if (rowselect?.length === 0) {
       return swal.fire({
         text: `Select minimum one product to add to pending invoice`,
         icon: "error",
@@ -327,9 +333,7 @@ const Mycart = () => {
         )}
         <Button
           className="my_cart_bottom_button_pending_invoice"
-          onClick={() =>
-            cart?.length && cart?.[0]?.invoice_items?.length && isDataAdded()
-          }
+          onClick={() => isDataAdded()}
         >
           <span>Add To Pending Invoice</span>
         </Button>

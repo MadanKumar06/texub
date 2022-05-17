@@ -102,41 +102,52 @@ export const Products = () => {
   }, [currency, getCategories, homeSearch, applyFilter]);
 
   useEffect(() => {
-    if(userfilter === undefined) return
-    if(localStorage.getItem('filters') == "undefined" || !localStorage.getItem('filters')) {
+    if (userfilter === undefined) return;
+    if (
+      localStorage.getItem("filters") == "undefined" ||
+      !localStorage.getItem("filters")
+    ) {
       localStorage.setItem("filters", JSON.stringify(userfilter));
     } else {
-      let currentfilter = JSON.parse(localStorage.getItem('filters'))
-      if(JSON.stringify(userfilter) !== JSON.stringify(currentfilter)) {
-        if(userfilter?.hub_id == "0" && userfilter?.condition_id == "0" && userfilter?.brand_id == "0" && userfilter?.eta == "0") return
+      let currentfilter = JSON.parse(localStorage.getItem("filters"));
+      if (JSON.stringify(userfilter) !== JSON.stringify(currentfilter)) {
+        if (
+          userfilter?.hub_id == "0" &&
+          userfilter?.condition_id == "0" &&
+          userfilter?.brand_id == "0" &&
+          userfilter?.eta == "0"
+        )
+          return;
         localStorage.setItem("filters", JSON.stringify(userfilter));
         setProductFetchApi({
           hub: userfilter?.hub_id,
           conditions: userfilter?.condition_id,
           eta: userfilter?.eta,
           brand_id: userfilter?.brand_id,
-        })
+        });
       }
     }
   }, [userfilter]);
 
   useEffect(() => {
-    const fetchCategoryData = () => {
-      let data = {
-        currency_id: parseInt(currency?.currency_id),
+    if (currency?.currency_id) {
+      const fetchCategoryData = () => {
+        let data = {
+          currency_id: parseInt(currency?.currency_id),
+        };
+        axios
+          .post(Constant.baseUrl() + "/getCategoriesList", data, {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+          .then((res) => {
+            setGetCategories(res?.data);
+          })
+          .catch((err) => {});
       };
-      axios
-        .post(Constant.baseUrl() + "/getCategoriesList", data, {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
-        .then((res) => {
-          setGetCategories(res?.data);
-        })
-        .catch((err) => {});
-    };
-    fetchCategoryData();
+      fetchCategoryData();
+    }
   }, [currency]);
   const sortCall = (data) => {
     var productTableData = [];

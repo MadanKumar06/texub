@@ -165,7 +165,7 @@ const Checkout = () => {
     mobile_number: "",
   });
 
-  const pickupFormValidation = async (event) => {
+  const pickupFormValidation = () => {
     let errorHandle = false;
     if (
       quotedata[0]?.invoice?.pending_invoice_status !== "3" &&
@@ -211,203 +211,207 @@ const Checkout = () => {
         errorHandle = true;
       }
       if (!errorHandle) {
-        //.............
-        let user = JSON.parse(localStorage.getItem("userdata"));
-        let storedata = JSON.parse(localStorage.getItem("storedata"));
-        let itemsdata = [];
-
-        dispatch({
-          type: "SET_IS_LOADING",
-          value: true,
-        });
-        var country = user?.custom_attributes?.filter(
-          (itm) => itm?.attribute_code === "customer_country"
-        );
-        quotedata[0]?.invoice_items?.filter((qd) => {
-          itemsdata.push({
-            base_discount_amount: 0,
-            base_original_price: qd?.price,
-            base_price: qd?.price,
-            base_price_incl_tax: qd?.price,
-            base_row_invoiced: 0,
-            base_row_total: qd?.row_total,
-            base_tax_amount: 0,
-            base_tax_invoiced: 0,
-            discount_amount: 0,
-            discount_percent: 0,
-            free_shipping: 0,
-            is_virtual: 0,
-            name: qd?.product_name,
-            original_price: qd?.price,
-            price: qd?.price,
-            price_incl_tax: qd?.price,
-            product_id: qd?.product_id,
-            product_type: "simple",
-            qty_ordered: qd.qty,
-            row_total: qd?.price,
-            row_total_incl_tax: qd?.price,
-            sku: qd?.sku,
-            store_id: storedata?.store_id,
-            quote_item_id: qd?.item_id,
-            extension_attributes: {
-              seller_id: qd?.seller_id,
-              item_hub: qd?.hub_id,
-              item_currency: qd?.currency_id,
-            },
-          });
-        });
-        try {
-          const postquote = await axios({
-            method: "post",
-            url: `${Constant.baseUrl2()}/orders`,
-            headers: {
-              Authorization: `Bearer ${adminToken}`,
-            },
-            data: {
-              entity: {
-                base_currency_code: currency?.currency_code,
-                base_discount_amount: 0,
-                base_grand_total: quotedata[0]?.invoice?.grand_total,
-                base_shipping_amount: quotedata[0]?.invoice?.shipping_amount,
-                base_subtotal: quotedata[0]?.invoice?.subtotal,
-                base_tax_amount: quotedata?.[0]?.invoice?.tax,
-                customer_email: user?.email,
-                customer_firstname: addressdata?.firstname,
-                customer_group_id: 5,
-                customer_id: user?.id,
-                customer_is_guest: 0,
-                customer_lastname: addressdata?.lastname,
-                customer_note_notify: 1,
-                discount_amount: 0,
-                email_sent: 1,
-                coupon_code: "",
-                discount_description: "",
-                grand_total: quotedata[0]?.invoice?.grand_total,
-                is_virtual: 0,
-                order_currency_code: currency?.currency_code,
-                shipping_amount: quotedata[0]?.invoice?.shipping_amount,
-                shipping_description: "",
-                state: "new",
-                status: "pending",
-                store_currency_code: currency?.currency_code,
-                store_id: 1,
-                store_name: storedata?.name,
-                subtotal: quotedata[0]?.invoice?.subtotal,
-                subtotal_incl_tax: quotedata?.[0]?.invoice?.subtotal_with_tax,
-                tax_amount: quotedata?.[0]?.invoice?.tax,
-                total_item_count: quotedata?.[0]?.invoice?.items_qty,
-                total_qty_ordered: quotedata?.[0]?.invoice?.items_qty,
-                weight: 0,
-                quote_id: quotedata[0]?.invoice?.quote_id,
-                items: itemsdata,
-                billing_address: {
-                  address_type: "billing",
-                  city: addressdata?.city,
-                  country_id: country?.[0]?.value,
-                  customer_address_id:
-                    shipping_method === "texub_shipping" && addressdata?.id
-                      ? addressdata?.id
-                      : user?.default_shipping,
-                  email: user?.email,
-                  firstname: user?.firstname,
-                  lastname: user?.lastname,
-                  postcode: addressdata?.pincode,
-                  region: "Tamil Nadu",
-                  region_code: "TN",
-                  region_id: 563,
-                  street: [
-                    addressdata?.address_line1,
-                    addressdata?.address_line2,
-                  ],
-                  telephone: 123,
-                },
-                payment: {
-                  method: payment,
-                },
-                extension_attributes: {
-                  pending_invoice_status:
-                    quotedata[0]?.invoice?.pending_invoice_status,
-                  pending_invoice_id: quotedata[0]?.invoice?.pending_invoice_id,
-                  invoice_currency: currency?.currency_id,
-                  contact_business_name: pickup_form_data?.bussiness_name,
-                  contact_person_name: pickup_form_data?.contact_person,
-                  contact_email_address: pickup_form_data?.email_address,
-                  contact_phone: pickup_form_data?.mobile_number,
-                  shipping_assignments: [
-                    {
-                      shipping: {
-                        address: {
-                          address_type: "shipping",
-                          city: addressdata?.city,
-                          country_id: country?.[0]?.value,
-                          customer_address_id:
-                            shipping_method === "texub_shipping" &&
-                            addressdata?.id
-                              ? addressdata?.id
-                              : user?.default_shipping,
-                          email: user?.email,
-                          firstname: user?.firstname,
-                          lastname: user?.lastname,
-                          postcode: addressdata?.pincode,
-                          region: "Tamil Nadu",
-                          region_code: "TN",
-                          region_id: 563,
-                          street: [
-                            addressdata?.address_line1,
-                            addressadd?.address_line2,
-                          ],
-                          telephone: 123,
-                        },
-                        method:
-                          quotedata[0]?.invoice?.pending_invoice_status === "3"
-                            ? "flatrate_flatrate"
-                            : "instore_instore",
-                      },
-                    },
-                  ],
-                },
-              },
-            },
-          });
-          dispatch({
-            type: "SET_IS_LOADING",
-            value: false,
-          });
-          swal.fire({
-            text: "Order Placed",
-            icon: "success",
-            showConfirmButton: false,
-            timer: 3000,
-          });
-          if (payment === "banktransfer") {
-            navigate(
-              `/${
-                customnostore ? customnostore : geo?.country_name
-              }/ordersuccess/${postquote?.data?.entity_id}`
-            );
-          } else {
-            navigate(
-              `/${
-                customnostore ? customnostore : geo?.country_name
-              }/buyerdashboard/myorder`
-            );
-          }
-          setpickup_form_data_valid({
-            bussiness_name: "",
-            contact_person: "",
-            email_address: "",
-            mobile_number: "",
-          });
-        } catch (e) {
-          dispatch({
-            type: "SET_IS_LOADING",
-            value: false,
-          });
-          console.log(e);
-        }
+        placeOrderApicCall();
       }
+    } else if (
+      quotedata[0]?.invoice?.pending_invoice_status !== "3" &&
+      shipping_method === "texub_shipping"
+    ) {
+      placeOrderApicCall();
     }
-    //.............
+  };
+
+  const placeOrderApicCall = async (event) => {
+    let user = JSON.parse(localStorage.getItem("userdata"));
+    let storedata = JSON.parse(localStorage.getItem("storedata"));
+    let itemsdata = [];
+
+    dispatch({
+      type: "SET_IS_LOADING",
+      value: true,
+    });
+    var country = user?.custom_attributes?.filter(
+      (itm) => itm?.attribute_code === "customer_country"
+    );
+    quotedata[0]?.invoice_items?.filter((qd) => {
+      itemsdata.push({
+        base_discount_amount: 0,
+        base_original_price: qd?.price,
+        base_price: qd?.price,
+        base_price_incl_tax: qd?.price,
+        base_row_invoiced: 0,
+        base_row_total: qd?.row_total,
+        base_tax_amount: 0,
+        base_tax_invoiced: 0,
+        discount_amount: 0,
+        discount_percent: 0,
+        free_shipping: 0,
+        is_virtual: 0,
+        name: qd?.product_name,
+        original_price: qd?.price,
+        price: qd?.price,
+        price_incl_tax: qd?.price,
+        product_id: qd?.product_id,
+        product_type: "simple",
+        qty_ordered: qd.qty,
+        row_total: qd?.price,
+        row_total_incl_tax: qd?.price,
+        sku: qd?.sku,
+        store_id: storedata?.store_id,
+        quote_item_id: qd?.item_id,
+        extension_attributes: {
+          seller_id: qd?.seller_id,
+          item_hub: qd?.hub_id,
+          item_currency: qd?.currency_id,
+        },
+      });
+    });
+    try {
+      const postquote = await axios({
+        method: "post",
+        url: `${Constant.baseUrl2()}/orders`,
+        headers: {
+          Authorization: `Bearer ${adminToken}`,
+        },
+        data: {
+          entity: {
+            base_currency_code: currency?.currency_code,
+            base_discount_amount: 0,
+            base_grand_total: quotedata[0]?.invoice?.grand_total,
+            base_shipping_amount: quotedata[0]?.invoice?.shipping_amount,
+            base_subtotal: quotedata[0]?.invoice?.subtotal,
+            base_tax_amount: quotedata?.[0]?.invoice?.tax,
+            customer_email: user?.email,
+            customer_firstname: addressdata?.firstname,
+            customer_group_id: 5,
+            customer_id: user?.id,
+            customer_is_guest: 0,
+            customer_lastname: addressdata?.lastname,
+            customer_note_notify: 1,
+            discount_amount: 0,
+            email_sent: 1,
+            coupon_code: "",
+            discount_description: "",
+            grand_total: quotedata[0]?.invoice?.grand_total,
+            is_virtual: 0,
+            order_currency_code: currency?.currency_code,
+            shipping_amount: quotedata[0]?.invoice?.shipping_amount,
+            shipping_description: "",
+            state: "new",
+            status: "pending",
+            store_currency_code: currency?.currency_code,
+            store_id: 1,
+            store_name: storedata?.name,
+            subtotal: quotedata[0]?.invoice?.subtotal,
+            subtotal_incl_tax: quotedata?.[0]?.invoice?.subtotal_with_tax,
+            tax_amount: quotedata?.[0]?.invoice?.tax,
+            total_item_count: quotedata?.[0]?.invoice?.items_qty,
+            total_qty_ordered: quotedata?.[0]?.invoice?.items_qty,
+            weight: 0,
+            quote_id: quotedata[0]?.invoice?.quote_id,
+            items: itemsdata,
+            billing_address: {
+              address_type: "billing",
+              city: addressdata?.city,
+              country_id: country?.[0]?.value,
+              customer_address_id:
+                shipping_method === "texub_shipping" && addressdata?.id
+                  ? addressdata?.id
+                  : user?.default_shipping,
+              email: user?.email,
+              firstname: user?.firstname,
+              lastname: user?.lastname,
+              postcode: addressdata?.pincode,
+              region: "Tamil Nadu",
+              region_code: "TN",
+              region_id: 563,
+              street: [addressdata?.address_line1, addressdata?.address_line2],
+              telephone: 123,
+            },
+            payment: {
+              method: payment,
+            },
+            extension_attributes: {
+              pending_invoice_status:
+                quotedata[0]?.invoice?.pending_invoice_status,
+              pending_invoice_id: quotedata[0]?.invoice?.pending_invoice_id,
+              invoice_currency: currency?.currency_id,
+              contact_business_name: pickup_form_data?.bussiness_name,
+              contact_person_name: pickup_form_data?.contact_person,
+              contact_email_address: pickup_form_data?.email_address,
+              contact_phone: pickup_form_data?.mobile_number,
+              shipping_assignments: [
+                {
+                  shipping: {
+                    address: {
+                      address_type: "shipping",
+                      city: addressdata?.city,
+                      country_id: country?.[0]?.value,
+                      customer_address_id:
+                        shipping_method === "texub_shipping" && addressdata?.id
+                          ? addressdata?.id
+                          : user?.default_shipping,
+                      email: user?.email,
+                      firstname: user?.firstname,
+                      lastname: user?.lastname,
+                      postcode: addressdata?.pincode,
+                      region: "Tamil Nadu",
+                      region_code: "TN",
+                      region_id: 563,
+                      street: [
+                        addressdata?.address_line1,
+                        addressadd?.address_line2,
+                      ],
+                      telephone: 123,
+                    },
+                    method:
+                      quotedata[0]?.invoice?.pending_invoice_status === "3"
+                        ? "flatrate_flatrate"
+                        : "instore_instore",
+                  },
+                },
+              ],
+            },
+          },
+        },
+      });
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
+      swal.fire({
+        text: "Order Placed",
+        icon: "success",
+        showConfirmButton: false,
+        timer: 3000,
+      });
+      if (payment === "banktransfer") {
+        navigate(
+          `/${customnostore ? customnostore : geo?.country_name}/ordersuccess/${
+            postquote?.data?.entity_id
+          }`
+        );
+      } else {
+        navigate(
+          `/${
+            customnostore ? customnostore : geo?.country_name
+          }/buyerdashboard/myorder`
+        );
+      }
+      setpickup_form_data_valid({
+        bussiness_name: "",
+        contact_person: "",
+        email_address: "",
+        mobile_number: "",
+      });
+    } catch (e) {
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
+      console.log(e);
+    }
+
     if (shipping_method === "texub_shipping" && !selectadd) {
       return console.log(selectadd);
     }

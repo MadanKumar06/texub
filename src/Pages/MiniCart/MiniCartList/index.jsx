@@ -239,6 +239,18 @@ const MiniCartList = ({ handleSideBarClose }) => {
     setreview(localStorage.getItem("review_status"));
   }, [localStorage.getItem("review_status")]);
 
+  const handleIsValidPendingInvoice = () => {
+    if (cart?.[0]?.invoice_items?.length === 0 || cart?.length === 0) {
+      return swal.fire({
+        text: `No product to add pending invoice`,
+        icon: "error",
+        showConfirmButton: false,
+        timer: 3000,
+      });
+    } else {
+      cart?.length && cart?.[0]?.invoice_items?.length && setallert(true);
+    }
+  };
   return (
     <div className="minicart_list_main">
       <header className="minicart_header">
@@ -416,11 +428,7 @@ const MiniCartList = ({ handleSideBarClose }) => {
               </Link>
               <Button
                 className="minicart_bottom_button_pending_invoice"
-                onClick={() =>
-                  cart?.length &&
-                  cart?.[0]?.invoice_items?.length &&
-                  setallert(true)
-                }
+                onClick={() => handleIsValidPendingInvoice()}
               >
                 <span>Add To Pending Invoice</span>
               </Button>
