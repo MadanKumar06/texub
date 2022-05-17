@@ -196,6 +196,7 @@ const PaginationControlled = ({ PaginateData, DataList, PagePerRow }) => {
     customnostore,
     geo,
     page?.option?.length,
+    DataList
   ]);
 
   return (
