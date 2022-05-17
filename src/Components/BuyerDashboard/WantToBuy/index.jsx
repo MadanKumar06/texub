@@ -97,7 +97,6 @@ function Index() {
   }, [generalTrigger]);
   const PaginateDataSplit = (event) => {
     if (apiTableData?.length === 0) return setApiTableData([]);
-    debugger;
     setTableData(event);
   };
   const columns = [

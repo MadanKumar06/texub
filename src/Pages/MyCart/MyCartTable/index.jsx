@@ -45,6 +45,22 @@ const MyCartTable = ({ cartDataList, deleteCartData, setrowselect }) => {
   }, []);
 
   const list = (product_id) => {
+    let permissions = JSON.parse(localStorage.getItem("permissions"));
+    let pendingpermission =
+      permissions?.length === 0
+        ? false
+        : permissions?.some(
+            (per) =>
+              per?.value === "can-add-to-multiple-wishlist" &&
+              per?.permission_value === 0
+          );
+    if (pendingpermission) {
+      return swal.fire({
+        text: `Your Account doesn't have access to add products to Wishinglist`,
+        icon: "error",
+        showConfirmButton: true,
+      });
+    }
     let temp;
     if (product_id) {
       temp = is_table_quantity?.filter((itm) => itm?.product_id === product_id);

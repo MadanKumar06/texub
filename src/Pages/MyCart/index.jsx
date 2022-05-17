@@ -120,6 +120,22 @@ const Mycart = () => {
     setallert(true);
   };
   const addpendinginvoice = async () => {
+    let permissions = JSON.parse(localStorage.getItem("permissions"));
+    let pendingpermission =
+      permissions?.length === 0
+        ? false
+        : permissions?.some(
+            (per) =>
+              per?.value === "can-add-to-pending-invoice" &&
+              per?.permission_value === 0
+          );
+    if (pendingpermission) {
+      return swal.fire({
+        text: `Your Account doesn't have access to add products to Pending Invoice`,
+        icon: "error",
+        showConfirmButton: true,
+      });
+    }
     setallert(false);
     if (
       rowselect?.length > 0 &&

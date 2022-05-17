@@ -98,7 +98,6 @@ const FilterViewList = ({
   }
   const minDistance = 10;
   const handleChange = (event, newValue, activeThumb) => {
-    debugger
     setProductFetchApi((prev) => ({
       ...prev,
       min_price: newValue[0],
