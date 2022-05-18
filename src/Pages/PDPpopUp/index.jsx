@@ -82,7 +82,6 @@ const PdpPopup = () => {
   };
 
   const handleIsValidUser = async (event) => {
-    debugger
     //pending invoice acknowledgement useState
     let isDataValid = user?.custom_attributes?.filter(
       (itm) => itm?.attribute_code === "kyc_status"
@@ -193,6 +192,7 @@ const PdpPopup = () => {
     }
   };
   const handleApiCall = (info) => {
+    debugger;
     let storedata = JSON.parse(localStorage.getItem("storedata"));
     let isUserAddData = pdpSellerData?.is_table_one?.filter(
       (itm) => itm?.product_id === pdpSellerData?.product_id
@@ -207,12 +207,12 @@ const PdpPopup = () => {
         store_id: storedata?.store_id,
         item_id: "0",
         customer_id: user?.id,
-        productId: isUserAddData?.[0]?.product_id,
+        productId: parseInt(isUserAddData?.[0]?.product_id),
         price: isUserAddData?.[0]?.price,
-        qty: isUserAddData?.[0]?.moq,
-        hub: isUserAddData?.[0]?.hub_id,
+        qty: parseInt(isUserAddData?.[0]?.moq),
+        hub: parseInt(isUserAddData?.[0]?.hub_id),
         currency: isUserAddData?.[0]?.currency_id,
-        sellerId: isUserAddData?.[0]?.seller_id,
+        sellerId: parseInt(isUserAddData?.[0]?.seller_id),
       },
     };
     axios

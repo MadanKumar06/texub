@@ -78,7 +78,7 @@ const Index = ({ currentid, setisSub, setisSubusers }) => {
           }
         });
       });
-      console.log(temp)
+      console.log(temp);
       setNewSubAccountData({
         first_name: getformdata?.data[0]?.firstname,
         last_name: getformdata?.data[0]?.lastname,
@@ -404,14 +404,12 @@ const Index = ({ currentid, setisSub, setisSubusers }) => {
           id="country-select-demo"
           options={plist ? plist : []}
           multiple
-          value={
-            NewSubAccountData?.allowed_permissions
-              ? NewSubAccountData?.allowed_permissions
-              : ""
-          }
-          getOptionLabel={(option) =>
-            option.label ? option.label : ""
-          }
+          // value={
+          //   NewSubAccountData?.allowed_permissions
+          //     ? NewSubAccountData?.allowed_permissions
+          //     : ""
+          // }
+          getOptionLabel={(option) => (option.label ? option.label : "")}
           disableCloseOnSelect
           renderOption={(props, option, { selected }) => (
             <li {...props}>
@@ -431,10 +429,15 @@ const Index = ({ currentid, setisSub, setisSubusers }) => {
             }));
           }}
           renderInput={(params) => (
-            <TextField {...params} placeholder="" className="inputfield-box" fullWidth
-            InputLabelProps={{
-              shrink: false,
-            }} />
+            <TextField
+              {...params}
+              placeholder="Allowed Permissions"
+              className="inputfield-box"
+              fullWidth
+              InputLabelProps={{
+                shrink: false,
+              }}
+            />
           )}
         />
         <InputLabel className="validation_error">

@@ -117,7 +117,7 @@
         }
       }
       gap: 24px;
-      padding: 13px 13px 13px 0px;
+      padding: 0px;
       border-bottom: 1px solid #e6e6e6;
       color: #5c6369;
       font-size: 22px;
@@ -129,6 +129,9 @@
     &:hover {
       color: #002d56;
     }
+  }
+  .sub_menu_list_items {
+    padding: 13px 13px 13px 0px !important;
   }
 }
 

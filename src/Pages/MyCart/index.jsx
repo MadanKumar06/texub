@@ -120,22 +120,6 @@ const Mycart = () => {
     setallert(true);
   };
   const addpendinginvoice = async () => {
-    let permissions = JSON.parse(localStorage.getItem("permissions"));
-    let pendingpermission =
-      permissions?.length === 0
-        ? false
-        : permissions?.some(
-            (per) =>
-              per?.value === "can-add-to-pending-invoice" &&
-              per?.permission_value === 0
-          );
-    if (pendingpermission) {
-      return swal.fire({
-        text: `Your Account doesn't have access to add products to Pending Invoice`,
-        icon: "error",
-        showConfirmButton: true,
-      });
-    }
     setallert(false);
     if (
       rowselect?.length > 0 &&
@@ -147,8 +131,8 @@ const Mycart = () => {
       });
       let storedata = JSON.parse(localStorage.getItem("storedata"));
       let user = JSON.parse(localStorage.getItem("userdata"));
-
-      selecteddata?.map(async (sd) => {
+      let requests;
+      requests = selecteddata?.map(async (sd) => {
         try {
           const selectedinvoice = await axios({
             method: "post",
@@ -170,23 +154,24 @@ const Mycart = () => {
               },
             },
           });
-          console.log(selectedinvoice?.data);
-          navigate(
-            `/${
-              customnostore ? customnostore : geo?.country_name
-            }/pending-invoice`
-          );
-          dispatch({
-            type: "SET_IS_LOADING",
-            value: false,
-          });
+          return Promise.resolve(selectedinvoice?.data?.[0]?.quote_id);
         } catch (e) {
-          console.log(e);
           dispatch({
             type: "SET_IS_LOADING",
             value: false,
           });
         }
+      });
+      await Promise.all(requests).then((results) => {
+        navigate(
+          `/${
+            customnostore ? customnostore : geo?.country_name
+          }/pendinginvoice/${results?.[0]}`
+        );
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
       });
     } else {
       dispatch({

@@ -171,7 +171,7 @@ function Index({ type, pid }) {
             document.getElementById("sgst")?.focus();
             setIsDetailTabValid((prevState) => ({
               ...prevState,
-              isSGSTValid: "Please en    returnter the sgst.",
+              isSGSTValid: "Please enter the sgst.",
             }));
             errorHandle = true;
           } else if (!isNumber(ct?.sgst)) {
