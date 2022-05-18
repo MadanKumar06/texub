@@ -514,7 +514,7 @@ const WhislistTable = ({
                         )}
                       </div>
                       <p className="seller_id">
-                        <span>Seller ID :</span>
+                        <span>Seller ID : </span>
                         {itm?.seller_code}
                       </p>
                     </div>
