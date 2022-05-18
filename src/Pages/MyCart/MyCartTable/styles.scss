@@ -864,8 +864,18 @@
   }
   .mycart_table_main_container
     .mycart_table_mui_datatable_main
-    .mycart_table_quantity
+    .mycart_table_quantity{
+      .update{
+        right: 4rem;
+      }
+    }
     .mycart_quantity_subblock {
-    width: 100%;
+    width: 50% !important;
+    margin: auto;
   }
+}
+@media (max-width: "385px") {
+.mycart_table_main_container .mycart_table_mui_datatable_main .mycart_table_quantity .update{
+  right: 3rem;
+}
 }
