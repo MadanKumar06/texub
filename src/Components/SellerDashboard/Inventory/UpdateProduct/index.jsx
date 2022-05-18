@@ -257,7 +257,7 @@ function Index({ type, pid }) {
       document.getElementById("warranty_days")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
-        warranty_days: "Please select the warranty days.",
+        warranty_days: "Please enter the warranty days.",
       }));
       errorHandle = true;
     }
