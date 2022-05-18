@@ -26,7 +26,7 @@ function Index() {
   function formatToCurrency(price) {
     return price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
   }
-  const [{}, dispatch] = useStateValue();
+  const [{ customnostore, geo }, dispatch] = useStateValue();
   const [type, settype] = useState();
 
   const selectorder = (value) => {
@@ -50,7 +50,19 @@ function Index() {
     setisOrders(false);
   };
   const [isOrders, setisOrders] = useState(true);
+  useEffect(() => {
+    window.localStorage.setItem("buyerclearViewOrder", false);
+  }, []);
 
+  const clearview = JSON.parse(
+    window.localStorage.getItem("buyerclearViewOrder")
+  );
+  useEffect(() => {
+    if (clearview === true) {
+      setisVieworders(false);
+      setisOrders(true);
+    }
+  }, [clearview]);
   const options = {
     filter: false,
     filterType: "dropdown",
@@ -272,17 +284,32 @@ function Index() {
       )}
       <div className="my_orders__footer">
         <div className="my_orders__container">
-          <div
-            className="back_button"
-            onClick={() => {
-              setisVieworders(false);
-              setisOrders(true);
-            }}
-            style={{ cursor: "pointer" }}
-          >
-            <ArrowBackIosNew />
-            <span className="back">Back</span>
-          </div>
+          {isVieworders === true ? (
+            <>
+              <div
+                className="back_button"
+                onClick={() => {
+                  setisVieworders(false);
+                  setisOrders(true);
+                }}
+                style={{ cursor: "pointer" }}
+              >
+                <ArrowBackIosNew />
+                <span className="back">Back</span>
+              </div>
+            </>
+          ) : (
+            <>
+              <Link
+                to={`/${
+                  customnostore ? customnostore : geo?.country_name
+                }/buyerdashboard/dashboard`}
+              >
+                <ArrowBackIosNew />
+                <span>Back</span>
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </div>

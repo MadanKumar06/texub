@@ -55,6 +55,9 @@ const MyAccountPopup = () => {
   let userCode = userData?.custom_attributes?.filter(
     (itm) => itm?.attribute_code === "customer_code"
   );
+  const gotoBuyerMyorder = () => {
+    return window.localStorage.setItem("buyerclearViewOrder", true);
+  };
   return (
     <div className="myAccount_popup_header_dropdown">
       <Button
@@ -85,6 +88,7 @@ const MyAccountPopup = () => {
         {isSignedIn?.group_id === 5 && (
           <MenuItem onClick={() => handleClose()}>
             <Link
+              className="sub_menu_list_items"
               to={`/${
                 customnostore ? customnostore : geo?.country_name
               }/buyerdashboard/dashboard`}
@@ -181,6 +185,7 @@ const MyAccountPopup = () => {
         {isSignedIn?.group_id === 6 && (
           <MenuItem onClick={() => handleClose()}>
             <Link
+              className="sub_menu_list_items"
               to={`/${
                 customnostore ? customnostore : geo?.country_name
               }/sellerdashboard/dashboard`}
@@ -276,6 +281,7 @@ const MyAccountPopup = () => {
         )}
         <MenuItem onClick={() => handleClose()}>
           <Link
+            className="sub_menu_list_items"
             to={`/${
               customnostore ? customnostore : geo?.country_name
             }/kycdetails`}
@@ -323,8 +329,14 @@ const MyAccountPopup = () => {
         </MenuItem>
         {isSignedIn?.group_id === 5 && (
           <>
-            <MenuItem onClick={() => handleClose()}>
+            <MenuItem
+              onClick={() => {
+                handleClose();
+                gotoBuyerMyorder();
+              }}
+            >
               <Link
+                className="sub_menu_list_items"
                 to={`/${
                   customnostore ? customnostore : geo?.country_name
                 }/buyerdashboard/myorder`}
@@ -382,7 +394,7 @@ const MyAccountPopup = () => {
               </Link>
             </MenuItem>
             {/* <MenuItem onClick={() => handleClose()}>
-            <Link to={`/${customnostore ? customnostore : geo?.country_name}/buyerdashboard/auctions`}>
+            <Link   className="sub_menu_list_items" to={`/${customnostore ? customnostore : geo?.country_name}/buyerdashboard/auctions`}>
               <svg xmlns="http://www.w3.org/2000/svg" width="35.467" height="32.107" viewBox="0 0 35.467 32.107">
                   <g id="Group_1456" data-name="Group 1456" transform="translate(-1801 -670.893)">
                     <g id="Group_1449" data-name="Group 1449" transform="translate(-43 24)">
@@ -427,6 +439,7 @@ const MyAccountPopup = () => {
             </MenuItem> */}
             <MenuItem onClick={() => handleClose()}>
               <Link
+                className="sub_menu_list_items"
                 to={`/${
                   customnostore ? customnostore : geo?.country_name
                 }/buyerdashboard/invoiceslist`}
@@ -536,7 +549,7 @@ const MyAccountPopup = () => {
             </MenuItem>
           </>
         )}
-        <MenuItem onClick={() => SignOut()}>
+        <MenuItem className="sub_menu_list_items" onClick={() => SignOut()}>
           <svg
             width="35.467"
             height="31.107"

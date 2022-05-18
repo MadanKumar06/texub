@@ -30,10 +30,6 @@ import axios from "axios";
 import moment from "moment";
 import { isEmailValid, getAdminToken } from "../../utilities";
 
-function formatToCurrency(price) {
-  return price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
-}
-
 const Checkout = () => {
   const [shipping_method, setShipping_method] = useState("texub_shipping");
   const [open, setOpen] = useState({
@@ -69,6 +65,17 @@ const Checkout = () => {
     setOpen({
       open: "",
       openClose: false,
+    });
+    setaddressvalidation({
+      organization_name: "",
+      address_line1: "",
+      address_line2: "",
+      city: "",
+      pincode: "",
+      billtype: "",
+      country: "",
+      lastname: "",
+      firstname: "",
     });
   };
   const [quotedata, setqutoedata] = useState([]);
@@ -452,7 +459,7 @@ const Checkout = () => {
     if (!addressdata?.country) {
       setaddressvalidation((prevstate) => ({
         ...prevstate,
-        country: "Please type Country",
+        country: "Please select Country",
       }));
       errorhandle = true;
     }
@@ -466,11 +473,10 @@ const Checkout = () => {
     if (!addressdata?.city) {
       setaddressvalidation((prevstate) => ({
         ...prevstate,
-        city: "Please type Pincode",
+        city: "Please type city name",
       }));
       errorhandle = true;
     }
-
     if (!errorhandle) {
       saveaddress();
     }
@@ -974,6 +980,9 @@ const Checkout = () => {
     window.print();
     document.body.innerHTML = originalContents;
   };
+  function formatToCurrency(price) {
+    return price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
+  }
   return (
     <div className="checkout_main_container" id="Checkout_page">
       <div className="checkout_info_list">
@@ -1676,7 +1685,13 @@ const Checkout = () => {
                       fullWidth
                       className="inputfield-box"
                       variant="outlined"
-                      onChange={(e) => addressadd(e)}
+                      onChange={(e) => {
+                        addressadd(e);
+                        setaddressvalidation((prevState) => ({
+                          ...prevState,
+                          organization_name: "",
+                        }));
+                      }}
                       value={addressdata?.organization_name}
                     />
                     {addressvalidation?.organization_name ? (
@@ -1695,7 +1710,13 @@ const Checkout = () => {
                       className="inputfield-box"
                       name="address_line1"
                       variant="outlined"
-                      onChange={(e) => addressadd(e)}
+                      onChange={(e) => {
+                        addressadd(e);
+                        setaddressvalidation((prevState) => ({
+                          ...prevState,
+                          address_line1: "",
+                        }));
+                      }}
                       value={addressdata?.address_line1}
                     />
                     {addressvalidation?.address_line1 ? (
@@ -1716,7 +1737,13 @@ const Checkout = () => {
                       className="inputfield-box"
                       name="address_line2"
                       variant="outlined"
-                      onChange={(e) => addressadd(e)}
+                      onChange={(e) => {
+                        addressadd(e);
+                        setaddressvalidation((prevState) => ({
+                          ...prevState,
+                          address_line2: "",
+                        }));
+                      }}
                       value={addressdata?.address_line2}
                     />
                     {addressvalidation?.address_line2 ? (
@@ -1735,7 +1762,13 @@ const Checkout = () => {
                       className="inputfield-box"
                       name="pincode"
                       variant="outlined"
-                      onChange={(e) => addressadd(e)}
+                      onChange={(e) => {
+                        addressadd(e);
+                        setaddressvalidation((prevState) => ({
+                          ...prevState,
+                          pincode: "",
+                        }));
+                      }}
                       value={addressdata?.pincode}
                     />
                     {addressvalidation?.pincode ? (
@@ -1757,7 +1790,13 @@ const Checkout = () => {
                       className="inputfield-box"
                       name="city"
                       variant="outlined"
-                      onChange={(e) => addressadd(e)}
+                      onChange={(e) => {
+                        addressadd(e);
+                        setaddressvalidation((prevState) => ({
+                          ...prevState,
+                          city: "",
+                        }));
+                      }}
                       value={addressdata?.city}
                     />
                     {addressvalidation?.city ? (
@@ -1789,7 +1828,13 @@ const Checkout = () => {
                         label="Country"
                         name="country"
                         className="inputfield-box"
-                        onChange={(e) => addressadd(e)}
+                        onChange={(e) => {
+                          addressadd(e);
+                          setaddressvalidation((prevState) => ({
+                            ...prevState,
+                            country: "",
+                          }));
+                        }}
                         value={addressdata?.country}
                         displayEmpty
                         renderValue={(value) =>

@@ -49,7 +49,7 @@ const FAQ = ({ classes }) => {
     }
     if (askQuestion === "") {
       return swal.fire({
-        text: "Please fill the required input before submitting your FAQ",
+        text: "Please enter your Query before submit",
         icon: "error",
         showConfirmButton: false,
         timer: 3000,
