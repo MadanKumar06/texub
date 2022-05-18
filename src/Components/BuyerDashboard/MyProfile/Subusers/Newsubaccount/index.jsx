@@ -26,7 +26,16 @@ const Index = ({ currentid, setisSub, setisSubusers }) => {
   const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
   const [adminToken, setAdminToken] = useState("");
   const [plist, setplist] = useState();
-
+  const [NewSubAccountData, setNewSubAccountData] = useState({
+    first_name: "",
+    last_name: "",
+    e_mail: "",
+    allowed_permissions: [],
+    forbidden: "",
+    designation: "",
+    mobile: "",
+    active: "",
+  });
   useEffect(() => {
     getAdminToken((res) => {
       setAdminToken(res);
@@ -66,24 +75,11 @@ const Index = ({ currentid, setisSub, setisSubusers }) => {
           entity_id: currentid,
         },
       });
-      console.log(getformdata?.data);
-      let temp = [];
-      getformdata?.data[0]?.availablePermissions?.filter((d) => {
-        plist?.filter((p) => {
-          if (d === p?.value) {
-            temp.push({
-              label: p?.label,
-              value: p?.value,
-            });
-          }
-        });
-      });
-      console.log(temp);
       setNewSubAccountData({
         first_name: getformdata?.data[0]?.firstname,
         last_name: getformdata?.data[0]?.lastname,
         e_mail: getformdata?.data[0]?.email,
-        allowed_permissions: temp,
+        allowed_permissions: getformdata?.data[0]?.availablePermissions,
         forbidden: "",
         designation: getformdata?.data[0]?.designation,
         mobile: getformdata?.data[0]?.mobile_number,
@@ -96,16 +92,7 @@ const Index = ({ currentid, setisSub, setisSubusers }) => {
   }, [currentid, plist]);
 
   const options = ["Yes", "No"];
-  const [NewSubAccountData, setNewSubAccountData] = useState({
-    first_name: "",
-    last_name: "",
-    e_mail: "",
-    allowed_permissions: [],
-    forbidden: "",
-    designation: "",
-    mobile: "",
-    active: "",
-  });
+
   const [inputValidation, setInputValidation] = useState({
     first_name: "",
     last_name: "",
@@ -315,7 +302,7 @@ const Index = ({ currentid, setisSub, setisSubusers }) => {
             fullWidth
             id="first_name"
             name="first_name"
-             className="inputfield-box"
+            className="inputfield-box"
             placeholder="First Name"
             InputLabelProps={{
               shrink: false,
@@ -332,7 +319,7 @@ const Index = ({ currentid, setisSub, setisSubusers }) => {
           <TextField
             fullWidth
             id="last_name"
-             className="inputfield-box"
+            className="inputfield-box"
             name="last_name"
             placeholder="Last Name"
             InputLabelProps={{
@@ -352,7 +339,7 @@ const Index = ({ currentid, setisSub, setisSubusers }) => {
           <TextField
             fullWidth
             id="designation"
-             className="inputfield-box"
+            className="inputfield-box"
             name="designation"
             placeholder="Designation"
             InputLabelProps={{
@@ -370,7 +357,7 @@ const Index = ({ currentid, setisSub, setisSubusers }) => {
           <TextField
             fullWidth
             id="mobile"
-             className="inputfield-box"
+            className="inputfield-box"
             name="mobile"
             type="number"
             placeholder="Mobile"
@@ -391,7 +378,7 @@ const Index = ({ currentid, setisSub, setisSubusers }) => {
           fullWidth
           id="e_mail"
           name="e_mail"
-           className="inputfield-box"
+          className="inputfield-box"
           placeholder="E-Mail Address"
           InputLabelProps={{
             shrink: false,
@@ -415,6 +402,7 @@ const Index = ({ currentid, setisSub, setisSubusers }) => {
               : ""
           }
           getOptionLabel={(option) => (option.label ? option.label : "")}
+          isOptionEqualToValue={(option, value) => option.value === value.value}
           disableCloseOnSelect
           renderOption={(props, option, { selected }) => (
             <li {...props}>
@@ -452,32 +440,32 @@ const Index = ({ currentid, setisSub, setisSubusers }) => {
       <div>
         <p>Forbidden Access</p>
 
-           <TextField
-              className="inputfield-box contact-form-inputfieldbox"
-              fullWidth
-              aria-label="comments"
-              placeholder="Access"
-              name="your_message"
-              id="your_message"
-              multiline
-              rows={3}
-              style={{ height: 100 }}
-              value={NewSubAccountData?.forbidden}
-              onChange={(e) =>
-                setNewSubAccountData((prevState) => ({
-                  ...prevState,
-                  forbidden: e.target.value,
-                }))
-              }
-              InputLabelProps={{
-                shrink: true,
-                required: true,
-                classes: {
-                  asterisk: "asterisk",
-                },
-              }}
-              variant="outlined"
-            />
+        <TextField
+          className="inputfield-box contact-form-inputfieldbox"
+          fullWidth
+          aria-label="comments"
+          placeholder="Access"
+          name="your_message"
+          id="your_message"
+          multiline
+          rows={3}
+          style={{ height: 100 }}
+          value={NewSubAccountData?.forbidden}
+          onChange={(e) =>
+            setNewSubAccountData((prevState) => ({
+              ...prevState,
+              forbidden: e.target.value,
+            }))
+          }
+          InputLabelProps={{
+            shrink: true,
+            required: true,
+            classes: {
+              asterisk: "asterisk",
+            },
+          }}
+          variant="outlined"
+        />
       </div>
       <div className="users_active_section">
         <p>Active</p>
@@ -492,7 +480,7 @@ const Index = ({ currentid, setisSub, setisSubusers }) => {
               fullWidth
               id="active"
               name="active"
-               className="inputfield-box"
+              className="inputfield-box"
               placeholder="Yes"
               InputLabelProps={{
                 shrink: false,

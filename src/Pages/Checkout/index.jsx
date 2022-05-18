@@ -1218,44 +1218,54 @@ const Checkout = () => {
                     <div className="delivery_address_section">
                       <div className="delivery_address_list">
                         {quotedata[0]?.address_list?.map((itm) => (
-                          <div
-                            className={`delivery_address_content ${
-                              selectadd === itm?.address_id && "border"
-                            }`}
-                            onClick={() => selectaddress(itm)}
-                          >
-                            <div className="billing_title">
-                              {itm?.shipping_billing == 1 ? (
-                                <p>Default Shipping Address</p>
-                              ) : (
-                                <p></p>
-                              )}
-                              {quotedata[0]?.invoice?.pending_invoice_status ===
-                                "1" && (
-                                <div
-                                  className="edit_address"
-                                  onClick={() => editaddress(itm?.address_id)}
-                                >
-                                  <img src={Edit_image} alt="" />
-                                  <span>Edit</span>
+                          <>
+                            {itm?.shipping_billing == "1" ? (
+                              <div
+                                className={`delivery_address_content ${
+                                  selectadd === itm?.address_id && "border"
+                                }`}
+                                onClick={() => selectaddress(itm)}
+                              >
+                                <div className="billing_title">
+                                  {itm?.shipping_billing == 1 ? (
+                                    <p>Default Shipping Address</p>
+                                  ) : (
+                                    <p></p>
+                                  )}
+                                  {quotedata[0]?.invoice
+                                    ?.pending_invoice_status === "1" && (
+                                    <div
+                                      className="edit_address"
+                                      onClick={() =>
+                                        editaddress(itm?.address_id)
+                                      }
+                                    >
+                                      <img src={Edit_image} alt="" />
+                                      <span>Edit</span>
+                                    </div>
+                                  )}
                                 </div>
-                              )}
-                            </div>
 
-                            <p className="user_name">
-                              {itm?.firstname} {itm?.lastname}
-                            </p>
-                            <p className="item_address">
-                              {itm?.Street[0]} {itm?.Street[1]}
-                            </p>
-                            <span className="item_address">{itm?.city} </span>
-                            <span className="item_address">
-                              {itm?.country_id}{" "}
-                            </span>
-                            <span className="item_address">
-                              {itm?.postcode}{" "}
-                            </span>
-                          </div>
+                                <p className="user_name">
+                                  {itm?.firstname} {itm?.lastname}
+                                </p>
+                                <p className="item_address">
+                                  {itm?.Street[0]} {itm?.Street[1]}
+                                </p>
+                                <span className="item_address">
+                                  {itm?.city}{" "}
+                                </span>
+                                <span className="item_address">
+                                  {itm?.country_id}{" "}
+                                </span>
+                                <span className="item_address">
+                                  {itm?.postcode}{" "}
+                                </span>
+                              </div>
+                            ) : (
+                              ""
+                            )}
+                          </>
                         ))}
                         {quotedata[0]?.invoice?.pending_invoice_status ===
                           "1" && (
