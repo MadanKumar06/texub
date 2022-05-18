@@ -5,7 +5,11 @@
         position: relative;
         justify-content: center;
         background-color: #f4f5f8;
-        padding-top: 4em;
+        padding-top: 8em;
+        padding-bottom: 2em;
+        .subscript_image{
+            display: flex;
+        }
       
     img{
         width: 100%;
@@ -47,6 +51,11 @@
 @media (max-width: 850px) {
     .subscription_required_block{
         flex-direction: column-reverse;
+        padding-top: 2em;
+         .subscript_image{
+            display: flex;
+            flex-direction: column;
+        }
     .subscription_content_section{
         position: initial;
         background-color: #f4f5f8;
@@ -60,4 +69,10 @@
     }
     }
 
+}
+
+@media (max-width: 576px) {
+.subscription_required_block .subscription_content_section .subscription_content{
+    font-size: 14px;
+}
 }
