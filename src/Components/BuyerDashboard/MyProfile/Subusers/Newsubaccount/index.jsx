@@ -404,11 +404,11 @@ const Index = ({ currentid, setisSub, setisSubusers }) => {
           id="country-select-demo"
           options={plist ? plist : []}
           multiple
-          // value={
-          //   NewSubAccountData?.allowed_permissions
-          //     ? NewSubAccountData?.allowed_permissions
-          //     : ""
-          // }
+          value={
+            NewSubAccountData?.allowed_permissions
+              ? NewSubAccountData?.allowed_permissions
+              : ""
+          }
           getOptionLabel={(option) => (option.label ? option.label : "")}
           disableCloseOnSelect
           renderOption={(props, option, { selected }) => (

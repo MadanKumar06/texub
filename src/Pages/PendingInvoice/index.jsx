@@ -45,7 +45,6 @@ function Index() {
         },
       });
       setPendingInvoiceList(data?.data[0]);
-      console.log(data?.data[0]);
       dispatch({
         type: "SET_IS_LOADING",
         value: false,
