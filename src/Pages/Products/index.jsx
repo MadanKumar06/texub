@@ -181,6 +181,19 @@ export const Products = () => {
       }/buyerdashboard/wanttobuy`
     );
   };
+  let [permission, setpermission] = useState()
+  useEffect(() => {
+    let permissions = JSON.parse(localStorage.getItem("permissions"));
+    let pendingpermission =
+      permissions?.length === 0
+        ? false
+        : permissions?.some(
+            (per) =>
+              per?.value === "can-raise-wtb-request" &&
+              per?.permission_value === 0
+          );
+          setpermission(pendingpermission)
+  }, [])
   return (
     <div className="products">
       <Productlists
@@ -226,7 +239,7 @@ export const Products = () => {
         productFetchApi={productFetchApi}
         productData={productData}
       />
-      {JSON.parse(localStorage.getItem("userdata"))?.group_id === 5 && (
+      {JSON.parse(localStorage.getItem("userdata"))?.group_id === 5 && !permission && (
         <div className="products_want_to_buy">
           <p onClick={() => handleRouteChange()}>
             <span>Want to buy</span>
