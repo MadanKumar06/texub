@@ -315,6 +315,7 @@ const Index = ({ currentid, setisSub, setisSubusers }) => {
             fullWidth
             id="first_name"
             name="first_name"
+             className="inputfield-box"
             placeholder="First Name"
             InputLabelProps={{
               shrink: false,
@@ -331,6 +332,7 @@ const Index = ({ currentid, setisSub, setisSubusers }) => {
           <TextField
             fullWidth
             id="last_name"
+             className="inputfield-box"
             name="last_name"
             placeholder="Last Name"
             InputLabelProps={{
@@ -350,6 +352,7 @@ const Index = ({ currentid, setisSub, setisSubusers }) => {
           <TextField
             fullWidth
             id="designation"
+             className="inputfield-box"
             name="designation"
             placeholder="Designation"
             InputLabelProps={{
@@ -367,6 +370,7 @@ const Index = ({ currentid, setisSub, setisSubusers }) => {
           <TextField
             fullWidth
             id="mobile"
+             className="inputfield-box"
             name="mobile"
             type="number"
             placeholder="Mobile"
@@ -387,6 +391,7 @@ const Index = ({ currentid, setisSub, setisSubusers }) => {
           fullWidth
           id="e_mail"
           name="e_mail"
+           className="inputfield-box"
           placeholder="E-Mail Address"
           InputLabelProps={{
             shrink: false,
@@ -446,18 +451,33 @@ const Index = ({ currentid, setisSub, setisSubusers }) => {
       </div>
       <div>
         <p>Forbidden Access</p>
-        <TextareaAutosize
-          placeholder="Access"
-          value={NewSubAccountData?.forbidden}
-          onChange={(e) =>
-            setNewSubAccountData((prevState) => ({
-              ...prevState,
-              forbidden: e.target.value,
-            }))
-          }
-          aria-label="empty textarea"
-          style={{ height: 100, width: "100%" }}
-        />
+
+           <TextField
+              className="inputfield-box contact-form-inputfieldbox"
+              fullWidth
+              aria-label="comments"
+              placeholder="Access"
+              name="your_message"
+              id="your_message"
+              multiline
+              rows={3}
+              style={{ height: 100 }}
+              value={NewSubAccountData?.forbidden}
+              onChange={(e) =>
+                setNewSubAccountData((prevState) => ({
+                  ...prevState,
+                  forbidden: e.target.value,
+                }))
+              }
+              InputLabelProps={{
+                shrink: true,
+                required: true,
+                classes: {
+                  asterisk: "asterisk",
+                },
+              }}
+              variant="outlined"
+            />
       </div>
       <div className="users_active_section">
         <p>Active</p>
@@ -472,6 +492,7 @@ const Index = ({ currentid, setisSub, setisSubusers }) => {
               fullWidth
               id="active"
               name="active"
+               className="inputfield-box"
               placeholder="Yes"
               InputLabelProps={{
                 shrink: false,

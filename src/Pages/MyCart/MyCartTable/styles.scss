@@ -801,8 +801,10 @@
           width: 100%;
           padding: 5px 0;
           .mycart_table_quantity {
-            width: 100%;
+            width: 50%;
+            margin: auto;
             display: flex;
+            position: relative;
             justify-content: center;
             align-items: center;
           }
@@ -816,9 +818,20 @@
 
   .mycart_table_main_container
     .mycart_table_mui_datatable_main
-    .mycart_table_quantity
+    .mycart_table_quantity{
+      .update{
+          cursor: pointer;
+          position: absolute;
+          right: 0;
+          background: #ddb363;
+          top: -50px;
+          color: #ffffff;
+          border-radius: 5%;
+          padding: 3px 5px;
+      }
+    }
     .mycart_quantity_subblock {
-    width: fit-content;
+    width: 50%;
   }
   .mycart_table_mui_datatable_main
     .mycart_table_quantity
@@ -853,6 +866,6 @@
     .mycart_table_mui_datatable_main
     .mycart_table_quantity
     .mycart_quantity_subblock {
-    width: fit-content;
+    width: 100%;
   }
 }

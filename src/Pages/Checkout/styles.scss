@@ -189,6 +189,8 @@
                   letter-spacing: 0.5px;
                   max-width: 80%;
                   line-break: anywhere;
+                  display: flex;
+                  align-items: center;
                 }
                 .billing_title {
                   display: flex;
