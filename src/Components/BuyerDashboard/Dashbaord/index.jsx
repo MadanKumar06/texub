@@ -51,6 +51,21 @@ const BuyerDashboard = () => {
       }/buyerdashboard/wanttobuy`
     );
   };
+
+  let [permission, setpermission] = useState()
+  useEffect(() => {
+    let permissions = JSON.parse(localStorage.getItem("permissions"));
+    let pendingpermission =
+      permissions?.length === 0
+        ? false
+        : permissions?.some(
+            (per) =>
+              per?.value === "can-raise-wtb-request" &&
+              per?.permission_value === 0
+          );
+          setpermission(pendingpermission)
+  }, [])
+
   return (
     <div className="buyer_dashboard">
       <div className="dashboard__top">
@@ -78,7 +93,7 @@ const BuyerDashboard = () => {
           </div>
           <div className="images__buy" onClick={() => handleNavigate()}>
             <img src={wanttobuy} alt="" />
-            <p>Want to buy</p>
+            {!permission && <p>Want to buy</p>}
           </div>
         </div>
         <div className="dashboard__pricelist">

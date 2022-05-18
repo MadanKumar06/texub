@@ -210,9 +210,9 @@ const Index = (classes) => {
       const updatedata = await axios({
         method: "post",
         url: `${Constant?.baseUrl()}/editProfile`,
-        // headers: {
-        //   Authorization: `Bearer ${localStorage.getItem("token")}`,
-        // },
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
         data: {
           customer: {
             customer_id: user?.id,

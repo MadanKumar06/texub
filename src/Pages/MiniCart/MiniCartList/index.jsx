@@ -240,6 +240,22 @@ const MiniCartList = ({ handleSideBarClose }) => {
   }, [localStorage.getItem("review_status")]);
 
   const handleIsValidPendingInvoice = () => {
+    let permissions = JSON.parse(localStorage.getItem("permissions"));
+    let pendingpermission =
+      permissions?.length === 0
+        ? false
+        : permissions?.some(
+            (per) =>
+              per?.value === "can-add-to-multiple-wishlist" &&
+              per?.permission_value === 0
+          );
+    if (pendingpermission) {
+      return swal.fire({
+        text: `Your Account doesn't have access to add products to Wishinglist`,
+        icon: "error",
+        showConfirmButton: true,
+      });
+    }
     if (cart?.[0]?.invoice_items?.length === 0 || cart?.length === 0) {
       return swal.fire({
         text: `No product to add pending invoice`,
