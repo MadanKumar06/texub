@@ -91,6 +91,18 @@
     border: 1px solid #ddb363;
   }
 }
+
+.MuiFormControl-root{
+   .MuiOutlinedInput-root {
+      &:hover fieldset {
+      border-color: #ddb363;
+     
+    }
+     input{
+        padding: 12px;
+      }
+   }
+}
 .check_country {
   display: flex;
   flex-direction: column;

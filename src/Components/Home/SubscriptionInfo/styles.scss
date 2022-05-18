@@ -4,6 +4,8 @@
         margin: 2em 0;
         position: relative;
         justify-content: center;
+        background-color: #f4f5f8;
+        padding-top: 4em;
       
     img{
         width: 100%;
@@ -12,7 +14,7 @@
     .subscription_content_section{
         position: absolute;
           text-align: center;
-        top: 2em;
+        top: 1em;
         display: flex;
         flex-direction: column;
         justify-content: center;
