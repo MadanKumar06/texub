@@ -11,10 +11,12 @@ import {
 import { Clear } from "@mui/icons-material";
 import axios from "axios";
 import Constant from "../../../../Constant";
-import { LocalizationProvider, DesktopDatePicker } from "@mui/lab";
+import { LocalizationProvider } from "@mui/lab";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import { useStateValue } from "../../../../store/state";
 import swal from "sweetalert2";
+import { MobileDatePicker } from "@mui/x-date-pickers/MobileDatePicker";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import { isNumber } from "../../../../utilities";
 var moment = require("moment");
 
@@ -239,10 +241,10 @@ const TransitionsModal = ({ handleOpenCloseOffers, offersOpenClose }) => {
               <InputLabel>Start Date</InputLabel>
               <div className="field_box">
                 <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DesktopDatePicker
+                  <MobileDatePicker
                     label=""
                     inputFormat="dd-MM-yyyy"
-                    minDate={new Date()}
+                    disablePast
                     value={
                       offersData?.start_date ? offersData?.start_date : null
                     }
@@ -260,8 +262,11 @@ const TransitionsModal = ({ handleOpenCloseOffers, offersOpenClose }) => {
                       <TextField
                         {...params}
                         fullWidth
-                        className="inputfield-box"
+                        className="inputfield-box calendar_info"
                         id="start_date"
+                        InputProps={{
+                          endAdornment: <CalendarMonthIcon />,
+                        }}
                         inputProps={{
                           ...params.inputProps,
                           readOnly: true,
@@ -292,10 +297,10 @@ const TransitionsModal = ({ handleOpenCloseOffers, offersOpenClose }) => {
               <InputLabel>End Date</InputLabel>
               <div className="field_box">
                 <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DesktopDatePicker
+                  <MobileDatePicker
                     label=""
                     inputFormat="dd-MM-yyyy"
-                    minDate={new Date()}
+                    disablePast
                     value={offersData?.end_date ? offersData?.end_date : null}
                     onChange={(newValue) => {
                       setOffersData((prevState) => ({
@@ -311,7 +316,10 @@ const TransitionsModal = ({ handleOpenCloseOffers, offersOpenClose }) => {
                       <TextField
                         {...params}
                         fullWidth
-                        className="inputfield-box"
+                        InputProps={{
+                          endAdornment: <CalendarMonthIcon />,
+                        }}
+                        className="inputfield-box calendar_info"
                         id="end_date"
                         inputProps={{
                           ...params.inputProps,

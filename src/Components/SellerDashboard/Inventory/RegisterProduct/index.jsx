@@ -309,7 +309,6 @@ function RegisterProduct() {
         name: registerNewProductData?.modal_number,
         texub_product_id: dropdownListFromApi?.texub_product_id,
         mgs_brand: registerNewProductData?.brands?.value,
-        hsn_code: registerNewProductData?.hsn_code,
         sku: registerNewProductData?.vendor_manufacturer_part_number,
         upc_number: registerNewProductData?.upc_number,
         description: registerNewProductData?.description,
@@ -592,7 +591,7 @@ function RegisterProduct() {
               </div>
             )}
           </div>
-          <div className="registerproducts_inputfields">
+          {/* <div className="registerproducts_inputfields">
             <InputLabel>HSN Code</InputLabel>
             <TextField
               id="hsn_code"
@@ -609,10 +608,28 @@ function RegisterProduct() {
               onChange={handleOnchange}
               variant="outlined"
             />
+          </div> */}
+          <div className="registerproducts_inputfields">
+            <InputLabel>UPC Number</InputLabel>
+            <TextField
+              id="upc_number"
+              name="upc_number"
+              placeholder="3604929017"
+              fullWidth
+              autoFocus={true}
+              autoComplete="off"
+              className="inputfield-box"
+              value={registerNewProductData?.upc_number}
+              InputLabelProps={{
+                shrink: false,
+              }}
+              onChange={handleOnchange}
+              variant="outlined"
+            />
           </div>
         </div>
         <div className="input_separator">
-          <div className="registerproducts_inputfields">
+          <div className="registerproducts_inputfields vendor_part_number">
             <InputLabel>
               Vendor / Manufacturer part Number{" "}
               <small className="asterisk">*</small>
@@ -620,10 +637,10 @@ function RegisterProduct() {
             <TextField
               id="vendor_manufacturer_part_number"
               name="vendor_manufacturer_part_number"
-              placeholder="DE-B-0089"
-              fullWidth
+              placeholder="DE-B-0089"     
               className="inputfield-box"
               autoComplete="off"
+              fullWidth
               value={registerNewProductData?.vendor_manufacturer_part_number}
               InputLabelProps={{
                 shrink: false,
@@ -643,24 +660,6 @@ function RegisterProduct() {
                 {openClosePopOver?.message}
               </p>
             )}
-          </div>
-          <div className="registerproducts_inputfields">
-            <InputLabel>UPC Number</InputLabel>
-            <TextField
-              id="upc_number"
-              name="upc_number"
-              placeholder="3604929017"
-              fullWidth
-              autoFocus={true}
-              autoComplete="off"
-              className="inputfield-box"
-              value={registerNewProductData?.upc_number}
-              InputLabelProps={{
-                shrink: false,
-              }}
-              onChange={handleOnchange}
-              variant="outlined"
-            />
           </div>
         </div>
         <div className="registerproducts_inputfields">

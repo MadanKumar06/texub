@@ -60,6 +60,7 @@ function Index({ type, pid }) {
     warranty_days: "",
     no_pieces_per: "",
     notes: "",
+    hsn_code: "",
   });
 
   const [restrictvalue, setrestrictvalue] = useState([
@@ -416,6 +417,7 @@ function Index({ type, pid }) {
       product_length: olddata?.product_length,
       weight: olddata?.weight,
       warranty_days: olddata?.warranty_days,
+      hsn_code: olddata?.hsn_code,
     }));
     setUpdateProductList((prevState) => ({
       ...prevState,
@@ -577,6 +579,7 @@ function Index({ type, pid }) {
               packing_details: updateProductList?.packing?.value,
               no_pieces_per: updateform?.no_pieces_per,
               width: updateform?.width,
+              hsn_code: updateform?.hsn_code,
               height: updateform?.height,
               product_length: updateform?.product_length,
               weight: updateform?.weight,
@@ -673,6 +676,7 @@ function Index({ type, pid }) {
               packing_details: updateProductList?.packing?.value,
               // no_pieces_per: updateform?.carton_packing,
               no_pieces_per: updateform?.no_pieces_per,
+              hsn_code: updateform?.hsn_code,
               width: updateform?.width,
               height: updateform?.height,
               product_length: updateform?.product_length,
@@ -1337,6 +1341,28 @@ function Index({ type, pid }) {
           ) : (
             ""
           )}
+          <div className="updateproduct_inputfields hsn_code">
+            <InputLabel>HSN Code</InputLabel>
+            <TextField
+              id="hsn_code"
+              name="hsn_code"
+              placeholder="22348765"
+              fullWidth
+              autoComplete="off"
+              className="inputfield-box  "
+              value={updateform?.hsn_code}
+              InputLabelProps={{
+                shrink: false,
+              }}
+              onChange={(e) => {
+                setupdateform((prevState) => ({
+                  ...prevState,
+                  hsn_code: e.target.value,
+                }));
+              }}
+              variant="outlined"
+            />
+          </div>
           <div className="updateproduct_inputfields info">
             <InputLabel>
               Special Notes<small className="asterisk">*</small>

@@ -51,6 +51,7 @@
     background-color: #ddb363 !important;
   }
 }
+
 // material ui textbox
 .inputfield-box {
   & ::placeholder {
@@ -92,16 +93,15 @@
   }
 }
 
-.MuiFormControl-root{
-   .MuiOutlinedInput-root {
-      &:hover fieldset {
+.MuiFormControl-root {
+  .MuiOutlinedInput-root {
+    &:hover fieldset {
       border-color: #ddb363;
-     
     }
-     input{
-        padding: 12px;
-      }
-   }
+    input {
+      padding: 12px;
+    }
+  }
 }
 .check_country {
   display: flex;
@@ -139,6 +139,52 @@
     color: #002d56;
   }
 }
+//data picker
+
+.calendar_info {
+  .MuiOutlinedInput-root {
+    padding-right: 0;
+    svg {
+      position: absolute;
+      right: 7px;
+      opacity: 0.8;
+      color: #3e3e3e;
+      z-index: -1;
+    }
+  }
+}
+.MuiPaper-root {
+  .MuiDialogContent-root {
+    .PrivatePickersToolbar-root {
+      background: linear-gradient(180deg, #ffd788 0%, #ad7c20 100%);
+      color: #ffffff;
+      .MuiTypography-root {
+        color: #ffffff;
+      }
+      .MuiGrid-root {
+        .MuiButtonBase-root {
+          svg {
+            display: none;
+          }
+        }
+      }
+    }
+    // .MuiClockPicker-root {
+    //   .MuiButtonBase-root{
+    //     background: linear-gradient(180deg, #20639b 0%, #002d56 100%);
+    //     color: #ffffff;
+    //   }
+    // }
+    .MuiCalendarPicker-root {
+      .PrivatePickersYear-yearButton.Mui-selected,
+      .MuiButtonBase-root.MuiPickersDay-root.Mui-selected {
+        background: linear-gradient(180deg, #20639b 0%, #002d56 100%);
+        color: #ffffff;
+      }
+    }
+  }
+}
+
 @media (max-width: 1660px) {
   .button-text {
     font-size: 16px !important;

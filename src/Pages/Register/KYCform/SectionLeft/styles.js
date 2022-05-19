@@ -220,7 +220,7 @@ const styles = (theme) => ({
       flexDirection: "column",
       gap: "0",
     },
-     "@media (max-width:780px)": {
+    "@media (max-width:780px)": {
       flexDirection: "column",
       gap: "0",
     },

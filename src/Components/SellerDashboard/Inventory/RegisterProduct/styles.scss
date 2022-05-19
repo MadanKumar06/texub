@@ -12,16 +12,19 @@
       display: flex;
       gap: 2em;
     }
+    .vendor_part_number {
+      width: 48.1% !important;
+    }
     .registerproducts_inputfields {
       width: 100%;
       position: relative;
-        .other_main_category_box{
-            width: 48.5%;
-            }
+      .other_main_category_box {
+        width: 48.5%;
+      }
       .popover {
         padding: 1em 3em;
         position: absolute;
-        right: 3em;
+        left: 20em;
         font-size: 14px;
         font-weight: 600;
         background: #ffffff;
