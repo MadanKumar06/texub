@@ -127,10 +127,10 @@ function ValidationForKycForm({
       document.getElementById("national_image_container")?.focus();
     } else if (!values?.address_line_one) {
       document.getElementById("address_line_one")?.focus();
-    } else if (!values?.pin_zip_code) {
-      document.getElementById("pin_zip_code")?.focus();
     } else if (!values?.city) {
       document.getElementById("city")?.focus();
+    } else if (!values?.pin_zip_code) {
+      document.getElementById("pin_zip_code")?.focus();
     } else if (!agreementChecked) {
       document.getElementById("agreementChecked")?.focus();
     }

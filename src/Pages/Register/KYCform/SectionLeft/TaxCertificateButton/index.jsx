@@ -8,10 +8,11 @@ import {
 } from "@mui/material";
 import { withStyles } from "@mui/styles";
 import { Clear } from "@mui/icons-material";
-import { LocalizationProvider, DesktopDatePicker } from "@mui/lab";
+import { LocalizationProvider } from "@mui/lab";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import uploadImage from "../../../../../Assets/CommonImage/KYC Form/Icon.png";
-
+import { MobileDatePicker } from "@mui/x-date-pickers/MobileDatePicker";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 const TaxCertificateButton = ({
   classes,
   SetFormValues,
@@ -159,32 +160,34 @@ const TaxCertificateButton = ({
           {inputValidation?.tax_number}
         </InputLabel>
         <LocalizationProvider dateAdapter={AdapterDateFns}>
-          <DesktopDatePicker
+          <MobileDatePicker
             label="Expiration Date"
             inputFormat="dd/MM/yyyy"
-            minDate={new Date()}
+            onClose={false}
             value={
               FormValues?.tax_expiration_date
                 ? FormValues?.tax_expiration_date
                 : null
             }
+            disablePast
             onChange={handleChange}
             renderInput={(params) => (
               <TextField
                 {...params}
                 fullWidth
-                className="inputfield-box"
-                id="tax_expiration_date"
-                placeholder="DD/MM/YY"
+                className="inputfield-box calendar_info"
+                id="trade_expiration_date"
                 inputProps={{
                   ...params.inputProps,
                   readOnly: true,
                   placeholder: "DD/MM/YYYY",
                 }}
+                InputProps={{
+                  endAdornment: <CalendarMonthIcon />,
+                }}
                 InputLabelProps={{
                   shrink: true,
-                  readOnly: true,
-                  // required: false,
+                  // required: true,
                   // classes: {
                   //   asterisk: asterisk,
                   // },
@@ -192,6 +195,7 @@ const TaxCertificateButton = ({
               />
             )}
           />
+
           {FormValues?.tax_expiration_date ? (
             <Clear
               className={datepicker}

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./Departments.scss";
-import Departments1 from "../../Data";
 import { IconButton, InputBase, Paper } from "@mui/material";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { Menu, Search } from "@mui/icons-material";
 import { useStateValue } from "../../../store/state";
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-export const Departments = ({ data }) => {
+export const Departments = ({ data, categories }) => {
   const [isActive, setIsActive] = useState(true);
   const [search, setSearch] = useState("");
   const [{ geo, customnostore }, dispatch] = useStateValue();
@@ -37,13 +37,22 @@ export const Departments = ({ data }) => {
   useEffect(() => {
     document.addEventListener("mousedown", () => {
       setBar(false);
-    })
+    });
   }, []);
 
   useEffect(() => {
     setsavedsearch(JSON.parse(localStorage.getItem("searchhistory")));
   }, []);
-  console.log(search);
+
+  // const handleClick=()=>{
+  //   to={{
+  //     pathname: `/${
+  //       customnostore ? customnostore : geo?.country_name
+  //     }/products`,
+  //     state: { name: item?.attribute, value: item?.value },
+  //   }}
+  // }
+  // onClick={()=>handleClick()}
   return (
     <div className="Departments">
       <div className="Departments_Body_Search">
@@ -64,26 +73,23 @@ export const Departments = ({ data }) => {
                 isActive && "Body_Down_Pannel_btn_content"
               }`}
             >
-              {Departments1.map((item, ind) => (
-                <li
-                  key={ind}
-                  href={item.path}
-                  className="Body_Down_Pannel_btn_items"
-                >
-                  {item.display}
-                  <span
-                    className={`${
-                      item?.tag === "Sale"
-                        ? "sale"
-                        : item?.tag === "New"
-                        ? "new"
-                        : ""
-                    }`}
-                  >
-                    {item?.tag}
-                  </span>
-                </li>
-              ))}
+              {categories?.length &&
+                categories?.map((item, ind) => (
+                  <li key={ind} className="Body_Down_Pannel_btn_items" >
+                    {item.title}
+                    <span
+                      className={`${
+                        item?.tag === "Sale"
+                          ? "sale"
+                          : item?.tag === "New"
+                          ? "new"
+                          : ""
+                      }`}
+                    >
+                      {item?.tag}
+                    </span>
+                  </li>
+                ))}
             </ul>
             {/* )} */}
           </div>

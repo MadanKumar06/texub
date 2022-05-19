@@ -1,197 +1,205 @@
-.ordersuccess_dashboard{
-       background-size: cover;
-        background-image: url(../../../Assets/CheckoutPage/ordersuccess_bg.png);
-        background-repeat: no-repeat;
-        background-position: center;
-    .dashboard__top{
-        padding: 2em 3em;
-        .dashboard_center{
-        padding: 2em 3em;
-        float: none;
-        margin: 2em auto;
-        max-width: 900px;
-        width: auto;
-        text-align: center;
-        background-color: #fff;
-            .common-block{
-                padding: 15px 0;
-            }
-            .order_msg{ 
-                .msg{
-                    color: #5c6369;
-                    font-size: 28px;
-                    font-style: italic;
-                    font-weight: 800;
-                    letter-spacing: 2px;
-                }
-            }
-            .logged_user{
-                .msg{
-                    color: #5c6369;
-                    font-size: 24px;
-                    font-weight: 600;
-                    letter-spacing: 2px;
-                    font-style: italic;
-                }
-            }
-            .custom_msg{
-                .msg{
-                    color: #5c6369;
-                    font-size: 20px;
-                    font-weight: 600;
-                    letter-spacing: 1.2px;
-                }
-            }
-            .backto_home_btn{
-                width: 70%;
-                text-align: center;
-                margin: auto;
-                .home_to_home{
-                    width: 100%;
-                    letter-spacing: 0.66px;
-                    color: #002D56;
-                    text-transform: capitalize;
-                    text-align: center;
-                    text-decoration: underline;
-                    font-size: 18px;
-                    font-weight: 600;
-                }
-            }
-
-            .dashboard_bottom{
-                padding: 15px 0 0;
-                .transaction_section{
-                    background-color: #F8F0E0;
-                    padding: 1em 1.5em;
-                    text-align: start;
-                    .transaction_title_section{
-                        padding: 10px 0 15px;
-                        .transaction_title{
-                            letter-spacing: 0.9px;
-                            color: #5C6369;
-                            text-transform: capitalize;
-                            font-size: 22px;
-                            font-weight: 600;
-                        }
-                    }
-                    .transaction_block{
-                        gap: 2em;
-                        display: flex;
-                        padding-bottom: 3%;
-                        .transaction_info_section{
-                            width: 100%;
-                            .MuiInputLabel-root{
-                                font-weight: 400;
-                                letter-spacing: 0.54px;
-                                color: #272727;
-                                margin-top: 0em;
-                                margin-bottom: 10px;
-                                line-height: 1.4375em;
-                                padding: 0;
-                                position: relative;
-                                display: block;
-                                transform-origin: top left;
-                                white-space: nowrap;
-                                overflow: hidden;
-                                text-overflow: ellipsis;
-                                max-width: 100%;
-                                transition: color 200ms cubic-bezier(0, 0, 0.2, 1) 0ms, transform 200ms cubic-bezier(0, 0, 0.2, 1) 0ms, max-width 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
-                            }
-                            .MuiFormControl-root{
-                                display: inline-flex;
-                                flex-direction: column;
-                                position: relative;
-                                min-width: 0px;
-                                padding: 0px;
-                                margin: 0px;
-                                border: 0px;
-                                vertical-align: top;
-                                width: 100%;
-                                background-color: #fff;
-                            }
-                            textarea{
-                                display: inline-flex;
-                                flex-direction: column;
-                                position: relative;
-                                min-width: 0px;
-                                padding: 0px;
-                                margin: 0px;
-                                border: 0px;
-                                vertical-align: top;
-                                width: 100%;
-                                padding: 10px 15px;
-                                resize: none;
-                            }
-                        }
-                    }
-
-                }
-                .ordersuccess_btns{
-                    width: 100%;
-                    display: flex;
-                    justify-content: space-between;
-                    padding: 2em 0 1em;
-                        button{
-                            width: 48%;
-                            max-width: 48%;
-                            box-shadow: 0px 3px 6px #00000029;
-                            border-radius: 25px;
-                            font-weight: 600;
-                        }
-                }
-            }
+.ordersuccess_dashboard {
+  background-size: cover;
+  background-image: url(../../../Assets/CheckoutPage/ordersuccess_bg.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  .dashboard__top {
+    padding: 2em 3em;
+    .dashboard_center {
+      padding: 2em 3em;
+      float: none;
+      margin: 2em auto;
+      max-width: 900px;
+      width: auto;
+      text-align: center;
+      background-color: #fff;
+      .common-block {
+        padding: 15px 0;
+      }
+      .order_msg {
+        .msg {
+          color: #5c6369;
+          font-size: 28px;
+          font-style: italic;
+          font-weight: 800;
+          letter-spacing: 2px;
         }
+      }
+      .logged_user {
+        .msg {
+          color: #5c6369;
+          font-size: 24px;
+          font-weight: 600;
+          letter-spacing: 2px;
+          font-style: italic;
+        }
+      }
+      .custom_msg {
+        .msg {
+          color: #5c6369;
+          font-size: 20px;
+          font-weight: 600;
+          letter-spacing: 1.2px;
+        }
+      }
+      .backto_home_btn {
+        width: 70%;
+        text-align: center;
+        margin: auto;
+        .home_to_home {
+          width: 100%;
+          letter-spacing: 0.66px;
+          color: #002d56;
+          text-transform: capitalize;
+          text-align: center;
+          text-decoration: underline;
+          font-size: 18px;
+          font-weight: 600;
+        }
+      }
+
+      .dashboard_bottom {
+        padding: 15px 0 0;
+        .transaction_section {
+          background-color: #f8f0e0;
+          padding: 1em 1.5em;
+          text-align: start;
+          .transaction_title_section {
+            padding: 10px 0 15px;
+            .transaction_title {
+              letter-spacing: 0.9px;
+              color: #5c6369;
+              text-transform: capitalize;
+              font-size: 22px;
+              font-weight: 600;
+            }
+          }
+          .transaction_block {
+            gap: 2em;
+            display: flex;
+            padding-bottom: 3%;
+            .transaction_info_section {
+              width: 100%;
+              position: relative;
+              .clear_datepicker {
+                cursor: pointer;
+                position: absolute;
+                right: 2%;
+                bottom: 80px;
+                opacity: 0.5;
+              }
+
+              .MuiInputLabel-root {
+                font-weight: 400;
+                letter-spacing: 0.54px;
+                color: #272727;
+                margin-top: 0em;
+                margin-bottom: 10px;
+                line-height: 1.4375em;
+                padding: 0;
+                position: relative;
+                display: block;
+                transform-origin: top left;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 100%;
+                transition: color 200ms cubic-bezier(0, 0, 0.2, 1) 0ms,
+                  transform 200ms cubic-bezier(0, 0, 0.2, 1) 0ms,
+                  max-width 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+              }
+              .MuiFormControl-root {
+                display: inline-flex;
+                flex-direction: column;
+                position: relative;
+                min-width: 0px;
+                padding: 0px;
+                margin: 0px;
+                border: 0px;
+                vertical-align: top;
+                width: 100%;
+                background-color: #fff;
+              }
+              textarea {
+                display: inline-flex;
+                flex-direction: column;
+                position: relative;
+                min-width: 0px;
+                padding: 0px;
+                margin: 0px;
+                border: 0px;
+                vertical-align: top;
+                width: 100%;
+                padding: 10px 15px;
+                resize: none;
+              }
+            }
+          }
+        }
+        .ordersuccess_btns {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          padding: 2em 0 1em;
+          button {
+            width: 48%;
+            max-width: 48%;
+            box-shadow: 0px 3px 6px #00000029;
+            border-radius: 25px;
+            font-weight: 600;
+          }
+        }
+      }
     }
-    .textArea{
-        outline: none;
-        border: 1px solid rgb(0 0 0 / 26%) !important;
-        border-radius: 5px;
-    }
-    .textArea:hover{
-         border: 1px solid #DDB363 !important;
-    }
+  }
+  .textArea {
+    outline: none;
+    border: 1px solid rgb(0 0 0 / 26%) !important;
+    border-radius: 5px;
+  }
+  .textArea:hover {
+    border: 1px solid #ddb363 !important;
+  }
 }
 
 @media (max-width: 567px) {
-
-    .ordersuccess_dashboard{
-        .dashboard__top{
-            padding: 1em 15px;
-            .dashboard_center{
-                padding: 10px 15px;
-                .order_msg{ 
-                    .msg{
-                        font-size: 26px;   
-                    }
-                }
-                .logged_user{
-                    .msg{
-                        font-size: 20px;
-                    }
-                }
-                .custom_msg{
-                    .msg{
-                        font-size: 16px;  
-                    }
-                }
-                .dashboard_bottom{
-                    .transaction_section{
-                        padding: 10px 15px;
-                        .transaction_title_section{
-                            padding: 5px 0;
-                            span.transaction_title{
-                                font-size: 18px;
-                            }
-                        }
-                        .transaction_block{
-                            flex-direction: column;
-                            padding-bottom: 1%;
-                            gap: 1em;
-                        }
-                    }
-                }
-            }
+  .ordersuccess_dashboard {
+    .dashboard__top {
+      padding: 1em 15px;
+      .dashboard_center {
+        padding: 10px 15px;
+        .order_msg {
+          .msg {
+            font-size: 26px;
+          }
         }
+        .logged_user {
+          .msg {
+            font-size: 20px;
+          }
+        }
+        .custom_msg {
+          .msg {
+            font-size: 16px;
+          }
+        }
+        .dashboard_bottom {
+          .transaction_section {
+            padding: 10px 15px;
+            .transaction_title_section {
+              padding: 5px 0;
+              span.transaction_title {
+                font-size: 18px;
+              }
+            }
+            .transaction_block {
+              flex-direction: column;
+              padding-bottom: 1%;
+              gap: 1em;
+            }
+          }
+        }
+      }
     }
-
+  }
 }

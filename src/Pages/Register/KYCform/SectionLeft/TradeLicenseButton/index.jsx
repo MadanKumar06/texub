@@ -9,7 +9,9 @@ import {
 } from "@mui/material";
 import { withStyles } from "@mui/styles";
 import { Clear } from "@mui/icons-material";
-import { LocalizationProvider, DesktopDatePicker } from "@mui/lab";
+import { LocalizationProvider } from "@mui/lab";
+import { MobileDatePicker } from "@mui/x-date-pickers/MobileDatePicker";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import uploadImage from "../../../../../Assets/CommonImage/KYC Form/Icon.png";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 
@@ -186,7 +188,7 @@ const TradeLicenseButton = ({
           {inputValidation?.trade_lic_number}
         </InputLabel>
         <LocalizationProvider dateAdapter={AdapterDateFns}>
-          <DesktopDatePicker
+          <MobileDatePicker
             label="Expiration Date"
             inputFormat="dd/MM/yyyy"
             minDate={new Date()}
@@ -200,12 +202,15 @@ const TradeLicenseButton = ({
               <TextField
                 {...params}
                 fullWidth
-                className="inputfield-box"
+                className="inputfield-box calendar_info"
                 id="trade_expiration_date"
                 inputProps={{
                   ...params.inputProps,
                   readOnly: true,
                   placeholder: "DD/MM/YYYY",
+                }}
+                InputProps={{
+                  endAdornment: <CalendarMonthIcon />,
                 }}
                 InputLabelProps={{
                   shrink: true,

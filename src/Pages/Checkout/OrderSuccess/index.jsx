@@ -3,8 +3,10 @@ import "./styles.scss";
 import checkoutmark from "../../../Assets/CheckoutPage/check-mark.png";
 import { Button } from "@mui/material";
 import TextareaAutosize from "@mui/base/TextareaAutosize";
-import { FormControlLabel, TextField, InputLabel } from "@mui/material";
-import { DesktopDatePicker, LocalizationProvider } from "@mui/lab";
+import { TextField, InputLabel } from "@mui/material";
+import { LocalizationProvider } from "@mui/lab";
+import { Clear } from "@mui/icons-material";
+import { MobileDateTimePicker } from "@mui/x-date-pickers/MobileDateTimePicker";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import axios from "axios";
 import Constant from "../../../Constant";
@@ -179,12 +181,11 @@ const Index = () => {
                 <div className="transaction_info_section">
                   <InputLabel>Transaction Date & Time</InputLabel>
                   <LocalizationProvider dateAdapter={AdapterDateFns}>
-                    <DesktopDatePicker
+                    <MobileDateTimePicker
                       id="transaction_date_time"
                       name="transaction_date_time"
-                      inputFormat="MM/dd/yyyy"
-                      className="inputfield-box"
-                      minDate={new Date()}
+                      inputFormat="dd/MM/yyyy  |  hh:mm a"
+                      disablePast
                       value={
                         transactiondetails?.transaction_date_time
                           ? transactiondetails?.transaction_date_time
@@ -198,15 +199,27 @@ const Index = () => {
                       }}
                       renderInput={(params) => (
                         <TextField
+                          className="inputfield-box calendar_info order_success_calendar"
                           {...params}
                           inputProps={{
                             ...params.inputProps,
                             readOnly: true,
-                            placeholder: "DD/MM/YY      |      00:00:00",
+                            placeholder: "DD/MM/YY  |  Hrs:Min:Sec",
                           }}
                         />
                       )}
                     />
+                    {transactiondetails?.transaction_date_time ? (
+                      <Clear
+                        className="clear_datepicker"
+                        onClick={() => {
+                          settransactiondetails((prevState) => ({
+                            ...prevState,
+                            transaction_date_time: null,
+                          }));
+                        }}
+                      />
+                    ) : null}
                   </LocalizationProvider>
                   <p style={{ color: "red" }}>
                     {transactionvalidation?.transaction_date_time

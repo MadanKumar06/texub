@@ -40,14 +40,17 @@ export const Home = () => {
   }, [customstore, geo]);
 
   useEffect(() => {
-    localStorage.setItem('review_status', homeContent?.review?.review_status)
-  }, [homeContent])
+    localStorage.setItem("review_status", homeContent?.review?.review_status);
+  }, [homeContent]);
 
   return (
     <div className="Home">
       {homeContent !== "" ? (
         <>
-          <Departments data={homeContent?.banner} />
+          <Departments
+            data={homeContent?.banner}
+            categories={homeContent?.menu}
+          />
           <Favorites data={homeContent?.block_2} />
           <Todaysdeal data={homeContent?.todays_deal} />
           <Benfits data={homeContent?.block_4} />
