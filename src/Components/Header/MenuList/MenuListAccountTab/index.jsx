@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./styles";
+import { Badge ,Drawer } from "@mui/material";
 import PropTypes from "prop-types";
 import {
   Tabs,
@@ -65,14 +66,43 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
   // const [{ geo, customnostore }, dispatch] = useStateValue();
   const [open, setOpen] = useState(false);
   let isSignedIn = JSON.parse(localStorage.getItem("userdata"));
+  let kycStatus = JSON.parse(
+    localStorage.getItem("userdata")
+  )?.custom_attributes?.filter((itm) => itm?.attribute_code === "kyc_status");
   const navigate = useNavigate();
-  const [{ geo, wishListData, customnostore }, dispatch] = useStateValue();
+  const [{ geo, wishListData, customnostore, cart  }, dispatch] = useStateValue();
+  const history = useNavigate();
+
+    const handleWishlist = () => {
+    history(
+      `/${
+        customnostore ? customnostore : geo?.country_name
+      }/buyerdashboard/wishlist`
+    );
+  };
+
+  const [wishlength, setwishlength] = useState(0);
+   useEffect(() => {
+    let temp = [];
+    wishListData?.filter((wld) => temp.push(wld?.wishlist_data?.length));
+    let templength = temp.reduce((initial, final) => initial + final, 0);
+    setwishlength(templength);
+  }, [wishListData]);
+
+
 
   const handleDashboard = () => {
     navigate(
       `/${
         customnostore ? customnostore : geo?.country_name
       }/buyerdashboard/dashboard`
+    );
+  };
+    const handleSellerDashboard = () => {
+    navigate(
+      `/${
+        customnostore ? customnostore : geo?.country_name
+      }/sellerdashboard/dashboard`
     );
   };
   const handleMyorder = () => {
@@ -647,15 +677,33 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
       name: " My Orders",
       event: handleMyorder,
     },
-    {
-      image: auctionIcon,
-      name: "Auctions",
-      event: handleAuctions,
-    },
+    // {
+    //   image: auctionIcon,
+    //   name: "Auctions",
+    //   event: handleAuctions,
+    // },
     {
       image: pendingInvoiceIcon,
       name: "Pending Invoices",
       event: handlePendingInvoices,
+    },
+    {
+      image: logoutIcon,
+      name: "Logout",
+      event: SignOut,
+    },
+  ];
+
+    const sellerMyAccountList = [
+    {
+      image: dashboardIcon,
+      name: "Dashboard",
+      event: handleSellerDashboard,
+    },
+    {
+      image: KYSIcon,
+      name: "KYC Details",
+      event: handleKYCDetails,
     },
     {
       image: logoutIcon,
@@ -683,56 +731,124 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0} className={classes.sub_tab_conatainer}>
-        <ListItemButton onClick={handleClick}>
-          <img src={account_circle} alt="" />
-          <ListItemText primary={"My Account"} />
-          {open ? <ExpandLess /> : <ExpandMore />}
-        </ListItemButton>
-        <Collapse in={open} timeout="auto" unmountOnExit>
-          <List
-            onClick={() => handleSideBarClose("left", false)}
-            component="div"
-            disablePadding
-          >
-            {myAccountList?.map((itm) => (
-              <div key={itm?.name} className={classes.dropdown_collapse_list}>
-                <div
-                  className={(classes.link_in_tab, "mobile_sidebar_menu")}
-                  onClick={() => itm?.event()}
-                >
-                  <ListItemButton sx={{ pl: 4 }}>
-                    {itm?.image}
-                    {/* <img src={itm?.image} alt="" /> */}
-                    <ListItemText primary={`${itm?.name}`} />
-                  </ListItemButton>
+         {(isSignedIn?.group_id === 5 && kycStatus?.[0]?.value === "2") ||
+          (isSignedIn?.group_id === 6 && kycStatus?.[0]?.value === "2") ? (
+            <>
+            <ListItemButton onClick={handleClick}>
+              <img src={account_circle} alt="" />
+              <ListItemText primary={"My Account"} />
+              {open ? <ExpandLess /> : <ExpandMore />}
+            </ListItemButton>
+            </>
+            ) : (
+                ""
+              )}
+
+          {(isSignedIn?.group_id === 5 && kycStatus?.[0]?.value === "2") ||
+          (isSignedIn?.group_id === 6 && kycStatus?.[0]?.value === "2") ? (
+            <>
+            <Collapse in={open} timeout="auto" unmountOnExit>
+              <List
+                onClick={() => handleSideBarClose("left", false)}
+                component="div"
+                disablePadding
+              >
+
+                 {(isSignedIn?.group_id === 5 && kycStatus?.[0]?.value === "2")
+                 ? (
+                  <>
+                  <div>
+                {myAccountList?.map((itm) => (
+                  <div key={itm?.name} className={classes.dropdown_collapse_list}>
+                    <div
+                      className={(classes.link_in_tab, "mobile_sidebar_menu")}
+                      onClick={() => itm?.event()}
+                    >
+                      <ListItemButton sx={{ pl: 4 }}>
+                        {itm?.image}
+                        {/* <img src={itm?.image} alt="" /> */}
+                        <ListItemText primary={`${itm?.name}`} />
+                      </ListItemButton>
+                    </div>
+                  </div>
+                ))}
                 </div>
-              </div>
-            ))}
-          </List>
-        </Collapse>
-        <Link
-          className={classes.link_in_tab}
-          to={`/${
-            customnostore ? customnostore : geo?.country_name
-          }/buyerdashboard/wishlist`}
-          // to={`/${customnostore ? customnostore : geo?.country_name}`}
-          onClick={() => handleSideBarClose("left", false)}
-        >
-          <ListItem button>
-            <img src={whishlist_image} alt="" />
-            <ListItemText primary={"My Wishlist"} />
-          </ListItem>
-        </Link>
-        <Link
-          className={classes.link_in_tab}
-          to={`/${customnostore ? customnostore : geo?.country_name}/mycart`}
-          onClick={() => handleSideBarClose("left", false)}
-        >
-          <ListItem button>
-            <img src={mycart_image} alt="" />
-            <ListItemText primary={"My Cart"} />
-          </ListItem>
-        </Link>
+                </>
+            ) : (
+                ""
+              )}
+            {(isSignedIn?.group_id === 6 && kycStatus?.[0]?.value === "2")
+            ? (
+                  <>
+                    {sellerMyAccountList?.map((itm) => (
+                  <div key={itm?.name} className={classes.dropdown_collapse_list}>
+                    <div
+                      className={(classes.link_in_tab, "mobile_sidebar_menu")}
+                      onClick={() => itm?.event()}
+                    >
+                      <ListItemButton sx={{ pl: 4 }}>
+                        {itm?.image}
+                        {/* <img src={itm?.image} alt="" /> */}
+                        <ListItemText primary={`${itm?.name}`} />
+                      </ListItemButton>
+                    </div>
+                  </div>
+                ))}
+                </>
+            ) : (
+                ""
+              )}
+
+              </List>
+            </Collapse>
+            </>
+            ) : (
+                ""
+              )}
+
+        {(isSignedIn?.group_id === 5 && kycStatus?.[0]?.value === "2") ? (
+            <>
+            <Link
+              className={classes.link_in_tab}
+              to={`/${
+                customnostore ? customnostore : geo?.country_name
+              }/buyerdashboard/wishlist`}
+              // to={`/${customnostore ? customnostore : geo?.country_name}`}
+              onClick={() => handleSideBarClose("left", false)}
+            >
+              <ListItem button>
+                
+                    <img src={whishlist_image} alt="" />
+                    <ListItemText primary={"My Wishlist"} />
+                    <span> ({wishlength})</span>
+              
+              </ListItem>
+            </Link>
+          </>
+            ) : (
+                ""
+              )}
+               {(isSignedIn?.group_id === 5 && kycStatus?.[0]?.value === "2")  ? (
+            <>
+              <Link
+                className={classes.link_in_tab}
+                to={`/${customnostore ? customnostore : geo?.country_name}/mycart`}
+                onClick={() => handleSideBarClose("left", false)}
+              >
+                <ListItem button>
+                
+                    
+                  <img src={mycart_image} alt="" />
+                  <ListItemText primary={"My Cart"} />
+                  <span> ({ cart?.[0]?.invoice_items?.length
+                        ? cart?.[0]?.invoice_items?.length
+                        : 0})</span>
+                </ListItem>
+              </Link>
+               </>
+            ) : (
+                ""
+              )}
 
         {!isSignedIn?.group_id ? (
           <Stack

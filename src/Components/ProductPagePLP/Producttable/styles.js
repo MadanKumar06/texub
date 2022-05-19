@@ -138,6 +138,7 @@ const styles = () => ({
     justifyContent: "flex-end",
     "@media (max-width:900px)": {
       justifyContent: "center",
+      display: 'none !important',
     },
     "& img": {
       width: "40px",
