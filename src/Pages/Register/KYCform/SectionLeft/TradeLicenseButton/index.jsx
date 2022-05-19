@@ -9,9 +9,8 @@ import {
 } from "@mui/material";
 import { withStyles } from "@mui/styles";
 import { Clear } from "@mui/icons-material";
-import { LocalizationProvider } from "@mui/lab";
-import { MobileDatePicker } from "@mui/x-date-pickers/MobileDatePicker";
-import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import { MobileDatePicker, LocalizationProvider } from "@mui/x-date-pickers";
+import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import uploadImage from "../../../../../Assets/CommonImage/KYC Form/Icon.png";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 
@@ -210,7 +209,7 @@ const TradeLicenseButton = ({
                   placeholder: "DD/MM/YYYY",
                 }}
                 InputProps={{
-                  endAdornment: <CalendarMonthIcon />,
+                  endAdornment: <CalendarTodayIcon />,
                 }}
                 InputLabelProps={{
                   shrink: true,

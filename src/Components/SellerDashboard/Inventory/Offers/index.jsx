@@ -11,12 +11,11 @@ import {
 import { Clear } from "@mui/icons-material";
 import axios from "axios";
 import Constant from "../../../../Constant";
-import { LocalizationProvider } from "@mui/lab";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import { useStateValue } from "../../../../store/state";
 import swal from "sweetalert2";
-import { MobileDatePicker } from "@mui/x-date-pickers/MobileDatePicker";
-import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import { MobileDatePicker,LocalizationProvider } from "@mui/x-date-pickers";
+import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import { isNumber } from "../../../../utilities";
 var moment = require("moment");
 
@@ -265,7 +264,7 @@ const TransitionsModal = ({ handleOpenCloseOffers, offersOpenClose }) => {
                         className="inputfield-box calendar_info"
                         id="start_date"
                         InputProps={{
-                          endAdornment: <CalendarMonthIcon />,
+                          endAdornment: <CalendarTodayIcon />,
                         }}
                         inputProps={{
                           ...params.inputProps,
@@ -317,7 +316,7 @@ const TransitionsModal = ({ handleOpenCloseOffers, offersOpenClose }) => {
                         {...params}
                         fullWidth
                         InputProps={{
-                          endAdornment: <CalendarMonthIcon />,
+                          endAdornment: <CalendarTodayIcon />,
                         }}
                         className="inputfield-box calendar_info"
                         id="end_date"
