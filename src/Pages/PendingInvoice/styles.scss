@@ -750,6 +750,14 @@
         .orderinfo__data {
           width: 100%;
           padding: 10px 0;
+          p{
+            .label {
+              font-size: 16px;
+            }
+            .value{
+              font-size: 16px;
+            }
+          }
         }
       }
       .top__address{
@@ -783,6 +791,10 @@
                 }
                 .table__price {
                   justify-content: start;
+                }
+                .vieworders_quantity{
+                  justify-content: center;
+                  text-align: center;
                 }
               }
             }

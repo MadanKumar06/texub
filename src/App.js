@@ -15,6 +15,7 @@ import Header from "./Components/Header";
 import { Home } from "./Pages/Home";
 import { Footer } from "./Components/Footer";
 import Aboutus from "./Pages/Aboutus";
+// import Aboutus from "./Pages/CMS/About";
 import { Products } from "./Pages/Products";
 import Contactus from "./Pages/CMS/Company/Contactus";
 import Registration from "./Pages/Register";

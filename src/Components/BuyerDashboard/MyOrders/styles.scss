@@ -314,7 +314,7 @@
     .MuiTableCell-root {
       div{
         font-size: 14px;
-        width: auto;
+        // width: auto;
       }
     }
   }
@@ -323,8 +323,11 @@
 @media (max-width: 567px) {
   .myorders{
     .myorders__buttons{
+      gap: 10px;
       P{
-        width: 100%;
+           width: 45%;
+           min-width: 120px;
+           padding: 0.5em 0.2em;
       }
     }
   } 
