@@ -1,47 +1,47 @@
-import React, { useState, useEffect } from 'react'
-import './styles.scss'
-import Newsubaccount from './Newsubaccount'
+import React, { useState, useEffect } from "react";
+import "./styles.scss";
+import Newsubaccount from "./Newsubaccount";
 import { ArrowBackIosNew } from "@mui/icons-material";
-import Allowedpermissions from './Popups/Allowedpermissions'
-import Forbidden from './Popups/Forbidden'
-import  MUITable  from '../../../Common/MUITable'
+import Allowedpermissions from "./Popups/Allowedpermissions";
+import Forbidden from "./Popups/Forbidden";
+import MUITable from "../../../Common/MUITable";
 import { Link } from "react-router-dom";
-import { useStateValue } from '../../../../store/state';
-import axios from 'axios';
-import Constant from '../../../../Constant';
+import { useStateValue } from "../../../../store/state";
+import axios from "axios";
+import Constant from "../../../../Constant";
 import NodataFound from "../../../../Assets/CommonImage/NodataFound.webp.png";
 
-import { getAdminToken } from '../../../../utilities'
-import moment from 'moment'
+import { getAdminToken } from "../../../../utilities";
+import moment from "moment";
 
 const Index = () => {
-  const [{geo, customstore, customnostore}, dispatch] = useStateValue()
-  const [isSub, setisSub] = useState(false)
-  let [currentid, setcurrentid] = useState(0)
+  const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
+  const [isSub, setisSub] = useState(false);
+  let [currentid, setcurrentid] = useState(0);
   const Newsubacc = () => {
-    setcurrentid(0)
-    setisSub(!isSub)
-    setisSubusers(false)
-  }
+    setcurrentid(0);
+    setisSub(!isSub);
+    setisSubusers(false);
+  };
 
   const editaccount = (value) => {
-    setcurrentid(value)
-    setisSub(!isSub)
-    setisSubusers(false)
-  }
-  const [isPermissions, setisPermissions] = useState(false)
-  const [cid, setcid] = useState()
+    setcurrentid(value);
+    setisSub(!isSub);
+    setisSubusers(false);
+  };
+  const [isPermissions, setisPermissions] = useState(false);
+  const [cid, setcid] = useState();
   const permission = (value) => {
-    setcid(value)
-    setisPermissions(true)
-    setisForbidden(false)
-  }
-  const [isForbidden, setisForbidden] = useState(false)
+    setcid(value);
+    setisPermissions(true);
+    setisForbidden(false);
+  };
+  const [isForbidden, setisForbidden] = useState(false);
   const forbidden = () => {
-    setisForbidden(true)
-    setisPermissions(false)
-  }
-  const [isSubusers, setisSubusers] = useState(true)
+    setisForbidden(true);
+    setisPermissions(false);
+  };
+  const [isSubusers, setisSubusers] = useState(true);
   const options = {
     filter: false,
     filterType: "dropdown",
@@ -71,28 +71,40 @@ const Index = () => {
     });
   }, []);
 
-  const [sublist, setsublist] = useState([])
+  const [sublist, setsublist] = useState([]);
 
-  useEffect(async() => {
-    if(adminToken === '') return
-    let user = JSON.parse(localStorage.getItem('userdata'))
+  useEffect(async () => {
+    if (adminToken === "") return;
+    dispatch({
+      type: "SET_IS_LOADING",
+      value: true,
+    });
+    let user = JSON.parse(localStorage.getItem("userdata"));
     try {
       const list = await axios({
-        method: 'post',
+        method: "post",
         url: `${Constant?.baseUrl()}/listSubAccounts`,
         headers: {
-          Authorization: `Bearer ${adminToken}`
+          Authorization: `Bearer ${adminToken}`,
         },
         data: {
-          customer_id: user?.id
-        }
-      })
+          customer_id: user?.id,
+        },
+      });
 
-      setsublist(list?.data)
-    } catch(e) {
-      console.log(e)
+      setsublist(list?.data);
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
+    } catch (e) {
+      console.log(e);
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
     }
-  }, [adminToken, isSub])
+  }, [adminToken, isSub]);
 
   const columns = [
     {
@@ -105,12 +117,15 @@ const Index = () => {
       },
     },
     {
-      name: "status", label: "Status",
+      name: "status",
+      label: "Status",
       options: {
         customBodyRender: (value) => {
           return (
             <div className="users_status">
-              <span className="value">{value === "1" ? 'Active' : 'InActive'}</span>
+              <span className="value">
+                {value === "1" ? "Active" : "InActive"}
+              </span>
             </div>
           );
         },
@@ -126,7 +141,7 @@ const Index = () => {
     //     );
     //   },
     // },
-  
+
     // },
     // {
     //   name: "hub",
@@ -139,7 +154,9 @@ const Index = () => {
         customBodyRender: (value) => {
           return (
             <div className="users_date">
-              <span className="value">{moment(value).format("DD/MM/YYYY")}</span>
+              <span className="value">
+                {moment(value).format("DD/MM/YYYY")}
+              </span>
             </div>
           );
         },
@@ -152,7 +169,12 @@ const Index = () => {
         customBodyRender: (value, tablemeta) => {
           return (
             <div className="users_permissions">
-              <span className="value" onClick={() => permission(tablemeta?.rowData[5])}>View</span>
+              <span
+                className="value"
+                onClick={() => permission(tablemeta?.rowData[5])}
+              >
+                View
+              </span>
             </div>
           );
         },
@@ -165,7 +187,9 @@ const Index = () => {
         customBodyRender: (value) => {
           return (
             <div className="users_permissions">
-              <span className="value" onClick={forbidden} >{value}</span>
+              <span className="value" onClick={forbidden}>
+                {value}
+              </span>
             </div>
           );
         },
@@ -179,36 +203,66 @@ const Index = () => {
           return (
             <div className="users_action">
               {/* <div className="users_action_name">Login</div> */}
-              <div className="users_action_name" onClick={() => editaccount(value)}>Edit</div>
+              <div
+                className="users_action_name"
+                onClick={() => editaccount(value)}
+              >
+                Edit
+              </div>
               <div className="users_action_name">Delete</div>
             </div>
           );
         },
       },
-    },    
+    },
   ];
 
   return (
     <>
-      {isSubusers &&
-        <div className='users_main'>
-        <MUITable columns={columns} table={sublist} options={options} className="subusers__table" />
-          <div className='my_profile_btns'>
-          <div className='my_profile_back'>
-          <Link to={`/${customnostore ? customnostore : geo?.country_name}/buyerdashboard/dashboard`} className="link">
-            <ArrowBackIosNew /><span><p className='back'>Back</p></span>
-          </Link>
+      {isSubusers && (
+        <div className="users_main">
+          <div className="user_sub-account">
+            <button onClick={Newsubacc}>Add New Sub-Account</button>
+          </div>
+          <MUITable
+            columns={columns}
+            table={sublist}
+            options={options}
+            className="subusers__table"
+          />
+          <div className="my_profile_btns">
+            <div className="my_profile_back">
+              <Link
+                to={`/${
+                  customnostore ? customnostore : geo?.country_name
+                }/buyerdashboard/dashboard`}
+                className="link"
+              >
+                <ArrowBackIosNew />
+                <span>
+                  <p className="back">Back</p>
+                </span>
+              </Link>
             </div>
-              <div className='user_sub-account'>
-                <button onClick={Newsubacc}>Add New Sub-Account</button>
-              </div>
           </div>
         </div>
-      }
-      {isSub && <Newsubaccount currentid={currentid} setisSub={setisSub} setisSubusers={setisSubusers}/>}
-      {isPermissions && <Allowedpermissions closePOPup={setisPermissions} cid={cid} sublist={sublist} />}
+      )}
+      {isSub && (
+        <Newsubaccount
+          currentid={currentid}
+          setisSub={setisSub}
+          setisSubusers={setisSubusers}
+        />
+      )}
+      {isPermissions && (
+        <Allowedpermissions
+          closePOPup={setisPermissions}
+          cid={cid}
+          sublist={sublist}
+        />
+      )}
       {isForbidden && <Forbidden closePOPup={setisForbidden} />}
     </>
-  )
-}
+  );
+};
 export default Index;

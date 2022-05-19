@@ -220,6 +220,9 @@ const Index = () => {
     <>
       {isSubusers && (
         <div className="users_main">
+          <div className="user_sub-account">
+            <button onClick={Newsubacc}>Add New Sub-Account</button>
+          </div>
           <MUITable
             columns={columns}
             table={sublist}
@@ -239,9 +242,6 @@ const Index = () => {
                   <p className="back">Back</p>
                 </span>
               </Link>
-            </div>
-            <div className="user_sub-account">
-              <button onClick={Newsubacc}>Add New Sub-Account</button>
             </div>
           </div>
         </div>

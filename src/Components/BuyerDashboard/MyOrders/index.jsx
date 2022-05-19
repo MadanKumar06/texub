@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 import React, { useState, useEffect } from "react";
 import MUITable from "../../../Components/Common/MUITable";
 import { ArrowBackIosNew } from "@mui/icons-material";
@@ -169,16 +170,16 @@ function Index() {
           return (
             <div
               className={`
-                    ${value === "1" && "myorders__pending"}
-                    ${value === "2" && "myorders__confirm"}
-                    ${value === "4" && "myorders__delivered"}
-                    ${value === "3" && "myorders__dispatched"}
+                    ${value == "1" && "myorders__pending"}
+                    ${value == "2" && "myorders__confirm"}
+                    ${value == "4" && "myorders__delivered"}
+                    ${value == "3" && "myorders__dispatched"}
                     `}
             >
-              {value === "1" ? "Pending" : ""}
-              {value === "2" ? "Confirm" : ""}
-              {value === "3" ? "Dispatched" : ""}
-              {value === "4" ? "Delivered" : ""}
+              {value == "1" ? "Pending" : ""}
+              {value == "2" ? "Confirm" : ""}
+              {value == "3" ? "Dispatched" : ""}
+              {value == "4" ? "Delivered" : ""}
             </div>
           );
         },
@@ -192,14 +193,14 @@ function Index() {
           return (
             <div
               className={`
-            ${value === "1" && "myorders__pending"}
-            ${value === "2" && "myorders__delivered"}
-            ${value === "3" && "myorders__failed"}
+            ${value == "1" && "myorders__pending"}
+            ${value == "2" && "myorders__delivered"}
+            ${value == "3" && "myorders__failed"}
             `}
             >
-              {value === "1" ? "Pending" : ""}
-              {value === "2" ? "Completed" : ""}
-              {value === "3" ? "Failed" : ""}
+              {value == "1" ? "Pending" : ""}
+              {value == "2" ? "Completed" : ""}
+              {value == "3" ? "Failed" : ""}
             </div>
           );
         },
@@ -280,7 +281,12 @@ function Index() {
         </>
       )}
       {isVieworders && (
-        <OrdersInfo currentorder={currentorder} orders={orders} />
+        <OrdersInfo
+          currentorder={currentorder}
+          orders={orders}
+          setisVieworders={setisVieworders}
+          setisOrders={setisOrders}
+        />
       )}
       <div className="my_orders__footer">
         <div className="my_orders__container">
