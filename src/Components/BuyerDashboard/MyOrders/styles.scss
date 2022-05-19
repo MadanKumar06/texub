@@ -318,3 +318,13 @@
     }
   }
 }
+
+@media (max-width: 567px) {
+  .myorders{
+    .myorders__buttons{
+      P{
+        width: 100%;
+      }
+    }
+  } 
+}

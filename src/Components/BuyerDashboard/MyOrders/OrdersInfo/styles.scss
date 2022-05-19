@@ -109,7 +109,6 @@
               text-decoration: underline;
               align-items: center;
               display: flex;
-          
             }
           }
         }
@@ -800,6 +799,12 @@
   .vieworders_main {
     .vieworders_heading_section {
       flex-direction: column;
+      .id_heading{
+        font-size: 14px;
+      }
+      .id{
+        font-size: 14px;
+      }
     }
     .order_info_section2 {
       .order_track_info {
