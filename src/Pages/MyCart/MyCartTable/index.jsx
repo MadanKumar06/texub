@@ -619,13 +619,12 @@ const MyCartTable = ({ cartDataList, deleteCartData, setrowselect }) => {
     search: false,
     textLabels: {
       body: {
-        noMatch: "No data Found...",
-        // (
-        //   <div className="no_data_found">
-        //     <img src={NodataFound} alt="No data Found" />
-        //     <p>No data Found...</p>
-        //   </div>
-        // ),
+        noMatch: (
+          <div className="no_data_found">
+            {/* <img src={NodataFound} alt="No data Found" /> */}
+            <p>No data Found...</p>
+          </div>
+        ),
       },
     },
   };

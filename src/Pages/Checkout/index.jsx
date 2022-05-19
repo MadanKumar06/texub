@@ -500,7 +500,6 @@ const Checkout = () => {
 
   const [localgt, setlocalgt] = useState(false);
   const saveaddress = async () => {
-    let street = [addressdata?.address_line1, addressdata?.address_line2];
     let user = JSON.parse(localStorage.getItem("userdata"));
     dispatch({
       type: "SET_IS_LOADING",
@@ -525,7 +524,8 @@ const Checkout = () => {
           address: {
             company: addressdata?.organization_name,
             country_id: addressdata?.country,
-            street: street,
+            street1: addressdata?.address_line1,
+            street2: addressdata?.address_line2,
             postcode: addressdata?.pincode,
             city: addressdata?.city,
           },

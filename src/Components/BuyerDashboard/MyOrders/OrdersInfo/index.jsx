@@ -29,7 +29,7 @@ const Index = ({ orders, currentorder, setisVieworders, setisOrders }) => {
   }
   const [{ customnostore, geo }, dispatch] = useStateValue();
   const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
+  // const handleOpen = () => setOpen(true);
   //const handleClose = () => setOpen(false);
   const handleClose = (event, reason) => {
     if (reason && reason === "backdropClick") return;

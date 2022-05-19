@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 
 import "./styles.scss";
@@ -12,6 +12,7 @@ import { useStateValue } from "../../store/state";
 
 export const Products = () => {
   const navigate = useNavigate();
+  const history = useLocation();
   const [{ currency, homeSearch, customnostore, geo }, dispatch] =
     useStateValue();
   const [productFetchApi, setProductFetchApi] = useState({
@@ -34,28 +35,49 @@ export const Products = () => {
         type: "SET_IS_LOADING",
         value: true,
       });
+
       const fetchProductData = () => {
         setProductData([]);
+        console.log(history?.state)
         let data = {
           data: {
             currency_id: parseInt(currency?.currency_id),
             customer_id: customer_id?.id ? customer_id?.id : 0,
-            category_id: productFetchApi?.category_id
-              ? productFetchApi?.category_id
-              : getCategories?.[0]?.category?.id
-              ? getCategories?.[0]?.category?.id
-              : 0,
-            brand_id: productFetchApi?.brand_id
-              ? productFetchApi?.brand_id
-              : "0",
-            hub_id: productFetchApi?.hub ? productFetchApi?.hub : "0",
-            condition_id: productFetchApi?.conditions
-              ? productFetchApi?.conditions
-              : "0",
+            category_id:
+              history?.state?.name === "category_id"
+                ? history?.state?.value
+                : productFetchApi?.category_id
+                ? productFetchApi?.category_id
+                : getCategories?.[0]?.category?.id
+                ? getCategories?.[0]?.category?.id
+                : 0,
+            brand_id:
+              history?.state?.name === "brand_id"
+                ? history?.state?.value
+                : productFetchApi?.brand_id
+                ? productFetchApi?.brand_id
+                : "0",
+            hub_id:
+              history?.state?.name === "hub_id"
+                ? history?.state?.value
+                : productFetchApi?.hub
+                ? productFetchApi?.hub
+                : "0",
+            condition_id:
+              history?.state?.name === "condition_id"
+                ? history?.state?.value
+                : productFetchApi?.conditions
+                ? productFetchApi?.conditions
+                : "0",
             keyword: productFetchApi?.search_product
               ? productFetchApi?.search_product
               : "",
-            eta: productFetchApi?.eta ? productFetchApi?.eta : "0",
+            eta:
+              history?.state?.name === "eta"
+                ? history?.state?.value
+                : productFetchApi?.eta
+                ? productFetchApi?.eta
+                : "0",
             min_price: productFetchApi?.min_price
               ? productFetchApi?.min_price
               : 0,
@@ -63,15 +85,24 @@ export const Products = () => {
               ? productFetchApi?.max_price
               : 0,
             seller_id: "0",
-            todays_deal: productFetchApi?.today_deal
-              ? productFetchApi?.today_deal
-              : 0,
-            price_drop: productFetchApi?.price_drop
-              ? productFetchApi?.price_drop
-              : 0,
-            new_product: productFetchApi?.just_launch
-              ? productFetchApi?.just_launch
-              : 0,
+            todays_deal:
+              history?.state?.name === "todays_deal"
+                ? history?.state?.value
+                : productFetchApi?.today_deal
+                ? productFetchApi?.today_deal
+                : 0,
+            price_drop:
+              history?.state?.name === "price_drop"
+                ? history?.state?.value
+                : productFetchApi?.price_drop
+                ? productFetchApi?.price_drop
+                : 0,
+            new_product:
+              history?.state?.name === "new_product"
+                ? history?.state?.value
+                : productFetchApi?.just_launch
+                ? productFetchApi?.just_launch
+                : 0,
             details: 0,
           },
         };
@@ -181,7 +212,7 @@ export const Products = () => {
       }/buyerdashboard/wanttobuy`
     );
   };
-  let [permission, setpermission] = useState()
+  let [permission, setpermission] = useState();
   useEffect(() => {
     let permissions = JSON.parse(localStorage.getItem("permissions"));
     let pendingpermission =
@@ -192,8 +223,8 @@ export const Products = () => {
               per?.value === "can-raise-wtb-request" &&
               per?.permission_value === 0
           );
-          setpermission(pendingpermission)
-  }, [])
+    setpermission(pendingpermission);
+  }, []);
   return (
     <div className="products">
       <Productlists
@@ -239,13 +270,14 @@ export const Products = () => {
         productFetchApi={productFetchApi}
         productData={productData}
       />
-      {JSON.parse(localStorage.getItem("userdata"))?.group_id === 5 && !permission && (
-        <div className="products_want_to_buy">
-          <p onClick={() => handleRouteChange()}>
-            <span>Want to buy</span>
-          </p>
-        </div>
-      )}
+      {JSON.parse(localStorage.getItem("userdata"))?.group_id === 5 &&
+        !permission && (
+          <div className="products_want_to_buy">
+            <p onClick={() => handleRouteChange()}>
+              <span>Want to buy</span>
+            </p>
+          </div>
+        )}
     </div>
   );
 };
