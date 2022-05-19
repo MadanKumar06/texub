@@ -219,3 +219,19 @@
 
   }
 }
+
+  @media (max-width:567px) {
+    .invoices_main{
+      .invoices__buttons{
+        gap: 10px;
+          P{
+              width: 45%;
+              min-width: 120px;
+              padding: 0.5em 0.2em;
+          }
+      }
+    } 
+    .invoices_main .invoices__table .MuiTableBody-root .invoices__amount .price{
+      font-size: 18px;
+    }
+  }

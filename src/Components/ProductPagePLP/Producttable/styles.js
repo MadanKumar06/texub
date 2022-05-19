@@ -51,6 +51,14 @@ const styles = () => ({
       "& .MuiTableRow-root:nth-child(odd)": {
         background: "#F5F5F5",
       },
+      "@media (max-width:900px)": {
+          "& .MuiTableCell-root:last-child":{
+            
+            "& div:first-child":{
+              width: "0 !important",
+            }
+          }, 
+      },
 
       "& .MuiTableRow-root:nth-child(even)": {
         background: "#EAEAEA",
