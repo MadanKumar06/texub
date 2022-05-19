@@ -17,6 +17,8 @@ import NodataFound from "../../../Assets/CommonImage/NodataFound.webp.png";
 
 function Index() {
   const [tableData, setTableData] = useState([]);
+  const [filtereddirect, setfiltereddirect] = useState([])
+  const [orderlist, setorderlist] = useState([]);
   const ordertype = [
     { name: "All Orders" },
     { name: "Pending Orders" },
@@ -35,12 +37,34 @@ function Index() {
   };
 
   useEffect(() => {
-    selectorder(0);
+    // selectorder(0);
+    settype(0);
   }, []);
+  useEffect(() => {
+    if (type === 0) {
+      setfiltereddirect(orderlist)
+    }
+    if (type === 1) {
+      const pending = orderlist?.filter(d => d?.order_status === "1")
+      setfiltereddirect(pending)
+    }
+    if (type === 2) {
+      const confirm = orderlist?.filter(d => d?.order_status === "2")
+      setfiltereddirect(confirm)
+    }
+    if (type === 3) {
+      const dispatch = orderlist?.filter(d => d?.order_status === "3")
+      setfiltereddirect(dispatch)
+    }
+    if (type === 4) {
+      const delivered = orderlist?.filter(d => d?.order_status === "4")
+      setfiltereddirect(delivered)
+    }
+  }, [type, orderlist])
 
   const PaginateDataSplit = (event) => {
-    if (orderlist?.length === 0) return setTableData([]);
-    setTableData(event);
+    if (orderlist?.length === 0) return setfiltereddirect([]);
+    setfiltereddirect(event);
   };
 
   const [isVieworders, setisVieworders] = useState(false);
@@ -86,7 +110,7 @@ function Index() {
     },
   };
 
-  const [orderlist, setorderlist] = useState([]);
+  // const [orderlist, setorderlist] = useState([]);
 
   useEffect(async () => {
     dispatch({
@@ -265,7 +289,7 @@ function Index() {
           </div>
           <MUITable
             columns={columns}
-            table={tableData}
+            table={filtereddirect}
             options={options}
             className="myorders__table"
           />

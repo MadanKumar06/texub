@@ -108,8 +108,12 @@ function SellerDashboard() {
 
   useEffect(() => {
     setSearch("");
+    setSearchbar(true)
   }, [currenttab]);
-
+ const [searchBar, setSearchbar] = useState(true)
+  const handleSearchBar=(value)=>{
+  setSearchbar(value)
+  }
   return (
     <div className="sellerdashboard">
       {/* <img src={bg} alt="" /> */}
@@ -130,6 +134,7 @@ function SellerDashboard() {
           currenttab === "bulkupload" ? (
             ""
           ) : (
+             (searchBar &&
             <div className="sellerdashboard__search">
               <Paper
                 className="sellerdashboard__searchinput"
@@ -159,6 +164,7 @@ function SellerDashboard() {
               </div>
               <span>Notification</span> */}
             </div>
+             )
           )}
 
           {currenttab === "dashboard" && <Dashboard />}
@@ -188,7 +194,7 @@ function SellerDashboard() {
           {currenttab === "addsuccess" && <SuccessPage msg={addsuccess} />}
 
           {currenttab === "orders" && (
-            <Orders searchdata={search} searchupdate={searchupdate} />
+            <Orders searchdata={search} searchupdate={searchupdate} handleSearchBar={handleSearchBar}/>
           )}
 
           {currenttab === "usermgmt" && (

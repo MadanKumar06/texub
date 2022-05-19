@@ -156,7 +156,7 @@ const columns = [
   },
 ];
 
-const Index = ({ viewDetail, setvieworder }) => {
+const Index = ({ viewDetail, setvieworder, handleSearchBar }) => {
   const [radiogroup, setRadioGroup] = useState(1);
   const [trigger, setTrigger] = useState(false);
   const [{}, dispatch] = useStateValue();
@@ -504,6 +504,7 @@ const Index = ({ viewDetail, setvieworder }) => {
           style={{ cursor: "pointer" }}
           onClick={() => {
             setvieworder(false);
+            handleSearchBar(true)
             // setisOrders(true);
           }}
         >

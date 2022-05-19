@@ -206,6 +206,14 @@
 .Productsbrands .slide_Test .Slider_brands:hover .list{
     width: auto;
 }
+.Productsbrands{
+  .slide_Test{
+      .Slider_brands{
+        width: initial;
+      }
+  }
+
+} 
 }
 @media only screen and (max-width: 580px) {
   .Productsbrands .slick-list {
