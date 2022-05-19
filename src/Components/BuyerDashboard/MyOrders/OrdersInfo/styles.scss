@@ -778,7 +778,8 @@
       height: 45vh;
       .serial_popup_block {
         height: 45vh;
-        min-height: 65vh;
+        min-height: 45vh;
+        padding: 10px 15px;
       }
 
       .serial_popup_clear_btn {
@@ -800,10 +801,10 @@
     .vieworders_heading_section {
       flex-direction: column;
       .id_heading{
-        font-size: 14px;
+        font-size: 12px;
       }
       .id{
-        font-size: 14px;
+        font-size: 12px;
       }
     }
     .order_info_section2 {
@@ -836,6 +837,11 @@
             }
             .modal_content {
               -webkit-line-clamp: 2;
+            }
+            .serial_number{
+              span{
+                font-size: 14px;
+              }
             }
           }
         }
