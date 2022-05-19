@@ -15,7 +15,7 @@ import SearchIcon from "@mui/icons-material/Search";
 
 var moment = require("moment");
 
-function Index() {
+function Index({handleSearchBar}) {
   const [{ geo, customnostore }, dispatch] = useStateValue();
   const [tableData, setTableData] = useState([]);
   const [apiTableData, setApiTableData] = useState([]);
@@ -78,6 +78,7 @@ function Index() {
   }, []);
 
   const handleViewOrder = (item_id) => {
+    handleSearchBar(false)
     let temp = apiTableData?.filter((itm) => itm?.item_id === item_id);
     setViewDetail(temp);
     setvieworder(true);
@@ -274,7 +275,7 @@ function Index() {
           </div>
         </>
       ) : (
-        <ViewOrder viewDetail={viewDetail} setvieworder={setvieworder} />
+        <ViewOrder viewDetail={viewDetail} setvieworder={setvieworder} handleSearchBar={handleSearchBar}/>
       )}
     </div>
   );
