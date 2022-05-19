@@ -2,7 +2,7 @@ import {  Input, InputLabel, MenuItem, Select, TextareaAutosize, TextField } fro
 import React, { useState } from 'react'
 import styles from './styles.scss'
 import { withStyles } from "@mui/styles";
-import {  DatePicker, LocalizationProvider } from '@mui/lab';
+import {  DatePicker } from '@mui/lab';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import uploadImage from "../../../../Assets/CommonImage/KYC Form/Icon.png";
 
@@ -100,7 +100,7 @@ function Index({ setrequestform, formtype, classes }) {
             </InputLabel>
             <span className='image__file'><span>Image</span></span>
           </p>
-          <p className='form__startdate'>
+          {/* <p className='form__startdate'>
             <InputLabel>
               Start Date
             </InputLabel>
@@ -113,8 +113,8 @@ function Index({ setrequestform, formtype, classes }) {
                 renderInput={(params) => <TextField {...params} />}
               />
             </LocalizationProvider>
-          </p>
-          <p className='form__enddate'>
+          </p> */}
+          {/* <p className='form__enddate'>
             <InputLabel>
               End Date
             </InputLabel>
@@ -127,7 +127,7 @@ function Index({ setrequestform, formtype, classes }) {
                   renderInput={(params) => <TextField {...params} />}
                 />
             </LocalizationProvider>
-          </p>
+          </p> */}
           <p className='form__qty'>
             <InputLabel>
               Enter qty

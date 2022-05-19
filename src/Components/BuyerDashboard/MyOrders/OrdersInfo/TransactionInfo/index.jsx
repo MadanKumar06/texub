@@ -8,9 +8,8 @@ import { Button } from "@mui/material";
 import { FormControlLabel, TextField, InputLabel } from "@mui/material";
 import "./styles.scss";
 import { useStateValue } from "../../../../../store/state";
-import { LocalizationProvider } from "@mui/lab";
-import { MobileDatePicker } from "@mui/x-date-pickers/MobileDatePicker";
-import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import { MobileDatePicker,LocalizationProvider } from "@mui/x-date-pickers";
+import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import axios from "axios";
 import Constant from "../../../../../Constant";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
@@ -213,7 +212,7 @@ export default function BasicModal({ PopupTransaction }) {
                           {...params}
                           className="inputfield-box calendar_info"
                           InputProps={{
-                            endAdornment: <CalendarMonthIcon />,
+                            endAdornment: <CalendarTodayIcon />,
                           }}
                           inputProps={{
                             ...params.inputProps,
