@@ -21,6 +21,11 @@ const styles = (theme) => ({
     "& img": {
       width: "24px",
     },
+    "& MuiBadge-badge": {
+      transform:"translate(100% 0)",
+     
+     
+    },
     "& .MuiListItemButton-root": {
       display: "flex",
       gap: "10px",
