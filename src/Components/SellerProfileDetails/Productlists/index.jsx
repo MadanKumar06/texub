@@ -188,7 +188,7 @@ const Productlists = ({
           </Select>
         </FormControl>
       </Box>
-      <Box sx={{ minWidth: 120 }}>
+      <Box sx={{ minWidth: 120 }}  className="eta_field">
         <FormControl fullWidth className="product_dropdown_price">
           <InputLabel id="demo-simple-select-label">ETA</InputLabel>
           <Select
