@@ -23,7 +23,7 @@ import axios from "axios";
 import Constant from "../../../../Constant";
 import moment from "moment";
 import swal from "sweetalert2";
-const Index = ({ orders, currentorder }) => {
+const Index = ({ orders, currentorder, setisVieworders, setisOrders }) => {
   function formatToCurrency(price) {
     return price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
   }
@@ -75,7 +75,18 @@ const Index = ({ orders, currentorder }) => {
           customerId: user?.id,
         },
       });
-      setdetailsorder(orderdetails?.data ? orderdetails?.data : []);
+      if (orderdetails?.data?.[0]?.status === false) {
+        swal.fire({
+          text: `${orderdetails.data?.[0]?.message}`,
+          icon: "error",
+          showConfirmButton: false,
+          timer: 3000,
+        });
+        setisVieworders(false);
+        setisOrders(true);
+      } else {
+        setdetailsorder(orderdetails?.data ? orderdetails?.data : []);
+      }
       dispatch({
         type: "SET_IS_LOADING",
         value: false,
@@ -127,9 +138,9 @@ const Index = ({ orders, currentorder }) => {
                 <span className="modal_name">{name}</span>
                 <span className="modal_content">{discription}</span>
                 <div className="serial_number">
-                  <span onClick={() => handleOpen()}>
+                  {/* <span onClick={() => handleOpen()}>
                     Show Serial Numbers <KeyboardArrowDownOutlinedIcon />
-                  </span>
+                  </span> */}
                 </div>
               </div>
             </div>

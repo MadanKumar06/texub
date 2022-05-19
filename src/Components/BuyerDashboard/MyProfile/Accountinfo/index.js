@@ -7,12 +7,12 @@ import { ArrowBackIosNew } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import PhoneInput from "react-phone-input-2";
 import axios from "axios";
-import baseUrl from "../../../../../src/Constant";
 import { useStateValue } from "../../../../store/state";
 import Constant from "../../../../../src/Constant";
+import swal from "sweetalert2";
 
 const Index = (classes) => {
-  const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
+  const [{ geo, customstore }, dispatch] = useStateValue();
   let { validation_error } = classes;
   const [AccountInfoData, setAccountInfoData] = useState({
     first_name: "",
@@ -22,7 +22,6 @@ const Index = (classes) => {
     new_password: "",
     new_confrim_password: "",
   });
-  const [CountryDropdown, setCountryDropdown] = useState(null);
   const [inputValidation, setInputValidation] = useState({
     first_name: "",
     last_name: "",
@@ -33,9 +32,6 @@ const Index = (classes) => {
   });
   useEffect(() => {
     const userData = JSON.parse(localStorage.getItem("userdata"));
-    let company_name = userData?.custom_attributes?.filter(
-      (itm) => itm?.attribute_code === "customer_company_name"
-    );
     let mobile_number = userData?.custom_attributes?.filter(
       (itm) => itm?.attribute_code === "customer_mobile_number"
     );
@@ -206,6 +202,10 @@ const Index = (classes) => {
   // update API
   const updateprofile = async () => {
     let user = JSON.parse(localStorage.getItem("userdata"));
+    dispatch({
+      type: "SET_IS_LOADING",
+      value: true,
+    });
     try {
       const updatedata = await axios({
         method: "post",
@@ -224,30 +224,32 @@ const Index = (classes) => {
           },
         },
       });
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
+      if (updatedata?.data?.[0]?.status) {
+        swal.fire({
+          text: `${updatedata?.data?.[0]?.message}`,
+          icon: "success",
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      } else {
+        swal.fire({
+          text: `${updatedata?.data?.[0]?.message}`,
+          icon: "error",
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      }
     } catch (e) {
-      console.log(e);
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
     }
   };
-
-  //Api
-  useEffect(() => {
-    const fetchCountryList = () => {
-      axios
-        .get(baseUrl + "/getCountryList", {
-          headers: {
-            "Content-type": "application/json",
-          },
-        })
-        .then((response) => {
-          setCountryDropdown(response?.data);
-        })
-        .catch((error) => {});
-    };
-    fetchCountryList();
-  }, []);
-
-  console.log(AccountInfoData);
-
   return (
     <div className="account_ifo_main">
       <span className="Account_heading">
