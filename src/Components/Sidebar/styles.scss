@@ -223,9 +223,20 @@
         font-weight: 600;
         letter-spacing: 0.66px;
         margin-left: 7px;
+        span.inActive_image{
+          svg{
+            g{
+              stroke: #000;
+              path{
+                stroke: #000;
+              }
+            }
+          }
+
+        }
 
         &:last-child {
-          margin-top: 20px;
+          margin-top: 10px;
         }
       }
     }

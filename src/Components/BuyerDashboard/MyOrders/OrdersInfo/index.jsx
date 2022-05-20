@@ -473,16 +473,16 @@ const Index = ({ orders, setisVieworders, setisOrders }) => {
                             Date & Time :
                             <span className="value">
                               {" "}
-                              {
-                                detailsorder?.[0]?.order_details?.[0]
-                                  ?.transaction_date
-                              }
+                              {moment(detailsorder?.[0]?.order_details?.[0]
+                                  ?.transaction_date).format("DD/MM/YYYY")}
+                            
                             </span>
-                            {/* <Divider orientation="vertical" />
+                            <Divider orientation="vertical" />
                             <span className="value_price">
                               {" "}
-                              {transaction_info?.[0]?.time}
-                            </span> */}
+                              {moment(detailsorder?.[0]?.order_details?.[0]
+                                  ?.transaction_date).format("HH:mm:ss")}
+                            </span>
                           </span>
                         </div>
                       ) : (
