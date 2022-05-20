@@ -243,7 +243,7 @@
   .Blogs_main .Blogs_list .Blogs_details .Blogs_heading,
   .Blogs_main .blogs_queue_section .mainheading,
   .Blogs_main .blogs_popular_main .mainheading {
-    font-size: 24px;
+    font-size: 28px;
   }
 
   .Blogs_main .Blogs_list .Blogs_details .Blogs_description .description1,
@@ -422,6 +422,11 @@
         }
       }
     }
+  }
+}
+@media (max-width: 850px) {
+  .Blogsmain_main .blogs_popular_main .mainheading, .Blogs_main .Blogs_list .Blogs_details .Blogs_heading, .Blogs_main .blogs_queue_section .mainheading, .Blogs_main .blogs_popular_main .mainheading{
+    font-size: 24px;
   }
 }
 @media (max-width: 768px) {

@@ -113,7 +113,7 @@
   }
   .blogs_popular_main {
     background-color: #ffffff;
-    padding: 1px 40px 30px 50px !important;
+    padding: 1px 20px 30px 20px !important;
     .mainheading {
       font-size: 34px;
       color: #333333;
@@ -123,7 +123,7 @@
     .blogs_popular {
       display: flex;
       flex-wrap: wrap;
-      gap: 20px;
+      gap: 10px;
       .blogs_queue_section {
         padding: 0;
         display: flex;
@@ -133,7 +133,7 @@
 
         .blogs_q_img_section {
           display: flex;
-          gap: 46px;
+          gap: 30px;
 
           .blog__imageholder {
             .blogs_q {
@@ -145,7 +145,7 @@
           .blogs_queue_text {
             display: flex;
             flex-direction: column;
-            gap: 10px !important;
+            gap: 5px !important;
             padding: 55px 0 0 0 !important;
             .blogs_date {
               color: #002d56;
@@ -160,7 +160,7 @@
             }
             .blogs_queue_heading {
               color: #ddb363;
-              font-size: 30px;
+              font-size: 24px;
               letter-spacing: 0.9px;
               font-family: "Source Sans Pro";
             }
@@ -168,7 +168,10 @@
               font-family: "Source Sans Pro";
               letter-spacing: 0.54px;
               color: #333333;
-              font-size: 18px;
+              font-size: 16px;
+              p{
+                margin: 10px 0;
+              }
             }
             .blogs_readblog {
               color: #002d56;

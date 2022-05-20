@@ -7,6 +7,8 @@ import { Benfits } from "../../Components/Home/Benfits/Benfits";
 // import { Auctions } from "../../Components/Home/Auctions/Auctions";
 import { B2Bconnect } from "../../Components/Home/B2Bconnect/B2Bconnect";
 import { SubscriptionInfo } from "../../Components/Home/SubscriptionInfo/SubscriptionInfo";
+import PopularBlogList  from "../../Pages/CMS/Company/Blogs/Blogsmain/PopularBlog.js";
+
 import { useStateValue } from "../../store/state";
 import { useParams, useNavigate } from "react-router-dom";
 
@@ -56,6 +58,7 @@ export const Home = () => {
           <Benfits data={homeContent?.block_4} />
           <Todaysdeal data={homeContent?.block_5} />
           <SubscriptionInfo data={homeContent?.block_6} />
+          <PopularBlogList />
           {/* <Auctions data={homedata?.banner} /> */}
           {/* <B2Bconnect data={homeContent?.block_6} /> */}
         </>

@@ -30,6 +30,9 @@ import map from '../../../Assets/Aboutus/banner/map.png'
 import board1 from '../../../Assets/Aboutus/members/board1.png'
 import board2 from '../../../Assets/Aboutus/members/board2.png'
 import board3 from '../../../Assets/Aboutus/members/board3.png'
+import board_member1 from '../../../Assets/Aboutus/membersimg/board_member1.png'
+import board_member2 from '../../../Assets/Aboutus/membersimg/board_member2.png'
+import board_member3 from '../../../Assets/Aboutus/membersimg/board_member3.png'
 
 import susir from '../../../Assets/Aboutus/membersimg/susir.png'
 import yasuo from '../../../Assets/Aboutus/membersimg/yasuo.png'
@@ -41,12 +44,33 @@ import aditya from '../../../Assets/Aboutus/membersimg/aditya.png'
 import suchit from '../../../Assets/Aboutus/membersimg/suchit.png'
 import tushar from '../../../Assets/Aboutus/membersimg/tushar.png'
 
+import vision_bg from '../../../Assets/Aboutus/vision_bg.png'
+import vision_quote from '../../../Assets/Aboutus/vision_quote.png'
+import mission_quote from '../../../Assets/Aboutus/mission_quote.png'
+import values_quote from '../../../Assets/Aboutus/values_quote.png'
+import board_member_quote_bg from '../../../Assets/Aboutus/board_member_quote_bg.png'
+import board_member_bg_2 from '../../../Assets/Aboutus/board_member_bg_2.png'
+import board_member_bg_3 from '../../../Assets/Aboutus/board_member_bg_3.png'
+
+import advisory_board_bg from '../../../Assets/Aboutus/advisory_board_bg.png'
+import advisory_board_bg2 from '../../../Assets/Aboutus/advisory_board_bg2.png'
+
+import management_team_bg from '../../../Assets/Aboutus/advisory_board_bg2.png'
+import management_team_bg2 from '../../../Assets/Aboutus/advisory_board_bg2.png'
+
+
+
+
+
+
+
 function Index() {
 
     const info = [
-        {name: 'VISION', image: blue, color: '#002D56'},
-        {name: 'MISSION', image: yellow, color: '#DDB363'},
-        {name: 'VALUES', image: blue1, color: '#002D56'}
+        {name: 'VISION', image: blue, color: '#002D56', bg:vision_bg, quote:vision_quote , quote1: 'One World - One Market',
+            quote2:'Business Without Borders'},
+        {name: 'MISSION', image: yellow, color: '#DDB363', bg:vision_bg, quote:mission_quote, mission1:'To Provide Safe,', mission2: 'Stable And Seamless', mission3:'Global B2b Trade Ecosystem For', mission4:'Brands, Distributors And Resellers Of It.'},
+        {name: 'GOVERNANCE', image: blue1, color: '#002D56', bg:vision_bg, quote:vision_quote , value1:'People', value2:"Purpose" , value3: "Process", value4: "Pereformance"}
     ]
 
     console.log(info)
@@ -63,19 +87,19 @@ function Index() {
     ]
 
     const board = [
-        {bg: board1, name: 'Niranjan Gidwani', position: 'DIRECTOR', content: 'Over 38 years of hardcore senior management experience with a strong exposure to handling international business. He had working stints in India, Hongkong, Germany, Singapore and Dubai. Expertise in business from different vantage points, including general management , strategy and implementation, building and scaling up teams and processes, grooming future leaders, international business development, handling international start- ups, marketing, global sourcing for various categories.'},
-        {bg: board2, name: 'Axel Holst', position: 'MD EUROPE', content: 'International sales director having in-depth and broad experience in multiple industry domains and track-proven business development competences. Focussed leadership attitude and target driven on building and delivering success to enterprises and team based across industry. Dedicated, flexible, multi-faceted, open-minded and quinlingual.'},
-        {bg: board3, name: 'Suchit Kumar', position: 'CO-FOUNDER & CEO', content: 'Over 30 years of experience in setting up business network globally. Accomplished leader with track record of success in bringing global and holistic perspective to enterprises in transformation.'},
+        {image: board_member1, bg: board1, quote_bg:board_member_quote_bg, name: 'Niranjan Gidwani', position: 'DIRECTOR', content: 'Over 38 years of hardcore senior management experience with a strong exposure to handling international business. He had working stints in India, Hongkong, Germany, Singapore and Dubai. Expertise in business from different vantage points, including general management , strategy and implementation, building and scaling up teams and processes, grooming future leaders, international business development, handling international start- ups, marketing, global sourcing for various categories.'},
+        {image: board_member2, bg: board2, quote_bg:board_member_bg_2, name: 'Axel Holst', position: 'MD EUROPE', content: 'International sales director having in-depth and broad experience in multiple industry domains and track-proven business development competences. Focussed leadership attitude and target driven on building and delivering success to enterprises and team based across industry. Dedicated, flexible, multi-faceted, open-minded and quinlingual.'},
+        {image: board_member3, bg: board3, quote_bg:board_member_bg_3, name: 'Suchit Kumar', position: 'CO-FOUNDER & CEO', content: 'Over 30 years of experience in setting up business network globally. Accomplished leader with track record of success in bringing global and holistic perspective to enterprises in transformation.'},
     ]
 
     const advisary = [
-        {image: susir,name: 'Susir Kumar', designation: 'BUSINESS, STRATEGY & FINANCE', content: 'Founded the most successful global BPO venture. Delivered significant profitability and value to all key stakeholders : employees, clients and PE. Over 3o years of experience in the services industry specializing in setting up new ventures, M&A advisory and corporate structuring. Chairman & Board member of VSF global, board member TaskUs, Refyne, Sports Village & Ingroup consulting.'},
-        {image: yasuo, name: 'Yasuo Okada', designation: 'TECHNICAL', content: 'IT Strategist and specialist in Information security, Data privacy, Compliances and Digital transformation. Expert in overseeing changes to enterprise-wide technology, cyber and risk management, culture, skills and behaviours.'}
+        {image: susir, quote_bg:advisory_board_bg,  name: 'Susir Kumar', designation: 'BUSINESS, STRATEGY & FINANCE', content: 'Founded the most successful global BPO venture. Delivered significant profitability and value to all key stakeholders : employees, clients and PE. Over 3o years of experience in the services industry specializing in setting up new ventures, M&A advisory and corporate structuring. Chairman & Board member of VSF global, board member TaskUs, Refyne, Sports Village & Ingroup consulting.'},
+        {image: yasuo, quote_bg:advisory_board_bg2, name: 'Yasuo Okada', designation: 'TECHNICAL', content: 'IT Strategist and specialist in Information security, Data privacy, Compliances and Digital transformation. Expert in overseeing changes to enterprise-wide technology, cyber and risk management, culture, skills and behaviours.'}
     ]
 
     const mgmt = [
-        {image: vinay, name: 'Vinay Pagare', designation: 'HEAD OPERATIONS & TECHNOLOGY', content: 'IT Engineer turned entrepreneur with 12 years of experience in IT, Digital Transformation space. Vinay has proven management experience in setting up new ventures & building system driven business. Worked with TCS, BNI globally.' },
-        {image: ahmed, name: 'Ahmed Rayyan', designation: 'VICE PRESIDENTS, AMERICA', content: 'Dedicated business development professional with over 20 years of experience in market research, team management and global marketing in the Middle East and Africa. Speciality in market trends and IT development in the US. Led multiple projects for business initiatives worldwide with a focus on e-commerce.'},
+        {image: vinay, quote_bg:advisory_board_bg, name: 'Vinay Pagare', designation: 'HEAD OPERATIONS & TECHNOLOGY', content: 'IT Engineer turned entrepreneur with 12 years of experience in IT, Digital Transformation space. Vinay has proven management experience in setting up new ventures & building system driven business. Worked with TCS, BNI globally.' },
+        {image: ahmed, quote_bg:advisory_board_bg, name: 'Ahmed Rayyan', designation: 'VICE PRESIDENTS, AMERICA', content: 'Dedicated business development professional with over 20 years of experience in market research, team management and global marketing in the Middle East and Africa. Speciality in market trends and IT development in the US. Led multiple projects for business initiatives worldwide with a focus on e-commerce.'},
     ]
 
     const core = [
@@ -93,19 +117,46 @@ function Index() {
     <div className='aboutus'>
         <div className='aboutus__banner'>
             <img src={topbanner} alt="" />
+             <div className="aboutus__topbanner__floatingtext">
+                <p className="topbanner__text1">Pioneering The Future Of IT Trade</p>
+                <p className="topbanner__text2">Global B2B Marketplace</p>
+            </div>
         </div>
 
         <div className='aboutus__info'>
-            <h2>About Us</h2>
-            <p>Texub is a global B2B marketplace that offers a secure technology for global B2B IT trade. Texub is a digital platform that allows business to exchange commerce by offering a list of best selling products for verified buyers through verified sellers and reduces analytical work. With our digital ecosystem, Texub provides a compelling journey into the IT business economy. Our scalable cloud platform for Brands, distributors, and resellers improves the buying and selling experience while maintaining trade privacy.</p>
+            <div className='about_info_content'>
+                <h2>About Us</h2>
+                <p>Texub is a global B2B marketplace that offers a secure technology for global B2B IT trade. Texub is a digital platform that allows business to exchange commerce by offering a list of best selling products for verified buyers through verified sellers and reduces analytical work. With our digital ecosystem, Texub provides a compelling journey into the IT business economy. Our scalable cloud platform for Brands, distributors, and resellers improves the buying and selling experience while maintaining trade privacy.</p>
+            </div>
         </div>
 
         <div className='aboutus__content'>
             <ul>
             {info.map(data => 
-                <li key={data.name}>
+                <li key={data.name} className='vision_quote_section'>
                     <img src={data.image} alt="" />
                     <p style={{color: data.color}}>{data.name}</p>
+                    <div className='about_content_bg'>
+                        <img src={data.bg} alt="" />
+                        <div className='quote_section'>
+                            <div className='quote_block'>
+                                <img src={data.quote} alt="" />
+                                <div className='quote_msg'>
+                                    <span className='quote_word1'>{data.quote1}</span>
+                                    <span className='quote_word2'>{data.quote2}</span>
+                                    <span className='quote_word3'>{data.quote3}</span>
+                                    <span className='quote_word3'>{data.mission1} <span className='mission_special quote_word1'>{data.mission2}</span></span>
+                                    <span className='quote_word3'>{data.mission3}</span>
+                                    <span className='quote_word3'>{data.mission4}</span>
+                                    <span className='quote_word1'>{data.value1}</span>
+                                    <span className='quote_word1'>{data.value2}</span>
+                                    <span className='quote_word1'>{data.value3}</span>
+                                    <span className='quote_word1'>{data.value4}</span>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </li>
             )}
             </ul>
@@ -167,9 +218,17 @@ function Index() {
             <h2>Board Members</h2>
             <div className='members__content'>
                 {board.map(data => <p>
-                    <h4>{data.name}</h4>
-                    <h2>{data.position}</h2>
-                    <p style={{ backgroundImage: data.bg }}>{data.content}</p>
+                     <div className='advisory__top'>
+                        <div className='board_member_info'>
+                         <img src={data.image} alt="" />
+                        </div>
+                        <h4>{data.name}</h4>
+                        <h2>{data.position}</h2>
+                    </div>
+                    <div className='quote_bg'>
+                        <img src={data.quote_bg} alt="" />
+                        <p style={{ backgroundImage: data.bg }}>{data.content}</p>
+                    </div>
                 </p>)}
             </div>
         </div>
@@ -186,7 +245,10 @@ function Index() {
                             <h5>{data.name}</h5>
                             <h2>{data.designation}</h2>
                         </div>
-                        <p>{data.content}</p>
+                       <div className='quote_bg'>
+                            <img src={data.quote_bg} alt="" />
+                            <p style={{ backgroundImage: data.bg }}>{data.content}</p>
+                        </div>
                     </li>)}
                 </ul>
             </div>
@@ -204,7 +266,10 @@ function Index() {
                             <h5>{data.name}</h5>
                             <h2>{data.designation}</h2>
                         </div>
-                        <p>{data.content}</p>
+                         <div className='quote_bg'>
+                            <img src={data.quote_bg} alt="" />
+                            <p style={{ backgroundImage: data.bg }}>{data.content}</p>
+                        </div>
                     </li>)}
                 </ul>
             </div>
