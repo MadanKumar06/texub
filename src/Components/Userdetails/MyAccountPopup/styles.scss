@@ -56,7 +56,11 @@
         width: 100%;
         &:hover {
           color: #002d56;
+          
         }
+        svg{
+            width: 31px;
+          }
       }
       text-decoration: none;
       &:hover {
@@ -125,6 +129,9 @@
     }
     .MuiMenuItem-root:last-child {
       border: none;
+      svg{
+        width: 31px;
+      }
     }
     &:hover {
       color: #002d56;

@@ -32,7 +32,7 @@ const MyAccountPopup = () => {
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "Sign Out!",
+        confirmButtonText: "Signout!",
       })
       .then((result) => {
         if (result.isConfirmed) {

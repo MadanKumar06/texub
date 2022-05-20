@@ -236,16 +236,17 @@
       gap: 10px;
       .sellerlabel {
         color: #5c6369;
-        font-size: 16px;
-        font-weight: 600;
+        font-size: 14px;
+        font-weight: 400;
         letter-spacing: 0.96px;
       }
 
       .sellervalue {
         background-color: #f8f0e0;
         color: #5c6369;
-        font-size: 18px;
+        font-size: 20px;
         padding: 0.3em 1em;
+        font-weight: 800;
         box-shadow: rgb(99 99 99 / 20%) 0px 2px 8px 0px;
       }
     }

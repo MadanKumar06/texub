@@ -666,6 +666,7 @@
             justify-content: space-between;
             padding-right: 0;
             margin-left: 0;
+            gap: 5%;
             .label {
               width: 100%;
             }
@@ -810,6 +811,11 @@
         .tableinfo__orderdata {
           width: 100%;
           padding: 10px 0;
+          p{
+            .value{
+              font-size: 18px;
+            }
+          }
         }
       }
     }
@@ -823,5 +829,8 @@
         }
       }
     }
+  }
+  .pendinginvoice .pendinginvoice__bottom .bottom__terms h4{
+    font-size: 20px;
   }
 }

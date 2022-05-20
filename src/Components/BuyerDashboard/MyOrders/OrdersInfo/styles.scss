@@ -61,6 +61,9 @@
       .MuiTableRow-root:last-child .MuiTableCell-root {
         border-bottom: 0;
       }
+      .MuiTableRow-root{
+        vertical-align: top;
+      }
       .MuiTableCell-root {
         font-size: 16px;
         text-align: center;
@@ -328,7 +331,7 @@
               border: 1px #00000000;
               text-align: left;
             }
-            .total_amount {
+            .total_amount1 {
               color: #333c42;
               font-size: 22px;
               letter-spacing: 0.78px;
