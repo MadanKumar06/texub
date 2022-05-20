@@ -44,15 +44,12 @@ export const Departments = ({ data, categories }) => {
     setsavedsearch(JSON.parse(localStorage.getItem("searchhistory")));
   }, []);
 
-  // const handleClick=()=>{
-  //   to={{
-  //     pathname: `/${
-  //       customnostore ? customnostore : geo?.country_name
-  //     }/products`,
-  //     state: { name: item?.attribute, value: item?.value },
-  //   }}
-  // }
-  // onClick={()=>handleClick()}
+  const handleClick = (event) => {
+    history(`/${customnostore ? customnostore : geo?.country_name}/products`, {
+      state: { name: event?.attribute, value: event?.value },
+    });
+  };
+
   return (
     <div className="Departments">
       <div className="Departments_Body_Search">
@@ -75,7 +72,16 @@ export const Departments = ({ data, categories }) => {
             >
               {categories?.length &&
                 categories?.map((item, ind) => (
-                  <li key={ind} className="Body_Down_Pannel_btn_items" >
+                  <li
+                    key={ind}
+                    className="Body_Down_Pannel_btn_items"
+                    onClick={() =>
+                      handleClick({
+                        attribute: item?.attribute,
+                        value: item?.value,
+                      })
+                    }
+                  >
                     {item.title}
                     <span
                       className={`${

@@ -1,123 +1,54 @@
-import React, { useState } from "react";
-import "./styles.scss";
-import MUITable from "../../Common/MUITable";
+/* eslint-disable eqeqeq */
+import React, { useState, useEffect } from "react";
+import MUITable from "../../../Components/Common/MUITable";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import Pagination from "../../Pagination";
-import Vieworders from "../../Common/Vieworders";
-import {useStateValue} from '../../../store/state'
+import "./styles.scss";
+import { useStateValue } from "../../../store/state";
+import OrdersInfo from "../../BuyerDashboard/MyOrders/OrdersInfo";
+import axios from "axios";
+import Constant from "../../../Constant";
+import moment from "moment";
+import { IconButton, InputBase, Paper } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
 import NodataFound from "../../../Assets/CommonImage/NodataFound.webp.png";
 
+function Index({ searchdata, searchupdate }) {
+  const [filtereddirect, setfiltereddirect] = useState([]);
+  const [orderlist, setorderlist] = useState([]);
 
-function SubAccountOrders() {
-  const [{geo, customstore, customnostore}, dispatch] = useStateValue()
-  const [tableData, setTableData] = useState([]);
-  const [isOrders, setisOrders] = useState(true);
+  function formatToCurrency(price) {
+    return price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
+  }
+  const [{ customnostore, geo }, dispatch] = useStateValue();
+
+  const PaginateDataSplit = (event) => {
+    if (orderlist?.length === 0) return setfiltereddirect([]);
+    setfiltereddirect(event);
+  };
+
   const [isVieworders, setisVieworders] = useState(false);
-  const orders = () => {
+  const [currentorder, setcurrentorder] = useState();
+  const orders = (value) => {
+    setcurrentorder(value ? value : "");
     setisVieworders(true);
     setisOrders(false);
   };
-  const table = [
-    {
-      user_name: "Srikant Verma",
-      order_id: "000000006",
-      date: "02/04/2022",
-      sub_total: "₹ 3200.0",
-      hub: "Delhi",
-      item_qty: 60,
-      status: "Delivered",
-      action: "View Order",
-    },
-    {
-      user_name: "Ravi Malhotra",
-      order_id: "000000006",
-      date: "05/05/2022",
-      sub_total: "₹ 3200.0",
-      hub: "Pune",
-      item_qty: 30,
-      ordertotal: 75112,
-      status: "Confirm",
-      action: "View Order",
-    },
-    {
-      user_name: "Ranga",
-      order_id: "000000006",
-      date: "02/04/2022",
-      sub_total: " ₹ 3200.0",
-      hub: "Delhi",
-      item_qty: 60,
-      status: "Pending",
-      action: "View Order",
-    },
-  ];
+  const [isOrders, setisOrders] = useState(true);
+  useEffect(() => {
+    window.localStorage.setItem("buyerclearViewOrder", false);
+  }, []);
 
-  const columns = [
-    { name: "user_name", label: "User Name" },
-    {
-      name: "order_id",
-      label: "Order ID",
-      options: {
-        customBodyRender: (value) => {
-          return <div className="subaccount__orders__order_id">{value}</div>;
-        },
-      },
-    },
-    { name: "hub", label: "HUB" },
-    {
-      name: "date",
-      label: "Date",
-      options: {
-        customBodyRender: (value) => {
-          return <div className="subaccount__orders__date">{value}</div>;
-        },
-      },
-    },
-    { name: "item_qty", label: "Items Qty" },
-    {
-      name: "sub_total",
-      label: "Subtotal",
-      options: {
-        customBodyRender: (value) => {
-          return <div className="subaccount__orders__subtotal">{value}</div>;
-        },
-      },
-    },
-    {
-      name: "status",
-      label: "Status",
-      options: {
-        customBodyRender: (value) => {
-          return (
-            <div
-              className={`${
-                (value === "Pending" && "subaccount__orders__pending") ||
-                (value === "Delivered" && "subaccount__orders__delivered")
-              } ${value === "Confirm" && "subaccount__orders__confirmed"}`}
-            >
-              {value}
-            </div>
-          );
-        },
-      },
-    },
-    {
-      name: "action",
-      label: "Action",
-      options: {
-        customBodyRender: (value) => {
-          return (
-            <div
-              className="subaccount__orders__action"
-              onClick={() => orders()}
-            >
-              {value}
-            </div>
-          );
-        },
-      },
-    },
-  ];
+  const clearview = JSON.parse(
+    window.localStorage.getItem("buyerclearViewOrder")
+  );
+  useEffect(() => {
+    if (clearview === true) {
+      setisVieworders(false);
+      setisOrders(true);
+    }
+  }, [clearview]);
   const options = {
     filter: false,
     filterType: "dropdown",
@@ -139,37 +70,248 @@ function SubAccountOrders() {
       },
     },
   };
-  const PaginateDataSplit = (event) => {
-    setTableData(event);
-  };
-  return (
-    <div className="subaccount__orders">
-      <div className="subaccount__orders__back">
-        <Link to={`/${customnostore ? customnostore : geo?.country_name}/buyerdashboard/dashboard`}>
-          <ArrowBackIosNew />
-          <span>Back</span>
-        </Link>
-      </div>
 
-      {/* {isOrders && (
+  // const [orderlist, setorderlist] = useState([]);
+
+  useEffect(async () => {
+    dispatch({
+      type: "SET_IS_LOADING",
+      value: true,
+    });
+    const user = JSON.parse(localStorage.getItem("userdata"));
+    try {
+      const orderlist = await axios({
+        method: "post",
+        data: {
+          buyerId: user?.id,
+        },
+        url: `${Constant?.baseUrl()}/listSubAccountOrders`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+      setorderlist(orderlist?.data);
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
+    } catch (e) {
+      console.log(e);
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
+    }
+  }, []);
+
+  const columns = [
+    {
+      name: "name",
+      label: "User Name",
+      options: {
+        customBodyRender: (value) => {
+          return <div className="myorders__orderid">{value}</div>;
+        },
+      },
+    },
+    {
+      name: "order_id",
+      label: "Order ID",
+      options: {
+        customBodyRender: (value) => {
+          return <div className="myorders__orderid">{value}</div>;
+        },
+      },
+    },
+    { name: "HUB", label: "HUB" },
+    {
+      name: "date",
+      label: "Date",
+      options: {
+        customBodyRender: (value) => {
+          return (
+            <div className="myorders__date">
+              <span className="price">
+                {moment(value).format("DD/MM/YYYY")}
+              </span>
+            </div>
+          );
+        },
+      },
+    },
+    { name: "item_quantity", label: "Items Qty" },
+    {
+      name: "order_total",
+      label: "Subtotal",
+      options: {
+        customBodyRender: (value, tablemeta) => {
+          let currency = tablemeta?.rowData[8];
+          return (
+            <div className="myorders__ordertotal">
+              <span className="currency">{currency} </span>
+              <span className="price">
+                {" "}
+                {formatToCurrency(parseInt(value))}
+              </span>
+            </div>
+          );
+        },
+      },
+    },
+    {
+      name: "order_status",
+      label: "Order Status",
+      options: {
+        customBodyRender: (value) => {
+          return (
+            <div
+              className={`
+                    ${value == "1" && "myorders__pending"}
+                    ${value == "2" && "myorders__confirm"}
+                    ${value == "4" && "myorders__delivered"}
+                    ${value == "3" && "myorders__dispatched"}
+                    `}
+            >
+              {value == "1" ? "Pending" : ""}
+              {value == "2" ? "Confirm" : ""}
+              {value == "3" ? "Dispatched" : ""}
+              {value == "4" ? "Delivered" : ""}
+            </div>
+          );
+        },
+      },
+    },
+    // {
+    //   name: "payment_status",
+    //   label: "Payment Status",
+    //   options: {
+    //     customBodyRender: (value) => {
+    //       return (
+    //         <div
+    //           className={`
+    //         ${value == "1" && "myorders__pending"}
+    //         ${value == "2" && "myorders__delivered"}
+    //         ${value == "3" && "myorders__failed"}
+    //         `}
+    //         >
+    //           {value == "1" ? "Pending" : ""}
+    //           {value == "2" ? "Completed" : ""}
+    //           {value == "3" ? "Failed" : ""}
+    //         </div>
+    //       );
+    //     },
+    //   },
+    // },
+    {
+      name: "order_id",
+      label: "Action",
+      options: {
+        customBodyRender: (value) => {
+          return (
+            <div className="myorders__action" onClick={() => orders(value)}>
+              View Order
+            </div>
+          );
+        },
+      },
+    },
+    {
+      name: "currency",
+      label: " ",
+      options: {
+        display: false,
+      },
+    },
+  ];
+
+  return (
+    <div className="myorders">
+      {isOrders && (
         <>
+          {" "}
+          <div className="myordersection__search">
+            <Paper
+              className="myordersection__searchinput"
+              component="form"
+              sx={{ p: "2px 4px", display: "flex", alignItems: "center" }}
+            >
+              <InputBase
+                sx={{ ml: 1, flex: 1 }}
+                placeholder="Search..."
+                inputProps={{ "aria-label": "search google maps" }}
+                className="myordersection_input"
+              />
+              <IconButton
+                type="submit"
+                sx={{ p: "10px" }}
+                aria-label="search"
+                onClick={(event) => event.preventDefault()}
+              >
+                <SearchIcon />
+              </IconButton>
+            </Paper>
+            {/* <div className="sellerdashboard__notiIcon">
+                <img src={notification} alt="" />
+              </div>
+              <span>Notification</span> */}
+          </div>
           <MUITable
             columns={columns}
-            table={tableData}
+            table={filtereddirect}
             options={options}
-            className="subaccount__orders__table"
+            className="myorders__table"
           />
-
-          <Pagination
-            PaginateData={PaginateDataSplit}
-            DataList={table}
-            PagePerRow={10}
-          />
+          {orderlist?.length > 0 ? (
+            <Pagination
+              PaginateData={PaginateDataSplit}
+              DataList={orderlist?.length ? orderlist : []}
+              PagePerRow={10}
+            />
+          ) : (
+            ""
+          )}
         </>
       )}
-      {isVieworders && <Vieworders />} */}
+      {isVieworders && (
+        <OrdersInfo
+          currentorder={currentorder}
+          orders={orders}
+          setisVieworders={setisVieworders}
+          setisOrders={setisOrders}
+        />
+      )}
+      <div className="my_orders__footer">
+        <div className="my_orders__container">
+          {isVieworders === true ? (
+            <>
+              <div
+                className="back_button"
+                onClick={() => {
+                  setisVieworders(false);
+                  setisOrders(true);
+                }}
+                style={{ cursor: "pointer" }}
+              >
+                <ArrowBackIosNew />
+                <span className="back">Back</span>
+              </div>
+            </>
+          ) : (
+            <>
+              <Link
+                to={`/${
+                  customnostore ? customnostore : geo?.country_name
+                }/buyerdashboard/dashboard`}
+              >
+                <ArrowBackIosNew />
+                <span>Back</span>
+              </Link>
+            </>
+          )}
+        </div>
+      </div>
     </div>
   );
 }
 
-export default SubAccountOrders;
+export default Index;

@@ -103,6 +103,9 @@ function Index({
           (per) =>
             per?.value === "can-place-order" && per?.permission_value === 0
         );
+
+  let subAccountPermission = permissions?.length === 0 ? false : true;
+
   return (
     <div className={`${barstate ? "sidebaropen" : "sellerdashboard__sidebar"}`}>
       <Clear className="sidebar__close" onClick={() => setbarstate(false)} />
@@ -125,18 +128,18 @@ function Index({
                     "sellerdashboard__currentselection" &&
                     color === "yellow" &&
                     "sellerbg") ||
-                    (currenttab === data.registerproduct &&
-                      "sellerdashboard__currentselection" &&
-                      color === "yellow" &&
-                      "sellerbg") ||
-                    (currenttab === data.pendingProduct &&
-                      "sellerdashboard__currentselection" &&
-                      color === "yellow" &&
-                      "sellerbg") ||
-                    (currenttab === data.bulkupload &&
-                      "sellerdashboard__currentselection" &&
-                      color === "yellow" &&
-                      "sellerbg") ||
+                  (currenttab === data.registerproduct &&
+                    "sellerdashboard__currentselection" &&
+                    color === "yellow" &&
+                    "sellerbg") ||
+                  (currenttab === data.pendingProduct &&
+                    "sellerdashboard__currentselection" &&
+                    color === "yellow" &&
+                    "sellerbg") ||
+                  (currenttab === data.bulkupload &&
+                    "sellerdashboard__currentselection" &&
+                    color === "yellow" &&
+                    "sellerbg") ||
                   (currenttab === data.url &&
                     "sellerdashboard__currentselection" &&
                     color === "blue" &&
@@ -165,7 +168,8 @@ function Index({
               if (
                 (Wtbpermission && data?.url === "wanttobuy") ||
                 (placeorder && data?.url === "myorder") ||
-                (wishlistpermission && data?.url === 'wishlist')
+                (wishlistpermission && data?.url === "wishlist") ||
+                (subAccountPermission && data?.url === "subaccountorders")
               ) {
               } else {
                 return (
