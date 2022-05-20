@@ -52,7 +52,7 @@ const BuyerDashboard = () => {
     );
   };
 
-  let [permission, setpermission] = useState()
+  let [permission, setpermission] = useState();
   useEffect(() => {
     let permissions = JSON.parse(localStorage.getItem("permissions"));
     let pendingpermission =
@@ -63,9 +63,10 @@ const BuyerDashboard = () => {
               per?.value === "can-raise-wtb-request" &&
               per?.permission_value === 0
           );
-          setpermission(pendingpermission)
-  }, [])
+    setpermission(pendingpermission);
+  }, []);
 
+  console.log(dashboarddata);
   return (
     <div className="buyer_dashboard">
       <div className="dashboard__top">
@@ -101,7 +102,7 @@ const BuyerDashboard = () => {
             <div className="pricelist_info">
               <h2>Daily Price List</h2>
 
-              <div className="pricelist__headertime">
+              {/* <div className="pricelist__headertime">
                 <div className="hour">
                   <span className="label">HOUR</span>
                   <span className="value">07</span>
@@ -116,22 +117,29 @@ const BuyerDashboard = () => {
                 </div>
               </div>
 
-              <span></span>
+              <span></span> */}
             </div>
 
             <ul>
-              {pricelist.map((data, i) => (
-                <li key={i}>
-                  <span className="image">
-                    <img src={data.image} alt="" />
-                  </span>
-                  <span className="name">{data.name}</span>
-                  <span className="price">
-                    <span>INR </span>
-                    {data.price}
-                  </span>
-                </li>
-              ))}
+              {dashboarddata?.length &&
+                dashboarddata?.[0]?.products?.length &&
+                dashboarddata?.[0]?.products?.map((data, i) => {
+                  return (
+                    <li key={i}>
+                      <span className="image">
+                        <img
+                          src={Constant?.imageBaseUrl() + data?.brand}
+                          alt="brand"
+                        />
+                      </span>
+                      <span className="name">{data?.name}</span>
+                      <span className="price">
+                        <span>{data?.currency} </span>
+                        {data?.price}
+                      </span>
+                    </li>
+                  );
+                })}
             </ul>
           </div>
         </div>
