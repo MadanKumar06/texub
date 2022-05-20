@@ -597,6 +597,16 @@
     }
   }
 }
+@media (max-width: 1440px) {
+.pendinginvoice .pendinginvoice__top .top__orderinfo .orderinfo__data p .label{
+  font-size: 16px;
+  width: 25%;
+}
+.pendinginvoice .pendinginvoice__top .top__orderinfo .orderinfo__data p .value{
+  font-size: 16px;
+  width: 25%;
+}
+}
 @media (max-width: 899px) {
   .pendinginvoice {
     .pendinginvoice__top {

@@ -868,7 +868,7 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
             <Button
               variant="contained"
               endIcon={<ExitToApp />}
-              className={classes.menuButton}
+              className={classes.SigninPopup}
               onClick={() => SigninPopUP()}
             >
               SignIn
@@ -883,7 +883,7 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
             <Button
               variant="contained"
               endIcon={<ExitToApp />}
-              className={classes.menuButton}
+              className={classes.SignoutMenu}
               onClick={() => SignOut()}
             >
               Sign Out
