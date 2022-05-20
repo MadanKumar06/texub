@@ -148,6 +148,48 @@
     }
   }
 }
+.sidebaropen {
+  .active_image {
+    fill: #ffffff;
+    svg {
+      g {
+        stroke: #ffffff;
+        rect {
+          stroke: #ffffff;
+        }
+        line{
+          stroke: #ffffff;
+        }
+      }
+      path {
+        stroke: #ffffff;
+      }
+    }
+  }
+  .inActive_image {
+    fill: #959595;
+    svg {
+      g {
+        stroke: #959595;
+        rect {
+          stroke: #959595;
+        }
+        line{
+          stroke: #959595;
+        }
+      }
+      path {
+        stroke: #959595;
+      }
+    }
+  }
+}
+.buyerdashboard .sidebaropen > ul li span, .buyerdashboard .sidebaropen > ul li img {
+  width: 3em;
+}
+.buyerdashboard .sidebaropen > ul li img {
+  object-fit: none;
+}
 @media (min-width: 1660px) {
   .sellerdashboard__sidebar ul li:last-child{
     gap: 30px;
@@ -223,17 +265,17 @@
         font-weight: 600;
         letter-spacing: 0.66px;
         margin-left: 7px;
-        span.inActive_image{
-          svg{
-            g{
-              stroke: #000;
-              path{
-                stroke: #000;
-              }
-            }
-          }
+        // span.inActive_image{
+        //   svg{
+        //     g{
+        //       stroke: #000;
+        //       path{
+        //         stroke: #000;
+        //       }
+        //     }
+        //   }
 
-        }
+        // }
 
         &:last-child {
           margin-top: 10px;

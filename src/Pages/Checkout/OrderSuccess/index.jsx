@@ -85,7 +85,8 @@ const Index = () => {
             reference_number: transactiondetails?.reference_number,
             payment_amount: transactiondetails?.payment_amount,
             payment_date: transactiondetails?.transaction_date_time,
-            payment_remarks: date,
+            // payment_remarks: date,
+            payment_remarks: transactiondetails?.remarks,
           },
         },
       });

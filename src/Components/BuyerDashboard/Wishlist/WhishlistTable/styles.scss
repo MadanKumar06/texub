@@ -16,12 +16,12 @@
       align-items: center;
       position: relative;
       height: 100%;
-
+      width: 250px;
       .folderinput {
         outline: none;
         border: none;
         border-radius: 6px;
-        height: 2em;
+        height: 100%;
         font-size: 16px;
       }
       .wishlist-edit-img {
@@ -48,6 +48,9 @@
       color: #ffffff;
       text-transform: uppercase;
       letter-spacing: 0.6px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     .header_link {
       display: flex;
@@ -377,6 +380,9 @@
     .pending-invoice-btn {
       max-width: 254px;
     }
+    .wishlist-first-text{
+       width: 190px !important;
+    }
   }
 }
 @media (max-width: 925px) {
@@ -439,5 +445,11 @@
   }
   .wishlist-btn-info {
     flex-direction: column;
+  }
+  .whishlist_table_header{
+    padding: 0px 0px 0px 10px !important;
+  }
+  .wishlist-first-text{
+    width: 170px !important;
   }
 }
