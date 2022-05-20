@@ -327,7 +327,7 @@ const Index = ({ orders, setisVieworders, setisOrders }) => {
                 onClick={() => setisTrackOrder(true)}
               >
                 <img src={track} alt="" className="track"></img>
-                <span className="track_text">Track Orer</span>
+                <span className="track_text">Track Order</span>
               </div>
               <div
                 className="order_rating_info btn-primary common-btn"
@@ -425,7 +425,7 @@ const Index = ({ orders, setisVieworders, setisOrders }) => {
                     </div>
                     <div className="vieworders_payment_section transaction_block">
                       {detailsorder?.[0]?.order_details?.[0]
-                        ?.transaction_number ? (
+                        ?.transaction_date ? (
                         <div className="vieworders_list">
                           <span className="block_title">
                             Transaction Refernece Number :{" "}
