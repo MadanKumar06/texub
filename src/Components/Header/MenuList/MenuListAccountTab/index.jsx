@@ -2,6 +2,7 @@ import React, { useState ,useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./styles";
 import { Badge ,Drawer } from "@mui/material";
+import "./styles.scss";
 import PropTypes from "prop-types";
 import {
   Tabs,
@@ -890,7 +891,7 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
           </Stack>
         )}
       </TabPanel>
-      <TabPanel value={value} index={1} className={classes.sub_tab_conatainer}>
+      <TabPanel id="mobile_menu_categories" value={value} index={1} className={classes.sub_tab_conatainer}>
         <List className={classes.dropdowm_list_menu}>
           <ListItemButton onClick={handleClick}>
             <ListItemText
@@ -909,7 +910,18 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
                 <div key={itm?.name} className={classes.dropdown_collapse_list}>
                   <Link className={classes.link_in_tab} to={`/`}>
                     <ListItemButton sx={{ pl: 4 }}>
-                      <ListItemText primary={`${itm?.name}`} />
+                      <ListItemText className="listitem_text" primary={`${itm?.name}`} />
+                          <span
+                        className={`${
+                          itm?.tag === "Sale"
+                            ? "sale"
+                            : itm?.tag === "New"
+                            ? "new"
+                            : ""
+                        }`}
+                      >
+                        {itm?.tag}
+                      </span>
                     </ListItemButton>
                   </Link>
                 </div>

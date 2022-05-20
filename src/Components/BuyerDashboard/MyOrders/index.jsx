@@ -68,9 +68,10 @@ function Index() {
   };
 
   const [isVieworders, setisVieworders] = useState(false);
-  const [currentorder, setcurrentorder] = useState();
+  // const [currentorder, setcurrentorder] = useState();
   const orders = (value) => {
-    setcurrentorder(value ? value : "");
+    window.localStorage.setItem("orderinfoCurrentorder", value ? value : "");
+    // setcurrentorder(value ? value : "");
     setisVieworders(true);
     setisOrders(false);
   };
@@ -306,7 +307,7 @@ function Index() {
       )}
       {isVieworders && (
         <OrdersInfo
-          currentorder={currentorder}
+         // currentorder={currentorder}
           orders={orders}
           setisVieworders={setisVieworders}
           setisOrders={setisOrders}

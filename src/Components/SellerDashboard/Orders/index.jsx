@@ -15,7 +15,7 @@ import SearchIcon from "@mui/icons-material/Search";
 
 var moment = require("moment");
 
-function Index({handleSearchBar}) {
+function Index({handleSearchBar , searchdata, searchupdate}) {
   const [{ geo, customnostore }, dispatch] = useStateValue();
   const [tableData, setTableData] = useState([]);
   const [apiTableData, setApiTableData] = useState([]);
@@ -32,6 +32,41 @@ function Index({handleSearchBar}) {
   const selectorder = (value) => {
     settype(value);
   };
+  useEffect(() => {
+    settype(0)
+  }, []);
+
+  useEffect(() => {
+    if (type === 0) {
+      setTableData(apiTableData)
+    }
+    if (type === 1) {
+      const confirm = apiTableData?.filter(d => d?.quote_status === "1")
+      setTableData(confirm)
+    }
+    if (type === 1) {
+      const dispatch = apiTableData?.filter(d => d?.quote_status === "2")
+      setTableData(dispatch)
+    }
+    if (type === 2) {
+      const delivered = apiTableData?.filter(d => d?.quote_status === "3")
+      setTableData(delivered)
+    }
+    if (type === 3) {
+      const cancel = apiTableData?.filter(d => d?.quote_status === "4")
+      setTableData(cancel)
+    }
+  }, [type, apiTableData])
+
+  useEffect(() => {
+    if (apiTableData?.length === 0) return
+    if (searchdata === '') {
+      setTableData(apiTableData)
+    } else {
+      let temp = apiTableData?.filter(td => td?.po_number?.toLowerCase()?.includes(searchdata?.toLowerCase()))
+      setTableData(temp)
+    }
+  }, [searchupdate, apiTableData])
   function formatToCurrency(price) {
     return price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
   }

@@ -3,6 +3,7 @@ const Departments = [
     id: 1,
     path: "/value_of_the_day",
     name: "Value of the day",
+    tag:"New",
   },
   {
     id: 2,
@@ -33,6 +34,7 @@ const Departments = [
     id: 7,
     path: "/watches_eyewear",
     name: "Watches & Eyewear",
+    tag: "Sale"
   },
   {
     id: 8,

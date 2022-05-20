@@ -23,11 +23,12 @@ import axios from "axios";
 import Constant from "../../../../Constant";
 import moment from "moment";
 import swal from "sweetalert2";
-const Index = ({ orders, currentorder, setisVieworders, setisOrders }) => {
+const Index = ({ orders, setisVieworders, setisOrders }) => {
   function formatToCurrency(price) {
     return price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
   }
   const [{ customnostore, geo }, dispatch] = useStateValue();
+  const currentorder = window.localStorage.getItem("orderinfoCurrentorder");
   const [open, setOpen] = useState(false);
   // const handleOpen = () => setOpen(true);
   //const handleClose = () => setOpen(false);
