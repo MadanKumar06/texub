@@ -643,7 +643,7 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "Sign Out!",
+        confirmButtonText: "Signout!",
       })
       .then((result) => {
         if (result.isConfirmed) {
@@ -697,7 +697,7 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
     const sellerMyAccountList = [
     {
       image: dashboardIcon,
-      name: "Dashboard",
+      name: "Seller Dashboard",
       event: handleSellerDashboard,
     },
     {
@@ -885,7 +885,7 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
               className={classes.menuButton}
               onClick={() => SignOut()}
             >
-              Sign Out
+              Signout
             </Button>
           </Stack>
         )}
@@ -894,7 +894,7 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
         <List className={classes.dropdowm_list_menu}>
           <ListItemButton onClick={handleClick}>
             <ListItemText
-              primary="Department"
+              primary="Categories"
               className={classes.dropdowm_list_menu_sub}
             />
             {open ? <ExpandLess /> : <ExpandMore />}

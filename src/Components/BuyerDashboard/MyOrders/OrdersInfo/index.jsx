@@ -482,7 +482,7 @@ const Index = ({ orders, currentorder, setisVieworders, setisOrders }) => {
                 <div className="vieworders_total">
                   <li className="vieworders_list">
                     <span className="total_heading"> Sub-Total</span>
-                    <span className="total_amount">
+                    <span className="total_amount1">
                       <span className="currency">INR</span>{" "}
                       {formatToCurrency(
                         parseInt(detailsorder?.[0]?.order_details[0]?.subtotal)
@@ -491,7 +491,7 @@ const Index = ({ orders, currentorder, setisVieworders, setisOrders }) => {
                   </li>
                   <li className="vieworders_list">
                     <span className="total_heading"> Shipping Charge</span>
-                    <span className="total_amount">
+                    <span className="total_amount1">
                       <span className="currency">INR</span>{" "}
                       {formatToCurrency(
                         parseInt(
@@ -502,7 +502,7 @@ const Index = ({ orders, currentorder, setisVieworders, setisOrders }) => {
                   </li>
                   <li className="vieworders_list">
                     <span className="total_heading"> Discount Price</span>
-                    <span className="total_amount">
+                    <span className="total_amount1">
                       <span className="currency">INR</span> 0.00
                     </span>
                   </li>
@@ -515,7 +515,7 @@ const Index = ({ orders, currentorder, setisVieworders, setisOrders }) => {
                         </span>
                         <span className="gst">(incl.GST)</span>
                       </div>
-                      <span className="total_amount">
+                      <span className="total_amount1">
                         <span className="currency">INR</span>{" "}
                         {formatToCurrency(
                           parseInt(
