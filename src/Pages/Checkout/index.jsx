@@ -1254,7 +1254,7 @@ const Checkout = () => {
                                 <span className="item_address">
                                   {itm?.city}
                                   {" - "}
-                                  {itm?.country_id}
+                                  {itm?.country_code}
                                 </span>
                                 <span className="item_address"></span>
                                 <span className="item_address">
