@@ -190,6 +190,7 @@ function Index() {
               className={`
                     ${value === "Pending" && "invoices__pending"}
                     ${value === "Paid" && "invoices__paid"}
+                    ${value === "Cancelled" && "invoices__cancelled"}
                     `}
             >
               {value}

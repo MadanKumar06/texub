@@ -1,14 +1,13 @@
 .invoices_main {
-  
-  .invoices__search{
-    .invoices__searchinput{
+  .invoices__search {
+    .invoices__searchinput {
       box-shadow: unset;
       border: 1px solid #d6d8d9;
       padding: 3px;
       .MuiInputBase-root {
         padding: 5px;
       }
-      .MuiButtonBase-root{
+      .MuiButtonBase-root {
         background: #002d56;
         color: #ffffff;
         padding: 1% 3%;
@@ -24,214 +23,218 @@
     }
   }
 
-    .invoices__buttons {
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
-      gap: 20px;
-      margin-top: 2em;
-      flex-wrap: wrap;
-  
-      p {
-        margin: 0;
-        white-space: nowrap;
-        padding: 0.7em 1.2em;
-        background-color: #f0f0f0;
-        color: #333c42;
-        font-size: 18px;
-        border-radius: 25px;
-        cursor: pointer;
-        width: calc(90% / 3);
-        min-width: 150px;
+  .invoices__buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 20px;
+    margin-top: 2em;
+    flex-wrap: wrap;
+
+    p {
+      margin: 0;
+      white-space: nowrap;
+      padding: 0.7em 1.2em;
+      background-color: #f0f0f0;
+      color: #333c42;
+      font-size: 18px;
+      border-radius: 25px;
+      cursor: pointer;
+      width: calc(90% / 3);
+      min-width: 150px;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .ordertype__selected {
+      background: linear-gradient(#ffd788, #cc9b3e);
+      color: white;
+    }
+  }
+
+  .invoices__table {
+    margin-top: 2em;
+    box-shadow: none;
+    .MuiTable-root {
+      .MuiTableFooter-root {
+        display: none;
+      }
+    }
+    .MuiTableHead-root {
+      .MuiTableCell-root {
+        font-size: 20px;
+        color: #959595;
         text-align: center;
         font-weight: 600;
-      }
-  
-      .ordertype__selected {
-        background: linear-gradient(#ffd788, #cc9b3e);
-        color: white;
+        border-top: 1px solid rgba(224, 224, 224, 1);
       }
     }
-  
-    .invoices__table {
-      margin-top: 2em;
-      box-shadow: none;
-      .MuiTable-root {
-        .MuiTableFooter-root {
-          display: none;
-        }
-      }
-      .MuiTableHead-root {
-        .MuiTableCell-root {
-          font-size: 20px;
-          color: #959595;
-          text-align: center;
-          font-weight: 600;
-          border-top: 1px solid rgba(224, 224, 224, 1);
-        }
-      }
-  
-      .MuiTableBody-root {
-        .MuiTableCell-root {
-          font-size: 18px;
-          text-align: center;
-          color: #333c42;
-        }
-        .invoices__hub,
-        .invoices__invoicesno,
-        .invoices__sellerid {
-          font-weight: 600;
-        }
-        // .invoices__date {}
-        .invoices__amount {
-          font-weight: 600;
-          letter-spacing: 0.48px;
-          .currency {
-            font-size: 14px;
-          }
-           .price {
-            font-size: 24px;
-            font-weight: bold;
-          }
-        }
-  
-        .invoices__action {
-          text-decoration: underline;
-          color: #002d56;
-          font-size: 18px;
-          font-weight: 600;
-          cursor: pointer;
-        }
-  
-        .myorders__confirm {
-          color: #20639b;
-          font-weight: 600;
-          padding: 0.3em 1.2em;
-          background-color: #d5ecff;
-          border-radius: 24px;
-        }
-  
-        .invoices__paid {
-          color: #00b91c;
-          font-weight: 600;
-          padding: 0.3em 1.2em;
-          background-color: #e6ffea;
-          border-radius: 24px;
-        }
-  
-        .invoices__pending {
-          color: #dd9b63;
-          font-weight: 600;
-          padding: 0.3em 1.2em;
-          background-color: #fff4eb;
-          border-radius: 24px;
-        }
-  
-        .invoices__dispatched {
-          color: #d9ad59;
-          font-weight: 600;
-          padding: 0.3em 1.2em;
-          background-color: #fff6e5;
-          border-radius: 24px;
-        }
-      }
-    }
-    .invoices__footer {
-      width: 100%;
-      padding: 2em 0 0;
-      .invoices__container {
-        display: flex;
-        // justify-content: space-between;
-        flex-wrap: wrap;
-        span{
-           color: #002d56;
-            font-weight: 600;
-          }
-        a {
-          text-decoration: none;
-          display: flex;
-          align-items: center;
-          cursor: pointer;
-          .MuiSvgIcon-root {
-            color: #002d56;
-          }
-          span {
-            font-size: 20px;
-            color: #002d56;
-            font-weight: 600;
-            margin-left: 0.6em;
-          }
-        }
-      }
-    }
-  }
-  
-  @media (max-width: 1660px) {
-    .invoices_main .invoices__table {
-      .MuiTableHead-root .MuiTableCell-root {
-        font-size: 16px;
-      }
-  
-      .MuiTableBody-root {
-        .invoices__action {
-          font-size: 14px;
-        }
-  
-        .MuiTableCell-root {
-          font-size: 14px;
-        }
-      }
-    }
-    .invoices_main .invoices__table .MuiTableBody-root .invoices__amount {
-      .currency {
-        font-size: 12px;
-      }
-      .price {
-        font-size: 20px;
-      }
-    }
-    .invoices_main .invoices__buttons p {
-      font-size: 14px;
-    }
-    .invoices_main .invoices__footer .invoices__container a .MuiSvgIcon-root {
-      width: 0.6em;
-      height: 0.6em;
-    }
-    .invoices_main .invoices__footer .invoices__container a span {
-      font-size: 18px;
-    }
-  }
-  
-  @media (max-width: 1024px) {
-    .invoices_main .invoices__buttons p {
-      font-size: 14px;
-    }
-  }
 
-  @media (max-width: 900px) {
-    .invoices_main .invoices__table {
+    .MuiTableBody-root {
       .MuiTableCell-root {
-        div{
+        font-size: 18px;
+        text-align: center;
+        color: #333c42;
+      }
+      .invoices__hub,
+      .invoices__invoicesno,
+      .invoices__sellerid {
+        font-weight: 600;
+      }
+      // .invoices__date {}
+      .invoices__amount {
+        font-weight: 600;
+        letter-spacing: 0.48px;
+        .currency {
           font-size: 14px;
         }
+        .price {
+          font-size: 24px;
+          font-weight: bold;
+        }
+      }
 
+      .invoices__action {
+        text-decoration: underline;
+        color: #002d56;
+        font-size: 18px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      .myorders__confirm {
+        color: #20639b;
+        font-weight: 600;
+        padding: 0.3em 1.2em;
+        background-color: #d5ecff;
+        border-radius: 24px;
+      }
+
+      .invoices__paid {
+        color: #00b91c;
+        font-weight: 600;
+        padding: 0.3em 1.2em;
+        background-color: #e6ffea;
+        border-radius: 24px;
+      }
+      .invoices__cancelled {
+        color: #ff3900;
+        font-weight: 600;
+        padding: 0.3em 1.2em;
+        background-color: #ffe2e2;
+        border-radius: 24px;
+      }
+      .invoices__pending {
+        color: #dd9b63;
+        font-weight: 600;
+        padding: 0.3em 1.2em;
+        background-color: #fff4eb;
+        border-radius: 24px;
+      }
+
+      .invoices__dispatched {
+        color: #d9ad59;
+        font-weight: 600;
+        padding: 0.3em 1.2em;
+        background-color: #fff6e5;
+        border-radius: 24px;
+      }
     }
-
+  }
+  .invoices__footer {
+    width: 100%;
+    padding: 2em 0 0;
+    .invoices__container {
+      display: flex;
+      // justify-content: space-between;
+      flex-wrap: wrap;
+      span {
+        color: #002d56;
+        font-weight: 600;
+      }
+      a {
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        .MuiSvgIcon-root {
+          color: #002d56;
+        }
+        span {
+          font-size: 20px;
+          color: #002d56;
+          font-weight: 600;
+          margin-left: 0.6em;
+        }
+      }
+    }
   }
 }
 
-  @media (max-width:567px) {
-    .invoices_main{
-      .invoices__buttons{
-        gap: 10px;
-          P{
-              width: 45%;
-              min-width: 120px;
-              padding: 0.5em 0.2em;
-          }
+@media (max-width: 1660px) {
+  .invoices_main .invoices__table {
+    .MuiTableHead-root .MuiTableCell-root {
+      font-size: 16px;
+    }
+
+    .MuiTableBody-root {
+      .invoices__action {
+        font-size: 14px;
       }
-    } 
-    .invoices_main .invoices__table .MuiTableBody-root .invoices__amount .price{
-      font-size: 18px;
+
+      .MuiTableCell-root {
+        font-size: 14px;
+      }
     }
   }
+  .invoices_main .invoices__table .MuiTableBody-root .invoices__amount {
+    .currency {
+      font-size: 12px;
+    }
+    .price {
+      font-size: 20px;
+    }
+  }
+  .invoices_main .invoices__buttons p {
+    font-size: 14px;
+  }
+  .invoices_main .invoices__footer .invoices__container a .MuiSvgIcon-root {
+    width: 0.6em;
+    height: 0.6em;
+  }
+  .invoices_main .invoices__footer .invoices__container a span {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .invoices_main .invoices__buttons p {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 900px) {
+  .invoices_main .invoices__table {
+    .MuiTableCell-root {
+      div {
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+@media (max-width: 567px) {
+  .invoices_main {
+    .invoices__buttons {
+      gap: 10px;
+      P {
+        width: 45%;
+        min-width: 120px;
+        padding: 0.5em 0.2em;
+      }
+    }
+  }
+  .invoices_main .invoices__table .MuiTableBody-root .invoices__amount .price {
+    font-size: 18px;
+  }
+}
