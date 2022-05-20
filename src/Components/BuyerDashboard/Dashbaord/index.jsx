@@ -18,12 +18,6 @@ import { useNavigate } from "react-router-dom";
 const BuyerDashboard = () => {
   const [{ geo, customnostore }, dispatch] = useStateValue();
   let navigate = useNavigate();
-  const pricelist = [
-    { image: apple, name: "Apple Macbook Pro", price: "1,87,999" },
-    { image: hp, name: "Acer Sf314-42 Swift 3", price: "66,999" },
-    { image: acer, name: "Pavilion Model14-Dv0054Tu", price: "66,999" },
-  ];
-
   const [dashboarddata, setdashboarddata] = useState([]);
   useEffect(async () => {
     let user = JSON.parse(localStorage.getItem("userdata"));
@@ -66,7 +60,6 @@ const BuyerDashboard = () => {
     setpermission(pendingpermission);
   }, []);
 
-  console.log(dashboarddata);
   return (
     <div className="buyer_dashboard">
       <div className="dashboard__top">

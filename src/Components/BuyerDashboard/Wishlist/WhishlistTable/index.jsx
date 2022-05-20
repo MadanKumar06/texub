@@ -70,6 +70,7 @@ const WhislistTable = ({
           requestParams: {
             multiwishlist_id: parseInt(item_id),
             customer_id: user?.id,
+            currency_id: currency?.currency_id,
           },
         },
       });
@@ -264,6 +265,7 @@ const WhislistTable = ({
           requestParams: {
             item_id: id,
             customer_id: user?.id,
+            currency_id: currency?.currency_id,
           },
         },
       });
@@ -407,6 +409,7 @@ const WhislistTable = ({
             customer_id: user?.id,
             wishlist_id: item_id,
             name: newname,
+            currency_id: currency?.currency_id,
           },
         },
       });

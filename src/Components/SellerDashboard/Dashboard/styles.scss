@@ -7,18 +7,42 @@
   padding-top: 15px;
 
   .dashboard__data {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: center;
+    // display: flex;
+    // flex-wrap: wrap;
+    // justify-content: space-around;
+    // align-items: center;
     box-shadow: 0px 3px 25px #0000000f;
     padding-top: 8px;
-    .dasboard__dataiamge {
-      max-width: 360px;
-      width: calc(100% / 3 - 20px);
-      img {
-        width: 100%;
-        object-fit: contain;
+    .info_bar {
+      display: flex;
+      justify-content: space-around;
+
+      .dasboard__dataiamge {
+        // max-width: 360px;
+        width: calc(100% / 3 - 20px);
+        position: relative;
+        .header,
+        .value {
+          position: absolute;
+          color: white;
+          bottom: 0;
+          top: 0;
+          display: flex;
+          align-items: center;
+        }
+        .header {
+          left: 4em;
+          font-size: 18px;
+          width: 160px;
+        }
+        .value {
+          right: 1em;
+          font-size: 32px;
+        }
+        img {
+          width: 100%;
+          object-fit: contain;
+        }
       }
     }
   }
@@ -92,4 +116,3 @@
     width: calc(100% / 2 - 20px);
   }
 }
-

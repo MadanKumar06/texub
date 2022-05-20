@@ -12,11 +12,13 @@ import { useStateValue } from "../../../store/state";
 const Index = () => {
   const [isAccountinfo, setisAccountinfo] = useState(true);
   const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
-    const userData = JSON.parse(localStorage.getItem('userdata'))
-   let company_name = userData?.custom_attributes?.filter(
-    (itm) => itm?.attribute_code === "customer_company_name" );
-     let mobile_number = userData?.custom_attributes?.filter(
-    (itm) => itm?.attribute_code === "customer_mobile_number" );
+  const userData = JSON.parse(localStorage.getItem("userdata"));
+  let company_name = userData?.custom_attributes?.filter(
+    (itm) => itm?.attribute_code === "customer_company_name"
+  );
+  let mobile_number = userData?.custom_attributes?.filter(
+    (itm) => itm?.attribute_code === "customer_mobile_number"
+  );
 
   const [type, settype] = useState();
 
@@ -90,6 +92,7 @@ const Index = () => {
             per?.value === "can-manage-sub-accounts" &&
             per?.permission_value === 0
         );
+
   return (
     <div className="My_profile_main">
       <div className="My_profile_btn_section">
@@ -128,15 +131,21 @@ const Index = () => {
             <div className="my_profile_data">
               <div className="my_profile_data_section">
                 <p className="my_profile_data_section_heading">NAME</p>
-                <p className="my_profile_data_section_tag">{userData['firstname']} {userData['lastname']}</p>
+                <p className="my_profile_data_section_tag">
+                  {userData["firstname"]} {userData["lastname"]}
+                </p>
               </div>
               <div className="my_profile_data_section">
                 <p className="my_profile_data_section_heading">E-Mail</p>
-                <p className="my_profile_data_section_tag">{userData['email']}</p>
+                <p className="my_profile_data_section_tag">
+                  {userData["email"]}
+                </p>
               </div>
               <div className="my_profile_data_section">
                 <p className="my_profile_data_section_heading">MOBILE NUMBER</p>
-                <p className="my_profile_data_section_tag">{mobile_number?.[0]?.value}</p>
+                <p className="my_profile_data_section_tag">
+                  {mobile_number?.[0]?.value}
+                </p>
               </div>
               <div className="my_profile_data_section">
                 <p className="my_profile_data_section_heading">PASSWORD</p>
@@ -145,7 +154,7 @@ const Index = () => {
             </div>
           </div>
 
-          <div className="my_profile_company">
+          {/* <div className="my_profile_company">
             <span className="My_profile_main_heading">
               <p>COMPANY INFORMATION</p>
             </span>
@@ -211,7 +220,7 @@ const Index = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
           <div className="my_profile_back">
             <Link
               to={`/${

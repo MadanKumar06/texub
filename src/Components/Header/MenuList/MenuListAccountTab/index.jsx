@@ -886,7 +886,7 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
               className={classes.menuButton}
               onClick={() => SignOut()}
             >
-              Signout
+              Sign Out
             </Button>
           </Stack>
         )}

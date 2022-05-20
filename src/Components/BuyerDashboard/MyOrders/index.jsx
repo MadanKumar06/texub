@@ -17,7 +17,7 @@ import NodataFound from "../../../Assets/CommonImage/NodataFound.webp.png";
 
 function Index() {
   const [tableData, setTableData] = useState([]);
-  const [filtereddirect, setfiltereddirect] = useState([])
+  const [filtereddirect, setfiltereddirect] = useState([]);
   const [orderlist, setorderlist] = useState([]);
   const ordertype = [
     { name: "All Orders" },
@@ -42,25 +42,25 @@ function Index() {
   }, []);
   useEffect(() => {
     if (type === 0) {
-      setfiltereddirect(orderlist)
+      setfiltereddirect(orderlist);
     }
     if (type === 1) {
-      const pending = orderlist?.filter(d => d?.order_status === "1")
-      setfiltereddirect(pending)
+      const pending = orderlist?.filter((d) => d?.order_status === "1");
+      setfiltereddirect(pending);
     }
     if (type === 2) {
-      const confirm = orderlist?.filter(d => d?.order_status === "2")
-      setfiltereddirect(confirm)
+      const confirm = orderlist?.filter((d) => d?.order_status === "2");
+      setfiltereddirect(confirm);
     }
     if (type === 3) {
-      const dispatch = orderlist?.filter(d => d?.order_status === "3")
-      setfiltereddirect(dispatch)
+      const dispatch = orderlist?.filter((d) => d?.order_status === "3");
+      setfiltereddirect(dispatch);
     }
     if (type === 4) {
-      const delivered = orderlist?.filter(d => d?.order_status === "4")
-      setfiltereddirect(delivered)
+      const delivered = orderlist?.filter((d) => d?.order_status === "4");
+      setfiltereddirect(delivered);
     }
-  }, [type, orderlist])
+  }, [type, orderlist]);
 
   const PaginateDataSplit = (event) => {
     if (orderlist?.length === 0) return setfiltereddirect([]);
@@ -174,10 +174,11 @@ function Index() {
       name: "order_total",
       label: "Order Total",
       options: {
-        customBodyRender: (value) => {
+        customBodyRender: (value, tablemeta) => {
+          let currency = tablemeta?.rowData[7];
           return (
             <div className="myorders__ordertotal">
-              <span className="currency">INR </span>
+              <span className="currency">{currency} </span>
               <span className="price">
                 {" "}
                 {formatToCurrency(parseInt(value))}
@@ -244,6 +245,13 @@ function Index() {
         },
       },
     },
+    {
+      name: "currency",
+      label: " ",
+      options: {
+        display: false,
+      },
+    },
   ];
 
   return (
@@ -307,7 +315,7 @@ function Index() {
       )}
       {isVieworders && (
         <OrdersInfo
-         // currentorder={currentorder}
+          // currentorder={currentorder}
           orders={orders}
           setisVieworders={setisVieworders}
           setisOrders={setisOrders}

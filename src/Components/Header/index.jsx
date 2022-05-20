@@ -91,6 +91,7 @@ const Header = ({ classes }) => {
           data: {
             requestParams: {
               customer_id: user?.id,
+              currency_id: currency?.currency_id,
             },
           },
         });
@@ -234,7 +235,7 @@ const Header = ({ classes }) => {
                   className={classes.header_button_signin}
                   onClick={() => SignOut()}
                 >
-                  Signout
+                  Sign Out
                 </Button>
               </div>
             )

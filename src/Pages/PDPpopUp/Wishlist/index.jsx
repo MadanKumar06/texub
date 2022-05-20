@@ -18,7 +18,7 @@ import swal from "sweetalert2";
 import { useStateValue } from "../../../store/state";
 
 const Index = ({ pdpSellerData, handleOpenClose }) => {
-  const [{}, dispatch] = useStateValue()
+  const [{ currency }, dispatch] = useStateValue();
   const [create1, setcreate1] = useState(false);
   const create = () => {
     setcreate1(!create1);
@@ -80,6 +80,7 @@ const Index = ({ pdpSellerData, handleOpenClose }) => {
         data: {
           requestParams: {
             customer_id: user.id,
+            currency_id: currency?.currency_id,
           },
         },
       });
@@ -115,6 +116,7 @@ const Index = ({ pdpSellerData, handleOpenClose }) => {
               product_id: parseInt(pdpSellerData?.product_id),
               wk_id: wishcheck?.length ? wishcheck : [],
               wk_name: temp !== undefined ? "" : newwishdata,
+              currency_id: currency?.currency_id,
             },
           },
         });
@@ -215,7 +217,9 @@ const Index = ({ pdpSellerData, handleOpenClose }) => {
                       autoFocus={true}
                       className="wishlistsave_input inputfield-box"
                       onChange={(e) => setnewwishdata(e.target.value)}
-                      onKeyPress={(e) => e.key === 'Enter' &&  handleClickValidation()}
+                      onKeyPress={(e) =>
+                        e.key === "Enter" && handleClickValidation()
+                      }
                     />
                     <button
                       className="wishlist_save_btn"
