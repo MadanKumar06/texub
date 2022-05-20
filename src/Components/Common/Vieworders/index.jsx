@@ -7,7 +7,8 @@ import Constant from "../../../Constant";
 import { useStateValue } from "../../../store/state";
 import { getAdminToken } from "../../../utilities";
 import NodataFound from "../../../Assets/CommonImage/NodataFound.webp.png";
-
+import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector';
+import { styled } from '@mui/material/styles';
 import swal from "sweetalert2";
 import moment from "moment";
 
@@ -24,6 +25,39 @@ import {
   Box,
 } from "@mui/material";
 import uploadImage from "../../../Assets/CommonImage/KYC Form/Export.png";
+
+
+    const QontoConnector = styled(StepConnector)(({ theme }) => ({
+				  [`&.${stepConnectorClasses.alternativeLabel}`]: {
+					top: 10,
+					left: 'calc(-50% + 16px)',
+					right: 'calc(50% + 16px)',
+				  },
+				  [`&.${stepConnectorClasses.active}`]: {
+					[`& .${stepConnectorClasses.line}`]: {
+					  borderColor: '#DDB363',
+					},
+				  },
+				  [`&.${stepConnectorClasses.completed}`]: {
+					[`& .${stepConnectorClasses.line}`]: {
+					  borderColor: '#DDB363',
+					  borderTopStyle: "solid",
+					  opacity:'1'
+					},
+				  },
+				  [`&.${stepConnectorClasses.alternativeLabel}`]: {
+					[`& .${stepConnectorClasses.line}`]: {
+					  borderColor: '#DDB363',
+					  borderTopStyle: "dashed",
+					  opacity:'0.3'
+					},
+				  },
+				  [`& .${stepConnectorClasses.line}`]: {
+					borderColor: theme.palette.mode === 'dark' ? theme.palette.grey[800] : '#eaeaf0',
+					borderTopWidth: 3,
+					borderRadius: 1,
+				  },
+				}));
 
 const options = {
   filter: false,
@@ -51,25 +85,54 @@ function formatToCurrency(price) {
 }
 
 const columns = [
+  // {
+  //   name: "product_name",
+  //   label: "PRODUCT NAME",
+  //   options: {
+  //     customBodyRender: (value, tablemeta) => {
+  //       let brand_image = tablemeta?.rowData[7];
+  //       let description = tablemeta?.rowData[8];
+  //       return (
+  //         <div className="productname">
+  //           <img src={brand_image} alt="" className="image"></img>
+  //           <div className="product">
+  //             <span className="modal_name">{value}</span>
+  //             <span className="modal_content">{description}</span>
+  //           </div>
+  //         </div>
+  //       );
+  //     },
+  //   },
+  // },
   {
     name: "product_name",
     label: "PRODUCT NAME",
     options: {
-      customBodyRender: (value, tablemeta) => {
-        let brand_image = tablemeta?.rowData[7];
-        let description = tablemeta?.rowData[8];
+        customBodyRender: (value, tablemeta) => {
+        let brand_image = tablemeta?.rowData[8];
         return (
           <div className="productname">
-            <img src={brand_image} alt="" className="image"></img>
-            <div className="product">
-              <span className="modal_name">{value}</span>
-              <span className="modal_content">{description}</span>
-            </div>
+          <img src={brand_image} alt="" className="image"></img>
+          <div className="product">
+            <span className="modal_name">{value}</span>
+          </div>
           </div>
         );
+        },
+      },
+      },
+      {
+      name: "product_name",
+      label: "DESCRIPTION",
+      options: {
+        customBodyRender: (value,tablemeta) => {
+        let description = tablemeta?.rowData[9];
+        return (
+          <div>{description}</div>
+        );
+        },
       },
     },
-  },
   {
     name: "sku",
     label: "SKU",
@@ -478,7 +541,7 @@ const Index = ({ viewDetail, setvieworder, handleSearchBar }) => {
           <span className="purhcase_order_title">PURCHASE ORDER STATUS</span>
         </div>
         <Box sx={{ width: "100%" }} className="purchase_status_stepper">
-          <Stepper activeStep={activeStep}>
+          <Stepper activeStep={activeStep} alternativeLabel connector={<QontoConnector />}>
             {statusFromAPI?.length &&
               statusFromAPI?.map((label, index) => {
                 const stepProps = {};
