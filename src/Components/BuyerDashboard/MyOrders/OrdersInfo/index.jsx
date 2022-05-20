@@ -473,15 +473,18 @@ const Index = ({ orders, setisVieworders, setisOrders }) => {
                             Date & Time :
                             <span className="value">
                               {" "}
-                              {moment(detailsorder?.[0]?.order_details?.[0]
-                                  ?.transaction_date).format("DD/MM/YYYY")}
-                            
+                              {moment(
+                                detailsorder?.[0]?.order_details?.[0]
+                                  ?.transaction_date
+                              ).format("DD/MM/YYYY")}
                             </span>
                             <Divider orientation="vertical" />
                             <span className="value_price">
                               {" "}
-                              {moment(detailsorder?.[0]?.order_details?.[0]
-                                  ?.transaction_date).format("HH:mm:ss")}
+                              {moment(
+                                detailsorder?.[0]?.order_details?.[0]
+                                  ?.transaction_date
+                              ).format("HH:mm:ss")}
                             </span>
                           </span>
                         </div>
@@ -569,10 +572,7 @@ const Index = ({ orders, setisVieworders, setisOrders }) => {
                     <div className="remkark_section">
                       <span className="remark_title">Remarks :</span>
                       <span className="remark_content">
-                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                        sed diam nonumy eirmod tempor invidunt ut labore et
-                        dolore magna aliquyam erat, sed diam voluptua. At vero
-                        eos et accusam
+                        {detailsorder?.[0]?.order_details?.[0]?.Remarks}
                       </span>
                     </div>
                   </div>
