@@ -23,11 +23,12 @@ import axios from "axios";
 import Constant from "../../../../Constant";
 import moment from "moment";
 import swal from "sweetalert2";
-const Index = ({ orders, currentorder, setisVieworders, setisOrders }) => {
+const Index = ({ orders, setisVieworders, setisOrders }) => {
   function formatToCurrency(price) {
     return price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
   }
   const [{ customnostore, geo }, dispatch] = useStateValue();
+  const currentorder = window.localStorage.getItem("orderinfoCurrentorder");
   const [open, setOpen] = useState(false);
   // const handleOpen = () => setOpen(true);
   //const handleClose = () => setOpen(false);
@@ -482,7 +483,7 @@ const Index = ({ orders, currentorder, setisVieworders, setisOrders }) => {
                 <div className="vieworders_total">
                   <li className="vieworders_list">
                     <span className="total_heading"> Sub-Total</span>
-                    <span className="total_amount">
+                    <span className="total_amount1">
                       <span className="currency">INR</span>{" "}
                       {formatToCurrency(
                         parseInt(detailsorder?.[0]?.order_details[0]?.subtotal)
@@ -491,7 +492,7 @@ const Index = ({ orders, currentorder, setisVieworders, setisOrders }) => {
                   </li>
                   <li className="vieworders_list">
                     <span className="total_heading"> Shipping Charge</span>
-                    <span className="total_amount">
+                    <span className="total_amount1">
                       <span className="currency">INR</span>{" "}
                       {formatToCurrency(
                         parseInt(
@@ -502,7 +503,7 @@ const Index = ({ orders, currentorder, setisVieworders, setisOrders }) => {
                   </li>
                   <li className="vieworders_list">
                     <span className="total_heading"> Discount Price</span>
-                    <span className="total_amount">
+                    <span className="total_amount1">
                       <span className="currency">INR</span> 0.00
                     </span>
                   </li>
@@ -515,7 +516,7 @@ const Index = ({ orders, currentorder, setisVieworders, setisOrders }) => {
                         </span>
                         <span className="gst">(incl.GST)</span>
                       </div>
-                      <span className="total_amount">
+                      <span className="total_amount1">
                         <span className="currency">INR</span>{" "}
                         {formatToCurrency(
                           parseInt(

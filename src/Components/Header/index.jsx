@@ -126,7 +126,7 @@ const Header = ({ classes }) => {
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "Sign Out!",
+        confirmButtonText: "Signout!",
       })
       .then((result) => {
         if (result.isConfirmed) {
@@ -234,7 +234,7 @@ const Header = ({ classes }) => {
                   className={classes.header_button_signin}
                   onClick={() => SignOut()}
                 >
-                  Sign Out
+                  Signout
                 </Button>
               </div>
             )

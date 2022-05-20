@@ -87,9 +87,9 @@ const styles = (theme) => ({
     "& .MuiListItemButton-root": {
       background: "#fbecd0",
       borderBottom: "1px solid #ffffff",
-      paddingLeft: "50px",
+      paddingLeft: "40px",
       display: "flex",
-      gap: "20px",
+      gap: "10px",
       "& img": {
         width: "24px",
       },

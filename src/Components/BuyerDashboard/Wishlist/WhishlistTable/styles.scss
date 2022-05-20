@@ -310,7 +310,7 @@
         span {
           font-size: 14px;
         }
-        font-size: 18px;
+        font-size: 24px;
       }
     }
   }
@@ -385,6 +385,12 @@
   }
   .wishlist_table_container .table_boby_block .table_block {
     flex-direction: column;
+  }
+  .wishlist_table_container .table_boby_block .table_block .product_info_block .products_info .product_price{
+    font-size: 20px;
+  }
+  .wishlist_table_container .table_boby_block .table_block .product_info_block .products_info .product_price span{
+    font-size: 12px;
   }
 }
 @media (max-width: 767px) {

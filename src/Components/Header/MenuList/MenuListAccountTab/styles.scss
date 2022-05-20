@@ -1,0 +1,16 @@
+#mobile_menu_categories .listitem_text{
+    flex: none;
+}
+#mobile_menu_categories .BasicTabs-dropdown_collapse_list-21 .MuiListItemButton-root{
+    gap:0;
+}
+#mobile_menu_categories span.new, #mobile_menu_categories span.sale{
+    background: linear-gradient(180deg, #20639b 0%, #002d56 100%);
+    color: #ffffff;
+    padding: 1px 6px;
+    border-radius: 21px;
+    font-size: 10px;
+}
+#mobile_menu_categories span.sale{
+    background: linear-gradient(180deg, #ffd788 0%, #ad7c20 100%);
+}
