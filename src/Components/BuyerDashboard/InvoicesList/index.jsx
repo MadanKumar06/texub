@@ -16,6 +16,8 @@ import Constant from "../../../Constant";
 import moment from "moment";
 function Index() {
   const [tableData, setTableData] = useState([]);
+  const [searchdata,setsearchdata] = useState("");
+  const [invoicelist, setinvoicelist] = useState();
   const ordertype = [
     { name: "All Invoices" },
     { name: "Pending Invoices" },
@@ -28,9 +30,31 @@ function Index() {
     settype(value);
   };
 
-  useEffect(() => {
-    selectorder(0);
+ useEffect(() => {
+    settype(0)
   }, []);
+
+  useEffect(() => {
+    if (type === 0) {
+      setTableData(invoicelist)
+    }
+    if (type === 1) {
+      const pending_invoice = invoicelist?.filter(d => d?.pending_invoice_status === "Pending")      
+      if(pending_invoice) {
+        setTableData(pending_invoice)
+      } else {
+        setTableData([])
+      }
+    }
+    if (type === 2) {
+      const paid_invoice = invoicelist?.filter(d => d?.pending_invoice_status === "Paid")
+      if(paid_invoice) {
+        setTableData(paid_invoice)
+      } else {
+        setTableData([])
+      }
+    }
+  }, [type])
 
   const PaginateDataSplit = (event) => {
     if (invoicelist?.length === 0) return setTableData([]);
@@ -40,6 +64,18 @@ function Index() {
     return price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
   }
 
+  const searchHandler = (e)=>{
+    e.preventDefault()
+    if (invoicelist?.length === 0) return
+    if (searchdata === "") {
+      setTableData(invoicelist)
+      console.log('if')
+    } else {
+      let temp = invoicelist?.filter(td => td?.pending_invoice_id?.toLowerCase()?.includes(searchdata?.toLowerCase()))
+      setTableData(temp)
+      console.log('else')
+    }
+  }
   const [isVieworders, setisVieworders] = useState(false);
   const orders = () => {
     setisVieworders(true);
@@ -68,8 +104,6 @@ function Index() {
       },
     },
   };
-
-  const [invoicelist, setinvoicelist] = useState();
 
   useEffect(async () => {
     dispatch({
@@ -231,8 +265,12 @@ function Index() {
             placeholder="Search..."
             inputProps={{ "aria-label": "" }}
             className="invoices__input"
+            value={searchdata}
+            onChange={(e)=>setsearchdata(e.target.value)}
           />
-          <IconButton type="submit" sx={{ p: "10px" }} aria-label="search">
+         <IconButton type="submit" sx={{ p: "10px" }} aria-label="search"
+             onClick={(e)=>searchHandler(e)}
+            >
             <Search />
           </IconButton>
         </Paper>

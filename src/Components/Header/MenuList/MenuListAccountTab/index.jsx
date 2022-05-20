@@ -908,7 +908,10 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
             >
               {Departments?.map((itm) => (
                 <div key={itm?.name} className={classes.dropdown_collapse_list}>
-                  <Link className={classes.link_in_tab} to={`/`}>
+                 <Link className={classes.link_in_tab} to={ `/${
+                      customnostore ? customnostore : geo?.country_name
+                    }/products` } 
+                    >
                     <ListItemButton sx={{ pl: 4 }}>
                       <ListItemText className="listitem_text" primary={`${itm?.name}`} />
                           <span
