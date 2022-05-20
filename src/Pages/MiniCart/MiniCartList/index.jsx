@@ -212,6 +212,9 @@ const MiniCartList = ({ handleSideBarClose }) => {
           type: "SET_IS_LOADING",
           value: false,
         });
+        dispatch({
+          type: "CART__TRIGGER",
+        });
         navigate(
           `/${
             customnostore ? customnostore : geo?.country_name

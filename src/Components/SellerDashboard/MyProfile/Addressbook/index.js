@@ -10,35 +10,6 @@ import { useStateValue } from "../../../../store/state";
 
 const Index = () => {
   const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
-  // data state //storage
-  //  const [data, setData] = useState([]);
-  //  useEffect(() => {
-  //      axios.get('https://jsonplaceholder.typicode.com/posts/1/comments')
-  //         .then(
-  //             res => {
-  //                 setData(res.data)
-  //             })
-  //         .catch(err => console.log(err));
-  //       //loadData();
-  //      // getData();
-  //  }, [])
-  //  console.log(data)
-  // const loadData=()=>{
-  //     fetch('https://jsonplaceholder.typicode.com/posts/1/comments')
-  //     .then(res=> res.data)
-  //     .then(receivedData => setData(receivedData))
-  // }
-
-  //  return(
-  //      <>
-  //      {data.map((post)=>
-  //      <div key={post.id}>
-  //         {post.mail}
-  //      </div>
-  //          )}
-  //      </>
-  //  );
-
   const [isBilling, setisBilling] = useState(false);
   const Billaddress = () => {
     setisBilling(true);
@@ -52,29 +23,14 @@ const Index = () => {
     setisAddress(false);
   };
   const [isAddress, setisAddress] = useState(true);
-  const billingAdderess = [
-    {
-      id: 1,
-      organization: "Tech World",
-      heading: "Default Billing Adress",
-      name: "Ayush Raj",
-      no: "302/1160,Tech World",
-      block: "B-Block, HSR Layout",
-      location: "Bangalore-Karnataka",
-      pin: "560102",
-    },
-  ];
-  const shippingAddress = [
-    {
-      id: 1,
-      heading: "Default Shipping Adress",
-      name: "Ayush Raj",
-      no: "302/1160,Tech World",
-      block: "B-Block, HSR Layout",
-      location: "Bangalore-Karnataka",
-      pin: "560102",
-    },
-  ];
+
+  const userData = JSON.parse(localStorage.getItem("userdata"));
+  let billingAdderess = userData?.addresses?.filter(
+    (itm) => itm?.id == userData?.default_billing
+  );
+  let shippingAddress = userData?.addresses?.filter(
+    (itm) => itm?.id == userData?.default_shipping
+  );
   return (
     <>
       {isAddress && (
@@ -94,46 +50,75 @@ const Index = () => {
                                     </>
                                 ))}
                             </div> */}
-              {billingAdderess.map((user) => (
-                <ul key={user.id}>
-                  <li className="address_type">{user.heading}</li>
-                  <li className="address_name">{user.name}</li>
-                  <div>
-                    <li className="address_block">{user.no}</li>
-                    <li className="address_block">{user.block}</li>
-                    <li className="address_block">{user.location}</li>
-                    <li className="address_block">{user.pin}</li>
-                  </div>
-                </ul>
-              ))}
 
-              <div className="edit_section">
-                <img src={Edit_image} alt="" style={{ height: "34px" }} />
-                <p className="profile_edit" onClick={() => Billaddress()}>
-                  Edit
-                </p>
-              </div>
+              <ul>
+                <li className="address_type">Default Billing Address</li>
+                <li className="address_name">
+                  {billingAdderess?.[0]?.firstname}{" "}
+                  {billingAdderess?.[0]?.lastname}
+                </li>
+                <div>
+                  <li className="address_block">
+                    {billingAdderess?.[0]?.street?.[0]}
+                  </li>
+                  <li className="address_block">
+                    {billingAdderess?.[0]?.street?.[1]}
+                  </li>
+                  <li className="address_block">
+                    {billingAdderess?.[0]?.city}
+                    {" - "}
+                    {billingAdderess?.[0]?.country_id}
+                  </li>
+
+                  <li className="address_block">
+                    {billingAdderess?.[0]?.postcode}
+                  </li>
+                </div>
+              </ul>
+              {billingAdderess?.length && (
+                <div className="edit_section">
+                  <img src={Edit_image} alt="" style={{ height: "34px" }} />
+                  <p className="profile_edit" onClick={() => Billaddress()}>
+                    Edit
+                  </p>
+                </div>
+              )}
             </div>
             <div className="vl"></div>
             <div className="Address_Shipping">
-              {shippingAddress.map((user) => (
-                <ul key={user.id}>
-                  <li className="address_type">{user.heading}</li>
-                  <li className="address_name">{user.name}</li>
-                  <div>
-                    <li className="address_block">{user.no}</li>
-                    <li className="address_block">{user.block}</li>
-                    <li className="address_block">{user.location}</li>
-                    <li className="address_block">{user.pin}</li>
-                  </div>
-                </ul>
-              ))}
-              <div className="edit_section">
-                <img src={Edit_image} alt="" style={{ height: "34px" }} />
-                <p className="profile_edit" onClick={() => Shipadress()}>
-                  Edit
-                </p>
-              </div>
+              <ul>
+                <li className="address_type">Default Shipping Address</li>
+                <li className="address_name">
+                  {shippingAddress?.[0]?.firstname}{" "}
+                  {shippingAddress?.[0]?.lastname}
+                </li>
+                <div>
+                  <li className="address_block">
+                    {shippingAddress?.[0]?.street?.[0]}
+                  </li>
+                  <li className="address_block">
+                    {shippingAddress?.[0]?.street?.[1]}
+                  </li>
+                  <li className="address_block">
+                    {shippingAddress?.[0]?.city}
+                    {" - "}
+                    {shippingAddress?.[0]?.country_id}
+                  </li>
+
+                  <li className="address_block">
+                    {billingAdderess?.[0]?.postcode}
+                  </li>
+                </div>
+              </ul>
+
+              {shippingAddress?.length && (
+                <div className="edit_section">
+                  <img src={Edit_image} alt="" style={{ height: "34px" }} />
+                  <p className="profile_edit" onClick={() => Shipadress()}>
+                    Edit
+                  </p>
+                </div>
+              )}
             </div>
           </div>
           <div className="my_profile_back">
@@ -151,8 +136,8 @@ const Index = () => {
           </div>
         </div>
       )}
-      {isBilling && <Billingaddress />}
-      {isShipping && <Shippingadress address={billingAdderess} />}
+      {isBilling && <Billingaddress address={billingAdderess} />}
+      {isShipping && <Shippingadress address={shippingAddress} />}
     </>
   );
 };

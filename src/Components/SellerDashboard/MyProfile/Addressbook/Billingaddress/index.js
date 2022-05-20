@@ -1,24 +1,113 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./styles.scss";
 import TextField from "@mui/material/TextField";
-import Autocomplete from "@mui/material/Autocomplete";
-import { useParams } from "react-router-dom";
+import { Autocomplete, Button } from "@mui/material";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import { useStateValue } from "../../../../../store/state";
+import axios from "axios";
+import Constant from "../../../../../Constant";
+import swal from "sweetalert2";
 
-const Index = (classes, props) => {
-  const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
-  let { type } = useParams();
-  let { auto_complete_input } = classes;
-  const city = ["Banglore", "Chennai", "Hyderabad"];
-  const state = ["Karnataka", "Tamilnadu", "Telangana"];
-  const country = ["India", "USA", "Dubai"];
-  const [Value, setValue] = React.useState({
+import { getAdminToken } from "../../../../../utilities";
+const Index = ({ address }) => {
+  debugger;
+  const [{ geo, customnostore }, dispatch] = useStateValue();
+  const [countryList, setCountryList] = useState([]);
+  const [billingAddress, setBillingAddress] = useState({
     city: "",
-    state: "",
-    country: "",
+    company: "",
+    country_id: "",
+    firstname: "",
+    lastname: "",
+    postcode: "",
+    address_line1: "",
+    address_line2: "",
   });
+  useEffect(() => {
+    if (address?.length && countryList?.length) {
+      let country = countryList?.filter(
+        (itm) => itm?.value == address?.[0]?.country_id
+      );
+      setBillingAddress({
+        city: address?.[0]?.city,
+        company: address?.[0]?.company,
+        country_id: country,
+        firstname: address?.[0]?.firstname,
+        lastname: address?.[0]?.lastname,
+        postcode: address?.[0]?.postcode,
+        address_line1: address?.[0]?.street?.[0],
+        address_line2: address?.[0]?.street?.[1],
+      });
+    }
+  }, [address, countryList]);
+  useEffect(() => {
+    const fetchCountryData = () => {
+      axios
+        .get(Constant.baseUrl() + "/getCountryList", {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => {
+          setCountryList(res?.data);
+        })
+        .catch((err) => {});
+    };
+    fetchCountryData();
+  }, []);
+  const [adminToken, setAdminToken] = useState("");
+  useEffect(() => {
+    getAdminToken((res) => {
+      setAdminToken(res);
+    });
+  }, []);
+  const saveaddress = async () => {
+    let user = JSON.parse(localStorage.getItem("userdata"));
+    dispatch({
+      type: "SET_IS_LOADING",
+      value: true,
+    });
+    try {
+      const addressadd = await axios({
+        method: "post",
+        url: `${Constant.baseUrl()}/saveShippingAddress`,
+        headers: {
+          Authorization: `Bearer ${adminToken}`,
+        },
+        data: {
+          customerId: user?.id,
+          addressId: address?.[0]?.id,
+          addressType: 0,
+          address: {
+            company: billingAddress?.company,
+            country_id: billingAddress?.country_id?.[0]?.value,
+            street1: billingAddress?.address_line1,
+            street2: billingAddress?.address_line2,
+            postcode: billingAddress?.postcode,
+            city: billingAddress?.city,
+          },
+        },
+      });
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
+
+      swal.fire({
+        text: "Address Updated Successfully",
+        icon: "success",
+        showConfirmButton: false,
+        timer: 3000,
+      });
+    } catch (e) {
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
+    }
+  };
+
   return (
     <div className="Billingaddress_main">
       <span className="Billingaddress_Account_heading">
@@ -26,7 +115,7 @@ const Index = (classes, props) => {
         <p>EDIT DEFAULT BILLING ADDRESS</p>
       </span>
       <div className="Billingaddress_information">
-        <form>
+        <form onSubmit={(e) => e.preventDefault()}>
           <div className="inputfield_section">
             <div className="inputfield">
               <p>Organization Name</p>
@@ -35,15 +124,29 @@ const Index = (classes, props) => {
                 id="outlined-error"
                 className="inputfield-box"
                 placeholder="Organization Name"
+                value={billingAddress?.company}
+                onChange={(event) =>
+                  setBillingAddress((prev) => ({
+                    ...prev,
+                    company: event.target.value,
+                  }))
+                }
               />
             </div>
             <div className="inputfield">
               <p>Address Line 1</p>
               <TextField
                 fullWidth
-                className="inputfield-box"
                 id="outlined-error"
+                className="inputfield-box"
                 placeholder="Flat/Building/Block"
+                value={billingAddress?.address_line1}
+                onChange={(event) =>
+                  setBillingAddress((prev) => ({
+                    ...prev,
+                    address_line1: event.target.value,
+                  }))
+                }
               />
             </div>
           </div>
@@ -52,109 +155,90 @@ const Index = (classes, props) => {
               <p>Address Line 2</p>
               <TextField
                 fullWidth
-                className="inputfield-box"
                 id="outlined-error"
+                className="inputfield-box"
                 placeholder="Sub-urb/Town"
+                value={billingAddress?.address_line2}
+                onChange={(event) =>
+                  setBillingAddress((prev) => ({
+                    ...prev,
+                    address_line2: event.target.value,
+                  }))
+                }
               />
             </div>
             <div className="inputfield">
               <p>Pincode</p>
               <TextField
                 fullWidth
-                className="inputfield-box"
                 id="outlined-error"
-                defaultValue="Pincode"
-                type="number"
+                className="inputfield-box"
                 placeholder="Pin Code"
+                value={billingAddress?.postcode}
+                onChange={(event) =>
+                  setBillingAddress((prev) => ({
+                    ...prev,
+                    postcode: event.target.value,
+                  }))
+                }
               />
             </div>
           </div>
           <div className="inputfield_section">
             <div className="inputfield">
               <p>City</p>
-              <Autocomplete
-                name="city"
-                options={city}
-                value={Value?.city}
-                onChange={(event, newValue) => {
-                  setValue((prevState) => ({
-                    ...prevState,
-                    city: newValue,
-                  }));
-                }}
-                id="controllable-states-demo"
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    placeholder="City"
-                    className="inputfield-box"
-                    InputLabelProps={{
-                      shrink: true,
-                      required: true,
-                    }}
-                  />
-                )}
+              <TextField
+                fullWidth
+                id="outlined-error"
+                className="inputfield-box"
+                placeholder="City"
+                value={billingAddress?.city}
+                onChange={(event) =>
+                  setBillingAddress((prev) => ({
+                    ...prev,
+                    city: event.target.value,
+                  }))
+                }
               />
             </div>
             <div className="inputfield">
-              <p>State</p>
+              <p>Country</p>
               <Autocomplete
-                name="state"
-                value={Value?.state}
-                options={state}
-                onChange={(event, newValue) => {
-                  setValue((prevState) => ({
-                    ...prevState,
-                    state: newValue,
-                  }));
-                }}
+                value={
+                  billingAddress?.country_id ? billingAddress?.country_id : ""
+                }
+                name="country_id"
                 id="controllable-states-demo"
+                options={countryList?.length ? countryList : []}
+                fullWidth
+                filterOptions={(option) => option}
+                getOptionLabel={(option) => (option.label ? option.label : "")}
+                isOptionEqualToValue={(option, value) =>
+                  option.value === value.value
+                }
                 renderInput={(params) => (
                   <TextField
                     {...params}
-                    placeholder="state"
                     className="inputfield-box"
+                    placeholder="Country"
                     InputLabelProps={{
-                      shrink: true,
-                      required: true,
+                      shrink: false,
                     }}
                   />
                 )}
               />
             </div>
           </div>
-          <div className="inputfield_btn">
-            <div className="inputfield">
-              <p>Country</p>
-              <Autocomplete
-                name="country"
-                value={Value?.country}
-                options={country}
-                onChange={(event, newValue) => {
-                  setValue((prevState) => ({
-                    ...prevState,
-                    country: newValue,
-                  }));
-                }}
-                id="controllable-states-demo"
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    fullWidth
-                    placeholder="Country"
-                    className="inputfield-box text"
-                    InputLabelProps={{
-                      shrink: true,
-                      required: true,
-                    }}
-                  />
-                )}
-              />
-            </div>
-            <div className="Billingaddress_btn_section">
-              <button className="Billingaddress_info_cancel">Cancel</button>
-              <button className="Billingaddress_info_save">Save Changes</button>
-            </div>
+          <div className="button-box-container btn_container">
+            <Button className="button-text btn-ternary btn_billing">
+              Cancel
+            </Button>
+            <Button
+              className="button-text btn-secondary btn_billing"
+              onClick={() => saveaddress()}
+            >
+              Save Changes
+            </Button>
           </div>
         </form>
       </div>
@@ -162,7 +246,7 @@ const Index = (classes, props) => {
         <Link
           to={`/${
             customnostore ? customnostore : geo?.country_name
-          }/buyerdashboard/dashboard`}
+          }/sellerdashboard/dashboard`}
           className="link"
         >
           <ArrowBackIosNew />

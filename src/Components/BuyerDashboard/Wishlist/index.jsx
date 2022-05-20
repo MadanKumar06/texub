@@ -12,7 +12,8 @@ import NodataFound from "../../../Assets/CommonImage/NodataFound.webp.png";
 
 const Whislist = () => {
   const [tableData, setTableData] = useState([]);
-  const [{ geo, customnostore, generalTrigger }, dispatch] = useStateValue();
+  const [{ geo, customnostore, generalTrigger, currency }, dispatch] =
+    useStateValue();
   const [wishListAgain, setWishListAgain] = useState(false);
   const [wishdata, setwishdata] = useState([]);
   const [folderdata, setfolderdata] = useState([]);
@@ -63,6 +64,7 @@ const Whislist = () => {
             requestParams: {
               customer_id: user?.id,
               search_term: wishsearch,
+              currency_id: currency?.currency_id,
             },
           },
         });
@@ -98,6 +100,7 @@ const Whislist = () => {
         data: {
           requestParams: {
             customer_id: user?.id,
+            currency_id: currency?.currency_id,
           },
         },
       });

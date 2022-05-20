@@ -296,7 +296,17 @@ const Index = ({ orders, setisVieworders, setisOrders }) => {
             <div className="username">
               <span className="id_heading">Order ID #</span>
               <span className="id">{currentorder}</span>
-              <span className="status">Confirm</span>
+              <span className="status">
+                {detailsorder?.[0]?.order_details?.[0]?.order_status == 1
+                  ? "Pending"
+                  : detailsorder?.[0]?.order_details?.[0]?.order_status == 2
+                  ? "Confrim"
+                  : detailsorder?.[0]?.order_details?.[0]?.order_status == 3
+                  ? "Dispatch"
+                  : detailsorder?.[0]?.order_details?.[0]?.order_status == 4
+                  ? "Deliverd"
+                  : ""}
+              </span>
             </div>
             <div className="username">
               <span className="id_heading">Transaction ID #</span>
@@ -304,7 +314,13 @@ const Index = ({ orders, setisVieworders, setisOrders }) => {
                 {detailsorder?.[0]?.order_details?.[0]?.transaction_number}
               </span>
               <span className="status">
-                {detailsorder?.[0]?.order_details?.[0]?.order_status}
+                {detailsorder?.[0]?.order_details?.[0]?.payment_status == 1
+                  ? "Pending"
+                  : detailsorder?.[0]?.order_details?.[0]?.payment_status == 2
+                  ? "Completed"
+                  : detailsorder?.[0]?.order_details?.[0]?.payment_status == 3
+                  ? "Failed"
+                  : ""}
               </span>
             </div>
           </div>
@@ -322,13 +338,13 @@ const Index = ({ orders, setisVieworders, setisOrders }) => {
                   <span className="download_text">Download Invoice</span>
                 </div>
               </a>
-              <div
+              {/* <div
                 className="order_track btn-secondary common-btn"
                 onClick={() => setisTrackOrder(true)}
               >
                 <img src={track} alt="" className="track"></img>
                 <span className="track_text">Track Order</span>
-              </div>
+              </div> */}
               <div
                 className="order_rating_info btn-primary common-btn"
                 onClick={() => setisUopup(true)}
@@ -457,13 +473,16 @@ const Index = ({ orders, setisVieworders, setisOrders }) => {
                             Date & Time :
                             <span className="value">
                               {" "}
-                              {transaction_info?.[0]?.date}
+                              {
+                                detailsorder?.[0]?.order_details?.[0]
+                                  ?.transaction_date
+                              }
                             </span>
-                            <Divider orientation="vertical" />
+                            {/* <Divider orientation="vertical" />
                             <span className="value_price">
                               {" "}
                               {transaction_info?.[0]?.time}
-                            </span>
+                            </span> */}
                           </span>
                         </div>
                       ) : (
