@@ -524,6 +524,15 @@ const Index = ({ orders, setisVieworders, setisOrders }) => {
                     </span>
                   </li>
                   <li className="vieworders_list">
+                    <span className="total_heading"> Tax</span>
+                    <span className="total_amount1">
+                      <span className="currency">INR</span>{" "}
+                      {formatToCurrency(
+                        parseInt(detailsorder?.[0]?.order_details[0]?.tax_price)
+                      )}
+                    </span>
+                  </li>
+                  <li className="vieworders_list">
                     <span className="total_heading"> Discount Price</span>
                     <span className="total_amount1">
                       <span className="currency">INR</span> 0.00
@@ -564,6 +573,8 @@ const Index = ({ orders, setisVieworders, setisOrders }) => {
                           href={
                             detailsorder?.[0]?.order_details?.[0]?.delivery_doc
                           }
+                          target="_blank"
+                          rel="noreferrer"
                         >
                           Download Handover Documents
                         </a>

@@ -70,7 +70,9 @@ const Index = () => {
 
   const submittransaction = async () => {
     let user = JSON.parse(localStorage.getItem("userdata"));
-    let date = moment(transactiondetails?.remarks).format("DD/MM/YYYY");
+    let date = moment(transactiondetails?.transaction_date_time).format(
+      "DD/MM/YYYY"
+    );
     try {
       const submitdata = await axios({
         method: "post",
@@ -85,7 +87,6 @@ const Index = () => {
             reference_number: transactiondetails?.reference_number,
             payment_amount: transactiondetails?.payment_amount,
             payment_date: transactiondetails?.transaction_date_time,
-            // payment_remarks: date,
             payment_remarks: transactiondetails?.remarks,
           },
         },

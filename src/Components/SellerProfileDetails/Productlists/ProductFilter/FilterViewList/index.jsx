@@ -217,7 +217,6 @@ const FilterViewList = ({
                     }
                   </span>
                   {formatToCurrency(parseInt(value?.[0]))}
-
                 </p>
                 <p>
                   <span>
@@ -228,7 +227,6 @@ const FilterViewList = ({
                     }
                   </span>
                   {formatToCurrency(parseInt(value?.[1]))}
-                  
                 </p>
               </div>
             </Box>
