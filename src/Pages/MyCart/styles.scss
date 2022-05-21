@@ -73,6 +73,20 @@
     }
   }
 }
+.mycart_table_main_container .no_data_found p{
+  color: #5c6369;
+  font-weight: normal;
+}
+.mycart_table_main_container .no_data_found{
+  width: auto;
+}
+.mycart_table_main_container td.MuiTableCell-root.MuiTableCell-body.MuiTableCell-sizeMedium.tss-1qtl85h-MUIDataTableBodyCell-root.tss-1y3wvy9-MUIDataTableBodyCell-stackedParent.tss-iwylj0-MUIDataTableBodyCell-responsiveStackedSmallParent.datatables-noprint.css-jy6ery-MuiTableCell-root{
+  position: static;
+}
+.mycart_table_main_container td.MuiTableCell-root.MuiTableCell-body.MuiTableCell-sizeMedium.tss-1qtl85h-MUIDataTableBodyCell-root.tss-1y3wvy9-MUIDataTableBodyCell-stackedParent.tss-iwylj0-MUIDataTableBodyCell-responsiveStackedSmallParent.datatables-noprint.css-jy6ery-MuiTableCell-root
+.no_data_found{
+  position: static;
+}
 @media (max-width: "1660px") {
   .my_cart_main .my_cart_image_block p {
     font-size: 30px !important;

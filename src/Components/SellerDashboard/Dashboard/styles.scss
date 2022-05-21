@@ -104,7 +104,7 @@
 }
 @media (max-width: 1200px) {
   .seller_dashboard .dashboard__status {
-    flex-direction: column;
+    // flex-direction: column;
     padding-bottom: 2em;
 
     .dashboard__statusoffer {
@@ -115,4 +115,92 @@
   .seller_dashboard .dashboard__data .dasboard__dataiamge {
     width: calc(100% / 2 - 20px);
   }
+}
+
+@media (max-width: 950px) {
+  .seller_dashboard{
+    .dashboard__data{
+        .info_bar{
+            .dasboard__dataiamge{
+                .header{
+                  left: 5em;
+                  font-size: 16px;
+                }
+                .value{
+                  font-size: 24px;
+                }
+            }
+        }
+    }
+  }
+}
+
+@media (max-width: 830px) {
+  .seller_dashboard{
+    .dashboard__data{
+       .info_bar{
+         flex-wrap: wrap;
+       .dasboard__dataiamge{
+         width: calc(48% - 20px);
+         max-width: 100%;
+         .header{
+           left: 8em;
+         }
+       }
+      }
+    }
+    .dashboard__status{
+      gap: 15px;
+    }
+  } 
+
+}
+@media (max-width: 650px) {
+    .seller_dashboard{
+    .dashboard__data{
+       .info_bar{
+         flex-wrap: wrap;
+       .dasboard__dataiamge{
+         width: calc(50% - 20px);
+         max-width: 100%;
+         .header{
+           left: 5em;
+         }
+       }
+      }
+    }
+    .dashboard__status{
+      gap: 15px;
+      flex-direction: column;
+      .dashboard__statusoffer{
+        max-width: 100%;
+      }
+    }
+  } 
+  .piechart_container .chart_table_container{
+    flex-direction: column;
+  }
+
+}
+
+@media (max-width: 567px) {
+     .seller_dashboard{
+    .dashboard__data{
+       .info_bar{
+         flex-wrap: wrap;
+       .dasboard__dataiamge{
+         width: calc(100% - 20px);
+         max-width: 100%;
+         .header{
+           left: 6em;
+         }
+       }
+      }
+    }
+    .dashboard__status{
+      gap: 15px;
+      flex-direction: column;
+    }
+  } 
+
 }

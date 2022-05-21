@@ -637,7 +637,7 @@
   }
 }
 
-@media (max-width: "1600px") {
+@media (max-width: "1660px") {
   .mycart_table_main_container
     .mycart_table_mui_datatable_main
     .MuiTable-root
@@ -668,6 +668,13 @@
     .input_text {
       font-size: 20px !important;
     }
+  }
+
+  .mycart_table_main_container .mycart_table_mui_datatable_main .MuiTable-root .MuiTableBody-root .MuiTableRow-root .MuiTableCell-root:nth-child(2) .mycart_table_seller_id{
+    left: 2.5rem;
+  }
+  .mycart_table_main_container .mycart_table_mui_datatable_main .MuiTable-root .MuiTableBody-root .MuiTableRow-root .MuiTableCell-root:nth-child(1) div{
+    left: 3.5rem;
   }
 }
 
