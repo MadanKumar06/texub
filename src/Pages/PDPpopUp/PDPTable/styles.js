@@ -68,6 +68,9 @@ const styles = () => ({
     paddingLeft: "0",
     maxHeight: "28vh",
     overflowX: "auto",
+    "@media (max-width:767px)": {
+      maxHeight: "100%",
+    },
     "&::-webkit-scrollbar": {
       width: "10px",
     },

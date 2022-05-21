@@ -6,6 +6,7 @@ import blue from "../../../Assets/buyerdashboard/dashboard/blue.png";
 import green from "../../../Assets/buyerdashboard/dashboard/green.png";
 import exchangeoffer from "../../../Assets/sellerdashboard/dashboard/exchangeoffer.png";
 import wanttobuy from "../../../Assets/buyerdashboard/dashboard/wanttobuy.png";
+import wanttobuy_new from "../../../Assets/buyerdashboard/dashboard/buyer_dashboard_buy.png";
 import apple from "../../../Assets/buyerdashboard/dashboard/apple.png";
 import acer from "../../../Assets/buyerdashboard/dashboard/acer.png";
 import hp from "../../../Assets/buyerdashboard/dashboard/hp.png";
@@ -45,6 +46,10 @@ const BuyerDashboard = () => {
       }/buyerdashboard/wanttobuy`
     );
   };
+
+  function formatToCurrency(price) {
+    return price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
+  }
 
   let [permission, setpermission] = useState();
   useEffect(() => {
@@ -86,8 +91,8 @@ const BuyerDashboard = () => {
             <img src={exchangeoffer} alt="" />
           </div>
           <div className="images__buy" onClick={() => handleNavigate()}>
-            <img src={wanttobuy} alt="" />
-            {!permission && <p>Want to buy</p>}
+            <img src={wanttobuy_new} alt="" />
+            {!permission && <span>Want to buy</span>}
           </div>
         </div>
         <div className="dashboard__pricelist">
@@ -127,8 +132,8 @@ const BuyerDashboard = () => {
                       </span>
                       <span className="name">{data?.name}</span>
                       <span className="price">
-                        <span>{data?.currency} </span>
-                        {data?.price}
+                        <span className="symbol">{data?.currency} </span>
+                        {formatToCurrency(parseInt(data?.price))}
                       </span>
                     </li>
                   );
