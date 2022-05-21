@@ -57,6 +57,9 @@
         .MuiFormControl-root {
           .MuiOutlinedInput-root {
             padding: 4px;
+            .MuiAutocomplete-input{
+              padding: 7.5px 24px 7.5px 6px;
+            }
           }
         }
       }

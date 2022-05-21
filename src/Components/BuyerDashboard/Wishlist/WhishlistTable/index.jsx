@@ -470,11 +470,11 @@ const WhislistTable = ({
           onClose={handleCloseForOpenMoreOption}
           className="menulist_item"
         >
-          <MenuItem onClick={() => addalltocart()} style={{textDecoration:"underline", color:"#00B91C", fontWeight:"600"}}>Add All To Cart</MenuItem>
-          <MenuItem onClick={() => addalltopending()} style={{textDecoration:"underline", color:"#20639B", fontWeight:"600"}}>
+          <MenuItem onClick={() => addalltocart()} style={{textDecoration:"underline", color:"#5C6369", fontWeight:"600"}}>Add All To Cart</MenuItem>
+          <MenuItem onClick={() => addalltopending()} style={{textDecoration:"underline", color:"#5C6369", fontWeight:"600"}}>
             Add All To Pending Invoice
           </MenuItem>
-          <MenuItem onClick={() => wishlistdelete()} style={{textDecoration:"underline", color:"#FF0000", fontWeight:"600"}}>Delete List</MenuItem>
+          <MenuItem onClick={() => wishlistdelete()} style={{textDecoration:"underline", color:"#5C6369", fontWeight:"600"}}>Delete List</MenuItem>
         </Menu>
         <div className="header_link">
           <p onClick={() => addalltocart()}>Add All To Cart</p>
