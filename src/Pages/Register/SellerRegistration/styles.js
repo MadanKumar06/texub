@@ -144,6 +144,9 @@ const styles = (theme) => ({
       },
     },
     "& .MuiOutlinedInput-root": {
+      "& .MuiAutocomplete-input": {
+        padding: "7.5px 24px 7.5px 6px",
+      },
       "& input": {
         padding: "12px",
         font: "unset",

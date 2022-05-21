@@ -331,11 +331,12 @@
 
 .mycart_table_main_container {
   padding: 0 3%;
+  overflow-x: auto;
   .MuiPaper-root {
     box-shadow: none;
     .tss-1cdcmys-MUIDataTable-responsiveBase {
-																			overflow: unset;
-																			}
+        overflow: unset;
+        }
   }
   .mycart_table_mui_datatable_main {
     .MuiPaper-root {
@@ -349,7 +350,7 @@
             &:nth-child(1) {
               border-right: none !important;
               border-bottom: none !important;
-              position: absolute;
+              //position: absolute;
               left: 0;
               right: 0;
               top: 7px;
@@ -379,7 +380,7 @@
               border: 0;
               div {
                 position: absolute;
-                left: 4.5rem;
+                left: 6.5rem;
                 top: 2rem;
               }
               .datatables-noprint{
@@ -396,7 +397,7 @@
             &:nth-child(2) {
               .mycart_table_seller_id {
                 position: absolute;
-                left: 3.5rem;
+                left: 4.5rem;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -420,6 +421,7 @@
     }
     .MuiTable-root {
       box-shadow: none;
+      background-color: #fff;
       .MuiTableCell-root {
         text-align: center;
         font-size: 22px;
@@ -671,10 +673,10 @@
   }
 
   .mycart_table_main_container .mycart_table_mui_datatable_main .MuiTable-root .MuiTableBody-root .MuiTableRow-root .MuiTableCell-root:nth-child(2) .mycart_table_seller_id{
-    left: 2.5rem;
+    left: 4.5rem;
   }
   .mycart_table_main_container .mycart_table_mui_datatable_main .MuiTable-root .MuiTableBody-root .MuiTableRow-root .MuiTableCell-root:nth-child(1) div{
-    left: 3.5rem;
+    left: 5.5rem;
   }
 }
 
