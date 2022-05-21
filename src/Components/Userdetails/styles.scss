@@ -21,13 +21,22 @@
     }
     .user_account {
       display: flex;
-      align-items: center;
+      align-items: start;
       flex-direction: column;
       margin: auto;
       letter-spacing: 0.6px;
       .user_code {
         opacity: 1;
-        color: #002d56;
+        color: #002D56;
+        letter-spacing: 0.54px;
+        text-transform: uppercase;
+        font-weight: bold;
+      }
+      .username{
+        letter-spacing: 0.6px;
+        color: #5C6369;
+        text-transform: capitalize;
+        font-weight: 600;
       }
       svg {
         color: #5c6369;

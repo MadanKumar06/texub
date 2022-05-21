@@ -143,11 +143,10 @@
   display: flex;
   width: max-content;
   min-width: 150px;
-
   border-radius: 4px;
   z-index: 9;
   position: absolute;
-  top: 38px;
+  top: 100%;
   left: -5%;
   .list_content {
     list-style: none;

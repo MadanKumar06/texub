@@ -140,33 +140,25 @@ const Productsbrands = ({ setProductFetchApi, getCategories }) => {
     initialSlide: 0,
     nextArrow: <Arrow type="next" />,
     prevArrow: <Arrow type="prev" />,
-    responsive: [
+     responsive: [
       {
         breakpoint: 1921,
-        settings: {
-          slidesToShow: 9,
-          slidesToScroll: 1,
-          initialSlide: 9,
-        },
-      },
-      {
-        breakpoint: 1660,
         settings: {
           slidesToShow: 8,
           slidesToScroll: 1,
           initialSlide: 8,
         },
       },
-       {
-        breakpoint: 1550,
+      {
+        breakpoint: 1660,
         settings: {
-          slidesToShow: 7,
+          slidesToShow: 6,
           slidesToScroll: 1,
           initialSlide: 7,
         },
       },
       {
-        breakpoint: 1440,
+        breakpoint: 1550,
         settings: {
           slidesToShow: 6,
           slidesToScroll: 1,
@@ -174,9 +166,25 @@ const Productsbrands = ({ setProductFetchApi, getCategories }) => {
         },
       },
       {
+        breakpoint: 1440,
+        settings: {
+          slidesToShow: 5,
+          slidesToScroll: 1,
+          initialSlide: 5,
+        },
+      },
+      {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 6,
+          slidesToShow: 4,
+          slidesToScroll: 1,
+          initialSlide: 4,
+        },
+      },
+      {
+        breakpoint: 900,
+        settings: {
+          slidesToShow: 4,
           slidesToScroll: 1,
           initialSlide: 4,
         },
@@ -198,7 +206,7 @@ const Productsbrands = ({ setProductFetchApi, getCategories }) => {
         },
       },
       {
-        breakpoint: 320,
+        breakpoint: 450,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,

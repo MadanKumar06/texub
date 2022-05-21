@@ -207,8 +207,14 @@
     font-size: 24px;
   }
   .sellerdashboard__sidebar ul li {
-    font-size: 14px;
+    font-size: 16px;
     padding-left: 30px;
+  }
+  .sellerdashboard__sidebar ul li.buyerbg{
+    font-size: 16px;
+  }
+   .sellerdashboard__sidebar ul li.sellerbg{
+    font-size: 16px;
   }
   .sellerdashboard__sidebar .sidebar_head_title {
     padding: 1em 0;

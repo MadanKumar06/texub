@@ -15,7 +15,7 @@
       display: flex;
       align-items: center;
       position: relative;
-      height: 100%;
+      height: 50%;
       width: 250px;
       .folderinput {
         outline: none;
@@ -162,6 +162,8 @@
       .Hub__quantity__block {
         flex: 1;
         .Hub__quantity__sub_block {
+           width: 75%;
+            margin: auto;
           span {
             font-size: 16px;
             color: #002d56;
@@ -169,8 +171,9 @@
           .content {
             display: flex;
             align-items: center;
-            justify-content: start;
+            justify-content: space-between;
             gap: 20px;
+           
 
             .hub_info {
               p {
@@ -232,7 +235,7 @@
         }
         .wishlist-btn-info {
           display: flex;
-          justify-content: flex-end;
+          justify-content: space-between;
           align-items: center;
           gap: 10px;
           .wishlist-delete-btn {
@@ -255,10 +258,10 @@
             text-transform: capitalize !important;
             width: max-content;
             font-size: 14px !important;
-            padding: 12px !important;
             max-width: 100%;
             margin-top: 0px !important;
             display: block;
+            padding: 0;
           }
           .add-cart-btn {
             text-decoration: underline !important;

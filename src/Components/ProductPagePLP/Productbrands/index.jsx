@@ -221,7 +221,7 @@ const Productsbrands = ({
         },
       },
       {
-        breakpoint: 320,
+        breakpoint: 450,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,

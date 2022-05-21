@@ -298,6 +298,10 @@
   .pdp_modal .section_main_container .section_main_sub .pdp_modal_footer {
     flex-wrap: wrap;
     justify-content: initial;
+    gap: 20px;
+  }
+  .pdp_modal .section_main_container .section_main_sub .pdp_modal_footer .pdp_footer_model_details{
+    width: 45%;
   }
   .pdp_modal
     .section_main_container

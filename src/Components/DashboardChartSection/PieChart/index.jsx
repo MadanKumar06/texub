@@ -47,8 +47,8 @@ const renderCustomizedLabel = ({
 };
 
 const Charts = () => {
-  const [currentwidth, setcurrentwidth] = useState(375)
-  const [currentheight, setcurrentheight] = useState(375)
+  const [currentwidth, setcurrentwidth] = useState(300)
+  const [currentheight, setcurrentheight] = useState(300)
 
   useEffect(() => {
     if(window.innerWidth <= 1800) {
@@ -56,12 +56,12 @@ const Charts = () => {
       setcurrentheight(360)
     }
     if(window.innerWidth <= 1660) {
-      setcurrentwidth(340)
-      setcurrentheight(340)
+      setcurrentwidth(300)
+      setcurrentheight(300)
     }
     if(window.innerWidth <= 1533) {
-      setcurrentwidth(320)
-      setcurrentheight(320)
+      setcurrentwidth(300)
+      setcurrentheight(300)
     }
     if(window.innerWidth <= 1440) {
       setcurrentwidth(300)
@@ -72,8 +72,8 @@ const Charts = () => {
       setcurrentheight(250)
     }
     if(window.innerWidth <= 1240) {
-      setcurrentwidth(512)
-      setcurrentheight(320)
+      setcurrentwidth(300)
+      setcurrentheight(300)
     }
     if(window.innerWidth <= 1140) {
       setcurrentwidth(448)
@@ -105,8 +105,10 @@ const Charts = () => {
           data?.map((itm) => {
             return (
               <>
-                <span style={{ backgroundColor: `${itm?.color}` }}></span>
-                <p>{itm.name}</p>
+              <div className="chart_month_info">
+                <span className="chart_icon" style={{ backgroundColor: `${itm?.color}` }}></span>
+                <div>{itm.name}</div>
+                </div>
               </>
             );
           })}
