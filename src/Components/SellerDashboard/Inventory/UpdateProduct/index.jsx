@@ -78,115 +78,114 @@ function Index({ type, pid }) {
     isSGSTValid: "",
   });
   let errorHandle = false;
-  console.log(count);
   const countincrease = (checking) => {
     if (count?.length) {
-      count?.map((ct) => {
+      let isValidTemp = [];
+      count?.map((ct, index) => {
         if (!ct?.hub_id) {
-          document.getElementById("currenthub")?.focus();
-          setIsDetailTabValid((prevState) => ({
-            ...prevState,
+          document.getElementById(`${"currenthub" + index}`)?.focus();
+          isValidTemp.push({
             isHubValid: "Please select the hub.",
-          }));
+            ind: index,
+          });
           errorHandle = true;
         }
         if (!ct?.price) {
-          document.getElementById("price")?.focus();
-          setIsDetailTabValid((prevState) => ({
-            ...prevState,
+          document.getElementById(`${"price" + index}`)?.focus();
+          isValidTemp.push({
             isPriceValid: "Please enter the price.",
-          }));
+            ind: index,
+          });
           errorHandle = true;
         } else if (!ct?.currency_id) {
-          document.getElementById("price_currency")?.focus();
-          setIsDetailTabValid((prevState) => ({
-            ...prevState,
+          document.getElementById(`${"price_currency" + index}`)?.focus();
+          isValidTemp.push({
             isPriceValid: "Please select the currency.",
-          }));
+            ind: index,
+          });
           errorHandle = true;
         }
         if (!ct?.in_stock) {
-          document.getElementById("in_stock")?.focus();
-          setIsDetailTabValid((prevState) => ({
-            ...prevState,
+          document.getElementById(`${"in_stock" + index}`)?.focus();
+          isValidTemp.push({
             isInStockValid: "Please enter the instock.",
-          }));
+            ind: index,
+          });
           errorHandle = true;
         }
         if (!ct?.moq) {
-          document.getElementById("moq_field")?.focus();
-          setIsDetailTabValid((prevState) => ({
-            ...prevState,
+          document.getElementById(`${"moq_field" + index}`)?.focus();
+          isValidTemp.push({
             isMoqValid: "Please enter the moq.",
-          }));
+            ind: index,
+          });
           errorHandle = true;
         }
         if (!ct?.eta) {
-          document.getElementById("eta_field")?.focus();
-          setIsDetailTabValid((prevState) => ({
-            ...prevState,
+          document.getElementById(`${"eta_field" + index}`)?.focus();
+          isValidTemp.push({
             isETAValid: "Please enter the eta.",
-          }));
+            ind: index,
+          });
           errorHandle = true;
         } else if (!isNumber(ct?.eta)) {
-          document.getElementById("eta_field")?.focus();
-          setIsDetailTabValid((prevState) => ({
-            ...prevState,
+          document.getElementById(`${"eta_field" + index}`)?.focus();
+          isValidTemp.push({
             isETAValid: "Please enter only number.",
-          }));
+            ind: index,
+          });
           errorHandle = true;
         }
         // GSTS
         if (ct?.hub_id === "2") {
           if (!ct?.cgst) {
-            document.getElementById("gst")?.focus();
-            setIsDetailTabValid((prevState) => ({
-              ...prevState,
+            document.getElementById(`${"gst" + index}`)?.focus();
+            isValidTemp.push({
               isCGSTValid: "Please enter the gst.",
-            }));
+              ind: index,
+            });
             errorHandle = true;
           } else if (!isNumber(ct?.cgst)) {
-            document.getElementById("gst")?.focus();
-            setIsDetailTabValid((prevState) => ({
-              ...prevState,
+            document.getElementById(`${"gst" + index}`)?.focus();
+            isValidTemp.push({
               isCGSTValid: "Please enter only number.",
-            }));
+              ind: index,
+            });
             errorHandle = true;
           }
           if (!ct?.igst) {
-            document.getElementById("igst")?.focus();
-            setIsDetailTabValid((prevState) => ({
-              ...prevState,
+            document.getElementById(`${"igst" + index}`)?.focus();
+            isValidTemp.push({
               isIGSTValid: "Please enter the igst.",
-            }));
+              ind: index,
+            });
             errorHandle = true;
           } else if (!isNumber(ct?.igst)) {
-            document.getElementById("igst")?.focus();
-            setIsDetailTabValid((prevState) => ({
-              ...prevState,
+            document.getElementById(`${"igst" + index}`)?.focus();
+            isValidTemp.push({
               isIGSTValid: "Please enter only number.",
-            }));
+              ind: index,
+            });
             errorHandle = true;
           }
           if (!ct?.sgst) {
-            document.getElementById("sgst")?.focus();
-            setIsDetailTabValid((prevState) => ({
-              ...prevState,
+            document.getElementById(`${"sgst" + index}`)?.focus();
+            isValidTemp.push({
               isSGSTValid: "Please enter the sgst.",
-            }));
+              ind: index,
+            });
             errorHandle = true;
           } else if (!isNumber(ct?.sgst)) {
-            document.getElementById("sgst")?.focus();
-            setIsDetailTabValid((prevState) => ({
-              ...prevState,
+            document.getElementById(`${"sgst" + index}`)?.focus();
+            isValidTemp.push({
               isSGSTValid: "Please enter only number.",
-            }));
+              ind: index,
+            });
             errorHandle = true;
           }
         }
       });
-      // let temp = count?.slice(-1);
-
+      setIsDetailTabValid(isValidTemp);
       if (checking === "checking-validation") {
         return;
       } else if (!errorHandle) {
@@ -501,25 +500,47 @@ function Index({ type, pid }) {
     }
   }, []);
 
-  const deleterow = async (value1, value2) => {
-    try {
-      const rowdelete = await axios({
-        method: "post",
-        url: `${Constant.baseUrl()}/deleteProduct`,
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-        data: {
-          product_id: value1,
-        },
+  const deleterow = (value1, value2) => {
+    swal
+      .fire({
+        title: "Are you sure?",
+        text: "Want to Delete!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085D6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Delete",
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          confrimDelete(value1, value2);
+        }
       });
-      seteventcheck(!eventcheck);
-    } catch (e) {
-      console.log(e);
+  };
+  const confrimDelete = async (value1, value2) => {
+    if (value1) {
+      try {
+        const rowdelete = await axios({
+          method: "post",
+          url: `${Constant.baseUrl()}/deleteProduct`,
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          data: {
+            product_id: value1,
+          },
+        });
+        seteventcheck(!eventcheck);
+        swal.fire({
+          text: `Row Deleted Successfully!`,
+          icon: "success",
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      } catch (e) {
+        console.log(e);
+      }
     }
-    // if (!value1) {
-    //   setcount(count.filter((item, i) => i !== value2));
-    // }
     if (!value1) {
       setIsDetailTabValid({
         isHubValid: "",
@@ -529,9 +550,14 @@ function Index({ type, pid }) {
         isETAValid: "",
       });
       setTimeout(setcount(count?.filter((item, i) => i !== value2)), 500);
+      swal.fire({
+        text: `Row Deleted Successfully!`,
+        icon: "success",
+        showConfirmButton: false,
+        timer: 3000,
+      });
     }
   };
-
   const updateProduct = async () => {
     countincrease("checking-validation");
     if (errorHandle) {
@@ -804,7 +830,7 @@ function Index({ type, pid }) {
             <div className="topform__details">
               <Details
                 countincrease={countincrease}
-                i={data.count}
+                i={data?.count}
                 deleterow={deleterow}
                 isDetailTabValid={isDetailTabValid}
                 setIsDetailTabValid={setIsDetailTabValid}

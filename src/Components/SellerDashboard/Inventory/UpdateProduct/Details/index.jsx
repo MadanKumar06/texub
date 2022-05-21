@@ -32,25 +32,22 @@ function Index({
   };
 
   const selectcurrency = (e, value) => {
-    let temp = count?.filter((c) => {
-      if (c.count === i) {
-        c.currency_id = value?.value;
-      }
-    });
-    settest(temp);
+    if (value === "") {
+      let temp = count?.filter((c) => {
+        if (c.count === i) {
+          c.currency_id = null;
+        }
+      });
+      settest(temp);
+    } else {
+      let temp = count?.filter((c) => {
+        if (c.count === i) {
+          c.currency_id = value?.value;
+        }
+      });
+      settest(temp);
+    }
   };
-
-  // const hubselect = (value) => {
-  //   let data = JSON.parse(value)
-  //     let temp = count.filter((c) => {
-  //       if (c.count === i) {
-  //         c.hub_id = data.value;
-  //         c.hubname = data.name;
-  //       }
-  //     });
-  //     settest(temp);
-  // }
-
   const changevalues = (value, type) => {
     let temp = count?.filter((c) => {
       if (c.count === i) {
@@ -155,13 +152,6 @@ function Index({
     <>
       <div className="updateproduct__bgform">
         <div className="updateproduct_info_form autocomplete_input">
-          {/* <select value={currenthub[0].hub_id} onChange={(e) => hubselect(e.target.value)}>
-          <option value="">Select</option>
-          {hubDropDownValues?.length && hubDropDownValues.map(hub => 
-            // <option value={`{"name":"${hub.hub_name}","value":"${hub.hub_id}"}`}>{hub.hub_name}</option>
-            <option value={hub.hub_id}>{hub.hub_name}</option>
-          )}
-        </select> */}
           <InputLabel>
             Hub<small className="asterisk">*</small>
           </InputLabel>
@@ -174,8 +164,9 @@ function Index({
                 isHubValid: "",
               }));
               hubselect(event, newValue);
+              selectcurrency(event, "");
             }}
-            id="currenthub"
+            id={`${"currenthub" + index}`}
             disablePortal={true}
             options={hubDropDownValues ? hubDropDownValues : []}
             getOptionLabel={(option) =>
@@ -194,8 +185,12 @@ function Index({
             )}
           />
           <InputLabel className="validation_error">
-            {count?.slice(-1)?.[0]?.hub_id === currentdata?.hub_id &&
-              isDetailTabValid?.isHubValid}
+            {isDetailTabValid?.length
+              ? isDetailTabValid?.filter(
+                  (itm) =>
+                    itm?.ind === index && Object.keys(itm)?.[0] === "isHubValid"
+                )?.[0]?.isHubValid
+              : ""}
           </InputLabel>
         </div>
         <div className="updateproduct_info_form">
@@ -205,7 +200,7 @@ function Index({
           <div className="price_customize">
             <Autocomplete
               name=""
-              id="price_currency"
+              id={`${"price_currency" + index}`}
               value={currentcurrency}
               options={options ? options : []}
               onChange={(event, newValue) => {
@@ -229,7 +224,7 @@ function Index({
               )}
             />
             <TextField
-              id="price"
+              id={`${"price" + index}`}
               name="price"
               placeholder="60,500"
               fullWidth
@@ -251,10 +246,13 @@ function Index({
             />
           </div>
           <InputLabel className="validation_error">
-            {(count?.slice(-1)?.[0]?.price === currentdata?.price ||
-              count?.slice(-1)?.[0]?.currency_id ===
-                currentdata?.currency_id) &&
-              isDetailTabValid?.isPriceValid}
+            {isDetailTabValid?.length
+              ? isDetailTabValid?.filter(
+                  (itm) =>
+                    itm?.ind === index &&
+                    Object.keys(itm)?.[0] === "isPriceValid"
+                )?.[0]?.isPriceValid
+              : ""}
           </InputLabel>
         </div>
         <div className="updateproduct_info_form">
@@ -262,7 +260,7 @@ function Index({
             In Stock<small className="asterisk">*</small>
           </InputLabel>
           <TextField
-            id="in_stock"
+            id={`${"in_stock" + index}`}
             name="in_stock"
             className="inputfield-box"
             placeholder="280"
@@ -283,8 +281,13 @@ function Index({
             variant="outlined"
           />
           <InputLabel className="validation_error">
-            {count?.slice(-1)?.[0]?.in_stock === currentdata?.in_stock &&
-              isDetailTabValid?.isInStockValid}
+            {isDetailTabValid?.length
+              ? isDetailTabValid?.filter(
+                  (itm) =>
+                    itm?.ind === index &&
+                    Object.keys(itm)?.[0] === "isInStockValid"
+                )?.[0]?.isInStockValid
+              : ""}
           </InputLabel>
         </div>
         <div className="updateproduct_info_form">
@@ -292,8 +295,7 @@ function Index({
             ETA (Days)<small className="asterisk">*</small>
           </InputLabel>
           <TextField
-            // id="part_number"
-            id="eta_field"
+            id={`${"eta_field" + index}`}
             name="part_nymber"
             type="number"
             placeholder="05"
@@ -314,8 +316,12 @@ function Index({
             variant="outlined"
           />
           <InputLabel className="validation_error">
-            {count?.slice(-1)?.[0]?.eta === currentdata?.eta &&
-              isDetailTabValid?.isETAValid}
+            {isDetailTabValid?.length
+              ? isDetailTabValid?.filter(
+                  (itm) =>
+                    itm?.ind === index && Object.keys(itm)?.[0] === "isETAValid"
+                )?.[0]?.isETAValid
+              : ""}
           </InputLabel>
         </div>
         <div className="updateproduct_info_form">
@@ -323,7 +329,7 @@ function Index({
             MOQ<small className="asterisk">*</small>
           </InputLabel>
           <TextField
-            id="moq_field"
+            id={`${"moq_field" + index}`}
             name="part_nymber"
             className="inputfield-box"
             placeholder="50"
@@ -344,8 +350,12 @@ function Index({
             variant="outlined"
           />
           <InputLabel className="validation_error">
-            {count?.slice(-1)?.[0]?.moq === currentdata?.moq &&
-              isDetailTabValid?.isMoqValid}
+            {isDetailTabValid?.length
+              ? isDetailTabValid?.filter(
+                  (itm) =>
+                    itm?.ind === index && Object.keys(itm)?.[0] === "isMoqValid"
+                )?.[0]?.isMoqValid
+              : ""}
           </InputLabel>
         </div>
       </div>
@@ -372,7 +382,7 @@ function Index({
           <div className="updateproduct_info_form">
             <InputLabel>GST %</InputLabel>
             <TextField
-              id="gst"
+              id={`${"gst" + index}`}
               name="gst"
               placeholder="18"
               type="number"
@@ -393,14 +403,19 @@ function Index({
               variant="outlined"
             />
             <InputLabel className="validation_error">
-              {count?.slice(-1)?.[0]?.cgst === currentdata?.cgst &&
-                isDetailTabValid?.isCGSTValid}
+              {isDetailTabValid?.length
+                ? isDetailTabValid?.filter(
+                    (itm) =>
+                      itm?.ind === index &&
+                      Object.keys(itm)?.[0] === "isCGSTValid"
+                  )?.[0]?.isCGSTValid
+                : ""}
             </InputLabel>
           </div>
           <div className="updateproduct_info_form">
             <InputLabel>IGST %</InputLabel>
             <TextField
-              id="igst"
+              id={`${"igst" + index}`}
               name="igst"
               placeholder="18"
               fullWidth
@@ -421,14 +436,19 @@ function Index({
               variant="outlined"
             />
             <InputLabel className="validation_error">
-              {count?.slice(-1)?.[0]?.igst === currentdata?.igst &&
-                isDetailTabValid?.isIGSTValid}
+              {isDetailTabValid?.length
+                ? isDetailTabValid?.filter(
+                    (itm) =>
+                      itm?.ind === index &&
+                      Object.keys(itm)?.[0] === "isIGSTValid"
+                  )?.[0]?.isIGSTValid
+                : ""}
             </InputLabel>
           </div>
           <div className="updateproduct_info_form">
             <InputLabel>SGST %</InputLabel>
             <TextField
-              id="sgst"
+              id={`${"sgst" + index}`}
               name="sgst"
               placeholder="18"
               fullWidth
@@ -449,8 +469,13 @@ function Index({
               variant="outlined"
             />
             <InputLabel className="validation_error">
-              {count?.slice(-1)?.[0]?.sgst === currentdata?.sgst &&
-                isDetailTabValid?.isSGSTValid}
+              {isDetailTabValid?.length
+                ? isDetailTabValid?.filter(
+                    (itm) =>
+                      itm?.ind === index &&
+                      Object.keys(itm)?.[0] === "isSGSTValid"
+                  )?.[0]?.isSGSTValid
+                : ""}
             </InputLabel>
           </div>
         </div>
