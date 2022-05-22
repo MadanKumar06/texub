@@ -334,7 +334,10 @@
     .input_separator {
     flex-direction: column;
   }
-  .updateproduct .updateproduct__buttons {
-    flex-direction: column;
+  // .updateproduct .updateproduct__buttons {
+  //   flex-direction: column;
+  // }
+  .updateproduct .updateproduct__buttons .updateproduct__submit{
+      padding: 0.6em 4.2em;
   }
 }

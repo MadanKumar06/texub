@@ -72,16 +72,19 @@ const styles = (theme) => ({
     padding: "2.5%",
     margin: "1.5%",
     width: "40%",
-    height: "fit-content",
+    height: 'auto',
+    // height: "fit-content",
     backgroundImage: "url('/Images/user_selection_leftbg.png')",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
     backgroundSize: "cover",
     "@media (max-width:1400px)": {
-      height: "fit-content",
+      // height: "fit-content",
+      height: 'auto',
     },
     "@media (max-width:1299px)": {
-      height: "fit-content",
+      // height: "fit-content",
+      height: 'auto',
     },
     "@media (max-width:768px)": {
       width: "97%",

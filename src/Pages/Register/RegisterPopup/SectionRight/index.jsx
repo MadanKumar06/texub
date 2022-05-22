@@ -73,11 +73,31 @@ const SectionRight = ({ classes, handleClose, handleClassChange }) => {
       </RadioGroup>
       {userDescription ? (
         <div className={user_description}>
-          {homeContent?.popup?.buyer_content}
+          {/* {homeContent?.popup?.buyer_content} */}
+          <span>Are you a buyer looking for high-quality IT products? Seek no farther for your quest is over.</span>
+          <ol>
+            <li>We have recognised top sellers on our website.</li>
+            <li>Browse our up-to-date catalogue, which includes product specifications and pricing.</li>
+            <li>Obtain quotes from various Hubs/ Locations and buy online with a single click.</li>
+          </ol> 
+          <span>Register with us today to have access to a variety of reliable online verified sellers.</span>
+          <span>Follow this link to sign up.</span>
         </div>
       ) : (
         <div className={user_description}>
-          {homeContent?.popup?.seller_content}
+          {/* {homeContent?.popup?.seller_content} */}
+           <span>Are you a seller ? struggling to find a verified platform to sell? </span>
+           <span>Worry no more TEXUB is here to help.</span>
+           <span>Follow these simple steps to go global</span>
+
+            <ol>
+              <li>Sell Globally with Multiple hubs</li>
+              <li>Upload Multiple products and Dynamic pricing</li>
+              <li>Reduce Credit risk </li>
+              <li>Boost your revenue and reduce operational cost </li>
+            </ol> 
+          <span>Register now to get identified by global buyers. </span>
+          <span>Click here to sign up as a seller.</span>
         </div>
       )}
       <Link

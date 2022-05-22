@@ -33,6 +33,7 @@ import board3 from '../../../Assets/Aboutus/members/board3.png'
 import board_member1 from '../../../Assets/Aboutus/membersimg/board_member1.png'
 import board_member2 from '../../../Assets/Aboutus/membersimg/board_member2.png'
 import board_member3 from '../../../Assets/Aboutus/membersimg/board_member3.png'
+import board_member_suchit from '../../../Assets/Aboutus/membersimg/board_member_suchit.png'
 
 import susir from '../../../Assets/Aboutus/membersimg/susir.png'
 import yasuo from '../../../Assets/Aboutus/membersimg/yasuo.png'
@@ -43,6 +44,11 @@ import aishwarya from '../../../Assets/Aboutus/membersimg/aishwarya.png'
 import aditya from '../../../Assets/Aboutus/membersimg/aditya.png'
 import suchit from '../../../Assets/Aboutus/membersimg/suchit.png'
 import tushar from '../../../Assets/Aboutus/membersimg/tushar.png'
+import Neelesh from '../../../Assets/Aboutus/membersimg/Neelesh.png'
+import william from '../../../Assets/Aboutus/membersimg/william.png'
+import Inbarajan from '../../../Assets/Aboutus/membersimg/Inbarajan.png'
+import suchit_shah from '../../../Assets/Aboutus/membersimg/suchit_shah.png'
+import Tushar from '../../../Assets/Aboutus/membersimg/Tushar.png'
 
 import vision_bg from '../../../Assets/Aboutus/vision_bg.png'
 import vision_quote from '../../../Assets/Aboutus/vision_quote.png'
@@ -51,6 +57,7 @@ import values_quote from '../../../Assets/Aboutus/values_quote.png'
 import board_member_quote_bg from '../../../Assets/Aboutus/board_member_quote_bg.png'
 import board_member_bg_2 from '../../../Assets/Aboutus/board_member_bg_2.png'
 import board_member_bg_3 from '../../../Assets/Aboutus/board_member_bg_3.png'
+
 
 import advisory_board_bg from '../../../Assets/Aboutus/advisory_board_bg.png'
 import advisory_board_bg2 from '../../../Assets/Aboutus/advisory_board_bg2.png'
@@ -87,30 +94,33 @@ function Index() {
     ]
 
     const board = [
-        {image: board_member1, bg: board1, quote_bg:board_member_quote_bg, name: 'Niranjan Gidwani', position: 'DIRECTOR', content: 'Over 38 years of hardcore senior management experience with a strong exposure to handling international business. He had working stints in India, Hongkong, Germany, Singapore and Dubai. Expertise in business from different vantage points, including general management , strategy and implementation, building and scaling up teams and processes, grooming future leaders, international business development, handling international start- ups, marketing, global sourcing for various categories.'},
-        {image: board_member2, bg: board2, quote_bg:board_member_bg_2, name: 'Axel Holst', position: 'MD EUROPE', content: 'International sales director having in-depth and broad experience in multiple industry domains and track-proven business development competences. Focussed leadership attitude and target driven on building and delivering success to enterprises and team based across industry. Dedicated, flexible, multi-faceted, open-minded and quinlingual.'},
-        {image: board_member3, bg: board3, quote_bg:board_member_bg_3, name: 'Suchit Kumar', position: 'CO-FOUNDER & CEO', content: 'Over 30 years of experience in setting up business network globally. Accomplished leader with track record of success in bringing global and holistic perspective to enterprises in transformation.'},
+        {image: board_member_suchit, bg: board3, quote_bg:board_member_quote_bg, name: 'Suchit Kumar', position: 'CO-FOUNDER & CEO', content: 'Over 30 years of experience in setting up business network globally. Accomplished leader with track record of success in bringing global and holistic perspective to enterprises in transformation.'},
+
+        {image: board_member1, bg: board1, quote_bg:board_member_quote_bg, name: 'Niranjan Gidwani', position: 'CONSULTING DIRECTOR', content: 'Over 38 years of hardcore top management experience, including extensive business exposure in places such as India, Hong Kong, Germany, Singapore, and Dubai. General management, strategy and implementation, building and scaling up teams, grooming future leaders, international business development, handling international start-ups, marketing, and worldwide sourcing for diverse categories are among his areas of expertise.'},
+        {image: board_member2, bg: board2, quote_bg:board_member_quote_bg, name: 'Axel Holst', position: 'MANAGING DIRECTOR EUROPE', content: 'International sales director having in-depth and broad experience in multiple industry domains and track-proven business development competences. Focussed leadership attitude and target driven on building and delivering success to enterprises and team based across industry. Dedicated, flexible, multi-faceted, open-minded and quinlingual.'}
     ]
 
     const advisary = [
-        {image: susir, quote_bg:advisory_board_bg,  name: 'Susir Kumar', designation: 'BUSINESS, STRATEGY & FINANCE', content: 'Founded the most successful global BPO venture. Delivered significant profitability and value to all key stakeholders : employees, clients and PE. Over 3o years of experience in the services industry specializing in setting up new ventures, M&A advisory and corporate structuring. Chairman & Board member of VSF global, board member TaskUs, Refyne, Sports Village & Ingroup consulting.'},
-        {image: yasuo, quote_bg:advisory_board_bg2, name: 'Yasuo Okada', designation: 'TECHNICAL', content: 'IT Strategist and specialist in Information security, Data privacy, Compliances and Digital transformation. Expert in overseeing changes to enterprise-wide technology, cyber and risk management, culture, skills and behaviours.'}
+        {image: susir, quote_bg:advisory_board_bg,  name: 'Susir Kumar', designation: 'STRATEGY & CORPORATE GOVERNANCE', content: 'Founded the successful global BPO venture. Delivered significant profitability and value to all key stakeholders. Over 30 years of service sector expertise, focusing in new venture formation, M&A advising, and business structure. VSF worldwide chairman and board member of TaskUs, Refyne, Sports Village, and Ingroup consulting.'},
+        {image: Neelesh, quote_bg:advisory_board_bg, name: 'Neelesh Bhatnagar', designation: 'BUSINESS & FINANCE', content: 'Founded the most successful global BPO venture. Delivered significant profitability and value to all key stakeholders : employees, clients and PE. Over 3o years of experience in the services industry specializing in setting up new ventures, M&A advisory and corporate structuring. Chairman & Board member of VSF global, board member TaskUs, Refyne, Sports Village & Ingroup consulting.'},
+        {image: yasuo, quote_bg:advisory_board_bg, name: 'Yasuo Okada', designation: 'TECHNICAL', content: 'IT Strategist and specialist in Information security, Data privacy, Compliances and Digital transformation. Expert in overseeing changes to enterprise-wide technology, cyber and risk management, culture, skills and behaviours.'}
+
     ]
 
     const mgmt = [
-        {image: vinay, quote_bg:advisory_board_bg, name: 'Vinay Pagare', designation: 'HEAD OPERATIONS & TECHNOLOGY', content: 'IT Engineer turned entrepreneur with 12 years of experience in IT, Digital Transformation space. Vinay has proven management experience in setting up new ventures & building system driven business. Worked with TCS, BNI globally.' },
+        {image: vinay, quote_bg:advisory_board_bg, name: 'Vinay Pagare', designation: 'HEAD OPERATIONS & TECHNOLOGY', content: 'IT Engineer Turned Entrepreneur with 12 Years of Experience in IT, DigitalTransformation Space. Vinay has Proven management experience in Setting up new ventures & building system driven businesses. Worked withTCS, BNI globally.' },
         {image: ahmed, quote_bg:advisory_board_bg, name: 'Ahmed Rayyan', designation: 'VICE PRESIDENTS, AMERICA', content: 'Dedicated business development professional with over 20 years of experience in market research, team management and global marketing in the Middle East and Africa. Speciality in market trends and IT development in the US. Led multiple projects for business initiatives worldwide with a focus on e-commerce.'},
     ]
 
     const core = [
-        {image: dummy, name: 'Name', designation: 'FINANCE HEAD'},
-        {image: dummy, name: 'Name', designation: 'FINANCE HEAD'},
-        {image: dummy, name: 'Name', designation: 'FINANCE HEAD'},
-        {image: dummy, name: 'Name', designation: 'FINANCE HEAD'},
         {image: aditya, name: 'Aditya Shah', designation: 'HEAD STRATEGY & CORPORATE FINANCE'},
+        {image: william, name: 'William Ebenezer', designation: 'CISO'},
+        {image: Inbarajan, name: 'Inbarajan S.', designation: 'CHIEF MARKETING OFFICER'},
         {image: aishwarya, name: 'Aishwarya Mishra', designation: 'LEGAL & COMPLIANCE'},
-        {image: suchit, name: 'Suchit Shah', designation: 'TAX & ACCOUNTING INDIA BUSINESS'},
-        {image: tushar, name: 'Tushar Patil', designation: 'TAX & ACCOUNTING AMERICAS'}
+        {image: suchit_shah, name: 'Suchit Shah', designation: 'TAX & ACCOUNTING INDIA BUSINESS'},      
+        {image: Tushar, name: 'Tushar Patil', designation: 'TAX & ACCOUNTING AMERICAS'},
+        // {image: suchit, name: 'Suchit Shah', designation: 'TAX & ACCOUNTING INDIA BUSINESS'},
+        // {image: tushar, name: 'Tushar Patil', designation: 'TAX & ACCOUNTING AMERICAS'}
     ]
 
   return (
@@ -126,7 +136,7 @@ function Index() {
         <div className='aboutus__info'>
             <div className='about_info_content'>
                 <h2>About Us</h2>
-                <p>Texub is a global B2B marketplace that offers a secure technology for global B2B IT trade. Texub is a digital platform that allows business to exchange commerce by offering a list of best selling products for verified buyers through verified sellers and reduces analytical work. With our digital ecosystem, Texub provides a compelling journey into the IT business economy. Our scalable cloud platform for Brands, distributors, and resellers improves the buying and selling experience while maintaining trade privacy.</p>
+                <p>TEXUB is a global B2B marketplace that offers a secure technology for global B2B IT trade. TEXUB is a digital platform that allows business to exchange commerce by offering a list of best selling products for verified buyers through verified sellers and reduces analytical work. With our digital ecosystem, TEXUB provides a compelling journey into the IT business economy. Our scalable cloud platform for Brands, distributors, and resellers improves the buying and selling experience while maintaining trade privacy.</p>
             </div>
         </div>
 

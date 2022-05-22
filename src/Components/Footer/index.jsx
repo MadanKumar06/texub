@@ -33,10 +33,10 @@ export const Footer = () => {
             scrambled it to make a type specimen book.
           </p>
           <div className="Footer_Icon_style">
-            <img className="Footer_Icons" src={Fb} alt="" />
+            <a href="https://www.facebook.com/texubglobal/" target="_blanks"><img className="Footer_Icons" src={Fb} alt="" /></a>
             <img className="Footer_Icons" src={Yt} alt="" />
-            <img className="Footer_Icons" src={In} alt="" />
-            <img className="Footer_Icons" src={Wsp} alt="" />
+             <a href="https://www.linkedin.com/company/texubglobal/" target="_blanks"><img className="Footer_Icons" src={In} alt="" /></a>
+             <img className="Footer_Icons" src={Wsp} alt="" />
           </div>
         </div>
         <div className="footer_container_right">
