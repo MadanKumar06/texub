@@ -11,10 +11,10 @@ import contact from "../../../../Assets/Career/Group 982.png";
 import officeicon from "../../../../Assets/Contactus/office.png";
 import mailicon from "../../../../Assets/Contactus/mail (2).png";
 import telephoneicon from "../../../../Assets/Contactus/telephone.png";
-import fb from "../../../../Assets/Homepage Assets/facebook.png";
-import IN from "../../../../Assets/Homepage Assets/linkedin.png";
-import yt from "../../../../Assets/Homepage Assets/youtube.png";
-import wt from "../../../../Assets/Homepage Assets/whatsapp.png";
+import Fb from "../../../../Assets/CommonImage/facebook.png";
+import twitter from "../../../../Assets/CommonImage/twitter.png";
+import linkedin from "../../../../Assets/CommonImage/linkedin.png";
+import instagram from "../../../../Assets/CommonImage/instagram.png";
 import location from "../../../../Assets/Contactus/placeholder (2).png";
 
 const Contactus = () => {
@@ -142,7 +142,7 @@ const Contactus = () => {
       id: 1,
       icon: officeicon,
       heading: "Office Address",
-      number: "Texub Technology LLC,",
+      number: "TEXUB FZCO,",
       number2: "1401, Al Manara Building,",
       number3: "Business Bay, Dubai,",
       landmark: "United Arab Emirates",
@@ -161,21 +161,23 @@ const Contactus = () => {
       id: 1,
       icon: telephoneicon,
       heading: "Call Us",
-      number: "+9714 2227300",
-      number2: "+9714 2227279",
+      number: "+9714 276 3999",
     },
   ];
   const social = [
-    { id: 1, facebook: fb, linkedin: IN, youtube: yt, whatsapp: wt },
+    {
+      facebook: Fb,
+      insta: instagram,
+      linkedin: linkedin,
+      twitter: twitter,
+    },
   ];
-  const working = [
-    { id: 1, heading: "Working Hours", time: "Mon - Fri, 10 AM To 7 PM GST" },
-  ];
+  const working = [{ id: 1, heading: "Working Hours", time: "24x7x365" }];
   const location1 = [
     {
       id: 1,
       image: location,
-      address: "Texub Inc,",
+      address: "TEXUB,",
       address2: "Spaces Galleria At Post Oak,",
       address3: "1980 Post Oak Blvd, Suite 200",
       address4: "Houston TX 77056",
@@ -187,31 +189,29 @@ const Contactus = () => {
     {
       id: 1,
       image: location,
-      address: "Texub FZCO,",
+      address: "TEXUB FZCO,",
       address2: "S31208 South Zone, Jebel Ali",
       address3: "Free Zone, Dubai,",
       address4: "United Arab Emirates",
-      contact: "+9714 2227300",
-      contact2: "+9714 2227279",
+      contact: "+9714 276 3999",
     },
   ];
   const location3 = [
     {
       id: 1,
       image: location,
-      address: "Texub Technology LLC,",
+      address: "TEXUB FZCO,",
       address2: "1401, Al Manara Building,",
       address3: "Business Bay, Dubai,",
       address4: "United Arab Emirates",
-      contact: "+9714 2227300",
-      contact2: "+9714 2227279",
+      contact: "+9714 276 3999",
     },
   ];
   const location4 = [
     {
       id: 1,
       image: location,
-      address: "Texub Infotech Private Ltd.,",
+      address: "TEXUB Infotech Private Ltd.,",
       address2: "304, S.No 19 Cts 876/113,",
       address3: "Sai Crystal, Dp Shah, Vishal",
       address4: "Nagar, Pimple, Pune,",
@@ -222,15 +222,15 @@ const Contactus = () => {
     {
       id: 1,
       image: location,
-      address: "Texub Infotech Private Ltd.,",
-      address2: "Mumbai",
+      address: "TEXUB Infotech Private Ltd.,",
+      address2: "Mumbai, India",
     },
   ];
   const location6 = [
     {
       id: 1,
       image: location,
-      address: "Texub Infotech Private Ltd.,",
+      address: "TEXUB,",
       address2: "Singapore",
     },
   ];
@@ -238,8 +238,16 @@ const Contactus = () => {
     {
       id: 1,
       image: location,
-      address: "Texub Infotech Private Ltd.,",
-      address2: "Amsterdam",
+      address: "TEXUB,",
+      address2: "Amsterdam, Netherlands",
+    },
+  ];
+  const location8 = [
+    {
+      id: 1,
+      image: location,
+      address: "TEXUB,",
+      address2: "Nigeria",
     },
   ];
   return (
@@ -322,18 +330,27 @@ const Contactus = () => {
             {social.map((item) => (
               <li key={item.id} className="contactus_office_list">
                 <div className="contactus_social_media">
-                  <span>
+                  <a
+                    href="https://www.facebook.com/texubglobal/"
+                    target="_blanks"
+                  >
                     <img src={item.facebook} alt="" className="" />
-                  </span>
-                  <span>
-                    <img src={item.youtube} alt="" className="" />
-                  </span>
-                  <span>
+                  </a>
+                  <a
+                    href="https://www.instagram.com/texubglobal/"
+                    target="_blanks"
+                  >
+                    <img src={item.insta} alt="" className="" />
+                  </a>
+                  <a href="https://twitter.com/texubglobal/" target="_blanks">
+                    <img src={item.twitter} alt="" className="" />
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/company/texubglobal/"
+                    target="_blanks"
+                  >
                     <img src={item.linkedin} alt="" className="" />
-                  </span>
-                  <span>
-                    <img src={item.whatsapp} alt="" className="" />
-                  </span>
+                  </a>
                 </div>
               </li>
             ))}
@@ -411,6 +428,7 @@ const Contactus = () => {
               onChange={handleFormvalue}
               value={contactusData?.subject}
             />
+            <InputLabel className="validation_error"></InputLabel>
           </div>
           <div>
             <TextField
@@ -449,10 +467,10 @@ const Contactus = () => {
         </div>
       </div>
       <div className="contactus_map_section">
-        <p className="contactus_map_heading">Our Other Locations</p>
+        <p className="contactus_map_heading">Global Locations</p>
         <div className="contactus_locations">
           <div className="contactus_location1">
-            {location1.map((item) => (
+            {location1?.map((item) => (
               <li key={item.id} className="contactus_location_list">
                 <div className="contactus_locations_1">
                   <img src={item.image} className="location_image" alt=""></img>
@@ -471,27 +489,7 @@ const Contactus = () => {
             ))}
           </div>
           <div className="contactus_location1">
-            {location2.map((item) => (
-              <li key={item.id} className="contactus_location_list">
-                <div className="contactus_locations_1">
-                  <img src={item.image} className="location_image" alt=""></img>
-                  <div className="address-info-box">
-                    <span> {item.address}</span>
-                    <span> {item.address2}</span>
-                    <span> {item.address3}</span>
-                    <span> {item.address4}</span>
-                    <span> {item.address5}</span>
-                  </div>
-                  <div className="address-phone-box">
-                    <span>{item.contact}</span>
-                    <span>{item.contact2}</span>
-                  </div>
-                </div>
-              </li>
-            ))}
-          </div>
-          <div className="contactus_location1">
-            {location3.map((item) => (
+            {location2?.map((item) => (
               <li key={item.id} className="contactus_location_list">
                 <div className="contactus_locations_1">
                   <img src={item.image} className="location_image" alt=""></img>
@@ -511,7 +509,27 @@ const Contactus = () => {
             ))}
           </div>
           <div className="contactus_location1">
-            {location4.map((item) => (
+            {location3?.map((item) => (
+              <li key={item.id} className="contactus_location_list">
+                <div className="contactus_locations_1">
+                  <img src={item.image} className="location_image" alt=""></img>
+                  <div className="address-info-box">
+                    <span> {item.address}</span>
+                    <span> {item.address2}</span>
+                    <span> {item.address3}</span>
+                    <span> {item.address4}</span>
+                    <span> {item.address5}</span>
+                  </div>
+                  <div className="address-phone-box">
+                    <span>{item.contact}</span>
+                    <span>{item.contact2}</span>
+                  </div>
+                </div>
+              </li>
+            ))}
+          </div>
+          <div className="contactus_location1">
+            {location4?.map((item) => (
               <li key={item.id} className="contactus_location_list">
                 <div className="contactus_locations_1">
                   <img src={item.image} className="location_image" alt=""></img>
@@ -527,7 +545,7 @@ const Contactus = () => {
             ))}
           </div>
           <div className="contactus_location1">
-            {location5.map((item) => (
+            {location5?.map((item) => (
               <li key={item.id} className="contactus_location_list">
                 <div className="contactus_locations_1">
                   <img src={item.image} className="location_image" alt=""></img>
@@ -541,7 +559,7 @@ const Contactus = () => {
           </div>
 
           <div className="contactus_location1">
-            {location6.map((item) => (
+            {location6?.map((item) => (
               <li key={item.id} className="contactus_location_list">
                 <div className="contactus_locations_1">
                   <img src={item.image} className="location_image" alt=""></img>
@@ -554,7 +572,20 @@ const Contactus = () => {
             ))}
           </div>
           <div className="contactus_location1">
-            {location7.map((item) => (
+            {location7?.map((item) => (
+              <li key={item.id} className="contactus_location_list">
+                <div className="contactus_locations_1">
+                  <img src={item.image} className="location_image" alt=""></img>
+                  <div className="address-info-box">
+                    <span> {item.address}</span>
+                    <span> {item.address2}</span>
+                  </div>
+                </div>
+              </li>
+            ))}
+          </div>
+          <div className="contactus_location1">
+            {location8?.map((item) => (
               <li key={item.id} className="contactus_location_list">
                 <div className="contactus_locations_1">
                   <img src={item.image} className="location_image" alt=""></img>

@@ -14,7 +14,7 @@ const styles = (theme) => ({
   },
   user_description: {
     fontSize: "14px",
-    lineHeight: "30px",
+    lineHeight: "24px",
     letterSpacing: "0.42px",
     color: "#333C42",
     textAlign: "justify",
@@ -24,15 +24,26 @@ const styles = (theme) => ({
     "@media (max-width:1190px)": {
       fontSize: "14px",
     },
+    "& ol": {
+      textTransform: "capitalize",
+    },
+    "& p": {
+      display: "flex",
+      flexDirection: "column",
+    },
   },
   btn_link: {
     textDecoration: "none",
     color: "#ffffff",
     width: "100%",
+    textAlign: "center",
     "@media (max-width:580px)": {
       display: "flex",
       justifyContent: "center",
     },
+  },
+  register_popup: {
+    margin: 0,
   },
   btn_user: {
     fontSize: "18px !important",
@@ -52,6 +63,8 @@ const styles = (theme) => ({
   radio_group: {
     display: "flex",
     gap: "4em",
+    justifyContent: "center",
+    alignItem: "center",
     flexWrap: "nowrap !important",
     "@media (max-width:767px)": {
       flexWrap: "wrap !important",

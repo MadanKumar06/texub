@@ -22,6 +22,7 @@ const SectionRight = ({ classes, handleClose, handleClassChange }) => {
     btn_user,
     radio_group,
     btn_link,
+    register_popup,
   } = classes;
   const [userDescription, setUserDescription] = useState(true);
   const handleChange = (event) => {
@@ -74,30 +75,49 @@ const SectionRight = ({ classes, handleClose, handleClassChange }) => {
       {userDescription ? (
         <div className={user_description}>
           {/* {homeContent?.popup?.buyer_content} */}
-          <span>Are you a buyer looking for high-quality IT products? Seek no farther for your quest is over.</span>
+          <span>
+            Are you a buyer looking for high-quality IT products? Seek no
+            farther for your quest is over.
+          </span>
           <ol>
             <li>We have recognised top sellers on our website.</li>
-            <li>Browse our up-to-date catalogue, which includes product specifications and pricing.</li>
-            <li>Obtain quotes from various Hubs/ Locations and buy online with a single click.</li>
-          </ol> 
-          <span>Register with us today to have access to a variety of reliable online verified sellers.</span>
-          <span>Follow this link to sign up.</span>
+            <li>
+              Browse our up-to-date catalogue, which includes product
+              specifications and pricing.
+            </li>
+            <li>
+              Obtain quotes from various Hubs/ Locations and buy online with a
+              single click.
+            </li>
+          </ol>
+          <p>
+            <span>
+              Register with us today to have access to a variety of reliable
+              online verified sellers.
+            </span>
+            <span>Follow this link to sign up.</span>
+          </p>
         </div>
       ) : (
         <div className={user_description}>
           {/* {homeContent?.popup?.seller_content} */}
-           <span>Are you a seller ? struggling to find a verified platform to sell? </span>
-           <span>Worry no more TEXUB is here to help.</span>
-           <span>Follow these simple steps to go global</span>
-
-            <ol>
-              <li>Sell Globally with Multiple hubs</li>
-              <li>Upload Multiple products and Dynamic pricing</li>
-              <li>Reduce Credit risk </li>
-              <li>Boost your revenue and reduce operational cost </li>
-            </ol> 
-          <span>Register now to get identified by global buyers. </span>
-          <span>Click here to sign up as a seller.</span>
+          <p className={register_popup}>
+            <span>
+              Are you a Seller? Struggling to find a verified platform to sell?
+              Worry no more TEXUB is here to help.
+            </span>
+            <span>Follow these simple steps to go global</span>
+          </p>
+          <ol>
+            <li>Sell Globally with Multiple hubs</li>
+            <li>Upload Multiple products and Dynamic pricing</li>
+            <li>Reduce Credit risk </li>
+            <li>Boost your revenue and reduce operational cost </li>
+          </ol>
+          <p>
+            <span>Register now to get identified by global buyers. </span>
+            <span>Click here to sign up as a seller.</span>
+          </p>
         </div>
       )}
       <Link
