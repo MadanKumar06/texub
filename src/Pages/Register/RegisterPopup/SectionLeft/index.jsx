@@ -46,22 +46,22 @@ const TransitionsModal = ({ classes, openPopUp }) => {
     {
       content_img: Register_section_Logo_two,
       arrow_img: Register_section_Logo_arrow,
-      text: "Secure gateway & Crypto options",
+      text: "Easy Inventory Management",
     },
     {
       content_img: Register_section_Logo_three,
       arrow_img: Register_section_Logo_arrow,
-      text: "Secured Technology",
+      text: "Simplified Product Upload",
     },
     {
       content_img: Register_section_Logo_four,
       arrow_img: Register_section_Logo_arrow,
-      text: "Easy Inventory Management",
+      text: "Unlimited Quotes",
     },
     {
       content_img: Register_section_Logo_five,
       arrow_img: Register_section_Logo_arrow,
-      text: "Simplified Product Upload",
+      text: "Unlimited Access to Buying & Selling",
     },
   ];
   const handleClose = (event, reason) => {
@@ -121,7 +121,7 @@ const TransitionsModal = ({ classes, openPopUp }) => {
             </div>
           </div>
           <div className={tagline_text}>
-            A Secure, Safe And Seamless Digital Marketplace
+            Verified Buyers & Sellers
           </div>
           {Images?.map((itm) => (
             <div className={row_info_points}>

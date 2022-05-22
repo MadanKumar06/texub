@@ -432,8 +432,13 @@
   }
   .inventory .inventory__table .MuiTable-root .MuiTableBody-root .action {
     flex-wrap: wrap;
-    width: 50%;
+    width: 100%;
     justify-content: space-around;
     align-items: center;
+    .inventory__action{
+      width: 100%;
+      padding: 0;
+      border: 0;
+    }
   }
 }

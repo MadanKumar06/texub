@@ -109,6 +109,8 @@ function SellerDashboard() {
   useEffect(() => {
     setSearch("");
     setSearchbar(true)
+    if(currenttab === "dashboard")
+      setSearchbar(false)
   }, [currenttab]);
  const [searchBar, setSearchbar] = useState(true)
   const handleSearchBar=(value)=>{

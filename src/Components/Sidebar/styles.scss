@@ -230,6 +230,16 @@
 .sellerdashboard__sidebar ul li{
   padding-left: 20px;
 }
+.sellerdashboard__sidebar ul li {
+    font-size: 14px;
+    padding-left: 30px;
+  }
+  .sellerdashboard__sidebar ul li.buyerbg{
+    font-size: 14px;
+  }
+   .sellerdashboard__sidebar ul li.sellerbg{
+    font-size: 14px;
+  }
 }
 @media (max-width: 1375px) {
   .sellerdashboard__sidebar {

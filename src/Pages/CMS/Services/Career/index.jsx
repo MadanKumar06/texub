@@ -117,14 +117,7 @@ const Career = () => {
         </p>
         <p className="joinus_culture_title">Our Culture & Values</p>
         <p className="joinus_culture_info">
-          Lorem Ipsum Dolor Sit Amet, Consetetur Sadipscing Elitr, Sed Diam
-          Nonumy Eirmod Tempor Invidunt Ut Labore Et Dolore Magna Aliquyam Erat,
-          Sed Diam Voluptua. At Vero Eos Et Accusam Et Justo Duo Dolores Et Ea
-          Rebum.Stet Clita Kasd Gubergren, No Sea Takimata Sanctus Est Lorem
-          Ipsum Dolor Sit Amet. Lorem Ipsum Dolor Sit Amet, Consetetur
-          Sadipscing Elitr,Sed Diam Nonumy Eirmod Tempor Invidunt Ut Labore Et
-          Dolore Magna Aliquyam Erat, Sed Diam Voluptua. At Vero Eos Et Et Justo
-          Duo
+          We are a community of self-starting, mission-driven individuals that are enthusiastic about innovations that brings change. Every day, we collaborate across teams and groups to remove barriers, create new business sectors, and work towards achieving impossible. We aim to inspire people across the globe and shape the future. We're on the lookout for people who is ready to explore and keen on making a difference.
         </p>
         <Box sx={{ flexGrow: 1 }} className="grid_container">
           <Grid

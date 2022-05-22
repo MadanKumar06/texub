@@ -58,7 +58,7 @@
           .MuiOutlinedInput-root {
             padding: 4px;
             .MuiAutocomplete-input{
-              padding: 7.5px 24px 7.5px 6px;
+              padding: 7.5px 50px 7.5px 6px;
             }
           }
         }
@@ -150,11 +150,20 @@
     flex-direction: column;
     gap: unset;
   }
-  .registerproduct .registerproduct__submit {
-    flex-direction: column-reverse;
-    align-items: center;
-  }
+  // .registerproduct .registerproduct__submit {
+  //   flex-direction: column-reverse;
+  //   align-items: center;
+  // }
   .registerproduct .registerproduct__submit .registerproduct__submitbutton {
     padding: 0.6em 4.2em;
   }
+  .registerproduct .registerproducts__form .registerproducts_inputfields .other_main_category_box {
+    width: 100%;
+  }
+  .registerproduct .registerproducts__form .vendor_part_number{
+      width: 100% !important;
+  }		
+  .registerproduct .registerproducts__form {
+      padding-right: 1em;
+    }
 }
