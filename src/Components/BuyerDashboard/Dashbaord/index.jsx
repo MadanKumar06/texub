@@ -142,7 +142,7 @@ const BuyerDashboard = () => {
           </div>
         </div>
       </div>
-      <DashboardChart />
+      {/* <DashboardChart /> */}
     </div>
   );
 };

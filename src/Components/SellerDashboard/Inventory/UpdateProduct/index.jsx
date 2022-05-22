@@ -532,7 +532,7 @@ function Index({ type, pid }) {
         });
         seteventcheck(!eventcheck);
         swal.fire({
-          text: `Row Deleted Successfully!`,
+          text: `Product Price row Deleted Successfully!`,
           icon: "success",
           showConfirmButton: false,
           timer: 3000,

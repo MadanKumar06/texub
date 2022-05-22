@@ -300,6 +300,32 @@ const PdpPopup = () => {
     setallert(event);
   };
 
+  let permissions = JSON.parse(localStorage.getItem("permissions"));
+  let PendingInvoice =
+    permissions?.length === 0
+      ? false
+      : permissions?.some(
+          (per) =>
+            per?.value === "can-add-to-pending-invoice" &&
+            per?.permission_value === 0
+        );
+
+  let placeorder =
+    permissions?.length === 0
+      ? false
+      : permissions?.some(
+          (per) =>
+            per?.value === "can-place-order" && per?.permission_value === 0
+        );
+
+  let wishlistpermission =
+    permissions?.length === 0
+      ? false
+      : permissions?.some(
+          (per) =>
+            per?.value === "can-add-to-multiple-wishlist" &&
+            per?.permission_value === 0
+        );
   return (
     <Modal
       aria-labelledby="transition-modal-title"
@@ -366,14 +392,17 @@ const PdpPopup = () => {
             ) : (
               ""
             )}
-
-            <div
-              className="modal_bottom_image_container"
-              onClick={() => handleIsValidUser("add_to_wishlist")}
-            >
-              <img src={add_whishlist} alt="" />
-              <span>Add to Wishlist</span>
-            </div>
+            {!wishlistpermission ? (
+              <div
+                className="modal_bottom_image_container"
+                onClick={() => handleIsValidUser("add_to_wishlist")}
+              >
+                <img src={add_whishlist} alt="" />
+                <span>Add to Wishlist</span>
+              </div>
+            ) : (
+              ""
+            )}
             {openwishlist?.open && (
               <Wishlist
                 dataFromPLP={pdpPopUpOpenClose?.data}
@@ -382,21 +411,29 @@ const PdpPopup = () => {
               />
             )}
             <div className="modal_bottom_button_main">
-              <Button
-                className="modal_bottom_button_add_to_cart"
-                // onClick={() => handleRouteOnButtonClick("add_to_cart")}
-                onClick={() => handleIsValidUser("add_to_cart")}
-              >
-                <img src={shopping_cart} alt="" />
-                <span>Add to Cart</span>
-              </Button>
-              <Button
-                className="modal_bottom_button_pending_invoice"
-                onClick={() => handleIsValidUser("pending_invoice")}
-              >
-                <img width="21px" src={invoice_image} alt="" />
-                <span> Add to Pending Invoice</span>
-              </Button>
+              {!placeorder ? (
+                <Button
+                  className="modal_bottom_button_add_to_cart"
+                  // onClick={() => handleRouteOnButtonClick("add_to_cart")}
+                  onClick={() => handleIsValidUser("add_to_cart")}
+                >
+                  <img src={shopping_cart} alt="" />
+                  <span>Add to Cart</span>
+                </Button>
+              ) : (
+                ""
+              )}
+              {!PendingInvoice ? (
+                <Button
+                  className="modal_bottom_button_pending_invoice"
+                  onClick={() => handleIsValidUser("pending_invoice")}
+                >
+                  <img width="21px" src={invoice_image} alt="" />
+                  <span> Add to Pending Invoice</span>
+                </Button>
+              ) : (
+                ""
+              )}
             </div>
           </div>
           <div className="pdp_modal_footer">

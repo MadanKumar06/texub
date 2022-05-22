@@ -693,10 +693,14 @@ function Index() {
             gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
           </p>
         </div>
-        <div className="remark_block">
-          <span className="remark_title">Remarks</span>
-          <p className="remark_content">{pendingInvoiceList?.remarks}</p>
-        </div>
+        {pendingInvoiceList?.remarks ? (
+          <div className="remark_block">
+            <span className="remark_title">Remarks</span>
+            <p className="remark_content">{pendingInvoiceList?.remarks}</p>
+          </div>
+        ) : (
+          ""
+        )}
         <div className="bottom__buttons">
           <Button
             className="button__cancel"

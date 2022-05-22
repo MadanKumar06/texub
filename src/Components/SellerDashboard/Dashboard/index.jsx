@@ -94,7 +94,7 @@ function Dashboard() {
           <p>My KPI</p>
         </div>
       </div>
-      <DashboardChartSection />
+      {/* <DashboardChartSection /> */}
     </div>
   );
 }

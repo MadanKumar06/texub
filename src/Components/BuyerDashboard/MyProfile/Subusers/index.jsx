@@ -186,7 +186,8 @@ const Index = () => {
         customBodyRender: (value) => {
           return (
             <div className="users_permissions">
-              <span className="value" onClick={forbidden}>
+              <span className="value">
+                {/* <span className="value" onClick={forbidden}> */}
                 {value}
               </span>
             </div>
@@ -208,7 +209,7 @@ const Index = () => {
               >
                 Edit
               </div>
-              <div className="users_action_name">Delete</div>
+              {/* <div className="users_action_name">Delete</div> */}
             </div>
           );
         },

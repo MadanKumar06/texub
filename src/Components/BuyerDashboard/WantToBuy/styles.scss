@@ -20,7 +20,7 @@
         text-transform: capitalize;
       }
       .MuiButtonBase-root {
-        background: linear-gradient(#20639B, #002D56);
+        background: linear-gradient(#20639b, #002d56);
         color: #ffffff;
         padding: 1% 3%;
         border-radius: 3px;
@@ -127,9 +127,9 @@
         text-decoration: underline;
         cursor: pointer;
       }
-      .want_tobuy__category{
-          font-weight: 400;
-        }
+      .want_tobuy__category {
+        font-weight: 400;
+      }
 
       .want_tobuy__quantity {
         color: #333c42;
@@ -141,7 +141,7 @@
         font-weight: 600;
         width: 70px;
         margin-left: 20%;
-				display: flex;
+        display: flex;
         justify-content: center;
       }
 
@@ -186,13 +186,13 @@
       }
 
       .want_tobuy__dispatched {
-        color: #FF0000;
+        color: #ff0000;
         font-weight: 600;
         padding: 0.3em 1.2em;
-        background-color: #FFE2E2;
+        background-color: #ffe2e2;
         border-radius: 24px;
       }
-      .want_tobuy__approved{
+      .want_tobuy__approved {
         color: #f30cf582;
         font-weight: 600;
         padding: 0.3em 1.2em;
@@ -203,11 +203,7 @@
   }
   .want_tobuy__footer {
     width: 100%;
-    padding: 2em 0 0;
     .want_tobuy__container {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
       p {
         text-decoration: none;
         display: flex;
@@ -215,14 +211,14 @@
         cursor: pointer;
         .MuiSvgIcon-root {
           color: #002d56;
-          width: 0.8em;
-          height: 0.8em;
+          width: 0.6em;
+          height: 0.6em;
         }
         span {
           font-size: 16px;
           color: #002d56;
           font-weight: 600;
-          margin-left: 0.6em;
+          margin-left: 4px;
         }
       }
     }
@@ -230,7 +226,6 @@
 }
 
 @media (max-width: 1660px) {
-
   .want_tobuy .want_tobuy__table {
     .MuiTableHead-root .MuiTableCell-root {
       font-size: 16px;
@@ -243,7 +238,7 @@
 
       .MuiTableCell-root {
         font-size: 16px;
-        .want_tobuy__orderid{
+        .want_tobuy__orderid {
           font-size: 18px;
         }
       }
@@ -265,18 +260,22 @@
   .want_tobuy .want_tobuy__footer .want_tobuy__container a span {
     font-size: 18px;
   }
-  .want_tobuy .want_tobuy__table .MuiTableBody-root .MuiTableRow-root .MuiTableCell-root > *{
+  .want_tobuy
+    .want_tobuy__table
+    .MuiTableBody-root
+    .MuiTableRow-root
+    .MuiTableCell-root
+    > * {
     font-size: 16px;
   }
 }
 @media (max-width: 1440px) {
-
   .want_tobuy .want_tobuy__table {
     .MuiTableHead-root .MuiTableCell-root {
       font-size: 14px !important;
-       .want_tobuy__orderid{
-          font-size: 14px;
-        }
+      .want_tobuy__orderid {
+        font-size: 14px;
+      }
     }
 
     .MuiTableBody-root {
@@ -289,11 +288,11 @@
       }
     }
     .MuiTableCell-root {
-        font-size: 14px;
-        .want_tobuy__orderid{
-          font-size: 14px !important;
-        }
+      font-size: 14px;
+      .want_tobuy__orderid {
+        font-size: 14px !important;
       }
+    }
   }
   .want_tobuy .want_tobuy__table .MuiTableBody-root .want_tobuy__ordertotal {
     .currency {
@@ -311,7 +310,12 @@
   .want_tobuy .want_tobuy__footer .want_tobuy__container a span {
     font-size: 14px;
   }
-  .want_tobuy .want_tobuy__table .MuiTableBody-root .MuiTableRow-root .MuiTableCell-root > *{
+  .want_tobuy
+    .want_tobuy__table
+    .MuiTableBody-root
+    .MuiTableRow-root
+    .MuiTableCell-root
+    > * {
     font-size: 14px;
   }
 }
@@ -319,10 +323,10 @@
   .want_tobuy .want_tobuy__buttons p {
     font-size: 14px;
   }
-    .want_tobuy .want_tobuy__table .MuiTableBody-root .want_tobuy__quantity {
-			width: 100%;
-      margin-left: 0;
-  }	
+  .want_tobuy .want_tobuy__table .MuiTableBody-root .want_tobuy__quantity {
+    width: 100%;
+    margin-left: 0;
+  }
 }
 
 @media (max-width: 900px) {
@@ -335,20 +339,25 @@
     }
   }
 
-  .want_tobuy{
-    .want_tobuy__table{
-      .MuiTableBody-root{
-          .MuiTableRow-root{
-              .MuiTableCell-root{
-                width: 100%;
-              }
+  .want_tobuy {
+    .want_tobuy__table {
+      .MuiTableBody-root {
+        .MuiTableRow-root {
+          .MuiTableCell-root {
+            width: 100%;
           }
+        }
       }
     }
-  } 
+  }
 }
-	@media (max-width: 899.95px){
-  .want_tobuy .want_tobuy__table .MuiTableBody-root .MuiTableRow-root .MuiTableCell-root > * {
-       width: 50%;
-    }
+@media (max-width: 899.95px) {
+  .want_tobuy
+    .want_tobuy__table
+    .MuiTableBody-root
+    .MuiTableRow-root
+    .MuiTableCell-root
+    > * {
+    width: 50%;
+  }
 }
