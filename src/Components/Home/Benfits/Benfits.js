@@ -1,14 +1,12 @@
 import React from "react";
-import Learn from "../../../Assets/Homepage Assets/Group 73.png";
 import "./Benfits.scss";
 
 export const Benfits = ({ data }) => {
+  debugger;
   return (
     <div className="Benfits">
       <div className="Benfits_1st_div">
-        <h1 className="Benfits_Get">Get </h1>
-        <h1 className="Benfits_Get">Benefits & </h1>
-        <h1 className="Benfits_Get">Advantages</h1>
+        <h1 className="Benfits_Get">{data?.title} </h1>
         <p className="Benfits_Get_Tag">{data?.content}</p>
         <div className="button__learnmore">
           <button className="Benfits_Learnmore_btn" type="button">

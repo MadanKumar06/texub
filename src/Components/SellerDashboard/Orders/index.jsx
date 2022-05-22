@@ -172,15 +172,14 @@ function Index({ handleSearchBar, searchdata, searchupdate }) {
     },
     { name: "hub", label: "HUB" },
     {
-      name: "order_total",
+      name: "total",
       label: "Order Total",
       options: {
-        customBodyRender: (value) => {
+        customBodyRender: (value, tablemeta) => {
+          let currency = tablemeta?.rowData?.[8];
           return (
             <div className="orders__ordertotal">
-              <span className="label">
-                {JSON.parse(localStorage.getItem("currency"))?.currency_code}
-              </span>
+              <span className="label">{currency}</span>
               <span className="value">{formatToCurrency(parseInt(value))}</span>
             </div>
           );
@@ -188,7 +187,7 @@ function Index({ handleSearchBar, searchdata, searchupdate }) {
       },
     },
     {
-      name: "quote_status",
+      name: "po_status",
       label: "Status",
       options: {
         customBodyRender: (value) => {
@@ -229,6 +228,13 @@ function Index({ handleSearchBar, searchdata, searchupdate }) {
     },
     {
       name: "po_id",
+      label: " ",
+      options: {
+        display: false,
+      },
+    },
+    {
+      name: "currency",
       label: " ",
       options: {
         display: false,

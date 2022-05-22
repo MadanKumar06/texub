@@ -125,7 +125,7 @@ const columns = [
   },
   {
     name: "product_name",
-    label: "DESCRIPTION",
+    label: " ",
     options: {
       customBodyRender: (value, tablemeta) => {
         let description = tablemeta?.rowData[9];
@@ -152,7 +152,7 @@ const columns = [
     },
   },
   {
-    name: "quantity",
+    name: "qty",
     label: "QUANTITY",
     options: {
       customBodyRender: (value) => {
@@ -173,11 +173,11 @@ const columns = [
     name: "price",
     label: "UNIT PRICE",
     options: {
-      customBodyRender: (value) => {
+      customBodyRender: (value, tablemeta) => {
+        let currency = tablemeta?.rowData[10];
         return (
           <div className="vieworders_price">
-            <span className="inr">
-               </span>
+            <span className="inr">{currency}</span>
             <span className="price"> {formatToCurrency(parseInt(value))} </span>
           </div>
         );
@@ -188,12 +188,11 @@ const columns = [
     name: "total",
     label: "SUB-TOTAL",
     options: {
-      customBodyRender: (value) => {
+      customBodyRender: (value, tablemeta) => {
+        let currency = tablemeta?.rowData[10];
         return (
           <div className="vieworders_total">
-            <span className="inr">
-          
-            </span>
+            <span className="inr">{currency}</span>
             <span className="price">{formatToCurrency(parseInt(value))} </span>
           </div>
         );
@@ -209,6 +208,13 @@ const columns = [
   },
   {
     name: "description",
+    label: " ",
+    options: {
+      display: false,
+    },
+  },
+  {
+    name: "currency",
     label: " ",
     options: {
       display: false,
