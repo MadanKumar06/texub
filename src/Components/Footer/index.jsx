@@ -115,7 +115,7 @@ export const Footer = () => {
         <MobileFooterAccordions />
       </div>
       <div className="Copyright">
-        <p>@2020 Mockup. All Rights Reserved</p>
+        <p>Copyrights @2022 TEXUB. All Rights Reserved</p>
         <p>Privacy Policy</p>
         <p>Terms of Use</p>
       </div>

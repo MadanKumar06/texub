@@ -79,31 +79,33 @@ const Header = ({ classes }) => {
   }, [currency, gt, localStorage.getItem("userdata")]);
 
   useEffect(() => {
-    async function fetchData() {
-      const user = JSON.parse(localStorage.getItem("userdata"));
-      try {
-        const wishlistdata = await axios({
-          method: "post",
-          url: `${Constant.baseUrl()}/getwishlist`,
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-          data: {
-            requestParams: {
-              customer_id: user?.id,
-              currency_id: currency?.currency_id,
+    const user = JSON.parse(localStorage.getItem("userdata"));
+    if (user?.id === 5) {
+      async function fetchData() {
+        try {
+          const wishlistdata = await axios({
+            method: "post",
+            url: `${Constant.baseUrl()}/getwishlist`,
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
-          },
-        });
-        dispatch({
-          type: "WHISHLIST_DATA",
-          data: wishlistdata?.data,
-        });
-      } catch (e) {
-        console.log(e);
+            data: {
+              requestParams: {
+                customer_id: user?.id,
+                currency_id: currency?.currency_id,
+              },
+            },
+          });
+          dispatch({
+            type: "WHISHLIST_DATA",
+            data: wishlistdata?.data,
+          });
+        } catch (e) {
+          console.log(e);
+        }
       }
+      fetchData();
     }
-    fetchData();
   }, [currency, generalTrigger, localStorage.getItem("userdata")]);
   const SigninPopUP = () => {
     dispatch({

@@ -274,6 +274,7 @@ const TransitionsModal = ({ classes }) => {
   useEffect(async () => {
     let user = JSON.parse(localStorage.getItem("userdata"));
     if (adminToken === null) return;
+    if (!user?.id) return;
     try {
       const permission = await axios({
         method: "post",

@@ -119,25 +119,26 @@ const BuyerDashboard = () => {
             </div>
 
             <ul>
-              {dashboarddata?.length &&
-                dashboarddata?.[0]?.products?.length &&
-                dashboarddata?.[0]?.products?.map((data, i) => {
-                  return (
-                    <li key={i}>
-                      <span className="image">
-                        <img
-                          src={Constant?.imageBaseUrl() + data?.brand}
-                          alt="brand"
-                        />
-                      </span>
-                      <span className="name">{data?.name}</span>
-                      <span className="price">
-                        <span className="symbol">{data?.currency} </span>
-                        {formatToCurrency(parseInt(data?.price))}
-                      </span>
-                    </li>
-                  );
-                })}
+              {dashboarddata?.length
+                ? dashboarddata?.[0]?.products?.length &&
+                  dashboarddata?.[0]?.products?.map((data, i) => {
+                    return (
+                      <li key={i}>
+                        <span className="image">
+                          <img
+                            src={Constant?.imageBaseUrl() + data?.brand}
+                            alt="brand"
+                          />
+                        </span>
+                        <span className="name">{data?.name}</span>
+                        <span className="price">
+                          <span className="symbol">{data?.currency} </span>
+                          {formatToCurrency(parseInt(data?.price))}
+                        </span>
+                      </li>
+                    );
+                  })
+                : ""}
             </ul>
           </div>
         </div>

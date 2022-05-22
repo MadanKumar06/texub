@@ -50,7 +50,7 @@ const QontoConnector = styled(StepConnector)(({ theme }) => ({
     [`& .${stepConnectorClasses.line}`]: {
       borderColor: "#DDB363",
       borderTopStyle: "dashed",
-      opacity: "0.3",
+      opacity: "0.6",
     },
   },
   [`& .${stepConnectorClasses.line}`]: {

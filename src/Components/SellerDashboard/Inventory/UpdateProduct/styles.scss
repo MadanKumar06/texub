@@ -40,10 +40,11 @@
 
       .addmore__plus {
         background-color: #cdd5dd;
+        box-shadow: 0px 3px 6px #00000029;
         border-radius: 100%;
         font-size: 39px;
         font-weight: 600;
-        padding: 2px;
+        padding: 24px;
         text-align: center;
         width: 32px;
         height: 32px;
@@ -52,21 +53,21 @@
         &::after {
           content: "";
           position: absolute;
-          border-left: 3px solid #002d56;
-          width: 16px;
-          height: 16px;
-          top: 8px;
-          left: 15px;
+          border-left: 5px solid #002d56;
+          width: 19px;
+          height: 19px;
+          top: 16px;
+          left: 23px;
         }
 
         &::before {
           content: "";
           position: absolute;
-          border-top: 3px solid #002d56;
-          width: 16px;
-          height: 16px;
-          top: 14.5px;
-          left: 9px;
+          border-top: 5px solid #002d56;
+          width: 19px;
+          height: 19px;
+          top: 23.5px;
+          left: 16px;
         }
       }
 
@@ -110,13 +111,7 @@
     }
   }
   .country_selection {
-    // justify-content: flex-end;
     display: block !important;
-    // padding-left: 2em;
-    // padding-top: 2em;
-    .updateproduct_inputfields {
-      // width: 50%;
-    }
   }
   .updateproduct__gst .updateproduct_info_form,
   .updateproduct__specifications
@@ -142,9 +137,9 @@
       .MuiFormControl-root {
         .MuiOutlinedInput-root {
           padding: 4px !important;
-          .MuiAutocomplete-input{
-							padding: 7.5px 50px 7.5px 6px;
-					}
+          .MuiAutocomplete-input {
+            padding: 7.5px 50px 7.5px 6px;
+          }
         }
       }
     }
@@ -249,7 +244,6 @@
   .updateproduct__buttons {
     display: flex;
     justify-content: space-between;
-    margin-top: 2em;
     align-items: center;
     & > * {
       cursor: pointer;
@@ -281,6 +275,7 @@
 
     .updateproduct__submit {
       font-size: 18px;
+      font-weight: 600;
       padding: 0.6em 7.2em;
       background: linear-gradient(#20639b, #002d56);
       color: white;
@@ -337,7 +332,7 @@
   // .updateproduct .updateproduct__buttons {
   //   flex-direction: column;
   // }
-  .updateproduct .updateproduct__buttons .updateproduct__submit{
-      padding: 0.6em 4.2em;
+  .updateproduct .updateproduct__buttons .updateproduct__submit {
+    padding: 0.6em 4.2em;
   }
 }

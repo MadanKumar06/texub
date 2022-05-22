@@ -1,5 +1,5 @@
-.modal{
-.enquirydetails_main{
+.modal {
+  .enquirydetails_main {
     position: fixed;
     bottom: 100px;
     width: 100%;
@@ -14,53 +14,56 @@
     padding: 20px 0px;
     padding: 5% 0px;
     .p1 {
-        margin-left: 30px;
-        color: #333C42;
-        font-size: 12px;
-        display: flex;
-        align-items: center;
-        font-weight: 600;
-        img{
-            width: 28px;
-            height:28px;
-            margin-right: 5px;
-        }
+      margin-left: 30px;
+      color: #333c42;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      font-weight: 600;
+      img {
+        width: 28px;
+        height: 28px;
+        margin-right: 5px;
+      }
     }
-    .enquirydetails_box{
-        background-color: #F8F0E0;
-        max-width: 665px;
-        width: 100%;
-        // overflow: auto;
-        box-shadow: 0px 3px 16px #0000001C;
-        
-    .enquirydetails_heading{
+    .enquirydetails_box {
+      background-color: #f8f0e0;
+      max-width: 665px;
+      width: 100%;
+      // overflow: auto;
+      box-shadow: 0px 3px 16px #0000001c;
+
+      .enquirydetails_heading {
         display: flex;
         justify-content: space-between;
-        background-color: #333C42;
-        padding: 20px 20px;
-        .MuiSvgIcon-root{
-            width: 1.5em;
-            height: 1.5em;
-            color: white;
-            background: #DDB363;
-            cursor: pointer;
-            border-radius: 4px;
+        background-color: #333c42;
+        padding: 0px 18px;
+        width: 100%;
+        height: 54px;
+        align-items: center;
+        .MuiSvgIcon-root {
+          width: 1em;
+          height: 1em;
+          color: white;
+          background: #ddb363;
+          cursor: pointer;
+          border-radius: 4px;
         }
         p {
-            color: #F5F5F5;
-            margin: 0px;
-            font-size: 20px;
+          color: #f5f5f5;
+          margin: 0px;
+          font-size: 16px;
+          font-weight: 600;
+          span {
+            color: #ddb363;
+            font-size: 22px;
             font-weight: 600;
-            span{
-                color: #DDB363;
-                font-size: 30px;
-                font-weight: 600;
-            }
+          }
         }
-    }
-    .enquirydetails_section{
-        background-color: #FFFFFF;
-        margin:  10px 30px 20px 30px;
+      }
+      .enquirydetails_section {
+        background-color: #ffffff;
+        margin: 10px 30px 20px 30px;
         padding: 20px 20px 20px 20px;
         display: flex;
         flex-direction: column;
@@ -69,95 +72,95 @@
         overflow: auto;
         height: 55vh;
         .status {
-            position: absolute;
-            top: 1em;
-            right: 3em;
-            color: #333C42;
-             padding: 0.4em 2em;
-            font-size: 20px;
+          position: absolute;
+          top: 1em;
+          right: 3em;
+          color: #333c42;
+          padding: 0.4em 2em;
+          font-size: 20px;
         }
-         .directenquiries__decline {
-            color: #FF0000;
-            font-size: 16px;
-            font-weight: 600;
-            background-color: #FFE2E2;
-            padding: 0.4em 2em;
-            border-radius: 28px;
-         }
+        .directenquiries__decline {
+          color: #ff0000;
+          font-size: 16px;
+          font-weight: 600;
+          background-color: #ffe2e2;
+          padding: 0.4em 2em;
+          border-radius: 28px;
+        }
 
         .directenquiries__pending {
-            color: #FF0000;
-            font-size: 16px;
-            font-weight: 600;
-            background-color: #FFE2E2;
-            padding: 0.4em 2em;
-            border-radius: 28px;
-          }
-          .directenquiries__accepted {
-            color: #20639b !important;
-            font-weight: 600;
-            font-size: 16px;
-            background-color: #d5ecff !important;
-            padding: 0.4em 2em;
-            border-radius: 28px;
-          }
-          .directenquiries__closed {
-            color: #00b91c;
-            font-weight: 600;
-            font-size: 16px;
-            background-color: #e6ffea;
-            padding: 0.4em 2em;
-            border-radius: 28px;
-          }
-          .actions {
-            text-decoration: underline;
-            color: #002d56;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-          }
-          .directenquiries__open {
-            color: #d9ad59;
-            font-weight: 600;
-            font-size: 16px;
-            background-color: #fff6e5;
-            padding: 0.4em 2em;
-            border-radius: 28px;
-          }
-        .enquirydetails{
-            display: flex;
-            gap: 30px;
-            .heading{
-                color: #3E3E3E;
-                font-size: 18px;
-                font-weight: 600;
-                opacity: 1;
-                word-wrap: normal;
-                margin: 0;
-                width: 30%;
-            }
-            .details{
-                color: #333C42;
-                font-size: 20px;
-                opacity: 1;
-                word-wrap: break-word;
-                margin: 0;
-                width:60%;
-                white-space: pre-line;
-            }
+          color: #ff0000;
+          font-size: 16px;
+          font-weight: 600;
+          background-color: #ffe2e2;
+          padding: 0.4em 2em;
+          border-radius: 28px;
         }
-        .button_box{
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        .button_decline{
-            color: #002D56;
+        .directenquiries__accepted {
+          color: #20639b !important;
+          font-weight: 600;
+          font-size: 16px;
+          background-color: #d5ecff !important;
+          padding: 0.4em 2em;
+          border-radius: 28px;
+        }
+        .directenquiries__closed {
+          color: #00b91c;
+          font-weight: 600;
+          font-size: 16px;
+          background-color: #e6ffea;
+          padding: 0.4em 2em;
+          border-radius: 28px;
+        }
+        .actions {
+          text-decoration: underline;
+          color: #002d56;
+          font-size: 14px;
+          font-weight: 600;
+          cursor: pointer;
+        }
+        .directenquiries__open {
+          color: #d9ad59;
+          font-weight: 600;
+          font-size: 16px;
+          background-color: #fff6e5;
+          padding: 0.4em 2em;
+          border-radius: 28px;
+        }
+        .enquirydetails {
+          display: flex;
+          gap: 30px;
+          .heading {
+            color: #3e3e3e;
+            font-size: 18px;
+            font-weight: 600;
+            opacity: 1;
+            word-wrap: normal;
+            margin: 0;
+            width: 30%;
+          }
+          .details {
+            color: #333c42;
+            font-size: 20px;
+            opacity: 1;
+            word-wrap: break-word;
+            margin: 0;
+            width: 60%;
+            white-space: pre-line;
+          }
+        }
+        .button_box {
+          display: flex;
+          justify-content: center;
+          gap: 20px;
+          .button_decline {
+            color: #002d56;
             font-size: 18px;
             width: 30%;
             background-color: white;
             padding: 5px 25px;
             border-radius: 25px;
-            border: 1px solid #002D56;
+            border: 1px solid #002d56;
             box-shadow: 0px 3px 6px #00000029;
             font-weight: 600;
             letter-spacing: 0.54px;
@@ -165,14 +168,15 @@
             cursor: pointer;
             text-transform: capitalize;
             line-height: initial;
-        }
-        .button_accept, .button_Submit{
+          }
+          .button_accept,
+          .button_Submit {
             box-shadow: 0px 3px 6px #00000029;
             border-radius: 25px;
             opacity: 1;
             padding: 5px 25px;
-            background: linear-gradient(#20639B, #002D56);
-            color: #FFFFFF;
+            background: linear-gradient(#20639b, #002d56);
+            color: #ffffff;
             font-size: 18px;
             border: none;
             font-weight: 600;
@@ -181,15 +185,16 @@
             cursor: pointer;
             width: 30%;
             line-height: initial;
-        }
-        .button_closed, .button_declined {
-            color: #5C6369;
+          }
+          .button_closed,
+          .button_declined {
+            color: #5c6369;
             font-size: 18px;
             width: 40%;
             background-color: white;
             padding: 5px 25px;
             border-radius: 25px;
-            border: 1px solid #CDD5DD;
+            border: 1px solid #cdd5dd;
             box-shadow: 0px 3px 6px #00000029;
             font-weight: 600;
             letter-spacing: 0.54px;
@@ -197,77 +202,102 @@
             cursor: pointer;
             text-transform: capitalize;
             line-height: initial;
+          }
         }
+      }
     }
-    
-
-  } 
   }
-
-}
 }
 
-@media only screen and(max-width:900px){
-    .modal .enquirydetails_main .enquirydetails_box .enquirydetails_section{
+@media only screen and(max-width:900px) {
+  .modal .enquirydetails_main .enquirydetails_box .enquirydetails_section {
     height: 63vh;
     overflow-y: scroll;
- }
- .modal .enquirydetails_main{
-     margin: 1em 15px;
- }
+  }
+  .modal .enquirydetails_main {
+    margin: 1em 15px;
+  }
 }
-@media (max-width:580px) {
-    .enquirydetails_main{
-        //    position:fixed;
-        //    max-height: 50vh;
-           height: 100%;
-           width: -webkit-fill-available !important;
-          
-           
-              
-    }
-    .enquirydetails_main .enquirydetails_box .enquirydetails_section .enquirydetails{
-        // flex-direction: column;
-    }
-    .enquirydetails_main .enquirydetails_box .enquirydetails_section .button_box{
-        flex-direction: column;
-    }
+@media (max-width: 580px) {
+  .enquirydetails_main {
+    //    position:fixed;
+    //    max-height: 50vh;
+    height: 100%;
+    width: -webkit-fill-available !important;
+  }
+  .enquirydetails_main
+    .enquirydetails_box
+    .enquirydetails_section
+    .enquirydetails {
+    // flex-direction: column;
+  }
+  .enquirydetails_main .enquirydetails_box .enquirydetails_section .button_box {
+    flex-direction: column;
+  }
 
-    .enquirydetails_main .enquirydetails_box .enquirydetails_section .enquirydetails{
-        justify-content: center;
-        gap: 0;
+  .enquirydetails_main
+    .enquirydetails_box
+    .enquirydetails_section
+    .enquirydetails {
+    justify-content: center;
+    gap: 0;
+  }
+  .enquirydetails_main
+    .enquirydetails_box
+    .enquirydetails_section
+    .enquirydetails {
+    justify-content: center;
+    align-items: center;
+  }
+  .enquirydetails_main
+    .enquirydetails_box
+    .enquirydetails_section
+    .enquirydetails
+    .details {
+    width: auto;
+  }
+  .enquirydetails_main
+    .enquirydetails_box
+    .enquirydetails_section
+    .enquirydetails
+    .heading {
+    width: auto;
+  }
+  .enquirydetails_main .enquirydetails_box .enquirydetails_section .button_box {
+    align-items: center;
+    button {
+      font-size: 16px !important;
+      padding: initial !important;
     }
-    .enquirydetails_main .enquirydetails_box .enquirydetails_section .enquirydetails{
-        justify-content: center;
-        align-items: center;
-    }
-    .enquirydetails_main .enquirydetails_box .enquirydetails_section .enquirydetails .details{
-        width: auto;
-    }
-    .enquirydetails_main .enquirydetails_box .enquirydetails_section .enquirydetails .heading{
-        width: auto;
-    }
-    .enquirydetails_main .enquirydetails_box .enquirydetails_section .button_box{
-        align-items: center;
-        button{
-            font-size: 16px !important;
-            padding: initial !important;
-        }
-    }
-    .modal .enquirydetails_main .enquirydetails_box .enquirydetails_section{
-        margin: 10px 15px 20px 15px;
-    }
-    .modal .enquirydetails_main .enquirydetails_box .enquirydetails_section .enquirydetails .heading{
-        font-size: 14px;
-    }
-    .modal .enquirydetails_main .enquirydetails_box .enquirydetails_section .enquirydetails .details{
-        font-size: 14px;
-        text-align: left;
-    }
-    .modal .enquirydetails_main .enquirydetails_box .enquirydetails_section .status{
-        right: 1em;
-    }
-    .modal .enquirydetails_main .enquirydetails_box .enquirydetails_heading{
-        padding: 10px 15px;
-    }
+  }
+  .modal .enquirydetails_main .enquirydetails_box .enquirydetails_section {
+    margin: 10px 15px 20px 15px;
+  }
+  .modal
+    .enquirydetails_main
+    .enquirydetails_box
+    .enquirydetails_section
+    .enquirydetails
+    .heading {
+    font-size: 14px;
+  }
+  .modal
+    .enquirydetails_main
+    .enquirydetails_box
+    .enquirydetails_section
+    .enquirydetails
+    .details {
+    font-size: 14px;
+    text-align: left;
+  }
+  .modal
+    .enquirydetails_main
+    .enquirydetails_box
+    .enquirydetails_section
+    .status {
+    right: 1em;
+  }
+  .modal .enquirydetails_main .enquirydetails_box .enquirydetails_heading {
+    padding: 10px 15px;
+  }
 }

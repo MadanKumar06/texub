@@ -396,6 +396,7 @@ const TransitionsModal = ({ classes, openPopUp }) => {
   useEffect(async () => {
     let user = JSON.parse(localStorage.getItem("userdata"));
     if (localStorage.getItem("token") === null) return;
+    if (!user?.id) return;
     try {
       const permission = await axios({
         method: "post",
@@ -531,10 +532,15 @@ const TransitionsModal = ({ classes, openPopUp }) => {
             <div className={sections}>
               <div className={section_left}>
                 <p className={info_text_lineNote_one}>
-                  <small>*</small> <span>TEXUB is global marketplace that links verified buyers and vendors.</span>
+                  <small>*</small>{" "}
+                  <span>
+                    TEXUB is global marketplace that links verified buyers and
+                    vendors.
+                  </span>
                 </p>
                 <p className={info_text_lineNote_two}>
-                  Sign up now to gain access to exclusive benefits created only for you.
+                  Sign up now to gain access to exclusive benefits created only
+                  for you.
                 </p>
                 <form onSubmit={handleClickValidation}>
                   <div className={info_text}>Sign-In</div>
