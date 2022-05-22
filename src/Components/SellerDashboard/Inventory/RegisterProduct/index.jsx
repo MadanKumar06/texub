@@ -464,7 +464,7 @@ function RegisterProduct() {
                   <TextField
                     {...params}
                     className="inputfield-box"
-                    placeholder="Select Sub Category"
+                    placeholder="Select Sub-Category"
                     fullWidth
                     InputLabelProps={{
                       shrink: false,

@@ -2,7 +2,6 @@ import React from "react";
 import "./Benfits.scss";
 
 export const Benfits = ({ data }) => {
-  debugger;
   return (
     <div className="Benfits">
       <div className="Benfits_1st_div">

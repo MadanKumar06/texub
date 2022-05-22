@@ -41,8 +41,9 @@
       padding: 0.5em 2em;
       border-radius: 30px;
       font-weight: 600;
-      font-size: 16px;
+      font-size: 14px;
       letter-spacing: 1px;
+      box-shadow: 0px 3px 6px #00000029;
     }
     .confirm {
       background: #d5ecff;
@@ -72,7 +73,7 @@
   /* purchase order status section design */
   .purchase_order_status {
     min-height: 250px;
-    margin: 3em 0 2em;
+    margin: 2em 0 2em;
     box-shadow: 0px 3px 6px #00000029;
     border: 1px solid #e6e6e6;
     border-radius: 4px;
@@ -152,7 +153,7 @@
   .vieworders_heading_section {
     display: flex;
     gap: 20px;
-    align-items: center;
+    align-items: baseline;
     .header_section {
       gap: 10px;
       display: flex;
@@ -624,7 +625,7 @@
 @media only screen and (max-width: 480px) {
   .vieworders_main .vieworders_heading_section {
     flex-direction: column;
-    align-items: center;
+    align-items: baseline;
   }
   .vieworders_main
     .vieworders_detail_section
