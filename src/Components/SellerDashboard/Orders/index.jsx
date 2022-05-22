@@ -15,7 +15,7 @@ import SearchIcon from "@mui/icons-material/Search";
 
 var moment = require("moment");
 
-function Index({handleSearchBar , searchdata, searchupdate}) {
+function Index({ handleSearchBar, searchdata, searchupdate }) {
   const [{ geo, customnostore }, dispatch] = useStateValue();
   const [tableData, setTableData] = useState([]);
   const [apiTableData, setApiTableData] = useState([]);
@@ -33,40 +33,42 @@ function Index({handleSearchBar , searchdata, searchupdate}) {
     settype(value);
   };
   useEffect(() => {
-    settype(0)
+    settype(0);
   }, []);
 
   useEffect(() => {
     if (type === 0) {
-      setTableData(apiTableData)
+      setTableData(apiTableData);
     }
     if (type === 1) {
-      const confirm = apiTableData?.filter(d => d?.quote_status === "1")
-      setTableData(confirm)
+      const confirm = apiTableData?.filter((d) => d?.quote_status === "1");
+      setTableData(confirm);
     }
     if (type === 1) {
-      const dispatch = apiTableData?.filter(d => d?.quote_status === "2")
-      setTableData(dispatch)
+      const dispatch = apiTableData?.filter((d) => d?.quote_status === "2");
+      setTableData(dispatch);
     }
     if (type === 2) {
-      const delivered = apiTableData?.filter(d => d?.quote_status === "3")
-      setTableData(delivered)
+      const delivered = apiTableData?.filter((d) => d?.quote_status === "3");
+      setTableData(delivered);
     }
     if (type === 3) {
-      const cancel = apiTableData?.filter(d => d?.quote_status === "4")
-      setTableData(cancel)
+      const cancel = apiTableData?.filter((d) => d?.quote_status === "4");
+      setTableData(cancel);
     }
-  }, [type, apiTableData])
+  }, [type, apiTableData]);
 
   useEffect(() => {
-    if (apiTableData?.length === 0) return
-    if (searchdata === '') {
-      setTableData(apiTableData)
+    if (apiTableData?.length === 0) return;
+    if (searchdata === "") {
+      setTableData(apiTableData);
     } else {
-      let temp = apiTableData?.filter(td => td?.po_number?.toLowerCase()?.includes(searchdata?.toLowerCase()))
-      setTableData(temp)
+      let temp = apiTableData?.filter((td) =>
+        td?.po_number?.toLowerCase()?.includes(searchdata?.toLowerCase())
+      );
+      setTableData(temp);
     }
-  }, [searchupdate, apiTableData])
+  }, [searchupdate, apiTableData]);
   function formatToCurrency(price) {
     return price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
   }
@@ -88,7 +90,7 @@ function Index({handleSearchBar , searchdata, searchupdate}) {
       try {
         const tabledata = await axios({
           method: "post",
-          url: `${Constant.baseUrl()}/getSellerOrder`,
+          url: `${Constant.baseUrl()}/getSellerPos`,
           data: {
             sellerId: seller_id?.id,
           },
@@ -112,9 +114,9 @@ function Index({handleSearchBar , searchdata, searchupdate}) {
     fetchTableData();
   }, []);
 
-  const handleViewOrder = (item_id) => {
-    handleSearchBar(false)
-    let temp = apiTableData?.filter((itm) => itm?.item_id === item_id);
+  const handleViewOrder = (id) => {
+    handleSearchBar(false);
+    let temp = apiTableData?.filter((itm) => itm?.po_id === id);
     setViewDetail(temp);
     setvieworder(true);
   };
@@ -170,15 +172,14 @@ function Index({handleSearchBar , searchdata, searchupdate}) {
     },
     { name: "hub", label: "HUB" },
     {
-      name: "order_total",
+      name: "total",
       label: "Order Total",
       options: {
-        customBodyRender: (value) => {
+        customBodyRender: (value, tablemeta) => {
+          let currency = tablemeta?.rowData?.[8];
           return (
             <div className="orders__ordertotal">
-              <span className="label">
-                {JSON.parse(localStorage.getItem("currency"))?.currency_code}
-              </span>
+              <span className="label">{currency}</span>
               <span className="value">{formatToCurrency(parseInt(value))}</span>
             </div>
           );
@@ -186,7 +187,7 @@ function Index({handleSearchBar , searchdata, searchupdate}) {
       },
     },
     {
-      name: "quote_status",
+      name: "po_status",
       label: "Status",
       options: {
         customBodyRender: (value) => {
@@ -226,7 +227,14 @@ function Index({handleSearchBar , searchdata, searchupdate}) {
       },
     },
     {
-      name: "item_id",
+      name: "po_id",
+      label: " ",
+      options: {
+        display: false,
+      },
+    },
+    {
+      name: "currency",
       label: " ",
       options: {
         display: false,
@@ -310,7 +318,11 @@ function Index({handleSearchBar , searchdata, searchupdate}) {
           </div>
         </>
       ) : (
-        <ViewOrder viewDetail={viewDetail} setvieworder={setvieworder} handleSearchBar={handleSearchBar}/>
+        <ViewOrder
+          viewDetail={viewDetail}
+          setvieworder={setvieworder}
+          handleSearchBar={handleSearchBar}
+        />
       )}
     </div>
   );

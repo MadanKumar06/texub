@@ -28,6 +28,8 @@ const styles = (theme) => ({
   },
   curreny_image: {
     margin: "0",
+    width: "30px",
+    height: "30px",
     color: "#ffffff",
     background: "#dfb566",
     borderRadius: "50%",

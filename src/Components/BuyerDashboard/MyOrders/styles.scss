@@ -51,7 +51,6 @@
         font-size: 18px;
         text-align: center;
         color: #333c42;
-        
       }
 
       .myorders__orderid {
@@ -71,7 +70,7 @@
           font-size: 14px;
           font-weight: normal;
         }
-         .price {
+        .price {
           font-size: 22px;
         }
       }
@@ -99,11 +98,11 @@
         background-color: #e6ffea;
         border-radius: 24px;
       }
-      .myorders__failed{
-        color: #FF3900;
+      .myorders__failed {
+        color: #ff3900;
         font-weight: 600;
         padding: 0.3em 1.2em;
-        background-color: #FFE2E2;
+        background-color: #ffe2e2;
         border-radius: 24px;
       }
 
@@ -126,7 +125,6 @@
   }
   .my_orders__footer {
     width: 100%;
-    padding: 2em 0 0;
     .my_orders__container {
       display: flex;
       justify-content: space-between;
@@ -150,122 +148,119 @@
   }
 
   .myordersection__search {
-      display: flex;
-      gap: 32px;
+    display: flex;
+    gap: 32px;
+    width: 100%;
+
+    .myordersection__searchinput {
       width: 100%;
-
-      .myordersection__searchinput {
-        width: 100%;
-        box-shadow: unset;
-        border: 1px solid #d6d8d9;
-        .MuiInputBase-root {
-          padding: 5px;
-        }
-        ::placeholder {
-          color: #858a8e;
-          opacity: 0.8;
-          font-size: 16px;
-          font-weight: 600;
-          text-transform: capitalize;
-        }
-        .MuiButtonBase-root {
-          background: #002d56;
-          color: #ffffff;
-          padding: 0.7% 2%;
-          border-radius: 3px;
-        }
+      box-shadow: unset;
+      border: 1px solid #d6d8d9;
+      .MuiInputBase-root {
+        padding: 5px;
       }
-      .myordersection__notiIcon {
-        height: 41px;
-        width: 41px;
-
-        img {
-          width: 100%;
-          height: 100%;
-        }
-      }
-
-      span {
-        color: #5c6369;
-        font-size: 20px;
+      ::placeholder {
+        color: #858a8e;
+        opacity: 0.8;
+        font-size: 16px;
         font-weight: 600;
+        text-transform: capitalize;
       }
-
-      .myordersection_searchinput {
-        box-shadow: unset;
-        border: 1px solid #d6d8d9;
-        flex: 1;
-        height: 68px;
-        .MuiInputBase-root {
-          & ::placeholder {
-            opacity: 1;
-          }
-        }
-
-        .myordersection__input {
-          color: #858a8e;
-          font-size: 20px;
-        }
-      }
-
-      .myordersection__notiIcon {
-        margin-left: 1em;
+      .MuiButtonBase-root {
+        background: #002d56;
+        color: #ffffff;
+        padding: 0.7% 2%;
+        border-radius: 3px;
       }
     }
+    .myordersection__notiIcon {
+      height: 41px;
+      width: 41px;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    span {
+      color: #5c6369;
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .myordersection_searchinput {
+      box-shadow: unset;
+      border: 1px solid #d6d8d9;
+      flex: 1;
+      height: 68px;
+      .MuiInputBase-root {
+        & ::placeholder {
+          opacity: 1;
+        }
+      }
+
+      .myordersection__input {
+        color: #858a8e;
+        font-size: 20px;
+      }
+    }
+
+    .myordersection__notiIcon {
+      margin-left: 1em;
+    }
+  }
 }
-.my_orders__footer .back_button{
+.my_orders__footer .back_button {
   color: #002d56;
   font-weight: 600;
   display: flex;
   align-items: center;
 }
-.my_orders__footer .back_button span.back{
+.my_orders__footer .back_button span.back {
   margin-left: 0.6em;
 }
-.my_orders__footer .back_button .MuiSvgIcon-root{
+.my_orders__footer .back_button .MuiSvgIcon-root {
   width: 0.6em;
   height: 0.6em;
 }
 @media (max-width: 1660px) {
   .myorders .myorders__table {
     .MuiTableHead-root .MuiTableCell-root {
-      font-size: 20px;
+      font-size: 18px;
     }
-
     .MuiTableBody-root {
       .myorders__action {
-        font-size: 18px;
-        
+        font-size: 16px;
       }
-
       .MuiTableCell-root {
-        font-size: 18px;
+        font-size: 16px;
       }
     }
   }
   .myorders .myorders__table .MuiTableBody-root .myorders__ordertotal {
-     .currency {
-          font-size: 14px;
-        }
-         .price {
-          font-size: 20px;
-        }
+    .currency {
+      font-size: 14px;
+    }
+    .price {
+      font-size: 20px;
+    }
   }
   .myorders .myorders__buttons p {
     padding: 0.5em 1.2em;
-    font-size: 18px;
+    font-size: 16px;
   }
   .myorders .my_orders__footer .my_orders__container a .MuiSvgIcon-root {
     width: 0.6em;
     height: 0.6em;
   }
   .myorders .my_orders__footer .my_orders__container a span {
-    font-size: 18px;
+    font-size: 16px;
   }
 }
 
 @media (max-width: 1440px) {
- .myorders .myorders__table {
+  .myorders .myorders__table {
     .MuiTableHead-root .MuiTableCell-root {
       font-size: 14px;
     }
@@ -282,12 +277,12 @@
   }
   .myorders .myorders__table .MuiTableBody-root .myorders__ordertotal {
     .currency {
-          font-size: 12px;
-          font-weight: normal;
-        }
-         .price {
-          font-size: 18px;
-        }
+      font-size: 12px;
+      font-weight: normal;
+    }
+    .price {
+      font-size: 18px;
+    }
   }
   .myorders .myorders__buttons p {
     padding: 0.5em 1.2em;
@@ -308,11 +303,10 @@
   }
 }
 
-
 @media (max-width: 900px) {
   .myorders .myorders__table {
     .MuiTableCell-root {
-      div{
+      div {
         font-size: 14px;
         // width: auto;
       }
@@ -321,14 +315,14 @@
 }
 
 @media (max-width: 567px) {
-  .myorders{
-    .myorders__buttons{
+  .myorders {
+    .myorders__buttons {
       gap: 10px;
-      P{
-           width: 45%;
-           min-width: 120px;
-           padding: 0.5em 0.2em;
+      P {
+        width: 45%;
+        min-width: 120px;
+        padding: 0.5em 0.2em;
       }
     }
-  } 
+  }
 }

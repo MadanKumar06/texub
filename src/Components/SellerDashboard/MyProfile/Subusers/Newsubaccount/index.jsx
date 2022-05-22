@@ -26,7 +26,16 @@ const Index = ({ currentid, setisSub, setisSubusers }) => {
   const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
   const [adminToken, setAdminToken] = useState("");
   const [plist, setplist] = useState();
-
+  const [NewSubAccountData, setNewSubAccountData] = useState({
+    first_name: "",
+    last_name: "",
+    e_mail: "",
+    allowed_permissions: [],
+    forbidden: "",
+    designation: "",
+    mobile: "",
+    active: "",
+  });
   useEffect(() => {
     getAdminToken((res) => {
       setAdminToken(res);
@@ -66,23 +75,11 @@ const Index = ({ currentid, setisSub, setisSubusers }) => {
           entity_id: currentid,
         },
       });
-      console.log(getformdata?.data);
-      let temp = [];
-      getformdata?.data[0]?.availablePermissions?.map((d) => {
-        plist?.map((p) => {
-          if (d === p?.value) {
-            temp.push({
-              label: p?.label,
-              value: p?.value,
-            });
-          }
-        });
-      });
       setNewSubAccountData({
         first_name: getformdata?.data[0]?.firstname,
         last_name: getformdata?.data[0]?.lastname,
         e_mail: getformdata?.data[0]?.email,
-        allowed_permissions: temp,
+        allowed_permissions: getformdata?.data[0]?.availablePermissions,
         forbidden: "",
         designation: getformdata?.data[0]?.designation,
         mobile: getformdata?.data[0]?.mobile_number,
@@ -94,40 +91,8 @@ const Index = ({ currentid, setisSub, setisSubusers }) => {
     }
   }, [currentid, plist]);
 
-  const List = [
-    { title: "Cart Approval Required" },
-    { title: "Can Approve Carts" },
-    { title: "Can Place Orders" },
-    { title: "Force Usage Main Account Address" },
-    { title: "Can Add To Main Wishlist" },
-    { title: "Can Remove From Main Wishlist" },
-    { title: "Can View Main Account Order List" },
-    { title: "Can View Main Account Order Details" },
-    { title: "Can View Sub Account Order List" },
-  ];
-  const defaultProps = {
-    options: List,
-    getOptionLabel: (option) => option.title,
-  };
-
-  let { type } = useParams();
-  // let {
-  //   auto_complete_input,
-  //   validation_error,
-  // } = classes;
   const options = ["Yes", "No"];
-  const [value, setValue] = React.useState();
-  const [inputValue, setInputValue] = React.useState("");
-  const [NewSubAccountData, setNewSubAccountData] = useState({
-    first_name: "",
-    last_name: "",
-    e_mail: "",
-    allowed_permissions: [],
-    forbidden: "",
-    designation: "",
-    mobile: "",
-    active: "",
-  });
+
   const [inputValidation, setInputValidation] = useState({
     first_name: "",
     last_name: "",
@@ -138,90 +103,12 @@ const Index = ({ currentid, setisSub, setisSubusers }) => {
     mobile: "",
     active: "",
   });
-  console.log(NewSubAccountData);
-
   const handleChangeInput = (event) => {
     setNewSubAccountData((prevState) => ({
       ...prevState,
       [event.target.name]: event.target.value,
     }));
     setInputValidation("");
-    handleSwitchCase([event.target.name], event.target.value);
-  };
-  const handleSwitchCase = (fieldName, value) => {
-    switch (fieldName[0]) {
-      case "first_name":
-        if (!value) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            first_name: "Please enter the first name.",
-          }));
-        }
-        break;
-      case "last_name":
-        if (!value) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            last_name: "Please enter your last name.",
-          }));
-        }
-        break;
-      case "designation":
-        if (!value) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            designation: "Please enter designation.",
-          }));
-        }
-        break;
-      case "mobile":
-        if (!value) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            mobile: "Please enter mobile number.",
-          }));
-        }
-        break;
-      case "allowed_permissions":
-        if (!value) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            allowed_permissions: "Please allow permissions.",
-          }));
-        }
-        break;
-      case "forbidden":
-        if (!value) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            allowed_permissions: "Please allow Forbidden Access.",
-          }));
-        }
-        break;
-      case "e_mail":
-        if (!value) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            e_mail: "Please enter your e-mail",
-          }));
-        } else if (!isEmailValid(value)) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            e_mail: "Please enter the valid e-mail.",
-          }));
-        }
-        break;
-      case "active":
-        if (!value) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            new_password: "Please select your status",
-          }));
-        }
-        break;
-      default:
-        break;
-    }
   };
   const handleClickValidation = async (event) => {
     var errorHandle = false;
@@ -277,7 +164,7 @@ const Index = ({ currentid, setisSub, setisSubusers }) => {
       document.getElementById("forbidden")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
-        allowed_permissions: "Please add forbidden access.",
+        forbidden: "Please add forbidden access.",
       }));
       errorHandle = true;
     }
@@ -289,56 +176,58 @@ const Index = ({ currentid, setisSub, setisSubusers }) => {
       }));
       errorHandle = true;
     }
-
-    try {
-      let temp = [];
-      NewSubAccountData?.allowed_permissions?.map((ap) => temp.push(ap?.value));
-      let user = JSON.parse(localStorage.getItem("userdata"));
-      dispatch({
-        type: "SET_IS_LOADING",
-        value: true,
-      });
-      const submituser = await axios({
-        method: "post",
-        url: `${Constant?.baseUrl()}/createSubAccount`,
-        headers: {
-          Authorization: `Bearer ${adminToken}`,
-        },
-        data: {
-          data: {
-            firstname: NewSubAccountData?.first_name,
-            lastname: NewSubAccountData?.last_name,
-            email: NewSubAccountData?.e_mail,
-            designation: NewSubAccountData?.designation,
-            role: 2,
-            forbidden_access: NewSubAccountData?.forbidden,
-            mobile_number: NewSubAccountData?.mobile,
-            available_permissions: temp,
-            status: NewSubAccountData?.active === "Yes" ? 1 : 0,
-            login_id: user?.id,
-            entity_id: currentid ? currentid : 0,
-            customer_id: NewSubAccountData?.customer_id,
+    if (!errorHandle) {
+      try {
+        let temp = [];
+        NewSubAccountData?.allowed_permissions?.map((ap) =>
+          temp.push(ap?.value)
+        );
+        let user = JSON.parse(localStorage.getItem("userdata"));
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: true,
+        });
+        const submituser = await axios({
+          method: "post",
+          url: `${Constant?.baseUrl()}/createSubAccount`,
+          headers: {
+            Authorization: `Bearer ${adminToken}`,
           },
-        },
-      });
-      dispatch({
-        type: "SET_IS_LOADING",
-        value: false,
-      });
-      swal.fire({
-        text: `Sub-Account Created Successfully`,
-        icon: "success",
-        showConfirmButton: false,
-        timer: 3000,
-      });
-      setisSub(false);
-      setisSubusers(true);
-    } catch (e) {
-      dispatch({
-        type: "SET_IS_LOADING",
-        value: false,
-      });
-      console.log(e);
+          data: {
+            data: {
+              firstname: NewSubAccountData?.first_name,
+              lastname: NewSubAccountData?.last_name,
+              email: NewSubAccountData?.e_mail,
+              designation: NewSubAccountData?.designation,
+              mobile_number: NewSubAccountData?.mobile,
+              forbidden_access: NewSubAccountData?.forbidden,
+              available_permissions: temp,
+              status: NewSubAccountData?.active === "Yes" ? 1 : 0,
+              login_id: user?.id,
+              entity_id: currentid ? currentid : 0,
+              customer_id: NewSubAccountData?.customer_id,
+            },
+          },
+        });
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+        swal.fire({
+          text: `Sub-Account Created Successfully`,
+          icon: "success",
+          showConfirmButton: false,
+          timer: 3000,
+        });
+        setisSub(false);
+        setisSubusers(true);
+      } catch (e) {
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+        console.log(e);
+      }
     }
   };
   return (
@@ -350,8 +239,8 @@ const Index = ({ currentid, setisSub, setisSubusers }) => {
           <TextField
             fullWidth
             id="first_name"
-            className="inputfield-box"
             name="first_name"
+            className="inputfield-box"
             placeholder="First Name"
             InputLabelProps={{
               shrink: false,
@@ -368,8 +257,8 @@ const Index = ({ currentid, setisSub, setisSubusers }) => {
           <TextField
             fullWidth
             id="last_name"
-            name="last_name"
             className="inputfield-box"
+            name="last_name"
             placeholder="Last Name"
             InputLabelProps={{
               shrink: false,
@@ -388,8 +277,8 @@ const Index = ({ currentid, setisSub, setisSubusers }) => {
           <TextField
             fullWidth
             id="designation"
-            name="designation"
             className="inputfield-box"
+            name="designation"
             placeholder="Designation"
             InputLabelProps={{
               shrink: false,
@@ -451,6 +340,7 @@ const Index = ({ currentid, setisSub, setisSubusers }) => {
               : ""
           }
           getOptionLabel={(option) => (option.label ? option.label : "")}
+          isOptionEqualToValue={(option, value) => option.value === value.value}
           disableCloseOnSelect
           renderOption={(props, option, { selected }) => (
             <li {...props}>
@@ -470,7 +360,15 @@ const Index = ({ currentid, setisSub, setisSubusers }) => {
             }));
           }}
           renderInput={(params) => (
-            <TextField {...params} placeholder="" className="inputfield-box" />
+            <TextField
+              {...params}
+              placeholder="Allowed Permissions"
+              className="inputfield-box"
+              fullWidth
+              InputLabelProps={{
+                shrink: false,
+              }}
+            />
           )}
         />
         <InputLabel className="validation_error">
@@ -479,9 +377,11 @@ const Index = ({ currentid, setisSub, setisSubusers }) => {
       </div>
       <div>
         <p>Forbidden Access</p>
+
         <TextField
           className="inputfield-box contact-form-inputfieldbox"
           fullWidth
+          aria-label="comments"
           placeholder="Access"
           name="your_message"
           id="your_message"
@@ -495,7 +395,6 @@ const Index = ({ currentid, setisSub, setisSubusers }) => {
               forbidden: e.target.value,
             }))
           }
-          aria-label="empty textarea"
           InputLabelProps={{
             shrink: true,
             required: true,
@@ -510,7 +409,6 @@ const Index = ({ currentid, setisSub, setisSubusers }) => {
         <p>Active</p>
         <Autocomplete
           value={NewSubAccountData?.active}
-          inputValue={inputValue}
           id="controllable-states-demo"
           options={options ? options : []}
           className="auto_complete_input"
@@ -525,7 +423,6 @@ const Index = ({ currentid, setisSub, setisSubusers }) => {
               InputLabelProps={{
                 shrink: false,
               }}
-              value={NewSubAccountData?.active}
             />
           )}
           onChange={(event, newValue) => {
@@ -544,7 +441,7 @@ const Index = ({ currentid, setisSub, setisSubusers }) => {
           <Link
             to={`/${
               customnostore ? customnostore : geo?.country_name
-            }/buyerdashboard/dashboard`}
+            }/sellerdashboard/dashboard`}
             className="link"
           >
             <ArrowBackIosNew />

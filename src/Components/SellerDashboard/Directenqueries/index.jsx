@@ -2,7 +2,10 @@ import React, { useState, useEffect } from "react";
 import "./styles.scss";
 import MUITable from "../../Common/MUITable";
 import { Link } from "react-router-dom";
-import { ArrowBackIosNew, ClosedCaptionDisabledOutlined } from "@mui/icons-material";
+import {
+  ArrowBackIosNew,
+  ClosedCaptionDisabledOutlined,
+} from "@mui/icons-material";
 import Enquirydetails from "../../SellerDashboard/Directenqueries/Enquirydetails";
 import NodataFound from "../../../Assets/CommonImage/NodataFound.webp.png";
 
@@ -14,29 +17,30 @@ import Pagination from "../../Pagination";
 const Index = ({ searchdata, searchupdate }) => {
   const [isUopup, setisUopup] = useState(false);
   const [direct, setdirect] = useState([]);
-  const [filtereddirect, setfiltereddirect] = useState([])
- // const [tableData, setTableData] = useState([]);
-  const [refreshdata, setrefreshdata] = useState(false)
-  const [{geo, customstore, customnostore}, dispatch] = useStateValue();
+  const [filtereddirect, setfiltereddirect] = useState([]);
+  // const [tableData, setTableData] = useState([]);
+  const [refreshdata, setrefreshdata] = useState(false);
+  const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
   const PaginateDataSplit = (event) => {
     if (directList?.length === 0) return setdirect([]);
-      setdirect(event);
-    };
+    setdirect(event);
+  };
   // const PaginateDataSplit = (event) => {
   //   setTableData(event);
   // };
-  const [directList, setdirectList] = useState([])
+  const [directList, setdirectList] = useState([]);
 
-    useEffect(() => {
-    if(directList?.length === 0) return
-    if(searchdata === '') {
-      setfiltereddirect(directList)
+  useEffect(() => {
+    if (directList?.length === 0) return;
+    if (searchdata === "") {
+      setfiltereddirect(directList);
     } else {
-      let temp = directList?.filter(td => td?.texub_wtb_id?.toLowerCase()?.includes(searchdata?.toLowerCase()))
-      setfiltereddirect(temp)
+      let temp = directList?.filter((td) =>
+        td?.texub_wtb_id?.toLowerCase()?.includes(searchdata?.toLowerCase())
+      );
+      setfiltereddirect(temp);
     }
-  }, [searchupdate, directList])
-
+  }, [searchupdate, directList]);
 
   useEffect(async () => {
     let user = JSON.parse(localStorage.getItem("userdata"));
@@ -86,42 +90,48 @@ const Index = ({ searchdata, searchupdate }) => {
 
   const selectorder = (value) => {
     settype(value);
-  };  
+  };
 
   useEffect(() => {
-    settype(0)
-  }, [])
+    settype(0);
+  }, []);
 
   useEffect(() => {
     localStorage.setItem("enquirypage", JSON.stringify(1));
     if (type === 0) {
-      setfiltereddirect(directList)
+      setfiltereddirect(directList);
     }
     if (type === 1) {
-      const pending = directList?.filter(d => d?.seller_enquiry_status === "Open")      
-      if(pending) {
-        setfiltereddirect(pending)
+      const pending = directList?.filter(
+        (d) => d?.seller_enquiry_status === "Open"
+      );
+      if (pending) {
+        setfiltereddirect(pending);
       } else {
-        setdirect([])
+        setdirect([]);
       }
     }
     if (type === 2) {
-      const accepted = directList?.filter(d => d?.seller_enquiry_status === "Accepted")
-      if(accepted) {
-        setfiltereddirect(accepted)
+      const accepted = directList?.filter(
+        (d) => d?.seller_enquiry_status === "Accepted"
+      );
+      if (accepted) {
+        setfiltereddirect(accepted);
       } else {
-        setdirect([])
+        setdirect([]);
       }
     }
     if (type === 3) {
-      const declined = directList?.filter(d => d?.seller_enquiry_status === "Declined")
-      if(declined?.length) {
-        setfiltereddirect(declined)
+      const declined = directList?.filter(
+        (d) => d?.seller_enquiry_status === "Declined"
+      );
+      if (declined?.length) {
+        setfiltereddirect(declined);
       } else {
-        setdirect([])
+        setdirect([]);
       }
     }
-  }, [type])
+  }, [type]);
 
   const options = {
     filter: false,
@@ -151,7 +161,9 @@ const Index = ({ searchdata, searchupdate }) => {
       label: "Enq. No.",
       options: {
         customBodyRender: (value) => {
-          return <div className="directenquiries__order_id enq_id">{value}</div>;
+          return (
+            <div className="directenquiries__order_id enq_id">{value}</div>
+          );
         },
       },
     },
@@ -235,10 +247,14 @@ const Index = ({ searchdata, searchupdate }) => {
       label: "Action",
       options: {
         customBodyRender: (value, tablemeta) => {
-          let status = tablemeta?.rowData?.[6]
+          let status = tablemeta?.rowData?.[6];
           return (
             <div className="actions" onClick={() => Popup(value)}>
-              {status === 'Accepted' ? <span className="value">Update</span> : <span className="value">View Details</span>}
+              {status === "Accepted" ? (
+                <span className="value">Update</span>
+              ) : (
+                <span className="value">View Details</span>
+              )}
             </div>
           );
         },
@@ -246,7 +262,7 @@ const Index = ({ searchdata, searchupdate }) => {
     },
   ];
 
-  console.log(direct?.length)
+  console.log(direct?.length);
 
   return (
     <div className="directenquiries_container">
@@ -265,26 +281,38 @@ const Index = ({ searchdata, searchupdate }) => {
           </div>
         ))}
       </div>
-        <MUITable
-          columns={columns}
-          table={direct?.length ? direct : []}
-          options={options}
-          className="directenquiries__table"
-        />
-      
-      {filtereddirect?.length &&
+      <MUITable
+        columns={columns}
+        table={direct?.length ? direct : []}
+        options={options}
+        className="directenquiries__table"
+      />
+
+      {filtereddirect?.length ? (
         <Pagination
           PaginateData={PaginateDataSplit}
           DataList={filtereddirect}
           PagePerRow={10}
         />
-      }
+      ) : (
+        ""
+      )}
       {isUopup && (
-        <Enquirydetails closePOPup={setisUopup} popid={popid} direct={directList} setrefreshdata={setrefreshdata} refreshdata={refreshdata} />
+        <Enquirydetails
+          closePOPup={setisUopup}
+          popid={popid}
+          direct={directList}
+          setrefreshdata={setrefreshdata}
+          refreshdata={refreshdata}
+        />
       )}
       <div className="directenquiries__footer">
         <div className="directenquiries__container">
-          <Link to={`/${customnostore ? customnostore : geo?.country_name}/sellerdashboard/dashboard`}>
+          <Link
+            to={`/${
+              customnostore ? customnostore : geo?.country_name
+            }/sellerdashboard/dashboard`}
+          >
             <ArrowBackIosNew />
             <span>Back</span>
           </Link>

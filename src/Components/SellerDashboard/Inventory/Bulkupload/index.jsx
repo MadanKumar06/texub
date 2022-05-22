@@ -99,6 +99,7 @@ function Index() {
       value: true,
     });
     let Count = i + 3;
+    debugger;
     if (
       rows[i]?.__EMPTY ||
       rows[i]?.__EMPTY_1 ||
@@ -106,8 +107,7 @@ function Index() {
       rows[i]?.__EMPTY_3 ||
       rows[i]?.__EMPTY_4 ||
       rows[i]?.__EMPTY_5 ||
-      rows[i]?.__EMPTY_6 ||
-      rows[i]?.__EMPTY_7
+      rows[i]?.__EMPTY_6
     ) {
       let customerId = JSON.parse(localStorage.getItem("userdata"));
       let data = {
@@ -122,10 +122,9 @@ function Index() {
           name: rows[i]?.__EMPTY,
           texub_product_id: "",
           mgs_brand: rows[i]?.__EMPTY_3,
-          hsn_code: rows[i]?.__EMPTY_4,
-          sku: rows[i]?.__EMPTY_5,
-          upc_number: rows[i]?.__EMPTY_6,
-          description: rows[i]?.__EMPTY_7,
+          sku: rows[i]?.__EMPTY_4,
+          upc_number: rows[i]?.__EMPTY_5,
+          description: rows[i]?.__EMPTY_6,
         },
       };
       await axios
@@ -160,6 +159,7 @@ function Index() {
           });
         });
     } else if (
+      rows[i]?.__EMPTY_7 ||
       rows[i]?.__EMPTY_8 ||
       rows[i]?.__EMPTY_9 ||
       rows[i]?.__EMPTY_10 ||
@@ -181,7 +181,8 @@ function Index() {
         data: {
           bulk_upload: 1,
           customer_id: customerId?.id,
-          product_id: rows[i]?.__EMPTY_8,
+          hsn_code: rows[i]?.__EMPTY_8,
+          product_id: rows[i]?.__EMPTY_7,
           product_condition: rows[i]?.__EMPTY_18,
           other_condition: rows[i]?.__EMPTY_19,
           warranty_type: rows[i]?.__EMPTY_20,

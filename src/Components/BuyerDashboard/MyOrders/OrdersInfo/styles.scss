@@ -25,7 +25,9 @@
       margin-left: 5px;
     }
     .status {
+      box-shadow: 0px 3px 6px #00000029;
       font-size: 14px;
+      font-weight: 600;
       color: #20639b;
       background-color: #d5ecff;
       border-radius: 25px;
@@ -61,7 +63,7 @@
       .MuiTableRow-root:last-child .MuiTableCell-root {
         border-bottom: 0;
       }
-      .MuiTableRow-root{
+      .MuiTableRow-root {
         vertical-align: top;
       }
       .MuiTableCell-root {
@@ -168,6 +170,7 @@
       flex-direction: column;
       .hr_line {
         width: 56%;
+        opacity: 0.8;
         hr {
           border: 1px solid #ddb363;
         }
@@ -417,7 +420,9 @@
     .order_track_info {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      // justify-content: space-between;
+      justify-content: flex-end;
+      gap: 2em;
       .common-btn {
         width: calc(100% / 3);
         display: flex;
@@ -546,7 +551,7 @@
     font-size: 16px;
   }
   .vieworders_main .vieworders_heading_section .status {
-    padding: 5px 20px;
+    padding: 2px 20px;
     margin: 0 10px 5px;
   }
   .vieworders_main
@@ -803,10 +808,10 @@
   .vieworders_main {
     .vieworders_heading_section {
       flex-direction: column;
-      .id_heading{
+      .id_heading {
         font-size: 12px;
       }
-      .id{
+      .id {
         font-size: 12px;
       }
     }
@@ -841,8 +846,8 @@
             .modal_content {
               -webkit-line-clamp: 2;
             }
-            .serial_number{
-              span{
+            .serial_number {
+              span {
                 font-size: 14px;
               }
             }

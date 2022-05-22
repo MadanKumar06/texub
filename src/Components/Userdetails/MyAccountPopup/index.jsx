@@ -58,6 +58,23 @@ const MyAccountPopup = () => {
   const gotoBuyerMyorder = () => {
     return window.localStorage.setItem("buyerclearViewOrder", true);
   };
+  let permissions = JSON.parse(localStorage.getItem("permissions"));
+
+  let placeorder =
+    permissions?.length === 0
+      ? false
+      : permissions?.some(
+          (per) =>
+            per?.value === "can-place-order" && per?.permission_value === 0
+        );
+  let PendingInvoice =
+    permissions?.length === 0
+      ? false
+      : permissions?.some(
+          (per) =>
+            per?.value === "can-add-to-pending-invoice" &&
+            per?.permission_value === 0
+        );
   return (
     <div className="myAccount_popup_header_dropdown">
       <Button
@@ -327,72 +344,74 @@ const MyAccountPopup = () => {
             KYC Details
           </Link>
         </MenuItem>
-        {isSignedIn?.group_id === 5 && (
+        {isSignedIn?.group_id === 5 ? (
           <>
-            <MenuItem
-              onClick={() => {
-                handleClose();
-                gotoBuyerMyorder();
-              }}
-            >
-              <Link
-                className="sub_menu_list_items"
-                to={`/${
-                  customnostore ? customnostore : geo?.country_name
-                }/buyerdashboard/myorder`}
+            {!placeorder && (
+              <MenuItem
+                onClick={() => {
+                  handleClose();
+                  gotoBuyerMyorder();
+                }}
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="26"
-                  height="33.582"
-                  viewBox="0 0 26 33.582"
+                <Link
+                  className="sub_menu_list_items"
+                  to={`/${
+                    customnostore ? customnostore : geo?.country_name
+                  }/buyerdashboard/myorder`}
                 >
-                  {" "}
-                  <g
-                    id="Group_1494"
-                    data-name="Group 1494"
-                    transform="translate(-89 -600.418)"
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="26"
+                    height="33.582"
+                    viewBox="0 0 26 33.582"
                   >
                     {" "}
                     <g
-                      id="Path_1771"
-                      data-name="Path 1771"
-                      transform="translate(89 607)"
-                      fill="none"
+                      id="Group_1494"
+                      data-name="Group 1494"
+                      transform="translate(-89 -600.418)"
                     >
                       {" "}
+                      <g
+                        id="Path_1771"
+                        data-name="Path 1771"
+                        transform="translate(89 607)"
+                        fill="none"
+                      >
+                        {" "}
+                        <path
+                          d="M3,0H23a2,2,0,0,1,2,2l1,19a6,6,0,0,1-6,6H6a6,6,0,0,1-6-6L1,2A2,2,0,0,1,3,0Z"
+                          stroke="none"
+                        />{" "}
+                        <path
+                          d="M 3 1 C 2.448600769042969 1 2 1.448600769042969 2 2 L 1.998619079589844 2.052560806274414 L 1.000062942504883 21.02515029907227 C 1.013694763183594 23.77060317993164 3.25140380859375 26 6 26 L 20 26 C 22.74859619140625 26 24.98630523681641 23.77060317993164 24.99993705749512 21.02515029907227 L 24 2 C 24 1.448600769042969 23.55139923095703 1 23 1 L 3 1 M 3 0 L 23 0 C 24.10457038879395 0 25 0.8954296112060547 25 2 L 26 21 C 26 24.3137092590332 23.3137092590332 27 20 27 L 6 27 C 2.686290740966797 27 0 24.3137092590332 0 21 L 1 2 C 1 0.8954296112060547 1.895429611206055 0 3 0 Z"
+                          stroke="none"
+                          fill="#000"
+                        />{" "}
+                      </g>{" "}
                       <path
-                        d="M3,0H23a2,2,0,0,1,2,2l1,19a6,6,0,0,1-6,6H6a6,6,0,0,1-6-6L1,2A2,2,0,0,1,3,0Z"
-                        stroke="none"
+                        id="Path_1772"
+                        data-name="Path 1772"
+                        d="M1916.989,571.545l2.64,2.866,5.355-5.355"
+                        transform="translate(-1819.107 48.634)"
+                        fill="none"
+                        stroke="#000"
+                        strokeLinecap="round"
+                        stroke-linejoin="round"
+                        strokeWidth="1"
                       />{" "}
                       <path
-                        d="M 3 1 C 2.448600769042969 1 2 1.448600769042969 2 2 L 1.998619079589844 2.052560806274414 L 1.000062942504883 21.02515029907227 C 1.013694763183594 23.77060317993164 3.25140380859375 26 6 26 L 20 26 C 22.74859619140625 26 24.98630523681641 23.77060317993164 24.99993705749512 21.02515029907227 L 24 2 C 24 1.448600769042969 23.55139923095703 1 23 1 L 3 1 M 3 0 L 23 0 C 24.10457038879395 0 25 0.8954296112060547 25 2 L 26 21 C 26 24.3137092590332 23.3137092590332 27 20 27 L 6 27 C 2.686290740966797 27 0 24.3137092590332 0 21 L 1 2 C 1 0.8954296112060547 1.895429611206055 0 3 0 Z"
-                        stroke="none"
-                        fill="#000"
+                        id="Subtract"
+                        d="M11.192,12V6.921c0-3.313-2.327-6-5.2-6S.8,3.608.8,6.921V12H0V6.921C0,3.1,2.684,0,6,0s6,3.1,6,6.921V12Z"
+                        transform="translate(96.072 600.418)"
+                        fill-rule="evenodd"
                       />{" "}
                     </g>{" "}
-                    <path
-                      id="Path_1772"
-                      data-name="Path 1772"
-                      d="M1916.989,571.545l2.64,2.866,5.355-5.355"
-                      transform="translate(-1819.107 48.634)"
-                      fill="none"
-                      stroke="#000"
-                      strokeLinecap="round"
-                      stroke-linejoin="round"
-                      strokeWidth="1"
-                    />{" "}
-                    <path
-                      id="Subtract"
-                      d="M11.192,12V6.921c0-3.313-2.327-6-5.2-6S.8,3.608.8,6.921V12H0V6.921C0,3.1,2.684,0,6,0s6,3.1,6,6.921V12Z"
-                      transform="translate(96.072 600.418)"
-                      fill-rule="evenodd"
-                    />{" "}
-                  </g>{" "}
-                </svg>
-                My Orders
-              </Link>
-            </MenuItem>
+                  </svg>
+                  My Orders
+                </Link>
+              </MenuItem>
+            )}
             {/* <MenuItem onClick={() => handleClose()}>
             <Link   className="sub_menu_list_items" to={`/${customnostore ? customnostore : geo?.country_name}/buyerdashboard/auctions`}>
               <svg xmlns="http://www.w3.org/2000/svg" width="35.467" height="32.107" viewBox="0 0 35.467 32.107">
@@ -437,117 +456,123 @@ const MyAccountPopup = () => {
               Auctions
               </Link>
             </MenuItem> */}
-            <MenuItem onClick={() => handleClose()}>
-              <Link
-                className="sub_menu_list_items"
-                to={`/${
-                  customnostore ? customnostore : geo?.country_name
-                }/buyerdashboard/invoiceslist`}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="35.333"
-                  height="32.333"
-                  viewBox="0 0 35.333 32.333"
+            {!PendingInvoice ? (
+              <MenuItem onClick={() => handleClose()}>
+                <Link
+                  className="sub_menu_list_items"
+                  to={`/${
+                    customnostore ? customnostore : geo?.country_name
+                  }/buyerdashboard/invoiceslist`}
                 >
-                  <g id="_3" data-name="3" transform="translate(0 -5.667)">
-                    <path
-                      id="Path_1689"
-                      data-name="Path 1689"
-                      d="M27.811,7.871H7.9V33.129H25.1a2.665,2.665,0,0,0,2.714-2.613ZM7,7V34H25.1a3.554,3.554,0,0,0,3.619-3.484V7Z"
-                      transform="translate(-2 4)"
-                      fill-rule="evenodd"
-                    />
-                    <path
-                      id="Path_1690"
-                      data-name="Path 1690"
-                      d="M21.591,31H0v4a3,3,0,0,0,3,3H24.591a3,3,0,0,1-3-3Z"
-                      fill="#c4c4c4"
-                      fill-rule="evenodd"
-                    />
-                    <path
-                      id="Path_1691"
-                      data-name="Path 1691"
-                      d="M22.355,37a2.989,2.989,0,0,1-.764-2V31H0v4a3,3,0,0,0,3,3H24.591A2.993,2.993,0,0,1,22.355,37Zm-1.229,0a3.982,3.982,0,0,1-.535-2V32H1v3a2,2,0,0,0,2,2Z"
-                      fill-rule="evenodd"
-                    />
-                    <line
-                      id="Line_29"
-                      data-name="Line 29"
-                      x2="8"
-                      transform="translate(14.438 22.225)"
-                      fill="none"
-                      stroke="#000"
-                      strokeLinecap="round"
-                      strokeWidth="1"
-                    />
-                    <line
-                      id="Line_30"
-                      data-name="Line 30"
-                      x2="8"
-                      transform="translate(14.438 17.225)"
-                      fill="none"
-                      stroke="#000"
-                      strokeLinecap="round"
-                      strokeWidth="1"
-                    />
-                    <path
-                      id="Path_1696"
-                      data-name="Path 1696"
-                      d="M14.334,25.667A1.667,1.667,0,1,1,12.667,24,1.667,1.667,0,0,1,14.334,25.667Zm-1.667.833a.833.833,0,1,0-.833-.833A.833.833,0,0,0,12.667,26.5Z"
-                      transform="translate(-1.334 1.166)"
-                      fill-rule="evenodd"
-                    />
-                    <path
-                      id="Path_1757"
-                      data-name="Path 1757"
-                      d="M14.334,25.667A1.667,1.667,0,1,1,12.667,24,1.667,1.667,0,0,1,14.334,25.667Zm-1.667.833a.833.833,0,1,0-.833-.833A.833.833,0,0,0,12.667,26.5Z"
-                      transform="translate(-1.334 -3.441)"
-                      fill-rule="evenodd"
-                    />
-                    <path
-                      id="Path_1758"
-                      data-name="Path 1758"
-                      d="M14.334,25.667A1.667,1.667,0,1,1,12.667,24,1.667,1.667,0,0,1,14.334,25.667Zm-1.667.833a.833.833,0,1,0-.833-.833A.833.833,0,0,0,12.667,26.5Z"
-                      transform="translate(-1.334 -8.441)"
-                      fill-rule="evenodd"
-                    />
-                    <path
-                      id="Path_1692"
-                      data-name="Path 1692"
-                      d="M38.333,8.666A8.666,8.666,0,1,1,29.666,0,8.666,8.666,0,0,1,38.333,8.666Z"
-                      transform="translate(-3 5.667)"
-                      fill="#c4c4c4"
-                    />
-                    <path
-                      id="Path_1693"
-                      data-name="Path 1693"
-                      d="M29.666,16.466a7.8,7.8,0,1,0-7.8-7.8A7.8,7.8,0,0,0,29.666,16.466Zm0,.867A8.666,8.666,0,1,0,21,8.666,8.666,8.666,0,0,0,29.666,17.333Z"
-                      transform="translate(-3 5.667)"
-                      fill-rule="evenodd"
-                    />
-                    <path
-                      id="Path_1700"
-                      data-name="Path 1700"
-                      d="M34.639,14.113c0-1.88-1.123-2.42-2.337-2.723l-.644-.154c-.952-.221-1.025-.547-1.025-.983,0-.566.432-.9,1.156-.9a1.055,1.055,0,0,1,1.168.89l.009.032a.7.7,0,0,0,.671.532.893.893,0,0,0,.208-.028.767.767,0,0,0,.569-.768.9.9,0,0,0-.043-.274,2.46,2.46,0,0,0-1.994-1.914V6.7a.623.623,0,1,0-1.237,0V7.825a2.342,2.342,0,0,0-1.968,2.427,2.4,2.4,0,0,0,2.136,2.6l.7.175c.992.238,1.166.543,1.166,1.1,0,.676-.484,1.079-1.3,1.079a1.254,1.254,0,0,1-1.412-1.188.7.7,0,0,0-.679-.572.941.941,0,0,0-.2.025l-.021,0a.8.8,0,0,0-.567.785.991.991,0,0,0,.019.18l.011.056A2.63,2.63,0,0,0,31.2,16.729V17.9a.625.625,0,1,0,1.237,0V16.75a2.516,2.516,0,0,0,2.2-2.637"
-                      transform="translate(-5.105 2.028)"
-                    />
-                    <line
-                      id="Line_28"
-                      data-name="Line 28"
-                      x2="8"
-                      transform="translate(14.438 27.225)"
-                      fill="none"
-                      stroke="#000"
-                      strokeLinecap="round"
-                      strokeWidth="1"
-                    />
-                  </g>
-                </svg>
-                Pending Invoices
-              </Link>
-            </MenuItem>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="35.333"
+                    height="32.333"
+                    viewBox="0 0 35.333 32.333"
+                  >
+                    <g id="_3" data-name="3" transform="translate(0 -5.667)">
+                      <path
+                        id="Path_1689"
+                        data-name="Path 1689"
+                        d="M27.811,7.871H7.9V33.129H25.1a2.665,2.665,0,0,0,2.714-2.613ZM7,7V34H25.1a3.554,3.554,0,0,0,3.619-3.484V7Z"
+                        transform="translate(-2 4)"
+                        fill-rule="evenodd"
+                      />
+                      <path
+                        id="Path_1690"
+                        data-name="Path 1690"
+                        d="M21.591,31H0v4a3,3,0,0,0,3,3H24.591a3,3,0,0,1-3-3Z"
+                        fill="#c4c4c4"
+                        fill-rule="evenodd"
+                      />
+                      <path
+                        id="Path_1691"
+                        data-name="Path 1691"
+                        d="M22.355,37a2.989,2.989,0,0,1-.764-2V31H0v4a3,3,0,0,0,3,3H24.591A2.993,2.993,0,0,1,22.355,37Zm-1.229,0a3.982,3.982,0,0,1-.535-2V32H1v3a2,2,0,0,0,2,2Z"
+                        fill-rule="evenodd"
+                      />
+                      <line
+                        id="Line_29"
+                        data-name="Line 29"
+                        x2="8"
+                        transform="translate(14.438 22.225)"
+                        fill="none"
+                        stroke="#000"
+                        strokeLinecap="round"
+                        strokeWidth="1"
+                      />
+                      <line
+                        id="Line_30"
+                        data-name="Line 30"
+                        x2="8"
+                        transform="translate(14.438 17.225)"
+                        fill="none"
+                        stroke="#000"
+                        strokeLinecap="round"
+                        strokeWidth="1"
+                      />
+                      <path
+                        id="Path_1696"
+                        data-name="Path 1696"
+                        d="M14.334,25.667A1.667,1.667,0,1,1,12.667,24,1.667,1.667,0,0,1,14.334,25.667Zm-1.667.833a.833.833,0,1,0-.833-.833A.833.833,0,0,0,12.667,26.5Z"
+                        transform="translate(-1.334 1.166)"
+                        fill-rule="evenodd"
+                      />
+                      <path
+                        id="Path_1757"
+                        data-name="Path 1757"
+                        d="M14.334,25.667A1.667,1.667,0,1,1,12.667,24,1.667,1.667,0,0,1,14.334,25.667Zm-1.667.833a.833.833,0,1,0-.833-.833A.833.833,0,0,0,12.667,26.5Z"
+                        transform="translate(-1.334 -3.441)"
+                        fill-rule="evenodd"
+                      />
+                      <path
+                        id="Path_1758"
+                        data-name="Path 1758"
+                        d="M14.334,25.667A1.667,1.667,0,1,1,12.667,24,1.667,1.667,0,0,1,14.334,25.667Zm-1.667.833a.833.833,0,1,0-.833-.833A.833.833,0,0,0,12.667,26.5Z"
+                        transform="translate(-1.334 -8.441)"
+                        fill-rule="evenodd"
+                      />
+                      <path
+                        id="Path_1692"
+                        data-name="Path 1692"
+                        d="M38.333,8.666A8.666,8.666,0,1,1,29.666,0,8.666,8.666,0,0,1,38.333,8.666Z"
+                        transform="translate(-3 5.667)"
+                        fill="#c4c4c4"
+                      />
+                      <path
+                        id="Path_1693"
+                        data-name="Path 1693"
+                        d="M29.666,16.466a7.8,7.8,0,1,0-7.8-7.8A7.8,7.8,0,0,0,29.666,16.466Zm0,.867A8.666,8.666,0,1,0,21,8.666,8.666,8.666,0,0,0,29.666,17.333Z"
+                        transform="translate(-3 5.667)"
+                        fill-rule="evenodd"
+                      />
+                      <path
+                        id="Path_1700"
+                        data-name="Path 1700"
+                        d="M34.639,14.113c0-1.88-1.123-2.42-2.337-2.723l-.644-.154c-.952-.221-1.025-.547-1.025-.983,0-.566.432-.9,1.156-.9a1.055,1.055,0,0,1,1.168.89l.009.032a.7.7,0,0,0,.671.532.893.893,0,0,0,.208-.028.767.767,0,0,0,.569-.768.9.9,0,0,0-.043-.274,2.46,2.46,0,0,0-1.994-1.914V6.7a.623.623,0,1,0-1.237,0V7.825a2.342,2.342,0,0,0-1.968,2.427,2.4,2.4,0,0,0,2.136,2.6l.7.175c.992.238,1.166.543,1.166,1.1,0,.676-.484,1.079-1.3,1.079a1.254,1.254,0,0,1-1.412-1.188.7.7,0,0,0-.679-.572.941.941,0,0,0-.2.025l-.021,0a.8.8,0,0,0-.567.785.991.991,0,0,0,.019.18l.011.056A2.63,2.63,0,0,0,31.2,16.729V17.9a.625.625,0,1,0,1.237,0V16.75a2.516,2.516,0,0,0,2.2-2.637"
+                        transform="translate(-5.105 2.028)"
+                      />
+                      <line
+                        id="Line_28"
+                        data-name="Line 28"
+                        x2="8"
+                        transform="translate(14.438 27.225)"
+                        fill="none"
+                        stroke="#000"
+                        strokeLinecap="round"
+                        strokeWidth="1"
+                      />
+                    </g>
+                  </svg>
+                  Pending Invoices
+                </Link>
+              </MenuItem>
+            ) : (
+              ""
+            )}
           </>
+        ) : (
+          ""
         )}
         <MenuItem className="sub_menu_list_items" onClick={() => SignOut()}>
           <svg

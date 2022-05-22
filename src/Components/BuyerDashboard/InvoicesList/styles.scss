@@ -34,7 +34,7 @@
     p {
       margin: 0;
       white-space: nowrap;
-      padding: 0.7em 1.2em;
+      padding: 0.6em 1.2em;
       background-color: #f0f0f0;
       color: #333c42;
       font-size: 18px;
@@ -143,10 +143,8 @@
   }
   .invoices__footer {
     width: 100%;
-    padding: 2em 0 0;
     .invoices__container {
       display: flex;
-      // justify-content: space-between;
       flex-wrap: wrap;
       span {
         color: #002d56;
@@ -174,16 +172,16 @@
 @media (max-width: 1660px) {
   .invoices_main .invoices__table {
     .MuiTableHead-root .MuiTableCell-root {
-      font-size: 16px;
+      font-size: 18px;
     }
 
     .MuiTableBody-root {
       .invoices__action {
-        font-size: 14px;
+        font-size: 16px;
       }
 
       .MuiTableCell-root {
-        font-size: 14px;
+        font-size: 16px;
       }
     }
   }

@@ -7,8 +7,10 @@ import Constant from "../../../Constant";
 import { useStateValue } from "../../../store/state";
 import { getAdminToken } from "../../../utilities";
 import NodataFound from "../../../Assets/CommonImage/NodataFound.webp.png";
-import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector';
-import { styled } from '@mui/material/styles';
+import StepConnector, {
+  stepConnectorClasses,
+} from "@mui/material/StepConnector";
+import { styled } from "@mui/material/styles";
 import swal from "sweetalert2";
 import moment from "moment";
 
@@ -26,38 +28,38 @@ import {
 } from "@mui/material";
 import uploadImage from "../../../Assets/CommonImage/KYC Form/Export.png";
 
-
-    const QontoConnector = styled(StepConnector)(({ theme }) => ({
-				  [`&.${stepConnectorClasses.alternativeLabel}`]: {
-					top: 10,
-					left: 'calc(-50% + 16px)',
-					right: 'calc(50% + 16px)',
-				  },
-				  [`&.${stepConnectorClasses.active}`]: {
-					[`& .${stepConnectorClasses.line}`]: {
-					  borderColor: '#DDB363',
-					},
-				  },
-				  [`&.${stepConnectorClasses.completed}`]: {
-					[`& .${stepConnectorClasses.line}`]: {
-					  borderColor: '#DDB363',
-					  borderTopStyle: "solid",
-					  opacity:'1'
-					},
-				  },
-				  [`&.${stepConnectorClasses.alternativeLabel}`]: {
-					[`& .${stepConnectorClasses.line}`]: {
-					  borderColor: '#DDB363',
-					  borderTopStyle: "dashed",
-					  opacity:'0.3'
-					},
-				  },
-				  [`& .${stepConnectorClasses.line}`]: {
-					borderColor: theme.palette.mode === 'dark' ? theme.palette.grey[800] : '#eaeaf0',
-					borderTopWidth: 3,
-					borderRadius: 1,
-				  },
-				}));
+const QontoConnector = styled(StepConnector)(({ theme }) => ({
+  [`&.${stepConnectorClasses.alternativeLabel}`]: {
+    top: 10,
+    left: "calc(-50% + 16px)",
+    right: "calc(50% + 16px)",
+  },
+  [`&.${stepConnectorClasses.active}`]: {
+    [`& .${stepConnectorClasses.line}`]: {
+      borderColor: "#DDB363",
+    },
+  },
+  [`&.${stepConnectorClasses.completed}`]: {
+    [`& .${stepConnectorClasses.line}`]: {
+      borderColor: "#DDB363",
+      borderTopStyle: "solid",
+      opacity: "1",
+    },
+  },
+  [`&.${stepConnectorClasses.alternativeLabel}`]: {
+    [`& .${stepConnectorClasses.line}`]: {
+      borderColor: "#DDB363",
+      borderTopStyle: "dashed",
+      opacity: "0.3",
+    },
+  },
+  [`& .${stepConnectorClasses.line}`]: {
+    borderColor:
+      theme.palette.mode === "dark" ? theme.palette.grey[800] : "#eaeaf0",
+    borderTopWidth: 3,
+    borderRadius: 1,
+  },
+}));
 
 const options = {
   filter: false,
@@ -105,34 +107,32 @@ const columns = [
   //   },
   // },
   {
-    name: "product_name",
+    name: "name",
     label: "PRODUCT NAME",
     options: {
-        customBodyRender: (value, tablemeta) => {
+      customBodyRender: (value, tablemeta) => {
         let brand_image = tablemeta?.rowData[8];
         return (
           <div className="productname">
-          <img src={brand_image} alt="" className="image"></img>
-          <div className="product">
-            <span className="modal_name">{value}</span>
-          </div>
+            <img src={brand_image} alt="" className="image"></img>
+            <div className="product">
+              <span className="modal_name">{value}</span>
+            </div>
           </div>
         );
-        },
-      },
-      },
-      {
-      name: "product_name",
-      label: "DESCRIPTION",
-      options: {
-        customBodyRender: (value,tablemeta) => {
-        let description = tablemeta?.rowData[9];
-        return (
-          <div>{description}</div>
-        );
-        },
       },
     },
+  },
+  {
+    name: "product_name",
+    label: " ",
+    options: {
+      customBodyRender: (value, tablemeta) => {
+        let description = tablemeta?.rowData[9];
+        return <div>{description}</div>;
+      },
+    },
+  },
   {
     name: "sku",
     label: "SKU",
@@ -152,7 +152,7 @@ const columns = [
     },
   },
   {
-    name: "quantity",
+    name: "qty",
     label: "QUANTITY",
     options: {
       customBodyRender: (value) => {
@@ -170,16 +170,14 @@ const columns = [
     },
   },
   {
-    name: "unit_price",
+    name: "price",
     label: "UNIT PRICE",
     options: {
-      customBodyRender: (value) => {
+      customBodyRender: (value, tablemeta) => {
+        let currency = tablemeta?.rowData[10];
         return (
           <div className="vieworders_price">
-            <span className="inr">
-              {" "}
-              {JSON.parse(localStorage.getItem("currency"))?.currency_code}
-            </span>
+            <span className="inr">{currency}</span>
             <span className="price"> {formatToCurrency(parseInt(value))} </span>
           </div>
         );
@@ -187,16 +185,14 @@ const columns = [
     },
   },
   {
-    name: "order_total",
+    name: "total",
     label: "SUB-TOTAL",
     options: {
-      customBodyRender: (value) => {
+      customBodyRender: (value, tablemeta) => {
+        let currency = tablemeta?.rowData[10];
         return (
           <div className="vieworders_total">
-            <span className="inr">
-              {" "}
-              {JSON.parse(localStorage.getItem("currency"))?.currency_code}
-            </span>
+            <span className="inr">{currency}</span>
             <span className="price">{formatToCurrency(parseInt(value))} </span>
           </div>
         );
@@ -217,9 +213,17 @@ const columns = [
       display: false,
     },
   },
+  {
+    name: "currency",
+    label: " ",
+    options: {
+      display: false,
+    },
+  },
 ];
 
 const Index = ({ viewDetail, setvieworder, handleSearchBar }) => {
+  debugger;
   const [radiogroup, setRadioGroup] = useState(1);
   const [trigger, setTrigger] = useState(false);
   const [{}, dispatch] = useStateValue();
@@ -332,7 +336,7 @@ const Index = ({ viewDetail, setvieworder, handleSearchBar }) => {
       value: true,
     });
     let data = {
-      itemId: viewDetail?.[0]?.item_id,
+      poId: viewDetail?.[0]?.po_id,
       orderStatus: event,
     };
     axios
@@ -393,7 +397,7 @@ const Index = ({ viewDetail, setvieworder, handleSearchBar }) => {
           method: "post",
           url: `${Constant.baseUrl()}/OrderStatusLogList`,
           data: {
-            itemId: viewDetail?.[0]?.item_id,
+            itemId: viewDetail?.[0]?.po_id,
           },
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -435,7 +439,9 @@ const Index = ({ viewDetail, setvieworder, handleSearchBar }) => {
           <p className="id_heading purchase_date">
             Purchase Order Date #{" "}
             <span className="id">
-              {moment(viewDetail?.[0].date).format("DD/MM/YYYY")}
+              {viewDetail?.length
+                ? moment(viewDetail?.[0].date).format("DD/MM/YYYY")
+                : ""}
               {/* {viewDetail?.[0]?.date.split(" ")[0]} */}
             </span>{" "}
             <br />
@@ -466,7 +472,11 @@ const Index = ({ viewDetail, setvieworder, handleSearchBar }) => {
       </div>
       <MUITable
         columns={columns}
-        table={viewDetail?.length ? viewDetail : ""}
+        table={
+          viewDetail?.length && viewDetail?.[0]?.items?.length
+            ? viewDetail?.[0]?.items
+            : []
+        }
         options={options}
         className="vieworders__table"
       />
@@ -541,7 +551,11 @@ const Index = ({ viewDetail, setvieworder, handleSearchBar }) => {
           <span className="purhcase_order_title">PURCHASE ORDER STATUS</span>
         </div>
         <Box sx={{ width: "100%" }} className="purchase_status_stepper">
-          <Stepper activeStep={activeStep} alternativeLabel connector={<QontoConnector />}>
+          <Stepper
+            activeStep={activeStep}
+            alternativeLabel
+            connector={<QontoConnector />}
+          >
             {statusFromAPI?.length &&
               statusFromAPI?.map((label, index) => {
                 const stepProps = {};
@@ -567,7 +581,7 @@ const Index = ({ viewDetail, setvieworder, handleSearchBar }) => {
           style={{ cursor: "pointer" }}
           onClick={() => {
             setvieworder(false);
-            handleSearchBar(true)
+            handleSearchBar(true);
             // setisOrders(true);
           }}
         >

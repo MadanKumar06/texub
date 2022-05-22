@@ -270,6 +270,23 @@ const MiniCartList = ({ handleSideBarClose }) => {
       cart?.length && cart?.[0]?.invoice_items?.length && setallert(true);
     }
   };
+
+  let permissions = JSON.parse(localStorage.getItem("permissions"));
+  let PendingInvoice =
+    permissions?.length === 0
+      ? false
+      : permissions?.some(
+          (per) =>
+            per?.value === "can-add-to-pending-invoice" &&
+            per?.permission_value === 0
+        );
+  let placeorder =
+    permissions?.length === 0
+      ? false
+      : permissions?.some(
+          (per) =>
+            per?.value === "can-place-order" && per?.permission_value === 0
+        );
   return (
     <div className="minicart_list_main">
       <header className="minicart_header">
@@ -435,22 +452,30 @@ const MiniCartList = ({ handleSideBarClose }) => {
               </p>
             </div>
             <div className="minicart_btn">
-              <Link
-                to={`/${
-                  customnostore ? customnostore : geo?.country_name
-                }/mycart`}
-                onClick={() => handleSideBarClose("right", false)}
-              >
-                <Button className="minicart_bottom_button_cart">
-                  <span>Go To Cart</span>
+              {!placeorder ? (
+                <Link
+                  to={`/${
+                    customnostore ? customnostore : geo?.country_name
+                  }/mycart`}
+                  onClick={() => handleSideBarClose("right", false)}
+                >
+                  <Button className="minicart_bottom_button_cart">
+                    <span>Go To Cart</span>
+                  </Button>
+                </Link>
+              ) : (
+                ""
+              )}
+              {!PendingInvoice ? (
+                <Button
+                  className="minicart_bottom_button_pending_invoice"
+                  onClick={() => handleIsValidPendingInvoice()}
+                >
+                  <span>Add To Pending Invoice</span>
                 </Button>
-              </Link>
-              <Button
-                className="minicart_bottom_button_pending_invoice"
-                onClick={() => handleIsValidPendingInvoice()}
-              >
-                <span>Add To Pending Invoice</span>
-              </Button>
+              ) : (
+                ""
+              )}
             </div>
           </footer>
           {allert && (

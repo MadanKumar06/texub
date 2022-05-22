@@ -232,7 +232,15 @@ const Mycart = () => {
     setapprovepermission(temp1);
   }, [permission]);
 
-  console.log(cart);
+  let permissions = JSON.parse(localStorage.getItem("permissions"));
+  let PendingInvoice =
+    permissions?.length === 0
+      ? false
+      : permissions?.some(
+          (per) =>
+            per?.value === "can-add-to-pending-invoice" &&
+            per?.permission_value === 0
+        );
 
   const mergecart = async () => {
     let user = JSON.parse(localStorage.getItem("userdata"));
@@ -332,12 +340,16 @@ const Mycart = () => {
         ) : (
           ""
         )}
-        <Button
-          className="my_cart_bottom_button_pending_invoice"
-          onClick={() => isDataAdded()}
-        >
-          <span>Add To Pending Invoice</span>
-        </Button>
+        {!PendingInvoice ? (
+          <Button
+            className="my_cart_bottom_button_pending_invoice"
+            onClick={() => isDataAdded()}
+          >
+            <span>Add To Pending Invoice</span>
+          </Button>
+        ) : (
+          ""
+        )}
       </div>
       {allert && (
         <AllertMessage

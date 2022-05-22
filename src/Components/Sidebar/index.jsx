@@ -104,7 +104,39 @@ function Index({
             per?.value === "can-place-order" && per?.permission_value === 0
         );
 
-  let subAccountPermission = permissions?.length === 0 ? false : true;
+  let subAccountPermission =
+    permissions?.length === 0
+      ? false
+      : permissions?.some(
+          (per) =>
+            per?.value === "can-manage-sub-accounts" &&
+            per?.permission_value === 0
+        );
+  let PendingInvoice =
+    permissions?.length === 0
+      ? false
+      : permissions?.some(
+          (per) =>
+            per?.value === "can-add-to-pending-invoice" &&
+            per?.permission_value === 0
+        );
+
+  let subUsers = permissions?.length === 0 ? false : true;
+
+  let inventryPermission =
+    permissions?.length === 0
+      ? false
+      : permissions?.some(
+          (per) =>
+            per?.value === "manage-catalog" && per?.permission_value === 0
+        );
+
+  let sellerOrderPermmision =
+    permissions?.length === 0
+      ? false
+      : permissions?.some(
+          (per) => per?.value === "manage-orders" && per?.permission_value === 0
+        );
 
   return (
     <div className={`${barstate ? "sidebaropen" : "sellerdashboard__sidebar"}`}>
@@ -121,41 +153,49 @@ function Index({
       <ul>
         {color === "yellow" && (
           <>
-            {SellerList?.map((data, i) => (
-              <li
-                className={`${
-                  (currenttab === data.url &&
-                    "sellerdashboard__currentselection" &&
-                    color === "yellow" &&
-                    "sellerbg") ||
-                  (currenttab === data.registerproduct &&
-                    "sellerdashboard__currentselection" &&
-                    color === "yellow" &&
-                    "sellerbg") ||
-                  (currenttab === data.pendingProduct &&
-                    "sellerdashboard__currentselection" &&
-                    color === "yellow" &&
-                    "sellerbg") ||
-                  (currenttab === data.bulkupload &&
-                    "sellerdashboard__currentselection" &&
-                    color === "yellow" &&
-                    "sellerbg") ||
-                  (currenttab === data.url &&
-                    "sellerdashboard__currentselection" &&
-                    color === "blue" &&
-                    "buyerbg")
-                } `}
-                key={i}
-                onClick={() => selectmenu(data.url)}
-              >
-                {currentmenu === data.url ? (
-                  <span className="active_image">{data.image}</span>
-                ) : (
-                  <span className="inActive_image">{data.image}</span>
-                )}
-                {data.name}
-              </li>
-            ))}
+            {SellerList?.map((data, i) => {
+              if (
+                (inventryPermission && data?.url === "inventory") ||
+                (sellerOrderPermmision && data?.url === "orders")
+              ) {
+              } else {
+                return (
+                  <li
+                    className={`${
+                      (currenttab === data.url &&
+                        "sellerdashboard__currentselection" &&
+                        color === "yellow" &&
+                        "sellerbg") ||
+                      (currenttab === data.registerproduct &&
+                        "sellerdashboard__currentselection" &&
+                        color === "yellow" &&
+                        "sellerbg") ||
+                      (currenttab === data.pendingProduct &&
+                        "sellerdashboard__currentselection" &&
+                        color === "yellow" &&
+                        "sellerbg") ||
+                      (currenttab === data.bulkupload &&
+                        "sellerdashboard__currentselection" &&
+                        color === "yellow" &&
+                        "sellerbg") ||
+                      (currenttab === data.url &&
+                        "sellerdashboard__currentselection" &&
+                        color === "blue" &&
+                        "buyerbg")
+                    } `}
+                    key={i}
+                    onClick={() => selectmenu(data.url)}
+                  >
+                    {currentmenu === data.url ? (
+                      <span className="active_image">{data.image}</span>
+                    ) : (
+                      <span className="inActive_image">{data.image}</span>
+                    )}
+                    {data.name}
+                  </li>
+                );
+              }
+            })}
             <li onClick={() => SignOut()}>
               <img src={logout} alt="" />
               Logout
@@ -169,7 +209,10 @@ function Index({
                 (Wtbpermission && data?.url === "wanttobuy") ||
                 (placeorder && data?.url === "myorder") ||
                 (wishlistpermission && data?.url === "wishlist") ||
-                (subAccountPermission && data?.url === "subaccountorders")
+                (subAccountPermission && data?.url === "subaccountorders") ||
+                (subUsers && data?.url === "mergecarts") ||
+                (subUsers && data?.url === "approvecarts") ||
+                (PendingInvoice && data?.url === "invoiceslist")
               ) {
               } else {
                 return (

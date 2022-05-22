@@ -24,8 +24,8 @@
       color: #878787;
 
       .MuiSvgIcon-root {
-        width: 30px;
-        height: 30px;
+        width: 25px;
+        height: 25px;
       }
     }
     .MuiRadio-root.Mui-checked {
@@ -238,7 +238,8 @@
         gap: 10px;
 
         .image {
-          height: 50px;
+          height: 40px;
+          width: 40px;
         }
         .product {
           display: flex;

@@ -392,7 +392,7 @@ const Index = ({ orders, setisVieworders, setisOrders }) => {
                   <div className="vieworders_shippingaddress_section">
                     <div className="vieworders_payment_section">
                       <p className="payment_heading">Shipping Method</p>
-                      <p className="payment_type">Flat Rate-Fixed</p>
+                      <p className="payment_type">Texub Shipping</p>
                     </div>
                   </div>
 
@@ -437,7 +437,10 @@ const Index = ({ orders, setisVieworders, setisOrders }) => {
                   <div className="vieworders_shippingaddress_section pay_transaction_block">
                     <div className="vieworders_payment_section payment_block">
                       <p className="payment_heading">Payment Method</p>
-                      <p className="payment_type">wire Transfer</p>
+                      <p className="payment_type">
+                        {" "}
+                        {detailsorder?.[0]?.order_details?.[0]?.payment_method}
+                      </p>
                     </div>
                     <div className="vieworders_payment_section transaction_block">
                       {detailsorder?.[0]?.order_details?.[0]

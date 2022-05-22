@@ -1227,7 +1227,7 @@ const Checkout = () => {
                                 onClick={() => selectaddress(itm)}
                               >
                                 <div className="billing_title">
-                                  {itm?.shipping_billing == 1 ? (
+                                  {itm?.default_billing == 1 ? (
                                     <p>Default Shipping Address</p>
                                   ) : (
                                     <p></p>
