@@ -294,8 +294,10 @@ const TransitionsModal = ({ classes }) => {
   return (
     <div className={section_right}>
       <p className={info_text_lineNote}>
-        Get started here by entering the personal details and get access as a
-        guest.
+        Sign up now to gain access to exclusive benefits created only for you. Visit us as a guest.
+      </p>
+      <p className={info_text_lineNote}>
+       Just wanted to try out our site? Visit our site as a guest..
       </p>
       <form onSubmit={handleClickValidation}>
         <div className={info_text_guest}>Guest Access</div>
@@ -412,8 +414,8 @@ const TransitionsModal = ({ classes }) => {
             control={<Checkbox color="color_third" />}
             label={
               <div>
-                <div>I confirm that I am a wholesale buyer,</div>
-                <div>and not a consumer or end user.</div>
+                <div>I hereby certify that I am a wholesale buyer/seller.</div>
+                {/* <div>and not a consumer or end user.</div> */}
               </div>
             }
             labelPlacement="end"

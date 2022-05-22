@@ -327,10 +327,13 @@ $yellow: #DDB363;
         bottom: 0;
         right: 0;
         padding: 10px 15px;
-        height: 100%;
+        // height: 100%;
         letter-spacing: 0.48px;
         color: #878787;
         font-size: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
     }
     .members__content {
@@ -385,7 +388,7 @@ $yellow: #DDB363;
           text-align: center;
           display: flex;
           justify-content: center;
-          // align-items: center;
+          align-items: center;
         }
       }
     }
@@ -423,11 +426,53 @@ $yellow: #DDB363;
     }
   }
 
-  .aboutus__advisary, .aboutus__mgmt {
+  .aboutus__advisary {
     h2 {
       @include subtitle
     }
-    .advisory__content, .mgmt__content {
+    .advisory__content {
+      ul {
+        list-style: none;
+        display: flex;
+        // width:100%;
+        // margin: 0 auto;
+        gap: 20px;
+        margin: 0 3%;
+        justify-content: center;
+
+        li {
+          width: calc(94% / 2 - 20px);
+
+          .advisory__top {
+            min-height: 10em;
+            div {
+              width: 10em;
+              margin: 0 auto;
+  
+              img {
+                width: 100%;
+                object-fit: contain;
+              }
+            }
+  
+            @include headings
+          }
+          p {
+            // background-color: #f3f3f3;
+            padding: 1em;
+            color: #878787;
+            font-size: 1em;
+          }
+        }
+      }
+    }
+  }
+
+  .aboutus__mgmt {
+    h2 {
+      @include subtitle
+    }
+    .mgmt__content {
       ul {
         list-style: none;
         display: flex;
@@ -438,7 +483,7 @@ $yellow: #DDB363;
         li {
           width: calc(100% / 2 - 20px);
 
-          .advisory__top, .mgmt__top {
+          .mgmt__top {
             min-height: 10em;
             div {
               width: 10em;
@@ -507,7 +552,7 @@ $yellow: #DDB363;
         gap: 2em;
 
         li {
-          width: calc(100% / 4 - 2em);
+          width: calc(100% / 3 - 2em);
           text-align: center;
 
           @include headings
@@ -605,7 +650,18 @@ $yellow: #DDB363;
   }
   .aboutus .aboutus__members .members__content{
     margin: 0 3%;
+    flex-wrap: wrap;
   }
+  .aboutus .aboutus__members .members__content > p{
+    width: calc(45% - 0em) !important;
+  }
+  .aboutus .aboutus__advisary .advisory__content ul{
+    flex-wrap: wrap;
+    margin: 0;
+  }
+    .aboutus .aboutus__advisary .advisory__content li{
+
+    }
   .aboutus .aboutus__businessmodel .businessmodel__content .content__left .left__content2{
     left: 10em;
     font-size: 18px;
@@ -645,24 +701,27 @@ $yellow: #DDB363;
   .aboutus .aboutus__highlights ul .highlights__image {
     width: calc(30% - 1px);
 }
-.aboutus .aboutus__businessmodel .businessmodel__content .content__left .left__content1{
-  font-size: 14px;
-}
-.aboutus .aboutus__businessmodel .businessmodel__content .content__left .left__content2{
-  font-size: 14px;
-}
-.aboutus .aboutus__content ul{
-  flex-wrap: wrap;
-  justify-content: center;
-}
-.aboutus .aboutus__content ul .vision_quote_section{
-  width: 48%;
-}
-.aboutus .aboutus__content ul li p{
-      font-size: 22px;
-    left: 7em;
-    top: 1.5em;
-}
+  .aboutus .aboutus__businessmodel .businessmodel__content .content__left .left__content1{
+    font-size: 14px;
+  }
+  .aboutus .aboutus__businessmodel .businessmodel__content .content__left .left__content2{
+    font-size: 14px;
+  }
+  .aboutus .aboutus__content ul{
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .aboutus .aboutus__content ul .vision_quote_section{
+    width: 48%;
+  }
+  .aboutus .aboutus__content ul li p{
+        font-size: 22px;
+      left: 7em;
+      top: 1.5em;
+  }
+  .aboutus .mgmt__content ul, .aboutus .aboutus__mgmt .advisory__content ul, .aboutus .aboutus__mgmt .mgmt__content ul{
+    gap: 1em !important;
+  }
 }
 
 
@@ -670,7 +729,12 @@ $yellow: #DDB363;
 .aboutus .aboutus__members .members__content > p{
   width: calc(33.3333333333% - 0em);
 }
-.aboutus .aboutus__advisary .advisory__content ul, .aboutus .aboutus__advisary .mgmt__content ul, .aboutus .aboutus__mgmt .advisory__content ul, .aboutus .aboutus__mgmt .mgmt__content ul{
+.aboutus .aboutus__advisary .advisory__content ul {
+  // width: 100%;
+  gap: 5px;
+}
+
+.aboutus  .mgmt__content ul, .aboutus .aboutus__mgmt .advisory__content ul, .aboutus .aboutus__mgmt .mgmt__content ul{
   width: 80% ;
   gap: 4em;
 }
@@ -750,6 +814,10 @@ $yellow: #DDB363;
   .aboutus .aboutus__content ul{
     padding-left: 15px;
     padding-right: 15px;
+  }
+  .aboutus .aboutus__core .core__content{
+    width: 100%;
+    max-width: 100%;
   }
 }
 @media (max-width: 800px) {

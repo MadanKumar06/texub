@@ -531,10 +531,10 @@ const TransitionsModal = ({ classes, openPopUp }) => {
             <div className={sections}>
               <div className={section_left}>
                 <p className={info_text_lineNote_one}>
-                  <small>*</small> Texub doesn’t sell or ship to consumers.
+                  <small>*</small> <span>TEXUB is global marketplace that links verified buyers and vendors.</span>
                 </p>
                 <p className={info_text_lineNote_two}>
-                  To keep connected please login here
+                  Sign up now to gain access to exclusive benefits created only for you.
                 </p>
                 <form onSubmit={handleClickValidation}>
                   <div className={info_text}>Sign-In</div>

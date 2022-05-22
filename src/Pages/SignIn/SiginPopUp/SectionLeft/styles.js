@@ -127,6 +127,7 @@ const styles = (theme) => ({
     color: "#333333",
     fontSize: "20px",
     margin: "0",
+    display: 'flex',
     "& small": {
       color: "#FF0000",
       fontSize: "18px",
