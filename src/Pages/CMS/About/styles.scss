@@ -6,6 +6,7 @@ $yellow: #DDB363;
   color: $black;
   font-weight: 600;
   text-align: center;
+  font-weight: bold;
 }
 
 @mixin headings {
@@ -57,7 +58,7 @@ $yellow: #DDB363;
       .topbanner__text2 {
         color: #ddb363;
         margin: 0 10px;
-        font-size: 50px;
+        font-size: 60px;
         letter-spacing: 3.06px;
       }
     }
@@ -81,6 +82,7 @@ $yellow: #DDB363;
       justify-content: space-between;
       padding-top: 2em;
       padding-bottom: 2em;
+      padding-left: 0;
 
       li {
         width: calc(100% / 3 - 20px);
@@ -155,7 +157,8 @@ $yellow: #DDB363;
   }
 
   .aboutus__info {
-    background: linear-gradient(to right, $yellow, #ffffff);
+  //  background: linear-gradient(to right, $yellow, #ffffff);
+ background-image: url(../../../Assets/Aboutus/banner/about_bg.png);
     padding: 1em 3em;
     .about_info_content{
       width: 90%;
@@ -163,13 +166,14 @@ $yellow: #DDB363;
     }
 
     h2 {
-      font-size: 24px;
+      font-size: 30px;
       color: $black;
+      font-weight: 800;
     }
 
     p {
       color: #707070;
-      font-size: 18px;
+      font-size: 20px;
       letter-spacing: 0.78px;
       font-weight: 400;
     }
@@ -180,17 +184,21 @@ $yellow: #DDB363;
       background-color: #f5f5f5;
       padding: 3em 3%;
       margin-bottom: -2em;
+      .business_header_section{
+        margin: 0 3%;
+      }
 
       h2 {
-        font-size: 24px;
+        font-size: 30px;
         color: $black;
         margin: 0;
         padding: 10px;
+        font-weight: 800;
       }
 
       h5 {
         color: #878787;
-        font-size: 18px;
+        font-size: 20px;
         margin: 0;
         font-weight: 400;
         padding: 10px;
@@ -211,6 +219,7 @@ $yellow: #DDB363;
         display: flex;
         flex-direction: column;
         justify-content: center;
+        align-items: center;
         gap: 10px;
 
         span {
@@ -223,7 +232,8 @@ $yellow: #DDB363;
 
     .businessmodel__content {
       display: flex;
-          margin: 0 3%;
+      justify-content: space-between;
+      margin: 0 3%;
 
       .content__left, .content__right {
         width: calc(100% / 2 - 20px);
@@ -242,6 +252,7 @@ $yellow: #DDB363;
           position: absolute;
           top: 11em;
           left: 16em;
+          font-weight: 400;
         }
 
         .left__content2 {
@@ -260,6 +271,7 @@ $yellow: #DDB363;
           span {
             color: $yellow;
             display: block;
+            font-weight: 600;
           }
         }
       }
@@ -273,7 +285,9 @@ $yellow: #DDB363;
     margin: 0 auto;
 
     h2 {
-      @include subtitle
+      @include subtitle;
+      font-size:30px;
+      font-weight: 800;
     }
     ul {
       display: flex;
@@ -281,6 +295,7 @@ $yellow: #DDB363;
       justify-content: center;
       margin: 0;
       align-items: center;
+      margin-right: 0 !important;
 
       .highlights__image {
         width: calc(100% / 4 - 20px);
@@ -296,11 +311,16 @@ $yellow: #DDB363;
         p {
           font-size: 16px;
           position: absolute;
-          bottom: 3em;
+          bottom: 2em;
           left: 4em;
           font-weight: 600;
           right: 4em;
           text-align: center;
+          color: #0d2d53 !important;
+          display: flex;
+          justify-content: center;
+          align-items: start;
+          min-height: 40px;
         }
       }
     }
@@ -308,11 +328,15 @@ $yellow: #DDB363;
 
   .aboutus__members {
     background-color: #f5f5f5;
-    padding: 3em 0;
+    padding: 2em 0;
     h2 {
-      margin: 0 3%;
+      @include subtitle;
+
+      margin: 20px 3%;
+       font-size:30px;
+      font-weight: 800;
       
-      @include subtitle
+      
     }
     .quote_bg{
       position: relative;
@@ -321,19 +345,22 @@ $yellow: #DDB363;
         object-fit: contain;
       }
       p{
-        position: absolute;
-        left: 0;
-        top: 0;
-        bottom: 0;
-        right: 0;
-        padding: 10px 15px;
-        // height: 100%;
-        letter-spacing: 0.48px;
-        color: #878787;
-        font-size: 14px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        // position: absolute;       
+          left: 0;
+          top: 0;
+          background: #fff;
+          bottom: 0;
+          right: 0;
+          padding: 10px 15px;
+          letter-spacing: 0.48px;
+          color: #878787;
+          font-size: 16px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: 3px solid #cdd5dd;
+          border-radius: 10px;
+          text-align: center;
       }
     }
     .members__content {
@@ -345,13 +372,19 @@ $yellow: #DDB363;
         display: flex;
         justify-content: center;
         align-items: center;
+        padding: 10px 0 15px;
+        img{
+          width: 130px;
+          height: 130px;
+        }
         
       }
       h2{
             color: #DDB363;
           font-size: 18px;
          font-weight: 600;
-          padding: 5px 0;
+         margin: 15px 0;
+          // padding: 5px 0;
         }
 
       h4 {
@@ -367,6 +400,7 @@ $yellow: #DDB363;
   }
 
   .aboutus__advisary{
+    padding: 2em 0;
     .advisory__content{
       .quote_bg{
         position: relative;
@@ -375,7 +409,7 @@ $yellow: #DDB363;
           object-fit: contain;
         }
         p{
-            position: absolute;
+            //position: absolute;
           left: 0;
           top: 0;
           bottom: 0;
@@ -384,11 +418,15 @@ $yellow: #DDB363;
           height: 100%;
           letter-spacing: 0.48px;
           /* color: #878787; */
-          font-size: 14px;
+          font-size: 16px;
           text-align: center;
           display: flex;
           justify-content: center;
-          align-items: center;
+           align-items: center;
+          justify-content: center;
+          border: 3px solid #cdd5dd;
+          border-radius: 10px;
+          text-align: center;
         }
       }
     }
@@ -407,7 +445,7 @@ $yellow: #DDB363;
         }
          
         p{
-            position: absolute;
+            //position: absolute;
           left: 10px;
           top: 0;
           bottom: 0;
@@ -416,11 +454,15 @@ $yellow: #DDB363;
           background-color: #fff;
           letter-spacing: 0.48px;
           /* color: #878787; */
-          font-size: 14px;
+          font-size: 16px;
           text-align: center;
           display: flex;
           justify-content: center;
           align-items: center;
+          justify-content: center;
+          border: 3px solid #cdd5dd;
+          border-radius: 10px;
+          text-align: center
         }
       }
     }
@@ -428,7 +470,9 @@ $yellow: #DDB363;
 
   .aboutus__advisary {
     h2 {
-      @include subtitle
+      @include subtitle;
+      font-size:30px;
+      font-weight: 800;
     }
     .advisory__content {
       ul {
@@ -436,6 +480,7 @@ $yellow: #DDB363;
         display: flex;
         // width:100%;
         // margin: 0 auto;
+        padding-left: 0;
         gap: 20px;
         margin: 0 3%;
         justify-content: center;
@@ -445,6 +490,20 @@ $yellow: #DDB363;
 
           .advisory__top {
             min-height: 10em;
+            .advisory__top_image{
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              padding: 10px 0 15px;
+              img{
+                width: 130px;
+                height: 130px;
+              }
+            }
+            h2{
+              margin: 15px 0 !important;
+            }
+
             div {
               width: 10em;
               margin: 0 auto;
@@ -477,6 +536,7 @@ $yellow: #DDB363;
         list-style: none;
         display: flex;
         width: 65%;
+        padding-left: 0;
         margin: 0 auto;
         gap: 8em;
 
@@ -485,6 +545,20 @@ $yellow: #DDB363;
 
           .mgmt__top {
             min-height: 10em;
+            .mgmt__top_image{
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              padding: 10px 0 15px;
+              img{
+                width: 130px;
+                height: 130px;
+              }
+            }
+            .position_title{
+              margin: 15px 0 !important;
+              padding: 0 !important;
+            }
             div {
               width: 10em;
               margin: 0 auto;
@@ -509,11 +583,13 @@ $yellow: #DDB363;
   }
 
   .aboutus__mgmt {
-    margin: 3em 0;
+    padding: 2em 0 0;
     h2 {
       background-color: #f3f3f3;
       margin: 0;
-      padding: 10px 0;
+      padding: 20px 0;
+      font-size:30px;
+      font-weight: 800;
     }
 
     .mgmt__content {
@@ -532,11 +608,13 @@ $yellow: #DDB363;
   
   .aboutus__core {
     background-color: white;
-    padding-top: 3em;
-    padding-bottom: 3em;
+    padding-top: 2em;
+    padding-bottom: 2em;
 
     h2 {
-      @include subtitle()
+      @include subtitle();
+      font-size:30px;
+      font-weight: 800;
     }
 
     .core__content {
@@ -556,6 +634,28 @@ $yellow: #DDB363;
           text-align: center;
 
           @include headings
+          
+        }
+        .core__image{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          //padding: 10px 0 15px;
+           width:130px;
+            height: 130px;
+            margin: auto;
+
+        img{
+          width: 100%;
+          height: 100%;
+           
+        }
+      }
+        .position_person{
+          margin: 10px 0 15px;
+        }
+        .position_title{
+          margin: 15px 0;
         }
       }
     }
@@ -613,7 +713,7 @@ $yellow: #DDB363;
     }
   } 
   .aboutus .aboutus__banner .aboutus__topbanner__floatingtext .topbanner__text2{
-    font-size: 36px;
+    font-size: 40px;
   }
   .aboutus .aboutus__banner .aboutus__topbanner__floatingtext .topbanner__text1{
     font-size: 22px;
@@ -783,7 +883,7 @@ $yellow: #DDB363;
     left: 1em !important;
   }
   .aboutus .aboutus__banner .aboutus__topbanner__floatingtext .topbanner__text2{
-    font-size: 26px;
+    font-size: 30px;
   }
   .aboutus .aboutus__banner .aboutus__topbanner__floatingtext .topbanner__text1{
     font-size: 18px;
@@ -907,6 +1007,15 @@ $yellow: #DDB363;
   }
 }
 @media (max-width: 480px) {
+  .aboutus .aboutus__topbanner__floatingtext{
+    bottom: -2em !important;
+  }
+  .aboutus .aboutus__banner .aboutus__topbanner__floatingtext .topbanner__text1{
+    margin: 0;
+  }
+    .aboutus .aboutus__banner .aboutus__topbanner__floatingtext .topbanner__text2{
+    margin: 0;
+  }
   .aboutus .aboutus__content ul li p {
     font-size: 20px;
     left: 7em;
@@ -930,6 +1039,12 @@ $yellow: #DDB363;
     width: calc(50% - 1em);
     text-align: center;
 }
+  .aboutus .aboutus__content ul .vision_quote_section .quote_section .quote_block{
+      margin: 6px 10px;
+  }
+  .aboutus .aboutus__content ul .vision_quote_section .quote_section .quote_block .quote_msg{
+    margin-left: 25px;
+  }
 }
 @media (max-width: 435px) {
   .aboutus .aboutus__content ul li p {
@@ -951,13 +1066,16 @@ $yellow: #DDB363;
   }
   .aboutus .aboutus__advisary .advisory__content .quote_bg p{
     padding: 5px 10px;
-    display: initial;
+    // display: initial;
   }
   .aboutus .aboutus__core .core__content ul{
     gap: 10px;
   }
   .aboutus .aboutus__banner .aboutus__topbanner__floatingtext .topbanner__text2{
     font-size: 22px;
+  }
+  .aboutus .aboutus__banner .aboutus__topbanner__floatingtext .topbanner__text1{
+    font-size: 16px;
   }
 }
 @media (max-width: 380px) {
@@ -980,13 +1098,13 @@ $yellow: #DDB363;
     font-size: 16px;
   }
   .aboutus .aboutus__members .quote_bg p{
-    font-size: 12px;
+    font-size: 14px;
   }
   .aboutus .aboutus__advisary .advisory__content .quote_bg p{
-    font-size: 12px;
+    font-size: 14px;
   }
   .aboutus .aboutus__mgmt .mgmt__content .quote_bg p{
-    font-size: 12px;
+    font-size: 14px;
   }
   .aboutus .aboutus__mgmt{
     margin: 1em 0;
@@ -1053,19 +1171,19 @@ $yellow: #DDB363;
   }
 }
 .aboutus .aboutus__members .quote_bg p {
-    font-size: 10px;
+    font-size: 14px;
 }
 .aboutus .aboutus__advisary .advisory__content .quote_bg p{
-  font-size: 10px;
+  font-size: 14px;
 }
 .aboutus .aboutus__mgmt .mgmt__content .quote_bg p{
-  font-size: 10px;
+  font-size: 14px;
 }
 .aboutus .aboutus__banner .aboutus__topbanner__floatingtext .topbanner__text1{
   font-size: 14px;
 }
 .aboutus .aboutus__banner .aboutus__topbanner__floatingtext .topbanner__text2{
-  font-size: 18px;
+  font-size: 20px;
 }
 .aboutus .aboutus__banner .aboutus__topbanner__floatingtext{
   left: 0 !important;
