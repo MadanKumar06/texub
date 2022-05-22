@@ -5,7 +5,7 @@ const styles = (theme) => ({
     display: "flex",
     width: "90%",
     // overflow: "auto",
-    gap: "6em",
+    gap: "2em",
     height: "fit-content",
     overflowY: "auto",
     "@media (max-width:1299px)": {

@@ -63,7 +63,9 @@
           .contactus_social_media {
             display: flex;
             gap: 60px;
-            span {
+            a {
+              width: 40px;
+              height: 40px;
               img {
                 max-width: 100%;
               }
@@ -92,15 +94,11 @@
     }
     .contactus_form {
       display: flex;
-      gap: 10px;
+      gap: 20px;
       flex-direction: column;
       width: 45%;
-      .contact-form-inputfieldbox{
-        margin-bottom: 20px;
-      }
       .box-content {
         text-align: right;
-        margin-top: 4em;
         margin-bottom: 4em;
       }
       .contactus_msg_btn {
@@ -118,6 +116,7 @@
       .validation_error {
         color: red;
         font-size: 14px;
+        margin-bottom: 10px;
       }
       .asterisk {
         color: red;
@@ -175,15 +174,15 @@
               height: 80px;
               width: 80px;
             }
-            .address-info-box{
+            .address-info-box {
               display: flex;
               flex-direction: column;
             }
-            .address-phone-box{
+            .address-phone-box {
               display: inline-flex;
               flex-direction: column;
             }
-            .address-phone-box span{
+            .address-phone-box span {
               font-weight: 600;
             }
             span {
@@ -327,7 +326,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
+
     .contactus_form {
       width: 100%;
     }
@@ -336,11 +335,12 @@
     padding: 10px;
   }
   .contactus_main
-   .contactus_map_section
+    .contactus_map_section
     .contactus_locations
-     .contactus_location1 
-     .contactus_location_list 
-     .contactus_locations_1 span{
-       font-size: 14px;
-     }
+    .contactus_location1
+    .contactus_location_list
+    .contactus_locations_1
+    span {
+    font-size: 14px;
+  }
 }
