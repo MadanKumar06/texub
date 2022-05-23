@@ -86,13 +86,19 @@
         font-weight: 600;
         padding: 0.3em 1.2em;
         background-color: #e6ffea;
-        border-radius: 16px;
+        border-radius: 50px;
       }
-
+      .orders__received {
+        font-weight: 600;
+        padding: 0.3em 1.2em;
+        border-radius: 50px;
+        color: #2116ed;
+        background-color: #2116ed2b;
+      }
       .orders__canceled {
         font-weight: 600;
         padding: 0.3em 1.2em;
-        border-radius: 16px;
+        border-radius: 50px;
         color: #ff3900;
         background-color: #ffe2e2;
       }
@@ -100,7 +106,7 @@
         color: #d9ad59;
         background-color: #fff6e5;
         padding: 0.3em 0.9em;
-        border-radius: 16px;
+        border-radius: 50px;
         font-weight: 600;
       }
       .orders__confirmed {

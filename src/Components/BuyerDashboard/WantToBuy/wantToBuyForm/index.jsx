@@ -159,6 +159,10 @@ const WantToBuy = ({ setisVieworders, setisOrders }) => {
         if (res?.data?.[0]?.status) {
           if (res?.data?.[0]?.exist) {
             setisAvailable(true);
+            dispatch({
+              type: "SET_SEARCH",
+              value: res?.data?.[0]?.keyword,
+            });
           } else {
             setisUopup(true);
           }

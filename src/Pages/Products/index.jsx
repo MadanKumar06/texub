@@ -69,9 +69,12 @@ export const Products = () => {
                 : productFetchApi?.conditions
                 ? productFetchApi?.conditions
                 : "0",
-            keyword: productFetchApi?.search_product
-              ? productFetchApi?.search_product
-              : "",
+            keyword:
+              homeSearch !== ""
+                ? homeSearch
+                : productFetchApi?.search_product
+                ? productFetchApi?.search_product
+                : "",
             eta:
               history?.state?.name === "eta"
                 ? history?.state?.value

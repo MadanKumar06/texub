@@ -9,19 +9,17 @@ export default function BasicModal({ PopupAvailable }) {
   const [open, setOpen] = React.useState(true);
   const [{ customnostore, geo }, dispatch] = useStateValue();
   const Navigate = useNavigate();
-  let userDetails = JSON.parse(localStorage.getItem("userdata"));
-
-    const handleClose = (event, reason) => {
+  const handleClose = (event, reason) => {
     if (reason && reason === "backdropClick") return;
-      else {
-        setOpen(false);
-          dispatch({
-          type: "SET_PDP_POPUP_OPEN_CLOSE",
-          value: false,
-        });
-        PopupAvailable(false)
-      }
+    else {
+      setOpen(false);
+      dispatch({
+        type: "SET_PDP_POPUP_OPEN_CLOSE",
+        value: false,
+      });
+      PopupAvailable(false);
     }
+  };
 
   // const handleClose = () => {
   //   setOpen(false);
@@ -45,7 +43,7 @@ export default function BasicModal({ PopupAvailable }) {
           timeout: 500,
         }}
       >
-        <div className="thankyou_popup_main" style={{outline:'none'}}>
+        <div className="thankyou_popup_main" style={{ outline: "none" }}>
           <Clear
             className="clear_btn thankyou_popup_clear_btn"
             onClick={() => handleClose()}
@@ -63,7 +61,8 @@ export default function BasicModal({ PopupAvailable }) {
               </div> */}
               <div className="custom_msg common-block">
                 <span className="msg">
-                  This product is already available in our product listing page.<br/>
+                  This product is already available in our product listing page.
+                  <br />
                   Please go to the page for more info
                 </span>
               </div>

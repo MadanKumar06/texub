@@ -198,12 +198,14 @@ function Index({ handleSearchBar, searchdata, searchupdate }) {
               ${value === "1" && "orders__confirmed"}
               ${value === "2" && "orders__dispatched"}
               ${value === "3" && "orders__delivered"}
+              ${value === "0" && "orders__received"}
               `}
             >
               {value === "4" ? "Canceled" : ""}
               {value === "1" ? "Confirm" : ""}
               {value === "2" ? "Dispatched" : ""}
               {value === "3" ? "Delivered" : ""}
+              {value === "0" ? "Po Received" : ""}
             </div>
           );
         },
