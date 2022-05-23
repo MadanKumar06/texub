@@ -26,6 +26,7 @@ const WhislistTable = ({
   const handleClickForOpenMoreOption = (event) => {
     setOpenMoreOption(event.currentTarget);
   };
+  const [isAddalltoPendingInvoice,setisAddalltoPendingInvoice] = useState(false);
   const [allert, setallert] = useState(false);
   const [allertData, setallertData] = useState("");
   const handleCloseForOpenMoreOption = () => {
@@ -478,7 +479,11 @@ const WhislistTable = ({
         </Menu>
         <div className="header_link">
           <p onClick={() => addalltocart()}>Add All To Cart</p>
-          <p onClick={() => addalltopending()}>Add All To Pending Invoice</p>
+          <p onClick={() => {
+              setallert(true)
+              setisAddalltoPendingInvoice(true)
+            }}>Add All To Pending Invoice
+          </p>
           <p onClick={() => wishlistdelete()}>Delete List</p>
         </div>
       </div>
@@ -606,10 +611,13 @@ const WhislistTable = ({
         </div>
       </div>
       {allert && (
-        <AllertMessage
+       <AllertMessage
           AddpendingInvoiceAlert={AddpendingInvoiceAlert}
           handleIsValidUser={AddToCartAndPendingInvoice}
           allertData={allertData}
+          isAddalltoPendingInvoice={isAddalltoPendingInvoice}
+          addalltopending={addalltopending}
+          setisAddalltoPendingInvoice={setisAddalltoPendingInvoice}
         />
       )}
     </div>

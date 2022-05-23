@@ -15,8 +15,12 @@ import WantToBuy from "./wantToBuyForm";
 import QuoteReceivedGrid from "./QuoteRecievedGrid";
 
 function Index() {
-  const [tableData, setTableData] = useState([]);
+  // const [tableData, setTableData] = useState([]);
   const [apiTableData, setApiTableData] = useState([]);
+  const [direct, setdirect] = useState([]);
+  const [filtereddirect, setfiltereddirect] = useState([]);
+  const [searchdata,setsearchdata] = useState("");
+  const [isNotMatched,setisNotMatched] = useState(false);
   const [{ geo, customnostore, generalTrigger }, dispatch] = useStateValue();
   const [isVieworders, setisVieworders] = useState(false);
   const Navigate = useNavigate();
@@ -28,6 +32,28 @@ function Index() {
     setisVieworders(true);
     setisOrders(false);
   };
+  useEffect(()=>{
+    setfiltereddirect(apiTableData)
+  },[apiTableData])
+
+  const searchHandler = (e)=>{
+    e.preventDefault()
+    setsearchdata("")
+
+    if (apiTableData?.length === 0) return
+    if (searchdata === "") {
+      setfiltereddirect(apiTableData)
+    } else {
+      let temp = apiTableData?.filter(td => td?.texub_wtb_id?.toLowerCase()?.includes(searchdata?.toLowerCase()))
+      setfiltereddirect(temp)
+    }
+    setisNotMatched(!isNotMatched)
+  }
+  useEffect(()=>{
+    if(filtereddirect.length===0){
+      setdirect([])
+    }
+  },[isNotMatched])
 
   const quoteReceived = (value) => {
     setIsViewQuoteReceived((prev) => ({
@@ -95,9 +121,9 @@ function Index() {
     };
     fetchTableData();
   }, [generalTrigger]);
-  const PaginateDataSplit = (event) => {
-    if (apiTableData?.length === 0) return setApiTableData([]);
-    setTableData(event);
+ const PaginateDataSplit = (event) => {
+    if (apiTableData?.length === 0) return setdirect([]);
+    setdirect(event);
   };
   const columns = [
     {
@@ -205,12 +231,14 @@ function Index() {
               placeholder="Search..."
               inputProps={{ "aria-label": "" }}
               className="want_tobuy__input"
+              value={searchdata}
+              onChange={(e)=>setsearchdata(e.target.value)}
             />
             <IconButton
               type="submit"
               sx={{ p: "10px" }}
               aria-label="search"
-              onClick={(event) => event.preventDefault()}
+               onClick={(e)=>searchHandler(e)}
             >
               <Search />
             </IconButton>
@@ -228,14 +256,14 @@ function Index() {
         <>
           <MUITable
             columns={columns}
-            table={tableData}
+            table={direct?.length ? direct : []}
             options={options}
             className="want_tobuy__table"
           />
-          {apiTableData?.length > 0 ? (
+         {filtereddirect?.length > 0 ? (
             <Pagination
               PaginateData={PaginateDataSplit}
-              DataList={apiTableData?.length ? apiTableData : []}
+              DataList={filtereddirect}
               PagePerRow={10}
             />
           ) : (

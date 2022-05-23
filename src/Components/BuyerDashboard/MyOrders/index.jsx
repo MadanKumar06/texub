@@ -19,6 +19,10 @@ function Index() {
   const [tableData, setTableData] = useState([]);
   const [filtereddirect, setfiltereddirect] = useState([]);
   const [orderlist, setorderlist] = useState([]);
+  const [searchdata,setsearchdata] = useState("");
+  const [direct, setdirect] = useState([]);
+  const [orderTypeColor, setorderTypeColor] = useState(0);
+  const [isNotMatched,setisNotMatched] = useState(false);
   const ordertype = [
     { name: "All Orders" },
     { name: "Pending Orders" },
@@ -42,30 +46,74 @@ function Index() {
   }, []);
   useEffect(() => {
     if (type === 0) {
+      setorderTypeColor(0)
       setfiltereddirect(orderlist);
     }
     if (type === 1) {
+      setorderTypeColor(0)
       const pending = orderlist?.filter((d) => d?.order_status === "1");
-      setfiltereddirect(pending);
+      if(pending?.length) {
+        setfiltereddirect(pending)
+      } else {
+        setdirect([])
+        setfiltereddirect([])
+      }
     }
     if (type === 2) {
+      setorderTypeColor(0)
       const confirm = orderlist?.filter((d) => d?.order_status === "2");
-      setfiltereddirect(confirm);
+      if(confirm?.length) {
+        setfiltereddirect(confirm)
+      } else {
+        setdirect([])
+        setfiltereddirect([])
+      }
     }
     if (type === 3) {
+      setorderTypeColor(0)
       const dispatch = orderlist?.filter((d) => d?.order_status === "3");
-      setfiltereddirect(dispatch);
+      if(dispatch?.length) {
+        setfiltereddirect(dispatch)
+      } else {
+        setdirect([])
+        setfiltereddirect([])
+      }
     }
     if (type === 4) {
+      setorderTypeColor(0)
       const delivered = orderlist?.filter((d) => d?.order_status === "4");
-      setfiltereddirect(delivered);
+      if(delivered?.length) {
+        setfiltereddirect(delivered)
+      } else {
+        setdirect([])
+        setfiltereddirect([])
+      }
     }
   }, [type, orderlist]);
 
   const PaginateDataSplit = (event) => {
-    if (orderlist?.length === 0) return setfiltereddirect([]);
-    setfiltereddirect(event);
-  };
+    if (orderlist?.length === 0) return setdirect([]);
+      setdirect(event);
+    };
+    const searchHandler = (e)=>{
+      e.preventDefault()
+      setorderTypeColor(1)
+      settype(null)
+      setsearchdata("")
+      if (orderlist?.length === 0) return
+      if (searchdata === "") {
+        setfiltereddirect(orderlist)
+      } else {
+        let temp = orderlist?.filter(td => td?.order_id?.toLowerCase()?.includes(searchdata?.toLowerCase()))
+        setfiltereddirect(temp)
+      }
+      setisNotMatched(!isNotMatched)
+   }
+   useEffect(()=>{
+    if(filtereddirect.length===0){
+      setdirect([])
+    }
+  },[isNotMatched])
 
   const [isVieworders, setisVieworders] = useState(false);
   // const [currentorder, setcurrentorder] = useState();
@@ -270,12 +318,14 @@ function Index() {
                 placeholder="Search..."
                 inputProps={{ "aria-label": "search google maps" }}
                 className="myordersection_input"
+                value={searchdata}
+                onChange={(e)=>setsearchdata(e.target.value)}
               />
               <IconButton
                 type="submit"
                 sx={{ p: "10px" }}
                 aria-label="search"
-                onClick={(event) => event.preventDefault()}
+                 onClick={(e)=>searchHandler(e)}
               >
                 <SearchIcon />
               </IconButton>
@@ -288,9 +338,14 @@ function Index() {
           <div className="myorders__buttons">
             {ordertype.map((data, i) => (
               <p
-                className={`ordertypes ${type === i && "ordertype__selected"}`}
+                className={`ordertypes ${type === i && "ordertype__selected"} 
+                ${orderTypeColor === 1 && data.name==="All Orders"? "ordertype__selected":null}
+                `}
                 key={i}
-                onClick={() => selectorder(i)}
+                onClick={() =>{
+                  selectorder(i)
+                  setsearchdata("")
+                }}
               >
                 {data.name}
               </p>
@@ -298,14 +353,14 @@ function Index() {
           </div>
           <MUITable
             columns={columns}
-            table={filtereddirect}
+            table={direct?.length ? direct : []}
             options={options}
             className="myorders__table"
           />
-          {orderlist?.length > 0 ? (
+         {filtereddirect?.length > 0 ? (
             <Pagination
               PaginateData={PaginateDataSplit}
-              DataList={orderlist?.length ? orderlist : []}
+              DataList={filtereddirect}
               PagePerRow={10}
             />
           ) : (

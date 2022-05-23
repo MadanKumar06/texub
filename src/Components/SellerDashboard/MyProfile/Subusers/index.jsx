@@ -235,7 +235,7 @@ const Index = () => {
               <Link
                 to={`/${
                   customnostore ? customnostore : geo?.country_name
-                }/buyerdashboard/dashboard`}
+                }/sellerdashboard/dashboard`}
                 className="link"
               >
                 <ArrowBackIosNew />

@@ -43,10 +43,15 @@ const Index = ({ orders, setisVieworders, setisOrders }) => {
     }
   };
   const [detailsorder, setdetailsorder] = useState([]);
+   const [entity_id, setentity_id] = useState();
+  const [update_transaction_details,setupdate_transaction_details] = useState(false)
   const [isUopup, setisUopup] = useState(false);
   const Popup = (event) => {
     setisUopup(event);
   };
+  useEffect(()=>{
+    setentity_id(detailsorder?.[0]?.order_details?.[0]?.entity_id)
+  },[detailsorder])
 
   const [TrackOrder, setisTrackOrder] = useState(false);
   const PopupTrack = (event) => {
@@ -99,7 +104,7 @@ const Index = ({ orders, setisVieworders, setisOrders }) => {
         value: false,
       });
     }
-  }, [currentorder]);
+  }, [currentorder, update_transaction_details]);
 
   // console.log(detailsorder[0])
 
@@ -408,9 +413,15 @@ const Index = ({ orders, setisVieworders, setisOrders }) => {
                           {detailsorder?.[0]?.order_details?.[0]?.shipping_name}
                         </span>
                         <span className="address">
+                         {
+                            detailsorder?.[0]?.order_details?.[0]
+                              ?.shipping_address?.[0]?.Street?.[0]
+                          }
+                        </span>
+                        <span className="address">
                           {
                             detailsorder?.[0]?.order_details?.[0]
-                              ?.shipping_address
+                              ?.shipping_address?.[0]?.Street?.[1]
                           }
                         </span>
                       </li>
@@ -426,9 +437,15 @@ const Index = ({ orders, setisVieworders, setisOrders }) => {
                           {detailsorder?.[0]?.order_details?.[0]?.billing_name}
                         </span>
                         <span className="address">
+                           {
+                            detailsorder?.[0]?.order_details?.[0]
+                              ?.billing_address?.[0]?.Street?.[0]
+                          }
+                        </span>
+                        <span className="address">
                           {
                             detailsorder?.[0]?.order_details?.[0]
-                              ?.billing_address
+                              ?.billing_address?.[0]?.Street?.[1]
                           }
                         </span>
                       </li>
@@ -494,7 +511,7 @@ const Index = ({ orders, setisVieworders, setisOrders }) => {
                       ) : (
                         <span
                           className="update_transaction_block"
-                          style={{ curosr: "pointer" }}
+                          style={{ cursor: "pointer" }}
                           onClick={() => setisTransaction(true)}
                         >
                           {detailsorder?.[0]?.order_details?.[0]
@@ -636,7 +653,11 @@ const Index = ({ orders, setisVieworders, setisOrders }) => {
       </div>
       {isUopup && <Ratingpopup Popup={Popup} currentorder={currentorder} />}
       {TrackOrder && <TrackOrderpopup PopupTrack={PopupTrack} />}
-      {Transaction && <TransactionPopup PopupTransaction={PopupTransaction} />}
+     {Transaction && <TransactionPopup 
+      PopupTransaction={PopupTransaction} 
+      product_id={entity_id}
+      setupdate_transaction_details={setupdate_transaction_details}
+      />}
     </>
   );
 };

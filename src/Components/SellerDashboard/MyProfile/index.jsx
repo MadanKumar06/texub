@@ -133,8 +133,8 @@ const Index = () => {
 
           <div className="My_profile_ac_table">
             <div className="my_profile_edit">
-              <img src={Edit_image} alt="" style={{ height: "34px" }} />
-              <p className="profile_edit" onClick={Edit}>
+              <img src={Edit_image} alt="" style={{ height: "34px",cursor:"pointer" }} onClick={Edit}/>
+              <p className="profile_edit" style={{ cursor:"pointer" }} onClick={Edit}>
                 Edit
               </p>
             </div>
@@ -238,7 +238,7 @@ const Index = () => {
             <Link
               to={`/${
                 customnostore ? customnostore : geo?.country_name
-              }/buyerdashboard/dashboard`}
+              }/sellerdashboard/dashboard`}
               className="link"
             >
               <ArrowBackIosNew />
@@ -249,7 +249,10 @@ const Index = () => {
           </div>
         </div>
       )}
-      {isEdit && <Accountinfo />}
+     {isEdit && <Accountinfo 
+      setisAccountinfo={setisAccountinfo}
+      setisEdit={setisEdit}
+      />}
       {isCompany && <Companyinfo />}
     </div>
   );
