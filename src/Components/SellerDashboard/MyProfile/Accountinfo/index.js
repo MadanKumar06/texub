@@ -11,9 +11,9 @@ import baseUrl from "../../../../Constant";
 import { useStateValue } from "../../../../store/state";
 import Constant from "../../../../Constant";
 
-const Index = (classes) => {
+const Index = ({ classes, setisAccountinfo, setisEdit }) => {
   const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
-  let { validation_error } = classes;
+  let validation_error = classes;
   const [AccountInfoData, setAccountInfoData] = useState({
     first_name: "",
     last_name: "",
@@ -398,7 +398,12 @@ const Index = (classes) => {
             </div>
           </div>
           <div className="accountinfo_btn">
-            <button className="account_info_cancel">Cancel</button>
+            <button className="account_info_cancel"
+              onClick={() => {
+                setisAccountinfo(true)
+                setisEdit(false)
+              }}
+            >Cancel</button>
             <button
               className="account_info_save"
               onClick={() => handleClickValidation()}
@@ -409,6 +414,18 @@ const Index = (classes) => {
           {/* </form> */}
         </div>
         <div className="my_profile_back">
+          <div className="back_button"
+            onClick={() => {
+              setisAccountinfo(true)
+              setisEdit(false)
+            }}
+            style={{ cursor: 'pointer' }}
+          >
+            <ArrowBackIosNew />
+            <span className="back">Back</span>
+          </div>
+        </div>
+        {/* <div className="my_profile_back">
           <Link
             to={`/${
               customstore ? customstore : geo?.country_name
@@ -420,7 +437,7 @@ const Index = (classes) => {
               <p className="back">Back</p>
             </span>
           </Link>
-        </div>
+        </div> */}
       </div>
     </div>
   );

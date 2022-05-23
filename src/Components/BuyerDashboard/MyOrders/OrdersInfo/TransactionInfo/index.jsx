@@ -8,7 +8,8 @@ import { Button } from "@mui/material";
 import { FormControlLabel, TextField, InputLabel } from "@mui/material";
 import "./styles.scss";
 import { useStateValue } from "../../../../../store/state";
-import { MobileDatePicker,LocalizationProvider } from "@mui/x-date-pickers";
+import { MobileDateTimePicker,LocalizationProvider } from "@mui/x-date-pickers";
+// import { MobileDatePicker,LocalizationProvider } from "@mui/x-date-pickers";
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import axios from "axios";
 import Constant from "../../../../../Constant";
@@ -26,7 +27,7 @@ const style = {
   p: 4,
 };
 
-export default function BasicModal({ PopupTransaction }) {
+export default function BasicModal({ PopupTransaction, product_id, setupdate_transaction_details}) {
   const [{}, dispatch] = useStateValue();
   const [open, setOpen] = React.useState(true);
   const [value, setValue] = React.useState(2);
@@ -102,11 +103,12 @@ export default function BasicModal({ PopupTransaction }) {
         data: {
           requestParam: {
             customer_id: user?.id,
-            order_id: "",
+            order_id: product_id,
             reference_number: transactiondetails?.reference_number,
             payment_amount: transactiondetails?.payment_amount,
             payment_date: transactiondetails?.transaction_date_time,
-            payment_remarks: date,
+            // payment_remarks: date,
+            payment_remarks: transactiondetails?.remarks,
           },
         },
       });
@@ -117,6 +119,7 @@ export default function BasicModal({ PopupTransaction }) {
         timer: 3000,
       });
       handleClose();
+      setupdate_transaction_details(true)
     } catch (e) {
       console.log(e);
     }
@@ -189,9 +192,51 @@ export default function BasicModal({ PopupTransaction }) {
                 </div>
               </div>
               <div className="transaction_block">
-                <div className="transaction_info_section">
+                <div className="transaction_info_section transaction_info_datetime_section">
                   <InputLabel>Transaction Date & Time</InputLabel>
                   <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <MobileDateTimePicker
+                      id="transaction_date_time"
+                      name="transaction_date_time"
+                      inputFormat="dd/MM/yyyy  |  hh:mm a"
+                      disablePast
+                      value={
+                        transactiondetails?.transaction_date_time
+                          ? transactiondetails?.transaction_date_time
+                          : null
+                      }
+                      onChange={(newValue) => {
+                        settransactiondetails((prevState) => ({
+                          ...prevState,
+                          transaction_date_time: newValue,
+                        }));
+                      }}
+                      renderInput={(params) => (
+                        <TextField
+                          className="inputfield-box calendar_info order_success_calendar"
+                          {...params}
+                          inputProps={{
+                            ...params.inputProps,
+                            readOnly: true,
+                            placeholder: "DD/MM/YY  |  Hrs:Min:Sec",
+                          }}
+                        />
+                      )}
+                    />
+                    {transactiondetails?.transaction_date_time ? (
+                      <Clear
+                        className="clear_datepicker"
+                        onClick={() => {
+                          settransactiondetails((prevState) => ({
+                            ...prevState,
+                            transaction_date_time: null,
+                          }));
+                        }}
+                      />
+                    ) : null}
+                  </LocalizationProvider>
+
+                  {/* <LocalizationProvider dateAdapter={AdapterDateFns}>
                     <MobileDatePicker
                       id="transaction_date_time"
                       name="transaction_date_time"
@@ -222,14 +267,14 @@ export default function BasicModal({ PopupTransaction }) {
                         />
                       )}
                     />
-                  </LocalizationProvider>
+                  </LocalizationProvider> */}
                   <p style={{ color: "red" }}>
                     {transactionvalidation?.transaction_date_time
                       ? transactionvalidation?.transaction_date_time
                       : ""}
                   </p>
                 </div>
-                <div className="transaction_info_section">
+                <div className="transaction_info_section transaction_info_remarks_section">
                   <InputLabel>Remarks</InputLabel>
                   <TextareaAutosize
                     id="remarks"
@@ -240,6 +285,7 @@ export default function BasicModal({ PopupTransaction }) {
                     style={{ height: 100 }}
                     value={transactiondetails?.remarks}
                     onChange={(e) => handleTransaction(e)}
+                     className="textArea"
                   />
                   <p style={{ color: "red" }}>
                     {transactionvalidation?.remarks
@@ -251,9 +297,9 @@ export default function BasicModal({ PopupTransaction }) {
             </div>
 
             <div className="ordersuccess_btns">
-              <Button className="payment_later_btn btn-primary">
+              {/* <Button className="payment_later_btn btn-primary">
                 Confirm & Update Payment Details Later
-              </Button>
+              </Button> */}
               <Button className="btn-secondary">Submit</Button>
             </div>
           </div>

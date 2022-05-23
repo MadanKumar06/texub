@@ -117,7 +117,7 @@
   .ordersuccess_btns {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     padding: 2em 0 1em;
     button {
       width: 48%;
@@ -127,6 +127,24 @@
       font-weight: 600;
     }
   }
+}
+.transaction_popup .transaction_section .transaction_info_datetime_section{
+  position: relative;
+}
+.transaction_popup .transaction_section .transaction_info_datetime_section .clear_datepicker{
+  cursor: pointer;
+  position: absolute;
+  right: 2%;
+  bottom: 80px;
+  opacity: 0.5;
+}
+.transaction_info_remarks_section .textArea {
+  outline: none;
+  border: 1px solid rgb(0 0 0 / 26%) !important;
+  border-radius: 5px;
+}
+.transaction_info_remarks_section .textArea:hover {
+  border: 1px solid #ddb363 !important;
 }
 @media (max-width: 900px) {
 
@@ -170,5 +188,8 @@
           }
       }
     }
+    }
+    .transaction_popup .transaction_section .transaction_info_datetime_section .clear_datepicker{
+      bottom: 27px;
     }
 }

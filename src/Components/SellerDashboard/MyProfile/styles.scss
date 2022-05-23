@@ -220,7 +220,19 @@
     }
   }
 }
-
+.my_profile_back .back_button{
+  color: #002d56;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+}
+.my_profile_back .back_button span.back{
+  margin-left: 0.4em;
+}
+.my_profile_back .back_button .MuiSvgIcon-root{
+  width: 0.6em;
+  height: 0.6em;
+}
 @media only screen and(max-width:1530px) {
   .My_profile_main
     .My_profile_ac

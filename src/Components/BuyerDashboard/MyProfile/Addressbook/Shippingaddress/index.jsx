@@ -13,7 +13,7 @@ import swal from "sweetalert2";
 
 import { getAdminToken } from "../../../../../utilities";
 
-const Index = ({ address }) => {
+const Index = ({ address, setisAddress, setisShipping }) => {
   const [{ geo, customnostore }, dispatch] = useStateValue();
   const [countryList, setCountryList] = useState([]);
   const [shippingAddress, setshippingAddress] = useState({
@@ -281,7 +281,12 @@ const Index = ({ address }) => {
             </div>
           </div>
           <div className="button-box-container btn_container">
-            <Button className="button-text btn-ternary btn_billing">
+          <Button className="button-text btn-ternary btn_billing"
+            onClick={()=>{
+              setisShipping(false)
+              setisAddress(true)
+            }}
+            >
               Cancel
             </Button>
             <Button
@@ -294,6 +299,18 @@ const Index = ({ address }) => {
         </form>
       </div>
       <div className="my_profile_back">
+      <div className="back_button"
+        onClick={() => {
+          setisShipping(false)
+          setisAddress(true)
+        }}
+        style={{ cursor: 'pointer' }}
+      >
+        <ArrowBackIosNew />
+        <span className="back">Back</span>
+      </div>
+      </div>
+      {/* <div className="my_profile_back">
         <Link
           to={`/${
             customnostore ? customnostore : geo?.country_name
@@ -305,7 +322,7 @@ const Index = ({ address }) => {
             <p className="back">Back</p>
           </span>
         </Link>
-      </div>
+      </div> */}
     </div>
   );
 };

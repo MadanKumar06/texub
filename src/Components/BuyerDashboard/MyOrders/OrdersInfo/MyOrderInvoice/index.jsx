@@ -403,7 +403,7 @@ const Index = ({ orders }) => {
                       ) : (
                         <span
                           className="update_transaction_block"
-                          style={{ curosr: "pointer" }}
+                          style={{ cursor: "pointer" }}
                         >
                           {detailsorder?.[0]?.order_details?.[0]
                             ?.payment_method === "banktransfer" &&
