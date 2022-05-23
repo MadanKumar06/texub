@@ -58,7 +58,9 @@ import ResetPassword from "./Components/ResetPassword";
 //coming soon page
 import ComingSoon from "./Pages/ComingSoon";
 //sellontexub
-import SellonTexub from "./Pages/SellonTexub";
+import SellonTexubNew from "./Pages/SellonTexub";
+import SellOnTexub from "./Pages/CMS/SellOnTexub";
+import BuyOnTexub from "./Pages/CMS/BuyOnTexub";
 //popup component
 import KYCformSectionLeft from "./Pages/Register/KYCform/SectionLeft";
 import PDPpopUp from "./Pages/PDPpopUp";
@@ -230,11 +232,31 @@ const App = () => {
               exact
             />
             <Route
+              path="/:country/sell-on-texub"
+              // path={`/${customnostore ? customnostore : geo?.country_name}/seller_advantage`}
+              element={
+                <>
+                  <SellOnTexub /> <ScrollToTop /> <Footer />
+                </>
+              }
+              exact
+            />
+            <Route
+              path="/:country/buy-on-texub"
+              // path={`/${customnostore ? customnostore : geo?.country_name}/seller_advantage`}
+              element={
+                <>
+                  <BuyOnTexub /> <ScrollToTop /> <Footer />
+                </>
+              }
+              exact
+            />
+            <Route
               path="/:country/coming-soon"
               // path={`/${customnostore ? customnostore : geo?.country_name}/coming-soon`}
               element={
                 <>
-                  <SellonTexub /> <ScrollToTop /> <Footer />
+                  <SellonTexubNew /> <ScrollToTop /> <Footer />
                 </>
               }
               exact

@@ -112,7 +112,7 @@ function Index() {
       console.log(content)
 
   return (
-    <div className='sellontexub'>
+    <div className='sellontexub_slider'>
         <div className='sellontexub__monitordata'>
             <div className='sellontexub_monitortop'></div>
             <div className='sellontexub_monitorbottom'></div>

@@ -86,7 +86,7 @@ const SectionRight = ({ classes, handleClose, handleClassChange }) => {
               specifications and pricing.
             </li>
             <li>
-              Obtain quotes from various Hubs/ Locations and buy online with a
+              Obtain quotes from various Hubs/Locations and buy online with a
               single click.
             </li>
           </ol>

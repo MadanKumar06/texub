@@ -1,4 +1,4 @@
-.sellontexub {
+.sellontexub_slider {
     .sellontexub__monitordata {
         display: flex;
         flex-direction: column;
@@ -25,12 +25,14 @@
         }
     
         .sellontexub__monitor__carousel {
-            max-width: 100%;
-            bottom: 40%;
-            z-index: 9;
-            overflow: hidden;
+               max-width: 100%;
+                bottom: 34%;
+                z-index: 9;
+                overflow: hidden;
+                width: 85%;
+                margin: auto;
             div {
-                width: 70%;
+                width: 80%;
                 height: 70%;
                 margin: 0 auto;
                 img {
@@ -47,19 +49,20 @@
             .slick-prev {
                 left: 20%;
                 z-index: 999;
-                box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+                // box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
                 &:before {
                     font-size: 30px;
-                    color: #f5f5f5;
+                    color: #cdd5dd;
                 }
             }
     
             .slick-next {
                 right: 20%;
                 z-index: 999;
-                box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+                // box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
                 &:before {
                     font-size: 30px;
+                    color: #cdd5dd;
                 }
             }
         }
@@ -120,16 +123,7 @@
     }
 }
 
-@media (max-width: 1660px) {
-    .sellontexub__monitor__carousel  {
-        .slick-prev {
-            left: 18% !important;
-        }
-        .slick-next  {
-            right: 18% !important;
-        }
-    }
-}
+
 
 @media (max-width: 1566px) {
     .sellontexub .sellontexub__testimonials ul {
