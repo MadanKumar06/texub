@@ -1,127 +1,127 @@
-.sellontexub_slider {
-    .sellontexub__monitordata {
-        display: flex;
-        flex-direction: column;
-        position: relative;
+// .sellontexub_slider {
+//     .sellontexub__monitordata {
+//         display: flex;
+//         flex-direction: column;
+//         position: relative;
         
-        .sellontexub_monitortop {
-            min-height: 376px;
-            height: 100%;
-        }
-        .sellontexub_monitorbottom {
-            background-color: #d6e5ec;
-            min-height: 376px;
-            height: 100%;
-        }
+//         .sellontexub_monitortop {
+//             min-height: 376px;
+//             height: 100%;
+//         }
+//         .sellontexub_monitorbottom {
+//             background-color: #d6e5ec;
+//             min-height: 376px;
+//             height: 100%;
+//         }
     
-        .sellontexub__monitor, .sellontexub__monitor__carousel {
-            position: absolute;
-            bottom: 1em;
-            left: 0;
-            right: 0;
-            margin: 0 auto;
-            max-width: 60%;
-            // max-height: 85%;
-        }
+//         .sellontexub__monitor, .sellontexub__monitor__carousel {
+//             position: absolute;
+//             bottom: 1em;
+//             left: 0;
+//             right: 0;
+//             margin: 0 auto;
+//             max-width: 60%;
+//             // max-height: 85%;
+//         }
     
-        .sellontexub__monitor__carousel {
-               max-width: 100%;
-                bottom: 34%;
-                z-index: 9;
-                overflow: hidden;
-                width: 85%;
-                margin: auto;
-            div {
-                width: 80%;
-                height: 70%;
-                margin: 0 auto;
-                img {
-                    text-align: center;
-                    margin: 0 auto;
-                    vertical-align: middle;
-                    z-index: 1;
-                    height: 100%;
-                    width: 100%;
-                }
-            }
+//         .sellontexub__monitor__carousel {
+//                max-width: 100%;
+//                 bottom: 34%;
+//                 z-index: 9;
+//                 overflow: hidden;
+//                 width: 85%;
+//                 margin: auto;
+//             div {
+//                 width: 80%;
+//                 height: 70%;
+//                 margin: 0 auto;
+//                 img {
+//                     text-align: center;
+//                     margin: 0 auto;
+//                     vertical-align: middle;
+//                     z-index: 1;
+//                     height: 100%;
+//                     width: 100%;
+//                 }
+//             }
             
     
-            .slick-prev {
-                left: 20%;
-                z-index: 999;
-                // box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-                &:before {
-                    font-size: 30px;
-                    color: #cdd5dd;
-                }
-            }
+//             .slick-prev {
+//                 left: 20%;
+//                 z-index: 999;
+//                 // box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+//                 &:before {
+//                     font-size: 30px;
+//                     color: #cdd5dd;
+//                 }
+//             }
     
-            .slick-next {
-                right: 20%;
-                z-index: 999;
-                // box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-                &:before {
-                    font-size: 30px;
-                    color: #cdd5dd;
-                }
-            }
-        }
-    }
+//             .slick-next {
+//                 right: 20%;
+//                 z-index: 999;
+//                 // box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+//                 &:before {
+//                     font-size: 30px;
+//                     color: #cdd5dd;
+//                 }
+//             }
+//         }
+//     }
 
-    .sellontexub__testimonials {
-        margin-bottom: 5em;
-        h2 {
-            text-align: center;
-            color: #333333;
-            font-size: 32px;
-        }
-        ul {
-            list-style: none;
-            margin: 0 5%;
+//     .sellontexub__testimonials {
+//         margin-bottom: 5em;
+//         h2 {
+//             text-align: center;
+//             color: #333333;
+//             font-size: 32px;
+//         }
+//         ul {
+//             list-style: none;
+//             margin: 0 5%;
 
-            li {
-                position: relative;
+//             li {
+//                 position: relative;
 
-                p {
-                    position: absolute;
-                    top: 7em;
-                    left: 3em;
-                    right: 10em;
-                    color: #212224;
-                    font-size: 20px;
-                    letter-spacing: 0.4px;
-                }
+//                 p {
+//                     position: absolute;
+//                     top: 7em;
+//                     left: 3em;
+//                     right: 10em;
+//                     color: #212224;
+//                     font-size: 20px;
+//                     letter-spacing: 0.4px;
+//                 }
 
-                h3 {
-                    position: absolute;
-                    right: 7em;
-                    bottom: 1em;
-                    color: #212224;
-                    font-size: 24px;
-                    letter-spacing: 0.64px;
-                }
-            }
-        }
-        .slick-prev {
-            &:before {
-                font-size: 40px;
-                color: black;
-            }
-            left: 40%;
-            top: unset;
-            bottom: -10%;
-        }
-        .slick-next {
-            &:before {
-                font-size: 40px;
-                color: black;
-            }
-            right: 40%;
-            top: unset;
-            bottom: -10%;
-        }
-    }
-}
+//                 h3 {
+//                     position: absolute;
+//                     right: 7em;
+//                     bottom: 1em;
+//                     color: #212224;
+//                     font-size: 24px;
+//                     letter-spacing: 0.64px;
+//                 }
+//             }
+//         }
+//         .slick-prev {
+//             &:before {
+//                 font-size: 40px;
+//                 color: black;
+//             }
+//             left: 40%;
+//             top: unset;
+//             bottom: -10%;
+//         }
+//         .slick-next {
+//             &:before {
+//                 font-size: 40px;
+//                 color: black;
+//             }
+//             right: 40%;
+//             top: unset;
+//             bottom: -10%;
+//         }
+//     }
+// }
 
 
 

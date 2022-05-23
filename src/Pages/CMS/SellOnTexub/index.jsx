@@ -248,6 +248,9 @@ return (
 
             <div className='sellontexub_slider'>
                 <div className='sellontexub__monitordata'>
+                     <div className='process_section_title content-title'>
+                        <span className='title'>Sneak Peak Inside Seller Dashboard</span>
+                    </div>
                     <div className='sellontexub_monitortop'></div>
                     <div className='sellontexub_monitorbottom'></div>
                     <div className="sellontexub__monitor__carousel">
@@ -260,7 +263,7 @@ return (
                     </div>
                     <img src={monitor} className="sellontexub__monitor"  alt="" />   
                 </div>
-                <div className='sellontexub__testimonials'>
+                {/* <div className='sellontexub__testimonials'>
                     <h2>Testimonials</h2>
                     <ul>
                         <Slider {...setting1}>
@@ -273,7 +276,7 @@ return (
                             )}
                         </Slider>
                     </ul>
-                </div>
+                </div> */}
             </div>
 
 
