@@ -30,7 +30,7 @@ $yellow: #DDB363;
 .aboutus {
   .aboutus__banner {
     max-width: 1920px;
-    margin: 0 3%;
+    // margin: 0 3%;
     position: relative;
 
     img {
@@ -169,6 +169,7 @@ $yellow: #DDB363;
       font-size: 30px;
       color: $black;
       font-weight: 800;
+      margin: 15px 0;
     }
 
     p {

@@ -255,14 +255,13 @@ function Index() {
             <div className="content">
               <h2>About Us</h2>
               <p>
-                TEXUB is a trusted Digital Marketplace for Global IT trade.
-                TEXUB offers an enthralling journey into the IT business by
-                digitally connecting verified B2B sellers and buyers from all
-                around the world. We are end-to-end enabler that creates cost
-                efficiencies and support sustainable growth. With a strong
-                digital ecosystem and scalable cloud platform, TEXUB offers a
-                global perspective on the IT B2B Trade with offices in multiple
-                countries.
+                TEXUB is a Global B2B Marketplace that offers a Safe, Stable and Seamless trade ecosystem for Global IT Trade in the B2B space. TEXUB is headquartered in Dubai and its digital platform allows IT businesses to  trade by connecting with verified buyers and verified sellers anonymously. TEXUB also reduces quite a bit of routine work by taking care of end-to-end business requirements. 
+              </p>
+              <p>
+                TEXUB digital ecosystem provides a compelling journey into the IT business economy through a scalable Cloud Platform for Brands, Distributors, Resellers and all key partners, while at the same time improving the buying and selling experience, maintaining trade privacy, and above all, providing a very high level of transacting security.
+              </p>
+              <p>
+                The Founder and Board members of TEXUB are some of the well-known and influential names in IT, Mobility and Investment sector, and are committed to invest in crafting a global online ICT B2B Marketplace with ambitious plans of business scalability in the future.       
               </p>
             </div>
           </div>
