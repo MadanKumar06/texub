@@ -258,7 +258,7 @@ const Checkout = () => {
         product_id: qd?.product_id,
         product_type: "simple",
         qty_ordered: qd.qty,
-        row_total: qd?.price,
+        row_total: parseInt(qd?.price) * parseInt(qd?.qty),
         row_total_incl_tax: qd?.price,
         sku: qd?.sku,
         store_id: storedata?.store_id,
