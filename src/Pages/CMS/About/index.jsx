@@ -24,8 +24,9 @@ import inventory from "../../../Assets/Aboutus/highlights/inventory.png";
 import analytics from "../../../Assets/Aboutus/highlights/analytics.png";
 import upload from "../../../Assets/Aboutus/highlights/upload.png";
 
-import bottombanner from "../../../Assets/Aboutus/banner/bottombanner.png";
+import bottombanner from "../../../Assets/Aboutus/value_partner.png";
 import map from "../../../Assets/Aboutus/banner/map.png";
+import about_banner from "../../../Assets/Aboutus//banner/about_bg.png";
 
 import board1 from "../../../Assets/Aboutus/members/board1.png";
 import board2 from "../../../Assets/Aboutus/members/board2.png";
@@ -33,14 +34,14 @@ import board3 from "../../../Assets/Aboutus/members/board3.png";
 import board_member1 from "../../../Assets/Aboutus/membersimg/board_member1.png";
 import board_member2 from "../../../Assets/Aboutus/membersimg/board_member2.png";
 import board_member3 from "../../../Assets/Aboutus/membersimg/board_member3.png";
-import board_member_suchit from "../../../Assets/Aboutus/membersimg/board_member_suchit.png";
+import SuchitKumar from "../../../Assets/Aboutus/membersimg/SuchitKumar.png";
 
 import susir from "../../../Assets/Aboutus/membersimg/susir.png";
 import yasuo from "../../../Assets/Aboutus/membersimg/yasuo.png";
 import vinay from "../../../Assets/Aboutus/membersimg/vinay.png";
 import ahmed from "../../../Assets/Aboutus/membersimg/ahmed.png";
 import dummy from "../../../Assets/Aboutus/membersimg/dummy.png";
-import aishwarya from "../../../Assets/Aboutus/membersimg/aishwarya.png";
+import Zohra from "../../../Assets/Aboutus/membersimg/Zohra.png";
 import aditya from "../../../Assets/Aboutus/membersimg/aditya.png";
 import suchit from "../../../Assets/Aboutus/membersimg/suchit.png";
 import tushar from "../../../Assets/Aboutus/membersimg/tushar.png";
@@ -126,7 +127,7 @@ function Index() {
 
   const board = [
     {
-      image: board_member_suchit,
+      image: SuchitKumar,
       bg: board3,
       quote_bg: board_member_quote_bg,
       name: "Suchit Kumar",
@@ -134,7 +135,6 @@ function Index() {
       content:
         "Over 30 years of experience in setting up business network globally. Accomplished leader with track record of success in bringing global and holistic perspective to enterprises in transformation.",
     },
-
     {
       image: board_member1,
       bg: board1,
@@ -142,7 +142,7 @@ function Index() {
       name: "Niranjan Gidwani",
       position: "CONSULTING DIRECTOR",
       content:
-        "Over 38 years of hardcore top management experience, including extensive business exposure in places such as India, Hong Kong, Germany, Singapore, and Dubai. General management, strategy and implementation, building and scaling up teams, grooming future leaders, international business development, handling international start-ups, marketing, and worldwide sourcing for diverse categories are among his areas of expertise.",
+        "Has over 38 years of hardcore top management experience, including extensive business exposure in places such as India, Hong Kong, Germany, Singapore, and Dubai. General management, strategy and implementation, building and scaling up teams, grooming future leaders, international business development, handling international start-ups, marketing, and worldwide sourcing for diverse categories are among his areas of expertise.",
     },
     {
       image: board_member2,
@@ -162,7 +162,7 @@ function Index() {
       name: "Susir Kumar",
       designation: "STRATEGY & CORPORATE GOVERNANCE",
       content:
-        "Founded the successful global BPO venture. Delivered significant profitability and value to all key stakeholders. Over 30 years of service sector expertise, focusing in new venture formation, M&A advising, and business structure. VSF worldwide chairman and board member of TaskUs, Refyne, Sports Village, and Ingroup consulting.",
+        "Founded the successful global BPO venture. Delivered significant profitability and value to all key stakeholders. Over 30 years of service sector expertise, focusing in new venture formation, M&A advising, and business structure. VSF worldwide chairman and board member of TaskUs, Refyne, Sports Village, and Ingroup consulting.",
     },
     {
       image: Neelesh,
@@ -187,7 +187,7 @@ function Index() {
       image: vinay,
       quote_bg: advisory_board_bg,
       name: "Vinay Pagare",
-      designation: "HEAD OPERATIONS & TECHNOLOGY",
+      designation: "HEAD OF OPERATIONS & TECHNOLOGY",
       content:
         "IT Engineer Turned Entrepreneur with 12 Years of Experience in IT, DigitalTransformation Space. Vinay has Proven management experience in Setting up new ventures & building system driven businesses. Worked withTCS, BNI globally.",
     },
@@ -195,7 +195,7 @@ function Index() {
       image: ahmed,
       quote_bg: advisory_board_bg,
       name: "Ahmed Rayyan",
-      designation: "VICE PRESIDENTS, AMERICA",
+      designation: "DIRECTOR, INDIA & SOUTH ASIA",
       content:
         "Dedicated business development professional with over 20 years of experience in market research, team management and global marketing in the Middle East and Africa. Speciality in market trends and IT development in the US. Led multiple projects for business initiatives worldwide with a focus on e-commerce.",
     },
@@ -213,11 +213,7 @@ function Index() {
       name: "Inbarajan S.",
       designation: "CHIEF MARKETING OFFICER",
     },
-    {
-      image: aishwarya,
-      name: "Aishwarya Mishra",
-      designation: "LEGAL & COMPLIANCE",
-    },
+    { image: Zohra, name: "Zohra Kapasi", designation: "FINANCE HEAD" },
     {
       image: suchit_shah,
       name: "Suchit Shah",
@@ -255,17 +251,20 @@ function Index() {
 
         <div className="aboutus__info">
           <div className="about_info_content">
-            <h2>About Us</h2>
-            <p>
-              TEXUB is a global B2B marketplace that offers a secure technology
-              for global B2B IT trade. TEXUB is a digital platform that allows
-              business to exchange commerce by offering a list of best selling
-              products for verified buyers through verified sellers and reduces
-              analytical work. With our digital ecosystem, TEXUB provides a
-              compelling journey into the IT business economy. Our scalable
-              cloud platform for Brands, distributors, and resellers improves
-              the buying and selling experience while maintaining trade privacy.
-            </p>
+            {/* <img src={about_banner} alt="" /> */}
+            <div className="content">
+              <h2>About Us</h2>
+              <p>
+                TEXUB is a trusted Digital Marketplace for Global IT trade.
+                TEXUB offers an enthralling journey into the IT business by
+                digitally connecting verified B2B sellers and buyers from all
+                around the world. We are end-to-end enabler that creates cost
+                efficiencies and support sustainable growth. With a strong
+                digital ecosystem and scalable cloud platform, TEXUB offers a
+                global perspective on the IT B2B Trade with offices in multiple
+                countries.
+              </p>
+            </div>
           </div>
         </div>
 
@@ -307,8 +306,10 @@ function Index() {
 
         <div className="aboutus__businessmodel">
           <div className="businessmodel__header">
-            <h2>Business Model</h2>
-            <h5>Reach new markets with our global oppertunities</h5>
+            <div className="business_header_section">
+              <h2>Business Model</h2>
+              <h5>Reach new markets with our global opportunities</h5>
+            </div>
           </div>
           <div className="businessmodel__content">
             <div className="content__left">
@@ -374,7 +375,7 @@ function Index() {
                   <h2>{data.position}</h2>
                 </div>
                 <div className="quote_bg">
-                  <img src={data.quote_bg} alt="" />
+                  {/* <img src={data.quote_bg} alt="" /> */}
                   <p style={{ backgroundImage: data.bg }}>{data.content}</p>
                 </div>
               </p>
@@ -389,14 +390,14 @@ function Index() {
               {advisary.map((data) => (
                 <li>
                   <div className="advisory__top">
-                    <div>
+                    <div className="advisory__top_image">
                       <img src={data.image} alt="" />
                     </div>
                     <h5>{data.name}</h5>
                     <h2>{data.designation}</h2>
                   </div>
                   <div className="quote_bg">
-                    <img src={data.quote_bg} alt="" />
+                    {/* <img src={data.quote_bg} alt="" /> */}
                     <p style={{ backgroundImage: data.bg }}>{data.content}</p>
                   </div>
                 </li>
@@ -412,14 +413,14 @@ function Index() {
               {mgmt.map((data) => (
                 <li>
                   <div className="mgmt__top">
-                    <div>
+                    <div className="mgmt__top_image">
                       <img src={data.image} alt="" />
                     </div>
                     <h5>{data.name}</h5>
-                    <h2>{data.designation}</h2>
+                    <h2 className="position_title">{data.designation}</h2>
                   </div>
                   <div className="quote_bg">
-                    <img src={data.quote_bg} alt="" />
+                    {/* <img src={data.quote_bg} alt="" /> */}
                     <p style={{ backgroundImage: data.bg }}>{data.content}</p>
                   </div>
                 </li>
@@ -437,8 +438,8 @@ function Index() {
                   <div className="core__image">
                     <img src={data.image} alt="" />
                   </div>
-                  <h5>{data.name}</h5>
-                  <h2>{data.designation}</h2>
+                  <h5 className="position_person">{data.name}</h5>
+                  <h2 className="position_title">{data.designation}</h2>
                 </li>
               ))}
             </ul>
