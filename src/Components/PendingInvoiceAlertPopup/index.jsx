@@ -4,7 +4,14 @@ import { Button, Box } from "@mui/material";
 import like from "../../Assets/PDP/thumbs-up.png";
 import "./styles.scss";
 
-const Index = ({ AddpendingInvoiceAlert, handleIsValidUser, allertData }) => {
+const Index = ({ 
+  AddpendingInvoiceAlert, 
+  handleIsValidUser, 
+  allertData, 
+  isAddalltoPendingInvoice, 
+  addalltopending,
+  setisAddalltoPendingInvoice
+}) => {
   const [open, setOpen] = useState(true);
   let userDetails = JSON.parse(localStorage.getItem("userdata"));
   const handleClose = () => {
@@ -51,18 +58,32 @@ const Index = ({ AddpendingInvoiceAlert, handleIsValidUser, allertData }) => {
           </p>
         </div>
         <div className="button_section">
-          <Box className="button_box">
-            <Button className="button_cancel" onClick={() => handleClose()}>
-              Cancel
-            </Button>
-            <Button
-              className="button_add"
-              onClick={() =>
-                handleIsValidUser({ info: "pending_invoice", data: allertData })
-              }
-            >
+         <Box className="button_box">
+            {
+              isAddalltoPendingInvoice === true?<Button className="button_cancel button_cancel_all"
+              onClick={()=>{
+                setisAddalltoPendingInvoice(false)
+                handleClose()
+              }}
+              >
+                Cancel
+              </Button>:<Button className="button_cancel" onClick={() => handleClose()}>
+                Cancel
+              </Button>
+            }
+            {
+              isAddalltoPendingInvoice === true?<Button className="button_add button_add_all"
+                onClick={()=>addalltopending()}
+              >Add</Button>:
+              <Button
+                className="button_add"
+                onClick={() =>
+                  handleIsValidUser({ info: "pending_invoice", data: allertData })
+                }
+              >
               Add
-            </Button>
+              </Button>
+            }
           </Box>
         </div>
       </div>

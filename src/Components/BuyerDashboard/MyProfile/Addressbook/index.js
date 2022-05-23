@@ -77,8 +77,8 @@ const Index = () => {
               </ul>
               {billingAdderess?.length && (
                 <div className="edit_section">
-                  <img src={Edit_image} alt="" style={{ height: "34px" }} />
-                  <p className="profile_edit" onClick={() => Billaddress()}>
+                  <img src={Edit_image} alt="" style={{ height: "34px", cursor: "pointer" }} onClick={() => Billaddress()} />
+                  <p className="profile_edit" style={{ cursor: "pointer" }} onClick={() => Billaddress()}>
                     Edit
                   </p>
                 </div>
@@ -113,8 +113,8 @@ const Index = () => {
 
               {shippingAddress?.length && (
                 <div className="edit_section">
-                  <img src={Edit_image} alt="" style={{ height: "34px" }} />
-                  <p className="profile_edit" onClick={() => Shipadress()}>
+                  <img src={Edit_image} alt="" style={{ height: "34px", cursor: "pointer" }} onClick={() => Shipadress()} />
+                  <p className="profile_edit" style={{ cursor: "pointer" }} onClick={() => Shipadress()}>
                     Edit
                   </p>
                 </div>
@@ -136,8 +136,16 @@ const Index = () => {
           </div>
         </div>
       )}
-      {isBilling && <Billingaddress address={billingAdderess} />}
-      {isShipping && <Shippingadress address={shippingAddress} />}
+      {isBilling && <Billingaddress
+        address={billingAdderess}
+        setisAddress={setisAddress}
+        setisBilling={setisBilling}
+      />}
+      {isShipping && <Shippingadress
+        address={shippingAddress}
+        setisAddress={setisAddress}
+        setisShipping={setisShipping}
+      />}
     </>
   );
 };

@@ -438,7 +438,17 @@ const Index = ({ currentid, setisSub, setisSubusers }) => {
       </div>
       <div className="my_profile_btns">
         <div className="my_profile_back">
-          <Link
+          <div className="back_button"
+            onClick={() => {
+              setisSub(false);
+              setisSubusers(true);
+            }}
+            style={{ cursor: 'pointer' }}
+          >
+            <ArrowBackIosNew />
+            <span className="back">Back</span>
+          </div>
+          {/* <Link
             to={`/${
               customnostore ? customnostore : geo?.country_name
             }/buyerdashboard/dashboard`}
@@ -448,7 +458,7 @@ const Index = ({ currentid, setisSub, setisSubusers }) => {
             <span>
               <p className="back">Back</p>
             </span>
-          </Link>
+          </Link> */}
         </div>
         <div className="user_btn_section">
           <button onClick={() => handleClickValidation()}>

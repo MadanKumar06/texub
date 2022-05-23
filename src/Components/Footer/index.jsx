@@ -200,7 +200,10 @@ export const Footer = () => {
         <MobileFooterAccordions />
       </div>
       <div className="Copyright">
+        <div>
         <p>Copyrights @2022 TEXUB. All Rights Reserved</p>
+         <p>All logos, products and pictures shown are for illustrative purpose. Logos belongs to their respective owners.</p>
+        </div>
         <Link
           to={`/${
             customnostore ? customnostore : geo?.country_name

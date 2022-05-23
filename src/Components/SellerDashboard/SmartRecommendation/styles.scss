@@ -131,3 +131,11 @@
     }
   }
 }
+@media  (max-width:899px){
+    .smart_main .smart__table .MuiTable-root .MuiTableBody-root .MuiTableRow-root .MuiTableCell-root{
+      width:100%;
+    }
+    .smart_main .smart__table .MuiTable-root .MuiTableBody-root .smart__productname .smart_description{
+    text-align: center;
+    }
+  }

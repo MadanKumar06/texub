@@ -20,7 +20,7 @@
       flex-direction: column;
       .MuiFormControl-root {
         .MuiOutlinedInput-input {
-         padding: 12px 30px 12px 12px !important;
+         padding: 12px 54px 12px 12px !important;
         }
       }
       .MuiOutlinedInput-root {
@@ -105,6 +105,7 @@
   .want_to_buy__container .want_to_buy__sub_container .block_3 .input_field,
   .want_to_buy__container .want_to_buy__sub_container .block_1 {
     flex-direction: column;
+    gap: 0;
   }
   .want_to_buy__container .want_to_buy__sub_container .hub_input{
 				width: 100% !important;
@@ -116,9 +117,9 @@
     width: 100%;
   }
   .want_to_buy__container .want_to_buy__sub_container {
-    gap: 2em;
+    gap: 0em;
     .block_3 {
-      gap: 2em;
+      gap: 0em;
     }
   }
 }

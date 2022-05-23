@@ -254,7 +254,7 @@ const Index = () => {
             </div>
 
             <div className="ordersuccess_btns">
-              <Button
+              {/* <Button
                 className="payment_later_btn btn-primary"
                 onClick={() =>
                   navigate(
@@ -265,7 +265,7 @@ const Index = () => {
                 }
               >
                 Confirm & Update Payment Details Later
-              </Button>
+              </Button> */}
               <Button
                 className="btn-secondary"
                 onClick={() => handletransactionvalidation()}

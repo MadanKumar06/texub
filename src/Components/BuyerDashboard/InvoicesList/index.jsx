@@ -18,6 +18,9 @@ function Index() {
   const [tableData, setTableData] = useState([]);
   const [searchdata,setsearchdata] = useState("");
   const [invoicelist, setinvoicelist] = useState();
+  const [direct, setdirect] = useState([]);
+  const [orderTypeColor, setorderTypeColor] = useState(0);
+  const [isNotMatched,setisNotMatched] = useState(false);
   const ordertype = [
     { name: "All Invoices" },
     { name: "Pending Invoices" },
@@ -34,31 +37,58 @@ function Index() {
     settype(0)
   }, []);
 
+  // useEffect(() => {
+  //   if (type === 0) {
+  //     setTableData(invoicelist)
+  //   }
+  //   if (type === 1) {
+  //     const pending_invoice = invoicelist?.filter(d => d?.pending_invoice_status === "Pending")      
+  //     if(pending_invoice) {
+  //       setTableData(pending_invoice)
+  //     } else {
+  //       setTableData([])
+  //     }
+  //   }
+  //   if (type === 2) {
+  //     const paid_invoice = invoicelist?.filter(d => d?.pending_invoice_status === "Paid")
+  //     if(paid_invoice) {
+  //       setTableData(paid_invoice)
+  //     } else {
+  //       setTableData([])
+  //     }
+  //   }
+  // }, [type])
   useEffect(() => {
     if (type === 0) {
-      setTableData(invoicelist)
+      setorderTypeColor(0)
+      setTableData(invoicelist);
     }
     if (type === 1) {
-      const pending_invoice = invoicelist?.filter(d => d?.pending_invoice_status === "Pending")      
-      if(pending_invoice) {
+      setorderTypeColor(0)
+      const pending_invoice = invoicelist?.filter((d) => d?.pending_invoice_status === "Pending");
+      if(pending_invoice?.length) {
         setTableData(pending_invoice)
       } else {
+        setdirect([])
         setTableData([])
       }
     }
     if (type === 2) {
-      const paid_invoice = invoicelist?.filter(d => d?.pending_invoice_status === "Paid")
-      if(paid_invoice) {
+      setorderTypeColor(0)
+      const paid_invoice = invoicelist?.filter((d) => d?.pending_invoice_status === "Paid");
+      if(paid_invoice?.length) {
         setTableData(paid_invoice)
       } else {
+        setdirect([])
         setTableData([])
       }
     }
-  }, [type])
+  }, [type, invoicelist]);
+
 
   const PaginateDataSplit = (event) => {
-    if (invoicelist?.length === 0) return setTableData([]);
-    setTableData(event);
+    if (invoicelist?.length === 0) return setdirect([]);
+    setdirect(event);
   };
   function formatToCurrency(price) {
     return price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
@@ -66,16 +96,23 @@ function Index() {
 
   const searchHandler = (e)=>{
     e.preventDefault()
+    setorderTypeColor(1)
+    settype(null)
+    setsearchdata("")
     if (invoicelist?.length === 0) return
     if (searchdata === "") {
       setTableData(invoicelist)
-      console.log('if')
     } else {
       let temp = invoicelist?.filter(td => td?.pending_invoice_id?.toLowerCase()?.includes(searchdata?.toLowerCase()))
       setTableData(temp)
-      console.log('else')
     }
+    setisNotMatched(!isNotMatched)
   }
+  useEffect(()=>{
+    if(tableData.length===0){
+      setdirect([])
+    }
+  },[isNotMatched])
   const [isVieworders, setisVieworders] = useState(false);
   const orders = () => {
     setisVieworders(true);
@@ -278,26 +315,31 @@ function Index() {
       {isOrders && (
         <>
           <div className="invoices__buttons">
-            {ordertype.map((data, i) => (
-              <p
-                className={`ordertypes ${type === i && "ordertype__selected"}`}
-                key={i}
-                onClick={() => selectorder(i)}
-              >
-                {data.name}
-              </p>
-            ))}
+             {ordertype.map((data, i) => (
+                <p
+                  className={`ordertypes ${type === i && "ordertype__selected"} 
+                  ${orderTypeColor === 1 && data.name==="All Invoices"? "ordertype__selected":null}
+                  `}
+                  key={i}
+                  onClick={() =>{
+                    selectorder(i)
+                    setsearchdata("")
+                  }}
+                >
+                  {data.name}
+                </p>
+              ))}
           </div>
           <MUITable
             columns={columns}
-            table={tableData}
+            table={direct?.length ? direct : []}
             options={options}
             className="invoices__table"
           />
-          {invoicelist?.length > 0 ? (
+          {tableData?.length > 0 ? (
             <Pagination
               PaginateData={PaginateDataSplit}
-              DataList={invoicelist?.length ? invoicelist : []}
+              DataList={tableData}
               PagePerRow={10}
             />
           ) : (

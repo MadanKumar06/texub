@@ -123,7 +123,7 @@ const Index = () => {
 
           <div className="My_profile_ac_table">
             <div className="my_profile_edit">
-              <img src={Edit_image} alt="" style={{ height: "34px" }} />
+              <img src={Edit_image} alt="" style={{ height: "34px",cursor:"pointer" }} onClick={Edit} />
               <p className="profile_edit" onClick={Edit}>
                 Edit
               </p>
@@ -236,7 +236,10 @@ const Index = () => {
           </div>
         </div>
       )}
-      {isEdit && <Accountinfo />}
+     {isEdit && <Accountinfo 
+      setisEdit={setisEdit}
+      setisAccountinfo={setisAccountinfo}
+      />}
       {isCompany && <Companyinfo />}
     </div>
   );
