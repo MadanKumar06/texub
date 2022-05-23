@@ -14,9 +14,9 @@ import "./App.scss";
 import Header from "./Components/Header";
 import { Home } from "./Pages/Home";
 import { Footer } from "./Components/Footer";
- //import Aboutus from "./Pages/Aboutus";
+//import Aboutus from "./Pages/Aboutus";
 import Aboutus from "./Pages/CMS/About";
- import { Products } from "./Pages/Products";
+import { Products } from "./Pages/Products";
 import Contactus from "./Pages/CMS/Company/Contactus";
 import Registration from "./Pages/Register";
 import FAQ from "./Pages/CMS/Resources/FAQ's/FAQ";
@@ -57,6 +57,8 @@ import ResetPassword from "./Components/ResetPassword";
 
 //coming soon page
 import ComingSoon from "./Pages/ComingSoon";
+//sellontexub
+import SellonTexub from "./Pages/SellonTexub";
 //popup component
 import KYCformSectionLeft from "./Pages/Register/KYCform/SectionLeft";
 import PDPpopUp from "./Pages/PDPpopUp";
@@ -232,7 +234,7 @@ const App = () => {
               // path={`/${customnostore ? customnostore : geo?.country_name}/coming-soon`}
               element={
                 <>
-                  <ComingSoon /> <ScrollToTop /> <Footer />
+                  <SellonTexub /> <ScrollToTop /> <Footer />
                 </>
               }
               exact
