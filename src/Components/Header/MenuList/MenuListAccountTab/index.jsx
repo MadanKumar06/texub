@@ -951,7 +951,7 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
               <ListItemText primary={"Products"} />
             </ListItem>
           </Link>
-          <Link
+          {/* <Link
             className={classes.link_in_tab}
             to={`/${
               customnostore ? customnostore : geo?.country_name
@@ -970,7 +970,7 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
             <ListItem button>
               <ListItemText primary={"Buy On TEXUB"} />
             </ListItem>
-          </Link>
+          </Link> */}
           {/* <Link className={classes.link_in_tab} to={`/${customnostore ? customnostore : geo?.country_name}`}>
             <ListItem button>
               <ListItemText primary={"FAQ"} />

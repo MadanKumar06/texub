@@ -253,11 +253,15 @@ const Productsbrands = ({
                       setApplyFilter(!applyFilter);
                     }}
                   >
-                    <img
-                      src={`${Constant.imageBaseUrl()}${itm?.image}`}
-                      alt="brands"
-                      className="Slider_icons"
-                    />
+                    {itm?.image ? (
+                      <img
+                        src={`${Constant.imageBaseUrl()}${itm?.image}`}
+                        alt="brands"
+                        className="Slider_icons"
+                      />
+                    ) : (
+                      <span className="Slider_icons">{itm?.name}</span>
+                    )}
                   </div>
                 ))}
             </Slider>

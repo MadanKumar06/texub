@@ -95,10 +95,14 @@ const Productstable = ({
         customBodyRender: (value) => {
           return (
             <div className={productable_image}>
-              <img
-                src={`${Constant.imageBaseUrl()}${value?.brand}`}
-                alt="brand"
-              />
+              {value?.brand ? (
+                <img
+                  src={`${Constant.imageBaseUrl()}${value?.brand}`}
+                  alt="brand"
+                />
+              ) : (
+                <span>{value?.brand_name}</span>
+              )}
             </div>
           );
         },

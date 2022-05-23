@@ -103,15 +103,6 @@ function Index({
           (per) =>
             per?.value === "can-place-order" && per?.permission_value === 0
         );
-
-  let subAccountPermission =
-    permissions?.length === 0
-      ? false
-      : permissions?.some(
-          (per) =>
-            per?.value === "can-manage-sub-accounts" &&
-            per?.permission_value === 0
-        );
   let PendingInvoice =
     permissions?.length === 0
       ? false
@@ -209,7 +200,7 @@ function Index({
                 (Wtbpermission && data?.url === "wanttobuy") ||
                 (placeorder && data?.url === "myorder") ||
                 (wishlistpermission && data?.url === "wishlist") ||
-                (subAccountPermission && data?.url === "subaccountorders") ||
+                (subUsers && data?.url === "subaccountorders") ||
                 (subUsers && data?.url === "mergecarts") ||
                 (subUsers && data?.url === "approvecarts") ||
                 (PendingInvoice && data?.url === "invoiceslist")

@@ -179,7 +179,7 @@ const Header = ({ classes }) => {
               </Link>
               <span>New</span>
             </Typography>
-            <Typography variant="h6" className={classes.title}>
+            {/* <Typography variant="h6" className={classes.title}>
               <Link
                 to={`/${
                   customnostore ? customnostore : geo?.country_name
@@ -198,7 +198,7 @@ const Header = ({ classes }) => {
                 {" "}
                 Buy On TEXUB{" "}
               </Link>
-            </Typography>
+            </Typography> */}
             {/* <Typography variant="h6" className={classes.title}>
               <Link to={`/${customnostore ? customnostore : geo?.country_name}/Faqs`}> FAQ</Link>
             </Typography> */}

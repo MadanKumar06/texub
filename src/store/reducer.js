@@ -15,6 +15,7 @@ export const initialState = {
   customstore: "",
   customnostore: "",
   homeContent: "",
+  currencyData: {},
   generalTrigger: false,
 };
 
@@ -105,6 +106,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         generalTrigger: !state?.generalTrigger,
+      };
+    case "SET_CURRENCY_DATA":
+      return {
+        ...state,
+        currencyData: action.data,
       };
     default:
       return state;

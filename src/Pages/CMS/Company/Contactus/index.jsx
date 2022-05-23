@@ -6,6 +6,7 @@ import { isEmailValid } from "../../../../utilities";
 import Constant from "../../../../Constant";
 import axios from "axios";
 import swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 import contact from "../../../../Assets/Career/Group 982.png";
 import officeicon from "../../../../Assets/Contactus/office.png";
@@ -247,355 +248,403 @@ const Contactus = () => {
       id: 1,
       image: location,
       address: "TEXUB,",
-      address2: "Nigeria",
+      address2: "Lagos, Nigeria",
     },
   ];
   return (
-    <div className="contactus_main">
-      <div className="contactus_img_section">
-        <img src={contact} alt="/" className="contactus_img" />
-      </div>
+    <div>
+      <Helmet>
+        <title>TEXUB | Contact us</title>
+        <meta
+          name="description"
+          content="TEXUB is a trusted Digital Marketplace for Global IT trade. The next level digital ecosystem and scalable cloud IT B2B Trade platforms."
+        />
+      </Helmet>
+      <div className="contactus_main">
+        <div className="contactus_img_section">
+          <img src={contact} alt="/" className="contactus_img" />
+        </div>
 
-      <div className="contactus_form_section">
-        <div className="contactus_details_section">
-          <div>
-            <span className="contactus_tag">
-              <p>Want To Hear From Us ?</p>
-            </span>
-            <span className="contactus_heading">
-              <h3>Contact Us</h3>
-            </span>
+        <div className="contactus_form_section">
+          <div className="contactus_details_section">
+            <div>
+              <span className="contactus_tag">
+                <p>Want To Hear From Us ?</p>
+              </span>
+              <span className="contactus_heading">
+                <h3>Contact Us</h3>
+              </span>
+            </div>
+            <div className="contactus_details">
+              {office.map((item) => (
+                <li key={item.id} className="contactus_office_list">
+                  <div className="contactus_office">
+                    <img src={item.icon} alt="" className="" />
+                  </div>
+                  <div className="contactus_office_address">
+                    <span className="contactus_office_heading">
+                      {" "}
+                      {item.heading}
+                    </span>
+                    <span className="contactus_office_number">
+                      {item.number}
+                    </span>
+                    <span className="contactus_office_number">
+                      {item.number2}
+                    </span>
+                    <span className="contactus_office_number">
+                      {item.number3}
+                    </span>
+                    <span className="contactus_office_number">
+                      {item.landmark}
+                    </span>
+                  </div>
+                </li>
+              ))}
+            </div>
+            <div className="contactus_details">
+              {mail.map((item) => (
+                <li key={item.id} className="contactus_office_list">
+                  <div className="contactus_office">
+                    <img src={item.icon} alt="" className="" />
+                  </div>
+                  <div className="contactus_office_address">
+                    <span className="contactus_office_heading">
+                      {" "}
+                      {item.heading}
+                    </span>
+                    <span className="contactus_office_number">{item.mail}</span>
+                  </div>
+                </li>
+              ))}
+            </div>
+            <div className="contactus_details">
+              {telephone.map((item) => (
+                <li key={item.id} className="contactus_office_list">
+                  <div className="contactus_office">
+                    <img src={item.icon} alt="" className="" />
+                  </div>
+                  <div className="contactus_office_address">
+                    <span className="contactus_office_heading">
+                      {" "}
+                      {item.heading}
+                    </span>
+                    <span className="contactus_office_number">
+                      {item.number}
+                    </span>
+                    <span className="contactus_office_number">
+                      {item.number2}
+                    </span>
+                  </div>
+                </li>
+              ))}
+            </div>
+            <div className="contactus_social">
+              {social.map((item) => (
+                <li key={item.id} className="contactus_office_list">
+                  <div className="contactus_social_media">
+                    <a
+                      href="https://www.facebook.com/texubglobal/"
+                      target="_blanks"
+                    >
+                      <img src={item.facebook} alt="" className="" />
+                    </a>
+                    <a
+                      href="https://www.instagram.com/texubglobal/"
+                      target="_blanks"
+                    >
+                      <img src={item.insta} alt="" className="" />
+                    </a>
+                    <a href="https://twitter.com/texubglobal/" target="_blanks">
+                      <img src={item.twitter} alt="" className="" />
+                    </a>
+                    <a
+                      href="https://www.linkedin.com/company/texubglobal/"
+                      target="_blanks"
+                    >
+                      <img src={item.linkedin} alt="" className="" />
+                    </a>
+                  </div>
+                </li>
+              ))}
+            </div>
+            <div className="contactus_details">
+              {working.map((item) => (
+                <li key={item.id} className="contactus_office_list">
+                  <div className="contactus_office_address">
+                    <span className="contactus_office_heading">
+                      {item.heading}
+                    </span>
+                    <span className="contactus_office_number">
+                      {" "}
+                      {item.time}
+                    </span>
+                  </div>
+                </li>
+              ))}
+            </div>
           </div>
-          <div className="contactus_details">
-            {office.map((item) => (
-              <li key={item.id} className="contactus_office_list">
-                <div className="contactus_office">
-                  <img src={item.icon} alt="" className="" />
-                </div>
-                <div className="contactus_office_address">
-                  <span className="contactus_office_heading">
-                    {" "}
-                    {item.heading}
-                  </span>
-                  <span className="contactus_office_number">{item.number}</span>
-                  <span className="contactus_office_number">
-                    {item.number2}
-                  </span>
-                  <span className="contactus_office_number">
-                    {item.number3}
-                  </span>
-                  <span className="contactus_office_number">
-                    {item.landmark}
-                  </span>
-                </div>
-              </li>
-            ))}
-          </div>
-          <div className="contactus_details">
-            {mail.map((item) => (
-              <li key={item.id} className="contactus_office_list">
-                <div className="contactus_office">
-                  <img src={item.icon} alt="" className="" />
-                </div>
-                <div className="contactus_office_address">
-                  <span className="contactus_office_heading">
-                    {" "}
-                    {item.heading}
-                  </span>
-                  <span className="contactus_office_number">{item.mail}</span>
-                </div>
-              </li>
-            ))}
-          </div>
-          <div className="contactus_details">
-            {telephone.map((item) => (
-              <li key={item.id} className="contactus_office_list">
-                <div className="contactus_office">
-                  <img src={item.icon} alt="" className="" />
-                </div>
-                <div className="contactus_office_address">
-                  <span className="contactus_office_heading">
-                    {" "}
-                    {item.heading}
-                  </span>
-                  <span className="contactus_office_number">{item.number}</span>
-                  <span className="contactus_office_number">
-                    {item.number2}
-                  </span>
-                </div>
-              </li>
-            ))}
-          </div>
-          <div className="contactus_social">
-            {social.map((item) => (
-              <li key={item.id} className="contactus_office_list">
-                <div className="contactus_social_media">
-                  <a
-                    href="https://www.facebook.com/texubglobal/"
-                    target="_blanks"
-                  >
-                    <img src={item.facebook} alt="" className="" />
-                  </a>
-                  <a
-                    href="https://www.instagram.com/texubglobal/"
-                    target="_blanks"
-                  >
-                    <img src={item.insta} alt="" className="" />
-                  </a>
-                  <a href="https://twitter.com/texubglobal/" target="_blanks">
-                    <img src={item.twitter} alt="" className="" />
-                  </a>
-                  <a
-                    href="https://www.linkedin.com/company/texubglobal/"
-                    target="_blanks"
-                  >
-                    <img src={item.linkedin} alt="" className="" />
-                  </a>
-                </div>
-              </li>
-            ))}
-          </div>
-          <div className="contactus_details">
-            {working.map((item) => (
-              <li key={item.id} className="contactus_office_list">
-                <div className="contactus_office_address">
-                  <span className="contactus_office_heading">
-                    {item.heading}
-                  </span>
-                  <span className="contactus_office_number"> {item.time}</span>
-                </div>
-              </li>
-            ))}
+          <div className="contactus_form">
+            <div>
+              <TextField
+                label="Your Name"
+                placeholder="Your Name"
+                name="your_name"
+                id="your_name"
+                fullWidth
+                className="inputfield-box contact-form-inputfieldbox"
+                InputLabelProps={{
+                  shrink: true,
+                  required: true,
+                  classes: {
+                    asterisk: "asterisk",
+                  },
+                }}
+                onChange={handleFormvalue}
+                value={contactusData?.your_name}
+                variant="outlined"
+              />
+              <InputLabel className="validation_error">
+                {inputValidation?.your_name}
+              </InputLabel>
+            </div>
+            <div>
+              <TextField
+                className="inputfield-box contact-form-inputfieldbox"
+                label="E-mail Address"
+                placeholder="E-mail Address"
+                fullWidth
+                name="e_mail"
+                id="e_mail"
+                InputLabelProps={{
+                  shrink: true,
+                  required: true,
+                  classes: {
+                    asterisk: "asterisk",
+                  },
+                }}
+                onChange={handleFormvalue}
+                value={contactusData?.e_mail}
+                variant="outlined"
+              />
+              <InputLabel className="validation_error">
+                {inputValidation?.e_mail}
+              </InputLabel>
+            </div>
+            <div>
+              <TextField
+                className="inputfield-box contact-form-inputfieldbox"
+                label="Subject"
+                placeholder="Subject"
+                fullWidth
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                variant="outlined"
+                onChange={handleFormvalue}
+                value={contactusData?.subject}
+              />
+              <InputLabel className="validation_error"></InputLabel>
+            </div>
+            <div>
+              <TextField
+                className="inputfield-box contact-form-inputfieldbox"
+                label="Your Message"
+                fullWidth
+                placeholder="Type your message"
+                name="your_message"
+                id="your_message"
+                multiline
+                rows={5}
+                InputLabelProps={{
+                  shrink: true,
+                  required: true,
+                  classes: {
+                    asterisk: "asterisk",
+                  },
+                }}
+                onChange={handleFormvalue}
+                value={contactusData?.your_message}
+                variant="outlined"
+              />
+
+              <InputLabel className="validation_error">
+                {inputValidation?.your_message}
+              </InputLabel>
+            </div>
+            <Box className="box-content">
+              <Button
+                className="button-text btn-secondary"
+                onClick={() => handleClickValidation()}
+              >
+                Send Your Message
+              </Button>
+            </Box>
           </div>
         </div>
-        <div className="contactus_form">
-          <div>
-            <TextField
-              label="Your Name"
-              placeholder="Your Name"
-              name="your_name"
-              id="your_name"
-              fullWidth
-              className="inputfield-box contact-form-inputfieldbox"
-              InputLabelProps={{
-                shrink: true,
-                required: true,
-                classes: {
-                  asterisk: "asterisk",
-                },
-              }}
-              onChange={handleFormvalue}
-              value={contactusData?.your_name}
-              variant="outlined"
-            />
-            <InputLabel className="validation_error">
-              {inputValidation?.your_name}
-            </InputLabel>
-          </div>
-          <div>
-            <TextField
-              className="inputfield-box contact-form-inputfieldbox"
-              label="E-mail Address"
-              placeholder="E-mail Address"
-              fullWidth
-              name="e_mail"
-              id="e_mail"
-              InputLabelProps={{
-                shrink: true,
-                required: true,
-                classes: {
-                  asterisk: "asterisk",
-                },
-              }}
-              onChange={handleFormvalue}
-              value={contactusData?.e_mail}
-              variant="outlined"
-            />
-            <InputLabel className="validation_error">
-              {inputValidation?.e_mail}
-            </InputLabel>
-          </div>
-          <div>
-            <TextField
-              className="inputfield-box contact-form-inputfieldbox"
-              label="Subject"
-              placeholder="Subject"
-              fullWidth
-              InputLabelProps={{
-                shrink: true,
-              }}
-              variant="outlined"
-              onChange={handleFormvalue}
-              value={contactusData?.subject}
-            />
-            <InputLabel className="validation_error"></InputLabel>
-          </div>
-          <div>
-            <TextField
-              className="inputfield-box contact-form-inputfieldbox"
-              label="Your Message"
-              fullWidth
-              placeholder="Type your message"
-              name="your_message"
-              id="your_message"
-              multiline
-              rows={5}
-              InputLabelProps={{
-                shrink: true,
-                required: true,
-                classes: {
-                  asterisk: "asterisk",
-                },
-              }}
-              onChange={handleFormvalue}
-              value={contactusData?.your_message}
-              variant="outlined"
-            />
+        <div className="contactus_map_section">
+          <p className="contactus_map_heading">Global Locations</p>
+          <div className="contactus_locations">
+            <div className="contactus_location1">
+              {location1?.map((item) => (
+                <li key={item.id} className="contactus_location_list">
+                  <div className="contactus_locations_1">
+                    <img
+                      src={item.image}
+                      className="location_image"
+                      alt=""
+                    ></img>
+                    <div className="address-info-box">
+                      <span> {item.address}</span>
+                      <span> {item.address2}</span>
+                      <span> {item.address3}</span>
+                      <span> {item.address4}</span>
+                      <span> {item.address5}</span>
+                    </div>
+                    <div className="address-phone-box">
+                      <span>{item.contact}</span>
+                    </div>
+                  </div>
+                </li>
+              ))}
+            </div>
+            <div className="contactus_location1">
+              {location2?.map((item) => (
+                <li key={item.id} className="contactus_location_list">
+                  <div className="contactus_locations_1">
+                    <img
+                      src={item.image}
+                      className="location_image"
+                      alt=""
+                    ></img>
+                    <div className="address-info-box">
+                      <span> {item.address}</span>
+                      <span> {item.address2}</span>
+                      <span> {item.address3}</span>
+                      <span> {item.address4}</span>
+                      <span> {item.address5}</span>
+                    </div>
+                    <div className="address-phone-box">
+                      <span>{item.contact}</span>
+                      <span>{item.contact2}</span>
+                    </div>
+                  </div>
+                </li>
+              ))}
+            </div>
+            <div className="contactus_location1">
+              {location3?.map((item) => (
+                <li key={item.id} className="contactus_location_list">
+                  <div className="contactus_locations_1">
+                    <img
+                      src={item.image}
+                      className="location_image"
+                      alt=""
+                    ></img>
+                    <div className="address-info-box">
+                      <span> {item.address}</span>
+                      <span> {item.address2}</span>
+                      <span> {item.address3}</span>
+                      <span> {item.address4}</span>
+                      <span> {item.address5}</span>
+                    </div>
+                    <div className="address-phone-box">
+                      <span>{item.contact}</span>
+                      <span>{item.contact2}</span>
+                    </div>
+                  </div>
+                </li>
+              ))}
+            </div>
+            <div className="contactus_location1">
+              {location4?.map((item) => (
+                <li key={item.id} className="contactus_location_list">
+                  <div className="contactus_locations_1">
+                    <img
+                      src={item.image}
+                      className="location_image"
+                      alt=""
+                    ></img>
+                    <div className="address-info-box">
+                      <span> {item.address}</span>
+                      <span> {item.address2}</span>
+                      <span> {item.address3}</span>
+                      <span> {item.address4}</span>
+                      <span> {item.address5}</span>
+                    </div>
+                  </div>
+                </li>
+              ))}
+            </div>
+            <div className="contactus_location1">
+              {location5?.map((item) => (
+                <li key={item.id} className="contactus_location_list">
+                  <div className="contactus_locations_1">
+                    <img
+                      src={item.image}
+                      className="location_image"
+                      alt=""
+                    ></img>
+                    <div className="address-info-box">
+                      <span> {item.address}</span>
+                      <span> {item.address2}</span>
+                    </div>
+                  </div>
+                </li>
+              ))}
+            </div>
 
-            <InputLabel className="validation_error">
-              {inputValidation?.your_message}
-            </InputLabel>
-          </div>
-          <Box className="box-content">
-            <Button
-              className="button-text btn-secondary"
-              onClick={() => handleClickValidation()}
-            >
-              Send Your Message
-            </Button>
-          </Box>
-        </div>
-      </div>
-      <div className="contactus_map_section">
-        <p className="contactus_map_heading">Global Locations</p>
-        <div className="contactus_locations">
-          <div className="contactus_location1">
-            {location1?.map((item) => (
-              <li key={item.id} className="contactus_location_list">
-                <div className="contactus_locations_1">
-                  <img src={item.image} className="location_image" alt=""></img>
-                  <div className="address-info-box">
-                    <span> {item.address}</span>
-                    <span> {item.address2}</span>
-                    <span> {item.address3}</span>
-                    <span> {item.address4}</span>
-                    <span> {item.address5}</span>
+            <div className="contactus_location1">
+              {location6?.map((item) => (
+                <li key={item.id} className="contactus_location_list">
+                  <div className="contactus_locations_1">
+                    <img
+                      src={item.image}
+                      className="location_image"
+                      alt=""
+                    ></img>
+                    <div className="address-info-box">
+                      <span> {item.address}</span>
+                      <span> {item.address2}</span>
+                    </div>
                   </div>
-                  <div className="address-phone-box">
-                    <span>{item.contact}</span>
+                </li>
+              ))}
+            </div>
+            <div className="contactus_location1">
+              {location7?.map((item) => (
+                <li key={item.id} className="contactus_location_list">
+                  <div className="contactus_locations_1">
+                    <img
+                      src={item.image}
+                      className="location_image"
+                      alt=""
+                    ></img>
+                    <div className="address-info-box">
+                      <span> {item.address}</span>
+                      <span> {item.address2}</span>
+                    </div>
                   </div>
-                </div>
-              </li>
-            ))}
-          </div>
-          <div className="contactus_location1">
-            {location2?.map((item) => (
-              <li key={item.id} className="contactus_location_list">
-                <div className="contactus_locations_1">
-                  <img src={item.image} className="location_image" alt=""></img>
-                  <div className="address-info-box">
-                    <span> {item.address}</span>
-                    <span> {item.address2}</span>
-                    <span> {item.address3}</span>
-                    <span> {item.address4}</span>
-                    <span> {item.address5}</span>
+                </li>
+              ))}
+            </div>
+            <div className="contactus_location1">
+              {location8?.map((item) => (
+                <li key={item.id} className="contactus_location_list">
+                  <div className="contactus_locations_1">
+                    <img
+                      src={item.image}
+                      className="location_image"
+                      alt=""
+                    ></img>
+                    <div className="address-info-box">
+                      <span> {item.address}</span>
+                      <span> {item.address2}</span>
+                    </div>
                   </div>
-                  <div className="address-phone-box">
-                    <span>{item.contact}</span>
-                    <span>{item.contact2}</span>
-                  </div>
-                </div>
-              </li>
-            ))}
-          </div>
-          <div className="contactus_location1">
-            {location3?.map((item) => (
-              <li key={item.id} className="contactus_location_list">
-                <div className="contactus_locations_1">
-                  <img src={item.image} className="location_image" alt=""></img>
-                  <div className="address-info-box">
-                    <span> {item.address}</span>
-                    <span> {item.address2}</span>
-                    <span> {item.address3}</span>
-                    <span> {item.address4}</span>
-                    <span> {item.address5}</span>
-                  </div>
-                  <div className="address-phone-box">
-                    <span>{item.contact}</span>
-                    <span>{item.contact2}</span>
-                  </div>
-                </div>
-              </li>
-            ))}
-          </div>
-          <div className="contactus_location1">
-            {location4?.map((item) => (
-              <li key={item.id} className="contactus_location_list">
-                <div className="contactus_locations_1">
-                  <img src={item.image} className="location_image" alt=""></img>
-                  <div className="address-info-box">
-                    <span> {item.address}</span>
-                    <span> {item.address2}</span>
-                    <span> {item.address3}</span>
-                    <span> {item.address4}</span>
-                    <span> {item.address5}</span>
-                  </div>
-                </div>
-              </li>
-            ))}
-          </div>
-          <div className="contactus_location1">
-            {location5?.map((item) => (
-              <li key={item.id} className="contactus_location_list">
-                <div className="contactus_locations_1">
-                  <img src={item.image} className="location_image" alt=""></img>
-                  <div className="address-info-box">
-                    <span> {item.address}</span>
-                    <span> {item.address2}</span>
-                  </div>
-                </div>
-              </li>
-            ))}
-          </div>
-
-          <div className="contactus_location1">
-            {location6?.map((item) => (
-              <li key={item.id} className="contactus_location_list">
-                <div className="contactus_locations_1">
-                  <img src={item.image} className="location_image" alt=""></img>
-                  <div className="address-info-box">
-                    <span> {item.address}</span>
-                    <span> {item.address2}</span>
-                  </div>
-                </div>
-              </li>
-            ))}
-          </div>
-          <div className="contactus_location1">
-            {location7?.map((item) => (
-              <li key={item.id} className="contactus_location_list">
-                <div className="contactus_locations_1">
-                  <img src={item.image} className="location_image" alt=""></img>
-                  <div className="address-info-box">
-                    <span> {item.address}</span>
-                    <span> {item.address2}</span>
-                  </div>
-                </div>
-              </li>
-            ))}
-          </div>
-          <div className="contactus_location1">
-            {location8?.map((item) => (
-              <li key={item.id} className="contactus_location_list">
-                <div className="contactus_locations_1">
-                  <img src={item.image} className="location_image" alt=""></img>
-                  <div className="address-info-box">
-                    <span> {item.address}</span>
-                    <span> {item.address2}</span>
-                  </div>
-                </div>
-              </li>
-            ))}
+                </li>
+              ))}
+            </div>
           </div>
         </div>
       </div>

@@ -9,6 +9,7 @@ import Productlists from "../../Components/ProductPagePLP/Productlists";
 import Productstable from "../../Components/ProductPagePLP/Producttable";
 import Constant from "../../Constant";
 import { useStateValue } from "../../store/state";
+import Helmet from "react-helmet";
 
 export const Products = () => {
   const navigate = useNavigate();
@@ -38,7 +39,7 @@ export const Products = () => {
 
       const fetchProductData = () => {
         setProductData([]);
-        console.log(history?.state)
+        console.log(history?.state);
         let data = {
           data: {
             currency_id: parseInt(currency?.currency_id),
@@ -226,58 +227,70 @@ export const Products = () => {
     setpermission(pendingpermission);
   }, []);
   return (
-    <div className="products">
-      <Productlists
-        setProductFetchApi={setProductFetchApi}
-        productFetchApi={productFetchApi}
-        dataFromApi={dataFromApi}
-        setApplyFilter={setApplyFilter}
-        applyFilter={applyFilter}
-        productData={productData}
-      />
-      <Productsbrands
-        setProductFetchApi={setProductFetchApi}
-        productFetchApi={productFetchApi}
-        getCategories={getCategories}
-        setApplyFilter={setApplyFilter}
-        applyFilter={applyFilter}
-      />
-      <div className="clear-btn">
-        <Button
-          className="button-text btn-primary clear"
-          onClick={() => {
-            setProductFetchApi((prev) => ({
-              ...prev,
-              conditions: "",
-              eta: "",
-              hub: "",
-              search_product: "",
-              brand_id: "",
-              category_id: "",
-            }));
-            setApplyFilter(!applyFilter);
-            dispatch({
-              type: "SET_SEARCH",
-              value: "",
-            });
-          }}
-        >
-          Clear All
-        </Button>
+    <div>
+      <Helmet>
+        <title>
+          TEXUB | IT Products - Laptops, Desktops, Printers, Cartridges
+        </title>
+        <meta
+          name="description"
+          content="TEXUB - Shop from a wide range of laptops & desktops from HP, Dell, Lenovo, Realme, Asus, Acer, Vaio & more"
+          data-react-helmet="true"
+        />
+      </Helmet>
+      <div className="products">
+        <Productlists
+          setProductFetchApi={setProductFetchApi}
+          productFetchApi={productFetchApi}
+          dataFromApi={dataFromApi}
+          setApplyFilter={setApplyFilter}
+          applyFilter={applyFilter}
+          productData={productData}
+        />
+        <Productsbrands
+          setProductFetchApi={setProductFetchApi}
+          productFetchApi={productFetchApi}
+          getCategories={getCategories}
+          setApplyFilter={setApplyFilter}
+          applyFilter={applyFilter}
+        />
+        <div className="clear-btn">
+          <Button
+            className="button-text btn-primary clear"
+            onClick={() => {
+              setProductFetchApi((prev) => ({
+                ...prev,
+                conditions: "",
+                eta: "",
+                hub: "",
+                search_product: "",
+                brand_id: "",
+                category_id: "",
+              }));
+              setApplyFilter(!applyFilter);
+              dispatch({
+                type: "SET_SEARCH",
+                value: "",
+              });
+            }}
+          >
+            Clear All
+          </Button>
+        </div>
+        <Productstable
+          setProductFetchApi={setProductFetchApi}
+          productFetchApi={productFetchApi}
+          productData={productData}
+        />
+        {JSON.parse(localStorage.getItem("userdata"))?.group_id === 5 &&
+          !permission && (
+            <div className="products_want_to_buy">
+              <p onClick={() => handleRouteChange()}>
+                <span>Want to buy</span>
+              </p>
+            </div>
+          )}
       </div>
-      <Productstable
-        setProductFetchApi={setProductFetchApi}
-        productFetchApi={productFetchApi}
-        productData={productData}
-      />
-      {JSON.parse(localStorage.getItem("userdata"))?.group_id === 5 &&
-        !permission && (
-          <div className="products_want_to_buy">
-            <p onClick={() => handleRouteChange()}>
-              <span>Want to buy</span>
-            </p>
-          </div>
-        )}
     </div>
   );
 };

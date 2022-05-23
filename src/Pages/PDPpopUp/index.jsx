@@ -315,7 +315,7 @@ const PdpPopup = () => {
       ? false
       : permissions?.some(
           (per) =>
-            per?.value === "can-place-order" && per?.permission_value === 0
+            per?.value === "can-add-to-cart" && per?.permission_value === 0
         );
 
   let wishlistpermission =

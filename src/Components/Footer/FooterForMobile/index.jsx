@@ -77,12 +77,12 @@ const MobileFooterAccordions = () => {
           <Link to={`/${customnostore ? customnostore : geo?.country_name}/training`} className="link">
             <Typography>Training</Typography>
           </Link>
-          <Link to={`/${customnostore ? customnostore : geo?.country_name}/seller_advantage`} className="link">
+          {/* <Link to={`/${customnostore ? customnostore : geo?.country_name}/seller_advantage`} className="link">
             <Typography>Seller Advantage</Typography>
           </Link>
           <Link to={`/${customnostore ? customnostore : geo?.country_name}/buyer_advantage`} className="link">
             <Typography>Buyer Advantage</Typography>
-          </Link>
+          </Link> */}
           <Link to={`/${customnostore ? customnostore : geo?.country_name}/career`} className="link">
             <Typography>Career</Typography>
           </Link>

@@ -4,7 +4,7 @@ import axios from "axios";
 import { getAdminToken } from "../../../../utilities";
 import { useStateValue } from "../../../../store/state";
 import legal from "../../../../Assets/Career/privacy-policy.png";
-import Constant from '../../../../Constant'
+import Constant from "../../../../Constant";
 
 const Index = () => {
   const [adminToken, setAdminToken] = useState("");
@@ -13,34 +13,37 @@ const Index = () => {
       setAdminToken(res);
     });
   }, []);
-  const [{}, dispatch] = useStateValue();
-
+  const [{ currencyData }, dispatch] = useStateValue();
   const [pp, setpp] = useState();
 
   useEffect(async () => {
-    try {
-      dispatch({
-        type: "SET_IS_LOADING",
-        value: true,
-      });
-      const privacy = await axios({
-        method: "get",
-        url: Constant.baseUrl2() + "/cmsPage/27",
-        headers: {
-          Authorization: `Bearer ${adminToken}`,
-        },
-      });
-      setpp(privacy?.data);
-      dispatch({
-        type: "SET_IS_LOADING",
-        value: false,
-      });
-    } catch (e) {
-      console.log(e);
-      dispatch({
-        type: "SET_IS_LOADING",
-        value: false,
-      });
+    if (adminToken !== "") {
+      try {
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: true,
+        });
+        const privacy = await axios({
+          method: "get",
+          url:
+            Constant.baseUrl2() +
+            `/cmsPage/${currencyData?.[2]?.staticPages?.privacy}`,
+          headers: {
+            Authorization: `Bearer ${adminToken}`,
+          },
+        });
+        setpp(privacy?.data);
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+      } catch (e) {
+        console.log(e);
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+      }
     }
   }, [adminToken]);
 
