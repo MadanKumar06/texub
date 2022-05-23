@@ -1258,110 +1258,116 @@ function Index({ type, pid }) {
             </div>
           </div>
           {updateProductList?.restrictions?.value === "2" ? (
-            <div className="input_separator">
-              <div className="updateproduct_inputfields info ">
-                <InputLabel>
-                  Region
-                  <small className="asterisk">*</small>
-                </InputLabel>
-                <Autocomplete
-                  multiple
-                  id="res_region"
-                  options={region?.length ? region : []}
-                  disableCloseOnSelect
-                  value={
-                    updateProductList?.resregion
-                      ? updateProductList?.resregion
-                      : ""
-                  }
-                  getOptionLabel={(option) =>
-                    option.region_name ? option.region_name : ""
-                  }
-                  renderOption={(props, option, { selected }) => (
-                    <li {...props}>
-                      <Checkbox
-                        icon={icon}
-                        checkedIcon={checkedIcon}
-                        style={{ marginRight: 8 }}
-                        checked={selected}
-                      />
-                      {option.region_name}
-                    </li>
-                  )}
-                  onChange={(event, newValue) => {
-                    setUpdateProductList((prevState) => ({
-                      ...prevState,
-                      resregion: newValue,
-                      restricts_country: [],
-                    }));
-                    setInputValidation((prevState) => ({
-                      ...prevState,
-                      resregion: "",
-                    }));
-                  }}
-                  renderInput={(params) => (
-                    <TextField
-                      {...params}
-                      className="inputfield-box"
-                      fullWidth
-                      placeholder="Select Region"
-                      InputLabelProps={{
-                        shrink: false,
-                      }}
-                    />
-                  )}
-                />
-                <InputLabel className="validation_error">
-                  {inputValidation?.resregion}
-                </InputLabel>
-              </div>
-              <div className="updateproduct_inputfields info">
-                <InputLabel>
-                  Country
-                  <small className="asterisk">*</small>
-                </InputLabel>
+            <div className="Region_country_info">
+              <InputLabel className="label">
+                In Which Region and Country the Product is Allowed
+              </InputLabel>
 
-                <Autocomplete
-                  multiple
-                  id="res_country"
-                  options={restricts_country ? restricts_country : []}
-                  disableCloseOnSelect
-                  value={updateProductList?.restricts_country}
-                  getOptionLabel={(option) =>
-                    option.label ? option.label : ""
-                  }
-                  renderOption={(props, option, { selected }) => (
-                    <li {...props}>
-                      <Checkbox
-                        icon={icon}
-                        checkedIcon={checkedIcon}
-                        style={{ marginRight: 8 }}
-                        checked={selected}
+              <div className="input_separator">
+                <div className="updateproduct_inputfields info ">
+                  <InputLabel className="label">
+                    Region
+                    <small className="asterisk">*</small>
+                  </InputLabel>
+                  <Autocomplete
+                    multiple
+                    id="res_region"
+                    options={region?.length ? region : []}
+                    disableCloseOnSelect
+                    value={
+                      updateProductList?.resregion
+                        ? updateProductList?.resregion
+                        : ""
+                    }
+                    getOptionLabel={(option) =>
+                      option.region_name ? option.region_name : ""
+                    }
+                    renderOption={(props, option, { selected }) => (
+                      <li {...props}>
+                        <Checkbox
+                          icon={icon}
+                          checkedIcon={checkedIcon}
+                          style={{ marginRight: 8 }}
+                          checked={selected}
+                        />
+                        {option.region_name}
+                      </li>
+                    )}
+                    onChange={(event, newValue) => {
+                      setUpdateProductList((prevState) => ({
+                        ...prevState,
+                        resregion: newValue,
+                        restricts_country: [],
+                      }));
+                      setInputValidation((prevState) => ({
+                        ...prevState,
+                        resregion: "",
+                      }));
+                    }}
+                    renderInput={(params) => (
+                      <TextField
+                        {...params}
+                        className="inputfield-box"
+                        fullWidth
+                        placeholder="Select Region"
+                        InputLabelProps={{
+                          shrink: false,
+                        }}
                       />
-                      {option.label}
-                    </li>
-                  )}
-                  onChange={(event, newValue) => {
-                    setUpdateProductList((prevState) => ({
-                      ...prevState,
-                      restricts_country: newValue,
-                    }));
-                    setInputValidation((prevState) => ({
-                      ...prevState,
-                      rescountry: "",
-                    }));
-                  }}
-                  renderInput={(params) => (
-                    <TextField
-                      {...params}
-                      placeholder="Country"
-                      className="inputfield-box"
-                    />
-                  )}
-                />
-                <InputLabel className="validation_error">
-                  {inputValidation?.rescountry}
-                </InputLabel>
+                    )}
+                  />
+                  <InputLabel className="validation_error">
+                    {inputValidation?.resregion}
+                  </InputLabel>
+                </div>
+                <div className="updateproduct_inputfields info">
+                  <InputLabel className="label">
+                    Country
+                    <small className="asterisk">*</small>
+                  </InputLabel>
+
+                  <Autocomplete
+                    multiple
+                    id="res_country"
+                    options={restricts_country ? restricts_country : []}
+                    disableCloseOnSelect
+                    value={updateProductList?.restricts_country}
+                    getOptionLabel={(option) =>
+                      option.label ? option.label : ""
+                    }
+                    renderOption={(props, option, { selected }) => (
+                      <li {...props}>
+                        <Checkbox
+                          icon={icon}
+                          checkedIcon={checkedIcon}
+                          style={{ marginRight: 8 }}
+                          checked={selected}
+                        />
+                        {option.label}
+                      </li>
+                    )}
+                    onChange={(event, newValue) => {
+                      setUpdateProductList((prevState) => ({
+                        ...prevState,
+                        restricts_country: newValue,
+                      }));
+                      setInputValidation((prevState) => ({
+                        ...prevState,
+                        rescountry: "",
+                      }));
+                    }}
+                    renderInput={(params) => (
+                      <TextField
+                        {...params}
+                        placeholder="Country"
+                        className="inputfield-box"
+                      />
+                    )}
+                  />
+                  <InputLabel className="validation_error">
+                    {inputValidation?.rescountry}
+                  </InputLabel>
+                </div>
               </div>
             </div>
           ) : (

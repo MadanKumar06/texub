@@ -209,7 +209,7 @@ const Index = () => {
               >
                 Edit
               </div>
-              <div className="users_action_name">Delete</div>
+              {/* <div className="users_action_name">Delete</div> */}
             </div>
           );
         },

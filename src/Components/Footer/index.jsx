@@ -17,7 +17,7 @@ import Shopping from "../../Assets/Homepage Assets/Shoppingbag.png";
 import { useStateValue } from "../../store/state";
 
 export const Footer = () => {
-  const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
+  const [{ geo, currencyData, customnostore }, dispatch] = useStateValue();
   const [isCookies, setisCookies] = useState(false);
 
   return (
@@ -116,7 +116,7 @@ export const Footer = () => {
               >
                 <li>Training</li>
               </Link>
-              <Link
+              {/* <Link
                 to={`/${
                   customnostore ? customnostore : geo?.country_name
                 }/seller_advantage`}
@@ -131,7 +131,7 @@ export const Footer = () => {
                 className="to_CMS"
               >
                 <li>Buyer Advantage</li>
-              </Link>
+              </Link> */}
               <Link
                 to={`/${
                   customnostore ? customnostore : geo?.country_name

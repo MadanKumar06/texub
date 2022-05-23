@@ -16,7 +16,7 @@ import inr from "../../../Assets/CommonImage/Currency switcher/Group 1132.png";
 
 const CurrencyPopup = ({ classes }) => {
   const [anchorEl, setAnchorEl] = useState(null);
-  const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
+  const [{ geo, customstore }, dispatch] = useStateValue();
   const [apiDropDowns, setApiDropDowns] = useState("");
   const [selectedValue, setSelectedValue] = useState({
     currency_code: "",
@@ -94,6 +94,10 @@ const CurrencyPopup = ({ classes }) => {
             "storedata",
             JSON.stringify(res.data?.[0]?.store)
           );
+          dispatch({
+            type: "SET_CURRENCY_DATA",
+            data: res?.data,
+          });
           dispatch({
             type: "GEO__CUSTOM__NOTSTORE",
             data: res.data?.[0]?.store?.code,

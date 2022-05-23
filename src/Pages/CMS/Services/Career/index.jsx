@@ -7,6 +7,7 @@ import {
   Typography,
   Button,
 } from "@mui/material";
+import { Helmet } from "react-helmet";
 import "./styles.scss";
 import { KeyboardDoubleArrowRight } from "@mui/icons-material";
 import "../../../../Pages/Aboutus/styles.scss";
@@ -62,93 +63,110 @@ const Career = () => {
     { name: "UX Designer", info: "Bangalore, Full Time" },
   ];
   return (
-    <div className="career_main_container">
-      <div className="career_team_section">
-        <div className="banner_content">
-          <p className="banner_sub_title">Ready To Make An Impact</p>
-          <p className="banner_title">Join The Team</p>
-          <Box className="banner_btn">
-            <Button className="button-text btn-secondary">View Openings</Button>
+    <div>
+      <Helmet>
+        <title>TEXUB | Careers - Work with us</title>
+        <meta
+          name="description"
+          content="TEXUB, turn your passion in to career. Work with the greatest mind across the globe and TEXUB is on the lookout for the most passionate people."
+          data-react-helmet="true"  />
+      </Helmet>
+      <div className="career_main_container">
+        <div className="career_team_section">
+          <div className="banner_content">
+            <p className="banner_sub_title">Ready To Make An Impact</p>
+            <p className="banner_title">Join The Team</p>
+            <Box className="banner_btn">
+              <Button className="button-text btn-secondary">
+                View Openings
+              </Button>
+            </Box>
+          </div>
+
+          <div className="career_team_image">
+            <img src={Key} alt="" />
+          </div>
+        </div>
+        <div className="why_joinus_section">
+          <p className="title">Why Join Us</p>
+          <div className="information">
+            <div className="sub_info">
+              {whyJoinUs?.map((itm) => (
+                <FormControlLabel
+                  control={<Checkbox defaultChecked />}
+                  label={<Typography>{itm?.type}</Typography>}
+                />
+              ))}
+            </div>
+            <div className="why_joinus_image">
+              <img src={Mask} alt="" />
+            </div>
+          </div>
+        </div>
+        <div className="join_texub">
+          <p className="join_texub_title">Want to Join Texub ?</p>
+          <p className="join_texub_link">
+            Check out the open positions available and click on it fill the
+            application form and apply
+          </p>
+          <div className="join_texub_info">
+            {JoinTexub.map((itm) => (
+              <div className="info_content">
+                <span className="name"> {itm.name}</span>
+                <p>
+                  <span>{itm.info}</span>
+                  <KeyboardDoubleArrowRight />
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="joinus_culture_values">
+          <p className="culture_values">
+            Want To Know More About The Company ?
+            <span className="culture_values_link">CLICK HERE</span>
+          </p>
+          <p className="joinus_culture_title">Our Culture & Values</p>
+          <p className="joinus_culture_info">
+            We are a community of self-starting, mission-driven individuals that
+            are enthusiastic about innovations that brings change. Every day, we
+            collaborate across teams and groups to remove barriers, create new
+            business sectors, and work towards achieving impossible. We aim to
+            inspire people across the globe and shape the future. We're on the
+            lookout for people who is ready to explore and keen on making a
+            difference.
+          </p>
+          <Box sx={{ flexGrow: 1 }} className="grid_container">
+            <Grid
+              container
+              spacing={{ xs: 2, md: 3 }}
+              columns={{ xs: 4, sm: 8, md: 12 }}
+            >
+              {GridViews.map((itm, index) => (
+                <Grid item xs={2} sm={4} md={4} key={index}>
+                  <img
+                    src={itm?.img}
+                    alt=""
+                    style={{ width: "100%", height: "auto" }}
+                  />
+                </Grid>
+              ))}
+            </Grid>
           </Box>
         </div>
+        <div className="aboutus">
+          <div className="aboutus__worldwide">
+            <h1>Our Worldwide Office</h1>
+            <div className="aboutus__worldwide__content">
+              <img src={wwbg} alt="" />
 
-        <div className="career_team_image">
-          <img src={Key} alt="" />
-        </div>
-      </div>
-      <div className="why_joinus_section">
-        <p className="title">Why Join Us</p>
-        <div className="information">
-          <div className="sub_info">
-            {whyJoinUs?.map((itm) => (
-              <FormControlLabel
-                control={<Checkbox defaultChecked />}
-                label={<Typography>{itm?.type}</Typography>}
-              />
-            ))}
-          </div>
-          <div className="why_joinus_image">
-            <img src={Mask} alt="" />
-          </div>
-        </div>
-      </div>
-      <div className="join_texub">
-        <p className="join_texub_title">Want to Join Texub ?</p>
-        <p className="join_texub_link">
-          Check out the open positions available and click on it fill the
-          application form and apply
-        </p>
-        <div className="join_texub_info">
-          {JoinTexub.map((itm) => (
-            <div className="info_content">
-              <span className="name"> {itm.name}</span>
-              <p>
-                <span>{itm.info}</span>
-                <KeyboardDoubleArrowRight />
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
-      <div className="joinus_culture_values">
-        <p className="culture_values">
-          Want To Know More About The Company ?
-          <span className="culture_values_link">CLICK HERE</span>
-        </p>
-        <p className="joinus_culture_title">Our Culture & Values</p>
-        <p className="joinus_culture_info">
-          We are a community of self-starting, mission-driven individuals that are enthusiastic about innovations that brings change. Every day, we collaborate across teams and groups to remove barriers, create new business sectors, and work towards achieving impossible. We aim to inspire people across the globe and shape the future. We're on the lookout for people who is ready to explore and keen on making a difference.
-        </p>
-        <Box sx={{ flexGrow: 1 }} className="grid_container">
-          <Grid
-            container
-            spacing={{ xs: 2, md: 3 }}
-            columns={{ xs: 4, sm: 8, md: 12 }}
-          >
-            {GridViews.map((itm, index) => (
-              <Grid item xs={2} sm={4} md={4} key={index}>
-                <img
-                  src={itm?.img}
-                  alt=""
-                  style={{ width: "100%", height: "auto" }}
-                />
-              </Grid>
-            ))}
-          </Grid>
-        </Box>
-      </div>
-      <div className="aboutus">
-        <div className="aboutus__worldwide">
-          <h1>Our Worldwide Office</h1>
-          <div className="aboutus__worldwide__content">
-            <img src={wwbg} alt="" />
-
-            <div className="aboutus__ww__country">
-              {country.map((data, i) => (
-                <div className={`list ${data?.style}`} key={i}>
-                  <span>{data.content}</span>
-                </div>
-              ))}
+              <div className="aboutus__ww__country">
+                {country.map((data, i) => (
+                  <div className={`list ${data?.style}`} key={i}>
+                    <span>{data.content}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
