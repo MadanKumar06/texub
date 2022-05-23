@@ -25,6 +25,7 @@ const Productlists = ({
   setApplyFilter,
   applyFilter,
   productData,
+  homeCategorySearch,
 }) => {
   useEffect(() => {
     if (productFetchApi?.hub === "") {
@@ -87,6 +88,34 @@ const Productlists = ({
       }
     }
   }, [homeSearch]);
+
+  useEffect(() => {
+    if (
+      homeCategorySearch?.name === "todays_deal" ||
+      homeCategorySearch?.name === "price_drop" ||
+      homeCategorySearch?.name === "new_product"
+    ) {
+      let today_deal =
+        homeCategorySearch?.name === "todays_deal" ? true : false;
+      let price_drop = homeCategorySearch?.name === "price_drop" ? true : false;
+      let new_product =
+        homeCategorySearch?.name === "new_product" ? true : false;
+
+      setFilterHeaderImage((prevState) => ({
+        ...prevState,
+        today_deal: today_deal,
+        today_deal_image: today_deal
+          ? todays_deal_active
+          : todays_deal_inactive,
+        just_launch: new_product,
+        just_launch_image: new_product
+          ? just_launch_active
+          : just_launch_inactive,
+        price_drop: price_drop,
+        price_drop_image: price_drop ? price_drop_active : price_drop_inactive,
+      }));
+    }
+  }, [homeCategorySearch]);
   const handleImageChange = (event) => {
     setFilterHeaderImage((prevState) => ({
       ...prevState,

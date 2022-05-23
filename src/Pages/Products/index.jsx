@@ -39,7 +39,6 @@ export const Products = () => {
 
       const fetchProductData = () => {
         setProductData([]);
-        console.log(history?.state);
         let data = {
           data: {
             currency_id: parseInt(currency?.currency_id),
@@ -246,6 +245,7 @@ export const Products = () => {
           setApplyFilter={setApplyFilter}
           applyFilter={applyFilter}
           productData={productData}
+          homeCategorySearch={history?.state}
         />
         <Productsbrands
           setProductFetchApi={setProductFetchApi}
@@ -253,6 +253,7 @@ export const Products = () => {
           getCategories={getCategories}
           setApplyFilter={setApplyFilter}
           applyFilter={applyFilter}
+          homeCategorySearch={history?.state}
         />
         <div className="clear-btn">
           <Button

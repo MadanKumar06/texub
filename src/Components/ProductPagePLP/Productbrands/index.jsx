@@ -15,11 +15,14 @@ const Productsbrands = ({
   getCategories,
   setApplyFilter,
   applyFilter,
+  homeCategorySearch,
 }) => {
   const [{ isSimpleLoading }, dispatch] = useStateValue();
   const [isChange, setisChange] = useState(false);
   const [isBrandSelected, setIsBrandSelected] = useState(null);
   const [isCategorySelected, setIsCategorySelected] = useState(null);
+  const sliderRef = React.useRef(0);
+  const brandRef = React.useRef(0);
   const brand = (value) => {
     value && setisChange(value);
   };
@@ -73,13 +76,6 @@ const Productsbrands = ({
     fetchBrandsData();
   }, []);
 
-  useEffect(() => {
-    if (getCategories?.length) {
-      setIsCategorySelected(
-        JSON.parse(localStorage.getItem("all_category_id"))
-      );
-    }
-  }, [getCategories]);
   const Productsicon = {
     dots: false,
     infinite: false,
@@ -230,6 +226,36 @@ const Productsbrands = ({
       },
     ],
   };
+
+  useEffect(() => {
+    if (
+      sliderBrandsAndCategories?.brands?.length > 0 &&
+      homeCategorySearch?.name
+    ) {
+      sliderBrandsAndCategories?.brands?.map((itm, index) => {
+        if (itm?.option_id == homeCategorySearch?.value) {
+          setIsBrandSelected(parseInt(itm?.option_id));
+          brandRef.current.slickGoTo(index);
+        }
+      });
+    }
+  }, [sliderBrandsAndCategories?.brands, homeCategorySearch]);
+
+  let id = JSON.parse(localStorage.getItem("all_category_id"));
+  useEffect(() => {
+    if (getCategories?.length > 0 && homeCategorySearch?.name) {
+      getCategories?.map((itm, index) => {
+        if (itm?.category?.id == homeCategorySearch?.value) {
+          setIsCategorySelected(parseInt(itm?.category?.id));
+          sliderRef.current.slickGoTo(index);
+        }
+      });
+    } else {
+      sliderRef.current.slickGoTo(0);
+      setIsCategorySelected(46);
+    }
+  }, [getCategories, homeCategorySearch, id]);
+
   return (
     <div className="Productsbrands">
       <>
@@ -237,10 +263,12 @@ const Productsbrands = ({
           <SimpleLoader />
         ) : (
           <div className="Slider_Section">
-            <Slider {...Productsicon} className="slide_Test">
+            <Slider {...Productsicon} ref={brandRef} className="slide_Test">
               {sliderBrandsAndCategories?.brands?.length &&
-                sliderBrandsAndCategories?.brands?.map((itm) => (
+                sliderBrandsAndCategories?.brands?.map((itm, index) => (
                   <div
+                    data-index={index}
+                    key={index}
                     className={`ProductBrand_first_Slider brand_slider ${
                       isBrandSelected === itm?.option_id && "selected_slider"
                     }`}
@@ -249,7 +277,7 @@ const Productsbrands = ({
                         ...prevState,
                         brand_id: itm?.option_id,
                       }));
-                      setIsBrandSelected(itm?.option_id);
+                      setIsBrandSelected(parseInt(itm?.option_id));
                       setApplyFilter(!applyFilter);
                     }}
                   >
@@ -273,11 +301,12 @@ const Productsbrands = ({
           <SimpleLoader />
         ) : (
           <div className="Slider_Section">
-            <Slider {...Productsbtns} className="slide_Test">
+            <Slider {...Productsbtns} ref={sliderRef} className="slide_Test">
               {getCategories?.length
-                ? getCategories?.map((item) => (
+                ? getCategories?.map((item, index) => (
                     <li
-                      key={item?.category?.id}
+                      data-index={index}
+                      key={index}
                       className={`Slider_brands ${
                         isCategorySelected === item?.category?.id &&
                         "selected_category"
@@ -290,7 +319,7 @@ const Productsbrands = ({
                             ...prevState,
                             category_id: item?.category?.id,
                           }));
-                          setIsCategorySelected(item?.category?.id);
+                          setIsCategorySelected(parseInt(item?.category?.id));
                           setApplyFilter(!applyFilter);
                         }}
                       >
