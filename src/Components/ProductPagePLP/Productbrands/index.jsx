@@ -250,7 +250,7 @@ const Productsbrands = ({
           sliderRef.current.slickGoTo(index);
         }
       });
-    } else {
+    } else if (getCategories?.length > 0 && id) {
       sliderRef.current.slickGoTo(0);
       setIsCategorySelected(46);
     }

@@ -77,7 +77,7 @@ function Index() {
       });
       let t = workbook.Sheets[workbook.SheetNames?.[3]];
       var key1 = "A1";
-      var key2 = "I1";
+      var key2 = "H1";
       delete t[key1];
       delete t[key2];
       var XL_row_object = XLSX.utils.sheet_to_json(t);
@@ -99,7 +99,6 @@ function Index() {
       value: true,
     });
     let Count = i + 3;
-    debugger;
     if (
       rows[i]?.__EMPTY ||
       rows[i]?.__EMPTY_1 ||
@@ -213,6 +212,7 @@ function Index() {
           ],
         },
       };
+      debugger;
       await axios
         .post(Constant.baseUrl() + "/saveProductPrice", data, {
           headers: {
