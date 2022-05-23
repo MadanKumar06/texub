@@ -1,0 +1,161 @@
+.sellontexub {
+    .sellontexub__monitordata {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        
+        .sellontexub_monitortop {
+            min-height: 376px;
+            height: 100%;
+        }
+        .sellontexub_monitorbottom {
+            background-color: #d6e5ec;
+            min-height: 376px;
+            height: 100%;
+        }
+    
+        .sellontexub__monitor, .sellontexub__monitor__carousel {
+            position: absolute;
+            bottom: 1em;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            max-width: 60%;
+            // max-height: 85%;
+        }
+    
+        .sellontexub__monitor__carousel {
+            max-width: 100%;
+            bottom: 40%;
+            z-index: 9;
+            overflow: hidden;
+            div {
+                width: 70%;
+                height: 70%;
+                margin: 0 auto;
+                img {
+                    text-align: center;
+                    margin: 0 auto;
+                    vertical-align: middle;
+                    z-index: 1;
+                    height: 100%;
+                    width: 100%;
+                }
+            }
+            
+    
+            .slick-prev {
+                left: 20%;
+                z-index: 999;
+                box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+                &:before {
+                    font-size: 30px;
+                    color: #f5f5f5;
+                }
+            }
+    
+            .slick-next {
+                right: 20%;
+                z-index: 999;
+                box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+                &:before {
+                    font-size: 30px;
+                }
+            }
+        }
+    }
+
+    .sellontexub__testimonials {
+        margin-bottom: 5em;
+        h2 {
+            text-align: center;
+            color: #333333;
+            font-size: 32px;
+        }
+        ul {
+            list-style: none;
+            margin: 0 5%;
+
+            li {
+                position: relative;
+
+                p {
+                    position: absolute;
+                    top: 7em;
+                    left: 3em;
+                    right: 10em;
+                    color: #212224;
+                    font-size: 20px;
+                    letter-spacing: 0.4px;
+                }
+
+                h3 {
+                    position: absolute;
+                    right: 7em;
+                    bottom: 1em;
+                    color: #212224;
+                    font-size: 24px;
+                    letter-spacing: 0.64px;
+                }
+            }
+        }
+        .slick-prev {
+            &:before {
+                font-size: 40px;
+                color: black;
+            }
+            left: 40%;
+            top: unset;
+            bottom: -10%;
+        }
+        .slick-next {
+            &:before {
+                font-size: 40px;
+                color: black;
+            }
+            right: 40%;
+            top: unset;
+            bottom: -10%;
+        }
+    }
+}
+
+@media (max-width: 1660px) {
+    .sellontexub__monitor__carousel  {
+        .slick-prev {
+            left: 18% !important;
+        }
+        .slick-next  {
+            right: 18% !important;
+        }
+    }
+}
+
+@media (max-width: 1566px) {
+    .sellontexub .sellontexub__testimonials ul {
+        margin: 0;
+    }
+
+    .sellontexub .sellontexub__testimonials ul li {
+        p {
+            right: 4em;
+        }
+        h3 {
+            right: 3em;
+        }
+    } 
+}
+
+@media (max-width: 1440px) {
+    .sellontexub__monitor__carousel  {
+        .slick-prev {
+            left: 16% !important;
+        }
+        .slick-next  {
+            right: 16% !important;
+        }
+    }
+    .sellontexub .sellontexub__testimonials ul {
+        padding: 0;
+    }
+}
