@@ -157,13 +157,11 @@ const Index = ({ orders }) => {
       name: "unit_price",
       label: "UNIT PRICE",
       options: {
-        customBodyRender: (value) => {
+        customBodyRender: (value, tablemeta) => {
+          let currency = tablemeta?.rowData[12];
           return (
             <div className="vieworders_price">
-              <span className="inr">
-                {" "}
-                {detailsorder?.[0]?.order_details?.[0]?.order_currency}
-              </span>
+              <span className="inr"> {currency}</span>
               <span className="price">
                 {" "}
                 {formatToCurrency(parseInt(value))}{" "}
@@ -177,13 +175,11 @@ const Index = ({ orders }) => {
       name: "sub_total",
       label: "SUB-TOTAL",
       options: {
-        customBodyRender: (value) => {
+        customBodyRender: (value, tablemeta) => {
+          let currency = tablemeta?.rowData[12];
           return (
             <div className="vieworders_total">
-              <span className="inr">
-                {" "}
-                {detailsorder?.[0]?.order_details?.[0]?.order_currency}
-              </span>
+              <span className="inr"> {currency}</span>
               <span className="price">
                 {" "}
                 {formatToCurrency(parseInt(value))}{" "}
@@ -209,6 +205,13 @@ const Index = ({ orders }) => {
     },
     {
       name: "serialNumbers",
+      label: " ",
+      options: {
+        display: false,
+      },
+    },
+    {
+      name: "currency",
       label: " ",
       options: {
         display: false,

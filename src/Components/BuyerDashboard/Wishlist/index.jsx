@@ -26,12 +26,13 @@ const Whislist = () => {
   };
 
   const [filterwishdata, setfilterwishdata] = useState([]);
+
   useEffect(() => {
-    let temp =
-      wishdata?.length &&
-      wishdata?.filter((wd) => wd?.wishlist_data?.length > 0);
-    console.log(temp);
-    setfilterwishdata(temp);
+    // let temp =
+    // wishdata?.length &&
+    // wishdata?.filter((wd) => wd?.wishlist_data?.length > 0);
+    // debugger
+    setfilterwishdata(wishdata);
   }, [wishdata]);
 
   const handlewishsearch = () => {
@@ -94,25 +95,27 @@ const Whislist = () => {
 
   useEffect(async () => {
     let user = JSON.parse(localStorage.getItem("userdata"));
-    try {
-      const wishlistdata = await axios({
-        method: "post",
-        url: `${Constant.baseUrl()}/wishlist/getNames`,
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-        data: {
-          requestParams: {
-            customer_id: user?.id,
-            currency_id: currency?.currency_id,
+    if (user?.id && currency?.currency_id) {
+      try {
+        const wishlistdata = await axios({
+          method: "post",
+          url: `${Constant.baseUrl()}/wishlist/getNames`,
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
-        },
-      });
-      setfolderdata(wishlistdata.data);
-    } catch (e) {
-      console.log(e);
+          data: {
+            requestParams: {
+              customer_id: user?.id,
+              currency_id: currency?.currency_id,
+            },
+          },
+        });
+        setfolderdata(wishlistdata.data);
+      } catch (e) {
+        console.log(e);
+      }
     }
-  }, []);
+  }, [currency?.currency_id]);
 
   return (
     <div className="wishlist_main_container">
