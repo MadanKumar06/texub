@@ -86,7 +86,7 @@ const Whislist = () => {
       }
     }
     fetchData();
-  }, [wishListAgain, generalTrigger]);
+  }, [wishListAgain,currency, generalTrigger]);
 
   useEffect(async () => {
     let user = JSON.parse(localStorage.getItem("userdata"));
