@@ -6,6 +6,7 @@ import {
 } from "@mui/material";
 import { useStateValue } from "../../../store/state";
 import topbanner from "../../../Assets/SellerOnTexub/banner/topbanner.png";
+import mobile_slider from "../../../Assets/SellerOnTexub/banner/mobile_slider.png";
 import btnbanner from "../../../Assets/SellerOnTexub/banner/btn_banner.png";
 import questionMark from "../../../Assets/SellerOnTexub/question_mark.png";
 import benefits1 from "../../../Assets/SellerOnTexub/benefits1.png";
@@ -25,6 +26,8 @@ import benefits12 from "../../../Assets/SellerOnTexub/benefits12.png";
 
 import process_flow1 from "../../../Assets/SellerOnTexub/process_flow1.png";
 import process_flow2 from "../../../Assets/SellerOnTexub/process_flow2.png";
+import mobile_process_flow1 from "../../../Assets/SellerOnTexub/mobile_process_flow1.png";
+import mobile_process_flow2 from "../../../Assets/SellerOnTexub/mobile_process_flow2.png";
 import ourReactInfo from "../../../Assets/SellerOnTexub/our_react_info.png";
 
 
@@ -32,7 +35,12 @@ import whyChooseBg1 from "../../../Assets/SellerOnTexub/why_choose_bg1.png";
 import whyChooseBg2 from "../../../Assets/SellerOnTexub/why_choose_bg2.png";
 import whyChooseBg3 from "../../../Assets/SellerOnTexub/why_choose_bg3.png";
 
-import monitor_scroll from "../../../Assets/SellerOnTexub/slider/monitor_scroll_seller.png";
+import SellerDashboard from "../../../Assets/SellerOnTexub/slider/SellerDashboard.png";
+import SellerInventory from "../../../Assets/SellerOnTexub/slider/SellerInventory.png";
+import SellerOrders from "../../../Assets/SellerOnTexub/slider/SellerOrders.png";
+import SellerEnquery from "../../../Assets/SellerOnTexub/slider/SellerEnquery.png";
+
+
 
 import monitor from '../../../Assets/texub_buysell/monitor.png'
 import red from '../../../Assets/texub_buysell/red.png'
@@ -178,7 +186,8 @@ function Index() {
 return (
       <div className='sellerontexub'>
             <div className='topsection__banner'>
-                <img src={topbanner} alt="" />
+                <img src={topbanner} alt="" className="desktop-view"/>
+                <img src={mobile_slider} alt="" className="mobile-view"/>
                 <div className="seller__topbanner__floatingtext">
                     <p className="topbanner__text1">Go global with a single click.</p>
                     <p className="topbanner__text2">Sell on TEXUB</p>
@@ -254,10 +263,12 @@ return (
                     </div>
                     <div className='process_flow_section'>
                         <span className='process_flow_info'>
-                              <img src={process_flow1} alt="" />
+                              <img src={process_flow1} alt="" className="desktop-view"/>
+                               <img src={mobile_process_flow1} alt="" className="mobile-view"/>
                         </span>
                          <span className='process_flow_info'>
-                              <img src={process_flow2} alt="" />
+                               <img src={process_flow2} alt="" className="desktop-view"/>
+                               <img src={mobile_process_flow2} alt="" className="mobile-view"/>
                         </span>
                     </div>
                 </div>
@@ -273,9 +284,11 @@ return (
                     <div className="sellontexub__monitor__carousel">
                         <Slider {...settings}>
                             {/* <div><img src={monitor} /></div> */}
-                            <div><img src={monitor_scroll} /></div>
-                            <div><img src={monitor_scroll} /></div>
-                            <div><img src={monitor_scroll} /></div>
+                            <div><img src={SellerDashboard} /></div>
+                            <div><img src={SellerInventory} /></div>
+                            <div><img src={SellerOrders} /></div>
+                            <div><img src={SellerEnquery} /></div>
+
                         </Slider>
                     </div>
                     <img src={monitor} className="sellontexub__monitor"  alt="" />   

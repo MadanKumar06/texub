@@ -11,6 +11,9 @@ $yellow: #DDB363;
       width: 100%;
       object-fit: contain;
     }
+     .mobile-view{
+        display:none;
+    }
       .buy__topbanner__floatingtext {
          position: absolute;
         left: 4em;
@@ -24,15 +27,15 @@ $yellow: #DDB363;
 
       .topbanner__text1 {
         color: #20639b;
-        font-size: 24px;
-        margin: 0 10px;
+        font-size: 26px;
+        margin: 0px;
         letter-spacing: 1.29px;
         font-weight: 600;
       }
 
       .topbanner__text2 {
         color: #ddb363;
-        margin: 0 10px;
+        margin: 0px;
         font-size: 60px;
         letter-spacing: 3.06px;
       }
@@ -43,7 +46,7 @@ $yellow: #DDB363;
         padding: 1em 3em;
         margin-top: -1em;
         .sellontexub_info_content{
-            width: 90%;
+            width: 91%;
             margin: auto;
         }
         h2 {
@@ -92,7 +95,7 @@ $yellow: #DDB363;
                 .section{
                     display: flex;
                     flex-direction: column;
-                    padding: 1em 10px 2em;
+                    padding: 1em 10px 1em;
                     position: relative;
                     .content_bg{
                         width: 50px;
@@ -154,7 +157,7 @@ $yellow: #DDB363;
         background-color: #fcfcfc;
         .buy_benefits_block{
             margin: 0 5%;
-            padding: 2em 1em 3em;
+            padding: 2em 2em 3em;
         }
         .benefits_section_title{
             display: flex;
@@ -212,7 +215,7 @@ $yellow: #DDB363;
          }  
         .process_flow_section{
             margin: 0 5%;
-            padding: 0em 1em 3em; 
+            padding: 0em 2em 3em; 
             display: flex;
             flex-direction: column;
             gap: 20px;
@@ -220,6 +223,9 @@ $yellow: #DDB363;
                 img{
                     width: 100%;
                     object-fit: contain;
+                }
+                  .mobile-view{
+                    display: none;
                 }
             }
         }
@@ -230,7 +236,7 @@ $yellow: #DDB363;
         background-color: #f5f5f5;
         .our_reach__block{
             margin: 0 5%;
-            padding: 2em 1em 3em;
+            padding: 1em 2em 1em;
         }
         .our_reach_section_title{
             padding: 1em 0 ;
@@ -475,7 +481,7 @@ $yellow: #DDB363;
         .whysellontexub__info {
             .whysellontexub__info_section {
                 margin: 0%;
-                padding: 2em 2em 3em;
+                padding: 1em 1em 2em;
                 .whysellontexub__content1 {
                     .section {
                         .sub-title {
@@ -488,6 +494,7 @@ $yellow: #DDB363;
 					    }
                         .sub-content{
                             font-size: 16px;
+                            margin-top: 10px;
                         }
 				    }
 			    }
@@ -495,20 +502,20 @@ $yellow: #DDB363;
 	    }
         .buy_benefits_section {
             .buy_benefits_block {
-                margin: 0 3%;
-                padding: 2em 1em 3em;
+                margin: 0 2%;
+                padding: 2em 1em 2em;
 		    }
 	    }
         .buy_process_section {
             .process_flow_section {
-                margin: 0 3%;
+                margin: 0 2%;
                 padding-left: 0;
                 padding-right: 0;
             }
 	    }
         .our_reach_section {
             .our_reach__block {
-                margin: 0 3%;
+                margin: 0 2%;
                 padding-left: 0;
                 padding-right: 0;
             }
@@ -522,7 +529,10 @@ $yellow: #DDB363;
                  font-size: 26px !important;
              }
         }
-    }  
+    } 
+    .buyontexub .sellontexub__info{
+        padding: 1em 2em;
+    } 
 }
 
 @media (max-width: 1099px) {
@@ -582,7 +592,8 @@ $yellow: #DDB363;
                     width: 50%;
                     display: flex;
                     align-items: center;
-                    padding: 1em 15px 2em 0;
+                    padding:1em 10px 1em 0;
+                    margin: 1em 10px 1em 0;
                     background-color: #fafafa;
                 }
             }
@@ -608,7 +619,14 @@ $yellow: #DDB363;
     }  
     .buyontexub .btn_banner_section button {
          width: 50%; 
+         padding: 5px 12px;
     } 
+    .buyontexub .buy_benefits_section .benefits_section_content{
+        justify-content: space-between;
+    }
+    .buyontexub .sellontexub__info h2{
+        margin: 10px 0;
+    }
 }
 
 @media (max-width: 450px) {
@@ -903,6 +921,18 @@ $yellow: #DDB363;
        .buyontexub_slider .buyontexub__monitordata .buyontexub__monitor__carousel{
            bottom: 28%;
     }
+    .buyontexub .buy_process_section .process_section_title{
+        padding: 1em 0;
+    }
+    .buyontexub .content-title .title{
+        margin: 10px 0;
+    }
+    .buyontexub .our_reach_section .our_reach__block{
+        padding-top: 0;
+    }
+    .sellerontexub .sellontexub__info{
+        margin-top: -4em;
+    }
 
 }
 @media (max-width: 1024px) {
@@ -981,6 +1011,7 @@ $yellow: #DDB363;
             right: 13% !important;
         }
     }
+  
 }
 @media (max-width: 899px) {
  .buyontexub_slider .buyontexub__monitordata .buyontexub__monitor__carousel{
@@ -1055,6 +1086,24 @@ $yellow: #DDB363;
             right: 13% !important;
         }
     }
+    .buyontexub .whysellontexub__info .whysellontexub_title{
+        padding: 10px 0;
+    }
+    .buyontexub .whysellontexub__info .whysellontexub__content__section .whysellontexub__content1 .section{
+        padding: 1em 10px 10px;
+    }
+    .buyontexub .buy_process_section .process_flow_section {
+        margin: 0 2%;
+        padding-left: 1em;
+        padding-right: 1em;
+        padding-bottom: 2em;
+    }
+    .buyontexub .our_reach_section .our_react_img {
+        padding-top: 0;
+        padding-bottom: 0;
+        padding-left: 1em;
+        padding-right: 1em;
+    }
 }
 @media (max-width: 767px) {
  .buyontexub_slider .buyontexub__monitordata .buyontexub__monitor__carousel{
@@ -1090,6 +1139,19 @@ $yellow: #DDB363;
         .slick-next  {
             right: 13% !important;
         }
+    }
+    .buyontexub .buy_benefits_section .benefits_section_title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px 0;
+    }
+    .buyontexub .buy_benefits_section .buy_benefits_block {
+        margin: 0 2%;
+        padding: 1em 1em 2em;
+    }
+    .buyontexub_slider .content-title{
+        padding: 10px 0;
     }
 }
 @media (max-width: 670px) {
@@ -1148,7 +1210,7 @@ $yellow: #DDB363;
         font-size: 30px;
     }
     .buyontexub .topsection__banner .buy__topbanner__floatingtext {
-        left: 0em;
+        left: 2em;
         margin: 0;
     }
 }
@@ -1203,10 +1265,6 @@ $yellow: #DDB363;
     .sellerontexub .topsection__banner .seller__topbanner__floatingtext .topbanner__text1 {
         font-size: 16px;
     }
-    .sellerontexub .topsection__banner .seller__topbanner__floatingtext {
-        left: 0em;
-        margin: 0;
-    }
     .buyontexub .buy_process_section .process_section_title {
         margin: 0 5%;
         padding:1em 0;
@@ -1218,6 +1276,22 @@ $yellow: #DDB363;
     .buyontexub .buy_benefits_section .benefits_section_content .benefits_info {
          width: 100%;
     }   
+    .buyontexub .whysellontexub__info .whysellontexub__content__section .whysellontexub__content1 .section .sub-content{
+        margin-left: 0;
+    }
+    .buyontexub_slider .content-title{
+        padding: 0;
+    }
+    .buyontexub .topsection__banner .buy__topbanner__floatingtext{
+        left: 1em;
+    }
+    .buyontexub .topsection__banner .buy__topbanner__floatingtext .topbanner__text1 {
+        font-size: 16px;
+    }
+    .buyontexub .topsection__banner .buy__topbanner__floatingtext .topbanner__text2 {
+        font-size: 24px;
+    }
+   
 }
 @media (max-width: 450px) {
      .buyontexub_slider .buyontexub__monitordata .buyontexub__monitor__carousel{
@@ -1229,6 +1303,27 @@ $yellow: #DDB363;
     .buyontexub_slider .buyontexub__monitordata .buyontexub_monitortop {
         min-height: 85px;
         height: 100%;
+    }
+    .buyontexub .topsection__banner .buy__topbanner__floatingtext {
+        left: 1em;
+        width: 50%;
+            top: -4em;
+    }
+
+     .buyerontexub .topsection__banner .mobile-view{
+        display:block;
+    }
+    .buyontexub .topsection__banner .mobile-view {
+    display: block;
+}
+     .buyontexub .topsection__banner .desktop-view{
+        display:none;
+    }
+    .buyontexub .seller_process_section .process_flow_section .process_flow_info .mobile-view{
+        display: block;
+    }
+    .buyontexub .seller_process_section .process_flow_section .process_flow_info .desktop-view{
+        display: none;
     }
     
 
@@ -1262,6 +1357,9 @@ $yellow: #DDB363;
         min-height: 120px;
         height: 100%;
     } 
+    .buyontexub .sellontexub__info{
+        padding: 10px 1em;
+    }
 }
 @media (max-width: 385px) {
      .buyontexub_slider .buyontexub__monitordata .buyontexub__monitor__carousel{
@@ -1321,6 +1419,11 @@ $yellow: #DDB363;
         min-height: 90px;
         height: 100%;
     } 
+    .buyontexub .topsection__banner .buy__topbanner__floatingtext {
+    left: 1em;
+    width: 50%;
+    top: -2em;
+}
 }
 
 
