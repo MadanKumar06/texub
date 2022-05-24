@@ -13,7 +13,6 @@ import {
   isEmailValid,
   isPasswordValid,
   isFirstAndLastNameValid,
-  getAdminToken,
 } from "../../../../utilities";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -21,7 +20,7 @@ import Constant from "../../../../Constant";
 import { useStateValue } from "../../../../store/state";
 import swal from "sweetalert2";
 
-const TransitionsModal = ({ classes }) => {
+const TransitionsModal = ({ classes, adminToken }) => {
   const [{ geo, customnostore }, dispatch] = useStateValue();
   const history = useNavigate();
   let {
@@ -43,7 +42,6 @@ const TransitionsModal = ({ classes }) => {
     confrim_password: "",
     checkbox_confrim: false,
   });
-  const [adminToken, setAdminToken] = useState({});
   const [inputValidation, setInputValidation] = useState({
     first_name: "",
     last_name: "",
@@ -164,13 +162,6 @@ const TransitionsModal = ({ classes }) => {
       FinalGuestRegistration();
     }
   };
-
-  //API to fetch admin token
-  useEffect(() => {
-    getAdminToken((res) => {
-      setAdminToken(res);
-    });
-  }, []);
 
   //API to Register
   const FinalGuestRegistration = () => {
@@ -295,10 +286,11 @@ const TransitionsModal = ({ classes }) => {
   return (
     <div className={section_right}>
       <p className={info_text_lineNote}>
-        Sign up now to gain access to exclusive benefits created only for you. Visit us as a guest.
+        Sign up now to gain access to exclusive benefits created only for you.
+        Visit us as a guest.
       </p>
       <p className={info_text_lineNote}>
-       Just wanted to try out our site? Visit our site as a guest..
+        Just wanted to try out our site? Visit our site as a guest..
       </p>
       <form onSubmit={handleClickValidation}>
         <div className={info_text_guest}>Guest Access</div>

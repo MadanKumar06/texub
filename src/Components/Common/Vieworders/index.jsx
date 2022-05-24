@@ -223,7 +223,6 @@ const columns = [
 ];
 
 const Index = ({ viewDetail, setvieworder, handleSearchBar }) => {
-  debugger;
   const [radiogroup, setRadioGroup] = useState(1);
   const [trigger, setTrigger] = useState(false);
   const [{}, dispatch] = useStateValue();

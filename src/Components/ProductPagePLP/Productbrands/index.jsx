@@ -226,26 +226,27 @@ const Productsbrands = ({
     ],
   };
 
-  let id = JSON.parse(localStorage.getItem("all_category_id"));
+  // let id = JSON.parse(localStorage.getItem("all_category_id"));
   useEffect(() => {
     if (
       getCategories?.length > 0 &&
       homeCategorySearch?.name === "category_id"
     ) {
-      debugger;
       getCategories?.map((itm, index) => {
         if (itm?.category?.id == homeCategorySearch?.value) {
           setIsCategorySelected(parseInt(itm?.category?.id));
-          sliderRef.current.slickGoTo(index);
+          setTimeout(() => {
+            sliderRef.current.slickGoTo(index);
+          }, 2000);
         }
       });
-    } else if (getCategories?.length > 0 && id) {
+    } else if (getCategories?.length > 0 && getCategories?.[0]?.category?.id) {
       setTimeout(() => {
         sliderRef.current.slickGoTo(0);
-        setIsCategorySelected(46);
-      }, 1000);
+        setIsCategorySelected(getCategories?.[0]?.category?.id);
+      }, 2000);
     }
-  }, [getCategories, homeCategorySearch, id]);
+  }, [homeCategorySearch, getCategories]);
 
   return (
     <div className="Productsbrands">

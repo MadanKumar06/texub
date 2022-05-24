@@ -118,7 +118,7 @@ const App = () => {
     getSigninedUserData((res) => {
       console.log(res);
     });
-  }, []);
+  }, [localStorage.getItem("token")]);
   useEffect(() => {
     dispatch({
       type: "SET_IS_LOADING",
@@ -158,7 +158,11 @@ const App = () => {
   useEffect(() => {
     if (currency?.currency_id) {
       GetCategoriesList((res) => {
-        localStorage.setItem("all_category_id", res?.[0]?.category?.id);
+        // localStorage.setItem("all_category_id", res?.[0]?.category?.id);
+        dispatch({
+          type: "SET_PLP_CATEGORIES",
+          data: res,
+        });
       }, currency?.currency_id);
     }
   }, [currency]);
