@@ -80,7 +80,7 @@ const Header = ({ classes }) => {
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("userdata"));
-    if (user?.id === 5) {
+    if (user?.group_id === 5) {
       async function fetchData() {
         try {
           const wishlistdata = await axios({

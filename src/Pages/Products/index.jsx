@@ -158,6 +158,8 @@ export const Products = () => {
           conditions: userfilter?.condition_id,
           eta: userfilter?.eta,
           brand_id: userfilter?.brand_id,
+          // min_price: userfilter?.min_price,
+          // max_price: userfilter?.max_price,
         });
       }
     }

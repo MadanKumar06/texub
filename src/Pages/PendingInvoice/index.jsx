@@ -236,6 +236,13 @@ function Index() {
   }
 
   const navigate = useNavigate();
+  const handleProceedtoCheckout = () => {
+    navigate(
+      `/${customnostore ? customnostore : geo?.country_name}/checkout/${
+        pendingInvoiceList?.invoice?.quote_id
+      }`
+    );
+  };
   let permissions = JSON.parse(localStorage.getItem("permissions"));
   let placeorder =
     permissions?.length === 0
@@ -683,14 +690,11 @@ function Index() {
             Back
           </Button>
           {!placeorder && !pendinginvoicestatus && (
-            <Button className="button__checkout">
-              <Link
-                to={`/${
-                  customnostore ? customnostore : geo?.country_name
-                }/checkout/${pendingInvoiceList?.invoice?.quote_id}`}
-              >
-                Proceed To Checkout
-              </Link>
+            <Button
+              className="button__checkout"
+              onClick={() => handleProceedtoCheckout()}
+            >
+              Proceed To Checkout
             </Button>
           )}
         </div>

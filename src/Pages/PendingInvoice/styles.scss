@@ -48,13 +48,13 @@
             align-items: center;
           }
         }
-        .order_apply_btns{
-              width: 25%;
-            flex-direction: row;
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
-            gap: 20px;
+        .order_apply_btns {
+          width: 25%;
+          flex-direction: row;
+          display: flex;
+          align-items: center;
+          justify-content: space-around;
+          gap: 20px;
         }
         .order_apply-btn {
           width: 100%;
@@ -144,7 +144,7 @@
             width: 20%;
             font-size: 18px;
             font-weight: 600;
-            color: #333C42;
+            color: #333c42;
           }
           hr.MuiDivider-root {
             min-height: 35px !important;
@@ -332,7 +332,7 @@
                 margin-left: 5px;
               }
             }
-            
+
             .vieworders_quantity {
               border-radius: 25px;
               padding: 7px 20px;
@@ -383,8 +383,8 @@
           font-weight: 600;
           padding: 5px 0;
         }
-        .payment_info_return{
-              line-height: 30px;
+        .payment_info_return {
+          line-height: 30px;
         }
         .content {
           padding: 5px 0;
@@ -430,19 +430,19 @@
           }
         }
         p {
-             display: flex;
-            gap: 8%;
-            justify-content: flex-end;
-            margin: 0;
-            // padding-right: 8%;
-            margin-left: 8%;
+          display: flex;
+          gap: 8%;
+          justify-content: flex-end;
+          margin: 0;
+          // padding-right: 8%;
+          margin-left: 8%;
           hr {
             min-height: 35px !important;
             background-color: #d6d8d9;
           }
-          .total{
-                font-weight: 600;
-            }
+          .total {
+            font-weight: 600;
+          }
           .label {
             text-align: right;
             width: 50%;
@@ -477,37 +477,37 @@
             }
           }
         }
-        .total_value_block{
+        .total_value_block {
           padding-top: 10px;
           padding-bottom: 10px;
-            .total_value_section{
-              background-color: rgb(248, 240, 224);
-              width: 65%;
-              display: flex;
-              align-items: center;
-              padding-top: 10px;
-              padding-bottom: 10px;
-              gap: 10%;
-              .value{
-                width: initial;
-              }
+          .total_value_section {
+            background-color: rgb(248, 240, 224);
+            width: 65%;
+            display: flex;
+            align-items: center;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            gap: 10%;
+            .value {
+              width: initial;
             }
+          }
         }
 
-        .total_value_additional{  
-             position: absolute;
-            top: 0;
-            right: 0;
-            left: 0;
-            bottom: 0;
-            background: #f8f0e0;
-            z-index: 0;
-            opacity: 0.9;
+        .total_value_additional {
+          position: absolute;
+          top: 0;
+          right: 0;
+          left: 0;
+          bottom: 0;
+          background: #f8f0e0;
+          z-index: 0;
+          opacity: 0.9;
         }
       }
-      .total_value_section_block{
+      .total_value_section_block {
         padding-right: 8%;
-           margin-left: 8%;
+        margin-left: 8%;
       }
 
       .tableinfo__details {
@@ -527,6 +527,7 @@
   .pendinginvoice__bottom {
     margin: 2em 3% 3em;
     .bottom__terms {
+      margin-bottom: 20px;
       background-color: white;
       padding: 1em 1.5em;
 
@@ -559,7 +560,7 @@
         color: #002d56;
         font-weight: 600;
         text-transform: capitalize;
-        cursor: pointer; 
+        cursor: pointer;
         a {
           color: white;
           text-decoration: none;
@@ -598,14 +599,24 @@
   }
 }
 @media (max-width: 1440px) {
-.pendinginvoice .pendinginvoice__top .top__orderinfo .orderinfo__data p .label{
-  font-size: 16px;
-  width: 25%;
-}
-.pendinginvoice .pendinginvoice__top .top__orderinfo .orderinfo__data p .value{
-  font-size: 16px;
-  width: 25%;
-}
+  .pendinginvoice
+    .pendinginvoice__top
+    .top__orderinfo
+    .orderinfo__data
+    p
+    .label {
+    font-size: 16px;
+    width: 25%;
+  }
+  .pendinginvoice
+    .pendinginvoice__top
+    .top__orderinfo
+    .orderinfo__data
+    p
+    .value {
+    font-size: 16px;
+    width: 25%;
+  }
 }
 @media (max-width: 899px) {
   .pendinginvoice {
@@ -618,20 +629,20 @@
           .checkout_back_toggle {
             width: 10%;
           }
-         
-            .orderinfo_name {
-              font-size: 14px;
-            }
+
+          .orderinfo_name {
+            font-size: 14px;
+          }
+          .orderinfo_value {
+            font-size: 16px;
+          }
+
+          .order_total_info {
             .orderinfo_value {
               font-size: 16px;
             }
-          
-          .order_total_info{
-            .orderinfo_value{
-                font-size: 16px;
-            }
           }
-          .order_apply_btns{
+          .order_apply_btns {
             width: auto;
           }
           .order_apply-btn {
@@ -669,7 +680,7 @@
       margin: 1% 2%;
       .middle__tableinfo {
         padding: 10px 15px;
-     
+
         .tableinfo__orderdata {
           width: 48%;
           p {
@@ -683,10 +694,10 @@
             .value {
               width: 100% !important;
             }
-            .total_value_section{
+            .total_value_section {
               width: 100% !important;
               gap: 10%;
-              .total.label{
+              .total.label {
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -711,7 +722,7 @@
           .MuiTableBody-root {
             .MuiTableRow-root {
               .MuiTableCell-root {
-                 display: flex !important;
+                display: flex !important;
                 align-items: center;
                 max-width: 100%;
                 justify-content: center;
@@ -761,25 +772,25 @@
         .orderinfo__data {
           width: 100%;
           padding: 10px 0;
-          p{
+          p {
             .label {
               font-size: 16px;
             }
-            .value{
+            .value {
               font-size: 16px;
             }
           }
         }
       }
-      .top__address{
+      .top__address {
         flex-direction: column;
-        .address__bill{
+        .address__bill {
           width: 100%;
         }
-        hr{
+        hr {
           display: none;
         }
-        .address__pickup{
+        .address__pickup {
           width: 100%;
         }
       }
@@ -803,7 +814,7 @@
                 .table__price {
                   justify-content: start;
                 }
-                .vieworders_quantity{
+                .vieworders_quantity {
                   justify-content: center;
                   text-align: center;
                 }
@@ -821,8 +832,8 @@
         .tableinfo__orderdata {
           width: 100%;
           padding: 10px 0;
-          p{
-            .value{
+          p {
+            .value {
               font-size: 18px;
             }
           }
@@ -840,7 +851,7 @@
       }
     }
   }
-  .pendinginvoice .pendinginvoice__bottom .bottom__terms h4{
+  .pendinginvoice .pendinginvoice__bottom .bottom__terms h4 {
     font-size: 20px;
   }
 }
