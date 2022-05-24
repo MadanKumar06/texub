@@ -1,5 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from "react";
 import './styles.scss'
+import { Link } from "react-router-dom";
+import {
+  Button,
+} from "@mui/material";
+import { useStateValue } from "../../../store/state";
 import topbanner from "../../../Assets/SellerOnTexub/banner/topbanner.png";
 import btnbanner from "../../../Assets/SellerOnTexub/banner/btn_banner.png";
 import questionMark from "../../../Assets/SellerOnTexub/question_mark.png";
@@ -27,7 +32,7 @@ import whyChooseBg1 from "../../../Assets/SellerOnTexub/why_choose_bg1.png";
 import whyChooseBg2 from "../../../Assets/SellerOnTexub/why_choose_bg2.png";
 import whyChooseBg3 from "../../../Assets/SellerOnTexub/why_choose_bg3.png";
 
-import monitor_scroll from "../../../Assets/SellerOnTexub/slider/monitor_scroll.png";
+import monitor_scroll from "../../../Assets/SellerOnTexub/slider/monitor_scroll_seller.png";
 
 import monitor from '../../../Assets/texub_buysell/monitor.png'
 import red from '../../../Assets/texub_buysell/red.png'
@@ -40,16 +45,18 @@ import "slick-carousel/slick/slick-theme.css";
 
 
 function Index() {
+      const [{ geo, homeContent, customnostore }, dispatch] = useStateValue();
+
 
     const whysell = [
-        {title: 'IExpand Your Horizons', subTitle: 'TEXUB serves as an ideal channel facilitator as it overcomes the physical limitations of customer reach. The platform supports sellers in establishing themselves in global markets.', img_bg: whyChooseBg1 },
-        {title: 'Increases Sales at Lower Cost', subTitle: 'By diversifying buyers and broadening geographies, TEXUB provides expansion opportunities for businesses both large and small without additional operational cost.', img_bg: whyChooseBg2 },
-        {title: 'Easy Management', subTitle: 'Once you sign up on our platform, you can easily list as many products as you like and add numerous users to administer the business. Be in the limelight by offering great deals. Experiance transparent order processing and settlement. Above all gain many more advantages without any complexities. ', img_bg: whyChooseBg3 }
+        {title: 'Expand Your Horizons', subTitle: 'TEXUB serves as an ideal channel facilitator as it overcomes the physical limitations of customer reach. The platform supports sellers in establishing themselves in global markets.', img_bg: whyChooseBg1 },
+        {title: 'Increases Sales at Lower Cost', subTitle: 'By diversifying buyers and broadening geographies, TEXUB provides expansion opportunities for businesses both large and small without additional operational costs.', img_bg: whyChooseBg2 },
+        {title: 'Easy Management', subTitle: 'Once you sign up on our platform, you can easily list as many products as you like and add numerous users to administer the business. Be in the limelight by offering great deals. Experience transparent order processing and settlement. Above all gain many more advantages without any complexities. ', img_bg: whyChooseBg3 }
     ]
 
      const benefitsInfo = [
         {title: 'Sell Globally With Multiple Hubs',  image: benefits1 },
-        {title: 'Create better demand for your products globally',  image: benefits2 },
+        {title: 'Create Better Demand For Your Products Globally',  image: benefits2 },
         {title: 'Reduce Credit Risks',  image: benefits3 },
         {title: 'Add Multiple Users With User Specific Roles',  image: benefits4 },
         {title: 'Upload Multiple Products With Ease',  image: benefits5 },
@@ -182,7 +189,7 @@ return (
                 <div className='sellontexub_info_content'>
                     <div className='content'>
                         <h2>Conquer the Global Market </h2>
-                        <p>By registering with us you can take your company online and reach consumers all around the world . Make the most of our user-friendly website by listing your items online, sharing quotations, competing with your competitors, selling online, and gaining loyal clients all over the world.</p>
+                        <p>By registering with us you can take your company online and reach consumers all around the world. Make the most of our user-friendly website by listing your items online, sharing quotations, competing with your competitors, selling online, and gaining loyal clients all over the world.</p>
                     </div>
                 </div>
             </div>
@@ -190,7 +197,7 @@ return (
             <div className='whysellontexub__info'>
                 <div className='whysellontexub__info_section'>
                     <div className='whysellontexub_title content-title'>
-                        <span className='title'>Why Sell on TEXUB?</span>
+                        <h2 className='title'>Why Sell on TEXUB?</h2>
                     </div>
                     <div className='whysellontexub__content__section'>
                         <div className='whysellontexub__content1'>
@@ -211,13 +218,23 @@ return (
             </div>
 
             <div className='btn_banner_section'>
-                <button class="reg_btn">Register as Seller</button> 
+                  <Link
+                    to={`/${customnostore ? customnostore : geo?.country_name}/register/seller`}
+                >
+                    <Button
+                    variant="contained"
+                    className='reg_btn'
+                    
+                    >
+                    Register as Seller
+                    </Button>
+                </Link>
             </div>
 
             <div className='seller_benefits_section'>
                 <div className='seller_benefits_block'>
                     <div className='benefits_section_title content-title'>
-                        <span className='title'>Seller Benefits</span>
+                        <h2 className='title'>Seller Benefits</h2>
                     </div>
                     <div className='benefits_section_content'>
                         {benefitsInfo.map(data =>  
@@ -233,7 +250,7 @@ return (
             <div className='seller_process_section'>
                 <div className='seller_process_block'>
                     <div className='process_section_title content-title'>
-                        <span className='title'>Seller Process</span>
+                        <h2 className='title'>Seller Process</h2>
                     </div>
                     <div className='process_flow_section'>
                         <span className='process_flow_info'>
@@ -249,7 +266,7 @@ return (
             <div className='sellontexub_slider'>
                 <div className='sellontexub__monitordata'>
                      <div className='process_section_title content-title'>
-                        <span className='title'>Sneak Peak Inside Seller Dashboard</span>
+                        <h2 className='title'>Sneak Peak Inside Seller Dashboard</h2>
                     </div>
                     <div className='sellontexub_monitortop'></div>
                     <div className='sellontexub_monitorbottom'></div>
@@ -281,13 +298,24 @@ return (
 
 
             <div className='btn_banner_section'>
-                <button class="reg_btn">Register as Seller</button> 
+                 <Link
+                    to={`/${customnostore ? customnostore : geo?.country_name}/register/seller`}
+                >
+                    <Button
+                    variant="contained"
+                    className='reg_btn'
+                    
+                    >
+                    Register as Seller
+                    </Button>
+                </Link>
+                {/* <button class="reg_btn">Register as Seller</button>  */}
             </div>
 
              <div className='our_reach_section'>
                 <div className='our_reach__block'>
                     <div className='our_reach_section_title content-title'>
-                        <span className='title'>Our Reach</span>
+                        <h2 className='title'>Our Reach</h2>
                     </div>
                     <div className='our_react_img'>
                         <img src={ourReactInfo} alt="" />
