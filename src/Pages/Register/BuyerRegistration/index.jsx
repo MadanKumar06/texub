@@ -2,13 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./styles";
 import "./popupstyle.scss";
 
-import {
-  TextField,
-  Checkbox,
-  Button,
-  InputLabel,
-  Box,
-} from "@mui/material";
+import { TextField, Checkbox, Button, InputLabel, Box } from "@mui/material";
 import { useStateValue } from "../../../store/state";
 import ReCAPTCHA from "react-google-recaptcha";
 import {
@@ -30,7 +24,7 @@ import axios from "axios";
 import Constant from "../../../Constant";
 
 const BuyerRegistration = ({ classes }) => {
-  const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
+  const [{ geo, currencyData, customnostore }, dispatch] = useStateValue();
   const history = useNavigate();
   let {
     main_container,
@@ -705,7 +699,7 @@ const BuyerRegistration = ({ classes }) => {
                   <Link
                     to={`/${
                       customnostore ? customnostore : geo?.country_name
-                    }/termsofuse`}
+                    }/termsofuse/${currencyData?.[2]?.staticPages?.terms}`}
                     target="_blank"
                   >
                     Terms of Use
@@ -714,7 +708,7 @@ const BuyerRegistration = ({ classes }) => {
                   <Link
                     to={`/${
                       customnostore ? customnostore : geo?.country_name
-                    }/privacypolicy`}
+                    }/privacypolicy/${currencyData?.[2]?.staticPages?.privacy}`}
                     target="_blank"
                   >
                     Privacy Policy

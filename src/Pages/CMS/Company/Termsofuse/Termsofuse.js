@@ -6,6 +6,7 @@ import { getAdminToken } from "../../../../utilities";
 import { useStateValue } from "../../../../store/state";
 import Constant from "../../../../Constant";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 const Termstext = [
   {
@@ -16,6 +17,7 @@ const Termstext = [
 ];
 
 export const Termsofuse = () => {
+  const { id } = useParams();
   const [adminToken, setAdminToken] = useState("");
   useEffect(() => {
     getAdminToken((res) => {
@@ -34,9 +36,7 @@ export const Termsofuse = () => {
         });
         const termsdata = await axios({
           method: "get",
-          url:
-            Constant.baseUrl2() +
-            `/cmsPage/${currencyData?.[2]?.staticPages?.terms}`,
+          url: Constant.baseUrl2() + `/cmsPage/${id}`,
           headers: {
             Authorization: `Bearer ${adminToken}`,
           },
@@ -56,7 +56,6 @@ export const Termsofuse = () => {
     }
   }, [adminToken]);
 
-  console.log(terms);
   const [temp, settemp] = useState(false);
   const handleChange = (divName) => {
     settemp(true);
