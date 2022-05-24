@@ -124,12 +124,16 @@ const BuyerDashboard = () => {
                   dashboarddata?.[0]?.products?.map((data, i) => {
                     return (
                       <li key={i}>
-                        <span className="image">
-                          <img
-                            src={Constant?.imageBaseUrl() + data?.brand}
-                            alt="brand"
-                          />
-                        </span>
+                        {data?.brand !== "" ? (
+                          <span className="image">{data?.brand_name}</span>
+                        ) : (
+                          <span className="image">
+                            <img
+                              src={Constant?.imageBaseUrl() + data?.brand}
+                              alt="brand"
+                            />
+                          </span>
+                        )}
                         <span className="name">{data?.name}</span>
                         <span className="price">
                           <span className="symbol">{data?.currency} </span>
