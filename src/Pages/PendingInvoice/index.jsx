@@ -443,8 +443,9 @@ function Index() {
             <div className="content">
               <span>
                 {pendingInvoiceList?.bill_to_address1},
-                {pendingInvoiceList?.bill_to_address2}
               </span>
+               <span>{pendingInvoiceList?.bill_to_address2}</span>
+                
 
               <span>
                 {pendingInvoiceList?.bill_to_city}-
@@ -460,6 +461,8 @@ function Index() {
             <div className="content">
               <span>
                 {pendingInvoiceList?.pick_up_address1},
+              </span>
+              <span>
                 {pendingInvoiceList?.pick_up_address2}
               </span>
 

@@ -15,6 +15,8 @@ const Index = () => {
   }, []);
   const [{ currencyData }, dispatch] = useStateValue();
   const [pp, setpp] = useState();
+  // disable right click option
+  document.addEventListener('contextmenu', event => event.preventDefault());
 
   useEffect(async () => {
     if (adminToken !== "") {

@@ -106,6 +106,13 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
       }/sellerdashboard/dashboard`
     );
   };
+   const handleInventoryPage = () => {
+    navigate(
+      `/${
+        customnostore ? customnostore : geo?.country_name
+      }/sellerdashboard/inventory`
+    );
+  };
   const handleMyorder = () => {
     navigate(
       `/${
@@ -213,6 +220,81 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
           ></rect>
         </g>
       </g>
+    </svg>
+  );
+  const InventoryIcon  = (
+      <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="34"
+          height="33.121"
+          viewBox="0 0 34 33.121"
+        >
+          <g
+            id="Group_1487"
+            data-name="Group 1487"
+            transform="translate(-3926.949 -459.964)"
+          >
+            <g
+              id="Group_1486"
+              data-name="Group 1486"
+              transform="translate(0.305 -44.462)"
+            >
+              <rect
+                id="Rectangle_1713"
+                data-name="Rectangle 1713"
+                width="10"
+                height="8"
+                transform="translate(3933.644 529.048)"
+                fill="none"
+                stroke="#000"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1"
+              />
+              <rect
+                id="Rectangle_1714"
+                data-name="Rectangle 1714"
+                width="10"
+                height="8"
+                transform="translate(3943.644 529.048)"
+                fill="none"
+                stroke="#000"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1"
+              />
+              <path
+                id="Path_1744"
+                data-name="Path 1744"
+                d="M4115,557.237v-2.789h0c-.065-1.8,0-8.39,0-8.39h10.155v11.179"
+                transform="translate(-176.356 -25.952)"
+                fill="none"
+                stroke="#000"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1"
+              />
+              <line
+                id="Line_31"
+                data-name="Line 31"
+                y1="2"
+                transform="translate(3943.5 520.5)"
+                fill="none"
+                stroke="#000"
+                stroke-linecap="round"
+                stroke-width="1"
+              />
+            </g>
+            <path
+              id="Rectangle_445"
+              data-name="Rectangle 445"
+              d="M33.5,13.062V32A1.5,1.5,0,0,1,32,33.5H2A1.5,1.5,0,0,1,.5,32V13.062a1.5,1.5,0,0,1,.66-1.242l15-10.147a1.5,1.5,0,0,1,1.681,0l15,10.147A1.5,1.5,0,0,1,33.5,13.062Z"
+              transform="translate(3926.949 459.085)"
+              fill="none"
+              stroke="#000"
+              stroke-width="1"
+            />
+          </g>
     </svg>
   );
   const KYSIcon = (
@@ -700,6 +782,11 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
       image: dashboardIcon,
       name: "Seller Dashboard",
       event: handleSellerDashboard,
+    },
+     {
+      image: InventoryIcon,
+      name: "Inventory",
+      event: handleInventoryPage,
     },
     {
       image: KYSIcon,
