@@ -193,11 +193,27 @@ const Index = ({ classes, setisEdit, setisAccountinfo }) => {
       }));
       errorHandle = true;
     }
-
+    if (AccountInfoData?.new_password !== AccountInfoData?.new_confrim_password) {
+      document.getElementById("new_confrim_password")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        new_confrim_password: "Password and confirm password does not match.",
+      }));
+      errorHandle = true;
+    }
     if (!errorHandle) {
       updateprofile();
+      setInputValidation({
+        first_name: "",
+        last_name: "",
+        mobile_number: "",
+        email_address: "",
+        new_password: "",
+        new_confrim_password: "",
+      })
     }
   };
+  
 
   // update API
   const updateprofile = async () => {
@@ -273,7 +289,13 @@ const Index = ({ classes, setisEdit, setisAccountinfo }) => {
                 InputLabelProps={{
                   shrink: false,
                 }}
-                onChange={handleChangeInput}
+                onChange={(e) => {
+                  handleChangeInput(e)
+                  setInputValidation((prevState) => ({
+                    ...prevState,
+                    first_name: ""
+                  }))
+                }}
               />
               <InputLabel className={validation_error}>
                 {inputValidation?.first_name}
@@ -290,7 +312,13 @@ const Index = ({ classes, setisEdit, setisAccountinfo }) => {
                 InputLabelProps={{
                   shrink: false,
                 }}
-                onChange={handleChangeInput}
+                onChange={(e) => {
+                  handleChangeInput(e)
+                  setInputValidation((prevState) => ({
+                    ...prevState,
+                    last_name: ""
+                  }))
+                }}
               />
               <InputLabel className={validation_error}>
                 {inputValidation?.last_name}
@@ -313,7 +341,13 @@ const Index = ({ classes, setisEdit, setisAccountinfo }) => {
                   shrink: true,
                   required: true,
                 }}
-                onChange={(e) => handleMobileChangeInput(e)}
+                onChange={(e) => {
+                  handleMobileChangeInput(e)
+                  setInputValidation((prevState) => ({
+                    ...prevState,
+                    mobile_number: ""
+                  }))
+                }}
                 variant="outlined"
               />
 
@@ -361,7 +395,13 @@ const Index = ({ classes, setisEdit, setisAccountinfo }) => {
                 InputLabelProps={{
                   shrink: false,
                 }}
-                onChange={handleChangeInput}
+                onChange={(e) => {
+                  handleChangeInput(e)
+                  setInputValidation((prevState) => ({
+                    ...prevState,
+                    email_address: ""
+                  }))
+                }}
               />
               <InputLabel className={validation_error}>
                 {inputValidation?.email_address}
@@ -381,7 +421,13 @@ const Index = ({ classes, setisEdit, setisAccountinfo }) => {
                 InputLabelProps={{
                   shrink: false,
                 }}
-                onChange={handleChangeInput}
+                onChange={(e) => {
+                  handleChangeInput(e)
+                  setInputValidation((prevState) => ({
+                    ...prevState,
+                    new_password: ""
+                  }))
+                }}
               />
               <InputLabel className={validation_error}>
                 {inputValidation?.new_password}
@@ -399,7 +445,13 @@ const Index = ({ classes, setisEdit, setisAccountinfo }) => {
                 InputLabelProps={{
                   shrink: false,
                 }}
-                onChange={handleChangeInput}
+                onChange={(e) => {
+                  handleChangeInput(e)
+                  setInputValidation((prevState) => ({
+                    ...prevState,
+                    new_confrim_password: ""
+                  }))
+                }}
               />
               <InputLabel className={validation_error}>
                 {inputValidation?.new_confrim_password}

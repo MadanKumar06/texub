@@ -99,6 +99,8 @@ const Index = ({ address, setisBilling, setisAddress }) => {
         showConfirmButton: false,
         timer: 3000,
       });
+      setisBilling(false)
+      setisAddress(true)
     } catch (e) {
       dispatch({
         type: "SET_IS_LOADING",

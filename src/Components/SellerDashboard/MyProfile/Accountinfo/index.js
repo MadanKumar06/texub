@@ -10,6 +10,7 @@ import axios from "axios";
 import baseUrl from "../../../../Constant";
 import { useStateValue } from "../../../../store/state";
 import Constant from "../../../../Constant";
+import swal from "sweetalert2";
 
 const Index = ({ classes, setisAccountinfo, setisEdit }) => {
   const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
@@ -219,6 +220,10 @@ const Index = ({ classes, setisAccountinfo, setisEdit }) => {
   //API to update
   const updateprofile = async () => {
     let user = JSON.parse(localStorage.getItem("userdata"));
+    dispatch({
+      type: "SET_IS_LOADING",
+      value: true,
+    });
     try {
       const updatedata = await axios({
         method: "post",
@@ -237,7 +242,32 @@ const Index = ({ classes, setisAccountinfo, setisEdit }) => {
           },
         },
       });
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
+      if (updatedata?.data?.[0]?.status) {
+        swal.fire({
+          text: `${updatedata?.data?.[0]?.message}`,
+          icon: "success",
+          showConfirmButton: false,
+          timer: 3000,
+        });
+        setisEdit(false)
+        setisAccountinfo(true)
+      } else {
+        swal.fire({
+          text: `${updatedata?.data?.[0]?.message}`,
+          icon: "error",
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      }
     } catch (e) {
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
       console.log(e);
     }
   };
