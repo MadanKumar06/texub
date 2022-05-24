@@ -237,6 +237,11 @@ const Checkout = () => {
     var country = user?.custom_attributes?.filter(
       (itm) => itm?.attribute_code === "customer_country"
     );
+    let billing_or_shipping = quotedata[0]?.address_list?.filter(
+      (itm) => itm?.address_id == quotedata[0]?.invoice?.billing_address_id
+    );
+    console.log(billing_or_shipping);
+    debugger;
     quotedata[0]?.invoice_items?.filter((qd) => {
       itemsdata.push({
         base_discount_amount: qd?.base_discount_amount,
@@ -319,17 +324,32 @@ const Checkout = () => {
               city: addressdata?.city,
               country_id: country?.[0]?.value,
               customer_address_id:
-                shipping_method === "texub_shipping" && addressdata?.id
-                  ? addressdata?.id
+                shipping_method === "texub_shipping"
+                  ? billing_or_shipping?.[0]?.address_id
                   : user?.default_shipping,
-              email: user?.email,
-              firstname: user?.firstname,
-              lastname: user?.lastname,
-              postcode: addressdata?.pincode,
+              email:
+                shipping_method === "texub_shipping"
+                  ? billing_or_shipping?.[0]?.address_id
+                  : user?.email,
+              firstname:
+                shipping_method === "texub_shipping"
+                  ? billing_or_shipping?.[0]?.firstname
+                  : user?.firstname,
+              lastname:
+                shipping_method === "texub_shipping"
+                  ? billing_or_shipping?.[0]?.lastname
+                  : user?.lastname,
+              postcode:
+                shipping_method === "texub_shipping"
+                  ? billing_or_shipping?.[0]?.postcode
+                  : addressdata?.pincode,
               region: "Tamil Nadu",
               region_code: "TN",
               region_id: 563,
-              street: [addressdata?.address_line1, addressdata?.address_line2],
+              street:
+                shipping_method === "texub_shipping"
+                  ? billing_or_shipping?.[0]?.Street
+                  : [addressdata?.address_line1, addressdata?.address_line2],
               telephone: 123,
             },
             payment: {
@@ -352,20 +372,35 @@ const Checkout = () => {
                       city: addressdata?.city,
                       country_id: country?.[0]?.value,
                       customer_address_id:
-                        shipping_method === "texub_shipping" && addressdata?.id
-                          ? addressdata?.id
+                        shipping_method === "texub_shipping"
+                          ? billing_or_shipping?.[0]?.address_id
                           : user?.default_shipping,
-                      email: user?.email,
-                      firstname: user?.firstname,
-                      lastname: user?.lastname,
-                      postcode: addressdata?.pincode,
+                      email:
+                        shipping_method === "texub_shipping"
+                          ? billing_or_shipping?.[0]?.address_id
+                          : user?.email,
+                      firstname:
+                        shipping_method === "texub_shipping"
+                          ? billing_or_shipping?.[0]?.firstname
+                          : user?.firstname,
+                      lastname:
+                        shipping_method === "texub_shipping"
+                          ? billing_or_shipping?.[0]?.lastname
+                          : user?.lastname,
+                      postcode:
+                        shipping_method === "texub_shipping"
+                          ? billing_or_shipping?.[0]?.postcode
+                          : addressdata?.pincode,
                       region: "Tamil Nadu",
                       region_code: "TN",
                       region_id: 563,
-                      street: [
-                        addressdata?.address_line1,
-                        addressadd?.address_line2,
-                      ],
+                      street:
+                        shipping_method === "texub_shipping"
+                          ? billing_or_shipping?.[0]?.Street
+                          : [
+                              addressdata?.address_line1,
+                              addressdata?.address_line2,
+                            ],
                       telephone: 123,
                     },
                     method:
