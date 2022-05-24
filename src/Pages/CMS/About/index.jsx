@@ -31,6 +31,7 @@ import about_banner from "../../../Assets/Aboutus//banner/about_bg.png";
 import board1 from "../../../Assets/Aboutus/members/board1.png";
 import board2 from "../../../Assets/Aboutus/members/board2.png";
 import board3 from "../../../Assets/Aboutus/members/board3.png";
+import NiranjanGidwani from "../../../Assets/Aboutus/membersimg/NiranjanGidwani.png";
 import board_member1 from "../../../Assets/Aboutus/membersimg/board_member1.png";
 import board_member2 from "../../../Assets/Aboutus/membersimg/board_member2.png";
 import board_member3 from "../../../Assets/Aboutus/membersimg/board_member3.png";
@@ -40,6 +41,7 @@ import susir from "../../../Assets/Aboutus/membersimg/susir.png";
 import yasuo from "../../../Assets/Aboutus/membersimg/yasuo.png";
 import vinay from "../../../Assets/Aboutus/membersimg/vinay.png";
 import ahmed from "../../../Assets/Aboutus/membersimg/ahmed.png";
+import AhmedRayyan from "../../../Assets/Aboutus/membersimg/AhmedRayyan.png";
 import dummy from "../../../Assets/Aboutus/membersimg/dummy.png";
 import Zohra from "../../../Assets/Aboutus/membersimg/Zohra.png";
 import aditya from "../../../Assets/Aboutus/membersimg/aditya.png";
@@ -50,6 +52,9 @@ import william from "../../../Assets/Aboutus/membersimg/william.png";
 import Inbarajan from "../../../Assets/Aboutus/membersimg/Inbarajan.png";
 import suchit_shah from "../../../Assets/Aboutus/membersimg/suchit_shah.png";
 import Tushar from "../../../Assets/Aboutus/membersimg/Tushar.png";
+import AdityaShah from "../../../Assets/Aboutus/membersimg/AdityaShah.png";
+
+import about_banner_image from "../../../Assets/Aboutus/banner/about_banner.png";
 
 import vision_bg from "../../../Assets/Aboutus/vision_bg.png";
 import vision_quote from "../../../Assets/Aboutus/vision_quote.png";
@@ -136,7 +141,7 @@ function Index() {
         "Over 30 years of experience in setting up business network globally. Accomplished leader with track record of success in bringing global and holistic perspective to enterprises in transformation.",
     },
     {
-      image: board_member1,
+      image: NiranjanGidwani,
       bg: board1,
       quote_bg: board_member_quote_bg,
       name: "Niranjan Gidwani",
@@ -192,7 +197,7 @@ function Index() {
         "IT Engineer Turned Entrepreneur with 12 Years of Experience in IT, DigitalTransformation Space. Vinay has Proven management experience in Setting up new ventures & building system driven businesses. Worked withTCS, BNI globally.",
     },
     {
-      image: ahmed,
+      image: AhmedRayyan,
       quote_bg: advisory_board_bg,
       name: "Ahmed Rayyan",
       designation: "DIRECTOR, INDIA & SOUTH ASIA",
@@ -203,7 +208,7 @@ function Index() {
 
   const core = [
     {
-      image: aditya,
+      image: AdityaShah,
       name: "Aditya Shah",
       designation: "HEAD STRATEGY & CORPORATE FINANCE",
     },
@@ -321,30 +326,32 @@ function Index() {
               </p>
             </div>
             <div className="content__right">
-              <img src={right} alt="" />
+              <img src={about_banner_image} alt="" />
             </div>
           </div>
           <div className="businessmodel__footer">
-            <p>
-              <img src={global} alt="" />
-              <span>Global Presence</span>
-            </p>
-            <p>
-              <img src={effieciency} alt="" />
-              <span>Efficiency</span>
-            </p>
-            <p>
-              <img src={transparency} alt="" />
-              <span>Transparency</span>
-            </p>
-            <p>
-              <img src={response} alt="" />
-              <span>Quick Response</span>
-            </p>
-            <p>
-              <img src={tracking} alt="" />
-              <span>Order Tracking</span>
-            </p>
+            <div className="businessmodel_section">
+              <p>
+                <img src={global} alt="" />
+                <span>Global Presence</span>
+              </p>
+              <p>
+                <img src={effieciency} alt="" />
+                <span>Efficiency</span>
+              </p>
+              <p>
+                <img src={transparency} alt="" />
+                <span>Transparency</span>
+              </p>
+              <p>
+                <img src={response} alt="" />
+                <span>Quick Response</span>
+              </p>
+              <p>
+                <img src={tracking} alt="" />
+                <span>Order Tracking</span>
+              </p>
+            </div>
           </div>
         </div>
 
@@ -406,7 +413,7 @@ function Index() {
         </div>
 
         <div className="aboutus__mgmt">
-          <h2>Management Team</h2>
+          <h2>Core Team</h2>
           <div className="mgmt__content">
             <ul>
               {mgmt.map((data) => (
@@ -429,7 +436,7 @@ function Index() {
         </div>
 
         <div className="aboutus__core">
-          <h2>Core Team</h2>
+          <h2 className="header_title">Core Team</h2>
           <div className="core__content">
             <ul>
               {core.map((data) => (

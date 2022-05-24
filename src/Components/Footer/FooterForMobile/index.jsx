@@ -43,7 +43,52 @@ const MobileFooterAccordions = () => {
           >
             <Typography>About Us</Typography>
           </Link>
-          <Link
+            <Link
+                to={`/${
+                  customnostore ? customnostore : geo?.country_name
+                }/sell-on-texub`}
+                className="link"
+              >
+                <Typography>Sell On TEXUB</Typography>
+              </Link>
+              <Link
+                to={`/${
+                  customnostore ? customnostore : geo?.country_name
+                }/buy-on-texub`}
+                className="link"
+              >
+                <Typography>Buy On TEXUB</Typography>
+              </Link>
+               <Link
+                to={`/${
+                  customnostore ? customnostore : geo?.country_name
+                  }/contactus`}
+                  className="link"
+                >
+                <Typography>Contact Us</Typography>
+              </Link>
+         
+         
+        </AccordionDetails>
+      </Accordion>
+      <Accordion
+        expanded={expanded === "panel2"}
+        onChange={handleChange("panel2")}
+      >
+        <AccordionSummary
+          expandIcon={<ExpandMore />}
+          aria-controls="panel2bh-content"
+          id="panel2bh-header"
+        >
+          <Typography
+            sx={{ width: "33%", flexShrink: 0 }}
+            className="heading_accordion"
+          >
+            Legal
+          </Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+           <Link
             to={`/${
               customnostore ? customnostore : geo?.country_name
             }/termsofuse/${currencyData?.[2]?.staticPages?.terms}`}
@@ -77,59 +122,33 @@ const MobileFooterAccordions = () => {
           >
             <Typography>Product Listing Policy</Typography>
           </Link>
-          <Link
-            to={`/${
-              customnostore ? customnostore : geo?.country_name
-            }/contactus`}
+          {/* <Link
+            to={`/${customnostore ? customnostore : geo?.country_name}/legal`}
             className="link"
           >
-            <Typography>Contact Us</Typography>
-          </Link>
-        </AccordionDetails>
-      </Accordion>
-      <Accordion
-        expanded={expanded === "panel2"}
-        onChange={handleChange("panel2")}
-      >
-        <AccordionSummary
-          expandIcon={<ExpandMore />}
-          aria-controls="panel2bh-content"
-          id="panel2bh-header"
-        >
-          <Typography
-            sx={{ width: "33%", flexShrink: 0 }}
-            className="heading_accordion"
-          >
-            Services
-          </Typography>
-        </AccordionSummary>
-        <AccordionDetails>
+            <Typography>Legal </Typography>
+          </Link> */}
+          <Typography>Cookies Permission </Typography>
           <Link
-            to={`/${
-              customnostore ? customnostore : geo?.country_name
-            }/training`}
+            to={`/${customnostore ? customnostore : geo?.country_name}/gdpr`}
             className="link"
           >
-            <Typography>Training</Typography>
+            <Typography>GDPR </Typography>
           </Link>
+         
           {/* <Link to={`/${customnostore ? customnostore : geo?.country_name}/seller_advantage`} className="link">
             <Typography>Seller Advantage</Typography>
           </Link>
           <Link to={`/${customnostore ? customnostore : geo?.country_name}/buyer_advantage`} className="link">
             <Typography>Buyer Advantage</Typography>
           </Link> */}
-          <Link
-            to={`/${customnostore ? customnostore : geo?.country_name}/career`}
-            className="link"
-          >
-            <Typography>Career</Typography>
-          </Link>
-          <Link
+         
+          {/* <Link
             to={`/${customnostore ? customnostore : geo?.country_name}`}
             className="link"
           >
             <Typography>How Its Works</Typography>
-          </Link>
+          </Link> */}
         </AccordionDetails>
       </Accordion>
       <Accordion
@@ -149,33 +168,33 @@ const MobileFooterAccordions = () => {
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Link
-            to={`/${customnostore ? customnostore : geo?.country_name}/legal`}
-            className="link"
-          >
-            <Typography>Legal </Typography>
-          </Link>
-          <Typography>Cookies Permission </Typography>
-          <Link
-            to={`/${customnostore ? customnostore : geo?.country_name}/gdpr`}
-            className="link"
-          >
-            <Typography>GDPR </Typography>
-          </Link>
+          
           <Link
             to={`/${customnostore ? customnostore : geo?.country_name}/Faqs`}
             className="link"
           >
             <Typography>FAQs </Typography>
           </Link>
-          <Link
-            to={`/${
-              customnostore ? customnostore : geo?.country_name
-            }/blogsmain`}
+          <a
+           
             className="link"
           >
             <Typography>Blogs</Typography>
+          </a>
+           <Link
+            to={`/${customnostore ? customnostore : geo?.country_name}/career`}
+            className="link"
+          >
+            <Typography>Career</Typography>
           </Link>
+           <a
+            // to={`/${
+            //   customnostore ? customnostore : geo?.country_name
+            // }/training`}
+            className="link"
+          >
+            <Typography>Training</Typography>
+          </a>
         </AccordionDetails>
       </Accordion>
     </div>

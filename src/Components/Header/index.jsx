@@ -179,11 +179,11 @@ const Header = ({ classes }) => {
               </Link>
               <span>New</span>
             </Typography>
-            {/* <Typography variant="h6" className={classes.title}>
+            <Typography variant="h6" className={classes.title}>
               <Link
                 to={`/${
                   customnostore ? customnostore : geo?.country_name
-                }/coming-soon`}
+                }/sell-on-texub`}
               >
                 {" "}
                 Sell On TEXUB{" "}
@@ -193,12 +193,12 @@ const Header = ({ classes }) => {
               <Link
                 to={`/${
                   customnostore ? customnostore : geo?.country_name
-                }/coming-soon`}
+                }/buy-on-texub`}
               >
                 {" "}
                 Buy On TEXUB{" "}
               </Link>
-            </Typography> */}
+            </Typography>
             {/* <Typography variant="h6" className={classes.title}>
               <Link to={`/${customnostore ? customnostore : geo?.country_name}/Faqs`}> FAQ</Link>
             </Typography> */}

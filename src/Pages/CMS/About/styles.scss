@@ -30,7 +30,7 @@ $yellow: #DDB363;
 .aboutus {
   .aboutus__banner {
     max-width: 1920px;
-    // margin: 0 3%;
+     margin: 0 3%;
     position: relative;
 
     img {
@@ -39,7 +39,7 @@ $yellow: #DDB363;
     }
       .aboutus__topbanner__floatingtext {
       position: absolute;
-      left: 2em;
+      left: 5em;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -208,13 +208,19 @@ $yellow: #DDB363;
 
     .businessmodel__footer {
       background-color: #f5f5f5;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      align-items: center;
       gap: 10%;
       padding: 3em 0;
       margin-top: -2em;
+      .businessmodel_section{
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        width: 90%;
+        gap: 15px;
+        margin: auto;
+      }
 
       p {
         display: flex;
@@ -225,7 +231,7 @@ $yellow: #DDB363;
 
         span {
           color: #0d2d53;
-          font-size: 16px;
+          font-size: 18px;
           font-weight: 600;
         }
       }
@@ -608,10 +614,13 @@ $yellow: #DDB363;
   }
   
   .aboutus__core {
+    // display: none;
     background-color: white;
     padding-top: 2em;
     padding-bottom: 2em;
-
+    .header_title{
+      display: none;
+    }
     h2 {
       @include subtitle();
       font-size:30px;
@@ -874,10 +883,46 @@ $yellow: #DDB363;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-bottom: 3em;
+    margin-bottom: 1em !important;
     margin-left: 2%;
     margin-right: 2%;
-}
+    padding-top: 1em !important;
+  }
+  .aboutus .aboutus__highlights h2{
+    margin: 10px 0;
+  }
+  .aboutus .aboutus__members{
+    padding: 1em 0;
+  }
+  .aboutus .aboutus__members h2{
+    margin: 10px 0;
+  }
+  .aboutus .aboutus__advisary{
+    padding: 1em 0;
+  }
+  .aboutus .aboutus__advisary h2{
+    margin: 10px 0;
+  }
+  .aboutus .aboutus__core{
+    padding: 1em 0;
+  }
+  .aboutus .aboutus__core h2{
+    margin: 10px 0;
+  }
+  .aboutus .aboutus__core .core__content{
+    width: 90%;
+  }
+  .aboutus .aboutus__core .core__content ul{
+    justify-content: space-between;
+  }
+  .aboutus .aboutus__mgmt .mgmt__content{
+    padding-left: 3%;
+    padding-right: 3%;
+  }
+  .aboutus .aboutus__mgmt .mgmt__content ul{
+    justify-content: space-between;
+  }
+
 }
 @media (max-width: 850px) {
   .aboutus .aboutus__banner .aboutus__topbanner__floatingtext{
@@ -934,7 +979,9 @@ $yellow: #DDB363;
     width: calc(50% - 1px);
   }
   .aboutus .aboutus__businessmodel .businessmodel__content{
-    flex-direction: column;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center
   }
   .aboutus .aboutus__businessmodel .businessmodel__content .content__left, .aboutus .aboutus__businessmodel .businessmodel__content .content__right{
     width: calc(100% - 20px);
@@ -953,6 +1000,10 @@ $yellow: #DDB363;
   }
   .aboutus .aboutus__info{
     padding: 10px 15px;
+  }
+  .aboutus .aboutus__info p{
+    margin: 10px 0;
+    font-size: 18px;
   }
 }
 @media (max-width: 670px) {
@@ -979,6 +1030,10 @@ $yellow: #DDB363;
         width: calc(35% - 2em);
         text-align: center;
     }
+    .aboutus .aboutus__core .core__content ul{
+      justify-content: center;
+    }
+    
 
 }
 @media (max-width: 567px) {
@@ -1045,6 +1100,9 @@ $yellow: #DDB363;
   }
   .aboutus .aboutus__content ul .vision_quote_section .quote_section .quote_block .quote_msg{
     margin-left: 25px;
+  }
+  .aboutus .aboutus__businessmodel .businessmodel__footer .businessmodel_section{
+    justify-content: space-between;
   }
 }
 @media (max-width: 435px) {
