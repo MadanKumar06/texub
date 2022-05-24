@@ -22,7 +22,6 @@ const Productsbrands = ({
   const [isBrandSelected, setIsBrandSelected] = useState(null);
   const [isCategorySelected, setIsCategorySelected] = useState(null);
   const sliderRef = React.useRef(0);
-  const brandRef = React.useRef(0);
   const brand = (value) => {
     value && setisChange(value);
   };
@@ -227,23 +226,13 @@ const Productsbrands = ({
     ],
   };
 
-  useEffect(() => {
-    if (
-      sliderBrandsAndCategories?.brands?.length > 0 &&
-      homeCategorySearch?.name
-    ) {
-      sliderBrandsAndCategories?.brands?.map((itm, index) => {
-        if (itm?.option_id == homeCategorySearch?.value) {
-          setIsBrandSelected(parseInt(itm?.option_id));
-          brandRef.current.slickGoTo(index);
-        }
-      });
-    }
-  }, [sliderBrandsAndCategories?.brands, homeCategorySearch]);
-
   let id = JSON.parse(localStorage.getItem("all_category_id"));
   useEffect(() => {
-    if (getCategories?.length > 0 && homeCategorySearch?.name) {
+    if (
+      getCategories?.length > 0 &&
+      homeCategorySearch?.name === "category_id"
+    ) {
+      debugger;
       getCategories?.map((itm, index) => {
         if (itm?.category?.id == homeCategorySearch?.value) {
           setIsCategorySelected(parseInt(itm?.category?.id));
@@ -251,8 +240,10 @@ const Productsbrands = ({
         }
       });
     } else if (getCategories?.length > 0 && id) {
-      sliderRef.current.slickGoTo(0);
-      setIsCategorySelected(46);
+      setTimeout(() => {
+        sliderRef.current.slickGoTo(0);
+        setIsCategorySelected(46);
+      }, 1000);
     }
   }, [getCategories, homeCategorySearch, id]);
 
@@ -263,7 +254,7 @@ const Productsbrands = ({
           <SimpleLoader />
         ) : (
           <div className="Slider_Section">
-            <Slider {...Productsicon} ref={brandRef} className="slide_Test">
+            <Slider {...Productsicon} className="slide_Test">
               {sliderBrandsAndCategories?.brands?.length &&
                 sliderBrandsAndCategories?.brands?.map((itm, index) => (
                   <div
@@ -277,7 +268,7 @@ const Productsbrands = ({
                         ...prevState,
                         brand_id: itm?.option_id,
                       }));
-                      setIsBrandSelected(parseInt(itm?.option_id));
+                      setIsBrandSelected(itm?.option_id);
                       setApplyFilter(!applyFilter);
                     }}
                   >

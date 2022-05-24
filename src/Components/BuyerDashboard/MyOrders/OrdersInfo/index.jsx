@@ -30,8 +30,11 @@ const Index = ({ orders, setisVieworders, setisOrders }) => {
   const [{ customnostore, geo }, dispatch] = useStateValue();
   const currentorder = window.localStorage.getItem("orderinfoCurrentorder");
   const [open, setOpen] = useState(false);
-  // const handleOpen = () => setOpen(true);
-  //const handleClose = () => setOpen(false);
+  const [serialNumber, setSerialNumber] = useState([]);
+  const handleOpen = (serialNumbers) => {
+    setOpen(true);
+    setSerialNumber(serialNumbers);
+  };
   const handleClose = (event, reason) => {
     if (reason && reason === "backdropClick") return;
     else {
@@ -43,15 +46,16 @@ const Index = ({ orders, setisVieworders, setisOrders }) => {
     }
   };
   const [detailsorder, setdetailsorder] = useState([]);
-   const [entity_id, setentity_id] = useState();
-  const [update_transaction_details,setupdate_transaction_details] = useState(false)
+  const [entity_id, setentity_id] = useState();
+  const [update_transaction_details, setupdate_transaction_details] =
+    useState(false);
   const [isUopup, setisUopup] = useState(false);
   const Popup = (event) => {
     setisUopup(event);
   };
-  useEffect(()=>{
-    setentity_id(detailsorder?.[0]?.order_details?.[0]?.entity_id)
-  },[detailsorder])
+  useEffect(() => {
+    setentity_id(detailsorder?.[0]?.order_details?.[0]?.entity_id);
+  }, [detailsorder]);
 
   const [TrackOrder, setisTrackOrder] = useState(false);
   const PopupTrack = (event) => {
@@ -137,6 +141,7 @@ const Index = ({ orders, setisVieworders, setisOrders }) => {
         customBodyRender: (value, tablemeta) => {
           let name = tablemeta?.rowData[9];
           let discription = tablemeta?.rowData[10];
+          let serialNumbers = tablemeta?.rowData[11];
           return (
             <div className="productname">
               <img src={image} alt="" className="image"></img>
@@ -144,9 +149,9 @@ const Index = ({ orders, setisVieworders, setisOrders }) => {
                 <span className="modal_name">{name}</span>
                 <span className="modal_content">{discription}</span>
                 <div className="serial_number">
-                  {/* <span onClick={() => handleOpen()}>
+                  <span onClick={() => handleOpen(serialNumbers)}>
                     Show Serial Numbers <KeyboardArrowDownOutlinedIcon />
-                  </span> */}
+                  </span>
                 </div>
               </div>
             </div>
@@ -242,15 +247,6 @@ const Index = ({ orders, setisVieworders, setisOrders }) => {
         },
       },
     },
-    // {
-    //   name: "hub",
-    //   label: "Hub",
-    //   options: {
-    //     customBodyRender: (value) => {
-    //       return <div className="vieworders_hub">{value}</div>;
-    //     },
-    //   },
-    // },
     {
       name: "name",
       label: " ",
@@ -265,26 +261,14 @@ const Index = ({ orders, setisVieworders, setisOrders }) => {
         display: false,
       },
     },
+    {
+      name: "serialNumbers",
+      label: " ",
+      options: {
+        display: false,
+      },
+    },
   ];
-
-  // serial number popup id here
-  const serialNumbers = [
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-    { number: "Hp0000006" },
-  ];
-
   return (
     <>
       <div className="vieworders_main">
@@ -365,12 +349,16 @@ const Index = ({ orders, setisVieworders, setisOrders }) => {
                   {detailsorder?.[0]?.order_details?.[0]?.customer_name}
                 </span>
               </div>
-              <div className="username">
-                <span className="id_heading">Approved By</span>
-                <span className="id">
-                  {detailsorder?.[0]?.order_details?.[0]?.approved_by}
-                </span>
-              </div>
+              {detailsorder?.[0]?.order_details?.[0]?.approved_by === "--" ? (
+                ""
+              ) : (
+                <div className="username">
+                  <span className="id_heading">Approved By</span>
+                  <span className="id">
+                    {detailsorder?.[0]?.order_details?.[0]?.approved_by}
+                  </span>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -410,18 +398,46 @@ const Index = ({ orders, setisVieworders, setisOrders }) => {
                         </span>
                         <span className="name">
                           {" "}
-                          {detailsorder?.[0]?.order_details?.[0]?.shipping_name}
+                          {
+                            detailsorder?.[0]?.order_details?.[0]
+                              ?.shipping_address?.[0]?.firstname
+                          }{" "}
+                          {
+                            detailsorder?.[0]?.order_details?.[0]
+                              ?.shipping_address?.[0]?.lastname
+                          }
                         </span>
-                        <span className="address">
-                         {
+                        <span className="name">
+                          {" "}
+                          {
                             detailsorder?.[0]?.order_details?.[0]
                               ?.shipping_address?.[0]?.Street?.[0]
                           }
                         </span>
-                        <span className="address">
+                        <span className="name">
+                          {" "}
                           {
                             detailsorder?.[0]?.order_details?.[0]
                               ?.shipping_address?.[0]?.Street?.[1]
+                          }
+                        </span>
+                        <span className="name">
+                          {" "}
+                          {
+                            detailsorder?.[0]?.order_details?.[0]
+                              ?.shipping_address?.[0]?.city
+                          }
+                          {" - "}
+                          {
+                            detailsorder?.[0]?.order_details?.[0]
+                              ?.shipping_address?.[0]?.country_id
+                          }
+                        </span>
+                        <span className="name">
+                          {" "}
+                          {
+                            detailsorder?.[0]?.order_details?.[0]
+                              ?.shipping_address?.[0]?.postcode
                           }
                         </span>
                       </li>
@@ -434,18 +450,46 @@ const Index = ({ orders, setisVieworders, setisOrders }) => {
                         </span>
                         <span className="name">
                           {" "}
-                          {detailsorder?.[0]?.order_details?.[0]?.billing_name}
+                          {
+                            detailsorder?.[0]?.order_details?.[0]
+                              ?.billing_address?.[0]?.firstname
+                          }{" "}
+                          {
+                            detailsorder?.[0]?.order_details?.[0]
+                              ?.billing_address?.[0]?.lastname
+                          }
                         </span>
-                        <span className="address">
-                           {
+                        <span className="name">
+                          {" "}
+                          {
                             detailsorder?.[0]?.order_details?.[0]
                               ?.billing_address?.[0]?.Street?.[0]
                           }
                         </span>
-                        <span className="address">
+                        <span className="name">
+                          {" "}
                           {
                             detailsorder?.[0]?.order_details?.[0]
                               ?.billing_address?.[0]?.Street?.[1]
+                          }
+                        </span>
+                        <span className="name">
+                          {" "}
+                          {
+                            detailsorder?.[0]?.order_details?.[0]
+                              ?.billing_address?.[0]?.city
+                          }
+                          {" - "}
+                          {
+                            detailsorder?.[0]?.order_details?.[0]
+                              ?.billing_address?.[0]?.country_id
+                          }
+                        </span>
+                        <span className="name">
+                          {" "}
+                          {
+                            detailsorder?.[0]?.order_details?.[0]
+                              ?.billing_address?.[0]?.postcode
                           }
                         </span>
                       </li>
@@ -618,46 +662,58 @@ const Index = ({ orders, setisVieworders, setisOrders }) => {
             <span>Back</span>
           </div>
         </div> */}
-        <div>
-          <Modal
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-            closeAfterTransition
-            BackdropComponent={Backdrop}
-            disableRestoreFocus={true}
-            BackdropProps={{
-              timeout: 500,
-            }}
-            className="serial_number_popup"
-          >
-            <div className="serial_popup_main" style={{ outline: "none" }}>
-              <Clear
-                className="clear_btn serial_popup_clear_btn"
-                onClick={() => handleClose()}
-              />
-              <div className="serial_popup_block">
-                <div className="serial_number_block">
-                  {serialNumbers?.length &&
-                    serialNumbers?.map((item) => (
-                      <div className="serial_number_block">
-                        <span className="heading">{item.number}</span>
-                      </div>
-                    ))}
+        {serialNumber?.length ? (
+          <div>
+            <Modal
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="modal-modal-title"
+              aria-describedby="modal-modal-description"
+              closeAfterTransition
+              BackdropComponent={Backdrop}
+              disableRestoreFocus={true}
+              BackdropProps={{
+                timeout: 500,
+              }}
+              className="serial_number_popup"
+            >
+              <div className="serial_popup_main" style={{ outline: "none" }}>
+                <Clear
+                  className="clear_btn serial_popup_clear_btn"
+                  onClick={() => handleClose()}
+                />
+                <div className="serial_popup_block">
+                  <div className="serial_number_block">
+                    {serialNumber?.length &&
+                      serialNumber?.map((item) => (
+                        <div className="serial_number_block">
+                          <span className="heading">{item}</span>
+                        </div>
+                      ))}
+                  </div>
                 </div>
               </div>
-            </div>
-          </Modal>
-        </div>
+            </Modal>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
-      {isUopup && <Ratingpopup Popup={Popup} currentorder={currentorder} />}
+      {isUopup && (
+        <Ratingpopup
+          Popup={Popup}
+          currentorder={currentorder}
+          data={detailsorder?.[0]?.order_details?.[0]}
+        />
+      )}
       {TrackOrder && <TrackOrderpopup PopupTrack={PopupTrack} />}
-     {Transaction && <TransactionPopup 
-      PopupTransaction={PopupTransaction} 
-      product_id={entity_id}
-      setupdate_transaction_details={setupdate_transaction_details}
-      />}
+      {Transaction && (
+        <TransactionPopup
+          PopupTransaction={PopupTransaction}
+          product_id={entity_id}
+          setupdate_transaction_details={setupdate_transaction_details}
+        />
+      )}
     </>
   );
 };

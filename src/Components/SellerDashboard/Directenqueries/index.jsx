@@ -304,6 +304,7 @@ const Index = ({ searchdata, searchupdate }) => {
           direct={directList}
           setrefreshdata={setrefreshdata}
           refreshdata={refreshdata}
+          settype={settype}
         />
       )}
       <div className="directenquiries__footer">

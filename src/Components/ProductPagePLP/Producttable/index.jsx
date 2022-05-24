@@ -211,7 +211,7 @@ const Productstable = ({
             src={textsize?.short_image}
             alt="short description"
             onClick={() =>
-              descriptionChangeView({ short: true, long: false, value: 30 })
+              descriptionChangeView({ short: true, long: false, value: 60 })
             }
           />
           <img

@@ -160,14 +160,6 @@ const Index = ({ currentid, setisSub, setisSubusers }) => {
       }));
       errorHandle = true;
     }
-    if (!NewSubAccountData?.forbidden) {
-      document.getElementById("forbidden")?.focus();
-      setInputValidation((prevState) => ({
-        ...prevState,
-        forbidden: "Please add forbidden access.",
-      }));
-      errorHandle = true;
-    }
     if (!NewSubAccountData?.active) {
       document.getElementById("active")?.focus();
       setInputValidation((prevState) => ({
