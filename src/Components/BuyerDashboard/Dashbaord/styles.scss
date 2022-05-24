@@ -215,6 +215,14 @@
 }
 
 @media (max-width: 1660px) {
+  .buyer_dashboard .dashboard__top .overview_image .header {
+    left: 3em;
+    font-size: 20px;
+    }
+    .buyer_dashboard .dashboard__top .overview_image .value {
+      right: 1em;
+      font-size: 28px;
+    }
   .buyer_dashboard .dashboard__top .overview_image {
     max-width: 273px;
   }
