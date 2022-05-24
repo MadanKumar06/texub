@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Modal, Backdrop, InputLabel, Rating, Button } from "@mui/material";
 import { TextField } from "@mui/material";
 
@@ -9,7 +9,7 @@ import Constant from "../../../../../Constant";
 import { useStateValue } from "../../../../../store/state";
 import swal from "sweetalert2";
 
-export default function BasicModal({ Popup, currentorder }) {
+export default function BasicModal({ Popup, currentorder, data }) {
   // const [{}, dispatch] = useStateValue();
 
   const [{}, dispatch] = useStateValue();
@@ -18,7 +18,7 @@ export default function BasicModal({ Popup, currentorder }) {
     comment: "",
   });
   const [open, setOpen] = React.useState(true);
-const [commentValidation, setcommentValidation] = useState("");
+  const [commentValidation, setcommentValidation] = useState("");
   const handleClose = (event, reason) => {
     if (reason && reason === "backdropClick") return;
     else {
@@ -30,6 +30,14 @@ const [commentValidation, setcommentValidation] = useState("");
       Popup(false);
     }
   };
+  useEffect(() => {
+    if (data) {
+      setrating({
+        star: parseInt(data?.rating),
+        comment: data?.review_details,
+      });
+    }
+  }, [data]);
 
   const reviewsubmit = async () => {
     let user = JSON.parse(localStorage.getItem("userdata"));
@@ -53,6 +61,10 @@ const [commentValidation, setcommentValidation] = useState("");
             review_details: rating?.comment,
           },
         },
+      });
+      setrating({
+        star: parseInt(submit?.data?.[0]?.rating),
+        comment: submit?.data?.[0]?.review_details,
       });
       dispatch({
         type: "SET_IS_LOADING",
@@ -82,13 +94,13 @@ const [commentValidation, setcommentValidation] = useState("");
   const checkRatingValidation = () => {
     let errorHandler = false;
     if (!rating?.comment) {
-      setcommentValidation("Please enter comments.")
+      setcommentValidation("Please enter comments.");
       errorHandler = true;
     }
     if (!errorHandler) {
-      reviewsubmit()
+      reviewsubmit();
     }
-  }
+  };
   return (
     <div>
       <Modal
@@ -144,12 +156,12 @@ const [commentValidation, setcommentValidation] = useState("");
                 //     comment: e.target.value,
                 //   }))
                 // }
-                onChange={(e) =>{
+                onChange={(e) => {
                   setrating((rating) => ({
                     ...rating,
                     comment: e.target.value,
-                  }))
-                  setcommentValidation("")
+                  }));
+                  setcommentValidation("");
                 }}
                 InputLabelProps={{
                   shrink: true,
@@ -161,7 +173,7 @@ const [commentValidation, setcommentValidation] = useState("");
                 variant="outlined"
               />
               {commentValidation && (
-                <p style={{ color: "red", textAlign:'left' }}>
+                <p style={{ color: "red", textAlign: "left" }}>
                   {commentValidation}
                 </p>
               )}

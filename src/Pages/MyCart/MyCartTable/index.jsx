@@ -354,7 +354,7 @@ const MyCartTable = ({ cartDataList, deleteCartData, setrowselect }) => {
                     <span
                       onClick={() =>
                         onCLickDetailsLink({
-                          sku: sku,
+                          sku: productname,
                           currency_id: currency_id,
                           product_id: product_id,
                         })

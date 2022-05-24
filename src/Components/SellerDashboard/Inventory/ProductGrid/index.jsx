@@ -36,9 +36,11 @@ function Index({ registerproduct, gridData }) {
       label: " ",
       options: {
         customBodyRender: (value) => {
-         return <div className="brand_image">
-            <img src={value} alt="" />
-          </div>
+          return (
+            <div className="brand_image">
+              <img src={value} alt="" />
+            </div>
+          );
         },
       },
     },
@@ -63,16 +65,43 @@ function Index({ registerproduct, gridData }) {
       name: "product_id",
       label: "ACTION",
       options: {
-        customBodyRender: (value) => {
+        customBodyRender: (value, tablemeta) => {
+          var already_assigned = tablemeta?.rowData[5];
+          var product_id = tablemeta?.rowData[6];
           return (
-            <div
-              className="productGrid__action"
-              onClick={() => registerproduct("addproduct", value, "addNew")}
-            >
-              Sell Yours
-            </div>
+            <>
+              {already_assigned == 1 ? (
+                <div
+                  className="productGrid__action"
+                  onClick={() => registerproduct("updateproduct", product_id)}
+                >
+                  Update
+                </div>
+              ) : (
+                <div
+                  className="productGrid__action"
+                  onClick={() => registerproduct("addproduct", value, "addNew")}
+                >
+                  Sell Yours
+                </div>
+              )}
+            </>
           );
         },
+      },
+    },
+    {
+      name: "already_assigned",
+      label: " ",
+      options: {
+        display: false,
+      },
+    },
+    {
+      name: "product_id",
+      label: " ",
+      options: {
+        display: false,
       },
     },
   ];

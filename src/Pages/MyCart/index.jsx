@@ -169,6 +169,9 @@ const Mycart = () => {
           }/pendinginvoice/${results?.[0]}`
         );
         dispatch({
+          type: "CART__TRIGGER",
+        });
+        dispatch({
           type: "SET_IS_LOADING",
           value: false,
         });
@@ -196,6 +199,9 @@ const Mycart = () => {
             customnostore ? customnostore : geo?.country_name
           }/pendinginvoice/${pinvoice?.data?.[0]?.quote_id}`
         );
+        dispatch({
+          type: "CART__TRIGGER",
+        });
         dispatch({
           type: "SET_IS_LOADING",
           value: false,

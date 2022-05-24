@@ -354,7 +354,7 @@ const MiniCartList = ({ handleSideBarClose }) => {
                         className="detail_link"
                         onClick={() =>
                           onCLickDetailsLink({
-                            sku: itm?.sku,
+                            sku: itm?.product_name,
                             currency_id: itm?.currency_id,
                             product_id: itm?.product_id,
                           })

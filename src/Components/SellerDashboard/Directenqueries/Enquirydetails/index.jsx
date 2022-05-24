@@ -7,10 +7,17 @@ import Constant from "../../../../Constant";
 import eye_icon from "../../../../Assets/sellerdashboard/enquiry/eye_icon.png";
 import axios from "axios";
 import swal from "sweetalert2";
-import moment from 'moment'
+import moment from "moment";
 import { useStateValue } from "../../../../store/state";
 
-const Index = ({ closePOPup, popid, direct, setrefreshdata, refreshdata }) => {
+const Index = ({
+  closePOPup,
+  popid,
+  direct,
+  setrefreshdata,
+  refreshdata,
+  settype,
+}) => {
   const [open, setOpen] = useState(true);
   const [currentdata, setcurrentdata] = useState();
   const [{ geo, customnostore }, dispatch] = useStateValue();
@@ -20,7 +27,7 @@ const Index = ({ closePOPup, popid, direct, setrefreshdata, refreshdata }) => {
     setcurrentdata(temp);
   }, [direct]);
 
-  console.log(direct)
+  console.log(direct);
 
   const updatestatus = async (value) => {
     let storedata = JSON.parse(localStorage.getItem("storedata"));
@@ -52,8 +59,9 @@ const Index = ({ closePOPup, popid, direct, setrefreshdata, refreshdata }) => {
         },
       });
       if (update?.data[0]?.status) {
+        settype(0);
         swal.fire({
-          text: `Submitted Successfully`,
+          text: `${update?.data[0]?.message}`,
           icon: "success",
           showConfirmButton: false,
           timer: 3000,
@@ -61,8 +69,8 @@ const Index = ({ closePOPup, popid, direct, setrefreshdata, refreshdata }) => {
         setrefreshdata(!refreshdata);
         dispatch({
           type: "SET_IS_LOADING",
-           value: false,
-      });
+          value: false,
+        });
       } else {
         swal.fire({
           text: `Unable to Submit`,
@@ -110,7 +118,8 @@ const Index = ({ closePOPup, popid, direct, setrefreshdata, refreshdata }) => {
           </div>
           <p className="p1">
             <img className="eye_icon" src={eye_icon} alt="" />
-            {currentdata?.viewers_count ? currentdata?.viewers_count : 0} Sellers are viewing at this enquiry right now.
+            {currentdata?.viewers_count ? currentdata?.viewers_count : 0}{" "}
+            Sellers are viewing at this enquiry right now.
           </p>
           <div className="enquirydetails_section">
             <div className="enquirydetails">
@@ -161,7 +170,9 @@ const Index = ({ closePOPup, popid, direct, setrefreshdata, refreshdata }) => {
             </div>
             <div className="enquirydetails">
               <p className="heading">Enquiry Date</p>
-              <p className="details">{moment(currentdata?.enquiry_date).format("DD/MM/YYYY")}</p>
+              <p className="details">
+                {moment(currentdata?.enquiry_date).format("DD/MM/YYYY")}
+              </p>
             </div>
             <div className="enquirydetails">
               <p className="heading">Notes</p>
