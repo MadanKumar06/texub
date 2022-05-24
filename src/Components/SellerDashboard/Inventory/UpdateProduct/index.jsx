@@ -1329,7 +1329,6 @@ function Index({ type, pid }) {
                   <Autocomplete
                     multiple
                     id="res_country"
-                    open={true}
                     options={restricts_country ? restricts_country : []}
                     disableCloseOnSelect
                     value={updateProductList?.restricts_country}

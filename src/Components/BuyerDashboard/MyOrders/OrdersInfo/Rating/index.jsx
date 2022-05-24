@@ -30,14 +30,40 @@ export default function BasicModal({ Popup, currentorder, data }) {
       Popup(false);
     }
   };
-  useEffect(() => {
-    if (data) {
+
+  useEffect(async () => {
+    let user = JSON.parse(localStorage.getItem("userdata"));
+    dispatch({
+      type: "SET_IS_LOADING",
+      value: true,
+    });
+    try {
+      const orderdetails = await axios({
+        method: "post",
+        url: `${Constant?.baseUrl()}/getReview`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        data: {
+          order_id: parseInt(data?.entity_id),
+        },
+      });
+
       setrating({
-        star: parseInt(data?.rating),
-        comment: data?.review_details,
+        star: parseInt(orderdetails?.data?.[0]?.rating),
+        comment: orderdetails?.data?.[0]?.review_details,
+      });
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
+    } catch (e) {
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
       });
     }
-  }, [data]);
+  }, []);
 
   const reviewsubmit = async () => {
     let user = JSON.parse(localStorage.getItem("userdata"));
@@ -101,6 +127,7 @@ export default function BasicModal({ Popup, currentorder, data }) {
       reviewsubmit();
     }
   };
+
   return (
     <div>
       <Modal

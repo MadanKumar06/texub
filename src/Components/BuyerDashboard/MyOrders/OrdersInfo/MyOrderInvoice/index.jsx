@@ -160,7 +160,10 @@ const Index = ({ orders }) => {
         customBodyRender: (value) => {
           return (
             <div className="vieworders_price">
-              <span className="inr">INR</span>
+              <span className="inr">
+                {" "}
+                {detailsorder?.[0]?.order_details?.[0]?.order_currency}
+              </span>
               <span className="price">
                 {" "}
                 {formatToCurrency(parseInt(value))}{" "}
@@ -177,7 +180,10 @@ const Index = ({ orders }) => {
         customBodyRender: (value) => {
           return (
             <div className="vieworders_total">
-              <span className="inr">INR</span>
+              <span className="inr">
+                {" "}
+                {detailsorder?.[0]?.order_details?.[0]?.order_currency}
+              </span>
               <span className="price">
                 {" "}
                 {formatToCurrency(parseInt(value))}{" "}
@@ -196,6 +202,13 @@ const Index = ({ orders }) => {
     },
     {
       name: "description",
+      label: " ",
+      options: {
+        display: false,
+      },
+    },
+    {
+      name: "serialNumbers",
       label: " ",
       options: {
         display: false,
@@ -266,11 +279,31 @@ const Index = ({ orders }) => {
             <div className="username">
               <span className="id_heading">Order ID :</span>
               <span className="id">{order_id}</span>
+              <span className="status">
+                {detailsorder?.[0]?.order_details?.[0]?.order_status == 1
+                  ? "Pending"
+                  : detailsorder?.[0]?.order_details?.[0]?.order_status == 2
+                  ? "Confrim"
+                  : detailsorder?.[0]?.order_details?.[0]?.order_status == 3
+                  ? "Dispatch"
+                  : detailsorder?.[0]?.order_details?.[0]?.order_status == 4
+                  ? "Deliverd"
+                  : ""}
+              </span>
             </div>
             <div className="username">
               <span className="id_heading">Transaction ID :</span>
               <span className="id">
                 {detailsorder?.[0]?.order_details?.[0]?.transaction_number}
+              </span>
+              <span className="status">
+                {detailsorder?.[0]?.order_details?.[0]?.payment_status == 1
+                  ? "Pending"
+                  : detailsorder?.[0]?.order_details?.[0]?.payment_status == 2
+                  ? "Completed"
+                  : detailsorder?.[0]?.order_details?.[0]?.payment_status == 3
+                  ? "Failed"
+                  : ""}
               </span>
             </div>
           </div>
@@ -280,12 +313,16 @@ const Index = ({ orders }) => {
                 <span className="id_heading">Order ID :</span>
                 <span className="id">{order_id}</span>
               </div>
-              <div className="username">
-                <span className="id_heading">Approved By</span>
-                <span className="id">
-                  {detailsorder?.[0]?.order_details?.[0]?.approved_by}
-                </span>
-              </div>
+              {detailsorder?.[0]?.order_details?.[0]?.approved_by === "--" ? (
+                ""
+              ) : (
+                <div className="username">
+                  <span className="id_heading">Approved By</span>
+                  <span className="id">
+                    {detailsorder?.[0]?.order_details?.[0]?.approved_by}
+                  </span>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -312,7 +349,7 @@ const Index = ({ orders }) => {
                   <div className="vieworders_shippingaddress_section">
                     <div className="vieworders_payment_section">
                       <p className="payment_heading">Shipping Method</p>
-                      <p className="payment_type">Flat Rate-Fixed</p>
+                      <p className="payment_type">Texub Shipping</p>
                     </div>
                   </div>
 
@@ -325,12 +362,46 @@ const Index = ({ orders }) => {
                         </span>
                         <span className="name">
                           {" "}
-                          {detailsorder?.[0]?.order_details?.[0]?.shipping_name}
-                        </span>
-                        <span className="address">
                           {
                             detailsorder?.[0]?.order_details?.[0]
-                              ?.shipping_address
+                              ?.shipping_address?.[0]?.firstname
+                          }{" "}
+                          {
+                            detailsorder?.[0]?.order_details?.[0]
+                              ?.shipping_address?.[0]?.lastname
+                          }
+                        </span>
+                        <span className="name">
+                          {" "}
+                          {
+                            detailsorder?.[0]?.order_details?.[0]
+                              ?.shipping_address?.[0]?.Street?.[0]
+                          }
+                        </span>
+                        <span className="name">
+                          {" "}
+                          {
+                            detailsorder?.[0]?.order_details?.[0]
+                              ?.shipping_address?.[0]?.Street?.[1]
+                          }
+                        </span>
+                        <span className="name">
+                          {" "}
+                          {
+                            detailsorder?.[0]?.order_details?.[0]
+                              ?.shipping_address?.[0]?.city
+                          }
+                          {" - "}
+                          {
+                            detailsorder?.[0]?.order_details?.[0]
+                              ?.shipping_address?.[0]?.country_id
+                          }
+                        </span>
+                        <span className="name">
+                          {" "}
+                          {
+                            detailsorder?.[0]?.order_details?.[0]
+                              ?.shipping_address?.[0]?.postcode
                           }
                         </span>
                       </li>
@@ -343,12 +414,46 @@ const Index = ({ orders }) => {
                         </span>
                         <span className="name">
                           {" "}
-                          {detailsorder?.[0]?.order_details?.[0]?.billing_name}
-                        </span>
-                        <span className="address">
                           {
                             detailsorder?.[0]?.order_details?.[0]
-                              ?.billing_address
+                              ?.billing_address?.[0]?.firstname
+                          }{" "}
+                          {
+                            detailsorder?.[0]?.order_details?.[0]
+                              ?.billing_address?.[0]?.lastname
+                          }
+                        </span>
+                        <span className="name">
+                          {" "}
+                          {
+                            detailsorder?.[0]?.order_details?.[0]
+                              ?.billing_address?.[0]?.Street?.[0]
+                          }
+                        </span>
+                        <span className="name">
+                          {" "}
+                          {
+                            detailsorder?.[0]?.order_details?.[0]
+                              ?.billing_address?.[0]?.Street?.[1]
+                          }
+                        </span>
+                        <span className="name">
+                          {" "}
+                          {
+                            detailsorder?.[0]?.order_details?.[0]
+                              ?.billing_address?.[0]?.city
+                          }
+                          {" - "}
+                          {
+                            detailsorder?.[0]?.order_details?.[0]
+                              ?.billing_address?.[0]?.country_id
+                          }
+                        </span>
+                        <span className="name">
+                          {" "}
+                          {
+                            detailsorder?.[0]?.order_details?.[0]
+                              ?.billing_address?.[0]?.postcode
                           }
                         </span>
                       </li>
@@ -357,11 +462,14 @@ const Index = ({ orders }) => {
                   <div className="vieworders_shippingaddress_section pay_transaction_block">
                     <div className="vieworders_payment_section payment_block">
                       <p className="payment_heading">Payment Method</p>
-                      <p className="payment_type">wire Transfer</p>
+                      <p className="payment_type">
+                        {" "}
+                        {detailsorder?.[0]?.order_details?.[0]?.payment_method}
+                      </p>
                     </div>
                     <div className="vieworders_payment_section transaction_block">
                       {detailsorder?.[0]?.order_details?.[0]
-                        ?.transaction_number ? (
+                        ?.transaction_date ? (
                         <div className="vieworders_list">
                           <span className="block_title">
                             Transaction Refernece Number :{" "}
@@ -381,34 +489,35 @@ const Index = ({ orders }) => {
                               }
                             </span>{" "}
                             <span>
-                              {
-                                detailsorder?.[0]?.order_details?.[0]
-                                  ?.transaction_amount
-                              }
+                              {formatToCurrency(
+                                parseInt(
+                                  detailsorder?.[0]?.order_details?.[0]
+                                    ?.transaction_amount
+                                )
+                              )}
                             </span>
                           </span>
                           <span className="block_title date_time">
                             Date & Time :
                             <span className="value">
                               {" "}
-                              {transaction_info?.[0]?.date}
+                              {moment(
+                                detailsorder?.[0]?.order_details?.[0]
+                                  ?.transaction_date
+                              ).format("DD/MM/YYYY")}
                             </span>
                             <Divider orientation="vertical" />
                             <span className="value_price">
                               {" "}
-                              {transaction_info?.[0]?.time}
+                              {moment(
+                                detailsorder?.[0]?.order_details?.[0]
+                                  ?.transaction_date
+                              ).format("HH:mm:ss")}
                             </span>
                           </span>
                         </div>
                       ) : (
-                        <span
-                          className="update_transaction_block"
-                          style={{ cursor: "pointer" }}
-                        >
-                          {detailsorder?.[0]?.order_details?.[0]
-                            ?.payment_method === "banktransfer" &&
-                            "Update Transaction Details"}
-                        </span>
+                        ""
                       )}
                     </div>
                   </div>
@@ -417,7 +526,10 @@ const Index = ({ orders }) => {
                   <li className="vieworders_list">
                     <span className="total_heading"> Sub-Total</span>
                     <span className="total_amount">
-                      <span className="currency">INR</span>{" "}
+                      <span className="currency">
+                        {" "}
+                        {detailsorder?.[0]?.order_details?.[0]?.order_currency}
+                      </span>{" "}
                       {formatToCurrency(
                         parseInt(detailsorder?.[0]?.order_details[0]?.subtotal)
                       )}
@@ -426,7 +538,10 @@ const Index = ({ orders }) => {
                   <li className="vieworders_list">
                     <span className="total_heading"> Shipping Charge</span>
                     <span className="total_amount">
-                      <span className="currency">INR</span>{" "}
+                      <span className="currency">
+                        {" "}
+                        {detailsorder?.[0]?.order_details?.[0]?.order_currency}
+                      </span>{" "}
                       {formatToCurrency(
                         parseInt(
                           detailsorder?.[0]?.order_details[0]?.shipping_charge
@@ -437,7 +552,11 @@ const Index = ({ orders }) => {
                   <li className="vieworders_list">
                     <span className="total_heading"> Discount Price</span>
                     <span className="total_amount">
-                      <span className="currency">INR</span> 0.00
+                      <span className="currency">
+                        {" "}
+                        {detailsorder?.[0]?.order_details?.[0]?.order_currency}
+                      </span>{" "}
+                      0.00
                     </span>
                   </li>
                   <hr className="hr"></hr>
@@ -451,7 +570,13 @@ const Index = ({ orders }) => {
                           <span className="gst">(incl.GST)</span>
                         </div>
                         <span className="total_amount">
-                          <span className="currency">INR</span>{" "}
+                          <span className="currency">
+                            {" "}
+                            {
+                              detailsorder?.[0]?.order_details?.[0]
+                                ?.order_currency
+                            }
+                          </span>{" "}
                           {formatToCurrency(
                             parseInt(
                               detailsorder?.[0]?.order_details[0]?.grand_total

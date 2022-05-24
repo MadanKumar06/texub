@@ -148,11 +148,15 @@ const Index = ({ orders, setisVieworders, setisOrders }) => {
               <div className="product">
                 <span className="modal_name">{name}</span>
                 <span className="modal_content">{discription}</span>
-                <div className="serial_number">
-                  <span onClick={() => handleOpen(serialNumbers)}>
-                    Show Serial Numbers <KeyboardArrowDownOutlinedIcon />
-                  </span>
-                </div>
+                {serialNumbers?.length ? (
+                  <div className="serial_number">
+                    <span onClick={() => handleOpen(serialNumbers)}>
+                      Show Serial Numbers <KeyboardArrowDownOutlinedIcon />
+                    </span>
+                  </div>
+                ) : (
+                  ""
+                )}
               </div>
             </div>
           );
@@ -220,7 +224,10 @@ const Index = ({ orders, setisVieworders, setisOrders }) => {
         customBodyRender: (value) => {
           return (
             <div className="vieworders_price">
-              <span className="inr">INR</span>
+              <span className="inr">
+                {" "}
+                {detailsorder?.[0]?.order_details?.[0]?.order_currency}
+              </span>
               <span className="price">
                 {" "}
                 {formatToCurrency(parseInt(value))}{" "}
@@ -237,7 +244,10 @@ const Index = ({ orders, setisVieworders, setisOrders }) => {
         customBodyRender: (value) => {
           return (
             <div className="vieworders_total">
-              <span className="inr">INR</span>
+              <span className="inr">
+                {" "}
+                {detailsorder?.[0]?.order_details?.[0]?.order_currency}
+              </span>
               <span className="price">
                 {" "}
                 {formatToCurrency(parseInt(value))}{" "}
@@ -570,7 +580,10 @@ const Index = ({ orders, setisVieworders, setisOrders }) => {
                   <li className="vieworders_list">
                     <span className="total_heading"> Sub-Total</span>
                     <span className="total_amount1">
-                      <span className="currency">INR</span>{" "}
+                      <span className="currency">
+                        {" "}
+                        {detailsorder?.[0]?.order_details?.[0]?.order_currency}
+                      </span>{" "}
                       {formatToCurrency(
                         parseInt(detailsorder?.[0]?.order_details[0]?.subtotal)
                       )}
@@ -579,7 +592,10 @@ const Index = ({ orders, setisVieworders, setisOrders }) => {
                   <li className="vieworders_list">
                     <span className="total_heading"> Shipping Charge</span>
                     <span className="total_amount1">
-                      <span className="currency">INR</span>{" "}
+                      <span className="currency">
+                        {" "}
+                        {detailsorder?.[0]?.order_details?.[0]?.order_currency}
+                      </span>{" "}
                       {formatToCurrency(
                         parseInt(
                           detailsorder?.[0]?.order_details[0]?.shipping_charge
@@ -590,7 +606,10 @@ const Index = ({ orders, setisVieworders, setisOrders }) => {
                   <li className="vieworders_list">
                     <span className="total_heading"> Tax</span>
                     <span className="total_amount1">
-                      <span className="currency">INR</span>{" "}
+                      <span className="currency">
+                        {" "}
+                        {detailsorder?.[0]?.order_details?.[0]?.order_currency}
+                      </span>{" "}
                       {formatToCurrency(
                         parseInt(detailsorder?.[0]?.order_details[0]?.tax_price)
                       )}
@@ -599,28 +618,39 @@ const Index = ({ orders, setisVieworders, setisOrders }) => {
                   <li className="vieworders_list">
                     <span className="total_heading"> Discount Price</span>
                     <span className="total_amount1">
-                      <span className="currency">INR</span> 0.00
+                      <span className="currency">
+                        {" "}
+                        {detailsorder?.[0]?.order_details?.[0]?.order_currency}
+                      </span>{" "}
+                      0.00
                     </span>
                   </li>
                   <hr className="hr"></hr>
-                  {totalamount.map((item) => (
-                    <li key={item.id} className="vieworders_list">
-                      <div className="taxes">
-                        <span className="total_amount_heading">
-                          Total Amount
+                  {totalamount?.length &&
+                    totalamount?.map((item) => (
+                      <li key={item.id} className="vieworders_list">
+                        <div className="taxes">
+                          <span className="total_amount_heading">
+                            Total Amount
+                          </span>
+                          <span className="gst">(incl.GST)</span>
+                        </div>
+                        <span className="total_amount1">
+                          <span className="currency">
+                            {" "}
+                            {
+                              detailsorder?.[0]?.order_details?.[0]
+                                ?.order_currency
+                            }
+                          </span>{" "}
+                          {formatToCurrency(
+                            parseInt(
+                              detailsorder?.[0]?.order_details[0]?.grand_total
+                            )
+                          )}
                         </span>
-                        <span className="gst">(incl.GST)</span>
-                      </div>
-                      <span className="total_amount1">
-                        <span className="currency">INR</span>{" "}
-                        {formatToCurrency(
-                          parseInt(
-                            detailsorder?.[0]?.order_details[0]?.grand_total
-                          )
-                        )}
-                      </span>
-                    </li>
-                  ))}
+                      </li>
+                    ))}
                 </div>
               </div>
               <div className="download_document">
