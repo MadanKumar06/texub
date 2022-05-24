@@ -240,8 +240,6 @@ const Checkout = () => {
     let billing_or_shipping = quotedata[0]?.address_list?.filter(
       (itm) => itm?.address_id == quotedata[0]?.invoice?.billing_address_id
     );
-    console.log(billing_or_shipping);
-    debugger;
     quotedata[0]?.invoice_items?.filter((qd) => {
       itemsdata.push({
         base_discount_amount: qd?.base_discount_amount,
