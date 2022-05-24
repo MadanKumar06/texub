@@ -6,7 +6,7 @@
     height: 100vh;
     left: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: unset;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -50,7 +50,7 @@
             flex-direction: column;
             gap: 10px;
             margin: 0 30px 30px 30px;
-            overflow-y: scroll;
+            overflow-y: auto;
         .permissions_list_content{
             list-style: none;
             span {
@@ -59,6 +59,7 @@
                letter-spacing: 0.6px;
                width: 100%;
                font-weight: 600;
+               display: block;
             }
             span:hover{
                 background: #DDB363;

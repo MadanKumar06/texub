@@ -12,6 +12,7 @@ import { useStateValue } from "../../../store/state";
 const Index = () => {
   const [isAccountinfo, setisAccountinfo] = useState(true);
   const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
+    const [showButton,setshowButton]=useState(true);
   const userData = JSON.parse(localStorage.getItem("userdata"));
   let company_name = userData?.custom_attributes?.filter(
     (itm) => itm?.attribute_code === "customer_company_name"
@@ -95,7 +96,8 @@ const Index = () => {
 
   return (
     <div className="My_profile_main">
-      <div className="My_profile_btn_section">
+      {
+        showButton===true?<div className="My_profile_btn_section">
         {profiletype?.map((data, i) => {
           if (cartpermission && data?.name === "Sub-Users") {
           } else {
@@ -110,10 +112,11 @@ const Index = () => {
             );
           }
         })}
-      </div>
+      </div>:null
+      }
       {isAddress && <Addressbook open={Address1} />}
 
-      {isUser && <Subusers />}
+      {isUser && <Subusers setshowButton={setshowButton}/>}
       {isAccountinfo && (
         <div className="My_profile_ac">
           <span className="My_profile_main_heading">
