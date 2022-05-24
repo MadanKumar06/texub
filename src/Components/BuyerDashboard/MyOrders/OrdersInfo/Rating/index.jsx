@@ -81,7 +81,7 @@ export default function BasicModal({ Popup, currentorder, data }) {
         data: {
           data: {
             buyer_id: user?.id,
-            order_id: 13,
+            order_id: parseInt(data?.entity_id),
             order_number: currentorder,
             rating: rating?.star,
             review_details: rating?.comment,
