@@ -11,6 +11,7 @@ import { useStateValue } from "../../store/state";
 
 const firstIndex = 0;
 const PaginationControlled = ({ PaginateData, DataList, PagePerRow }) => {
+  debugger
   const [{ geo, customnostore }, dispatch] = useStateValue();
   const [page, setPage] = useState({
     page: 1,
