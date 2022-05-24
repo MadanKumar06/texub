@@ -33,7 +33,7 @@ import { useNavigate, Link } from "react-router-dom";
 
 const BuyerRegistration = ({ classes }) => {
   const history = useNavigate();
-  const [{ geo, customnostore }, dispatch] = useStateValue();
+  const [{ geo, customnostore, currencyData }, dispatch] = useStateValue();
   let {
     main_container,
     input_fields,
@@ -940,7 +940,7 @@ const BuyerRegistration = ({ classes }) => {
                   <Link
                     to={`/${
                       customnostore ? customnostore : geo?.country_name
-                    }/termsofuse`}
+                    }/termsofuse/${currencyData?.[2]?.staticPages?.terms}`}
                     target="_blank"
                   >
                     Terms of Use
@@ -949,7 +949,7 @@ const BuyerRegistration = ({ classes }) => {
                   <Link
                     to={`/${
                       customnostore ? customnostore : geo?.country_name
-                    }/privacypolicy`}
+                    }/privacypolicy/${currencyData?.[2]?.staticPages?.privacy}`}
                     target="_blank"
                   >
                     Privacy Policy

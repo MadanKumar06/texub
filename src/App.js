@@ -304,7 +304,7 @@ const App = () => {
               exact
             />
             <Route
-              path="/:country/privacypolicy"
+              path="/:country/privacypolicy/:id"
               // path={`/${customnostore ? customnostore : geo?.country_name}/privacypolicy`}
               element={
                 <>
@@ -314,7 +314,7 @@ const App = () => {
               exact
             />
             <Route
-              path="/:country/termsofuse"
+              path="/:country/termsofuse/:id"
               // path={`/${customnostore ? customnostore : geo?.country_name}/termsofuse`}
               element={
                 <>
@@ -324,7 +324,7 @@ const App = () => {
               exact
             />
             <Route
-              path="/:country/productlistingpolicy"
+              path="/:country/productlistingpolicy/:id"
               // path={`/${customnostore ? customnostore : geo?.country_name}/productlistingpolicy`}
               element={
                 <>

@@ -66,7 +66,7 @@ export const Footer = () => {
               <Link
                 to={`/${
                   customnostore ? customnostore : geo?.country_name
-                }/termsofuse`}
+                }/termsofuse/${currencyData?.[2]?.staticPages?.terms}`}
                 className="to_CMS"
               >
                 <li>Terms Of Use</li>
@@ -74,7 +74,7 @@ export const Footer = () => {
               <Link
                 to={`/${
                   customnostore ? customnostore : geo?.country_name
-                }/privacypolicy`}
+                }/privacypolicy/${currencyData?.[2]?.staticPages?.privacy}`}
                 className="to_CMS"
               >
                 <li>Privacy Policy</li>
@@ -90,7 +90,9 @@ export const Footer = () => {
               <Link
                 to={`/${
                   customnostore ? customnostore : geo?.country_name
-                }/productlistingpolicy`}
+                }/productlistingpolicy/${
+                  currencyData?.[2]?.staticPages?.product_listing
+                }`}
                 className="to_CMS"
               >
                 <li> Product Listing Policy</li>
@@ -201,13 +203,16 @@ export const Footer = () => {
       </div>
       <div className="Copyright">
         <div>
-        <p>Copyrights @2022 TEXUB. All Rights Reserved</p>
-         <p>All logos, products and pictures shown are for illustrative purpose. Logos belongs to their respective owners.</p>
+          <p>Copyrights @2022 TEXUB. All Rights Reserved</p>
+          <p>
+            All logos, products and pictures shown are for illustrative purpose.
+            Logos belongs to their respective owners.
+          </p>
         </div>
         <Link
           to={`/${
             customnostore ? customnostore : geo?.country_name
-          }/privacypolicy`}
+          }/privacypolicy/${currencyData?.[2]?.staticPages?.privacy}`}
           className="to_CMS"
         >
           <p>Privacy Policy</p>
@@ -215,7 +220,7 @@ export const Footer = () => {
         <Link
           to={`/${
             customnostore ? customnostore : geo?.country_name
-          }/termsofuse`}
+          }/termsofuse/${currencyData?.[2]?.staticPages?.terms}`}
           className="to_CMS"
         >
           <p>Terms of Use</p>

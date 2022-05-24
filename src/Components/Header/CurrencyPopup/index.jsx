@@ -104,6 +104,9 @@ const CurrencyPopup = ({ classes }) => {
           });
           if (
             str.split("/")[2] === "pendinginvoice" ||
+            str.split("/")[2] === "privacypolicy" ||
+            str.split("/")[2] === "productlistingpolicy" ||
+            str.split("/")[2] === "termsofuse" ||
             str.split("/")[2] === "buyerdashboard" ||
             str.split("/")[2] === "sellerdashboard" ||
             str.split("/")[2] === "checkout" ||

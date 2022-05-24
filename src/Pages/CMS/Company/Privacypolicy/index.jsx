@@ -5,6 +5,7 @@ import { getAdminToken } from "../../../../utilities";
 import { useStateValue } from "../../../../store/state";
 import legal from "../../../../Assets/Career/privacy-policy.png";
 import Constant from "../../../../Constant";
+import { useParams } from "react-router-dom";
 
 const Index = () => {
   const [adminToken, setAdminToken] = useState("");
@@ -13,10 +14,11 @@ const Index = () => {
       setAdminToken(res);
     });
   }, []);
-  const [{ currencyData }, dispatch] = useStateValue();
+  const {id} = useParams();
+  const [{}, dispatch] = useStateValue();
   const [pp, setpp] = useState();
   // disable right click option
-  document.addEventListener('contextmenu', event => event.preventDefault());
+  document.addEventListener("contextmenu", (event) => event.preventDefault());
 
   useEffect(async () => {
     if (adminToken !== "") {
@@ -27,9 +29,7 @@ const Index = () => {
         });
         const privacy = await axios({
           method: "get",
-          url:
-            Constant.baseUrl2() +
-            `/cmsPage/${currencyData?.[2]?.staticPages?.privacy}`,
+          url: Constant.baseUrl2() + `/cmsPage/${id}`,
           headers: {
             Authorization: `Bearer ${adminToken}`,
           },

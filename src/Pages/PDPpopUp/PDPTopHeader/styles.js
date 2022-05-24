@@ -73,6 +73,7 @@ const styles = (theme) => ({
     marginBottom: "5px",
     "& span": {
       fontWeight: "600",
+      marginLeft: "4px",
     },
     "@media (max-width:1660px)": {
       fontSize: "16px",

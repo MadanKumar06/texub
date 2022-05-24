@@ -6,6 +6,7 @@ import { getAdminToken } from "../../../../utilities";
 import { useStateValue } from "../../../../store/state";
 import axios from "axios";
 import Constant from "../../../../Constant";
+import { useParams } from "react-router-dom";
 
 const Termstext = [
   {
@@ -16,6 +17,7 @@ const Termstext = [
 ];
 
 export const ProductListingPolicy = () => {
+  const { id } = useParams();
   const [adminToken, setAdminToken] = useState("");
   useEffect(() => {
     getAdminToken((res) => {
@@ -35,9 +37,7 @@ export const ProductListingPolicy = () => {
         });
         const termsdata = await axios({
           method: "get",
-          url:
-            Constant.baseUrl2() +
-            `/cmsPage/${currencyData?.[2]?.staticPages?.product_listing}`,
+          url: Constant.baseUrl2() + `/cmsPage/${id}`,
           headers: {
             Authorization: `Bearer ${adminToken}`,
           },
