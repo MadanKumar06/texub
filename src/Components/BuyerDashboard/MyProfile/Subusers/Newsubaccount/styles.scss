@@ -33,6 +33,9 @@
       opacity: 1;
     }
   }
+  .MuiOutlinedInput-root{
+			font-weight: 600 !important;
+	}
   .user_input {
     .MuiInputLabel-root {
       color: red;

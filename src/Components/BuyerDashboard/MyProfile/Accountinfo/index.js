@@ -235,6 +235,8 @@ const Index = ({ classes, setisEdit, setisAccountinfo }) => {
           showConfirmButton: false,
           timer: 3000,
         });
+        setisEdit(false)
+        setisAccountinfo(true)
       } else {
         swal.fire({
           text: `${updatedata?.data?.[0]?.message}`,

@@ -21,7 +21,7 @@ import swal from "sweetalert2";
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
-const Index = ({ currentid, setisSub, setisSubusers }) => {
+const Index = ({ currentid, setisSub, setisSubusers, setshowButton}) => {
   console.log(currentid);
   const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
   const [adminToken, setAdminToken] = useState("");
@@ -213,6 +213,7 @@ const Index = ({ currentid, setisSub, setisSubusers }) => {
         });
         setisSub(false);
         setisSubusers(true);
+        setshowButton(true)
       } catch (e) {
         dispatch({
           type: "SET_IS_LOADING",
@@ -335,11 +336,11 @@ const Index = ({ currentid, setisSub, setisSubusers }) => {
           isOptionEqualToValue={(option, value) => option.value === value.value}
           disableCloseOnSelect
           renderOption={(props, option, { selected }) => (
-            <li {...props}>
+            <li {...props} style={{padding:"0px"}}>
               <Checkbox
                 icon={icon}
                 checkedIcon={checkedIcon}
-                style={{ marginRight: 8 }}
+                style={{ marginRight: 8,paddingTop:"5px",paddingBottom:"5px" }}
                 checked={selected}
               />
               {option.label}
@@ -434,6 +435,7 @@ const Index = ({ currentid, setisSub, setisSubusers }) => {
             onClick={() => {
               setisSub(false);
               setisSubusers(true);
+              setshowButton(true);
             }}
             style={{ cursor: 'pointer' }}
           >
