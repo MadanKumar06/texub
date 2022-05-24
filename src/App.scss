@@ -68,7 +68,8 @@
   .MuiOutlinedInput-root {
     input {
       padding: 12px;
-      font: unset !important;
+      // font: unset !important;
+      font-weight: 600 !important;
     }
     &:hover fieldset {
       border-color: #ddb363;

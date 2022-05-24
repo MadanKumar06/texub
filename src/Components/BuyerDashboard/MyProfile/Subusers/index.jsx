@@ -14,7 +14,7 @@ import NodataFound from "../../../../Assets/CommonImage/NodataFound.webp.png";
 
 import moment from "moment";
 
-const Index = () => {
+const Index = ({setshowButton}) => {
   const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
   const [isSub, setisSub] = useState(false);
   let [currentid, setcurrentid] = useState(0);
@@ -37,9 +37,11 @@ const Index = () => {
     setisForbidden(false);
   };
   const [isForbidden, setisForbidden] = useState(false);
-  const forbidden = () => {
+ const [Forbidden_Access,setForbidden_Access] = useState("")
+  const forbidden = (forbiden_text) => {
     setisForbidden(true);
     setisPermissions(false);
+    setForbidden_Access(forbiden_text)
   };
   const [isSubusers, setisSubusers] = useState(true);
   const options = {
@@ -186,9 +188,8 @@ const Index = () => {
         customBodyRender: (value) => {
           return (
             <div className="users_permissions">
-              <span className="value">
-                {/* <span className="value" onClick={forbidden}> */}
-                {value}
+              <span className="value" onClick={()=>forbidden(value)}>
+                {/* {value} */} View
               </span>
             </div>
           );
@@ -222,7 +223,10 @@ const Index = () => {
       {isSubusers && (
         <div className="users_main">
           <div className="user_sub-account">
-            <button onClick={Newsubacc}>Add New Sub-Account</button>
+           <button onClick={()=>{
+              Newsubacc()
+              setshowButton(false)
+            }}>Add New Sub-Account</button>
           </div>
           <MUITable
             columns={columns}
@@ -252,6 +256,7 @@ const Index = () => {
           currentid={currentid}
           setisSub={setisSub}
           setisSubusers={setisSubusers}
+        setshowButton={setshowButton}
         />
       )}
       {isPermissions && (
@@ -261,7 +266,7 @@ const Index = () => {
           sublist={sublist}
         />
       )}
-      {isForbidden && <Forbidden closePOPup={setisForbidden} />}
+      {isForbidden && <Forbidden closePOPup={setisForbidden} Forbidden_Access={Forbidden_Access} />}
     </>
   );
 };
