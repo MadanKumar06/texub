@@ -55,7 +55,6 @@ const FilterViewList = ({
         dataFromApi?.[2]?.price?.min_price,
         dataFromApi?.[2]?.price?.max_price,
       ]);
-      debugger
     }
   }, [dataFromApi]);
 

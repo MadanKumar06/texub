@@ -12,9 +12,11 @@ import DashboardChartSection from "../../DashboardChartSection";
 import axios from "axios";
 import Constant from "../../../Constant";
 import { getAdminToken } from "../../../utilities";
+import { useStateValue } from "../../../store/state";
 
 function Dashboard() {
   const [sellerdashboard, setsellerdashboard] = useState([]);
+  const [{}, dispatch] = useStateValue();
   useEffect(() => {
     getAdminToken((res) => {
       handleApiCall(res);
@@ -22,6 +24,10 @@ function Dashboard() {
   }, []);
   const handleApiCall = async (res) => {
     let user = JSON.parse(localStorage.getItem("userdata"));
+    dispatch({
+      type: "SET_IS_LOADING",
+      value: true,
+    });
     try {
       const dashdata = await axios({
         method: "post",
@@ -34,8 +40,15 @@ function Dashboard() {
         },
       });
       setsellerdashboard(dashdata?.data);
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
     } catch (e) {
-      console.log(e);
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
     }
   };
   return (

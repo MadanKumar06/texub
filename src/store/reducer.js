@@ -16,6 +16,7 @@ export const initialState = {
   customnostore: "",
   homeContent: "",
   currencyData: {},
+  plp_categories: [],
   generalTrigger: false,
 };
 
@@ -111,6 +112,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         currencyData: action.data,
+      };
+    case "SET_PLP_CATEGORIES":
+      return {
+        ...state,
+        plp_categories: action.data,
       };
     default:
       return state;

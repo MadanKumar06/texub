@@ -27,7 +27,9 @@ const Whislist = () => {
 
   const [filterwishdata, setfilterwishdata] = useState([]);
   useEffect(() => {
-    let temp = wishdata?.filter((wd) => wd?.wishlist_data?.length > 0);
+    let temp =
+      wishdata?.length &&
+      wishdata?.filter((wd) => wd?.wishlist_data?.length > 0);
     console.log(temp);
     setfilterwishdata(temp);
   }, [wishdata]);
@@ -46,47 +48,49 @@ const Whislist = () => {
   };
 
   useEffect(() => {
-    async function fetchData() {
-      const user = JSON.parse(localStorage.getItem("userdata"));
-      setwishdata([]);
-      try {
-        dispatch({
-          type: "SET_IS_LOADING",
-          value: true,
-        });
-        const wishlistdata = await axios({
-          method: "post",
-          url: `${Constant.baseUrl()}/getwishlist`,
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-          data: {
-            requestParams: {
-              customer_id: user?.id,
-              search_term: wishsearch,
-              currency_id: currency?.currency_id,
+    const user = JSON.parse(localStorage.getItem("userdata"));
+    if (user?.group_id === 5 && currency?.currency_id) {
+      async function fetchData() {
+        setwishdata([]);
+        try {
+          dispatch({
+            type: "SET_IS_LOADING",
+            value: true,
+          });
+          const wishlistdata = await axios({
+            method: "post",
+            url: `${Constant.baseUrl()}/getwishlist`,
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
-          },
-        });
-        dispatch({
-          type: "WHISHLIST_DATA",
-          data: wishlistdata?.data,
-        });
-        dispatch({
-          type: "SET_IS_LOADING",
-          value: false,
-        });
-        setwishdata(wishlistdata.data);
-      } catch (e) {
-        console.log(e);
-        dispatch({
-          type: "SET_IS_LOADING",
-          value: false,
-        });
+            data: {
+              requestParams: {
+                customer_id: user?.id,
+                search_term: wishsearch,
+                currency_id: currency?.currency_id,
+              },
+            },
+          });
+          dispatch({
+            type: "WHISHLIST_DATA",
+            data: wishlistdata?.data,
+          });
+          dispatch({
+            type: "SET_IS_LOADING",
+            value: false,
+          });
+          setwishdata(wishlistdata.data);
+        } catch (e) {
+          console.log(e);
+          dispatch({
+            type: "SET_IS_LOADING",
+            value: false,
+          });
+        }
       }
+      fetchData();
     }
-    fetchData();
-  }, [wishListAgain,currency, generalTrigger]);
+  }, [wishListAgain, currency, generalTrigger]);
 
   useEffect(async () => {
     let user = JSON.parse(localStorage.getItem("userdata"));

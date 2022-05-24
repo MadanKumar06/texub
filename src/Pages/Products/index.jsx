@@ -14,8 +14,10 @@ import Helmet from "react-helmet";
 export const Products = () => {
   const navigate = useNavigate();
   const history = useLocation();
-  const [{ currency, homeSearch, customnostore, geo }, dispatch] =
-    useStateValue();
+  const [
+    { currency, homeSearch, plp_categories, customnostore, geo },
+    dispatch,
+  ] = useStateValue();
   const [productFetchApi, setProductFetchApi] = useState({
     hub: 0,
     conditions: 0,
@@ -24,14 +26,14 @@ export const Products = () => {
   });
   const [productData, setProductData] = useState([]);
   const [dataFromApi, setDataFromApi] = useState([]);
-  const [getCategories, setGetCategories] = useState([]);
+  // const [getCategories, setGetCategories] = useState([]);
   const [applyFilter, setApplyFilter] = useState(false);
 
   let customer_id = JSON.parse(localStorage.getItem("userdata"));
   const [userfilter, setuserfilter] = useState();
 
   useEffect(() => {
-    if (getCategories && currency?.currency_id) {
+    if (plp_categories && currency?.currency_id) {
       dispatch({
         type: "SET_IS_LOADING",
         value: true,
@@ -48,8 +50,8 @@ export const Products = () => {
                 ? history?.state?.value
                 : productFetchApi?.category_id
                 ? productFetchApi?.category_id
-                : getCategories?.[0]?.category?.id
-                ? getCategories?.[0]?.category?.id
+                : plp_categories?.[0]?.category?.id
+                ? plp_categories?.[0]?.category?.id
                 : 0,
             brand_id:
               history?.state?.name === "brand_id"
@@ -133,7 +135,7 @@ export const Products = () => {
       };
       fetchProductData();
     }
-  }, [currency, getCategories, homeSearch, applyFilter]);
+  }, [currency, plp_categories, homeSearch, applyFilter]);
 
   useEffect(() => {
     if (userfilter === undefined) return;
@@ -165,26 +167,26 @@ export const Products = () => {
     }
   }, [userfilter]);
 
-  useEffect(() => {
-    if (currency?.currency_id) {
-      const fetchCategoryData = () => {
-        let data = {
-          currency_id: parseInt(currency?.currency_id),
-        };
-        axios
-          .post(Constant.baseUrl() + "/getCategoriesList", data, {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          })
-          .then((res) => {
-            setGetCategories(res?.data);
-          })
-          .catch((err) => {});
-      };
-      fetchCategoryData();
-    }
-  }, [currency]);
+  // useEffect(() => {
+  //   if (currency?.currency_id) {
+  //     const fetchCategoryData = () => {
+  //       let data = {
+  //         currency_id: parseInt(currency?.currency_id),
+  //       };
+  //       axios
+  //         .post(Constant.baseUrl() + "/getCategoriesList", data, {
+  //           headers: {
+  //             "Content-Type": "application/json",
+  //           },
+  //         })
+  //         .then((res) => {
+  //           setGetCategories(res?.data);
+  //         })
+  //         .catch((err) => {});
+  //     };
+  //     fetchCategoryData();
+  //   }
+  // }, [currency]);
   const sortCall = (data) => {
     var productTableData = [];
     data?.map((itm) => {
@@ -255,7 +257,7 @@ export const Products = () => {
         <Productsbrands
           setProductFetchApi={setProductFetchApi}
           productFetchApi={productFetchApi}
-          getCategories={getCategories}
+          getCategories={plp_categories}
           setApplyFilter={setApplyFilter}
           applyFilter={applyFilter}
           homeCategorySearch={history?.state}

@@ -212,7 +212,7 @@ function Index() {
           ],
         },
       };
-      debugger;
+
       await axios
         .post(Constant.baseUrl() + "/saveProductPrice", data, {
           headers: {

@@ -25,10 +25,13 @@ const Header = ({ classes }) => {
     console.log(temp?.country);
   }, []);
 
+  const user = JSON.parse(localStorage.getItem("userdata"));
   useEffect(async () => {
-    if (currency?.currency_id === undefined) return;
-    const user = JSON.parse(localStorage.getItem("userdata"));
-    if (localStorage.getItem("token")) {
+    if (
+      localStorage.getItem("token") &&
+      user?.group_id === 5 &&
+      currency?.currency_id
+    ) {
       dispatch({
         type: "SET_IS_SIMPLE_LOADING",
         value: true,
@@ -79,8 +82,7 @@ const Header = ({ classes }) => {
   }, [currency, gt, localStorage.getItem("userdata")]);
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("userdata"));
-    if (user?.group_id === 5) {
+    if (user?.group_id === 5 && currency?.currency_id) {
       async function fetchData() {
         try {
           const wishlistdata = await axios({
