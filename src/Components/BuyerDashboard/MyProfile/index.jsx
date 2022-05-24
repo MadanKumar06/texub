@@ -95,7 +95,7 @@ const Index = () => {
         );
 
   return (
-    <div className="My_profile_main">
+    <div className={`My_profile_main ${showButton===false?"My_profile_main_gap":""}`} >
       {
         showButton===true?<div className="My_profile_btn_section">
         {profiletype?.map((data, i) => {

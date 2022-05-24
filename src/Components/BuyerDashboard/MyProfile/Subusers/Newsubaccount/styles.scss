@@ -119,6 +119,7 @@
         text-shadow: 0px 3px 6px rgb(0 0 0 / 16%);
         letter-spacing: 0.54px;
         cursor: pointer;
+        min-width: 300px;
       }
     }
   }
@@ -228,6 +229,13 @@
   // .subaccount_main .MuiOutlinedInput-root{
   //     width: 43rem;
   // }
+  .my_profile_btns {
+    .user_btn_section {
+      button {
+        min-width: 250px !important;
+      }
+    }
+  }
   .subaccount_main {
     margin: 10px;
     padding: 0;
@@ -270,6 +278,13 @@
   }
   .subaccount_main .user_btn_section button {
     padding: 15px 25px;
+  }
+  .my_profile_btns {
+    .user_btn_section {
+      button {
+        margin-bottom: 20px;
+      }
+    }
   }
 }
 
