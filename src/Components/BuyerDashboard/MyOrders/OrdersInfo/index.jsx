@@ -221,13 +221,11 @@ const Index = ({ orders, setisVieworders, setisOrders }) => {
       name: "unit_price",
       label: "UNIT PRICE",
       options: {
-        customBodyRender: (value) => {
+        customBodyRender: (value, tablemeta) => {
+          let currency = tablemeta?.rowData[12];
           return (
             <div className="vieworders_price">
-              <span className="inr">
-                {" "}
-                {detailsorder?.[0]?.order_details?.[0]?.order_currency}
-              </span>
+              <span className="inr"> {currency}</span>
               <span className="price">
                 {" "}
                 {formatToCurrency(parseInt(value))}{" "}
@@ -241,13 +239,11 @@ const Index = ({ orders, setisVieworders, setisOrders }) => {
       name: "sub_total",
       label: "SUB-TOTAL",
       options: {
-        customBodyRender: (value) => {
+        customBodyRender: (value, tablemeta) => {
+          let currency = tablemeta?.rowData[12];
           return (
             <div className="vieworders_total">
-              <span className="inr">
-                {" "}
-                {detailsorder?.[0]?.order_details?.[0]?.order_currency}
-              </span>
+              <span className="inr"> {currency}</span>
               <span className="price">
                 {" "}
                 {formatToCurrency(parseInt(value))}{" "}
@@ -273,6 +269,13 @@ const Index = ({ orders, setisVieworders, setisOrders }) => {
     },
     {
       name: "serialNumbers",
+      label: " ",
+      options: {
+        display: false,
+      },
+    },
+    {
+      name: "currency",
       label: " ",
       options: {
         display: false,
@@ -421,6 +424,13 @@ const Index = ({ orders, setisVieworders, setisOrders }) => {
                           {" "}
                           {
                             detailsorder?.[0]?.order_details?.[0]
+                              ?.shipping_address?.[0]?.company
+                          }
+                        </span>
+                        <span className="name">
+                          {" "}
+                          {
+                            detailsorder?.[0]?.order_details?.[0]
                               ?.shipping_address?.[0]?.Street?.[0]
                           }
                         </span>
@@ -467,6 +477,13 @@ const Index = ({ orders, setisVieworders, setisOrders }) => {
                           {
                             detailsorder?.[0]?.order_details?.[0]
                               ?.billing_address?.[0]?.lastname
+                          }
+                        </span>
+                        <span className="name">
+                          {" "}
+                          {
+                            detailsorder?.[0]?.order_details?.[0]
+                              ?.billing_address?.[0]?.company
                           }
                         </span>
                         <span className="name">
