@@ -192,7 +192,6 @@ const PdpPopup = () => {
     }
   };
   const handleApiCall = (info) => {
-    debugger;
     let storedata = JSON.parse(localStorage.getItem("storedata"));
     let isUserAddData = pdpSellerData?.is_table_one?.filter(
       (itm) => itm?.product_id === pdpSellerData?.product_id

@@ -667,7 +667,7 @@ const TransitionsModal = ({ classes, openPopUp }) => {
                 </form>
               </div>
               <div className={section_right}>
-                <SectionRight />
+                <SectionRight adminToken={adminToken} />
               </div>
             </div>
           </div>

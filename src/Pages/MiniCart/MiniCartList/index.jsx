@@ -22,8 +22,10 @@ function formatToCurrency(amount) {
 }
 
 const MiniCartList = ({ handleSideBarClose }) => {
-  const [{ cart, gt, isSimpleLoading, geo, customnostore }, dispatch] =
-    useStateValue();
+  const [
+    { cart, gt, plp_categories, isSimpleLoading, geo, customnostore },
+    dispatch,
+  ] = useStateValue();
   const [value, setValue] = React.useState(4);
   const navigate = useNavigate();
   const [isCartData, setIsCartData] = useState([]);
@@ -67,7 +69,7 @@ const MiniCartList = ({ handleSideBarClose }) => {
       data: {
         currency_id: event?.currency_id,
         customer_id: customer_id?.id,
-        category_id: JSON.parse(localStorage.getItem("all_category_id")),
+        category_id: plp_categories?.[0]?.category?.id,
         brand_id: "0",
         hub_id: "0",
         condition_id: "0",

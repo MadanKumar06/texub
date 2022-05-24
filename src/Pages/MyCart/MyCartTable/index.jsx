@@ -24,7 +24,7 @@ const MyCartTable = ({ cartDataList, deleteCartData, setrowselect }) => {
     dataFromPLP: "",
   });
 
-  const [{}, dispatch] = useStateValue();
+  const [{ plp_categories }, dispatch] = useStateValue();
 
   useEffect(() => {
     let temp =
@@ -166,7 +166,7 @@ const MyCartTable = ({ cartDataList, deleteCartData, setrowselect }) => {
       data: {
         currency_id: event?.currency_id,
         customer_id: customer_id?.id,
-        category_id: JSON.parse(localStorage.getItem("all_category_id")),
+        category_id: plp_categories?.[0]?.category?.id,
         brand_id: "0",
         hub_id: "0",
         condition_id: "0",

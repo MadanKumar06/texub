@@ -22,6 +22,10 @@ const BuyerDashboard = () => {
   const [dashboarddata, setdashboarddata] = useState([]);
   useEffect(async () => {
     let user = JSON.parse(localStorage.getItem("userdata"));
+    dispatch({
+      type: "SET_IS_LOADING",
+      value: true,
+    });
     try {
       const dashdata = await axios({
         method: "post",
@@ -33,9 +37,16 @@ const BuyerDashboard = () => {
           buyerId: user?.id,
         },
       });
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
       setdashboarddata(dashdata?.data);
     } catch (e) {
-      console.log(e);
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
     }
   }, []);
 

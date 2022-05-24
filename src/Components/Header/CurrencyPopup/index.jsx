@@ -68,13 +68,6 @@ const CurrencyPopup = ({ classes }) => {
   useEffect(() => {
     const storedata = JSON.parse(localStorage.getItem("storedata"));
     if (geo === "") return;
-    // if(str.split('/')[2] === 'sellerdashboard' && storedata?.code.toLowerCase() === str.split('/')[1].toLowerCase()) return
-    // if(str.split('/')[2] === 'buyerdashboard' && storedata?.code.toLowerCase() === str.split('/')[1].toLowerCase()) return
-    // if(str.split('/')[2] === 'resetpassword' && storedata?.code.toLowerCase() === str.split('/')[1].toLowerCase()) return
-    // if(str.split('/')[2] === 'register' && storedata?.code.toLowerCase() === str.split('/')[1].toLowerCase()) return
-    // if(str.split('/')[2] === 'blogsdetails' && storedata?.code.toLowerCase() === str.split('/')[1].toLowerCase()) return
-    // if(str.split('/')[2] === 'sellerprofile' && storedata?.code.toLowerCase() === str.split('/')[1].toLowerCase()) return
-    // if(str.split('/')[2] === 'thankyou' && storedata?.code.toLowerCase() === str.split('/')[1].toLowerCase()) return
     const fetchCurrencyDropDownData = () => {
       let data = {
         geoCode: geo?.country_code,
@@ -197,7 +190,7 @@ const CurrencyPopup = ({ classes }) => {
         .catch((err) => {});
     };
     fetchCurrencyDropDownData();
-  }, [geo, customstore]);
+  }, [geo]);
 
   return (
     <div className={classes.header_dropdown}>

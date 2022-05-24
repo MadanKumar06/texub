@@ -52,21 +52,24 @@ export const getAdminToken = (callback) => {
 
 //Customer details
 export const getSigninedUserData = () => {
-  axios
-    .get(Constant.customerMeDetailUrl(), {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    })
-    .then((res) => {
-      localStorage.setItem("userdata", JSON.stringify(res?.data));
-      localStorage.setItem(
-        "isLoggedIn_auth",
-        res?.data?.group_id === 1 ? false : true
-      );
-    })
-    .catch((err) => {});
+  let token = localStorage.getItem("token");
+  if (token) {
+    axios
+      .get(Constant.customerMeDetailUrl(), {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        localStorage.setItem("userdata", JSON.stringify(res?.data));
+        localStorage.setItem(
+          "isLoggedIn_auth",
+          res?.data?.group_id === 1 ? false : true
+        );
+      })
+      .catch((err) => {});
+  }
 };
 
 //homePage content
