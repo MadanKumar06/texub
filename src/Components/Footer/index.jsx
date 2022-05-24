@@ -63,7 +63,37 @@ export const Footer = () => {
               >
                 <li>About Us</li>
               </Link>
+                <Link
+                to={`/${
+                  customnostore ? customnostore : geo?.country_name
+                }/sell-on-texub`}
+                className="to_CMS"
+              >
+                <li>Sell On TEXUB</li>
+              </Link>
               <Link
+                to={`/${
+                  customnostore ? customnostore : geo?.country_name
+                }/buy-on-texub`}
+                className="to_CMS"
+              >
+                <li>Buy On TEXUB</li>
+              </Link>
+              <Link
+                to={`/${
+                  customnostore ? customnostore : geo?.country_name
+                }/contactus`}
+                className="to_CMS"
+              >
+                <li>Contact Us</li>
+              </Link>
+              
+            </ul>
+          </div>
+          <div className="Footer_box_col_234">
+            <h2 className="Footer_Col_Heading">Legal</h2>
+            <ul className="Footer_col_list">
+               <Link
                 to={`/${
                   customnostore ? customnostore : geo?.country_name
                 }/termsofuse/${currencyData?.[2]?.staticPages?.terms}`}
@@ -97,27 +127,24 @@ export const Footer = () => {
               >
                 <li> Product Listing Policy</li>
               </Link>
+               <li
+                className="to_CMS cookie"
+                onClick={() => {
+                  setisCookies(true);
+                }}
+              >
+                Cookies Permission
+              </li>
               <Link
                 to={`/${
                   customnostore ? customnostore : geo?.country_name
-                }/contactus`}
+                }/gdpr`}
                 className="to_CMS"
               >
-                <li>Contact Us</li>
+                <li>GDPR</li>
               </Link>
-            </ul>
-          </div>
-          <div className="Footer_box_col_234">
-            <h2 className="Footer_Col_Heading">Services</h2>
-            <ul className="Footer_col_list">
-              <Link
-                to={`/${
-                  customnostore ? customnostore : geo?.country_name
-                }/training`}
-                className="to_CMS"
-              >
-                <li>Training</li>
-              </Link>
+
+            
               {/* <Link
                 to={`/${
                   customnostore ? customnostore : geo?.country_name
@@ -134,65 +161,67 @@ export const Footer = () => {
               >
                 <li>Buyer Advantage</li>
               </Link> */}
-              <Link
-                to={`/${
-                  customnostore ? customnostore : geo?.country_name
-                }/career`}
-                className="to_CMS"
-              >
-                <li>Career</li>
-              </Link>
-              <Link
+              
+              {/* <Link
                 to={`/${customnostore ? customnostore : geo?.country_name}`}
                 className="to_CMS"
               >
                 <li>How Its Works</li>
-              </Link>
+              </Link> */}
             </ul>
           </div>
           <div className="Footer_box_col_234">
             <h2 className="Footer_Col_Heading">Resources</h2>
             <ul className="Footer_col_list">
-              <Link
+              {/* <Link
                 to={`/${
                   customnostore ? customnostore : geo?.country_name
                 }/legal`}
                 className="to_CMS"
               >
                 <li>Legal</li>
-              </Link>
-              <li
-                className="to_CMS cookie"
-                onClick={() => {
-                  setisCookies(true);
-                }}
-              >
-                Cookies Permission
-              </li>
-              <Link
-                to={`/${
-                  customnostore ? customnostore : geo?.country_name
-                }/gdpr`}
-                className="to_CMS"
-              >
-                <li>GDPR</li>
-              </Link>
+              </Link> */}
+             
               <Link
                 to={`/${
                   customnostore ? customnostore : geo?.country_name
                 }/Faqs`}
-                className="to_CMS"
+                className="to_CMS "
               >
                 <li>FAQs</li>
               </Link>
-              <Link
+              <li
+                className="to_CMS cookie no_cursor"
+              >
+                Blogs
+              </li>
+              {/* <Link
                 to={`/${
                   customnostore ? customnostore : geo?.country_name
                 }/blogsmain`}
                 className="to_CMS"
               >
                 <li>Blogs</li>
+              </Link> */}
+              <Link
+                to={`/${
+                  customnostore ? customnostore : geo?.country_name
+                }/career`}
+                className="to_CMS "
+              >
+                <li>Career</li>
               </Link>
+              <li
+                className="to_CMS cookie no_cursor"
+              >
+                Training
+              </li>
+                {/* <Link
+                to={``}
+                className="to_CMS"
+              >
+                <li>Training</li>
+              </Link> */}
             </ul>
           </div>
           {isCookies && <Cookiespermission closePOPup={setisCookies} />}

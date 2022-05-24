@@ -6,6 +6,7 @@ import {
 } from "@mui/material";
 import { useStateValue } from "../../../store/state";
 import topbanner from "../../../Assets/BuyOnTexub/banner/topbanner.png";
+import mobile_slider from "../../../Assets/BuyOnTexub/banner/mobile_slider.png";
 import btnbanner from "../../../Assets/SellerOnTexub/banner/btn_banner.png";
 import questionMark from "../../../Assets/SellerOnTexub/question_mark.png";
 import benefits1 from "../../../Assets/SellerOnTexub/benefits1.png";
@@ -25,6 +26,8 @@ import benefits12 from "../../../Assets/SellerOnTexub/benefits12.png";
 
 import process_flow1 from "../../../Assets/BuyOnTexub/process_flow1.png";
 import process_flow2 from "../../../Assets/BuyOnTexub/process_flow2.png";
+import mobile_process_flow1 from "../../../Assets/SellerOnTexub/mobile_process_flow1.png";
+import mobile_process_flow2 from "../../../Assets/SellerOnTexub/mobile_process_flow2.png";
 import ourReactInfo from "../../../Assets/SellerOnTexub/our_react_info.png";
 
 
@@ -32,7 +35,12 @@ import whyChooseBg1 from "../../../Assets/SellerOnTexub/why_choose_bg1.png";
 import whyChooseBg2 from "../../../Assets/SellerOnTexub/why_choose_bg2.png";
 import whyChooseBg3 from "../../../Assets/SellerOnTexub/why_choose_bg3.png";
 
-import monitor_scroll from "../../../Assets/BuyOnTexub/slider/monitor_scroll_buyer.png";
+import BuyerDashboard from "../../../Assets/BuyOnTexub/slider/BuyerDashboard.png";
+import BuyerOrder from "../../../Assets/BuyOnTexub/slider/BuyerOrder.png";
+import BuyerWanto from "../../../Assets/BuyOnTexub/slider/BuyerWanto.png";
+import BuyerWishlist from "../../../Assets/BuyOnTexub/slider/BuyerWishlist.png";
+
+
 import monitor from '../../../Assets/texub_buysell/monitor.png'
 
 import red from '../../../Assets/texub_buysell/red.png'
@@ -177,7 +185,8 @@ function Index() {
 return (
       <div className='buyontexub'>
             <div className='topsection__banner'>
-                <img src={topbanner} alt="" />
+                <img src={topbanner} alt="" className="desktop-view"/>
+                <img src={mobile_slider} alt="" className="mobile-view"/>
                 <div className="buy__topbanner__floatingtext">
                     <p className="topbanner__text1">Buy from the top sellers </p>
                     <p className="topbanner__text2">Buy on TEXUB</p>
@@ -253,10 +262,12 @@ return (
                     </div>
                     <div className='process_flow_section'>
                         <span className='process_flow_info'>
-                              <img src={process_flow1} alt="" />
+                              <img src={process_flow1} alt="" className="desktop-view"/>
+                               <img src={mobile_process_flow1} alt="" className="mobile-view"/>
                         </span>
                          <span className='process_flow_info'>
-                              <img src={process_flow2} alt="" />
+                              <img src={process_flow2} alt="" className="desktop-view"/>
+                               <img src={mobile_process_flow2} alt="" className="mobile-view"/>
                         </span>
                     </div>
                 </div>
@@ -273,9 +284,11 @@ return (
                     <div className="buyontexub__monitor__carousel">
                         <Slider {...settings}>
                             {/* <div><img src={monitor} /></div> */}
-                            <div><img src={monitor_scroll} /></div>
-                            <div><img src={monitor_scroll} /></div>
-                            <div><img src={monitor_scroll} /></div>
+                            <div><img src={BuyerDashboard} /></div>
+                            <div><img src={BuyerOrder} /></div>
+                            <div><img src={BuyerWanto} /></div>
+                            <div><img src={BuyerWishlist} /></div>
+
                         </Slider>
                     </div>
                     <img src={monitor} className="buyontexub__monitor"  alt="" />   
