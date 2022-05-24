@@ -41,13 +41,13 @@ $yellow: #DDB363;
    .sellontexub__info {
         background-image: url(../../../Assets/Aboutus/banner/about_bg.png);
         padding: 1em 3em;
-        margin-top: -5em;
+        margin-top: -6em;
         .sellontexub_info_content{
             width: 90%;
             margin: auto;
         }
         h2 {
-        font-size: 30px;
+        font-size: 35px;
         color: $black;
         font-weight: 800;
         }
@@ -117,10 +117,10 @@ $yellow: #DDB363;
             .whysellontexub__content2{
                 width: 25%;
                 max-width: 25%;
-                img{
-                        width: 100%;
-                        object-fit: contain;
-                    }
+                // img{
+                //         width: 100%;
+                //         object-fit: contain;
+                //     }
             }
         }
     }
@@ -159,7 +159,7 @@ $yellow: #DDB363;
             .title{
                 color: #333333;
                 opacity: 1;
-                font-size: 30px;
+                font-size: 35px;
                 font-weight: 800;
             }
         }
@@ -169,11 +169,12 @@ $yellow: #DDB363;
             align-items: center;
             flex-wrap: wrap;
             .benefits_info{
-                width: calc(25%);
+                width: calc(23%);
                 display: flex;
                 align-items: center;
-                padding: 1em 15px 2em 0;
+                margin: 1em 20px 1em 0;
                 background-color: #fafafa;
+                // margin-right: 30px;
                  img{
                      height: 70px;
                  }
@@ -198,7 +199,7 @@ $yellow: #DDB363;
                 .title{
                 color: #333333;
                 opacity: 1;
-                font-size: 30px;
+                font-size: 35px;
                 font-weight: 800;
             }
          }  
@@ -230,7 +231,7 @@ $yellow: #DDB363;
                 .title{
                 color: #333333;
                 opacity: 1;
-                font-size: 30px;
+                font-size: 35px;
                 font-weight: 800;
             }
          }  
@@ -324,7 +325,7 @@ $yellow: #DDB363;
         .title{
         color: #333333;
         opacity: 1;
-        font-size: 30px;
+        font-size: 35px;
         font-weight: 800;
         }
     }  
@@ -536,6 +537,9 @@ $yellow: #DDB363;
             }
         }
     }
+      .buyontexub .buy_benefits_section .benefits_section_content .benefits_info {
+        width: 22%;
+    }
 
 }
 
@@ -604,16 +608,26 @@ $yellow: #DDB363;
             width: 50%;
         }
         .seller_benefits_section {
-            .benefits_section_content {
+           .benefits_section_content {
                 .benefits_info {
-                    width: 50%;
+                    width: 40%;
                     display: flex;
                     align-items: center;
-                    padding: 10px 0px 1em 0;
+                    margin: 10px 15px 1em;
+                    padding: 0;
                     background-color: #fafafa;
-			}
+			    }
 		    }
 	    }
+    }
+    .sellontexub .buy_benefits_section .benefits_section_title{
+        padding: 0;
+    }
+    .sellontexub_slider .content-title{
+        padding: 0;
+    }
+    .sellontexub .our_reach_section .our_reach_section_title{
+        padding: 0;
     }
 }
 
@@ -926,6 +940,14 @@ $yellow: #DDB363;
             right: 13% !important;
         }
     }
+    .sellontexub_slider .sellontexub__monitordata .sellontexub__monitor__carousel .slick-next:before {
+        font-size: 25px;
+        color: #cdd5dd;
+    }
+    .sellontexub_slider .sellontexub__monitordata .sellontexub__monitor__carousel .slick-prev:before {
+        font-size: 25px;
+        color: #cdd5dd;
+    }
 
 }
 @media (max-width: 930px) {
@@ -1108,6 +1130,13 @@ $yellow: #DDB363;
     .sellerontexub .topsection__banner .seller__topbanner__floatingtext .topbanner__text1 {
         font-size: 18px;
     }
+     .sellerontexub .topsection__banner .buy__topbanner__floatingtext .topbanner__text2 {
+        font-size: 30px;
+    }
+    .sellerontexub .topsection__banner .buy__topbanner__floatingtext {
+        left: 0em;
+        margin: 0;
+    }
 }
 @media (max-width: 567px) {
      .sellontexub_slider .sellontexub__monitordata .sellontexub__monitor__carousel{
@@ -1164,6 +1193,15 @@ $yellow: #DDB363;
         left: 0em;
         margin: 0;
     }
+    .sellontexub .sell_process_section .process_section_title {
+        margin: 0 5%;
+        padding:1em 0;
+        text-align: center;
+    }
+     .sellontexub .our_reach_section .our_reach_section_title {
+         padding: 0em 0;
+    }
+
 }
 @media (max-width: 450px) {
      .sellontexub_slider .sellontexub__monitordata .sellontexub__monitor__carousel{
