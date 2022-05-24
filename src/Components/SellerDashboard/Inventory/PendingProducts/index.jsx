@@ -8,7 +8,6 @@ import { useStateValue } from "../../../../store/state";
 import Constant from "../../../../Constant";
 import NodataFound from "../../../../Assets/CommonImage/NodataFound.webp.png";
 
-
 import { ArrowBackIosNew } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 
@@ -79,8 +78,22 @@ function Index({ registerproduct }) {
       name: "brand",
       label: " ",
       options: {
-        customBodyRender: (value) => {
-          return <img src={value} className="brand_img_section" alt="No Brands" style={{ height: "50px" }} />;
+        customBodyRender: (value, tablemeta) => {
+          let brandName = tablemeta?.rowData[7];
+          return (
+            <div className="brand_image">
+              {value ? (
+                <img
+                  src={value}
+                  className="brand_img_section"
+                  alt="No Brands"
+                  style={{ height: "50px" }}
+                />
+              ) : (
+                <span>{brandName}</span>
+              )}
+            </div>
+          );
         },
       },
     },
@@ -140,6 +153,13 @@ function Index({ registerproduct }) {
     {
       name: "product_id",
       label: "SKU",
+      options: {
+        display: false,
+      },
+    },
+    {
+      name: "brandName",
+      label: " ",
       options: {
         display: false,
       },

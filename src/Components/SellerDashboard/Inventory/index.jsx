@@ -29,20 +29,17 @@ function Index({ registerproduct }) {
     return price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
   }
 
-
-function getOrdinalSuffix(value) {
-        
-   	if(/^[2-3]?1$/.test(value)){
-   		return 'st';
-   	} else if(/^[2-3]?2$/.test(value)){
-   		return 'nd';
-   	} else if(/^[2-3]?3$/.test(value)){
-   		return 'rd';
-   	} else {
-   		return 'th';
-   	}
-        
-}
+  function getOrdinalSuffix(value) {
+    if (/^[2-3]?1$/.test(value)) {
+      return "st";
+    } else if (/^[2-3]?2$/.test(value)) {
+      return "nd";
+    } else if (/^[2-3]?3$/.test(value)) {
+      return "rd";
+    } else {
+      return "th";
+    }
+  }
 
   const [offersOpenClose, setOffersOpenClose] = useState({
     isOpenClose: false,
@@ -122,10 +119,11 @@ function getOrdinalSuffix(value) {
       name: "brand_image_url",
       label: " ",
       options: {
-        customBodyRender: (value) => {
+        customBodyRender: (value, tablemeta) => {
+          let brandName = tablemeta?.rowData[15];
           return (
             <div className="brand_image">
-              <img src={value} alt="" />
+              {value ? <img src={value} alt="" /> : <span>{brandName}</span>}
             </div>
           );
         },
@@ -293,6 +291,13 @@ function getOrdinalSuffix(value) {
     },
     {
       name: "offer_end_date",
+      label: " ",
+      options: {
+        display: false,
+      },
+    },
+    {
+      name: "brand_name",
       label: " ",
       options: {
         display: false,
