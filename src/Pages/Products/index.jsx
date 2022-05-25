@@ -143,8 +143,10 @@ export const Products = () => {
       localStorage.getItem("filters") == "undefined" ||
       !localStorage.getItem("filters")
     ) {
+      debugger;
       localStorage.setItem("filters", JSON.stringify(userfilter));
     } else {
+      debugger;
       let currentfilter = JSON.parse(localStorage.getItem("filters"));
       if (JSON.stringify(userfilter) !== JSON.stringify(currentfilter)) {
         if (
@@ -155,6 +157,7 @@ export const Products = () => {
         )
           return;
         localStorage.setItem("filters", JSON.stringify(userfilter));
+        debugger;
         setProductFetchApi({
           hub: userfilter?.hub_id,
           conditions: userfilter?.condition_id,

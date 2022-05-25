@@ -2,13 +2,22 @@ import React from "react";
 import "./Benfits.scss";
 
 export const Benfits = ({ data }) => {
+  // When the user clicks on the button, scroll to the top of the document
+  const scrollTop = () => {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  };
   return (
     <div className="Benfits">
       <div className="Benfits_1st_div">
         <h1 className="Benfits_Get">{data?.title} </h1>
         <p className="Benfits_Get_Tag">{data?.content}</p>
         <div className="button__learnmore">
-          <button className="Benfits_Learnmore_btn" type="button">
+          <button
+            className="Benfits_Learnmore_btn"
+            type="button"
+            onClick={() => scrollTop()}
+          >
             Learn More
           </button>
         </div>
