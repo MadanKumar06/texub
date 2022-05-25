@@ -172,7 +172,6 @@ function Index() {
       });
     }
   }, []);
-  // console.log(invoicelist['quote_currency']);
 
   const columns = [
     {

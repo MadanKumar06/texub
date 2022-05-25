@@ -27,9 +27,6 @@ function Index({ registerproduct, gridData }) {
       },
     },
   };
-
-  console.log(gridData);
-  console.log(tableData);
   const columns = [
     {
       name: "brand_image_url",
@@ -106,7 +103,6 @@ function Index({ registerproduct, gridData }) {
     },
   ];
   const PaginateDataSplit = (event) => {
-    console.log(event);
     if (event?.length === 0) return setTableData([]);
     setTableData(event);
   };

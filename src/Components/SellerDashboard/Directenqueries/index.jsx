@@ -261,9 +261,6 @@ const Index = ({ searchdata, searchupdate }) => {
       },
     },
   ];
-
-  console.log(direct?.length);
-
   return (
     <div className="directenquiries_container">
       <div className="directenquiries__buttons">

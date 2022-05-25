@@ -27,8 +27,6 @@ const Index = ({
     setcurrentdata(temp);
   }, [direct]);
 
-  console.log(direct);
-
   const updatestatus = async (value) => {
     let storedata = JSON.parse(localStorage.getItem("storedata"));
     try {

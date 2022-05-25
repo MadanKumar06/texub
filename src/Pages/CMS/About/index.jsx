@@ -105,8 +105,6 @@ function Index() {
     },
   ];
 
-  console.log(info);
-
   const keyhighlights = [
     {
       image: access,

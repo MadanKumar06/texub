@@ -1,16 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./styles.scss";
-import {
-  TextField,
-  TextareaAutosize,
-  InputLabel,
-  Checkbox,
-} from "@mui/material";
-import { isEmailValid, getAdminToken } from "../../../../../utilities";
+import { TextField, InputLabel, Checkbox } from "@mui/material";
+import { getAdminToken } from "../../../../../utilities";
 import Autocomplete from "@mui/material/Autocomplete";
-import { useParams } from "react-router-dom";
 import { ArrowBackIosNew } from "@mui/icons-material";
-import { Link } from "react-router-dom";
 import { useStateValue } from "../../../../../store/state";
 import axios from "axios";
 import Constant from "../../../../../Constant";
@@ -21,9 +14,8 @@ import swal from "sweetalert2";
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
-const Index = ({ currentid, setisSub, setisSubusers, setshowButton}) => {
-  console.log(currentid);
-  const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
+const Index = ({ currentid, setisSub, setisSubusers, setshowButton }) => {
+  const [{}, dispatch] = useStateValue();
   const [adminToken, setAdminToken] = useState("");
   const [plist, setplist] = useState();
   const [NewSubAccountData, setNewSubAccountData] = useState({
@@ -213,7 +205,7 @@ const Index = ({ currentid, setisSub, setisSubusers, setshowButton}) => {
         });
         setisSub(false);
         setisSubusers(true);
-        setshowButton(true)
+        setshowButton(true);
       } catch (e) {
         dispatch({
           type: "SET_IS_LOADING",
@@ -327,6 +319,7 @@ const Index = ({ currentid, setisSub, setisSubusers, setshowButton}) => {
           id="country-select-demo"
           options={plist ? plist : []}
           multiple
+          open={true}
           value={
             NewSubAccountData?.allowed_permissions
               ? NewSubAccountData?.allowed_permissions
@@ -336,11 +329,15 @@ const Index = ({ currentid, setisSub, setisSubusers, setshowButton}) => {
           isOptionEqualToValue={(option, value) => option.value === value.value}
           disableCloseOnSelect
           renderOption={(props, option, { selected }) => (
-            <li {...props} style={{padding:"0px"}}>
+            <li {...props} style={{ padding: "0px" }}>
               <Checkbox
                 icon={icon}
                 checkedIcon={checkedIcon}
-                style={{ marginRight: 8,paddingTop:"5px",paddingBottom:"5px" }}
+                style={{
+                  marginRight: 8,
+                  paddingTop: "5px",
+                  paddingBottom: "5px",
+                }}
                 checked={selected}
               />
               {option.label}
@@ -431,13 +428,14 @@ const Index = ({ currentid, setisSub, setisSubusers, setshowButton}) => {
       </div>
       <div className="my_profile_btns">
         <div className="my_profile_back">
-          <div className="back_button"
+          <div
+            className="back_button"
             onClick={() => {
               setisSub(false);
               setisSubusers(true);
               setshowButton(true);
             }}
-            style={{ cursor: 'pointer' }}
+            style={{ cursor: "pointer" }}
           >
             <ArrowBackIosNew />
             <span className="back">Back</span>

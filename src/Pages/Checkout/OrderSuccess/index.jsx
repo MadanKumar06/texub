@@ -91,7 +91,6 @@ const Index = () => {
           },
         },
       });
-      console.log(submitdata?.data);
       swal.fire({
         text: submitdata?.data[0]?.message,
         icon: "success",

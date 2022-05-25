@@ -1,16 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./styles.scss";
-import {
-  TextField,
-  TextareaAutosize,
-  InputLabel,
-  Checkbox,
-} from "@mui/material";
-import { isEmailValid, getAdminToken } from "../../../../../utilities";
+import { TextField, InputLabel, Checkbox } from "@mui/material";
+import { getAdminToken } from "../../../../../utilities";
 import Autocomplete from "@mui/material/Autocomplete";
-import { useParams } from "react-router-dom";
 import { ArrowBackIosNew } from "@mui/icons-material";
-import { Link } from "react-router-dom";
 import { useStateValue } from "../../../../../store/state";
 import axios from "axios";
 import Constant from "../../../../../Constant";
@@ -22,8 +15,7 @@ const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
 const Index = ({ currentid, setisSub, setisSubusers }) => {
-  console.log(currentid);
-  const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
+  const [{}, dispatch] = useStateValue();
   const [adminToken, setAdminToken] = useState("");
   const [plist, setplist] = useState();
   const [NewSubAccountData, setNewSubAccountData] = useState({
@@ -430,13 +422,14 @@ const Index = ({ currentid, setisSub, setisSubusers }) => {
       </div>
       <div className="my_profile_btns">
         <div className="my_profile_back">
-          <div className="back_button"
+          <div
+            className="back_button"
             onClick={() => {
               setisSub(false);
               setisSubusers(true);
             }}
-            style={{ cursor: 'pointer' }}
-            >
+            style={{ cursor: "pointer" }}
+          >
             <ArrowBackIosNew />
             <span className="back">Back</span>
           </div>

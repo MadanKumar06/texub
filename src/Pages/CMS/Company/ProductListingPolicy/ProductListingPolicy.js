@@ -57,7 +57,6 @@ export const ProductListingPolicy = () => {
     }
   }, [adminToken]);
 
-  console.log(terms);
 
   return (
     <div className="Termsofuse_main">

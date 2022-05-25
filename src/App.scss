@@ -68,7 +68,7 @@
   .MuiOutlinedInput-root {
     input {
       padding: 12px;
-       font: unset !important;
+      font: unset !important;
       // font-weight: 600 !important;
     }
     &:hover fieldset {
@@ -111,6 +111,11 @@
 }
 
 ///* dropdown selection background change*/
+.MuiAutocomplete-option[aria-selected="true"] {
+  color: #fff;
+  background-image: linear-gradient(#ffd788, #cc9b3e) !important;
+  margin-bottom: 3px;
+}
 .MuiAutocomplete-option.Mui-focused {
   color: #fff;
   background-image: linear-gradient(#ffd788, #cc9b3e) !important;
@@ -121,7 +126,7 @@
 }
 .MuiAutocomplete-option[aria-selected="true"].Mui-focused:hover {
   color: #fff;
-  background-image: linear-gradient(#ffd788, #cc9b3e);
+  background-image: linear-gradient(#ffd788, #cc9b3e) !important;
 }
 
 // Nodata found image

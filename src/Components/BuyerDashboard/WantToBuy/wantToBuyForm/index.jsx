@@ -82,7 +82,6 @@ const WantToBuy = ({ setisVieworders, setisOrders }) => {
       }));
       errorHandle = true;
     }
-    console.log(wantTobuyData);
     if (!errorHandle) {
       FinalWantToBuy();
     }

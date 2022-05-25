@@ -19,7 +19,6 @@ function Index() {
   const [{ geo, customnostore, currency }, dispatch] = useStateValue();
   const { qid } = useParams();
   const [pendingInvoiceList, setPendingInvoiceList] = useState([]);
-  console.log(qid);
   var currency_id = JSON.parse(localStorage.getItem("currency"));
 
   let buyerCode = JSON.parse(
@@ -94,8 +93,6 @@ function Index() {
         });
       });
   }, [currency]);
-
-  console.log(pendingInvoiceList);
 
   const options = {
     filter: false,
