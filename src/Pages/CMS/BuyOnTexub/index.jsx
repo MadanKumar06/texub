@@ -33,11 +33,12 @@ import ourReactInfo from "../../../Assets/SellerOnTexub/our_react_info.png";
 import whyChooseBg1 from "../../../Assets/SellerOnTexub/why_choose_bg1.png";
 import whyChooseBg2 from "../../../Assets/SellerOnTexub/why_choose_bg2.png";
 import whyChooseBg3 from "../../../Assets/SellerOnTexub/why_choose_bg3.png";
+import monitor_scroll_buyer from "../../../Assets/BuyOnTexub/slider/monitor_scroll_buyer.png";
 
-import BuyerDashboard from "../../../Assets/BuyOnTexub/slider/BuyerDashboard.png";
-import BuyerOrder from "../../../Assets/BuyOnTexub/slider/BuyerOrders.png";
-import BuyerWanto from "../../../Assets/BuyOnTexub/slider/BuyerWanto.png";
-import BuyerWishlist from "../../../Assets/BuyOnTexub/slider/BuyerWishlist.png";
+import BuyerDashboard from "../../../Assets/BuyOnTexub/slider/BuyerDash.png";
+import BuyerOrder from "../../../Assets/BuyOnTexub/slider/BuyerOrderPage.png";
+import BuyerWanto from "../../../Assets/BuyOnTexub/slider/BuyerWantoBuyPage.png";
+import BuyerWishlist from "../../../Assets/BuyOnTexub/slider/BuyerWishlistPage.png";
 
 
 import monitor from '../../../Assets/texub_buysell/monitor.png'

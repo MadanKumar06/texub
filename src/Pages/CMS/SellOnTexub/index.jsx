@@ -35,10 +35,10 @@ import whyChooseBg1 from "../../../Assets/SellerOnTexub/why_choose_bg1.png";
 import whyChooseBg2 from "../../../Assets/SellerOnTexub/why_choose_bg2.png";
 import whyChooseBg3 from "../../../Assets/SellerOnTexub/why_choose_bg3.png";
 
-import SellerDashboard from "../../../Assets/SellerOnTexub/slider/SellerDashboard.png";
-import SellerInventory from "../../../Assets/SellerOnTexub/slider/SellerInventory.png";
-import SellerOrders from "../../../Assets/SellerOnTexub/slider/SellerOrder.png";
-import SellerEnquery from "../../../Assets/SellerOnTexub/slider/SellerEnqueries.png";
+import SellerDashboard from "../../../Assets/SellerOnTexub/slider/SellerDashboardPage.png";
+import SellerInventory from "../../../Assets/SellerOnTexub/slider/SellerInventoryPage.png";
+import SellerOrders from "../../../Assets/SellerOnTexub/slider/SellerOrderPage.png";
+import SellerEnquery from "../../../Assets/SellerOnTexub/slider/SellerEnquiryPage.png";
 
 
 
