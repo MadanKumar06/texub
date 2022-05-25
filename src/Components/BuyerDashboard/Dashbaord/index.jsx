@@ -5,11 +5,7 @@ import red from "../../../Assets/buyerdashboard/dashboard/red.png";
 import blue from "../../../Assets/buyerdashboard/dashboard/blue.png";
 import green from "../../../Assets/buyerdashboard/dashboard/green.png";
 import exchangeoffer from "../../../Assets/sellerdashboard/dashboard/exchangeoffer.png";
-import wanttobuy from "../../../Assets/buyerdashboard/dashboard/wanttobuy.png";
 import wanttobuy_new from "../../../Assets/buyerdashboard/dashboard/buyer_dashboard_buy.png";
-import apple from "../../../Assets/buyerdashboard/dashboard/apple.png";
-import acer from "../../../Assets/buyerdashboard/dashboard/acer.png";
-import hp from "../../../Assets/buyerdashboard/dashboard/hp.png";
 
 import DashboardChart from "../../DashboardChartSection";
 import axios from "axios";

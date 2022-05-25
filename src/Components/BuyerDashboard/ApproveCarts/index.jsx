@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./styles.scss";
-import { Button } from "@mui/material";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import Pagination from "../../Pagination";
@@ -11,7 +10,7 @@ import Constant from "../../../Constant";
 import NodataFound from "../../../Assets/CommonImage/NodataFound.webp.png";
 
 function ApproveCart() {
-  const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
+  const [{ geo, customnostore }, dispatch] = useStateValue();
   const [tableData, setTableData] = useState([]);
 
   const handleViewChange = () => {
@@ -135,7 +134,6 @@ function ApproveCart() {
   };
 
   const approve = async (value) => {
-    let user = JSON.parse(localStorage.getItem("userdata"));
     try {
       const mergerequest = await axios({
         method: "post",

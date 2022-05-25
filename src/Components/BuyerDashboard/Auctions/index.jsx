@@ -8,7 +8,7 @@ import { useStateValue } from "../../../store/state";
 
 function Index() {
   const [tableData, setTableData] = useState([]);
-  const [{geo, customstore, customnostore}, dispatch] = useStateValue()
+  const [{geo, customnostore}, dispatch] = useStateValue()
 
   const auctiondata = [
     {
