@@ -136,6 +136,9 @@ $yellow: #DDB363;
          background-image: url(../../../Assets/SellerOnTexub/banner/btn_banner.png);
          padding: 2em 0;
          text-align: center;
+         a{
+           text-decoration: none !important;  
+         }
          button{
              color: #ffffff !important;
             border: none !important;

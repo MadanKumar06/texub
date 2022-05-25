@@ -9,18 +9,17 @@ import topbanner from "../../../Assets/BuyOnTexub/banner/topbanner.png";
 import mobile_slider from "../../../Assets/BuyOnTexub/banner/mobile_slider.png";
 import btnbanner from "../../../Assets/SellerOnTexub/banner/btn_banner.png";
 import questionMark from "../../../Assets/SellerOnTexub/question_mark.png";
-import benefits1 from "../../../Assets/SellerOnTexub/benefits1.png";
-import benefits2 from "../../../Assets/SellerOnTexub/benefits2.png";
-import benefits3 from "../../../Assets/SellerOnTexub/benefits3.png";
-import benefits4 from "../../../Assets/SellerOnTexub/benefits4.png";
-import benefits5 from "../../../Assets/SellerOnTexub/benefits5.png";
-import benefits6 from "../../../Assets/SellerOnTexub/benefits6.png";
-import benefits7 from "../../../Assets/SellerOnTexub/benefits7.png";
-import benefits8 from "../../../Assets/SellerOnTexub/benefits8.png";
-import benefits9 from "../../../Assets/SellerOnTexub/benefits9.png";
-import benefits10 from "../../../Assets/SellerOnTexub/benefits10.png";
-import benefits11 from "../../../Assets/SellerOnTexub/benefits11.png";
-import benefits12 from "../../../Assets/SellerOnTexub/benefits12.png";
+import benefits1 from "../../../Assets/BuyOnTexub/benefits1.png";
+import benefits2 from "../../../Assets/BuyOnTexub/benefits2.png";
+import benefits3 from "../../../Assets/BuyOnTexub/benefits3.png";
+import benefits4 from "../../../Assets/BuyOnTexub/benefits4.png";
+import benefits5 from "../../../Assets/BuyOnTexub/benefits5.png";
+import benefits6 from "../../../Assets/BuyOnTexub/benefits6.png";
+import benefits7 from "../../../Assets/BuyOnTexub/benefits7.png";
+import benefits8 from "../../../Assets/BuyOnTexub/benefits8.png";
+import benefits9 from "../../../Assets/BuyOnTexub/benefits9.png";
+import benefits10 from "../../../Assets/BuyOnTexub/benefits10.png";
+
 
 
 
@@ -36,7 +35,7 @@ import whyChooseBg2 from "../../../Assets/SellerOnTexub/why_choose_bg2.png";
 import whyChooseBg3 from "../../../Assets/SellerOnTexub/why_choose_bg3.png";
 
 import BuyerDashboard from "../../../Assets/BuyOnTexub/slider/BuyerDashboard.png";
-import BuyerOrder from "../../../Assets/BuyOnTexub/slider/BuyerOrder.png";
+import BuyerOrder from "../../../Assets/BuyOnTexub/slider/BuyerOrders.png";
 import BuyerWanto from "../../../Assets/BuyOnTexub/slider/BuyerWanto.png";
 import BuyerWishlist from "../../../Assets/BuyOnTexub/slider/BuyerWishlist.png";
 
