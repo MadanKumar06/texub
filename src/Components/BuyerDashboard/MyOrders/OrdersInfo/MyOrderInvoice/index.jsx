@@ -352,7 +352,7 @@ const Index = ({ orders }) => {
                   <div className="vieworders_shippingaddress_section">
                     <div className="vieworders_payment_section">
                       <p className="payment_heading">Shipping Method</p>
-                      <p className="payment_type">Texub Shipping</p>
+                      <p className="payment_type">TEXUB Shipping</p>
                     </div>
                   </div>
 

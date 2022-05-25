@@ -135,6 +135,9 @@ $yellow: #DDB363;
          background-image: url(../../../Assets/SellerOnTexub/banner/btn_banner.png);
          padding: 2em 0;
          text-align: center;
+           a{
+           text-decoration: none !important;  
+         }
          button{
              color: #ffffff !important;
             border: none !important;
@@ -807,7 +810,7 @@ $yellow: #DDB363;
 }
 @media (max-width: 1375px) {
     .sellontexub_slider .sellontexub__monitordata .sellontexub__monitor__carousel{
-           bottom: 29%;
+           bottom: 28%;
     }
     .sellontexub_slider .sellontexub__monitordata .sellontexub__monitor__carousel div{
         width: 86%;
@@ -854,7 +857,7 @@ $yellow: #DDB363;
 }
 @media (max-width: 1280px) {
       .sellontexub_slider .sellontexub__monitordata .sellontexub__monitor__carousel{
-           bottom: 30%;
+           bottom: 29%;
     }
       .sellontexub_slider .sellontexub__monitordata .sellontexub__monitor__carousel div{
         width: 86%;
@@ -902,7 +905,7 @@ $yellow: #DDB363;
         height: 100%;
     }
       .sellontexub_slider .sellontexub__monitordata .sellontexub__monitor__carousel{
-           bottom: 26%;
+           bottom: 27%;
     }
       .sellontexub_slider .sellontexub__monitordata .sellontexub__monitor__carousel div{
         width: 86%;
@@ -1008,10 +1011,10 @@ $yellow: #DDB363;
         height: 100%;
     }
  .sellontexub_slider .sellontexub__monitordata .sellontexub__monitor__carousel{
-           bottom: 27%;
+           bottom: 31%;
     }
     .sellontexub_slider .sellontexub__monitordata .sellontexub__monitor__carousel div{
-        width: 85%;
+        width: 86%;
     }
      .sellontexub__monitor__carousel  {
         .slick-prev {
@@ -1044,7 +1047,7 @@ $yellow: #DDB363;
 }
 @media (max-width: 899px) {
  .sellontexub_slider .sellontexub__monitordata .sellontexub__monitor__carousel{
-           bottom: 27%;
+           bottom: 29%;
     }
     .sellontexub_slider .sellontexub__monitordata .sellontexub__monitor__carousel div{
         width: 86%;
@@ -1074,7 +1077,7 @@ $yellow: #DDB363;
         height: 100%;
     }
     .sellontexub_slider .sellontexub__monitordata .sellontexub__monitor__carousel{
-           bottom: 25%;
+           bottom: 28%;
     }
     .sellontexub_slider .sellontexub__monitordata .sellontexub__monitor__carousel div{
         width: 87%;
@@ -1090,7 +1093,7 @@ $yellow: #DDB363;
 }
 @media (max-width: 830px) {
  .sellontexub_slider .sellontexub__monitordata .sellontexub__monitor__carousel{
-           bottom: 26%;
+           bottom: 27%;
     }
     .sellontexub_slider .sellontexub__monitordata .sellontexub__monitor__carousel div{
         width: 87%;
@@ -1106,7 +1109,7 @@ $yellow: #DDB363;
 }
 @media (max-width: 780px) {
  .sellontexub_slider .sellontexub__monitordata .sellontexub__monitor__carousel{
-           bottom: 27%;
+           bottom: 28%;
     }
       .sellontexub_slider .sellontexub__monitordata .sellontexub_monitorbottom {
         background-color: #d6e5ec;
@@ -1152,10 +1155,10 @@ $yellow: #DDB363;
 }
 @media (max-width: 767px) {
  .sellontexub_slider .sellontexub__monitordata .sellontexub__monitor__carousel{
-           bottom: 26%;
+           bottom: 28%;
     }
     .sellontexub_slider .sellontexub__monitordata .sellontexub__monitor__carousel div{
-        width: 87%;
+        width: 86%;
     }
      .sellontexub__monitor__carousel  {
         .slick-prev {
@@ -1172,7 +1175,7 @@ $yellow: #DDB363;
         height: 100%;
     }
     .sellontexub_slider .sellontexub__monitordata .sellontexub__monitor__carousel{
-           bottom: 26%;
+           bottom: 28%;
     }
     .sellontexub_slider .sellontexub__monitordata .sellontexub__monitor__carousel div{
         width: 87%;
@@ -1201,7 +1204,7 @@ $yellow: #DDB363;
 }
 @media (max-width: 670px) {
  .sellontexub_slider .sellontexub__monitordata .sellontexub__monitor__carousel{
-           bottom: 25%;
+           bottom: 27%;
     }
     .sellontexub_slider .sellontexub__monitordata .sellontexub__monitor__carousel div{
         width: 87%;
@@ -1221,7 +1224,7 @@ $yellow: #DDB363;
         height: 100%;
     }
     .sellontexub_slider .sellontexub__monitordata .sellontexub__monitor__carousel{
-            bottom: 26%;
+            bottom: 28%;
         }
         .sellerontexub .seller_process_section .process_section_title {
     margin: 0 5%;
@@ -1232,7 +1235,7 @@ $yellow: #DDB363;
 
 @media (max-width: 599px) {
  .sellontexub_slider .sellontexub__monitordata .sellontexub__monitor__carousel{
-           bottom: 26%;
+           bottom: 28%;
     }
      .sellontexub_slider .sellontexub__monitordata .sellontexub__monitor__carousel div{
         width: 86%;
@@ -1258,7 +1261,7 @@ $yellow: #DDB363;
 }
 @media (max-width: 567px) {
      .sellontexub_slider .sellontexub__monitordata .sellontexub__monitor__carousel{
-           bottom: 26%;
+           bottom: 28%;
     }
      .sellontexub_slider .sellontexub__monitordata .sellontexub__monitor__carousel div{
         width: 86%;
@@ -1283,7 +1286,7 @@ $yellow: #DDB363;
         height: 100%;
     }
      .sellontexub_slider .sellontexub__monitordata .sellontexub__monitor__carousel{
-           bottom: 25%;
+           bottom: 27%;
     }
      .sellontexub_slider .sellontexub__monitordata .sellontexub__monitor__carousel div{
         width: 86%;
@@ -1369,7 +1372,7 @@ $yellow: #DDB363;
 }
 @media (max-width: 450px) {
      .sellontexub_slider .sellontexub__monitordata .sellontexub__monitor__carousel{
-           bottom: 25%;
+           bottom: 27%;
     }
      .sellontexub_slider .sellontexub__monitordata .sellontexub__monitor__carousel div{
         width: 86%;
@@ -1404,10 +1407,10 @@ $yellow: #DDB363;
 }
 @media (max-width: 425px) {
      .sellontexub_slider .sellontexub__monitordata .sellontexub__monitor__carousel{
-           bottom: 22%;
+           bottom: 25%;
     }
      .sellontexub_slider .sellontexub__monitordata .sellontexub__monitor__carousel div{
-        width: 86%;
+        width: 85%;
     }
     .sellontexub_slider .sellontexub__monitordata .sellontexub_monitorbottom {
         background-color: #d6e5ec;
@@ -1417,7 +1420,7 @@ $yellow: #DDB363;
 }
 @media (max-width: 400px) {
      .sellontexub_slider .sellontexub__monitordata .sellontexub__monitor__carousel{
-           bottom: 24%;
+           bottom: 25%;
     }
      .sellontexub_slider .sellontexub__monitordata .sellontexub__monitor__carousel div{
         width: 85%;
@@ -1437,7 +1440,7 @@ $yellow: #DDB363;
 }
 @media (max-width: 385px) {
      .sellontexub_slider .sellontexub__monitordata .sellontexub__monitor__carousel{
-           bottom: 21%;
+           bottom: 24%;
     }
      .sellontexub_slider .sellontexub__monitordata .sellontexub__monitor__carousel div{
         width: 86%;
@@ -1448,7 +1451,7 @@ $yellow: #DDB363;
 }
 @media (max-width: 375px) {
      .sellontexub_slider .sellontexub__monitordata .sellontexub__monitor__carousel{
-           bottom: 21%;
+           bottom: 23%;
     }
      .sellontexub_slider .sellontexub__monitordata .sellontexub__monitor__carousel div{
         width: 86%;
@@ -1462,7 +1465,7 @@ $yellow: #DDB363;
 }
 @media (max-width: 360px) {
      .sellontexub_slider .sellontexub__monitordata .sellontexub__monitor__carousel{
-           bottom: 22%;
+           bottom: 24%;
     }
      .sellontexub_slider .sellontexub__monitordata .sellontexub__monitor__carousel div{
         width: 86%;
@@ -1475,7 +1478,7 @@ $yellow: #DDB363;
 }
 @media (max-width: 340px) {
      .sellontexub_slider .sellontexub__monitordata .sellontexub__monitor__carousel{
-           bottom: 21%;
+           bottom: 24%;
     }
      .sellontexub_slider .sellontexub__monitordata .sellontexub__monitor__carousel div{
         width: 86%;
@@ -1494,7 +1497,7 @@ $yellow: #DDB363;
 }
 @media (max-width: 320px) {
      .sellontexub_slider .sellontexub__monitordata .sellontexub__monitor__carousel{
-           bottom: 21%;
+           bottom: 23%;
     }
      .sellontexub_slider .sellontexub__monitordata .sellontexub__monitor__carousel div{
         width: 86%;
