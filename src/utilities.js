@@ -36,7 +36,7 @@ export const isNumber = (number) => number.match(/^[0-9]*\d$/);
 export const getAdminToken = (callback) => {
   let data = {
     username: "admin",
-    password: "admin@1234",
+    password: "73xu6@2&L1v3",
   };
   axios
     .post(Constant.adminTokenUrl(), data, {

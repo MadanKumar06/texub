@@ -49,7 +49,15 @@ export const Departments = ({ data, categories }) => {
       state: { name: event?.attribute, value: event?.value },
     });
   };
+  const LearnMoreClick = () => {
+    history(`/${customnostore ? customnostore : geo?.country_name}/products`);
+  };
 
+  // When the user clicks on the button, scroll to the top of the document
+  const scrollTop = () => {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  };
   return (
     <div className="Departments">
       <div className="Departments_Body_Search">
@@ -176,8 +184,18 @@ export const Departments = ({ data, categories }) => {
                   do eiusmod tempor incididunt ut labore et dolore magna aliqua. */}
                 </p>
                 <div className="Offers_buttons">
-                  <button className="Learn_more_btn">Learn More</button>
-                  <button className="Get_started_btn">Get Started</button>
+                  <button
+                    className="Learn_more_btn"
+                    onClick={() => LearnMoreClick()}
+                  >
+                    Learn More
+                  </button>
+                  <button
+                    className="Get_started_btn"
+                    onClick={() => scrollTop()}
+                  >
+                    Get Started
+                  </button>
                 </div>
               </div>
             </div>

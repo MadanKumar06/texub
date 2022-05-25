@@ -4,6 +4,11 @@ import Collect11 from "../../../Assets/Homepage Assets/Group 71.png";
 import Collect12 from "../../../Assets/Homepage Assets/Group 72.png";
 
 export const Todaysdeal = ({ data }) => {
+  // When the user clicks on the button, scroll to the top of the document
+  const scrollTop = () => {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  };
   return (
     // <div className='Todaysdeal'>
     <div className="Todaysdeal_Collections">
@@ -24,7 +29,9 @@ export const Todaysdeal = ({ data }) => {
         <div className="Todaysdeal__floatingcontent">
           <h3 className="Todaysdeal_Heading">{data?.title}</h3>
           <p className="Todaysdeal_Heading_paragraph">{data?.content}</p>
-          <button className="Todaysdeal_View_btn">View</button>
+          <button className="Todaysdeal_View_btn" onClick={() => scrollTop()}>
+            View
+          </button>
           <div />
         </div>
       </div>

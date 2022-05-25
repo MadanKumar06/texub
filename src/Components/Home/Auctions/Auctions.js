@@ -4,6 +4,11 @@ import Collect21 from "../../../Assets/Homepage Assets/Group 706.png";
 import Collect22 from "../../../Assets/Homepage Assets/Group 75.png";
 
 export const Auctions = () => {
+  // When the user clicks on the button, scroll to the top of the document
+  const scrollTop = () => {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  };
   return (
     <div className="Auctions">
       <div className="Auctions_div1">
@@ -18,7 +23,9 @@ export const Auctions = () => {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
-          <button className="Auctions_View_btn">View</button>
+          <button className="Auctions_View_btn" onClick={() => scrollTop()}>
+            View
+          </button>
         </div>
       </div>
     </div>

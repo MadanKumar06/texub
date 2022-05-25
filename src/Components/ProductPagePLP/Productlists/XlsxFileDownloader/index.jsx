@@ -1,6 +1,8 @@
 import XLSX from "xlsx";
 
 export default function Index({ productData }) {
+  const user = JSON.parse(localStorage.getItem("userdata"));
+
   const downloadxls = (e, tableData) => {
     let temp = tableData?.map((itm) => ({
       brand: `${itm?.main_product?.brand_name}`,
@@ -10,8 +12,8 @@ export default function Index({ productData }) {
       condition: itm?.main_product?.condition,
       hub: itm?.sub_products?.[0]?.hub,
       moq: itm?.sub_products?.[0]?.moq,
-      price: itm?.sub_products?.[0]?.price,
       in_stock: itm?.sub_products?.[0]?.in_stock,
+      price: user?.id && itm?.sub_products?.[0]?.price,
     }));
     e.preventDefault();
     const ws = XLSX.utils.json_to_sheet(temp);
