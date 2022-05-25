@@ -173,7 +173,7 @@ function Index() {
       name: "Neelesh Bhatnagar",
       designation: "BUSINESS & FINANCE",
       content:
-        "CEO NB Ventures , Startup angel investor , Mentor , Interests in Consumer , Healthcare and Edtech. Finance Leader with several years experience in Corporate Management and Strategy. Proven record of designing and implementing financial processes that improve performance and minimise risk",
+        "CEO NB Ventures, Startup angel investor, Mentor, Interests in Consumer,  Healthcare and Edtech.  Finance Leader with several years experience in Corporate Management and Strategy. Proven record of designing and implementing financial processes that improve performance and minimise risk",
     },
     {
       image: yasuo,
