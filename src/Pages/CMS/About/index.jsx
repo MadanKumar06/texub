@@ -8,7 +8,7 @@ import blue from "../../../Assets/Aboutus/vision/blue.png";
 import blue1 from "../../../Assets/Aboutus/vision/blue1.png";
 
 import right from "../../../Assets/Aboutus/businessmodel/right.png";
-import flow from "../../../Assets/Aboutus/businessmodel/flow.png";
+import flow from "../../../Assets/Aboutus/businessmodel/about_flow.png";
 import global from "../../../Assets/Aboutus/businessmodel/global.png";
 import effieciency from "../../../Assets/Aboutus/businessmodel/effieciency.png";
 import transparency from "../../../Assets/Aboutus/businessmodel/transparency.png";
@@ -145,7 +145,7 @@ function Index() {
       name: "Niranjan Gidwani",
       position: "CONSULTING DIRECTOR",
       content:
-        "Has over 38 years of hardcore top management experience, including extensive business exposure in places such as India, Hong Kong, Germany, Singapore, and Dubai. General management, strategy and implementation, building and scaling up teams, grooming future leaders, international business development, handling international start-ups, marketing, and worldwide sourcing for diverse categories are among his areas of expertise.",
+        "Over 38 years of hardcore senior management experience with a strong exposure to handling international business. He had working stints in India, Hongkong, Germany, Singapore and Dubai. Expertise in business from different vantage points, including general management, strategy and implementation, building and scaling up teams and processes, grooming future leaders, international business development, handling international start-ups, marketing, global sourcing for various product categories",
     },
     {
       image: board_member2,
@@ -165,7 +165,7 @@ function Index() {
       name: "Susir Kumar",
       designation: "STRATEGY & CORPORATE GOVERNANCE",
       content:
-        "Founded the successful global BPO venture. Delivered significant profitability and value to all key stakeholders. Over 30 years of service sector expertise, focusing in new venture formation, M&A advising, and business structure. VSF worldwide chairman and board member of TaskUs, Refyne, Sports Village, and Ingroup consulting.",
+        "Founded the most successful global BPO venture. Delivered significant profitability and value to all key stakeholders: employees, clients and PE. Over 30 years of experience in the services industry specialising in setting up new ventures, M&A advisory and corporate structuring. Chairman & Board member of VFS Global, Board member TaskUs, Refyne, Sportz Village & Ingroup Consulting",
     },
     {
       image: Neelesh,
@@ -173,7 +173,7 @@ function Index() {
       name: "Neelesh Bhatnagar",
       designation: "BUSINESS & FINANCE",
       content:
-        "Founded the most successful global BPO venture. Delivered significant profitability and value to all key stakeholders : employees, clients and PE. Over 3o years of experience in the services industry specializing in setting up new ventures, M&A advisory and corporate structuring. Chairman & Board member of VSF global, board member TaskUs, Refyne, Sports Village & Ingroup consulting.",
+        "CEO NB Ventures , Startup angel investor , Mentor , Interests in Consumer , Healthcare and Edtech. Finance Leader with several years experience in Corporate Management and Strategy. Proven record of designing and implementing financial processes that improve performance and minimise risk",
     },
     {
       image: yasuo,
@@ -316,12 +316,12 @@ function Index() {
           <div className="businessmodel__content">
             <div className="content__left">
               <img src={flow} alt="" />
-              <p className="left__content1">
+              {/* <p className="left__content1">
                 <span>Safe, Stable And Seamless</span> Digital Marketplace
               </p>
               <p className="left__content2">
                 Seller and Buyer are anonymous and operate with Customer ID
-              </p>
+              </p> */}
             </div>
             <div className="content__right">
               <img src={about_banner_image} alt="" />
@@ -388,7 +388,7 @@ function Index() {
         </div>
 
         <div className="aboutus__advisary">
-          <h2>Advisary Board</h2>
+          <h2>Advisory Board</h2>
           <div className="advisory__content">
             <ul>
               {advisary.map((data) => (
