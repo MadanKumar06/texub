@@ -109,14 +109,19 @@ export const Footer = () => {
               >
                 <li>Privacy Policy</li>
               </Link>
-              <Link
+              {/* <Link
                 to={`/${
                   customnostore ? customnostore : geo?.country_name
                 }/rrpolicy`}
                 className="to_CMS"
               >
                 <li>Refund Policy</li>
-              </Link>
+              </Link> */}
+              <li
+                className="to_CMS cookie no_cursor"
+              >
+                Refund Policy
+              </li>
               <Link
                 to={`/${
                   customnostore ? customnostore : geo?.country_name
@@ -127,22 +132,32 @@ export const Footer = () => {
               >
                 <li> Product Listing Policy</li>
               </Link>
-               <li
+               {/* <li
                 className="to_CMS cookie"
                 onClick={() => {
                   setisCookies(true);
                 }}
               >
                 Cookies Permission
+              </li> */}
+               <li
+                className="to_CMS cookie no_cursor"
+              >
+               Cookies Permission
               </li>
-              <Link
+              {/* <Link
                 to={`/${
                   customnostore ? customnostore : geo?.country_name
                 }/gdpr`}
                 className="to_CMS"
               >
                 <li>GDPR</li>
-              </Link>
+              </Link> */}
+               <li
+                className="to_CMS cookie no_cursor"
+              >
+               GDPR
+              </li>
 
             
               {/* <Link
@@ -238,7 +253,7 @@ export const Footer = () => {
             Logos belongs to their respective owners.
           </p>
         </div>
-        <Link
+        {/* <Link
           to={`/${
             customnostore ? customnostore : geo?.country_name
           }/privacypolicy/${currencyData?.[2]?.staticPages?.privacy}`}
@@ -253,7 +268,7 @@ export const Footer = () => {
           className="to_CMS"
         >
           <p>Terms of Use</p>
-        </Link>
+        </Link> */}
       </div>
       <div className="User_Details">
         <Link to={`/${customnostore ? customnostore : geo?.country_name}`}>

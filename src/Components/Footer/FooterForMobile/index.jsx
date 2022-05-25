@@ -104,14 +104,20 @@ const MobileFooterAccordions = () => {
           >
             <Typography>Privacy Policy</Typography>
           </Link>
-          <Link
+          {/* <Link
             to={`/${
               customnostore ? customnostore : geo?.country_name
             }/rrpolicy`}
             className="link"
           >
             <Typography>Refund Policy</Typography>
-          </Link>
+          </Link> */}
+          <a
+           
+            className="link"
+          >
+            <Typography>Refund Policy</Typography>
+          </a>
           <Link
             to={`/${
               customnostore ? customnostore : geo?.country_name
@@ -128,13 +134,26 @@ const MobileFooterAccordions = () => {
           >
             <Typography>Legal </Typography>
           </Link> */}
-          <Typography>Cookies Permission </Typography>
-          <Link
+          {/* <Typography>Cookies Permission </Typography> */}
+           <a
+           
+            className="link"
+          >
+            <Typography>Cookies Permission</Typography>
+          </a>
+           <a
+           
+            className="link"
+          >
+            <Typography>GDPR</Typography>
+          </a>
+          
+          {/* <Link
             to={`/${customnostore ? customnostore : geo?.country_name}/gdpr`}
             className="link"
           >
             <Typography>GDPR </Typography>
-          </Link>
+          </Link> */}
          
           {/* <Link to={`/${customnostore ? customnostore : geo?.country_name}/seller_advantage`} className="link">
             <Typography>Seller Advantage</Typography>

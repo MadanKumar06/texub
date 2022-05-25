@@ -262,8 +262,9 @@ const styles = (theme) => ({
     fontSize: "20px",
     color: "#002D56",
     fontWeight: "600",
-    margin: "20px 0px",
+    margin: "20px auto",
     cursor: "pointer",
+    width: "fit-content",
     textDecoration: "underline",
     "@media(max-width:1660px)": {
       fontSize: "18px",
