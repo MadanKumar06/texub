@@ -200,9 +200,9 @@ function Index() {
       image: AhmedRayyan,
       quote_bg: advisory_board_bg,
       name: "Ahmed Rayyan",
-      designation: "DIRECTOR, INDIA & SOUTH ASIA",
+      designation: "Vice President, Americas",
       content:
-        "Dedicated business development professional with over 20 years of experience in market research, team management and global marketing in the Middle East and Africa. Speciality in market trends and IT development in the US. Led multiple projects for business initiatives worldwide with a focus on e-commerce.",
+        "Dedicated business development professional with over 20 years of experience in market research, team management, & global marketing in the Middle East and Africa. Specialty in market trends & IT development in the US. Led multiple projects for business initiatives worldwide with a focus on e-commerce.",
     },
   ];
 

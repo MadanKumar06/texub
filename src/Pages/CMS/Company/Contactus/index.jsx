@@ -178,7 +178,7 @@ const Contactus = () => {
     {
       id: 1,
       image: location,
-      address: "TEXUB,",
+      address: "TEXUB Inc,",
       address2: "Spaces Galleria At Post Oak,",
       address3: "1980 Post Oak Blvd, Suite 200",
       address4: "Houston TX 77056",
