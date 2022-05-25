@@ -130,12 +130,11 @@ const BuyerDashboard = () => {
             </div>
 
             <ul>
-              {dashboarddata?.length
-                ? dashboarddata?.[0]?.products?.length &&
-                  dashboarddata?.[0]?.products?.map((data, i) => {
+              {dashboarddata?.length && dashboarddata?.[0]?.products?.length
+                ? dashboarddata?.[0]?.products?.map((data, i) => {
                     return (
                       <li key={i}>
-                        {data?.brand !== "" ? (
+                        {data?.brand === "" ? (
                           <span className="image">{data?.brand_name}</span>
                         ) : (
                           <span className="image">

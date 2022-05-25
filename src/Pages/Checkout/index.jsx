@@ -457,7 +457,6 @@ const Checkout = () => {
   const addressadd = (e) => {
     setaddressdata((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
-  console.log(addressdata);
 
   const handleaddressvalidation = () => {
     let errorhandle = false;
@@ -538,8 +537,6 @@ const Checkout = () => {
       type: "SET_IS_LOADING",
       value: true,
     });
-    console.log(addressdata);
-
     try {
       const addressadd = await axios({
         method: "post",

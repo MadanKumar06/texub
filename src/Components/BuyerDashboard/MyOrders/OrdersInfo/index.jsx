@@ -110,7 +110,6 @@ const Index = ({ orders, setisVieworders, setisOrders }) => {
     }
   }, [currentorder, update_transaction_details]);
 
-  // console.log(detailsorder[0])
 
   const options = {
     filter: false,

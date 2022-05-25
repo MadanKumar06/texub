@@ -546,7 +546,6 @@ const BuyerRegistration = ({ classes }) => {
           customer_id: user?.id,
         },
       });
-      console.log(permission?.data);
       localStorage.setItem("permissions", JSON.stringify(permission?.data));
     } catch (e) {
       console.log(e);

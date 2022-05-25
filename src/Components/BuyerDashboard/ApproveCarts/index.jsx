@@ -39,7 +39,6 @@ function ApproveCart() {
         },
       });
       setapprovetable(approvelist?.data);
-      console.log(approvelist?.data);
     } catch (e) {
       console.log(e);
     }
@@ -150,7 +149,6 @@ function ApproveCart() {
           },
         },
       });
-      console.log(mergerequest?.data);
     } catch (e) {
       console.log(e);
     }
@@ -172,7 +170,6 @@ function ApproveCart() {
           },
         },
       });
-      console.log(mergerequest?.data);
     } catch (e) {
       console.log(e);
     }

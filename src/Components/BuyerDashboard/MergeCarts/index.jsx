@@ -40,7 +40,6 @@ function MergeCarts() {
           }
        }       
       })
-      console.log(mergecart?.data)
       setmergetable(mergecart?.data)
     } catch(e) {
       console.log(e)
@@ -145,7 +144,6 @@ function MergeCarts() {
           }
        }
       })
-      console.log(mergerequest?.data)
     } catch(e) {
       console.log(e)
     }
@@ -167,7 +165,6 @@ function MergeCarts() {
           }
        }
       })
-      console.log(mergerequest?.data)
     } catch(e) {
       console.log(e)
     }
