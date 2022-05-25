@@ -34,7 +34,7 @@ export default function BasicModal({PopupTrack}) {
      {
         date:"Saturday, 08/05/21",
         time:"09:10 AM",
-        shippping_msg:"Package has left the Texub Facility",
+        shippping_msg:"Package has left the TEXUB Facility",
         location:"Mumbai, Maharashtra",
     
     },
@@ -42,13 +42,13 @@ export default function BasicModal({PopupTrack}) {
         
         date:"Saturday, 08/05/21",
         time:"09:10 AM",
-        shippping_msg:"Package has left the Texub Facility",
+        shippping_msg:"Package has left the TEXUB Facility",
         location:"Mumbai, Maharashtra",
     },
      {
         date:"Saturday, 08/05/21",
         time:"09:10 AM",
-        shippping_msg:"Package has left the Texub Facility",
+        shippping_msg:"Package has left the TEXUB Facility",
         location:"Mumbai, Maharashtra",
     
     },
