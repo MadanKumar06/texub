@@ -311,7 +311,13 @@ const Index = ({ classes, setisAccountinfo, setisEdit }) => {
                 InputLabelProps={{
                   shrink: false,
                 }}
-                onChange={handleChangeInput}
+                onChange={(e) => {
+                  handleChangeInput(e)
+                  setInputValidation((prevState) => ({
+                    ...prevState,
+                    first_name: ""
+                  }))
+                }}
               />
               <InputLabel className={validation_error}>
                 {inputValidation?.first_name}
@@ -328,7 +334,13 @@ const Index = ({ classes, setisAccountinfo, setisEdit }) => {
                 InputLabelProps={{
                   shrink: false,
                 }}
-                onChange={handleChangeInput}
+                onChange={(e) => {
+                  handleChangeInput(e)
+                  setInputValidation((prevState) => ({
+                    ...prevState,
+                    last_name: ""
+                  }))
+                }}
               />
               <InputLabel className={validation_error}>
                 {inputValidation?.last_name}
@@ -351,7 +363,13 @@ const Index = ({ classes, setisAccountinfo, setisEdit }) => {
                   shrink: true,
                   required: true,
                 }}
-                onChange={handleMobileChangeInput}
+                onChange={(e) => {
+                  handleMobileChangeInput(e)
+                  setInputValidation((prevState) => ({
+                    ...prevState,
+                    mobile_number: ""
+                  }))
+                }}
                 variant="outlined"
               />
               {/* <MuiPhoneNumber
@@ -382,7 +400,13 @@ const Index = ({ classes, setisAccountinfo, setisEdit }) => {
                 InputLabelProps={{
                   shrink: false,
                 }}
-                onChange={handleChangeInput}
+                onChange={(e) => {
+                  handleChangeInput(e)
+                  setInputValidation((prevState) => ({
+                    ...prevState,
+                    email_address: ""
+                  }))
+                }}
               />
               <InputLabel className={validation_error}>
                 {inputValidation?.email_address}
@@ -402,7 +426,13 @@ const Index = ({ classes, setisAccountinfo, setisEdit }) => {
                 InputLabelProps={{
                   shrink: false,
                 }}
-                onChange={handleChangeInput}
+                onChange={(e) => {
+                  handleChangeInput(e)
+                  setInputValidation((prevState) => ({
+                    ...prevState,
+                    new_password: ""
+                  }))
+                }}
               />
               <InputLabel className={validation_error}>
                 {inputValidation?.new_password}
@@ -420,7 +450,13 @@ const Index = ({ classes, setisAccountinfo, setisEdit }) => {
                 InputLabelProps={{
                   shrink: false,
                 }}
-                onChange={handleChangeInput}
+                onChange={(e) => {
+                  handleChangeInput(e)
+                  setInputValidation((prevState) => ({
+                    ...prevState,
+                    new_confrim_password: ""
+                  }))
+                }}
               />
               <InputLabel className={validation_error}>
                 {inputValidation?.new_confrim_password}

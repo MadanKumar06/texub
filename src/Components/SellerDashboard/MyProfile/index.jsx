@@ -12,7 +12,7 @@ import { useStateValue } from "../../../store/state";
 const Index = () => {
   const [isAccountinfo, setisAccountinfo] = useState(true);
   const [{ geo, customnostore }, dispatch] = useStateValue();
-
+  const [showButton,setshowButton]=useState(true);
   const [type, settype] = useState();
 
   const selectorder = (value) => {

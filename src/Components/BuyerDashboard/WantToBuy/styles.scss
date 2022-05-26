@@ -208,6 +208,9 @@
   .want_tobuy__footer {
     width: 100%;
     .want_tobuy__container {
+          display: flex;
+          justify-content: space-between;
+          flex-wrap: wrap;
       p {
         text-decoration: none;
         display: flex;
