@@ -307,11 +307,13 @@ const WhislistTable = ({
       AddToCartAndPendingInvoice(w);
     });
   };
+  let requests = [];
 
-  const AddToCartAndPendingInvoice = (info) => {
+  const AddToCartAndPendingInvoice = async(info) => {
     setallert(false);
     let storedata = JSON.parse(localStorage.getItem("storedata"));
     const user = JSON.parse(localStorage.getItem("userdata"));
+
     dispatch({
       type: "SET_IS_LOADING",
       value: true,
@@ -339,6 +341,7 @@ const WhislistTable = ({
           : info?.seller_id,
       },
     };
+    requests.push(
     axios
       .post(`${Constant.baseUrl()}/addToPendingInvoice`, data, {
         headers: {
@@ -352,12 +355,12 @@ const WhislistTable = ({
           value: false,
         });
         if (res?.data?.[0]?.status) {
-          swal.fire({
-            text: `${res.data?.[0]?.message}`,
-            icon: "success",
-            showConfirmButton: false,
-            timer: 3000,
-          });
+          // swal.fire({
+          //   text: `${res.data?.[0]?.message}`,
+          //   icon: "success",
+          //   showConfirmButton: false,
+          //   timer: 3000,
+          // });
           dispatch({
             type: "SET_PDP_POPUP_OPEN_CLOSE",
             value: false,
@@ -365,6 +368,7 @@ const WhislistTable = ({
           dispatch({
             type: "CART__TRIGGER",
           });
+           return Promise.resolve(res?.data?.[0]?.message);
         } else {
           swal.fire({
             text: `${res.data?.[0]?.message}`,
@@ -373,6 +377,7 @@ const WhislistTable = ({
             timer: 3000,
           });
         }
+       
       })
       .catch((error) => {
         dispatch({
@@ -385,7 +390,21 @@ const WhislistTable = ({
           showConfirmButton: false,
           timer: 3000,
         });
-      });
+      }));
+      
+        await Promise.all(requests).then((results) => {
+          console.log(results);
+          debugger;
+
+           swal.fire({
+            text: `${results[0]}`,
+            //text: `${res.data?.[0]?.message}`,
+            icon: "success",
+            showConfirmButton: false,
+            timer: 3000,
+          });
+    
+       });
   };
 
   const [name, setname] = useState(false);

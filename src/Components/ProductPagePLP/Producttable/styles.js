@@ -118,6 +118,9 @@ const styles = () => ({
       height: "100%",
       cursor: "pointer",
     },
+    "& span": {
+      fontSize: "16px",
+    },
   },
   producttable_description: {
     maxWidth: "300px",
