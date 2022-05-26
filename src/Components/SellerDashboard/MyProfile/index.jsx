@@ -109,7 +109,7 @@ const Index = () => {
   );
 
   return (
-    <div className="My_profile_main">
+   <div className={`My_profile_main ${showButton===false?"My_profile_main_gap":""}`} >
       <div className="My_profile_btn_section">
         {profiletype.map((data, i) => (
           <p
@@ -123,7 +123,7 @@ const Index = () => {
       </div>
       {isAddress && <Addressbook open={Address1} />}
 
-      {isUser && <Subusers />}
+      {isUser && <Subusers setshowButton={setshowButton} />}
       {isAccountinfo && (
         <div className="My_profile_ac">
           <span className="My_profile_main_heading">

@@ -147,7 +147,7 @@ const Index = () => {
               <div className="my_profile_data_section">
                 <p className="my_profile_data_section_heading">MOBILE NUMBER</p>
                 <p className="my_profile_data_section_tag">
-                  {mobile_number?.[0]?.value}
+                  +{mobile_number?.[0]?.value}
                 </p>
               </div>
               <div className="my_profile_data_section">

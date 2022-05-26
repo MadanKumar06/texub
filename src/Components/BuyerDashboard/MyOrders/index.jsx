@@ -115,15 +115,24 @@ function Index() {
     }
   },[isNotMatched])
 
-  const [isVieworders, setisVieworders] = useState(false);
+  const [isVieworders, setisVieworders] = useState(0);
   // const [currentorder, setcurrentorder] = useState();
-  const orders = (value) => {
-    window.localStorage.setItem("orderinfoCurrentorder", value ? value : "");
+ const orders = (value) => {
     // setcurrentorder(value ? value : "");
-    setisVieworders(true);
-    setisOrders(false);
+    window.localStorage.setItem("orderinfoCurrentorder", value ? value : "");
+    setisVieworders(1);
+    setisOrders(0);
   };
-  const [isOrders, setisOrders] = useState(true);
+  const [isOrders, setisOrders] = useState(1);
+  useEffect(() => {
+    setisVieworders(JSON.parse(window.localStorage.getItem("isVieworders")));
+    setisOrders(JSON.parse(window.localStorage.getItem("isOrders")));
+  }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem("isVieworders", isVieworders===0?0:1);
+    window.localStorage.setItem("isOrders", isOrders===1?1:0);
+  }, [isVieworders,isOrders]);
   useEffect(() => {
     window.localStorage.setItem("buyerclearViewOrder", false);
   }, []);
@@ -378,13 +387,13 @@ function Index() {
       )}
       <div className="my_orders__footer">
         <div className="my_orders__container">
-          {isVieworders === true ? (
+          {isVieworders === 1 ? (
             <>
               <div
                 className="back_button"
                 onClick={() => {
-                  setisVieworders(false);
-                  setisOrders(true);
+                  setisVieworders(0);
+                  setisOrders(1);
                 }}
                 style={{ cursor: "pointer" }}
               >

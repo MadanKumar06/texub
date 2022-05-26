@@ -14,7 +14,7 @@ import NodataFound from "../../../../Assets/CommonImage/NodataFound.webp.png";
 import { getAdminToken } from "../../../../utilities";
 import moment from "moment";
 
-const Index = () => {
+const Index = ({setshowButton}) => {
   const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
   const [isSub, setisSub] = useState(false);
   let [currentid, setcurrentid] = useState(0);
@@ -222,7 +222,10 @@ const Index = () => {
       {isSubusers && (
         <div className="users_main">
           <div className="user_sub-account">
-            <button onClick={Newsubacc}>Add New Sub-Account</button>
+            <button onClick={()=>{
+              Newsubacc()
+              setshowButton(false)
+              }}>Add New Sub-Account</button>
           </div>
           <MUITable
             columns={columns}
@@ -248,10 +251,11 @@ const Index = () => {
         </div>
       )}
       {isSub && (
-        <Newsubaccount
+        <Newsubaccount 
           currentid={currentid}
           setisSub={setisSub}
           setisSubusers={setisSubusers}
+           setshowButton={setshowButton}
         />
       )}
       {isPermissions && (
