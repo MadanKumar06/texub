@@ -14,7 +14,7 @@ import swal from "sweetalert2";
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
-const Index = ({ currentid, setisSub, setisSubusers }) => {
+const Index = ({ currentid, setisSub, setisSubusers, setshowButton }) => {
   const [{}, dispatch] = useStateValue();
   const [adminToken, setAdminToken] = useState("");
   const [plist, setplist] = useState();
@@ -205,6 +205,7 @@ const Index = ({ currentid, setisSub, setisSubusers }) => {
         });
         setisSub(false);
         setisSubusers(true);
+        setshowButton(true)
       } catch (e) {
         dispatch({
           type: "SET_IS_LOADING",
@@ -427,6 +428,7 @@ const Index = ({ currentid, setisSub, setisSubusers }) => {
             onClick={() => {
               setisSub(false);
               setisSubusers(true);
+              setshowButton(true)
             }}
             style={{ cursor: "pointer" }}
           >

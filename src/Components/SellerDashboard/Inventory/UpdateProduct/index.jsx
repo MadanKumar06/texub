@@ -820,6 +820,8 @@ function Index({ type, pid }) {
     updateProductList.restricts_country = temp;
   }, [restricts_country?.length > 0]);
 
+ const Custom_Attributes = JSON.parse(localStorage.getItem("userdata"))?.custom_attributes;
+  const isIndianSeller = Custom_Attributes?.filter((ind) => ind?.attribute_code==="customer_country" && ind.value === "IN");
   return (
     <div className="updateproduct">
       <h1>{type}</h1>
@@ -1373,7 +1375,9 @@ function Index({ type, pid }) {
           ) : (
             ""
           )}
-          <div className="updateproduct_inputfields hsn_code">
+          
+          {
+            isIndianSeller.length>0?<div className="updateproduct_inputfields hsn_code">
             <InputLabel>HSN Code</InputLabel>
             <TextField
               id="hsn_code"
@@ -1394,7 +1398,8 @@ function Index({ type, pid }) {
               }}
               variant="outlined"
             />
-          </div>
+          </div>:<></>
+          }
           <div className="updateproduct_inputfields info">
             <InputLabel>
               Special Notes<small className="asterisk">*</small>
