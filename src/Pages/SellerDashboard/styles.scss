@@ -87,7 +87,6 @@
     }
   }
 }
-
 // .sellerdashboard > img {
 //   position: absolute;
 //   width: 100%;
@@ -143,6 +142,12 @@
 }
 
 @media (max-width: 1024px) {
+  .sellerboard__bg .sidebaropen ul li span, .sellerboard__bg .sidebaropen ul li img{
+    width:3em;
+  }
+  .sellerboard__bg .sidebaropen ul li img{
+    object-fit: none;
+  }
   .sellerdashboard .sellerdashboard__maintab {
     padding: 2em 10px;
   }

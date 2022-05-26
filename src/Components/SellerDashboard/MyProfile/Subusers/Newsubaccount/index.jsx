@@ -327,11 +327,11 @@ const Index = ({ currentid, setisSub, setisSubusers }) => {
           isOptionEqualToValue={(option, value) => option.value === value.value}
           disableCloseOnSelect
           renderOption={(props, option, { selected }) => (
-            <li {...props}>
+            <li {...props} style={{padding:"0px"}}>
               <Checkbox
                 icon={icon}
                 checkedIcon={checkedIcon}
-                style={{ marginRight: 8 }}
+                style={{ marginRight: 8,paddingTop:"5px",paddingBottom:"5px" }}
                 checked={selected}
               />
               {option.label}

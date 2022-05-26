@@ -406,23 +406,23 @@ function Index() {
             />
           </div>
           <div className="orderinfo__data">
-            <p>
+            <div className="order-invoice_info">
               <span className="label">Pending Invoice No.</span>
               <Divider orientation="vertical" />
               <span className="value">
                 {" "}
                 {pendingInvoiceList?.invoice?.pending_invoice_id}
               </span>
-            </p>
-            <p>
+            </div>
+            <div className="order-invoice_info">
               <span className="label">Date</span>
               <Divider orientation="vertical" />
               <span className="value">
                 {" "}
                 {moment(pendingInvoiceList?.invoice?.date).format("DD/MM/YYYY")}
               </span>
-            </p>
-            <p>
+            </div>
+            <div className="order-invoice_info">
               <span className="label">Due Date</span>
               <Divider orientation="vertical" />
               <span className="value">
@@ -431,12 +431,12 @@ function Index() {
                   "DD/MM/YYYY"
                 )}
               </span>
-            </p>
-            <p>
+            </div>
+            <div className="order-invoice_info">
               <span className="label">Buyer ID</span>
               <Divider orientation="vertical" />
               <span className="value">{buyerCode?.[0]?.value}</span>
-            </p>
+            </div>
           </div>
         </div>
 
@@ -537,7 +537,7 @@ function Index() {
             </div> */}
           </div>
           <div className="tableinfo__orderdata">
-            <p>
+            <div className="table_price_data">
               <span className="label">Sub-Total</span>
               <Divider orientation="vertical" />
               <span className="value">
@@ -549,8 +549,8 @@ function Index() {
                   parseInt(pendingInvoiceList?.invoice?.subtotal)
                 )}{" "}
               </span>
-            </p>
-            <p>
+            </div>
+            <div className="table_price_data">
               <span className="label">Tax</span>
               <Divider orientation="vertical" />
               <span className="value">
@@ -560,8 +560,8 @@ function Index() {
                 </span>{" "}
                 {formatToCurrency(parseInt(pendingInvoiceList?.invoice?.tax))}{" "}
               </span>
-            </p>
-            <p>
+            </div>
+            <div className="table_price_data">
               <span className="label">Freight</span>
               <Divider orientation="vertical" />
               <span className="value">
@@ -572,8 +572,8 @@ function Index() {
                   parseInt(pendingInvoiceList?.invoice?.shipping_amount)
                 )}{" "}
               </span>
-            </p>
-            <p>
+            </div>
+            <div className="table_price_data">
               <span className="label">Payment Processing Charge</span>
               <Divider orientation="vertical" />
               <span className="value">
@@ -582,7 +582,7 @@ function Index() {
                 </span>
                 00.00
               </span>
-            </p>
+            </div>
             {/* <p className="total_value_section_block" style={{position:"relative",
                       paddingTop:"10px",
                       paddingBottom:"10px",
@@ -605,8 +605,8 @@ function Index() {
                   )}{" "}
                 </span>
             </p> */}
-            <p
-              className="total_value_block"
+            <div 
+              className="total_value_block table_price_data"
               style={{
                 alignItems: "center",
                 marginTop: "10px",
@@ -628,7 +628,7 @@ function Index() {
                   )}{" "}
                 </span>
               </div>
-            </p>
+            </div>
 
             {/* <p
               className="total_value_block"

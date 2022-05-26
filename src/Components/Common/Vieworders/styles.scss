@@ -99,6 +99,13 @@
         //     border-top-style: dashed;
         //   }
         // }
+         .MuiStep-root.MuiStep-horizontal{
+            opacity: 0.5;
+          }
+          .MuiStep-root.MuiStep-horizontal.Mui-completed{
+            opacity: 1;
+          }
+       
         .MuiStep-root {
           .MuiStepLabel-root {
             display: flex;
