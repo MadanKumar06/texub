@@ -35,8 +35,8 @@ const Index = ({ address, setisBilling, setisAddress }) => {
         firstname: address?.[0]?.firstname,
         lastname: address?.[0]?.lastname,
         postcode: address?.[0]?.postcode,
-        address_line1: address?.[0]?.street?.[0],
-        address_line2: address?.[0]?.street?.[1],
+        address_line1: address?.[0]?.street1,
+        address_line2: address?.[0]?.street2,
       });
     }
   }, [address, countryList]);
@@ -99,8 +99,8 @@ const Index = ({ address, setisBilling, setisAddress }) => {
         showConfirmButton: false,
         timer: 3000,
       });
-      setisBilling(false)
-      setisAddress(true)
+      setisBilling(false);
+      setisAddress(true);
     } catch (e) {
       dispatch({
         type: "SET_IS_LOADING",
@@ -231,10 +231,11 @@ const Index = ({ address, setisBilling, setisAddress }) => {
             </div>
           </div>
           <div className="button-box-container btn_container">
-            <Button className="button-text btn-ternary btn_billing"
+            <Button
+              className="button-text btn-ternary btn_billing"
               onClick={() => {
-                setisBilling(false)
-                setisAddress(true)
+                setisBilling(false);
+                setisAddress(true);
               }}
             >
               Cancel
@@ -249,12 +250,13 @@ const Index = ({ address, setisBilling, setisAddress }) => {
         </form>
       </div>
       <div className="my_profile_back">
-        <div className="back_button"
+        <div
+          className="back_button"
           onClick={() => {
-            setisBilling(false)
-            setisAddress(true)
+            setisBilling(false);
+            setisAddress(true);
           }}
-          style={{ cursor: 'pointer' }}
+          style={{ cursor: "pointer" }}
         >
           <ArrowBackIosNew />
           <span className="back">Back</span>

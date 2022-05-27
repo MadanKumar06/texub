@@ -197,15 +197,24 @@ const Index = ({ currentid, setisSub, setisSubusers, setshowButton }) => {
           type: "SET_IS_LOADING",
           value: false,
         });
-        swal.fire({
-          text: `Sub-Account Created Successfully`,
-          icon: "success",
-          showConfirmButton: false,
-          timer: 3000,
-        });
-        setisSub(false);
-        setisSubusers(true);
-        setshowButton(true);
+        if (submituser?.data?.[0]?.status) {
+          swal.fire({
+            text: `Sub-Account Created Successfully`,
+            icon: "success",
+            showConfirmButton: false,
+            timer: 3000,
+          });
+          setisSub(false);
+          setisSubusers(true);
+          setshowButton(true);
+        } else {
+          swal.fire({
+            text: `${submituser?.data?.[0]?.message}`,
+            icon: "error",
+            showConfirmButton: false,
+            timer: 3000,
+          });
+        }
       } catch (e) {
         dispatch({
           type: "SET_IS_LOADING",
@@ -319,7 +328,6 @@ const Index = ({ currentid, setisSub, setisSubusers, setshowButton }) => {
           id="country-select-demo"
           options={plist ? plist : []}
           multiple
-          open={true}
           value={
             NewSubAccountData?.allowed_permissions
               ? NewSubAccountData?.allowed_permissions

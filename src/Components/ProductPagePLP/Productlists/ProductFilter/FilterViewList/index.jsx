@@ -35,6 +35,7 @@ const FilterViewList = ({
     filter_by_product: "",
     filter_by_hub: "",
   });
+  const [value, setValue] = useState([20, 37]);
 
   // price comma split
   function formatToCurrency(price) {
@@ -43,6 +44,7 @@ const FilterViewList = ({
 
   useEffect(() => {
     if (dataFromApi?.length) {
+      debugger
       let filterByBrand = dataFromApi?.[0]?.brands?.slice(0, 5);
       let filterByProduct = dataFromApi?.[3]?.categories?.slice(0, 5);
       let filterByHub = dataFromApi?.[4]?.hub?.slice(0, 5);
@@ -58,19 +60,19 @@ const FilterViewList = ({
     }
   }, [dataFromApi]);
 
-  useEffect(() => {
-    let userfilters = JSON.parse(localStorage.getItem("filters"));
-    setProductFetchApi((prev) => ({
-      ...prev,
-      hub: userfilters?.hub_id,
-      brand_id: userfilters?.brand_id,
-      conditions: userfilters?.condition_id,
-      min_price: userfilters?.min_price,
-      max_price: userfilters?.max_price,
-    }));
-    if (userfilters?.max_price == 0 && userfilters?.min_price == 0) return;
-    setValue([userfilters?.min_price, userfilters?.max_price]);
-  }, [dataFromApi]);
+  // useEffect(() => {
+  //   let userfilters = JSON.parse(localStorage.getItem("filters"));
+  //   setProductFetchApi((prev) => ({
+  //     ...prev,
+  //     hub: userfilters?.hub_id,
+  //     brand_id: userfilters?.brand_id,
+  //     conditions: userfilters?.condition_id,
+  //     min_price: userfilters?.min_price,
+  //     max_price: userfilters?.max_price,
+  //   }));
+  //   if (userfilters?.max_price == 0 && userfilters?.min_price == 0) return;
+  //   setValue([userfilters?.min_price, userfilters?.max_price]);
+  // }, [dataFromApi]);
 
   const seeMoreChange = (event) => {
     let FilteredData =
@@ -88,7 +90,7 @@ const FilterViewList = ({
   };
 
   // filter by price
-  const [value, setValue] = useState([20, 37]);
+
   function valuetext(value) {
     return `${value}`;
   }
@@ -102,26 +104,11 @@ const FilterViewList = ({
     if (!Array.isArray(newValue)) {
       return;
     }
-
     if (activeThumb === 0) {
       setValue([Math.min(newValue[0], value[1] - minDistance), value[1]]);
     } else {
       setValue([value[0], Math.max(newValue[1], value[0] + minDistance)]);
     }
-  };
-
-  const handleChangeChecbox = (event) => {
-    setProductFetchApi((prev) => ({
-      ...prev,
-      [event.e.target.name]: event?.value,
-    }));
-    // setProductFetchApi({
-    //   hub: [...productFetchApi?.hub, e.value],
-    // })
-    setApplyFilter(!applyFilter);
-    setTimeout(() => {
-      handleSideBarClose("left", false);
-    }, 1000);
   };
   return (
     <div className="filterView_list_main">
@@ -141,9 +128,26 @@ const FilterViewList = ({
                     checked={
                       productFetchApi?.hub == item?.hub_id ? true : false
                     }
-                    onChange={(e) =>
-                      handleChangeChecbox({ e, value: item?.hub_id })
-                    }
+                    onChange={(e) => {
+                      if (
+                        productFetchApi?.hub === undefined ||
+                        productFetchApi?.hub !== item?.hub_id
+                      ) {
+                        setProductFetchApi((prev) => ({
+                          ...prev,
+                          hub: item?.hub_id,
+                        }));
+                      } else if (productFetchApi?.hub === item?.hub_id) {
+                        setProductFetchApi((prev) => ({
+                          ...prev,
+                          hub: "",
+                        }));
+                      }
+                      setApplyFilter(!applyFilter);
+                      setTimeout(() => {
+                        handleSideBarClose("left", false);
+                      }, 1000);
+                    }}
                     inputProps={{ "aria-label": "controlled" }}
                   />
                   <div className="filter_info">
@@ -169,9 +173,26 @@ const FilterViewList = ({
                   checked={
                     productFetchApi?.conditions == item?.value ? true : false
                   }
-                  onChange={(e) =>
-                    handleChangeChecbox({ e, value: item?.value })
-                  }
+                  onChange={(e) => {
+                    if (
+                      productFetchApi?.conditions === undefined ||
+                      productFetchApi?.conditions !== item?.value
+                    ) {
+                      setProductFetchApi((prev) => ({
+                        ...prev,
+                        conditions: item?.value,
+                      }));
+                    } else if (productFetchApi?.conditions === item?.value) {
+                      setProductFetchApi((prev) => ({
+                        ...prev,
+                        conditions: "",
+                      }));
+                    }
+                    setApplyFilter(!applyFilter);
+                    setTimeout(() => {
+                      handleSideBarClose("left", false);
+                    }, 1000);
+                  }}
                   inputProps={{ "aria-label": "controlled" }}
                 />
                 <div className="filter_info">
@@ -192,9 +213,26 @@ const FilterViewList = ({
                     checked={
                       productFetchApi?.brand_id == item?.value ? true : false
                     }
-                    onChange={(e) =>
-                      handleChangeChecbox({ e, value: item?.value })
-                    }
+                    onChange={(e) => {
+                      if (
+                        productFetchApi?.brand_id === undefined ||
+                        productFetchApi?.brand_id !== item?.value
+                      ) {
+                        setProductFetchApi((prev) => ({
+                          ...prev,
+                          brand_id: item?.value,
+                        }));
+                      } else if (productFetchApi?.brand_id === item?.value) {
+                        setProductFetchApi((prev) => ({
+                          ...prev,
+                          brand_id: "",
+                        }));
+                      }
+                      setApplyFilter(!applyFilter);
+                      // setTimeout(() => {
+                      //   handleSideBarClose("left", false);
+                      // }, 1000);
+                    }}
                     inputProps={{ "aria-label": "controlled" }}
                   />
                   <div className="filter_info">
@@ -281,9 +319,28 @@ const FilterViewList = ({
                         // checked={productFetchApi?.category_id}
                         // checked={productFetchApi?.category_id == item?.value ? true : false}
                         name="category_id"
-                        onChange={(e) =>
-                          handleChangeChecbox({ e, value: item?.id })
-                        }
+                        onChange={(e) => {
+                          if (
+                            productFetchApi?.category_id === undefined ||
+                            productFetchApi?.category_id !== item?.value
+                          ) {
+                            setProductFetchApi((prev) => ({
+                              ...prev,
+                              category_id: item?.value,
+                            }));
+                          } else if (
+                            productFetchApi?.category_id === item?.value
+                          ) {
+                            setProductFetchApi((prev) => ({
+                              ...prev,
+                              category_id: "",
+                            }));
+                          }
+                          setApplyFilter(!applyFilter);
+                          setTimeout(() => {
+                            handleSideBarClose("left", false);
+                          }, 1000);
+                        }}
                         inputProps={{ "aria-label": "controlled" }}
                       />
                       <div className="filter_info">

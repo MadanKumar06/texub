@@ -38,8 +38,8 @@ const Index = ({ address, setisShipping, setisAddress }) => {
         firstname: address?.[0]?.firstname,
         lastname: address?.[0]?.lastname,
         postcode: address?.[0]?.postcode,
-        address_line1: address?.[0]?.street?.[0],
-        address_line2: address?.[0]?.street?.[1],
+        address_line1: address?.[0]?.street1,
+        address_line2: address?.[0]?.street2,
       });
     }
   }, [address, countryList]);
