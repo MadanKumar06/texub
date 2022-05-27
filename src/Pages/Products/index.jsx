@@ -137,35 +137,35 @@ export const Products = () => {
     }
   }, [currency, plp_categories, homeSearch, applyFilter]);
 
-  useEffect(() => {
-    if (userfilter === undefined) return;
-    if (
-      localStorage.getItem("filters") == "undefined" ||
-      !localStorage.getItem("filters")
-    ) {
-      localStorage.setItem("filters", JSON.stringify(userfilter));
-    } else {
-      let currentfilter = JSON.parse(localStorage.getItem("filters"));
-      if (JSON.stringify(userfilter) !== JSON.stringify(currentfilter)) {
-        if (
-          userfilter?.hub_id == "0" &&
-          userfilter?.condition_id == "0" &&
-          userfilter?.brand_id == "0" &&
-          userfilter?.eta == "0"
-        )
-          return;
-        localStorage.setItem("filters", JSON.stringify(userfilter));
-        setProductFetchApi({
-          hub: userfilter?.hub_id,
-          conditions: userfilter?.condition_id,
-          eta: userfilter?.eta,
-          brand_id: userfilter?.brand_id,
-          // min_price: userfilter?.min_price,
-          // max_price: userfilter?.max_price,
-        });
-      }
-    }
-  }, [userfilter]);
+  // useEffect(() => {
+  //   if (userfilter === undefined) return;
+  //   if (
+  //     localStorage.getItem("filters") == "undefined" ||
+  //     !localStorage.getItem("filters")
+  //   ) {
+  //     localStorage.setItem("filters", JSON.stringify(userfilter));
+  //   } else {
+  //     let currentfilter = JSON.parse(localStorage.getItem("filters"));
+  //     if (JSON.stringify(userfilter) !== JSON.stringify(currentfilter)) {
+  //       if (
+  //         userfilter?.hub_id == "0" &&
+  //         userfilter?.condition_id == "0" &&
+  //         userfilter?.brand_id == "0" &&
+  //         userfilter?.eta == "0"
+  //       )
+  //         return;
+  //       localStorage.setItem("filters", JSON.stringify(userfilter));
+  //       setProductFetchApi({
+  //         hub: userfilter?.hub_id,
+  //         conditions: userfilter?.condition_id,
+  //         eta: userfilter?.eta,
+  //         brand_id: userfilter?.brand_id,
+  //         // min_price: userfilter?.min_price,
+  //         // max_price: userfilter?.max_price,
+  //       });
+  //     }
+  //   }
+  // }, [userfilter]);
 
   // useEffect(() => {
   //   if (currency?.currency_id) {
