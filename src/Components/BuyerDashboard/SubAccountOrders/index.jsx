@@ -14,19 +14,22 @@ import { IconButton, InputBase, Paper } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import NodataFound from "../../../Assets/CommonImage/NodataFound.webp.png";
 
-function Index({ searchdata, searchupdate }) {
+//function Index({ searchdata, searchupdate }) {
+function Index() {
   const [filtereddirect, setfiltereddirect] = useState([]);
   const [orderlist, setorderlist] = useState([]);
-
+  const [direct, setdirect] = useState([]);
+  const [searchdata,setsearchdata] = useState("");
+  const [isNotMatched,setisNotMatched] = useState(false);
   function formatToCurrency(price) {
     return price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
   }
   const [{ customnostore, geo }, dispatch] = useStateValue();
 
-  const PaginateDataSplit = (event) => {
-    if (orderlist?.length === 0) return setfiltereddirect([]);
-    setfiltereddirect(event);
-  };
+  // const PaginateDataSplit = (event) => {
+  //   if (orderlist?.length === 0) return setfiltereddirect([]);
+  //   setfiltereddirect(event);
+  // };
 
   const [isVieworders, setisVieworders] = useState(false);
   const [currentorder, setcurrentorder] = useState();
@@ -34,6 +37,39 @@ function Index({ searchdata, searchupdate }) {
     setcurrentorder(value ? value : "");
     setisVieworders(true);
     setisOrders(false);
+  };
+  const searchHandler = (e)=>{
+    e.preventDefault()
+    setsearchdata("")
+
+    if (orderlist?.length === 0) return
+    if (searchdata === "") {
+      setfiltereddirect(orderlist)
+    } else {
+      let temp = orderlist?.filter(td => td?.name?.toLowerCase()?.includes(searchdata?.toLowerCase()))
+      setfiltereddirect(temp)
+    }
+    setisNotMatched(!isNotMatched)
+  }
+  useEffect(()=>{
+    if(filtereddirect.length===0){
+      setdirect([])
+    }
+  },[isNotMatched])
+
+  useEffect(()=>{
+    setfiltereddirect(orderlist)
+  },[orderlist])
+
+  useEffect(()=>{
+    if(filtereddirect.length===0){
+      setdirect([])
+    }
+  },[isNotMatched])
+
+  const PaginateDataSplit = (event) => {
+    if (orderlist?.length === 0) return setdirect([]);
+    setdirect(event);
   };
   const [isOrders, setisOrders] = useState(true);
   useEffect(() => {
@@ -240,12 +276,14 @@ function Index({ searchdata, searchupdate }) {
                 placeholder="Search..."
                 inputProps={{ "aria-label": "search google maps" }}
                 className="myordersection_input"
+                value={searchdata}
+                onChange={(e)=>setsearchdata(e.target.value)}
               />
               <IconButton
                 type="submit"
                 sx={{ p: "10px" }}
                 aria-label="search"
-                onClick={(event) => event.preventDefault()}
+                onClick={(e)=>searchHandler(e)}
               >
                 <SearchIcon />
               </IconButton>
@@ -257,14 +295,14 @@ function Index({ searchdata, searchupdate }) {
           </div>
           <MUITable
             columns={columns}
-            table={filtereddirect}
+            table={direct?.length ? direct : []}
             options={options}
             className="myorders__table"
           />
-          {orderlist?.length > 0 ? (
+        {filtereddirect?.length > 0 ? (
             <Pagination
               PaginateData={PaginateDataSplit}
-              DataList={orderlist?.length ? orderlist : []}
+              DataList={filtereddirect}
               PagePerRow={10}
             />
           ) : (

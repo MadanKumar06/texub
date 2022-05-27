@@ -112,9 +112,15 @@ const columns = [
     options: {
       customBodyRender: (value, tablemeta) => {
         let brand_image = tablemeta?.rowData[8];
+        let brandName = tablemeta?.rowData[11];
+        console.log(brandName);
+
         return (
           <div className="productname">
-            <img src={brand_image} alt="" className="image"></img>
+           
+            <div className="brand_image">
+                     {brand_image ? <img src={brand_image} alt="" /> : <span>{brandName}</span>}
+                  </div>
             <div className="product">
               <span className="modal_name">{value}</span>
             </div>
@@ -215,6 +221,13 @@ const columns = [
   },
   {
     name: "currency",
+    label: " ",
+    options: {
+      display: false,
+    },
+  },
+  {
+    name: "product_brand_name",
     label: " ",
     options: {
       display: false,

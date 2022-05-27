@@ -34,11 +34,14 @@ const PendingInvoiceTable = ({ pendingInvoiceList }) => {
           let eta = tableMeta?.rowData[8];
           let description = tableMeta?.rowData[7];
           let productname = tableMeta?.rowData[6];
+          let brandName = tablemeta?.rowData[8];
           return (
             <div className="pending_invoice_product_main">
               <div className="pending_invoice_product_sub_block">
                 <div className="img_block">
-                  <img src={`${Constant.imageBaseUrl()}${value}`} alt="" />
+                  <div className="brand_image">
+                     {value ? <img src={value} alt="" /> : <span>{brandName}</span>}
+                  </div>
                 </div>
                 <div className="pending_invoice_right_section">
                   <div className="pending_invoice_right_section_block">
@@ -147,6 +150,16 @@ const PendingInvoiceTable = ({ pendingInvoiceList }) => {
     },
     {
       name: "eta",
+      label: " ",
+      options: {
+        display: false,
+        customBodyRender: (value) => {
+          return value;
+        },
+      },
+    },
+    {
+      name: "brand_name",
       label: " ",
       options: {
         display: false,

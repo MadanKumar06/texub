@@ -127,7 +127,7 @@
         width: 50%;
       }
       .orderinfo__data {
-        p {
+        .order-invoice_info {
           display: flex;
           gap: 10%;
           justify-content: flex-end;
@@ -429,7 +429,7 @@
             }
           }
         }
-        p {
+        .table_price_data {
           display: flex;
           gap: 8%;
           justify-content: flex-end;
@@ -603,7 +603,7 @@
     .pendinginvoice__top
     .top__orderinfo
     .orderinfo__data
-    p
+    .invoice_info
     .label {
     font-size: 16px;
     width: 25%;
@@ -612,7 +612,7 @@
     .pendinginvoice__top
     .top__orderinfo
     .orderinfo__data
-    p
+    .invoice_info
     .value {
     font-size: 16px;
     width: 25%;
@@ -654,14 +654,22 @@
       }
       .top__orderinfo {
         padding: 10px 15px;
+        flex-direction: column;
+        .orderingo__logo{
+          width: 100%;
+          text-align: center;
+        }
+        
         .orderinfo__data {
-          p {
+          width: 100%;
+          .order-invoice_info {
             justify-content: space-between;
             .label {
               width: 100%;
             }
             .value {
               width: 100%;
+              text-align: right;
             }
           }
         }
@@ -680,10 +688,15 @@
       margin: 1% 2%;
       .middle__tableinfo {
         padding: 10px 15px;
+        flex-direction: column;
+        gap: 15px;
+        .tableinfo__details{
+          width: 100%;
+        }
 
         .tableinfo__orderdata {
-          width: 48%;
-          p {
+          width: 100%;
+          .table_price_data {
             justify-content: space-between;
             padding-right: 0;
             margin-left: 0;
@@ -772,7 +785,7 @@
         .orderinfo__data {
           width: 100%;
           padding: 10px 0;
-          p {
+          .order-invoice_info {
             .label {
               font-size: 16px;
             }
@@ -832,7 +845,7 @@
         .tableinfo__orderdata {
           width: 100%;
           padding: 10px 0;
-          p {
+          .table_price_data {
             .value {
               font-size: 18px;
             }

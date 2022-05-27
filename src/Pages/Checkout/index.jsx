@@ -949,7 +949,7 @@ const Checkout = () => {
                               }
                             />
                           }
-                          label="Texub Shipping"
+                          label="TEXUB Shipping"
                         />
                       </RadioGroup>
                     </FormControl>

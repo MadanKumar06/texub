@@ -112,10 +112,14 @@ const styles = () => ({
     width: "50px",
     height: "50px",
     margin: "auto",
+    alignItems: "center",
     "& img": {
       width: "100%",
       height: "100%",
       cursor: "pointer",
+    },
+    "& span": {
+      fontSize: "16px",
     },
   },
   producttable_description: {

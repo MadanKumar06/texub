@@ -99,6 +99,13 @@
         //     border-top-style: dashed;
         //   }
         // }
+         .MuiStep-root.MuiStep-horizontal{
+            opacity: 0.5;
+          }
+          .MuiStep-root.MuiStep-horizontal.Mui-completed{
+            opacity: 1;
+          }
+       
         .MuiStep-root {
           .MuiStepLabel-root {
             display: flex;
@@ -237,6 +244,17 @@
       .productname {
         display: flex;
         gap: 10px;
+        .brand_image{
+          display: flex;
+          align-items: center;
+          justify-content: center;
+           height: 40px;
+          width: 40px;
+          img{
+          height: 40px;
+          width: 40px;
+          }
+        }
 
         .image {
           height: 40px;

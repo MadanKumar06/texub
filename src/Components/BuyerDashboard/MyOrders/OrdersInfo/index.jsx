@@ -92,8 +92,8 @@ const Index = ({ orders, setisVieworders, setisOrders }) => {
           showConfirmButton: false,
           timer: 3000,
         });
-        setisVieworders(false);
-        setisOrders(true);
+        setisVieworders(0);
+        setisOrders(1);
       } else {
         setdetailsorder(orderdetails?.data ? orderdetails?.data : []);
       }
