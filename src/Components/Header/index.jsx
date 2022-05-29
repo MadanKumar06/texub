@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./styles";
 
 import { AppBar, Toolbar, Typography, Button } from "@mui/material";
@@ -14,16 +14,10 @@ import axios from "axios";
 import Constant from "../../Constant";
 
 const Header = ({ classes }) => {
-  const history = useParams();
   const [{ currency, gt, geo, customnostore, generalTrigger }, dispatch] =
     useStateValue();
   const navigate = useNavigate();
   let isSignedIn = JSON.parse(localStorage.getItem("userdata"));
-
-  useEffect(() => {
-    let temp = Object.values(history);
-    console.log(temp?.country);
-  }, []);
 
   const user = JSON.parse(localStorage.getItem("userdata"));
   useEffect(async () => {

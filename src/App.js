@@ -1,10 +1,5 @@
-import React, { useEffect, useState } from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  useParams,
-} from "react-router-dom";
+import React, { useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
 import { useStateValue } from "./store/state";
@@ -14,6 +9,7 @@ import "./App.scss";
 import Header from "./Components/Header";
 import { Home } from "./Pages/Home";
 import { Footer } from "./Components/Footer";
+
 //import Aboutus from "./Pages/Aboutus";
 import Aboutus from "./Pages/CMS/About";
 import { Products } from "./Pages/Products";
@@ -34,7 +30,6 @@ import Checkout from "./Pages/Checkout";
 import OrderSuccess from "./Pages/Checkout/OrderSuccess";
 import PaymentSuccess from "./Pages/Checkout/PaymentSuccess";
 import PaymentFail from "./Pages/Checkout/PaymentFail";
-
 import KYCDetails from "./Pages/KYCDetails";
 
 //Footer section page
@@ -57,6 +52,7 @@ import ResetPassword from "./Components/ResetPassword";
 
 //coming soon page
 import ComingSoon from "./Pages/ComingSoon";
+
 //sellontexub
 import SellonTexubNew from "./Pages/SellonTexub";
 import SellOnTexub from "./Pages/CMS/SellOnTexub";
@@ -77,7 +73,7 @@ import axios from "axios";
 
 // invoice download
 import MyOrderInvoice from "./Components/BuyerDashboard/MyOrders/OrdersInfo/MyOrderInvoice";
-import CheckoutInvoice from "./Pages/Checkout/CheckoutInvoice";
+// import CheckoutInvoice from "./Pages/Checkout/CheckoutInvoice";
 
 const App = () => {
   const [
@@ -94,23 +90,26 @@ const App = () => {
     dispatch,
   ] = useStateValue();
 
-  useEffect(async () => {
-    if (customstore) {
-      dispatch({
-        type: "GEO__LOCATION",
-        data: customstore,
-      });
-    } else {
-      const res = await axios.get("https://geolocation-db.com/json/");
-      dispatch({
-        type: "GEO__LOCATION",
-        data: res.data,
-      });
-      dispatch({
-        type: "GEO__CUSTOM__STORE",
-        data: "",
-      });
+  useEffect(() => {
+    async function fetchData() {
+      if (customstore) {
+        dispatch({
+          type: "GEO__LOCATION",
+          data: customstore,
+        });
+      } else {
+        const res = await axios.get("https://geolocation-db.com/json/");
+        dispatch({
+          type: "GEO__LOCATION",
+          data: res.data,
+        });
+        dispatch({
+          type: "GEO__CUSTOM__STORE",
+          data: "",
+        });
+      }
     }
+    fetchData();
   }, []);
 
   useEffect(() => {
@@ -174,429 +173,53 @@ const App = () => {
           <Header />
           <Userdetails />
           <Routes>
-            {/* header section */}
-            <Route
-              path={"/"}
-              element={
-                <>
-                  <Home /> <ScrollToTop /> <Footer />
-                </>
-              }
-              exact
-            />
-            <Route
-              // path={`/${customnostore ? customnostore : geo?.country_name}`}
-              path="/:country"
-              element={
-                <>
-                  <Home /> <ScrollToTop /> <Footer />
-                </>
-              }
-              exact
-            />
-            <Route
-              path="/:country/resetpassword/:token"
-              // path={`/${customnostore ? customnostore : geo?.country_name}/resetpassword/:token`}
-              element={
-                <>
-                  <ResetPassword /> <ScrollToTop /> <Footer />
-                </>
-              }
-              exact
-            />
-            <Route
-              path="/:country/register/:type"
-              // path={`/${customnostore ? customnostore : geo?.country_name}/register/:type`}
-              element={
-                <>
-                  <Registration /> <ScrollToTop /> <Footer />
-                </>
-              }
-              exact
-            />
-            <Route
-              path="/:country/products"
-              // path={`/${customnostore ? customnostore : geo?.country_name}/products`}
-              element={
-                <>
-                  <Products /> <ScrollToTop /> <Footer />
-                </>
-              }
-              exact
-            />
-            <Route
-              path="/:country/Aboutus"
-              // path={`/${customnostore ? customnostore : geo?.country_name}/Aboutus`}
-              element={
-                <>
-                  <Aboutus /> <ScrollToTop /> <Footer />
-                </>
-              }
-              exact
-            />
-            <Route
-              path="/:country/sell-on-texub"
-              // path={`/${customnostore ? customnostore : geo?.country_name}/seller_advantage`}
-              element={
-                <>
-                  <SellOnTexub /> <ScrollToTop /> <Footer />
-                </>
-              }
-              exact
-            />
-            <Route
-              path="/:country/buy-on-texub"
-              // path={`/${customnostore ? customnostore : geo?.country_name}/seller_advantage`}
-              element={
-                <>
-                  <BuyOnTexub /> <ScrollToTop /> <Footer />
-                </>
-              }
-              exact
-            />
-            <Route
-              path="/:country/coming-soon"
-              // path={`/${customnostore ? customnostore : geo?.country_name}/coming-soon`}
-              element={
-                <>
-                  <SellonTexubNew /> <ScrollToTop /> <Footer />
-                </>
-              }
-              exact
-            />
+            {/* header section */} 
+            <Route path={"/"} element={ <> {" "} <Home /> <ScrollToTop /> <Footer />{" "} </> } exact />
+            <Route path="/:country" element={ <> <Home /> <ScrollToTop /> <Footer /> </> } exact />
+            <Route path="/:country/resetpassword/:token" element={ <> <ResetPassword /> <ScrollToTop /> <Footer /> </> } exact />
+            <Route path="/:country/register/:type" element={ <> <Registration /> <ScrollToTop /> <Footer /> </> } exact />
+            <Route path="/:country/products" element={ <> <Products /> <ScrollToTop /> <Footer /> </> } exact />
+            <Route path="/:country/Aboutus" element={ <> <Aboutus /> <ScrollToTop /> <Footer /> </> } exact />
+            <Route path="/:country/sell-on-texub" element={ <> <SellOnTexub /> <ScrollToTop /> <Footer /> </> } exact />
+            <Route path="/:country/buy-on-texub" element={ <> <BuyOnTexub /> <ScrollToTop /> <Footer /> </> } exact />
+            <Route path="/:country/coming-soon" element={ <> <SellonTexubNew /> <ScrollToTop /> <Footer /> </> } exact />
 
             {/* Footer section */}
-            <Route
-              path="/:country/legal"
-              // path={`/${customnostore ? customnostore : geo?.country_name}/legal`}
-              element={
-                <>
-                  <Legal /> <ScrollToTop /> <Footer />
-                </>
-              }
-              exact
-            />
-            <Route
-              path="/:country/gdpr"
-              // path={`/${customnostore ? customnostore : geo?.country_name}/gdpr`}
-              element={
-                <>
-                  <GDPR /> <ScrollToTop /> <Footer />
-                </>
-              }
-              exact
-            />
-            <Route
-              path="/:country/Faqs"
-              // path={`/${customnostore ? customnostore : geo?.country_name}/Faqs`}
-              element={
-                <>
-                  <FAQ /> <ScrollToTop /> <Footer />
-                </>
-              }
-              exact
-            />
-            <Route
-              path="/:country/Contactus"
-              // path={`/${customnostore ? customnostore : geo?.country_name}/Contactus`}
-              element={
-                <>
-                  <Contactus /> <ScrollToTop /> <Footer />
-                </>
-              }
-              exact
-            />
-            <Route
-              path="/:country/privacypolicy/:id"
-              // path={`/${customnostore ? customnostore : geo?.country_name}/privacypolicy`}
-              element={
-                <>
-                  <Privacypolicy /> <ScrollToTop /> <Footer />
-                </>
-              }
-              exact
-            />
-            <Route
-              path="/:country/termsofuse/:id"
-              // path={`/${customnostore ? customnostore : geo?.country_name}/termsofuse`}
-              element={
-                <>
-                  <Termsofuse /> <ScrollToTop /> <Footer />
-                </>
-              }
-              exact
-            />
-            <Route
-              path="/:country/productlistingpolicy/:id"
-              // path={`/${customnostore ? customnostore : geo?.country_name}/productlistingpolicy`}
-              element={
-                <>
-                  <ProductListingPolicy /> <ScrollToTop /> <Footer />
-                </>
-              }
-              exact
-            />
-            <Route
-              path="/:country/rrpolicy"
-              // path={`/${customnostore ? customnostore : geo?.country_name}/rrpolicy`}
-              element={
-                <>
-                  <RRpolicy /> <ScrollToTop /> <Footer />
-                </>
-              }
-              exact
-            />
-            <Route
-              path="/:country/training"
-              // path={`/${customnostore ? customnostore : geo?.country_name}/training`}
-              element={
-                <>
-                  <Training /> <ScrollToTop /> <Footer />
-                </>
-              }
-              exact
-            />
-            <Route
-              path="/:country/seller_advantage"
-              // path={`/${customnostore ? customnostore : geo?.country_name}/seller_advantage`}
-              element={
-                <>
-                  <Selleradvantage /> <ScrollToTop /> <Footer />
-                </>
-              }
-              exact
-            />
-            <Route
-              path="/:country/buyer_advantage"
-              // path={`/${customnostore ? customnostore : geo?.country_name}/buyer_advantage`}
-              element={
-                <>
-                  <Buyeradvantage /> <ScrollToTop /> <Footer />
-                </>
-              }
-              exact
-            ></Route>
-            <Route
-              path="/:country/career"
-              // path={`/${customnostore ? customnostore : geo?.country_name}/career`}
-              element={
-                <>
-                  {" "}
-                  <Career /> <ScrollToTop /> <Footer />{" "}
-                </>
-              }
-              exact
-            ></Route>
-            <Route
-              path="/:country/blogsmain"
-              // path={`/${customnostore ? customnostore : geo?.country_name}/blogsmain`}
-              element={
-                <>
-                  {" "}
-                  <Blogsmain /> <ScrollToTop /> <Footer />{" "}
-                </>
-              }
-              exact
-            />
-            <Route
-              path="/:country/blogsdetails/:id"
-              // path={`/${customnostore ? customnostore : geo?.country_name}/blogsdetails/:id`}
-              element={
-                <>
-                  {" "}
-                  <Blogs /> <ScrollToTop /> <Footer />{" "}
-                </>
-              }
-              exact
-            />
-            <Route
-              path="/:country/faqs"
-              // path={`/${customnostore ? customnostore : geo?.country_name}/faqs`}
-              element={
-                <>
-                  {" "}
-                  <FAQ /> <ScrollToTop /> <Footer />{" "}
-                </>
-              }
-              exact
-            />
+            <Route path="/:country/legal" element={ <> <Legal /> <ScrollToTop /> <Footer /> </> } exact />
+            <Route path="/:country/gdpr" element={ <> <GDPR /> <ScrollToTop /> <Footer /> </> } exact />
+            <Route path="/:country/Faqs" element={ <> <FAQ /> <ScrollToTop /> <Footer /> </> } exact />
+            <Route path="/:country/Contactus" element={ <> <Contactus /> <ScrollToTop /> <Footer /> </> } exact />
+            <Route path="/:country/privacypolicy/:id" element={ <> <Privacypolicy /> <ScrollToTop /> <Footer /> </> } exact />
+            <Route path="/:country/termsofuse/:id" element={ <> <Termsofuse /> <ScrollToTop /> <Footer /> </> } exact />
+            <Route path="/:country/productlistingpolicy/:id" element={ <> <ProductListingPolicy /> <ScrollToTop /> <Footer /> </> } exact />
+            <Route path="/:country/rrpolicy" element={ <> <RRpolicy /> <ScrollToTop /> <Footer /> </> } exact />
+            <Route path="/:country/training" element={ <> <Training /> <ScrollToTop /> <Footer /> </> } exact />
+            <Route path="/:country/seller_advantage" element={ <> <Selleradvantage /> <ScrollToTop /> <Footer /> </> } exact />
+            <Route path="/:country/buyer_advantage" element={ <> <Buyeradvantage /> <ScrollToTop /> <Footer /> </> } exact ></Route>
+            <Route path="/:country/career" element={ <> {" "} <Career /> <ScrollToTop /> <Footer />{" "} </> } exact ></Route>
+            <Route path="/:country/blogsmain" element={ <> {" "} <Blogsmain /> <ScrollToTop /> <Footer />{" "} </> } exact />
+            <Route path="/:country/blogsdetails/:id" element={ <> {" "} <Blogs /> <ScrollToTop /> <Footer />{" "} </> } exact />
+            <Route path="/:country/faqs" element={ <> {" "} <FAQ /> <ScrollToTop /> <Footer />{" "} </> } exact />
 
             {/* user section */}
-            <Route
-              path="/:country/sellerdashboard/:currenttab"
-              // path={`/${customnostore ? customnostore : geo?.country_name}/sellerdashboard/:currenttab`}
-              element={
-                <>
-                  {" "}
-                  <SellerDashboard /> <ScrollToTop /> <Footer />{" "}
-                </>
-              }
-              exact
-            />
-            <Route
-              path="/:country/sellerdashboard/:currenttab/:id"
-              // path={`/${customnostore ? customnostore : geo?.country_name}/sellerdashboard/:currenttab/:id`}
-              element={
-                <>
-                  {" "}
-                  <SellerDashboard /> <ScrollToTop /> <Footer />{" "}
-                </>
-              }
-              exact
-            />
-            <Route
-              path="/:country/buyerdashboard/:currenttab"
-              // path={`/${customnostore ? customnostore : geo?.country_name}/buyerdashboard/:currenttab`}
-              element={
-                <>
-                  {" "}
-                  <BuyerDashboard /> <ScrollToTop /> <Footer />{" "}
-                </>
-              }
-              exact
-            />
-            <Route
-              path="/:country/sellerprofile/:id/:seller_id"
-              // path={`/${customnostore ? customnostore : geo?.country_name}/sellerprofile/:id`}
-              element={
-                <>
-                  {" "}
-                  <SellerProfile /> <ScrollToTop /> <Footer />{" "}
-                </>
-              }
-              exact
-            />
-            <Route
-              path="/:country/pending-invoice"
-              // path={`/${customnostore ? customnostore : geo?.country_name}/pending-invoice`}
-              element={
-                <>
-                  {" "}
-                  <PendingInvoice /> <ScrollToTop /> <Footer />{" "}
-                </>
-              }
-              exact
-            />
-            <Route
-              path="/:country/pendinginvoice/:qid"
-              // path={`/${customnostore ? customnostore : geo?.country_name}/pending-invoice`}
-              element={
-                <>
-                  {" "}
-                  <PendingInvoice /> <ScrollToTop /> <Footer />{" "}
-                </>
-              }
-              exact
-            />
-            <Route
-              path="/:country/checkout/:quoteid"
-              // path={`/${customnostore ? customnostore : geo?.country_name}/checkout`}
-              element={
-                <>
-                  {" "}
-                  <Checkout /> <ScrollToTop /> <Footer />{" "}
-                </>
-              }
-              exact
-            />
-            <Route
-              path="/:country/ordersuccess/:id"
-              // path={`/${customnostore ? customnostore : geo?.country_name}/checkout`}
-              element={
-                <>
-                  {" "}
-                  <OrderSuccess /> <ScrollToTop /> <Footer />{" "}
-                </>
-              }
-              exact
-            />
-            <Route
-              path="/:country/paymentsuccess"
-              // path={`/${customnostore ? customnostore : geo?.country_name}/checkout`}
-              element={
-                <>
-                  {" "}
-                  <PaymentSuccess /> <ScrollToTop /> <Footer />{" "}
-                </>
-              }
-              exact
-            />
-            <Route
-              path="/:country/paymentfail"
-              // path={`/${customnostore ? customnostore : geo?.country_name}/checkout`}
-              element={
-                <>
-                  {" "}
-                  <PaymentFail /> <ScrollToTop /> <Footer />{" "}
-                </>
-              }
-              exact
-            />
-            <Route
-              path="/:country/mycart"
-              // path={`/${customnostore ? customnostore : geo?.country_name}/mycart`}
-              element={
-                <>
-                  {" "}
-                  <Mycart /> <ScrollToTop /> <Footer />{" "}
-                </>
-              }
-              exact
-            />
-            <Route
-              path="/:country/thankyou/:type"
-              // path={`/${customnostore ? customnostore : geo?.country_name}/thankyou/:type`}
-              element={
-                <>
-                  {" "}
-                  <ThankYouPage /> <ScrollToTop /> <Footer />{" "}
-                </>
-              }
-              exact
-            ></Route>
-            <Route
-              path="/:country/edit"
-              // path={`/${customnostore ? customnostore : geo?.country_name}/edit`}
-              element={
-                <>
-                  {" "}
-                  <Accountinfo /> <ScrollToTop /> <Footer />{" "}
-                </>
-              }
-              exact
-            />
-            <Route
-              path="/:country/kycdetails"
-              // path={`/${customnostore ? customnostore : geo?.country_name}/kycdetails`}
-              element={
-                <>
-                  {" "}
-                  <KYCDetails /> <ScrollToTop /> <Footer />{" "}
-                </>
-              }
-              exact
-            />
+            <Route path="/:country/sellerdashboard/:currenttab" element={ <> {" "} <SellerDashboard /> <ScrollToTop /> <Footer />{" "} </> } exact />
+            <Route path="/:country/sellerdashboard/:currenttab/:id" element={ <> {" "} <SellerDashboard /> <ScrollToTop /> <Footer />{" "} </> } exact />
+            <Route path="/:country/buyerdashboard/:currenttab" element={ <> {" "} <BuyerDashboard /> <ScrollToTop /> <Footer />{" "} </> } exact />
+            <Route path="/:country/sellerprofile/:id/:seller_id" element={ <> {" "} <SellerProfile /> <ScrollToTop /> <Footer />{" "} </> } exact />
+            <Route path="/:country/pending-invoice" element={ <> {" "} <PendingInvoice /> <ScrollToTop /> <Footer />{" "} </> } exact />
+            <Route path="/:country/pendinginvoice/:qid" element={ <> {" "} <PendingInvoice /> <ScrollToTop /> <Footer />{" "} </> } exact />
+            <Route path="/:country/checkout/:quoteid" element={ <> {" "} <Checkout /> <ScrollToTop /> <Footer />{" "} </> } exact />
+            <Route path="/:country/ordersuccess/:id" element={ <> {" "} <OrderSuccess /> <ScrollToTop /> <Footer />{" "} </> } exact />
+            <Route path="/:country/paymentsuccess" element={ <> {" "} <PaymentSuccess /> <ScrollToTop /> <Footer />{" "} </> } exact />
+            <Route path="/:country/paymentfail" element={ <> {" "} <PaymentFail /> <ScrollToTop /> <Footer />{" "} </> } exact />
+            <Route path="/:country/mycart" element={ <> {" "} <Mycart /> <ScrollToTop /> <Footer />{" "} </> } exact />
+            <Route path="/:country/thankyou/:type" element={ <> {" "} <ThankYouPage /> <ScrollToTop /> <Footer />{" "} </> } exact ></Route>
+            <Route path="/:country/edit" element={ <> {" "} <Accountinfo /> <ScrollToTop /> <Footer />{" "} </> } exact />
+            <Route path="/:country/kycdetails" element={ <> {" "} <KYCDetails /> <ScrollToTop /> <Footer />{" "} </> } exact />
 
             {/* Invoice download */}
-            <Route
-              path="/:country/checkout-invoice/:quoteid"
-              element={
-                <>
-                  <CheckoutInvoice /> <ScrollToTop />
-                </>
-              }
-              exact
-            />
-            <Route
-              path="/:country/buyerdashboard/myorder-invoice/:order_id"
-              element={
-                <>
-                  <MyOrderInvoice /> <ScrollToTop />
-                </>
-              }
-              exact
-            />
-          </Routes>
+            {/* <Route path="/:country/checkout-invoice/:quoteid" element={ <> <CheckoutInvoice /> <ScrollToTop /> </> } exact /> */}
+            <Route path="/:country/buyerdashboard/myorder-invoice/:order_id" element={ <> <MyOrderInvoice /> <ScrollToTop /> </> } exact /> </Routes>
 
           {/* Popup component using context api */}
           {kycOpenClose && <KYCformSectionLeft />}

@@ -296,7 +296,7 @@ const Productsbrands = ({
             <Slider {...Productsbtns} ref={sliderRef} className="slide_Test">
               {getCategories?.length
                 ? getCategories?.map((item, index) => (
-                    <li
+                    <div
                       data-index={index}
                       key={index}
                       className={`Slider_brands ${
@@ -349,7 +349,7 @@ const Productsbrands = ({
                       ) : (
                         ""
                       )}
-                    </li>
+                    </div>
                   ))
                 : ""}
             </Slider>

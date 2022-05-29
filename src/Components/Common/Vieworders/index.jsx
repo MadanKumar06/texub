@@ -117,10 +117,13 @@ const columns = [
 
         return (
           <div className="productname">
-           
             <div className="brand_image">
-                     {brand_image ? <img src={brand_image} alt="" /> : <span>{brandName}</span>}
-                  </div>
+              {brand_image ? (
+                <img src={brand_image} alt="" />
+              ) : (
+                <span>{brandName}</span>
+              )}
+            </div>
             <div className="product">
               <span className="modal_name">{value}</span>
             </div>

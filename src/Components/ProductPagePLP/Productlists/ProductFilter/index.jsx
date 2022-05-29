@@ -12,6 +12,7 @@ const ProductFilterDrawer = ({
   setApplyFilter,
   applyFilter,
   productFetchApi,
+  userfilter,
 }) => {
   const [sideBar, setSideBar] = React.useState({
     left: false,
@@ -43,6 +44,7 @@ const ProductFilterDrawer = ({
         setApplyFilter={setApplyFilter}
         applyFilter={applyFilter}
         productFetchApi={productFetchApi}
+        userfilter={userfilter}
       />
     </div>
   );

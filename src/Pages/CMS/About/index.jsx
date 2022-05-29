@@ -7,7 +7,6 @@ import yellow from "../../../Assets/Aboutus/vision/yellow.png";
 import blue from "../../../Assets/Aboutus/vision/blue.png";
 import blue1 from "../../../Assets/Aboutus/vision/blue1.png";
 
-import right from "../../../Assets/Aboutus/businessmodel/right.png";
 import flow from "../../../Assets/Aboutus/businessmodel/about_flow.png";
 import global from "../../../Assets/Aboutus/businessmodel/global.png";
 import effieciency from "../../../Assets/Aboutus/businessmodel/effieciency.png";
@@ -26,27 +25,19 @@ import upload from "../../../Assets/Aboutus/highlights/upload.png";
 
 import bottombanner from "../../../Assets/Aboutus/value_partner.png";
 import map from "../../../Assets/Aboutus/banner/map.png";
-import about_banner from "../../../Assets/Aboutus//banner/about_bg.png";
 
 import board1 from "../../../Assets/Aboutus/members/board1.png";
 import board2 from "../../../Assets/Aboutus/members/board2.png";
 import board3 from "../../../Assets/Aboutus/members/board3.png";
 import NiranjanGidwani from "../../../Assets/Aboutus/membersimg/NiranjanGidwani.png";
-import board_member1 from "../../../Assets/Aboutus/membersimg/board_member1.png";
 import board_member2 from "../../../Assets/Aboutus/membersimg/board_member2.png";
-import board_member3 from "../../../Assets/Aboutus/membersimg/board_member3.png";
 import SuchitKumar from "../../../Assets/Aboutus/membersimg/SuchitKumar.png";
 
 import susir from "../../../Assets/Aboutus/membersimg/susir.png";
 import yasuo from "../../../Assets/Aboutus/membersimg/yasuo.png";
 import vinay from "../../../Assets/Aboutus/membersimg/vinay.png";
-import ahmed from "../../../Assets/Aboutus/membersimg/ahmed.png";
 import AhmedRayyan from "../../../Assets/Aboutus/membersimg/AhmedRayyan.png";
-import dummy from "../../../Assets/Aboutus/membersimg/dummy.png";
 import Zohra from "../../../Assets/Aboutus/membersimg/Zohra.png";
-import aditya from "../../../Assets/Aboutus/membersimg/aditya.png";
-import suchit from "../../../Assets/Aboutus/membersimg/suchit.png";
-import tushar from "../../../Assets/Aboutus/membersimg/tushar.png";
 import Neelesh from "../../../Assets/Aboutus/membersimg/Neelesh.png";
 import william from "../../../Assets/Aboutus/membersimg/william.png";
 import Inbarajan from "../../../Assets/Aboutus/membersimg/Inbarajan.png";
@@ -59,16 +50,9 @@ import about_banner_image from "../../../Assets/Aboutus/banner/about_banner.png"
 import vision_bg from "../../../Assets/Aboutus/vision_bg.png";
 import vision_quote from "../../../Assets/Aboutus/vision_quote.png";
 import mission_quote from "../../../Assets/Aboutus/mission_quote.png";
-import values_quote from "../../../Assets/Aboutus/values_quote.png";
 import board_member_quote_bg from "../../../Assets/Aboutus/board_member_quote_bg.png";
-import board_member_bg_2 from "../../../Assets/Aboutus/board_member_bg_2.png";
-import board_member_bg_3 from "../../../Assets/Aboutus/board_member_bg_3.png";
 
 import advisory_board_bg from "../../../Assets/Aboutus/advisory_board_bg.png";
-import advisory_board_bg2 from "../../../Assets/Aboutus/advisory_board_bg2.png";
-
-import management_team_bg from "../../../Assets/Aboutus/advisory_board_bg2.png";
-import management_team_bg2 from "../../../Assets/Aboutus/advisory_board_bg2.png";
 
 function Index() {
   const info = [
@@ -227,8 +211,6 @@ function Index() {
       name: "Tushar Patil",
       designation: "TAX & ACCOUNTING AMERICAS",
     },
-    // {image: suchit, name: 'Suchit Shah', designation: 'TAX & ACCOUNTING INDIA BUSINESS'},
-    // {image: tushar, name: 'Tushar Patil', designation: 'TAX & ACCOUNTING AMERICAS'}
   ];
 
   return (
@@ -258,13 +240,27 @@ function Index() {
             <div className="content">
               <h2>About Us</h2>
               <p>
-                TEXUB is a Global B2B Marketplace that offers a Safe, Stable and Seamless trade ecosystem for Global IT Trade in the B2B space. TEXUB is headquartered in Dubai and its digital platform allows IT businesses to  trade by connecting with verified buyers and verified sellers anonymously. TEXUB also reduces quite a bit of routine work by taking care of end-to-end business requirements. 
+                TEXUB is a Global B2B Marketplace that offers a Safe, Stable and
+                Seamless trade ecosystem for Global IT Trade in the B2B space.
+                TEXUB is headquartered in Dubai and its digital platform allows
+                IT businesses to trade by connecting with verified buyers and
+                verified sellers anonymously. TEXUB also reduces quite a bit of
+                routine work by taking care of end-to-end business requirements.
               </p>
               <p>
-                TEXUB digital ecosystem provides a compelling journey into the IT business economy through a scalable Cloud Platform for Brands, Distributors, Resellers and all key partners, while at the same time improving the buying and selling experience, maintaining trade privacy, and above all, providing a very high level of transacting security.
+                TEXUB digital ecosystem provides a compelling journey into the
+                IT business economy through a scalable Cloud Platform for
+                Brands, Distributors, Resellers and all key partners, while at
+                the same time improving the buying and selling experience,
+                maintaining trade privacy, and above all, providing a very high
+                level of transacting security.
               </p>
               <p>
-                The Founder and Board members of TEXUB are some of the well-known and influential names in IT, Mobility and Investment sector, and are committed to invest in crafting a global online ICT B2B Marketplace with ambitious plans of business scalability in the future.       
+                The Founder and Board members of TEXUB are some of the
+                well-known and influential names in IT, Mobility and Investment
+                sector, and are committed to invest in crafting a global online
+                ICT B2B Marketplace with ambitious plans of business scalability
+                in the future.
               </p>
             </div>
           </div>
@@ -414,7 +410,7 @@ function Index() {
           <h2>Core Team</h2>
           <div className="mgmt__content">
             <ul>
-              {mgmt.map((data) => (
+              {mgmt?.map((data) => (
                 <li>
                   <div className="mgmt__top">
                     <div className="mgmt__top_image">

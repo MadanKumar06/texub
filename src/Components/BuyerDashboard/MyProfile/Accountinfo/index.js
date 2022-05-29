@@ -193,7 +193,9 @@ const Index = ({ classes, setisEdit, setisAccountinfo }) => {
       }));
       errorHandle = true;
     }
-    if (AccountInfoData?.new_password !== AccountInfoData?.new_confrim_password) {
+    if (
+      AccountInfoData?.new_password !== AccountInfoData?.new_confrim_password
+    ) {
       document.getElementById("new_confrim_password")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
@@ -210,10 +212,9 @@ const Index = ({ classes, setisEdit, setisAccountinfo }) => {
         email_address: "",
         new_password: "",
         new_confrim_password: "",
-      })
+      });
     }
   };
-  
 
   // update API
   const updateprofile = async () => {
@@ -251,8 +252,8 @@ const Index = ({ classes, setisEdit, setisAccountinfo }) => {
           showConfirmButton: false,
           timer: 3000,
         });
-        setisEdit(false)
-        setisAccountinfo(true)
+        setisEdit(false);
+        setisAccountinfo(true);
       } else {
         swal.fire({
           text: `${updatedata?.data?.[0]?.message}`,
@@ -290,11 +291,11 @@ const Index = ({ classes, setisEdit, setisAccountinfo }) => {
                   shrink: false,
                 }}
                 onChange={(e) => {
-                  handleChangeInput(e)
+                  handleChangeInput(e);
                   setInputValidation((prevState) => ({
                     ...prevState,
-                    first_name: ""
-                  }))
+                    first_name: "",
+                  }));
                 }}
               />
               <InputLabel className={validation_error}>
@@ -313,11 +314,11 @@ const Index = ({ classes, setisEdit, setisAccountinfo }) => {
                   shrink: false,
                 }}
                 onChange={(e) => {
-                  handleChangeInput(e)
+                  handleChangeInput(e);
                   setInputValidation((prevState) => ({
                     ...prevState,
-                    last_name: ""
-                  }))
+                    last_name: "",
+                  }));
                 }}
               />
               <InputLabel className={validation_error}>
@@ -329,7 +330,7 @@ const Index = ({ classes, setisEdit, setisAccountinfo }) => {
             <div className="inputfield">
               <p>Mobile Number</p>
               <PhoneInput
-                country={"in"}
+                country={geo?.country_code?.toLowerCase()}
                 id="mobile_number"
                 fullWidth
                 enableSearch={true}
@@ -342,11 +343,11 @@ const Index = ({ classes, setisEdit, setisAccountinfo }) => {
                   required: true,
                 }}
                 onChange={(e) => {
-                  handleMobileChangeInput(e)
+                  handleMobileChangeInput(e);
                   setInputValidation((prevState) => ({
                     ...prevState,
-                    mobile_number: ""
-                  }))
+                    mobile_number: "",
+                  }));
                 }}
                 variant="outlined"
               />
@@ -396,11 +397,11 @@ const Index = ({ classes, setisEdit, setisAccountinfo }) => {
                   shrink: false,
                 }}
                 onChange={(e) => {
-                  handleChangeInput(e)
+                  handleChangeInput(e);
                   setInputValidation((prevState) => ({
                     ...prevState,
-                    email_address: ""
-                  }))
+                    email_address: "",
+                  }));
                 }}
               />
               <InputLabel className={validation_error}>
@@ -422,11 +423,11 @@ const Index = ({ classes, setisEdit, setisAccountinfo }) => {
                   shrink: false,
                 }}
                 onChange={(e) => {
-                  handleChangeInput(e)
+                  handleChangeInput(e);
                   setInputValidation((prevState) => ({
                     ...prevState,
-                    new_password: ""
-                  }))
+                    new_password: "",
+                  }));
                 }}
               />
               <InputLabel className={validation_error}>
@@ -446,11 +447,11 @@ const Index = ({ classes, setisEdit, setisAccountinfo }) => {
                   shrink: false,
                 }}
                 onChange={(e) => {
-                  handleChangeInput(e)
+                  handleChangeInput(e);
                   setInputValidation((prevState) => ({
                     ...prevState,
-                    new_confrim_password: ""
-                  }))
+                    new_confrim_password: "",
+                  }));
                 }}
               />
               <InputLabel className={validation_error}>
@@ -459,12 +460,15 @@ const Index = ({ classes, setisEdit, setisAccountinfo }) => {
             </div>
           </div>
           <div className="accountinfo_btn">
-            <button className="account_info_cancel"
+            <button
+              className="account_info_cancel"
               onClick={() => {
-                setisEdit(false)
-                setisAccountinfo(true)
+                setisEdit(false);
+                setisAccountinfo(true);
               }}
-            >Cancel</button>
+            >
+              Cancel
+            </button>
             <button
               className="account_info_save"
               onClick={() => handleClickValidation()}
@@ -475,12 +479,13 @@ const Index = ({ classes, setisEdit, setisAccountinfo }) => {
           {/* </form> */}
         </div>
         <div className="my_profile_back">
-          <div className="back_button"
+          <div
+            className="back_button"
             onClick={() => {
-              setisEdit(false)
-              setisAccountinfo(true)
+              setisEdit(false);
+              setisAccountinfo(true);
             }}
-            style={{ cursor: 'pointer' }}
+            style={{ cursor: "pointer" }}
           >
             <ArrowBackIosNew />
             <span className="back">Back</span>

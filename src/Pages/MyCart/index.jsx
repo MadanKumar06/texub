@@ -12,7 +12,7 @@ import Constant from "../../Constant";
 import swal from "sweetalert2";
 
 const Mycart = () => {
-  const [{ cart, geo, customstore, customnostore }, dispatch] = useStateValue();
+  const [{ cart, geo, customnostore }, dispatch] = useStateValue();
 
   //API to fetch admin token
   const [adminToken, setAdminToken] = useState("");

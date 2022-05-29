@@ -216,7 +216,7 @@ const TaxCertificateButton = ({
       <div className={media_upload}>
         <div className={sub_media_upload_container}>
           <div className={sub_media_upload_part}>
-            <p>Attatch Certificate</p>
+            <p>Attach Certificate</p>
             <span>*</span>
             <label
               className={sub_media_upload_label}

@@ -167,8 +167,8 @@ const TradeLicenseButton = ({
       <div className={input_div}>
         <TextField
           id="trade_lic_number"
-          label="Trade LIC Number"
-          placeholder="Trade LIC Number"
+          label="Trade License Number"
+          placeholder="Trade License Number"
           fullWidth
           className="inputfield-box"
           name="trade_lic_number"
@@ -242,7 +242,7 @@ const TradeLicenseButton = ({
       <div className={media_upload}>
         <div className={sub_media_upload_container}>
           <div className={sub_media_upload_part}>
-            <p>Attatch License</p>
+            <p>Attach License</p>
             <span>*</span>
             <label
               className={sub_media_upload_label}

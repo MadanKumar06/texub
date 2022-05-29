@@ -264,22 +264,22 @@ const TransitionsModal = ({ classes, adminToken }) => {
 
   useEffect(async () => {
     let user = JSON.parse(localStorage.getItem("userdata"));
-    if (adminToken === null) return;
-    if (!user?.id) return;
-    try {
-      const permission = await axios({
-        method: "post",
-        url: `${Constant?.permissiondetails()}`,
-        headers: {
-          Authorization: `Bearer ${adminToken}`,
-        },
-        data: {
-          customer_id: user?.id,
-        },
-      });
-      localStorage.setItem("permissions", JSON.stringify(permission?.data));
-    } catch (e) {
-      console.log(e);
+    if (adminToken && user?.id) {
+      try {
+        const permission = await axios({
+          method: "post",
+          url: `${Constant?.permissiondetails()}`,
+          headers: {
+            Authorization: `Bearer ${adminToken}`,
+          },
+          data: {
+            customer_id: user?.id,
+          },
+        });
+        localStorage.setItem("permissions", JSON.stringify(permission?.data));
+      } catch (e) {
+        console.log(e);
+      }
     }
   }, [customerdata, adminToken]);
   return (
