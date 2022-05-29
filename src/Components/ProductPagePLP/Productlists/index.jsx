@@ -26,6 +26,7 @@ const Productlists = ({
   applyFilter,
   productData,
   homeCategorySearch,
+  userfilter
 }) => {
   // useEffect(() => {
   //   if (productFetchApi?.hub === "") {
@@ -180,6 +181,7 @@ const Productlists = ({
           setApplyFilter={setApplyFilter}
           productFetchApi={productFetchApi}
           applyFilter={applyFilter}
+          userfilter={userfilter}
         />
       </div>
       <div className="product_based_deals">
@@ -291,6 +293,7 @@ const Productlists = ({
             id="demo-simple-select"
             value={productFetchApi?.hub}
             label="Hub"
+            defaultValue="0"
             name="hub"
             onChange={handleChange}
           >
@@ -312,6 +315,7 @@ const Productlists = ({
             id="demo-simple-select"
             value={productFetchApi?.conditions}
             label="Age"
+            defaultValue="0"
             name="conditions"
             onChange={handleChange}
           >
@@ -336,6 +340,7 @@ const Productlists = ({
             value={productFetchApi?.eta}
             label="ETA"
             name="eta"
+            defaultValue="0"
             onChange={handleChange}
           >
             {productlistdropdown?.eta?.length ? (

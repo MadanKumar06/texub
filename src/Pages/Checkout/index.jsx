@@ -1192,7 +1192,7 @@ const Checkout = () => {
                               variant="outlined"
                             /> */}
                           <PhoneInput
-                            country={"in"}
+                            country={geo?.country_code?.toLowerCase()}
                             id="mobile_number"
                             fullWidth
                             enableSearch={true}

@@ -395,22 +395,22 @@ const TransitionsModal = ({ classes, openPopUp }) => {
 
   useEffect(async () => {
     let user = JSON.parse(localStorage.getItem("userdata"));
-    if (localStorage.getItem("token") === null) return;
-    if (!user?.id) return;
-    try {
-      const permission = await axios({
-        method: "post",
-        url: `${Constant?.permissiondetails()}`,
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-        data: {
-          customer_id: user?.id,
-        },
-      });
-      localStorage.setItem("permissions", JSON.stringify(permission?.data));
-    } catch (e) {
-      console.log(e);
+    if (adminToken && user?.id) {
+      try {
+        const permission = await axios({
+          method: "post",
+          url: `${Constant?.permissiondetails()}`,
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          data: {
+            customer_id: user?.id,
+          },
+        });
+        localStorage.setItem("permissions", JSON.stringify(permission?.data));
+      } catch (e) {
+        console.log(e);
+      }
     }
   }, [customerdata, localStorage.getItem("token")]);
   //// Forgor Password ///

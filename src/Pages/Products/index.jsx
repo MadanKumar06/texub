@@ -167,26 +167,6 @@ export const Products = () => {
   //   }
   // }, [userfilter]);
 
-  // useEffect(() => {
-  //   if (currency?.currency_id) {
-  //     const fetchCategoryData = () => {
-  //       let data = {
-  //         currency_id: parseInt(currency?.currency_id),
-  //       };
-  //       axios
-  //         .post(Constant.baseUrl() + "/getCategoriesList", data, {
-  //           headers: {
-  //             "Content-Type": "application/json",
-  //           },
-  //         })
-  //         .then((res) => {
-  //           setGetCategories(res?.data);
-  //         })
-  //         .catch((err) => {});
-  //     };
-  //     fetchCategoryData();
-  //   }
-  // }, [currency]);
   const sortCall = (data) => {
     var productTableData = [];
     data?.map((itm) => {
@@ -252,6 +232,7 @@ export const Products = () => {
           setApplyFilter={setApplyFilter}
           applyFilter={applyFilter}
           productData={productData}
+          userfilter={userfilter}
           homeCategorySearch={history?.state}
         />
         <Productsbrands

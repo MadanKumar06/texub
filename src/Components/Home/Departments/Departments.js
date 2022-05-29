@@ -50,13 +50,14 @@ export const Departments = ({ data, categories }) => {
     });
   };
   const LearnMoreClick = () => {
-    history(`/${customnostore ? customnostore : geo?.country_name}/products`);
+    history(`/${customnostore ? customnostore : geo?.country_name}/aboutus`);
   };
 
   // When the user clicks on the button, scroll to the top of the document
-  const scrollTop = () => {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
+  const registrationPage = () => {
+    history(
+      `/${customnostore ? customnostore : geo?.country_name}/register/seller`
+    );
   };
   return (
     <div className="Departments">
@@ -192,7 +193,7 @@ export const Departments = ({ data, categories }) => {
                   </button>
                   <button
                     className="Get_started_btn"
-                    onClick={() => scrollTop()}
+                    onClick={() => registrationPage()}
                   >
                     Get Started
                   </button>

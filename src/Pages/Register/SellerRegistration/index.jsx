@@ -534,21 +534,22 @@ const BuyerRegistration = ({ classes }) => {
 
   useEffect(async () => {
     let user = JSON.parse(localStorage.getItem("userdata"));
-    if (adminToken === null) return;
-    try {
-      const permission = await axios({
-        method: "post",
-        url: `${Constant?.permissiondetails()}`,
-        headers: {
-          Authorization: `Bearer ${adminToken}`,
-        },
-        data: {
-          customer_id: user?.id,
-        },
-      });
-      localStorage.setItem("permissions", JSON.stringify(permission?.data));
-    } catch (e) {
-      console.log(e);
+    if (adminToken && user?.id) {
+      try {
+        const permission = await axios({
+          method: "post",
+          url: `${Constant?.permissiondetails()}`,
+          headers: {
+            Authorization: `Bearer ${adminToken}`,
+          },
+          data: {
+            customer_id: user?.id,
+          },
+        });
+        localStorage.setItem("permissions", JSON.stringify(permission?.data));
+      } catch (e) {
+        console.log(e);
+      }
     }
   }, [customerdata, adminToken]);
   return (
@@ -630,7 +631,7 @@ const BuyerRegistration = ({ classes }) => {
             </div>
             <div className={text_field_container}>
               <PhoneInput
-                country={"in"}
+                country={geo?.country_code?.toLowerCase()}
                 id="mobile_number"
                 fullWidth
                 label="Mobile Number"

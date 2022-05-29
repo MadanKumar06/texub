@@ -19,6 +19,7 @@ const FilterViewList = ({
   setApplyFilter,
   applyFilter,
   productFetchApi,
+  userfilter,
 }) => {
   //accordion view for  filter by product
   const [expanded, setExpanded] = useState(false);
@@ -44,7 +45,6 @@ const FilterViewList = ({
 
   useEffect(() => {
     if (dataFromApi?.length) {
-      debugger
       let filterByBrand = dataFromApi?.[0]?.brands?.slice(0, 5);
       let filterByProduct = dataFromApi?.[3]?.categories?.slice(0, 5);
       let filterByHub = dataFromApi?.[4]?.hub?.slice(0, 5);
@@ -53,26 +53,28 @@ const FilterViewList = ({
         filter_by_product: filterByProduct,
         filter_by_hub: filterByHub,
       });
-      setValue([
-        dataFromApi?.[2]?.price?.min_price,
-        dataFromApi?.[2]?.price?.max_price,
-      ]);
+      if (userfilter?.max_price === 0 && userfilter?.min_price === 0) {
+        setValue([
+          dataFromApi?.[2]?.price?.min_price,
+          dataFromApi?.[2]?.price?.max_price,
+        ]);
+      }
     }
   }, [dataFromApi]);
 
-  // useEffect(() => {
-  //   let userfilters = JSON.parse(localStorage.getItem("filters"));
-  //   setProductFetchApi((prev) => ({
-  //     ...prev,
-  //     hub: userfilters?.hub_id,
-  //     brand_id: userfilters?.brand_id,
-  //     conditions: userfilters?.condition_id,
-  //     min_price: userfilters?.min_price,
-  //     max_price: userfilters?.max_price,
-  //   }));
-  //   if (userfilters?.max_price == 0 && userfilters?.min_price == 0) return;
-  //   setValue([userfilters?.min_price, userfilters?.max_price]);
-  // }, [dataFromApi]);
+  useEffect(() => {
+    // let userfilters = JSON.parse(localStorage.getItem("filters"));
+    setProductFetchApi((prev) => ({
+      ...prev,
+      hub: userfilter?.hub_id,
+      brand_id: userfilter?.brand_id,
+      conditions: userfilter?.condition_id,
+      min_price: userfilter?.min_price,
+      max_price: userfilter?.max_price,
+    }));
+    if (userfilter?.max_price == 0 && userfilter?.min_price == 0) return;
+    setValue([userfilter?.min_price, userfilter?.max_price]);
+  }, [userfilter]);
 
   const seeMoreChange = (event) => {
     let FilteredData =
@@ -121,8 +123,8 @@ const FilterViewList = ({
           <div className="filter_by_hub filter_option_block">
             <p className="filter_title">Filter By Hub</p>
             {seeMoreData?.filter_by_hub?.length &&
-              seeMoreData?.filter_by_hub?.map((item) => (
-                <div className="map_container">
+              seeMoreData?.filter_by_hub?.map((item, index) => (
+                <div className="map_container" key={index}>
                   <Checkbox
                     name="hub"
                     checked={
@@ -166,8 +168,8 @@ const FilterViewList = ({
           </div>
           <div className="filter_by_condtion filter_option_block">
             <p className="filter_title">Filter By Condition</p>
-            {dataFromApi?.[1]?.conditions?.map((item) => (
-              <div className="map_container">
+            {dataFromApi?.[1]?.conditions?.map((item, index) => (
+              <div className="map_container" key={index}>
                 <Checkbox
                   name="conditions"
                   checked={
@@ -206,8 +208,8 @@ const FilterViewList = ({
             <p className="filter_title">Filter By Brand</p>
             {/* <div className="filter_scroll"> */}
             {seeMoreData?.filter_by_brand?.length &&
-              seeMoreData?.filter_by_brand?.map((item) => (
-                <div className="map_container">
+              seeMoreData?.filter_by_brand?.map((item, index) => (
+                <div className="map_container" key={index}>
                   <Checkbox
                     name="brand_id"
                     checked={
@@ -258,7 +260,12 @@ const FilterViewList = ({
             <p className="filter_title">Filter By Price</p>
             <Button
               className="button-text btn-secondary apply"
-              onClick={() => setApplyFilter(!applyFilter)}
+              onClick={() => {
+                setApplyFilter(!applyFilter);
+                setTimeout(() => {
+                  handleSideBarClose("left", false);
+                }, 1000);
+              }}
             >
               Apply
             </Button>

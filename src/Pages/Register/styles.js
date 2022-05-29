@@ -93,7 +93,7 @@ const styles = (theme) => ({
   right_area: {
     width: "70%",
     display: "flex",
-    justifyContent: "start",
+    justifyContent: "flex-start",
     "@media (max-width:767px)": {
       width: "100%",
       display: "flex",
