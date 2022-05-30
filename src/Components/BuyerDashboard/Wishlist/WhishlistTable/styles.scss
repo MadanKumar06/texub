@@ -401,6 +401,21 @@
   .wishlist_table_container .table_boby_block .table_block .product_info_block .products_info .product_price span{
     font-size: 12px;
   }
+  .wishlist_table_container{
+      .whishlist_table_header{
+        padding: 0 1em;
+      }
+  } 
+}
+@media (max-width: 850px) {
+
+  .wishlist_table_container{
+      .whishlist_table_header {
+        .header_link{
+          gap: 15px;
+        }
+      }
+  } 
 }
 @media (max-width: 767px) {
   .wishlist_table_container .table_boby_block .table_block .product_info_block {

@@ -93,6 +93,10 @@ export default function BasicModal({ PopupTransaction, product_id, setupdate_tra
   const submittransaction = async () => {
     let user = JSON.parse(localStorage.getItem("userdata"));
     let date = moment(transactiondetails?.remarks).format("DD/MM/YYYY");
+    dispatch({
+      type: "SET_IS_LOADING",
+      value: true,
+    });
     try {
       const submitdata = await axios({
         method: "post",
@@ -120,8 +124,16 @@ export default function BasicModal({ PopupTransaction, product_id, setupdate_tra
       });
       handleClose();
       setupdate_transaction_details(true)
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
     } catch (e) {
       console.log(e);
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
     }
   };
 
@@ -300,7 +312,7 @@ export default function BasicModal({ PopupTransaction, product_id, setupdate_tra
               {/* <Button className="payment_later_btn btn-primary">
                 Confirm & Update Payment Details Later
               </Button> */}
-              <Button className="btn-secondary">Submit</Button>
+              <Button className="btn-secondary" onClick={()=>handletransactionvalidation()}>Submit</Button>
             </div>
           </div>
         </div>

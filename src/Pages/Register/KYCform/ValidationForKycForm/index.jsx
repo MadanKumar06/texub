@@ -37,7 +37,7 @@ function ValidationForKycForm({
     if (!values?.trade_lic_number) {
       setValid((prevState) => ({
         ...prevState,
-        trade_lic_number: "Please enter the trade lic number.",
+        trade_lic_number: "Please enter the Trade License number.",
       }));
       endPoint = true;
     }
@@ -58,7 +58,7 @@ function ValidationForKycForm({
     if (!values?.tax_image?.name) {
       setValid((prevState) => ({
         ...prevState,
-        tax_image: "Please attatch certificate.",
+        tax_image: "Please attach certificate.",
       }));
       endPoint = true;
     }
