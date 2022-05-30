@@ -220,6 +220,16 @@
     }
   }
 }
+@media (max-width: 899.95px) {
+  .approve__cart
+    .approve__cart__table
+    .MuiTableBody-root
+    .MuiTableRow-root
+    .MuiTableCell-root
+    .datatables-noprint {
+    width: auto;
+  }
+}
 
 // @media (max-width: 926px) {
 //   .approve__cart__table {
