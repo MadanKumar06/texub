@@ -352,10 +352,23 @@
         .MuiTableRow-root {
           .MuiTableCell-root {
             width: 100%;
+            .datatables-noprint{
+              width: auto !important;
+            }
           }
         }
       }
     }
+  }
+}
+@media (max-width: 899.95px) {
+  .approve__cart
+    .approve__cart__table
+    .MuiTableBody-root
+    .MuiTableRow-root
+    .MuiTableCell-root
+    .datatables-noprint {
+    width: auto !important;
   }
 }
 @media (max-width: 899.95px) {
