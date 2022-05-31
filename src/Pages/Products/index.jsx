@@ -14,6 +14,7 @@ import Helmet from "react-helmet";
 export const Products = () => {
   const navigate = useNavigate();
   const history = useLocation();
+  let showActiveStage = true;
   const [
     { currency, homeSearch, plp_categories, customnostore, geo },
     dispatch,
@@ -121,6 +122,7 @@ export const Products = () => {
             setuserfilter(res?.data?.[2]?.filterArray);
             sortCall(res?.data?.[1]?.products);
             setDataFromApi(res?.data?.[0]?.layered);
+            userFilterDataStore(res?.data?.[2]?.filterArray);
             dispatch({
               type: "SET_IS_LOADING",
               value: false,
@@ -136,6 +138,18 @@ export const Products = () => {
       fetchProductData();
     }
   }, [currency, plp_categories, homeSearch, applyFilter]);
+
+  const userFilterDataStore = (storeData) => {
+    debugger;
+    if (
+      localStorage.getItem("filters") == "undefined" ||
+      !localStorage.getItem("filters")
+    ) {
+      localStorage.setItem("filters", JSON.stringify(storeData));
+      debugger;
+    } else {
+    }
+  };
 
   // useEffect(() => {
   //   if (userfilter === undefined) return;
@@ -256,6 +270,8 @@ export const Products = () => {
                 search_product: "",
                 brand_id: "",
                 category_id: "",
+                min_price: "",
+                max_price: "",
               }));
               setApplyFilter(!applyFilter);
               dispatch({

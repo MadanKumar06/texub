@@ -23,6 +23,7 @@ const Contactus = () => {
     your_name: "",
     e_mail: "",
     your_message: "",
+    subject: "",
   });
   const [inputValidation, setInputValidation] = useState({
     your_name: "",
@@ -47,6 +48,12 @@ const Contactus = () => {
         },
       })
       .then((res) => {
+        setcontactusData({
+          your_name: "",
+          e_mail: "",
+          your_message: "",
+          subject: "",
+        });
         swal.fire({
           text: `${res?.data?.[0]?.message}`,
           icon: "success",
@@ -69,44 +76,6 @@ const Contactus = () => {
       [event.target.name]: event.target.value,
     }));
     setInputValidation("");
-    handleSwitchCase([event.target.name], event.target.value);
-  };
-  const handleSwitchCase = (fieldName, value) => {
-    switch (fieldName[0]) {
-      // case "your_name":
-      //   if (!value) {
-      //     setInputValidation((prevState) => ({
-      //       ...prevState,
-      //       your_name: "Please enter your name.",
-      //     }));
-      //   }
-      //   break;
-      case "e_mail":
-        // if (!value) {
-        //   setInputValidation((prevState) => ({
-        //     ...prevState,
-        //     e_mail: "Please enter your e-mail",
-        //   }));
-        // } else
-        if (!isEmailValid(value)) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            e_mail: "Please enter the valid e-mail.",
-          }));
-        }
-        break;
-
-      // case "your_message":
-      //   if (!value) {
-      //     setInputValidation((prevState) => ({
-      //       ...prevState,
-      //       your_message: "Please enter the message.",
-      //     }));
-      //   }
-      //   break;
-      default:
-        break;
-    }
   };
   const handleClickValidation = (event) => {
     var errorHandle = false;
@@ -437,6 +406,7 @@ const Contactus = () => {
                 label="Subject"
                 placeholder="Subject"
                 fullWidth
+                name="subject"
                 InputLabelProps={{
                   shrink: true,
                 }}

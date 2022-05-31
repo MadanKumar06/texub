@@ -26,7 +26,8 @@ const WhislistTable = ({
   const handleClickForOpenMoreOption = (event) => {
     setOpenMoreOption(event.currentTarget);
   };
-  const [isAddalltoPendingInvoice,setisAddalltoPendingInvoice] = useState(false);
+  const [isAddalltoPendingInvoice, setisAddalltoPendingInvoice] =
+    useState(false);
   const [allert, setallert] = useState(false);
   const [allertData, setallertData] = useState("");
   const handleCloseForOpenMoreOption = () => {
@@ -161,61 +162,75 @@ const WhislistTable = ({
     }
   };
 
-  const addalltocart = () => {
+  const addalltocart = async () => {
+    let requests = [];
     const user = JSON.parse(localStorage.getItem("userdata"));
     dispatch({
       type: "SET_IS_LOADING",
       value: true,
     });
-    wdata?.filter(async (w) => {
-      try {
-        const addcart = await axios({
-          method: "post",
-          url: `${Constant.baseUrl()}/addToCart`,
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-          data: {
-            pendingProducts: {
-              customer_id: user?.id,
-              productId: w?.product_id,
-              price: w?.texub_product_price,
-              qty: w?.texub_product_moq,
-              hub: w?.texub_product_hub_id,
-              currency: currency?.currency_id,
-              sellerId: w?.seller_id,
+
+    wdata?.forEach((w) => {
+      let data = {
+        pendingProducts: {
+          customer_id: user?.id,
+          productId: w?.product_id,
+          price: w?.texub_product_price,
+          qty: w?.texub_product_moq,
+          hub: w?.texub_product_hub_id,
+          currency: currency?.currency_id,
+          sellerId: w?.seller_id,
+        },
+      };
+      requests.push(
+        axios
+          .post(`${Constant.baseUrl()}/addToCart`, data, {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
-          },
+          })
+          .then(async (res) => {
+            if (res?.data?.[0]?.status) {
+              return Promise.resolve(res?.data?.[0]?.message);
+            } else {
+              swal.fire({
+                text: `${res.data?.[0]?.message}`,
+                icon: "error",
+                showConfirmButton: false,
+                timer: 3000,
+              });
+            }
+          })
+          .catch((error) => {
+            dispatch({
+              type: "SET_IS_LOADING",
+              value: false,
+            });
+            swal.fire({
+              text: `${error?.response?.data?.message || error.message}`,
+              icon: "error",
+              showConfirmButton: false,
+              timer: 3000,
+            });
+          })
+      );
+    });
+    await Promise.all(requests).then((results) => {
+      dispatch({
+        type: "CART__TRIGGER",
+      });
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
+      results &&
+        swal.fire({
+          text: `${results[0]}`,
+          icon: "success",
+          showConfirmButton: false,
+          timer: 3000,
         });
-        dispatch({
-          type: "SET_IS_LOADING",
-          value: false,
-        });
-        dispatch({
-          type: "CART__TRIGGER",
-        });
-        if (addcart?.data?.[0]?.status) {
-          swal.fire({
-            text: `${addcart?.data?.[0]?.message}`,
-            icon: "success",
-            showConfirmButton: false,
-            timer: 2000,
-          });
-        } else {
-          swal.fire({
-            text: `${addcart?.data?.[0]?.message}`,
-            icon: "error",
-            showConfirmButton: false,
-            timer: 2000,
-          });
-        }
-      } catch (e) {
-        console.log(e);
-        dispatch({
-          type: "SET_IS_LOADING",
-          value: false,
-        });
-      }
     });
   };
 
@@ -301,15 +316,8 @@ const WhislistTable = ({
       });
     }
   };
-
-  const addalltopending = () => {
-    wdata?.filter((w) => {
-      AddToCartAndPendingInvoice(w);
-    });
-  };
-  let requests = [];
-
-  const AddToCartAndPendingInvoice = async(info) => {
+  const addalltopending = async () => {
+    let requests = [];
     setallert(false);
     let storedata = JSON.parse(localStorage.getItem("storedata"));
     const user = JSON.parse(localStorage.getItem("userdata"));
@@ -318,93 +326,80 @@ const WhislistTable = ({
       type: "SET_IS_LOADING",
       value: true,
     });
-    let data = {
-      pendingProducts: {
-        store_id: storedata?.store_id,
-        item_id: "0",
-        customer_id: user?.id,
-        productId: info?.data?.product_id
-          ? info?.data?.product_id
-          : info?.product_id,
-        price: info?.data?.texub_product_price
-          ? info?.data?.texub_product_price
-          : info?.texub_product_price,
-        qty: info?.data?.texub_product_moq
-          ? info?.data?.texub_product_moq
-          : info?.texub_product_moq,
-        hub: info?.data?.texub_product_hub_id
-          ? info?.data?.texub_product_hub_id
-          : info?.texub_product_hub_id,
-        currency: currency?.currency_id,
-        sellerId: info?.data?.seller_id
-          ? info?.data?.seller_id
-          : info?.seller_id,
-      },
-    };
-    requests.push(
-    axios
-      .post(`${Constant.baseUrl()}/addToPendingInvoice`, data, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+    wdata?.forEach((info) => {
+      let data = {
+        pendingProducts: {
+          store_id: storedata?.store_id,
+          item_id: "0",
+          customer_id: user?.id,
+          productId: info?.data?.product_id
+            ? info?.data?.product_id
+            : info?.product_id,
+          price: info?.data?.texub_product_price
+            ? info?.data?.texub_product_price
+            : info?.texub_product_price,
+          qty: info?.data?.texub_product_moq
+            ? info?.data?.texub_product_moq
+            : info?.texub_product_moq,
+          hub: info?.data?.texub_product_hub_id
+            ? info?.data?.texub_product_hub_id
+            : info?.texub_product_hub_id,
+          currency: currency?.currency_id,
+          sellerId: info?.data?.seller_id
+            ? info?.data?.seller_id
+            : info?.seller_id,
         },
-      })
-      .then((res) => {
-        dispatch({
-          type: "SET_IS_LOADING",
-          value: false,
-        });
-        if (res?.data?.[0]?.status) {
-          // swal.fire({
-          //   text: `${res.data?.[0]?.message}`,
-          //   icon: "success",
-          //   showConfirmButton: false,
-          //   timer: 3000,
-          // });
-          dispatch({
-            type: "SET_PDP_POPUP_OPEN_CLOSE",
-            value: false,
-          });
-          dispatch({
-            type: "CART__TRIGGER",
-          });
-           return Promise.resolve(res?.data?.[0]?.message);
-        } else {
-          swal.fire({
-            text: `${res.data?.[0]?.message}`,
-            icon: "error",
-            showConfirmButton: false,
-            timer: 3000,
-          });
-        }
-       
-      })
-      .catch((error) => {
-        dispatch({
-          type: "SET_IS_LOADING",
-          value: false,
-        });
+      };
+      requests.push(
+        axios
+          .post(`${Constant.baseUrl()}/addToPendingInvoice`, data, {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          })
+          .then(async (res) => {
+            if (res?.data?.[0]?.status) {
+              return Promise.resolve(res?.data?.[0]?.message);
+            } else {
+              swal.fire({
+                text: `${res.data?.[0]?.message}`,
+                icon: "error",
+                showConfirmButton: false,
+                timer: 3000,
+              });
+            }
+          })
+          .catch((error) => {
+            dispatch({
+              type: "SET_IS_LOADING",
+              value: false,
+            });
+            swal.fire({
+              text: `${error?.response?.data?.message || error.message}`,
+              icon: "error",
+              showConfirmButton: false,
+              timer: 3000,
+            });
+          })
+      );
+    });
+    await Promise.all(requests).then((results) => {
+      dispatch({
+        type: "CART__TRIGGER",
+      });
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
+      results &&
         swal.fire({
-          text: `${error?.response?.data?.message || error.message}`,
-          icon: "error",
+          text: `${results[0]}`,
+          icon: "success",
           showConfirmButton: false,
           timer: 3000,
         });
-      }));
-      
-        await Promise.all(requests).then((results) => {
-          console.log(results);
-          debugger;
-
-           swal.fire({
-            text: `${results[0]}`,
-            //text: `${res.data?.[0]?.message}`,
-            icon: "success",
-            showConfirmButton: false,
-            timer: 3000,
-          });
-    
-       });
+    });
   };
 
   const [name, setname] = useState(false);
@@ -490,18 +485,46 @@ const WhislistTable = ({
           onClose={handleCloseForOpenMoreOption}
           className="menulist_item"
         >
-          <MenuItem onClick={() => addalltocart()} style={{textDecoration:"underline", color:"#5C6369", fontWeight:"600"}}>Add All To Cart</MenuItem>
-          <MenuItem onClick={() => addalltopending()} style={{textDecoration:"underline", color:"#5C6369", fontWeight:"600"}}>
+          <MenuItem
+            onClick={() => addalltocart()}
+            style={{
+              textDecoration: "underline",
+              color: "#5C6369",
+              fontWeight: "600",
+            }}
+          >
+            Add All To Cart
+          </MenuItem>
+          <MenuItem
+            onClick={() => addalltopending()}
+            style={{
+              textDecoration: "underline",
+              color: "#5C6369",
+              fontWeight: "600",
+            }}
+          >
             Add All To Pending Invoice
           </MenuItem>
-          <MenuItem onClick={() => wishlistdelete()} style={{textDecoration:"underline", color:"#5C6369", fontWeight:"600"}}>Delete List</MenuItem>
+          <MenuItem
+            onClick={() => wishlistdelete()}
+            style={{
+              textDecoration: "underline",
+              color: "#5C6369",
+              fontWeight: "600",
+            }}
+          >
+            Delete List
+          </MenuItem>
         </Menu>
         <div className="header_link">
           <p onClick={() => addalltocart()}>Add All To Cart</p>
-          <p onClick={() => {
-              setallert(true)
-              setisAddalltoPendingInvoice(true)
-            }}>Add All To Pending Invoice
+          <p
+            onClick={() => {
+              setallert(true);
+              setisAddalltoPendingInvoice(true);
+            }}
+          >
+            Add All To Pending Invoice
           </p>
           <p onClick={() => wishlistdelete()}>Delete List</p>
         </div>
@@ -630,9 +653,9 @@ const WhislistTable = ({
         </div>
       </div>
       {allert && (
-       <AllertMessage
+        <AllertMessage
           AddpendingInvoiceAlert={AddpendingInvoiceAlert}
-          handleIsValidUser={AddToCartAndPendingInvoice}
+          handleIsValidUser={addalltopending}
           allertData={allertData}
           isAddalltoPendingInvoice={isAddalltoPendingInvoice}
           addalltopending={addalltopending}

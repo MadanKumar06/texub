@@ -27,8 +27,8 @@ const Index = () => {
   const [isAddress, setisAddress] = useState(true);
   const [billingAdderess, setBillingAdderess] = useState([]);
   const [shippingAddress, setShippingAddress] = useState([]);
+  let user = JSON.parse(localStorage.getItem("userdata"));
   useEffect(async () => {
-    let user = JSON.parse(localStorage.getItem("userdata"));
     dispatch({
       type: "SET_IS_LOADING",
       value: true,
