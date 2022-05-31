@@ -36,6 +36,8 @@ const Checkout = () => {
     open: "",
     openClose: false,
   });
+  const [mobile_number_countryCode, setMobile_number_countryCode] =
+    useState("ae");
   const [buyercode, setbuyercode] = useState();
   useEffect(() => {
     let userdata = JSON.parse(localStorage.getItem("userdata"));
@@ -45,7 +47,12 @@ const Checkout = () => {
       }
     });
   }, []);
-
+  useEffect(() => {
+    if (geo) {
+      let temp = geo?.country_code?.toLowerCase();
+      setMobile_number_countryCode(temp);
+    }
+  }, [geo]);
   const handleOpen = (event) => {
     if (event === "edit_new_address") {
       setOpen({
@@ -1192,7 +1199,7 @@ const Checkout = () => {
                               variant="outlined"
                             /> */}
                           <PhoneInput
-                            country={geo?.country_code?.toLowerCase()}
+                            country={mobile_number_countryCode}
                             id="mobile_number"
                             fullWidth
                             enableSearch={true}

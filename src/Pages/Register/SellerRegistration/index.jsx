@@ -34,6 +34,8 @@ import { useNavigate, Link } from "react-router-dom";
 const BuyerRegistration = ({ classes }) => {
   const history = useNavigate();
   const [{ geo, customnostore, currencyData }, dispatch] = useStateValue();
+  const [mobile_number_countryCode, setMobile_number_countryCode] =
+    useState("ae");
   let {
     main_container,
     input_fields,
@@ -75,6 +77,12 @@ const BuyerRegistration = ({ classes }) => {
     other_role: false,
     recaptcha: false,
   });
+  useEffect(() => {
+    if (geo) {
+      let temp = geo?.country_code?.toLowerCase();
+      setMobile_number_countryCode(temp);
+    }
+  }, [geo]);
   useEffect(() => {
     if (!sellerRegistrationData?.region) {
       setsellerRegistrationData((prevState) => ({
@@ -631,7 +639,7 @@ const BuyerRegistration = ({ classes }) => {
             </div>
             <div className={text_field_container}>
               <PhoneInput
-                country={geo?.country_code?.toLowerCase()}
+                country={mobile_number_countryCode}
                 id="mobile_number"
                 fullWidth
                 label="Mobile Number"

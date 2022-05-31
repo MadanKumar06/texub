@@ -55,7 +55,7 @@ const Index = () => {
           (itm) => (itm?.default_billing && itm?.default_shipping) === 1
         );
         let temp1 = dashdata?.data?.filter(
-          (itm) => (itm?.default_billing && itm?.default_shipping) !== 1
+          (itm) => (itm?.default_billing && itm?.default_shipping) === 1
         );
         setShippingAddress(temp);
         setBillingAdderess(temp1);
@@ -66,7 +66,7 @@ const Index = () => {
         value: false,
       });
     }
-  }, []);
+  }, [isAddress]);
   return (
     <>
       {isAddress && (

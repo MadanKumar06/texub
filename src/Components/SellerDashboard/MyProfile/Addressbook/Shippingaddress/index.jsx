@@ -34,7 +34,7 @@ const Index = ({ address, setisShipping, setisAddress }) => {
       setshippingAddress({
         city: address?.[0]?.city,
         company: address?.[0]?.company,
-        country_id: country,
+        country_id: country?.[0],
         firstname: address?.[0]?.firstname,
         lastname: address?.[0]?.lastname,
         postcode: address?.[0]?.postcode,
@@ -83,7 +83,7 @@ const Index = ({ address, setisShipping, setisAddress }) => {
           addressType: 0,
           address: {
             company: shippingAddress?.company,
-            country_id: shippingAddress?.country_id?.[0]?.value,
+            country_id: shippingAddress?.country_id?.value,
             street1: shippingAddress?.address_line1,
             street2: shippingAddress?.address_line2,
             postcode: shippingAddress?.postcode,
@@ -95,15 +95,24 @@ const Index = ({ address, setisShipping, setisAddress }) => {
         type: "SET_IS_LOADING",
         value: false,
       });
+      if (addressadd?.data?.[0]?.status) {
+        swal.fire({
+          text: `${addressadd?.data?.[0]?.message}`,
+          icon: "success",
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      } else {
+        swal.fire({
+          text: `${addressadd?.data?.[0]?.message}`,
+          icon: "error",
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      }
 
-      swal.fire({
-        text: "Address Updated Successfully",
-        icon: "success",
-        showConfirmButton: false,
-        timer: 3000,
-      });
-      setisShipping(false)
-      setisAddress(true)
+      setisShipping(false);
+      setisAddress(true);
     } catch (e) {
       dispatch({
         type: "SET_IS_LOADING",
@@ -114,41 +123,6 @@ const Index = ({ address, setisShipping, setisAddress }) => {
 
   // const [inputValue, setInputValue] = React.useState("");
   const [billing, setbilling] = useState(false);
-  const [shippingAddressdata, setshippingAddressdata] = useState({
-    organization_name: "",
-    address_line_1: "",
-    address_line_2: "",
-    pincode: "",
-    city: "",
-    state: "",
-    country: "",
-  });
-  const handleChangeInput = (event) => {
-    setshippingAddressdata((prevState) => ({
-      ...prevState,
-      [event.target.name]: event.target.value,
-    }));
-  };
-  // const handleChangeCityInput = (event) => {
-  //   setshippingAddressdata((prevState) => ({
-  //     ...prevState,
-  //     city: event
-  //   }));
-  //   console.log(city)
-  // };
-
-  // const handleChangeStateInput = (event) => {
-  //   setshippingAddressdata((prevState) => ({
-  //     ...prevState,
-  //     state: event
-  //   }));
-  // };
-  // const handleChangeCountryInput = (event) => {
-  //   setshippingAddressdata((prevState) => ({
-  //     ...prevState,
-  //     country: event
-  //   }));
-  // };
 
   return (
     <div className="Shippingaddress_main">
@@ -269,6 +243,12 @@ const Index = ({ address, setisShipping, setisAddress }) => {
                 isOptionEqualToValue={(option, value) =>
                   option.value === value.value
                 }
+                onChange={(event, newValue) =>
+                  setshippingAddress((prev) => ({
+                    ...prev,
+                    country_id: newValue,
+                  }))
+                }
                 renderInput={(params) => (
                   <TextField
                     {...params}
@@ -283,10 +263,11 @@ const Index = ({ address, setisShipping, setisAddress }) => {
             </div>
           </div>
           <div className="button-box-container btn_container">
-            <Button className="button-text btn-ternary btn_billing"
-              onClick={()=>{
-                setisShipping(false)
-                setisAddress(true)
+            <Button
+              className="button-text btn-ternary btn_billing"
+              onClick={() => {
+                setisShipping(false);
+                setisAddress(true);
               }}
             >
               Cancel
@@ -301,13 +282,14 @@ const Index = ({ address, setisShipping, setisAddress }) => {
         </form>
       </div>
       <div className="my_profile_back">
-        <div className="back_button"
+        <div
+          className="back_button"
           onClick={() => {
-            setisShipping(false)
-            setisAddress(true)
+            setisShipping(false);
+            setisAddress(true);
           }}
-          style={{ cursor: 'pointer' }}
-          >
+          style={{ cursor: "pointer" }}
+        >
           <ArrowBackIosNew />
           <span className="back">Back</span>
         </div>
