@@ -115,24 +115,24 @@ function Index() {
     }
   },[isNotMatched])
 
-  const [isVieworders, setisVieworders] = useState(0);
-  // const [currentorder, setcurrentorder] = useState();
+  const [isVieworders, setisVieworders] = useState(false);
+ const [currentorder, setcurrentorder] = useState();
  const orders = (value) => {
-    // setcurrentorder(value ? value : "");
-    window.localStorage.setItem("orderinfoCurrentorder", value ? value : "");
-    setisVieworders(1);
-    setisOrders(0);
+    setcurrentorder(value ? value : "");
+    // window.localStorage.setItem("orderinfoCurrentorder", value ? value : "");
+    setisVieworders(true);
+    setisOrders(false);
   };
-  const [isOrders, setisOrders] = useState(1);
-  useEffect(() => {
-    setisVieworders(JSON.parse(window.localStorage.getItem("isVieworders")));
-    setisOrders(JSON.parse(window.localStorage.getItem("isOrders")));
-  }, []);
+  const [isOrders, setisOrders] = useState(true);
+  // useEffect(() => {
+  //   setisVieworders(JSON.parse(window.localStorage.getItem("isVieworders")));
+  //   setisOrders(JSON.parse(window.localStorage.getItem("isOrders")));
+  // }, []);
 
-  useEffect(() => {
-    window.localStorage.setItem("isVieworders", isVieworders===0?0:1);
-    window.localStorage.setItem("isOrders", isOrders===1?1:0);
-  }, [isVieworders,isOrders]);
+  // useEffect(() => {
+  //   window.localStorage.setItem("isVieworders", isVieworders===0?0:1);
+  //   window.localStorage.setItem("isOrders", isOrders===1?1:0);
+  // }, [isVieworders,isOrders]);
   useEffect(() => {
     window.localStorage.setItem("buyerclearViewOrder", false);
   }, []);
@@ -387,13 +387,13 @@ function Index() {
       )}
       <div className="my_orders__footer">
         <div className="my_orders__container">
-          {isVieworders === 1 ? (
+          {isVieworders === true ? (
             <>
               <div
                 className="back_button"
                 onClick={() => {
-                  setisVieworders(0);
-                  setisOrders(1);
+                  setisVieworders(false);
+                  setisOrders(true);
                 }}
                 style={{ cursor: "pointer" }}
               >
