@@ -26,7 +26,7 @@ const Productlists = ({
   applyFilter,
   productData,
   homeCategorySearch,
-  userfilter
+  userfilter,
 }) => {
   // useEffect(() => {
   //   if (productFetchApi?.hub === "") {

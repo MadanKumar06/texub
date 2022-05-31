@@ -11,6 +11,7 @@ import swal from "sweetalert2";
 
 import { getAdminToken } from "../../../../../utilities";
 const Index = ({ address, setisAddress, setisBilling }) => {
+  debugger
   const [{ geo, customnostore }, dispatch] = useStateValue();
   const [countryList, setCountryList] = useState([]);
   const [billingAddress, setBillingAddress] = useState({
@@ -76,7 +77,7 @@ const Index = ({ address, setisAddress, setisBilling }) => {
         },
         data: {
           customerId: user?.id,
-          addressId: address?.[0]?.id,
+          addressId: address?.[0]?.address_id,
           addressType: 0,
           address: {
             company: billingAddress?.company,

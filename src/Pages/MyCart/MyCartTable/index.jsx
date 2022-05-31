@@ -628,7 +628,6 @@ const MyCartTable = ({ cartDataList, deleteCartData, setrowselect }) => {
       },
     },
   };
-
   return (
     <div className="mycart_table_main_container">
       <MUITable

@@ -25,6 +25,8 @@ import Constant from "../../../Constant";
 
 const BuyerRegistration = ({ classes }) => {
   const [{ geo, currencyData, customnostore }, dispatch] = useStateValue();
+  const [mobile_number_countryCode, setMobile_number_countryCode] =
+    useState("ae");
   const history = useNavigate();
   let {
     main_container,
@@ -71,6 +73,12 @@ const BuyerRegistration = ({ classes }) => {
     checkbox_confrim: "",
     recaptcha: "",
   });
+  useEffect(() => {
+    if (geo) {
+      let temp = geo?.country_code?.toLowerCase();
+      setMobile_number_countryCode(temp);
+    }
+  }, [geo]);
   const handleMobileChangeInput = (value, data, event, formattedValue) => {
     setbuyerRegistrationData((prevState) => ({
       ...prevState,
@@ -424,6 +432,7 @@ const BuyerRegistration = ({ classes }) => {
       }
     }
   }, [customerdata, adminToken]);
+
   return (
     <div className={main_container}>
       <div className={input_fields}>
@@ -504,7 +513,7 @@ const BuyerRegistration = ({ classes }) => {
 
             <div className={text_field_container}>
               <PhoneInput
-                country={geo?.country_code?.toLowerCase()}
+                country={mobile_number_countryCode}
                 id="mobile_number"
                 fullWidth
                 label="Mobile Number"
