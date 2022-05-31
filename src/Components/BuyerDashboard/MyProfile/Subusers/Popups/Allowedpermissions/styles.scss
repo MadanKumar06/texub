@@ -22,6 +22,7 @@
             background-color: #002D56;
             color: #FFFFFF;
             align-self: flex-end;
+            border-radius: 4px;
         }
         .heading{
             margin: 0;
@@ -43,6 +44,7 @@
         //height: 400px;
         height: auto;
         overflow-y: auto;
+        border-radius: 4px;
         
         .permissions_list{
             border: 1px solid #CDD5DD;
@@ -57,7 +59,8 @@
             list-style: none;
             span {
                color: #878787;
-               font-size: 20px;
+               font-size: 18px;
+               cursor: pointer;
                letter-spacing: 0.6px;
                width: 100%;
                font-weight: 600;
