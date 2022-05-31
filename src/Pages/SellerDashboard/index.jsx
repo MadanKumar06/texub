@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./styles.scss";
 import { useNavigate, useParams } from "react-router-dom";
 
-// import bg from "../../Assets/sellerdashboard/bg.png";
 import notification from "../../Assets/sellerdashboard/notification.png";
 import { IconButton, InputBase, Paper } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
@@ -21,12 +20,10 @@ import Paymentmethods from "../../Components/SellerDashboard/Paymentmethods";
 import PendingProduct from "../../Components/SellerDashboard/Inventory/PendingProducts";
 import SmartRecommendation from "../../Components/SellerDashboard/SmartRecommendation";
 import MyProfile from "../../Components/SellerDashboard/MyProfile";
-import axios from "axios";
-import Constant from "../../Constant";
 import { useStateValue } from "../../store/state";
 
 function SellerDashboard() {
-  const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
+  const [{ geo, customnostore }, dispatch] = useStateValue();
   const [currentmenu, setcurrentmenu] = useState();
   let navigate = useNavigate();
 
@@ -46,9 +43,6 @@ function SellerDashboard() {
   const [userform, setuserform] = useState(false);
 
   const [showregister, setshowregister] = useState(false);
-  const [pid, setpid] = useState();
-
-  const [editdata, seteditdata] = useState();
 
   const registerproduct = (value, value1, value2) => {
     setshowregister(true);
@@ -108,14 +102,13 @@ function SellerDashboard() {
 
   useEffect(() => {
     setSearch("");
-    setSearchbar(true)
-    if(currenttab === "dashboard")
-      setSearchbar(false)
+    setSearchbar(true);
+    if (currenttab === "dashboard") setSearchbar(false);
   }, [currenttab]);
- const [searchBar, setSearchbar] = useState(true)
-  const handleSearchBar=(value)=>{
-  setSearchbar(value)
-  }
+  const [searchBar, setSearchbar] = useState(true);
+  const handleSearchBar = (value) => {
+    setSearchbar(value);
+  };
   return (
     <div className="sellerdashboard">
       {/* <img src={bg} alt="" /> */}
@@ -133,41 +126,39 @@ function SellerDashboard() {
         <div className="sellerdashboard__maintab">
           {showregister === true ||
           currenttab === "inventory" ||
-          currenttab === "bulkupload" ? (
-            ""
-          ) : (
-             (searchBar &&
-            <div className="sellerdashboard__search">
-              <Paper
-                className="sellerdashboard__searchinput"
-                component="form"
-                sx={{ p: "2px 4px", display: "flex", alignItems: "center" }}
-              >
-                <InputBase
-                  sx={{ ml: 1, flex: 1 }}
-                  placeholder="Search..."
-                  inputProps={{ "aria-label": "search google maps" }}
-                  className="sellerdashboard__input"
-                  onChange={(e) => setSearch(e.target.value)}
-                  value={search}
-                  onKeyPress={(e) => e.key === "Enter" && updatesearch(e)}
-                />
-                <IconButton
-                  type="submit"
-                  sx={{ p: "10px" }}
-                  aria-label="search"
-                  onClick={(e) => updatesearch(e)}
-                >
-                  <SearchIcon />
-                </IconButton>
-              </Paper>
-              {/* <div className="sellerdashboard__notiIcon">
+          currenttab === "bulkupload"
+            ? ""
+            : searchBar && (
+                <div className="sellerdashboard__search">
+                  <Paper
+                    className="sellerdashboard__searchinput"
+                    component="form"
+                    sx={{ p: "2px 4px", display: "flex", alignItems: "center" }}
+                  >
+                    <InputBase
+                      sx={{ ml: 1, flex: 1 }}
+                      placeholder="Search..."
+                      inputProps={{ "aria-label": "search google maps" }}
+                      className="sellerdashboard__input"
+                      onChange={(e) => setSearch(e.target.value)}
+                      value={search}
+                      onKeyPress={(e) => e.key === "Enter" && updatesearch(e)}
+                    />
+                    <IconButton
+                      type="submit"
+                      sx={{ p: "10px" }}
+                      aria-label="search"
+                      onClick={(e) => updatesearch(e)}
+                    >
+                      <SearchIcon />
+                    </IconButton>
+                  </Paper>
+                  {/* <div className="sellerdashboard__notiIcon">
                 <img src={notification} alt="" />
               </div>
               <span>Notification</span> */}
-            </div>
-             )
-          )}
+                </div>
+              )}
 
           {currenttab === "dashboard" && <Dashboard />}
 
@@ -184,19 +175,23 @@ function SellerDashboard() {
             <PendingProduct registerproduct={registerproduct} />
           )}
           {currenttab === "updateproduct" && (
-            <UpdateProduct type="Update New Product Details" pid={pid} />
+            <UpdateProduct type="Update New Product Details" />
           )}
           {currenttab === "updatesuccess" && (
             <SuccessPage msg={updatesuccess} />
           )}
 
           {currenttab === "addproduct" && (
-            <UpdateProduct type="Add Product Details" pid={pid} />
+            <UpdateProduct type="Add Product Details" />
           )}
           {currenttab === "addsuccess" && <SuccessPage msg={addsuccess} />}
 
           {currenttab === "orders" && (
-            <Orders searchdata={search} searchupdate={searchupdate} handleSearchBar={handleSearchBar}/>
+            <Orders
+              searchdata={search}
+              searchupdate={searchupdate}
+              handleSearchBar={handleSearchBar}
+            />
           )}
 
           {currenttab === "usermgmt" && (

@@ -15,7 +15,7 @@ import { isNumber } from "../../../../utilities";
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
-function Index({ type, pid }) {
+function Index({ type }) {
   const [{ geo, customnostore }, dispatch] = useStateValue();
   const history = useNavigate();
   const [updateCountry,setupdateCountry] = useState(false);

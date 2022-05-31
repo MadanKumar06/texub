@@ -20,6 +20,7 @@ import ApproveCarts from "../../Components/BuyerDashboard/ApproveCarts";
 import SubAccountOrders from "../../Components/BuyerDashboard/SubAccountOrders";
 import NotActivated from "../../Components/BuyerDashboard/NotActivated";
 import notification from "../../Assets/sellerdashboard/notification.png";
+import OrderInfo from '../../Components/BuyerDashboard/MyOrders/OrdersInfo'
 import { useStateValue } from "../../store/state";
 
 const Index = () => {
@@ -103,6 +104,7 @@ const Index = () => {
           {currenttab === "subaccountorders" && <SubAccountOrders />}
           {currenttab === "notactived" && <NotActivated />}
           {currenttab === "OrderDetails" && <OrderDetails />}
+          {currenttab === "view-order" && <OrderInfo />}
         </div>
       </div>
     </div>

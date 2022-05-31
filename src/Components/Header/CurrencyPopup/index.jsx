@@ -105,6 +105,7 @@ const CurrencyPopup = ({ classes }) => {
             str.split("/")[2] === "checkout" ||
             str.split("/")[2] === "checkout-invoice" ||
             str.split("/")[2] === "ordersuccess" ||
+            str.split("/")[2] === "view-order" ||
             str.split("/")[2] === "register" ||
             str.split("/")[2] === "resetpassword" ||
             str.split("/")[2] === "blogsdetails" ||
@@ -132,6 +133,7 @@ const CurrencyPopup = ({ classes }) => {
                   : geo?.country_name
               }`
             );
+            // navigate(`/${res.data?.[0]?.store?.code}`);
           }
           let storedcurrency = JSON.parse(
             localStorage.getItem("selectedcurrency")

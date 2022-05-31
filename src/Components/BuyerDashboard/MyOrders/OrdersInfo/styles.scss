@@ -77,10 +77,6 @@
       .productname {
         display: flex;
         gap: 10px;
-
-        .image {
-          height: 30px;
-        }
         .product {
           display: flex;
           flex-direction: column;
@@ -460,6 +456,25 @@
       }
     }
   }
+  .my_orders_info__footer {
+    .my_orders_info__container {
+      p {
+        align-items: center;
+        display: flex;
+        color: #002d56;
+        svg {
+          cursor: pointer;
+          width: 0.6em;
+          height: 0.6em;
+        }
+        span {
+          cursor: pointer;
+          font-weight: 600;
+          margin-left: 0.6em;
+        }
+      }
+    }
+  }
 }
 /* modal popup design here */
 .serial_number_popup {
@@ -685,7 +700,7 @@
       font-size: 18px;
     }
   }
-  .vieworders_main .vieworders__table .MuiTableBody-root .productname{
+  .vieworders_main .vieworders__table .MuiTableBody-root .productname {
     justify-content: center;
     align-items: center;
   }
