@@ -80,7 +80,7 @@ const Index = ({ address, setisBilling, setisAddress }) => {
           addressType: 0,
           address: {
             company: billingAddress?.company,
-            country_id: billingAddress?.country_id?.[0]?.value,
+            country_id: billingAddress?.country_id?.value,
             street1: billingAddress?.address_line1,
             street2: billingAddress?.address_line2,
             postcode: billingAddress?.postcode,
@@ -92,13 +92,21 @@ const Index = ({ address, setisBilling, setisAddress }) => {
         type: "SET_IS_LOADING",
         value: false,
       });
-
-      swal.fire({
-        text: "Address Updated Successfully",
-        icon: "success",
-        showConfirmButton: false,
-        timer: 3000,
-      });
+      if (addressadd?.data?.[0]?.status) {
+        swal.fire({
+          text: `${addressadd?.data?.[0]?.message}`,
+          icon: "success",
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      } else {
+        swal.fire({
+          text: `${addressadd?.data?.[0]?.message}`,
+          icon: "error",
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      }
       setisBilling(false);
       setisAddress(true);
     } catch (e) {
@@ -216,6 +224,12 @@ const Index = ({ address, setisBilling, setisAddress }) => {
                 getOptionLabel={(option) => (option.label ? option.label : "")}
                 isOptionEqualToValue={(option, value) =>
                   option.value === value.value
+                }
+                onChange={(event, newValue) =>
+                  setBillingAddress((prev) => ({
+                    ...prev,
+                    country_id: newValue,
+                  }))
                 }
                 renderInput={(params) => (
                   <TextField

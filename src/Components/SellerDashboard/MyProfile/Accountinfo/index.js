@@ -15,6 +15,8 @@ import swal from "sweetalert2";
 const Index = ({ classes, setisAccountinfo, setisEdit }) => {
   const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
   let validation_error = classes;
+  const [mobile_number_countryCode, setMobile_number_countryCode] =
+    useState("ae");
   const [AccountInfoData, setAccountInfoData] = useState({
     first_name: "",
     last_name: "",
@@ -32,6 +34,12 @@ const Index = ({ classes, setisAccountinfo, setisEdit }) => {
     new_password: "",
     new_confrim_password: "",
   });
+  useEffect(() => {
+    if (geo) {
+      let temp = geo?.country_code?.toLowerCase();
+      setMobile_number_countryCode(temp);
+    }
+  }, [geo]);
   useEffect(() => {
     const userData = JSON.parse(localStorage.getItem("userdata"));
     let company_name = userData?.custom_attributes?.filter(
@@ -351,7 +359,7 @@ const Index = ({ classes, setisAccountinfo, setisEdit }) => {
             <div className="inputfield">
               <p>Mobile Number</p>
               <PhoneInput
-                country={geo?.country_code?.toLowerCase()}
+                country={mobile_number_countryCode}
                 id="mobile_number"
                 fullWidth
                 enableSearch={true}
