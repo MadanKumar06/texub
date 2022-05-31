@@ -18,6 +18,7 @@ const checkedIcon = <CheckBoxIcon fontSize="small" />;
 function Index({ type, pid }) {
   const [{ geo, customnostore }, dispatch] = useStateValue();
   const history = useNavigate();
+  const [updateCountry,setupdateCountry] = useState(false);
   const [count, setcount] = useState([
     {
       count: 0,
@@ -818,7 +819,13 @@ function Index({ type, pid }) {
         })
       );
     updateProductList.restricts_country = temp;
-  }, [restricts_country?.length > 0]);
+  }, [restricts_country?.length > 0,updateCountry]);
+
+  useEffect(()=>{
+    setTimeout(()=>{
+      setupdateCountry(!updateCountry)
+    },3000)
+  },[])
 
  const Custom_Attributes = JSON.parse(localStorage.getItem("userdata"))?.custom_attributes;
   const isIndianSeller = Custom_Attributes?.filter((ind) => ind?.attribute_code==="customer_country" && ind.value === "IN");
