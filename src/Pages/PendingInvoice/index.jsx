@@ -132,12 +132,14 @@ function Index() {
         customBodyRender: (value, tablemeta) => {
           let product_name = tablemeta?.rowData?.[8];
           let product_barnd = tablemeta?.rowData?.[7];
+          let brand_name = tablemeta?.rowData?.[9];
           return (
             <div className="productname">
-              <img src={`${Constant.imageBaseUrl()}${product_barnd}`} alt="" />
-              <span className="product_name_new">
-                {/* <img src={minicart_new} alt="" /> */}
-              </span>
+              {product_barnd ? (
+                <img src={`${Constant.imageBaseUrl()}${product_barnd}`} alt="" />
+              ) : (
+                <span>{brand_name}</span>
+              )}
               <div className="product">
                 <span className="modal_name">{product_name}</span>
                 <span className="modal_content">{value}</span>
@@ -219,6 +221,13 @@ function Index() {
 
     {
       name: "product_name",
+      label: "",
+      options: {
+        display: false,
+      },
+    },
+    {
+      name: "brand_name",
       label: "",
       options: {
         display: false,

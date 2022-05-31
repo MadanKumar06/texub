@@ -76,6 +76,14 @@
     top: 4em;
     font-size: 20px;
   }
+  .Favorites{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    .Favorites_Sections{
+      width: 33.33%;
+    }
+  }
 }
 @media (max-width: 900px) {
  .Favorites{

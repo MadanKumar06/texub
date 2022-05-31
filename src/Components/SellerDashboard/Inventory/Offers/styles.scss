@@ -62,3 +62,27 @@
 .field_box {
   position: relative;
 }
+@media (max-width:992px){
+  .modal_offers {
+    margin: 0 7%;
+  }
+}
+
+@media (max-width:767px){
+  .modal_offers .textbox-fields{
+    display: block !important;
+  }
+  .modal_offers .offers_price{
+    width: 100% !important;
+    padding-top: 0em !important;
+  }
+  .modal_offers .offers_section .MuiBox-root {
+    padding-top: 1em;
+  }
+}
+
+@media (max-width:400px){
+  .modal_offers .offers_section{
+    padding: 1em !important;
+  }
+}

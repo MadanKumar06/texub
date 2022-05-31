@@ -267,6 +267,7 @@
               display: flex;
               gap: 10px;
               position: relative;
+              align-items: center;
               img.image {
                 width: 50px;
                 height: 50px;
@@ -686,6 +687,20 @@
     }
     .pendinginvoice__middle {
       margin: 1% 2%;
+      .middle__table {
+       .MuiTable-root {
+          .MuiTableBody-root {
+            .MuiTableRow-root {
+              .MuiTableCell-root {
+                .vieworders_quantity {
+                  justify-content: center;
+                  text-align: center !important;
+                }
+              }
+            }
+          }
+        }
+      }
       .middle__tableinfo {
         padding: 10px 15px;
         flex-direction: column;

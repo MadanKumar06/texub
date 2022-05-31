@@ -76,7 +76,7 @@ const styles = (theme) => ({
       // },
     },
     "@media (max-width:965px)": {
-      gap: "10px",
+      gap: "2em",
     },
     "@media (max-width:768px)": {
       display: "none",

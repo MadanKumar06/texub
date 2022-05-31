@@ -61,7 +61,7 @@
     }
     .MuiTableBody-root {
       .MuiTableRow-root:last-child .MuiTableCell-root {
-        border-bottom: 0;
+        // border-bottom: 0;
       }
       .MuiTableRow-root {
         vertical-align: top;
@@ -676,6 +676,18 @@
     .vieworders_total
     .hr {
     border: 1px dashed #20639b;
+  }
+  .vieworders_main .vieworders__table .MuiTableBody-root .vieworders_total {
+    .inr {
+      font-size: 12px;
+    }
+    .price {
+      font-size: 18px;
+    }
+  }
+  .vieworders_main .vieworders__table .MuiTableBody-root .productname{
+    justify-content: center;
+    align-items: center;
   }
 }
 

@@ -116,6 +116,12 @@
   .Benfits {
     gap: 8px;
   }
+   .Benfits .Benfits_1st_div {
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+   }
+
 
   .Benfits .Benfits_1st_div h1 {
     font-size: 26px;
