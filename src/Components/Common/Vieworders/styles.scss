@@ -184,7 +184,7 @@
     }
     .id_heading {
       color: #858a8e;
-      font-size: 30px;
+      font-size: 22px !important;
       letter-spacing: 0.9px;
       margin: 0;
     }
@@ -235,6 +235,13 @@
       }
     }
     .MuiTableBody-root {
+
+      .MuiTableRow-root{
+         .MuiTableCell-root {
+           padding-top: 15px;
+        }
+       }
+
       .MuiTableCell-root {
         font-size: 16px;
         text-align: center;
@@ -264,6 +271,7 @@
           display: flex;
           flex-direction: column;
           justify-content: center;
+          align-items: start;
           .modal_name {
             color: #333c42;
             font-size: 20px;

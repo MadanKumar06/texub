@@ -80,8 +80,10 @@
 .mycart_table_main_container .no_data_found{
   width: auto;
 }
-.mycart_table_main_container tr.tss-mwfche-MUIDataTableBodyRow-root td,
-.mycart_table_main_container tr.tss-mwfche-MUIDataTableBodyRow-root td .no_data_found{
+.mycart_table_main_container .mycart_table_mui_datatable_main .MuiTable-root .MuiTableBody-root .MuiTableRow-root .MuiTableCell-root.datatables-noprint{
+  position: static !important;
+}
+.mycart_table_main_container .mycart_table_mui_datatable_main .MuiTable-root .MuiTableBody-root .MuiTableRow-root .MuiTableCell-root.datatables-noprint .no_data_found{
   position: static !important;
 }
 @media (max-width: "1660px") {

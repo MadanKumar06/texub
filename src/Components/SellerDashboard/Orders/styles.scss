@@ -204,8 +204,28 @@
     font-size: 14px;
   }
 }
-@media (max-width: 926px) {
-  .orders__table {
+@media (max-width: 899.95px) {
+    .orders__table
+    .MuiTableBody-root
+    .MuiTableRow-root
+    .MuiTableCell-root
+    .datatables-noprint {
+    width: auto;
+  }
+    .orders__table {
+      .MuiTableBody-root {
+        .MuiTableRow-root {
+          .MuiTableCell-root {
+            width: 100%;
+            .datatables-noprint{
+              width: auto !important;
+            }
+          }
+        }
+      }
+  }
+
+   .orders__table {
     .MuiTable-root {
       .MuiTableHead-root {
         display: none;
@@ -220,7 +240,9 @@
       }
     }
   }
+
 }
+
 
 @media (max-width: 480px) {
   .orders .orders__buttons {

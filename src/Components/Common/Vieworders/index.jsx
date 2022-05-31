@@ -114,6 +114,7 @@ const columns = [
         let brand_image = tablemeta?.rowData[8];
         let brandName = tablemeta?.rowData[11];
         console.log(brandName);
+        let description = tablemeta?.rowData[9];
 
         return (
           <div className="productname">
@@ -126,6 +127,7 @@ const columns = [
             </div>
             <div className="product">
               <span className="modal_name">{value}</span>
+              <div>{description}</div>
             </div>
           </div>
         );
@@ -136,9 +138,10 @@ const columns = [
     name: "product_name",
     label: " ",
     options: {
+      display: false,
       customBodyRender: (value, tablemeta) => {
         let description = tablemeta?.rowData[9];
-        return <div>{description}</div>;
+        return <div>{description}</div>
       },
     },
   },
@@ -171,7 +174,7 @@ const columns = [
   },
   {
     name: "hub",
-    label: "Hub",
+    label: "HUB",
     options: {
       customBodyRender: (value) => {
         return <div className="vieworders_hub">{value}</div>;
