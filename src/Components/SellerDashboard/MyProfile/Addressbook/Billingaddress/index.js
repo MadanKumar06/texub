@@ -31,7 +31,7 @@ const Index = ({ address, setisBilling, setisAddress }) => {
       setBillingAddress({
         city: address?.[0]?.city,
         company: address?.[0]?.company,
-        country_id: country,
+        country_id: country?.[0],
         firstname: address?.[0]?.firstname,
         lastname: address?.[0]?.lastname,
         postcode: address?.[0]?.postcode,
@@ -76,7 +76,7 @@ const Index = ({ address, setisBilling, setisAddress }) => {
         },
         data: {
           customerId: user?.id,
-          addressId: address?.[0]?.id,
+          addressId: address?.[0]?.address_id,
           addressType: 0,
           address: {
             company: billingAddress?.company,

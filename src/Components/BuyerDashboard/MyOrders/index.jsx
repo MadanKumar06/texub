@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from "react";
 import MUITable from "../../../Components/Common/MUITable";
 import { ArrowBackIosNew } from "@mui/icons-material";
-import { Link } from "react-router-dom";
 import Pagination from "../../Pagination";
 import "./styles.scss";
 import { useStateValue } from "../../../store/state";
@@ -14,6 +13,7 @@ import moment from "moment";
 import { IconButton, InputBase, Paper } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import NodataFound from "../../../Assets/CommonImage/NodataFound.webp.png";
+import { useNavigate, Link } from "react-router-dom";
 
 function Index() {
   const [tableData, setTableData] = useState([]);
@@ -35,7 +35,7 @@ function Index() {
   }
   const [{ customnostore, geo }, dispatch] = useStateValue();
   const [type, settype] = useState();
-
+  const Navigate = useNavigate();
   const selectorder = (value) => {
     settype(value);
   };
@@ -117,37 +117,16 @@ function Index() {
     }
   }, [isNotMatched]);
 
-  const [isVieworders, setisVieworders] = useState(false);
-  const [currentorder, setcurrentorder] = useState();
   const orders = (value) => {
-    setcurrentorder(value ? value : "");
-    // window.localStorage.setItem("orderinfoCurrentorder", value ? value : "");
-    setisVieworders(true);
-    setisOrders(false);
+    Navigate(
+      `/${
+        customnostore ? customnostore : geo?.country_name
+      }/buyerdashboard/view-order`,
+      {
+        state: value,
+      }
+    );
   };
-  const [isOrders, setisOrders] = useState(true);
-  // useEffect(() => {
-  //   setisVieworders(JSON.parse(window.localStorage.getItem("isVieworders")));
-  //   setisOrders(JSON.parse(window.localStorage.getItem("isOrders")));
-  // }, []);
-
-  // useEffect(() => {
-  //   window.localStorage.setItem("isVieworders", isVieworders===0?0:1);
-  //   window.localStorage.setItem("isOrders", isOrders===1?1:0);
-  // }, [isVieworders,isOrders]);
-  useEffect(() => {
-    window.localStorage.setItem("buyerclearViewOrder", false);
-  }, []);
-
-  const clearview = JSON.parse(
-    window.localStorage.getItem("buyerclearViewOrder")
-  );
-  useEffect(() => {
-    if (clearview === true) {
-      setisVieworders(false);
-      setisOrders(true);
-    }
-  }, [clearview]);
   const options = {
     filter: false,
     filterType: "dropdown",
@@ -315,110 +294,80 @@ function Index() {
 
   return (
     <div className="myorders">
-      {isOrders && (
-        <>
-          {" "}
-          <div className="myordersection__search">
-            <Paper
-              className="myordersection__searchinput"
-              component="form"
-              sx={{ p: "2px 4px", display: "flex", alignItems: "center" }}
-            >
-              <InputBase
-                sx={{ ml: 1, flex: 1 }}
-                placeholder="Search..."
-                inputProps={{ "aria-label": "search google maps" }}
-                className="myordersection_input"
-                value={searchdata}
-                onChange={(e) => setsearchdata(e.target.value)}
-              />
-              <IconButton
-                type="submit"
-                sx={{ p: "10px" }}
-                aria-label="search"
-                onClick={(e) => searchHandler(e)}
-              >
-                <SearchIcon />
-              </IconButton>
-            </Paper>
-            {/* <div className="sellerdashboard__notiIcon">
+      <div className="myordersection__search">
+        <Paper
+          className="myordersection__searchinput"
+          component="form"
+          sx={{ p: "2px 4px", display: "flex", alignItems: "center" }}
+        >
+          <InputBase
+            sx={{ ml: 1, flex: 1 }}
+            placeholder="Search..."
+            inputProps={{ "aria-label": "search google maps" }}
+            className="myordersection_input"
+            value={searchdata}
+            onChange={(e) => setsearchdata(e.target.value)}
+          />
+          <IconButton
+            type="submit"
+            sx={{ p: "10px" }}
+            aria-label="search"
+            onClick={(e) => searchHandler(e)}
+          >
+            <SearchIcon />
+          </IconButton>
+        </Paper>
+        {/* <div className="sellerdashboard__notiIcon">
                 <img src={notification} alt="" />
               </div>
               <span>Notification</span> */}
-          </div>
-          <div className="myorders__buttons">
-            {ordertype.map((data, i) => (
-              <p
-                className={`ordertypes ${type === i && "ordertype__selected"} 
+      </div>
+      <div className="myorders__buttons">
+        {ordertype.map((data, i) => (
+          <p
+            className={`ordertypes ${type === i && "ordertype__selected"} 
                 ${
                   orderTypeColor === 1 && data.name === "All Orders"
                     ? "ordertype__selected"
                     : null
                 }
                 `}
-                key={i}
-                onClick={() => {
-                  selectorder(i);
-                  setsearchdata("");
-                }}
-              >
-                {data.name}
-              </p>
-            ))}
-          </div>
-          <MUITable
-            columns={columns}
-            table={direct?.length ? direct : []}
-            options={options}
-            className="myorders__table"
-          />
-          {filtereddirect?.length > 0 ? (
-            <Pagination
-              PaginateData={PaginateDataSplit}
-              DataList={filtereddirect}
-              PagePerRow={10}
-            />
-          ) : (
-            ""
-          )}
-        </>
-      )}
-      {isVieworders && (
-        <OrdersInfo
-          currentorder={currentorder}
-          orders={orders}
-          setisVieworders={setisVieworders}
-          setisOrders={setisOrders}
+            key={i}
+            onClick={() => {
+              selectorder(i);
+              setsearchdata("");
+            }}
+          >
+            {data.name}
+          </p>
+        ))}
+      </div>
+      <MUITable
+        columns={columns}
+        table={direct?.length ? direct : []}
+        options={options}
+        className="myorders__table"
+      />
+      {filtereddirect?.length > 0 ? (
+        <Pagination
+          PaginateData={PaginateDataSplit}
+          DataList={filtereddirect}
+          PagePerRow={10}
         />
+      ) : (
+        ""
       )}
+
       <div className="my_orders__footer">
         <div className="my_orders__container">
-          {isVieworders === true ? (
-            <>
-              <div
-                className="back_button"
-                onClick={() => {
-                  setisVieworders(false);
-                  setisOrders(true);
-                }}
-                style={{ cursor: "pointer" }}
-              >
-                <ArrowBackIosNew />
-                <span className="back">Back</span>
-              </div>
-            </>
-          ) : (
-            <>
-              <Link
-                to={`/${
-                  customnostore ? customnostore : geo?.country_name
-                }/buyerdashboard/dashboard`}
-              >
-                <ArrowBackIosNew />
-                <span>Back</span>
-              </Link>
-            </>
-          )}
+          <Link
+            to={`/${
+              customnostore ? customnostore : geo?.country_name
+            }/buyerdashboard/dashboard`}
+          >
+            <ArrowBackIosNew />
+            <span>Back</span>
+          </Link>
         </div>
       </div>
     </div>

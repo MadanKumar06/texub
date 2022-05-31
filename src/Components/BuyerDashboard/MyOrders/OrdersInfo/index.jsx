@@ -17,20 +17,31 @@ import {
   totalamount,
   transaction_info,
 } from "../../../Common/Vieworders/viewordersjson";
+import { useLocation, useNavigate } from "react-router-dom";
 import NodataFound from "../../../../Assets/CommonImage/NodataFound.webp.png";
 
 import axios from "axios";
 import Constant from "../../../../Constant";
 import moment from "moment";
 import swal from "sweetalert2";
-const Index = ({ currentorder, orders, setisVieworders, setisOrders }) => {
+const Index = () => {
+  const history = useLocation();
+  const navigate = useNavigate();
+  const [{ customnostore, geo }, dispatch] = useStateValue();
+  const [open, setOpen] = useState(false);
+  const [serialNumber, setSerialNumber] = useState([]);
+
+  const [detailsorder, setdetailsorder] = useState([]);
+  const [entity_id, setentity_id] = useState();
+  const [update_transaction_details, setupdate_transaction_details] =
+    useState(false);
+  const [isUopup, setisUopup] = useState(false);
+
+  //price formate
   function formatToCurrency(price) {
     return price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
   }
-  const [{ customnostore, geo }, dispatch] = useStateValue();
-  // const currentorder = window.localStorage.getItem("orderinfoCurrentorder");
-  const [open, setOpen] = useState(false);
-  const [serialNumber, setSerialNumber] = useState([]);
+  //model open and close -(onclick serial number link)
   const handleOpen = (serialNumbers) => {
     setOpen(true);
     setSerialNumber(serialNumbers);
@@ -45,11 +56,7 @@ const Index = ({ currentorder, orders, setisVieworders, setisOrders }) => {
       });
     }
   };
-  const [detailsorder, setdetailsorder] = useState([]);
-  const [entity_id, setentity_id] = useState();
-  const [update_transaction_details, setupdate_transaction_details] =
-    useState(false);
-  const [isUopup, setisUopup] = useState(false);
+
   const Popup = (event) => {
     setisUopup(event);
   };
@@ -81,7 +88,7 @@ const Index = ({ currentorder, orders, setisVieworders, setisOrders }) => {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         data: {
-          orderId: currentorder,
+          orderId: history?.state,
           customerId: user?.id,
         },
       });
@@ -92,8 +99,6 @@ const Index = ({ currentorder, orders, setisVieworders, setisOrders }) => {
           showConfirmButton: false,
           timer: 3000,
         });
-        setisVieworders(false);
-        setisOrders(true);
       } else {
         setdetailsorder(orderdetails?.data ? orderdetails?.data : []);
       }
@@ -108,7 +113,7 @@ const Index = ({ currentorder, orders, setisVieworders, setisOrders }) => {
         value: false,
       });
     }
-  }, [currentorder, update_transaction_details]);
+  }, [history?.state, update_transaction_details]);
 
   const options = {
     filter: false,
@@ -134,7 +139,7 @@ const Index = ({ currentorder, orders, setisVieworders, setisOrders }) => {
   const columns = [
     {
       name: "productname",
-      label: "Product Name",
+      label: "PRODUCT NAME",
       options: {
         customBodyRender: (value, tablemeta) => {
           let name = tablemeta?.rowData[9];
@@ -172,7 +177,7 @@ const Index = ({ currentorder, orders, setisVieworders, setisOrders }) => {
     },
     {
       name: "quantity",
-      label: "Quantity",
+      label: "QUANTITY",
       options: {
         customBodyRender: (value) => {
           return <div className="vieworders_quantity">{parseInt(value)}</div>;
@@ -181,7 +186,7 @@ const Index = ({ currentorder, orders, setisVieworders, setisOrders }) => {
     },
     {
       name: "sellercode",
-      label: "seller Code",
+      label: "SELLER CODE",
       options: {
         customBodyRender: (value) => {
           return <div className="vieworders_seller_code">{value}</div>;
@@ -190,7 +195,7 @@ const Index = ({ currentorder, orders, setisVieworders, setisOrders }) => {
     },
     {
       name: "hub",
-      label: "Hub",
+      label: "HUB",
       options: {
         customBodyRender: (value) => {
           return <div className="vieworders_hub">{value}</div>;
@@ -208,7 +213,7 @@ const Index = ({ currentorder, orders, setisVieworders, setisOrders }) => {
     },
     {
       name: "warranty",
-      label: "Warranty",
+      label: "WARRANTY",
       options: {
         customBodyRender: (value) => {
           return <div className="vieworders_warranty">{value} Days</div>;
@@ -295,7 +300,7 @@ const Index = ({ currentorder, orders, setisVieworders, setisOrders }) => {
             </div>
             <div className="username">
               <span className="id_heading">Order ID #</span>
-              <span className="id">{currentorder}</span>
+              <span className="id">{history?.state}</span>
               <span className="status">
                 {detailsorder?.[0]?.order_details?.[0]?.order_status == 1
                   ? "Pending"
@@ -329,7 +334,7 @@ const Index = ({ currentorder, orders, setisVieworders, setisOrders }) => {
               <a
                 href={`/${
                   customnostore ? customnostore : geo?.country_name
-                }/buyerdashboard/myorder-invoice/${currentorder}`}
+                }/buyerdashboard/myorder-invoice/${history?.state}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -743,11 +748,19 @@ const Index = ({ currentorder, orders, setisVieworders, setisOrders }) => {
         ) : (
           ""
         )}
+        <div className="my_orders_info__footer">
+          <div className="my_orders_info__container">
+            <p onClick={() => navigate(-1)}>
+              <ArrowBackIosNew />
+              <span>Back</span>
+            </p>
+          </div>
+        </div>
       </div>
       {isUopup && (
         <Ratingpopup
           Popup={Popup}
-          currentorder={currentorder}
+          currentorder={history?.state}
           data={detailsorder?.[0]?.order_details?.[0]}
         />
       )}

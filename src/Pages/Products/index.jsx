@@ -27,7 +27,6 @@ export const Products = () => {
   });
   const [productData, setProductData] = useState([]);
   const [dataFromApi, setDataFromApi] = useState([]);
-  // const [getCategories, setGetCategories] = useState([]);
   const [applyFilter, setApplyFilter] = useState(false);
 
   let customer_id = JSON.parse(localStorage.getItem("userdata"));
@@ -140,15 +139,15 @@ export const Products = () => {
   }, [currency, plp_categories, homeSearch, applyFilter]);
 
   const userFilterDataStore = (storeData) => {
-    debugger;
-    if (
-      localStorage.getItem("filters") == "undefined" ||
-      !localStorage.getItem("filters")
-    ) {
-      localStorage.setItem("filters", JSON.stringify(storeData));
-      debugger;
-    } else {
-    }
+    // debugger;
+    // if (
+    //   localStorage.getItem("filters") == "undefined" ||
+    //   !localStorage.getItem("filters")
+    // ) {
+    //   localStorage.setItem("filters", JSON.stringify(storeData));
+    //   debugger;
+    // } else {
+    // }
   };
 
   // useEffect(() => {

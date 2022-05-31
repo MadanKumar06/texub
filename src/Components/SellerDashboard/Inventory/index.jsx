@@ -343,6 +343,7 @@ function Index({ registerproduct }) {
     fetchTableData();
   }, [generalTrigger]);
 
+  let customerId = JSON.parse(localStorage.getItem("userdata"));
   const handleSearchInput = async (event) => {
     event.preventDefault();
     setSearchList([]);
@@ -358,7 +359,7 @@ function Index({ registerproduct }) {
         method: "post",
         url: `${Constant.baseUrl()}/getSearchProduct`,
         data: {
-          customerId: 310,
+          customerId: customerId?.id,
           keyWord: search,
         },
         headers: {
