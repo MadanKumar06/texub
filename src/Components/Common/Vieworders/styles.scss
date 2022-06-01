@@ -9,6 +9,7 @@
       align-items: center;
       font-size: 16px;
       color: #002d56;
+      font-weight: 600;
     }
     .order_cancel_btn {
       width: 25%;
@@ -187,6 +188,9 @@
       font-size: 22px !important;
       letter-spacing: 0.9px;
       margin: 0;
+      .id{
+        font-size: 22px !important;
+      }
     }
     .purchase_date {
       font-size: 16px !important;
@@ -254,6 +258,7 @@
       .productname {
         display: flex;
         gap: 10px;
+        align-items: center;
         .brand_image{
           display: flex;
           align-items: center;
@@ -280,6 +285,9 @@
             font-size: 20px;
             letter-spacing: 0.6px;
             font-weight: 600;
+            text-align: left;
+          }
+          .product_description_info{
             text-align: left;
           }
           .modal_content {
@@ -573,7 +581,6 @@
     }
   }
 }
-
 @media (max-width: 1200px) {
   .vieworders_main
     .vieworders_detail_section
@@ -581,6 +588,9 @@
     .vieworder_address
     .vieworders_shippingaddress_section {
     flex-direction: column;
+  }
+  .purchase_status_stepper{
+    width: 100% !important;
   }
 }
 
@@ -618,6 +628,20 @@
       text-align: left;
     }
   }
+  .purchase_order_status .purchase_order_section{
+    padding-top: 0px !important;
+  }
+  .purchase_status_stepper .stepper_time_date {
+    flex-direction: column;
+    margin-left: 0px !important;
+  }
+  .purchase_status_stepper .stepper_time_date .date{
+    margin-bottom: 0px;
+  }
+  .purchase_status_stepper .stepper_time_date .time{
+    margin-top: 0px;
+    border-left: none !important;
+  }
 }
 
 @media only screen and (max-width: 580px) {
@@ -643,11 +667,24 @@
     .purchase_order_status
     .purchase_status_stepper
     .MuiStepper-root {
-    flex-direction: column;
-    min-height: 400px;
+      flex-direction: column;
+      min-height: 630px;
+      align-items: center;
+       margin-top: 20px;
   }
   .vieworders_main .purchase_order_status {
     min-height: 600px;
+  }
+  .purchase_status_stepper .stepper_time_date {
+    flex-direction: row;
+    align-items: center;
+    margin-top: 10px;
+  }
+  .purchase_status_stepper .stepper_time_date p{
+    margin: 0px;
+  }
+  .purchase_status_stepper .stepper_time_date .time{
+    border-left: 1px solid #cdd5dd !important;
   }
 }
 
@@ -673,5 +710,8 @@
     .taxes
     .gst {
     text-align: left;
+  }
+  .vieworders_main .invoices__footer .order_cancel_btn {
+    width: 130px;
   }
 }

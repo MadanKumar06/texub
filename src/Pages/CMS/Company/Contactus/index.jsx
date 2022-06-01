@@ -17,8 +17,10 @@ import twitter from "../../../../Assets/CommonImage/twitter.png";
 import linkedin from "../../../../Assets/CommonImage/linkedin.png";
 import instagram from "../../../../Assets/CommonImage/instagram.png";
 import location from "../../../../Assets/Contactus/placeholder (2).png";
+import { useStateValue } from "../../../../store/state";
 
 const Contactus = () => {
+    const [{}, dispatch] = useStateValue();
   const [contactusData, setcontactusData] = useState({
     your_name: "",
     e_mail: "",
@@ -32,6 +34,10 @@ const Contactus = () => {
   });
   let storedata = JSON.parse(localStorage.getItem("storedata"));
   const handleCall = () => {
+    dispatch({
+      type: "SET_IS_LOADING",
+      value: true,
+    });
     let data = {
       data: {
         storeId: storedata?.store_id,
@@ -61,6 +67,10 @@ const Contactus = () => {
           showConfirmButton: false,
           timer: 3000,
         });
+        dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
       })
       .catch((error) => {
         swal.fire({
@@ -69,6 +79,10 @@ const Contactus = () => {
           showConfirmButton: false,
           timer: 3000,
         });
+        dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
       });
   };
   const handleFormvalue = (event) => {

@@ -48,6 +48,7 @@ const Index = ({ classes, setisAccountinfo, setisEdit }) => {
     let mobile_number = userData?.custom_attributes?.filter(
       (itm) => itm?.attribute_code === "customer_mobile_number"
     );
+    console.log(mobile_number);
     setAccountInfoData({
       first_name: userData.firstname,
       last_name: userData.lastname,
@@ -359,7 +360,7 @@ const Index = ({ classes, setisAccountinfo, setisEdit }) => {
             <div className="inputfield">
               <p>Mobile Number</p>
               <PhoneInput
-                country={mobile_number_countryCode}
+                // country={mobile_number_countryCode}
                 id="mobile_number"
                 fullWidth
                 enableSearch={true}
