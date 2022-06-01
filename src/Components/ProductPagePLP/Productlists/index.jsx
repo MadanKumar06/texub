@@ -27,6 +27,8 @@ const Productlists = ({
   productData,
   homeCategorySearch,
   userfilter,
+  filterHeaderImage,
+  setFilterHeaderImage,
 }) => {
   // useEffect(() => {
   //   if (productFetchApi?.hub === "") {
@@ -38,14 +40,6 @@ const Productlists = ({
     hub: [],
     conditions: [],
     eta: [],
-  });
-  const [filterHeaderImage, setFilterHeaderImage] = useState({
-    today_deal: false,
-    today_deal_image: todays_deal_active,
-    just_launch: false,
-    just_launch_image: just_launch_inactive,
-    price_drop: false,
-    price_drop_image: price_drop_inactive,
   });
   const handleChange = (event) => {
     setProductFetchApi((prevState) => ({
@@ -171,6 +165,7 @@ const Productlists = ({
       }));
     }
   }, [productlistdropdown]);
+  
 
   return (
     <div className="productlist">

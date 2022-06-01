@@ -10,11 +10,21 @@ import Productstable from "../../Components/ProductPagePLP/Producttable";
 import Constant from "../../Constant";
 import { useStateValue } from "../../store/state";
 import Helmet from "react-helmet";
+import todays_deal_active from "../../Assets/BasicNeeded/PLPIcons/today_deal.png";
+import price_drop_inactive from "../../Assets/BasicNeeded/PLPIcons/price_drop_inactive.png";
+import just_launch_inactive from "../../Assets/BasicNeeded/PLPIcons/just_launch_inactive.png";
 
 export const Products = () => {
   const navigate = useNavigate();
   const history = useLocation();
-  let showActiveStage = true;
+  const [filterHeaderImage, setFilterHeaderImage] = useState({
+    today_deal: false,
+    today_deal_image: todays_deal_active,
+    just_launch: false,
+    just_launch_image: just_launch_inactive,
+    price_drop: false,
+    price_drop_image: price_drop_inactive,
+  });
   const [
     { currency, homeSearch, plp_categories, customnostore, geo },
     dispatch,
@@ -225,6 +235,7 @@ export const Products = () => {
           );
     setpermission(pendingpermission);
   }, []);
+
   return (
     <div>
       <Helmet>
@@ -247,6 +258,8 @@ export const Products = () => {
           productData={productData}
           userfilter={userfilter}
           homeCategorySearch={history?.state}
+          filterHeaderImage={filterHeaderImage}
+          setFilterHeaderImage={setFilterHeaderImage}
         />
         <Productsbrands
           setProductFetchApi={setProductFetchApi}
@@ -263,15 +276,26 @@ export const Products = () => {
               localStorage.removeItem("filters");
               setProductFetchApi((prev) => ({
                 ...prev,
-                conditions: "",
-                eta: "",
-                hub: "",
+                conditions: "0",
+                eta: "0",
+                hub: "0",
                 search_product: "",
                 brand_id: "",
                 category_id: "",
                 min_price: "",
                 max_price: "",
+                today_deal: 0,
+                just_launch: 0,
+                price_drop: 0,
               }));
+              setFilterHeaderImage({
+                today_deal: false,
+                today_deal_image: todays_deal_active,
+                just_launch: false,
+                just_launch_image: just_launch_inactive,
+                price_drop: false,
+                price_drop_image: price_drop_inactive,
+              });
               setApplyFilter(!applyFilter);
               dispatch({
                 type: "SET_SEARCH",
