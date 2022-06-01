@@ -14,12 +14,15 @@ import Constant from "../../../Constant";
 import { useStateValue } from "../../../store/state";
 import Pagination from "../../Pagination";
 
-const Index = ({ searchdata, searchupdate }) => {
+const Index = ({ searchdata, searchupdate, setSearch }) => {
   const [isUopup, setisUopup] = useState(false);
   const [direct, setdirect] = useState([]);
   const [filtereddirect, setfiltereddirect] = useState([]);
   // const [tableData, setTableData] = useState([]);
   const [refreshdata, setrefreshdata] = useState(false);
+  const [directList, setdirectList] = useState([]);
+  const [orderTypeColor, setorderTypeColor] = useState(0);
+  const [isNotMatched,setisNotMatched] = useState(false);
   const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
   const PaginateDataSplit = (event) => {
     if (directList?.length === 0) return setdirect([]);
@@ -28,9 +31,9 @@ const Index = ({ searchdata, searchupdate }) => {
   // const PaginateDataSplit = (event) => {
   //   setTableData(event);
   // };
-  const [directList, setdirectList] = useState([]);
+  // const [directList, setdirectList] = useState([]);
 
-  useEffect(() => {
+ useEffect(() => {
     if (directList?.length === 0) return;
     if (searchdata === "") {
       setfiltereddirect(directList);
@@ -40,7 +43,16 @@ const Index = ({ searchdata, searchupdate }) => {
       );
       setfiltereddirect(temp);
     }
-  }, [searchupdate, directList]);
+    setorderTypeColor(1)
+    settype(null)
+    setSearch("")
+    setisNotMatched(!isNotMatched)
+  }, [searchupdate, directList])
+   useEffect(()=>{
+    if(filtereddirect.length===0){
+      setdirect([])
+    }
+  },[isNotMatched])
 
   useEffect(async () => {
     let user = JSON.parse(localStorage.getItem("userdata"));
@@ -96,42 +108,78 @@ const Index = ({ searchdata, searchupdate }) => {
     settype(0);
   }, []);
 
+  // useEffect(() => {
+  //   localStorage.setItem("enquirypage", JSON.stringify(1));
+  //   if (type === 0) {
+  //     setfiltereddirect(directList);
+  //   }
+  //   if (type === 1) {
+  //     const pending = directList?.filter(
+  //       (d) => d?.seller_enquiry_status === "Open"
+  //     );
+  //     if (pending) {
+  //       setfiltereddirect(pending);
+  //     } else {
+  //       setdirect([]);
+  //     }
+  //   }
+  //   if (type === 2) {
+  //     const accepted = directList?.filter(
+  //       (d) => d?.seller_enquiry_status === "Accepted"
+  //     );
+  //     if (accepted) {
+  //       setfiltereddirect(accepted);
+  //     } else {
+  //       setdirect([]);
+  //     }
+  //   }
+  //   if (type === 3) {
+  //     const declined = directList?.filter(
+  //       (d) => d?.seller_enquiry_status === "Declined"
+  //     );
+  //     if (declined?.length) {
+  //       setfiltereddirect(declined);
+  //     } else {
+  //       setdirect([]);
+  //     }
+  //   }
+  // }, [type]);
   useEffect(() => {
-    localStorage.setItem("enquirypage", JSON.stringify(1));
     if (type === 0) {
+      setorderTypeColor(0)
       setfiltereddirect(directList);
     }
     if (type === 1) {
-      const pending = directList?.filter(
-        (d) => d?.seller_enquiry_status === "Open"
-      );
-      if (pending) {
-        setfiltereddirect(pending);
+      setorderTypeColor(0)
+      const open = directList?.filter((d) => d?.seller_enquiry_status === "Open");
+      if(open?.length) {
+        setfiltereddirect(open)
       } else {
-        setdirect([]);
+        setdirect([])
+        setfiltereddirect([])
       }
     }
     if (type === 2) {
-      const accepted = directList?.filter(
-        (d) => d?.seller_enquiry_status === "Accepted"
-      );
-      if (accepted) {
-        setfiltereddirect(accepted);
+      setorderTypeColor(0)
+      const accepted = directList?.filter((d) => d?.seller_enquiry_status === "Accepted");
+      if(accepted?.length) {
+        setfiltereddirect(accepted)
       } else {
-        setdirect([]);
+        setdirect([])
+        setfiltereddirect([])
       }
     }
     if (type === 3) {
-      const declined = directList?.filter(
-        (d) => d?.seller_enquiry_status === "Declined"
-      );
-      if (declined?.length) {
-        setfiltereddirect(declined);
+      setorderTypeColor(0)
+      const declined = directList?.filter((d) => d?.seller_enquiry_status === "Declined");
+      if(declined?.length) {
+        setfiltereddirect(declined)
       } else {
-        setdirect([]);
+        setdirect([])
+        setfiltereddirect([])
       }
     }
-  }, [type]);
+  }, [type, directList]);
 
   const options = {
     filter: false,
@@ -268,10 +316,14 @@ const Index = ({ searchdata, searchupdate }) => {
           <div className="directenquiries__btton_content">
             <p
               className={`directenquiriestypes ${
-                type === i && "directenquiries__selected"
-              }`}
+                type === i && "directenquiries__selected"}
+                ${orderTypeColor === 1 && data.name==="All Enquiries"? "directenquiries__selected":null}
+                `}
               key={i}
-              onClick={() => selectorder(i)}
+              onClick={() =>{
+                selectorder(i)
+                setSearch("")
+              }}
             >
               {data.name}
             </p>

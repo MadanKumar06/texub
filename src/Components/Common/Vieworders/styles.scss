@@ -228,6 +228,9 @@
         z-index: 9;
         background-color: #002d56;
       }
+      .MuiTableCell-root:first-child{
+        text-align: start;
+      }
     }
     .MuiTable-root {
       .MuiTableFooter-root {

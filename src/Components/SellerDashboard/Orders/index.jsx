@@ -15,11 +15,15 @@ import SearchIcon from "@mui/icons-material/Search";
 
 var moment = require("moment");
 
-function Index({ handleSearchBar, searchdata, searchupdate }) {
+function Index({ handleSearchBar, searchdata, searchupdate, setSearch }) {
   const [{ geo, customnostore }, dispatch] = useStateValue();
   const [tableData, setTableData] = useState([]);
   const [apiTableData, setApiTableData] = useState([]);
   const [viewDetail, setViewDetail] = useState({});
+  const [direct, setdirect] = useState([]);
+  const [filtereddirect, setfiltereddirect] = useState([]);
+  const [orderTypeColor, setorderTypeColor] = useState(0);
+  const [isNotMatched,setisNotMatched] = useState(false);
   const ordertype = [
     { name: "All Orders" },
     { name: "On-Going Orders" },
@@ -35,48 +39,124 @@ function Index({ handleSearchBar, searchdata, searchupdate }) {
   useEffect(() => {
     settype(0);
   }, []);
-
-  useEffect(() => {
+useEffect(() => {
     if (type === 0) {
-      setTableData(apiTableData);
+      setorderTypeColor(0)
+      setfiltereddirect(apiTableData);
     }
     if (type === 1) {
-      const confirm = apiTableData?.filter((d) => d?.quote_status === "1");
-      setTableData(confirm);
+      setorderTypeColor(0)
+      const po_received = apiTableData?.filter((d) => d?.po_status === "0");
+      if(po_received?.length) {
+        setfiltereddirect(po_received)
+      } else {
+        setdirect([])
+        setfiltereddirect([])
+      }
     }
     if (type === 1) {
-      const dispatch = apiTableData?.filter((d) => d?.quote_status === "2");
-      setTableData(dispatch);
+      setorderTypeColor(0)
+      const confirm = apiTableData?.filter((d) => d?.po_status === "1");
+      if(confirm?.length) {
+        setfiltereddirect(confirm)
+      } else {
+        setdirect([])
+        setfiltereddirect([])
+      }
+    }
+    if (type === 1) {
+      setorderTypeColor(0)
+      const dispatched = apiTableData?.filter((d) => d?.po_status === "2");
+      if(dispatched?.length) {
+        setfiltereddirect(dispatched)
+      } else {
+        setdirect([])
+        setfiltereddirect([])
+      }
     }
     if (type === 2) {
-      const delivered = apiTableData?.filter((d) => d?.quote_status === "3");
-      setTableData(delivered);
+      setorderTypeColor(0)
+      const delivered = apiTableData?.filter((d) => d?.po_status === "3");
+      if(delivered?.length) {
+        setfiltereddirect(delivered)
+      } else {
+        setdirect([])
+        setfiltereddirect([])
+      }
     }
     if (type === 3) {
-      const cancel = apiTableData?.filter((d) => d?.quote_status === "4");
-      setTableData(cancel);
+      setorderTypeColor(0)
+      const cancel = apiTableData?.filter((d) => d?.po_status === "4");
+      if(cancel?.length) {
+        setfiltereddirect(cancel)
+      } else {
+        setdirect([])
+        setfiltereddirect([])
+      }
     }
   }, [type, apiTableData]);
+  // useEffect(() => {
+  //   if (type === 0) {
+  //     setTableData(apiTableData);
+  //   }
+  //   if (type === 1) {
+  //     const confirm = apiTableData?.filter((d) => d?.quote_status === "1");
+  //     setTableData(confirm);
+  //   }
+  //   if (type === 1) {
+  //     const dispatch = apiTableData?.filter((d) => d?.quote_status === "2");
+  //     setTableData(dispatch);
+  //   }
+  //   if (type === 2) {
+  //     const delivered = apiTableData?.filter((d) => d?.quote_status === "3");
+  //     setTableData(delivered);
+  //   }
+  //   if (type === 3) {
+  //     const cancel = apiTableData?.filter((d) => d?.quote_status === "4");
+  //     setTableData(cancel);
+  //   }
+  // }, [type, apiTableData]);
 
+  // useEffect(() => {
+  //   if (apiTableData?.length === 0) return;
+  //   if (searchdata === "") {
+  //     setTableData(apiTableData);
+  //   } else {
+  //     let temp = apiTableData?.filter((td) =>
+  //       td?.po_number?.toLowerCase()?.includes(searchdata?.toLowerCase())
+  //     );
+  //     setTableData(temp);
+  //   }
+  // }, [searchupdate, apiTableData]);
   useEffect(() => {
     if (apiTableData?.length === 0) return;
     if (searchdata === "") {
-      setTableData(apiTableData);
+      setfiltereddirect(apiTableData);
     } else {
       let temp = apiTableData?.filter((td) =>
         td?.po_number?.toLowerCase()?.includes(searchdata?.toLowerCase())
       );
-      setTableData(temp);
+      setfiltereddirect(temp);
     }
+    setorderTypeColor(1)
+    settype(null)
+    setSearch("")
+    setisNotMatched(!isNotMatched)
   }, [searchupdate, apiTableData]);
+
   function formatToCurrency(price) {
     return price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
   }
 
   const PaginateDataSplit = (event) => {
-    if (apiTableData?.length === 0) return setApiTableData([]);
-    setTableData(event);
+    if (apiTableData?.length === 0) return setdirect([]);
+      setdirect(event);
   };
+   useEffect(()=>{
+    if(filtereddirect.length===0){
+      setdirect([])
+    }
+  },[isNotMatched])
   const [vieworder, setvieworder] = useState(false);
 
   useEffect(() => {
@@ -274,9 +354,15 @@ function Index({ handleSearchBar, searchdata, searchupdate }) {
           <div className="orders__buttons">
             {ordertype.map((data, i) => (
               <p
-                className={`ordertypes ${type === i && "ordertype__selected"}`}
+                // className={`ordertypes ${type === i && "ordertype__selected"}`}
+                className={`ordertypes ${type === i && "ordertype__selected"} 
+                ${orderTypeColor === 1 && data.name==="All Orders"? "ordertype__selected":null}
+                `}
                 key={i}
-                onClick={() => selectorder(i)}
+                onClick={() =>{
+                  selectorder(i)
+                  setSearch("")
+                }}
               >
                 {data.name}
               </p>
@@ -285,15 +371,16 @@ function Index({ handleSearchBar, searchdata, searchupdate }) {
 
           <MUITable
             columns={columns}
-            table={tableData?.length ? tableData : []}
+            table={direct?.length ? direct : []}
             options={options}
             className="orders__table"
           />
 
-          {apiTableData?.length > 0 ? (
+       
+          {filtereddirect?.length > 0 ? (
             <Pagination
               PaginateData={PaginateDataSplit}
-              DataList={apiTableData?.length ? apiTableData : []}
+              DataList={filtereddirect}
               PagePerRow={10}
             />
           ) : (

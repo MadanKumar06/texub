@@ -191,6 +191,7 @@ function SellerDashboard() {
               searchdata={search}
               searchupdate={searchupdate}
               handleSearchBar={handleSearchBar}
+              setSearch={setSearch}
             />
           )}
 
@@ -202,7 +203,7 @@ function SellerDashboard() {
           {currenttab === "sellerservices" && <Sellerservices />}
 
           {currenttab === "directenquiries" && (
-            <Directenqueries searchdata={search} searchupdate={searchupdate} />
+            <Directenqueries searchdata={search} searchupdate={searchupdate} setSearch={setSearch}/>
           )}
           {currenttab === "paymentmethods" && <Paymentmethods />}
           {currenttab === "smart-recommendation" && (
