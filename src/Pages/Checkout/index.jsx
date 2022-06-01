@@ -821,7 +821,7 @@ const Checkout = () => {
           {/* > */}
           <div
             className="checkoutlist__download"
-            onClick={() => handleChange()}
+            // onClick={() => handleChange()}
           >
             <svg
               id="Icon"
