@@ -127,7 +127,7 @@ const columns = [
             </div>
             <div className="product">
               <span className="modal_name">{value}</span>
-              <div>{description}</div>
+              <div className="product_description_info">{description}</div>
             </div>
           </div>
         );
