@@ -136,7 +136,10 @@ function Index() {
           return (
             <div className="productname">
               {product_barnd ? (
-                <img src={`${Constant.imageBaseUrl()}${product_barnd}`} alt="" />
+                <img
+                  src={`${Constant.imageBaseUrl()}${product_barnd}`}
+                  alt=""
+                />
               ) : (
                 <span>{brand_name}</span>
               )}
@@ -334,7 +337,7 @@ function Index() {
 
               <div
                 className="checkoutlist__download"
-                onClick={() => handleChange()}
+                // onClick={() => handleChange()}
               >
                 <svg
                   id="Icon"
@@ -454,11 +457,8 @@ function Index() {
             <h4>BILL TO</h4>
             <p className="name">{pendingInvoiceList?.bill_to_name}</p>
             <div className="content">
-              <span>
-                {pendingInvoiceList?.bill_to_address1},
-              </span>
-               <span>{pendingInvoiceList?.bill_to_address2}</span>
-                
+              <span>{pendingInvoiceList?.bill_to_address1},</span>
+              <span>{pendingInvoiceList?.bill_to_address2}</span>
 
               <span>
                 {pendingInvoiceList?.bill_to_city}-
@@ -472,12 +472,8 @@ function Index() {
             <h4>PICK UP ADDRESS</h4>
             <p className="name">{pendingInvoiceList?.pick_up_name}</p>
             <div className="content">
-              <span>
-                {pendingInvoiceList?.pick_up_address1},
-              </span>
-              <span>
-                {pendingInvoiceList?.pick_up_address2}
-              </span>
+              <span>{pendingInvoiceList?.pick_up_address1},</span>
+              <span>{pendingInvoiceList?.pick_up_address2}</span>
 
               <span>
                 {pendingInvoiceList?.pick_up_city}-
@@ -614,7 +610,7 @@ function Index() {
                   )}{" "}
                 </span>
             </p> */}
-            <div 
+            <div
               className="total_value_block table_price_data"
               style={{
                 alignItems: "center",

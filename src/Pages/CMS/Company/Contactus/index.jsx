@@ -30,10 +30,11 @@ const Contactus = () => {
     e_mail: "",
     your_message: "",
   });
+  let storedata = JSON.parse(localStorage.getItem("storedata"));
   const handleCall = () => {
     let data = {
       data: {
-        storeId: 3,
+        storeId: storedata?.store_id,
         email: contactusData?.e_mail,
         name: contactusData?.your_name,
         subject: contactusData?.subject,
