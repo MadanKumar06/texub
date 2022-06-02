@@ -71,7 +71,7 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
     localStorage.getItem("userdata")
   )?.custom_attributes?.filter((itm) => itm?.attribute_code === "kyc_status");
   const navigate = useNavigate();
-  const [{ geo, wishListData, customnostore, cart  }, dispatch] = useStateValue();
+  const [{ geo, wishListData, customnostore, cart, homeContent  }, dispatch] = useStateValue();
   const history = useNavigate();
 
     const handleWishlist = () => {
@@ -799,7 +799,12 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
       event: SignOut,
     },
   ];
-
+  const handleClickLink = (event) => {
+    history(`/${customnostore ? customnostore : geo?.country_name}/products`, {
+      state: { name: event?.attribute, value: event?.value },
+    });
+    handleClick()
+  };
   return (
     <Box sx={{ width: "100%" }} className={classes.main_boxt_conatainer}>
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
@@ -993,7 +998,32 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
               component="div"
               disablePadding
             >
-              {Departments?.map((itm) => (
+              {homeContent?.menu?.map((itm) => (
+                <div key={itm?.title} className={classes.dropdown_collapse_list}>
+                    <ListItemButton sx={{ pl: 4 }} 
+                      onClick={() =>
+                        handleClickLink({
+                          attribute: itm?.attribute,
+                          value: itm?.value,
+                        })
+                      }
+                    >
+                      <ListItemText className="listitem_text" primary={`${itm?.title}`} />
+                          {/* <span
+                        className={`${
+                          itm?.tag === "Sale"
+                            ? "sale"
+                            : itm?.tag === "New"
+                            ? "new"
+                            : ""
+                        }`}
+                      >
+                        {itm?.title}
+                      </span> */}
+                    </ListItemButton>
+                </div>
+              ))}
+              {/* {Departments?.map((itm) => (
                 <div key={itm?.name} className={classes.dropdown_collapse_list}>
                  <Link className={classes.link_in_tab} to={ `/${
                       customnostore ? customnostore : geo?.country_name
@@ -1015,7 +1045,7 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
                     </ListItemButton>
                   </Link>
                 </div>
-              ))}
+              ))} */}
             </List>
           </Collapse>
         </List>
