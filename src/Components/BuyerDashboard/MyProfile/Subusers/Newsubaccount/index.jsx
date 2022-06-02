@@ -433,6 +433,10 @@ const Index = ({ currentid, setisSub, setisSubusers, setshowButton }) => {
                 ...prevState,
                 active: newValue,
               }));
+              setInputValidation((prevState)=>({
+              ...prevState,
+              active: "",
+            }));
             }}
           />
           <InputLabel className="validation_error">
