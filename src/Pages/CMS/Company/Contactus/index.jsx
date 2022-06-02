@@ -110,6 +110,14 @@ const Contactus = () => {
       }));
       errorHandle = true;
     }
+    else if (!isEmailValid(contactusData?.e_mail)) {
+      document.getElementById("e_mail")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        e_mail: "Please enter the valid e-mail.",
+      }));
+      errorHandle = true;
+    }
     if (!contactusData?.your_message) {
       document.getElementById("your_message")?.focus();
       setInputValidation((prevState) => ({
