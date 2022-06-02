@@ -36,6 +36,8 @@ const Checkout = () => {
     open: "",
     openClose: false,
   });
+  const [{ currency, geo, customnostore }, dispatch] = useStateValue();
+
   const [mobile_number_countryCode, setMobile_number_countryCode] =
     useState("ae");
   const [buyercode, setbuyercode] = useState();
@@ -87,7 +89,6 @@ const Checkout = () => {
   };
   const [quotedata, setqutoedata] = useState([]);
   const { quoteid } = useParams();
-  const [{ currency, geo, customnostore }, dispatch] = useStateValue();
   // const [pickup, setpickup] = useState({
   //   bussiness_name: "",
   //   contact_person: "",

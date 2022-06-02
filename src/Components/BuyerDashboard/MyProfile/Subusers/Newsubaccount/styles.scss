@@ -4,6 +4,9 @@
     font-size: 24px;
     letter-spacing: 0.9px;
   }
+  .new_sub_account_section{
+    width: 90%;
+  }
   .input_sections {
     display: flex;
     gap: 30px;
@@ -32,7 +35,17 @@
       letter-spacing: 0.54px;
       opacity: 1;
     }
+    .roundedbox{
+       .MuiOutlinedInput-root{
+         border-radius: 25px;
+       }
+    }
   }
+   .roundedbox{
+       .MuiOutlinedInput-root{
+         border-radius: 25px;
+       }
+    }
   .MuiOutlinedInput-root{
 			font-weight: 600 !important;
 	}
@@ -250,6 +263,11 @@
 }
 
 @media only screen and (max-width: 580px) {
+  .subaccount_main{
+      .new_sub_account_section{
+        width: 100%;
+      }
+  } 
   .subaccount_main .my_profile_btns .user_btn_section {
     justify-content: center;
   }
