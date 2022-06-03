@@ -144,7 +144,7 @@ const Index = ({ currentid, setisSub, setisSubusers, setshowButton }) => {
       }));
       errorHandle = true;
     }
-    if (!NewSubAccountData?.allowed_permissions) {
+    if (!NewSubAccountData?.allowed_permissions.length) {
       document.getElementById("allowed_permissions")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
@@ -227,212 +227,222 @@ const Index = ({ currentid, setisSub, setisSubusers, setshowButton }) => {
   return (
     <div className="subaccount_main">
       <p className="sub_heading">Add New Sub-Account</p>
-      <div className="input_sections">
-        <div className="input_sections1">
-          <p>First Name</p>
-          <TextField
-            fullWidth
-            id="first_name"
-            name="first_name"
-            className="inputfield-box"
-            placeholder="First Name"
-            InputLabelProps={{
-              shrink: false,
-            }}
-            value={NewSubAccountData?.first_name}
-            onChange={handleChangeInput}
-          />
-          <InputLabel className="validation_error">
-            {inputValidation?.first_name}
-          </InputLabel>
-        </div>
-        <div className="input_sections1">
-          <p>Last Name</p>
-          <TextField
-            fullWidth
-            id="last_name"
-            className="inputfield-box"
-            name="last_name"
-            placeholder="Last Name"
-            InputLabelProps={{
-              shrink: false,
-            }}
-            value={NewSubAccountData?.last_name}
-            onChange={handleChangeInput}
-          />
-          <InputLabel className="validation_error">
-            {inputValidation?.last_name}
-          </InputLabel>
-        </div>
-      </div>
-      <div className="input_sections">
-        <div className="input_sections1">
-          <p>Designation</p>
-          <TextField
-            fullWidth
-            id="designation"
-            className="inputfield-box"
-            name="designation"
-            placeholder="Designation"
-            InputLabelProps={{
-              shrink: false,
-            }}
-            value={NewSubAccountData?.designation}
-            onChange={handleChangeInput}
-          />
-          <InputLabel className="validation_error">
-            {inputValidation?.designation}
-          </InputLabel>
-        </div>
-        <div className="input_sections1">
-          <p>Mobile Number</p>
-          <TextField
-            fullWidth
-            id="mobile"
-            className="inputfield-box"
-            name="mobile"
-            type="number"
-            placeholder="Mobile"
-            InputLabelProps={{
-              shrink: false,
-            }}
-            value={NewSubAccountData?.mobile}
-            onChange={handleChangeInput}
-          />
-          <InputLabel className="validation_error">
-            {inputValidation?.mobile}
-          </InputLabel>
-        </div>
-      </div>
-      <div className="user_input">
-        <p>Email Address</p>
-        <TextField
-          fullWidth
-          id="e_mail"
-          name="e_mail"
-          className="inputfield-box"
-          placeholder="E-Mail Address"
-          InputLabelProps={{
-            shrink: false,
-          }}
-          value={NewSubAccountData?.e_mail}
-          onChange={handleChangeInput}
-        />
-        <InputLabel className="validation_error">
-          {inputValidation?.e_mail}
-        </InputLabel>
-      </div>
-      <div className="user_permision">
-        <p>Allowed Permission</p>
-        <Autocomplete
-          id="country-select-demo"
-          options={plist ? plist : []}
-          multiple
-          value={
-            NewSubAccountData?.allowed_permissions
-              ? NewSubAccountData?.allowed_permissions
-              : ""
-          }
-          getOptionLabel={(option) => (option.label ? option.label : "")}
-          isOptionEqualToValue={(option, value) => option.value === value.value}
-          disableCloseOnSelect
-          renderOption={(props, option, { selected }) => (
-            <li {...props} style={{ padding: "0px" }}>
-              <Checkbox
-                icon={icon}
-                checkedIcon={checkedIcon}
-                style={{
-                  marginRight: 8,
-                  paddingTop: "5px",
-                  paddingBottom: "5px",
-                }}
-                checked={selected}
-              />
-              {option.label}
-            </li>
-          )}
-          onChange={(event, newValue) => {
-            setNewSubAccountData((prevState) => ({
-              ...prevState,
-              allowed_permissions: newValue,
-            }));
-          }}
-          renderInput={(params) => (
+      <div className="new_sub_account_section">
+        <div className="input_sections">
+          <div className="input_sections1">
+            <p>First Name</p>
             <TextField
-              {...params}
-              placeholder="Allowed Permissions"
-              className="inputfield-box"
               fullWidth
+              id="first_name"
+              name="first_name"
+              className="inputfield-box roundedbox"
+              placeholder="First Name"
               InputLabelProps={{
                 shrink: false,
               }}
+              value={NewSubAccountData?.first_name}
+              onChange={handleChangeInput}
             />
-          )}
-        />
-        <InputLabel className="validation_error">
-          {inputValidation?.allowed_permissions}
-        </InputLabel>
-      </div>
-      <div>
-        <p>Forbidden Access</p>
-
-        <TextField
-          className="inputfield-box contact-form-inputfieldbox"
-          fullWidth
-          aria-label="comments"
-          placeholder="Access"
-          name="your_message"
-          id="your_message"
-          multiline
-          rows={3}
-          style={{ height: 100 }}
-          value={NewSubAccountData?.forbidden}
-          onChange={(e) =>
-            setNewSubAccountData((prevState) => ({
+            <InputLabel className="validation_error">
+              {inputValidation?.first_name}
+            </InputLabel>
+          </div>
+          <div className="input_sections1">
+            <p>Last Name</p>
+            <TextField
+              fullWidth
+              id="last_name"
+              className="inputfield-box roundedbox"
+              name="last_name"
+              placeholder="Last Name"
+              InputLabelProps={{
+                shrink: false,
+              }}
+              value={NewSubAccountData?.last_name}
+              onChange={handleChangeInput}
+            />
+            <InputLabel className="validation_error">
+              {inputValidation?.last_name}
+            </InputLabel>
+          </div>
+        </div>
+        <div className="input_sections">
+          <div className="input_sections1">
+            <p>Designation</p>
+            <TextField
+              fullWidth
+              id="designation"
+              className="inputfield-box roundedbox"
+              name="designation"
+              placeholder="Designation"
+              InputLabelProps={{
+                shrink: false,
+              }}
+              value={NewSubAccountData?.designation}
+              onChange={handleChangeInput}
+            />
+            <InputLabel className="validation_error">
+              {inputValidation?.designation}
+            </InputLabel>
+          </div>
+          <div className="input_sections1">
+            <p>Mobile Number</p>
+            <TextField
+              fullWidth
+              id="mobile"
+              className="inputfield-box roundedbox"
+              name="mobile"
+              type="number"
+              placeholder="Mobile"
+              InputLabelProps={{
+                shrink: false,
+              }}
+              value={NewSubAccountData?.mobile}
+              onChange={handleChangeInput}
+            />
+            <InputLabel className="validation_error">
+              {inputValidation?.mobile}
+            </InputLabel>
+          </div>
+        </div>
+        <div className="user_input">
+          <p>Email Address</p>
+          <TextField
+            fullWidth
+            id="e_mail"
+            name="e_mail"
+            className="inputfield-box roundedbox"
+            placeholder="E-Mail Address"
+            InputLabelProps={{
+              shrink: false,
+            }}
+            value={NewSubAccountData?.e_mail}
+            onChange={handleChangeInput}
+          />
+          <InputLabel className="validation_error">
+            {inputValidation?.e_mail}
+          </InputLabel>
+        </div>
+        <div className="user_permision">
+          <p>Allowed Permission</p>
+          <Autocomplete
+            id="country-select-demo"
+            options={plist ? plist : []}
+            multiple
+            value={
+              NewSubAccountData?.allowed_permissions
+                ? NewSubAccountData?.allowed_permissions
+                : ""
+            }
+            getOptionLabel={(option) => (option.label ? option.label : "")}
+            isOptionEqualToValue={(option, value) => option.value === value.value}
+            disableCloseOnSelect
+            renderOption={(props, option, { selected }) => (
+              <li {...props} style={{ padding: "0px" }}>
+                <Checkbox
+                  icon={icon}
+                  checkedIcon={checkedIcon}
+                  style={{
+                    marginRight: 8,
+                    paddingTop: "5px",
+                    paddingBottom: "5px",
+                  }}
+                  checked={selected}
+                />
+                {option.label}
+              </li>
+            )}
+            onChange={(event, newValue) => {
+              setNewSubAccountData((prevState) => ({
+                ...prevState,
+                allowed_permissions: newValue,
+              }));
+              setInputValidation((prevState)=>({
               ...prevState,
-              forbidden: e.target.value,
+              allowed_permissions: "",
             }))
-          }
-          InputLabelProps={{
-            shrink: true,
-            required: true,
-            classes: {
-              asterisk: "asterisk",
-            },
-          }}
-          variant="outlined"
-        />
-      </div>
-      <div className="users_active_section">
-        <p>Active</p>
-        <Autocomplete
-          value={NewSubAccountData?.active}
-          id="controllable-states-demo"
-          options={options ? options : []}
-          className="auto_complete_input"
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              fullWidth
-              id="active"
-              name="active"
-              className="inputfield-box"
-              placeholder="Yes"
-              InputLabelProps={{
-                shrink: false,
-              }}
-            />
-          )}
-          onChange={(event, newValue) => {
-            setNewSubAccountData((prevState) => ({
+            }}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                placeholder="Allowed Permissions"
+                className="inputfield-box"
+                fullWidth
+                InputLabelProps={{
+                  shrink: false,
+                }}
+              />
+            )}
+          />
+          <InputLabel className="validation_error">
+            {inputValidation?.allowed_permissions}
+          </InputLabel>
+        </div>
+        <div>
+          <p>Forbidden Access</p>
+
+          <TextField
+            className="inputfield-box contact-form-inputfieldbox"
+            fullWidth
+            aria-label="comments"
+            placeholder="Access"
+            name="your_message"
+            id="your_message"
+            multiline
+            rows={3}
+            style={{ height: 100 }}
+            value={NewSubAccountData?.forbidden}
+            onChange={(e) =>
+              setNewSubAccountData((prevState) => ({
+                ...prevState,
+                forbidden: e.target.value,
+              }))
+            }
+            InputLabelProps={{
+              shrink: true,
+              required: true,
+              classes: {
+                asterisk: "asterisk",
+              },
+            }}
+            variant="outlined"
+          />
+        </div>
+        <div className="users_active_section">
+          <p>Active</p>
+          <Autocomplete
+            value={NewSubAccountData?.active}
+            id="controllable-states-demo"
+            options={options ? options : []}
+            className="auto_complete_input"
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                fullWidth
+                id="active"
+                name="active"
+                className="inputfield-box roundedbox"
+                placeholder="Yes"
+                InputLabelProps={{
+                  shrink: false,
+                }}
+              />
+            )}
+            onChange={(event, newValue) => {
+              setNewSubAccountData((prevState) => ({
+                ...prevState,
+                active: newValue,
+              }));
+              setInputValidation((prevState)=>({
               ...prevState,
-              active: newValue,
+              active: "",
             }));
-          }}
-        />
-        <InputLabel className="validation_error">
-          {inputValidation?.active}
-        </InputLabel>
+            }}
+          />
+          <InputLabel className="validation_error">
+            {inputValidation?.active}
+          </InputLabel>
+        </div>
       </div>
       <div className="my_profile_btns">
         <div className="my_profile_back">
