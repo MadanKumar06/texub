@@ -196,7 +196,10 @@ function SellerDashboard() {
           )}
 
           {currenttab === "usermgmt" && (
-            <MyProfile />
+            <MyProfile 
+              searchdata={search}
+              searchupdate={searchupdate}
+            />
             // <UserMgmt setuserform={setuserform} userform={userform} />
           )}
 

@@ -14,7 +14,10 @@ import SearchIcon from "@mui/icons-material/Search";
 const Index = () => {
   const [isAccountinfo, setisAccountinfo] = useState(true);
   const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
-    const [showButton,setshowButton]=useState(true);
+  const [showButton,setshowButton]=useState(true);
+  const [searchupdate, setsearchupdate] = useState(false);
+  const [search, setSearch] = useState("");
+
   const userData = JSON.parse(localStorage.getItem("userdata"));
   let company_name = userData?.custom_attributes?.filter(
     (itm) => itm?.attribute_code === "customer_company_name"
@@ -96,6 +99,10 @@ const Index = () => {
             per?.permission_value === 0
         );
 
+  const updatesearch = (e) => {
+    e.preventDefault();
+    setsearchupdate(!searchupdate);
+  };
   return (
     <div className={`My_profile_main ${showButton===false?"My_profile_main_gap":""}`} >
        <div className="myprofilesection__search">
@@ -109,11 +116,15 @@ const Index = () => {
             placeholder="Search..."
             inputProps={{ "aria-label": "search google maps" }}
             className="myprofilesection_input"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            onKeyPress={(e) => e.key === "Enter" && updatesearch(e)}
           />
           <IconButton
             type="submit"
             sx={{ p: "10px" }}
             aria-label="search"
+            onClick={(e) => updatesearch(e)}
           >
             <SearchIcon />
           </IconButton>
@@ -143,7 +154,11 @@ const Index = () => {
       }
       {isAddress && <Addressbook open={Address1} />}
 
-      {isUser && <Subusers setshowButton={setshowButton}/>}
+      {isUser && <Subusers 
+      setshowButton={setshowButton}
+      searchdata={search}
+      searchupdate={searchupdate}
+      />}
       {isAccountinfo && (
         <div className="My_profile_ac">
           <span className="My_profile_main_heading">
