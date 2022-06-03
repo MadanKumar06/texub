@@ -11,12 +11,18 @@ import axios from "axios";
 import Constant from "../../../../Constant";
 import { getAdminToken } from "../../../../utilities";
 import NodataFound from "../../../../Assets/CommonImage/NodataFound.webp.png";
+import Pagination from "../../../Pagination";
 
 import moment from "moment";
 
-const Index = ({setshowButton}) => {
+const Index = ({setshowButton, searchdata, searchupdate}) => {
   const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
   const [isSub, setisSub] = useState(false);
+  const [sublist, setsublist] = useState([]);
+  const [direct, setdirect] = useState([]);
+  const [filtereddirect, setfiltereddirect] = useState([]);
+  const [isNotMatched,setisNotMatched] = useState(false);
+
   let [currentid, setcurrentid] = useState(0);
   const Newsubacc = () => {
     setcurrentid(0);
@@ -43,6 +49,31 @@ const Index = ({setshowButton}) => {
     setisPermissions(false);
     setForbidden_Access(forbiden_text)
   };
+
+  useEffect(() => {
+    if (sublist?.length === 0) return;
+    if (searchdata === "") {
+      setfiltereddirect(sublist);
+    } else {
+      let temp = sublist?.filter((td) =>
+        td?.name?.toLowerCase()?.includes(searchdata?.toLowerCase())
+      );
+      setfiltereddirect(temp);
+    }
+    setisNotMatched(!isNotMatched)
+  }, [searchupdate, sublist]);
+
+  const PaginateDataSplit = (event) => {
+    if (sublist?.length === 0) return setdirect([]);
+      setdirect(event);
+  };
+
+  useEffect(()=>{
+    if(filtereddirect.length===0){
+      setdirect([])
+    }
+  },[isNotMatched])
+
   const [isSubusers, setisSubusers] = useState(true);
   const options = {
     filter: false,
@@ -72,8 +103,6 @@ const Index = ({setshowButton}) => {
       setAdminToken(res);
     });
   }, []);
-
-  const [sublist, setsublist] = useState([]);
 
   useEffect(async () => {
     dispatch({
@@ -230,10 +259,22 @@ const Index = ({setshowButton}) => {
           </div>
           <MUITable
             columns={columns}
-            table={sublist}
+            // table={sublist}
+            table={direct?.length ? direct : []}
             options={options}
             className="subusers__table"
           />
+
+          {filtereddirect?.length > 0 ? (
+            <Pagination
+              PaginateData={PaginateDataSplit}
+              DataList={filtereddirect}
+              PagePerRow={10}
+            />
+          ) : (
+            ""
+          )}
+
           <div className="my_profile_btns">
             <div className="my_profile_back">
               <Link

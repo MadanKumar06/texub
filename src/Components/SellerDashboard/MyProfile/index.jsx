@@ -9,7 +9,7 @@ import Edit_image from "../../../Assets/CheckoutPage/Group 913.png";
 import { Link } from "react-router-dom";
 import { useStateValue } from "../../../store/state";
 
-const Index = () => {
+const Index = ({searchdata, searchupdate}) => {
   const [isAccountinfo, setisAccountinfo] = useState(true);
   const [{ geo, customnostore }, dispatch] = useStateValue();
   const [showButton,setshowButton]=useState(true);
@@ -125,7 +125,11 @@ const Index = () => {
      }
       {isAddress && <Addressbook open={Address1} />}
 
-      {isUser && <Subusers setshowButton={setshowButton} />}
+      {isUser && <Subusers 
+        setshowButton={setshowButton} 
+        searchdata={searchdata}
+        searchupdate={searchupdate}
+      />}
       {isAccountinfo && (
         <div className="My_profile_ac">
           <span className="My_profile_main_heading">
