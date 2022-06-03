@@ -234,11 +234,20 @@ const MyCartTable = ({ cartDataList, deleteCartData, setrowselect }) => {
           let product_id = tableMeta?.rowData[14];
           let sku = tableMeta?.rowData[13];
           let currency_id = tableMeta?.rowData[15];
+          let brand_name = tableMeta?.rowData[16];
           return (
             <div className="mycart_product_main">
               <div className="mycart_product_sub_block">
                 <div className="img_block">
-                  <img src={`${Constant.imageBaseUrl()}${value}`} alt="" />
+                   {value ? (
+                    <img
+                      src={`${Constant.imageBaseUrl()}${value}`}
+                      alt=""
+                    />
+                  ) : (
+                    <span>{brand_name}</span>
+                  )}
+                  {/* <img src={`${Constant.imageBaseUrl()}${value}`} alt="" /> */}
                 </div>
                 <div className="mycart_right_section">
                   <div className="mycart_right_section_block">
@@ -577,6 +586,13 @@ const MyCartTable = ({ cartDataList, deleteCartData, setrowselect }) => {
     },
     {
       name: "currency_id",
+      label: " ",
+      options: {
+        display: false,
+      },
+    },
+     {
+      name: "brand_name",
       label: " ",
       options: {
         display: false,

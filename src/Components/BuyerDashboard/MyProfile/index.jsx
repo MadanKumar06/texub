@@ -8,6 +8,8 @@ import Subusers from "./Subusers";
 import Edit_image from "../../../Assets/CheckoutPage/Group 913.png";
 import { Link } from "react-router-dom";
 import { useStateValue } from "../../../store/state";
+import { IconButton, InputBase, Paper } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
 
 const Index = () => {
   const [isAccountinfo, setisAccountinfo] = useState(true);
@@ -96,6 +98,31 @@ const Index = () => {
 
   return (
     <div className={`My_profile_main ${showButton===false?"My_profile_main_gap":""}`} >
+       <div className="myprofilesection__search">
+        <Paper
+          className="myprofilesection__searchinput"
+          component="form"
+          sx={{ p: "2px 4px", display: "flex", alignItems: "center" }}
+        >
+          <InputBase
+            sx={{ ml: 1, flex: 1 }}
+            placeholder="Search..."
+            inputProps={{ "aria-label": "search google maps" }}
+            className="myprofilesection_input"
+          />
+          <IconButton
+            type="submit"
+            sx={{ p: "10px" }}
+            aria-label="search"
+          >
+            <SearchIcon />
+          </IconButton>
+        </Paper>
+        {/* <div className="sellerdashboard__notiIcon">
+                <img src={notification} alt="" />
+              </div>
+              <span>Notification</span> */}
+      </div>
       {
         showButton===true?<div className="My_profile_btn_section">
         {profiletype?.map((data, i) => {

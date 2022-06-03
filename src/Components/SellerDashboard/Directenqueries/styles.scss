@@ -345,6 +345,24 @@
     }
   }
 }
+@media (max-width: 899.95px) {
+      .directenquiries__table {
+      .MuiTableBody-root {
+        .MuiTableRow-root {
+          .MuiTableCell-root {
+            width: 100%;
+            .datatables-noprint{
+              width: auto !important;
+            }
+            .no_data_found{
+              width: 100%;
+            }
+          }
+        }
+      }
+  }
+
+}
 @media (max-width: 700px) {
 
   .directenquiries_container{

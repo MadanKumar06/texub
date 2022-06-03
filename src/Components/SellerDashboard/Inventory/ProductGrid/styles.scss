@@ -76,6 +76,27 @@
     font-size: 16px;
   }
 }
+
+@media  (max-width:899px){
+
+    .productGrid__table {
+      .MuiTableBody-root {
+        .MuiTableRow-root {
+          .MuiTableCell-root {
+            width: 100%;
+            .datatables-noprint{
+              width: auto !important;
+            }
+            .no_data_found{
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+
+
 @media (max-width: 540px) {
   .productGrid__table {
     .MuiTable-root {

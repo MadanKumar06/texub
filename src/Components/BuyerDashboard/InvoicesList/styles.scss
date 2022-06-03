@@ -221,6 +221,24 @@
     }
   }
 }
+@media  (max-width:899px){
+
+    .invoices__table {
+      .MuiTableBody-root {
+        .MuiTableRow-root {
+          .MuiTableCell-root {
+            width: 100%;
+            .datatables-noprint{
+              width: auto !important;
+            }
+            .no_data_found{
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
 
 @media (max-width: 567px) {
   .invoices_main {

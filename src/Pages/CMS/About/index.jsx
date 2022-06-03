@@ -42,7 +42,7 @@ import Neelesh from "../../../Assets/Aboutus/membersimg/Neelesh.png";
 import william from "../../../Assets/Aboutus/membersimg/william.png";
 import Inbarajan from "../../../Assets/Aboutus/membersimg/Inbarajan.png";
 import suchit_shah from "../../../Assets/Aboutus/membersimg/suchit_shah.png";
-import Tushar from "../../../Assets/Aboutus/membersimg/Tushar.png";
+import Tushar from "../../../Assets/Aboutus/membersimg/TusharPatil.png";
 import AdityaShah from "../../../Assets/Aboutus/membersimg/AdityaShah.png";
 
 import about_banner_image from "../../../Assets/Aboutus/banner/about_banner.png";

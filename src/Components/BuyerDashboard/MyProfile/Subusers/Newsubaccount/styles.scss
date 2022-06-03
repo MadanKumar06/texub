@@ -47,7 +47,7 @@
        }
     }
   .MuiOutlinedInput-root{
-			font-weight: 600 !important;
+			font-weight: 400 !important;
 	}
   .user_input {
     .MuiInputLabel-root {
@@ -145,7 +145,39 @@
     padding: 3px 4px 3px 6px;
   }
 }
-
+.add_forbidden_access{
+    width: 100% !important;
+    padding: 12px;
+    border: 1px solid #cdd5dd;
+    border-radius: 4px;
+    letter-spacing: 0.54px;
+    color: #4e4e4e;
+    font-size: 16px;
+  }
+  .add_forbidden_access:hover{
+    border: 1px solid #ddb363;
+  }
+  .add_forbidden_access:focus{
+    outline: none;
+    border: 1px solid #ddb363;
+  }
+  .add_forbidden_access::placeholder{
+    color: #cdd5dd;
+  }
+  
+textarea.textArea{
+  border: 1px solid #CDD5DD;
+  border-radius: 8px;
+  padding: 12px;
+  width: 100%;
+  font-size: 16px;
+  overflow: unset;
+  resize: vertical;
+}
+textarea.textArea:focus-visible {
+  border-color: #ddb363;
+  outline: 1px solid #ddb363;
+}
 @media only screen and (max-width: 1600px) {
   // .subaccount_main .input_sections .MuiOutlinedInput-root{
   //     width: 30rem;
