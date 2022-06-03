@@ -57,6 +57,10 @@ const Index = ({ currentid, setisSub, setisSubusers, setshowButton }) => {
     if (currentid === 0) return;
     if (plist === undefined) return;
     try {
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: true,
+      });
       const getformdata = await axios({
         method: "post",
         url: `${Constant?.baseUrl()}/editSubAccountFormData`,
@@ -78,8 +82,16 @@ const Index = ({ currentid, setisSub, setisSubusers, setshowButton }) => {
         active: getformdata?.data[0]?.status === "1" ? "Yes" : "No",
         customer_id: getformdata?.data[0]?.customer_id,
       });
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
     } catch (e) {
       console.log(e);
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
     }
   }, [currentid, plist]);
 

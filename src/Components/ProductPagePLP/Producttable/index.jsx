@@ -195,11 +195,11 @@ const Productstable = ({
       },
     },
     {
-      name: "main_product",
+      name: "sub_products",
       label: "CONDITION",
       options: {
         customBodyRender: (value) => {
-          return <div>{value?.condition}</div>;
+          return <div>{value?.[0]?.condition}</div>;
         },
       },
     },

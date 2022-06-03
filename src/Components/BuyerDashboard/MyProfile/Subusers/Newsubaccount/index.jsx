@@ -57,6 +57,10 @@ const Index = ({ currentid, setisSub, setisSubusers, setshowButton }) => {
     if (currentid === 0) return;
     if (plist === undefined) return;
     try {
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: true,
+      });
       const getformdata = await axios({
         method: "post",
         url: `${Constant?.baseUrl()}/editSubAccountFormData`,
@@ -78,8 +82,16 @@ const Index = ({ currentid, setisSub, setisSubusers, setshowButton }) => {
         active: getformdata?.data[0]?.status === "1" ? "Yes" : "No",
         customer_id: getformdata?.data[0]?.customer_id,
       });
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
     } catch (e) {
       console.log(e);
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
     }
   }, [currentid, plist]);
 
@@ -335,7 +347,9 @@ const Index = ({ currentid, setisSub, setisSubusers, setshowButton }) => {
                 : ""
             }
             getOptionLabel={(option) => (option.label ? option.label : "")}
-            isOptionEqualToValue={(option, value) => option.value === value.value}
+            isOptionEqualToValue={(option, value) =>
+              option.value === value.value
+            }
             disableCloseOnSelect
             renderOption={(props, option, { selected }) => (
               <li {...props} style={{ padding: "0px" }}>
@@ -357,10 +371,10 @@ const Index = ({ currentid, setisSub, setisSubusers, setshowButton }) => {
                 ...prevState,
                 allowed_permissions: newValue,
               }));
-              setInputValidation((prevState)=>({
-              ...prevState,
-              allowed_permissions: "",
-            }))
+              setInputValidation((prevState) => ({
+                ...prevState,
+                allowed_permissions: "",
+              }));
             }}
             renderInput={(params) => (
               <TextField
@@ -433,10 +447,10 @@ const Index = ({ currentid, setisSub, setisSubusers, setshowButton }) => {
                 ...prevState,
                 active: newValue,
               }));
-              setInputValidation((prevState)=>({
-              ...prevState,
-              active: "",
-            }));
+              setInputValidation((prevState) => ({
+                ...prevState,
+                active: "",
+              }));
             }}
           />
           <InputLabel className="validation_error">

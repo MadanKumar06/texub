@@ -65,7 +65,6 @@ import RegisterPopup from "./Pages/Register/RegisterPopup/SectionLeft";
 import MiniCartList from "./Pages/MiniCart/MiniCartList";
 import SimpleBackdrop from "./Components/LoaderBackDrop";
 import {
-  getSigninedUserData,
   GetHomeAPi,
   GetCategoriesList,
 } from "./utilities";
@@ -112,11 +111,6 @@ const App = () => {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    getSigninedUserData((res) => {
-      console.log(res);
-    });
-  }, [localStorage.getItem("token")]);
   useEffect(() => {
     dispatch({
       type: "SET_IS_LOADING",
