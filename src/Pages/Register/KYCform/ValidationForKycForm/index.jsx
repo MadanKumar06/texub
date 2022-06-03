@@ -34,7 +34,7 @@ function ValidationForKycForm({
   const handleValidationClick = () => {
     let endPoint = false;
     setValid("");
-    if (!values?.trade_lic_number) {
+    if (!values?.trade_lic_number) {  
       setValid((prevState) => ({
         ...prevState,
         trade_lic_number: "Please enter the Trade License number.",
@@ -97,6 +97,7 @@ function ValidationForKycForm({
       }));
       endPoint = true;
     }
+    ScroltoTop();
     handleFocus();
     if (!endPoint && documentButton === "national_id") {
       //API call
@@ -106,7 +107,9 @@ function ValidationForKycForm({
       setDocumentButton("national_id");
     }
   };
-
+  const ScroltoTop = ()=>{
+    document.getElementById("kyc_focus_input")?.focus();
+  }
   const handleFocus = () => {
     if (!values?.trade_lic_number) {
       setDocumentButton("trade_license");
