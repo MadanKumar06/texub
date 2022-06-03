@@ -110,7 +110,8 @@ const Index = () => {
 
   return (
    <div className={`My_profile_main ${showButton===false?"My_profile_main_gap":""}`} >
-      <div className="My_profile_btn_section">
+     {
+        showButton===true?<div className="My_profile_btn_section">
         {profiletype.map((data, i) => (
           <p
             className={`ordertypes ${type === i && "ordertype__selected"}`}
@@ -120,7 +121,8 @@ const Index = () => {
             {data.name}
           </p>
         ))}
-      </div>
+      </div>:<></>
+     }
       {isAddress && <Addressbook open={Address1} />}
 
       {isUser && <Subusers setshowButton={setshowButton} />}
