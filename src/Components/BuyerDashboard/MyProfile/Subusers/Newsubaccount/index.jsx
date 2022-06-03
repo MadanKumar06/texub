@@ -10,6 +10,7 @@ import Constant from "../../../../../Constant";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import swal from "sweetalert2";
+import TextareaAutosize from '@mui/material/TextareaAutosize';
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
@@ -380,8 +381,32 @@ const Index = ({ currentid, setisSub, setisSubusers, setshowButton }) => {
         </div>
         <div>
           <p>Forbidden Access</p>
-
-          <TextField
+          <TextareaAutosize
+            className="inputfield-box contact-form-inputfieldbox add_forbidden_access"
+            fullWidth
+            aria-label="comments"
+            placeholder="Access"
+            name="your_message"
+            id="your_message"
+            multiline
+            style={{ minHeight: 60 }}
+            value={NewSubAccountData?.forbidden}
+            onChange={(e) =>
+              setNewSubAccountData((prevState) => ({
+                ...prevState,
+                forbidden: e.target.value,
+              }))
+            }
+            InputLabelProps={{
+              shrink: true,
+              required: true,
+              classes: {
+                asterisk: "asterisk",
+              },
+            }}
+            variant="outlined"
+          />
+          {/* <TextField
             className="inputfield-box contact-form-inputfieldbox"
             fullWidth
             aria-label="comments"
@@ -406,7 +431,7 @@ const Index = ({ currentid, setisSub, setisSubusers, setshowButton }) => {
               },
             }}
             variant="outlined"
-          />
+          /> */}
         </div>
         <div className="users_active_section">
           <p>Active</p>
