@@ -245,22 +245,22 @@ const MiniCartList = ({ handleSideBarClose }) => {
   }, [localStorage.getItem("review_status")]);
 
   const handleIsValidPendingInvoice = () => {
-    let permissions = JSON.parse(localStorage.getItem("permissions"));
-    let pendingpermission =
-      permissions?.length === 0
-        ? false
-        : permissions?.some(
-            (per) =>
-              per?.value === "can-add-to-multiple-wishlist" &&
-              per?.permission_value === 0
-          );
-    if (pendingpermission) {
-      return swal.fire({
-        text: `Your Account doesn't have access to add products to Wishinglist`,
-        icon: "error",
-        showConfirmButton: true,
-      });
-    }
+    // let permissions = JSON.parse(localStorage.getItem("permissions"));
+    // let pendingpermission =
+    //   permissions?.length === 0
+    //     ? false
+    //     : permissions?.some(
+    //         (per) =>
+    //           per?.value === "can-add-to-multiple-wishlist" &&
+    //           per?.permission_value === 0
+    //       );
+    // if (pendingpermission) {
+    //   return swal.fire({
+    //     text: `Your Account doesn't have access to add products to Wishlist`,
+    //     icon: "error",
+    //     showConfirmButton: true,
+    //   });
+    // }
     if (cart?.[0]?.invoice_items?.length === 0 || cart?.length === 0) {
       return swal.fire({
         text: `No product to add pending invoice`,
@@ -287,7 +287,7 @@ const MiniCartList = ({ handleSideBarClose }) => {
       ? false
       : permissions?.some(
           (per) =>
-            per?.value === "can-place-order" && per?.permission_value === 0
+            per?.value === "can-add-to-cart" && per?.permission_value === 0
         );
   return (
     <div className="minicart_list_main">

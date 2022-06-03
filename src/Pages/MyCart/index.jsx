@@ -251,6 +251,10 @@ const Mycart = () => {
   const mergecart = async () => {
     let user = JSON.parse(localStorage.getItem("userdata"));
     try {
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: true,
+      });
       const postcart = await axios({
         method: "post",
         url: `${Constant?.baseUrl()}/cartRequest`,
@@ -266,13 +270,40 @@ const Mycart = () => {
           },
         },
       });
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
+      if (postcart?.data?.[0].status) {
+        swal.fire({
+          text: `${postcart?.data?.[0].message}`,
+          icon: "success",
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      } else {
+        swal.fire({
+          text: `${postcart?.data?.[0].message}`,
+          icon: "error",
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      }
     } catch (e) {
       console.log(e);
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
     }
   };
   const approvecart = async () => {
     let user = JSON.parse(localStorage.getItem("userdata"));
     try {
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: true,
+      });
       const postcart = await axios({
         method: "post",
         url: `${Constant?.baseUrl()}/cartRequest`,
@@ -288,8 +319,31 @@ const Mycart = () => {
           },
         },
       });
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
+      if (postcart?.data?.[0].status) {
+        swal.fire({
+          text: `${postcart?.data?.[0].message}`,
+          icon: "success",
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      } else {
+        swal.fire({
+          text: `${postcart?.data?.[0].message}`,
+          icon: "error",
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      }
     } catch (e) {
       console.log(e);
+      dispatch({
+        type: "SET_IS_LOADING",
+        value: false,
+      });
     }
   };
   const handleOnNavigate = () => {
