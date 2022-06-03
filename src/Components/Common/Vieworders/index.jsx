@@ -241,7 +241,7 @@ const columns = [
   },
 ];
 
-const Index = ({ viewDetail, setvieworder, handleSearchBar }) => {
+const Index = ({ viewDetail, setvieworder, handleSearchBar, seller_order_status }) => {
   const [radiogroup, setRadioGroup] = useState(1);
   const [trigger, setTrigger] = useState(false);
   const [{}, dispatch] = useStateValue();
@@ -450,6 +450,41 @@ const Index = ({ viewDetail, setvieworder, handleSearchBar }) => {
     };
     fetchTableData();
   }, [trigger]);
+
+  const [radio_orde_rstatus,setradio_orde_rstatus] = useState("")
+  const [isCancelledOrder,setisCancelledOrder] = useState("")
+  const handleChange = (e)=>{
+    setradio_orde_rstatus(e.target.value)
+  }
+  useEffect(()=>{
+    if(activeStep === 1){
+      if(seller_order_status === "4"){
+        setisCancelledOrder("cancelled")
+      }else{
+        setradio_orde_rstatus("")
+      } 
+    }else if(activeStep === 2){
+      if(seller_order_status === "4"){
+        setisCancelledOrder("cancelled")
+      }else{
+        setradio_orde_rstatus("Confirm")
+      }
+    }else if(activeStep === 3){
+      if(seller_order_status === "4"){
+        setisCancelledOrder("cancelled")
+      }else{
+        setradio_orde_rstatus("Dispatched")
+      }
+    }else if(activeStep === 4){
+      if(seller_order_status === "4"){
+        setisCancelledOrder("cancelled")
+      }else{
+        setradio_orde_rstatus("Delivered")
+      }
+    }
+    
+  },[activeStep,seller_order_status])
+
   return (
     <div className="vieworders_main">
       <div className="vieworders_heading_section">
@@ -508,6 +543,8 @@ const Index = ({ viewDetail, setvieworder, handleSearchBar }) => {
             aria-label="position"
             name="position"
             defaultValue=""
+            value={radio_orde_rstatus}
+            onChange={handleChange}
             className="radio_group"
             sx={{
               "& .MuiSvgIcon-root": {
@@ -517,42 +554,57 @@ const Index = ({ viewDetail, setvieworder, handleSearchBar }) => {
           >
             <FormControlLabel
               value="Confirm"
-              control={<Radio className="radio-btn-color" />}
+              control={<Radio className="radio-btn-color" 
+              onClick={() => {
+                setRadioGroup(1);
+              }}
+              />}
+              disabled={activeStep !== 1 || isCancelledOrder === "cancelled" }
               label={
                 <>
                   <p className="confirm status">Confirm</p>
                 </>
               }
               labelPlacement="top"
-              onClick={() => {
+              /* onClick={() => {
                 setRadioGroup(1);
-              }}
+              }} */
             />
             <FormControlLabel
               value="Dispatched"
-              control={<Radio className="radio-btn-color" />}
+              control={<Radio className="radio-btn-color" 
+              onClick={() => {
+                setRadioGroup(2);
+              }}
+              />}
+              disabled={activeStep !== 2 || isCancelledOrder === "cancelled"}
               label={
                 <>
                   <p className="dispatched status">Dispatched</p>
                 </>
               }
               labelPlacement="top"
-              onClick={() => {
+              /* onClick={() => {
                 setRadioGroup(2);
-              }}
+              }} */
             />
             <FormControlLabel
               value="Delivered"
-              control={<Radio className="radio-btn-color" />}
+              control={<Radio className="radio-btn-color" 
+              onClick={() => {
+                setRadioGroup(3);
+              }}
+              />}
+              disabled={activeStep !== 3 || isCancelledOrder === "cancelled"}
               label={
                 <>
                   <p className="delivered status">Delivered</p>
                 </>
               }
               labelPlacement="top"
-              onClick={() => {
+              /* onClick={() => {
                 setRadioGroup(3);
-              }}
+              }} */
             />
             <Button
               className="button-text btn-secondary inventory_register"
@@ -606,12 +658,21 @@ const Index = ({ viewDetail, setvieworder, handleSearchBar }) => {
           <ArrowBackIosNew />
           <span>Back</span>
         </div>
-        <Button
+        {
+          isCancelledOrder === "cancelled"?null:
+          <Button
+            className="button-text btn-ternary  order_cancel_btn"
+            onClick={() => handleAPICall(4)}
+          >
+            Cancel Order
+          </Button>
+        }
+       {/*  <Button
           className="button-text btn-ternary  order_cancel_btn"
           onClick={() => handleAPICall(4)}
         >
           Cancel Order
-        </Button>
+        </Button> */}
       </div>
     </div>
   );

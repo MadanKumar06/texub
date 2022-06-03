@@ -24,6 +24,7 @@ function Index({ handleSearchBar, searchdata, searchupdate, setSearch }) {
   const [filtereddirect, setfiltereddirect] = useState([]);
   const [orderTypeColor, setorderTypeColor] = useState(0);
   const [isNotMatched,setisNotMatched] = useState(false);
+  const [seller_order_status,setseller_order_status] = useState(0)
   const ordertype = [
     { name: "All Orders" },
     { name: "On-Going Orders" },
@@ -297,10 +298,14 @@ useEffect(() => {
       options: {
         customBodyRender: (value, tablemeta) => {
           let item_id = tablemeta?.rowData?.[7];
+          let orderstatus_id = tablemeta?.rowData?.[5];
           return (
             <div
               className="orders__action"
-              onClick={() => handleViewOrder(item_id)}
+              onClick={() =>{
+                handleViewOrder(item_id)
+                setseller_order_status(orderstatus_id)
+              }}
             >
               View Order
             </div>
@@ -411,6 +416,7 @@ useEffect(() => {
           viewDetail={viewDetail}
           setvieworder={setvieworder}
           handleSearchBar={handleSearchBar}
+          seller_order_status={seller_order_status}
         />
       )}
     </div>
