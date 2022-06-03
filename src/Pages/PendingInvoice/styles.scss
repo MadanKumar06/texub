@@ -870,7 +870,7 @@
     }
     .pendinginvoice__bottom {
       .bottom__buttons {
-        flex-direction: column;
+        flex-direction: column-reverse;
         gap: 1em;
         button {
           width: 100% !important;
