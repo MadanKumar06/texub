@@ -4,6 +4,7 @@ import { Modal, Button, Box, Backdrop } from "@mui/material";
 import { withStyles } from "@mui/styles";
 import { Clear } from "@mui/icons-material";
 import SectionRight from "../SectionRight";
+import "./style.scss"
 
 import TradeLicenseButton from "./TradeLicenseButton";
 import BankDetails from "./BankDetails";
@@ -63,13 +64,15 @@ const BuyerKYCformSectionLeft = ({ classes }) => {
       }}
     >
       <div className={buyer_kyc_section_left_container}>
-        <header className={header_section}>
+        <header className={header_section} >
           <p>KYC Form</p>
           {/* <Clear className={clear_btn} onClick={() => handleClose()} /> */}
         </header>
-        <div className={sections}>
+        <div className={sections} style={{position:"relative"}}>
           <div className={section_left}>
-            <p className={info_text_lineNote_one}>Required Documents</p>
+            <p className={info_text_lineNote_one}>Required Documents 
+              <span id="kyc_scrolltop"><input type="text" id="kyc_focus_input"/></span>
+            </p>
             <Box className={box}>
               <Button
                 id="trade_image_container"
