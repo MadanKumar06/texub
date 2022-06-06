@@ -1501,7 +1501,7 @@
           }
         }
         .texub_shipping_btns {
-          flex-direction: column;
+          flex-direction: column-reverse;
           gap: 20px;
           button {
             width: 100%;
@@ -1640,4 +1640,26 @@
     #selection_box_block {
     padding: 12px 14px;
   }
+}
+@media (max-width: 340px) {
+  .checkout_main_container .section_left .block_A .shipping_info .shipping_charges_info .shipping_charges_section{
+    
+  }
+.checkout_main_container{
+    .section_left{
+      .block_A{
+          .shipping_info{
+            .shipping_charges_info{
+              .shipping_charges_section{
+                display: flex;
+                flex-direction: column;
+                .shipping_awit{
+                  margin-top: 10px !important;
+                }
+              }
+            }
+          }
+      }
+    }
+} 
 }
