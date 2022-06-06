@@ -286,6 +286,12 @@
   .Billingaddress_main .Billingaddress_information form .inputfield_section {
     gap: 10px;
   }
+  .Billingaddress_main {
+    .btn_billing{
+      min-width: 47% !important;
+    }
+  }
+
 }
 @media only screen and (max-width: 425px) {
   .Billingaddress_main .Billingaddress_information form .inputfield_section {

@@ -343,4 +343,15 @@
     span {
     font-size: 14px;
   }
+  .contactus_main{
+      .contactus_form_section{
+          .contactus_form{
+              .box-content{
+                  .btn-secondary{
+                    width: 100% !important;
+                  }
+              }
+          }
+      }
+  } 
 }
