@@ -122,7 +122,7 @@
       content: "";
       position: absolute;
       width: 5px;
-      height: 48px;
+      height: 100%;
       left: -7px;
       top: 0;
       background-color: #ffffff;
@@ -140,7 +140,7 @@
       content: "";
       position: absolute;
       width: 5px;
-      height: 68px;
+      height: 100%;
       left: -7px;
       top: 0;
       background-color: #ffffff;
@@ -223,7 +223,7 @@
     min-height: 50px;
   }
   .sellerdashboard__sidebar .buyerbg ::before {
-    height: 49px;
+    height: 100%;
   }
 }
 @media (max-width: 1440px) {

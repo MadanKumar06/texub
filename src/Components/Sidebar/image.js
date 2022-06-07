@@ -674,123 +674,18 @@ const SellerList = [
   // },
   {
     image: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="33"
-        viewBox="0 0 24 33"
-      >
-        <g
-          id="Group_1497"
-          data-name="Group 1497"
-          transform="translate(-1960 -957)"
-        >
-          <g id="Group_1462" data-name="Group 1462">
-            <path
-              id="Subtraction_1"
-              data-name="Subtraction 1"
-              d="M22,32.525H2a1.5,1.5,0,0,1-1.5-1.5v-29A1.5,1.5,0,0,1,2,.525H18.734L23.5,5.362V31.025A1.5,1.5,0,0,1,22,32.525Z"
-              transform="translate(1960 956.975)"
-              fill="none"
-              stroke="#000"
-              strokeWidth="1"
-            />
-            <path
-              id="Path_1709"
-              data-name="Path 1709"
-              d="M2138.217,956.537v5.025h4.735Z"
-              transform="translate(-159.452 0.963)"
-              fill="none"
-              stroke="#000"
-              strokeLinecap="round"
-              stroke-linejoin="round"
-              strokeWidth="1"
-            />
+      <svg xmlns="http://www.w3.org/2000/svg" width="32.127" height="30" viewBox="0 0 32.127 30">
+        <g id="Group_1489" data-name="Group 1489" transform="translate(-124.109 -952)">
+          <path id="Union_4" data-name="Union 4" d="M-3980,21.583s.363-5.411,2.9-8.239a9.263,9.263,0,0,1,7.252-3.075,8.516,8.516,0,0,1,6.382,3.423c2.233,2.756,2.553,7.6,2.553,7.6a22.191,22.191,0,0,1-9.456,2.843h-.2A23.037,23.037,0,0,1-3980,21.583ZM-3975.13,5a4.5,4.5,0,0,1,4.5-4.5,4.5,4.5,0,0,1,4.5,4.5,4.5,4.5,0,0,1-4.5,4.5A4.5,4.5,0,0,1-3975.13,5Z" transform="translate(4104.629 954)" fill="none" stroke="#000" stroke-width="1" />
+          <path id="Subtraction_4" data-name="Subtraction 4" d="M-3958.564,23.636a16.267,16.267,0,0,1-3.26-.357c.542-.272.875-.466.911-.487,0-.047-.358-4.894-2.552-7.6a10.188,10.188,0,0,0-2-1.9c.123-.162.247-.312.368-.447a9.17,9.17,0,0,1,6.995-3.079c.09,0,.175,0,.257,0a8.465,8.465,0,0,1,6.382,3.423c2.21,2.727,2.55,7.552,2.553,7.6-.2.115-4.827,2.773-9.456,2.843ZM-3958.628,9a4.505,4.505,0,0,1-4.5-4.5,4.505,4.505,0,0,1,4.5-4.5,4.5,4.5,0,0,1,4.5,4.5A4.5,4.5,0,0,1-3958.628,9Z" transform="translate(4104.629 952.5)" fill="none" stroke="#000" stroke-width="1" />
+          <g id="Ellipse_129" data-name="Ellipse 129" transform="translate(137 969)" fill="#fff" stroke="#000" stroke-width="1">
+            <circle cx="6.5" cy="6.5" r="6.5" stroke="none" />
+            <circle cx="6.5" cy="6.5" r="6" fill="none" />
           </g>
-          <g id="Group_1463" data-name="Group 1463" transform="translate(1829)">
-            <g
-              id="Ellipse_111"
-              data-name="Ellipse 111"
-              transform="translate(135 967)"
-              fill="none"
-              stroke="#000"
-              strokeWidth="1"
-            >
-              <circle cx="0.5" cy="0.5" r="0.5" stroke="none" />
-              <circle cx="0.5" cy="0.5" r="1" fill="none" />
-            </g>
-            <g
-              id="Ellipse_112"
-              data-name="Ellipse 112"
-              transform="translate(135 972.5)"
-              fill="none"
-              stroke="#000"
-              strokeWidth="1"
-            >
-              <circle cx="0.5" cy="0.5" r="0.5" stroke="none" />
-              <circle cx="0.5" cy="0.5" r="1" fill="none" />
-            </g>
-            <g
-              id="Ellipse_113"
-              data-name="Ellipse 113"
-              transform="translate(135 978.5)"
-              fill="none"
-              stroke="#000"
-              strokeWidth="1"
-            >
-              <circle cx="0.5" cy="0.5" r="0.5" stroke="none" />
-              <circle cx="0.5" cy="0.5" r="1" fill="none" />
-            </g>
-            <g
-              id="Ellipse_114"
-              data-name="Ellipse 114"
-              transform="translate(135 984)"
-              fill="none"
-              stroke="#000"
-              strokeWidth="1"
-            >
-              <circle cx="0.5" cy="0.5" r="0.5" stroke="none" />
-              <circle cx="0.5" cy="0.5" r="1" fill="none" />
-            </g>
-            <line
-              id="Line_11"
-              data-name="Line 11"
-              x2="11"
-              transform="translate(139.5 967.5)"
-              fill="none"
-              stroke="#000"
-              strokeWidth="1"
-            />
-            <line
-              id="Line_12"
-              data-name="Line 12"
-              x2="11"
-              transform="translate(139.5 973)"
-              fill="none"
-              stroke="#000"
-              strokeWidth="1"
-            />
-            <line
-              id="Line_13"
-              data-name="Line 13"
-              x2="11"
-              transform="translate(139.5 979)"
-              fill="none"
-              stroke="#000"
-              strokeWidth="1"
-            />
-            <line
-              id="Line_14"
-              data-name="Line 14"
-              x2="11"
-              transform="translate(139.5 984.5)"
-              fill="none"
-              stroke="#000"
-              strokeWidth="1"
-            />
-          </g>
+          <path id="Path_1766" data-name="Path 1766" d="M17.065,18a.255.255,0,0,1,.255.255V20.81h2.555a.255.255,0,1,1,0,.511H17.321v2.555a.255.255,0,1,1-.511,0V21.321H14.255a.255.255,0,1,1,0-.511H16.81V18.255A.255.255,0,0,1,17.065,18Z" transform="translate(126.65 954.435)" fill-rule="evenodd" />
         </g>
       </svg>
+
     ),
     name: "User Management",
     url: "usermgmt",
