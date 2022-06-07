@@ -1,8 +1,11 @@
 .My_profile_main {
-  margin: 50px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
   display: flex;
   flex-direction: column;
   gap: 50px;
+   .My_profile_btn_section.sellerPage{
+       margin-top: 50px;
+     } 
   .My_profile_btn_section {
     display: flex;
     justify-content: space-between;

@@ -111,7 +111,7 @@ const Index = ({searchdata, searchupdate}) => {
   return (
    <div className={`My_profile_main ${showButton===false?"My_profile_main_gap":""}`} >
      {
-        showButton===true?<div className="My_profile_btn_section">
+        showButton===true?<div className="My_profile_btn_section sellerPage">
         {profiletype.map((data, i) => (
           <p
             className={`ordertypes ${type === i && "ordertype__selected"}`}

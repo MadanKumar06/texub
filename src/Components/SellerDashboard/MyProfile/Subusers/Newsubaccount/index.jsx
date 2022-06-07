@@ -77,7 +77,7 @@ const Index = ({ currentid, setisSub, setisSubusers, setshowButton }) => {
         last_name: getformdata?.data[0]?.lastname,
         e_mail: getformdata?.data[0]?.email,
         allowed_permissions: getformdata?.data[0]?.availablePermissions,
-        forbidden: "",
+        forbidden: getformdata?.data[0]?.forbidden_access,
         designation: getformdata?.data[0]?.designation,
         mobile: getformdata?.data[0]?.mobile_number,
         active: getformdata?.data[0]?.status === "1" ? "Yes" : "No",

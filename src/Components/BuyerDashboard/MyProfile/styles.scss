@@ -1,5 +1,5 @@
 .My_profile_main {
-   margin: 50px 0px 0px 0px;
+   margin: 0px 0px 0px 0px;
   display: flex;
   flex-direction: column;
   gap: 50px;
@@ -295,6 +295,7 @@
       width: 100%;
       box-shadow: unset;
       border: 1px solid #d6d8d9;
+      height: 68px;
       .MuiInputBase-root {
         padding: 5px;
       }
@@ -308,7 +309,7 @@
       .MuiButtonBase-root {
         background: #002d56;
         color: #ffffff;
-        padding: 0.7% 2%;
+        padding: 1.1% 2%;
         border-radius: 3px;
       }
     }
@@ -377,6 +378,29 @@
 .My_profile_main_gap{
     //  margin: 0px;
     gap:20px;
+  }
+
+  @media only screen and(max-width:1660px) {
+      .My_profile_main{
+        .myprofilesection__search{
+            .myprofilesection__searchinput{
+                height: 52px;
+            }
+        }
+      } 
+    .My_profile_main{
+        .myprofilesection__search{
+            .myprofilesection__searchinput{
+                .MuiButtonBase-root{
+                  padding: 0.7% 2%;
+                }
+            }
+        }
+    } 
+
+    .My_profile_main .myprofilesection__search .myprofilesection__searchinput .MuiButtonBase-root{
+      padding: 0.7% 2%;
+    }
   }
 @media only screen and(max-width:1530px) {
   .My_profile_main

@@ -13,6 +13,7 @@
         text-align: center;
         font-weight: 600;
         z-index: 9;
+        border-top: 1px solid rgb(224, 224, 224);
       }
     }
     .MuiTable-root {
@@ -41,7 +42,7 @@
       }
       .users_permissions {
         font-size: 16px;
-        color: #333c42;
+        color: #002d56;
         font-weight: 600;
         cursor: pointer;
         text-decoration: underline;
@@ -49,7 +50,7 @@
       .users_action {
         .users_action_name {
           font-size: 16px;
-          color: #333c42;
+          color: #002d56;
           font-weight: 600;
           text-decoration: underline;
           cursor: pointer;
