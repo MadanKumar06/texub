@@ -15,14 +15,14 @@ import Pagination from "../../../Pagination";
 import { getAdminToken } from "../../../../utilities";
 import moment from "moment";
 
-const Index = ({setshowButton, searchdata, searchupdate}) => {
+const Index = ({ setshowButton, searchdata, searchupdate }) => {
   const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
   const [isSub, setisSub] = useState(false);
   const [sublist, setsublist] = useState([]);
   const [direct, setdirect] = useState([]);
   const [filtereddirect, setfiltereddirect] = useState([]);
-  const [isNotMatched,setisNotMatched] = useState(false);
-  
+  const [isNotMatched, setisNotMatched] = useState(false);
+
   let [currentid, setcurrentid] = useState(0);
   const Newsubacc = () => {
     setcurrentid(0);
@@ -43,11 +43,11 @@ const Index = ({setshowButton, searchdata, searchupdate}) => {
     setisForbidden(false);
   };
   const [isForbidden, setisForbidden] = useState(false);
-  const [Forbidden_Access,setForbidden_Access] = useState("")
+  const [Forbidden_Access, setForbidden_Access] = useState("");
   const forbidden = (forbiden_text) => {
     setisForbidden(true);
     setisPermissions(false);
-    setForbidden_Access(forbiden_text)
+    setForbidden_Access(forbiden_text);
   };
   const [isSubusers, setisSubusers] = useState(true);
   const options = {
@@ -112,9 +112,9 @@ const Index = ({setshowButton, searchdata, searchupdate}) => {
     }
   }, [adminToken, isSub]);
 
-  useEffect(()=>{
-    setfiltereddirect(sublist)
-  },[sublist])
+  useEffect(() => {
+    setfiltereddirect(sublist);
+  }, [sublist]);
 
   useEffect(() => {
     if (sublist?.length === 0) return;
@@ -126,14 +126,14 @@ const Index = ({setshowButton, searchdata, searchupdate}) => {
       );
       setfiltereddirect(temp);
     }
-    setisNotMatched(!isNotMatched)
+    setisNotMatched(!isNotMatched);
   }, [searchupdate, sublist]);
 
-  useEffect(()=>{
-    if(filtereddirect.length===0){
-      setdirect([])
+  useEffect(() => {
+    if (filtereddirect.length === 0) {
+      setdirect([]);
     }
-  },[isNotMatched])
+  }, [isNotMatched]);
 
   const PaginateDataSplit = (event) => {
     if (sublist?.length === 0) return setdirect([]);
@@ -155,7 +155,11 @@ const Index = ({setshowButton, searchdata, searchupdate}) => {
       label: "User Email",
       options: {
         customBodyRender: (value) => {
-          return <div className="directenquiries__order_id directenquiries__user_email">{value}</div>;
+          return (
+            <div className="directenquiries__order_id directenquiries__user_email">
+              {value}
+            </div>
+          );
         },
       },
     },
@@ -230,10 +234,13 @@ const Index = ({setshowButton, searchdata, searchupdate}) => {
         customBodyRender: (value) => {
           return (
             <div className="users_permissions">
-              <span className="value" onClick={()=>forbidden(value)}>
-                {/* {value} */}
-                {value === null ? " " : "View"}
-              </span>
+              {value === null ? (
+                " "
+              ) : (
+                <span className="value" onClick={() => forbidden(value)}>
+                  View
+                </span>
+              )}
             </div>
           );
         },
@@ -266,10 +273,14 @@ const Index = ({setshowButton, searchdata, searchupdate}) => {
       {isSubusers && (
         <div className="users_main">
           <div className="user_sub-account">
-            <button onClick={()=>{
-              Newsubacc()
-              setshowButton(false)
-              }}>Add New Sub-Account</button>
+            <button
+              onClick={() => {
+                Newsubacc();
+                setshowButton(false);
+              }}
+            >
+              Add New Sub-Account
+            </button>
           </div>
           <MUITable
             columns={columns}
@@ -304,11 +315,11 @@ const Index = ({setshowButton, searchdata, searchupdate}) => {
         </div>
       )}
       {isSub && (
-        <Newsubaccount 
+        <Newsubaccount
           currentid={currentid}
           setisSub={setisSub}
           setisSubusers={setisSubusers}
-           setshowButton={setshowButton}
+          setshowButton={setshowButton}
         />
       )}
       {isPermissions && (
@@ -318,7 +329,12 @@ const Index = ({setshowButton, searchdata, searchupdate}) => {
           sublist={sublist}
         />
       )}
-      {isForbidden && <Forbidden closePOPup={setisForbidden} Forbidden_Access={Forbidden_Access}/>}
+      {isForbidden && (
+        <Forbidden
+          closePOPup={setisForbidden}
+          Forbidden_Access={Forbidden_Access}
+        />
+      )}
     </>
   );
 };

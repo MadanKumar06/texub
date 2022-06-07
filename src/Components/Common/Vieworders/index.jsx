@@ -311,7 +311,7 @@ const Index = ({ viewDetail, setvieworder, handleSearchBar, seller_order_status 
       value: true,
     });
     let data = {
-      item_id: viewDetail?.[0]?.item_id,
+      item_id: viewDetail?.[0]?.po_id,
       attachment: event,
     };
     axios
