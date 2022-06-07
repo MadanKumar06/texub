@@ -136,7 +136,9 @@
     padding-top: 30px;
   }
 }
-
+.users_permissions,.users_action .users_action_name{
+  color: rgb(0 0 238 / 68%) !important;
+}
 @media only screen and (max-width: 580px) {
   .users_main .my_profile_btns {
     flex-direction: column;

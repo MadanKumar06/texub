@@ -9,6 +9,7 @@ import { useStateValue } from "../../../store/state";
 import axios from "axios";
 import Constant from "../../../Constant";
 import NodataFound from "../../../Assets/CommonImage/NodataFound.webp.png";
+import { useNavigate } from "react-router-dom";
 
 import { IconButton, InputBase, Paper } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
@@ -31,6 +32,7 @@ function Index({ handleSearchBar, searchdata, searchupdate, setSearch }) {
     { name: "Delivered Orders" },
     { name: "Cancelled Orders" },
   ];
+  const Navigate = useNavigate();
 
   const [type, settype] = useState(0);
 
@@ -195,11 +197,22 @@ useEffect(() => {
     fetchTableData();
   }, []);
 
-  const handleViewOrder = (id) => {
+  /* const handleViewOrder = (id) => {
     handleSearchBar(false);
     let temp = apiTableData?.filter((itm) => itm?.po_id === id);
     setViewDetail(temp);
     setvieworder(true);
+  }; */
+  const handleViewOrder = (id) => {
+    let temp = apiTableData?.filter((itm) => itm?.po_id === id);
+    Navigate(
+      `/${
+        customnostore ? customnostore : geo?.country_name
+      }/sellerdashboard/vieworder`,
+      {
+        state: temp,
+      }
+    );
   };
   const options = {
     filter: false,
