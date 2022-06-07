@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { TextField, InputLabel } from "@mui/material";
+import { TextField, InputLabel, Autocomplete } from "@mui/material";
 import { withStyles } from "@mui/styles";
 import styles from "../styles";
 import axios from "axios";
@@ -19,6 +19,7 @@ const OfficeAddressDetails = ({
     input_fields,
     validation_error,
     textFlied_separate,
+    auto_complete_input,
   } = classes;
 
   useEffect(() => {
@@ -40,6 +41,7 @@ const OfficeAddressDetails = ({
     pin_zip_code: "",
     city: "",
     country: "",
+    state_text: "",
   });
   const [countryList, setCountryList] = useState([]);
 
@@ -72,6 +74,28 @@ const OfficeAddressDetails = ({
     fetchCountryData();
   }, []);
 
+  //API to Fetxh State List
+  const [stateList, setStateList] = useState([]);
+  useEffect(() => {
+    if (country_readonly) {
+      const fetchCountryData = () => {
+        let data = {
+          countryCode: country_readonly?.[0]?.value,
+        };
+        axios
+          .post(Constant.baseUrl() + "/stateList", data, {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+          .then((res) => {
+            setStateList(res?.data);
+          })
+          .catch((err) => {});
+      };
+      fetchCountryData();
+    }
+  }, [country_readonly?.[0]?.value]);
   return (
     <div>
       <p className={info_text_lineNote_one}>Office Address</p>
@@ -133,6 +157,81 @@ const OfficeAddressDetails = ({
               variant="outlined"
             />
           </div>
+          {stateList?.length ? (
+            <div className={textFlied_separate}>
+              <Autocomplete
+                value={FormValues?.state_dropdown_list}
+                name="state_dropdown_list"
+                onChange={(event, newValue) => {
+                  SetFormValues((prevState) => ({
+                    ...prevState,
+                    state_dropdown_list: newValue,
+                    state_text: "",
+                  }));
+                  setInputValidation((prevState) => ({
+                    state_dropdown_list: "",
+                  }));
+                }}
+                className={auto_complete_input}
+                id="state_dropdown_list"
+                options={stateList}
+                fullWidth
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    label="State"
+                    className="inputfield-box"
+                    placeholder="State"
+                    InputLabelProps={{
+                      shrink: true,
+                      required: true,
+                      classes: {
+                        asterisk: asterisk,
+                      },
+                    }}
+                  />
+                )}
+              />
+              <InputLabel className={validation_error}>
+                {inputValidation?.state_dropdown_list}
+              </InputLabel>
+            </div>
+          ) : (
+            <div className={textFlied_separate}>
+              <TextField
+                id="state_dropdown_list"
+                label="state"
+                placeholder="State"
+                className="inputfield-box"
+                fullWidth
+                InputLabelProps={{
+                  shrink: true,
+                  required: true,
+                  classes: {
+                    asterisk: asterisk,
+                  },
+                }}
+                name="state_text"
+                onChange={(event) => {
+                  SetFormValues((prevState) => ({
+                    ...prevState,
+                    state_dropdown_list: "",
+                    state_text: event.target.value,
+                  }));
+                  setInputValidation((prevState) => ({
+                    state_dropdown_list: "",
+                  }));
+                }}
+                value={FormValues?.state_text}
+                variant="outlined"
+              />
+              <InputLabel className={validation_error}>
+                {inputValidation?.state_dropdown_list}
+              </InputLabel>
+            </div>
+          )}
+        </div>
+        <div className={input_div}>
           <div className={textFlied_separate}>
             <TextField
               id="city"
@@ -156,30 +255,30 @@ const OfficeAddressDetails = ({
               {inputValidation?.city}
             </InputLabel>
           </div>
+          <div className={textFlied_separate}>
+            <TextField
+              id="pin_zip_code"
+              label="PIN/ZIP Code"
+              placeholder="PIN/ZIP Code"
+              fullWidth
+              className="inputfield-box"
+              InputLabelProps={{
+                shrink: true,
+                required: true,
+                classes: {
+                  asterisk: asterisk,
+                },
+              }}
+              name="pin_zip_code"
+              onChange={handleFormvalue}
+              value={FormValues?.pin_zip_code}
+              variant="outlined"
+            />
+            <InputLabel className={validation_error}>
+              {inputValidation?.pin_zip_code}
+            </InputLabel>
+          </div>
         </div>
-        {/* <div className={textFlied_separate}> */}
-        <TextField
-          id="pin_zip_code"
-          label="PIN/ZIP Code"
-          placeholder="PIN/ZIP Code"
-          fullWidth
-          className="inputfield-box"
-          InputLabelProps={{
-            shrink: true,
-            required: true,
-            classes: {
-              asterisk: asterisk,
-            },
-          }}
-          name="pin_zip_code"
-          onChange={handleFormvalue}
-          value={FormValues?.pin_zip_code}
-          variant="outlined"
-        />
-        <InputLabel className={validation_error}>
-          {inputValidation?.pin_zip_code}
-        </InputLabel>
-        {/* </div> */}
       </div>
     </div>
   );

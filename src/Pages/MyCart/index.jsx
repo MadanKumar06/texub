@@ -380,7 +380,7 @@ const Mycart = () => {
         >
           Continue Shopping
         </Button>
-        {userpermission ? (
+        {userpermission && cart?.[0]?.invoice_items?.length ? (
           <Button
             className="my_cart_bottom_button_pending_invoice"
             onClick={() => mergecart()}
@@ -390,7 +390,7 @@ const Mycart = () => {
         ) : (
           ""
         )}
-        {approvepermission ? (
+        {approvepermission && cart?.[0]?.invoice_items?.length ? (
           <Button
             className="my_cart_bottom_button_pending_invoice"
             onClick={() => approvecart()}

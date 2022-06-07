@@ -2,6 +2,9 @@ const styles = (theme) => ({
   auto_complete_input: {
     "& .MuiOutlinedInput-root": {
       padding: "5px !important",
+      "& .MuiAutocomplete-endAdornment": {
+        background: "#ffffff",
+      },
     },
     "& .MuiAutocomplete-input": {
       padding: "7.5px 4px 7.5px 6px !important",
@@ -96,19 +99,19 @@ const styles = (theme) => ({
     fontSize: "14px",
     color: "#5C6369",
     fontWeight: "600",
-    "& span":{
+    "& span": {
       color: "#002D56",
       textDecoration: "underline",
       whiteSpace: "nowrap",
       cursor: "pointer",
-    }
+    },
   },
-  checkbox_agreement:{
+  checkbox_agreement: {
     display: "flex",
     marginTop: "1em",
     fontWeight: "500",
   },
-  warning_msg:{
+  warning_msg: {
     color: "red",
   },
   button_guest: {

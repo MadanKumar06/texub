@@ -34,7 +34,7 @@ function ValidationForKycForm({
   const handleValidationClick = () => {
     let endPoint = false;
     setValid("");
-    if (!values?.trade_lic_number) {  
+    if (!values?.trade_lic_number) {
       setValid((prevState) => ({
         ...prevState,
         trade_lic_number: "Please enter the Trade License number.",
@@ -76,6 +76,13 @@ function ValidationForKycForm({
       }));
       endPoint = true;
     }
+    if (!values?.state_dropdown_list && !values?.state_text) {
+      setValid((prevState) => ({
+        ...prevState,
+        state_dropdown_list: "State field is Required.",
+      }));
+      endPoint = true;
+    }
     if (!values?.pin_zip_code) {
       setValid((prevState) => ({
         ...prevState,
@@ -100,16 +107,16 @@ function ValidationForKycForm({
     ScroltoTop();
     handleFocus();
     if (!endPoint && documentButton === "national_id") {
-      //API call
+      // API call
       FinalKYCFormSavaData();
     }
     if (!endPoint) {
       setDocumentButton("national_id");
     }
   };
-  const ScroltoTop = ()=>{
+  const ScroltoTop = () => {
     document.getElementById("kyc_focus_input")?.focus();
-  }
+  };
   const handleFocus = () => {
     if (!values?.trade_lic_number) {
       setDocumentButton("trade_license");
@@ -130,6 +137,8 @@ function ValidationForKycForm({
       document.getElementById("national_image_container")?.focus();
     } else if (!values?.address_line_one) {
       document.getElementById("address_line_one")?.focus();
+    } else if (!values?.state_dropdown_list && !values?.state_text) {
+      document.getElementById("state_dropdown_list")?.focus();
     } else if (!values?.city) {
       document.getElementById("city")?.focus();
     } else if (!values?.pin_zip_code) {
@@ -156,11 +165,22 @@ function ValidationForKycForm({
     let trade_date = values?.trade_expiration_date
       ? moment(values?.trade_expiration_date).format("DD-MM-YYYY")
       : "";
+    let storedata = JSON.parse(localStorage.getItem("storedata"));
     let data = {
       kyc: {
+        store_id: storedata?.store_id,
         customer_id: localUserData?.id,
         bussiness_name: company_name?.[0]?.value,
         group_id: localUserData?.group_id,
+        state: {
+          region:
+            values?.state_text !== ""
+              ? values?.state_text
+              : values?.state_dropdown_list?.title,
+          region_id: values?.state_dropdown_list?.value
+            ? values?.state_dropdown_list?.value
+            : 0,
+        },
         trade_license_number: values?.trade_lic_number
           ? values?.trade_lic_number
           : "",

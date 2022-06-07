@@ -89,60 +89,16 @@ const Checkout = () => {
   };
   const [quotedata, setqutoedata] = useState([]);
   const { quoteid } = useParams();
-  // const [pickup, setpickup] = useState({
-  //   bussiness_name: "",
-  //   contact_person: "",
-  //   email_address: "",
-  //   mobile_number: "",
-  // });
+
   const [payment, setpayment] = useState("banktransfer");
   const [countryList, setCountryList] = useState([]);
-  // const [formerror, setformerror] = useState({
-  //   bussiness_name: true,
-  //   contact_person: true,
-  //   email_address: true,
-  //   mobile_number: true,
-  // });
-  //  const handleMobileChangeInput = (event) => {
-  //   pickup((prevState) => ({
-  //     ...prevState,
-  //     mobile_number: event,
-  //   }));
-  //   onpickup("");
-  // };
-  // const onpickup = (e) => {
-  //   if (e.target.name === "email_address") {
-  //     if (isEmailValid(e.target.value)) {
-  //       setpickup({ ...pickup, [e.target.name]: e.target.value });
-  //       setformerror({ ...formerror, [e.target.name]: true });
-  //     }
-  //   } else {
-  //     setpickup({ ...pickup, [e.target.name]: e.target.value });
-  //     setformerror({ ...formerror, [e.target.name]: true });
-  //   }
-  // };
-  // const onpickup = (e) => {
-  //   setpickup({ ...pickup, [e.target.name]: e.target.value });
-  //   setformerror({ ...formerror, [e.target.name]: true });
-  // };
-
+  const [stateList, setStateList] = useState([]);
   const [adminToken, setAdminToken] = useState("");
   useEffect(() => {
     getAdminToken((res) => {
       setAdminToken(res);
     });
   }, []);
-  // const handleMobileChangeInput = (event) => {
-  //   setpickup((prevState) => ({
-  //     ...prevState,
-  //     mobile_number: event,
-  //   }));
-  //   // if (event.length === 12) {
-  //   //   setformerror({ ...formerror, mobile_number: true });
-  //   // } else if (event.length !== 12) {
-  //   //   setformerror({ ...formerror, mobile_number: false });
-  //   // }
-  // };
   const [addressdata, setaddressdata] = useState({
     organization_name: "",
     address_line1: "",
@@ -248,6 +204,10 @@ const Checkout = () => {
     let billing_or_shipping = quotedata[0]?.address_list?.filter(
       (itm) => itm?.address_id == quotedata[0]?.invoice?.billing_address_id
     );
+
+    let stateDropDown =
+      stateList?.length &&
+      stateList?.filter((itm) => itm?.value == addressdata?.state);
     quotedata[0]?.invoice_items?.filter((qd) => {
       itemsdata.push({
         base_discount_amount: qd?.base_discount_amount,
@@ -349,9 +309,13 @@ const Checkout = () => {
                 shipping_method === "texub_shipping"
                   ? billing_or_shipping?.[0]?.postcode
                   : addressdata?.pincode,
-              region: "Tamil Nadu",
-              region_code: "TN",
-              region_id: 563,
+              region: stateDropDown?.[0]?.title
+                ? stateDropDown?.[0]?.title
+                : addressdata?.state,
+              region_code: "",
+              region_id: stateDropDown?.[0]?.value
+                ? stateDropDown?.[0]?.value
+                : "",
               street:
                 shipping_method === "texub_shipping"
                   ? billing_or_shipping?.[0]?.Street
@@ -397,9 +361,13 @@ const Checkout = () => {
                         shipping_method === "texub_shipping"
                           ? billing_or_shipping?.[0]?.postcode
                           : addressdata?.pincode,
-                      region: "Tamil Nadu",
-                      region_code: "TN",
-                      region_id: 563,
+                      region: stateDropDown?.[0]?.title
+                        ? stateDropDown?.[0]?.title
+                        : addressdata?.state,
+                      region_code: "",
+                      region_id: stateDropDown?.[0]?.value
+                        ? stateDropDown?.[0]?.value
+                        : "",
                       street:
                         shipping_method === "texub_shipping"
                           ? billing_or_shipping?.[0]?.Street
@@ -538,6 +506,27 @@ const Checkout = () => {
     fetchCountryData();
   }, []);
 
+  useEffect(() => {
+    if (addressdata?.country) {
+      const fetchCountryData = () => {
+        let data = {
+          countryCode: addressdata?.country,
+        };
+        axios
+          .post(Constant.baseUrl() + "/stateList", data, {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+          .then((res) => {
+            setStateList(res?.data);
+          })
+          .catch((err) => {});
+      };
+      fetchCountryData();
+    }
+  }, [addressdata?.country]);
+
   const [localgt, setlocalgt] = useState(false);
   const saveaddress = async () => {
     let user = JSON.parse(localStorage.getItem("userdata"));
@@ -545,6 +534,9 @@ const Checkout = () => {
       type: "SET_IS_LOADING",
       value: true,
     });
+    let stateDropDown =
+      stateList?.length &&
+      stateList?.filter((itm) => itm?.value == addressdata?.state);
     try {
       const addressadd = await axios({
         method: "post",
@@ -566,6 +558,14 @@ const Checkout = () => {
             street2: addressdata?.address_line2,
             postcode: addressdata?.pincode,
             city: addressdata?.city,
+            region: {
+              region: stateDropDown?.[0]?.title
+                ? stateDropDown?.[0]?.title
+                : addressdata?.state,
+              region_id: stateDropDown?.[0]?.value
+                ? stateDropDown?.[0]?.value
+                : "",
+            },
           },
         },
       });
@@ -647,6 +647,7 @@ const Checkout = () => {
     let temp = quotedata[0]?.address_list?.filter(
       (al) => al?.address_id === id
     );
+    let t = temp?.[0]?.state_id === 0 ? temp?.[0]?.state : temp?.[0]?.state_id;
     setaddressdata((prev) => ({
       ...prev,
       organization_name: temp?.[0]?.company,
@@ -656,6 +657,7 @@ const Checkout = () => {
       pincode: temp?.[0]?.postcode,
       country: temp?.[0]?.country_id,
       id: temp?.[0]?.address_id,
+      state: t,
       billtype: "texub_shipping",
     }));
     seteditradio(true);
@@ -665,11 +667,13 @@ const Checkout = () => {
   const selectaddress = (itm) => {
     if (quotedata[0]?.invoice?.pending_invoice_status !== "1") return;
     setselectadd(itm?.address_id);
+    let t = itm?.state_id === 0 ? itm?.state : itm?.state_id;
     setaddressdata({
       organization_name: itm?.company,
       address_line1: itm?.Street[0],
       address_line2: itm?.Street[1],
       city: itm?.city,
+      state: t,
       pincode: itm?.postcode,
       country: itm?.country_id,
       id: itm?.address_id,
@@ -763,6 +767,7 @@ const Checkout = () => {
   function formatToCurrency(price) {
     return price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
   }
+
   return (
     <div className="checkout_main_container" id="Checkout_page">
       <div className="checkout_info_list">
@@ -1036,7 +1041,9 @@ const Checkout = () => {
                                   {" - "}
                                   {itm?.country_code}
                                 </span>
-                                <span className="item_address"></span>
+                                <span className="item_address">
+                                  {itm?.state}
+                                </span>
                                 <span className="item_address">
                                   {itm?.postcode}{" "}
                                 </span>
@@ -1183,22 +1190,6 @@ const Checkout = () => {
                         </div>
                         <div className="address_fields">
                           <InputLabel>Mobile Number</InputLabel>
-                          {/* <PhoneInput
-                              country={"in"}
-                              id="mobile_number"
-                              fullWidth
-                              label="Mobile Number"
-                             className="inputfield-box"
-                              name="mobile_number"
-                              placeholder="Mobile number"
-                              value={pickup?.mobile}
-                              inputProps={{
-                                label: "Mobile Number",
-                                required: true,
-                              }}
-                             onChange={(e) => onpickup(e)}
-                              variant="outlined"
-                            /> */}
                           <PhoneInput
                             country={mobile_number_countryCode}
                             id="mobile_number"
@@ -1226,16 +1217,6 @@ const Checkout = () => {
                             }}
                             variant="outlined"
                           />
-
-                          {/* <TextField
-                            id="mobile_number"
-                            placeholder="9890985433"
-                            className="inputfield-box"
-                            name="mobile_number"
-                            variant="outlined"
-                            value={pickup?.mobile}
-                            onChange={(e) => onpickup(e)}
-                          /> */}
                           {pickup_form_data_valid?.mobile_number && (
                             <p style={{ color: "red" }}>
                               {pickup_form_data_valid?.mobile_number}
@@ -1571,29 +1552,6 @@ const Checkout = () => {
                 </div>
 
                 <div className="address_field_block">
-                  <div className="address_fields">
-                    <InputLabel>City</InputLabel>
-                    <TextField
-                      id="city"
-                      placeholder="City"
-                      className="inputfield-box"
-                      name="city"
-                      variant="outlined"
-                      onChange={(e) => {
-                        addressadd(e);
-                        setaddressvalidation((prevState) => ({
-                          ...prevState,
-                          city: "",
-                        }));
-                      }}
-                      value={addressdata?.city}
-                    />
-                    {addressvalidation?.city ? (
-                      <p style={{ color: "red" }}>{addressvalidation?.city}</p>
-                    ) : (
-                      ""
-                    )}
-                  </div>
                   <div className="address_fields check_country">
                     <InputLabel id="address_field">Country</InputLabel>
                     <FormControl
@@ -1619,6 +1577,10 @@ const Checkout = () => {
                         className="inputfield-box"
                         onChange={(e) => {
                           addressadd(e);
+                          setaddressdata((prev) => ({
+                            ...prev,
+                            state: "",
+                          }));
                           setaddressvalidation((prevState) => ({
                             ...prevState,
                             country: "",
@@ -1645,6 +1607,115 @@ const Checkout = () => {
                       <p style={{ color: "red" }}>
                         {addressvalidation?.country}
                       </p>
+                    ) : (
+                      ""
+                    )}
+                  </div>
+
+                  {stateList?.length > 0 ? (
+                    <div className="address_fields check_country">
+                      <InputLabel id="address_field">State</InputLabel>
+                      <FormControl
+                        className="address_select_field_box"
+                        sx={{
+                          "& .MuiOutlinedInput-root:hover": {
+                            "& > fieldset": {
+                              borderColor: "#DDB363",
+                            },
+                          },
+                          "& .MuiOutlinedInput-root.Mui-focused": {
+                            "& > fieldset": {
+                              border: "1px solid #DDB363",
+                            },
+                          },
+                        }}
+                      >
+                        <Select
+                          labelId="demo-simple-select-label"
+                          id="selection_box_block"
+                          label="State"
+                          name="state"
+                          className="inputfield-box"
+                          onChange={(e) => {
+                            addressadd(e);
+                            setaddressvalidation((prevState) => ({
+                              ...prevState,
+                              state: "",
+                            }));
+                          }}
+                          value={addressdata?.state}
+                          displayEmpty
+                          renderValue={(value) =>
+                            value ? (
+                              stateList?.filter((cl) => cl?.value == value)?.[0]
+                                ?.label
+                            ) : (
+                              <em>State</em>
+                            )
+                          }
+                        >
+                          {stateList?.length &&
+                            stateList?.map((cl) => (
+                              <MenuItem value={cl?.value}>{cl?.label}</MenuItem>
+                            ))}
+                        </Select>
+                      </FormControl>
+                      {addressvalidation?.state ? (
+                        <p style={{ color: "red" }}>
+                          {addressvalidation?.state}
+                        </p>
+                      ) : (
+                        ""
+                      )}
+                    </div>
+                  ) : (
+                    <div className="address_fields">
+                      <InputLabel>State</InputLabel>
+                      <TextField
+                        id="state"
+                        placeholder="State"
+                        className="inputfield-box"
+                        name="state"
+                        variant="outlined"
+                        onChange={(e) => {
+                          addressadd(e);
+                          setaddressvalidation((prevState) => ({
+                            ...prevState,
+                            state: "",
+                          }));
+                        }}
+                        value={addressdata?.state}
+                      />
+                      {addressvalidation?.state ? (
+                        <p style={{ color: "red" }}>
+                          {addressvalidation?.state}
+                        </p>
+                      ) : (
+                        ""
+                      )}
+                    </div>
+                  )}
+                </div>
+                <div className="address_field_block">
+                  <div className="address_fields">
+                    <InputLabel>City</InputLabel>
+                    <TextField
+                      id="city"
+                      placeholder="City"
+                      className="inputfield-box"
+                      name="city"
+                      variant="outlined"
+                      onChange={(e) => {
+                        addressadd(e);
+                        setaddressvalidation((prevState) => ({
+                          ...prevState,
+                          city: "",
+                        }));
+                      }}
+                      value={addressdata?.city}
+                    />
+                    {addressvalidation?.city ? (
+                      <p style={{ color: "red" }}>{addressvalidation?.city}</p>
                     ) : (
                       ""
                     )}
