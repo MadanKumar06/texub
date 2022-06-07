@@ -158,8 +158,16 @@ const columns = [
     name: "eta",
     label: "ETA",
     options: {
-      customBodyRender: (value) => {
-        return <div className="vieworders_eta">5</div>;
+      customBodyRender: (value, tablemeta) => {
+        let check_eta_value = tablemeta?.rowData[3];
+         if (check_eta_value ==1) {
+         var days_check ='Day';
+        }
+        else{
+          var days_check ='Days';
+        }
+       
+        return <div className="vieworders_eta">{check_eta_value} {days_check}</div>;
       },
     },
   },
