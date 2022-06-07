@@ -289,7 +289,7 @@ const TransitionsModal = ({ classes, adminToken }) => {
         Visit us as a guest.
       </p>
       <p className={info_text_lineNote}>
-        Just wanted to try out our site? Visit our site as a guest..
+        Just wanted to try out our site? Visit our site as a guest.
       </p>
       <form onSubmit={handleClickValidation}>
         <div className={info_text_guest}>Guest Access</div>
