@@ -274,6 +274,7 @@ export const Products = () => {
             className="button-text btn-primary clear"
             onClick={() => {
               localStorage.removeItem("filters");
+              localStorage.removeItem("filterProductsDropdown");
               setProductFetchApi((prev) => ({
                 ...prev,
                 conditions: "0",

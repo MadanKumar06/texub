@@ -47,6 +47,33 @@ const Productlists = ({
       [event.target.name]: event.target.value,
     }));
   };
+  const [updatedFilterProducts,setupdatedFilterProducts] = useState({})
+  const [updateDropdowns,setupdateDropdowns] = useState(false)
+ const [showDatedFilter,setshowDatedFilter] = useState(false)
+
+  useEffect(()=>{
+    const updatedData = window.localStorage.getItem("filterProductsDropdown")
+    setupdatedFilterProducts(JSON.parse(updatedData))
+    setTimeout(()=>{
+      setshowDatedFilter(!showDatedFilter)
+      setTimeout(()=>{
+        setApplyFilter(!applyFilter)
+      },1000)
+    },5000)
+  },[updateDropdowns])
+ const updateProductFilterDrop = ()=>{
+  window.localStorage.setItem("filterProductsDropdown",JSON.stringify(productFetchApi))
+ }
+
+ useEffect(()=>{
+  setProductFetchApi((prevState) => ({
+    ...prevState,
+    conditions:updatedFilterProducts?.conditions,
+    eta:updatedFilterProducts?.eta,
+    hub:updatedFilterProducts?.hub,
+  }));
+ },[showDatedFilter])
+
   const handleSearchClick = (event) => {
     if (productFetchApi?.search_product !== "") {
       let temp = [];
@@ -165,7 +192,6 @@ const Productlists = ({
       }));
     }
   }, [productlistdropdown]);
-  
 
   return (
     <div className="productlist">
@@ -351,7 +377,12 @@ const Productlists = ({
       <div className="apply-btn">
         <Button
           className="button-text btn-primary clear plp-apply-btn"
-          onClick={() => setApplyFilter(!applyFilter)}
+          onClick={() =>{
+            updateProductFilterDrop()
+            setshowDatedFilter(true)
+            setupdateDropdowns(!updateDropdowns)
+            setApplyFilter(!applyFilter)
+          }}
         >
           Apply
         </Button>
