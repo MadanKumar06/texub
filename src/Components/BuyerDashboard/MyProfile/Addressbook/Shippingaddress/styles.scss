@@ -38,8 +38,13 @@
           display: flex;
           flex-direction: column;
           width: 50%;
+          .MuiAutocomplete-root {
+            .MuiOutlinedInput-root {
+              padding: 8px;
+            }
+          }
           .MuiAutocomplete-input {
-            padding: 1.5px 4px 7.5px 6px;
+            padding: 4.5px 4px 4.5px 6px;
           }
           .MuiOutlinedInput-root {
             padding-right: 6px;
@@ -54,7 +59,7 @@
         .inputfield {
           width: 50%;
           .MuiAutocomplete-input {
-            padding: 1.5px 4px 7.5px 6px;
+            padding: 4.5px 4px 4.5px 6px;
           }
         }
         .MuiOutlinedInput-root {

@@ -27,8 +27,14 @@
           display: flex;
           flex-direction: column;
           width: 50%;
+
+          .MuiAutocomplete-root {
+            .MuiOutlinedInput-root {
+              padding: 8px;
+            }
+          }
           .MuiAutocomplete-input {
-            padding: 1.5px 4px 7.5px 6px;
+            padding: 4.5px 4px 4.5px 6px;
           }
           .text {
             padding: 0px !important;
@@ -47,7 +53,7 @@
           width: 50%;
         }
         .MuiAutocomplete-input {
-          padding: 1.5px 4px 7.5px 6px;
+          padding: 4.5px 4px 4.5px 6px;
         }
 
         .Billingaddress_btn_section {
@@ -287,11 +293,10 @@
     gap: 10px;
   }
   .Billingaddress_main {
-    .btn_billing{
+    .btn_billing {
       min-width: 47% !important;
     }
   }
-
 }
 @media only screen and (max-width: 425px) {
   .Billingaddress_main .Billingaddress_information form .inputfield_section {

@@ -23,9 +23,12 @@ const Index = ({ address, setisAddress, setisShipping }) => {
     firstname: "",
     lastname: "",
     postcode: "",
+    state_dropdown_list: "",
+    state_text: "",
     address_line1: "",
     address_line2: "",
   });
+  const [stateList, setStateList] = useState([]);
   useEffect(() => {
     if (address?.length && countryList?.length) {
       let country = countryList?.filter(
@@ -35,6 +38,7 @@ const Index = ({ address, setisAddress, setisShipping }) => {
         city: address?.[0]?.city,
         company: address?.[0]?.company,
         country_id: country?.[0],
+        state_text: address?.[0]?.state,
         firstname: address?.[0]?.firstname,
         lastname: address?.[0]?.lastname,
         postcode: address?.[0]?.postcode,
@@ -43,6 +47,17 @@ const Index = ({ address, setisAddress, setisShipping }) => {
       });
     }
   }, [address, countryList]);
+  useEffect(() => {
+    if (stateList?.length) {
+      let state = stateList?.filter(
+        (itm) => itm?.value == address?.[0]?.state_id
+      );
+      setshippingAddress((prev) => ({
+        ...prev,
+        state_dropdown_list: state?.[0],
+      }));
+    }
+  }, [stateList]);
   useEffect(() => {
     const fetchCountryData = () => {
       axios
@@ -58,6 +73,28 @@ const Index = ({ address, setisAddress, setisShipping }) => {
     };
     fetchCountryData();
   }, []);
+  //API to Fetxh State List
+
+  useEffect(() => {
+    if (shippingAddress?.country_id) {
+      const fetchCountryData = () => {
+        let data = {
+          countryCode: shippingAddress?.country_id?.value,
+        };
+        axios
+          .post(Constant.baseUrl() + "/stateList", data, {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+          .then((res) => {
+            setStateList(res?.data);
+          })
+          .catch((err) => {});
+      };
+      fetchCountryData();
+    }
+  }, [shippingAddress?.country_id]);
   const [adminToken, setAdminToken] = useState("");
   useEffect(() => {
     getAdminToken((res) => {
@@ -88,6 +125,14 @@ const Index = ({ address, setisAddress, setisShipping }) => {
             street2: shippingAddress?.address_line2,
             postcode: shippingAddress?.postcode,
             city: shippingAddress?.city,
+            region: {
+              region: shippingAddress?.state_dropdown_list?.title
+                ? shippingAddress?.state_dropdown_list?.title
+                : shippingAddress?.state_text,
+              region_id: shippingAddress?.state_dropdown_list?.value
+                ? shippingAddress?.state_dropdown_list?.value
+                : "",
+            },
           },
         },
       });
@@ -212,22 +257,6 @@ const Index = ({ address, setisAddress, setisShipping }) => {
           </div>
           <div className="inputfield_section">
             <div className="inputfield">
-              <p>City</p>
-              <TextField
-                fullWidth
-                id="outlined-error"
-                className="inputfield-box"
-                placeholder="City"
-                value={shippingAddress?.city}
-                onChange={(event) =>
-                  setshippingAddress((prev) => ({
-                    ...prev,
-                    city: event.target.value,
-                  }))
-                }
-              />
-            </div>
-            <div className="inputfield">
               <p>Country</p>
               <Autocomplete
                 value={
@@ -246,6 +275,8 @@ const Index = ({ address, setisAddress, setisShipping }) => {
                   setshippingAddress((prev) => ({
                     ...prev,
                     country_id: newValue,
+                    state_dropdown_list: "",
+                    state_text: "",
                   }))
                 }
                 renderInput={(params) => (
@@ -260,6 +291,78 @@ const Index = ({ address, setisAddress, setisShipping }) => {
                 )}
               />
             </div>
+            {stateList?.length ? (
+              <div className="inputfield">
+                <p>State</p>
+                <Autocomplete
+                  value={
+                    shippingAddress?.state_dropdown_list
+                      ? shippingAddress?.state_dropdown_list
+                      : ""
+                  }
+                  name="state_dropdown_list"
+                  onChange={(event, newValue) => {
+                    setshippingAddress((prevState) => ({
+                      ...prevState,
+                      state_dropdown_list: newValue,
+                      state_text: "",
+                    }));
+                  }}
+                  id="state_dropdown_list"
+                  options={stateList?.length ? stateList : []}
+                  fullWidth
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      className="inputfield-box"
+                      placeholder="State"
+                      InputLabelProps={{
+                        shrink: false,
+                      }}
+                    />
+                  )}
+                />
+              </div>
+            ) : (
+              <div className="inputfield">
+                <p>State</p>
+                <TextField
+                  id="state_dropdown_list"
+                  placeholder="State"
+                  className="inputfield-box"
+                  fullWidth
+                  InputLabelProps={{
+                    shrink: false,
+                  }}
+                  name="state_text"
+                  onChange={(event) => {
+                    setshippingAddress((prevState) => ({
+                      ...prevState,
+                      state_dropdown_list: "",
+                      state_text: event.target.value,
+                    }));
+                  }}
+                  value={shippingAddress?.state_text}
+                  variant="outlined"
+                />
+              </div>
+            )}
+          </div>
+          <div className="inputfield" style={{ width: "48.5%" }}>
+            <p>City</p>
+            <TextField
+              fullWidth
+              id="outlined-error"
+              className="inputfield-box"
+              placeholder="City"
+              value={shippingAddress?.city}
+              onChange={(event) =>
+                setshippingAddress((prev) => ({
+                  ...prev,
+                  city: event.target.value,
+                }))
+              }
+            />
           </div>
           <div className="button-box-container btn_container">
             <Button

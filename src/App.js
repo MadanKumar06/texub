@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
 import { useStateValue } from "./store/state";
@@ -161,8 +161,8 @@ const App = () => {
 
   return (
     <div className="App">
-      <ThemeProvider theme={theme}>
-        <Router>
+        <ThemeProvider theme={theme}>
+          <BrowserRouter>
           <ScrollToTop />
           <Header />
           <Userdetails />
@@ -222,7 +222,7 @@ const App = () => {
           {registerOpenClose && <RegisterPopup />}
           {miniCartOpenClose?.openClose && <MiniCartList />}
           {isLoading && <SimpleBackdrop />}
-        </Router>
+       </BrowserRouter>
       </ThemeProvider>
     </div>
   );

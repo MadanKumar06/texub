@@ -11,7 +11,13 @@ import { useStateValue } from "../../../../store/state";
 import Constant from "../../../../../src/Constant";
 import swal from "sweetalert2";
 
-const Index = ({ classes, setisEdit, setisAccountinfo }) => {
+const Index = ({
+  classes,
+  setisEdit,
+  setisAccountinfo,
+  setUserDetailTrigger,
+  userDetailTrigger,
+}) => {
   const [{ geo, customstore }, dispatch] = useStateValue();
   let validation_error = classes;
   const [mobile_number_countryCode, setMobile_number_countryCode] =
@@ -262,6 +268,7 @@ const Index = ({ classes, setisEdit, setisAccountinfo }) => {
         });
         setisEdit(false);
         setisAccountinfo(true);
+        setUserDetailTrigger(!userDetailTrigger);
       } else {
         swal.fire({
           text: `${updatedata?.data?.[0]?.message}`,
