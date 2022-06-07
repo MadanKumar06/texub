@@ -108,6 +108,7 @@ const Checkout = () => {
     country: "",
     lastname: "",
     firstname: "",
+    state: "",
     billtype: "texub_shipping",
   });
 
@@ -208,6 +209,7 @@ const Checkout = () => {
     let stateDropDown =
       stateList?.length &&
       stateList?.filter((itm) => itm?.value == addressdata?.state);
+    debugger;
     quotedata[0]?.invoice_items?.filter((qd) => {
       itemsdata.push({
         base_discount_amount: qd?.base_discount_amount,
@@ -664,8 +666,18 @@ const Checkout = () => {
     handleOpen("edit_new_address");
   };
 
+  useEffect(() => {
+    if (quotedata?.length) {
+      let t =
+        quotedata?.length &&
+        quotedata?.[0]?.address_list?.filter(
+          (itm) => (itm?.default_billing && itm?.default_shipping) == 1
+        );
+      selectaddress(t?.[0]);
+    }
+  }, [quotedata]);
   const selectaddress = (itm) => {
-    if (quotedata[0]?.invoice?.pending_invoice_status !== "1") return;
+    if (quotedata[0]?.invoice?.pending_invoice_status < "3") return;
     setselectadd(itm?.address_id);
     let t = itm?.state_id === 0 ? itm?.state : itm?.state_id;
     setaddressdata({
