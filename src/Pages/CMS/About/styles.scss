@@ -121,7 +121,8 @@ $yellow: #DDB363;
             display: flex;
             align-items: center;
             justify-content: center;
-            width: -webkit-fill-available;
+            // width: -webkit-fill-available;
+            width: 90%;
             height: 100%;
             margin: 10px 25px;
             img{
