@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import styles from "./styles";
 
 import { AppBar, Toolbar, Typography, Button } from "@mui/material";
@@ -17,6 +17,17 @@ const Header = ({ classes }) => {
   const [{ currency, gt, geo, customnostore, generalTrigger }, dispatch] =
     useStateValue();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    const getCurrentURL = window.location.href;
+    const getlastSegmentOfUrl = getCurrentURL.substring(getCurrentURL.lastIndexOf("/") + 1);
+    if(getlastSegmentOfUrl!=="products"){
+      window.localStorage.removeItem("filterProductsDropdown");
+    }
+    console.log(getlastSegmentOfUrl)
+  }, [location]);
+  
   let isSignedIn = JSON.parse(localStorage.getItem("userdata"));
 
   const user = JSON.parse(localStorage.getItem("userdata"));

@@ -485,7 +485,7 @@ const Checkout = () => {
     if (!addressdata?.address_line2) {
       setaddressvalidation((prevstate) => ({
         ...prevstate,
-        address_line2: "Please type Address Line 1",
+        address_line2: "Please type Address Line 2",
       }));
       errorhandle = true;
     }
