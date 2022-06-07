@@ -25,6 +25,9 @@ const BuyerKYCformSectionRight = ({
   documentButton,
   setDocumentButton,
   checkbox_label,
+  KYCvalidationHandler,
+  inputsValidations,
+  setinputsValidations
 }) => {
   let {
     section_right_container,
@@ -67,6 +70,8 @@ const BuyerKYCformSectionRight = ({
         SetFormValues={SetFormValues}
         FormValues={FormValues}
         validationFieldMessage={validationFieldMessage}
+        inputsValidations={inputsValidations}
+        setinputsValidations={setinputsValidations}
       />
       <>
         <p className={info_text_lineNote_two}>Categories</p>
@@ -138,6 +143,9 @@ const BuyerKYCformSectionRight = ({
         handleCallValidation={handleCallValidation}
         setDocumentButton={setDocumentButton}
         documentButton={documentButton}
+        KYCvalidationHandler={KYCvalidationHandler}
+        inputsValidations={inputsValidations}
+        setinputsValidations={setinputsValidations}
       />
     </div>
   );

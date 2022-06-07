@@ -305,7 +305,7 @@ const Index = () => {
                 {detailsorder?.[0]?.order_details?.[0]?.order_status == 1
                   ? "Pending"
                   : detailsorder?.[0]?.order_details?.[0]?.order_status == 2
-                  ? "Confrim"
+                  ? "Confirm"
                   : detailsorder?.[0]?.order_details?.[0]?.order_status == 3
                   ? "Dispatch"
                   : detailsorder?.[0]?.order_details?.[0]?.order_status == 4

@@ -13,6 +13,7 @@ import StepConnector, {
 import { styled } from "@mui/material/styles";
 import swal from "sweetalert2";
 import moment from "moment";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import {
   Radio,
@@ -249,10 +250,14 @@ const columns = [
   },
 ];
 
-const Index = ({ viewDetail, setvieworder, handleSearchBar, seller_order_status }) => {
+const Index = ({ viewDetail, setvieworder, handleSearchBar }) => {
   const [radiogroup, setRadioGroup] = useState(1);
   const [trigger, setTrigger] = useState(false);
   const [{}, dispatch] = useStateValue();
+  const history = useLocation();
+  const navigate = useNavigate();
+  const [viewDetailOrder,setviewDetailOrder] = useState(history?.state)
+  const [seller_order_status,setseller_order_status] = useState(viewDetailOrder?.[0]?.po_status)
 
   const [adminToken, setAdminToken] = useState("");
   useEffect(() => {
@@ -410,7 +415,10 @@ const Index = ({ viewDetail, setvieworder, handleSearchBar, seller_order_status 
 
   // stepper
   const [activeStep, setActiveStep] = useState(0);
-
+  console.log("radiogroup")
+  console.log(radiogroup)
+  console.log("activeStep")
+  console.log(activeStep)
   const [statusFromAPI, setStatusFromAPI] = useState([]);
   useEffect(() => {
     const fetchTableData = async () => {
@@ -423,7 +431,7 @@ const Index = ({ viewDetail, setvieworder, handleSearchBar, seller_order_status 
           method: "post",
           url: `${Constant.baseUrl()}/OrderStatusLogList`,
           data: {
-            itemId: viewDetail?.[0]?.po_id,
+            itemId: viewDetailOrder?.[0]?.po_id,
           },
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -500,8 +508,8 @@ const Index = ({ viewDetail, setvieworder, handleSearchBar, seller_order_status 
           <p className="id_heading purchase_date">
             Purchase Order Date #{" "}
             <span className="id">
-              {viewDetail?.length
-                ? moment(viewDetail?.[0].date).format("DD/MM/YYYY")
+              {viewDetailOrder?.length
+                ? moment(viewDetailOrder?.[0].date).format("DD/MM/YYYY")
                 : ""}
               {/* {viewDetail?.[0]?.date.split(" ")[0]} */}
             </span>{" "}
@@ -509,7 +517,7 @@ const Index = ({ viewDetail, setvieworder, handleSearchBar, seller_order_status 
           </p>
           <p className="id_heading">
             Purchase Order No. #{" "}
-            <span className="id">{viewDetail?.[0]?.po_number}</span>
+            <span className="id">{viewDetailOrder?.[0]?.po_number}</span>
           </p>
         </div>
         <Button className="button-text btn-secondary attach_invoice_btn">
@@ -534,8 +542,8 @@ const Index = ({ viewDetail, setvieworder, handleSearchBar, seller_order_status 
       <MUITable
         columns={columns}
         table={
-          viewDetail?.length && viewDetail?.[0]?.items?.length
-            ? viewDetail?.[0]?.items
+          viewDetailOrder?.length && viewDetailOrder?.[0]?.items?.length
+            ? viewDetailOrder?.[0]?.items
             : []
         }
         options={options}
@@ -657,11 +665,12 @@ const Index = ({ viewDetail, setvieworder, handleSearchBar, seller_order_status 
         <div
           className="invoices__container"
           style={{ cursor: "pointer" }}
-          onClick={() => {
+          onClick={() => navigate(-1)}
+          /* onClick={() => {
             setvieworder(false);
             handleSearchBar(true);
             // setisOrders(true);
-          }}
+          }} */
         >
           <ArrowBackIosNew />
           <span>Back</span>

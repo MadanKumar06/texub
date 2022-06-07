@@ -32,6 +32,68 @@ const BuyerKYCformSectionLeft = ({ classes }) => {
     button_selected,
     button_notselected,
   } = classes;
+  const [inputsValidations,setinputsValidations] = useState({
+    trade_lic_number: "",
+    tax_number: "",
+    address_line_one: "",
+    state_text: "",
+    city: "",
+    pin_zip_code: "",
+    agreementChecked: "",
+    trade_image: "",
+    tax_image: ""
+  })
+  const KYCvalidationHandler = () => {
+    let isError = false;
+    if (!kycFormData?.trade_lic_number) {
+      setinputsValidations((prevState) => ({
+        ...prevState,
+        trade_lic_number: "Please enter the Trade License number.",
+      }));
+      isError = true;
+    }
+    if (!kycFormData?.tax_number) {
+      setinputsValidations((prevState) => ({
+        ...prevState,
+        tax_number: "Please enter the tax number.",
+      }));
+      isError = true;
+    }
+    if (!kycFormData?.address_line_one) {
+      setinputsValidations((prevState) => ({
+        ...prevState,
+        address_line_one: "Please enter the address line one.",
+      }));
+      isError = true;
+    }
+    if (!kycFormData?.state_text) {
+      setinputsValidations((prevState) => ({
+        ...prevState,
+        state_text: "Please enter the state.",
+      }));
+      isError = true;
+    }
+    if (!kycFormData?.city) {
+      setinputsValidations((prevState) => ({
+        ...prevState,
+        city: "Please enter the city.",
+      }));
+      isError = true;
+    }
+    if (!kycFormData?.pin_zip_code) {
+      setinputsValidations((prevState) => ({
+        ...prevState,
+        pin_zip_code: "Please enter the pincode.",
+      }));
+      isError = true;
+    }
+
+  };
+
+  console.log("inputsValidations")
+  console.log(inputsValidations)
+  console.log("kycFormData")
+  console.log(kycFormData)
 
   const handleClose = () => {
     setOpen(false);
@@ -115,6 +177,8 @@ const BuyerKYCformSectionLeft = ({ classes }) => {
                   FormValues={kycFormData}
                   validationFieldMessage={validationFieldMessage}
                   setValidationFieldMessage={setValidationFieldMessage}
+                  inputsValidations={inputsValidations}
+                  setinputsValidations={setinputsValidations}
                 />
               )}
               {documentButton === "tax_certificate" && (
@@ -123,6 +187,8 @@ const BuyerKYCformSectionLeft = ({ classes }) => {
                   FormValues={kycFormData}
                   validationFieldMessage={validationFieldMessage}
                   setValidationFieldMessage={setValidationFieldMessage}
+                  inputsValidations={inputsValidations}
+                  setinputsValidations={setinputsValidations}
                 />
               )}
               {documentButton === "national_id" && (
@@ -150,6 +216,9 @@ const BuyerKYCformSectionLeft = ({ classes }) => {
               setValidationFieldMessage={setValidationFieldMessage}
               setDocumentButton={setDocumentButton}
               documentButton={documentButton}
+              KYCvalidationHandler={KYCvalidationHandler}
+              inputsValidations={inputsValidations}
+              setinputsValidations={setinputsValidations}
             />
           </div>
         </div>

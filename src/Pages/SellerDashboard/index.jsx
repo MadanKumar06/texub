@@ -21,6 +21,7 @@ import PendingProduct from "../../Components/SellerDashboard/Inventory/PendingPr
 import SmartRecommendation from "../../Components/SellerDashboard/SmartRecommendation";
 import MyProfile from "../../Components/SellerDashboard/MyProfile";
 import { useStateValue } from "../../store/state";
+import ViewOrder from "../../Components/Common/Vieworders";
 
 function SellerDashboard() {
   const [{ geo, customnostore }, dispatch] = useStateValue();
@@ -126,7 +127,8 @@ function SellerDashboard() {
         <div className="sellerdashboard__maintab">
           {showregister === true ||
           currenttab === "inventory" ||
-          currenttab === "bulkupload"
+          currenttab === "bulkupload" ||
+          currenttab === "vieworder"
             ? ""
             : searchBar && (
                 <div className="sellerdashboard__search">
@@ -215,6 +217,7 @@ function SellerDashboard() {
               searchupdate={searchupdate}
             />
           )}
+          {currenttab === "vieworder" && <ViewOrder />}
         </div>
       </div>
     </div>
