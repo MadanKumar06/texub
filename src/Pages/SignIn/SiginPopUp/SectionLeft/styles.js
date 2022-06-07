@@ -146,7 +146,7 @@ const styles = (theme) => ({
     color: "#333333",
     fontSize: "20px",
     padding: "12px 0",
-    margin: "5px 12px",
+    margin: "5px 8px",
     "@media(min-width:1600px)": {
       padding: "8px 0",
     },

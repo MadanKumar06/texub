@@ -135,14 +135,16 @@ function Index() {
           let brand_name = tablemeta?.rowData?.[9];
           return (
             <div className="productname">
+              <div className="brand_info_section">
               {product_barnd ? (
                 <img
                   src={`${Constant.imageBaseUrl()}${product_barnd}`}
                   alt=""
                 />
               ) : (
-                <span>{brand_name}</span>
+                <span className="brand_name_section">{brand_name}</span>
               )}
+              </div>
               <div className="product">
                 <span className="modal_name">{product_name}</span>
                 <span className="modal_content">{value}</span>

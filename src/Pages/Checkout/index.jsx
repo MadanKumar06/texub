@@ -677,7 +677,7 @@ const Checkout = () => {
     }
   }, [quotedata]);
   const selectaddress = (itm) => {
-    if (quotedata[0]?.invoice?.pending_invoice_status < "3") return;
+    if (quotedata[0]?.invoice?.pending_invoice_status > "3") return;
     setselectadd(itm?.address_id);
     let t = itm?.state_id === 0 ? itm?.state : itm?.state_id;
     setaddressdata({
