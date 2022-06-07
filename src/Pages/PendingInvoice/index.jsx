@@ -263,7 +263,7 @@ function Index() {
   const [pendinginvoicestatus, setpendinginvoicestatus] = useState(false);
   useEffect(() => {
     if (!pendingInvoiceList) return;
-    if (pendingInvoiceList?.invoice?.status === "Cancelled") {
+    if (pendingInvoiceList?.invoice?.invoice_status >= "3") {
       setpendinginvoicestatus(true);
     } else {
       setpendinginvoicestatus(false);
@@ -464,6 +464,7 @@ function Index() {
                 {pendingInvoiceList?.bill_to_city}-
                 {pendingInvoiceList?.bill_to_country}
               </span>
+              <span>{pendingInvoiceList?.bill_to_state}</span>
               <span>{pendingInvoiceList?.bill_to_pincode}</span>
             </div>
           </div>
@@ -479,6 +480,7 @@ function Index() {
                 {pendingInvoiceList?.pick_up_city}-
                 {pendingInvoiceList?.pick_up_country}
               </span>
+              <span>{pendingInvoiceList?.pick_up_state}</span>
               <span>{pendingInvoiceList?.pick_up_pincode}</span>
             </div>
           </div>

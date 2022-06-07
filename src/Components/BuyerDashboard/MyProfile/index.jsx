@@ -14,7 +14,7 @@ import SearchIcon from "@mui/icons-material/Search";
 const Index = () => {
   const [isAccountinfo, setisAccountinfo] = useState(true);
   const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
-  const [showButton,setshowButton]=useState(true);
+  const [showButton, setshowButton] = useState(true);
   const [searchupdate, setsearchupdate] = useState(false);
   const [search, setSearch] = useState("");
 
@@ -104,8 +104,12 @@ const Index = () => {
     setsearchupdate(!searchupdate);
   };
   return (
-    <div className={`My_profile_main ${showButton===false?"My_profile_main_gap":""}`} >
-       <div className="myprofilesection__search">
+    <div
+      className={`My_profile_main ${
+        showButton === false ? "My_profile_main_gap" : ""
+      }`}
+    >
+      <div className="myprofilesection__search">
         <Paper
           className="myprofilesection__searchinput"
           component="form"
@@ -134,31 +138,35 @@ const Index = () => {
               </div>
               <span>Notification</span> */}
       </div>
-      {
-        showButton===true?<div className="My_profile_btn_section">
-        {profiletype?.map((data, i) => {
-          if (cartpermission && data?.name === "Sub-Users") {
-          } else {
-            return (
-              <p
-                className={`ordertypes ${type === i && "ordertype__selected"}`}
-                key={i}
-                onClick={() => selectorder(i)}
-              >
-                {data.name}
-              </p>
-            );
-          }
-        })}
-      </div>:null
-      }
+      {showButton === true ? (
+        <div className="My_profile_btn_section">
+          {profiletype?.map((data, i) => {
+            if (cartpermission && data?.name === "Sub-Users") {
+            } else {
+              return (
+                <p
+                  className={`ordertypes ${
+                    type === i && "ordertype__selected"
+                  }`}
+                  key={i}
+                  onClick={() => selectorder(i)}
+                >
+                  {data.name}
+                </p>
+              );
+            }
+          })}
+        </div>
+      ) : null}
       {isAddress && <Addressbook open={Address1} />}
 
-      {isUser && <Subusers 
-      setshowButton={setshowButton}
-      searchdata={search}
-      searchupdate={searchupdate}
-      />}
+      {isUser && (
+        <Subusers
+          setshowButton={setshowButton}
+          searchdata={search}
+          searchupdate={searchupdate}
+        />
+      )}
       {isAccountinfo && (
         <div className="My_profile_ac">
           <span className="My_profile_main_heading">
@@ -168,7 +176,12 @@ const Index = () => {
 
           <div className="My_profile_ac_table">
             <div className="my_profile_edit">
-              <img src={Edit_image} alt="" style={{ height: "34px",cursor:"pointer" }} onClick={Edit} />
+              <img
+                src={Edit_image}
+                alt=""
+                style={{ height: "34px", cursor: "pointer" }}
+                onClick={Edit}
+              />
               <p className="profile_edit" onClick={Edit}>
                 Edit
               </p>
@@ -281,10 +294,12 @@ const Index = () => {
           </div>
         </div>
       )}
-     {isEdit && <Accountinfo 
-      setisEdit={setisEdit}
-      setisAccountinfo={setisAccountinfo}
-      />}
+      {isEdit && (
+        <Accountinfo
+          setisEdit={setisEdit}
+          setisAccountinfo={setisAccountinfo}
+        />
+      )}
       {isCompany && <Companyinfo />}
     </div>
   );
