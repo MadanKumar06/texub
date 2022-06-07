@@ -263,7 +263,7 @@ function Index() {
   const [pendinginvoicestatus, setpendinginvoicestatus] = useState(false);
   useEffect(() => {
     if (!pendingInvoiceList) return;
-    if (pendingInvoiceList?.invoice?.invoice_status >= "3") {
+    if (pendingInvoiceList?.invoice?.invoice_status > "3") {
       setpendinginvoicestatus(true);
     } else {
       setpendinginvoicestatus(false);

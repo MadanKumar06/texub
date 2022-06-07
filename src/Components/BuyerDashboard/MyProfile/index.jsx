@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import "./styles.scss";
 import { ArrowBackIosNew } from "@mui/icons-material";
@@ -10,6 +11,8 @@ import { Link } from "react-router-dom";
 import { useStateValue } from "../../../store/state";
 import { IconButton, InputBase, Paper } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
+import axios from "axios";
+import Constant from "../../../Constant";
 
 const Index = () => {
   const [isAccountinfo, setisAccountinfo] = useState(true);
@@ -17,8 +20,10 @@ const Index = () => {
   const [showButton, setshowButton] = useState(true);
   const [searchupdate, setsearchupdate] = useState(false);
   const [search, setSearch] = useState("");
+  const [userData, setUserData] = useState(
+    JSON.parse(localStorage.getItem("userdata"))
+  );
 
-  const userData = JSON.parse(localStorage.getItem("userdata"));
   let company_name = userData?.custom_attributes?.filter(
     (itm) => itm?.attribute_code === "customer_company_name"
   );
@@ -89,7 +94,6 @@ const Index = () => {
     setisAddress(false);
   };
   let permissions = JSON.parse(localStorage.getItem("permissions"));
-
   let cartpermission =
     permissions?.length === 0
       ? false
@@ -103,6 +107,41 @@ const Index = () => {
     e.preventDefault();
     setsearchupdate(!searchupdate);
   };
+
+  const [userDetailTrigger, setUserDetailTrigger] = useState(false);
+  useEffect(() => {
+    axios
+      .get(Constant.customerMeDetailUrl(), {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((res) => {
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+        setUserData(res?.data);
+        localStorage.setItem("userdata", JSON.stringify(res?.data));
+        localStorage.setItem(
+          "isLoggedIn_auth",
+          res?.data?.group_id === 1 ? false : true
+        );
+        company_name = res?.data?.custom_attributes?.filter(
+          (itm) => itm?.attribute_code === "customer_company_name"
+        );
+        mobile_number = res?.data?.custom_attributes?.filter(
+          (itm) => itm?.attribute_code === "customer_mobile_number"
+        );
+      })
+      .catch((err) => {
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+      });
+  }, [userDetailTrigger]);
   return (
     <div
       className={`My_profile_main ${
@@ -298,6 +337,8 @@ const Index = () => {
         <Accountinfo
           setisEdit={setisEdit}
           setisAccountinfo={setisAccountinfo}
+          setUserDetailTrigger={setUserDetailTrigger}
+          userDetailTrigger={userDetailTrigger}
         />
       )}
       {isCompany && <Companyinfo />}

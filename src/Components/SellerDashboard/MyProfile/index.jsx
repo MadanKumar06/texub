@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import "./styles.scss";
 import { ArrowBackIosNew } from "@mui/icons-material";
@@ -8,13 +9,17 @@ import Subusers from "./Subusers";
 import Edit_image from "../../../Assets/CheckoutPage/Group 913.png";
 import { Link } from "react-router-dom";
 import { useStateValue } from "../../../store/state";
+import axios from "axios";
+import Constant from "../../../Constant";
 
-const Index = ({searchdata, searchupdate}) => {
+const Index = ({ searchdata, searchupdate }) => {
   const [isAccountinfo, setisAccountinfo] = useState(true);
   const [{ geo, customnostore }, dispatch] = useStateValue();
-  const [showButton,setshowButton]=useState(true);
+  const [showButton, setshowButton] = useState(true);
   const [type, settype] = useState();
-
+  const [userData, setUserData] = useState(
+    JSON.parse(localStorage.getItem("userdata"))
+  );
   const selectorder = (value) => {
     settype(value);
   };
@@ -100,7 +105,6 @@ const Index = ({searchdata, searchupdate}) => {
     setisUser(false);
     setisAddress(false);
   };
-  const userData = JSON.parse(localStorage.getItem("userdata"));
   let company_name = userData?.custom_attributes?.filter(
     (itm) => itm?.attribute_code === "customer_company_name"
   );
@@ -108,28 +112,70 @@ const Index = ({searchdata, searchupdate}) => {
     (itm) => itm?.attribute_code === "customer_mobile_number"
   );
 
+  const [userDetailTrigger, setUserDetailTrigger] = useState(false);
+  useEffect(() => {
+    axios
+      .get(Constant.customerMeDetailUrl(), {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((res) => {
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+        setUserData(res?.data);
+        localStorage.setItem("userdata", JSON.stringify(res?.data));
+        localStorage.setItem(
+          "isLoggedIn_auth",
+          res?.data?.group_id === 1 ? false : true
+        );
+        company_name = res?.data?.custom_attributes?.filter(
+          (itm) => itm?.attribute_code === "customer_company_name"
+        );
+        mobile_number = res?.data?.custom_attributes?.filter(
+          (itm) => itm?.attribute_code === "customer_mobile_number"
+        );
+      })
+      .catch((err) => {
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+      });
+  }, [userDetailTrigger]);
   return (
-   <div className={`My_profile_main ${showButton===false?"My_profile_main_gap":""}`} >
-     {
-        showButton===true?<div className="My_profile_btn_section sellerPage">
-        {profiletype.map((data, i) => (
-          <p
-            className={`ordertypes ${type === i && "ordertype__selected"}`}
-            key={i}
-            onClick={() => selectorder(i)}
-          >
-            {data.name}
-          </p>
-        ))}
-      </div>:<></>
-     }
+    <div
+      className={`My_profile_main ${
+        showButton === false ? "My_profile_main_gap" : ""
+      }`}
+    >
+      {showButton === true ? (
+        <div className="My_profile_btn_section sellerPage">
+          {profiletype.map((data, i) => (
+            <p
+              className={`ordertypes ${type === i && "ordertype__selected"}`}
+              key={i}
+              onClick={() => selectorder(i)}
+            >
+              {data.name}
+            </p>
+          ))}
+        </div>
+      ) : (
+        <></>
+      )}
       {isAddress && <Addressbook open={Address1} />}
 
-      {isUser && <Subusers 
-        setshowButton={setshowButton} 
-        searchdata={searchdata}
-        searchupdate={searchupdate}
-      />}
+      {isUser && (
+        <Subusers
+          setshowButton={setshowButton}
+          searchdata={searchdata}
+          searchupdate={searchupdate}
+        />
+      )}
       {isAccountinfo && (
         <div className="My_profile_ac">
           <span className="My_profile_main_heading">
@@ -139,8 +185,17 @@ const Index = ({searchdata, searchupdate}) => {
 
           <div className="My_profile_ac_table">
             <div className="my_profile_edit">
-              <img src={Edit_image} alt="" style={{ height: "34px",cursor:"pointer" }} onClick={Edit}/>
-              <p className="profile_edit" style={{ cursor:"pointer" }} onClick={Edit}>
+              <img
+                src={Edit_image}
+                alt=""
+                style={{ height: "34px", cursor: "pointer" }}
+                onClick={Edit}
+              />
+              <p
+                className="profile_edit"
+                style={{ cursor: "pointer" }}
+                onClick={Edit}
+              >
                 Edit
               </p>
             </div>
@@ -255,10 +310,14 @@ const Index = ({searchdata, searchupdate}) => {
           </div>
         </div>
       )}
-     {isEdit && <Accountinfo 
-      setisAccountinfo={setisAccountinfo}
-      setisEdit={setisEdit}
-      />}
+      {isEdit && (
+        <Accountinfo
+          setisAccountinfo={setisAccountinfo}
+          setisEdit={setisEdit}
+          setUserDetailTrigger={setUserDetailTrigger}
+          userDetailTrigger={userDetailTrigger}
+        />
+      )}
       {isCompany && <Companyinfo />}
     </div>
   );
