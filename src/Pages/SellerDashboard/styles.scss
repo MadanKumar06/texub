@@ -31,6 +31,7 @@
         width: 60%;
         box-shadow: unset;
         border: 1px solid #d6d8d9;
+        border-radius: 4px;
         .MuiInputBase-root {
           padding: 5px;
         }
@@ -104,7 +105,7 @@
   }
   .sellerdashboard .sellerdashboard__maintab .sellerdashboard__search {
     .sellerdashboard__searchinput {
-      height: 45px;
+      height: 52px;
     }
     .MuiPaper-root {
       box-shadow: none;

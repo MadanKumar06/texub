@@ -218,7 +218,8 @@ const Index = ({setshowButton, searchdata, searchupdate}) => {
           return (
             <div className="users_permissions">
               <span className="value" onClick={()=>forbidden(value)}>
-                {/* {value} */} View
+                {/* {value} */} 
+                  {value === null ? " " : "View"}
               </span>
             </div>
           );

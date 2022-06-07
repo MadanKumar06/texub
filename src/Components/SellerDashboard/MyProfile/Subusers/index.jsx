@@ -43,9 +43,11 @@ const Index = ({setshowButton, searchdata, searchupdate}) => {
     setisForbidden(false);
   };
   const [isForbidden, setisForbidden] = useState(false);
-  const forbidden = () => {
+  const [Forbidden_Access,setForbidden_Access] = useState("")
+  const forbidden = (forbiden_text) => {
     setisForbidden(true);
     setisPermissions(false);
+    setForbidden_Access(forbiden_text)
   };
   const [isSubusers, setisSubusers] = useState(true);
   const options = {
@@ -149,6 +151,15 @@ const Index = ({setshowButton, searchdata, searchupdate}) => {
       },
     },
     {
+      name: "email",
+      label: "User Email",
+      options: {
+        customBodyRender: (value) => {
+          return <div className="directenquiries__order_id directenquiries__user_email">{value}</div>;
+        },
+      },
+    },
+    {
       name: "status",
       label: "Status",
       options: {
@@ -203,7 +214,7 @@ const Index = ({setshowButton, searchdata, searchupdate}) => {
             <div className="users_permissions">
               <span
                 className="value"
-                onClick={() => permission(tablemeta?.rowData[5])}
+                onClick={() => permission(tablemeta?.rowData[4])}
               >
                 View
               </span>
@@ -219,8 +230,9 @@ const Index = ({setshowButton, searchdata, searchupdate}) => {
         customBodyRender: (value) => {
           return (
             <div className="users_permissions">
-              <span className="value" onClick={forbidden}>
-                {value}
+              <span className="value" onClick={()=>forbidden(value)}>
+                {/* {value} */}
+                {value === null ? " " : "View"}
               </span>
             </div>
           );
@@ -306,7 +318,7 @@ const Index = ({setshowButton, searchdata, searchupdate}) => {
           sublist={sublist}
         />
       )}
-      {isForbidden && <Forbidden closePOPup={setisForbidden} />}
+      {isForbidden && <Forbidden closePOPup={setisForbidden} Forbidden_Access={Forbidden_Access}/>}
     </>
   );
 };
