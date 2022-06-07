@@ -11,6 +11,8 @@ const OfficeAddressDetails = ({
   FormValues,
   validationFieldMessage,
   setValidationFieldMessage,
+  inputsValidations,
+  setinputsValidations
 }) => {
   let {
     info_text_lineNote_one,
@@ -114,12 +116,18 @@ const OfficeAddressDetails = ({
             },
           }}
           name="address_line_one"
-          onChange={handleFormvalue}
+          onChange={(e)=>{
+            handleFormvalue(e)
+            setinputsValidations((prevState) => ({
+              ...prevState,
+              address_line_one: "",
+            }));
+          }}
           value={FormValues?.address_line_one}
           variant="outlined"
         />
         <InputLabel className={validation_error}>
-          {inputValidation?.address_line_one}
+          {inputsValidations?.address_line_one}
         </InputLabel>
         <TextField
           id="address_line_two"
@@ -168,8 +176,12 @@ const OfficeAddressDetails = ({
                     state_dropdown_list: newValue,
                     state_text: "",
                   }));
-                  setInputValidation((prevState) => ({
+                  /* setInputValidation((prevState) => ({
                     state_dropdown_list: "",
+                  })); */
+                  setinputsValidations((prevState) => ({
+                    ...prevState,
+                    state_text: "",
                   }));
                 }}
                 className={auto_complete_input}
@@ -193,7 +205,7 @@ const OfficeAddressDetails = ({
                 )}
               />
               <InputLabel className={validation_error}>
-                {inputValidation?.state_dropdown_list}
+                {inputsValidations?.state_text}
               </InputLabel>
             </div>
           ) : (
@@ -218,15 +230,19 @@ const OfficeAddressDetails = ({
                     state_dropdown_list: "",
                     state_text: event.target.value,
                   }));
-                  setInputValidation((prevState) => ({
+                  /* setInputValidation((prevState) => ({
                     state_dropdown_list: "",
+                  })); */
+                  setinputsValidations((prevState) => ({
+                    ...prevState,
+                    state_text: "",
                   }));
                 }}
                 value={FormValues?.state_text}
                 variant="outlined"
               />
               <InputLabel className={validation_error}>
-                {inputValidation?.state_dropdown_list}
+                {inputsValidations?.state_text}
               </InputLabel>
             </div>
           )}
@@ -247,12 +263,18 @@ const OfficeAddressDetails = ({
                 },
               }}
               name="city"
-              onChange={handleFormvalue}
+              onChange={(e)=>{
+                handleFormvalue(e)
+                setinputsValidations((prevState) => ({
+                  ...prevState,
+                  city: "",
+                }));
+              }}
               value={FormValues?.city}
               variant="outlined"
             />
             <InputLabel className={validation_error}>
-              {inputValidation?.city}
+              {inputsValidations?.city}
             </InputLabel>
           </div>
           <div className={textFlied_separate}>
@@ -270,12 +292,18 @@ const OfficeAddressDetails = ({
                 },
               }}
               name="pin_zip_code"
-              onChange={handleFormvalue}
+              onChange={(e)=>{
+                handleFormvalue(e)
+                setinputsValidations((prevState) => ({
+                  ...prevState,
+                  pin_zip_code: "",
+                }));
+              }}
               value={FormValues?.pin_zip_code}
               variant="outlined"
             />
             <InputLabel className={validation_error}>
-              {inputValidation?.pin_zip_code}
+              {inputsValidations?.pin_zip_code}
             </InputLabel>
           </div>
         </div>

@@ -16,6 +16,9 @@ function ValidationForKycForm({
   handleCallValidation,
   documentButton,
   setDocumentButton,
+  KYCvalidationHandler,
+  inputsValidations,
+  setinputsValidations
 }) {
   let { validation_error } = classes;
   const history = useNavigate();
@@ -24,7 +27,6 @@ function ValidationForKycForm({
     classes;
   const [valid, setValid] = useState(null);
   const [agreementChecked, setAgreementChecked] = useState(false);
-
   useEffect(() => {
     if (valid) {
       handleCallValidation(valid);
@@ -299,7 +301,10 @@ function ValidationForKycForm({
         {documentButton === "national_id" ? (
           <Button
             className={button_guest}
-            onClick={() => handleValidationClick()}
+            onClick={() =>{
+              handleValidationClick()
+              KYCvalidationHandler()
+            }}
           >
             <span>Submit</span>
           </Button>
@@ -307,7 +312,8 @@ function ValidationForKycForm({
           <Button
             className={button_guest}
             onClick={() => {
-              handleValidationClick();
+              handleValidationClick()
+              KYCvalidationHandler()
             }}
           >
             <span>Continue</span>

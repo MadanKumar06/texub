@@ -19,9 +19,15 @@ const TradeLicenseButton = ({
   SetFormValues,
   FormValues,
   validationFieldMessage,
+  inputsValidations,
+  setinputsValidations
 }) => {
   useEffect(() => {
     setInputValidation({ ...validationFieldMessage });
+    setinputsValidations((prevState) => ({
+      ...prevState,
+      trade_image: validationFieldMessage?.trade_image,
+    }));
   }, [validationFieldMessage]);
   let {
     input_div,
@@ -180,11 +186,17 @@ const TradeLicenseButton = ({
               asterisk: asterisk,
             },
           }}
-          onChange={handleFormvalue}
+          onChange={(e)=>{
+            handleFormvalue(e)
+            setinputsValidations((prevState) => ({
+              ...prevState,
+              trade_lic_number: "",
+            }));
+          }}
           variant="outlined"
         />
         <InputLabel className={validation_error}>
-          {inputValidation?.trade_lic_number}
+          {inputsValidations?.trade_lic_number}
         </InputLabel>
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <MobileDatePicker
@@ -253,7 +265,13 @@ const TradeLicenseButton = ({
                 id="icon-button-file"
                 type="file"
                 name="trade_image"
-                onChange={handleImageChange}
+                onChange={(event)=>{
+                  handleImageChange(event)
+                  setinputsValidations((prevState) => ({
+                    ...prevState,
+                    trade_image: "",
+                  }));
+                }}
               />
               <img
                 src={uploadImage}
@@ -266,11 +284,9 @@ const TradeLicenseButton = ({
 
           <small>(Supported format : .jpg/.png/.pdf)</small>
         </div>
-        {inputValidation?.trade_image && (
-          <InputLabel className={validation_error}>
-            {inputValidation?.trade_image}
-          </InputLabel>
-        )}
+        <InputLabel className={validation_error}>
+          {inputsValidations?.trade_image}
+        </InputLabel>
         <div className={input_image_name}>
           {FormValues?.trade_image?.name ? (
             <p>{FormValues?.trade_image?.name}</p>
@@ -284,19 +300,29 @@ const TradeLicenseButton = ({
                 id="icon-button-file"
                 type="file"
                 name="trade_image"
-                onChange={handleImageChange}
+                onChange={(event)=>{
+                  handleImageChange(event)
+                  setinputsValidations((prevState) => ({
+                    ...prevState,
+                    trade_image: "",
+                  }));
+                }}
               />
               <p>No File Chosen</p>
             </label>
           )}
           <Clear
             className={input_image_name_clear_btn}
-            onClick={() =>
+            onClick={() =>{
               SetFormValues((prevState) => ({
                 ...prevState,
                 trade_image: "",
               }))
-            }
+              setinputsValidations((prevState) => ({
+                ...prevState,
+                trade_image: "",
+              }));
+            }}
           />
         </div>
       </div>

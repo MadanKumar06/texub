@@ -17,9 +17,15 @@ const TaxCertificateButton = ({
   SetFormValues,
   FormValues,
   validationFieldMessage,
+  inputsValidations,
+  setinputsValidations
 }) => {
   useEffect(() => {
     setInputValidation({ ...validationFieldMessage });
+    setinputsValidations((prevState) => ({
+      ...prevState,
+      tax_image: validationFieldMessage?.tax_image,
+    }));
   }, [validationFieldMessage]);
   let {
     input_div,
@@ -152,11 +158,17 @@ const TaxCertificateButton = ({
           }}
           name="tax_number"
           value={FormValues?.tax_number}
-          onChange={handleFormvalue}
+          onChange={(e)=>{
+            handleFormvalue(e)
+            setinputsValidations((prevState) => ({
+              ...prevState,
+              tax_number: "",
+            }));
+          }}
           variant="outlined"
         />
         <InputLabel className={validation_error}>
-          {inputValidation?.tax_number}
+          {inputsValidations?.tax_number}
         </InputLabel>
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <MobileDatePicker
@@ -227,7 +239,13 @@ const TaxCertificateButton = ({
                 id="icon-button-file"
                 type="file"
                 name="tax_image"
-                onChange={handleImageChange}
+                onChange={(event)=>{
+                  handleImageChange(event)
+                  setinputsValidations((prevState) => ({
+                    ...prevState,
+                    tax_image: "",
+                  }));
+                }}
               />
               <img
                 src={uploadImage}
@@ -241,7 +259,7 @@ const TaxCertificateButton = ({
           <small>(Supported format : .jpg/.png/.pdf)</small>
         </div>
         <InputLabel className={validation_error}>
-          {inputValidation?.tax_image}
+          {inputsValidations?.tax_image}
         </InputLabel>
 
         <div className={input_image_name}>
@@ -257,19 +275,29 @@ const TaxCertificateButton = ({
                 id="icon-button-file"
                 type="file"
                 name="tax_image"
-                onChange={handleImageChange}
+                onChange={(event)=>{
+                  handleImageChange(event)
+                  setinputsValidations((prevState) => ({
+                    ...prevState,
+                    tax_image: "",
+                  }));
+                }}
               />
               <p>No File Chosen</p>
             </label>
           )}
           <Clear
             className={input_image_name_clear_btn}
-            onClick={() =>
+            onClick={() =>{
               SetFormValues((prevState) => ({
                 ...prevState,
                 tax_image: "",
               }))
-            }
+              setinputsValidations((prevState) => ({
+                ...prevState,
+                tax_image: "",
+              }))
+            }}
           />
         </div>
       </div>
