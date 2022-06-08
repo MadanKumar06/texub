@@ -200,6 +200,42 @@
   }
 }
 
+@media (max-width: 1100px) {
+  .productlist{
+      .productlist__search{
+          .MuiPaper-root{
+              min-width: 400px;
+         }
+      }
+    } 
+}
+@media (max-width: 970px) {
+  .productlist{
+      .productlist__search{
+          .MuiPaper-root{
+              min-width: 350px
+         }
+      }
+    } 
+   .productlist{
+      .seller_box_info{
+          min-width: 200px !important;
+      }
+   } 
+}
+
+@media (max-width: 810px) {
+
+ .productlist{
+   .productlist__search{
+      .MuiPaper-root{
+        min-width: unset;
+      }
+   }
+ } 
+}
+
+
 @media (max-width: 480px) {
   .productlist__search_seller {
     min-width: 100% !important;
@@ -245,6 +281,14 @@
     }
   } 
 
+}
+
+@media (max-width: 380px) {
+ .productlist{
+    .seller_box_info{
+         min-width: 150px !important;
+    }
+ }
 }
 
 @media (max-width) {

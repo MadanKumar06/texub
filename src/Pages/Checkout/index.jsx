@@ -1410,7 +1410,7 @@ const Checkout = () => {
         {/* <Button onClick={handleOpen}>Open modal</Button> */}
         <Modal
           open={open?.openClose}
-          onClose={handleClose}
+         // onClose={handleClose}
           disableRestoreFocus={true}
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"

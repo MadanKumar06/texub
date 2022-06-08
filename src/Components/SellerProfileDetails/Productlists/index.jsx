@@ -159,7 +159,7 @@ const Productlists = ({
         <Paper
           component="form"
           className="search_input"
-          sx={{ p: "2px 4px", display: "flex", alignItems: "center" }}
+          sx={{ p: "2px 4px", display: "flex", alignItems: "center",minWidth: 550  }}
         >
           <InputBase
             sx={{ ml: 1, flex: 1 }}
@@ -182,7 +182,7 @@ const Productlists = ({
         </Paper>
       </div>
 
-      <Box sx={{ minWidth: 150 }}>
+      <Box sx={{ minWidth: 250 }} className="seller_box_info">
         <FormControl fullWidth className="product_dropdown_hub">
           <InputLabel id="demo-simple-select-label">Hubs</InputLabel>
           <Select
@@ -204,7 +204,7 @@ const Productlists = ({
           </Select>
         </FormControl>
       </Box>
-      <Box sx={{ minWidth: 200 }}>
+      <Box sx={{ minWidth: 250 }} className="seller_box_info">
         <FormControl fullWidth className="product_dropdown_condition">
           <InputLabel id="demo-simple-select-label">Conditions</InputLabel>
           <Select
@@ -226,7 +226,7 @@ const Productlists = ({
           </Select>
         </FormControl>
       </Box>
-      <Box sx={{ minWidth: 120 }}  className="eta_field">
+      <Box sx={{ minWidth: 250 }}  className="eta_field seller_box_info">
         <FormControl fullWidth className="product_dropdown_price">
           <InputLabel id="demo-simple-select-label">ETA</InputLabel>
           <Select
