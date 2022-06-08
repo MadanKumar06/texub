@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import styles from "./styles";
 
@@ -18,15 +18,22 @@ const Header = ({ classes }) => {
     useStateValue();
   const navigate = useNavigate();
   const location = useLocation();
-
+  const [dropDownValues,setdropDownValues] = useState({
+    hub: 0,
+    conditions: 0,
+    eta: 0
+  })
   useEffect(() => {
     const getCurrentURL = window.location.href;
     const getlastSegmentOfUrl = getCurrentURL.substring(getCurrentURL.lastIndexOf("/") + 1);
     if(getlastSegmentOfUrl!=="products"){
-      window.localStorage.removeItem("filterProductsDropdown");
+      window.localStorage.setItem("filterProductsDropdown",JSON.stringify(dropDownValues))
     }
-    console.log(getlastSegmentOfUrl)
+    if(!getCurrentURL.includes("sellerprofile")){
+      window.localStorage.setItem("filterProductsDropdown_seller_profile",JSON.stringify(dropDownValues))
+    }
   }, [location]);
+
   
   let isSignedIn = JSON.parse(localStorage.getItem("userdata"));
 

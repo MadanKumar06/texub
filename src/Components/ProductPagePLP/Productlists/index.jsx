@@ -49,30 +49,13 @@ const Productlists = ({
   };
   const [updatedFilterProducts,setupdatedFilterProducts] = useState({})
   const [updateDropdowns,setupdateDropdowns] = useState(false)
- const [showDatedFilter,setshowDatedFilter] = useState(false)
-
   useEffect(()=>{
     const updatedData = window.localStorage.getItem("filterProductsDropdown")
     setupdatedFilterProducts(JSON.parse(updatedData))
-    setTimeout(()=>{
-      setshowDatedFilter(!showDatedFilter)
-      setTimeout(()=>{
-        setApplyFilter(!applyFilter)
-      },1000)
-    },5000)
   },[updateDropdowns])
- const updateProductFilterDrop = ()=>{
-  window.localStorage.setItem("filterProductsDropdown",JSON.stringify(productFetchApi))
- }
-
- useEffect(()=>{
-  setProductFetchApi((prevState) => ({
-    ...prevState,
-    conditions:updatedFilterProducts?.conditions,
-    eta:updatedFilterProducts?.eta,
-    hub:updatedFilterProducts?.hub,
-  }));
- },[showDatedFilter])
+  const updateProductFilterDrop = ()=>{
+    window.localStorage.setItem("filterProductsDropdown",JSON.stringify(productFetchApi))
+  }
 
   const handleSearchClick = (event) => {
     if (productFetchApi?.search_product !== "") {
@@ -182,8 +165,15 @@ const Productlists = ({
     }
   }, [currency]);
 
-  useEffect(() => {
-    if (productlistdropdown) {
+ useEffect(() => {
+    if(updatedFilterProducts?.hub>0 || updatedFilterProducts?.conditions>0 || updatedFilterProducts?.eta>0){
+      setProductFetchApi((prev) => ({
+        ...prev,
+        conditions:updatedFilterProducts?.conditions,
+        eta:updatedFilterProducts?.eta,
+        hub:updatedFilterProducts?.hub,
+      }));
+    }else{
       setProductFetchApi((prev) => ({
         ...prev,
         hub: productlistdropdown?.hub[0]?.value,
@@ -192,6 +182,17 @@ const Productlists = ({
       }));
     }
   }, [productlistdropdown]);
+
+  /* useEffect(() => {
+    if (productlistdropdown) {
+      setProductFetchApi((prev) => ({
+        ...prev,
+        hub: productlistdropdown?.hub[0]?.value,
+        conditions: productlistdropdown?.conditions?.[0]?.value,
+        eta: productlistdropdown?.eta?.[0]?.value,
+      }));
+    }
+  }, [productlistdropdown]); */
 
   return (
     <div className="productlist">
@@ -379,7 +380,6 @@ const Productlists = ({
           className="button-text btn-primary clear plp-apply-btn"
           onClick={() =>{
             updateProductFilterDrop()
-            setshowDatedFilter(true)
             setupdateDropdowns(!updateDropdowns)
             setApplyFilter(!applyFilter)
           }}

@@ -26,11 +26,11 @@ const Productlists = ({
   applyFilter,
   productData,
 }) => {
-  useEffect(() => {
-    if (productFetchApi?.hub === "") {
-      window.location.reload();
-    }
-  }, [productFetchApi?.hub]);
+  // useEffect(() => {
+  //   if (productFetchApi?.hub === "") {
+  //     window.location.reload();
+  //   }
+  // }, [productFetchApi?.hub]);
   const [{ homeSearch, currency }, dispatch] = useStateValue();
   const [productlistdropdown, setProductlistdropdown] = useState({
     hub: [],
@@ -59,6 +59,7 @@ const Productlists = ({
       }));
     }
   }, [homeSearch]);
+  
   const handleImageChange = (event) => {
     setFilterHeaderImage((prevState) => ({
       ...prevState,
@@ -103,7 +104,7 @@ const Productlists = ({
     }
   }, [currency]);
 
-  useEffect(() => {
+  /* useEffect(() => {
     if (productlistdropdown) {
       setProductFetchApi((prev) => ({
         ...prev,
@@ -112,11 +113,46 @@ const Productlists = ({
         eta: productlistdropdown?.eta?.[0]?.value,
       }));
     }
-  }, [productlistdropdown]);
+  }, [productlistdropdown]); */
+
+  const [updatedFilterProducts,setupdatedFilterProducts] = useState({})
+  const [updateDropdowns,setupdateDropdowns] = useState(false)
+  useEffect(()=>{
+    const updatedData = window.localStorage.getItem("filterProductsDropdown_seller_profile")
+    setupdatedFilterProducts(JSON.parse(updatedData))
+  },[updateDropdowns])
+  const updateProductFilterDrop = ()=>{
+    window.localStorage.setItem("filterProductsDropdown_seller_profile",JSON.stringify(productFetchApi))
+  }
+  const [isUpdated,setisUpdated] = useState(false)
+  useEffect(()=>{
+    setTimeout(() => {
+      setisUpdated(true)
+    }, 0);
+  },[])
+  useEffect(() => {
+    if(updatedFilterProducts?.hub>0 || updatedFilterProducts?.conditions>0 || updatedFilterProducts?.eta>0){
+      setProductFetchApi((prev) => ({
+        ...prev,
+        conditions:updatedFilterProducts?.conditions,
+        eta:updatedFilterProducts?.eta,
+        hub:updatedFilterProducts?.hub,
+      }));
+    }else{
+      setProductFetchApi((prev) => ({
+        ...prev,
+        hub: productlistdropdown?.hub[0]?.value,
+        conditions: productlistdropdown?.conditions?.[0]?.value,
+        eta: productlistdropdown?.eta?.[0]?.value,
+      }));
+    }
+    }, [productlistdropdown]);
+
   const handleSearchClick = (event) => {
     event.preventDefault();
     setApplyFilter(!applyFilter);
   };
+  
   return (
     <div className="productlist">
       <div className="productlist__search">
@@ -152,9 +188,10 @@ const Productlists = ({
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={productFetchApi?.hub}
+            value={isUpdated===true?productFetchApi?.hub:0}   
             label="Hub"
             name="hub"
+            defaultValue="0"
             onChange={handleChange}
           >
             {productlistdropdown?.hub?.length ? (
@@ -173,8 +210,9 @@ const Productlists = ({
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={productFetchApi?.conditions}
+            value={isUpdated===true?productFetchApi?.conditions:0}
             label="Age"
+            defaultValue="0"
             name="conditions"
             onChange={handleChange}
           >
@@ -194,8 +232,9 @@ const Productlists = ({
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={productFetchApi?.eta}
+            value={isUpdated===true?productFetchApi?.eta:0}
             label="ETA"
+            defaultValue="0"
             name="eta"
             onChange={handleChange}
           >
@@ -212,7 +251,11 @@ const Productlists = ({
       <div className="apply-btn">
         <Button
           className="button-text btn-primary clear plp-apply-btn"
-          onClick={() => setApplyFilter(!applyFilter)}
+          onClick={() =>{
+            setApplyFilter(!applyFilter)
+            updateProductFilterDrop()
+             setupdateDropdowns(!updateDropdowns)
+          }}
         >
           Apply
         </Button>
