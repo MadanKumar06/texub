@@ -316,7 +316,7 @@ const Index = ({ viewDetail, setvieworder, handleSearchBar }) => {
       value: true,
     });
     let data = {
-      item_id: viewDetail?.[0]?.po_id,
+      item_id: viewDetailOrder?.[0]?.po_id,
       attachment: event,
     };
     axios
@@ -367,7 +367,7 @@ const Index = ({ viewDetail, setvieworder, handleSearchBar }) => {
       value: true,
     });
     let data = {
-      poId: viewDetail?.[0]?.po_id,
+      poId: viewDetailOrder?.[0]?.po_id,
       orderStatus: event,
     };
     axios
@@ -415,10 +415,6 @@ const Index = ({ viewDetail, setvieworder, handleSearchBar }) => {
 
   // stepper
   const [activeStep, setActiveStep] = useState(0);
-  console.log("radiogroup")
-  console.log(radiogroup)
-  console.log("activeStep")
-  console.log(activeStep)
   const [statusFromAPI, setStatusFromAPI] = useState([]);
   useEffect(() => {
     const fetchTableData = async () => {
@@ -500,6 +496,24 @@ const Index = ({ viewDetail, setvieworder, handleSearchBar }) => {
     }
     
   },[activeStep,seller_order_status])
+
+  const isRadioSelected = ()=>{
+    if(activeStep===1 && radio_orde_rstatus===""){
+      setRadioGroup(0)
+      swal
+      .fire({
+        title: "Important!",
+        text: "Please select the confirm",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Select",
+      })
+    }else{
+      handleAPICall(radiogroup)
+    }
+  }
 
   return (
     <div className="vieworders_main">
@@ -624,7 +638,9 @@ const Index = ({ viewDetail, setvieworder, handleSearchBar }) => {
             />
             <Button
               className="button-text btn-secondary inventory_register"
-              onClick={() => handleAPICall(radiogroup)}
+              onClick={() =>{
+                isRadioSelected()
+              }}
             >
               Submit
             </Button>

@@ -348,7 +348,7 @@ const Index = ({ address, setisAddress, setisShipping }) => {
               </div>
             )}
           </div>
-          <div className="inputfield" style={{ width: "48.5%" }}>
+          <div className="inputfield  city_row">
             <p>City</p>
             <TextField
               fullWidth
