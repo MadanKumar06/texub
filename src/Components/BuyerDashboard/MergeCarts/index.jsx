@@ -23,6 +23,10 @@ function MergeCarts() {
     });
   };
 
+   function formatToCurrency(price) {
+    return price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
+  }
+
   const [mergetable, setmergetable] = useState([])
   useEffect(async() => {
     let user = JSON.parse(localStorage.getItem('userdata'))
@@ -59,13 +63,21 @@ function MergeCarts() {
         },
       },
     },
-    { name: "items_qty", label: "Items Qty" },
+    {
+       name: "items_qty",
+      label: "Items Qty",
+      options: {
+          customBodyRender: (value) => {
+            return <div className="mergecarts__subtotal">{formatToCurrency(parseInt(value))}</div>;
+          },
+        },
+     },
     {
       name: "subtotal",
       label: "Subtotal",
       options: {
         customBodyRender: (value) => {
-          return <div className="mergecarts__subtotal">{value}</div>;
+          return <div className="mergecarts__subtotal">{formatToCurrency(parseInt(value))}</div>;
         },
       },
     },
@@ -171,18 +183,7 @@ function MergeCarts() {
   }
   return (
     <div className="mergecarts">
-      <div className="mergecarts__footer">
-        <div className="mergecarts__container">
-          <Link to={`/${customnostore ? customnostore : geo?.country_name}/buyerdashboard/dashboard`}>
-            <ArrowBackIosNew />
-            <span>Back</span>
-          </Link>
-          {/* <div className="merge__cart_button">
-            <Button className="merge_btn" >Merge</Button>
-            <Button className="Delete_btn">Delete</Button>
-          </div> */}
-        </div>
-      </div>
+    
       <MUITable
         columns={columns}
         table={tableData}
@@ -198,6 +199,18 @@ function MergeCarts() {
         :
         ""
       }
+        <div className="mergecarts__footer">
+        <div className="mergecarts__container">
+          <Link to={`/${customnostore ? customnostore : geo?.country_name}/buyerdashboard/dashboard`}>
+            <ArrowBackIosNew />
+            <span>Back</span>
+          </Link>
+          {/* <div className="merge__cart_button">
+            <Button className="merge_btn" >Merge</Button>
+            <Button className="Delete_btn">Delete</Button>
+          </div> */}
+        </div>
+      </div>
     </div>
   );
 }
