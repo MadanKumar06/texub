@@ -621,6 +621,21 @@
   }
 }
 
+@media only screen and (max-width: 899.5px) {
+    .vieworders_main{
+        .vieworders__table{
+            .MuiTableBody-root{
+                .MuiTableRow-root{
+                    .MuiTableCell-root{
+                      display: flex;
+                      align-items: center;
+                    }
+                }
+            }
+        }
+    } 
+}
+
 @media (max-width: 768px) {
   .vieworders_main .vieworders_detail_section .details .vieworder_address {
     grid-template-columns: 100%;

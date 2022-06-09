@@ -373,15 +373,12 @@
             &:nth-child(1) {
               border-right: none;
               position: absolute;
-              // height: 100%;
               left: 0rem;
-              /* right: -8rem; */
-              // width: 100%;
               border: 0;
               div {
                 position: absolute;
                 left: 6.5rem;
-                top: 2rem;
+                top: 3rem;
               }
               .datatables-noprint{
                  position: relative;
@@ -426,6 +423,7 @@
         text-align: center;
         font-size: 22px;
         color: #5c6369;
+        padding: 7px 10px;
         &:not(:nth-child(2)) {
           border: 1px solid #d6d8d9;
           border-bottom: none !important;
@@ -561,12 +559,18 @@
           color: #878787;
           max-width: fit-content;
           letter-spacing: 0.54px;
+          display: -webkit-box;
+          -webkit-line-clamp: 4;
+          -webkit-box-orient: vertical;
+          text-overflow: ellipsis;
+          overflow: hidden;
         }
         .my_cart_link {
           display: flex;
           justify-content: space-between;
           font-weight: 600;
           text-decoration: underline;
+          padding: 8px 0;
           a {
             color: #002d56;
           }
@@ -712,25 +716,9 @@
       font-size: 16px !important;
     }
   }
-
-  // .mycart_table_main_container
-  //   .mycart_table_mui_datatable_main
-  //   .MuiTable-root
-  //   .MuiTableBody-root
-  //   .MuiTableRow-root
-  //   .MuiTableCell-root:nth-child(1)
-  //   div {
-  //   left: 2.5rem;
-  // }
-  // .mycart_table_main_container
-  //   .mycart_table_mui_datatable_main
-  //   .MuiTable-root
-  //   .MuiTableBody-root
-  //   .MuiTableRow-root
-  //   .MuiTableCell-root:nth-child(2)
-  //   .mycart_table_seller_id {
-  //   left: 1.5em;
-  // }
+  .mycart_table_main_container .mycart_table_mui_datatable_main .mycart_product_main .mycart_right_section .my_cart_product_description{
+    font-size: 14px;
+  }
 
   .mycart_table_main_container .mycart_table_mui_datatable_main .MuiTable-root .MuiTableHead-root .MuiTableRow-root .MuiTableCell-root:nth-child(2) div{
         position: initial;
