@@ -114,10 +114,20 @@ const Index = ({ searchdata, searchupdate }) => {
       name: "product_brand_image",
       label: " ",
       options: {
-        customBodyRender: (value) => {
+        customBodyRender: (value,tablemeta) => {
+          let brandName = tablemeta?.rowData[7];
           return (
             <div className="brand_image">
-              <img src={value} alt="" className="icon" />
+                {value ? (
+                <img
+                  src={value}
+                  className="brand_img_section"
+                  alt="No Brands"
+                  style={{ height: "50px" }}
+                />
+              ) : (
+                <span>{brandName}</span>
+              )}
             </div>
           );
         },
@@ -188,6 +198,13 @@ const Index = ({ searchdata, searchupdate }) => {
     },
     {
       name: "product_currency",
+      label: "",
+      options: {
+        display: false,
+      },
+    },
+     {
+      name: "product_brand_name",
       label: "",
       options: {
         display: false,
