@@ -112,11 +112,17 @@ const PdpHeader = ({ classes, pdpSellerData, dataFromPLP }) => {
     <div className={pdp_top_header_container}>
       <div className={pdp_page_brands_images_container}>
         <div className={pdp_page_brands_images}>
-          <img
-            className={pdp_brand_icon_1}
+           {pdpSellerData?.brand ? (
+                <img
+                 className={pdp_brand_icon_1}
             src={Constant.imageBaseUrl() + pdpSellerData?.brand}
             alt=""
-          />
+                  
+                />
+              ) : (
+                <span className="pdp_brand_name">{pdpSellerData?.brand_name}</span>
+              )}
+          
           {/* <img className={pdp_brand_icon_2} src={brand_tag} alt="" /> */}
         </div>
       </div>

@@ -47,9 +47,9 @@
     }
   }
 
-  .productlist__search_seller {
+  .productlist__search_box {
     color: white;
-    min-width: 35em;
+    // min-width: 35em;
     border: 1px solid #d6d8d9;
     .MuiPaper-root {
       background-color: unset !important;
@@ -159,13 +159,19 @@
     }
   }
 }
+.productlist .productlist__search_box .MuiPaper-root .MuiButtonBase-root {
+    color: #ffffff;
+    padding: 8px 22px;
+    background: linear-gradient(180deg, #ffd788 0%, #ad7c20 100%);
+    border-radius: 2px;
+}
 @media (max-width: 1300px) {
   .productlist {
     flex-wrap: wrap;
   }
 }
 @media (max-width: 1660px) {
-.productlist .productlist__search .MuiPaper-root{
+.productlist .productlist__search_box .MuiPaper-root{
   min-width: 420px;
 }
 }
@@ -180,7 +186,7 @@
   }
 }
 @media (max-width: 1500px) {
-.productlist .productlist__search .MuiPaper-root{
+.productlist .productlist__search_box .MuiPaper-root{
   min-width: 350px;
 }
 }
@@ -204,17 +210,17 @@
       font-size: 14px;
     }
   }
-  .productlist .productlist__search_seller .search_input .MuiInput-root input {
+  .productlist .productlist__search_box .search_input .MuiInput-root input {
     font-size: 16px;
     height: 100%;
   }
-  .productlist .productlist__search .MuiPaper-root{
+  .productlist .productlist__search_box .MuiPaper-root{
   min-width: 300px;
 }
 }
 @media (max-width: 1300px) {
   .productlist{
-      .productlist__search{
+      .productlist__search_box{
           .MuiPaper-root{
               min-width: 300px
          }
@@ -226,10 +232,16 @@
       }
    } 
 }
+@media (max-width: 1300px) {
+.productlist {
+    padding: 15px 1%;
+    gap: 10px;
+}
+}
 
 @media (max-width: 1100px) {
   .productlist{
-      .productlist__search{
+      .productlist__search_box{
           .MuiPaper-root{
               min-width: 250px;
          }
@@ -238,7 +250,7 @@
 }
 @media (max-width: 970px) {
   .productlist{
-      .productlist__search{
+      .productlist__search_box{
           .MuiPaper-root{
               min-width: 350px
          }
@@ -254,7 +266,7 @@
 @media (max-width: 810px) {
 
  .productlist{
-   .productlist__search{
+   .productlist__search_box{
       .MuiPaper-root{
         min-width: unset;
       }
@@ -264,7 +276,7 @@
 
 
 @media (max-width: 480px) {
-  .productlist__search_seller {
+  .productlist__search_box {
     min-width: 100% !important;
     .MuiFormControl-root {
       width: 100%;
