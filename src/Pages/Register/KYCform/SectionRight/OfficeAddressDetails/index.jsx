@@ -12,7 +12,8 @@ const OfficeAddressDetails = ({
   validationFieldMessage,
   setValidationFieldMessage,
   inputsValidations,
-  setinputsValidations
+  setinputsValidations,
+  getisStatelist
 }) => {
   let {
     info_text_lineNote_one,
@@ -78,6 +79,9 @@ const OfficeAddressDetails = ({
 
   //API to Fetxh State List
   const [stateList, setStateList] = useState([]);
+  useEffect(()=>{
+    getisStatelist(stateList)
+  },[stateList])
   useEffect(() => {
     if (country_readonly) {
       const fetchCountryData = () => {
@@ -98,6 +102,9 @@ const OfficeAddressDetails = ({
       fetchCountryData();
     }
   }, [country_readonly?.[0]?.value]);
+
+  console.log("inputValidation from state dropdown")
+  console.log(inputValidation)
   return (
     <div>
       <p className={info_text_lineNote_one}>Office Address</p>
@@ -176,9 +183,9 @@ const OfficeAddressDetails = ({
                     state_dropdown_list: newValue,
                     state_text: "",
                   }));
-                  /* setInputValidation((prevState) => ({
+                  setInputValidation((prevState) => ({
                     state_dropdown_list: "",
-                  })); */
+                  }));
                   setinputsValidations((prevState) => ({
                     ...prevState,
                     state_text: "",
@@ -205,7 +212,7 @@ const OfficeAddressDetails = ({
                 )}
               />
               <InputLabel className={validation_error}>
-                {inputsValidations?.state_text}
+                {inputValidation?.state_dropdown_list}
               </InputLabel>
             </div>
           ) : (

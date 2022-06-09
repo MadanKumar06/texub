@@ -27,7 +27,8 @@ const BuyerKYCformSectionRight = ({
   checkbox_label,
   KYCvalidationHandler,
   inputsValidations,
-  setinputsValidations
+  setinputsValidations,
+  getisStatelist
 }) => {
   let {
     section_right_container,
@@ -40,7 +41,11 @@ const BuyerKYCformSectionRight = ({
     setValidationFieldMessage(event);
   };
   const [kycCategoryList, setKycCategoryList] = useState([]);
-
+  const [isStatelist,setisStatelist] = useState([])
+  useEffect(()=>{
+    getisStatelist(isStatelist)
+  },[isStatelist])
+ 
   //API for fetch dropdown values
   useEffect(() => {
     const fetchCountryData = () => {
@@ -72,6 +77,7 @@ const BuyerKYCformSectionRight = ({
         validationFieldMessage={validationFieldMessage}
         inputsValidations={inputsValidations}
         setinputsValidations={setinputsValidations}
+        getisStatelist={(state)=>setisStatelist(state)}
       />
       <>
         <p className={info_text_lineNote_two}>Categories</p>

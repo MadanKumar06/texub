@@ -43,6 +43,8 @@ const BuyerKYCformSectionLeft = ({ classes }) => {
     trade_image: "",
     tax_image: ""
   })
+  const [isStatelist,setisStatelist] = useState([])
+
   const KYCvalidationHandler = () => {
     let isError = false;
     if (!kycFormData?.trade_lic_number) {
@@ -66,12 +68,14 @@ const BuyerKYCformSectionLeft = ({ classes }) => {
       }));
       isError = true;
     }
-    if (!kycFormData?.state_text) {
-      setinputsValidations((prevState) => ({
-        ...prevState,
-        state_text: "Please enter the state.",
-      }));
-      isError = true;
+    if(!isStatelist?.length){
+      if (!kycFormData?.state_text) {
+        setinputsValidations((prevState) => ({
+          ...prevState,
+          state_text: "Please enter the state.",
+        }));
+        isError = true;
+      }
     }
     if (!kycFormData?.city) {
       setinputsValidations((prevState) => ({
@@ -89,11 +93,6 @@ const BuyerKYCformSectionLeft = ({ classes }) => {
     }
 
   };
-
-  console.log("inputsValidations")
-  console.log(inputsValidations)
-  console.log("kycFormData")
-  console.log(kycFormData)
 
   const handleClose = () => {
     setOpen(false);
@@ -219,6 +218,7 @@ const BuyerKYCformSectionLeft = ({ classes }) => {
               KYCvalidationHandler={KYCvalidationHandler}
               inputsValidations={inputsValidations}
               setinputsValidations={setinputsValidations}
+              getisStatelist={(state)=>setisStatelist(state)}
             />
           </div>
         </div>
