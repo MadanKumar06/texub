@@ -1,21 +1,17 @@
 import React, { useState, useEffect } from "react";
 import "./styles.scss";
-import MUITable from "../../Components/Common/MUITable";
-import { ArrowBackIosNew } from "@mui/icons-material";
+import MUITable from "../../../Components/Common/MUITable";
 import { Button } from "@mui/material";
-import { Link } from "react-router-dom";
-import Checkout_Texub_logo from "../../Assets/CheckoutPage/checkout_texub_logo.png";
+import Checkout_Texub_logo from "../../../Assets/CheckoutPage/checkout_texub_logo.png";
 import axios from "axios";
-import Constant from "../../Constant";
-import { useStateValue } from "../../store/state";
-import NodataFound from "../../Assets/CommonImage/NodataFound.webp.png";
-
+import Constant from "../../../Constant";
+import { useStateValue } from "../../../store/state";
 import Divider from "@mui/material/Divider";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 var moment = require("moment");
 
 function Index() {
-  const [{ geo, customnostore, currency }, dispatch] = useStateValue();
+  const [{ currency }, dispatch] = useStateValue();
   const { qid } = useParams();
   const [pendingInvoiceList, setPendingInvoiceList] = useState([]);
   var currency_id = JSON.parse(localStorage.getItem("currency"));
@@ -25,6 +21,21 @@ function Index() {
   )?.custom_attributes?.filter(
     (itm) => itm?.attribute_code === "customer_code"
   );
+  useEffect(() => {
+    document
+      .getElementById("Header-header_main-2")
+      .classList.remove("Header-header_main-2");
+    document
+      .getElementById("Header-header_main-2")
+      .classList.add("Header-header_main-2_no_display");
+
+    document
+      .getElementById("user_details_main_container")
+      .classList.remove("user_details_main_container");
+    document
+      .getElementById("user_details_main_container")
+      .classList.add("user_details_main_container_no_display");
+  }, []);
   useEffect(async () => {
     if (qid === undefined) return;
     dispatch({
@@ -245,52 +256,26 @@ function Index() {
       .replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
   }
 
-  const navigate = useNavigate();
-  const handleProceedtoCheckout = () => {
-    navigate(
-      `/${customnostore ? customnostore : geo?.country_name}/checkout/${
-        pendingInvoiceList?.invoice?.quote_id
-      }`
-    );
-  };
-  let permissions = JSON.parse(localStorage.getItem("permissions"));
-  let placeorder =
-    permissions?.length === 0
-      ? false
-      : permissions?.some(
-          (per) =>
-            per?.value === "can-place-order" && per?.permission_value === 0
-        );
-  const [pendinginvoicestatus, setpendinginvoicestatus] = useState(false);
-  useEffect(() => {
-    if (!pendingInvoiceList) return;
-    if (pendingInvoiceList?.invoice?.invoice_status > "3") {
-      setpendinginvoicestatus(true);
-    } else {
-      setpendinginvoicestatus(false);
-    }
-  }, [pendingInvoiceList]);
   const handleChange = () => {
-    var printContents = document.getElementById("pendinginvoice").innerHTML;
-    var originalContents = document.body.innerHTML;
-    document.body.innerHTML = printContents;
-    document.body.className = "pendinginvoice";
+    window.onbeforeprint = function (event) {
+      document.getElementById("print_btn").classList.remove("print_btn");
+      document
+        .getElementById("print_btn")
+        .classList.add("print_btn_no_display");
+    };
+    window.onafterprint = function (event) {
+      document
+        .getElementById("print_btn")
+        .classList.remove("print_btn_no_display");
+      document.getElementById("print_btn").classList.add("print_btn");
+    };
     window.print();
-    document.body.innerHTML = originalContents;
   };
   return (
-    <div className="pendinginvoice" id="pendinginvoice">
+    <div className="pendinginvoice_print" id="pendinginvoice">
       <div className="pendinginvoice__top">
         <div className="top__header">
           <div className="checkout_info_list">
-            <div className="checkout_back_toggle">
-              <p
-                onClick={() => navigate(-1)}
-                style={{ color: "white", cursor: "pointer" }}
-              >
-                <ArrowBackIosNew />
-              </p>
-            </div>
             <div className="order_id_info">
               <div className="orderid_section">
                 <span className="orderinfo_name">Pending Invoice No.</span>
@@ -322,100 +307,7 @@ function Index() {
                 </span>
               </div>
             </div>
-            <div className="order_apply_btns">
-              <div className="order_apply-btn">
-                <Link
-                  to={`/${
-                    customnostore ? customnostore : geo?.country_name
-                  }/products`}
-                  style={{ textDecoration: "none" }}
-                >
-                  <Button className="button-text btn-primary clear checkout-apply-btn">
-                    Continue Shopping
-                  </Button>
-                </Link>
-              </div>
-              <a
-                href={`/${
-                  customnostore ? customnostore : geo?.country_name
-                }/pendinginvoice-download/${qid}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <div
-                  className="checkoutlist__download"
-                  // onClick={() => handleChange()}
-                >
-                  <svg
-                    id="Icon"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="35"
-                    height="35"
-                    viewBox="0 0 40 40"
-                  >
-                    <rect
-                      id="Area"
-                      width="40"
-                      height="40"
-                      fill="#fff"
-                      opacity="0"
-                    />
-                    <g
-                      id="Icon-2"
-                      data-name="Icon"
-                      transform="translate(4.5 4.5)"
-                    >
-                      <path
-                        id="Path"
-                        d="M35.5,22.5v6a3.245,3.245,0,0,1-3.444,3H7.944a3.245,3.245,0,0,1-3.444-3v-6"
-                        transform="translate(-4.5 -0.5)"
-                        fill="none"
-                        stroke="#fff"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="3"
-                      />
-                      <path
-                        id="Path-2"
-                        data-name="Path"
-                        d="M10.5,15,20,22.5,29.5,15"
-                        transform="translate(-4.5 -2.346)"
-                        fill="none"
-                        stroke="#fff"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="3"
-                      />
-                      <line
-                        id="Line"
-                        y1="18"
-                        transform="translate(15.5)"
-                        fill="none"
-                        stroke="#fff"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="3"
-                      />{" "}
-                    </g>
-                  </svg>
-                </div>
-              </a>
-            </div>
           </div>
-          {/* <ArrowBackIosIcon />
-          <span>
-            <p className='label'>Order ID</p>
-            <p className='value'>28739822</p>
-          </span>
-          <span>
-            <p className='label'>Total Amount</p>
-            <p className='value'> 10,729,830</p>
-          </span>
-          <span>
-            <p className='label'>Order Status</p>
-            <p className='value'>Pending</p>
-          </span>
-          <p>Continue Shopping</p> */}
         </div>
         <div className="top__orderinfo">
           <div className="orderingo__logo">
@@ -513,43 +405,6 @@ function Index() {
                 __html: pendingInvoiceList?.beneficiary_bank,
               }}
             ></div>
-            {/* <div className="content">
-              <span className="label">Bank Name : </span>
-              <span className="value">India Overseas Bank</span>
-            </div>
-            <div className="content">
-              <span className="label">Bank Address : </span>
-              <span className="value">
-                61/234, HRBR Layout Bangalore - 560043
-              </span>
-            </div>
-            <div className="content">
-              <span className="label">Account Routing (ABA) : </span>
-              <span className="value">001234587</span>
-            </div>
-            <div className="content">
-              <span className="label">ACH : </span>
-              <span className="value">001234587</span>
-            </div>
-            <div className="content">
-              <span className="label">SWIFT/BIC CODE : </span>
-              <span className="value">CNBFUS3M</span>
-            </div>
-            <div className="content">
-              <span className="label">ACCOUNT NUMBER : </span>
-              <span className="value">32170023400</span>
-            </div>
-            <span className="title">BENIFICIARY COMPANY</span>
-            <div className="content">
-              <span className="label">BENIFICIARY NAME : </span>
-              <span className="value">TEXUB LLC</span>
-            </div>
-            <div className="content">
-              <span className="label">BENIFICIARY ADDRESS : </span>
-              <span className="value">
-                61/234, HRBR LAYOUT BANGALORE - 560043
-              </span>
-            </div> */}
           </div>
           <div className="tableinfo__orderdata">
             <div className="table_price_data">
@@ -598,28 +453,6 @@ function Index() {
                 00.00
               </span>
             </div>
-            {/* <p className="total_value_section_block" style={{position:"relative",
-                      paddingTop:"10px",
-                      paddingBottom:"10px",
-                      alignIteems:" center",
-                      marginTop: "10px",
-                 }}>
-               <div className="total_value_additional"></div>
-               <span className="total label">Total Order value</span>
-                <Divider
-                  style={{ visibility: "hidden" }}
-                  orientation="vertical"
-                />
-                <span className="value">
-                  <span className="value_symobol">
-                    {" "}
-                    {currency_id?.currency_code}{" "}
-                  </span>
-                  {formatToCurrency(
-                    parseInt(pendingInvoiceList?.invoice?.grand_total)
-                  )}{" "}
-                </span>
-            </p> */}
             <div
               className="total_value_block table_price_data"
               style={{
@@ -644,43 +477,6 @@ function Index() {
                 </span>
               </div>
             </div>
-
-            {/* <p
-              className="total_value_block"
-              style={{
-                alignItems: "center",
-                marginTop: "10px",
-              }}
-            >
-              <span className="total label">Total Order value</span>
-              <Divider
-                style={{ visibility: "hidden" }}
-                orientation="vertical"
-              />
-              <span className="value">
-                <span className="value_symobol">
-                  {" "}
-                  {pendingInvoiceList?.invoice?.quote_currency}
-                </span>
-                {formatToCurrency(
-                    parseInt(pendingInvoiceList?.invoice?.grand_total)
-                  )}{" "}
-              </span>
-            </p> */}
-            {/* <p className="total_value">
-              <div className="total_value_block">
-                <span className="label">Total Order value</span>
-                <span className="value">
-                  <span className="value_symobol">
-                    {" "}
-                    {currency_id?.currency_code}{" "}
-                  </span>
-                  {formatToCurrency(
-                    parseInt(pendingInvoiceList?.invoice?.grand_total)
-                  )}{" "}
-                </span>
-              </div>
-            </p> */}
           </div>
         </div>
       </div>
@@ -697,21 +493,38 @@ function Index() {
         ) : (
           ""
         )}
-        <div className="bottom__buttons">
+        <div className="print_btn" id="print_btn">
           <Button
-            className="button__cancel"
-            onClick={() => window.history.back()}
+            className="button-text btn-secondary invoice_print"
+            onClick={() => handleChange()}
           >
-            Back
-          </Button>
-          {!placeorder && !pendinginvoicestatus && (
-            <Button
-              className="button__checkout"
-              onClick={() => handleProceedtoCheckout()}
+            <svg
+              version="1.0"
+              xmlns="http://www.w3.org/2000/svg"
+              width="30.000000pt"
+              height="30.000000pt"
+              viewBox="0 0 30.000000 30.000000"
+              preserveAspectRatio="xMidYMid meet"
             >
-              Proceed To Checkout
-            </Button>
-          )}
+              <g
+                transform="translate(0.000000,30.000000) scale(0.100000,-0.100000)"
+                fill="#ffffff"
+                stroke="none"
+              >
+                <path
+                  d="M60 245 c0 -12 17 -15 90 -15 73 0 90 3 90 15 0 12 -17 15 -90 15
+-73 0 -90 -3 -90 -15z"
+                />
+                <path
+                  d="M27 204 c-4 -4 -7 -32 -7 -62 0 -45 3 -55 20 -59 13 -3 20 -14 20
+-29 0 -24 2 -24 90 -24 88 0 90 0 90 24 0 15 7 26 21 29 18 5 20 12 17 64 l-3
+58 -121 3 c-66 1 -123 -1 -127 -4z m193 -104 l0 -50 -70 0 -70 0 0 50 0 50 70
+0 70 0 0 -50z"
+                />
+              </g>
+            </svg>
+            Print
+          </Button>
         </div>
       </div>
     </div>
