@@ -243,6 +243,7 @@ const MyCartTable = ({ cartDataList, deleteCartData, setrowselect }) => {
                     <img
                       src={`${Constant.imageBaseUrl()}${value}`}
                       alt=""
+                      title={brand_name}
                     />
                   ) : (
                     <span>{brand_name}</span>

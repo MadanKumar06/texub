@@ -14,3 +14,8 @@
 #mobile_menu_categories span.sale{
     background: linear-gradient(180deg, #ffd788 0%, #ad7c20 100%);
 }
+@media (max-width:400px){
+    #sidemenu_sign_out{
+        width: 100%;
+    }
+}

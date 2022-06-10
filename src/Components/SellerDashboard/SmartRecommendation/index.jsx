@@ -131,6 +131,7 @@ const Index = ({ searchdata, searchupdate }) => {
                   src={value}
                   className="brand_img_section"
                   alt="No Brands"
+                  title={brandName}
                   style={{ height: "50px" }}
                 />
               ) : (

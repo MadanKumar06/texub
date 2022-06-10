@@ -37,11 +37,13 @@ const BuyerKYCformSectionLeft = ({ classes }) => {
     tax_number: "",
     address_line_one: "",
     state_text: "",
+    state_dropdown_list: "",
     city: "",
     pin_zip_code: "",
     agreementChecked: "",
     trade_image: "",
-    tax_image: ""
+    tax_image: "",
+    national_id_image: ""
   })
   const [isStatelist,setisStatelist] = useState([])
 
@@ -196,6 +198,8 @@ const BuyerKYCformSectionLeft = ({ classes }) => {
                   FormValues={kycFormData}
                   validationFieldMessage={validationFieldMessage}
                   setValidationFieldMessage={setValidationFieldMessage}
+                  inputsValidations={inputsValidations}
+                  setinputsValidations={setinputsValidations}
                 />
               )}
               {seller?.[0]?.value !== "US" && buyer_or_seller === 6 && (

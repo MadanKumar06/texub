@@ -123,7 +123,7 @@ function Index({ registerproduct }) {
           let brandName = tablemeta?.rowData[15];
           return (
             <div className="brand_image">
-              {value ? <img src={value} alt="" /> : <span>{brandName}</span>}
+              {value ? <img src={value} alt="" title={brandName}/> : <span>{brandName}</span>}
             </div>
           );
         },

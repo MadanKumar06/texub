@@ -18,7 +18,8 @@ function ValidationForKycForm({
   setDocumentButton,
   KYCvalidationHandler,
   inputsValidations,
-  setinputsValidations
+  setinputsValidations,
+  isStatelist
 }) {
   let { validation_error } = classes;
   const history = useNavigate();
@@ -78,13 +79,35 @@ function ValidationForKycForm({
       }));
       endPoint = true;
     }
-    if (!values?.state_dropdown_list && !values?.state_text) {
+    if(isStatelist?.length){
+      if (!values?.state_dropdown_list) {
+        setValid((prevState) => ({
+          ...prevState,
+          state_dropdown_list: "State field is Required.",
+        }));
+        setinputsValidations((prevState) => ({
+          ...prevState,
+          state_dropdown_list: "State field is Required.",
+        }));
+        endPoint = true;
+      }
+    }
+    if(!isStatelist?.length){
+      if (!values?.state_text) {
+        setinputsValidations((prevState) => ({
+          ...prevState,
+          state_text: "Please enter the state.",
+        }));
+        endPoint = true;
+      }
+    }
+    /* if (!values?.state_dropdown_list && !values?.state_text) {
       setValid((prevState) => ({
         ...prevState,
         state_dropdown_list: "State field is Required.",
       }));
       endPoint = true;
-    }
+    } */
     if (!values?.pin_zip_code) {
       setValid((prevState) => ({
         ...prevState,
@@ -116,6 +139,12 @@ function ValidationForKycForm({
       setDocumentButton("national_id");
     }
   };
+  console.log("values")
+  console.log(values)
+  console.log("valid")
+  console.log(valid)
+  console.log("isStatelist")
+  console.log(isStatelist)
   const ScroltoTop = () => {
     document.getElementById("kyc_focus_input")?.focus();
   };

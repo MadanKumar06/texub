@@ -98,6 +98,7 @@ const Productstable = ({
                 <img
                   src={`${Constant.imageBaseUrl()}${value?.brand}`}
                   alt="brand"
+                  title={value?.brand_name}
                 />
               ) : (
                 <span>{value?.brand_name}</span>
