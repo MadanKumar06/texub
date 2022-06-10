@@ -103,6 +103,9 @@
         }
       }
     }
+    .city_row{
+      width: 48.5%;
+    }
   }
   .btn_billing {
     min-width: 16% !important;
@@ -173,6 +176,9 @@
     .Shippingaddress_btn_section {
     justify-content: center;
     width: 100%;
+  }
+  .Shippingaddress_information .city_row{
+    width: 100% !important;
   }
 }
 @media only screen and (max-width: 375px) {

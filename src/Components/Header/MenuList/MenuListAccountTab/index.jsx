@@ -976,6 +976,7 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
               variant="contained"
               endIcon={<ExitToApp />}
               className={classes.SignoutMenu}
+              id="sidemenu_sign_out"
               onClick={() => SignOut()}
             >
               Sign Out

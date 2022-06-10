@@ -139,6 +139,7 @@ function Index() {
                   <img
                     src={`${Constant.imageBaseUrl()}${product_barnd}`}
                     alt=""
+                    title={brand_name}
                   />
                 ) : (
                   <span className="brand_name_section">{brand_name}</span>

@@ -319,7 +319,7 @@ const MiniCartList = ({ handleSideBarClose }) => {
                       <img src={minicart_icon} alt="" />
                     </div>
                     <div className="section_left">
-                      <img src={Constant.imageBaseUrl() + itm?.brand} alt="" />
+                      <img src={Constant.imageBaseUrl() + itm?.brand} alt="" title={itm?.brand_name}/>
                       {/* <span className="minicart_new">
                       <img src={minicart_new} alt="" />
                     </span> */}

@@ -93,6 +93,9 @@
         }
       }
     }
+    .city_row{
+      width: 48.5%;
+    }
   }
   .btn_billing {
     min-width: 16% !important;
@@ -196,6 +199,9 @@
   }
   .Billingaddress_main .Billingaddress_Account_heading {
     width: 100%;
+  }
+  .Billingaddress_information .city_row{
+    width: 100% !important;
   }
 }
 @media only screen and (max-width: 768px) {

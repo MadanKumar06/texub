@@ -35,7 +35,7 @@ const OfficeAddressDetails = ({
       ...prevState,
       [event.target.name]: event.target.value,
     }));
-    setInputValidation("");
+    // setInputValidation("");
   };
 
   // input validation on onchange
@@ -103,8 +103,6 @@ const OfficeAddressDetails = ({
     }
   }, [country_readonly?.[0]?.value]);
 
-  console.log("inputValidation from state dropdown")
-  console.log(inputValidation)
   return (
     <div>
       <p className={info_text_lineNote_one}>Office Address</p>
@@ -184,11 +182,16 @@ const OfficeAddressDetails = ({
                     state_text: "",
                   }));
                   setInputValidation((prevState) => ({
+                    ...prevState,
                     state_dropdown_list: "",
                   }));
                   setinputsValidations((prevState) => ({
                     ...prevState,
                     state_text: "",
+                  }));
+                  setinputsValidations((prevState) => ({
+                    ...prevState,
+                    state_dropdown_list: ""
                   }));
                 }}
                 className={auto_complete_input}
@@ -212,7 +215,7 @@ const OfficeAddressDetails = ({
                 )}
               />
               <InputLabel className={validation_error}>
-                {inputValidation?.state_dropdown_list}
+                {inputsValidations?.state_dropdown_list}
               </InputLabel>
             </div>
           ) : (
@@ -237,9 +240,10 @@ const OfficeAddressDetails = ({
                     state_dropdown_list: "",
                     state_text: event.target.value,
                   }));
-                  /* setInputValidation((prevState) => ({
+                  setInputValidation((prevState) => ({
+                    ...prevState,
                     state_dropdown_list: "",
-                  })); */
+                  }));
                   setinputsValidations((prevState) => ({
                     ...prevState,
                     state_text: "",

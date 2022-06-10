@@ -16,6 +16,7 @@ const Index = ({ searchdata, searchupdate }) => {
   const [{ geo, customnostore }, dispatch] = useStateValue();
   const [apiTableData, setApiTableData] = useState([]);
   const [filteredata, setfiltereddata] = useState([])
+  const [isNotMatched,setisNotMatched] = useState(false);
 
   useEffect(() => {
     if(apiTableData?.length === 0) return
@@ -25,6 +26,7 @@ const Index = ({ searchdata, searchupdate }) => {
       let temp = apiTableData?.filter(td => td?.product_name?.toLowerCase()?.includes(searchdata?.toLowerCase()))
       setfiltereddata(temp)
     }
+    setisNotMatched(!isNotMatched)
   }, [searchupdate, apiTableData])
 
   const PaginateDataSplit = (event) => {
@@ -87,6 +89,12 @@ const Index = ({ searchdata, searchupdate }) => {
     }      
   }
 
+  useEffect(()=>{
+    if(filteredata.length===0){
+      setTableData([])
+    }
+  },[isNotMatched])
+
   const options = {
     filter: false,
     filterType: "dropdown",
@@ -123,6 +131,7 @@ const Index = ({ searchdata, searchupdate }) => {
                   src={value}
                   className="brand_img_section"
                   alt="No Brands"
+                  title={brandName}
                   style={{ height: "50px" }}
                 />
               ) : (
@@ -220,11 +229,15 @@ const Index = ({ searchdata, searchupdate }) => {
         options={options}
         className="smart__table"
       />
-      <Pagination
-        PaginateData={PaginateDataSplit}
-        DataList={filteredata}
-        PagePerRow={10}
-      />
+      {filteredata?.length > 0 ? (
+          <Pagination
+            PaginateData={PaginateDataSplit}
+            DataList={filteredata}
+            PagePerRow={10}
+          />
+        ) : (
+          ""
+      )}
       <div className="smart__back__footer">
         <div className="smart__back__container">
           <Link
