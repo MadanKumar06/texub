@@ -74,14 +74,29 @@ function Index({ id }) {
   const columns = [
     {
       name: "sellerCode",
-      label: "SELLER CODE.",
+      label: "SELLER ID",
       options: {
         customBodyRender: (value) => {
           return <div className="want_tobuy__orderid">{value}</div>;
         },
       },
     },
-    { name: "sellerEnquiryStatus", label: "SELLER ENQUIRY STATUS" },
+    {
+      name: "part_number",
+      label: "PART NUMBER"
+    },
+    {
+      name: "category",
+      label: "CATEGORY"
+    },
+    {
+      name: "hub",
+      label: "HUB"
+    },
+    { 
+      name: "sellerEnquiryStatus", 
+      label: "SELLER ENQUIRY STATUS" 
+    }
   ];
 
   return (

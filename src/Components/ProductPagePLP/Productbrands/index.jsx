@@ -247,7 +247,8 @@ const Productsbrands = ({
       }, 2000);
     }
   }, [homeCategorySearch, getCategories]);
-
+  console.log("sliderBrandsAndCategories")
+  console.log(sliderBrandsAndCategories)
   return (
     <div className="Productsbrands">
       <>
@@ -278,6 +279,7 @@ const Productsbrands = ({
                         src={`${Constant.imageBaseUrl()}${itm?.image}`}
                         alt="brands"
                         className="Slider_icons"
+                        title={itm?.name}
                       />
                     ) : (
                       <span className="Slider_icons">{itm?.name}</span>

@@ -10,9 +10,15 @@ const NationalIdButton = ({
   SetFormValues,
   FormValues,
   validationFieldMessage,
+  inputsValidations,
+  setinputsValidations
 }) => {
   useEffect(() => {
     setInputValidation({ ...validationFieldMessage });
+    setinputsValidations((prevState) => ({
+      ...prevState,
+      national_id_image: validationFieldMessage?.national_id_image,
+    }));
   }, [validationFieldMessage]);
   let {
     media_upload,
@@ -29,7 +35,7 @@ const NationalIdButton = ({
       ...prevState,
       [event.target.name]: event.target.files[0],
     }));
-    setInputValidation("");
+    // setInputValidation("");
     toBase64(event.target?.files[0], event.target?.files[0]?.type);
   };
   const toBase64 = (File, type) => {
@@ -82,7 +88,14 @@ const NationalIdButton = ({
                 id="icon-button-file"
                 type="file"
                 name="national_id_image"
-                onChange={handleImageChange}
+                // onChange={handleImageChange}
+                onChange={(event)=>{
+                  handleImageChange(event)
+                  setinputsValidations((prevState) => ({
+                    ...prevState,
+                    national_id_image: "",
+                  }));
+                }}
               />
               <img
                 src={uploadImage}
@@ -96,7 +109,7 @@ const NationalIdButton = ({
           <small>(Supported format : .jpg/.png/.pdf)</small>
         </div>
         <InputLabel className={validation_error}>
-          {inputValidation?.national_id_image}
+          {inputsValidations?.national_id_image}
         </InputLabel>
 
         <div className={input_image_name}>
@@ -112,7 +125,14 @@ const NationalIdButton = ({
                 id="icon-button-file"
                 type="file"
                 name="national_id_image"
-                onChange={handleImageChange}
+                // onChange={handleImageChange}
+                onChange={(event)=>{
+                  handleImageChange(event)
+                  setinputsValidations((prevState) => ({
+                    ...prevState,
+                    national_id_image: "",
+                  }));
+                }}
               />
               <p>No File Chosen</p>
             </label>

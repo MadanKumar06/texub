@@ -574,6 +574,13 @@
     font-size: 20px;
   }
 }
+@media (max-width:1600px){
+  .vieworders_main .vieworders__table .MuiTableBody-root .productname .brand_image img {
+    height: 50px;
+    width: 50px;
+    object-fit: fill;
+  }
+}
 @media (max-width: 1366px) {
   .vieworders_main {
     .vieworders_detail_section .details .vieworder_address {

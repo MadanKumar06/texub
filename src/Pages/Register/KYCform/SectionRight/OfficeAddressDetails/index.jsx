@@ -189,6 +189,10 @@ const OfficeAddressDetails = ({
                     ...prevState,
                     state_text: "",
                   }));
+                  setinputsValidations((prevState) => ({
+                    ...prevState,
+                    state_dropdown_list: ""
+                  }));
                 }}
                 className={auto_complete_input}
                 id="state_dropdown_list"
@@ -211,7 +215,7 @@ const OfficeAddressDetails = ({
                 )}
               />
               <InputLabel className={validation_error}>
-                {inputValidation?.state_dropdown_list}
+                {inputsValidations?.state_dropdown_list}
               </InputLabel>
             </div>
           ) : (
@@ -236,9 +240,10 @@ const OfficeAddressDetails = ({
                     state_dropdown_list: "",
                     state_text: event.target.value,
                   }));
-                  /* setInputValidation((prevState) => ({
+                  setInputValidation((prevState) => ({
+                    ...prevState,
                     state_dropdown_list: "",
-                  })); */
+                  }));
                   setinputsValidations((prevState) => ({
                     ...prevState,
                     state_text: "",

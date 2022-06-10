@@ -542,6 +542,7 @@ const WhislistTable = ({
                           src={itm?.texub_product_brand_image}
                           className="brand_img_section"
                           alt="No Brands"
+                          title={itm?.texub_product_brand}
                           style={{ height: "50px" }}
                         />
                       ) : (

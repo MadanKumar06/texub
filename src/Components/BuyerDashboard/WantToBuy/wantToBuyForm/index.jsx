@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./styles.scss";
 
-import { TextField, InputLabel, Autocomplete, Button } from "@mui/material";
+import { TextField, InputLabel, Autocomplete, Button, Checkbox } from "@mui/material";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import axios from "axios";
 import Constant from "../../../../Constant";
@@ -9,17 +9,27 @@ import { useStateValue } from "../../../../store/state";
 import swal from "sweetalert2";
 import AvailablePopup from "../AvailablePopup";
 import ThankyouPage from "../ThankyouPage";
+import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
+import CheckBoxIcon from "@mui/icons-material/CheckBox";
+
+const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
+const checkedIcon = <CheckBoxIcon fontSize="small" />;
+
 const WantToBuy = ({ setisVieworders, setisOrders }) => {
-  const [{}, dispatch] = useStateValue();
+  const [{ }, dispatch] = useStateValue();
+  const [plist, setplist] = useState();
   const [wantTobuyData, setWantToBuyData] = useState({
     part_number: "",
     model_name_number: "",
     product_description: "",
     quantity: "",
     notes: "",
-    hub: null,
+    hub: [],
+    // hub: null,
     main_category: null,
   });
+  console.log("wantTobuyData")
+  console.log(wantTobuyData?.hub)
   const [dropdownListFromApi, setDropdownListFromApi] = useState({
     mainCategoryList: [],
     dropDownList: [],
@@ -74,7 +84,7 @@ const WantToBuy = ({ setisVieworders, setisOrders }) => {
       }));
       errorHandle = true;
     }
-    if (!wantTobuyData?.hub?.hub_name) {
+    if (!wantTobuyData?.hub?.length) {
       document.getElementById("hub")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
@@ -103,7 +113,7 @@ const WantToBuy = ({ setisVieworders, setisOrders }) => {
             mainCategoryList: res?.data,
           }));
         })
-        .catch((err) => {});
+        .catch((err) => { });
     };
     fetchMainCategoryData();
   }, []);
@@ -122,8 +132,10 @@ const WantToBuy = ({ setisVieworders, setisOrders }) => {
       console.log(e);
     }
   }, []);
+
   //API to Register
   const FinalWantToBuy = () => {
+    let temp = wantTobuyData?.hub?.map((item)=> item?.hub_id)
     let storedata = JSON.parse(localStorage.getItem("storedata"));
     dispatch({
       type: "SET_IS_LOADING",
@@ -139,7 +151,7 @@ const WantToBuy = ({ setisVieworders, setisOrders }) => {
         description: wantTobuyData?.product_description,
         main_category_id: wantTobuyData?.main_category?.value,
         quantity: wantTobuyData?.quantity,
-        hub_id: wantTobuyData?.hub?.hub_id,
+        hub_id: temp.toString(),
         notes: wantTobuyData?.notes,
       },
     };
@@ -333,6 +345,65 @@ const WantToBuy = ({ setisVieworders, setisOrders }) => {
           <div className="input_field ">
             <div className="block_1_input hub_input">
               <Autocomplete
+                id="controllable-states-demo"
+                className="inputfield-box auto_complete_input"
+                disableCloseOnSelect
+                options={dropdownListFromApi?.dropDownList
+                  ? dropdownListFromApi?.dropDownList
+                  : []}
+                multiple
+                value={
+                  wantTobuyData?.hub
+                    ? wantTobuyData?.hub
+                    : ""
+                }
+                getOptionLabel={(option) => (option.hub_name ? option.hub_name : "")}
+                isOptionEqualToValue={(option, value) =>
+                  option.hub_name === value.hub_name
+                }
+                renderOption={(props, option, { selected }) => (
+                  <li {...props} style={{ padding: "0px" }}>
+                    <Checkbox
+                      icon={icon}
+                      checkedIcon={checkedIcon}
+                      style={{
+                        marginRight: 8,
+                        paddingTop: "5px",
+                        paddingBottom: "5px",
+                      }}
+                      checked={selected}
+                    />
+                    {option.hub_name}
+                  </li>
+                )}
+                onChange={(event, newValue) => {
+                  setWantToBuyData((prevState) => ({
+                    ...prevState,
+                    hub: newValue,
+                  }));
+                  setInputValidation((prevState) => ({
+                    ...prevState,
+                    hub: "",
+                  }));
+                }}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    placeholder="Hub"
+                    className="inputfield-box"
+                    label="Hub"
+                    fullWidth
+                    InputLabelProps={{
+                      shrink: true,
+                      required: true,
+                      classes: {
+                        asterisk: "asterisk",
+                      },
+                    }}
+                  />
+                )}
+              />
+              {/* <Autocomplete
                 getOptionLabel={(option) =>
                   option?.hub_name ? option.hub_name : ""
                 }
@@ -370,7 +441,7 @@ const WantToBuy = ({ setisVieworders, setisOrders }) => {
                     }}
                   />
                 )}
-              />
+              /> */}
               <InputLabel className="validation_error">
                 {inputValidation?.hub}
               </InputLabel>

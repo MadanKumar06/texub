@@ -659,6 +659,12 @@
     .total_amount_heading {
     font-size: 20px;
   }
+  .vieworders_main .order_info_section1 {
+    width: 55%;
+  }
+  .vieworders_main .order_info_section2 .order_user_info .username {
+    width: 100%;
+  }
 }
 @media (max-width: 1366px) {
   .vieworders_main {

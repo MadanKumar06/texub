@@ -152,6 +152,7 @@ const BuyerKYCformSectionRight = ({
         KYCvalidationHandler={KYCvalidationHandler}
         inputsValidations={inputsValidations}
         setinputsValidations={setinputsValidations}
+        isStatelist={isStatelist}
       />
     </div>
   );
