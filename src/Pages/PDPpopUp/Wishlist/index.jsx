@@ -18,6 +18,7 @@ import swal from "sweetalert2";
 import { useStateValue } from "../../../store/state";
 
 const Index = ({ pdpSellerData, handleOpenClose }) => {
+  debugger
   const [{ currency }, dispatch] = useStateValue();
   const [create1, setcreate1] = useState(false);
   const create = () => {

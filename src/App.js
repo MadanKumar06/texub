@@ -73,7 +73,7 @@ import axios from "axios";
 // invoice download
 import MyOrderInvoice from "./Components/BuyerDashboard/MyOrders/OrdersInfo/MyOrderInvoice";
 import PendingInvoiceDownload from './Pages/PendingInvoice/PendingInvoiceDownload'
-// import CheckoutInvoice from "./Pages/Checkout/CheckoutInvoice";
+import CheckoutInvoice from "./Pages/Checkout/CheckoutInvoice";
 
 const App = () => {
   const [
@@ -213,7 +213,7 @@ const App = () => {
             <Route path="/:country/kycdetails" element={ <> {" "} <KYCDetails /> <ScrollToTop /> <Footer />{" "} </> } exact />
 
             {/* Invoice download */}
-            {/* <Route path="/:country/checkout-invoice/:quoteid" element={ <> <CheckoutInvoice /> <ScrollToTop /> </> } exact /> */}
+            <Route path="/:country/checkout-invoice/:quoteid" element={ <> <CheckoutInvoice /> <ScrollToTop /> </> } exact />
             <Route path="/:country/buyerdashboard/myorder-invoice/:order_id" element={ <> <MyOrderInvoice /> <ScrollToTop /> </> } exact />
             <Route path="/:country/pendinginvoice-download/:qid" element={ <> <PendingInvoiceDownload /> <ScrollToTop /> </> } exact />
             
