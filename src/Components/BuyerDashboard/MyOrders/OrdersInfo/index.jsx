@@ -694,12 +694,16 @@ const Index = () => {
                         </a>
                       </span>
                     </div>
-                    <div className="remkark_section">
-                      <span className="remark_title">Remarks :</span>
-                      <span className="remark_content">
-                        {detailsorder?.[0]?.order_details?.[0]?.Remarks}
-                      </span>
-                    </div>
+                    {detailsorder?.[0]?.order_details?.[0]?.Remarks ? (
+                      <div className="remkark_section">
+                        <span className="remark_title">Remarks :</span>
+                        <span className="remark_content">
+                          {detailsorder?.[0]?.order_details?.[0]?.Remarks}
+                        </span>
+                      </div>
+                    ) : (
+                      ""
+                    )}
                   </div>
                 )}
               </div>
