@@ -13,7 +13,6 @@ export const Departments = ({ data, categories }) => {
   const [{ geo, customnostore }, dispatch] = useStateValue();
   const [Bar, setBar] = useState(false);
   const history = useNavigate();
-
   const handleSearchClick = (event, item) => {
     event.preventDefault();
     dispatch({
@@ -34,11 +33,6 @@ export const Departments = ({ data, categories }) => {
   };
 
   const [savedsearch, setsavedsearch] = useState();
-  useEffect(() => {
-    document.addEventListener("mousedown", () => {
-      setBar(false);
-    });
-  }, []);
 
   useEffect(() => {
     setsavedsearch(JSON.parse(localStorage.getItem("searchhistory")));
@@ -122,7 +116,8 @@ export const Departments = ({ data, categories }) => {
                   placeholder="Search Entire Store Here"
                   inputProps={{ "aria-label": " " }}
                   onChange={(event) => setSearch(event.target.value)}
-                  onFocus={() => setBar(true)}
+                  onFocus={() =>setBar(true)}
+                  onBlur={()=>setBar(false)}
                   onKeyPress={(e) => searchinput(e)}
                   value={search}
                 />
@@ -156,7 +151,8 @@ export const Departments = ({ data, categories }) => {
                   placeholder="Search Entire Store Here…"
                   inputProps={{ "aria-label": " " }}
                   onChange={(event) => setSearch(event.target.value)}
-                  onFocus={() => setBar(true)}
+                  onFocus={() =>setBar(true)}
+                  onBlur={()=>setBar(false)}
                 />
                 <IconButton
                   type="submit"
