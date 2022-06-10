@@ -13,7 +13,7 @@ import {
   InputLabel,
 } from "@mui/material";
 import Divider from "@mui/material/Divider";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link, useParams, useLocation } from "react-router-dom";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
@@ -33,7 +33,9 @@ import { getAdminToken } from "../../../utilities";
 const Checkout = () => {
   const [shipping_method, setShipping_method] = useState("texub_shipping");
   const [{ currency, geo }, dispatch] = useStateValue();
-
+  const history = useLocation();
+  console.log(history);
+  debugger;
   const [mobile_number_countryCode, setMobile_number_countryCode] =
     useState("ae");
   const [buyercode, setbuyercode] = useState();
@@ -281,7 +283,6 @@ const Checkout = () => {
       lastname: itm?.lastname,
     });
   };
-  const navigate = useNavigate();
 
   function formatToCurrency(price) {
     return price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");

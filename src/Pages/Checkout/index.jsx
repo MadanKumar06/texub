@@ -821,13 +821,16 @@ const Checkout = () => {
               </Button>
             </Link>
           </div>
-          <a
-            href={`/${
-              customnostore ? customnostore : geo?.country_name
-            }/checkout-invoice/${quoteid}`}
+          {/* <Link
+            to={{
+              pathname: `/${
+                customnostore ? customnostore : geo?.country_name
+              }/checkout-invoice/${quoteid}`,
+            }}
+            state={{ data: "test" }}
             target="_blank"
             rel="noopener noreferrer"
-          >
+          > */}
             <div className="checkoutlist__download">
               <svg
                 id="Icon"
@@ -878,7 +881,7 @@ const Checkout = () => {
                 </g>
               </svg>
             </div>
-          </a>
+          {/* </Link> */}
         </div>
       </div>
 

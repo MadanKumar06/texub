@@ -117,7 +117,7 @@ const Index = ({ address, setisAddress, setisShipping }) => {
         data: {
           customerId: user?.id,
           addressId: address?.[0]?.address_id,
-          addressType: 0,
+          addressType: 1,
           address: {
             company: shippingAddress?.company,
             country_id: shippingAddress?.country_id?.value,

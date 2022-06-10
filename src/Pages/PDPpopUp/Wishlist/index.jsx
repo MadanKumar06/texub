@@ -18,7 +18,6 @@ import swal from "sweetalert2";
 import { useStateValue } from "../../../store/state";
 
 const Index = ({ pdpSellerData, handleOpenClose }) => {
-  debugger
   const [{ currency }, dispatch] = useStateValue();
   const [create1, setcreate1] = useState(false);
   const create = () => {
@@ -169,23 +168,12 @@ const Index = ({ pdpSellerData, handleOpenClose }) => {
               onClick={() => handleClose()}
             />
             <div className="wishlist_product">
-              <span  className="wishlist_img_section">
-                 {pdpSellerData?.brand ? (
-                <img
-                 className="wishlist_img"
-                  src={Constant.imageBaseUrl() + pdpSellerData?.brand}
-                  alt="" 
-                />
-                  ) : (
-                    <span className="wishlist_img">{pdpSellerData?.brand_name}</span>
-                  )}
-          
-                {/* 
+              <span>
                 <img
                   className="wishlist_img"
                   src={`${Constant?.imageBaseUrl()}${pdpSellerData?.brand}`}
                   alt=""
-                /> */}
+                />
               </span>
               <span className="description">{pdpSellerData?.description}</span>
             </div>
