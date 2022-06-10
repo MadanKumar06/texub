@@ -155,7 +155,7 @@ const Productlists = ({
   
   return (
     <div className="productlist">
-      <div className="productlist__search">
+      <div className="productlist__search_box">
         <Paper
           component="form"
           className="search_input"

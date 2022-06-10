@@ -32,10 +32,20 @@ function Index({ registerproduct, gridData }) {
       name: "brand_image_url",
       label: " ",
       options: {
-        customBodyRender: (value) => {
+        customBodyRender: (value, tablemeta) => {
+          let brandName = tablemeta?.rowData[7];
           return (
             <div className="brand_image">
-              <img src={value} alt="" />
+               {value ? (
+                <img
+                  src={value}
+                  className="brand_img_section"
+                  alt="No Brands"
+                  style={{ height: "50px" }}
+                />
+              ) : (
+                <span>{brandName}</span>
+              )}
             </div>
           );
         },
@@ -96,6 +106,13 @@ function Index({ registerproduct, gridData }) {
     },
     {
       name: "product_id",
+      label: " ",
+      options: {
+        display: false,
+      },
+    },
+    {
+      name: "brand_name",
       label: " ",
       options: {
         display: false,

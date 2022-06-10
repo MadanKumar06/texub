@@ -30,7 +30,9 @@ const styles = (theme) => ({
     height: "128px",
     display: "flex",
     position: "relative",
-    alignItems: " flex-end",
+    // alignItems: " flex-end",
+    alignItems: 'center',
+    justifyContent: 'center',
     "@media (max-width:768px)": {
       width: "unset",
       height: "unset",

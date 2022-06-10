@@ -536,7 +536,17 @@ const WhislistTable = ({
                 <div className="table_block">
                   <div className="product_info_block">
                     <div className="product_image">
-                      <img src={itm?.texub_product_brand_image} alt="" />
+
+                     {itm?.texub_product_brand_image ? (
+                        <img
+                          src={itm?.texub_product_brand_image}
+                          className="brand_img_section"
+                          alt="No Brands"
+                          style={{ height: "50px" }}
+                        />
+                      ) : (
+                        <span>{itm?.texub_product_brand}</span>
+                      )}                     
                     </div>
                     <div className="products_info">
                       <p className="product_name">{itm?.product_name}</p>
