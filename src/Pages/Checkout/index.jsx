@@ -243,6 +243,10 @@ const Checkout = () => {
         },
       });
     });
+    let grand_total =
+      shipping_method === "texub_shipping"
+        ? quotedata[0]?.invoice?.grand_total_with_freight
+        : quotedata[0]?.invoice?.grand_total_without_freight;
     try {
       const postquote = await axios({
         method: "post",
@@ -254,7 +258,7 @@ const Checkout = () => {
           entity: {
             base_currency_code: currency?.currency_code,
             base_discount_amount: 0,
-            base_grand_total: quotedata[0]?.invoice?.grand_total,
+            base_grand_total: grand_total,
             base_shipping_amount: quotedata[0]?.invoice?.shipping_amount,
             base_subtotal: quotedata[0]?.invoice?.subtotal,
             base_tax_amount: quotedata?.[0]?.invoice?.tax,
@@ -269,7 +273,7 @@ const Checkout = () => {
             email_sent: 1,
             coupon_code: "",
             discount_description: "",
-            grand_total: quotedata[0]?.invoice?.grand_total,
+            grand_total: grand_total,
             is_virtual: 0,
             order_currency_code: currency?.currency_code,
             shipping_amount: quotedata[0]?.invoice?.shipping_amount,
@@ -798,7 +802,19 @@ const Checkout = () => {
               <span className="ordertotal_symbol">
                 {currency?.currency_code}
               </span>{" "}
-              {formatToCurrency(parseInt(quotedata[0]?.invoice?.grand_total))}
+              {shipping_method === "texub_shipping" ? (
+                <span>
+                  {formatToCurrency(
+                    parseInt(quotedata[0]?.invoice?.grand_total_with_freight)
+                  )}
+                </span>
+              ) : (
+                <span>
+                  {formatToCurrency(
+                    parseInt(quotedata[0]?.invoice?.grand_total_without_freight)
+                  )}
+                </span>
+              )}
             </span>
           </div>
         </div>
@@ -831,56 +847,50 @@ const Checkout = () => {
             target="_blank"
             rel="noopener noreferrer"
           > */}
-            <div className="checkoutlist__download">
-              <svg
-                id="Icon"
-                xmlns="http://www.w3.org/2000/svg"
-                width="35"
-                height="35"
-                viewBox="0 0 40 40"
-              >
-                <rect
-                  id="Area"
-                  width="40"
-                  height="40"
-                  fill="#fff"
-                  opacity="0"
+          <div className="checkoutlist__download">
+            <svg
+              id="Icon"
+              xmlns="http://www.w3.org/2000/svg"
+              width="35"
+              height="35"
+              viewBox="0 0 40 40"
+            >
+              <rect id="Area" width="40" height="40" fill="#fff" opacity="0" />
+              <g id="Icon-2" data-name="Icon" transform="translate(4.5 4.5)">
+                <path
+                  id="Path"
+                  d="M35.5,22.5v6a3.245,3.245,0,0,1-3.444,3H7.944a3.245,3.245,0,0,1-3.444-3v-6"
+                  transform="translate(-4.5 -0.5)"
+                  fill="none"
+                  stroke="#fff"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="3"
                 />
-                <g id="Icon-2" data-name="Icon" transform="translate(4.5 4.5)">
-                  <path
-                    id="Path"
-                    d="M35.5,22.5v6a3.245,3.245,0,0,1-3.444,3H7.944a3.245,3.245,0,0,1-3.444-3v-6"
-                    transform="translate(-4.5 -0.5)"
-                    fill="none"
-                    stroke="#fff"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="3"
-                  />
-                  <path
-                    id="Path-2"
-                    data-name="Path"
-                    d="M10.5,15,20,22.5,29.5,15"
-                    transform="translate(-4.5 -2.346)"
-                    fill="none"
-                    stroke="#fff"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="3"
-                  />
-                  <line
-                    id="Line"
-                    y1="18"
-                    transform="translate(15.5)"
-                    fill="none"
-                    stroke="#fff"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="3"
-                  />{" "}
-                </g>
-              </svg>
-            </div>
+                <path
+                  id="Path-2"
+                  data-name="Path"
+                  d="M10.5,15,20,22.5,29.5,15"
+                  transform="translate(-4.5 -2.346)"
+                  fill="none"
+                  stroke="#fff"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="3"
+                />
+                <line
+                  id="Line"
+                  y1="18"
+                  transform="translate(15.5)"
+                  fill="none"
+                  stroke="#fff"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="3"
+                />{" "}
+              </g>
+            </svg>
+          </div>
           {/* </Link> */}
         </div>
       </div>
@@ -1338,8 +1348,22 @@ const Checkout = () => {
                   <span className="checkout_total_orde_symbol">
                     {currency?.currency_code}
                   </span>
-                  {formatToCurrency(
-                    parseInt(quotedata[0]?.invoice?.grand_total)
+                  {shipping_method === "texub_shipping" ? (
+                    <span>
+                      {formatToCurrency(
+                        parseInt(
+                          quotedata[0]?.invoice?.grand_total_with_freight
+                        )
+                      )}
+                    </span>
+                  ) : (
+                    <span>
+                      {formatToCurrency(
+                        parseInt(
+                          quotedata[0]?.invoice?.grand_total_without_freight
+                        )
+                      )}
+                    </span>
                   )}
                 </span>
               </div>
