@@ -169,11 +169,23 @@ const Index = ({ pdpSellerData, handleOpenClose }) => {
             />
             <div className="wishlist_product">
               <span>
+
+                   {pdpSellerData?.brand ? (
+                <img
+                  src={`${Constant.imageBaseUrl()}${pdpSellerData?.brand}`}
+                  alt="brand"
+                  title={pdpSellerData?.brand}
+                />
+              ) : (
+                <span>{pdpSellerData?.brand_name}</span>
+              )}
+
+{/* 
                 <img
                   className="wishlist_img"
                   src={`${Constant?.imageBaseUrl()}${pdpSellerData?.brand}`}
                   alt=""
-                />
+                /> */}
               </span>
               <span className="description">{pdpSellerData?.description}</span>
             </div>
