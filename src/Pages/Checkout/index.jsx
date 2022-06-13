@@ -209,7 +209,6 @@ const Checkout = () => {
     let stateDropDown =
       stateList?.length &&
       stateList?.filter((itm) => itm?.value == addressdata?.state);
-    debugger;
     quotedata[0]?.invoice_items?.filter((qd) => {
       itemsdata.push({
         base_discount_amount: qd?.base_discount_amount,
@@ -243,6 +242,10 @@ const Checkout = () => {
         },
       });
     });
+    let grand_total =
+      shipping_method === "texub_shipping"
+        ? quotedata[0]?.invoice?.grand_total_with_freight
+        : quotedata[0]?.invoice?.grand_total_without_freight;
     try {
       const postquote = await axios({
         method: "post",
@@ -254,7 +257,7 @@ const Checkout = () => {
           entity: {
             base_currency_code: currency?.currency_code,
             base_discount_amount: 0,
-            base_grand_total: quotedata[0]?.invoice?.grand_total,
+            base_grand_total: grand_total,
             base_shipping_amount: quotedata[0]?.invoice?.shipping_amount,
             base_subtotal: quotedata[0]?.invoice?.subtotal,
             base_tax_amount: quotedata?.[0]?.invoice?.tax,
@@ -269,7 +272,7 @@ const Checkout = () => {
             email_sent: 1,
             coupon_code: "",
             discount_description: "",
-            grand_total: quotedata[0]?.invoice?.grand_total,
+            grand_total: grand_total,
             is_virtual: 0,
             order_currency_code: currency?.currency_code,
             shipping_amount: quotedata[0]?.invoice?.shipping_amount,
@@ -770,7 +773,18 @@ const Checkout = () => {
   function formatToCurrency(price) {
     return price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
   }
-
+  useEffect(() => {
+    localStorage.setItem(
+      "invoice_checkout",
+      JSON.stringify({
+        shipping_method: shipping_method,
+        invoice_checkout_data: quotedata,
+        addressdata: addressdata,
+        payment: payment,
+        pickup_form_data: pickup_form_data,
+      })
+    );
+  }, [payment, shipping_method, addressdata, quotedata, pickup_form_data]);
   return (
     <div className="checkout_main_container" id="Checkout_page">
       <div className="checkout_info_list">
@@ -798,7 +812,19 @@ const Checkout = () => {
               <span className="ordertotal_symbol">
                 {currency?.currency_code}
               </span>{" "}
-              {formatToCurrency(parseInt(quotedata[0]?.invoice?.grand_total))}
+              {shipping_method === "texub_shipping" ? (
+                <span>
+                  {formatToCurrency(
+                    parseInt(quotedata[0]?.invoice?.grand_total_with_freight)
+                  )}
+                </span>
+              ) : (
+                <span>
+                  {formatToCurrency(
+                    parseInt(quotedata[0]?.invoice?.grand_total_without_freight)
+                  )}
+                </span>
+              )}
             </span>
           </div>
         </div>
@@ -821,7 +847,7 @@ const Checkout = () => {
               </Button>
             </Link>
           </div>
-          {/* <Link
+          <Link
             to={{
               pathname: `/${
                 customnostore ? customnostore : geo?.country_name
@@ -830,7 +856,7 @@ const Checkout = () => {
             state={{ data: "test" }}
             target="_blank"
             rel="noopener noreferrer"
-          > */}
+          >
             <div className="checkoutlist__download">
               <svg
                 id="Icon"
@@ -881,7 +907,7 @@ const Checkout = () => {
                 </g>
               </svg>
             </div>
-          {/* </Link> */}
+          </Link>
         </div>
       </div>
 
@@ -986,12 +1012,17 @@ const Checkout = () => {
                       </span>
                     </div>
                   } */}
-                  {quotedata[0]?.invoice?.pending_invoice_status === "2" && (
-                    <div className="shipping_charges_section">
-                      <span className="shipping_text">Shipping Charges :</span>
-                      <span className="shipping_awit">Awaiting for Prices</span>
-                    </div>
-                  )}
+                  {quotedata[0]?.invoice?.pending_invoice_status === "2" &&
+                    shipping_method === "texub_shipping" && (
+                      <div className="shipping_charges_section">
+                        <span className="shipping_text">
+                          Shipping Charges :
+                        </span>
+                        <span className="shipping_awit">
+                          Awaiting for Prices
+                        </span>
+                      </div>
+                    )}
                   {quotedata[0]?.invoice?.pending_invoice_status === "3" && (
                     <div className="shipping_charges_section">
                       <span className="shipping_text">Shipping Charges :</span>
@@ -1018,7 +1049,11 @@ const Checkout = () => {
                                 className={`delivery_address_content ${
                                   selectadd === itm?.address_id && "border"
                                 }`}
-                                onClick={() => selectaddress(itm)}
+                                onClick={() =>
+                                  quotedata[0]?.invoice
+                                    ?.pending_invoice_status !== "2" &&
+                                  selectaddress(itm)
+                                }
                               >
                                 <div className="billing_title">
                                   {itm?.default_billing == 1 ? (
@@ -1338,8 +1373,22 @@ const Checkout = () => {
                   <span className="checkout_total_orde_symbol">
                     {currency?.currency_code}
                   </span>
-                  {formatToCurrency(
-                    parseInt(quotedata[0]?.invoice?.grand_total)
+                  {shipping_method === "texub_shipping" ? (
+                    <span>
+                      {formatToCurrency(
+                        parseInt(
+                          quotedata[0]?.invoice?.grand_total_with_freight
+                        )
+                      )}
+                    </span>
+                  ) : (
+                    <span>
+                      {formatToCurrency(
+                        parseInt(
+                          quotedata[0]?.invoice?.grand_total_without_freight
+                        )
+                      )}
+                    </span>
                   )}
                 </span>
               </div>

@@ -10,7 +10,7 @@ import Constant from "../../../../../Constant";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import swal from "sweetalert2";
-import TextareaAutosize from '@mui/material/TextareaAutosize';
+import TextareaAutosize from "@mui/material/TextareaAutosize";
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
@@ -179,6 +179,7 @@ const Index = ({ currentid, setisSub, setisSubusers, setshowButton }) => {
         NewSubAccountData?.allowed_permissions?.map((ap) =>
           temp.push(ap?.value)
         );
+        let storedata = JSON.parse(localStorage.getItem("storedata"));
         let user = JSON.parse(localStorage.getItem("userdata"));
         dispatch({
           type: "SET_IS_LOADING",
@@ -203,6 +204,7 @@ const Index = ({ currentid, setisSub, setisSubusers, setshowButton }) => {
               login_id: user?.id,
               entity_id: currentid ? currentid : 0,
               customer_id: NewSubAccountData?.customer_id,
+              store_id: storedata?.store_id,
             },
           },
         });

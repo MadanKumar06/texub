@@ -179,6 +179,7 @@ const Index = ({ currentid, setisSub, setisSubusers, setshowButton }) => {
         NewSubAccountData?.allowed_permissions?.map((ap) =>
           temp.push(ap?.value)
         );
+        let storedata = JSON.parse(localStorage.getItem("storedata"));
         let user = JSON.parse(localStorage.getItem("userdata"));
         dispatch({
           type: "SET_IS_LOADING",
@@ -203,6 +204,7 @@ const Index = ({ currentid, setisSub, setisSubusers, setshowButton }) => {
               login_id: user?.id,
               entity_id: currentid ? currentid : 0,
               customer_id: NewSubAccountData?.customer_id,
+              store_id: storedata?.store_id,
             },
           },
         });
