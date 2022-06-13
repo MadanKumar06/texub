@@ -20,13 +20,13 @@ const TaxCertificateButton = ({
   inputsValidations,
   setinputsValidations
 }) => {
-  useEffect(() => {
+  /* useEffect(() => {
     setInputValidation({ ...validationFieldMessage });
     setinputsValidations((prevState) => ({
       ...prevState,
       tax_image: validationFieldMessage?.tax_image,
     }));
-  }, [validationFieldMessage]);
+  }, [validationFieldMessage]); */
   let {
     input_div,
     asterisk,

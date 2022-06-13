@@ -13,13 +13,13 @@ const NationalIdButton = ({
   inputsValidations,
   setinputsValidations
 }) => {
-  useEffect(() => {
+  /* useEffect(() => {
     setInputValidation({ ...validationFieldMessage });
     setinputsValidations((prevState) => ({
       ...prevState,
       national_id_image: validationFieldMessage?.national_id_image,
     }));
-  }, [validationFieldMessage]);
+  }, [validationFieldMessage]); */
   let {
     media_upload,
     sub_media_upload_container,

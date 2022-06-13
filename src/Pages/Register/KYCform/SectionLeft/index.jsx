@@ -93,6 +93,27 @@ const BuyerKYCformSectionLeft = ({ classes }) => {
       }));
       isError = true;
     }
+    if (!kycFormData?.trade_image?.name) {
+      setinputsValidations((prevState) => ({
+        ...prevState,
+        trade_image: "Please attach the License details.",
+      }));
+      isError = true;
+    }
+    if (!kycFormData?.tax_image?.name) {
+      setinputsValidations((prevState) => ({
+        ...prevState,
+        tax_image: "Please attach certificate.",
+      }));
+      isError = true;
+    }
+    if (!kycFormData?.national_id_image?.name) {
+      setinputsValidations((prevState) => ({
+        ...prevState,
+        national_id_image: "Please attach National id details.",
+      }));
+      isError = true;
+    }
 
   };
 
