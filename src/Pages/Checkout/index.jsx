@@ -209,7 +209,6 @@ const Checkout = () => {
     let stateDropDown =
       stateList?.length &&
       stateList?.filter((itm) => itm?.value == addressdata?.state);
-    debugger;
     quotedata[0]?.invoice_items?.filter((qd) => {
       itemsdata.push({
         base_discount_amount: qd?.base_discount_amount,
@@ -774,7 +773,18 @@ const Checkout = () => {
   function formatToCurrency(price) {
     return price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
   }
-
+  useEffect(() => {
+    localStorage.setItem(
+      "invoice_checkout",
+      JSON.stringify({
+        shipping_method: shipping_method,
+        invoice_checkout_data: quotedata,
+        addressdata: addressdata,
+        payment: payment,
+        pickup_form_data: pickup_form_data,
+      })
+    );
+  }, [payment, shipping_method, addressdata, quotedata, pickup_form_data]);
   return (
     <div className="checkout_main_container" id="Checkout_page">
       <div className="checkout_info_list">
@@ -837,7 +847,7 @@ const Checkout = () => {
               </Button>
             </Link>
           </div>
-          {/* <Link
+          <Link
             to={{
               pathname: `/${
                 customnostore ? customnostore : geo?.country_name
@@ -846,52 +856,58 @@ const Checkout = () => {
             state={{ data: "test" }}
             target="_blank"
             rel="noopener noreferrer"
-          > */}
-          <div className="checkoutlist__download">
-            <svg
-              id="Icon"
-              xmlns="http://www.w3.org/2000/svg"
-              width="35"
-              height="35"
-              viewBox="0 0 40 40"
-            >
-              <rect id="Area" width="40" height="40" fill="#fff" opacity="0" />
-              <g id="Icon-2" data-name="Icon" transform="translate(4.5 4.5)">
-                <path
-                  id="Path"
-                  d="M35.5,22.5v6a3.245,3.245,0,0,1-3.444,3H7.944a3.245,3.245,0,0,1-3.444-3v-6"
-                  transform="translate(-4.5 -0.5)"
-                  fill="none"
-                  stroke="#fff"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="3"
+          >
+            <div className="checkoutlist__download">
+              <svg
+                id="Icon"
+                xmlns="http://www.w3.org/2000/svg"
+                width="35"
+                height="35"
+                viewBox="0 0 40 40"
+              >
+                <rect
+                  id="Area"
+                  width="40"
+                  height="40"
+                  fill="#fff"
+                  opacity="0"
                 />
-                <path
-                  id="Path-2"
-                  data-name="Path"
-                  d="M10.5,15,20,22.5,29.5,15"
-                  transform="translate(-4.5 -2.346)"
-                  fill="none"
-                  stroke="#fff"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="3"
-                />
-                <line
-                  id="Line"
-                  y1="18"
-                  transform="translate(15.5)"
-                  fill="none"
-                  stroke="#fff"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="3"
-                />{" "}
-              </g>
-            </svg>
-          </div>
-          {/* </Link> */}
+                <g id="Icon-2" data-name="Icon" transform="translate(4.5 4.5)">
+                  <path
+                    id="Path"
+                    d="M35.5,22.5v6a3.245,3.245,0,0,1-3.444,3H7.944a3.245,3.245,0,0,1-3.444-3v-6"
+                    transform="translate(-4.5 -0.5)"
+                    fill="none"
+                    stroke="#fff"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="3"
+                  />
+                  <path
+                    id="Path-2"
+                    data-name="Path"
+                    d="M10.5,15,20,22.5,29.5,15"
+                    transform="translate(-4.5 -2.346)"
+                    fill="none"
+                    stroke="#fff"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="3"
+                  />
+                  <line
+                    id="Line"
+                    y1="18"
+                    transform="translate(15.5)"
+                    fill="none"
+                    stroke="#fff"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="3"
+                  />{" "}
+                </g>
+              </svg>
+            </div>
+          </Link>
         </div>
       </div>
 
@@ -996,12 +1012,17 @@ const Checkout = () => {
                       </span>
                     </div>
                   } */}
-                  {quotedata[0]?.invoice?.pending_invoice_status === "2" && (
-                    <div className="shipping_charges_section">
-                      <span className="shipping_text">Shipping Charges :</span>
-                      <span className="shipping_awit">Awaiting for Prices</span>
-                    </div>
-                  )}
+                  {quotedata[0]?.invoice?.pending_invoice_status === "2" &&
+                    shipping_method === "texub_shipping" && (
+                      <div className="shipping_charges_section">
+                        <span className="shipping_text">
+                          Shipping Charges :
+                        </span>
+                        <span className="shipping_awit">
+                          Awaiting for Prices
+                        </span>
+                      </div>
+                    )}
                   {quotedata[0]?.invoice?.pending_invoice_status === "3" && (
                     <div className="shipping_charges_section">
                       <span className="shipping_text">Shipping Charges :</span>
@@ -1028,7 +1049,11 @@ const Checkout = () => {
                                 className={`delivery_address_content ${
                                   selectadd === itm?.address_id && "border"
                                 }`}
-                                onClick={() => selectaddress(itm)}
+                                onClick={() =>
+                                  quotedata[0]?.invoice
+                                    ?.pending_invoice_status !== "2" &&
+                                  selectaddress(itm)
+                                }
                               >
                                 <div className="billing_title">
                                   {itm?.default_billing == 1 ? (
