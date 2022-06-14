@@ -145,9 +145,17 @@ const Index = () => {
           let name = tablemeta?.rowData[9];
           let discription = tablemeta?.rowData[10];
           let serialNumbers = tablemeta?.rowData[11];
+          let brand_image = tablemeta?.rowData[13];
+          let brand_name = tablemeta?.rowData[14];
           return (
             <div className="productname">
-              <img src={image} alt="" className="image"></img>
+              <div className="brand_image">
+                {brand_image ? (
+                  <img src={brand_image} alt="" title={brand_name} />
+                ) : (
+                  <span className="brand_name">{brand_name}</span>
+                )}
+              </div>
               <div className="product">
                 <span className="modal_name">{name}</span>
                 <span className="modal_content">{discription}</span>
@@ -284,7 +292,23 @@ const Index = () => {
         display: false,
       },
     },
+    {
+      name: "product_brand_image",
+      label: " ",
+      options: {
+        display: false,
+      },
+    },
+    {
+      name: "product_brand_name",
+      label: " ",
+      options: {
+        display: false,
+      },
+    },
   ];
+  console.log("detailsorder")
+  console.log(detailsorder)
   return (
     <>
       <div className="vieworders_main">

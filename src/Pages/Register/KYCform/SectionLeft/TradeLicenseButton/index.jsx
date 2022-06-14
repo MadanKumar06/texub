@@ -22,13 +22,13 @@ const TradeLicenseButton = ({
   inputsValidations,
   setinputsValidations
 }) => {
-  useEffect(() => {
+  /* useEffect(() => {
     setInputValidation({ ...validationFieldMessage });
     setinputsValidations((prevState) => ({
       ...prevState,
       trade_image: validationFieldMessage?.trade_image,
     }));
-  }, [validationFieldMessage]);
+  }, [validationFieldMessage]); */
   let {
     input_div,
     asterisk,

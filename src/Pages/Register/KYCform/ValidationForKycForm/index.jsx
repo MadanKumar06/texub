@@ -51,6 +51,13 @@ function ValidationForKycForm({
       }));
       endPoint = true;
     }
+    if (!values?.trade_image?.name) {
+      setinputsValidations((prevState) => ({
+        ...prevState,
+        trade_image: "Please attach the License details.",
+      }));
+      endPoint = true;
+    }
     if (!values?.tax_number) {
       setValid((prevState) => ({
         ...prevState,
@@ -65,8 +72,22 @@ function ValidationForKycForm({
       }));
       endPoint = true;
     }
+    if (!values?.tax_image?.name) {
+      setinputsValidations((prevState) => ({
+        ...prevState,
+        tax_image: "Please attach certificate.",
+      }));
+      endPoint = true;
+    }
     if (!values?.national_id_image?.name) {
       setValid((prevState) => ({
+        ...prevState,
+        national_id_image: "Please attach National id details.",
+      }));
+      endPoint = true;
+    }
+    if (!values?.national_id_image?.name) {
+      setinputsValidations((prevState) => ({
         ...prevState,
         national_id_image: "Please attach National id details.",
       }));
@@ -143,8 +164,6 @@ function ValidationForKycForm({
   console.log(values)
   console.log("valid")
   console.log(valid)
-  console.log("isStatelist")
-  console.log(isStatelist)
   const ScroltoTop = () => {
     document.getElementById("kyc_focus_input")?.focus();
   };

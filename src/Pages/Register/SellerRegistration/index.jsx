@@ -365,14 +365,14 @@ const BuyerRegistration = ({ classes }) => {
       }));
       errorHandle = true;
     }
-    // if (!sellerRegistrationData?.role) {
-    //   document.getElementById("role")?.focus();
-    //   setInputValidation((prevState) => ({
-    //     ...prevState,
-    //     role: "Please select the role.",
-    //   }));
-    //   errorHandle = true;
-    // }
+    if (!sellerRegistrationData?.role) {
+      document.getElementById("role")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        role: "Please select the role.",
+      }));
+      errorHandle = true;
+    }
     if (!sellerRegistrationData?.region) {
       document.getElementById("region")?.focus();
       setInputValidation((prevState) => ({
@@ -403,14 +403,14 @@ const BuyerRegistration = ({ classes }) => {
       }));
       errorHandle = true;
     }
-    if (!sellerRegistrationData?.recaptcha) {
+    /* if (!sellerRegistrationData?.recaptcha) {
       document.getElementById("recaptcha")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
         recaptcha: "Please enter the recaptcha .",
       }));
       errorHandle = true;
-    }
+    } */
     if (!sellerRegistrationData?.checkbox_confrim) {
       document.getElementById("checkbox_confrim")?.focus();
       setInputValidation((prevState) => ({

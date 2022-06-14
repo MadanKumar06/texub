@@ -481,6 +481,10 @@
     }
   }
 }
+.vieworders_main .vieworders__table .productname .brand_image .brand_name,
+.vieworders_main .vieworders__table .productname .brand_image{
+  width: 50px !important;
+}
 /* modal popup design here */
 .serial_number_popup {
   display: flex;
@@ -918,5 +922,13 @@
   }
   .vieworders_main .vieworders_heading_section .attach_invoice_btn {
     min-width: 100% !important;
+  }
+}
+@media (max-width:400px) {
+  .vieworders_main .username .id_heading{
+    font-size: 16px !important;
+  }
+  .vieworders_main .username .status{
+    margin-right: 0px;
   }
 }
