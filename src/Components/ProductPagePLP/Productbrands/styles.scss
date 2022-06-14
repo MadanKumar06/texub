@@ -99,10 +99,12 @@
         display: block;
         height: max-content;
         line-height: 32px;
-        padding: 0 10px;
+        // padding: 0 10px;
       }
       .list {
         display: none;
+        height: 350px;
+        overflow: auto;
       }
     }
     .Slider_brands:hover {
