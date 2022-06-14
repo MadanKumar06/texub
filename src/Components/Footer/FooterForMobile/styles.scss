@@ -38,6 +38,12 @@
   }
 }
 
+@media (max-width:580px) {
+  .footer_resource_training{
+    margin-bottom: 10px !important;
+  }
+}
+
 @media (max-width: 480px) {
   .mobile_view_accordion_container {
     .MuiTypography-root {

@@ -212,7 +212,7 @@ const MobileFooterAccordions = () => {
             // }/training`}
             className="link"
           >
-            <Typography>Training</Typography>
+            <Typography className="footer_resource_training">Training</Typography>
           </a>
         </AccordionDetails>
       </Accordion>

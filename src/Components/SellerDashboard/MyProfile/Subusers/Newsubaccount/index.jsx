@@ -15,7 +15,7 @@ import TextareaAutosize from '@mui/material/TextareaAutosize';
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
-const Index = ({ currentid, setisSub, setisSubusers, setshowButton }) => {
+const Index = ({ currentid, setisSub, setisSubusers, setshowButton, setSearchbar }) => {
   const [{}, dispatch] = useStateValue();
   const [adminToken, setAdminToken] = useState("");
   const [plist, setplist] = useState();
@@ -220,7 +220,8 @@ const Index = ({ currentid, setisSub, setisSubusers, setshowButton }) => {
         });
         setisSub(false);
         setisSubusers(true);
-        setshowButton(true)
+        setshowButton(true);
+        setSearchbar(true);
       } catch (e) {
         dispatch({
           type: "SET_IS_LOADING",
@@ -477,7 +478,8 @@ const Index = ({ currentid, setisSub, setisSubusers, setshowButton }) => {
             onClick={() => {
               setisSub(false);
               setisSubusers(true);
-              setshowButton(true)
+              setshowButton(true);
+              setSearchbar(true);
             }}
             style={{ cursor: "pointer" }}
           >
