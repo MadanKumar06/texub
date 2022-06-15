@@ -916,7 +916,11 @@
     left: 0.5em;
   }
 }
-
+@media (max-width:400px){
+  .Departments .Departments_Body_Search .Body_Searchbar_Down_images .Body_Searchbar_Down_img1_div .Offers .Offers_buttons{
+    gap:3em;
+  }
+}
 @media (max-width: 375px) {
   .Departments
     .Departments_Body_Search
@@ -933,6 +937,10 @@
     .Offers
     .Products_offer_per {
     font-size: 20px;
+  }
+
+  .Departments .Departments_Body_Search .Body_Searchbar_Down_images .Body_Searchbar_Down_img1_div .Offers .Offers_buttons button{
+    font-size: 13px !important;
   }
 }
 

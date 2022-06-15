@@ -1546,6 +1546,7 @@
   }
   .address_popup_main .city_row{
     width: 100%;
+    padding-bottom: 20px !important;
   }
 }
 @media (max-width: 630px) {
@@ -1649,10 +1650,25 @@
     padding: 12px 14px;
   }
 }
-@media (max-width: 340px) {
-  .checkout_main_container .section_left .block_A .shipping_info .shipping_charges_info .shipping_charges_section{
-    
+@media (max-width:400px){
+  .add_address_popup .address_popup_main .address_popup_btns{
+    flex-direction: column;
+    gap: 10px;
   }
+  .add_address_popup .address_popup_main .address_popup_btns button{
+    width: 100% !important;
+  }
+  .add_address_popup .address_popup_main .address_popup_btns button.address_save_btn{
+    order: 0;
+  }
+  .add_address_popup .address_popup_main .address_popup_btns button.address_cancel_btn{
+    order: 1;
+  }
+}
+@media (max-width: 340px) {
+  /* .checkout_main_container .section_left .block_A .shipping_info .shipping_charges_info .shipping_charges_section{
+    
+  } */
 .checkout_main_container{
     .section_left{
       .block_A{

@@ -89,7 +89,7 @@ const styles = (theme) => ({
     margin: "20px 0px",
     textAlign: "center",
     "@media(max-width:425px)": {
-      margin: "6px 0px",
+      margin: "20px 0px 0px 0px",
     },
   },
   button_guest: {

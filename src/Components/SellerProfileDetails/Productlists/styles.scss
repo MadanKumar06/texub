@@ -321,7 +321,27 @@
   } 
 
 }
-
+@media (max-width:768px){
+  .sellerprofile .sellerprofile__bg .products .productlist .productlist__search_box,
+  .sellerprofile .sellerprofile__bg .products .productlist .productlist_dropdown_hub,
+  .sellerprofile .sellerprofile__bg .products .productlist .productlist_dropdown_condition,
+  .sellerprofile .sellerprofile__bg .products .productlist .eta_field{
+    min-width: 48% !important;
+  }
+}
+@media (max-width:580px){
+  .sellerprofile .sellerprofile__bg .products .productlist .productlist__search_box form.MuiPaper-root,
+  .sellerprofile .sellerprofile__bg .products .productlist .productlist__search_box{
+    min-width: 100% !important;
+  }
+}
+@media (max-width:400px){
+  .sellerprofile .sellerprofile__bg .products .productlist .productlist_dropdown_hub,
+  .sellerprofile .sellerprofile__bg .products .productlist .productlist_dropdown_condition,
+  .sellerprofile .sellerprofile__bg .products .productlist .eta_field{
+    min-width: 100% !important;
+  }
+}
 @media (max-width: 380px) {
  .productlist{
     .seller_box_info{
