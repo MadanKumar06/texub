@@ -106,6 +106,12 @@ const Index = () => {
       console.log(e);
     }
   };
+  const clearAlign = {
+    bottom:"115px"
+  }
+  const DefaultClearAlign = {
+    bottom:"80px"
+  }
   console.log(transactionvalidation)
   return (
     <div className="ordersuccess_dashboard">
@@ -231,6 +237,7 @@ const Index = () => {
                     {transactiondetails?.transaction_date_time ? (
                       <Clear
                         className="clear_datepicker"
+                        style={transactionvalidation?.remarks?.length?clearAlign:DefaultClearAlign}
                         onClick={() => {
                           settransactiondetails((prevState) => ({
                             ...prevState,
@@ -265,13 +272,11 @@ const Index = () => {
                       }));
                     }}
                   />
-                  {
-                    transactionvalidation?.remarks.length? <p style={{ color: "red" }}>
+                  <p style={{ color: "red" }}>
                     {transactionvalidation?.remarks
                       ? transactionvalidation?.remarks
                       : ""}
-                    </p>:null
-                  }
+                  </p>
                 </div>
               </div>
             </div>
