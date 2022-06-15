@@ -106,7 +106,7 @@ const Index = () => {
       console.log(e);
     }
   };
-
+  console.log(transactionvalidation)
   return (
     <div className="ordersuccess_dashboard">
       <div className="dashboard__top">
@@ -152,7 +152,13 @@ const Index = () => {
                     name="reference_number"
                     variant="outlined"
                     value={transactiondetails?.referencenumber}
-                    onChange={(e) => handleTransaction(e)}
+                    onChange={(e) =>{
+                      handleTransaction(e)
+                      settransactionvalidation((prevstate) => ({
+                        ...prevstate,
+                        reference_number: "",
+                      }));
+                    }}
                   />
                   <p style={{ color: "red" }}>
                     {transactionvalidation?.reference_number
@@ -170,7 +176,13 @@ const Index = () => {
                     type="number"
                     variant="outlined"
                     value={transactiondetails?.payment_amount}
-                    onChange={(e) => handleTransaction(e)}
+                    onChange={(e) =>{
+                      handleTransaction(e)
+                      settransactionvalidation((prevstate) => ({
+                        ...prevstate,
+                        payment_amount: "",
+                      }));
+                    }}
                   />
                   <p style={{ color: "red" }}>
                     {transactionvalidation?.payment_amount
@@ -198,6 +210,10 @@ const Index = () => {
                         settransactiondetails((prevState) => ({
                           ...prevState,
                           transaction_date_time: newValue,
+                        }));
+                        settransactionvalidation((prevstate) => ({
+                          ...prevstate,
+                          transaction_date_time: "",
                         }));
                       }}
                       renderInput={(params) => (
@@ -241,20 +257,28 @@ const Index = () => {
                     className="textArea"
                     style={{ height: 100 }}
                     value={transactiondetails?.remarks}
-                    onChange={(e) => handleTransaction(e)}
+                    onChange={(e) =>{
+                      handleTransaction(e)
+                      settransactionvalidation((prevstate) => ({
+                        ...prevstate,
+                        remarks: "",
+                      }));
+                    }}
                   />
-                  <p style={{ color: "red" }}>
+                  {
+                    transactionvalidation?.remarks.length? <p style={{ color: "red" }}>
                     {transactionvalidation?.remarks
                       ? transactionvalidation?.remarks
                       : ""}
-                  </p>
+                    </p>:null
+                  }
                 </div>
               </div>
             </div>
 
             <div className="ordersuccess_btns">
               <Button
-                className="payment_later_btn btn-primary"
+                className="payment_later_btn btn-primary Confirm_Update_btn"
                 onClick={() =>
                   navigate(
                     `/${
@@ -266,7 +290,7 @@ const Index = () => {
                 Confirm & Update Payment Details Later
               </Button>
               <Button
-                className="btn-secondary"
+                className="btn-secondary submit_btn"
                 onClick={() => handletransactionvalidation()}
               >
                 Submit

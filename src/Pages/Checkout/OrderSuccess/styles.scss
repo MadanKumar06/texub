@@ -161,7 +161,27 @@
     border: 1px solid #ddb363 !important;
   }
 }
-
+@media (max-width:992px){
+  .ordersuccess_dashboard .dashboard__top .dashboard_center{
+    padding: 2em;
+  }
+}
+@media (max-width:768px){
+  .ordersuccess_dashboard .dashboard__top .dashboard_center .ordersuccess_btns{
+    flex-direction: column;
+    gap: 20px;
+  }
+  .ordersuccess_dashboard .dashboard__top .dashboard_center .ordersuccess_btns button{
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  .ordersuccess_dashboard .dashboard__top .dashboard_center .ordersuccess_btns button.submit_btn{
+    order: 0;
+  }
+  .ordersuccess_dashboard .dashboard__top .dashboard_center .ordersuccess_btns button.Confirm_Update_btn{
+    order: 1;
+  }
+}
 @media (max-width: 567px) {
   .ordersuccess_dashboard {
     .dashboard__top {

@@ -144,12 +144,9 @@ const Index = () => {
   }, [userDetailTrigger]);
   return (
     <div
-      className={`My_profile_main ${
-        showButton === false ? "My_profile_main_gap" : ""
-      }`}
-    >
-      <div className="myprofilesection__search">
-        <Paper
+      className="My_profile_main">
+      {showButton === true ?<div className="myprofilesection__search">
+      <Paper
           className="myprofilesection__searchinput"
           component="form"
           sx={{ p: "2px 4px", display: "flex", alignItems: "center" }}
@@ -176,7 +173,8 @@ const Index = () => {
                 <img src={notification} alt="" />
               </div>
               <span>Notification</span> */}
-      </div>
+      </div>: null
+      }
       {showButton === true ? (
         <div className="My_profile_btn_section">
           {profiletype?.map((data, i) => {

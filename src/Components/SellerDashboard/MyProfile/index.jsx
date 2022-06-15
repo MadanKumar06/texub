@@ -12,7 +12,7 @@ import { useStateValue } from "../../../store/state";
 import axios from "axios";
 import Constant from "../../../Constant";
 
-const Index = ({ searchdata, searchupdate }) => {
+const Index = ({ searchdata, searchupdate, searchBar, setSearchbar }) => {
   const [isAccountinfo, setisAccountinfo] = useState(true);
   const [{ geo, customnostore }, dispatch] = useStateValue();
   const [showButton, setshowButton] = useState(true);
@@ -174,6 +174,7 @@ const Index = ({ searchdata, searchupdate }) => {
           setshowButton={setshowButton}
           searchdata={searchdata}
           searchupdate={searchupdate}
+          setSearchbar={setSearchbar}
         />
       )}
       {isAccountinfo && (
@@ -215,7 +216,7 @@ const Index = ({ searchdata, searchupdate }) => {
               <div className="my_profile_data_section">
                 <p className="my_profile_data_section_heading">MOBILE NUMBER</p>
                 <p className="my_profile_data_section_tag">
-                  {mobile_number?.[0]?.value}
+                  +{mobile_number?.[0]?.value}
                 </p>
               </div>
               <div className="my_profile_data_section">

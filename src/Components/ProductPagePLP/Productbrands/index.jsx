@@ -16,6 +16,7 @@ const Productsbrands = ({
   setApplyFilter,
   applyFilter,
   homeCategorySearch,
+  clearSelected
 }) => {
   const [{ isSimpleLoading }, dispatch] = useStateValue();
   const [isChange, setisChange] = useState(false);
@@ -25,7 +26,11 @@ const Productsbrands = ({
   const brand = (value) => {
     value && setisChange(value);
   };
-
+  useEffect(()=>{
+    setIsBrandSelected(null)
+    setIsCategorySelected(46)
+  },[clearSelected])
+  
   function Arrow(props) {
     let className =
       props.type === "next" ? "Carosal_nextArrow" : "Carosal_prevArrow";
@@ -247,8 +252,6 @@ const Productsbrands = ({
       }, 2000);
     }
   }, [homeCategorySearch, getCategories]);
-  console.log("sliderBrandsAndCategories")
-  console.log(sliderBrandsAndCategories)
   return (
     <div className="Productsbrands">
       <>

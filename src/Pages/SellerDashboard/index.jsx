@@ -201,6 +201,8 @@ function SellerDashboard() {
             <MyProfile 
               searchdata={search}
               searchupdate={searchupdate}
+              searchBar={searchBar} 
+              setSearchbar={setSearchbar}
             />
             // <UserMgmt setuserform={setuserform} userform={userform} />
           )}

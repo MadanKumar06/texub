@@ -214,3 +214,16 @@
   } 
 
 }
+@media (max-width: 360px) {
+  .seller_dashboard .dashboard__data .dasboard__dataiamge .header{
+    left: 4em !important;
+  }
+}
+@media (max-width: 330px) {
+  .seller_dashboard .dashboard__data .dasboard__dataiamge .header{
+    left: 3.5em !important;
+  }
+  .seller_dashboard .dashboard__data .dasboard__dataiamge .value{
+    right: 0.4em !important;
+  }
+}

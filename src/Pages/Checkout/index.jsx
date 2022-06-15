@@ -1754,7 +1754,7 @@ const Checkout = () => {
                     </div>
                   )}
                 </div>
-                <div className="address_field_block" style={{ width: "48.1%" }}>
+                <div className="address_field_block city_row">
                   <div className="address_fields">
                     <InputLabel>City</InputLabel>
                     <TextField

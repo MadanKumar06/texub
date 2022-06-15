@@ -38,7 +38,7 @@ export const Products = () => {
   const [productData, setProductData] = useState([]);
   const [dataFromApi, setDataFromApi] = useState([]);
   const [applyFilter, setApplyFilter] = useState(false);
-
+  const [clearSelected_categories,setclearSelected_categories] = useState(true)
   let customer_id = JSON.parse(localStorage.getItem("userdata"));
   const [userfilter, setuserfilter] = useState();
 
@@ -235,7 +235,9 @@ export const Products = () => {
           );
     setpermission(pendingpermission);
   }, []);
-
+  const clearSelected = ()=>{
+    setclearSelected_categories(!clearSelected_categories)
+  }
   return (
     <div>
       <Helmet>
@@ -268,6 +270,7 @@ export const Products = () => {
           setApplyFilter={setApplyFilter}
           applyFilter={applyFilter}
           homeCategorySearch={history?.state}
+          clearSelected={clearSelected_categories}
         />
         <div className="clear-btn">
           <Button
@@ -275,6 +278,7 @@ export const Products = () => {
             onClick={() => {
               localStorage.removeItem("filters");
               localStorage.removeItem("filterProductsDropdown");
+              clearSelected()
               setProductFetchApi((prev) => ({
                 ...prev,
                 conditions: "0",

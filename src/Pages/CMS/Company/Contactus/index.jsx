@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import "./styles.scss";
-
 import { TextField, Box, Button, InputLabel } from "@mui/material";
-import { isEmailValid } from "../../../../utilities";
+import { isEmailValid, isNumber } from "../../../../utilities";
 import Constant from "../../../../Constant";
 import axios from "axios";
 import swal from "sweetalert2";
@@ -90,7 +89,7 @@ const Contactus = () => {
       ...prevState,
       [event.target.name]: event.target.value,
     }));
-    setInputValidation("");
+    // setInputValidation("");
   };
   const handleClickValidation = (event) => {
     var errorHandle = false;
@@ -99,6 +98,13 @@ const Contactus = () => {
       setInputValidation((prevState) => ({
         ...prevState,
         your_name: "Please enter your name.",
+      }));
+      errorHandle = true;
+    }else if (contactusData?.your_name?.replace(/[^0-9]/g, '')) {
+      document.getElementById("your_name")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        your_name: "Numbers are not allowed.",
       }));
       errorHandle = true;
     }
@@ -392,7 +398,14 @@ const Contactus = () => {
                     asterisk: "asterisk",
                   },
                 }}
-                onChange={handleFormvalue}
+                // onChange={handleFormvalue}
+                onChange={(event)=>{
+                  handleFormvalue(event);
+                  setInputValidation((prevState) => ({
+                    ...prevState,
+                    your_name: "",
+                  }));
+                }}
                 value={contactusData?.your_name}
                 variant="outlined"
               />
@@ -415,7 +428,14 @@ const Contactus = () => {
                     asterisk: "asterisk",
                   },
                 }}
-                onChange={handleFormvalue}
+                // onChange={handleFormvalue}
+                onChange={(event)=>{
+                  handleFormvalue(event);
+                  setInputValidation((prevState) => ({
+                    ...prevState,
+                    e_mail: "",
+                  }));
+                }}
                 value={contactusData?.e_mail}
                 variant="outlined"
               />
@@ -434,7 +454,14 @@ const Contactus = () => {
                   shrink: true,
                 }}
                 variant="outlined"
-                onChange={handleFormvalue}
+                // onChange={handleFormvalue}
+                onChange={(event)=>{
+                  handleFormvalue(event);
+                  setInputValidation((prevState) => ({
+                    ...prevState,
+                    e_mail: "",
+                  }));
+                }}
                 value={contactusData?.subject}
               />
               <InputLabel className="validation_error"></InputLabel>
@@ -456,7 +483,14 @@ const Contactus = () => {
                     asterisk: "asterisk",
                   },
                 }}
-                onChange={handleFormvalue}
+                // onChange={handleFormvalue}
+                onChange={(event)=>{
+                  handleFormvalue(event);
+                  setInputValidation((prevState) => ({
+                    ...prevState,
+                    your_message: "",
+                  }));
+                }}
                 value={contactusData?.your_message}
                 variant="outlined"
               />

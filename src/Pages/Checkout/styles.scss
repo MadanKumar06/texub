@@ -934,6 +934,11 @@
 .payment_info .payment_footer_block_1 .footer_content .MuiRadio-root {
   padding: 9px !important;
 }
+
+.address_popup_main .city_row{
+  width: 48.1%;
+}
+
 @media (min-width: "1660px") {
   .add_address_popup
     .address_popup_main
@@ -1538,6 +1543,9 @@
         }
       }
     }
+  }
+  .address_popup_main .city_row{
+    width: 100%;
   }
 }
 @media (max-width: 630px) {

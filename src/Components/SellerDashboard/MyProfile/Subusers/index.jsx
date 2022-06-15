@@ -15,7 +15,7 @@ import Pagination from "../../../Pagination";
 import { getAdminToken } from "../../../../utilities";
 import moment from "moment";
 
-const Index = ({ setshowButton, searchdata, searchupdate }) => {
+const Index = ({ setshowButton, searchdata, searchupdate, setSearchbar }) => {
   const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
   const [isSub, setisSub] = useState(false);
   const [sublist, setsublist] = useState([]);
@@ -247,6 +247,14 @@ const Index = ({ setshowButton, searchdata, searchupdate }) => {
       },
     },
     {
+      name: "parent_account",
+      label: "Parent Account"
+    },
+    {
+      name: "parent_account",
+      label: "Main Account"
+    },
+    {
       name: "entity_id",
       label: "Action",
       options: {
@@ -277,6 +285,7 @@ const Index = ({ setshowButton, searchdata, searchupdate }) => {
               onClick={() => {
                 Newsubacc();
                 setshowButton(false);
+                setSearchbar(false)
               }}
             >
               Add New Sub-Account
@@ -320,6 +329,7 @@ const Index = ({ setshowButton, searchdata, searchupdate }) => {
           setisSub={setisSub}
           setisSubusers={setisSubusers}
           setshowButton={setshowButton}
+          setSearchbar={setSearchbar}
         />
       )}
       {isPermissions && (
