@@ -16,6 +16,7 @@ function Index({ registerproduct }) {
   const [tableData, setTableData] = useState([]);
   const [apiTableData, setApiTableData] = useState([]);
   const [{}, dispatch] = useStateValue();
+  const [apicallback, setApicallback] = useState(0);
   const options = {
     filter: false,
     filterType: "dropdown",
@@ -51,13 +52,14 @@ function Index({ registerproduct }) {
           data: {
             sellerData: {
               customer_id: customerId?.id,
+              page: apicallback,
             },
           },
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         });
-        setApiTableData(tabledata.data);
+        setApiTableData(tabledata.data?.[0]);
         dispatch({
           type: "SET_IS_LOADING",
           value: false,
@@ -71,7 +73,7 @@ function Index({ registerproduct }) {
       }
     };
     fetchTableData();
-  }, []);
+  }, [apicallback]);
 
   const columns = [
     {
@@ -170,6 +172,9 @@ function Index({ registerproduct }) {
   const PaginateDataSplit = (event) => {
     setTableData(event);
   };
+  const handleApicallback = (event) => {
+    setApicallback(event);
+  };
   return (
     <div className="productGrid_inventory pending_product_grid">
       <MUITable
@@ -179,11 +184,13 @@ function Index({ registerproduct }) {
         className="productGrid__table"
       />
 
-      {apiTableData?.length > 0 && (
+      {apiTableData?.products?.length > 0 && (
         <Pagination
           PaginateData={PaginateDataSplit}
-          DataList={apiTableData}
-          PagePerRow={8}
+          DataList={apiTableData?.products}
+          PagePerRow={10}
+          TotalPage={apiTableData?.count}
+          handleApicallback={handleApicallback}
         />
       )}
       <p className="pending_product_back" onClick={() => navigate(-1)}>

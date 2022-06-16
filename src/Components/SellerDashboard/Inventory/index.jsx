@@ -24,7 +24,7 @@ function Index({ registerproduct }) {
   const [searchList, setSearchList] = useState([]);
   const [search, setSearch] = useState("");
   const [{ geo, customnostore, generalTrigger }, dispatch] = useStateValue();
-
+  const [apicallback, setApicallback] = useState(0);
   function formatToCurrency(price) {
     return price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
   }
@@ -123,7 +123,11 @@ function Index({ registerproduct }) {
           let brandName = tablemeta?.rowData[15];
           return (
             <div className="brand_image">
-              {value ? <img src={value} alt="" title={brandName}/> : <span>{brandName}</span>}
+              {value ? (
+                <img src={value} alt="" title={brandName} />
+              ) : (
+                <span>{brandName}</span>
+              )}
             </div>
           );
         },
@@ -322,12 +326,13 @@ function Index({ registerproduct }) {
           url: `${Constant.baseUrl()}/getEditProductList`,
           data: {
             customerId: customerId?.id,
+            page: apicallback,
           },
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         });
-        setApiTableData(tabledata?.data);
+        setApiTableData(tabledata?.data?.[0]);
         dispatch({
           type: "SET_IS_LOADING",
           value: false,
@@ -341,7 +346,7 @@ function Index({ registerproduct }) {
       }
     };
     fetchTableData();
-  }, [generalTrigger]);
+  }, [generalTrigger, apicallback]);
 
   let customerId = JSON.parse(localStorage.getItem("userdata"));
   const handleSearchInput = async (event) => {
@@ -434,6 +439,9 @@ function Index({ registerproduct }) {
       console.log(e);
     }
   };
+  const handleApicallback = (event) => {
+    setApicallback(event);
+  };
   return (
     <div className="inventory">
       <div className="inventory__products__footer">
@@ -497,11 +505,13 @@ function Index({ registerproduct }) {
         className="inventory__table"
       />
 
-      {apiTableData?.length > 0 && (
+      {apiTableData?.products?.length > 0 && (
         <Pagination
           PaginateData={PaginateDataSplit}
-          DataList={apiTableData?.length ? apiTableData : []}
+          DataList={apiTableData?.products}
           PagePerRow={10}
+          TotalPage={apiTableData?.count}
+          handleApicallback={handleApicallback}
         />
       )}
       {offersOpenClose?.isOpenClose && (

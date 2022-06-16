@@ -67,6 +67,7 @@ import SimpleBackdrop from "./Components/LoaderBackDrop";
 import {
   GetHomeAPi,
   GetCategoriesList,
+  getSigninedUserData
 } from "./utilities";
 import axios from "axios";
 
@@ -148,6 +149,9 @@ const App = () => {
       }
     }
   }, []);
+  useEffect(()=>{
+    getSigninedUserData()
+  },[])
   useEffect(() => {
     if (currency?.currency_id) {
       GetCategoriesList((res) => {

@@ -97,35 +97,37 @@ function Index({
   }, [currentdata?.hub_id]);
 
   useEffect(async () => {
-    let country_code = JSON.parse(
-      localStorage.getItem("userdata")
-    )?.custom_attributes?.find(
-      (itm) => itm?.attribute_code === "customer_country"
-    );
-    try {
-      const hubcurrencydata = await axios({
-        method: "post",
-        url: `${Constant.baseUrl()}/hubBasedCurrency`,
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-        data: {
-          data: {
-            hub_id: currenthub?.hub_id,
-            country_code: country_code?.value,
+    if (currenthub?.hub_id) {
+      let country_code = JSON.parse(
+        localStorage.getItem("userdata")
+      )?.custom_attributes?.find(
+        (itm) => itm?.attribute_code === "customer_country"
+      );
+      try {
+        const hubcurrencydata = await axios({
+          method: "post",
+          url: `${Constant.baseUrl()}/hubBasedCurrency`,
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
-        },
-      });
-      let temp = [];
-      hubcurrencydata?.data?.[0]?.currency_details?.filter((hub) => {
-        temp.push({
-          label: hub?.currency_code,
-          value: hub?.currency_id,
+          data: {
+            data: {
+              hub_id: currenthub?.hub_id,
+              country_code: country_code?.value,
+            },
+          },
         });
-      });
-      setoptions(temp);
-    } catch (e) {
-      console.log(e);
+        let temp = [];
+        hubcurrencydata?.data?.[0]?.currency_details?.filter((hub) => {
+          temp.push({
+            label: hub?.currency_code,
+            value: hub?.currency_id,
+          });
+        });
+        setoptions(temp);
+      } catch (e) {
+        console.log(e);
+      }
     }
   }, [currenthub]);
 
