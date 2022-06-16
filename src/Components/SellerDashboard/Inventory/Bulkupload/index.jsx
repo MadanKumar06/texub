@@ -11,6 +11,7 @@ import swal from "sweetalert2";
 import XLSX from "xlsx";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import { Link } from "react-router-dom";
+import ProgressBar from "./ProgressBar";
 
 function Index() {
   const [Row, setRow] = useState([]);
@@ -18,8 +19,12 @@ function Index() {
   const [saveuploadFile, setSaveUploadFile] = useState({ files: [] });
   const [uploadFile, setUploadFile] = useState({ files: [] });
   const [choosenFile, setChoosenFile] = useState({});
-  const [file, setFile] = useState({});
+  const [file, setFile] = useState("");
   const [{ geo, customnostore }, dispatch] = useStateValue();
+  const [uploadPercentage, setUploadPercentage] = useState({
+    barOpenClose: false,
+    barValue: 0,
+  });
 
   const ExportXlsxDetails = async () => {
     const user = JSON.parse(localStorage.getItem("userdata"));
@@ -69,9 +74,14 @@ function Index() {
     }
   };
   const handleUploadApiCall = () => {
-    dispatch({
-      type: "SET_IS_LOADING",
-      value: true,
+    // dispatch({
+    //   type: "SET_IS_LOADING",
+    //   value: true,
+    // });
+    setRow([]);
+    setUploadPercentage({
+      barOpenClose: true,
+      barValue: 0,
     });
     var reader = new FileReader();
     reader.onload = function (e) {
@@ -254,9 +264,16 @@ function Index() {
         type: "SET_IS_LOADING",
         value: false,
       });
-      setRow(results);
+      setUploadPercentage({
+        barOpenClose: true,
+        barValue: 100,
+      });
+      setTimeout(() => {
+        setRow(results);
+      }, 2000);
     });
   };
+
   const fileHandler = (event) => {
     setChoosenFile(event?.target?.files[0]);
     // setSaveUploadFile({ files: [...uploadFile?.files, ...event.target.files] });
@@ -300,6 +317,12 @@ function Index() {
     } else {
       window.location.href = samplefile;
     }
+  };
+  const handleCloseProgressBar = (event) => {
+    setUploadPercentage({
+      barOpenClose: event,
+      barValue: 0,
+    });
   };
   return (
     <div className="bulk_upload">
@@ -403,14 +426,20 @@ function Index() {
             />
             <Button
               className="button-text btn-secondary validate_btn"
-              onClick={(event) => handleUploadApiCall(event)}
+              onClick={(event) => file !== "" && handleUploadApiCall(event)}
+              disabled={uploadPercentage?.barOpenClose}
             >
               Validate File
             </Button>
           </div>
         </div>
       </div>
-
+      {uploadPercentage?.barOpenClose && (
+        <ProgressBar
+          uploadPercentage={uploadPercentage}
+          handleCloseProgressBar={handleCloseProgressBar}
+        />
+      )}
       <div className="validation_message">
         <div className="check_scroll">
           {Row?.length
