@@ -111,6 +111,7 @@ function Index() {
     selectableRows: false,
     download: false,
     print: false,
+    pagination: false,
     sort: false,
     viewColumns: false,
     search: false,
