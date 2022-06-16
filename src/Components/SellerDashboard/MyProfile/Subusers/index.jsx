@@ -251,7 +251,7 @@ const Index = ({ setshowButton, searchdata, searchupdate, setSearchbar }) => {
       label: "Parent Account"
     },
     {
-      name: "parent_account",
+      name: "main_account",
       label: "Main Account"
     },
     {

@@ -267,7 +267,7 @@
               display: flex;
               gap: 10px;
               position: relative;
-              align-items: center;
+              // align-items: center;
               .brand_info_section{
                  width: 50px;
                 height: 50px;
@@ -278,6 +278,11 @@
                   width: 50px;
                   height: 100%;
                 }
+                .brand_name_section {
+                  width: 50px;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+              }
               }
               img.image {
                 width: 50px;
@@ -314,7 +319,7 @@
                   -webkit-box-orient: vertical;
                   text-overflow: ellipsis;
                   overflow: hidden;
-                  min-height: 42px;
+                  // min-height: 42px;
                 }
               }
             }
