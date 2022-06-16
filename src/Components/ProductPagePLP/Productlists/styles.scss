@@ -199,7 +199,18 @@
     height: 100%;
   }
 }
-
+@media (max-width:600px){
+  .productlist__search {
+    min-width: 48%;
+    width: 48%;
+  }
+}
+@media (max-width:540px){
+  .products .productlist .productlist__hub_dropdown,.products .productlist .productlist__condition_dropdown,
+  .products .productlist .eta_field{
+    min-width: 48%;
+  }
+}
 @media (max-width: 480px) {
   .productlist__search {
     min-width: 100% !important;
@@ -210,7 +221,7 @@
   }
   .productlist{
     .eta_field{
-            min-width: 150px;
+      min-width: 150px;
     }
   } 
   .productlist .product_based_deals {
@@ -248,7 +259,12 @@
   } 
 
 }
-
+@media (max-width:400px){
+  .products .productlist .productlist__hub_dropdown,.products .productlist .productlist__condition_dropdown,
+  .products .productlist .eta_field{
+    min-width: 100%;
+  }
+}
 @media (max-width) {
   .productlist {
     justify-content: space-between !important;

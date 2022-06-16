@@ -307,7 +307,7 @@ const Productlists = ({
         </Paper>
       </div>
 
-      <Box sx={{ minWidth: 150 }}>
+      <Box sx={{ minWidth: 150 }} className="productlist__hub_dropdown">
         <FormControl fullWidth className="product_dropdown_hub">
           <InputLabel id="demo-simple-select-label">Hubs</InputLabel>
           <Select
@@ -329,7 +329,7 @@ const Productlists = ({
           </Select>
         </FormControl>
       </Box>
-      <Box sx={{ minWidth: 200 }}>
+      <Box sx={{ minWidth: 200 }} className="productlist__condition_dropdown">
         <FormControl fullWidth className="product_dropdown_condition">
           <InputLabel id="demo-simple-select-label">Conditions</InputLabel>
           <Select

@@ -16,6 +16,7 @@ import moment from "moment";
 import { useParams, useNavigate } from "react-router-dom";
 import { useStateValue } from "../../../store/state";
 import swal from "sweetalert2";
+import { useEffect } from "react";
 
 const Index = () => {
   let userDetails = JSON.parse(localStorage.getItem("userdata"));
@@ -106,13 +107,19 @@ const Index = () => {
       console.log(e);
     }
   };
-  const clearAlign = {
-    bottom:"115px"
-  }
-  const DefaultClearAlign = {
-    bottom:"80px"
-  }
-  console.log(transactionvalidation)
+  const [clearIconAlignment,setclearIconAlignment] = useState("")
+  useEffect(()=>{
+    if(window.innerWidth<=650){
+      setclearIconAlignment("25px")
+    }else if(window.innerWidth>=650){
+      setclearIconAlignment("80px")
+      if(transactionvalidation?.remarks?.length===0){
+        setclearIconAlignment("80px")
+      }else if(transactionvalidation?.remarks?.length>0){
+        setclearIconAlignment("115px")
+      }
+    }
+  },[transactionvalidation])
   return (
     <div className="ordersuccess_dashboard">
       <div className="dashboard__top">
@@ -237,7 +244,8 @@ const Index = () => {
                     {transactiondetails?.transaction_date_time ? (
                       <Clear
                         className="clear_datepicker"
-                        style={transactionvalidation?.remarks?.length?clearAlign:DefaultClearAlign}
+                        style={{bottom:clearIconAlignment}}
+                        // style={transactionvalidation?.remarks?.length?clearAlign:DefaultClearAlign}
                         onClick={() => {
                           settransactiondetails((prevState) => ({
                             ...prevState,
