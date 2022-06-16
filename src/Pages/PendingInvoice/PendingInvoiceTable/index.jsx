@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./styles.scss";
 import MUITable from "../../../Components/Common/MUITable";
-import Constant from "../../../Constant";
 
-import HP from "./../../../Assets/Productlist/hp_td_icon.png";
-import Acer from "../../../Assets/Productlist/acer_icon_td.png";
 import NodataFound from "../../../Assets/CommonImage/NodataFound.webp.png";
 
 const PendingInvoiceTable = ({ pendingInvoiceList }) => {
@@ -30,17 +27,21 @@ const PendingInvoiceTable = ({ pendingInvoiceList }) => {
       name: "brand",
       label: "PRODUCTS",
       options: {
-        customBodyRender: (value, tableMeta) => {
-          let eta = tableMeta?.rowData[8];
-          let description = tableMeta?.rowData[7];
-          let productname = tableMeta?.rowData[6];
+        customBodyRender: (value, tablemeta) => {
+          let eta = tablemeta?.rowData[8];
+          let description = tablemeta?.rowData[7];
+          let productname = tablemeta?.rowData[6];
           let brandName = tablemeta?.rowData[8];
           return (
             <div className="pending_invoice_product_main">
               <div className="pending_invoice_product_sub_block">
                 <div className="img_block">
                   <div className="brand_image">
-                     {value ? <img src={value} alt="" /> : <span>{brandName}</span>}
+                    {value ? (
+                      <img src={value} alt="" />
+                    ) : (
+                      <span>{brandName}</span>
+                    )}
                   </div>
                 </div>
                 <div className="pending_invoice_right_section">
@@ -175,6 +176,7 @@ const PendingInvoiceTable = ({ pendingInvoiceList }) => {
     responsive: "vertical",
     selectableRows: "none",
     download: false,
+    pagination: false,
     print: false,
     sort: false,
     viewColumns: false,

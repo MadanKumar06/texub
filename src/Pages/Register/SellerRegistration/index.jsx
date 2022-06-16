@@ -212,7 +212,7 @@ const BuyerRegistration = ({ classes }) => {
     }
   };
 
-  const handleClickValidation = (event) => {
+  const handleClickValidation = async (event) => {
     event.preventDefault();
     var errorHandle = false;
     if (!sellerRegistrationData?.first_name) {
@@ -358,21 +358,21 @@ const BuyerRegistration = ({ classes }) => {
       errorHandle = true;
     }
     if (!sellerRegistrationData?.country) {
-      document.getElementById("last_name")?.focus();
+      document.getElementById("country")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
         country: "Please select the country.",
       }));
       errorHandle = true;
     }
-    if (!sellerRegistrationData?.role) {
-      document.getElementById("role")?.focus();
-      setInputValidation((prevState) => ({
-        ...prevState,
-        role: "Please select the role.",
-      }));
-      errorHandle = true;
-    }
+    // if (!sellerRegistrationData?.roles) {
+    //   document.getElementById("role")?.focus();
+    //   setInputValidation((prevState) => ({
+    //     ...prevState,
+    //     role: "Please select the role.",
+    //   }));
+    //   errorHandle = true;
+    // }
     if (!sellerRegistrationData?.region) {
       document.getElementById("region")?.focus();
       setInputValidation((prevState) => ({
@@ -403,14 +403,14 @@ const BuyerRegistration = ({ classes }) => {
       }));
       errorHandle = true;
     }
-    /* if (!sellerRegistrationData?.recaptcha) {
+    if (!sellerRegistrationData?.recaptcha) {
       document.getElementById("recaptcha")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
         recaptcha: "Please enter the recaptcha .",
       }));
       errorHandle = true;
-    } */
+    }
     if (!sellerRegistrationData?.checkbox_confrim) {
       document.getElementById("checkbox_confrim")?.focus();
       setInputValidation((prevState) => ({
@@ -974,7 +974,7 @@ const BuyerRegistration = ({ classes }) => {
                 className={recaptcha_info}
                 // 6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI
                 // 6LcaHDYfAAAAAOUR0jJWtEI128eoRL4xjBWOpjKD
-                sitekey="6LcaHDYfAAAAAOUR0jJWtEI128eoRL4xjBWOpjKD"
+                sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
                 onChange={() => {
                   setsellerRegistrationData((prevState) => ({
                     ...prevState,
@@ -994,7 +994,7 @@ const BuyerRegistration = ({ classes }) => {
           </div>
           <Box className={button_box} fullWidth>
             <Button
-              onClick={() => handleClickValidation()}
+              onClick={(e) => handleClickValidation(e)}
               className={button_guest}
               type="submit"
             >

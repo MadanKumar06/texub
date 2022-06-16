@@ -755,7 +755,7 @@ const BuyerRegistration = ({ classes }) => {
 
           <Box className={button_box} fullWidth>
             <Button
-              onClick={() => handleClickValidation()}
+              onClick={(e) => handleClickValidation(e)}
               className={button_guest}
               type="submit"
             >

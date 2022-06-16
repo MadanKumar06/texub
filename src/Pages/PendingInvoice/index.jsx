@@ -99,6 +99,7 @@ function Index() {
     responsive: "vertical",
     selectableRows: false,
     download: false,
+    pagination: false,
     print: false,
     sort: false,
     viewColumns: false,
@@ -271,14 +272,6 @@ function Index() {
       setpendinginvoicestatus(false);
     }
   }, [pendingInvoiceList]);
-  const handleChange = () => {
-    var printContents = document.getElementById("pendinginvoice").innerHTML;
-    var originalContents = document.body.innerHTML;
-    document.body.innerHTML = printContents;
-    document.body.className = "pendinginvoice";
-    window.print();
-    document.body.innerHTML = originalContents;
-  };
   return (
     <div className="pendinginvoice" id="pendinginvoice">
       <div className="pendinginvoice__top">
@@ -343,10 +336,7 @@ function Index() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <div
-                  className="checkoutlist__download"
-                  // onClick={() => handleChange()}
-                >
+                <div className="checkoutlist__download">
                   <svg
                     id="Icon"
                     xmlns="http://www.w3.org/2000/svg"
