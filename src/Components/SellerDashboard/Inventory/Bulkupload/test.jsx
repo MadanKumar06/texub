@@ -1878,7 +1878,6 @@ function Index() {
 
     await Promise.all(requests).then((results) => {
       console.log("All requests finished!", results);
-      debugger;
       dispatch({
         type: "SET_IS_LOADING",
         value: false,

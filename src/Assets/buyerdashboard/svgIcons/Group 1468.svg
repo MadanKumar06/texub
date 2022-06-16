@@ -8,27 +8,27 @@
       <path d="M-.26-.062,24.5,0a1.5,1.5,0,0,1,0,3L.241,2.948Z" stroke="none"/>
       <path d="M 0.9204444885253906 0.9406025409698486 L 1.088640213012695 1.9498131275177 L 24.5 2.000000953674316 C 24.77570152282715 2.000000953674316 25 1.77570104598999 25 1.500001072883606 C 25 1.224300980567932 24.77570152282715 1.000001072883606 24.49748039245605 1.000001072883606 L 0.9204444885253906 0.9406025409698486 M -0.2604999542236328 -0.06237888336181641 L 24.5 9.5367431640625e-07 C 25.32842063903809 9.5367431640625e-07 26.00000190734863 0.6715710163116455 26.00000190734863 1.500001072883606 C 26.00000190734863 2.328431129455566 25.32842063903809 3.000000953674316 24.5 3.000000953674316 L 0.2412109375 2.948001146316528 L -0.2604999542236328 -0.06237888336181641 Z" stroke="none" fill="#000"/>
     </g>
-    <path id="Path_1718" data-name="Path 1718" d="M2125.252,1123.678s-2.632-18.786-2.881-19.094-2.562-.264-2.562-.264" transform="translate(-280 39)" fill="none" stroke="#000" stroke-width="1"/>
-    <g id="Rectangle_1701" data-name="Rectangle 1701" transform="translate(1835 1141)" fill="none" stroke="#000" stroke-width="1">
+    <path id="Path_1718" data-name="Path 1718" d="M2125.252,1123.678s-2.632-18.786-2.881-19.094-2.562-.264-2.562-.264" transform="translate(-280 39)" fill="none" stroke="#000" strokeWidth="1"/>
+    <g id="Rectangle_1701" data-name="Rectangle 1701" transform="translate(1835 1141)" fill="none" stroke="#000" strokeWidth="1">
       <rect width="6" height="4" rx="2" stroke="none"/>
       <rect x="0.5" y="0.5" width="5" height="3" rx="1.5" fill="none"/>
     </g>
-    <path id="Path_1719" data-name="Path 1719" d="M2143.618,1127.013s-18.317.08-19.1,0-2.106-.91-1.875-2.142,2.558-1.413,2.588-1.651" transform="translate(-280 39)" fill="none" stroke="#000" stroke-width="1"/>
-    <g id="Ellipse_116" data-name="Ellipse 116" transform="translate(1845 1166)" fill="none" stroke="#000" stroke-width="1">
+    <path id="Path_1719" data-name="Path 1719" d="M2143.618,1127.013s-18.317.08-19.1,0-2.106-.91-1.875-2.142,2.558-1.413,2.588-1.651" transform="translate(-280 39)" fill="none" stroke="#000" strokeWidth="1"/>
+    <g id="Ellipse_116" data-name="Ellipse 116" transform="translate(1845 1166)" fill="none" stroke="#000" strokeWidth="1">
       <circle cx="2.5" cy="2.5" r="2.5" stroke="none"/>
       <circle cx="2.5" cy="2.5" r="2" fill="none"/>
     </g>
-    <g id="Ellipse_117" data-name="Ellipse 117" transform="translate(1857 1166)" fill="none" stroke="#000" stroke-width="1">
+    <g id="Ellipse_117" data-name="Ellipse 117" transform="translate(1857 1166)" fill="none" stroke="#000" strokeWidth="1">
       <circle cx="2.5" cy="2.5" r="2.5" stroke="none"/>
       <circle cx="2.5" cy="2.5" r="2" fill="none"/>
     </g>
-    <path id="Path_1720" data-name="Path 1720" d="M2144.366,1117.119a6.091,6.091,0,0,1-1.579,3.021,7.319,7.319,0,0,1-3.33,1.407" transform="translate(-279.957 38)" fill="none" stroke="#000" stroke-linecap="round" stroke-width="1"/>
+    <path id="Path_1720" data-name="Path 1720" d="M2144.366,1117.119a6.091,6.091,0,0,1-1.579,3.021,7.319,7.319,0,0,1-3.33,1.407" transform="translate(-279.957 38)" fill="none" stroke="#000" strokeLinecap="round" strokeWidth="1"/>
     <g id="Group_1467" data-name="Group 1467" transform="translate(-54 -8)">
-      <g id="Ellipse_118" data-name="Ellipse 118" transform="translate(1899 1143)" fill="#fff" stroke="#000" stroke-width="1">
+      <g id="Ellipse_118" data-name="Ellipse 118" transform="translate(1899 1143)" fill="#fff" stroke="#000" strokeWidth="1">
         <circle cx="10" cy="10" r="10" stroke="none"/>
         <circle cx="10" cy="10" r="9.5" fill="none"/>
       </g>
-      <path id="Path_1721" data-name="Path 1721" d="M2130.9,1107.913c.479.328,2.767,2.588,2.767,2.588s5.945-6.013,6.2-6.2,1.428-.19,1.74.357a1.731,1.731,0,0,1-.491,1.83c-.454.51-7.453,7.1-7.453,7.1s-4.478-4.021-4.6-4.463a1.232,1.232,0,0,1,.352-1.352C2130.088,1107.1,2130.9,1107.913,2130.9,1107.913Z" transform="translate(-226 44.118)" fill="none" stroke="#000" stroke-linejoin="round" stroke-width="1"/>
+      <path id="Path_1721" data-name="Path 1721" d="M2130.9,1107.913c.479.328,2.767,2.588,2.767,2.588s5.945-6.013,6.2-6.2,1.428-.19,1.74.357a1.731,1.731,0,0,1-.491,1.83c-.454.51-7.453,7.1-7.453,7.1s-4.478-4.021-4.6-4.463a1.232,1.232,0,0,1,.352-1.352C2130.088,1107.1,2130.9,1107.913,2130.9,1107.913Z" transform="translate(-226 44.118)" fill="none" stroke="#000" strokeLinejoin="round" strokeWidth="1"/>
     </g>
   </g>
 </svg>

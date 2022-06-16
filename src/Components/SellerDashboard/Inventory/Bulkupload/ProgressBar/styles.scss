@@ -13,4 +13,14 @@
       font-weight: 600;
     }
   }
+  .loading-refresh {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    opacity: 1;
+    color: #002d56;
+    font-size: 16px;
+    letter-spacing: 0.54px;
+  }
 }

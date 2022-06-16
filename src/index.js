@@ -5,11 +5,14 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { StateProvider } from "./store/state";
 import reducer, { initialState } from "./store/reducer";
+import { HelmetProvider } from "react-helmet-async";
 
 ReactDOM.render(
   <React.StrictMode>
     <StateProvider initialState={initialState} reducer={reducer}>
-      <App />
+      <HelmetProvider>
+        <App />
+      </HelmetProvider>
     </StateProvider>
   </React.StrictMode>,
   document.getElementById("root")

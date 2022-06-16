@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="36.189" height="34" viewBox="0 0 36.189 34">
   <g id="Group_1471" data-name="Group 1471" transform="translate(-81 -1248)">
-    <g id="Rectangle_1704" data-name="Rectangle 1704" transform="translate(81 1254)" fill="none" stroke="#000" stroke-width="1">
+    <g id="Rectangle_1704" data-name="Rectangle 1704" transform="translate(81 1254)" fill="none" stroke="#000" strokeWidth="1">
       <rect width="25" height="28" stroke="none"/>
       <rect x="0.5" y="0.5" width="24" height="27" fill="none"/>
     </g>
@@ -8,27 +8,27 @@
       <path d="M -1977.523315429688 8.5 L -1989.47705078125 8.5 C -1989.314331054688 6.730905055999756 -1988.296264648438 5.125278949737549 -1986.738525390625 4.228960037231445 L -1986.463500976562 4.070680141448975 L -1986.489624023438 3.754379987716675 C -1986.496704101562 3.669090032577515 -1986.500244140625 3.583539962768555 -1986.500244140625 3.500099897384644 C -1986.500244140625 1.845839977264404 -1985.154418945312 0.5 -1983.500122070312 0.5 C -1981.845825195312 0.5 -1980.5 1.845839977264404 -1980.5 3.500099897384644 C -1980.5 3.583460092544556 -1980.503540039062 3.668869972229004 -1980.510620117188 3.75396990776062 L -1980.536743164062 4.070300102233887 L -1980.26171875 4.228600025177002 C -1978.703979492188 5.1248779296875 -1977.685913085938 6.73048734664917 -1977.523315429688 8.5 Z" stroke="none"/>
       <path d="M -1978.10205078125 8 C -1978.387329101562 6.611178874969482 -1979.256713867188 5.383682250976562 -1980.510986328125 4.661980152130127 L -1981.061279296875 4.345379829406738 L -1981.008911132812 3.712729930877686 C -1981.003051757812 3.641289949417114 -1981 3.569750070571899 -1981 3.500099897384644 C -1981 2.121540069580078 -1982.12158203125 1 -1983.500122070312 1 C -1984.878662109375 1 -1986.000244140625 2.121540069580078 -1986.000244140625 3.500099897384644 C -1986.000244140625 3.569839954376221 -1985.997192382812 3.64153003692627 -1985.991333007812 3.713180065155029 L -1985.93896484375 4.345769882202148 L -1986.489135742188 4.66234016418457 C -1987.743408203125 5.384076595306396 -1988.612915039062 6.611512184143066 -1988.898315429688 8 L -1978.10205078125 8 M -1977.000366210938 9 L -1990 9 C -1990 6.774149894714355 -1988.787963867188 4.831369876861572 -1986.987915039062 3.795589923858643 C -1986.995971679688 3.6981201171875 -1987.000244140625 3.599689960479736 -1987.000244140625 3.500099897384644 C -1987.000244140625 1.566900014877319 -1985.433349609375 0 -1983.500122070312 0 C -1981.56689453125 0 -1980 1.566900014877319 -1980 3.500099897384644 C -1980 3.59945011138916 -1980.004272460938 3.697969913482666 -1980.012329101562 3.795219898223877 C -1978.212280273438 4.830930233001709 -1977.000366210938 6.773950099945068 -1977.000366210938 9 Z" stroke="none" fill="#000"/>
     </g>
-    <circle id="Ellipse_120" data-name="Ellipse 120" cx="1.5" cy="1.5" r="1.5" transform="translate(92 1250)" fill="none" stroke="#000" stroke-width="1"/>
+    <circle id="Ellipse_120" data-name="Ellipse 120" cx="1.5" cy="1.5" r="1.5" transform="translate(92 1250)" fill="none" stroke="#000" strokeWidth="1"/>
     <g id="Group_1470" data-name="Group 1470" transform="translate(-42 6.767)">
-      <path id="Path_1722" data-name="Path 1722" d="M2129.835,1257l9.427,5.214,9.427-5.214-9.8-5.42Z" transform="translate(-1990)" fill="#fff" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
-      <path id="Path_1723" data-name="Path 1723" d="M2129.835,1265.08l9.5,5.807v-9.05l-9.5-4.978Z" transform="translate(-1990)" fill="#fff" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
-      <path id="Path_1724" data-name="Path 1724" d="M2139.337,1270.887l9.277-4.978v-8.673l-9.277,5.053Z" transform="translate(-1990)" fill="#fff" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
-      <path id="Path_1725" data-name="Path 1725" d="M2133.779,1254.857l9.224,5.279v3.191l2.321-1.334v-2.9l-9.34-5.511" transform="translate(-1990)" fill="#fff" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path id="Path_1722" data-name="Path 1722" d="M2129.835,1257l9.427,5.214,9.427-5.214-9.8-5.42Z" transform="translate(-1990)" fill="#fff" stroke="#000" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1"/>
+      <path id="Path_1723" data-name="Path 1723" d="M2129.835,1265.08l9.5,5.807v-9.05l-9.5-4.978Z" transform="translate(-1990)" fill="#fff" stroke="#000" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1"/>
+      <path id="Path_1724" data-name="Path 1724" d="M2139.337,1270.887l9.277-4.978v-8.673l-9.277,5.053Z" transform="translate(-1990)" fill="#fff" stroke="#000" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1"/>
+      <path id="Path_1725" data-name="Path 1725" d="M2133.779,1254.857l9.224,5.279v3.191l2.321-1.334v-2.9l-9.34-5.511" transform="translate(-1990)" fill="#fff" stroke="#000" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1"/>
     </g>
-    <g id="Rectangle_1706" data-name="Rectangle 1706" transform="translate(84 1260)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1">
+    <g id="Rectangle_1706" data-name="Rectangle 1706" transform="translate(84 1260)" fill="none" stroke="#000" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1">
       <rect width="5" height="5" stroke="none"/>
       <rect x="0.5" y="0.5" width="4" height="4" fill="none"/>
     </g>
-    <g id="Rectangle_1707" data-name="Rectangle 1707" transform="translate(84 1267)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1">
+    <g id="Rectangle_1707" data-name="Rectangle 1707" transform="translate(84 1267)" fill="none" stroke="#000" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1">
       <rect width="5" height="5" stroke="none"/>
       <rect x="0.5" y="0.5" width="4" height="4" fill="none"/>
     </g>
-    <g id="Rectangle_1708" data-name="Rectangle 1708" transform="translate(84 1274)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1">
+    <g id="Rectangle_1708" data-name="Rectangle 1708" transform="translate(84 1274)" fill="none" stroke="#000" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1">
       <rect width="5" height="5" stroke="none"/>
       <rect x="0.5" y="0.5" width="4" height="4" fill="none"/>
     </g>
-    <line id="Line_18" data-name="Line 18" x2="6" transform="translate(90.5 1262.5)" fill="none" stroke="#000" stroke-linecap="round" stroke-width="1"/>
-    <line id="Line_19" data-name="Line 19" x2="6" transform="translate(90.5 1269.5)" fill="none" stroke="#000" stroke-linecap="round" stroke-width="1"/>
-    <line id="Line_20" data-name="Line 20" x2="6" transform="translate(90.5 1276.5)" fill="none" stroke="#000" stroke-linecap="round" stroke-width="1"/>
+    <line id="Line_18" data-name="Line 18" x2="6" transform="translate(90.5 1262.5)" fill="none" stroke="#000" strokeLinecap="round" strokeWidth="1"/>
+    <line id="Line_19" data-name="Line 19" x2="6" transform="translate(90.5 1269.5)" fill="none" stroke="#000" strokeLinecap="round" strokeWidth="1"/>
+    <line id="Line_20" data-name="Line 20" x2="6" transform="translate(90.5 1276.5)" fill="none" stroke="#000" strokeLinecap="round" strokeWidth="1"/>
   </g>
 </svg>

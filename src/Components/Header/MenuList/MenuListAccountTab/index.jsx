@@ -153,7 +153,7 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
           transform="translate(75 463)"
           fill="none"
           stroke="#000"
-          stroke-width="1"
+          strokeWidth="1"
         >
           <rect width="14" height="10" rx="2" stroke="none"></rect>
           <rect
@@ -171,7 +171,7 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
           transform="translate(75 476)"
           fill="none"
           stroke="#000"
-          stroke-width="1"
+          strokeWidth="1"
         >
           <rect width="14" height="18" rx="2" stroke="none"></rect>
           <rect
@@ -189,7 +189,7 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
           transform="translate(92 463)"
           fill="none"
           stroke="#000"
-          stroke-width="1"
+          strokeWidth="1"
         >
           <rect width="14" height="18" rx="2" stroke="none"></rect>
           <rect
@@ -207,7 +207,7 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
           transform="translate(92 484)"
           fill="none"
           stroke="#000"
-          stroke-width="1"
+          strokeWidth="1"
         >
           <rect width="14" height="10" rx="2" stroke="none"></rect>
           <rect
@@ -247,9 +247,9 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
                 transform="translate(3933.644 529.048)"
                 fill="none"
                 stroke="#000"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="1"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="1"
               />
               <rect
                 id="Rectangle_1714"
@@ -259,9 +259,9 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
                 transform="translate(3943.644 529.048)"
                 fill="none"
                 stroke="#000"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="1"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="1"
               />
               <path
                 id="Path_1744"
@@ -270,9 +270,9 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
                 transform="translate(-176.356 -25.952)"
                 fill="none"
                 stroke="#000"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="1"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="1"
               />
               <line
                 id="Line_31"
@@ -281,8 +281,8 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
                 transform="translate(3943.5 520.5)"
                 fill="none"
                 stroke="#000"
-                stroke-linecap="round"
-                stroke-width="1"
+                strokeLinecap="round"
+                strokeWidth="1"
               />
             </g>
             <path
@@ -292,7 +292,7 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
               transform="translate(3926.949 459.085)"
               fill="none"
               stroke="#000"
-              stroke-width="1"
+              strokeWidth="1"
             />
           </g>
     </svg>
@@ -314,8 +314,8 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
         fill="black"
       ></path>
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M16 7H2C0.895431 7 0 7.89543 0 9V25C0 26.1046 0.895431 27 2 27H25C26.1046 27 27 26.1046 27 25V18H26V25C26 25.5523 25.5523 26 25 26H2C1.44772 26 1 25.5523 1 25V9C1 8.44772 1.44772 8 2 8H16V7Z"
         fill="black"
       ></path>
@@ -325,7 +325,7 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
         x2="20.5"
         y2="19.5"
         stroke="black"
-        stroke-linecap="round"
+        strokeLinecap="round"
       ></line>
       <line
         x1="16.5"
@@ -333,7 +333,7 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
         x2="23.5"
         y2="22.5"
         stroke="black"
-        stroke-linecap="round"
+        strokeLinecap="round"
       ></line>
     </svg>
   );
@@ -375,15 +375,15 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
           transform="translate(-1819.107 48.634)"
           fill="none"
           stroke="#000"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="1"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="1"
         ></path>{" "}
         <path
           id="Subtract"
           d="M11.192,12V6.921c0-3.313-2.327-6-5.2-6S.8,3.608.8,6.921V12H0V6.921C0,3.1,2.684,0,6,0s6,3.1,6,6.921V12Z"
           transform="translate(96.072 600.418)"
-          fill-rule="evenodd"
+          fillRule="evenodd"
         ></path>{" "}
       </g>{" "}
     </svg>
@@ -407,7 +407,7 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
             transform="translate(1845 672)"
             fill="none"
             stroke="#000"
-            stroke-width="1"
+            strokeWidth="1"
           >
             <path
               d="M4,0h7a4,4,0,0,1,4,4V4a0,0,0,0,1,0,0H0A0,0,0,0,1,0,4V4A4,4,0,0,1,4,0Z"
@@ -424,7 +424,7 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
             transform="translate(1844 675)"
             fill="none"
             stroke="#000"
-            stroke-width="1"
+            strokeWidth="1"
           >
             <path
               d="M2,0H15a2,2,0,0,1,2,2V4a0,0,0,0,1,0,0H0A0,0,0,0,1,0,4V2A2,2,0,0,1,2,0Z"
@@ -444,8 +444,8 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
           transform="translate(1803.5 691.5)"
           fill="none"
           stroke="#000"
-          stroke-linecap="round"
-          stroke-width="1"
+          strokeLinecap="round"
+          strokeWidth="1"
         ></line>
         <line
           id="Line_2"
@@ -455,8 +455,8 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
           transform="translate(1803.5 683.5)"
           fill="none"
           stroke="#000"
-          stroke-linecap="round"
-          stroke-width="1"
+          strokeLinecap="round"
+          strokeWidth="1"
         ></line>
         <line
           id="Line_3"
@@ -465,8 +465,8 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
           transform="translate(1801.5 688.5)"
           fill="none"
           stroke="#000"
-          stroke-linecap="round"
-          stroke-width="1"
+          strokeLinecap="round"
+          strokeWidth="1"
         ></line>
         <g
           id="Rectangle_1684"
@@ -474,7 +474,7 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
           transform="translate(1811.282 682.828) rotate(-45)"
           fill="none"
           stroke="#000"
-          stroke-width="1"
+          strokeWidth="1"
         >
           <rect width="11" height="8" stroke="none"></rect>
           <rect x="0.5" y="0.5" width="10" height="7" fill="none"></rect>
@@ -485,7 +485,7 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
           transform="translate(1807.05 684.429) rotate(-45)"
           fill="none"
           stroke="#000"
-          stroke-width="1"
+          strokeWidth="1"
         >
           <rect width="5" height="11.912" rx="2.5" stroke="none"></rect>
           <rect
@@ -503,7 +503,7 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
           transform="translate(1817.05 674.429) rotate(-45)"
           fill="none"
           stroke="#000"
-          stroke-width="1"
+          strokeWidth="1"
         >
           <rect width="5" height="11.912" rx="2.5" stroke="none"></rect>
           <rect
@@ -537,7 +537,7 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
           transform="matrix(0.719, -0.695, 0.695, 0.719, 1817.623, 686.303)"
           fill="none"
           stroke="#000"
-          stroke-width="1"
+          strokeWidth="1"
         >
           <rect width="7" height="4" rx="2" stroke="none"></rect>
           <rect
@@ -581,20 +581,20 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
           data-name="Path 1689"
           d="M27.811,7.871H7.9V33.129H25.1a2.665,2.665,0,0,0,2.714-2.613ZM7,7V34H25.1a3.554,3.554,0,0,0,3.619-3.484V7Z"
           transform="translate(-2 4)"
-          fill-rule="evenodd"
+          fillRule="evenodd"
         ></path>
         <path
           id="Path_1690"
           data-name="Path 1690"
           d="M21.591,31H0v4a3,3,0,0,0,3,3H24.591a3,3,0,0,1-3-3Z"
           fill="#c4c4c4"
-          fill-rule="evenodd"
+          fillRule="evenodd"
         ></path>
         <path
           id="Path_1691"
           data-name="Path 1691"
           d="M22.355,37a2.989,2.989,0,0,1-.764-2V31H0v4a3,3,0,0,0,3,3H24.591A2.993,2.993,0,0,1,22.355,37Zm-1.229,0a3.982,3.982,0,0,1-.535-2V32H1v3a2,2,0,0,0,2,2Z"
-          fill-rule="evenodd"
+          fillRule="evenodd"
         ></path>
         <line
           id="Line_29"
@@ -603,8 +603,8 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
           transform="translate(14.438 22.225)"
           fill="none"
           stroke="#000"
-          stroke-linecap="round"
-          stroke-width="1"
+          strokeLinecap="round"
+          strokeWidth="1"
         ></line>
         <line
           id="Line_30"
@@ -613,29 +613,29 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
           transform="translate(14.438 17.225)"
           fill="none"
           stroke="#000"
-          stroke-linecap="round"
-          stroke-width="1"
+          strokeLinecap="round"
+          strokeWidth="1"
         ></line>
         <path
           id="Path_1696"
           data-name="Path 1696"
           d="M14.334,25.667A1.667,1.667,0,1,1,12.667,24,1.667,1.667,0,0,1,14.334,25.667Zm-1.667.833a.833.833,0,1,0-.833-.833A.833.833,0,0,0,12.667,26.5Z"
           transform="translate(-1.334 1.166)"
-          fill-rule="evenodd"
+          fillRule="evenodd"
         ></path>
         <path
           id="Path_1757"
           data-name="Path 1757"
           d="M14.334,25.667A1.667,1.667,0,1,1,12.667,24,1.667,1.667,0,0,1,14.334,25.667Zm-1.667.833a.833.833,0,1,0-.833-.833A.833.833,0,0,0,12.667,26.5Z"
           transform="translate(-1.334 -3.441)"
-          fill-rule="evenodd"
+          fillRule="evenodd"
         ></path>
         <path
           id="Path_1758"
           data-name="Path 1758"
           d="M14.334,25.667A1.667,1.667,0,1,1,12.667,24,1.667,1.667,0,0,1,14.334,25.667Zm-1.667.833a.833.833,0,1,0-.833-.833A.833.833,0,0,0,12.667,26.5Z"
           transform="translate(-1.334 -8.441)"
-          fill-rule="evenodd"
+          fillRule="evenodd"
         ></path>
         <path
           id="Path_1692"
@@ -649,7 +649,7 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
           data-name="Path 1693"
           d="M29.666,16.466a7.8,7.8,0,1,0-7.8-7.8A7.8,7.8,0,0,0,29.666,16.466Zm0,.867A8.666,8.666,0,1,0,21,8.666,8.666,8.666,0,0,0,29.666,17.333Z"
           transform="translate(-3 5.667)"
-          fill-rule="evenodd"
+          fillRule="evenodd"
         ></path>
         <path
           id="Path_1700"
@@ -664,8 +664,8 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
           transform="translate(14.438 27.225)"
           fill="none"
           stroke="#000"
-          stroke-linecap="round"
-          stroke-width="1"
+          strokeLinecap="round"
+          strokeWidth="1"
         ></line>
       </g>
     </svg>
@@ -679,8 +679,8 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M20 5H72.1201C80.4101 5 87.1201 11.7157 87.1201 20V45.4848H92.1201V20C92.1201 8.9543 83.1701 0 72.1201 0H20C8.95 0 0 8.9543 0 20V132C0 143.046 8.95 152 20 152H72.1201C83.1701 152 92.1201 143.046 92.1201 132V106.515H87.1201V132C87.1201 140.284 80.4101 147 72.1201 147H20C11.72 147 5 140.284 5 132V20C5 11.7157 11.72 5 20 5Z"
         fill="black"
       ></path>

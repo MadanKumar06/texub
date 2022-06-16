@@ -43,7 +43,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 function Index() {
   const [{ geo, homeContent, customnostore }, dispatch] = useStateValue();

@@ -10,7 +10,7 @@ import { SubscriptionInfo } from "../../Components/Home/SubscriptionInfo/Subscri
 import PopularBlogList from "../../Pages/CMS/Company/Blogs/Blogsmain/PopularBlog.js";
 
 import { useStateValue } from "../../store/state";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import { useParams, useNavigate } from "react-router-dom";
 
 export const Home = () => {
