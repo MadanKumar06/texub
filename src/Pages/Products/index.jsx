@@ -9,7 +9,7 @@ import Productlists from "../../Components/ProductPagePLP/Productlists";
 import Productstable from "../../Components/ProductPagePLP/Producttable";
 import Constant from "../../Constant";
 import { useStateValue } from "../../store/state";
-import Helmet from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import todays_deal_active from "../../Assets/BasicNeeded/PLPIcons/today_deal.png";
 import price_drop_inactive from "../../Assets/BasicNeeded/PLPIcons/price_drop_inactive.png";
 import just_launch_inactive from "../../Assets/BasicNeeded/PLPIcons/just_launch_inactive.png";
@@ -38,7 +38,8 @@ export const Products = () => {
   const [productData, setProductData] = useState([]);
   const [dataFromApi, setDataFromApi] = useState([]);
   const [applyFilter, setApplyFilter] = useState(false);
-  const [clearSelected_categories,setclearSelected_categories] = useState(true)
+  const [clearSelected_categories, setclearSelected_categories] =
+    useState(true);
   let customer_id = JSON.parse(localStorage.getItem("userdata"));
   const [userfilter, setuserfilter] = useState();
 
@@ -235,9 +236,9 @@ export const Products = () => {
           );
     setpermission(pendingpermission);
   }, []);
-  const clearSelected = ()=>{
-    setclearSelected_categories(!clearSelected_categories)
-  }
+  const clearSelected = () => {
+    setclearSelected_categories(!clearSelected_categories);
+  };
   return (
     <div>
       <Helmet>
@@ -278,7 +279,7 @@ export const Products = () => {
             onClick={() => {
               localStorage.removeItem("filters");
               localStorage.removeItem("filterProductsDropdown");
-              clearSelected()
+              clearSelected();
               setProductFetchApi((prev) => ({
                 ...prev,
                 conditions: "0",

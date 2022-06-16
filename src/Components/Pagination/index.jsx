@@ -28,7 +28,6 @@ const PaginationControlled = ({
     if (TotalPage) {
       PaginateData(DataList);
       let RoundedValue = TotalPage / PagePerRow;
-      debugger;
       let Rounded =
         RoundedValue % 1 === 0 ? RoundedValue : parseInt(RoundedValue + 1);
 

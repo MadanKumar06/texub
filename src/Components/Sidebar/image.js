@@ -88,9 +88,9 @@ const SellerList = [
               transform="translate(3933.644 529.048)"
               fill="none"
               stroke="#000"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="1"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="1"
             />
             <rect
               id="Rectangle_1714"
@@ -100,9 +100,9 @@ const SellerList = [
               transform="translate(3943.644 529.048)"
               fill="none"
               stroke="#000"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="1"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="1"
             />
             <path
               id="Path_1744"
@@ -111,9 +111,9 @@ const SellerList = [
               transform="translate(-176.356 -25.952)"
               fill="none"
               stroke="#000"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="1"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="1"
             />
             <line
               id="Line_31"
@@ -122,8 +122,8 @@ const SellerList = [
               transform="translate(3943.5 520.5)"
               fill="none"
               stroke="#000"
-              stroke-linecap="round"
-              stroke-width="1"
+              strokeLinecap="round"
+              strokeWidth="1"
             />
           </g>
           <path
@@ -133,7 +133,7 @@ const SellerList = [
             transform="translate(3926.949 459.085)"
             fill="none"
             stroke="#000"
-            stroke-width="1"
+            strokeWidth="1"
           />
         </g>
       </svg>
@@ -180,15 +180,15 @@ const SellerList = [
             transform="translate(-1819.107 48.634)"
             fill="none"
             stroke="#000"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="1"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="1"
           />
           <path
             id="Subtract"
             d="M11.192,12V6.921c0-3.313-2.327-6-5.2-6S.8,3.608.8,6.921V12H0V6.921C0,3.1,2.684,0,6,0s6,3.1,6,6.921V12Z"
             transform="translate(96.072 600.418)"
-            fill-rule="evenodd"
+            fillRule="evenodd"
           />
         </g>
       </svg>
@@ -221,9 +221,9 @@ const SellerList = [
               transform="translate(-3815 -19.233)"
               fill="none"
               stroke="#000"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="1"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="1"
             />
             <path
               id="Path_1729"
@@ -232,7 +232,7 @@ const SellerList = [
               transform="translate(-3822.125 -24.81)"
               fill="none"
               stroke="#000"
-              stroke-width="1"
+              strokeWidth="1"
             />
             <path
               id="Path_1730"
@@ -241,7 +241,7 @@ const SellerList = [
               transform="translate(-3792.245 1509.425) rotate(-22)"
               fill="none"
               stroke="#000"
-              stroke-width="1"
+              strokeWidth="1"
             />
           </g>
           <path
@@ -251,7 +251,7 @@ const SellerList = [
             transform="translate(3941.49 668.5)"
             fill="none"
             stroke="#000"
-            stroke-width="1"
+            strokeWidth="1"
           />
           <g
             id="Group_1475"
@@ -265,9 +265,9 @@ const SellerList = [
               transform="translate(-3978)"
               fill="none"
               stroke="#000"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="1"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="1"
             />
             <path
               id="Path_1733"
@@ -276,9 +276,9 @@ const SellerList = [
               transform="translate(-3978)"
               fill="none"
               stroke="#000"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="1"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="1"
             />
             <path
               id="Path_1734"
@@ -287,9 +287,9 @@ const SellerList = [
               transform="translate(-3978)"
               fill="none"
               stroke="#000"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="1"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="1"
             />
             <path
               id="Path_1735"
@@ -298,8 +298,8 @@ const SellerList = [
               transform="translate(-3978)"
               fill="none"
               stroke="#000"
-              stroke-linecap="round"
-              stroke-width="1"
+              strokeLinecap="round"
+              strokeWidth="1"
             />
           </g>
         </g>
@@ -337,7 +337,7 @@ const SellerList = [
   //               transform="translate(130.508 816.836) rotate(9)"
   //               fill="none"
   //               stroke="#000"
-  //               stroke-width="1"
+  //               strokeWidth="1"
   //             >
   //               <rect width="29" height="17" rx="2" stroke="none" />
   //               <rect
@@ -355,7 +355,7 @@ const SellerList = [
   //               transform="translate(130.508 816.836) rotate(9)"
   //               fill="none"
   //               stroke="#000"
-  //               stroke-width="1"
+  //               strokeWidth="1"
   //             >
   //               <path
   //                 d="M2,0H27a2,2,0,0,1,2,2V6.9a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V2A2,2,0,0,1,2,0Z"
@@ -379,7 +379,7 @@ const SellerList = [
   //             transform="translate(1930 862)"
   //             fill="#fff"
   //             stroke="#000"
-  //             stroke-width="1"
+  //             strokeWidth="1"
   //           >
   //             <rect width="29" height="17" rx="2" stroke="none" />
   //             <rect
@@ -397,7 +397,7 @@ const SellerList = [
   //             transform="translate(1932 869)"
   //             fill="none"
   //             stroke="#000"
-  //             stroke-width="1"
+  //             strokeWidth="1"
   //           >
   //             <rect width="7" height="4" rx="1" stroke="none" />
   //             <rect x="0.5" y="0.5" width="6" height="3" rx="0.5" fill="none" />
@@ -409,8 +409,8 @@ const SellerList = [
   //             transform="translate(1932.5 875.5)"
   //             fill="none"
   //             stroke="#000"
-  //             stroke-linecap="round"
-  //             stroke-width="1"
+  //             strokeLinecap="round"
+  //             strokeWidth="1"
   //           />
   //           <line
   //             id="Line_8"
@@ -419,8 +419,8 @@ const SellerList = [
   //             transform="translate(1938.5 875.5)"
   //             fill="none"
   //             stroke="#000"
-  //             stroke-linecap="round"
-  //             stroke-width="1"
+  //             strokeLinecap="round"
+  //             strokeWidth="1"
   //           />
   //           <line
   //             id="Line_9"
@@ -429,8 +429,8 @@ const SellerList = [
   //             transform="translate(1944.849 875.5)"
   //             fill="none"
   //             stroke="#000"
-  //             stroke-linecap="round"
-  //             stroke-width="1"
+  //             strokeLinecap="round"
+  //             strokeWidth="1"
   //           />
   //           <line
   //             id="Line_10"
@@ -439,8 +439,8 @@ const SellerList = [
   //             transform="translate(1950.849 875.5)"
   //             fill="none"
   //             stroke="#000"
-  //             stroke-linecap="round"
-  //             stroke-width="1"
+  //             strokeLinecap="round"
+  //             strokeWidth="1"
   //           />
   //         </g>
   //       </g>
@@ -467,7 +467,7 @@ const SellerList = [
   //           data-name="Subtraction 3"
   //           transform="translate(7916.5 791.362)"
   //           fill="none"
-  //           stroke-linecap="round"
+  //           strokeLinecap="round"
   //         >
   //           <path
   //             d="M-3953.53,38.124a1.932,1.932,0,0,1-1.6-.84l-1.743-2.433a1.979,1.979,0,0,0-1.626-.835,1.979,1.979,0,0,0-1.626.835l-1.743,2.433a1.933,1.933,0,0,1-1.6.84,2.067,2.067,0,0,1-1.506-.65,1.93,1.93,0,0,1-.513-1.491l.209-3.087a1.976,1.976,0,0,0-.531-1.5,2.006,2.006,0,0,0-1.459-.639,2.023,2.023,0,0,0-.494.062l-2.953.745a2.122,2.122,0,0,1-.518.066,1.989,1.989,0,0,1-1.814-1.227,1.94,1.94,0,0,1,.392-2.156l2.191-2.308a1.982,1.982,0,0,0,.519-1.727,1.981,1.981,0,0,0-1.08-1.442l-2.836-1.408a1.961,1.961,0,0,1-1.08-2.142,1.961,1.961,0,0,1,1.755-1.637l3.093-.333a1.981,1.981,0,0,0,1.516-.985,1.979,1.979,0,0,0,.1-1.8l-1.264-2.891a1.949,1.949,0,0,1,.143-1.879,2.053,2.053,0,0,1,1.693-.933,1.967,1.967,0,0,1,1.126.36l2.475,1.692a1.986,1.986,0,0,0,1.125.35,2.012,2.012,0,0,0,1.929-1.456l.826-2.915a1.959,1.959,0,0,1,1.924-1.455,1.958,1.958,0,0,1,1.924,1.455l.826,2.915a2.012,2.012,0,0,0,1.929,1.456,1.986,1.986,0,0,0,1.125-.35l2.475-1.692a1.994,1.994,0,0,1,1.126-.36,2.052,2.052,0,0,1,1.693.933,1.949,1.949,0,0,1,.143,1.879l-1.264,2.891a1.98,1.98,0,0,0,.1,1.8,1.981,1.981,0,0,0,1.516.985l3.093.333a1.962,1.962,0,0,1,1.755,1.637,1.961,1.961,0,0,1-1.08,2.142l-2.836,1.408a1.982,1.982,0,0,0-1.08,1.443,1.982,1.982,0,0,0,.519,1.726l2.191,2.308a1.94,1.94,0,0,1,.392,2.155,1.989,1.989,0,0,1-1.814,1.227,2.124,2.124,0,0,1-.518-.066l-2.953-.745a2.023,2.023,0,0,0-.494-.062,2.006,2.006,0,0,0-1.458.638,1.978,1.978,0,0,0-.532,1.5l.209,3.087a1.93,1.93,0,0,1-.513,1.491A2.067,2.067,0,0,1-3953.53,38.124ZM-3958,15.5a7.509,7.509,0,0,0-7.5,7.5,7.509,7.509,0,0,0,7.5,7.5,7.509,7.509,0,0,0,7.5-7.5A7.509,7.509,0,0,0-3958,15.5Z"
@@ -485,8 +485,8 @@ const SellerList = [
   //           transform="translate(3941.631 806.006)"
   //           fill="#fff"
   //           stroke="#000"
-  //           stroke-linejoin="round"
-  //           stroke-width="1"
+  //           strokeLinejoin="round"
+  //           strokeWidth="1"
   //         />
   //       </g>
   //     </svg>
@@ -515,7 +515,7 @@ const SellerList = [
   //             transform="translate(1960 956.975)"
   //             fill="none"
   //             stroke="#000"
-  //             stroke-width="1"
+  //             strokeWidth="1"
   //           />
   //           <path
   //             id="Path_1709"
@@ -524,9 +524,9 @@ const SellerList = [
   //             transform="translate(-159.452 0.963)"
   //             fill="none"
   //             stroke="#000"
-  //             stroke-linecap="round"
-  //             stroke-linejoin="round"
-  //             stroke-width="1"
+  //             strokeLinecap="round"
+  //             strokeLinejoin="round"
+  //             strokeWidth="1"
   //           />
   //         </g>
   //         <g id="Group_1463" data-name="Group 1463" transform="translate(1829)">
@@ -536,7 +536,7 @@ const SellerList = [
   //             transform="translate(135 967)"
   //             fill="none"
   //             stroke="#000"
-  //             stroke-width="1"
+  //             strokeWidth="1"
   //           >
   //             <circle cx="0.5" cy="0.5" r="0.5" stroke="none" />
   //             <circle cx="0.5" cy="0.5" r="1" fill="none" />
@@ -547,7 +547,7 @@ const SellerList = [
   //             transform="translate(135 972.5)"
   //             fill="none"
   //             stroke="#000"
-  //             stroke-width="1"
+  //             strokeWidth="1"
   //           >
   //             <circle cx="0.5" cy="0.5" r="0.5" stroke="none" />
   //             <circle cx="0.5" cy="0.5" r="1" fill="none" />
@@ -558,7 +558,7 @@ const SellerList = [
   //             transform="translate(135 978.5)"
   //             fill="none"
   //             stroke="#000"
-  //             stroke-width="1"
+  //             strokeWidth="1"
   //           >
   //             <circle cx="0.5" cy="0.5" r="0.5" stroke="none" />
   //             <circle cx="0.5" cy="0.5" r="1" fill="none" />
@@ -569,7 +569,7 @@ const SellerList = [
   //             transform="translate(135 984)"
   //             fill="none"
   //             stroke="#000"
-  //             stroke-width="1"
+  //             strokeWidth="1"
   //           >
   //             <circle cx="0.5" cy="0.5" r="0.5" stroke="none" />
   //             <circle cx="0.5" cy="0.5" r="1" fill="none" />
@@ -581,7 +581,7 @@ const SellerList = [
   //             transform="translate(139.5 967.5)"
   //             fill="none"
   //             stroke="#000"
-  //             stroke-width="1"
+  //             strokeWidth="1"
   //           />
   //           <line
   //             id="Line_12"
@@ -590,7 +590,7 @@ const SellerList = [
   //             transform="translate(139.5 973)"
   //             fill="none"
   //             stroke="#000"
-  //             stroke-width="1"
+  //             strokeWidth="1"
   //           />
   //           <line
   //             id="Line_13"
@@ -599,7 +599,7 @@ const SellerList = [
   //             transform="translate(139.5 979)"
   //             fill="none"
   //             stroke="#000"
-  //             stroke-width="1"
+  //             strokeWidth="1"
   //           />
   //           <line
   //             id="Line_14"
@@ -608,7 +608,7 @@ const SellerList = [
   //             transform="translate(139.5 984.5)"
   //             fill="none"
   //             stroke="#000"
-  //             stroke-width="1"
+  //             strokeWidth="1"
   //           />
   //         </g>
   //       </g>
@@ -637,7 +637,7 @@ const SellerList = [
   //           transform="translate(4104.629 954)"
   //           fill="none"
   //           stroke="#000"
-  //           stroke-width="1"
+  //           strokeWidth="1"
   //         />
   //         <path
   //           id="Subtraction_4"
@@ -646,7 +646,7 @@ const SellerList = [
   //           transform="translate(4104.629 952.5)"
   //           fill="none"
   //           stroke="#000"
-  //           stroke-width="1"
+  //           strokeWidth="1"
   //         />
   //         <g
   //           id="Ellipse_129"
@@ -654,7 +654,7 @@ const SellerList = [
   //           transform="translate(137 969)"
   //           fill="#fff"
   //           stroke="#000"
-  //           stroke-width="1"
+  //           strokeWidth="1"
   //         >
   //           <circle cx="6.5" cy="6.5" r="6.5" stroke="none" />
   //           <circle cx="6.5" cy="6.5" r="6" fill="none" />
@@ -664,7 +664,7 @@ const SellerList = [
   //           data-name="Path 1766"
   //           d="M17.065,18a.255.255,0,0,1,.255.255V20.81h2.555a.255.255,0,1,1,0,.511H17.321v2.555a.255.255,0,1,1-.511,0V21.321H14.255a.255.255,0,1,1,0-.511H16.81V18.255A.255.255,0,0,1,17.065,18Z"
   //           transform="translate(126.65 954.435)"
-  //           fill-rule="evenodd"
+  //           fillRule="evenodd"
   //         />
   //       </g>
   //     </svg>
@@ -676,13 +676,13 @@ const SellerList = [
     image: (
       <svg xmlns="http://www.w3.org/2000/svg" width="32.127" height="30" viewBox="0 0 32.127 30">
         <g id="Group_1489" data-name="Group 1489" transform="translate(-124.109 -952)">
-          <path id="Union_4" data-name="Union 4" d="M-3980,21.583s.363-5.411,2.9-8.239a9.263,9.263,0,0,1,7.252-3.075,8.516,8.516,0,0,1,6.382,3.423c2.233,2.756,2.553,7.6,2.553,7.6a22.191,22.191,0,0,1-9.456,2.843h-.2A23.037,23.037,0,0,1-3980,21.583ZM-3975.13,5a4.5,4.5,0,0,1,4.5-4.5,4.5,4.5,0,0,1,4.5,4.5,4.5,4.5,0,0,1-4.5,4.5A4.5,4.5,0,0,1-3975.13,5Z" transform="translate(4104.629 954)" fill="none" stroke="#000" stroke-width="1" />
-          <path id="Subtraction_4" data-name="Subtraction 4" d="M-3958.564,23.636a16.267,16.267,0,0,1-3.26-.357c.542-.272.875-.466.911-.487,0-.047-.358-4.894-2.552-7.6a10.188,10.188,0,0,0-2-1.9c.123-.162.247-.312.368-.447a9.17,9.17,0,0,1,6.995-3.079c.09,0,.175,0,.257,0a8.465,8.465,0,0,1,6.382,3.423c2.21,2.727,2.55,7.552,2.553,7.6-.2.115-4.827,2.773-9.456,2.843ZM-3958.628,9a4.505,4.505,0,0,1-4.5-4.5,4.505,4.505,0,0,1,4.5-4.5,4.5,4.5,0,0,1,4.5,4.5A4.5,4.5,0,0,1-3958.628,9Z" transform="translate(4104.629 952.5)" fill="none" stroke="#000" stroke-width="1" />
-          <g id="Ellipse_129" data-name="Ellipse 129" transform="translate(137 969)" fill="#fff" stroke="#000" stroke-width="1">
+          <path id="Union_4" data-name="Union 4" d="M-3980,21.583s.363-5.411,2.9-8.239a9.263,9.263,0,0,1,7.252-3.075,8.516,8.516,0,0,1,6.382,3.423c2.233,2.756,2.553,7.6,2.553,7.6a22.191,22.191,0,0,1-9.456,2.843h-.2A23.037,23.037,0,0,1-3980,21.583ZM-3975.13,5a4.5,4.5,0,0,1,4.5-4.5,4.5,4.5,0,0,1,4.5,4.5,4.5,4.5,0,0,1-4.5,4.5A4.5,4.5,0,0,1-3975.13,5Z" transform="translate(4104.629 954)" fill="none" stroke="#000" strokeWidth="1" />
+          <path id="Subtraction_4" data-name="Subtraction 4" d="M-3958.564,23.636a16.267,16.267,0,0,1-3.26-.357c.542-.272.875-.466.911-.487,0-.047-.358-4.894-2.552-7.6a10.188,10.188,0,0,0-2-1.9c.123-.162.247-.312.368-.447a9.17,9.17,0,0,1,6.995-3.079c.09,0,.175,0,.257,0a8.465,8.465,0,0,1,6.382,3.423c2.21,2.727,2.55,7.552,2.553,7.6-.2.115-4.827,2.773-9.456,2.843ZM-3958.628,9a4.505,4.505,0,0,1-4.5-4.5,4.505,4.505,0,0,1,4.5-4.5,4.5,4.5,0,0,1,4.5,4.5A4.5,4.5,0,0,1-3958.628,9Z" transform="translate(4104.629 952.5)" fill="none" stroke="#000" strokeWidth="1" />
+          <g id="Ellipse_129" data-name="Ellipse 129" transform="translate(137 969)" fill="#fff" stroke="#000" strokeWidth="1">
             <circle cx="6.5" cy="6.5" r="6.5" stroke="none" />
             <circle cx="6.5" cy="6.5" r="6" fill="none" />
           </g>
-          <path id="Path_1766" data-name="Path 1766" d="M17.065,18a.255.255,0,0,1,.255.255V20.81h2.555a.255.255,0,1,1,0,.511H17.321v2.555a.255.255,0,1,1-.511,0V21.321H14.255a.255.255,0,1,1,0-.511H16.81V18.255A.255.255,0,0,1,17.065,18Z" transform="translate(126.65 954.435)" fill-rule="evenodd" />
+          <path id="Path_1766" data-name="Path 1766" d="M17.065,18a.255.255,0,0,1,.255.255V20.81h2.555a.255.255,0,1,1,0,.511H17.321v2.555a.255.255,0,1,1-.511,0V21.321H14.255a.255.255,0,1,1,0-.511H16.81V18.255A.255.255,0,0,1,17.065,18Z" transform="translate(126.65 954.435)" fillRule="evenodd" />
         </g>
       </svg>
 
@@ -719,9 +719,9 @@ const SellerList = [
   //               d="M1.462,7.095c-1.6,5.2,1.333,9.833,3,11.5v3h11v-3a13.171,13.171,0,0,0,3-11c-1.2-4.8-5.833-6.333-8-6.5C5.27.814,2.156,5.169,1.462,7.095Z"
   //               fill="none"
   //               stroke="#000"
-  //               stroke-linecap="round"
-  //               stroke-linejoin="round"
-  //               stroke-width="1"
+  //               strokeLinecap="round"
+  //               strokeLinejoin="round"
+  //               strokeWidth="1"
   //             />
   //             <rect
   //               id="Rectangle_1715"
@@ -731,7 +731,7 @@ const SellerList = [
   //               transform="translate(4.5 21.5)"
   //               fill="none"
   //               stroke="#000"
-  //               stroke-width="1"
+  //               strokeWidth="1"
   //             />
   //             <path
   //               id="Path_1751"
@@ -740,8 +740,8 @@ const SellerList = [
   //               transform="translate(5.5 24.095)"
   //               fill="none"
   //               stroke="#000"
-  //               stroke-linejoin="round"
-  //               stroke-width="1"
+  //               strokeLinejoin="round"
+  //               strokeWidth="1"
   //             />
   //             <path
   //               id="Rectangle_1717"
@@ -750,7 +750,7 @@ const SellerList = [
   //               transform="translate(6.5 26.5)"
   //               fill="none"
   //               stroke="#000"
-  //               stroke-width="1"
+  //               strokeWidth="1"
   //             />
   //           </g>
   //           <g
@@ -765,8 +765,8 @@ const SellerList = [
   //               transform="translate(140 1022.439)"
   //               fill="none"
   //               stroke="#000"
-  //               stroke-linecap="round"
-  //               stroke-width="1"
+  //               strokeLinecap="round"
+  //               strokeWidth="1"
   //             />
   //             <line
   //               id="Line_24"
@@ -775,8 +775,8 @@ const SellerList = [
   //               transform="translate(152.061 1027.439) rotate(45)"
   //               fill="none"
   //               stroke="#000"
-  //               stroke-linecap="round"
-  //               stroke-width="1"
+  //               strokeLinecap="round"
+  //               strokeWidth="1"
   //             />
   //             <line
   //               id="Line_25"
@@ -785,8 +785,8 @@ const SellerList = [
   //               transform="translate(130.061 1029.561) rotate(135)"
   //               fill="none"
   //               stroke="#000"
-  //               stroke-linecap="round"
-  //               stroke-width="1"
+  //               strokeLinecap="round"
+  //               strokeWidth="1"
   //             />
   //             <line
   //               id="Line_26"
@@ -795,8 +795,8 @@ const SellerList = [
   //               transform="translate(123.5 1038.939) rotate(-90)"
   //               fill="none"
   //               stroke="#000"
-  //               stroke-linecap="round"
-  //               stroke-width="1"
+  //               strokeLinecap="round"
+  //               strokeWidth="1"
   //             />
   //             <line
   //               id="Line_27"
@@ -805,8 +805,8 @@ const SellerList = [
   //               transform="translate(153.5 1038.939) rotate(-90)"
   //               fill="none"
   //               stroke="#000"
-  //               stroke-linecap="round"
-  //               stroke-width="1"
+  //               strokeLinecap="round"
+  //               strokeWidth="1"
   //             />
   //           </g>
   //         </g>
@@ -852,7 +852,7 @@ const SellerList = [
             d="M20.977,5.187a2.162,2.162,0,0,0-2.843-1.461,2.162,2.162,0,0,1-2.281-.493,2.162,2.162,0,0,0-3.192.156A2.162,2.162,0,0,1,10.44,4.1,2.162,2.162,0,0,0,7.754,5.835,2.162,2.162,0,0,1,6.187,7.564a2.162,2.162,0,0,0-1.461,2.843,2.162,2.162,0,0,1-.493,2.281,2.162,2.162,0,0,0,.156,3.192A2.162,2.162,0,0,1,5.1,18.1a2.162,2.162,0,0,0,1.731,2.686,2.162,2.162,0,0,1,1.729,1.567,2.162,2.162,0,0,0,2.843,1.461,2.162,2.162,0,0,1,2.281.493,2.162,2.162,0,0,0,3.192-.156,2.162,2.162,0,0,1,2.222-.713,2.162,2.162,0,0,0,2.686-1.731,2.162,2.162,0,0,1,1.567-1.729,2.162,2.162,0,0,0,1.461-2.843,2.161,2.161,0,0,1,.493-2.281,2.162,2.162,0,0,0-.156-3.192,2.162,2.162,0,0,1-.713-2.222,2.162,2.162,0,0,0-1.731-2.686A2.162,2.162,0,0,1,20.977,5.187ZM12.322,22.431A9.123,9.123,0,1,0,5.871,11.258,9.123,9.123,0,0,0,12.322,22.431Z"
             transform="translate(-0.304 0)"
             fill="#fff"
-            fill-rule="evenodd"
+            fillRule="evenodd"
           />
           <path
             id="Path_3935"
@@ -861,7 +861,7 @@ const SellerList = [
             transform="translate(-2.341 -2.834)"
             fill="none"
             stroke="#fff"
-            stroke-width="1"
+            strokeWidth="1"
           />
           <path
             id="Path_3936"
@@ -870,7 +870,7 @@ const SellerList = [
             transform="translate(0 -2.887)"
             fill="none"
             stroke="#fff"
-            stroke-width="1"
+            strokeWidth="1"
           />
           <path
             id="Path_3937"
@@ -878,7 +878,7 @@ const SellerList = [
             d="M21.848,14.3A6.549,6.549,0,1,1,15.3,7.75,6.549,6.549,0,0,1,21.848,14.3Zm-2.18-1.17a.769.769,0,0,0-.715-.715H16.093l.014-.055h0a9.925,9.925,0,0,0,.344-1.73,2.79,2.79,0,0,0-.536-1.608.771.771,0,0,0-.535-.178.524.524,0,0,0-.536.536s0,.02-.01.053a9.326,9.326,0,0,0-.168,1.2,6.036,6.036,0,0,1-1.073,2.144l-.358.178v5l.358.178h3.93c.715,0,1.073-.358,1.073-.715a.769.769,0,0,0-.715-.715c.715,0,1.073-.358,1.073-.715a.769.769,0,0,0-.715-.715c.715,0,1.073-.358,1.073-.715a.77.77,0,0,0-.709-.715C19.313,13.843,19.668,13.486,19.668,13.13Zm-8.08-.075a.873.873,0,0,0-.873.873v2.993a.873.873,0,0,0,.873.873h.36a.873.873,0,0,0,.873-.873V13.928a.873.873,0,0,0-.873-.873Z"
             transform="translate(-0.956 -0.653)"
             fill="#fff"
-            fill-rule="evenodd"
+            fillRule="evenodd"
           />
         </g>
       </svg>
@@ -1004,14 +1004,14 @@ const BuyerList = [
             fill="none"
             stroke="#000"
             strokeLinecap="round"
-            stroke-linejoin="round"
+            strokeLinejoin="round"
             strokeWidth="1"
           />{" "}
           <path
             id="Subtract"
             d="M11.192,12V6.921c0-3.313-2.327-6-5.2-6S.8,3.608.8,6.921V12H0V6.921C0,3.1,2.684,0,6,0s6,3.1,6,6.921V12Z"
             transform="translate(96.072 600.418)"
-            fill-rule="evenodd"
+            fillRule="evenodd"
           />{" "}
         </g>{" "}
       </svg>
@@ -1033,20 +1033,20 @@ const BuyerList = [
             data-name="Path 1689"
             d="M27.811,7.871H7.9V33.129H25.1a2.665,2.665,0,0,0,2.714-2.613ZM7,7V34H25.1a3.554,3.554,0,0,0,3.619-3.484V7Z"
             transform="translate(-2 4)"
-            fill-rule="evenodd"
+            fillRule="evenodd"
           />
           <path
             id="Path_1690"
             data-name="Path 1690"
             d="M21.591,31H0v4a3,3,0,0,0,3,3H24.591a3,3,0,0,1-3-3Z"
             fill="#c4c4c4"
-            fill-rule="evenodd"
+            fillRule="evenodd"
           />
           <path
             id="Path_1691"
             data-name="Path 1691"
             d="M22.355,37a2.989,2.989,0,0,1-.764-2V31H0v4a3,3,0,0,0,3,3H24.591A2.993,2.993,0,0,1,22.355,37Zm-1.229,0a3.982,3.982,0,0,1-.535-2V32H1v3a2,2,0,0,0,2,2Z"
-            fill-rule="evenodd"
+            fillRule="evenodd"
           />
           <line
             id="Line_29"
@@ -1073,21 +1073,21 @@ const BuyerList = [
             data-name="Path 1696"
             d="M14.334,25.667A1.667,1.667,0,1,1,12.667,24,1.667,1.667,0,0,1,14.334,25.667Zm-1.667.833a.833.833,0,1,0-.833-.833A.833.833,0,0,0,12.667,26.5Z"
             transform="translate(-1.334 1.166)"
-            fill-rule="evenodd"
+            fillRule="evenodd"
           />
           <path
             id="Path_1757"
             data-name="Path 1757"
             d="M14.334,25.667A1.667,1.667,0,1,1,12.667,24,1.667,1.667,0,0,1,14.334,25.667Zm-1.667.833a.833.833,0,1,0-.833-.833A.833.833,0,0,0,12.667,26.5Z"
             transform="translate(-1.334 -3.441)"
-            fill-rule="evenodd"
+            fillRule="evenodd"
           />
           <path
             id="Path_1758"
             data-name="Path 1758"
             d="M14.334,25.667A1.667,1.667,0,1,1,12.667,24,1.667,1.667,0,0,1,14.334,25.667Zm-1.667.833a.833.833,0,1,0-.833-.833A.833.833,0,0,0,12.667,26.5Z"
             transform="translate(-1.334 -8.441)"
-            fill-rule="evenodd"
+            fillRule="evenodd"
           />
           <path
             id="Path_1692"
@@ -1101,7 +1101,7 @@ const BuyerList = [
             data-name="Path 1693"
             d="M29.666,16.466a7.8,7.8,0,1,0-7.8-7.8A7.8,7.8,0,0,0,29.666,16.466Zm0,.867A8.666,8.666,0,1,0,21,8.666,8.666,8.666,0,0,0,29.666,17.333Z"
             transform="translate(-3 5.667)"
-            fill-rule="evenodd"
+            fillRule="evenodd"
           />
           <path
             id="Path_1700"
@@ -1322,7 +1322,7 @@ const BuyerList = [
             transform="translate(-0.645 -1.674)"
             fill="none"
             stroke="#000"
-            stroke-linejoin="round"
+            strokeLinejoin="round"
             strokeWidth="1"
           />
           <path
@@ -1341,7 +1341,7 @@ const BuyerList = [
             transform="translate(-1.369)"
             fill="none"
             stroke="#000"
-            stroke-linejoin="round"
+            strokeLinejoin="round"
             strokeWidth="1"
           />
           <path
@@ -1352,7 +1352,7 @@ const BuyerList = [
             fill="none"
             stroke="#000"
             strokeLinecap="round"
-            stroke-linejoin="round"
+            strokeLinejoin="round"
             strokeWidth="1"
           />
         </g>
@@ -1610,7 +1610,7 @@ const BuyerList = [
               fill="none"
               stroke="#000"
               strokeLinecap="round"
-              stroke-linejoin="round"
+              strokeLinejoin="round"
               strokeWidth="1"
             />
           </g>
@@ -1762,7 +1762,7 @@ const BuyerList = [
   //               fill="none"
   //               stroke="#000"
   //               strokeLinecap="round"
-  //               stroke-linejoin="round"
+  //               strokeLinejoin="round"
   //               strokeWidth="1"
   //             />
   //             <path
@@ -1773,7 +1773,7 @@ const BuyerList = [
   //               fill="none"
   //               stroke="#000"
   //               strokeLinecap="round"
-  //               stroke-linejoin="round"
+  //               strokeLinejoin="round"
   //               strokeWidth="1"
   //             />
   //             <path
@@ -1783,7 +1783,7 @@ const BuyerList = [
   //               transform="translate(-177 -1)"
   //               fill="none"
   //               stroke="#000"
-  //               stroke-linejoin="round"
+  //               strokeLinejoin="round"
   //               strokeWidth="1"
   //             />
   //             <line
@@ -1950,7 +1950,7 @@ const BuyerList = [
   //             transform="translate(-226 44.118)"
   //             fill="none"
   //             stroke="#000"
-  //             stroke-linejoin="round"
+  //             strokeLinejoin="round"
   //             strokeWidth="1"
   //           />
   //         </g>
@@ -2071,7 +2071,7 @@ const BuyerList = [
   //             fill="#fff"
   //             stroke="#000"
   //             strokeLinecap="round"
-  //             stroke-linejoin="round"
+  //             strokeLinejoin="round"
   //             strokeWidth="1"
   //           />
   //           <path
@@ -2082,7 +2082,7 @@ const BuyerList = [
   //             fill="#fff"
   //             stroke="#000"
   //             strokeLinecap="round"
-  //             stroke-linejoin="round"
+  //             strokeLinejoin="round"
   //             strokeWidth="1"
   //           />
   //           <path
@@ -2093,7 +2093,7 @@ const BuyerList = [
   //             fill="#fff"
   //             stroke="#000"
   //             strokeLinecap="round"
-  //             stroke-linejoin="round"
+  //             strokeLinejoin="round"
   //             strokeWidth="1"
   //           />
   //           <path
@@ -2104,7 +2104,7 @@ const BuyerList = [
   //             fill="#fff"
   //             stroke="#000"
   //             strokeLinecap="round"
-  //             stroke-linejoin="round"
+  //             strokeLinejoin="round"
   //             strokeWidth="1"
   //           />
   //         </g>
@@ -2115,7 +2115,7 @@ const BuyerList = [
   //           fill="none"
   //           stroke="#000"
   //           strokeLinecap="round"
-  //           stroke-linejoin="round"
+  //           strokeLinejoin="round"
   //           strokeWidth="1"
   //         >
   //           <rect width="5" height="5" stroke="none" />
@@ -2128,7 +2128,7 @@ const BuyerList = [
   //           fill="none"
   //           stroke="#000"
   //           strokeLinecap="round"
-  //           stroke-linejoin="round"
+  //           strokeLinejoin="round"
   //           strokeWidth="1"
   //         >
   //           <rect width="5" height="5" stroke="none" />
@@ -2141,7 +2141,7 @@ const BuyerList = [
   //           fill="none"
   //           stroke="#000"
   //           strokeLinecap="round"
-  //           stroke-linejoin="round"
+  //           strokeLinejoin="round"
   //           strokeWidth="1"
   //         >
   //           <rect width="5" height="5" stroke="none" />

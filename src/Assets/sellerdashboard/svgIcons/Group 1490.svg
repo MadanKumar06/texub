@@ -2,17 +2,17 @@
   <g id="Group_1490" data-name="Group 1490" transform="translate(-3915.5 -966.276)">
     <g id="Group_1483" data-name="Group 1483" transform="translate(3792.642 -53.276)">
       <g id="Group_1420" data-name="Group 1420" transform="translate(130 1025)">
-        <path id="Path_1750" data-name="Path 1750" d="M1.462,7.095c-1.6,5.2,1.333,9.833,3,11.5v3h11v-3a13.171,13.171,0,0,0,3-11c-1.2-4.8-5.833-6.333-8-6.5C5.27.814,2.156,5.169,1.462,7.095Z" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
-        <rect id="Rectangle_1715" data-name="Rectangle 1715" width="11" height="2" transform="translate(4.5 21.5)" fill="none" stroke="#000" stroke-width="1"/>
-        <path id="Path_1751" data-name="Path 1751" d="M-.987-.126h11L9,2H0Z" transform="translate(5.5 24.095)" fill="none" stroke="#000" stroke-linejoin="round" stroke-width="1"/>
-        <path id="Rectangle_1717" data-name="Rectangle 1717" d="M0,0H7A0,0,0,0,1,7,0V2A1,1,0,0,1,6,3H1A1,1,0,0,1,0,2V0A0,0,0,0,1,0,0Z" transform="translate(6.5 26.5)" fill="none" stroke="#000" stroke-width="1"/>
+        <path id="Path_1750" data-name="Path 1750" d="M1.462,7.095c-1.6,5.2,1.333,9.833,3,11.5v3h11v-3a13.171,13.171,0,0,0,3-11c-1.2-4.8-5.833-6.333-8-6.5C5.27.814,2.156,5.169,1.462,7.095Z" fill="none" stroke="#000" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1"/>
+        <rect id="Rectangle_1715" data-name="Rectangle 1715" width="11" height="2" transform="translate(4.5 21.5)" fill="none" stroke="#000" strokeWidth="1"/>
+        <path id="Path_1751" data-name="Path 1751" d="M-.987-.126h11L9,2H0Z" transform="translate(5.5 24.095)" fill="none" stroke="#000" strokeLinejoin="round" strokeWidth="1"/>
+        <path id="Rectangle_1717" data-name="Rectangle 1717" d="M0,0H7A0,0,0,0,1,7,0V2A1,1,0,0,1,6,3H1A1,1,0,0,1,0,2V0A0,0,0,0,1,0,0Z" transform="translate(6.5 26.5)" fill="none" stroke="#000" strokeWidth="1"/>
       </g>
       <g id="Group_1480" data-name="Group 1480" transform="translate(-0.142 -2.388)">
-        <line id="Line_21" data-name="Line 21" y1="3" transform="translate(140 1022.439)" fill="none" stroke="#000" stroke-linecap="round" stroke-width="1"/>
-        <line id="Line_24" data-name="Line 24" y1="3" transform="translate(152.061 1027.439) rotate(45)" fill="none" stroke="#000" stroke-linecap="round" stroke-width="1"/>
-        <line id="Line_25" data-name="Line 25" y2="3" transform="translate(130.061 1029.561) rotate(135)" fill="none" stroke="#000" stroke-linecap="round" stroke-width="1"/>
-        <line id="Line_26" data-name="Line 26" y2="3" transform="translate(123.5 1038.939) rotate(-90)" fill="none" stroke="#000" stroke-linecap="round" stroke-width="1"/>
-        <line id="Line_27" data-name="Line 27" y2="3" transform="translate(153.5 1038.939) rotate(-90)" fill="none" stroke="#000" stroke-linecap="round" stroke-width="1"/>
+        <line id="Line_21" data-name="Line 21" y1="3" transform="translate(140 1022.439)" fill="none" stroke="#000" strokeLinecap="round" strokeWidth="1"/>
+        <line id="Line_24" data-name="Line 24" y1="3" transform="translate(152.061 1027.439) rotate(45)" fill="none" stroke="#000" strokeLinecap="round" strokeWidth="1"/>
+        <line id="Line_25" data-name="Line 25" y2="3" transform="translate(130.061 1029.561) rotate(135)" fill="none" stroke="#000" strokeLinecap="round" strokeWidth="1"/>
+        <line id="Line_26" data-name="Line 26" y2="3" transform="translate(123.5 1038.939) rotate(-90)" fill="none" stroke="#000" strokeLinecap="round" strokeWidth="1"/>
+        <line id="Line_27" data-name="Line 27" y2="3" transform="translate(153.5 1038.939) rotate(-90)" fill="none" stroke="#000" strokeLinecap="round" strokeWidth="1"/>
       </g>
     </g>
     <g id="Group_1423" data-name="Group 1423" transform="translate(3926.5 975.998)">
