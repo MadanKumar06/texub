@@ -14,7 +14,7 @@ import Constant from "../../../Constant";
 
 const Index = ({ searchdata, searchupdate, searchBar, setSearchbar }) => {
   const [isAccountinfo, setisAccountinfo] = useState(true);
-  const [{ geo, customnostore }, dispatch] = useStateValue();
+  const [{ geo, customnostore, userDataDetails }, dispatch] = useStateValue();
   const [showButton, setshowButton] = useState(true);
   const [type, settype] = useState();
   const [userData, setUserData] = useState(
@@ -111,7 +111,7 @@ const Index = ({ searchdata, searchupdate, searchBar, setSearchbar }) => {
   let mobile_number = userData?.custom_attributes?.filter(
     (itm) => itm?.attribute_code === "customer_mobile_number"
   );
-
+ 
   const [userDetailTrigger, setUserDetailTrigger] = useState(false);
   useEffect(() => {
     axios
@@ -125,6 +125,10 @@ const Index = ({ searchdata, searchupdate, searchBar, setSearchbar }) => {
         dispatch({
           type: "SET_IS_LOADING",
           value: false,
+        });
+        dispatch({
+          type: "USER_DATA_DETAILS",
+          value: res?.data,
         });
         setUserData(res?.data);
         localStorage.setItem("userdata", JSON.stringify(res?.data));

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { Menu, MenuItem, Button, Badge } from "@mui/material";
 import "./styles.scss";
 import { Link, useNavigate } from "react-router-dom";
@@ -11,10 +11,10 @@ import { useStateValue } from "../../../store/state";
 
 import swal from "sweetalert2";
 const MyAccountPopup = () => {
-  const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
+  const [{ geo, customstore, customnostore, userDataDetails }, dispatch] = useStateValue();
   let isSignedIn = JSON.parse(localStorage.getItem("userdata"));
   const [anchorEl, setAnchorEl] = React.useState(null);
-
+  
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -89,7 +89,7 @@ const MyAccountPopup = () => {
         <li className="user_account">
           <span className="user_code">{userCode?.[0]?.value}</span>
           <span className="user_name">
-            {userData?.firstname} {userData?.lastname}
+            {userDataDetails?.firstname} {userDataDetails?.lastname}
           </span>
         </li>
       </Button>

@@ -468,13 +468,11 @@ function Index() {
             <div className="content">
               <span>{pendingInvoiceList?.bill_to_address1},</span>
               <span>{pendingInvoiceList?.bill_to_address2}</span>
-
               <span>
-                {pendingInvoiceList?.bill_to_city}-
-                {pendingInvoiceList?.bill_to_country}
+                {pendingInvoiceList?.bill_to_city}
               </span>
-              <span>{pendingInvoiceList?.bill_to_state}</span>
-              <span>{pendingInvoiceList?.bill_to_pincode}</span>
+              <span>{pendingInvoiceList?.bill_to_state} {"-"} {pendingInvoiceList?.bill_to_pincode}</span>
+              <span>{pendingInvoiceList?.bill_to_country}</span>
             </div>
           </div>
           <Divider orientation="vertical" />
@@ -486,11 +484,12 @@ function Index() {
               <span>{pendingInvoiceList?.pick_up_address2}</span>
 
               <span>
-                {pendingInvoiceList?.pick_up_city}-
+                {pendingInvoiceList?.pick_up_city}
+              </span>
+              <span>{pendingInvoiceList?.pick_up_state} {"-"} {pendingInvoiceList?.pick_up_pincode}</span>
+              <span>
                 {pendingInvoiceList?.pick_up_country}
               </span>
-              <span>{pendingInvoiceList?.pick_up_state}</span>
-              <span>{pendingInvoiceList?.pick_up_pincode}</span>
             </div>
           </div>
         </div>

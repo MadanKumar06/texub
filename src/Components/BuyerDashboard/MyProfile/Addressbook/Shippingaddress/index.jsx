@@ -182,6 +182,7 @@ const Index = ({ address, setisAddress, setisShipping }) => {
               onClick={() => setbilling(!billing)}
             />
           }
+          className="same_as_billing_adress"
           label="Same As Billing Adress"
         />
       </div>
@@ -366,7 +367,7 @@ const Index = ({ address, setisAddress, setisShipping }) => {
           </div>
           <div className="button-box-container btn_container">
             <Button
-              className="button-text btn-ternary btn_billing"
+              className="button-text btn-ternary btn_billing cancel_btn_billing"
               onClick={() => {
                 setisShipping(false);
                 setisAddress(true);
@@ -375,7 +376,7 @@ const Index = ({ address, setisAddress, setisShipping }) => {
               Cancel
             </Button>
             <Button
-              className="button-text btn-secondary btn_billing"
+              className="button-text btn-secondary btn_billing submit_btn_billing"
               onClick={() => saveaddress()}
             >
               Save Changes

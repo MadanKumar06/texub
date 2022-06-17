@@ -16,14 +16,13 @@ import Constant from "../../../Constant";
 
 const Index = () => {
   const [isAccountinfo, setisAccountinfo] = useState(true);
-  const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
+  const [{ geo, customstore, customnostore, userDataDetails }, dispatch] = useStateValue();
   const [showButton, setshowButton] = useState(true);
   const [searchupdate, setsearchupdate] = useState(false);
   const [search, setSearch] = useState("");
   const [userData, setUserData] = useState(
     JSON.parse(localStorage.getItem("userdata"))
   );
-
   let company_name = userData?.custom_attributes?.filter(
     (itm) => itm?.attribute_code === "customer_company_name"
   );
@@ -107,7 +106,7 @@ const Index = () => {
     e.preventDefault();
     setsearchupdate(!searchupdate);
   };
-
+  
   const [userDetailTrigger, setUserDetailTrigger] = useState(false);
   useEffect(() => {
     axios
@@ -121,6 +120,10 @@ const Index = () => {
         dispatch({
           type: "SET_IS_LOADING",
           value: false,
+        });
+        dispatch({
+          type: "USER_DATA_DETAILS",
+          value: res?.data,
         });
         setUserData(res?.data);
         localStorage.setItem("userdata", JSON.stringify(res?.data));

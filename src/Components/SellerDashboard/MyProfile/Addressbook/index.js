@@ -102,14 +102,12 @@ const Index = () => {
                   </li>
                   <li className="address_block">
                     {billingAdderess?.[0]?.city}
-                    {" - "}
+                  </li>
+                  <li className="address_block">
+                    {billingAdderess?.[0]?.state} {"-"} {billingAdderess?.[0]?.postcode}
+                  </li>
+                  <li className="address_block">
                     {billingAdderess?.[0]?.country_code}
-                  </li>
-                  <li className="address_block">
-                    {billingAdderess?.[0]?.state}
-                  </li>
-                  <li className="address_block">
-                    {billingAdderess?.[0]?.postcode}
                   </li>
                 </div>
               </ul>
@@ -150,14 +148,12 @@ const Index = () => {
                   </li>
                   <li className="address_block">
                     {shippingAddress?.[0]?.city}
-                    {" - "}
+                  </li>
+                  <li className="address_block">
+                    {shippingAddress?.[0]?.state} {"-"} {billingAdderess?.[0]?.postcode}
+                  </li>
+                  <li className="address_block">
                     {shippingAddress?.[0]?.country_code}
-                  </li>
-                  <li className="address_block">
-                    {shippingAddress?.[0]?.state}
-                  </li>
-                  <li className="address_block">
-                    {billingAdderess?.[0]?.postcode}
                   </li>
                 </div>
               </ul>
