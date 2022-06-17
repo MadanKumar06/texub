@@ -10,7 +10,13 @@ import "./styles.scss";
 import { useStateValue } from "../../store/state";
 
 const firstIndex = 0;
-const PaginationControlled = ({ PaginateData, DataList, PagePerRow }) => {
+const PaginationControlled = ({
+  PaginateData,
+  DataList,
+  PagePerRow,
+  TotalPage,
+  handleApicallback,
+}) => {
   const [{ geo, customnostore }, dispatch] = useStateValue();
   const [page, setPage] = useState({
     page: 1,
@@ -19,22 +25,38 @@ const PaginationControlled = ({ PaginateData, DataList, PagePerRow }) => {
   });
 
   useEffect(() => {
-    //pagination data as props
-    PaginateData(DataList?.slice(0, PagePerRow));
+    if (TotalPage) {
+      PaginateData(DataList);
+      let RoundedValue = TotalPage / PagePerRow;
+      let Rounded =
+        RoundedValue % 1 === 0 ? RoundedValue : parseInt(RoundedValue + 1);
 
-    let RoundedValue = DataList?.length / PagePerRow;
-    let Rounded =
-      RoundedValue % 1 === 0 ? RoundedValue : parseInt(RoundedValue + 1);
+      //create array for jump to page options
+      var JumpToPageOptionValues = Array(Rounded === 0 ? 1 : Rounded)
+        ?.fill(1)
+        ?.map((item, idx) => idx + 1);
 
-    //create array for jump to page options
-    var JumpToPageOptionValues = Array(Rounded === 0 ? 1 : Rounded)
-      ?.fill(1)
-      ?.map((item, idx) => idx + 1);
+      setPage((prevState) => ({
+        ...prevState,
+        option: JumpToPageOptionValues,
+      }));
+    } else {
+      //pagination data as props
+      PaginateData(DataList?.slice(0, PagePerRow));
+      let RoundedValue = DataList?.length / PagePerRow;
+      let Rounded =
+        RoundedValue % 1 === 0 ? RoundedValue : parseInt(RoundedValue + 1);
 
-    setPage((prevState) => ({
-      ...prevState,
-      option: JumpToPageOptionValues,
-    }));
+      //create array for jump to page options
+      var JumpToPageOptionValues = Array(Rounded === 0 ? 1 : Rounded)
+        ?.fill(1)
+        ?.map((item, idx) => idx + 1);
+
+      setPage((prevState) => ({
+        ...prevState,
+        option: JumpToPageOptionValues,
+      }));
+    }
     window.scrollTo(0, 0);
   }, [PagePerRow, DataList]);
 
@@ -44,9 +66,14 @@ const PaginationControlled = ({ PaginateData, DataList, PagePerRow }) => {
       page: value,
       jumptopage: value?.toString(),
     }));
-    PaginateData(
-      DataList?.slice(firstIndex + PagePerRow * (value - 1), PagePerRow * value)
-    );
+    TotalPage
+      ? handleApicallback(value - 1)
+      : PaginateData(
+          DataList?.slice(
+            firstIndex + PagePerRow * (value - 1),
+            PagePerRow * value
+          )
+        );
     if (
       window.location.pathname ===
       `/${
@@ -88,7 +115,9 @@ const PaginationControlled = ({ PaginateData, DataList, PagePerRow }) => {
 
     if (
       window.location.pathname ===
-      `/${customnostore ? customnostore : geo?.country_name}/sellerdashboard/directenquiries`
+      `/${
+        customnostore ? customnostore : geo?.country_name
+      }/sellerdashboard/directenquiries`
     ) {
       localStorage.setItem("enquirypage", JSON.stringify(value));
     } else {
@@ -96,7 +125,9 @@ const PaginationControlled = ({ PaginateData, DataList, PagePerRow }) => {
     }
     if (
       window.location.pathname ===
-      `/${customnostore ? customnostore : geo?.country_name}/sellerdashboard/smart-recommendation`
+      `/${
+        customnostore ? customnostore : geo?.country_name
+      }/sellerdashboard/smart-recommendation`
     ) {
       localStorage.setItem("smartpage", JSON.stringify(value));
     } else {
@@ -195,7 +226,7 @@ const PaginationControlled = ({ PaginateData, DataList, PagePerRow }) => {
     customnostore,
     geo,
     page?.option?.length,
-    DataList
+    DataList,
   ]);
 
   return (
@@ -203,7 +234,9 @@ const PaginationControlled = ({ PaginateData, DataList, PagePerRow }) => {
       <div className="pagination_sub_container">
         <Typography>Page :</Typography>
         <Pagination
-          count={Math.ceil(DataList?.length / PagePerRow)}
+          count={Math.ceil(
+            TotalPage ? TotalPage / PagePerRow : DataList?.length / PagePerRow
+          )}
           page={page?.page}
           onChange={handleChange}
           renderItem={(item) => <PaginationItem {...item} />}

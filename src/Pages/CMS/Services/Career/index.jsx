@@ -7,7 +7,7 @@ import {
   Typography,
   Button,
 } from "@mui/material";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import "./styles.scss";
 import { KeyboardDoubleArrowRight } from "@mui/icons-material";
 import "../../../../Pages/Aboutus/styles.scss";

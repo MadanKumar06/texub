@@ -5,7 +5,7 @@ import { isEmailValid, isNumber } from "../../../../utilities";
 import Constant from "../../../../Constant";
 import axios from "axios";
 import swal from "sweetalert2";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 import contact from "../../../../Assets/Career/Group 982.png";
 import officeicon from "../../../../Assets/Contactus/office.png";

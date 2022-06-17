@@ -1,6 +1,6 @@
 import React from "react";
 import "./styles.scss";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 import topbanner from "../../../Assets/Aboutus/Group 765@2x.png";
 import yellow from "../../../Assets/Aboutus/vision/yellow.png";

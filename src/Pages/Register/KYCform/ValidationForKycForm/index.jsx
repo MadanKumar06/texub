@@ -19,7 +19,7 @@ function ValidationForKycForm({
   KYCvalidationHandler,
   inputsValidations,
   setinputsValidations,
-  isStatelist
+  isStatelist,
 }) {
   let { validation_error } = classes;
   const history = useNavigate();
@@ -100,7 +100,7 @@ function ValidationForKycForm({
       }));
       endPoint = true;
     }
-    if(isStatelist?.length){
+    if (isStatelist?.length) {
       if (!values?.state_dropdown_list) {
         setValid((prevState) => ({
           ...prevState,
@@ -113,7 +113,7 @@ function ValidationForKycForm({
         endPoint = true;
       }
     }
-    if(!isStatelist?.length){
+    if (!isStatelist?.length) {
       if (!values?.state_text) {
         setinputsValidations((prevState) => ({
           ...prevState,
@@ -160,10 +160,10 @@ function ValidationForKycForm({
       setDocumentButton("national_id");
     }
   };
-  console.log("values")
-  console.log(values)
-  console.log("valid")
-  console.log(valid)
+  console.log("values");
+  console.log(values);
+  console.log("valid");
+  console.log(valid);
   const ScroltoTop = () => {
     document.getElementById("kyc_focus_input")?.focus();
   };
@@ -315,6 +315,10 @@ function ValidationForKycForm({
         values?.address_line_one ? values?.address_line_one : ""
       }&address2=${
         values?.address_line_two ? values?.address_line_two : ""
+      }&state=${
+        values?.state_text !== ""
+          ? values?.state_text
+          : values?.state_dropdown_list?.title
       }&country=${values?.country}&city=${
         values?.city ? values?.city : ""
       }&pin=${
@@ -349,9 +353,9 @@ function ValidationForKycForm({
         {documentButton === "national_id" ? (
           <Button
             className={button_guest}
-            onClick={() =>{
-              handleValidationClick()
-              KYCvalidationHandler()
+            onClick={() => {
+              handleValidationClick();
+              KYCvalidationHandler();
             }}
           >
             <span>Submit</span>
@@ -360,8 +364,8 @@ function ValidationForKycForm({
           <Button
             className={button_guest}
             onClick={() => {
-              handleValidationClick()
-              KYCvalidationHandler()
+              handleValidationClick();
+              KYCvalidationHandler();
             }}
           >
             <span>Continue</span>

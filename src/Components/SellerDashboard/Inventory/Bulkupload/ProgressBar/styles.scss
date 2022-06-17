@@ -1,0 +1,26 @@
+.progressbar-main-container {
+  padding: 3em 0;
+  .MuiBox-root {
+    .MuiLinearProgress-root {
+      height: 15px;
+      background-color: rgb(231, 234, 238);
+      border-radius: 50px;
+    }
+    .MuiLinearProgress-bar {
+      background: linear-gradient(180deg, #20639b 0%, #002d56 100%);
+    }
+    .MuiTypography-root {
+      font-weight: 600;
+    }
+  }
+  .loading-refresh {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    opacity: 1;
+    color: #002d56;
+    font-size: 16px;
+    letter-spacing: 0.54px;
+  }
+}

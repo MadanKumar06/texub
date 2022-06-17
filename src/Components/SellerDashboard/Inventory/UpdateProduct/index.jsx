@@ -18,7 +18,7 @@ const checkedIcon = <CheckBoxIcon fontSize="small" />;
 function Index({ type }) {
   const [{ geo, customnostore }, dispatch] = useStateValue();
   const history = useNavigate();
-  const [updateCountry,setupdateCountry] = useState(false);
+  const [updateCountry, setupdateCountry] = useState(false);
   const [count, setcount] = useState([
     {
       count: 0,
@@ -786,24 +786,26 @@ function Index({ type }) {
   useEffect(() => {
     if (updateProductList?.resregion) {
       let temp = updateProductList?.resregion?.map((itm) => itm?.region_id);
-      async function fetchData() {
-        try {
-          const tabledata = await axios({
-            method: "post",
-            url: `${Constant.baseUrl()}/getCountryListByRegion`,
-            data: {
-              region_id: temp?.toString(),
-            },
-            headers: {
-              "Content-Type": "application/json",
-            },
-          });
-          setRestricts_country(tabledata.data);
-        } catch (e) {
-          console.log(e);
+      if (temp) {
+        async function fetchData() {
+          try {
+            const tabledata = await axios({
+              method: "post",
+              url: `${Constant.baseUrl()}/getCountryListByRegion`,
+              data: {
+                region_id: temp?.toString(),
+              },
+              headers: {
+                "Content-Type": "application/json",
+              },
+            });
+            setRestricts_country(tabledata.data);
+          } catch (e) {
+            console.log(e);
+          }
         }
+        fetchData();
       }
-      fetchData();
     }
   }, [updateProductList?.resregion]);
 
@@ -819,16 +821,20 @@ function Index({ type }) {
         })
       );
     updateProductList.restricts_country = temp;
-  }, [restricts_country?.length > 0,updateCountry]);
+  }, [restricts_country?.length > 0, updateCountry]);
 
-  useEffect(()=>{
-    setTimeout(()=>{
-      setupdateCountry(!updateCountry)
-    },3000)
-  },[])
+  useEffect(() => {
+    setTimeout(() => {
+      setupdateCountry(!updateCountry);
+    }, 3000);
+  }, []);
 
- const Custom_Attributes = JSON.parse(localStorage.getItem("userdata"))?.custom_attributes;
-  const isIndianSeller = Custom_Attributes?.filter((ind) => ind?.attribute_code==="customer_country" && ind.value === "IN");
+  const Custom_Attributes = JSON.parse(
+    localStorage.getItem("userdata")
+  )?.custom_attributes;
+  const isIndianSeller = Custom_Attributes?.filter(
+    (ind) => ind?.attribute_code === "customer_country" && ind.value === "IN"
+  );
   return (
     <div className="updateproduct">
       <h1>{type}</h1>
@@ -1382,31 +1388,33 @@ function Index({ type }) {
           ) : (
             ""
           )}
-          
-          {
-            isIndianSeller.length>0?<div className="updateproduct_inputfields hsn_code">
-            <InputLabel>HSN Code</InputLabel>
-            <TextField
-              id="hsn_code"
-              name="hsn_code"
-              placeholder="22348765"
-              fullWidth
-              autoComplete="off"
-              className="inputfield-box  "
-              value={updateform?.hsn_code}
-              InputLabelProps={{
-                shrink: false,
-              }}
-              onChange={(e) => {
-                setupdateform((prevState) => ({
-                  ...prevState,
-                  hsn_code: e.target.value,
-                }));
-              }}
-              variant="outlined"
-            />
-          </div>:<></>
-          }
+
+          {isIndianSeller.length > 0 ? (
+            <div className="updateproduct_inputfields hsn_code">
+              <InputLabel>HSN Code</InputLabel>
+              <TextField
+                id="hsn_code"
+                name="hsn_code"
+                placeholder="22348765"
+                fullWidth
+                autoComplete="off"
+                className="inputfield-box  "
+                value={updateform?.hsn_code}
+                InputLabelProps={{
+                  shrink: false,
+                }}
+                onChange={(e) => {
+                  setupdateform((prevState) => ({
+                    ...prevState,
+                    hsn_code: e.target.value,
+                  }));
+                }}
+                variant="outlined"
+              />
+            </div>
+          ) : (
+            <></>
+          )}
           <div className="updateproduct_inputfields info">
             <InputLabel>
               Special Notes<small className="asterisk">*</small>

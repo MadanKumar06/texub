@@ -2,7 +2,7 @@
   <g id="Icon" transform="translate(-0.166 -0.431)">
     <rect id="Area" width="41" height="41" transform="translate(0.341 0.431)" fill="#fcfcfc" opacity="0"/>
     <g id="Icon-2" data-name="Icon" transform="translate(1.166 1.973)">
-      <path id="Path" d="M37.674,5.84A9.727,9.727,0,0,0,23,5.84l-2,2.2-2-2.2a9.727,9.727,0,0,0-14.674,0,12.216,12.216,0,0,0,0,16.124l2,2.2L21,40.287,35.674,24.16l2-2.2A12.21,12.21,0,0,0,37.674,5.84Z" transform="translate(-1.291 -2.499)" fill="none" stroke="#858a8e" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <path id="Path" d="M37.674,5.84A9.727,9.727,0,0,0,23,5.84l-2,2.2-2-2.2a9.727,9.727,0,0,0-14.674,0,12.216,12.216,0,0,0,0,16.124l2,2.2L21,40.287,35.674,24.16l2-2.2A12.21,12.21,0,0,0,37.674,5.84Z" transform="translate(-1.291 -2.499)" fill="none" stroke="#858a8e" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"/>
     </g>
   </g>
 </svg>

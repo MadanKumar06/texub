@@ -188,9 +188,9 @@ const PDPTable = ({ classes, tableData, setPdpSellerData }) => {
                         transform="translate(2572.175 -7060.373)"
                         fill="none"
                         stroke="#00b91c"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="3"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="3"
                       />
                     </svg>
                     {"  "}

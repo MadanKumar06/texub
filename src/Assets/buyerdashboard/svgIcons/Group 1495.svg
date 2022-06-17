@@ -2,29 +2,29 @@
   <g id="Group_1495" data-name="Group 1495" transform="translate(-1882.424 -674)">
     <g id="Group_1459" data-name="Group 1459" transform="translate(-54.576 -159.836)">
       <g id="Group_1458" data-name="Group 1458" transform="translate(1813 17)">
-        <g id="Rectangle_1697" data-name="Rectangle 1697" transform="translate(130.508 816.836) rotate(9)" fill="none" stroke="#000" stroke-width="1">
+        <g id="Rectangle_1697" data-name="Rectangle 1697" transform="translate(130.508 816.836) rotate(9)" fill="none" stroke="#000" strokeWidth="1">
           <rect width="29" height="17" rx="2" stroke="none"/>
           <rect x="0.5" y="0.5" width="28" height="16" rx="1.5" fill="none"/>
         </g>
-        <g id="Rectangle_1698" data-name="Rectangle 1698" transform="translate(130.508 816.836) rotate(9)" fill="none" stroke="#000" stroke-width="1">
+        <g id="Rectangle_1698" data-name="Rectangle 1698" transform="translate(130.508 816.836) rotate(9)" fill="none" stroke="#000" strokeWidth="1">
           <path d="M2,0H27a2,2,0,0,1,2,2V6.9a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V2A2,2,0,0,1,2,0Z" stroke="none"/>
           <path d="M2,.5H27A1.5,1.5,0,0,1,28.5,2V6.4a0,0,0,0,1,0,0H.5a0,0,0,0,1,0,0V2A1.5,1.5,0,0,1,2,.5Z" fill="none"/>
         </g>
       </g>
     </g>
     <g id="Group_1460" data-name="Group 1460" transform="translate(-47.576 -178.836)">
-      <g id="Rectangle_1696" data-name="Rectangle 1696" transform="translate(1930 862)" fill="#fff" stroke="#000" stroke-width="1">
+      <g id="Rectangle_1696" data-name="Rectangle 1696" transform="translate(1930 862)" fill="#fff" stroke="#000" strokeWidth="1">
         <rect width="29" height="17" rx="2" stroke="none"/>
         <rect x="0.5" y="0.5" width="28" height="16" rx="1.5" fill="none"/>
       </g>
-      <g id="Rectangle_1699" data-name="Rectangle 1699" transform="translate(1932 869)" fill="none" stroke="#000" stroke-width="1">
+      <g id="Rectangle_1699" data-name="Rectangle 1699" transform="translate(1932 869)" fill="none" stroke="#000" strokeWidth="1">
         <rect width="7" height="4" rx="1" stroke="none"/>
         <rect x="0.5" y="0.5" width="6" height="3" rx="0.5" fill="none"/>
       </g>
-      <line id="Line_7" data-name="Line 7" x1="3" transform="translate(1932.5 875.5)" fill="none" stroke="#000" stroke-linecap="round" stroke-width="1"/>
-      <line id="Line_8" data-name="Line 8" x1="3" transform="translate(1938.5 875.5)" fill="none" stroke="#000" stroke-linecap="round" stroke-width="1"/>
-      <line id="Line_9" data-name="Line 9" x1="3" transform="translate(1944.849 875.5)" fill="none" stroke="#000" stroke-linecap="round" stroke-width="1"/>
-      <line id="Line_10" data-name="Line 10" x1="3" transform="translate(1950.849 875.5)" fill="none" stroke="#000" stroke-linecap="round" stroke-width="1"/>
+      <line id="Line_7" data-name="Line 7" x1="3" transform="translate(1932.5 875.5)" fill="none" stroke="#000" strokeLinecap="round" strokeWidth="1"/>
+      <line id="Line_8" data-name="Line 8" x1="3" transform="translate(1938.5 875.5)" fill="none" stroke="#000" strokeLinecap="round" strokeWidth="1"/>
+      <line id="Line_9" data-name="Line 9" x1="3" transform="translate(1944.849 875.5)" fill="none" stroke="#000" strokeLinecap="round" strokeWidth="1"/>
+      <line id="Line_10" data-name="Line 10" x1="3" transform="translate(1950.849 875.5)" fill="none" stroke="#000" strokeLinecap="round" strokeWidth="1"/>
     </g>
   </g>
 </svg>
