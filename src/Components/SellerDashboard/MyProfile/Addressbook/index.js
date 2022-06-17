@@ -67,6 +67,7 @@ const Index = () => {
       });
     }
   }, [isAddress]);
+  console.log(billingAdderess)
   return (
     <>
       {isAddress && (
@@ -94,6 +95,9 @@ const Index = () => {
                   {billingAdderess?.[0]?.lastname}
                 </li>
                 <div>
+                  <li className="address_block">
+                    {billingAdderess?.[0]?.company}
+                  </li>
                   <li className="address_block">
                     {billingAdderess?.[0]?.street1}
                   </li>
@@ -140,6 +144,9 @@ const Index = () => {
                   {shippingAddress?.[0]?.lastname}
                 </li>
                 <div>
+                  <li className="address_block">
+                    {shippingAddress?.[0]?.company}
+                  </li>
                   <li className="address_block">
                     {shippingAddress?.[0]?.street1}
                   </li>

@@ -11,6 +11,7 @@ import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import swal from "sweetalert2";
 import TextareaAutosize from '@mui/material/TextareaAutosize';
+import PhoneInput from "react-phone-input-2";
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
@@ -29,6 +30,8 @@ const Index = ({ currentid, setisSub, setisSubusers, setshowButton, setSearchbar
     mobile: "",
     active: "",
   });
+  console.log("NewSubAccountData buyer")
+  console.log(NewSubAccountData)
   useEffect(() => {
     getAdminToken((res) => {
       setAdminToken(res);
@@ -115,6 +118,13 @@ const Index = ({ currentid, setisSub, setisSubusers, setshowButton, setSearchbar
     }));
     setInputValidation("");
   };
+  const handleMobileChangeInput = (event) => {
+    setNewSubAccountData((prevState) => ({
+      ...prevState,
+      mobile: event,
+    }));
+    setInputValidation("");
+  };
   const handleClickValidation = async (event) => {
     var errorHandle = false;
     if (!NewSubAccountData?.first_name) {
@@ -146,6 +156,13 @@ const Index = ({ currentid, setisSub, setisSubusers, setshowButton, setSearchbar
       setInputValidation((prevState) => ({
         ...prevState,
         mobile: "Please enter mobile.",
+      }));
+      errorHandle = true;
+    }else if (NewSubAccountData?.mobile?.length < 10) {
+      document.getElementById("mobile")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        mobile: "Please enter 10 digit mobile number.",
       }));
       errorHandle = true;
     }
@@ -294,7 +311,22 @@ const Index = ({ currentid, setisSub, setisSubusers, setshowButton, setSearchbar
           </div>
           <div className="input_sections1">
             <p>Mobile Number</p>
-            <TextField
+            <PhoneInput
+              id="mobile"
+              fullWidth
+              enableSearch={true}
+              countryCodeEditable={false}
+              className="inputfield-box mobile_field"
+              name="mobile"
+              value={NewSubAccountData?.mobile}
+              InputLabelProps={{
+                shrink: false,
+                required: true,
+              }}
+              onChange={(e) => handleMobileChangeInput(e)}
+              variant="outlined"
+            />
+            {/* <TextField
               fullWidth
               id="mobile"
               className="inputfield-box"
@@ -306,7 +338,7 @@ const Index = ({ currentid, setisSub, setisSubusers, setshowButton, setSearchbar
               }}
               value={NewSubAccountData?.mobile}
               onChange={handleChangeInput}
-            />
+            /> */}
             <InputLabel className="validation_error">
               {inputValidation?.mobile}
             </InputLabel>

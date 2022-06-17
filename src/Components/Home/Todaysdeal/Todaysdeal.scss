@@ -297,11 +297,11 @@
 }
 
 @media (max-width: 375px) {
-  .Todaysdeal_Collections
+ /*  .Todaysdeal_Collections
     .Todaysdeal_Collections1_1st_div
     .Todaysdeal_View_collection {
     font-size: 34px;
-  }
+  } */
 
   .Todaysdeal_Collections
     .Todaysdeal_Collections1_2nd_div
@@ -321,6 +321,7 @@
     .Todaysdeal_Collections1_1st_div
     .Todaysdeal_View_collection {
     font-size: 24px;
+    bottom: 2em;
   }
   .Todaysdeal_Collections .Todaysdeal_Collections1_2nd_div .Todaysdeal__floatingcontent h3{
     font-size: 20px;

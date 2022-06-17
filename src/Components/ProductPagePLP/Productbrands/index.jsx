@@ -252,6 +252,12 @@ const Productsbrands = ({
       }, 2000);
     }
   }, [homeCategorySearch, getCategories]);
+  const [focusInput,setfocusInput] = useState(false)
+  useEffect(()=>{
+    if(focusInput===true){
+      
+    }
+  },[focusInput])
   return (
     <div className="Productsbrands">
       <>
@@ -308,7 +314,13 @@ const Productsbrands = ({
                         isCategorySelected === item?.category?.id &&
                         "selected_category"
                       }`}
-                      onMouseOver={() => brand(item?.category?.id)}
+                      onMouseOver={() =>{
+                        brand(item?.category?.id)
+                        setfocusInput(true)
+                      }}
+                      onMouseLeave={()=>{
+                        setfocusInput(false)
+                      }}
                     >
                       <span
                         onClick={() => {
@@ -323,10 +335,10 @@ const Productsbrands = ({
                         {item?.category?.category_name}
                       </span>
                       {isChange ? (
-                        <div className="list">
+                        <div className={`list ${item?.subcategories?.length>5?'addSubCategoryScollBar':'addSubCategoryScoll'}`}>
                           <li className="list_content">
-                            <span>
-                              {item.category?.id === isChange &&
+                            <span className="list_ScrollBar">
+                              {item.category?.id === isChange && focusInput===true &&
                               item?.subcategories?.length
                                 ? item?.subcategories?.map((e) => {
                                     return (
@@ -340,9 +352,10 @@ const Productsbrands = ({
                                           setApplyFilter(!applyFilter);
                                         }}
                                       >
-                                        <span>
-                                          <p>{e.category_name}</p>
-                                          <p>({e.count})</p>
+                                        <span className="sub_catergory_content">
+                                          <p className="sub_catergory_name">{e.category_name}</p>
+                                        {/* {focusInput===true?<p>hi</p>:<p>hello</p>} */}
+                                          <p className="sub_catergory_count">({e.count})</p>
                                         </span>
                                       </div>
                                     );

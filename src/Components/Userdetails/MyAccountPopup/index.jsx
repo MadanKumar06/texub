@@ -89,7 +89,8 @@ const MyAccountPopup = () => {
         <li className="user_account">
           <span className="user_code">{userCode?.[0]?.value}</span>
           <span className="user_name">
-            {userDataDetails?.firstname} {userDataDetails?.lastname}
+            {Object.keys(userDataDetails).length===0?userData?.firstname:userDataDetails?.firstname} {Object.keys(userDataDetails).length===0?userData?.lastname:userDataDetails?.lastname}
+            {/* {userDataDetails?.firstname} {userDataDetails?.lastname} */}
           </span>
         </li>
       </Button>
