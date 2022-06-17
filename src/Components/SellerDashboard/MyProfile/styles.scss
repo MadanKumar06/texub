@@ -8,7 +8,8 @@
      } 
   .My_profile_btn_section {
     display: flex;
-    justify-content: space-between;
+    // justify-content: space-between;
+    gap: 2em;
     p {
       margin: 0;
       white-space: nowrap;

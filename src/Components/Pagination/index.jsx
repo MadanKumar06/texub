@@ -16,14 +16,17 @@ const PaginationControlled = ({
   PagePerRow,
   TotalPage,
   handleApicallback,
+  apicallback,
 }) => {
   const [{ geo, customnostore }, dispatch] = useStateValue();
   const [page, setPage] = useState({
-    page: 1,
-    jumptopage: "1",
+    page: apicallback === undefined || apicallback === 0 ? 1 : apicallback + 1,
+    jumptopage:
+      apicallback === undefined || apicallback === 0
+        ? "1"
+        : (apicallback + 1).toString(),
     option: [],
   });
-
   useEffect(() => {
     if (TotalPage) {
       PaginateData(DataList);
@@ -34,7 +37,7 @@ const PaginationControlled = ({
       //create array for jump to page options
       var JumpToPageOptionValues = Array(Rounded === 0 ? 1 : Rounded)
         ?.fill(1)
-        ?.map((item, idx) => idx + 1);
+        ?.map((item, idx) => (idx + 1).toString());
 
       setPage((prevState) => ({
         ...prevState,
@@ -48,9 +51,9 @@ const PaginationControlled = ({
         RoundedValue % 1 === 0 ? RoundedValue : parseInt(RoundedValue + 1);
 
       //create array for jump to page options
-      var JumpToPageOptionValues = Array(Rounded === 0 ? 1 : Rounded)
+      JumpToPageOptionValues = Array(Rounded === 0 ? 1 : Rounded)
         ?.fill(1)
-        ?.map((item, idx) => idx + 1);
+        ?.map((item, idx) => (idx + 1).toString());
 
       setPage((prevState) => ({
         ...prevState,
@@ -137,7 +140,7 @@ const PaginationControlled = ({
   };
 
   useEffect(() => {
-    let storedpage = 1;
+    let storedpage = 0;
     if (
       window.location.pathname ===
       `/${
@@ -208,7 +211,7 @@ const PaginationControlled = ({
           ? page?.option?.length
           : parseInt(smartpage);
     }
-    if (storedpage === null) return;
+    if (storedpage === 0) return;
     setPage((prevState) => ({
       ...prevState,
       page: storedpage,
