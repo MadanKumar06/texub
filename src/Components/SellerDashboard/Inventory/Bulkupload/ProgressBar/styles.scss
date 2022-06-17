@@ -22,5 +22,61 @@
     color: #002d56;
     font-size: 16px;
     letter-spacing: 0.54px;
+
+    .b {
+      display: inline-block;
+      position: relative;
+      width: 80px;
+      height: 80px;
+    }
+    .b div {
+      position: absolute;
+      top: 43px;
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: #002d56;
+      animation-timing-function: cubic-bezier(0, 1, 1, 0);
+    }
+    .b div:nth-child(1) {
+      left: 8px;
+      animation: b1 0.6s infinite;
+    }
+    .b div:nth-child(2) {
+      left: 8px;
+      animation: b2 0.6s infinite;
+    }
+    .b div:nth-child(3) {
+      left: 32px;
+      animation: b2 0.6s infinite;
+    }
+    .b div:nth-child(4) {
+      left: 56px;
+      animation: b3 0.6s infinite;
+    }
+    @keyframes b1 {
+      0% {
+        transform: scale(0);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+    @keyframes b3 {
+      0% {
+        transform: scale(1);
+      }
+      100% {
+        transform: scale(0);
+      }
+    }
+    @keyframes b2 {
+      0% {
+        transform: translate(0, 0);
+      }
+      100% {
+        transform: translate(24px, 0);
+      }
+    }
   }
 }

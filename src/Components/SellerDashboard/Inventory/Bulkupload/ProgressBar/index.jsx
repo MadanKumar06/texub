@@ -54,7 +54,13 @@ export default function LinearWithValueLabel({
           <LinearProgressWithLabel value={progress} />
           {progress >= 80 ? (
             <p className="loading-refresh">
-              Please do not refresh the page, uploading is in progress...
+              Please do not refresh the page, uploading is in progress{" "}
+              <div class="b">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
             </p>
           ) : (
             ""

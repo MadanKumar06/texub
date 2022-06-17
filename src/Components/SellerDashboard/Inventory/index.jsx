@@ -511,6 +511,7 @@ function Index({ registerproduct }) {
           DataList={apiTableData?.products}
           PagePerRow={10}
           TotalPage={apiTableData?.count}
+          apicallback={apicallback}
           handleApicallback={handleApicallback}
         />
       )}
