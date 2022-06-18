@@ -402,7 +402,7 @@ $yellow: #DDB363;
         margin: 4px 0 4px;
       }
 
-      & > p {
+      & > div {
         width: calc(100% / 3 - 3em);
       }
     }
@@ -826,7 +826,7 @@ $yellow: #DDB363;
     margin: 0 3%;
     flex-wrap: wrap;
   }
-  .aboutus .aboutus__members .members__content > p{
+  .aboutus .aboutus__members .members__content > div{
     width: calc(45% - 0em) !important;
   }
   .aboutus .aboutus__advisary .advisory__content ul{
@@ -883,7 +883,7 @@ $yellow: #DDB363;
   .aboutus .aboutus__members .members__content{
     flex-wrap: wrap;
   }
-  .aboutus .aboutus__members .members__content > p{
+  .aboutus .aboutus__members .members__content > div{
     width: calc(48% - 0em) !important;
   }
   .aboutus .aboutus__advisary .advisory__content ul, .aboutus .aboutus__advisary .mgmt__content ul, .aboutus .aboutus__mgmt .advisory__content ul, .aboutus .aboutus__mgmt .mgmt__content ul{
@@ -1132,7 +1132,7 @@ $yellow: #DDB363;
 }
 }
 @media (max-width: 1440px) {
-.aboutus .aboutus__members .members__content > p{
+.aboutus .aboutus__members .members__content > div{
   width: calc(33.3333333333% - 0em);
 }
 .aboutus .aboutus__advisary .advisory__content ul {
@@ -1230,7 +1230,7 @@ $yellow: #DDB363;
   .aboutus .aboutus__banner .aboutus__topbanner__floatingtext .topbanner__text1{
     font-size: 18px;
   }
-  .aboutus .aboutus__members .members__content > p {
+  .aboutus .aboutus__members .members__content > div {
     width: calc(65% - 0em) !important;
   }
   .aboutus .aboutus__advisary .advisory__content ul, .aboutus .aboutus__advisary .mgmt__content ul, .aboutus .aboutus__mgmt .advisory__content ul, .aboutus .aboutus__mgmt .mgmt__content ul{
@@ -1306,7 +1306,7 @@ $yellow: #DDB363;
         left: 14em;
         bottom: 4em;
     }
-    .aboutus .aboutus__members .members__content > p {
+    .aboutus .aboutus__members .members__content > div {
         width: calc(80% - 0em) !important;
     }
     .aboutus .aboutus__advisary .advisory__content ul li, .aboutus .aboutus__advisary .mgmt__content ul li, .aboutus .aboutus__mgmt .advisory__content ul li, .aboutus .aboutus__mgmt .mgmt__content ul li{
@@ -1337,7 +1337,7 @@ $yellow: #DDB363;
     .aboutus .aboutus__highlights ul .highlights__image {
       width: calc(65% - 1px);
   }
-  .aboutus .aboutus__members .members__content > p {
+  .aboutus .aboutus__members .members__content > div {
       width: calc(90% - 0em) !important;
   }
   .aboutus .aboutus__advisary .advisory__content ul li, .aboutus .aboutus__advisary .mgmt__content ul li, .aboutus .aboutus__mgmt .advisory__content ul li, .aboutus .aboutus__mgmt .mgmt__content ul li{
@@ -1366,7 +1366,7 @@ $yellow: #DDB363;
       left: 9em;
       bottom: 0em;
   }
-  .aboutus .aboutus__members .members__content > p {
+  .aboutus .aboutus__members .members__content > div {
       width: calc(98% - 0em) !important;
   }
   .aboutus .aboutus__advisary .advisory__content ul li, .aboutus .aboutus__advisary .mgmt__content ul li, .aboutus .aboutus__mgmt .advisory__content ul li, .aboutus .aboutus__mgmt .mgmt__content ul li{

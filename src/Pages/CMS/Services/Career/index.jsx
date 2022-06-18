@@ -69,7 +69,8 @@ const Career = () => {
         <meta
           name="description"
           content="TEXUB, turn your passion in to career. Work with the greatest mind across the globe and TEXUB is on the lookout for the most passionate people."
-          data-react-helmet="true"  />
+          data-react-helmet="true"
+        />
       </Helmet>
       <div className="career_main_container">
         <div className="career_team_section">
@@ -91,8 +92,9 @@ const Career = () => {
           <p className="title">Why Join Us</p>
           <div className="information">
             <div className="sub_info">
-              {whyJoinUs?.map((itm) => (
+              {whyJoinUs?.map((itm, index) => (
                 <FormControlLabel
+                  key={index}
                   control={<Checkbox defaultChecked />}
                   label={<Typography>{itm?.type}</Typography>}
                 />
@@ -110,8 +112,8 @@ const Career = () => {
             application form and apply
           </p>
           <div className="join_texub_info">
-            {JoinTexub.map((itm) => (
-              <div className="info_content">
+            {JoinTexub.map((itm,index) => (
+              <div className="info_content" key={index}>
                 <span className="name"> {itm.name}</span>
                 <p>
                   <span>{itm.info}</span>

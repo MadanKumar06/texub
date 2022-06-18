@@ -274,8 +274,8 @@ const Contactus = () => {
               </span>
             </div>
             <div className="contactus_details">
-              {office.map((item) => (
-                <li key={item.id} className="contactus_office_list">
+              {office.map((item,index) => (
+                <li className="contactus_office_list" key={index}>
                   <div className="contactus_office">
                     <img src={item.icon} alt="" className="" />
                   </div>
@@ -301,8 +301,8 @@ const Contactus = () => {
               ))}
             </div>
             <div className="contactus_details">
-              {mail.map((item) => (
-                <li key={item.id} className="contactus_office_list">
+              {mail.map((item,index) => (
+                <li key={index} className="contactus_office_list">
                   <div className="contactus_office">
                     <img src={item.icon} alt="" className="" />
                   </div>
@@ -317,8 +317,8 @@ const Contactus = () => {
               ))}
             </div>
             <div className="contactus_details">
-              {telephone.map((item) => (
-                <li key={item.id} className="contactus_office_list">
+              {telephone.map((item,index) => (
+                <li key={index} className="contactus_office_list">
                   <div className="contactus_office">
                     <img src={item.icon} alt="" className="" />
                   </div>
@@ -338,8 +338,8 @@ const Contactus = () => {
               ))}
             </div>
             <div className="contactus_social">
-              {social.map((item) => (
-                <li key={item.id} className="contactus_office_list">
+              {social.map((item,index) => (
+                <li key={index} className="contactus_office_list">
                   <div className="contactus_social_media">
                     <a
                       href="https://www.facebook.com/texubglobal/"
@@ -367,8 +367,8 @@ const Contactus = () => {
               ))}
             </div>
             <div className="contactus_details">
-              {working.map((item) => (
-                <li key={item.id} className="contactus_office_list">
+              {working.map((item,index) => (
+                <li key={index} className="contactus_office_list">
                   <div className="contactus_office_address">
                     <span className="contactus_office_heading">
                       {item.heading}
@@ -513,8 +513,8 @@ const Contactus = () => {
           <p className="contactus_map_heading">Global Locations</p>
           <div className="contactus_locations">
             <div className="contactus_location1">
-              {location1?.map((item) => (
-                <li key={item.id} className="contactus_location_list">
+              {location1?.map((item,index) => (
+                <li key={index} className="contactus_location_list">
                   <div className="contactus_locations_1">
                     <img
                       src={item.image}
@@ -536,32 +536,8 @@ const Contactus = () => {
               ))}
             </div>
             <div className="contactus_location1">
-              {location2?.map((item) => (
-                <li key={item.id} className="contactus_location_list">
-                  <div className="contactus_locations_1">
-                    <img
-                      src={item.image}
-                      className="location_image"
-                      alt=""
-                    ></img>
-                    <div className="address-info-box">
-                      <span> {item.address}</span>
-                      <span> {item.address2}</span>
-                      <span> {item.address3}</span>
-                      <span> {item.address4}</span>
-                      <span> {item.address5}</span>
-                    </div>
-                    <div className="address-phone-box">
-                      <span>{item.contact}</span>
-                      <span>{item.contact2}</span>
-                    </div>
-                  </div>
-                </li>
-              ))}
-            </div>
-            <div className="contactus_location1">
-              {location3?.map((item) => (
-                <li key={item.id} className="contactus_location_list">
+              {location2?.map((item,index) => (
+                <li key={index} className="contactus_location_list">
                   <div className="contactus_locations_1">
                     <img
                       src={item.image}
@@ -584,8 +560,32 @@ const Contactus = () => {
               ))}
             </div>
             <div className="contactus_location1">
-              {location4?.map((item) => (
-                <li key={item.id} className="contactus_location_list">
+              {location3?.map((item,index) => (
+                <li key={index} className="contactus_location_list">
+                  <div className="contactus_locations_1">
+                    <img
+                      src={item.image}
+                      className="location_image"
+                      alt=""
+                    ></img>
+                    <div className="address-info-box">
+                      <span> {item.address}</span>
+                      <span> {item.address2}</span>
+                      <span> {item.address3}</span>
+                      <span> {item.address4}</span>
+                      <span> {item.address5}</span>
+                    </div>
+                    <div className="address-phone-box">
+                      <span>{item.contact}</span>
+                      <span>{item.contact2}</span>
+                    </div>
+                  </div>
+                </li>
+              ))}
+            </div>
+            <div className="contactus_location1">
+              {location4?.map((item,index) => (
+                <li key={index} className="contactus_location_list">
                   <div className="contactus_locations_1">
                     <img
                       src={item.image}
@@ -604,8 +604,8 @@ const Contactus = () => {
               ))}
             </div>
             <div className="contactus_location1">
-              {location5?.map((item) => (
-                <li key={item.id} className="contactus_location_list">
+              {location5?.map((item,index) => (
+                <li key={index} className="contactus_location_list">
                   <div className="contactus_locations_1">
                     <img
                       src={item.image}
@@ -622,8 +622,8 @@ const Contactus = () => {
             </div>
 
             <div className="contactus_location1">
-              {location6?.map((item) => (
-                <li key={item.id} className="contactus_location_list">
+              {location6?.map((item,index) => (
+                <li key={index} className="contactus_location_list">
                   <div className="contactus_locations_1">
                     <img
                       src={item.image}
@@ -639,8 +639,8 @@ const Contactus = () => {
               ))}
             </div>
             <div className="contactus_location1">
-              {location7?.map((item) => (
-                <li key={item.id} className="contactus_location_list">
+              {location7?.map((item,index) => (
+                <li key={index} className="contactus_location_list">
                   <div className="contactus_locations_1">
                     <img
                       src={item.image}
@@ -656,8 +656,8 @@ const Contactus = () => {
               ))}
             </div>
             <div className="contactus_location1">
-              {location8?.map((item) => (
-                <li key={item.id} className="contactus_location_list">
+              {location8?.map((item,index) => (
+                <li key={index} className="contactus_location_list">
                   <div className="contactus_locations_1">
                     <img
                       src={item.image}
