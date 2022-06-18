@@ -240,8 +240,8 @@ function Index() {
             </div>
             <div className="whysellontexub__content__section">
               <div className="whysellontexub__content1">
-                {whysell.map((data) => (
-                  <div className="section">
+                {whysell.map((data, index) => (
+                  <div className="section" key={index}>
                     <img src={data.img_bg} alt="" className="content_bg" />
                     <span className="sub-title">{data.title}</span>
                     <span className="sub-content">{data.subTitle}</span>
@@ -273,8 +273,8 @@ function Index() {
               <h2 className="title">Seller Benefits</h2>
             </div>
             <div className="benefits_section_content">
-              {benefitsInfo.map((data) => (
-                <div className="benefits_info">
+              {benefitsInfo.map((data, index) => (
+                <div className="benefits_info" key={index}>
                   <img src={data.image} alt="" />
                   <span className="content">{data.title}</span>
                 </div>

@@ -268,8 +268,8 @@ function Index() {
 
         <div className="aboutus__content">
           <ul>
-            {info.map((data) => (
-              <li key={data.name} className="vision_quote_section">
+            {info?.map((data, index) => (
+              <li key={index} className="vision_quote_section">
                 <img src={data.image} alt="" />
                 <p style={{ color: data.color }}>{data.name}</p>
                 <div className="about_content_bg">
@@ -353,8 +353,8 @@ function Index() {
           <h2>Key Highlights</h2>
 
           <ul>
-            {keyhighlights.map((data) => (
-              <li className="highlights__image" key={data.image}>
+            {keyhighlights.map((data, index) => (
+              <li className="highlights__image" key={index}>
                 <img src={data.image} alt="" />
                 <p style={{ color: data?.color }}>{data.content}</p>
               </li>
@@ -365,8 +365,8 @@ function Index() {
         <div className="aboutus__members">
           <h2>Board Members</h2>
           <div className="members__content">
-            {board.map((data) => (
-              <p>
+            {board.map((data, index) => (
+              <div key={index}>
                 <div className="advisory__top">
                   <div className="board_member_info">
                     <img src={data.image} alt="" />
@@ -378,7 +378,7 @@ function Index() {
                   {/* <img src={data.quote_bg} alt="" /> */}
                   <p style={{ backgroundImage: data.bg }}>{data.content}</p>
                 </div>
-              </p>
+              </div>
             ))}
           </div>
         </div>
@@ -387,8 +387,8 @@ function Index() {
           <h2>Advisory Board</h2>
           <div className="advisory__content">
             <ul>
-              {advisary.map((data) => (
-                <li>
+              {advisary.map((data, index) => (
+                <li key={index}>
                   <div className="advisory__top">
                     <div className="advisory__top_image">
                       <img src={data.image} alt="" />
@@ -410,8 +410,8 @@ function Index() {
           <h2>Core Team</h2>
           <div className="mgmt__content">
             <ul>
-              {mgmt?.map((data) => (
-                <li>
+              {mgmt?.map((data, index) => (
+                <li key={index}>
                   <div className="mgmt__top">
                     <div className="mgmt__top_image">
                       <img src={data.image} alt="" />
@@ -433,8 +433,8 @@ function Index() {
           <h2 className="header_title">Core Team</h2>
           <div className="core__content">
             <ul>
-              {core.map((data) => (
-                <li>
+              {core.map((data, index) => (
+                <li key={index}>
                   <div className="core__image">
                     <img src={data.image} alt="" />
                   </div>

@@ -18,7 +18,6 @@ import benefits8 from "../../../Assets/BuyOnTexub/benefits8.png";
 import benefits9 from "../../../Assets/BuyOnTexub/benefits9.png";
 import benefits10 from "../../../Assets/BuyOnTexub/benefits10.png";
 
-
 import process_flow1 from "../../../Assets/BuyOnTexub/process_flow1.png";
 import process_flow2 from "../../../Assets/BuyOnTexub/process_flow2.png";
 import mobile_process_flow1 from "../../../Assets/SellerOnTexub/mobile_process_flow1.png";
@@ -239,8 +238,8 @@ function Index() {
             </div>
             <div className="whysellontexub__content__section">
               <div className="whysellontexub__content1">
-                {whysell.map((data) => (
-                  <div className="section">
+                {whysell.map((data, index) => (
+                  <div className="section" key={index}>
                     <img src={data.img_bg} alt="" className="content_bg" />
                     <span className="sub-title">{data.title}</span>
                     <span className="sub-content">{data.subTitle}</span>
@@ -272,8 +271,8 @@ function Index() {
               <h2 className="title">Buyer Benefits</h2>
             </div>
             <div className="benefits_section_content">
-              {benefitsInfo.map((data) => (
-                <div className="benefits_info">
+              {benefitsInfo.map((data, index) => (
+                <div className="benefits_info" key={index}>
                   <img src={data.image} alt="" />
                   <span className="content">{data.title}</span>
                 </div>
