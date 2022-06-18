@@ -1512,7 +1512,7 @@ const BuyerList = [
         viewBox="0 0 34 34"
       >
         <defs>
-          <clipPath id="clip-path">
+          <clipPath id="clipPath">
             <circle
               id="Ellipse_110"
               data-name="Ellipse 110"
@@ -1546,7 +1546,7 @@ const BuyerList = [
             id="Mask_Group_1"
             data-name="Mask Group 1"
             transform="translate(-285.5 -765)"
-            clip-path="url(#clip-path)"
+            clipPath="url(#clipPath)"
           >
             <g id="Group_1461" data-name="Group 1461">
               <g
@@ -1712,7 +1712,7 @@ const BuyerList = [
   //       viewBox="0 0 36.48 35"
   //     >
   //       <defs>
-  //         <clipPath id="clip-path">
+  //         <clipPath id="clipPath">
   //           <circle
   //             id="Ellipse_115"
   //             data-name="Ellipse 115"
@@ -1747,7 +1747,7 @@ const BuyerList = [
   //           id="Mask_Group_2"
   //           data-name="Mask Group 2"
   //           transform="translate(-96 16)"
-  //           clip-path="url(#clip-path)"
+  //           clipPath="url(#clipPath)"
   //         >
   //           <g
   //             id="Group_1465"

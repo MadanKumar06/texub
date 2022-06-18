@@ -314,12 +314,16 @@ const MiniCartList = ({ handleSideBarClose }) => {
           <div className="minicart_list_content">
             {isCartData?.length
               ? isCartData?.map((itm, index) => (
-                  <div className="minicart_section_container">
+                  <div className="minicart_section_container" key={index}>
                     <div className="minicart_icon">
                       <img src={minicart_icon} alt="" />
                     </div>
                     <div className="section_left">
-                      <img src={Constant.imageBaseUrl() + itm?.brand} alt="" title={itm?.brand_name}/>
+                      <img
+                        src={Constant.imageBaseUrl() + itm?.brand}
+                        alt=""
+                        title={itm?.brand_name}
+                      />
                       {/* <span className="minicart_new">
                       <img src={minicart_new} alt="" />
                     </span> */}
