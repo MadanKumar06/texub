@@ -1,11 +1,12 @@
 .My_profile_main {
-   margin: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
   display: flex;
   flex-direction: column;
   gap: 50px;
   .My_profile_btn_section {
     display: flex;
-    justify-content: space-between;
+    // justify-content: space-between;
+    gap: 2em;
     p {
       margin: 0;
       white-space: nowrap;
@@ -375,33 +376,36 @@
     }
   }
 }
-.My_profile_main_gap{
-    //  margin: 0px;
-    gap:20px;
-  }
+.My_profile_main_gap {
+  //  margin: 0px;
+  gap: 20px;
+}
 
-  @media only screen and(max-width:1660px) {
-      .My_profile_main{
-        .myprofilesection__search{
-            .myprofilesection__searchinput{
-                height: 52px;
-            }
-        }
-      } 
-    .My_profile_main{
-        .myprofilesection__search{
-            .myprofilesection__searchinput{
-                .MuiButtonBase-root{
-                  padding: 0.7% 2%;
-                }
-            }
-        }
-    } 
-
-    .My_profile_main .myprofilesection__search .myprofilesection__searchinput .MuiButtonBase-root{
-      padding: 0.7% 2%;
+@media only screen and(max-width:1660px) {
+  .My_profile_main {
+    .myprofilesection__search {
+      .myprofilesection__searchinput {
+        height: 52px;
+      }
     }
   }
+  .My_profile_main {
+    .myprofilesection__search {
+      .myprofilesection__searchinput {
+        .MuiButtonBase-root {
+          padding: 0.7% 2%;
+        }
+      }
+    }
+  }
+
+  .My_profile_main
+    .myprofilesection__search
+    .myprofilesection__searchinput
+    .MuiButtonBase-root {
+    padding: 0.7% 2%;
+  }
+}
 @media only screen and(max-width:1530px) {
   .My_profile_main
     .My_profile_ac

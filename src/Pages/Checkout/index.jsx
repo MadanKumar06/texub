@@ -1023,17 +1023,20 @@ const Checkout = () => {
                         </span>
                       </div>
                     )}
-                  {quotedata[0]?.invoice?.pending_invoice_status === "3" && (
-                    <div className="shipping_charges_section">
-                      <span className="shipping_text">Shipping Charges :</span>
-                      <span className="shipping_price">
-                        <span>{currency?.currency_code}</span>{" "}
-                        {parseFloat(
-                          quotedata[0]?.invoice?.shipping_amount
-                        ).toFixed(2)}
-                      </span>
-                    </div>
-                  )}
+                  {quotedata[0]?.invoice?.pending_invoice_status === "3" &&
+                    shipping_method === "texub_shipping" && (
+                      <div className="shipping_charges_section">
+                        <span className="shipping_text">
+                          Shipping Charges :
+                        </span>
+                        <span className="shipping_price">
+                          <span>{currency?.currency_code}</span>{" "}
+                          {parseFloat(
+                            quotedata[0]?.invoice?.shipping_amount
+                          ).toFixed(2)}
+                        </span>
+                      </div>
+                    )}
                 </div>
               </div>
 
@@ -1050,9 +1053,10 @@ const Checkout = () => {
                                   selectadd === itm?.address_id && "border"
                                 }`}
                                 onClick={() =>
-                                  quotedata[0]?.invoice
-                                    ?.pending_invoice_status !== "2" &&
-                                  selectaddress(itm)
+                                  parseInt(
+                                    quotedata[0]?.invoice
+                                      ?.pending_invoice_status
+                                  ) <= "1" && selectaddress(itm)
                                 }
                               >
                                 <div className="billing_title">
@@ -1347,8 +1351,14 @@ const Checkout = () => {
                     {/* {currency?.currency_code} */}
                     {quotedata?.[0]?.invoice_items?.[0]?.currency}
                   </span>{" "}
-                  {formatToCurrency(
-                    parseInt(quotedata[0]?.invoice?.shipping_amount)
+                  {shipping_method === "texub_shipping" ? (
+                    <span>
+                      {formatToCurrency(
+                        parseInt(quotedata[0]?.invoice?.shipping_amount)
+                      )}
+                    </span>
+                  ) : (
+                    <span>0</span>
                   )}
                 </span>
               </div>
