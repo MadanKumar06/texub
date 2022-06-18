@@ -17,7 +17,7 @@ const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
 const Index = ({ currentid, setisSub, setisSubusers, setshowButton }) => {
-  const [{}, dispatch] = useStateValue();
+  const [{geo}, dispatch] = useStateValue();
   const [adminToken, setAdminToken] = useState("");
   const [plist, setplist] = useState();
   const [NewSubAccountData, setNewSubAccountData] = useState({
@@ -30,6 +30,13 @@ const Index = ({ currentid, setisSub, setisSubusers, setshowButton }) => {
     mobile: "",
     active: "",
   });
+  const [mobile_number_countryCode, setMobile_number_countryCode] = useState("ae");
+  useEffect(() => {
+    if (geo) {
+      let temp = geo?.country_code?.toLowerCase();
+      setMobile_number_countryCode(temp);
+    }
+  }, [geo]);
   useEffect(() => {
     getAdminToken((res) => {
       setAdminToken(res);
@@ -156,11 +163,14 @@ const Index = ({ currentid, setisSub, setisSubusers, setshowButton }) => {
         mobile: "Please enter mobile.",
       }));
       errorHandle = true;
-    }else if (NewSubAccountData?.mobile?.length < 10) {
+    }else if (
+      NewSubAccountData?.mobile?.length < 6 ||
+      NewSubAccountData?.mobile?.length > 15
+    ) {
       document.getElementById("mobile")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
-        mobile: "Please enter 10 digit mobile number.",
+        mobile: "Please enter more than 6 and less than 16 digit mobile number.",
       }));
       errorHandle = true;
     }
@@ -318,6 +328,7 @@ const Index = ({ currentid, setisSub, setisSubusers, setshowButton }) => {
           <div className="input_sections1">
             <p>Mobile Number</p>
             <PhoneInput
+              country={mobile_number_countryCode}
               id="mobile"
               fullWidth
               enableSearch={true}
