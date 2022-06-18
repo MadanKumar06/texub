@@ -12,8 +12,9 @@
       letter-spacing: 0.54px;
       font-weight: 600;
       margin: 0;
-      text-align: center;
+      text-align: left;
       height: 50px;
+      padding-left: 20px;
     }
     .MuiCheckbox-root {
       color: #ddb363;
@@ -30,6 +31,7 @@
       display: flex;
       gap: 20px;
       flex-direction: column;
+      padding: 20px 40px;
       .inputfield_section {
         display: flex;
         justify-content: center;
@@ -38,6 +40,9 @@
           display: flex;
           flex-direction: column;
           width: 50%;
+          p{
+            margin: 5px 5px 10px 0px;
+          }
           .MuiAutocomplete-root {
             .MuiOutlinedInput-root {
               padding: 8px;
@@ -49,6 +54,11 @@
           .MuiOutlinedInput-root {
             padding-right: 6px;
           }
+        }
+      }
+      .city_row{
+        p{
+          margin: 5px 5px 5px 0px;
         }
       }
 
@@ -180,6 +190,49 @@
   .Shippingaddress_information .city_row{
     width: 100% !important;
   }
+  .Shippingaddress_main .Shippingaddress_information form,
+  .Shippingaddress_main .Shippingaddress_information form .inputfield_section{
+    gap: 10px;
+  }
+  .Shippingaddress_main .btn_container {
+    justify-content: space-between;
+    margin-top: 1em;
+    gap: 10px;
+  }
+  .Shippingaddress_main .btn_billing {
+    min-width: 48% !important;
+    font-size: 15px !important;
+  }
+  .Shippingaddress_main .cancel_btn_billing{
+    order: 1;
+  }
+  .Shippingaddress_main .submit_btn_billing{
+    order: 0;
+  }
+  .Shippingaddress_main .Shippingaddress_heading_section{
+    gap: 25px;
+  }
+  .Shippingaddress_main .Shippingaddress_heading_section .same_as_billing_adress{
+    padding-left: 40px;
+  }
+}
+@media (max-width:580px){
+  .Shippingaddress_main .Shippingaddress_information form, 
+  .Shippingaddress_main .Shippingaddress_heading_section .same_as_billing_adress {
+    padding: 0px ;
+  }
+  .Shippingaddress_main .Shippingaddress_Account_heading{
+    padding-left: 5px !important;
+  }
+}
+@media (max-width:480px){
+  .Shippingaddress_main .btn_container {
+    flex-direction: column;
+  }
+  .Shippingaddress_main .btn_container .submit_btn_billing{
+    padding-top: 8px;
+    padding-bottom: 9px;
+  }
 }
 @media only screen and (max-width: 375px) {
   .Shippingaddress_main .Shippingaddress_information form .inputfield_section {
@@ -207,5 +260,13 @@
     .Shippingaddress_btn_section
     .Shippingaddress_info_cancel {
     width: 100%;
+  }
+  .Shippingaddress_main .Shippingaddress_heading_section .Shippingaddress_Account_heading {
+    height: auto;
+    padding-left: 10px;
+    font-size: 15px;
+  }
+  .Shippingaddress_main .Shippingaddress_heading_section .Shippingaddress_Account_heading p{
+    margin: 10px 0px;
   }
 }

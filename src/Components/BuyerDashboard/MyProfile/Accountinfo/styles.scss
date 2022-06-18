@@ -62,7 +62,7 @@
             color: #272727;
             font-size: 18px;
             letter-spacing: 0.54px;
-            margin: 5px;
+            margin: 5px 5px 5px 0px;
           }
           p::after {
             content: "*";
@@ -151,6 +151,10 @@
 @media only screen and (max-width: 960px) {
   .account_ifo_main .account_info_edit .form .inputfield_section {
     flex-direction: column;
+    gap:10px;
+  }
+  .account_ifo_main .account_info_edit .form{
+    gap:10px;
   }
   // .account_ifo_main .account_info_edit .form .inputfield_section .MuiOutlinedInput-root {
   //     width: 45rem;
@@ -158,12 +162,13 @@
 
   .account_ifo_main .account_info_edit .accountinfo_btn {
     justify-content: center;
+    margin-top: 15px;
   }
   .account_ifo_main .account_info_edit .accountinfo_btn .account_info_cancel {
-    width: 40%;
+    width: 48%;
   }
   .account_ifo_main .account_info_edit .accountinfo_btn .account_info_save {
-    width: 40%;
+    width: 48%;
   }
 }
 
@@ -202,14 +207,20 @@
   .account_ifo_main .account_info_edit .accountinfo_btn {
     flex-direction: column;
     align-items: center;
+    margin-top: 10px;
+    gap: 20px;
   }
   .account_ifo_main .account_info_edit .accountinfo_btn .account_info_cancel {
     width: 100%;
     padding: 15px 25px;
+    order: 1;
+    padding: 12px 25px;
   }
   .account_ifo_main .account_info_edit .accountinfo_btn .account_info_save {
     width: 100%;
     padding: 15px 25px;
+    order: 0;
+    padding: 12px 25px;
   }
 }
 

@@ -98,13 +98,22 @@
         width: 100%;
         display: block;
         height: max-content;
-        line-height: 32px;
-        // padding: 0 10px;
+        line-height: 1.5em;
+        // line-height: 32px;
+        padding: 6px 0px;
+        .sub_catergory_name{
+          text-align: left;
+        }
       }
       .list {
-        display: none;
-        height: 350px;
+        // display: none;
+      }
+      .list.addSubCategoryScollBar{
+        height: 300px;
         overflow: auto;
+      }
+      .list::-webkit-scrollbar {
+        width: 5px;
       }
     }
     .Slider_brands:hover {
