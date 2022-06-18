@@ -381,3 +381,16 @@
     width: 50%;
   }
 }
+
+@media (max-width:400px){
+  .buyerdashboard .buyerboard__bg .buyerdashboard__main .want_tobuy .want_tobuy__search{
+    flex-direction: column;
+    gap: 1.3em;
+  }
+  .buyerdashboard .buyerboard__bg .buyerdashboard__main .want_tobuy .want_tobuy__search .want_tobuy__searchinput{
+    width: 100%;
+  }
+  .buyerdashboard .buyerboard__bg .buyerdashboard__main .want_tobuy .want_tobuy__search button.button-text{
+    width: 55% !important;
+  }
+}

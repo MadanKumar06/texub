@@ -178,6 +178,12 @@
     width: 100%;
   }
 }
+@media (max-width:480px) {
+  .sellerdashboard .sellerboard__bg .sellerdashboard__maintab .My_profile_main .Shippingaddress_main .Shippingaddress_information .submit_btn_billing{
+    padding-top: 7px;
+    padding-bottom: 8px;
+  }
+}
 @media only screen and (max-width: 375px) {
   .Shippingaddress_main .Shippingaddress_information form .inputfield_section {
     gap: 10px;

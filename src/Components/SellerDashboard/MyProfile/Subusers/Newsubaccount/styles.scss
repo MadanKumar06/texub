@@ -137,7 +137,22 @@
   }
  }
 }
-
+.subaccount_main .new_sub_account_section .input_sections .mobile_field input.form-control {
+    width: 100% !important;
+    font-weight: 400;
+    padding: 12.5px 14px 12.5px 58px
+}
+.subaccount_main .new_sub_account_section .input_sections .mobile_field input.form-control:hover{
+    border-color: #DDB363;
+}
+.subaccount_main .new_sub_account_section .input_sections .mobile_field input.form-control:focus{
+    outline: none !important;
+    box-shadow: unset !important;
+    border-color: #DDB363;
+}
+.subaccount_main .new_sub_account_section .input_sections .mobile_field .special-label {
+    display: none;
+}
 @media only screen and (max-width:1600px) {
     // .subaccount_main .input_sections .MuiOutlinedInput-root{
     //     width: 30rem;

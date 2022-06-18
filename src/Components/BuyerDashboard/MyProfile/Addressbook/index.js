@@ -76,6 +76,10 @@ const Index = () => {
             <div className="Address_Billing">
               <ul>
                 <li className="address_type">Default Billing Address</li>
+                <li className="address_name">
+                  {billingAdderess?.[0]?.firstname}{" "}
+                  {billingAdderess?.[0]?.lastname}
+                </li>
                 <div>
                   <li className="address_block">
                     {billingAdderess?.[0]?.company}
@@ -90,13 +94,10 @@ const Index = () => {
                     {billingAdderess?.[0]?.city}
                   </li>
                   <li className="address_block">
+                    {billingAdderess?.[0]?.state} {"-"} {billingAdderess?.[0]?.postcode}
+                  </li>
+                  <li className="address_block">
                     {billingAdderess?.[0]?.country_code}
-                  </li>
-                  <li className="address_block">
-                    {billingAdderess?.[0]?.state}
-                  </li>
-                  <li className="address_block">
-                    {billingAdderess?.[0]?.postcode}
                   </li>
                 </div>
               </ul>
@@ -124,6 +125,10 @@ const Index = () => {
             <div className="Address_Shipping">
               <ul>
                 <li className="address_type">Default Shipping Address</li>
+                <li className="address_name">
+                  {billingAdderess?.[0]?.firstname}{" "}
+                  {billingAdderess?.[0]?.lastname}
+                </li>
                 <div>
                   <li className="address_block">
                     {shippingAddress?.[0]?.company}
@@ -138,13 +143,10 @@ const Index = () => {
                     {shippingAddress?.[0]?.city}
                   </li>
                   <li className="address_block">
+                    {shippingAddress?.[0]?.state} {"-"} {billingAdderess?.[0]?.postcode}
+                  </li>
+                  <li className="address_block">
                     {shippingAddress?.[0]?.country_code}
-                  </li>
-                  <li className="address_block">
-                    {shippingAddress?.[0]?.state}
-                  </li>
-                  <li className="address_block">
-                    {billingAdderess?.[0]?.postcode}
                   </li>
                 </div>
               </ul>

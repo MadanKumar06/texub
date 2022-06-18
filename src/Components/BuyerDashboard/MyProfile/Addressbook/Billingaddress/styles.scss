@@ -27,6 +27,9 @@
           display: flex;
           flex-direction: column;
           width: 50%;
+          p{
+            margin: 5px 5px 10px 0px;
+          }
 
           .MuiAutocomplete-root {
             .MuiOutlinedInput-root {
@@ -39,6 +42,11 @@
           .text {
             padding: 0px !important;
           }
+        }
+      }
+      .city_row{
+        p{
+          margin: 5px 5px 10px 0px;
         }
       }
 
@@ -178,10 +186,14 @@
   .Billingaddress_information form .inputfield_section {
     flex-direction: column;
     justify-content: center;
+    gap: 10px !important;
   }
   .Billingaddress_information form .inputfield_btn {
     flex-direction: column;
     justify-content: center;
+  }
+  .Billingaddress_information form {
+    gap: 10px !important;
   }
   .Billingaddress_main
     .Billingaddress_information
@@ -202,6 +214,13 @@
   }
   .Billingaddress_information .city_row{
     width: 100% !important;
+  }
+  .Billingaddress_main .btn_container{
+    margin-top: 1em !important;
+    justify-content: space-between;
+  }
+  .Billingaddress_main .btn_container button{
+    width: 48%;
   }
 }
 @media only screen and (max-width: 768px) {
@@ -290,7 +309,10 @@
   }
 
   .Billingaddress_main .Billingaddress_information form {
-    padding: 5px;
+    padding: 20px 0px;
+  }
+  .Billingaddress_main .Billingaddress_Account_heading{
+    padding-left: 5px;
   }
 }
 
@@ -300,8 +322,22 @@
   }
   .Billingaddress_main {
     .btn_billing {
-      min-width: 47% !important;
+      min-width: 100% !important;
     }
+  }
+  .Billingaddress_main .btn_container{
+    flex-direction: column;
+    gap: 10px;
+  }
+  .Billingaddress_main .btn_container button.cancel_btn_billing{
+    order: 1;
+    font-size: 15px !important;
+  }
+  .Billingaddress_main .btn_container button.submit_btn_billing{
+    order: 0;
+    font-size: 15px !important;
+    padding-top: 9px;
+    padding-bottom: 9px;
   }
 }
 @media only screen and (max-width: 425px) {
@@ -312,6 +348,14 @@
 @media only screen and (max-width: 375px) {
   .Billingaddress_main .Billingaddress_information form .inputfield_section {
     gap: 10px;
+  }
+  .Billingaddress_main .Billingaddress_Account_heading {
+    height: auto;
+    padding-left: 10px;
+    font-size: 15px;
+  }
+  .Billingaddress_main .Billingaddress_Account_heading p{
+    margin: 10px 0px;
   }
 }
 

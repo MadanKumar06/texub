@@ -580,6 +580,16 @@
   .My_profile_main .My_profile_ac .My_profile_ac_table tr .my_profile_edit {
     right: 2%;
   }
+  .My_profile_main .account_ifo_main .account_info_edit .accountinfo_btn{
+    gap: 15px;
+  } 
+  .My_profile_main .account_ifo_main .account_info_edit .accountinfo_btn .account_info_cancel{
+    padding: 9px 25px
+  } 
+  .My_profile_main .account_ifo_main .account_info_edit .accountinfo_btn .account_info_save{
+    padding: 11px 25px
+  } 
+
 }
 @media only screen and(max-width:480px) {
   .My_profile_main .my_profile_company .My_profile_ac_table {

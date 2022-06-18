@@ -345,6 +345,10 @@ const TransitionsModal = ({ classes, openPopUp }) => {
           type: "SET_IS_LOADING",
           value: false,
         });
+        dispatch({
+          type: "USER_DATA_DETAILS",
+          value: res?.data,
+        });
         localStorage.setItem("userdata", JSON.stringify(res?.data));
         localStorage.setItem(
           "isLoggedIn_auth",

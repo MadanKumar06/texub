@@ -18,6 +18,7 @@ export const initialState = {
   currencyData: {},
   plp_categories: [],
   generalTrigger: false,
+  userDataDetails:{},
 };
 
 const reducer = (state, action) => {
@@ -117,6 +118,11 @@ const reducer = (state, action) => {
         ...state,
         plp_categories: action.data,
       };
+    case "USER_DATA_DETAILS":
+    return {
+      ...state,
+      userDataDetails: action.value,
+    };
     default:
       return state;
   }
