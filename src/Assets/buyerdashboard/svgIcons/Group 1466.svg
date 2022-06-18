@@ -1,13 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="36.48" height="35" viewBox="0 0 36.48 35">
   <defs>
-    <clipPath id="clip-path">
+    <clipPath id="clipPath">
       <circle id="Ellipse_115" data-name="Ellipse 115" cx="17" cy="17" r="17" transform="translate(1938 1018)" fill="#fff" stroke="#000" strokeWidth="1"/>
     </clipPath>
   </defs>
   <g id="Group_1466" data-name="Group 1466" transform="translate(-1840.702 -1034)">
     <path id="Ellipse_28" data-name="Ellipse 28" d="M3.948,15.378a.435.435,0,0,1-.6,0L.625,12.726a.409.409,0,0,1,0-.589.435.435,0,0,1,.6,0l2.417,2.357,2.417-2.357a.435.435,0,0,1,.6,0,.409.409,0,0,1,0,.589ZM8.026,5.066l.3.3h0Zm21.147,0-.3.3h0ZM3.219,15.083A14.211,14.211,0,0,1,7.728,4.767l.6.6a13.388,13.388,0,0,0-4.25,9.718ZM7.728,4.767A15.818,15.818,0,0,1,18.6.5v.833A14.952,14.952,0,0,0,8.323,5.365ZM18.6.5A15.818,15.818,0,0,1,29.471,4.767l-.6.6A14.952,14.952,0,0,0,18.6,1.333ZM29.471,4.767A14.211,14.211,0,0,1,33.98,15.083h-.854a13.388,13.388,0,0,0-4.25-9.718Z" transform="translate(1840.202 1037.5)"/>
     <path id="Ellipse_28-2" data-name="Ellipse 28" d="M30.531.622a.435.435,0,0,1,.6,0l2.719,2.652a.409.409,0,0,1,0,.589.435.435,0,0,1-.6,0L30.834,1.506,28.417,3.863a.435.435,0,0,1-.6,0,.409.409,0,0,1,0-.589ZM26.454,10.934l-.3-.3h0Zm-21.147,0,.3-.3h0ZM31.261.917a14.211,14.211,0,0,1-4.509,10.316l-.6-.6A13.388,13.388,0,0,0,30.406.917ZM26.752,11.233A15.818,15.818,0,0,1,15.88,15.5v-.833a14.952,14.952,0,0,0,10.276-4.032ZM15.88,15.5A15.818,15.818,0,0,1,5.009,11.233l.6-.6A14.952,14.952,0,0,0,15.88,14.667ZM5.009,11.233A14.211,14.211,0,0,1,.5.917h.854A13.388,13.388,0,0,0,5.6,10.635Z" transform="translate(1843.202 1053.5)"/>
-    <g id="Mask_Group_2" data-name="Mask Group 2" transform="translate(-96 16)" clip-path="url(#clip-path)">
+    <g id="Mask_Group_2" data-name="Mask Group 2" transform="translate(-96 16)" clipPath="url(#clipPath)">
       <g id="Group_1465" data-name="Group 1465" transform="translate(0.038 -3)">
         <path id="Path_1713" data-name="Path 1713" d="M2124.018,1038.022h16.066l1.651,2.99H2122.1Z" transform="translate(-177 -0.854)" fill="none" stroke="#000" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1"/>
         <path id="Path_1714" data-name="Path 1714" d="M2122.1,1041.28v15.882h19.636V1041.28Z" transform="translate(-177 -0.854)" fill="none" stroke="#000" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1"/>

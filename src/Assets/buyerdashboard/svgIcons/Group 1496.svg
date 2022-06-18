@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="34" height="34" viewBox="0 0 34 34">
   <defs>
-    <clipPath id="clip-path">
+    <clipPath id="clipPath">
       <circle id="Ellipse_110" data-name="Ellipse 110" cx="17" cy="17" r="17" transform="translate(1886 953)" fill="none" stroke="#000" strokeWidth="1"/>
     </clipPath>
   </defs>
@@ -9,7 +9,7 @@
       <circle cx="17" cy="17" r="17" stroke="none"/>
       <circle cx="17" cy="17" r="16.5" fill="none"/>
     </g>
-    <g id="Mask_Group_1" data-name="Mask Group 1" transform="translate(-285.5 -765)" clip-path="url(#clip-path)">
+    <g id="Mask_Group_1" data-name="Mask Group 1" transform="translate(-285.5 -765)" clipPath="url(#clipPath)">
       <g id="Group_1461" data-name="Group 1461">
         <g id="Ellipse_108" data-name="Ellipse 108" transform="translate(1896 957)" fill="none" stroke="#000" strokeWidth="1">
           <circle cx="7" cy="7" r="7" stroke="none"/>
