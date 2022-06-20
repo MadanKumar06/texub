@@ -123,6 +123,9 @@ const styles = (theme) => ({
       "& img": {
         width: "24px",
       },
+      "@media(max-width:400px)":{
+        paddingLeft: "20px"
+      }
     },
     "& .MuiTypography-root": {
       fontWeight: "400",

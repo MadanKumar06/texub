@@ -127,6 +127,7 @@ const FilterViewList = ({
                 <div className="map_container" key={index}>
                   <Checkbox
                     name="hub"
+                    className="filter_checkbox"
                     checked={
                       productFetchApi?.hub == item?.hub_id ? true : false
                     }
@@ -172,6 +173,7 @@ const FilterViewList = ({
               <div className="map_container" key={index}>
                 <Checkbox
                   name="conditions"
+                  className="filter_checkbox"
                   checked={
                     productFetchApi?.conditions == item?.value ? true : false
                   }
@@ -212,6 +214,7 @@ const FilterViewList = ({
                 <div className="map_container" key={index}>
                   <Checkbox
                     name="brand_id"
+                    className="filter_checkbox"
                     checked={
                       productFetchApi?.brand_id == item?.value ? true : false
                     }
@@ -269,10 +272,11 @@ const FilterViewList = ({
             >
               Apply
             </Button>
-            <Box>
+            <Box className="filter_by_price_bar">
               <Slider
                 getAriaLabel={() => "Minimum distance"}
                 value={value}
+                className="filterPrice_bar"
                 min={dataFromApi?.[2]?.price?.min_price}
                 max={dataFromApi?.[2]?.price?.max_price}
                 onChange={handleChange}
@@ -317,6 +321,7 @@ const FilterViewList = ({
                     expandIcon={<ExpandMore />}
                     aria-controls="panel1bh-content"
                     id="panel1bh-header"
+                    className="filter_by_product_dropdown"
                   >
                     <Typography
                       sx={{ width: "33%", flexShrink: 0 }}
@@ -326,6 +331,7 @@ const FilterViewList = ({
                         // checked={productFetchApi?.category_id}
                         // checked={productFetchApi?.category_id == item?.value ? true : false}
                         name="category_id"
+                        className="filter_checkbox"
                         onChange={(e) => {
                           if (
                             productFetchApi?.category_id === undefined ||
