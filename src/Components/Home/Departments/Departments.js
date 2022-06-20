@@ -53,6 +53,15 @@ export const Departments = ({ data, categories }) => {
       `/${customnostore ? customnostore : geo?.country_name}/register/seller`
     );
   };
+  useEffect(()=>{
+    var ignoreClickOnMeElement = document.getElementById('home_page_search');
+    document.addEventListener('click', function(event) {
+        var isClickInsideElement = ignoreClickOnMeElement.contains(event.target);
+        if (!isClickInsideElement) {
+          setBar(false)
+        }
+    });
+  },[])
   return (
     <div className="Departments">
       <div className="Departments_Body_Search">
@@ -104,7 +113,7 @@ export const Departments = ({ data, categories }) => {
           </div>
         </div>
         <div className="search_bar">
-          <div className="body__search_bar">
+          <div className="body__search_bar" id="home_page_search">
             {Bar ? (
               <Paper
                 className="search_bar_paper focused"
@@ -117,13 +126,15 @@ export const Departments = ({ data, categories }) => {
                   inputProps={{ "aria-label": " " }}
                   onChange={(event) => setSearch(event.target.value)}
                   onFocus={() =>setBar(true)}
-                  onBlur={()=>setBar(false)}
                   onKeyPress={(e) => searchinput(e)}
                   value={search}
                 />
                 <CancelIcon className="cancel" onClick={() => setBar(false)} />
                 {savedsearch?.length ? (
-                  <ul className="searchhistory">
+                  <ul className="searchhistory" 
+                    onClick={()=>{
+                      setBar(false)
+                    }}>
                     {savedsearch?.map((item, i) => (
                       <li
                         key={i}
