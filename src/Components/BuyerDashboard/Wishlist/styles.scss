@@ -90,3 +90,16 @@
     font-size: 18px;
   }
 }
+
+@media (max-width:400px) {
+  .wishlist_main_container .want_wish__search{
+    flex-direction: column;
+    gap: 1.5em;
+  }
+  .wishlist_main_container .want_wish__search .want_tobuy__searchinput{
+    width: 100%;
+  }
+  .wishlist_main_container .want_wish__search .create_wishlist_link{
+    width: 55%;
+  }
+}

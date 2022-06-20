@@ -53,6 +53,15 @@ export const Departments = ({ data, categories }) => {
       `/${customnostore ? customnostore : geo?.country_name}/register/seller`
     );
   };
+  useEffect(()=>{
+    let ignoreClickOnInputElement = document.getElementById('home_page_search');
+    document.addEventListener('click', function(event) {
+        let isClickInsideInputElement = ignoreClickOnInputElement.contains(event.target);
+        if (!isClickInsideInputElement) {
+          setBar(false)
+        }
+    });
+  },[])
   return (
     <div className="Departments">
       <div className="Departments_Body_Search">
@@ -104,7 +113,7 @@ export const Departments = ({ data, categories }) => {
           </div>
         </div>
         <div className="search_bar">
-          <div className="body__search_bar">
+          <div className="body__search_bar" id="home_page_search">
             {Bar ? (
               <Paper
                 className="search_bar_paper focused"
@@ -117,7 +126,6 @@ export const Departments = ({ data, categories }) => {
                   inputProps={{ "aria-label": " " }}
                   onChange={(event) => setSearch(event.target.value)}
                   onFocus={() =>setBar(true)}
-                  onBlur={()=>setBar(false)}
                   onKeyPress={(e) => searchinput(e)}
                   value={search}
                 />
@@ -152,7 +160,6 @@ export const Departments = ({ data, categories }) => {
                   inputProps={{ "aria-label": " " }}
                   onChange={(event) => setSearch(event.target.value)}
                   onFocus={() =>setBar(true)}
-                  onBlur={()=>setBar(false)}
                 />
                 <IconButton
                   type="submit"
