@@ -131,10 +131,7 @@ export const Departments = ({ data, categories }) => {
                 />
                 <CancelIcon className="cancel" onClick={() => setBar(false)} />
                 {savedsearch?.length ? (
-                  <ul className="searchhistory" 
-                    onClick={()=>{
-                      setBar(false)
-                    }}>
+                  <ul className="searchhistory">
                     {savedsearch?.map((item, i) => (
                       <li
                         key={i}
@@ -163,7 +160,6 @@ export const Departments = ({ data, categories }) => {
                   inputProps={{ "aria-label": " " }}
                   onChange={(event) => setSearch(event.target.value)}
                   onFocus={() =>setBar(true)}
-                  onBlur={()=>setBar(false)}
                 />
                 <IconButton
                   type="submit"
