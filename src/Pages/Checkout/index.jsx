@@ -674,7 +674,8 @@ const Checkout = () => {
       let t =
         quotedata?.length &&
         quotedata?.[0]?.address_list?.filter(
-          (itm) => (itm?.default_billing && itm?.default_shipping) == 1
+          (itm) =>
+            itm?.address_id === quotedata?.[0]?.invoice?.shipping_address_id
         );
       selectaddress(t?.[0]);
     }

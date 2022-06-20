@@ -222,7 +222,7 @@ const OfficeAddressDetails = ({
             <div className={textFlied_separate}>
               <TextField
                 id="state_dropdown_list"
-                label="state"
+                label="State"
                 placeholder="State"
                 className="inputfield-box"
                 fullWidth

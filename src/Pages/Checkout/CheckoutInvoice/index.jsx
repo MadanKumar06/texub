@@ -93,7 +93,10 @@ const Checkout = () => {
       let t =
         checkoutDataFromLocal?.invoice_checkout_data?.length &&
         checkoutDataFromLocal?.invoice_checkout_data?.[0]?.address_list?.filter(
-          (itm) => (itm?.default_billing && itm?.default_shipping) == 1
+          (itm) =>
+            itm?.address_id ===
+            checkoutDataFromLocal?.invoice_checkout_data?.[0]?.invoice
+              ?.shipping_address_id
         );
       selectaddress(t?.[0]);
     }
@@ -402,7 +405,8 @@ const Checkout = () => {
                         <div className="address_fields">
                           <InputLabel>Mobile Number : </InputLabel>
                           <span>
-                            +{
+                            +
+                            {
                               checkoutDataFromLocal?.pickup_form_data
                                 ?.mobile_number
                             }

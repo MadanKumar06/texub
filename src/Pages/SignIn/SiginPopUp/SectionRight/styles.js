@@ -97,13 +97,7 @@ const styles = (theme) => ({
     margin: "20px 0px",
     textAlign: "center",
     "@media(min-width:1600px)": {
-      margin: "6px 0px",
-    },
-     "@media(max-width:1599px)": {
-      margin: "6px 0px",
-    },
-    "@media(max-width:425px)": {
-      margin: "6px 0px",
+      margin: "15px 0px",
     },
   },
   button_guest: {
@@ -114,7 +108,7 @@ const styles = (theme) => ({
     color: "#ffffff !important",
     transition: "transform .2s !important",
     fontWeight: "600 !important",
-    textTransform: "capitalize !important",
+    textTransform: "inherit !important",
     width: "100%",
     padding: "12px !important",
     fontSize: "18px !important",

@@ -45,13 +45,14 @@ import Legal from "./Pages/CMS/Resources/Legal";
 import GDPR from "./Pages/CMS/Resources/GDPR";
 import Privacypolicy from "./Pages/CMS/Company/Privacypolicy";
 import RRpolicy from "./Pages/CMS/Company/RRpolicy";
+import CookiesPermission from './Pages/CMS/Resources/Cookiespermission'
 import Accountinfo from "./Components/BuyerDashboard/MyProfile/Accountinfo";
 
 //ResetPassword
 import ResetPassword from "./Components/ResetPassword";
 
 //coming soon page
-import ComingSoon from "./Pages/ComingSoon";
+// import ComingSoon from "./Pages/ComingSoon";
 
 //sellontexub
 import SellonTexubNew from "./Pages/SellonTexub";
@@ -155,7 +156,6 @@ const App = () => {
   useEffect(() => {
     if (currency?.currency_id) {
       GetCategoriesList((res) => {
-        // localStorage.setItem("all_category_id", res?.[0]?.category?.id);
         dispatch({
           type: "SET_PLP_CATEGORIES",
           data: res,
@@ -185,13 +185,14 @@ const App = () => {
 
             {/* Footer section */}
             <Route path="/:country/legal" element={ <> <Legal /> <ScrollToTop /> <Footer /> </> } exact />
-            <Route path="/:country/gdpr" element={ <> <GDPR /> <ScrollToTop /> <Footer /> </> } exact />
+            <Route path="/:country/gdpr/:id" element={ <> <GDPR /> <ScrollToTop /> <Footer /> </> } exact />
             <Route path="/:country/Faqs" element={ <> <FAQ /> <ScrollToTop /> <Footer /> </> } exact />
+            <Route path="/:country/cookies-permission/:id" element={ <> <CookiesPermission /> <ScrollToTop /> <Footer /> </> } exact />
             <Route path="/:country/Contactus" element={ <> <Contactus /> <ScrollToTop /> <Footer /> </> } exact />
             <Route path="/:country/privacypolicy/:id" element={ <> <Privacypolicy /> <ScrollToTop /> <Footer /> </> } exact />
             <Route path="/:country/termsofuse/:id" element={ <> <Termsofuse /> <ScrollToTop /> <Footer /> </> } exact />
             <Route path="/:country/productlistingpolicy/:id" element={ <> <ProductListingPolicy /> <ScrollToTop /> <Footer /> </> } exact />
-            <Route path="/:country/rrpolicy" element={ <> <RRpolicy /> <ScrollToTop /> <Footer /> </> } exact />
+            <Route path="/:country/rrpolicy/:id" element={ <> <RRpolicy /> <ScrollToTop /> <Footer /> </> } exact />
             <Route path="/:country/training" element={ <> <Training /> <ScrollToTop /> <Footer /> </> } exact />
             <Route path="/:country/seller_advantage" element={ <> <Selleradvantage /> <ScrollToTop /> <Footer /> </> } exact />
             <Route path="/:country/buyer_advantage" element={ <> <Buyeradvantage /> <ScrollToTop /> <Footer /> </> } exact ></Route>
@@ -205,7 +206,6 @@ const App = () => {
             <Route path="/:country/sellerdashboard/:currenttab/:id" element={ <> {" "} <SellerDashboard /> <ScrollToTop /> <Footer />{" "} </> } exact />
             <Route path="/:country/buyerdashboard/:currenttab" element={ <> {" "} <BuyerDashboard /> <ScrollToTop /> <Footer />{" "} </> } exact />
             <Route path="/:country/sellerprofile/:id/:seller_id" element={ <> {" "} <SellerProfile /> <ScrollToTop /> <Footer />{" "} </> } exact />
-            <Route path="/:country/pending-invoice" element={ <> {" "} <PendingInvoice /> <ScrollToTop /> <Footer />{" "} </> } exact />
             <Route path="/:country/pendinginvoice/:qid" element={ <> {" "} <PendingInvoice /> <ScrollToTop /> <Footer />{" "} </> } exact />
             <Route path="/:country/checkout/:quoteid" element={ <> {" "} <Checkout /> <ScrollToTop /> <Footer />{" "} </> } exact />
             <Route path="/:country/ordersuccess/:id" element={ <> {" "} <OrderSuccess /> <ScrollToTop /> <Footer />{" "} </> } exact />

@@ -127,7 +127,7 @@ const styles = (theme) => ({
     color: "#333333",
     fontSize: "20px",
     margin: "0",
-    display: 'flex',
+    display: "flex",
     "& small": {
       color: "#FF0000",
       fontSize: "18px",
@@ -327,7 +327,7 @@ const styles = (theme) => ({
   forgotpassword__content: {
     padding: "4em 2em",
     display: "flex",
-    alignItems: "center",
+    alignItems: "flex-end",
     backgroundColor: "white",
     boxShadow: "0px 3px 6px #00000029",
     "@media (max-width: 580px)": {
@@ -340,7 +340,7 @@ const styles = (theme) => ({
     width: "54%",
     display: "flex",
     flexDirection: "column",
-    padding: "2em",
+    padding: "0em 2em",
     "@media (max-width: 580px)": {
       width: "100%",
       padding: "10px 15px",
@@ -348,7 +348,10 @@ const styles = (theme) => ({
   },
 
   forgotpassword__image: {
-    width: "45%",
+    "& img": {
+      width: "100%",
+      height: "100%",
+    },
   },
 
   forgotpassword__para: {

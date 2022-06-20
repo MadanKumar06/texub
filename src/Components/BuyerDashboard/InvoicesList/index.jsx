@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import MUITable from "../../../Components/Common/MUITable";
 import { ArrowBackIosNew, Search } from "@mui/icons-material";
-import { Button, Paper, InputBase, IconButton } from "@mui/material";
+import { Paper, InputBase, IconButton } from "@mui/material";
 import { Link } from "react-router-dom";
 import Pagination from "../../Pagination";
 import "./styles.scss";
@@ -16,11 +16,11 @@ import Constant from "../../../Constant";
 import moment from "moment";
 function Index() {
   const [tableData, setTableData] = useState([]);
-  const [searchdata,setsearchdata] = useState("");
+  const [searchdata, setsearchdata] = useState("");
   const [invoicelist, setinvoicelist] = useState();
   const [direct, setdirect] = useState([]);
   const [orderTypeColor, setorderTypeColor] = useState(0);
-  const [isNotMatched,setisNotMatched] = useState(false);
+  const [isNotMatched, setisNotMatched] = useState(false);
   const ordertype = [
     { name: "All Invoices" },
     { name: "Pending Invoices" },
@@ -33,8 +33,8 @@ function Index() {
     settype(value);
   };
 
- useEffect(() => {
-    settype(0)
+  useEffect(() => {
+    settype(0);
   }, []);
 
   // useEffect(() => {
@@ -42,7 +42,7 @@ function Index() {
   //     setTableData(invoicelist)
   //   }
   //   if (type === 1) {
-  //     const pending_invoice = invoicelist?.filter(d => d?.pending_invoice_status === "Pending")      
+  //     const pending_invoice = invoicelist?.filter(d => d?.pending_invoice_status === "Pending")
   //     if(pending_invoice) {
   //       setTableData(pending_invoice)
   //     } else {
@@ -60,31 +60,34 @@ function Index() {
   // }, [type])
   useEffect(() => {
     if (type === 0) {
-      setorderTypeColor(0)
+      setorderTypeColor(0);
       setTableData(invoicelist);
     }
     if (type === 1) {
-      setorderTypeColor(0)
-      const pending_invoice = invoicelist?.filter((d) => d?.pending_invoice_status === "Pending");
-      if(pending_invoice?.length) {
-        setTableData(pending_invoice)
+      setorderTypeColor(0);
+      const pending_invoice = invoicelist?.filter(
+        (d) => d?.pending_invoice_status === "Pending"
+      );
+      if (pending_invoice?.length) {
+        setTableData(pending_invoice);
       } else {
-        setdirect([])
-        setTableData([])
+        setdirect([]);
+        setTableData([]);
       }
     }
     if (type === 2) {
-      setorderTypeColor(0)
-      const paid_invoice = invoicelist?.filter((d) => d?.pending_invoice_status === "Paid");
-      if(paid_invoice?.length) {
-        setTableData(paid_invoice)
+      setorderTypeColor(0);
+      const paid_invoice = invoicelist?.filter(
+        (d) => d?.pending_invoice_status === "Paid"
+      );
+      if (paid_invoice?.length) {
+        setTableData(paid_invoice);
       } else {
-        setdirect([])
-        setTableData([])
+        setdirect([]);
+        setTableData([]);
       }
     }
   }, [type, invoicelist]);
-
 
   const PaginateDataSplit = (event) => {
     if (invoicelist?.length === 0) return setdirect([]);
@@ -94,25 +97,29 @@ function Index() {
     return price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
   }
 
-  const searchHandler = (e)=>{
-    e.preventDefault()
-    setorderTypeColor(1)
-    settype(null)
-    setsearchdata("")
-    if (invoicelist?.length === 0) return
+  const searchHandler = (e) => {
+    e.preventDefault();
+    setorderTypeColor(1);
+    settype(null);
+    setsearchdata("");
+    if (invoicelist?.length === 0) return;
     if (searchdata === "") {
-      setTableData(invoicelist)
+      setTableData(invoicelist);
     } else {
-      let temp = invoicelist?.filter(td => td?.pending_invoice_id?.toLowerCase()?.includes(searchdata?.toLowerCase()))
-      setTableData(temp)
+      let temp = invoicelist?.filter((td) =>
+        td?.pending_invoice_id
+          ?.toLowerCase()
+          ?.includes(searchdata?.toLowerCase())
+      );
+      setTableData(temp);
     }
-    setisNotMatched(!isNotMatched)
-  }
-  useEffect(()=>{
-    if(tableData.length===0){
-      setdirect([])
+    setisNotMatched(!isNotMatched);
+  };
+  useEffect(() => {
+    if (tableData.length === 0) {
+      setdirect([]);
     }
-  },[isNotMatched])
+  }, [isNotMatched]);
   const [isVieworders, setisVieworders] = useState(false);
   const orders = () => {
     setisVieworders(true);
@@ -302,11 +309,14 @@ function Index() {
             inputProps={{ "aria-label": "" }}
             className="invoices__input"
             value={searchdata}
-            onChange={(e)=>setsearchdata(e.target.value)}
+            onChange={(e) => setsearchdata(e.target.value)}
           />
-         <IconButton type="submit" sx={{ p: "10px" }} aria-label="search"
-             onClick={(e)=>searchHandler(e)}
-            >
+          <IconButton
+            type="submit"
+            sx={{ p: "10px" }}
+            aria-label="search"
+            onClick={(e) => searchHandler(e)}
+          >
             <Search />
           </IconButton>
         </Paper>
@@ -314,20 +324,24 @@ function Index() {
       {isOrders && (
         <>
           <div className="invoices__buttons">
-             {ordertype.map((data, i) => (
-                <p
-                  className={`ordertypes ${type === i && "ordertype__selected"} 
-                  ${orderTypeColor === 1 && data.name==="All Invoices"? "ordertype__selected":null}
+            {ordertype.map((data, i) => (
+              <p
+                className={`ordertypes ${type === i && "ordertype__selected"} 
+                  ${
+                    orderTypeColor === 1 && data.name === "All Invoices"
+                      ? "ordertype__selected"
+                      : null
+                  }
                   `}
-                  key={i}
-                  onClick={() =>{
-                    selectorder(i)
-                    setsearchdata("")
-                  }}
-                >
-                  {data.name}
-                </p>
-              ))}
+                key={i}
+                onClick={() => {
+                  selectorder(i);
+                  setsearchdata("");
+                }}
+              >
+                {data.name}
+              </p>
+            ))}
           </div>
           <MUITable
             columns={columns}

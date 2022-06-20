@@ -63,7 +63,7 @@ export const Footer = () => {
               >
                 <li>About Us</li>
               </Link>
-                <Link
+              <Link
                 to={`/${
                   customnostore ? customnostore : geo?.country_name
                 }/sell-on-texub`}
@@ -87,13 +87,12 @@ export const Footer = () => {
               >
                 <li>Contact Us</li>
               </Link>
-              
             </ul>
           </div>
           <div className="Footer_box_col_234">
             <h2 className="Footer_Col_Heading">Legal</h2>
             <ul className="Footer_col_list">
-               <Link
+              <Link
                 to={`/${
                   customnostore ? customnostore : geo?.country_name
                 }/termsofuse/${currencyData?.[2]?.staticPages?.terms}`}
@@ -109,19 +108,17 @@ export const Footer = () => {
               >
                 <li>Privacy Policy</li>
               </Link>
-              {/* <Link
+              <Link
                 to={`/${
                   customnostore ? customnostore : geo?.country_name
-                }/rrpolicy`}
+                }/rrpolicy/${
+                  currencyData?.[2]?.staticPages?.return_and_refund
+                }`}
                 className="to_CMS"
               >
                 <li>Refund Policy</li>
-              </Link> */}
-              <li
-                className="to_CMS cookie no_cursor"
-              >
-                Refund Policy
-              </li>
+              </Link>
+              {/* <li className="to_CMS cookie no_cursor">Refund Policy</li> */}
               <Link
                 to={`/${
                   customnostore ? customnostore : geo?.country_name
@@ -132,7 +129,7 @@ export const Footer = () => {
               >
                 <li> Product Listing Policy</li>
               </Link>
-               {/* <li
+              {/* <li
                 className="to_CMS cookie"
                 onClick={() => {
                   setisCookies(true);
@@ -140,26 +137,24 @@ export const Footer = () => {
               >
                 Cookies Permission
               </li> */}
-               <li
-                className="to_CMS cookie no_cursor"
-              >
-               Cookies Permission
-              </li>
-              {/* <Link
+              <Link
                 to={`/${
                   customnostore ? customnostore : geo?.country_name
-                }/gdpr`}
+                }/cookies-permission/${currencyData?.[2]?.staticPages?.cookie_permission}`}
+                className="to_CMS"
+              >
+                <li>Cookies Permission</li>
+              </Link>
+              <Link
+                to={`/${
+                  customnostore ? customnostore : geo?.country_name
+                }/gdpr/${currencyData?.[2]?.staticPages?.gd_pr}`}
                 className="to_CMS"
               >
                 <li>GDPR</li>
-              </Link> */}
-               <li
-                className="to_CMS cookie no_cursor"
-              >
-               GDPR
-              </li>
+              </Link>
+              {/* <li className="to_CMS cookie no_cursor">GDPR</li> */}
 
-            
               {/* <Link
                 to={`/${
                   customnostore ? customnostore : geo?.country_name
@@ -176,7 +171,7 @@ export const Footer = () => {
               >
                 <li>Buyer Advantage</li>
               </Link> */}
-              
+
               {/* <Link
                 to={`/${customnostore ? customnostore : geo?.country_name}`}
                 className="to_CMS"
@@ -196,7 +191,7 @@ export const Footer = () => {
               >
                 <li>Legal</li>
               </Link> */}
-             
+
               <Link
                 to={`/${
                   customnostore ? customnostore : geo?.country_name
@@ -205,11 +200,7 @@ export const Footer = () => {
               >
                 <li>FAQs</li>
               </Link>
-              <li
-                className="to_CMS cookie no_cursor"
-              >
-                Blogs
-              </li>
+              <li className="to_CMS cookie no_cursor">Blogs</li>
               {/* <Link
                 to={`/${
                   customnostore ? customnostore : geo?.country_name
@@ -226,12 +217,8 @@ export const Footer = () => {
               >
                 <li>Career</li>
               </Link>
-              <li
-                className="to_CMS cookie no_cursor"
-              >
-                Training
-              </li>
-                {/* <Link
+              <li className="to_CMS cookie no_cursor">Training</li>
+              {/* <Link
                 to={``}
                 className="to_CMS"
               >
