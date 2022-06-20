@@ -54,10 +54,10 @@ export const Departments = ({ data, categories }) => {
     );
   };
   useEffect(()=>{
-    var ignoreClickOnMeElement = document.getElementById('home_page_search');
+    let ignoreClickOnInputElement = document.getElementById('home_page_search');
     document.addEventListener('click', function(event) {
-        var isClickInsideElement = ignoreClickOnMeElement.contains(event.target);
-        if (!isClickInsideElement) {
+        let isClickInsideInputElement = ignoreClickOnInputElement.contains(event.target);
+        if (!isClickInsideInputElement) {
           setBar(false)
         }
     });
