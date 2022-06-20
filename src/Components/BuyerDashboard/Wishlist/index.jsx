@@ -144,11 +144,11 @@ const Whislist = () => {
         </Paper>
         <Link
           style={{ textDecoration: "none" }}
-          className="button-text btn-secondary"
+          className="button-text btn-secondary create_wishlist_link"
           to={`/${customnostore ? customnostore : geo?.country_name}/products`}
         >
           <Button
-            className="button-text btn-secondary"
+            className="button-text btn-secondary create_wishlist_btn"
             style={{ width: "100%", margin: "0 auto" }}
           >
             Create New Wishlist

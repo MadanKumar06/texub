@@ -240,3 +240,21 @@
     padding: 3em 2em;
   }
 }
+@media (max-width:400px){
+  .filterView_list_main{
+    width: 100% !important;
+  }
+  .filterView_list_main .sub_filter_view_cards {
+    padding: 3em 0.5em !important;
+  }
+  .filterView_list_main span.filter_checkbox, 
+  .filterView_list_main .accordion_filter .filter_by_product_dropdown .MuiAccordionSummary-content{
+    padding-left: 0px !important;
+  }
+  .filterView_list_main .filter_by_price_bar{
+    text-align: center;
+    .filterPrice_bar{
+      width: 95%;
+    }
+  }
+}
