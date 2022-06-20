@@ -97,7 +97,7 @@ function Index() {
     filter: false,
     filterType: "dropdown",
     responsive: "vertical",
-    selectableRows: false,
+    selectableRows: "none",
     download: false,
     pagination: false,
     print: false,

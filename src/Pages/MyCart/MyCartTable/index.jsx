@@ -239,7 +239,7 @@ const MyCartTable = ({ cartDataList, deleteCartData, setrowselect }) => {
             <div className="mycart_product_main">
               <div className="mycart_product_sub_block">
                 <div className="img_block">
-                   {value ? (
+                  {value ? (
                     <img
                       src={`${Constant.imageBaseUrl()}${value}`}
                       alt=""
@@ -592,7 +592,7 @@ const MyCartTable = ({ cartDataList, deleteCartData, setrowselect }) => {
         display: false,
       },
     },
-     {
+    {
       name: "brand_name",
       label: " ",
       options: {
@@ -605,9 +605,9 @@ const MyCartTable = ({ cartDataList, deleteCartData, setrowselect }) => {
     filter: false,
     filterType: "dropdown",
     responsive: "vertical",
-    selectableRows: true,
+    selectableRows: "multiple",
     // selectableRowsOnClick: true,
-    onRowsSelect: (rowsSelected, allRows) => {
+    onRowSelectionChange: (rowsSelected, allRows) => {
       setrowselect(allRows);
     },
     download: false,
