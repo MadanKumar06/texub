@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from "react";
 import "./styles.scss";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
+// import DashboardChart from "../../DashboardChartSection";
+import { useStateValue } from "../../../store/state";
 import Constant from "../../../Constant";
+
 import red from "../../../Assets/buyerdashboard/dashboard/red.png";
 import blue from "../../../Assets/buyerdashboard/dashboard/blue.png";
 import green from "../../../Assets/buyerdashboard/dashboard/green.png";
 import exchangeoffer from "../../../Assets/sellerdashboard/dashboard/exchangeoffer.png";
 import wanttobuy_new from "../../../Assets/buyerdashboard/dashboard/buyer_dashboard_buy.png";
-
-import DashboardChart from "../../DashboardChartSection";
-import axios from "axios";
-import { useStateValue } from "../../../store/state";
-import { useNavigate } from "react-router-dom";
 
 const BuyerDashboard = () => {
   const [{ geo, customnostore }, dispatch] = useStateValue();

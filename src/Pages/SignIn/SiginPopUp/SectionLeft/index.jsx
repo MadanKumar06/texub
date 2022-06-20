@@ -509,7 +509,9 @@ const TransitionsModal = ({ classes, openPopUp }) => {
                     </Button>
                   </Box>
                 </div>
-                <img className={forgotpassword__image} src={forgot} alt="" />
+                <div className={forgotpassword__image}>
+                  <img src={forgot} alt="" />
+                </div>
               </div>
             </div>
           </div>
@@ -543,8 +545,8 @@ const TransitionsModal = ({ classes, openPopUp }) => {
                   </span>
                 </p>
                 <p className={info_text_lineNote_two}>
-                  Sign up now to gain access to exclusive benefits created only
-                  for you.
+                  “Sign In now to gain access to exclusive benefits created only
+                  for you.”
                 </p>
                 <form onSubmit={handleClickValidation}>
                   <div className={info_text}>Sign-In</div>

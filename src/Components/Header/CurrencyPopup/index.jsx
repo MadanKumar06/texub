@@ -8,30 +8,27 @@ import { ExpandMore } from "@mui/icons-material";
 import axios from "axios";
 import Constant from "../../../Constant";
 import { useStateValue } from "../../../store/state";
-// import { useParams } from "react-router-dom";
 
-import aed from "../../../Assets/CommonImage/Currency switcher/DH.png";
-import usd from "../../../Assets/CommonImage/Currency switcher/dollar-symbol.png";
-import inr from "../../../Assets/CommonImage/Currency switcher/Group 1132.png";
-
+// function starts
 const CurrencyPopup = ({ classes }) => {
   const [anchorEl, setAnchorEl] = useState(null);
-  const [{ geo, customstore }, dispatch] = useStateValue();
+  const [{ geo }, dispatch] = useStateValue();
   const [apiDropDowns, setApiDropDowns] = useState("");
   const [selectedValue, setSelectedValue] = useState({
     currency_code: "",
     currency_id: "",
   });
   let { curreny_image } = classes;
+  const navigate = useNavigate();
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-  const navigate = useNavigate();
 
   const handleClose = () => {
     setAnchorEl(null);
   };
+
   const handleChange = (event) => {
     setSelectedValue({
       currency_code: event?.currency_code,
@@ -57,11 +54,6 @@ const CurrencyPopup = ({ classes }) => {
     localStorage.setItem("currency", JSON.stringify(selectedValue));
   }, [selectedValue]);
 
-  //  useEffect(() => {
-  //    let storedcurrency = JSON.parse(localStorage.getItem('selectedcurrency'))
-  //    if(selectedValue?.currency_code === storedcurrency?.currency_code) return
-  //    handleChange(storedcurrency);
-  // }, [selectedValue]);
   //API for fetch dropdown values
 
   const str = window.location.pathname;
@@ -99,7 +91,10 @@ const CurrencyPopup = ({ classes }) => {
             str.split("/")[2] === "pendinginvoice" ||
             str.split("/")[2] === "pendinginvoice-download" ||
             str.split("/")[2] === "privacypolicy" ||
+            str.split("/")[2] === "rrpolicy" ||
+            str.split("/")[2] === "gdpr" ||
             str.split("/")[2] === "productlistingpolicy" ||
+            str.split("/")[2] === "cookies-permission" ||
             str.split("/")[2] === "termsofuse" ||
             str.split("/")[2] === "buyerdashboard" ||
             str.split("/")[2] === "sellerdashboard" ||
@@ -127,14 +122,14 @@ const CurrencyPopup = ({ classes }) => {
               );
             }
           } else if (storedata?.code !== str.split("/")[1]) {
-            navigate(
-              `/${
-                str.split("/")[1]
-                  ? res.data?.[0]?.store?.code
-                  : geo?.country_name
-              }`
-            );
-            // navigate(`/${res.data?.[0]?.store?.code}`);
+            navigate(`/${res.data?.[0]?.store?.code}`);
+            // navigate(
+            //   `/${
+            //     str.split("/")[1]
+            //       ? res.data?.[0]?.store?.code
+            //       : geo?.country_name
+            //   }`
+            // );
           }
           let storedcurrency = JSON.parse(
             localStorage.getItem("selectedcurrency")
@@ -204,7 +199,6 @@ const CurrencyPopup = ({ classes }) => {
             aria-haspopup="true"
             onClick={handleClick}
           >
-            {/* <img src={selectedValue?.image} alt="" /> */}
             <p className={curreny_image}>{selectedValue?.currency_symbol}</p>
             {selectedValue?.currency_code}
             <ExpandMore />
@@ -223,7 +217,6 @@ const CurrencyPopup = ({ classes }) => {
                 key={item?.currency_code}
                 onClick={(e) => handleChange(item)}
               >
-                {/* <img src={item?.image} alt="" /> */}
                 <p className={curreny_image}>{item?.currency_symbol}</p>
                 {item?.currency_code}
               </MenuItem>
