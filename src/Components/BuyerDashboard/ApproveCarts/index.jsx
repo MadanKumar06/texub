@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import "./styles.scss";
+
 import { ArrowBackIosNew } from "@mui/icons-material";
 import { Link } from "react-router-dom";
+import axios from "axios";
+
 import Pagination from "../../Pagination";
 import MUITable from "../../../Components/Common/MUITable";
 import { useStateValue } from "../../../store/state";
-import axios from "axios";
 import Constant from "../../../Constant";
-import NodataFound from "../../../Assets/CommonImage/NodataFound.webp.png";
 
 function ApproveCart() {
   const [{ geo, customnostore }, dispatch] = useStateValue();
@@ -120,7 +121,6 @@ function ApproveCart() {
       body: {
         noMatch: (
           <div className="no_data_found">
-            {/* <img src={NodataFound} alt="No data Found" /> */}
             <p>No data Found...</p>
           </div>
         ),
