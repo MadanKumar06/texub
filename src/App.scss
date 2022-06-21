@@ -193,7 +193,11 @@
     }
   }
 }
-
+@-moz-document url-prefix() {
+  .drop_mobile_input_required .special-label::before {
+    left: 104px !important;
+  }
+}
 @media (max-width: 1660px) {
   .button-text {
     font-size: 16px !important;

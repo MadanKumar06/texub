@@ -521,7 +521,7 @@ const BuyerRegistration = ({ classes }) => {
                 id="mobile_number"
                 fullWidth
                 label="Mobile Number"
-                className={mobile_input}
+                className={`drop_mobile_input_required ${mobile_input }`}
                 name="mobile_number"
                 placeholder="Mobile number"
                 value={buyerRegistrationData?.mobile_number}

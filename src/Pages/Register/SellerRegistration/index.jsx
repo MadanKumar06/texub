@@ -3,7 +3,6 @@ import ReCAPTCHA from "react-google-recaptcha";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/material.css";
 import swal from "sweetalert2";
-
 import {
   TextField,
   Checkbox,
@@ -647,7 +646,7 @@ const BuyerRegistration = ({ classes }) => {
                 id="mobile_number"
                 fullWidth
                 label="Mobile Number"
-                className={mobile_input}
+                className={`drop_mobile_input_required ${mobile_input}`}
                 name="mobile_number"
                 placeholder="Mobile number"
                 value={sellerRegistrationData?.mobile_number}
