@@ -109,6 +109,10 @@
         // display: none;
       }
       .list.addSubCategoryScollBar{
+        // height: 300px;
+        overflow: auto;
+      }
+      .list.list_hover{
         height: 300px;
         overflow: auto;
       }
@@ -120,7 +124,7 @@
       background: transparent linear-gradient(180deg, #ffd788 0%, #cc9b3e 100%);
       color: #ffffff;
       .list {
-        display: block;
+        // display: block;
         // width: 300px;
       }
     }
