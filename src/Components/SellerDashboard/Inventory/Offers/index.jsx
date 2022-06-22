@@ -213,6 +213,19 @@ const TransitionsModal = ({ handleOpenCloseOffers, offersOpenClose }) => {
       });
     }
   };
+  useEffect(() => {
+    const EnterkeyHandler = event => {
+      let submit_invoice_offer = document.getElementById("submit_invoice_offer");
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        submit_invoice_offer?.click()
+      }
+    };
+    document.addEventListener('keydown', EnterkeyHandler);
+    return () => {
+      document.removeEventListener('keydown', EnterkeyHandler);
+    };
+  }, []);
   return (
     <Modal
       aria-labelledby="transition-modal-title"
@@ -388,6 +401,7 @@ const TransitionsModal = ({ handleOpenCloseOffers, offersOpenClose }) => {
           <Button
             className="button-text btn-secondary offers_button"
             // onClick={() => OffersAPICall()}
+            id="submit_invoice_offer"
             onClick={() => handleClickValidation()}
           >
             Submit

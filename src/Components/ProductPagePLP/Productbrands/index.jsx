@@ -253,11 +253,6 @@ const Productsbrands = ({
     }
   }, [homeCategorySearch, getCategories]);
   const [focusInput,setfocusInput] = useState(false)
-  useEffect(()=>{
-    if(focusInput===true){
-      
-    }
-  },[focusInput])
   return (
     <div className="Productsbrands">
       <>
@@ -335,7 +330,7 @@ const Productsbrands = ({
                         {item?.category?.category_name}
                       </span>
                       {isChange ? (
-                        <div className={`list ${item?.subcategories?.length>5?'addSubCategoryScollBar':'addSubCategoryScoll'}`}>
+                        <div className={`list ${item?.subcategories?.length>5?'addSubCategoryScollBar':'addSubCategoryScoll'} ${focusInput===true?'list_hover':''}`}>
                           <li className="list_content">
                             <span className="list_ScrollBar">
                               {item.category?.id === isChange && focusInput===true &&
