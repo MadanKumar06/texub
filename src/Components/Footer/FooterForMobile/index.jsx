@@ -108,7 +108,7 @@ const MobileFooterAccordions = () => {
             }/rrpolicy/${currencyData?.[2]?.staticPages?.return_and_refund}`}
             className="link"
           >
-            <Typography>Refund Policy</Typography>
+            <Typography>Return & Refund Policy</Typography>
           </Link>
           {/* <a
            
@@ -137,25 +137,27 @@ const MobileFooterAccordions = () => {
             <Typography>Cookies Permission</Typography>
           </a> */}
           <Link
-            to={`/${customnostore ? customnostore : geo?.country_name}/cookies-permission/${
+            to={`/${
+              customnostore ? customnostore : geo?.country_name
+            }/cookies-permission/${
               currencyData?.[2]?.staticPages?.cookie_permission
             }`}
             className="link"
           >
             <Typography>Cookies Permission</Typography>
           </Link>
-          {/* <a className="link">
+          <span className="link">
             <Typography>GDPR</Typography>
-          </a> */}
+          </span>
 
-          <Link
+          {/* <Link
             to={`/${customnostore ? customnostore : geo?.country_name}/gdpr/${
               currencyData?.[2]?.staticPages?.gd_pr
             }`}
             className="link"
           >
             <Typography>GDPR </Typography>
-          </Link>
+          </Link> */}
 
           {/* <Link to={`/${customnostore ? customnostore : geo?.country_name}/seller_advantage`} className="link">
             <Typography>Seller Advantage</Typography>
@@ -195,9 +197,9 @@ const MobileFooterAccordions = () => {
           >
             <Typography>FAQs </Typography>
           </Link>
-          <a className="link">
+          <span className="link">
             <Typography>Blogs</Typography>
-          </a>
+          </span>
           <Link
             to={`/${customnostore ? customnostore : geo?.country_name}/career`}
             className="link"
@@ -205,14 +207,12 @@ const MobileFooterAccordions = () => {
             <Typography>Career</Typography>
           </Link>
           <a
-            // to={`/${
-            //   customnostore ? customnostore : geo?.country_name
-            // }/training`}
+            href="https://help.texub.com/"
+            target="_blank"
+            rel="noreferrer"
             className="link"
           >
-            <Typography className="footer_resource_training">
-              Training
-            </Typography>
+            <Typography>Tutorial</Typography>
           </a>
         </AccordionDetails>
       </Accordion>

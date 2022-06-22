@@ -34,20 +34,33 @@ export const Footer = () => {
             World.
           </p>
           <div className="Footer_Icon_style">
-            <a href="https://www.facebook.com/texubglobal/" target="_blanks">
-              <img className="Footer_Icons" src={Fb} alt="" />
+            <a
+              href="https://www.facebook.com/texubglobal/"
+              target="_blanks"
+              aria-label="facebook"
+            >
+              <img className="Footer_Icons" src={Fb} alt="facebook" />
             </a>
-            <a href="https://www.instagram.com/texubglobal/" target="_blanks">
-              <img className="Footer_Icons" src={instagram} alt="" />
+            <a
+              href="https://www.instagram.com/texubglobal/"
+              target="_blanks"
+              aria-label="instagram"
+            >
+              <img className="Footer_Icons" src={instagram} alt="instagram" />
             </a>
-            <a href="https://twitter.com/texubglobal/" target="_blanks">
-              <img className="Footer_Icons" src={twitter} alt="" />
+            <a
+              href="https://twitter.com/texubglobal/"
+              target="_blanks"
+              aria-label="twitter"
+            >
+              <img className="Footer_Icons" src={twitter} alt="twitter" />
             </a>
             <a
               href="https://www.linkedin.com/company/texubglobal/"
               target="_blanks"
+              aria-label="linkedin"
             >
-              <img className="Footer_Icons" src={linkedin} alt="" />
+              <img className="Footer_Icons" src={linkedin} alt="linkedin" />
             </a>
           </div>
         </div>
@@ -116,7 +129,7 @@ export const Footer = () => {
                 }`}
                 className="to_CMS"
               >
-                <li>Refund Policy</li>
+                <li>Return & Refund Policy</li>
               </Link>
               {/* <li className="to_CMS cookie no_cursor">Refund Policy</li> */}
               <Link
@@ -140,20 +153,22 @@ export const Footer = () => {
               <Link
                 to={`/${
                   customnostore ? customnostore : geo?.country_name
-                }/cookies-permission/${currencyData?.[2]?.staticPages?.cookie_permission}`}
+                }/cookies-permission/${
+                  currencyData?.[2]?.staticPages?.cookie_permission
+                }`}
                 className="to_CMS"
               >
                 <li>Cookies Permission</li>
               </Link>
-              <Link
+              {/* <Link
                 to={`/${
                   customnostore ? customnostore : geo?.country_name
                 }/gdpr/${currencyData?.[2]?.staticPages?.gd_pr}`}
                 className="to_CMS"
               >
                 <li>GDPR</li>
-              </Link>
-              {/* <li className="to_CMS cookie no_cursor">GDPR</li> */}
+              </Link> */}
+              <li className="to_CMS cookie no_cursor">GDPR</li>
 
               {/* <Link
                 to={`/${
@@ -204,7 +219,7 @@ export const Footer = () => {
               {/* <Link
                 to={`/${
                   customnostore ? customnostore : geo?.country_name
-                }/blogsmain`}
+                }/blogs`}
                 className="to_CMS"
               >
                 <li>Blogs</li>
@@ -217,13 +232,14 @@ export const Footer = () => {
               >
                 <li>Career</li>
               </Link>
-              <li className="to_CMS cookie no_cursor">Training</li>
-              {/* <Link
-                to={``}
-                className="to_CMS"
+              <a
+                href="https://help.texub.com/"
+                target="_blank"
+                rel="noreferrer"
+                className="to_CMS "
               >
-                <li>Training</li>
-              </Link> */}
+                <li className="to_CMS cookie">Tutorial</li>
+              </a>
             </ul>
           </div>
           {isCookies && <Cookiespermission closePOPup={setisCookies} />}
@@ -258,17 +274,29 @@ export const Footer = () => {
         </Link> */}
       </div>
       <div className="User_Details">
-        <Link to={`/${customnostore ? customnostore : geo?.country_name}`}>
-          <img className="FooterUser" src={User} alt="" />
+        <Link
+          to={`/${customnostore ? customnostore : geo?.country_name}`}
+          aria-label="facebook"
+        >
+          <img className="FooterUser" src={User} alt="facebook" />
         </Link>
-        <Link to={`/${customnostore ? customnostore : geo?.country_name}`}>
-          <img className="FooterLike" src={Like} alt="" />
+        <Link
+          to={`/${customnostore ? customnostore : geo?.country_name}`}
+          aria-label="instagram"
+        >
+          <img className="FooterLike" src={Like} alt="instagram" />
         </Link>
-        <Link to={`/${customnostore ? customnostore : geo?.country_name}`}>
-          <img className="FooterHome" src={Home} alt="" />
+        <Link
+          to={`/${customnostore ? customnostore : geo?.country_name}`}
+          aria-label="twitter"
+        >
+          <img className="FooterHome" src={Home} alt="twitter" />
         </Link>
-        <Link to={`/${customnostore ? customnostore : geo?.country_name}`}>
-          <img className="FooterShop" src={Shopping} alt="" />
+        <Link
+          to={`/${customnostore ? customnostore : geo?.country_name}`}
+          aria-label="linkedin"
+        >
+          <img className="FooterShop" src={Shopping} alt="linkedin" />
         </Link>
       </div>
     </div>

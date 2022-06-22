@@ -363,8 +363,8 @@ const FilterViewList = ({
                     </Typography>
                   </AccordionSummary>
                   <AccordionDetails>
-                    {item?.subcategories?.map((itm) => (
-                      <Typography> {itm?.category_name}</Typography>
+                    {item?.subcategories?.map((itm, ind) => (
+                      <Typography key={ind}> {itm?.category_name}</Typography>
                     ))}
                   </AccordionDetails>
                 </Accordion>

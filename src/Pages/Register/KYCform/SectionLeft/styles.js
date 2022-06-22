@@ -210,7 +210,7 @@ const styles = (theme) => ({
   sub_media_upload_container: {
     width: "100%",
     display: "flex",
-    gap: "1em",
+    gap: "8px",
     "& small": {
       color: "#272727",
       fontSize: "14px",

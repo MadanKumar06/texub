@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styles from "../styles";
-import { InputLabel } from "@mui/material";
+import { InputLabel, IconButton, Tooltip } from "@mui/material";
 import { withStyles } from "@mui/styles";
-import { Clear } from "@mui/icons-material";
+import { Clear, Info } from "@mui/icons-material";
 import uploadImage from "../../../../../Assets/CommonImage/KYC Form/Icon.png";
 
 const NationalIdButton = ({
@@ -11,7 +11,7 @@ const NationalIdButton = ({
   FormValues,
   validationFieldMessage,
   inputsValidations,
-  setinputsValidations
+  setinputsValidations,
 }) => {
   /* useEffect(() => {
     setInputValidation({ ...validationFieldMessage });
@@ -38,6 +38,10 @@ const NationalIdButton = ({
     // setInputValidation("");
     toBase64(event.target?.files[0], event.target?.files[0]?.type);
   };
+  let localUserData = JSON.parse(localStorage?.getItem("userdata"));
+  let infoForUploadImage = localUserData?.custom_attributes?.filter(
+    (itm) => itm?.attribute_code === "customer_country"
+  );
   const toBase64 = (File, type) => {
     var reader = new FileReader();
     reader.readAsDataURL(File);
@@ -89,8 +93,8 @@ const NationalIdButton = ({
                 type="file"
                 name="national_id_image"
                 // onChange={handleImageChange}
-                onChange={(event)=>{
-                  handleImageChange(event)
+                onChange={(event) => {
+                  handleImageChange(event);
                   setinputsValidations((prevState) => ({
                     ...prevState,
                     national_id_image: "",
@@ -104,8 +108,29 @@ const NationalIdButton = ({
                 component="span"
               />
             </label>
+            <Tooltip
+              style={{
+                padding: "0",
+                width: "min-content ",
+                marginLeft: "8px",
+                color: "#002d56e8",
+              }}
+              placement="top"
+              title={
+                infoForUploadImage?.[0]?.value === "IN"
+                  ? "Please upload a valid Aadhar or Pan card"
+                  : infoForUploadImage?.[0]?.value === "US"
+                  ? "Please upload a valid Driving license or Tax Id"
+                  : infoForUploadImage?.[0]?.value === "AE"
+                  ? "Please upload a valid Driving license or Emirates Id"
+                  : "Please upload a valid National Id"
+              }
+            >
+              <IconButton>
+                <Info />
+              </IconButton>
+            </Tooltip>
           </div>
-
           <small>(Supported format : .jpg/.png/.pdf)</small>
         </div>
         <InputLabel className={validation_error}>
@@ -126,8 +151,8 @@ const NationalIdButton = ({
                 type="file"
                 name="national_id_image"
                 // onChange={handleImageChange}
-                onChange={(event)=>{
-                  handleImageChange(event)
+                onChange={(event) => {
+                  handleImageChange(event);
                   setinputsValidations((prevState) => ({
                     ...prevState,
                     national_id_image: "",

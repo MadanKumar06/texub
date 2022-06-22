@@ -132,7 +132,6 @@ export const Products = () => {
             setuserfilter(res?.data?.[2]?.filterArray);
             sortCall(res?.data?.[1]?.products);
             setDataFromApi(res?.data?.[0]?.layered);
-            userFilterDataStore(res?.data?.[2]?.filterArray);
             dispatch({
               type: "SET_IS_LOADING",
               value: false,
@@ -148,48 +147,6 @@ export const Products = () => {
       fetchProductData();
     }
   }, [currency, plp_categories, homeSearch, applyFilter]);
-
-  const userFilterDataStore = (storeData) => {
-    // debugger;
-    // if (
-    //   localStorage.getItem("filters") == "undefined" ||
-    //   !localStorage.getItem("filters")
-    // ) {
-    //   localStorage.setItem("filters", JSON.stringify(storeData));
-    //   debugger;
-    // } else {
-    // }
-  };
-
-  // useEffect(() => {
-  //   if (userfilter === undefined) return;
-  //   if (
-  //     localStorage.getItem("filters") == "undefined" ||
-  //     !localStorage.getItem("filters")
-  //   ) {
-  //     localStorage.setItem("filters", JSON.stringify(userfilter));
-  //   } else {
-  //     let currentfilter = JSON.parse(localStorage.getItem("filters"));
-  //     if (JSON.stringify(userfilter) !== JSON.stringify(currentfilter)) {
-  //       if (
-  //         userfilter?.hub_id == "0" &&
-  //         userfilter?.condition_id == "0" &&
-  //         userfilter?.brand_id == "0" &&
-  //         userfilter?.eta == "0"
-  //       )
-  //         return;
-  //       localStorage.setItem("filters", JSON.stringify(userfilter));
-  //       setProductFetchApi({
-  //         hub: userfilter?.hub_id,
-  //         conditions: userfilter?.condition_id,
-  //         eta: userfilter?.eta,
-  //         brand_id: userfilter?.brand_id,
-  //         // min_price: userfilter?.min_price,
-  //         // max_price: userfilter?.max_price,
-  //       });
-  //     }
-  //   }
-  // }, [userfilter]);
 
   const sortCall = (data) => {
     var productTableData = [];
