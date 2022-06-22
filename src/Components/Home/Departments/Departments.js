@@ -122,7 +122,7 @@ export const Departments = ({ data, categories }) => {
               >
                 <InputBase
                   sx={{ ml: 1, flex: 1 }}
-                  placeholder="Search Entire Store Here"
+                  placeholder="Search Entire Store Here..."
                   inputProps={{ "aria-label": " " }}
                   onChange={(event) => setSearch(event.target.value)}
                   onFocus={() =>setBar(true)}
@@ -156,7 +156,7 @@ export const Departments = ({ data, categories }) => {
               >
                 <InputBase
                   sx={{ ml: 1, flex: 1 }}
-                  placeholder="Search Entire Store Here…"
+                  placeholder="Search Entire Store Here..."
                   inputProps={{ "aria-label": " " }}
                   onChange={(event) => setSearch(event.target.value)}
                   onFocus={() =>setBar(true)}

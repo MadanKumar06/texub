@@ -1,5 +1,6 @@
 import axios from "axios";
 import Constant from "./Constant";
+import swal from "sweetalert2";
 
 export const isEmailValid = (email) =>
   email.match(
@@ -68,7 +69,20 @@ export const getSigninedUserData = () => {
           res?.data?.group_id === 1 ? false : true
         );
       })
-      .catch((err) => {});
+      .catch((err) => {
+        if (err.response.status === 401) {
+          swal.fire({
+            text: "Due to Session expiry, Logging out",
+            icon: "success",
+            showConfirmButton: false,
+            timer: 4000,
+          });
+          localStorage.clear();
+          setTimeout(() => {
+            window.location.assign("/");
+          }, 2000);
+        }
+      });
   }
 };
 

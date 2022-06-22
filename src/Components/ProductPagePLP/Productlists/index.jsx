@@ -47,15 +47,18 @@ const Productlists = ({
       [event.target.name]: event.target.value,
     }));
   };
-  const [updatedFilterProducts,setupdatedFilterProducts] = useState({})
-  const [updateDropdowns,setupdateDropdowns] = useState(false)
-  useEffect(()=>{
-    const updatedData = window.localStorage.getItem("filterProductsDropdown")
-    setupdatedFilterProducts(JSON.parse(updatedData))
-  },[updateDropdowns])
-  const updateProductFilterDrop = ()=>{
-    window.localStorage.setItem("filterProductsDropdown",JSON.stringify(productFetchApi))
-  }
+  const [updatedFilterProducts, setupdatedFilterProducts] = useState({});
+  const [updateDropdowns, setupdateDropdowns] = useState(false);
+  useEffect(() => {
+    const updatedData = window.localStorage.getItem("filterProductsDropdown");
+    setupdatedFilterProducts(JSON.parse(updatedData));
+  }, [updateDropdowns]);
+  const updateProductFilterDrop = () => {
+    window.localStorage.setItem(
+      "filterProductsDropdown",
+      JSON.stringify(productFetchApi)
+    );
+  };
 
   const handleSearchClick = (event) => {
     if (productFetchApi?.search_product !== "") {
@@ -165,34 +168,33 @@ const Productlists = ({
     }
   }, [currency]);
 
- useEffect(() => {
-    if(updatedFilterProducts?.hub>0 || updatedFilterProducts?.conditions>0 || updatedFilterProducts?.eta>0){
+  useEffect(() => {
+    if (
+      updatedFilterProducts?.hub > 0 ||
+      updatedFilterProducts?.conditions > 0 ||
+      updatedFilterProducts?.eta > 0
+    ) {
       setProductFetchApi((prev) => ({
         ...prev,
-        conditions:updatedFilterProducts?.conditions,
-        eta:updatedFilterProducts?.eta,
-        hub:updatedFilterProducts?.hub,
+        conditions: updatedFilterProducts?.conditions,
+        eta: updatedFilterProducts?.eta,
+        hub: updatedFilterProducts?.hub,
       }));
-    }else{
+    } else {
       setProductFetchApi((prev) => ({
         ...prev,
-        hub: productlistdropdown?.hub[0]?.value,
-        conditions: productlistdropdown?.conditions?.[0]?.value,
-        eta: productlistdropdown?.eta?.[0]?.value,
+        hub: productlistdropdown?.hub[0]?.value
+          ? productlistdropdown?.hub[0]?.value
+          : 0,
+        conditions: productlistdropdown?.conditions?.[0]?.value
+          ? productlistdropdown?.conditions?.[0]?.value
+          : 0,
+        eta: productlistdropdown?.eta?.[0]?.value
+          ? productlistdropdown?.eta?.[0]?.value
+          : 0,
       }));
     }
   }, [productlistdropdown]);
-
-  /* useEffect(() => {
-    if (productlistdropdown) {
-      setProductFetchApi((prev) => ({
-        ...prev,
-        hub: productlistdropdown?.hub[0]?.value,
-        conditions: productlistdropdown?.conditions?.[0]?.value,
-        eta: productlistdropdown?.eta?.[0]?.value,
-      }));
-    }
-  }, [productlistdropdown]); */
 
   return (
     <div className="productlist">
@@ -313,18 +315,24 @@ const Productlists = ({
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={productFetchApi?.hub}
+            value={
+              productlistdropdown?.hub?.length > 0 ? productFetchApi?.hub : ""
+            }
             label="Hub"
-            defaultValue="0"
+            defaultValue=""
             name="hub"
             onChange={handleChange}
           >
             {productlistdropdown?.hub?.length ? (
-              productlistdropdown?.hub?.map((itm) => (
-                <MenuItem value={itm?.value}>{itm?.label}</MenuItem>
+              productlistdropdown?.hub?.map((itm, ind) => (
+                <MenuItem key={ind} value={itm?.value}>
+                  {itm?.label}
+                </MenuItem>
               ))
             ) : (
-              <MenuItem>No option</MenuItem>
+              <MenuItem disabled value="">
+                No option
+              </MenuItem>
             )}
           </Select>
         </FormControl>
@@ -335,9 +343,13 @@ const Productlists = ({
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={productFetchApi?.conditions}
+            value={
+              productlistdropdown?.conditions?.length > 0
+                ? productFetchApi?.conditions
+                : ""
+            }
             label="Age"
-            defaultValue="0"
+            defaultValue=""
             name="conditions"
             onChange={handleChange}
           >
@@ -348,7 +360,9 @@ const Productlists = ({
                 </MenuItem>
               ))
             ) : (
-              <MenuItem>No option</MenuItem>
+              <MenuItem disabled value="">
+                No option
+              </MenuItem>
             )}
           </Select>
         </FormControl>
@@ -359,18 +373,24 @@ const Productlists = ({
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={productFetchApi?.eta}
+            value={
+              productlistdropdown?.eta?.length > 0 ? productFetchApi?.eta : ""
+            }
             label="ETA"
             name="eta"
-            defaultValue="0"
+            defaultValue=""
             onChange={handleChange}
           >
             {productlistdropdown?.eta?.length ? (
-              productlistdropdown?.eta?.map((itm) => (
-                <MenuItem value={itm?.value}>{itm?.label}</MenuItem>
+              productlistdropdown?.eta?.map((itm, ind) => (
+                <MenuItem key={ind} value={itm?.value}>
+                  {itm?.label}
+                </MenuItem>
               ))
             ) : (
-              <MenuItem>No option</MenuItem>
+              <MenuItem disabled value="">
+                No option
+              </MenuItem>
             )}
           </Select>
         </FormControl>
@@ -378,10 +398,10 @@ const Productlists = ({
       <div className="apply-btn">
         <Button
           className="button-text btn-primary clear plp-apply-btn"
-          onClick={() =>{
-            updateProductFilterDrop()
-            setupdateDropdowns(!updateDropdowns)
-            setApplyFilter(!applyFilter)
+          onClick={() => {
+            updateProductFilterDrop();
+            setupdateDropdowns(!updateDropdowns);
+            setApplyFilter(!applyFilter);
           }}
         >
           Apply

@@ -197,7 +197,7 @@ const App = () => {
             <Route path="/:country/seller_advantage" element={ <> <Selleradvantage /> <ScrollToTop /> <Footer /> </> } exact />
             <Route path="/:country/buyer_advantage" element={ <> <Buyeradvantage /> <ScrollToTop /> <Footer /> </> } exact ></Route>
             <Route path="/:country/career" element={ <> {" "} <Career /> <ScrollToTop /> <Footer />{" "} </> } exact ></Route>
-            <Route path="/:country/blogsmain" element={ <> {" "} <Blogsmain /> <ScrollToTop /> <Footer />{" "} </> } exact />
+            <Route path="/:country/blogs" element={ <> {" "} <Blogsmain /> <ScrollToTop /> <Footer />{" "} </> } exact />
             <Route path="/:country/blogsdetails/:id" element={ <> {" "} <Blogs /> <ScrollToTop /> <Footer />{" "} </> } exact />
             <Route path="/:country/faqs" element={ <> {" "} <FAQ /> <ScrollToTop /> <Footer />{" "} </> } exact />
 

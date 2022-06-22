@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styles from "./styles";
 
 import { withStyles } from "@mui/styles";
@@ -7,23 +7,14 @@ import { useStateValue } from "../../../store/state";
 import Pagination from "../../Pagination";
 import Constant from "../../../Constant";
 
-//Basic Need
-import NodataFound from "../../../Assets/CommonImage/NodataFound.webp.png";
-
 import shortExpand_active_icon from "../../../Assets/BasicNeeded/PLPIcons/Group 1175.png";
 import shortExpand_inactive_icon from "../../../Assets/BasicNeeded/PLPIcons/Group 1177.png";
 import longExpand_active_icon from "../../../Assets/BasicNeeded/PLPIcons/Group 1178.png";
 import longExpand_inactive_icon from "../../../Assets/BasicNeeded/PLPIcons/Group 1176.png";
-const Productstable = ({
-  classes,
-  setProductFetchApi,
-  productFetchApi,
-  productData,
-}) => {
+
+const Productstable = ({ classes, productData }) => {
   const [{}, dispatch] = useStateValue();
   const [tableData, setTableData] = useState([]);
-  const [emptytableData, setemptyTableData] = useState([]);
-
   let {
     producttable,
     mui_datatable_main,
@@ -56,8 +47,6 @@ const Productstable = ({
     return amount
       .toString()
       .replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
-
-    // return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
   function truncate(str, n) {
     return str?.length > n ? str.substr(0, n - 1) + "..." : str;
@@ -238,13 +227,6 @@ const Productstable = ({
         },
       },
     },
-    {
-      name: "main_product",
-      label: "CONDITION",
-      options: {
-        display: false,
-      },
-    },
   ];
 
   const options = {
@@ -263,7 +245,6 @@ const Productstable = ({
       body: {
         noMatch: (
           <div className="no_data_found">
-            {/* <img src={NodataFound} alt="No data Found" /> */}
             <p>No data Found...</p>
           </div>
         ),
@@ -287,7 +268,7 @@ const Productstable = ({
       ) : (
         <MUITable
           columns={columns}
-          table={emptytableData}
+          table={[]}
           options={options}
           className={mui_datatable_main}
         />

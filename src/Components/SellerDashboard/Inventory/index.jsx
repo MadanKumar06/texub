@@ -332,7 +332,7 @@ function Index({ registerproduct }) {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         });
-        setApiTableData(tabledata?.data?.[0]);
+        setApiTableData(tabledata?.data?.length ? tabledata?.data?.[0] : []);
         dispatch({
           type: "SET_IS_LOADING",
           value: false,
@@ -498,12 +498,21 @@ function Index({ registerproduct }) {
           registerproduct={registerproduct}
         />
       )}
-      <MUITable
-        columns={columns}
-        table={tableData?.length ? tableData : []}
-        options={options}
-        className="inventory__table"
-      />
+      {apiTableData?.length === 0 ? (
+        <MUITable
+          columns={columns}
+          table={[]}
+          options={options}
+          className="inventory__table"
+        />
+      ) : (
+        <MUITable
+          columns={columns}
+          table={tableData?.length ? tableData : []}
+          options={options}
+          className="inventory__table"
+        />
+      )}
 
       {apiTableData?.products?.length > 0 && (
         <Pagination
