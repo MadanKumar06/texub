@@ -12,6 +12,7 @@ function Index() {
   const options = {
     filter: false,
     filterType: "dropdown",
+    pagination: false,
     responsive: "vertical",
     selectableRows: false,
     download: false,

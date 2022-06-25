@@ -13,7 +13,7 @@ import Forbidden from "../../SellerDashboard/UserMgmt/PopUps/Forbidden";
 import { useStateValue } from "../../../store/state";
 
 function Index({ setuserform, userform }) {
-  const [{geo, customstore, customnostore}, dispatch] = useStateValue()
+  const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
   const [tableData, setTableData] = useState([]);
   const edituser = () => {
     setuserform(true);
@@ -32,6 +32,7 @@ function Index({ setuserform, userform }) {
     filter: false,
     filterType: "dropdown",
     responsive: "vertical",
+    pagination: false,
     selectableRows: "none",
     download: false,
     print: false,
@@ -132,9 +133,7 @@ function Index({ setuserform, userform }) {
   ];
 
   const [maincat, setmaincat] = useState();
-  const handleChange = () => {
-   
-  };
+  const handleChange = () => {};
 
   const PaginateDataSplit = (event) => {
     setTableData(event);
@@ -190,7 +189,11 @@ function Index({ setuserform, userform }) {
         <>
           <div className="user_mgnt__footer">
             <div className="user_mgnt__container">
-              <Link to={`/${customnostore ? customnostore : geo?.country_name}/sellerdashboard/dashboard`}>
+              <Link
+                to={`/${
+                  customnostore ? customnostore : geo?.country_name
+                }/sellerdashboard/dashboard`}
+              >
                 <ArrowBackIosNew />
                 <span>Back</span>
               </Link>

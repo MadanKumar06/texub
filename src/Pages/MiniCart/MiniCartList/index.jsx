@@ -9,7 +9,7 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
 import { Rating } from "@mui/material";
 import { useStateValue } from "../../../store/state";
-import { getAdminToken } from "../../../utilities";
+import { getAdminToken, SessionExpiredLogout } from "../../../utilities";
 import Constant from "../../../Constant";
 import axios from "axios";
 import swal from "sweetalert2";
@@ -82,6 +82,7 @@ const MiniCartList = ({ handleSideBarClose }) => {
         price_drop: 0,
         new_product: 0,
         details: event?.product_id,
+        page: 0,
       },
     };
     axios
@@ -122,12 +123,16 @@ const MiniCartList = ({ handleSideBarClose }) => {
           type: "SET_IS_LOADING",
           value: false,
         });
-        swal.fire({
-          text: `${error?.response?.data?.message || error.message}`,
-          icon: "error",
-          showConfirmButton: false,
-          timer: 3000,
-        });
+        if (error.response.status === 401) {
+          SessionExpiredLogout();
+        } else {
+          swal.fire({
+            text: `${error?.response?.data?.message || error.message}`,
+            icon: "error",
+            showConfirmButton: false,
+            timer: 3000,
+          });
+        }
       });
   };
 
@@ -182,12 +187,16 @@ const MiniCartList = ({ handleSideBarClose }) => {
           type: "SET_IS_SIMPLE_LOADING",
           value: false,
         });
-        swal.fire({
-          text: `${error?.response?.data?.message || error.message}`,
-          icon: "error",
-          showConfirmButton: false,
-          timer: 3000,
-        });
+        if (error.response.status === 401) {
+          SessionExpiredLogout();
+        } else {
+          swal.fire({
+            text: `${error?.response?.data?.message || error.message}`,
+            icon: "error",
+            showConfirmButton: false,
+            timer: 3000,
+          });
+        }
       });
   };
   const addpendinginvoice = async () => {
@@ -223,11 +232,13 @@ const MiniCartList = ({ handleSideBarClose }) => {
           }/pendinginvoice/${pinvoice?.data?.[0]?.quote_id}`
         );
       } catch (e) {
-        console.log(e);
         dispatch({
           type: "SET_IS_LOADING",
           value: false,
         });
+        if (e.response.status === 401) {
+          SessionExpiredLogout();
+        }
       }
     } else {
       swal.fire({

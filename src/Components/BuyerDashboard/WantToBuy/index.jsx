@@ -7,20 +7,18 @@ import Pagination from "../../Pagination";
 import "./styles.scss";
 import axios from "axios";
 import Constant from "../../../Constant";
-import NodataFound from "../../../Assets/CommonImage/NodataFound.webp.png";
-
-// import Vieworders from '../../Common/Vieworders'
 import { useStateValue } from "../../../store/state";
 import WantToBuy from "./wantToBuyForm";
 import QuoteReceivedGrid from "./QuoteRecievedGrid";
+import { SessionExpiredLogout } from "../../../utilities";
 
 function Index() {
   // const [tableData, setTableData] = useState([]);
   const [apiTableData, setApiTableData] = useState([]);
   const [direct, setdirect] = useState([]);
   const [filtereddirect, setfiltereddirect] = useState([]);
-  const [searchdata,setsearchdata] = useState("");
-  const [isNotMatched,setisNotMatched] = useState(false);
+  const [searchdata, setsearchdata] = useState("");
+  const [isNotMatched, setisNotMatched] = useState(false);
   const [{ geo, customnostore, generalTrigger }, dispatch] = useStateValue();
   const [isVieworders, setisVieworders] = useState(false);
   const Navigate = useNavigate();
@@ -32,28 +30,30 @@ function Index() {
     setisVieworders(true);
     setisOrders(false);
   };
-  useEffect(()=>{
-    setfiltereddirect(apiTableData)
-  },[apiTableData])
+  useEffect(() => {
+    setfiltereddirect(apiTableData);
+  }, [apiTableData]);
 
-  const searchHandler = (e)=>{
-    e.preventDefault()
-    setsearchdata("")
+  const searchHandler = (e) => {
+    e.preventDefault();
+    setsearchdata("");
 
-    if (apiTableData?.length === 0) return
+    if (apiTableData?.length === 0) return;
     if (searchdata === "") {
-      setfiltereddirect(apiTableData)
+      setfiltereddirect(apiTableData);
     } else {
-      let temp = apiTableData?.filter(td => td?.texub_wtb_id?.toLowerCase()?.includes(searchdata?.toLowerCase()))
-      setfiltereddirect(temp)
+      let temp = apiTableData?.filter((td) =>
+        td?.texub_wtb_id?.toLowerCase()?.includes(searchdata?.toLowerCase())
+      );
+      setfiltereddirect(temp);
     }
-    setisNotMatched(!isNotMatched)
-  }
-  useEffect(()=>{
-    if(filtereddirect.length===0){
-      setdirect([])
+    setisNotMatched(!isNotMatched);
+  };
+  useEffect(() => {
+    if (filtereddirect.length === 0) {
+      setdirect([]);
     }
-  },[isNotMatched])
+  }, [isNotMatched]);
 
   const quoteReceived = (value) => {
     setIsViewQuoteReceived((prev) => ({
@@ -70,6 +70,7 @@ function Index() {
     filter: false,
     filterType: "dropdown",
     responsive: "vertical",
+    pagination: false,
     selectableRows: "none",
     download: false,
     print: false,
@@ -112,16 +113,18 @@ function Index() {
         });
         setApiTableData(tabledata?.data);
       } catch (e) {
-        console.log(e);
         dispatch({
           type: "SET_IS_LOADING",
           value: false,
         });
+        if (e.response.status === 401) {
+          SessionExpiredLogout();
+        }
       }
     };
     fetchTableData();
   }, [generalTrigger]);
- const PaginateDataSplit = (event) => {
+  const PaginateDataSplit = (event) => {
     if (apiTableData?.length === 0) return setdirect([]);
     setdirect(event);
   };
@@ -232,13 +235,13 @@ function Index() {
               inputProps={{ "aria-label": "" }}
               className="want_tobuy__input"
               value={searchdata}
-              onChange={(e)=>setsearchdata(e.target.value)}
+              onChange={(e) => setsearchdata(e.target.value)}
             />
             <IconButton
               type="submit"
               sx={{ p: "10px" }}
               aria-label="search"
-               onClick={(e)=>searchHandler(e)}
+              onClick={(e) => searchHandler(e)}
             >
               <Search />
             </IconButton>
@@ -260,7 +263,7 @@ function Index() {
             options={options}
             className="want_tobuy__table"
           />
-         {filtereddirect?.length > 0 ? (
+          {filtereddirect?.length > 0 ? (
             <Pagination
               PaginateData={PaginateDataSplit}
               DataList={filtereddirect}

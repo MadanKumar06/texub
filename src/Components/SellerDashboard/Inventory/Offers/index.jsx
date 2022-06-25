@@ -14,9 +14,9 @@ import Constant from "../../../../Constant";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import { useStateValue } from "../../../../store/state";
 import swal from "sweetalert2";
-import { MobileDatePicker,LocalizationProvider } from "@mui/x-date-pickers";
-import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
-import { isNumber } from "../../../../utilities";
+import { MobileDatePicker, LocalizationProvider } from "@mui/x-date-pickers";
+import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
+import { isNumber, SessionExpiredLogout } from "../../../../utilities";
 var moment = require("moment");
 
 const TransitionsModal = ({ handleOpenCloseOffers, offersOpenClose }) => {
@@ -72,6 +72,9 @@ const TransitionsModal = ({ handleOpenCloseOffers, offersOpenClose }) => {
           });
         })
         .catch((err) => {
+          if (err.response.status === 401) {
+            SessionExpiredLogout();
+          }
           dispatch({
             type: "SET_IS_LOADING",
             value: false,
@@ -193,12 +196,16 @@ const TransitionsModal = ({ handleOpenCloseOffers, offersOpenClose }) => {
             type: "SET_IS_LOADING",
             value: false,
           });
-          swal.fire({
-            text: `${err?.response?.data?.message}`,
-            icon: "error",
-            showConfirmButton: false,
-            timer: 3000,
-          });
+          if (err.response.status === 401) {
+            SessionExpiredLogout();
+          } else {
+            swal.fire({
+              text: `${err?.response?.data?.message}`,
+              icon: "error",
+              showConfirmButton: false,
+              timer: 3000,
+            });
+          }
         });
     } else {
       dispatch({
@@ -214,16 +221,18 @@ const TransitionsModal = ({ handleOpenCloseOffers, offersOpenClose }) => {
     }
   };
   useEffect(() => {
-    const EnterkeyHandler = event => {
-      let submit_invoice_offer = document.getElementById("submit_invoice_offer");
-      if (event.key === 'Enter') {
+    const EnterkeyHandler = (event) => {
+      let submit_invoice_offer = document.getElementById(
+        "submit_invoice_offer"
+      );
+      if (event.key === "Enter") {
         event.preventDefault();
-        submit_invoice_offer?.click()
+        submit_invoice_offer?.click();
       }
     };
-    document.addEventListener('keydown', EnterkeyHandler);
+    document.addEventListener("keydown", EnterkeyHandler);
     return () => {
-      document.removeEventListener('keydown', EnterkeyHandler);
+      document.removeEventListener("keydown", EnterkeyHandler);
     };
   }, []);
   return (

@@ -18,7 +18,7 @@ import {
   transaction_info,
 } from "../../../Common/Vieworders/viewordersjson";
 import { useLocation, useNavigate } from "react-router-dom";
-import NodataFound from "../../../../Assets/CommonImage/NodataFound.webp.png";
+import { SessionExpiredLogout } from "../../../../utilities";
 
 import axios from "axios";
 import Constant from "../../../../Constant";
@@ -107,17 +107,20 @@ const Index = () => {
         value: false,
       });
     } catch (e) {
-      console.log(e);
       dispatch({
         type: "SET_IS_LOADING",
         value: false,
       });
+      if (e.response.status === 401) {
+        SessionExpiredLogout();
+      }
     }
   }, [history?.state, update_transaction_details]);
 
   const options = {
     filter: false,
     filterType: "dropdown",
+    pagination: false,
     responsive: "vertical",
     selectableRows: "none",
     download: false,
@@ -307,8 +310,8 @@ const Index = () => {
       },
     },
   ];
-  console.log("detailsorder")
-  console.log(detailsorder)
+  console.log("detailsorder");
+  console.log(detailsorder);
   return (
     <>
       <div className="vieworders_main">

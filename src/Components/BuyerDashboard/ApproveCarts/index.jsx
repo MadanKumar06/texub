@@ -9,6 +9,7 @@ import Pagination from "../../Pagination";
 import MUITable from "../../../Components/Common/MUITable";
 import { useStateValue } from "../../../store/state";
 import Constant from "../../../Constant";
+import { SessionExpiredLogout } from "../../../utilities";
 
 function ApproveCart() {
   const [{ geo, customnostore }, dispatch] = useStateValue();
@@ -40,7 +41,9 @@ function ApproveCart() {
       });
       setapprovetable(approvelist?.data);
     } catch (e) {
-      console.log(e);
+      if (e.response.status === 401) {
+        SessionExpiredLogout();
+      }
     }
   }, []);
 
@@ -111,6 +114,7 @@ function ApproveCart() {
     filter: false,
     filterType: "dropdown",
     responsive: "vertical",
+    pagination: false,
     selectableRows: true,
     download: false,
     print: false,
@@ -148,7 +152,9 @@ function ApproveCart() {
         },
       });
     } catch (e) {
-      console.log(e);
+      if (e.response.status === 401) {
+        SessionExpiredLogout();
+      }
     }
   };
 
@@ -169,7 +175,9 @@ function ApproveCart() {
         },
       });
     } catch (e) {
-      console.log(e);
+      if (e.response.status === 401) {
+        SessionExpiredLogout();
+      }
     }
   };
   return (

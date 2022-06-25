@@ -1,16 +1,15 @@
-import React, { useState } from 'react'
-import './styles.scss'
-import MUITable from '../../../Common/MUITable'
+import React, { useState } from "react";
+import "./styles.scss";
+import MUITable from "../../../Common/MUITable";
 import { useNavigate } from "react-router-dom";
 import hp from "../../../../Assets/sellerdashboard/inventory/hp.png";
 import Pagination from "../../../Pagination";
-import { useStateValue } from '../../../../store/state';
+import { useStateValue } from "../../../../store/state";
 import NodataFound from "../../../../Assets/CommonImage/NodataFound.webp.png";
-
 
 function Index() {
   const history = useNavigate();
-  const [{geo, customnostore}, dispatch] = useStateValue()
+  const [{ geo, customnostore }, dispatch] = useStateValue();
   const back = () => {
     history(`/${customnostore ? customnostore : geo?.country_name}`);
   };
@@ -23,6 +22,7 @@ function Index() {
     filterType: "dropdown",
     responsive: "vertical",
     selectableRows: "none",
+    pagination: false,
     download: false,
     print: false,
     sort: false,
@@ -142,7 +142,7 @@ function Index() {
 
   return (
     <div className="resulttable">
-      <MUITable columns={columns} table={tableData} options={options}  />
+      <MUITable columns={columns} table={tableData} options={options} />
       <Pagination
         PaginateData={PaginateDataSplit}
         DataList={table}

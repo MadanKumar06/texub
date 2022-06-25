@@ -13,10 +13,12 @@ import { IconButton, InputBase, Paper } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import axios from "axios";
 import Constant from "../../../Constant";
+import { SessionExpiredLogout } from "../../../utilities";
 
 const Index = () => {
   const [isAccountinfo, setisAccountinfo] = useState(true);
-  const [{ geo, customstore, customnostore, userDataDetails }, dispatch] = useStateValue();
+  const [{ geo, customstore, customnostore, userDataDetails }, dispatch] =
+    useStateValue();
   const [showButton, setshowButton] = useState(true);
   const [searchupdate, setsearchupdate] = useState(false);
   const [search, setSearch] = useState("");
@@ -106,7 +108,7 @@ const Index = () => {
     e.preventDefault();
     setsearchupdate(!searchupdate);
   };
-  
+
   const [userDetailTrigger, setUserDetailTrigger] = useState(false);
   useEffect(() => {
     axios
@@ -143,41 +145,44 @@ const Index = () => {
           type: "SET_IS_LOADING",
           value: false,
         });
+        if (err.response.status === 401) {
+          SessionExpiredLogout();
+        }
       });
   }, [userDetailTrigger]);
   return (
-    <div
-      className="My_profile_main">
-      {showButton === true ?<div className="myprofilesection__search">
-      <Paper
-          className="myprofilesection__searchinput"
-          component="form"
-          sx={{ p: "2px 4px", display: "flex", alignItems: "center" }}
-        >
-          <InputBase
-            sx={{ ml: 1, flex: 1 }}
-            placeholder="Search..."
-            inputProps={{ "aria-label": "search google maps" }}
-            className="myprofilesection_input"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            onKeyPress={(e) => e.key === "Enter" && updatesearch(e)}
-          />
-          <IconButton
-            type="submit"
-            sx={{ p: "10px" }}
-            aria-label="search"
-            onClick={(e) => updatesearch(e)}
+    <div className="My_profile_main">
+      {showButton === true ? (
+        <div className="myprofilesection__search">
+          <Paper
+            className="myprofilesection__searchinput"
+            component="form"
+            sx={{ p: "2px 4px", display: "flex", alignItems: "center" }}
           >
-            <SearchIcon />
-          </IconButton>
-        </Paper>
-        {/* <div className="sellerdashboard__notiIcon">
+            <InputBase
+              sx={{ ml: 1, flex: 1 }}
+              placeholder="Search..."
+              inputProps={{ "aria-label": "search google maps" }}
+              className="myprofilesection_input"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              onKeyPress={(e) => e.key === "Enter" && updatesearch(e)}
+            />
+            <IconButton
+              type="submit"
+              sx={{ p: "10px" }}
+              aria-label="search"
+              onClick={(e) => updatesearch(e)}
+            >
+              <SearchIcon />
+            </IconButton>
+          </Paper>
+          {/* <div className="sellerdashboard__notiIcon">
                 <img src={notification} alt="" />
               </div>
               <span>Notification</span> */}
-      </div>: null
-      }
+        </div>
+      ) : null}
       {showButton === true ? (
         <div className="My_profile_btn_section">
           {profiletype?.map((data, i) => {

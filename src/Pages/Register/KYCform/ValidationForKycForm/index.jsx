@@ -8,6 +8,7 @@ import swal from "sweetalert2";
 import styles from "../SectionRight/styles";
 import { useStateValue } from "../../../../store/state";
 import Constant from "../../../../Constant";
+import { SessionExpiredLogout } from "../../../../utilities";
 var moment = require("moment");
 
 function ValidationForKycForm({
@@ -305,6 +306,9 @@ function ValidationForKycForm({
           type: "SET_IS_LOADING",
           value: false,
         });
+        if (err.response.status === 401) {
+          SessionExpiredLogout();
+        }
       });
   };
 

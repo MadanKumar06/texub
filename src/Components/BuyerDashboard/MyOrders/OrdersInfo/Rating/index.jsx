@@ -8,6 +8,7 @@ import axios from "axios";
 import Constant from "../../../../../Constant";
 import { useStateValue } from "../../../../../store/state";
 import swal from "sweetalert2";
+import { SessionExpiredLogout } from "../../../../../utilities";
 
 export default function BasicModal({ Popup, currentorder, data }) {
   // const [{}, dispatch] = useStateValue();
@@ -62,6 +63,9 @@ export default function BasicModal({ Popup, currentorder, data }) {
         type: "SET_IS_LOADING",
         value: false,
       });
+      if (e.response.status === 401) {
+        SessionExpiredLogout();
+      }
     }
   }, []);
 
@@ -108,13 +112,16 @@ export default function BasicModal({ Popup, currentorder, data }) {
         type: "SET_IS_LOADING",
         value: false,
       });
-      swal.fire({
-        text: "Submiting review failed",
-        icon: "error",
-        showConfirmButton: false,
-        timer: 3000,
-      });
-      console.log(e);
+      if (e.response.status === 401) {
+        SessionExpiredLogout();
+      } else {
+        swal.fire({
+          text: "Submiting review failed",
+          icon: "error",
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      }
     }
   };
   const checkRatingValidation = () => {

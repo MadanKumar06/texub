@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import { useStateValue } from "../../../store/state";
 import axios from "axios";
 import Constant from "../../../Constant";
+import { SessionExpiredLogout } from "../../../utilities";
 
 const Index = ({ searchdata, searchupdate, searchBar, setSearchbar }) => {
   const [isAccountinfo, setisAccountinfo] = useState(true);
@@ -111,7 +112,7 @@ const Index = ({ searchdata, searchupdate, searchBar, setSearchbar }) => {
   let mobile_number = userData?.custom_attributes?.filter(
     (itm) => itm?.attribute_code === "customer_mobile_number"
   );
- 
+
   const [userDetailTrigger, setUserDetailTrigger] = useState(false);
   useEffect(() => {
     axios
@@ -148,6 +149,9 @@ const Index = ({ searchdata, searchupdate, searchBar, setSearchbar }) => {
           type: "SET_IS_LOADING",
           value: false,
         });
+        if (err.response.status === 401) {
+          SessionExpiredLogout();
+        }
       });
   }, [userDetailTrigger]);
   return (

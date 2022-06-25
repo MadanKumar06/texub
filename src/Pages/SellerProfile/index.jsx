@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./styles.scss";
 import axios from "axios";
 import Constant from "../../Constant";
-import { Button } from "@mui/material";
 
 import { useParams } from "react-router-dom";
 import { useStateValue } from "../../store/state";
@@ -19,6 +18,8 @@ const Index = () => {
   const [dataFromApi, setDataFromApi] = useState([]);
   const [getCategories, setGetCategories] = useState([]);
   const [applyFilter, setApplyFilter] = useState(false);
+  const [userfilter, setuserfilter] = useState();
+  const [apicallback, setApicallback] = useState(0);
 
   useEffect(() => {
     let data = {
@@ -83,6 +84,7 @@ const Index = () => {
               ? productFetchApi?.just_launch
               : 0,
             details: 0,
+            page: apicallback,
           },
         };
         axios
@@ -93,6 +95,7 @@ const Index = () => {
           })
           .then((res) => {
             sortCall(res?.data?.[1]?.products);
+            setuserfilter(res?.data?.[2]?.filterArray);
             setDataFromApi(res?.data?.[0]?.layered);
             dispatch({
               type: "SET_IS_LOADING",
@@ -197,6 +200,11 @@ const Index = () => {
             setProductFetchApi={setProductFetchApi}
             productFetchApi={productFetchApi}
             productData={productData}
+            apicallback={apicallback}
+            setApicallback={setApicallback}
+            userfilter={userfilter}
+            setApplyFilter={setApplyFilter}
+            applyFilter={applyFilter}
           />
         </div>
       </div>

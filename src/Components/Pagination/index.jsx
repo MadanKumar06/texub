@@ -66,7 +66,7 @@ const PaginationControlled = ({
   const handleChange = (event, value) => {
     setPage((prevState) => ({
       ...prevState,
-      page: value,
+      page: parseInt(value),
       jumptopage: value?.toString(),
     }));
     TotalPage

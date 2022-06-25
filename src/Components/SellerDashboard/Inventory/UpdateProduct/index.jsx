@@ -10,7 +10,7 @@ import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import Constant from "../../../../Constant";
 import { useStateValue } from "../../../../store/state";
 import swal from "sweetalert2";
-import { isNumber } from "../../../../utilities";
+import { isNumber, SessionExpiredLogout } from "../../../../utilities";
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
@@ -33,6 +33,8 @@ function Index({ type }) {
       igst: "",
       cgst: "",
       sgst: "",
+      vat_value: "",
+      isGstVatValid: 0,
     },
   ]);
   const [olddata, setolddata] = useState([]);
@@ -138,7 +140,7 @@ function Index({ type }) {
           errorHandle = true;
         }
         // GSTS
-        if (ct?.hub_id === "2") {
+        if (ct?.isGstVatValid == "1") {
           if (!ct?.cgst) {
             document.getElementById(`${"gst" + index}`)?.focus();
             isValidTemp.push({
@@ -184,6 +186,15 @@ function Index({ type }) {
             });
             errorHandle = true;
           }
+        } else if (ct?.isGstVatValid == "2") {
+          if (!ct?.vat_value) {
+            document.getElementById(`${"vat_value" + index}`)?.focus();
+            isValidTemp.push({
+              isVatValid: "Please enter the vat.",
+              ind: index,
+            });
+            errorHandle = true;
+          }
         }
       });
       setIsDetailTabValid(isValidTemp);
@@ -204,6 +215,8 @@ function Index({ type }) {
             igst: "",
             cgst: "",
             sgst: "",
+            vat_value: "",
+            isGstVatValid: 0,
             count: count?.length + 1,
           },
         ]);
@@ -357,18 +370,24 @@ function Index({ type }) {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         });
-        setolddata(formdata?.data[0]);
-        let temp = formdata?.data[0]?.sub_products?.map((itm, ind) => ({
-          ...itm,
-          count: ind,
-        }));
-        setcount(temp);
+        if (formdata?.data?.length > 0) {
+          setolddata(formdata?.data[0]);
+          if (formdata?.data[0]?.sub_products?.length > 0) {
+            let temp = formdata?.data[0]?.sub_products?.map((itm, ind) => ({
+              ...itm,
+              count: ind,
+            }));
+            setcount(temp);
+          }
+        }
         dispatch({
           type: "SET_IS_LOADING",
           value: false,
         });
       } catch (e) {
-        console.log(e);
+        if (e.response.status === 401) {
+          SessionExpiredLogout();
+        }
         dispatch({
           type: "SET_IS_LOADING",
           value: false,
@@ -539,7 +558,9 @@ function Index({ type }) {
           timer: 3000,
         });
       } catch (e) {
-        console.log(e);
+        if (e.response.status === 401) {
+          SessionExpiredLogout();
+        }
       }
     }
     if (!value1) {
@@ -670,12 +691,16 @@ function Index({ type }) {
           type: "SET_IS_LOADING",
           value: false,
         });
-        swal.fire({
-          text: `${error?.response?.data?.message || error.message}`,
-          icon: "error",
-          showConfirmButton: false,
-          timer: 3000,
-        });
+        if (error.response.status === 401) {
+          SessionExpiredLogout();
+        } else {
+          swal.fire({
+            text: `${error?.response?.data?.message || error.message}`,
+            icon: "error",
+            showConfirmButton: false,
+            timer: 3000,
+          });
+        }
       }
     }
     if (productDetailEdit?.length) {
@@ -744,16 +769,20 @@ function Index({ type }) {
           });
         }
       } catch (error) {
-        swal.fire({
-          text: `${error?.response?.data?.message || error.message}`,
-          icon: "error",
-          showConfirmButton: false,
-          timer: 3000,
-        });
         dispatch({
           type: "SET_IS_LOADING",
           value: false,
         });
+        if (error.response.status === 401) {
+          SessionExpiredLogout();
+        } else {
+          swal.fire({
+            text: `${error?.response?.data?.message || error.message}`,
+            icon: "error",
+            showConfirmButton: false,
+            timer: 3000,
+          });
+        }
       }
     }
   };

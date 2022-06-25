@@ -6,6 +6,7 @@ import axios from "axios";
 // import DashboardChart from "../../DashboardChartSection";
 import { useStateValue } from "../../../store/state";
 import Constant from "../../../Constant";
+import { SessionExpiredLogout } from "../../../utilities";
 
 import red from "../../../Assets/buyerdashboard/dashboard/red.png";
 import blue from "../../../Assets/buyerdashboard/dashboard/blue.png";
@@ -44,6 +45,9 @@ const BuyerDashboard = () => {
         type: "SET_IS_LOADING",
         value: false,
       });
+      if (e.response.status === 401) {
+        SessionExpiredLogout();
+      }
     }
   }, []);
 

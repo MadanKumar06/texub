@@ -10,6 +10,7 @@ import NodataFound from "../../../../Assets/CommonImage/NodataFound.webp.png";
 
 import { ArrowBackIosNew } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
+import { SessionExpiredLogout } from "../../../../utilities";
 
 function Index({ registerproduct }) {
   const navigate = useNavigate();
@@ -22,6 +23,7 @@ function Index({ registerproduct }) {
     filterType: "dropdown",
     responsive: "vertical",
     selectableRows: "none",
+    pagination: false,
     download: false,
     print: false,
     sort: false,
@@ -65,7 +67,9 @@ function Index({ registerproduct }) {
           value: false,
         });
       } catch (e) {
-        console.log(e);
+        if (e.response.status === 401) {
+          SessionExpiredLogout();
+        }
         dispatch({
           type: "SET_IS_LOADING",
           value: false,
@@ -188,7 +192,7 @@ function Index({ registerproduct }) {
         <Pagination
           PaginateData={PaginateDataSplit}
           DataList={apiTableData?.products}
-          PagePerRow={10}
+          PagePerRow={50}
           TotalPage={apiTableData?.count}
           apicallback={apicallback}
           handleApicallback={handleApicallback}

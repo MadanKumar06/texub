@@ -10,6 +10,7 @@ import Constant from "../../Constant";
 import axios from "axios";
 import swal from "sweetalert2";
 import Wishlist from "./Wishlist";
+import { SessionExpiredLogout } from "../../utilities";
 import AllertMessage from "../../Components/PendingInvoiceAlertPopup";
 
 import header_bottom_image_1 from "../../Assets/Productlist/warranty.png";
@@ -260,12 +261,16 @@ const PdpPopup = () => {
           type: "SET_IS_LOADING",
           value: false,
         });
-        swal.fire({
-          text: `${error?.response?.data?.message || error.message}`,
-          icon: "error",
-          showConfirmButton: false,
-          timer: 3000,
-        });
+        if (error.response.status === 401) {
+          SessionExpiredLogout();
+        } else {
+          swal.fire({
+            text: `${error?.response?.data?.message || error.message}`,
+            icon: "error",
+            showConfirmButton: false,
+            timer: 3000,
+          });
+        }
       });
   };
   function truncate(str, n) {
@@ -356,14 +361,14 @@ const PdpPopup = () => {
                   Vendor Warranty For {pdpSellerData?.warranty_days} Days
                 </span>
               </div>
-              <div className="header_bottom_image_container">
+              {/* <div className="header_bottom_image_container">
                 <img src={header_bottom_image_2} alt="" />
                 <p>
                   <span>4.5/</span>
                   <small>5</small>
                 </p>
                 <span>Seller Score</span>
-              </div>
+              </div> */}
               <div className="header_bottom_image_container">
                 <img src={header_bottom_image_3} alt="" />
                 <span> {pdpSellerData?.packing_details}</span>:{" "}

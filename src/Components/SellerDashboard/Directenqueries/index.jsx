@@ -7,8 +7,7 @@ import {
   ClosedCaptionDisabledOutlined,
 } from "@mui/icons-material";
 import Enquirydetails from "../../SellerDashboard/Directenqueries/Enquirydetails";
-import NodataFound from "../../../Assets/CommonImage/NodataFound.webp.png";
-
+import { SessionExpiredLogout } from "../../../utilities";
 import axios from "axios";
 import Constant from "../../../Constant";
 import { useStateValue } from "../../../store/state";
@@ -22,7 +21,7 @@ const Index = ({ searchdata, searchupdate, setSearch }) => {
   const [refreshdata, setrefreshdata] = useState(false);
   const [directList, setdirectList] = useState([]);
   const [orderTypeColor, setorderTypeColor] = useState(0);
-  const [isNotMatched,setisNotMatched] = useState(false);
+  const [isNotMatched, setisNotMatched] = useState(false);
   const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
   const PaginateDataSplit = (event) => {
     if (directList?.length === 0) return setdirect([]);
@@ -33,7 +32,7 @@ const Index = ({ searchdata, searchupdate, setSearch }) => {
   // };
   // const [directList, setdirectList] = useState([]);
 
- useEffect(() => {
+  useEffect(() => {
     if (directList?.length === 0) return;
     if (searchdata === "") {
       setfiltereddirect(directList);
@@ -43,16 +42,16 @@ const Index = ({ searchdata, searchupdate, setSearch }) => {
       );
       setfiltereddirect(temp);
     }
-    setorderTypeColor(1)
-    settype(null)
-    setSearch("")
-    setisNotMatched(!isNotMatched)
-  }, [searchupdate, directList])
-   useEffect(()=>{
-    if(filtereddirect.length===0){
-      setdirect([])
+    setorderTypeColor(1);
+    settype(null);
+    setSearch("");
+    setisNotMatched(!isNotMatched);
+  }, [searchupdate, directList]);
+  useEffect(() => {
+    if (filtereddirect.length === 0) {
+      setdirect([]);
     }
-  },[isNotMatched])
+  }, [isNotMatched]);
 
   useEffect(async () => {
     let user = JSON.parse(localStorage.getItem("userdata"));
@@ -77,11 +76,13 @@ const Index = ({ searchdata, searchupdate, setSearch }) => {
         value: false,
       });
     } catch (e) {
-      console.log(e);
       dispatch({
         type: "SET_IS_LOADING",
         value: false,
       });
+      if (e.response.status === 401) {
+        SessionExpiredLogout();
+      }
     }
   }, [refreshdata]);
 
@@ -146,37 +147,43 @@ const Index = ({ searchdata, searchupdate, setSearch }) => {
   // }, [type]);
   useEffect(() => {
     if (type === 0) {
-      setorderTypeColor(0)
+      setorderTypeColor(0);
       setfiltereddirect(directList);
     }
     if (type === 1) {
-      setorderTypeColor(0)
-      const open = directList?.filter((d) => d?.seller_enquiry_status === "Open");
-      if(open?.length) {
-        setfiltereddirect(open)
+      setorderTypeColor(0);
+      const open = directList?.filter(
+        (d) => d?.seller_enquiry_status === "Open"
+      );
+      if (open?.length) {
+        setfiltereddirect(open);
       } else {
-        setdirect([])
-        setfiltereddirect([])
+        setdirect([]);
+        setfiltereddirect([]);
       }
     }
     if (type === 2) {
-      setorderTypeColor(0)
-      const accepted = directList?.filter((d) => d?.seller_enquiry_status === "Accepted");
-      if(accepted?.length) {
-        setfiltereddirect(accepted)
+      setorderTypeColor(0);
+      const accepted = directList?.filter(
+        (d) => d?.seller_enquiry_status === "Accepted"
+      );
+      if (accepted?.length) {
+        setfiltereddirect(accepted);
       } else {
-        setdirect([])
-        setfiltereddirect([])
+        setdirect([]);
+        setfiltereddirect([]);
       }
     }
     if (type === 3) {
-      setorderTypeColor(0)
-      const declined = directList?.filter((d) => d?.seller_enquiry_status === "Declined");
-      if(declined?.length) {
-        setfiltereddirect(declined)
+      setorderTypeColor(0);
+      const declined = directList?.filter(
+        (d) => d?.seller_enquiry_status === "Declined"
+      );
+      if (declined?.length) {
+        setfiltereddirect(declined);
       } else {
-        setdirect([])
-        setfiltereddirect([])
+        setdirect([]);
+        setfiltereddirect([]);
       }
     }
   }, [type, directList]);
@@ -184,6 +191,7 @@ const Index = ({ searchdata, searchupdate, setSearch }) => {
   const options = {
     filter: false,
     filterType: "dropdown",
+    pagination: false,
     responsive: "vertical",
     selectableRows: "none",
     download: false,
@@ -316,13 +324,18 @@ const Index = ({ searchdata, searchupdate, setSearch }) => {
           <div className="directenquiries__btton_content">
             <p
               className={`directenquiriestypes ${
-                type === i && "directenquiries__selected"}
-                ${orderTypeColor === 1 && data.name==="All Enquiries"? "directenquiries__selected":null}
+                type === i && "directenquiries__selected"
+              }
+                ${
+                  orderTypeColor === 1 && data.name === "All Enquiries"
+                    ? "directenquiries__selected"
+                    : null
+                }
                 `}
               key={i}
-              onClick={() =>{
-                selectorder(i)
-                setSearch("")
+              onClick={() => {
+                selectorder(i);
+                setSearch("");
               }}
             >
               {data.name}

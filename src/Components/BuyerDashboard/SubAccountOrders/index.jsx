@@ -12,15 +12,15 @@ import Constant from "../../../Constant";
 import moment from "moment";
 import { IconButton, InputBase, Paper } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import NodataFound from "../../../Assets/CommonImage/NodataFound.webp.png";
+import { SessionExpiredLogout } from "../../../utilities";
 
 //function Index({ searchdata, searchupdate }) {
 function Index() {
   const [filtereddirect, setfiltereddirect] = useState([]);
   const [orderlist, setorderlist] = useState([]);
   const [direct, setdirect] = useState([]);
-  const [searchdata,setsearchdata] = useState("");
-  const [isNotMatched,setisNotMatched] = useState(false);
+  const [searchdata, setsearchdata] = useState("");
+  const [isNotMatched, setisNotMatched] = useState(false);
   function formatToCurrency(price) {
     return price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
   }
@@ -38,34 +38,36 @@ function Index() {
     setisVieworders(true);
     setisOrders(false);
   };
-  const searchHandler = (e)=>{
-    e.preventDefault()
-    setsearchdata("")
+  const searchHandler = (e) => {
+    e.preventDefault();
+    setsearchdata("");
 
-    if (orderlist?.length === 0) return
+    if (orderlist?.length === 0) return;
     if (searchdata === "") {
-      setfiltereddirect(orderlist)
+      setfiltereddirect(orderlist);
     } else {
-      let temp = orderlist?.filter(td => td?.name?.toLowerCase()?.includes(searchdata?.toLowerCase()))
-      setfiltereddirect(temp)
+      let temp = orderlist?.filter((td) =>
+        td?.name?.toLowerCase()?.includes(searchdata?.toLowerCase())
+      );
+      setfiltereddirect(temp);
     }
-    setisNotMatched(!isNotMatched)
-  }
-  useEffect(()=>{
-    if(filtereddirect.length===0){
-      setdirect([])
+    setisNotMatched(!isNotMatched);
+  };
+  useEffect(() => {
+    if (filtereddirect.length === 0) {
+      setdirect([]);
     }
-  },[isNotMatched])
+  }, [isNotMatched]);
 
-  useEffect(()=>{
-    setfiltereddirect(orderlist)
-  },[orderlist])
+  useEffect(() => {
+    setfiltereddirect(orderlist);
+  }, [orderlist]);
 
-  useEffect(()=>{
-    if(filtereddirect.length===0){
-      setdirect([])
+  useEffect(() => {
+    if (filtereddirect.length === 0) {
+      setdirect([]);
     }
-  },[isNotMatched])
+  }, [isNotMatched]);
 
   const PaginateDataSplit = (event) => {
     if (orderlist?.length === 0) return setdirect([]);
@@ -89,6 +91,7 @@ function Index() {
     filter: false,
     filterType: "dropdown",
     responsive: "vertical",
+    pagination: false,
     selectableRows: "none",
     download: false,
     print: false,
@@ -132,11 +135,13 @@ function Index() {
         value: false,
       });
     } catch (e) {
-      console.log(e);
       dispatch({
         type: "SET_IS_LOADING",
         value: false,
       });
+      if (e.response.status === 401) {
+        SessionExpiredLogout();
+      }
     }
   }, []);
 
@@ -277,13 +282,13 @@ function Index() {
                 inputProps={{ "aria-label": "search google maps" }}
                 className="myordersection_input"
                 value={searchdata}
-                onChange={(e)=>setsearchdata(e.target.value)}
+                onChange={(e) => setsearchdata(e.target.value)}
               />
               <IconButton
                 type="submit"
                 sx={{ p: "10px" }}
                 aria-label="search"
-                onClick={(e)=>searchHandler(e)}
+                onClick={(e) => searchHandler(e)}
               >
                 <SearchIcon />
               </IconButton>
@@ -299,7 +304,7 @@ function Index() {
             options={options}
             className="myorders__table"
           />
-        {filtereddirect?.length > 0 ? (
+          {filtereddirect?.length > 0 ? (
             <Pagination
               PaginateData={PaginateDataSplit}
               DataList={filtereddirect}

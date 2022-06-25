@@ -11,7 +11,7 @@ import exchangeoffer from "../../../Assets/sellerdashboard/dashboard/exchangeoff
 import DashboardChartSection from "../../DashboardChartSection";
 import axios from "axios";
 import Constant from "../../../Constant";
-import { getAdminToken } from "../../../utilities";
+import { getAdminToken, SessionExpiredLogout } from "../../../utilities";
 import { useStateValue } from "../../../store/state";
 
 function Dashboard() {
@@ -49,6 +49,9 @@ function Dashboard() {
         type: "SET_IS_LOADING",
         value: false,
       });
+      if (e.response.status === 401) {
+        SessionExpiredLogout();
+      }
     }
   };
   return (

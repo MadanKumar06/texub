@@ -13,6 +13,7 @@ import AllertMessage from "../../../../Components/PendingInvoiceAlertPopup";
 import WishlistEdit from "../image/wishlist-edit.png";
 import WishlistDelete from "../image/wishlist-delete.png";
 import SaveAsOutlinedIcon from "@mui/icons-material/SaveAsOutlined";
+import { SessionExpiredLogout } from "../../../../utilities";
 
 const WhislistTable = ({
   tableData,
@@ -102,11 +103,13 @@ const WhislistTable = ({
         });
       }
     } catch (e) {
-      console.log(e);
       dispatch({
         type: "SET_IS_LOADING",
         value: false,
       });
+      if (e.response.status === 401) {
+        SessionExpiredLogout();
+      }
     }
   };
 
@@ -154,11 +157,13 @@ const WhislistTable = ({
         });
       }
     } catch (e) {
-      console.log(e);
       dispatch({
         type: "SET_IS_LOADING",
         value: false,
       });
+      if (e.response.status === 401) {
+        SessionExpiredLogout();
+      }
     }
   };
 
@@ -207,12 +212,16 @@ const WhislistTable = ({
               type: "SET_IS_LOADING",
               value: false,
             });
-            swal.fire({
-              text: `${error?.response?.data?.message || error.message}`,
-              icon: "error",
-              showConfirmButton: false,
-              timer: 3000,
-            });
+            if (error.response.status === 401) {
+              SessionExpiredLogout();
+            } else {
+              swal.fire({
+                text: `${error?.response?.data?.message || error.message}`,
+                icon: "error",
+                showConfirmButton: false,
+                timer: 3000,
+              });
+            }
           })
       );
     });
@@ -536,8 +545,7 @@ const WhislistTable = ({
                 <div className="table_block">
                   <div className="product_info_block">
                     <div className="product_image">
-
-                     {itm?.texub_product_brand_image ? (
+                      {itm?.texub_product_brand_image ? (
                         <img
                           src={itm?.texub_product_brand_image}
                           className="brand_img_section"
@@ -547,7 +555,7 @@ const WhislistTable = ({
                         />
                       ) : (
                         <span>{itm?.texub_product_brand}</span>
-                      )}                     
+                      )}
                     </div>
                     <div className="products_info">
                       <p className="product_name">{itm?.product_name}</p>

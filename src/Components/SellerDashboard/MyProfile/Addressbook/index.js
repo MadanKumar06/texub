@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { useStateValue } from "../../../../store/state";
 import axios from "axios";
 import Constant from "../../../../Constant";
+import { SessionExpiredLogout } from "../../../../utilities";
 
 // import axios from "axios";
 
@@ -65,9 +66,12 @@ const Index = () => {
         type: "SET_IS_LOADING",
         value: false,
       });
+      if (e.response.status === 401) {
+        SessionExpiredLogout();
+      }
     }
   }, [isAddress]);
-  console.log(billingAdderess)
+  console.log(billingAdderess);
   return (
     <>
       {isAddress && (
@@ -108,7 +112,8 @@ const Index = () => {
                     {billingAdderess?.[0]?.city}
                   </li>
                   <li className="address_block">
-                    {billingAdderess?.[0]?.state} {"-"} {billingAdderess?.[0]?.postcode}
+                    {billingAdderess?.[0]?.state} {"-"}{" "}
+                    {billingAdderess?.[0]?.postcode}
                   </li>
                   <li className="address_block">
                     {billingAdderess?.[0]?.country_code}
@@ -157,7 +162,8 @@ const Index = () => {
                     {shippingAddress?.[0]?.city}
                   </li>
                   <li className="address_block">
-                    {shippingAddress?.[0]?.state} {"-"} {billingAdderess?.[0]?.postcode}
+                    {shippingAddress?.[0]?.state} {"-"}{" "}
+                    {billingAdderess?.[0]?.postcode}
                   </li>
                   <li className="address_block">
                     {shippingAddress?.[0]?.country_code}

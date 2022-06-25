@@ -7,8 +7,7 @@ import axios from "axios";
 import "./styles.scss";
 import MUITable from "../../../Components/Common/MUITable";
 import Constant from "../../../Constant";
-import { getAdminToken } from "../../../utilities";
-import NodataFound from "../../../Assets/CommonImage/NodataFound.webp.png";
+import { getAdminToken, SessionExpiredLogout } from "../../../utilities";
 
 import { useStateValue } from "../../../store/state";
 import Wishlist from "../../PDPpopUp/Wishlist";
@@ -113,12 +112,16 @@ const MyCartTable = ({ cartDataList, deleteCartData, setrowselect }) => {
           type: "SET_IS_LOADING",
           value: false,
         });
-        swal.fire({
-          text: `${error?.response?.data?.message || error.message}`,
-          icon: "error",
-          showConfirmButton: false,
-          timer: 3000,
-        });
+        if (error.response.status === 401) {
+          SessionExpiredLogout();
+        } else {
+          swal.fire({
+            text: `${error?.response?.data?.message || error.message}`,
+            icon: "error",
+            showConfirmButton: false,
+            timer: 3000,
+          });
+        }
       });
   };
   const handleChangeValueTable = (event, index) => {
@@ -159,6 +162,7 @@ const MyCartTable = ({ cartDataList, deleteCartData, setrowselect }) => {
         todays_deal: 0,
         price_drop: 0,
         new_product: 0,
+        page: 0,
         details: event?.product_id,
       },
     };
@@ -200,12 +204,16 @@ const MyCartTable = ({ cartDataList, deleteCartData, setrowselect }) => {
           type: "SET_IS_LOADING",
           value: false,
         });
-        swal.fire({
-          text: `${error?.response?.data?.message || error.message}`,
-          icon: "error",
-          showConfirmButton: false,
-          timer: 3000,
-        });
+        if (error.response.status === 401) {
+          SessionExpiredLogout();
+        } else {
+          swal.fire({
+            text: `${error?.response?.data?.message || error.message}`,
+            icon: "error",
+            showConfirmButton: false,
+            timer: 3000,
+          });
+        }
       });
   };
 

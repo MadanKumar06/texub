@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./styles.scss";
 import { TextField, InputLabel, Checkbox } from "@mui/material";
-import { getAdminToken } from "../../../../../utilities";
+import { getAdminToken, SessionExpiredLogout } from "../../../../../utilities";
 import Autocomplete from "@mui/material/Autocomplete";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import { useStateValue } from "../../../../../store/state";
@@ -17,7 +17,7 @@ const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
 const Index = ({ currentid, setisSub, setisSubusers, setshowButton }) => {
-  const [{geo}, dispatch] = useStateValue();
+  const [{ geo }, dispatch] = useStateValue();
   const [adminToken, setAdminToken] = useState("");
   const [plist, setplist] = useState();
   const [NewSubAccountData, setNewSubAccountData] = useState({
@@ -30,7 +30,8 @@ const Index = ({ currentid, setisSub, setisSubusers, setshowButton }) => {
     mobile: "",
     active: "",
   });
-  const [mobile_number_countryCode, setMobile_number_countryCode] = useState("ae");
+  const [mobile_number_countryCode, setMobile_number_countryCode] =
+    useState("ae");
   useEffect(() => {
     if (geo) {
       let temp = geo?.country_code?.toLowerCase();
@@ -58,7 +59,9 @@ const Index = ({ currentid, setisSub, setisSubusers, setshowButton }) => {
       });
       setplist(permissionlist?.data);
     } catch (e) {
-      console.log(e);
+      if (e.response.status === 401) {
+        SessionExpiredLogout();
+      }
     }
   }, [adminToken]);
 
@@ -101,6 +104,9 @@ const Index = ({ currentid, setisSub, setisSubusers, setshowButton }) => {
         type: "SET_IS_LOADING",
         value: false,
       });
+      if (e.response.status === 401) {
+        SessionExpiredLogout();
+      }
     }
   }, [currentid, plist]);
 
@@ -163,14 +169,15 @@ const Index = ({ currentid, setisSub, setisSubusers, setshowButton }) => {
         mobile: "Please enter mobile.",
       }));
       errorHandle = true;
-    }else if (
+    } else if (
       NewSubAccountData?.mobile?.length < 6 ||
       NewSubAccountData?.mobile?.length > 15
     ) {
       document.getElementById("mobile")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
-        mobile: "Please enter more than 6 and less than 16 digit mobile number.",
+        mobile:
+          "Please enter more than 6 and less than 16 digit mobile number.",
       }));
       errorHandle = true;
     }
@@ -260,7 +267,9 @@ const Index = ({ currentid, setisSub, setisSubusers, setshowButton }) => {
           type: "SET_IS_LOADING",
           value: false,
         });
-        console.log(e);
+        if (e.response.status === 401) {
+          SessionExpiredLogout();
+        }
       }
     }
   };

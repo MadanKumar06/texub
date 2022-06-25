@@ -8,8 +8,7 @@ import Checkout_Texub_logo from "../../Assets/CheckoutPage/checkout_texub_logo.p
 import axios from "axios";
 import Constant from "../../Constant";
 import { useStateValue } from "../../store/state";
-import NodataFound from "../../Assets/CommonImage/NodataFound.webp.png";
-
+import { SessionExpiredLogout } from "../../utilities";
 import Divider from "@mui/material/Divider";
 import { useParams, useNavigate } from "react-router-dom";
 var moment = require("moment");
@@ -48,11 +47,13 @@ function Index() {
         value: false,
       });
     } catch (e) {
-      console.log(e);
       dispatch({
         type: "SET_IS_LOADING",
         value: false,
       });
+      if (e.response.status === 401) {
+        SessionExpiredLogout();
+      }
     }
   }, [qid]);
 
@@ -90,6 +91,9 @@ function Index() {
           type: "SET_IS_LOADING",
           value: false,
         });
+        if (error.response.status === 401) {
+          SessionExpiredLogout();
+        }
       });
   }, [currency]);
 
@@ -458,10 +462,11 @@ function Index() {
             <div className="content">
               <span>{pendingInvoiceList?.bill_to_address1},</span>
               <span>{pendingInvoiceList?.bill_to_address2}</span>
+              <span>{pendingInvoiceList?.bill_to_city}</span>
               <span>
-                {pendingInvoiceList?.bill_to_city}
+                {pendingInvoiceList?.bill_to_state} {"-"}{" "}
+                {pendingInvoiceList?.bill_to_pincode}
               </span>
-              <span>{pendingInvoiceList?.bill_to_state} {"-"} {pendingInvoiceList?.bill_to_pincode}</span>
               <span>{pendingInvoiceList?.bill_to_country}</span>
             </div>
           </div>
@@ -473,13 +478,12 @@ function Index() {
               <span>{pendingInvoiceList?.pick_up_address1},</span>
               <span>{pendingInvoiceList?.pick_up_address2}</span>
 
+              <span>{pendingInvoiceList?.pick_up_city}</span>
               <span>
-                {pendingInvoiceList?.pick_up_city}
+                {pendingInvoiceList?.pick_up_state} {"-"}{" "}
+                {pendingInvoiceList?.pick_up_pincode}
               </span>
-              <span>{pendingInvoiceList?.pick_up_state} {"-"} {pendingInvoiceList?.pick_up_pincode}</span>
-              <span>
-                {pendingInvoiceList?.pick_up_country}
-              </span>
+              <span>{pendingInvoiceList?.pick_up_country}</span>
             </div>
           </div>
         </div>

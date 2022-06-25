@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./styles.scss";
 import { TextField, InputLabel } from "@mui/material";
-import { isPasswordValid, isEmailValid } from "../../../../utilities";
+import {
+  isPasswordValid,
+  isEmailValid,
+  SessionExpiredLogout,
+} from "../../../../utilities";
 // import MuiPhoneNumber from "material-ui-phone-number";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import { Link } from "react-router-dom";
@@ -64,7 +68,6 @@ const Index = ({
       ...prevState,
       [event.target.name]: event.target.value,
     }));
-    handleSwitchCase([event.target.name], event.target.value);
   };
   const handleMobileChangeInput = (event) => {
     setAccountInfoData((prevState) => ({
@@ -73,83 +76,7 @@ const Index = ({
     }));
     setInputValidation("");
   };
-  const handleSwitchCase = (fieldName, value) => {
-    switch (fieldName[0]) {
-      case "first_name":
-        if (!value) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            first_name: "Please enter the first name.",
-          }));
-        }
-        break;
-      case "last_name":
-        if (!value) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            last_name: "Please enter your last name.",
-          }));
-        }
-        break;
-      case "mobile_number":
-        if (!value) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            mobile_number: "Please enter your mobile number.",
-          }));
-        } else if (AccountInfoData?.mobile_number?.length > 10) {
-          document.getElementById("mobile_number")?.focus();
-          setInputValidation((prevState) => ({
-            ...prevState,
-            mobile_number: "Please enter 10 digit mobile number.",
-          }));
-        }
-        break;
-      case "email_address":
-        if (!value) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            email_address: "Please enter your e-mail",
-          }));
-        } else if (!isEmailValid(value)) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            email_address: "Please enter the valid e-mail.",
-          }));
-        }
-        break;
-      case "new_password":
-        if (!value) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            new_password: "Please enter your new password",
-          }));
-        } else if (!isPasswordValid(value)) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            new_password:
-              "Minimum 8 characters and 1 Alphabet, 1 Number & 1 Special Character.",
-          }));
-        }
-        break;
-      case "new_confrim_password":
-        if (!value) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            new_confrim_password: "Please enter confirm new password",
-          }));
-        } else if (!(AccountInfoData?.new_password === value)) {
-          setInputValidation((prevState) => ({
-            ...prevState,
-            new_confrim_password:
-              "Password and confirm password does not match",
-          }));
-        }
-        break;
-      default:
-        break;
-    }
-  };
+
   const handleClickValidation = (event) => {
     var errorHandle = false;
     if (!AccountInfoData?.first_name) {
@@ -198,16 +125,22 @@ const Index = ({
         new_password: "Please enter the new password.",
       }));
       errorHandle = true;
+    } else if (AccountInfoData?.new_password?.length < 6) {
+      document.getElementById("new_password")?.focus();
+      setInputValidation((prevState) => ({
+        ...prevState,
+        new_password: "Please enter minimum 6 characters.",
+      }));
+      errorHandle = true;
     }
     if (!AccountInfoData?.new_confrim_password) {
       document.getElementById("new_confrim_password")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
-        new_confrim_password: "Please enter the new confirm password.",
+        new_confrim_password: "Please enter the confirm new password.",
       }));
       errorHandle = true;
-    }
-    if (
+    } else if (
       AccountInfoData?.new_password !== AccountInfoData?.new_confrim_password
     ) {
       document.getElementById("new_confrim_password")?.focus();
@@ -282,6 +215,9 @@ const Index = ({
         type: "SET_IS_LOADING",
         value: false,
       });
+      if (e.response.status === 401) {
+        SessionExpiredLogout();
+      }
     }
   };
   return (

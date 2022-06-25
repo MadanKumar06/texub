@@ -9,6 +9,7 @@ import axios from "axios";
 import swal from "sweetalert2";
 import moment from "moment";
 import { useStateValue } from "../../../../store/state";
+import { SessionExpiredLogout } from "../../../../utilities";
 
 const Index = ({
   closePOPup,
@@ -79,11 +80,13 @@ const Index = ({
       }
       closePOPup(false);
     } catch (e) {
-      console.log(e);
       dispatch({
         type: "SET_IS_LOADING",
         value: false,
       });
+      if (e.response.status === 401) {
+        SessionExpiredLogout();
+      }
     }
   };
   useEffect(() => {

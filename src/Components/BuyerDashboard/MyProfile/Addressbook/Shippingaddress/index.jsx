@@ -3,18 +3,16 @@ import TextField from "@mui/material/TextField";
 import "./styles.scss";
 import { Checkbox, FormControlLabel, Button } from "@mui/material";
 import Autocomplete from "@mui/material/Autocomplete";
-import { useParams } from "react-router-dom";
 import { ArrowBackIosNew } from "@mui/icons-material";
-import { Link } from "react-router-dom";
 import { useStateValue } from "../../../../../store/state";
 import axios from "axios";
 import Constant from "../../../../../Constant";
 import swal from "sweetalert2";
 
-import { getAdminToken } from "../../../../../utilities";
+import { getAdminToken, SessionExpiredLogout } from "../../../../../utilities";
 
 const Index = ({ address, setisAddress, setisShipping }) => {
-  const [{ geo, customnostore }, dispatch] = useStateValue();
+  const [{}, dispatch] = useStateValue();
   const [countryList, setCountryList] = useState([]);
   const [shippingAddress, setshippingAddress] = useState({
     city: "",
@@ -162,6 +160,9 @@ const Index = ({ address, setisAddress, setisShipping }) => {
         type: "SET_IS_LOADING",
         value: false,
       });
+      if (e.response.status === 401) {
+        SessionExpiredLogout();
+      }
     }
   };
 

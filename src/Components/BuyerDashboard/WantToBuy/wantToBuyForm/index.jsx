@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./styles.scss";
 
-import { TextField, InputLabel, Autocomplete, Button, Checkbox } from "@mui/material";
+import {
+  TextField,
+  InputLabel,
+  Autocomplete,
+  Button,
+  Checkbox,
+} from "@mui/material";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import axios from "axios";
 import Constant from "../../../../Constant";
@@ -11,13 +17,13 @@ import AvailablePopup from "../AvailablePopup";
 import ThankyouPage from "../ThankyouPage";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
+import { SessionExpiredLogout } from "../../../../utilities";
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
 const WantToBuy = ({ setisVieworders, setisOrders }) => {
-  const [{ }, dispatch] = useStateValue();
-  const [plist, setplist] = useState();
+  const [{}, dispatch] = useStateValue();
   const [wantTobuyData, setWantToBuyData] = useState({
     part_number: "",
     model_name_number: "",
@@ -25,11 +31,8 @@ const WantToBuy = ({ setisVieworders, setisOrders }) => {
     quantity: "",
     notes: "",
     hub: [],
-    // hub: null,
     main_category: null,
   });
-  console.log("wantTobuyData")
-  console.log(wantTobuyData?.hub)
   const [dropdownListFromApi, setDropdownListFromApi] = useState({
     mainCategoryList: [],
     dropDownList: [],
@@ -113,7 +116,11 @@ const WantToBuy = ({ setisVieworders, setisOrders }) => {
             mainCategoryList: res?.data,
           }));
         })
-        .catch((err) => { });
+        .catch((err) => {
+          if (err.response.status === 401) {
+            SessionExpiredLogout();
+          }
+        });
     };
     fetchMainCategoryData();
   }, []);
@@ -135,7 +142,7 @@ const WantToBuy = ({ setisVieworders, setisOrders }) => {
 
   //API to Register
   const FinalWantToBuy = () => {
-    let temp = wantTobuyData?.hub?.map((item)=> item?.hub_id)
+    let temp = wantTobuyData?.hub?.map((item) => item?.hub_id);
     let storedata = JSON.parse(localStorage.getItem("storedata"));
     dispatch({
       type: "SET_IS_LOADING",
@@ -191,12 +198,16 @@ const WantToBuy = ({ setisVieworders, setisOrders }) => {
           type: "SET_IS_LOADING",
           value: false,
         });
-        swal.fire({
-          text: `${error?.response?.data?.message || error.message}`,
-          icon: "error",
-          showConfirmButton: false,
-          timer: 3000,
-        });
+        if (error.response.status === 401) {
+          SessionExpiredLogout();
+        } else {
+          swal.fire({
+            text: `${error?.response?.data?.message || error.message}`,
+            icon: "error",
+            showConfirmButton: false,
+            timer: 3000,
+          });
+        }
       });
   };
 
@@ -348,16 +359,16 @@ const WantToBuy = ({ setisVieworders, setisOrders }) => {
                 id="controllable-states-demo"
                 className="inputfield-box auto_complete_input"
                 disableCloseOnSelect
-                options={dropdownListFromApi?.dropDownList
-                  ? dropdownListFromApi?.dropDownList
-                  : []}
-                multiple
-                value={
-                  wantTobuyData?.hub
-                    ? wantTobuyData?.hub
-                    : ""
+                options={
+                  dropdownListFromApi?.dropDownList
+                    ? dropdownListFromApi?.dropDownList
+                    : []
                 }
-                getOptionLabel={(option) => (option.hub_name ? option.hub_name : "")}
+                multiple
+                value={wantTobuyData?.hub ? wantTobuyData?.hub : ""}
+                getOptionLabel={(option) =>
+                  option.hub_name ? option.hub_name : ""
+                }
                 isOptionEqualToValue={(option, value) =>
                   option.hub_name === value.hub_name
                 }

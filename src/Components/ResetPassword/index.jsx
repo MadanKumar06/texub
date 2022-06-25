@@ -3,7 +3,7 @@ import "./styles.scss";
 import axios from "axios";
 import { Clear } from "@mui/icons-material";
 import Gratitude from "./Gratitude";
-import { isPasswordValid, getAdminToken } from "../../utilities";
+import { getAdminToken, SessionExpiredLogout } from "../../utilities";
 import { InputLabel, TextField, Box, Button } from "@mui/material";
 import { useParams } from "react-router-dom";
 
@@ -47,12 +47,11 @@ const Index = () => {
         new_password: "Please enter the new password.",
       }));
       errorHandle = true;
-    } else if (!isPasswordValid(resetData?.new_password)) {
+    } else if (resetData?.new_password?.length < 6) {
       document.getElementById("new_password")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
-        new_password:
-          "Minimum 8 characters at least 1 Alphabet, 1 Number and 1 Special Character.",
+        new_password: "Please enter minimum 6 characters.",
       }));
       errorHandle = true;
     }
@@ -122,12 +121,16 @@ const Index = () => {
           type: "SET_IS_LOADING",
           value: false,
         });
-        swal.fire({
-          text: `${error?.data?.message}`,
-          icon: "error",
-          showConfirmButton: false,
-          timer: 3000,
-        });
+        if (error.response.status === 401) {
+          SessionExpiredLogout();
+        } else {
+          swal.fire({
+            text: `${error?.data?.message}`,
+            icon: "error",
+            showConfirmButton: false,
+            timer: 3000,
+          });
+        }
       });
   };
   return (

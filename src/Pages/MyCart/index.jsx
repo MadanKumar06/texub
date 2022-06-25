@@ -5,7 +5,7 @@ import MyCartTable from "./MyCartTable";
 import { Link, useNavigate } from "react-router-dom";
 import shopping_image from "../../Assets/MyCart/Group 956.png";
 import { useStateValue } from "../../store/state";
-import { getAdminToken } from "../../utilities";
+import { getAdminToken, SessionExpiredLogout } from "../../utilities";
 import AllertMessage from "../../Components/PendingInvoiceAlertPopup";
 import axios from "axios";
 import Constant from "../../Constant";
@@ -86,7 +86,9 @@ const Mycart = () => {
         type: "SET_IS_LOADING",
         value: false,
       });
-      console.log(e);
+      if (e.response.status === 401) {
+        SessionExpiredLogout();
+      }
     }
   };
   const navigate = useNavigate();
@@ -160,6 +162,9 @@ const Mycart = () => {
             type: "SET_IS_LOADING",
             value: false,
           });
+          if (e.response.status === 401) {
+            SessionExpiredLogout();
+          }
         }
       });
       await Promise.all(requests).then((results) => {
@@ -211,7 +216,9 @@ const Mycart = () => {
           type: "SET_IS_LOADING",
           value: false,
         });
-        console.log(e);
+        if (e.response.status === 401) {
+          SessionExpiredLogout();
+        }
       }
     }
   };
@@ -290,11 +297,13 @@ const Mycart = () => {
         });
       }
     } catch (e) {
-      console.log(e);
       dispatch({
         type: "SET_IS_LOADING",
         value: false,
       });
+      if (e.response.status === 401) {
+        SessionExpiredLogout();
+      }
     }
   };
   const approvecart = async () => {
@@ -339,11 +348,13 @@ const Mycart = () => {
         });
       }
     } catch (e) {
-      console.log(e);
       dispatch({
         type: "SET_IS_LOADING",
         value: false,
       });
+      if (e.response.status === 401) {
+        SessionExpiredLogout();
+      }
     }
   };
   const handleOnNavigate = () => {

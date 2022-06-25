@@ -28,7 +28,11 @@ import Checkout_Texub_logo from "../../Assets/CheckoutPage/checkout_texub_logo.p
 import Constant from "../../Constant";
 import axios from "axios";
 import moment from "moment";
-import { isEmailValid, getAdminToken } from "../../utilities";
+import {
+  isEmailValid,
+  getAdminToken,
+  SessionExpiredLogout,
+} from "../../utilities";
 
 const Checkout = () => {
   const [shipping_method, setShipping_method] = useState("texub_shipping");
@@ -427,7 +431,9 @@ const Checkout = () => {
         type: "SET_IS_LOADING",
         value: false,
       });
-      console.log(e);
+      if (e.response.status === 401) {
+        SessionExpiredLogout();
+      }
     }
 
     if (shipping_method === "texub_shipping" && !selectadd) {
@@ -601,8 +607,10 @@ const Checkout = () => {
         type: "SET_IS_LOADING",
         value: false,
       });
+      if (e.response.status === 401) {
+        SessionExpiredLogout();
+      }
       seteditradio(false);
-      console.log(e);
     }
   };
 
@@ -632,11 +640,13 @@ const Checkout = () => {
         value: false,
       });
     } catch (e) {
-      console.log(e);
       dispatch({
         type: "SET_IS_LOADING",
         value: false,
       });
+      if (e.response.status === 401) {
+        SessionExpiredLogout();
+      }
     }
   }, [quoteid, localgt]);
   const [selectadd, setselectadd] = useState();
@@ -755,11 +765,13 @@ const Checkout = () => {
       });
       window.location.reload();
     } catch (e) {
-      console.log(e);
       dispatch({
         type: "SET_IS_LOADING",
         value: false,
       });
+      if (e.response.status === 401) {
+        SessionExpiredLogout();
+      }
     }
   };
   const navigate = useNavigate();

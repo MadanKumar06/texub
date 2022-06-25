@@ -7,7 +7,11 @@ import axios from "axios";
 import swal from "sweetalert2";
 import Constant from "../../../../Constant";
 import { useStateValue } from "../../../../store/state";
-import { isOtherBrands, isOnlySpecialCharacters } from "../../../../utilities";
+import {
+  isOtherBrands,
+  isOnlySpecialCharacters,
+  SessionExpiredLogout,
+} from "../../../../utilities";
 
 function RegisterProduct() {
   const [{ geo, customnostore }, dispatch] = useStateValue();
@@ -351,12 +355,16 @@ function RegisterProduct() {
           type: "SET_IS_LOADING",
           value: false,
         });
-        swal.fire({
-          text: `${error?.response?.data?.message || error.message}`,
-          icon: "error",
-          showConfirmButton: false,
-          timer: 3000,
-        });
+        if (error.response.status === 401) {
+          SessionExpiredLogout();
+        } else {
+          swal.fire({
+            text: `${error?.response?.data?.message || error.message}`,
+            icon: "error",
+            showConfirmButton: false,
+            timer: 3000,
+          });
+        }
       });
   };
 
@@ -637,7 +645,7 @@ function RegisterProduct() {
             <TextField
               id="vendor_manufacturer_part_number"
               name="vendor_manufacturer_part_number"
-              placeholder="DE-B-0089"     
+              placeholder="DE-B-0089"
               className="inputfield-box"
               autoComplete="off"
               fullWidth

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./styles.scss";
 import { TextField, InputLabel, Checkbox } from "@mui/material";
-import { getAdminToken } from "../../../../../utilities";
+import { getAdminToken, SessionExpiredLogout } from "../../../../../utilities";
 import Autocomplete from "@mui/material/Autocomplete";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import { useStateValue } from "../../../../../store/state";
@@ -10,14 +10,20 @@ import Constant from "../../../../../Constant";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import swal from "sweetalert2";
-import TextareaAutosize from '@mui/material/TextareaAutosize';
+import TextareaAutosize from "@mui/material/TextareaAutosize";
 import PhoneInput from "react-phone-input-2";
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
-const Index = ({ currentid, setisSub, setisSubusers, setshowButton, setSearchbar }) => {
-  const [{geo}, dispatch] = useStateValue();
+const Index = ({
+  currentid,
+  setisSub,
+  setisSubusers,
+  setshowButton,
+  setSearchbar,
+}) => {
+  const [{ geo }, dispatch] = useStateValue();
   const [adminToken, setAdminToken] = useState("");
   const [plist, setplist] = useState();
   const [NewSubAccountData, setNewSubAccountData] = useState({
@@ -30,9 +36,10 @@ const Index = ({ currentid, setisSub, setisSubusers, setshowButton, setSearchbar
     mobile: "",
     active: "",
   });
-  console.log("NewSubAccountData buyer")
-  console.log(NewSubAccountData)
-  const [mobile_number_countryCode, setMobile_number_countryCode] = useState("ae");
+  console.log("NewSubAccountData buyer");
+  console.log(NewSubAccountData);
+  const [mobile_number_countryCode, setMobile_number_countryCode] =
+    useState("ae");
   useEffect(() => {
     if (geo) {
       let temp = geo?.country_code?.toLowerCase();
@@ -60,7 +67,9 @@ const Index = ({ currentid, setisSub, setisSubusers, setshowButton, setSearchbar
       });
       setplist(permissionlist?.data);
     } catch (e) {
-      console.log(e);
+      if (e.response.status === 401) {
+        SessionExpiredLogout();
+      }
     }
   }, [adminToken]);
 
@@ -98,11 +107,13 @@ const Index = ({ currentid, setisSub, setisSubusers, setshowButton, setSearchbar
         value: false,
       });
     } catch (e) {
-      console.log(e);
       dispatch({
         type: "SET_IS_LOADING",
         value: false,
       });
+      if (e.response.status === 401) {
+        SessionExpiredLogout();
+      }
     }
   }, [currentid, plist]);
 
@@ -165,14 +176,15 @@ const Index = ({ currentid, setisSub, setisSubusers, setshowButton, setSearchbar
         mobile: "Please enter mobile.",
       }));
       errorHandle = true;
-    }else if (
+    } else if (
       NewSubAccountData?.mobile?.length < 6 ||
       NewSubAccountData?.mobile?.length > 15
     ) {
       document.getElementById("mobile")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
-        mobile: "Please enter more than 6 and less than 16 digit mobile number.",
+        mobile:
+          "Please enter more than 6 and less than 16 digit mobile number.",
       }));
       errorHandle = true;
     }
@@ -254,7 +266,9 @@ const Index = ({ currentid, setisSub, setisSubusers, setshowButton, setSearchbar
           type: "SET_IS_LOADING",
           value: false,
         });
-        console.log(e);
+        if (e.response.status === 401) {
+          SessionExpiredLogout();
+        }
       }
     }
   };
@@ -385,14 +399,20 @@ const Index = ({ currentid, setisSub, setisSubusers, setshowButton, setSearchbar
                 : ""
             }
             getOptionLabel={(option) => (option.label ? option.label : "")}
-            isOptionEqualToValue={(option, value) => option.value === value.value}
+            isOptionEqualToValue={(option, value) =>
+              option.value === value.value
+            }
             disableCloseOnSelect
             renderOption={(props, option, { selected }) => (
-              <li {...props} style={{padding:"0px"}}>
+              <li {...props} style={{ padding: "0px" }}>
                 <Checkbox
                   icon={icon}
                   checkedIcon={checkedIcon}
-                  style={{ marginRight: 8,paddingTop:"5px",paddingBottom:"5px" }}
+                  style={{
+                    marginRight: 8,
+                    paddingTop: "5px",
+                    paddingBottom: "5px",
+                  }}
                   checked={selected}
                 />
                 {option.label}
@@ -403,10 +423,10 @@ const Index = ({ currentid, setisSub, setisSubusers, setshowButton, setSearchbar
                 ...prevState,
                 allowed_permissions: newValue,
               }));
-              setInputValidation((prevState)=>({
-              ...prevState,
-              allowed_permissions: "",
-            }))
+              setInputValidation((prevState) => ({
+                ...prevState,
+                allowed_permissions: "",
+              }));
             }}
             renderInput={(params) => (
               <TextField
@@ -435,7 +455,7 @@ const Index = ({ currentid, setisSub, setisSubusers, setshowButton, setSearchbar
             id="your_message"
             multiline
             style={{ minHeight: 60 }}
-           value={NewSubAccountData?.forbidden}
+            value={NewSubAccountData?.forbidden}
             onChange={(e) =>
               setNewSubAccountData((prevState) => ({
                 ...prevState,
@@ -503,10 +523,10 @@ const Index = ({ currentid, setisSub, setisSubusers, setshowButton, setSearchbar
                 ...prevState,
                 active: newValue,
               }));
-              setInputValidation((prevState)=>({
-              ...prevState,
-              active: "",
-            }));
+              setInputValidation((prevState) => ({
+                ...prevState,
+                active: "",
+              }));
             }}
           />
           <InputLabel className="validation_error">

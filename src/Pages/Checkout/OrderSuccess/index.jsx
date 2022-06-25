@@ -17,6 +17,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useStateValue } from "../../../store/state";
 import swal from "sweetalert2";
 import { useEffect } from "react";
+import { SessionExpiredLogout } from "../../../utilities";
 
 const Index = () => {
   let userDetails = JSON.parse(localStorage.getItem("userdata"));
@@ -104,22 +105,24 @@ const Index = () => {
         }/buyerdashboard/myorder`
       );
     } catch (e) {
-      console.log(e);
-    }
-  };
-  const [clearIconAlignment,setclearIconAlignment] = useState("")
-  useEffect(()=>{
-    if(window.innerWidth<=650){
-      setclearIconAlignment("25px")
-    }else if(window.innerWidth>=650){
-      setclearIconAlignment("80px")
-      if(transactionvalidation?.remarks?.length===0){
-        setclearIconAlignment("80px")
-      }else if(transactionvalidation?.remarks?.length>0){
-        setclearIconAlignment("115px")
+      if (e.response.status === 401) {
+        SessionExpiredLogout();
       }
     }
-  },[transactionvalidation])
+  };
+  const [clearIconAlignment, setclearIconAlignment] = useState("");
+  useEffect(() => {
+    if (window.innerWidth <= 650) {
+      setclearIconAlignment("25px");
+    } else if (window.innerWidth >= 650) {
+      setclearIconAlignment("80px");
+      if (transactionvalidation?.remarks?.length === 0) {
+        setclearIconAlignment("80px");
+      } else if (transactionvalidation?.remarks?.length > 0) {
+        setclearIconAlignment("115px");
+      }
+    }
+  }, [transactionvalidation]);
   return (
     <div className="ordersuccess_dashboard">
       <div className="dashboard__top">
@@ -165,8 +168,8 @@ const Index = () => {
                     name="reference_number"
                     variant="outlined"
                     value={transactiondetails?.referencenumber}
-                    onChange={(e) =>{
-                      handleTransaction(e)
+                    onChange={(e) => {
+                      handleTransaction(e);
                       settransactionvalidation((prevstate) => ({
                         ...prevstate,
                         reference_number: "",
@@ -189,8 +192,8 @@ const Index = () => {
                     type="number"
                     variant="outlined"
                     value={transactiondetails?.payment_amount}
-                    onChange={(e) =>{
-                      handleTransaction(e)
+                    onChange={(e) => {
+                      handleTransaction(e);
                       settransactionvalidation((prevstate) => ({
                         ...prevstate,
                         payment_amount: "",
@@ -244,7 +247,7 @@ const Index = () => {
                     {transactiondetails?.transaction_date_time ? (
                       <Clear
                         className="clear_datepicker"
-                        style={{bottom:clearIconAlignment}}
+                        style={{ bottom: clearIconAlignment }}
                         // style={transactionvalidation?.remarks?.length?clearAlign:DefaultClearAlign}
                         onClick={() => {
                           settransactiondetails((prevState) => ({
@@ -272,8 +275,8 @@ const Index = () => {
                     className="textArea"
                     style={{ height: 100 }}
                     value={transactiondetails?.remarks}
-                    onChange={(e) =>{
-                      handleTransaction(e)
+                    onChange={(e) => {
+                      handleTransaction(e);
                       settransactionvalidation((prevstate) => ({
                         ...prevstate,
                         remarks: "",

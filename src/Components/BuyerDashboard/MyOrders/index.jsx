@@ -12,8 +12,8 @@ import Constant from "../../../Constant";
 import moment from "moment";
 import { IconButton, InputBase, Paper } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import NodataFound from "../../../Assets/CommonImage/NodataFound.webp.png";
 import { useNavigate, Link } from "react-router-dom";
+import { SessionExpiredLogout } from "../../../utilities";
 
 function Index() {
   const [tableData, setTableData] = useState([]);
@@ -130,6 +130,7 @@ function Index() {
   const options = {
     filter: false,
     filterType: "dropdown",
+     pagination: false,
     responsive: "vertical",
     selectableRows: "none",
     download: false,
@@ -174,11 +175,13 @@ function Index() {
         value: false,
       });
     } catch (e) {
-      console.log(e);
       dispatch({
         type: "SET_IS_LOADING",
         value: false,
       });
+      if (e.response.status === 401) {
+        SessionExpiredLogout();
+      }
     }
   }, []);
 

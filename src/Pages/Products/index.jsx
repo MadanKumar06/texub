@@ -9,6 +9,7 @@ import Productlists from "../../Components/ProductPagePLP/Productlists";
 import Productstable from "../../Components/ProductPagePLP/Producttable";
 import Constant from "../../Constant";
 import { useStateValue } from "../../store/state";
+import { SessionExpiredLogout } from "../../utilities";
 import { Helmet } from "react-helmet-async";
 import todays_deal_active from "../../Assets/BasicNeeded/PLPIcons/today_deal.png";
 import price_drop_inactive from "../../Assets/BasicNeeded/PLPIcons/price_drop_inactive.png";
@@ -42,6 +43,7 @@ export const Products = () => {
     useState(true);
   let customer_id = JSON.parse(localStorage.getItem("userdata"));
   const [userfilter, setuserfilter] = useState();
+  const [apicallback, setApicallback] = useState(0);
 
   useEffect(() => {
     if (plp_categories && currency?.currency_id) {
@@ -120,6 +122,7 @@ export const Products = () => {
                 ? productFetchApi?.just_launch
                 : 0,
             details: 0,
+            page: apicallback,
           },
         };
         axios
@@ -137,12 +140,15 @@ export const Products = () => {
               value: false,
             });
           })
-          .catch((err) =>
+          .catch((err) => {
             dispatch({
               type: "SET_IS_LOADING",
               value: false,
-            })
-          );
+            });
+            if (err.response.status === 401) {
+              SessionExpiredLogout();
+            }
+          });
       };
       fetchProductData();
     }
@@ -273,6 +279,11 @@ export const Products = () => {
           setProductFetchApi={setProductFetchApi}
           productFetchApi={productFetchApi}
           productData={productData}
+          apicallback={apicallback}
+          setApicallback={setApicallback}
+          userfilter={userfilter}
+          setApplyFilter={setApplyFilter}
+          applyFilter={applyFilter}
         />
         {JSON.parse(localStorage.getItem("userdata"))?.group_id === 5 &&
           !permission && (

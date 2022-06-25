@@ -12,29 +12,37 @@ import logo from "../../Assets/Homepage Assets/Group.png";
 import swal from "sweetalert2";
 import axios from "axios";
 import Constant from "../../Constant";
+import { SessionExpiredLogout } from "../../utilities";
 
 const Header = ({ classes }) => {
   const [{ currency, gt, geo, customnostore, generalTrigger }, dispatch] =
     useStateValue();
   const navigate = useNavigate();
   const location = useLocation();
-  const [dropDownValues,setdropDownValues] = useState({
+  const [dropDownValues, setdropDownValues] = useState({
     hub: 0,
     conditions: 0,
-    eta: 0
-  })
+    eta: 0,
+  });
   useEffect(() => {
     const getCurrentURL = window.location.href;
-    const getlastSegmentOfUrl = getCurrentURL.substring(getCurrentURL.lastIndexOf("/") + 1);
-    if(getlastSegmentOfUrl!=="products"){
-      window.localStorage.setItem("filterProductsDropdown",JSON.stringify(dropDownValues))
+    const getlastSegmentOfUrl = getCurrentURL.substring(
+      getCurrentURL.lastIndexOf("/") + 1
+    );
+    if (getlastSegmentOfUrl !== "products") {
+      window.localStorage.setItem(
+        "filterProductsDropdown",
+        JSON.stringify(dropDownValues)
+      );
     }
-    if(!getCurrentURL.includes("sellerprofile")){
-      window.localStorage.setItem("filterProductsDropdown_seller_profile",JSON.stringify(dropDownValues))
+    if (!getCurrentURL.includes("sellerprofile")) {
+      window.localStorage.setItem(
+        "filterProductsDropdown_seller_profile",
+        JSON.stringify(dropDownValues)
+      );
     }
   }, [location]);
 
-  
   let isSignedIn = JSON.parse(localStorage.getItem("userdata"));
 
   const user = JSON.parse(localStorage.getItem("userdata"));
@@ -71,19 +79,8 @@ const Header = ({ classes }) => {
           value: false,
         });
       } catch (e) {
-        console.log(e.message);
-        if (e.message === "Request failed with status code 401") {
-          swal.fire({
-            text: "Due to Session expiry, Logging out",
-            icon: "success",
-            showConfirmButton: false,
-            timer: 4000,
-          });
-          localStorage.clear();
-          setTimeout(() => {
-            navigate("/");
-            window.location.reload();
-          }, 2000);
+        if (e.response.status === 401) {
+          SessionExpiredLogout();
         }
         dispatch({
           type: "SET_IS_SIMPLE_LOADING",
@@ -115,7 +112,9 @@ const Header = ({ classes }) => {
             data: wishlistdata?.data,
           });
         } catch (e) {
-          console.log(e);
+          if (e.response.status === 401) {
+            SessionExpiredLogout();
+          }
         }
       }
       fetchData();
