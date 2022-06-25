@@ -7,27 +7,28 @@ import { ArrowBackIosNew, Search } from "@mui/icons-material";
 import axios from "axios";
 import Constant from "../../../Constant";
 import { useStateValue } from "../../../store/state";
-import NodataFound from "../../../Assets/CommonImage/NodataFound.webp.png";
-
 import { TextField, InputAdornment, IconButton } from "@mui/material";
+import { SessionExpiredLogout } from "../../../utilities";
 
 const Index = ({ searchdata, searchupdate }) => {
   const [tableData, setTableData] = useState([]);
   const [{ geo, customnostore }, dispatch] = useStateValue();
   const [apiTableData, setApiTableData] = useState([]);
-  const [filteredata, setfiltereddata] = useState([])
-  const [isNotMatched,setisNotMatched] = useState(false);
+  const [filteredata, setfiltereddata] = useState([]);
+  const [isNotMatched, setisNotMatched] = useState(false);
 
   useEffect(() => {
-    if(apiTableData?.length === 0) return
-    if(searchdata === '') {
-      setfiltereddata(apiTableData)
+    if (apiTableData?.length === 0) return;
+    if (searchdata === "") {
+      setfiltereddata(apiTableData);
     } else {
-      let temp = apiTableData?.filter(td => td?.product_name?.toLowerCase()?.includes(searchdata?.toLowerCase()))
-      setfiltereddata(temp)
+      let temp = apiTableData?.filter((td) =>
+        td?.product_name?.toLowerCase()?.includes(searchdata?.toLowerCase())
+      );
+      setfiltereddata(temp);
     }
-    setisNotMatched(!isNotMatched)
-  }, [searchupdate, apiTableData])
+    setisNotMatched(!isNotMatched);
+  }, [searchupdate, apiTableData]);
 
   const PaginateDataSplit = (event) => {
     if (filteredata?.length === 0) return setTableData([]);
@@ -67,37 +68,40 @@ const Index = ({ searchdata, searchupdate }) => {
         });
         setApiTableData(tabledata?.data);
       } catch (e) {
-        console.log(e);
         dispatch({
           type: "SET_IS_LOADING",
           value: false,
         });
+        if (e.response.status === 401) {
+          SessionExpiredLogout();
+        }
       }
     };
     fetchTableData();
   }, []);
 
-  function getOrdinalSuffix(value) {      
-    if(/^[2-3]?1$/.test(value)){
-      return 'st';
-    } else if(/^[2-3]?2$/.test(value)){
-      return 'nd';
-    } else if(/^[2-3]?3$/.test(value)){
-      return 'rd';
+  function getOrdinalSuffix(value) {
+    if (/^[2-3]?1$/.test(value)) {
+      return "st";
+    } else if (/^[2-3]?2$/.test(value)) {
+      return "nd";
+    } else if (/^[2-3]?3$/.test(value)) {
+      return "rd";
     } else {
-      return 'th';
-    }      
+      return "th";
+    }
   }
 
-  useEffect(()=>{
-    if(filteredata.length===0){
-      setTableData([])
+  useEffect(() => {
+    if (filteredata.length === 0) {
+      setTableData([]);
     }
-  },[isNotMatched])
+  }, [isNotMatched]);
 
   const options = {
     filter: false,
     filterType: "dropdown",
+    pagination: false,
     responsive: "vertical",
     selectableRows: "none",
     download: false,
@@ -122,11 +126,11 @@ const Index = ({ searchdata, searchupdate }) => {
       name: "product_brand_image",
       label: " ",
       options: {
-        customBodyRender: (value,tablemeta) => {
+        customBodyRender: (value, tablemeta) => {
           let brandName = tablemeta?.rowData[7];
           return (
             <div className="brand_image">
-                {value ? (
+              {value ? (
                 <img
                   src={value}
                   className="brand_img_section"
@@ -156,9 +160,11 @@ const Index = ({ searchdata, searchupdate }) => {
       label: "PRODUCT DESCRIPTION",
       options: {
         customBodyRender: (value) => {
-         return <div className="smart__productname">
-                  <span className="smart_description">{value}</span>
-                </div>
+          return (
+            <div className="smart__productname">
+              <span className="smart_description">{value}</span>
+            </div>
+          );
         },
       },
     },
@@ -184,7 +190,8 @@ const Index = ({ searchdata, searchupdate }) => {
         customBodyRender: (value) => {
           return (
             <div className="smart_rank">
-              {value}{getOrdinalSuffix(value)}
+              {value}
+              {getOrdinalSuffix(value)}
             </div>
           );
         },
@@ -212,7 +219,7 @@ const Index = ({ searchdata, searchupdate }) => {
         display: false,
       },
     },
-     {
+    {
       name: "product_brand_name",
       label: "",
       options: {
@@ -230,13 +237,13 @@ const Index = ({ searchdata, searchupdate }) => {
         className="smart__table"
       />
       {filteredata?.length > 0 ? (
-          <Pagination
-            PaginateData={PaginateDataSplit}
-            DataList={filteredata}
-            PagePerRow={10}
-          />
-        ) : (
-          ""
+        <Pagination
+          PaginateData={PaginateDataSplit}
+          DataList={filteredata}
+          PagePerRow={10}
+        />
+      ) : (
+        ""
       )}
       <div className="smart__back__footer">
         <div className="smart__back__container">

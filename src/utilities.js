@@ -110,3 +110,17 @@ export const GetCategoriesList = async (callback, currency) => {
     callback(home?.data);
   } catch (e) {}
 };
+
+//Session expires (Logout)
+export const SessionExpiredLogout = () => {
+  swal.fire({
+    text: "Due to Session expiry, Logging out",
+    icon: "success",
+    showConfirmButton: false,
+    timer: 4000,
+  });
+  localStorage.clear();
+  setTimeout(() => {
+    window.location.assign("/");
+  }, 2000);
+};

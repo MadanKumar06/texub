@@ -7,7 +7,7 @@ import "./App.scss";
 
 //Header section
 import Header from "./Components/Header";
-import { Home } from "./Pages/Home";
+import Home from "./Pages/Home";
 import { Footer } from "./Components/Footer";
 
 //import Aboutus from "./Pages/Aboutus";

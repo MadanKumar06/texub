@@ -12,9 +12,10 @@ import img from "../../../../Assets/Career/Group 765.png";
 import IMG2 from "../../../../Assets/FAQ/group 6.svg";
 import swal from "sweetalert2";
 import { useStateValue } from "../../../../store/state";
+import { SessionExpiredLogout } from "../../../../utilities";
 
 const FAQ = ({ classes }) => {
-  const [{ geo, customnostore }, dispatch] = useStateValue();
+  const [{}, dispatch] = useStateValue();
   const [description, setdescription] = useState(false);
   const [faqList, setFaqList] = useState({});
   const [toggle, settoggle] = useState(false);
@@ -91,12 +92,16 @@ const FAQ = ({ classes }) => {
           type: "SET_IS_LOADING",
           value: false,
         });
-        swal.fire({
-          text: `${error?.response?.data?.message || error.message}`,
-          icon: "error",
-          showConfirmButton: false,
-          timer: 3000,
-        });
+        if (error.response.status === 401) {
+          SessionExpiredLogout();
+        } else {
+          swal.fire({
+            text: `${error?.response?.data?.message || error.message}`,
+            icon: "error",
+            showConfirmButton: false,
+            timer: 3000,
+          });
+        }
       });
   };
   return (

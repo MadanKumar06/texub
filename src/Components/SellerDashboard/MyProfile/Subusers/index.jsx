@@ -9,14 +9,13 @@ import { Link } from "react-router-dom";
 import { useStateValue } from "../../../../store/state";
 import axios from "axios";
 import Constant from "../../../../Constant";
-import NodataFound from "../../../../Assets/CommonImage/NodataFound.webp.png";
 import Pagination from "../../../Pagination";
 
-import { getAdminToken } from "../../../../utilities";
+import { getAdminToken, SessionExpiredLogout } from "../../../../utilities";
 import moment from "moment";
 
 const Index = ({ setshowButton, searchdata, searchupdate, setSearchbar }) => {
-  const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
+  const [{ geo, customnostore }, dispatch] = useStateValue();
   const [isSub, setisSub] = useState(false);
   const [sublist, setsublist] = useState([]);
   const [direct, setdirect] = useState([]);
@@ -53,6 +52,7 @@ const Index = ({ setshowButton, searchdata, searchupdate, setSearchbar }) => {
   const options = {
     filter: false,
     filterType: "dropdown",
+    pagination: false,
     responsive: "vertical",
     selectableRows: "none",
     download: false,
@@ -104,11 +104,13 @@ const Index = ({ setshowButton, searchdata, searchupdate, setSearchbar }) => {
         value: false,
       });
     } catch (e) {
-      console.log(e);
       dispatch({
         type: "SET_IS_LOADING",
         value: false,
       });
+      if (e.response.status === 401) {
+        SessionExpiredLogout();
+      }
     }
   }, [adminToken, isSub]);
 
@@ -248,11 +250,11 @@ const Index = ({ setshowButton, searchdata, searchupdate, setSearchbar }) => {
     },
     {
       name: "parent_account",
-      label: "Parent Account"
+      label: "Parent Account",
     },
     {
       name: "main_account",
-      label: "Main Account"
+      label: "Main Account",
     },
     {
       name: "entity_id",
@@ -285,7 +287,7 @@ const Index = ({ setshowButton, searchdata, searchupdate, setSearchbar }) => {
               onClick={() => {
                 Newsubacc();
                 setshowButton(false);
-                setSearchbar(false)
+                setSearchbar(false);
               }}
             >
               Add New Sub-Account

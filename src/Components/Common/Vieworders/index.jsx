@@ -5,8 +5,7 @@ import MUITable from "../../Common/MUITable";
 import axios from "axios";
 import Constant from "../../../Constant";
 import { useStateValue } from "../../../store/state";
-import { getAdminToken } from "../../../utilities";
-import NodataFound from "../../../Assets/CommonImage/NodataFound.webp.png";
+import { getAdminToken, SessionExpiredLogout } from "../../../utilities";
 import StepConnector, {
   stepConnectorClasses,
 } from "@mui/material/StepConnector";
@@ -69,6 +68,7 @@ const options = {
   selectableRows: "none",
   download: false,
   print: false,
+  pagination: false,
   sort: false,
   viewColumns: false,
   search: false,
@@ -142,7 +142,7 @@ const columns = [
       display: false,
       customBodyRender: (value, tablemeta) => {
         let description = tablemeta?.rowData[9];
-        return <div>{description}</div>
+        return <div>{description}</div>;
       },
     },
   },
@@ -161,14 +161,17 @@ const columns = [
     options: {
       customBodyRender: (value, tablemeta) => {
         let check_eta_value = tablemeta?.rowData[3];
-         if (check_eta_value ==1) {
-         var days_check ='Day';
+        if (check_eta_value == 1) {
+          var days_check = "Day";
+        } else {
+          var days_check = "Days";
         }
-        else{
-          var days_check ='Days';
-        }
-       
-        return <div className="vieworders_eta">{check_eta_value} {days_check}</div>;
+
+        return (
+          <div className="vieworders_eta">
+            {check_eta_value} {days_check}
+          </div>
+        );
       },
     },
   },
@@ -256,8 +259,10 @@ const Index = ({ viewDetail, setvieworder, handleSearchBar }) => {
   const [{}, dispatch] = useStateValue();
   const history = useLocation();
   const navigate = useNavigate();
-  const [viewDetailOrder,setviewDetailOrder] = useState(history?.state)
-  const [seller_order_status,setseller_order_status] = useState(viewDetailOrder?.[0]?.po_status)
+  const [viewDetailOrder, setviewDetailOrder] = useState(history?.state);
+  const [seller_order_status, setseller_order_status] = useState(
+    viewDetailOrder?.[0]?.po_status
+  );
 
   const [adminToken, setAdminToken] = useState("");
   useEffect(() => {
@@ -352,12 +357,16 @@ const Index = ({ viewDetail, setvieworder, handleSearchBar }) => {
           type: "SET_IS_LOADING",
           value: false,
         });
-        swal.fire({
-          text: `${err?.response?.data?.message}`,
-          icon: "error",
-          showConfirmButton: false,
-          timer: 3000,
-        });
+        if (err.response.status === 401) {
+          SessionExpiredLogout();
+        } else {
+          swal.fire({
+            text: `${err?.response?.data?.message}`,
+            icon: "error",
+            showConfirmButton: false,
+            timer: 3000,
+          });
+        }
       });
   };
 
@@ -404,12 +413,16 @@ const Index = ({ viewDetail, setvieworder, handleSearchBar }) => {
           type: "SET_IS_LOADING",
           value: false,
         });
-        swal.fire({
-          text: `${err?.response?.data?.message}`,
-          icon: "error",
-          showConfirmButton: false,
-          timer: 3000,
-        });
+        if (err.response.status === 401) {
+          SessionExpiredLogout();
+        } else {
+          swal.fire({
+            text: `${err?.response?.data?.message}`,
+            icon: "error",
+            showConfirmButton: false,
+            timer: 3000,
+          });
+        }
       });
   };
 
@@ -453,55 +466,55 @@ const Index = ({ viewDetail, setvieworder, handleSearchBar }) => {
           setActiveStep(temp);
         }
       } catch (e) {
-        console.log(e);
         dispatch({
           type: "SET_IS_LOADING",
           value: false,
         });
+        if (e.response.status === 401) {
+          SessionExpiredLogout();
+        }
       }
     };
     fetchTableData();
   }, [trigger]);
 
-  const [radio_orde_rstatus,setradio_orde_rstatus] = useState("")
-  const [isCancelledOrder,setisCancelledOrder] = useState("")
-  const handleChange = (e)=>{
-    setradio_orde_rstatus(e.target.value)
-  }
-  useEffect(()=>{
-    if(activeStep === 1){
-      if(seller_order_status === "4"){
-        setisCancelledOrder("cancelled")
-      }else{
-        setradio_orde_rstatus("")
-      } 
-    }else if(activeStep === 2){
-      if(seller_order_status === "4"){
-        setisCancelledOrder("cancelled")
-      }else{
-        setradio_orde_rstatus("Confirm")
+  const [radio_orde_rstatus, setradio_orde_rstatus] = useState("");
+  const [isCancelledOrder, setisCancelledOrder] = useState("");
+  const handleChange = (e) => {
+    setradio_orde_rstatus(e.target.value);
+  };
+  useEffect(() => {
+    if (activeStep === 1) {
+      if (seller_order_status === "4") {
+        setisCancelledOrder("cancelled");
+      } else {
+        setradio_orde_rstatus("");
       }
-    }else if(activeStep === 3){
-      if(seller_order_status === "4"){
-        setisCancelledOrder("cancelled")
-      }else{
-        setradio_orde_rstatus("Dispatched")
+    } else if (activeStep === 2) {
+      if (seller_order_status === "4") {
+        setisCancelledOrder("cancelled");
+      } else {
+        setradio_orde_rstatus("Confirm");
       }
-    }else if(activeStep === 4){
-      if(seller_order_status === "4"){
-        setisCancelledOrder("cancelled")
-      }else{
-        setradio_orde_rstatus("Delivered")
+    } else if (activeStep === 3) {
+      if (seller_order_status === "4") {
+        setisCancelledOrder("cancelled");
+      } else {
+        setradio_orde_rstatus("Dispatched");
+      }
+    } else if (activeStep === 4) {
+      if (seller_order_status === "4") {
+        setisCancelledOrder("cancelled");
+      } else {
+        setradio_orde_rstatus("Delivered");
       }
     }
-    
-  },[activeStep,seller_order_status])
+  }, [activeStep, seller_order_status]);
 
-  const isRadioSelected = ()=>{
-    if(activeStep===1 && radio_orde_rstatus===""){
-      setRadioGroup(0)
-      swal
-      .fire({
+  const isRadioSelected = () => {
+    if (activeStep === 1 && radio_orde_rstatus === "") {
+      setRadioGroup(0);
+      swal.fire({
         title: "Important!",
         text: "Please select the confirm",
         icon: "warning",
@@ -509,11 +522,11 @@ const Index = ({ viewDetail, setvieworder, handleSearchBar }) => {
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
         confirmButtonText: "Select",
-      })
-    }else{
-      handleAPICall(radiogroup)
+      });
+    } else {
+      handleAPICall(radiogroup);
     }
-  }
+  };
 
   return (
     <div className="vieworders_main">
@@ -584,12 +597,15 @@ const Index = ({ viewDetail, setvieworder, handleSearchBar }) => {
           >
             <FormControlLabel
               value="Confirm"
-              control={<Radio className="radio-btn-color" 
-              onClick={() => {
-                setRadioGroup(1);
-              }}
-              />}
-              disabled={activeStep !== 1 || isCancelledOrder === "cancelled" }
+              control={
+                <Radio
+                  className="radio-btn-color"
+                  onClick={() => {
+                    setRadioGroup(1);
+                  }}
+                />
+              }
+              disabled={activeStep !== 1 || isCancelledOrder === "cancelled"}
               label={
                 <>
                   <p className="confirm status">Confirm</p>
@@ -602,11 +618,14 @@ const Index = ({ viewDetail, setvieworder, handleSearchBar }) => {
             />
             <FormControlLabel
               value="Dispatched"
-              control={<Radio className="radio-btn-color" 
-              onClick={() => {
-                setRadioGroup(2);
-              }}
-              />}
+              control={
+                <Radio
+                  className="radio-btn-color"
+                  onClick={() => {
+                    setRadioGroup(2);
+                  }}
+                />
+              }
               disabled={activeStep !== 2 || isCancelledOrder === "cancelled"}
               label={
                 <>
@@ -620,11 +639,14 @@ const Index = ({ viewDetail, setvieworder, handleSearchBar }) => {
             />
             <FormControlLabel
               value="Delivered"
-              control={<Radio className="radio-btn-color" 
-              onClick={() => {
-                setRadioGroup(3);
-              }}
-              />}
+              control={
+                <Radio
+                  className="radio-btn-color"
+                  onClick={() => {
+                    setRadioGroup(3);
+                  }}
+                />
+              }
               disabled={activeStep !== 3 || isCancelledOrder === "cancelled"}
               label={
                 <>
@@ -638,8 +660,8 @@ const Index = ({ viewDetail, setvieworder, handleSearchBar }) => {
             />
             <Button
               className="button-text btn-secondary inventory_register"
-              onClick={() =>{
-                isRadioSelected()
+              onClick={() => {
+                isRadioSelected();
               }}
             >
               Submit
@@ -691,16 +713,15 @@ const Index = ({ viewDetail, setvieworder, handleSearchBar }) => {
           <ArrowBackIosNew />
           <span>Back</span>
         </div>
-        {
-          isCancelledOrder === "cancelled"?null:
+        {isCancelledOrder === "cancelled" ? null : (
           <Button
             className="button-text btn-ternary  order_cancel_btn"
             onClick={() => handleAPICall(4)}
           >
             Cancel Order
           </Button>
-        }
-       {/*  <Button
+        )}
+        {/*  <Button
           className="button-text btn-ternary  order_cancel_btn"
           onClick={() => handleAPICall(4)}
         >

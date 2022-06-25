@@ -19,7 +19,7 @@ import { useNavigate } from "react-router-dom";
 
 import {
   isEmailValid,
-  isPasswordValid,
+  SessionExpiredLogout,
   getAdminToken,
 } from "../../../../utilities";
 import SectionRight from "../SectionRight";
@@ -134,11 +134,11 @@ const TransitionsModal = ({ classes, openPopUp }) => {
         password: "Please enter your password.",
       }));
       errorHandle = true;
-    } else if (!isPasswordValid(signInData?.password)) {
+    } else if (signInData?.password?.length < 6) {
       document.getElementById("password")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
-        password: "Please enter the valid password.",
+        password: "Please enter minimum 6 characters.",
       }));
       errorHandle = true;
     }
@@ -224,16 +224,20 @@ const TransitionsModal = ({ classes, openPopUp }) => {
           type: "SET_IS_LOADING",
           value: false,
         });
+        if (error.response.status === 401) {
+          SessionExpiredLogout();
+        } else {
+          swal.fire({
+            text: `${error?.data?.message}`,
+            icon: "error",
+            showConfirmButton: false,
+            timer: 3000,
+          });
+        }
         // setSignInData((prev) => ({
         //   ...prev,
         //   forgot_email_address: "",
         // }));
-        swal.fire({
-          text: `${error?.data?.message}`,
-          icon: "error",
-          showConfirmButton: false,
-          timer: 3000,
-        });
       });
   };
   //API to Register
@@ -394,6 +398,9 @@ const TransitionsModal = ({ classes, openPopUp }) => {
           type: "SET_IS_LOADING",
           value: false,
         });
+        if (err.response.status === 401) {
+          SessionExpiredLogout();
+        }
       });
   };
 
@@ -413,7 +420,9 @@ const TransitionsModal = ({ classes, openPopUp }) => {
         });
         localStorage.setItem("permissions", JSON.stringify(permission?.data));
       } catch (e) {
-        console.log(e);
+        if (e.response.status === 401) {
+          SessionExpiredLogout();
+        }
       }
     }
   }, [customerdata, localStorage.getItem("token")]);

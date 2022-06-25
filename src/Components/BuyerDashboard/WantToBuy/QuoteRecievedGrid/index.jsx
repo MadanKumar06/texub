@@ -4,10 +4,8 @@ import Pagination from "../../../Pagination";
 import "./styles.scss";
 import axios from "axios";
 import Constant from "../../../../Constant";
-// import Vieworders from '../../Common/Vieworders'
 import { useStateValue } from "../../../../store/state";
-import NodataFound from "../../../../Assets/CommonImage/NodataFound.webp.png";
-
+import { SessionExpiredLogout } from "../../../../utilities";
 
 function Index({ id }) {
   const [tableData, setTableData] = useState([]);
@@ -20,6 +18,7 @@ function Index({ id }) {
     responsive: "vertical",
     selectableRows: "none",
     download: false,
+    pagination: false,
     print: false,
     sort: false,
     viewColumns: false,
@@ -58,11 +57,13 @@ function Index({ id }) {
         });
         setApiTableData(tabledata?.data);
       } catch (e) {
-        console.log(e);
         dispatch({
           type: "SET_IS_LOADING",
           value: false,
         });
+        if (e.response.status === 401) {
+          SessionExpiredLogout();
+        }
       }
     };
     fetchTableData();
@@ -83,20 +84,20 @@ function Index({ id }) {
     },
     {
       name: "part_number",
-      label: "PART NUMBER"
+      label: "PART NUMBER",
     },
     {
       name: "category",
-      label: "CATEGORY"
+      label: "CATEGORY",
     },
     {
       name: "hub",
-      label: "HUB"
+      label: "HUB",
     },
-    { 
-      name: "sellerEnquiryStatus", 
-      label: "SELLER ENQUIRY STATUS" 
-    }
+    {
+      name: "sellerEnquiryStatus",
+      label: "SELLER ENQUIRY STATUS",
+    },
   ];
 
   return (

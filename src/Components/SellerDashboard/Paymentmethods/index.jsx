@@ -1,21 +1,20 @@
-import React, { useState } from 'react'
-import './styles.scss'
-import MUITable from '../../Common/MUITable'
+import React, { useState } from "react";
+import "./styles.scss";
+import MUITable from "../../Common/MUITable";
 import { Link } from "react-router-dom";
-import {useStateValue} from '../../../store/state'
+import { useStateValue } from "../../../store/state";
 import { ArrowBackIosNew } from "@mui/icons-material";
-import Enquirydetails from '../../SellerDashboard/Directenqueries/Enquirydetails'
-import paypal_image from '../../../Assets/sellerdashboard/dashboard/paypal (1).png'
-import braintree_image from '../../../Assets/sellerdashboard/dashboard/paypal (1).png'
+import Enquirydetails from "../../SellerDashboard/Directenqueries/Enquirydetails";
+import paypal_image from "../../../Assets/sellerdashboard/dashboard/paypal (1).png";
+import braintree_image from "../../../Assets/sellerdashboard/dashboard/paypal (1).png";
 import NodataFound from "../../../Assets/CommonImage/NodataFound.webp.png";
 
-
 const Index = () => {
-  const [{geo, customstore, customnostore}, dispatch] = useStateValue()
-  const [isUopup,setisUopup] = useState(false)
-  const Popup =() =>{
-    setisUopup(true)
-  }
+  const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
+  const [isUopup, setisUopup] = useState(false);
+  const Popup = () => {
+    setisUopup(true);
+  };
   const ordertype = [
     { name: "All Transaction" },
     { name: "Open PO " },
@@ -33,6 +32,7 @@ const Index = () => {
     filterType: "dropdown",
     responsive: "vertical",
     selectableRows: "none",
+    pagination: false,
     download: false,
     print: false,
     sort: false,
@@ -69,7 +69,7 @@ const Index = () => {
       amount: {
         name: "207,999",
       },
-      transactionmode:paypal_image ,
+      transactionmode: paypal_image,
       status: "Failed",
       action: "View Details",
     },
@@ -106,7 +106,6 @@ const Index = () => {
       status: "Success",
       action: "View Details",
     },
-    
   ];
 
   const columns = [
@@ -120,7 +119,8 @@ const Index = () => {
       },
     },
     {
-      name: "date", label: "Date",
+      name: "date",
+      label: "Date",
       options: {
         customBodyRender: (value) => {
           return (
@@ -131,12 +131,14 @@ const Index = () => {
         },
       },
     },
-    { name: "transactionid", label: "Transaction ID",
-    options: {
-      customBodyRender: (value) => {
-        return <div className="paymentmethod__order_id">{value}</div>;
+    {
+      name: "transactionid",
+      label: "Transaction ID",
+      options: {
+        customBodyRender: (value) => {
+          return <div className="paymentmethod__order_id">{value}</div>;
+        },
       },
-    },
     },
     {
       name: "amount",
@@ -158,13 +160,13 @@ const Index = () => {
         customBodyRender: (value) => {
           return (
             <div className="return_quantity">
-              <img src={braintree_image} alt=''></img>
+              <img src={braintree_image} alt=""></img>
             </div>
           );
         },
       },
     },
-    
+
     {
       name: "status",
       label: "Status",
@@ -172,14 +174,15 @@ const Index = () => {
         customBodyRender: (value) => {
           return (
             <div
-              className={`${value === "Failed"
+              className={`${
+                value === "Failed"
                   ? "paymentmethod__failed"
                   : value === "Accepted"
-                    ? "paymentmethod__accepted"
-                    : value === "Success"
-                      ? "paymentmethod__success"
-                      : value === "Pending" && "paymentmethod__pending"
-                } `}
+                  ? "paymentmethod__accepted"
+                  : value === "Success"
+                  ? "paymentmethod__success"
+                  : value === "Pending" && "paymentmethod__pending"
+              } `}
             >
               {value}
             </div>
@@ -193,52 +196,56 @@ const Index = () => {
       options: {
         customBodyRender: (value) => {
           return (
-            <div className="actions" onClick={() => Popup()}
-            >
+            <div className="actions" onClick={() => Popup()}>
               <span className="value">{value}</span>
             </div>
           );
         },
       },
     },
-    
   ];
 
   return (
     <div className="paymentmethod_container">
       <div className="paymentmethod__footer">
         <div className="paymentmethod__container">
-          <Link to={`/${customnostore ? customnostore : geo?.country_name}/sellerdashboard/dashboard`}>
+          <Link
+            to={`/${
+              customnostore ? customnostore : geo?.country_name
+            }/sellerdashboard/dashboard`}
+          >
             <ArrowBackIosNew />
             <span>Back</span>
           </Link>
           {/* <Button className="rma_btn">Request RMA</Button> */}
         </div>
       </div>
-      
+
       <div className="paymentmethod__buttons">
         {ordertype.map((data, i) => (
           <div className="paymentmethod__btton_content">
             <p
-              className={`paymentmethodtypes ${type === i && "paymentmethod__selected"}`}
+              className={`paymentmethodtypes ${
+                type === i && "paymentmethod__selected"
+              }`}
               key={i}
               onClick={() => selectorder(i)}
             >
-              
               {data.name}
             </p>
-            
           </div>
         ))}
       </div>
 
-      <MUITable columns={columns} table={table} options={options} className="paymentmethod__table" />
-      {isUopup && <Enquirydetails closePOPup={setisUopup}/> }
-
-      
+      <MUITable
+        columns={columns}
+        table={table}
+        options={options}
+        className="paymentmethod__table"
+      />
+      {isUopup && <Enquirydetails closePOPup={setisUopup} />}
     </div>
   );
-}
-
+};
 
 export default Index;

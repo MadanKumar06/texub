@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Constant from "../../Constant";
 import { useStateValue } from "../../store/state";
+import { SessionExpiredLogout } from "../../utilities";
 
 const TransitionsModal = ({ classes }) => {
   const [{ geo, customnostore }, dispatch] = useStateValue();
@@ -49,7 +50,11 @@ const TransitionsModal = ({ classes }) => {
         .then((res) => {
           res?.data?.length && setKycDetailData({ ...res?.data?.[0] });
         })
-        .catch((err) => {});
+        .catch((err) => {
+          if (err.response.status === 401) {
+            SessionExpiredLogout();
+          }
+        });
     };
     fetchCategoryData();
   }, []);
@@ -89,6 +94,9 @@ const TransitionsModal = ({ classes }) => {
           type: "SET_IS_LOADING",
           value: false,
         });
+        if (err.response.status === 401) {
+          SessionExpiredLogout();
+        }
       });
   };
   return (

@@ -15,9 +15,12 @@ import longExpand_active_icon from "../../../Assets/BasicNeeded/PLPIcons/Group 1
 import longExpand_inactive_icon from "../../../Assets/BasicNeeded/PLPIcons/Group 1176.png";
 const Productstable = ({
   classes,
-  setProductFetchApi,
-  productFetchApi,
   productData,
+  apicallback,
+  setApicallback,
+  userfilter,
+  setApplyFilter,
+  applyFilter,
 }) => {
   const [{}, dispatch] = useStateValue();
   const [tableData, setTableData] = useState([]);
@@ -93,7 +96,7 @@ const Productstable = ({
         filter: false,
         customBodyRender: (value) => {
           return (
-           <div className={productable_image}>
+            <div className={productable_image}>
               {value?.brand ? (
                 <img
                   src={`${Constant.imageBaseUrl()}${value?.brand}`}
@@ -251,6 +254,7 @@ const Productstable = ({
     filterType: "dropdown",
     responsive: "vertical",
     selectableRows: "none",
+    pagination: false,
     download: false,
     print: false,
     sort: false,
@@ -274,6 +278,10 @@ const Productstable = ({
     if (productData?.length === 0) return setTableData([]);
     setTableData(event);
   };
+  const handleApicallback = (event) => {
+    setApicallback(event);
+    setApplyFilter(!applyFilter);
+  };
   return (
     <div className={producttable}>
       {productData?.length > 0 ? (
@@ -296,7 +304,10 @@ const Productstable = ({
         <Pagination
           PaginateData={PaginateDataSplit}
           DataList={productData?.length > 0 ? productData : []}
-          PagePerRow={10}
+          PagePerRow={50}
+          TotalPage={userfilter?.count}
+          apicallback={apicallback}
+          handleApicallback={handleApicallback}
         />
       ) : (
         ""

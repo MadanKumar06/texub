@@ -12,7 +12,15 @@ import shortExpand_inactive_icon from "../../../Assets/BasicNeeded/PLPIcons/Grou
 import longExpand_active_icon from "../../../Assets/BasicNeeded/PLPIcons/Group 1178.png";
 import longExpand_inactive_icon from "../../../Assets/BasicNeeded/PLPIcons/Group 1176.png";
 
-const Productstable = ({ classes, productData }) => {
+const Productstable = ({
+  classes,
+  productData,
+  apicallback,
+  setApicallback,
+  userfilter,
+  setApplyFilter,
+  applyFilter,
+}) => {
   const [{}, dispatch] = useStateValue();
   const [tableData, setTableData] = useState([]);
   let {
@@ -236,6 +244,7 @@ const Productstable = ({ classes, productData }) => {
     selectableRows: "none",
     download: false,
     print: false,
+    pagination: false,
     sort: false,
     viewColumns: false,
     // onCellClick: onRowHandleClick,
@@ -256,6 +265,10 @@ const Productstable = ({ classes, productData }) => {
     if (productData?.length === 0) return setTableData([]);
     setTableData(event);
   };
+  const handleApicallback = (event) => {
+    setApicallback(event);
+    setApplyFilter(!applyFilter);
+  };
   return (
     <div className={producttable}>
       {productData?.length > 0 ? (
@@ -273,12 +286,14 @@ const Productstable = ({ classes, productData }) => {
           className={mui_datatable_main}
         />
       )}
-
       {productData?.length > 0 ? (
         <Pagination
           PaginateData={PaginateDataSplit}
           DataList={productData?.length > 0 ? productData : []}
-          PagePerRow={10}
+          PagePerRow={50}
+          TotalPage={userfilter?.count}
+          apicallback={apicallback}
+          handleApicallback={handleApicallback}
         />
       ) : (
         ""

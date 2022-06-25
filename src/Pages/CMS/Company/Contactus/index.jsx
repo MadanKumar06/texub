@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./styles.scss";
 import { TextField, Box, Button, InputLabel } from "@mui/material";
-import { isEmailValid, isNumber } from "../../../../utilities";
+import { isEmailValid, SessionExpiredLogout } from "../../../../utilities";
 import Constant from "../../../../Constant";
 import axios from "axios";
 import swal from "sweetalert2";
@@ -19,7 +19,7 @@ import location from "../../../../Assets/Contactus/placeholder (2).png";
 import { useStateValue } from "../../../../store/state";
 
 const Contactus = () => {
-    const [{}, dispatch] = useStateValue();
+  const [{}, dispatch] = useStateValue();
   const [contactusData, setcontactusData] = useState({
     your_name: "",
     e_mail: "",
@@ -67,21 +67,25 @@ const Contactus = () => {
           timer: 3000,
         });
         dispatch({
-        type: "SET_IS_LOADING",
-        value: false,
-      });
+          type: "SET_IS_LOADING",
+          value: false,
+        });
       })
       .catch((error) => {
-        swal.fire({
-          text: `${error?.response?.data?.message || error.message}`,
-          icon: "error",
-          showConfirmButton: false,
-          timer: 3000,
-        });
         dispatch({
-        type: "SET_IS_LOADING",
-        value: false,
-      });
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+        if (error.response.status === 401) {
+          SessionExpiredLogout();
+        } else {
+          swal.fire({
+            text: `${error?.response?.data?.message || error.message}`,
+            icon: "error",
+            showConfirmButton: false,
+            timer: 3000,
+          });
+        }
       });
   };
   const handleFormvalue = (event) => {
@@ -100,7 +104,7 @@ const Contactus = () => {
         your_name: "Please enter your name.",
       }));
       errorHandle = true;
-    }else if (contactusData?.your_name?.replace(/[^0-9]/g, '')) {
+    } else if (contactusData?.your_name?.replace(/[^0-9]/g, "")) {
       document.getElementById("your_name")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
@@ -115,8 +119,7 @@ const Contactus = () => {
         e_mail: "Please enter your e-mail",
       }));
       errorHandle = true;
-    }
-    else if (!isEmailValid(contactusData?.e_mail)) {
+    } else if (!isEmailValid(contactusData?.e_mail)) {
       document.getElementById("e_mail")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
@@ -274,7 +277,7 @@ const Contactus = () => {
               </span>
             </div>
             <div className="contactus_details">
-              {office.map((item,index) => (
+              {office.map((item, index) => (
                 <li className="contactus_office_list" key={index}>
                   <div className="contactus_office">
                     <img src={item.icon} alt="" className="" />
@@ -301,7 +304,7 @@ const Contactus = () => {
               ))}
             </div>
             <div className="contactus_details">
-              {mail.map((item,index) => (
+              {mail.map((item, index) => (
                 <li key={index} className="contactus_office_list">
                   <div className="contactus_office">
                     <img src={item.icon} alt="" className="" />
@@ -317,7 +320,7 @@ const Contactus = () => {
               ))}
             </div>
             <div className="contactus_details">
-              {telephone.map((item,index) => (
+              {telephone.map((item, index) => (
                 <li key={index} className="contactus_office_list">
                   <div className="contactus_office">
                     <img src={item.icon} alt="" className="" />
@@ -338,7 +341,7 @@ const Contactus = () => {
               ))}
             </div>
             <div className="contactus_social">
-              {social.map((item,index) => (
+              {social.map((item, index) => (
                 <li key={index} className="contactus_office_list">
                   <div className="contactus_social_media">
                     <a
@@ -367,7 +370,7 @@ const Contactus = () => {
               ))}
             </div>
             <div className="contactus_details">
-              {working.map((item,index) => (
+              {working.map((item, index) => (
                 <li key={index} className="contactus_office_list">
                   <div className="contactus_office_address">
                     <span className="contactus_office_heading">
@@ -399,7 +402,7 @@ const Contactus = () => {
                   },
                 }}
                 // onChange={handleFormvalue}
-                onChange={(event)=>{
+                onChange={(event) => {
                   handleFormvalue(event);
                   setInputValidation((prevState) => ({
                     ...prevState,
@@ -429,7 +432,7 @@ const Contactus = () => {
                   },
                 }}
                 // onChange={handleFormvalue}
-                onChange={(event)=>{
+                onChange={(event) => {
                   handleFormvalue(event);
                   setInputValidation((prevState) => ({
                     ...prevState,
@@ -455,7 +458,7 @@ const Contactus = () => {
                 }}
                 variant="outlined"
                 // onChange={handleFormvalue}
-                onChange={(event)=>{
+                onChange={(event) => {
                   handleFormvalue(event);
                   setInputValidation((prevState) => ({
                     ...prevState,
@@ -484,7 +487,7 @@ const Contactus = () => {
                   },
                 }}
                 // onChange={handleFormvalue}
-                onChange={(event)=>{
+                onChange={(event) => {
                   handleFormvalue(event);
                   setInputValidation((prevState) => ({
                     ...prevState,
@@ -513,7 +516,7 @@ const Contactus = () => {
           <p className="contactus_map_heading">Global Locations</p>
           <div className="contactus_locations">
             <div className="contactus_location1">
-              {location1?.map((item,index) => (
+              {location1?.map((item, index) => (
                 <li key={index} className="contactus_location_list">
                   <div className="contactus_locations_1">
                     <img
@@ -536,31 +539,7 @@ const Contactus = () => {
               ))}
             </div>
             <div className="contactus_location1">
-              {location2?.map((item,index) => (
-                <li key={index} className="contactus_location_list">
-                  <div className="contactus_locations_1">
-                    <img
-                      src={item.image}
-                      className="location_image"
-                      alt=""
-                    ></img>
-                    <div className="address-info-box">
-                      <span> {item.address}</span>
-                      <span> {item.address2}</span>
-                      <span> {item.address3}</span>
-                      <span> {item.address4}</span>
-                      <span> {item.address5}</span>
-                    </div>
-                    <div className="address-phone-box">
-                      <span>{item.contact}</span>
-                      <span>{item.contact2}</span>
-                    </div>
-                  </div>
-                </li>
-              ))}
-            </div>
-            <div className="contactus_location1">
-              {location3?.map((item,index) => (
+              {location2?.map((item, index) => (
                 <li key={index} className="contactus_location_list">
                   <div className="contactus_locations_1">
                     <img
@@ -584,7 +563,31 @@ const Contactus = () => {
               ))}
             </div>
             <div className="contactus_location1">
-              {location4?.map((item,index) => (
+              {location3?.map((item, index) => (
+                <li key={index} className="contactus_location_list">
+                  <div className="contactus_locations_1">
+                    <img
+                      src={item.image}
+                      className="location_image"
+                      alt=""
+                    ></img>
+                    <div className="address-info-box">
+                      <span> {item.address}</span>
+                      <span> {item.address2}</span>
+                      <span> {item.address3}</span>
+                      <span> {item.address4}</span>
+                      <span> {item.address5}</span>
+                    </div>
+                    <div className="address-phone-box">
+                      <span>{item.contact}</span>
+                      <span>{item.contact2}</span>
+                    </div>
+                  </div>
+                </li>
+              ))}
+            </div>
+            <div className="contactus_location1">
+              {location4?.map((item, index) => (
                 <li key={index} className="contactus_location_list">
                   <div className="contactus_locations_1">
                     <img
@@ -604,7 +607,7 @@ const Contactus = () => {
               ))}
             </div>
             <div className="contactus_location1">
-              {location5?.map((item,index) => (
+              {location5?.map((item, index) => (
                 <li key={index} className="contactus_location_list">
                   <div className="contactus_locations_1">
                     <img
@@ -622,7 +625,7 @@ const Contactus = () => {
             </div>
 
             <div className="contactus_location1">
-              {location6?.map((item,index) => (
+              {location6?.map((item, index) => (
                 <li key={index} className="contactus_location_list">
                   <div className="contactus_locations_1">
                     <img
@@ -639,7 +642,7 @@ const Contactus = () => {
               ))}
             </div>
             <div className="contactus_location1">
-              {location7?.map((item,index) => (
+              {location7?.map((item, index) => (
                 <li key={index} className="contactus_location_list">
                   <div className="contactus_locations_1">
                     <img
@@ -656,7 +659,7 @@ const Contactus = () => {
               ))}
             </div>
             <div className="contactus_location1">
-              {location8?.map((item,index) => (
+              {location8?.map((item, index) => (
                 <li key={index} className="contactus_location_list">
                   <div className="contactus_locations_1">
                     <img

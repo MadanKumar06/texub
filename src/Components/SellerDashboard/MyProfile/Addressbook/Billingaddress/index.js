@@ -8,7 +8,7 @@ import axios from "axios";
 import Constant from "../../../../../Constant";
 import swal from "sweetalert2";
 
-import { getAdminToken } from "../../../../../utilities";
+import { getAdminToken, SessionExpiredLogout } from "../../../../../utilities";
 const Index = ({ address, setisAddress, setisBilling }) => {
   const [{}, dispatch] = useStateValue();
   const [countryList, setCountryList] = useState([]);
@@ -159,6 +159,9 @@ const Index = ({ address, setisAddress, setisBilling }) => {
         type: "SET_IS_LOADING",
         value: false,
       });
+      if (e.response.status === 401) {
+        SessionExpiredLogout();
+      }
     }
   };
 
@@ -331,7 +334,7 @@ const Index = ({ address, setisAddress, setisBilling }) => {
               </div>
             )}
           </div>
-          <div className="inputfield city_row" >
+          <div className="inputfield city_row">
             <p>City</p>
             <TextField
               fullWidth

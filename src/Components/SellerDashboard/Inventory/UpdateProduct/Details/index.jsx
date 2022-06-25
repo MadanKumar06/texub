@@ -5,6 +5,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { InputLabel, TextField, Autocomplete } from "@mui/material";
 import axios from "axios";
 import Constant from "../../../../../Constant";
+import { SessionExpiredLogout } from "../../../../../utilities";
 
 function Index({
   countincrease,
@@ -20,6 +21,7 @@ function Index({
 }) {
   const [options, setoptions] = useState([]);
   const [currenthub, setcurrenthub] = useState(null);
+  const [isGstVatValid, setIsGstVatValid] = useState({});
 
   const hubselect = (e, value) => {
     let temp = count?.filter((c) => {
@@ -75,6 +77,9 @@ function Index({
         if (type === "cgst") {
           return (c.cgst = value);
         }
+        if (type === "vat_value") {
+          return (c.vat_value = value);
+        }
       }
     });
     settest(temp);
@@ -124,15 +129,22 @@ function Index({
             value: hub?.currency_id,
           });
         });
+        count?.filter((c) => {
+          if (c.count === i) {
+            c.isGstVatValid = hubcurrencydata?.data?.[0].gst_vat;
+          }
+        });
+        setIsGstVatValid(hubcurrencydata?.data?.[0].gst_vat);
         setoptions(temp);
       } catch (e) {
-        console.log(e);
+        if (e.response.status === 401) {
+          SessionExpiredLogout();
+        }
       }
     }
   }, [currenthub]);
 
   const [currentcurrency, setcurrentcurrency] = useState([]);
-
   useEffect(() => {
     if (currentdata?.currency_id === "") return;
     if (hubDropDownValues?.length === 0) return;
@@ -379,7 +391,7 @@ function Index({
           </p>
         </div>
       )}
-      {currentdata?.hub_id === "2" ? (
+      {isGstVatValid == 1 ? (
         <div className="updateproduct__gst">
           <div className="updateproduct_info_form">
             <InputLabel>GST %</InputLabel>
@@ -477,6 +489,42 @@ function Index({
                       itm?.ind === index &&
                       Object.keys(itm)?.[0] === "isSGSTValid"
                   )?.[0]?.isSGSTValid
+                : ""}
+            </InputLabel>
+          </div>
+        </div>
+      ) : isGstVatValid == 2 ? (
+        <div className="updateproduct__gst">
+          <div className="updateproduct_info_form">
+            <InputLabel>VAT %</InputLabel>
+            <TextField
+              id={`${"vat_value" + index}`}
+              name="vat_value"
+              placeholder="18"
+              type="number"
+              className="inputfield-box"
+              fullWidth
+              autoComplete="off"
+              value={parseInt(currentdata?.vat_value)}
+              InputLabelProps={{
+                shrink: false,
+              }}
+              onChange={(e) => {
+                setIsDetailTabValid((prevState) => ({
+                  ...prevState,
+                  isVatValid: "",
+                }));
+                changevalues(e.target.value, "vat_value");
+              }}
+              variant="outlined"
+            />
+            <InputLabel className="validation_error">
+              {isDetailTabValid?.length
+                ? isDetailTabValid?.filter(
+                    (itm) =>
+                      itm?.ind === index &&
+                      Object.keys(itm)?.[0] === "isVatValid"
+                  )?.[0]?.isVatValid
                 : ""}
             </InputLabel>
           </div>

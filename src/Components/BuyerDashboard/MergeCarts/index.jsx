@@ -7,13 +7,13 @@ import Pagination from "../../Pagination";
 import MUITable from "../../../Components/Common/MUITable";
 import { useStateValue } from "../../../store/state";
 import axios from "axios";
-import Constant from '../../../Constant'
-import NodataFound from "../../../Assets/CommonImage/NodataFound.webp.png";
+import Constant from "../../../Constant";
+import { SessionExpiredLogout } from "../../../utilities";
 
-import moment from 'moment'
+import moment from "moment";
 
 function MergeCarts() {
-  const [{geo, customstore, customnostore}, dispatch] = useStateValue();
+  const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
   const [tableData, setTableData] = useState([]);
   const handleViewChange = () => {
     dispatch({
@@ -23,33 +23,34 @@ function MergeCarts() {
     });
   };
 
-   function formatToCurrency(price) {
+  function formatToCurrency(price) {
     return price.toString().replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
   }
 
-  const [mergetable, setmergetable] = useState([])
-  useEffect(async() => {
-    let user = JSON.parse(localStorage.getItem('userdata'))
+  const [mergetable, setmergetable] = useState([]);
+  useEffect(async () => {
+    let user = JSON.parse(localStorage.getItem("userdata"));
     try {
       const mergecart = await axios({
-        method: 'post',
+        method: "post",
         url: `${Constant?.baseUrl()}/cartRequestLists`,
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
-        data:{
-          "data":{
-              "customer_id":user?.id,
-              "type_id":2
-          }
-       }       
-      })
-      setmergetable(mergecart?.data)
-    } catch(e) {
-      console.log(e)
+        data: {
+          data: {
+            customer_id: user?.id,
+            type_id: 2,
+          },
+        },
+      });
+      setmergetable(mergecart?.data);
+    } catch (e) {
+      if (e.response.status === 401) {
+        SessionExpiredLogout();
+      }
     }
-  }, [])
-
+  }, []);
 
   const columns = [
     { name: "user_name", label: "User Name" },
@@ -59,25 +60,37 @@ function MergeCarts() {
       label: "Date",
       options: {
         customBodyRender: (value) => {
-          return <div className="mergecarts__date">{moment(value).format("DD/MM/YYYY")}</div>;
+          return (
+            <div className="mergecarts__date">
+              {moment(value).format("DD/MM/YYYY")}
+            </div>
+          );
         },
       },
     },
     {
-       name: "items_qty",
+      name: "items_qty",
       label: "Items Qty",
       options: {
-          customBodyRender: (value) => {
-            return <div className="mergecarts__subtotal">{formatToCurrency(parseInt(value))}</div>;
-          },
+        customBodyRender: (value) => {
+          return (
+            <div className="mergecarts__subtotal">
+              {formatToCurrency(parseInt(value))}
+            </div>
+          );
         },
-     },
+      },
+    },
     {
       name: "subtotal",
       label: "Subtotal",
       options: {
         customBodyRender: (value) => {
-          return <div className="mergecarts__subtotal">{formatToCurrency(parseInt(value))}</div>;
+          return (
+            <div className="mergecarts__subtotal">
+              {formatToCurrency(parseInt(value))}
+            </div>
+          );
         },
       },
     },
@@ -104,8 +117,15 @@ function MergeCarts() {
         customBodyRender: (value) => {
           return (
             <div className="mergecart__action_main">
-              <div className="mergecarts__action" onClick={() => merge(value)}>Merge</div>
-              <div className="mergecarts__action delete" onClick={() => deletecart(value)}>Delete</div>
+              <div className="mergecarts__action" onClick={() => merge(value)}>
+                Merge
+              </div>
+              <div
+                className="mergecarts__action delete"
+                onClick={() => deletecart(value)}
+              >
+                Delete
+              </div>
             </div>
           );
         },
@@ -116,6 +136,7 @@ function MergeCarts() {
   const options = {
     filter: false,
     filterType: "dropdown",
+     pagination: false,
     responsive: "vertical",
     selectableRows: true,
     download: false,
@@ -140,68 +161,75 @@ function MergeCarts() {
     setTableData(event);
   };
 
-  const merge = async(value) => {
-    let user = JSON.parse(localStorage.getItem('userdata'))
+  const merge = async (value) => {
+    let user = JSON.parse(localStorage.getItem("userdata"));
     try {
       const mergerequest = await axios({
-        method: 'post',
+        method: "post",
         url: `${Constant?.baseUrl()}/cartMergeByMainUser`,
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         data: {
-          "data" :{
-              "id" : value,
-              "login_id": user?.id
-          }
-       }
-      })
-    } catch(e) {
-      console.log(e)
+          data: {
+            id: value,
+            login_id: user?.id,
+          },
+        },
+      });
+    } catch (e) {
+      if (e.response.status === 401) {
+        SessionExpiredLogout();
+      }
     }
-  }
+  };
 
-  const deletecart = async(value) => {
-    let user = JSON.parse(localStorage.getItem('userdata'))
+  const deletecart = async (value) => {
+    let user = JSON.parse(localStorage.getItem("userdata"));
     try {
       const mergerequest = await axios({
-        method: 'post',
+        method: "post",
         url: `${Constant?.baseUrl()}/deleteRequests`,
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         data: {
-          "data" :{
-              "id" : value,
-              "login_id": user?.id
-          }
-       }
-      })
-    } catch(e) {
-      console.log(e)
+          data: {
+            id: value,
+            login_id: user?.id,
+          },
+        },
+      });
+    } catch (e) {
+      if (e.response.status === 401) {
+        SessionExpiredLogout();
+      }
     }
-  }
+  };
   return (
     <div className="mergecarts">
-    
       <MUITable
         columns={columns}
         table={tableData}
         options={options}
         className="mergecarts__table"
       />
-      {mergetable?.length > 0 ?
+      {mergetable?.length > 0 ? (
         <Pagination
           PaginateData={PaginateDataSplit}
           DataList={mergetable?.length ? mergetable : []}
           PagePerRow={10}
         />
-        :
+      ) : (
         ""
-      }
-        <div className="mergecarts__footer">
+      )}
+      <div className="mergecarts__footer">
         <div className="mergecarts__container">
-          <Link to={`/${customnostore ? customnostore : geo?.country_name}/buyerdashboard/dashboard`}>
+          <Link
+            to={`/${
+              customnostore ? customnostore : geo?.country_name
+            }/buyerdashboard/dashboard`}
+          >
             <ArrowBackIosNew />
             <span>Back</span>
           </Link>

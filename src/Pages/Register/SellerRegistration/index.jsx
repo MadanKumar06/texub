@@ -14,12 +14,12 @@ import {
 } from "@mui/material";
 import {
   isEmailValid,
-  isPasswordValid,
   isFirstAndLastNameValid,
   isCompanyNameValid,
   isRolesValid,
   getAdminToken,
   isLandlineValid,
+  SessionExpiredLogout,
 } from "../../../utilities";
 import { withStyles } from "@mui/styles";
 import styles from "./styles";
@@ -296,12 +296,11 @@ const BuyerRegistration = ({ classes }) => {
         password: "Please enter your password.",
       }));
       errorHandle = true;
-    } else if (!isPasswordValid(sellerRegistrationData?.password)) {
+    } else if (sellerRegistrationData?.password?.length < 6) {
       document.getElementById("password")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
-        password:
-          "Minimum 8 characters at least 1 Alphabet, 1 Number and 1 Special Character.",
+        password: "Please enter minimum 6 characters.",
       }));
       errorHandle = true;
     }
@@ -494,12 +493,16 @@ const BuyerRegistration = ({ classes }) => {
           type: "SET_IS_LOADING",
           value: false,
         });
-        swal.fire({
-          text: `${error?.response?.data?.message || error.message}`,
-          icon: "error",
-          showConfirmButton: false,
-          timer: 3000,
-        });
+        if (error.response.status === 401) {
+          SessionExpiredLogout();
+        } else {
+          swal.fire({
+            text: `${error?.response?.data?.message || error.message}`,
+            icon: "error",
+            showConfirmButton: false,
+            timer: 3000,
+          });
+        }
       });
   };
 
@@ -540,6 +543,9 @@ const BuyerRegistration = ({ classes }) => {
           type: "SET_IS_LOADING",
           value: false,
         });
+        if (err.response.status === 401) {
+          SessionExpiredLogout();
+        }
       });
   };
 

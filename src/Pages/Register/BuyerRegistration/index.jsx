@@ -7,11 +7,11 @@ import { useStateValue } from "../../../store/state";
 import ReCAPTCHA from "react-google-recaptcha";
 import {
   isEmailValid,
-  isPasswordValid,
   isFirstAndLastNameValid,
   isCompanyNameValid,
   getAdminToken,
   isLandlineValid,
+  SessionExpiredLogout,
 } from "../../../utilities";
 import Autocomplete from "@mui/material/Autocomplete";
 import { withStyles } from "@mui/styles";
@@ -185,12 +185,11 @@ const BuyerRegistration = ({ classes }) => {
         password: "Please enter your password.",
       }));
       errorHandle = true;
-    } else if (!isPasswordValid(buyerRegistrationData?.password)) {
+    } else if (buyerRegistrationData?.password?.length < 6) {
       document.getElementById("password")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
-        password:
-          "Minimum 8 characters at least 1 Alphabet, 1 Number and 1 Special Character.",
+        password: "Please enter minimum 6 characters.",
       }));
       errorHandle = true;
     }
@@ -366,12 +365,16 @@ const BuyerRegistration = ({ classes }) => {
           type: "SET_IS_LOADING",
           value: false,
         });
-        swal.fire({
-          text: `${error?.response?.data?.message || error.message}`,
-          icon: "error",
-          showConfirmButton: false,
-          timer: 3000,
-        });
+        if (error.response.status === 401) {
+          SessionExpiredLogout();
+        } else {
+          swal.fire({
+            text: `${error?.response?.data?.message || error.message}`,
+            icon: "error",
+            showConfirmButton: false,
+            timer: 3000,
+          });
+        }
       });
   };
 
@@ -413,6 +416,9 @@ const BuyerRegistration = ({ classes }) => {
           type: "SET_IS_LOADING",
           value: false,
         });
+        if (err.response.status === 401) {
+          SessionExpiredLogout();
+        }
       });
   };
 
@@ -432,7 +438,9 @@ const BuyerRegistration = ({ classes }) => {
         });
         localStorage.setItem("permissions", JSON.stringify(permission?.data));
       } catch (e) {
-        console.log(e);
+        if (e.response.status === 401) {
+          SessionExpiredLogout();
+        }
       }
     }
   }, [customerdata, adminToken]);
@@ -521,7 +529,7 @@ const BuyerRegistration = ({ classes }) => {
                 id="mobile_number"
                 fullWidth
                 label="Mobile Number"
-                className={`drop_mobile_input_required ${mobile_input }`}
+                className={`drop_mobile_input_required ${mobile_input}`}
                 name="mobile_number"
                 placeholder="Mobile number"
                 value={buyerRegistrationData?.mobile_number}

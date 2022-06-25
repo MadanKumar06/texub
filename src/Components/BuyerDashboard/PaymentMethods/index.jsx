@@ -59,6 +59,7 @@ function PaymentMethod() {
     filterType: "dropdown",
     responsive: "vertical",
     selectableRows: false,
+    pagination: false,
     download: false,
     print: false,
     sort: false,

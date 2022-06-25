@@ -35,6 +35,7 @@ function Index({ setrequestform, setformtype }) {
     filterType: "dropdown",
     responsive: "vertical",
     selectableRows: "none",
+    pagination: false,
     download: false,
     print: false,
     sort: false,

@@ -15,6 +15,7 @@ import Constant from "../../../Constant";
 import NodataFound from "../../../Assets/CommonImage/NodataFound.webp.png";
 
 import { useStateValue } from "../../../store/state";
+import { SessionExpiredLogout } from "../../../utilities";
 import Offers from "./Offers";
 import moment from "moment";
 
@@ -53,6 +54,7 @@ function Index({ registerproduct }) {
     filterType: "dropdown",
     responsive: "vertical",
     selectableRows: "none",
+    pagination: false,
     download: false,
     print: false,
     sort: false,
@@ -338,7 +340,9 @@ function Index({ registerproduct }) {
           value: false,
         });
       } catch (e) {
-        console.log(e);
+        if (e.response.status === 401) {
+          SessionExpiredLogout();
+        }
         dispatch({
           type: "SET_IS_LOADING",
           value: false,
@@ -385,7 +389,9 @@ function Index({ registerproduct }) {
         });
       }
     } catch (e) {
-      console.log(e);
+      if (e.response.status === 401) {
+        SessionExpiredLogout();
+      }
       dispatch({
         type: "SET_IS_LOADING",
         value: false,
@@ -432,11 +438,13 @@ function Index({ registerproduct }) {
         value: false,
       });
     } catch (e) {
+      if (e.response.status === 401) {
+        SessionExpiredLogout();
+      }
       dispatch({
         type: "SET_IS_LOADING",
         value: false,
       });
-      console.log(e);
     }
   };
   const handleApicallback = (event) => {
@@ -518,7 +526,7 @@ function Index({ registerproduct }) {
         <Pagination
           PaginateData={PaginateDataSplit}
           DataList={apiTableData?.products}
-          PagePerRow={10}
+          PagePerRow={50}
           TotalPage={apiTableData?.count}
           apicallback={apicallback}
           handleApicallback={handleApicallback}

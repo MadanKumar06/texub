@@ -5,15 +5,15 @@ import { Favorites } from "../../Components/Home/Favorites/Favorites";
 import { Todaysdeal } from "../../Components/Home/Todaysdeal/Todaysdeal";
 import { Benfits } from "../../Components/Home/Benfits/Benfits";
 // import { Auctions } from "../../Components/Home/Auctions/Auctions";
-import { B2Bconnect } from "../../Components/Home/B2Bconnect/B2Bconnect";
+// import { B2Bconnect } from "../../Components/Home/B2Bconnect/B2Bconnect";
 import { SubscriptionInfo } from "../../Components/Home/SubscriptionInfo/SubscriptionInfo";
-import PopularBlogList from "../../Pages/CMS/Company/Blogs/Blogsmain/PopularBlog.js";
+// import PopularBlogList from "../../Pages/CMS/Company/Blogs/Blogsmain/PopularBlog.js";
 
 import { useStateValue } from "../../store/state";
 import { Helmet } from "react-helmet-async";
 import { useParams, useNavigate } from "react-router-dom";
 
-export const Home = () => {
+const Home = () => {
   const [{ geo, customstore, homeContent }, dispatch] = useStateValue();
   const history = useParams();
   const navigate = useNavigate();
@@ -53,7 +53,8 @@ export const Home = () => {
         <meta
           name="description"
           content="TEXUB is a trusted Digital Marketplace for Global IT trade. The next level digital ecosystem and scalable cloud IT B2B Trade platforms."
-          data-react-helmet="true" />
+          data-react-helmet="true"
+        />
       </Helmet>
       <div className="Home">
         {homeContent !== "" ? (
@@ -129,3 +130,5 @@ export const Home = () => {
     </div>
   );
 };
+
+export default Home;

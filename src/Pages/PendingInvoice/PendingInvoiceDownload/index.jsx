@@ -8,6 +8,7 @@ import Constant from "../../../Constant";
 import { useStateValue } from "../../../store/state";
 import Divider from "@mui/material/Divider";
 import { useParams } from "react-router-dom";
+import { SessionExpiredLogout } from "../../../utilities";
 var moment = require("moment");
 
 function Index() {
@@ -59,11 +60,13 @@ function Index() {
         value: false,
       });
     } catch (e) {
-      console.log(e);
       dispatch({
         type: "SET_IS_LOADING",
         value: false,
       });
+      if (e.response.status === 401) {
+        SessionExpiredLogout();
+      }
     }
   }, [qid]);
 
@@ -101,6 +104,9 @@ function Index() {
           type: "SET_IS_LOADING",
           value: false,
         });
+        if (error.response.status === 401) {
+          SessionExpiredLogout();
+        }
       });
   }, [currency]);
 

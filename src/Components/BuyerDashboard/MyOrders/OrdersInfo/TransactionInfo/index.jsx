@@ -8,12 +8,16 @@ import { Button } from "@mui/material";
 import { FormControlLabel, TextField, InputLabel } from "@mui/material";
 import "./styles.scss";
 import { useStateValue } from "../../../../../store/state";
-import { MobileDateTimePicker,LocalizationProvider } from "@mui/x-date-pickers";
+import {
+  MobileDateTimePicker,
+  LocalizationProvider,
+} from "@mui/x-date-pickers";
 // import { MobileDatePicker,LocalizationProvider } from "@mui/x-date-pickers";
-import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
+import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import axios from "axios";
 import Constant from "../../../../../Constant";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
+import { SessionExpiredLogout } from "../../../../../utilities";
 
 const style = {
   position: "absolute",
@@ -27,7 +31,11 @@ const style = {
   p: 4,
 };
 
-export default function BasicModal({ PopupTransaction, product_id, setupdate_transaction_details}) {
+export default function BasicModal({
+  PopupTransaction,
+  product_id,
+  setupdate_transaction_details,
+}) {
   const [{}, dispatch] = useStateValue();
   const [open, setOpen] = React.useState(true);
   const [value, setValue] = React.useState(2);
@@ -123,17 +131,19 @@ export default function BasicModal({ PopupTransaction, product_id, setupdate_tra
         timer: 3000,
       });
       handleClose();
-      setupdate_transaction_details(true)
+      setupdate_transaction_details(true);
       dispatch({
         type: "SET_IS_LOADING",
         value: false,
       });
     } catch (e) {
-      console.log(e);
       dispatch({
         type: "SET_IS_LOADING",
         value: false,
       });
+      if (e.response.status === 401) {
+        SessionExpiredLogout();
+      }
     }
   };
 
@@ -297,7 +307,7 @@ export default function BasicModal({ PopupTransaction, product_id, setupdate_tra
                     style={{ height: 100 }}
                     value={transactiondetails?.remarks}
                     onChange={(e) => handleTransaction(e)}
-                     className="textArea"
+                    className="textArea"
                   />
                   <p style={{ color: "red" }}>
                     {transactionvalidation?.remarks
@@ -312,7 +322,12 @@ export default function BasicModal({ PopupTransaction, product_id, setupdate_tra
               {/* <Button className="payment_later_btn btn-primary">
                 Confirm & Update Payment Details Later
               </Button> */}
-              <Button className="btn-secondary" onClick={()=>handletransactionvalidation()}>Submit</Button>
+              <Button
+                className="btn-secondary"
+                onClick={() => handletransactionvalidation()}
+              >
+                Submit
+              </Button>
             </div>
           </div>
         </div>

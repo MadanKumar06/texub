@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./styles.scss";
 import axios from "axios";
-import { getAdminToken } from "../../../../utilities";
+import { getAdminToken, SessionExpiredLogout } from "../../../../utilities";
 import { useStateValue } from "../../../../store/state";
 import legal from "../../../../Assets/Career/privacy-policy.png";
 import Constant from "../../../../Constant";
@@ -14,7 +14,7 @@ const Index = () => {
       setAdminToken(res);
     });
   }, []);
-  const {id} = useParams();
+  const { id } = useParams();
   const [{}, dispatch] = useStateValue();
   const [pp, setpp] = useState();
   // disable right click option
@@ -40,11 +40,13 @@ const Index = () => {
           value: false,
         });
       } catch (e) {
-        console.log(e);
         dispatch({
           type: "SET_IS_LOADING",
           value: false,
         });
+        if (e.response.status === 401) {
+          SessionExpiredLogout();
+        }
       }
     }
   }, [adminToken]);

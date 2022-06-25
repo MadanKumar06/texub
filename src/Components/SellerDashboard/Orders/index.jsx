@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
 import "./styles.scss";
 import MUITable from "../../Common/MUITable";
-import { Link } from "react-router-dom";
 import Pagination from "../../Pagination";
 import { ArrowBackIosNew } from "@mui/icons-material";
 import ViewOrder from "../../Common/Vieworders";
 import { useStateValue } from "../../../store/state";
 import axios from "axios";
 import Constant from "../../../Constant";
-import NodataFound from "../../../Assets/CommonImage/NodataFound.webp.png";
 import { useNavigate } from "react-router-dom";
+import { SessionExpiredLogout } from "../../../utilities";
 
 import { IconButton, InputBase, Paper } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
@@ -24,8 +23,8 @@ function Index({ handleSearchBar, searchdata, searchupdate, setSearch }) {
   const [direct, setdirect] = useState([]);
   const [filtereddirect, setfiltereddirect] = useState([]);
   const [orderTypeColor, setorderTypeColor] = useState(0);
-  const [isNotMatched,setisNotMatched] = useState(false);
-  const [seller_order_status,setseller_order_status] = useState(0)
+  const [isNotMatched, setisNotMatched] = useState(false);
+  const [seller_order_status, setseller_order_status] = useState(0);
   const ordertype = [
     { name: "All Orders" },
     { name: "On-Going Orders" },
@@ -42,59 +41,59 @@ function Index({ handleSearchBar, searchdata, searchupdate, setSearch }) {
   useEffect(() => {
     settype(0);
   }, []);
-useEffect(() => {
+  useEffect(() => {
     if (type === 0) {
-      setorderTypeColor(0)
+      setorderTypeColor(0);
       setfiltereddirect(apiTableData);
     }
     if (type === 1) {
-      setorderTypeColor(0)
+      setorderTypeColor(0);
       const po_received = apiTableData?.filter((d) => d?.po_status === "0");
-      if(po_received?.length) {
-        setfiltereddirect(po_received)
+      if (po_received?.length) {
+        setfiltereddirect(po_received);
       } else {
-        setdirect([])
-        setfiltereddirect([])
+        setdirect([]);
+        setfiltereddirect([]);
       }
     }
     if (type === 1) {
-      setorderTypeColor(0)
+      setorderTypeColor(0);
       const confirm = apiTableData?.filter((d) => d?.po_status === "1");
-      if(confirm?.length) {
-        setfiltereddirect(confirm)
+      if (confirm?.length) {
+        setfiltereddirect(confirm);
       } else {
-        setdirect([])
-        setfiltereddirect([])
+        setdirect([]);
+        setfiltereddirect([]);
       }
     }
     if (type === 1) {
-      setorderTypeColor(0)
+      setorderTypeColor(0);
       const dispatched = apiTableData?.filter((d) => d?.po_status === "2");
-      if(dispatched?.length) {
-        setfiltereddirect(dispatched)
+      if (dispatched?.length) {
+        setfiltereddirect(dispatched);
       } else {
-        setdirect([])
-        setfiltereddirect([])
+        setdirect([]);
+        setfiltereddirect([]);
       }
     }
     if (type === 2) {
-      setorderTypeColor(0)
+      setorderTypeColor(0);
       const delivered = apiTableData?.filter((d) => d?.po_status === "3");
-      if(delivered?.length) {
-        setfiltereddirect(delivered)
+      if (delivered?.length) {
+        setfiltereddirect(delivered);
       } else {
-        setdirect([])
-        setfiltereddirect([])
+        setdirect([]);
+        setfiltereddirect([]);
       }
     }
     if (type === 3) {
-      setorderTypeColor(0)
+      setorderTypeColor(0);
       const cancel = apiTableData?.filter((d) => d?.po_status === "4");
-      if(cancel?.length) {
-        setfiltereddirect(cancel)
+      if (cancel?.length) {
+        setfiltereddirect(cancel);
       } else {
-        setdirect([])
-        setfiltereddirect([])
+        setdirect([]);
+        setfiltereddirect([]);
       }
     }
   }, [type, apiTableData]);
@@ -141,10 +140,10 @@ useEffect(() => {
       );
       setfiltereddirect(temp);
     }
-    setorderTypeColor(1)
-    settype(null)
-    setSearch("")
-    setisNotMatched(!isNotMatched)
+    setorderTypeColor(1);
+    settype(null);
+    setSearch("");
+    setisNotMatched(!isNotMatched);
   }, [searchupdate, apiTableData]);
 
   function formatToCurrency(price) {
@@ -153,13 +152,13 @@ useEffect(() => {
 
   const PaginateDataSplit = (event) => {
     if (apiTableData?.length === 0) return setdirect([]);
-      setdirect(event);
+    setdirect(event);
   };
-   useEffect(()=>{
-    if(filtereddirect.length===0){
-      setdirect([])
+  useEffect(() => {
+    if (filtereddirect.length === 0) {
+      setdirect([]);
     }
-  },[isNotMatched])
+  }, [isNotMatched]);
   const [vieworder, setvieworder] = useState(false);
 
   useEffect(() => {
@@ -187,11 +186,13 @@ useEffect(() => {
         });
         setApiTableData(tabledata?.data);
       } catch (e) {
-        console.log(e);
         dispatch({
           type: "SET_IS_LOADING",
           value: false,
         });
+        if (e.response.status === 401) {
+          SessionExpiredLogout();
+        }
       }
     };
     fetchTableData();
@@ -219,6 +220,7 @@ useEffect(() => {
     filterType: "dropdown",
     responsive: "vertical",
     selectableRows: "none",
+    pagination: false,
     download: false,
     print: false,
     sort: false,
@@ -315,9 +317,9 @@ useEffect(() => {
           return (
             <div
               className="orders__action"
-              onClick={() =>{
-                handleViewOrder(item_id)
-                setseller_order_status(orderstatus_id)
+              onClick={() => {
+                handleViewOrder(item_id);
+                setseller_order_status(orderstatus_id);
               }}
             >
               View Order
@@ -374,12 +376,16 @@ useEffect(() => {
               <p
                 // className={`ordertypes ${type === i && "ordertype__selected"}`}
                 className={`ordertypes ${type === i && "ordertype__selected"} 
-                ${orderTypeColor === 1 && data.name==="All Orders"? "ordertype__selected":null}
+                ${
+                  orderTypeColor === 1 && data.name === "All Orders"
+                    ? "ordertype__selected"
+                    : null
+                }
                 `}
                 key={i}
-                onClick={() =>{
-                  selectorder(i)
-                  setSearch("")
+                onClick={() => {
+                  selectorder(i);
+                  setSearch("");
                 }}
               >
                 {data.name}
@@ -394,7 +400,6 @@ useEffect(() => {
             className="orders__table"
           />
 
-       
           {filtereddirect?.length > 0 ? (
             <Pagination
               PaginateData={PaginateDataSplit}

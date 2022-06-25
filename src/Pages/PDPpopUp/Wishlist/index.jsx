@@ -16,6 +16,7 @@ import axios from "axios";
 import Constant from "../../../Constant";
 import swal from "sweetalert2";
 import { useStateValue } from "../../../store/state";
+import { SessionExpiredLogout } from "../../../utilities";
 
 const Index = ({ pdpSellerData, handleOpenClose }) => {
   const [{ currency }, dispatch] = useStateValue();
@@ -88,7 +89,9 @@ const Index = ({ pdpSellerData, handleOpenClose }) => {
         setfname(foldernames?.data);
       }
     } catch (e) {
-      console.log(e);
+      if (e.response.status === 401) {
+        SessionExpiredLogout();
+      }
     }
   }, []);
 
@@ -142,7 +145,9 @@ const Index = ({ pdpSellerData, handleOpenClose }) => {
           });
         }
       } catch (e) {
-        console.log(e);
+        if (e.response.status === 401) {
+          SessionExpiredLogout();
+        }
       }
     }
   };
@@ -169,17 +174,16 @@ const Index = ({ pdpSellerData, handleOpenClose }) => {
             />
             <div className="wishlist_product">
               <span className="wishlist_img">
-
-                   {pdpSellerData?.brand ? (
-                <img
-                   className="wishlist_img"
-                  src={`${Constant.imageBaseUrl()}${pdpSellerData?.brand}`}
-                  alt="brand"
-                  title={pdpSellerData?.brand}
-                />
-              ) : (
-                <span>{pdpSellerData?.brand_name}</span>
-              )}
+                {pdpSellerData?.brand ? (
+                  <img
+                    className="wishlist_img"
+                    src={`${Constant.imageBaseUrl()}${pdpSellerData?.brand}`}
+                    alt="brand"
+                    title={pdpSellerData?.brand}
+                  />
+                ) : (
+                  <span>{pdpSellerData?.brand_name}</span>
+                )}
               </span>
               <span className="description">{pdpSellerData?.description}</span>
             </div>

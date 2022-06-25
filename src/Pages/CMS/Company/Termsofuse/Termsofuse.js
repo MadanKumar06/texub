@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Termsofuse.scss";
 import Terms from "../../../../Assets/Career/Terms.png";
 import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
-import { getAdminToken } from "../../../../utilities";
+import { getAdminToken, SessionExpiredLogout } from "../../../../utilities";
 import { useStateValue } from "../../../../store/state";
 import Constant from "../../../../Constant";
 import axios from "axios";
@@ -47,11 +47,13 @@ export const Termsofuse = () => {
           value: false,
         });
       } catch (e) {
-        console.log(e);
         dispatch({
           type: "SET_IS_LOADING",
           value: false,
         });
+        if (e.response.status === 401) {
+          SessionExpiredLogout();
+        }
       }
     }
   }, [adminToken]);

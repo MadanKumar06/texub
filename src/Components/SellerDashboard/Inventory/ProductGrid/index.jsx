@@ -13,6 +13,7 @@ function Index({ registerproduct, gridData }) {
     selectableRows: "none",
     download: false,
     print: false,
+    pagination: false,
     sort: false,
     viewColumns: false,
     search: false,

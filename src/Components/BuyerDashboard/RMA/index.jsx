@@ -8,7 +8,6 @@ import Pagination from "../../Pagination";
 import { useStateValue } from "../../../store/state";
 import NodataFound from "../../../Assets/CommonImage/NodataFound.webp.png";
 
-
 function RMA() {
   const [{ geo, customstore, customnostore }, dispatch] = useStateValue();
   const [tableData, setTableData] = useState([]);
@@ -30,6 +29,7 @@ function RMA() {
     filterType: "dropdown",
     responsive: "vertical",
     selectableRows: "none",
+    pagination: false,
     download: false,
     print: false,
     sort: false,

@@ -9,6 +9,7 @@ import { useStateValue } from "../../../store/state";
 import axios from "axios";
 import Constant from "../../../Constant";
 import SimpleLoader from "../../../Components/SimpleLoader";
+import { SessionExpiredLogout } from "../../../utilities";
 
 const Productsbrands = ({
   setProductFetchApi,
@@ -16,7 +17,7 @@ const Productsbrands = ({
   setApplyFilter,
   applyFilter,
   homeCategorySearch,
-  clearSelected
+  clearSelected,
 }) => {
   const [{ isSimpleLoading }, dispatch] = useStateValue();
   const [isChange, setisChange] = useState(false);
@@ -26,11 +27,11 @@ const Productsbrands = ({
   const brand = (value) => {
     value && setisChange(value);
   };
-  useEffect(()=>{
-    setIsBrandSelected(null)
-    setIsCategorySelected(46)
-  },[clearSelected])
-  
+  useEffect(() => {
+    setIsBrandSelected(null);
+    setIsCategorySelected(46);
+  }, [clearSelected]);
+
   function Arrow(props) {
     let className =
       props.type === "next" ? "Carosal_nextArrow" : "Carosal_prevArrow";
@@ -75,6 +76,9 @@ const Productsbrands = ({
             type: "SET_IS_SIMPLE_LOADING",
             value: false,
           });
+          if (err.response.status === 401) {
+            SessionExpiredLogout();
+          }
         });
     };
     fetchBrandsData();
@@ -252,7 +256,7 @@ const Productsbrands = ({
       }, 2000);
     }
   }, [homeCategorySearch, getCategories]);
-  const [focusInput,setfocusInput] = useState(false)
+  const [focusInput, setfocusInput] = useState(false);
   return (
     <div className="Productsbrands">
       <>
@@ -309,12 +313,12 @@ const Productsbrands = ({
                         isCategorySelected === item?.category?.id &&
                         "selected_category"
                       }`}
-                      onMouseOver={() =>{
-                        brand(item?.category?.id)
-                        setfocusInput(true)
+                      onMouseOver={() => {
+                        brand(item?.category?.id);
+                        setfocusInput(true);
                       }}
-                      onMouseLeave={()=>{
-                        setfocusInput(false)
+                      onMouseLeave={() => {
+                        setfocusInput(false);
                       }}
                     >
                       <span
@@ -330,10 +334,17 @@ const Productsbrands = ({
                         {item?.category?.category_name}
                       </span>
                       {isChange ? (
-                        <div className={`list ${item?.subcategories?.length>5?'addSubCategoryScollBar':'addSubCategoryScoll'} ${focusInput===true?'list_hover':''}`}>
+                        <div
+                          className={`list ${
+                            item?.subcategories?.length > 5
+                              ? "addSubCategoryScollBar"
+                              : "addSubCategoryScoll"
+                          } ${focusInput === true ? "list_hover" : ""}`}
+                        >
                           <li className="list_content">
                             <span className="list_ScrollBar">
-                              {item.category?.id === isChange && focusInput===true &&
+                              {item.category?.id === isChange &&
+                              focusInput === true &&
                               item?.subcategories?.length
                                 ? item?.subcategories?.map((e) => {
                                     return (
@@ -348,9 +359,13 @@ const Productsbrands = ({
                                         }}
                                       >
                                         <span className="sub_catergory_content">
-                                          <p className="sub_catergory_name">{e.category_name}</p>
-                                        {/* {focusInput===true?<p>hi</p>:<p>hello</p>} */}
-                                          <p className="sub_catergory_count">({e.count})</p>
+                                          <p className="sub_catergory_name">
+                                            {e.category_name}
+                                          </p>
+                                          {/* {focusInput===true?<p>hi</p>:<p>hello</p>} */}
+                                          <p className="sub_catergory_count">
+                                            ({e.count})
+                                          </p>
                                         </span>
                                       </div>
                                     );

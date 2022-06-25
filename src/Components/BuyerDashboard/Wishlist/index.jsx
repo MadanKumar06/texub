@@ -8,7 +8,7 @@ import axios from "axios";
 import Constant from "../../../Constant";
 import { useStateValue } from "../../../store/state";
 import { Button, IconButton, InputBase, Paper } from "@mui/material";
-import NodataFound from "../../../Assets/CommonImage/NodataFound.webp.png";
+import { SessionExpiredLogout } from "../../../utilities";
 
 const Whislist = () => {
   const [tableData, setTableData] = useState([]);
@@ -82,11 +82,13 @@ const Whislist = () => {
           });
           setwishdata(wishlistdata.data);
         } catch (e) {
-          console.log(e);
           dispatch({
             type: "SET_IS_LOADING",
             value: false,
           });
+          if (e.response.status === 401) {
+            SessionExpiredLogout();
+          }
         }
       }
       fetchData();
@@ -112,7 +114,9 @@ const Whislist = () => {
         });
         setfolderdata(wishlistdata.data);
       } catch (e) {
-        console.log(e);
+        if (e.response.status === 401) {
+          SessionExpiredLogout();
+        }
       }
     }
   }, [currency?.currency_id]);
