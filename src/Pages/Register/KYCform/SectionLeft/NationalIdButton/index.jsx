@@ -118,12 +118,12 @@ const NationalIdButton = ({
               placement="top"
               title={
                 infoForUploadImage?.[0]?.value === "IN"
-                  ? "Please upload a valid Aadhar or Pan card"
+                  ? "Please upload a valid Aadhaar or PAN card"
                   : infoForUploadImage?.[0]?.value === "US"
-                  ? "Please upload a valid Driving license or Tax Id"
+                  ? "Please upload a valid Driving License or Tax ID"
                   : infoForUploadImage?.[0]?.value === "AE"
-                  ? "Please upload a valid Driving license or Emirates Id"
-                  : "Please upload a valid National Id"
+                  ? "Please upload a valid Driving license or Emirates ID"
+                  : "Please upload a valid National ID"
               }
             >
               <IconButton>

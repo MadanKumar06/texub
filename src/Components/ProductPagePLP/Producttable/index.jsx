@@ -22,6 +22,7 @@ const Productstable = ({
   applyFilter,
 }) => {
   const [{}, dispatch] = useStateValue();
+  let paginationCountPerPage = parseInt(userfilter?.pagination);
   const [tableData, setTableData] = useState([]);
   let {
     producttable,
@@ -269,6 +270,9 @@ const Productstable = ({
     setApicallback(event);
     setApplyFilter(!applyFilter);
   };
+
+  console.log(productData);
+
   return (
     <div className={producttable}>
       {productData?.length > 0 ? (
@@ -290,7 +294,7 @@ const Productstable = ({
         <Pagination
           PaginateData={PaginateDataSplit}
           DataList={productData?.length > 0 ? productData : []}
-          PagePerRow={50}
+          PagePerRow={paginationCountPerPage}
           TotalPage={userfilter?.count}
           apicallback={apicallback}
           handleApicallback={handleApicallback}

@@ -66,10 +66,10 @@ function Index({ type }) {
     hsn_code: "",
   });
 
-  const [restrictvalue, setrestrictvalue] = useState([
+  const restrictionOption = [
     { label: "Yes", value: "2" },
     { label: "No", value: "1" },
-  ]);
+  ];
   const [isDetailTabValid, setIsDetailTabValid] = useState({
     isHubValid: "",
     isPriceValid: "",
@@ -476,7 +476,7 @@ function Index({ type }) {
             resregion: d,
           }))
       );
-    restrictvalue?.filter(
+    restrictionOption?.filter(
       (d) =>
         d.value === olddata?.restrictions &&
         setUpdateProductList((prevState) => ({
@@ -1283,7 +1283,7 @@ function Index({ type }) {
                   }));
                 }}
                 id="restrictions"
-                options={restrictvalue ? restrictvalue : []}
+                options={restrictionOption}
                 renderInput={(params) => (
                   <TextField
                     {...params}

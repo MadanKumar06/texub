@@ -1,0 +1,103 @@
+$color1: #002d56;
+.scroll-to-top {
+  position: fixed;
+  bottom: 6em;
+  right: 4%;
+  color: $color1;
+  cursor: pointer;
+  z-index: 1;
+
+  small {
+    text-decoration: underline;
+    padding: 0.3em 1em;
+    border-radius: 20px;
+    background-color: white;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  }
+
+  div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+
+    &:hover {
+      p {
+        &::before {
+          animation: movebefore 450ms infinite;
+
+          @keyframes movebefore {
+            from {
+              top: 12px;
+            }
+            to {
+              top: 14px;
+            }
+          }
+        }
+
+        &::after {
+          animation: moveafter 450ms infinite;
+
+          @keyframes moveafter {
+            from {
+              top: 20px;
+            }
+            to {
+              top: 22px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  p {
+    position: relative;
+    text-align: center;
+    background-color: #dfb566;
+    padding: 5px;
+    margin: 0;
+    height: 40px;
+    width: 40px;
+    border-radius: 100%;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-top: 2px solid white;
+      border-right: 2px solid white;
+      transform: rotate(315deg);
+      right: 14px;
+      top: 12px;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-top: 2px solid white;
+      border-right: 2px solid white;
+      transform: rotate(315deg);
+      right: 14px;
+      top: 20px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .scroll-to-top {
+    small {
+      display: none;
+    }
+
+    p {
+      right: 2rem;
+      bottom: -1rem;
+    }
+  }
+}

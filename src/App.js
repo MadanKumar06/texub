@@ -18,6 +18,7 @@ import Registration from "./Pages/Register";
 import FAQ from "./Pages/CMS/Resources/FAQ's/FAQ";
 import ThankYouPage from "./Pages/Register/ThankYouPage";
 import ScrollToTop from "./Components/ScrollToTop";
+import ScrollToTopMain from './Components/ScrollToTop/ScrollToTopMainScroll'
 
 //User Route
 import Mycart from "./Pages/MyCart";
@@ -169,6 +170,7 @@ const App = () => {
         <ThemeProvider theme={theme}>
           <BrowserRouter>
           <ScrollToTop />
+          <ScrollToTopMain/>
           <Header />
           <Userdetails />
           <Routes>
