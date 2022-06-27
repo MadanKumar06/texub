@@ -43,7 +43,7 @@ $yellow: #DDB363;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: start;
+      align-items: flex-start;
       top: 0;
       bottom: 0;
 
@@ -328,7 +328,7 @@ $yellow: #DDB363;
           color: #0d2d53 !important;
           display: flex;
           justify-content: center;
-          align-items: start;
+          align-items: flex-start;
           min-height: 40px;
         }
       }

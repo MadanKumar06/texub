@@ -304,7 +304,7 @@ const Productstable = ({
         <Pagination
           PaginateData={PaginateDataSplit}
           DataList={productData?.length > 0 ? productData : []}
-          PagePerRow={50}
+          PagePerRow={parseInt(userfilter?.pagination)}
           TotalPage={userfilter?.count}
           apicallback={apicallback}
           handleApicallback={handleApicallback}

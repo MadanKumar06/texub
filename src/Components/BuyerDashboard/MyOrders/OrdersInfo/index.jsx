@@ -9,13 +9,13 @@ import { useStateValue } from "../../../../store/state";
 import MUITable from "../../../Common/MUITable";
 import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
 
-import image from "../../../../Assets/buyerdashboard/auctions/hp.png";
+// import image from "../../../../Assets/buyerdashboard/auctions/hp.png";
 import download from "../../../../Assets/buyerdashboard/orders/download.png";
-import track from "../../../../Assets/buyerdashboard/orders/trackorder.png";
+// import track from "../../../../Assets/buyerdashboard/orders/trackorder.png";
 import rating from "../../../../Assets/buyerdashboard/orders/rating.png";
 import {
   totalamount,
-  transaction_info,
+  // transaction_info,
 } from "../../../Common/Vieworders/viewordersjson";
 import { useLocation, useNavigate } from "react-router-dom";
 import { SessionExpiredLogout } from "../../../../utilities";

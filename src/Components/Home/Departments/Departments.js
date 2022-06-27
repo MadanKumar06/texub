@@ -4,7 +4,6 @@ import { IconButton, InputBase, Paper } from "@mui/material";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { Menu, Search } from "@mui/icons-material";
 import { useStateValue } from "../../../store/state";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 export const Departments = ({ data, categories }) => {

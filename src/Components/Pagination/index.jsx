@@ -217,12 +217,15 @@ const PaginationControlled = ({
       page: storedpage,
       jumptopage: storedpage?.toString(),
     }));
-    PaginateData(
-      DataList?.slice(
-        firstIndex + PagePerRow * (storedpage - 1),
-        PagePerRow * storedpage
-      )
-    );
+
+    TotalPage
+      ? PaginateData(DataList)
+      : PaginateData(
+          DataList?.slice(
+            firstIndex + PagePerRow * (storedpage - 1),
+            PagePerRow * storedpage
+          )
+        );
   }, [
     localStorage.getItem("wishpage"),
     PagePerRow,

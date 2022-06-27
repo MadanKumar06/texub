@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./styles.scss";
-import { ArrowBackIosNew } from "@mui/icons-material";
+import { ArrowBackIosNew, Clear } from "@mui/icons-material";
 import MUITable from "../../Common/MUITable";
 import axios from "axios";
 import Constant from "../../../Constant";
@@ -12,6 +12,7 @@ import StepConnector, {
 import { styled } from "@mui/material/styles";
 import swal from "sweetalert2";
 import moment from "moment";
+import { Modal, Backdrop } from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import {
@@ -88,25 +89,6 @@ function formatToCurrency(price) {
 }
 
 const columns = [
-  // {
-  //   name: "product_name",
-  //   label: "PRODUCT NAME",
-  //   options: {
-  //     customBodyRender: (value, tablemeta) => {
-  //       let brand_image = tablemeta?.rowData[7];
-  //       let description = tablemeta?.rowData[8];
-  //       return (
-  //         <div className="productname">
-  //           <img src={brand_image} alt="" className="image"></img>
-  //           <div className="product">
-  //             <span className="modal_name">{value}</span>
-  //             <span className="modal_content">{description}</span>
-  //           </div>
-  //         </div>
-  //       );
-  //     },
-  //   },
-  // },
   {
     name: "name",
     label: "PRODUCT NAME",
@@ -159,17 +141,10 @@ const columns = [
     name: "eta",
     label: "ETA",
     options: {
-      customBodyRender: (value, tablemeta) => {
-        let check_eta_value = tablemeta?.rowData[3];
-        if (check_eta_value == 1) {
-          var days_check = "Day";
-        } else {
-          var days_check = "Days";
-        }
-
+      customBodyRender: (value) => {
         return (
           <div className="vieworders_eta">
-            {check_eta_value} {days_check}
+            {value} {value == 1 ? "Day" : "Days"}
           </div>
         );
       },
@@ -253,16 +228,15 @@ const columns = [
   },
 ];
 
-const Index = ({ viewDetail, setvieworder, handleSearchBar }) => {
+const Index = () => {
   const [radiogroup, setRadioGroup] = useState(1);
   const [trigger, setTrigger] = useState(false);
   const [{}, dispatch] = useStateValue();
   const history = useLocation();
   const navigate = useNavigate();
-  const [viewDetailOrder, setviewDetailOrder] = useState(history?.state);
-  const [seller_order_status, setseller_order_status] = useState(
-    viewDetailOrder?.[0]?.po_status
-  );
+  const viewDetailOrder = history?.state;
+  const [transactionDetailOpenClose, setTransactionDetailOpenClose] =
+    useState(false);
 
   const [adminToken, setAdminToken] = useState("");
   useEffect(() => {
@@ -270,7 +244,16 @@ const Index = ({ viewDetail, setvieworder, handleSearchBar }) => {
       setAdminToken(res);
     });
   }, []);
-
+  //model open and close -(onclick serial number link)
+  const handleOpen = () => {
+    setTransactionDetailOpenClose(true);
+  };
+  const handleClose = (event, reason) => {
+    if (reason && reason === "backdropClick") return;
+    else {
+      setTransactionDetailOpenClose(false);
+    }
+  };
   const ConfirmAttachment = (File, temp) => {
     swal
       .fire({
@@ -485,31 +468,31 @@ const Index = ({ viewDetail, setvieworder, handleSearchBar }) => {
   };
   useEffect(() => {
     if (activeStep === 1) {
-      if (seller_order_status === "4") {
+      if (viewDetailOrder?.[0]?.po_status === "4") {
         setisCancelledOrder("cancelled");
       } else {
         setradio_orde_rstatus("");
       }
     } else if (activeStep === 2) {
-      if (seller_order_status === "4") {
+      if (viewDetailOrder?.[0]?.po_status === "4") {
         setisCancelledOrder("cancelled");
       } else {
         setradio_orde_rstatus("Confirm");
       }
     } else if (activeStep === 3) {
-      if (seller_order_status === "4") {
+      if (viewDetailOrder?.[0]?.po_status === "4") {
         setisCancelledOrder("cancelled");
       } else {
         setradio_orde_rstatus("Dispatched");
       }
     } else if (activeStep === 4) {
-      if (seller_order_status === "4") {
+      if (viewDetailOrder?.[0]?.po_status === "4") {
         setisCancelledOrder("cancelled");
       } else {
         setradio_orde_rstatus("Delivered");
       }
     }
-  }, [activeStep, seller_order_status]);
+  }, [activeStep, viewDetailOrder]);
 
   const isRadioSelected = () => {
     if (activeStep === 1 && radio_orde_rstatus === "") {
@@ -547,24 +530,42 @@ const Index = ({ viewDetail, setvieworder, handleSearchBar }) => {
             <span className="id">{viewDetailOrder?.[0]?.po_number}</span>
           </p>
         </div>
-        <Button className="button-text btn-secondary attach_invoice_btn">
-          <label className="sub_media_upload_label" htmlFor="icon-button-file">
-            Attach Invoice
-            <input
-              accept="image/jpeg,image/png,application/pdf"
-              id="icon-button-file"
-              type="file"
-              name="national_id_image"
-              onChange={handleImageChange}
-            />
-            <img
-              src={uploadImage}
-              alt="auth"
-              aria-label="upload picture"
-              component="span"
-            />
-          </label>
-        </Button>
+        <div className="header_section-part-2">
+          {viewDetailOrder?.[0]?.transaction_amount &&
+            viewDetailOrder?.[0]?.transaction_date &&
+            viewDetailOrder?.[0]?.transaction_ref_number &&
+            viewDetailOrder?.[0]?.transaction_remarks && (
+              <Button
+                className="button-text btn-secondary attach_invoice_btn"
+                onClick={() => handleOpen()}
+              >
+                <label className="sub_media_upload_label">
+                  Transaction Details
+                </label>
+              </Button>
+            )}
+          <Button className="button-text btn-secondary attach_invoice_btn">
+            <label
+              className="sub_media_upload_label"
+              htmlFor="icon-button-file"
+            >
+              Attach Invoice
+              <input
+                accept="image/jpeg,image/png,application/pdf"
+                id="icon-button-file"
+                type="file"
+                name="national_id_image"
+                onChange={handleImageChange}
+              />
+              <img
+                src={uploadImage}
+                alt="auth"
+                aria-label="upload picture"
+                component="span"
+              />
+            </label>
+          </Button>
+        </div>
       </div>
       <MUITable
         columns={columns}
@@ -728,6 +729,46 @@ const Index = ({ viewDetail, setvieworder, handleSearchBar }) => {
           Cancel Order
         </Button> */}
       </div>
+      {transactionDetailOpenClose && (
+        <Modal
+          open={transactionDetailOpenClose}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+          closeAfterTransition
+          BackdropComponent={Backdrop}
+          disableRestoreFocus={true}
+          BackdropProps={{
+            timeout: 500,
+          }}
+          className="serial_number_popup"
+        >
+          <div className="serial_popup_main" style={{ outline: "none" }}>
+            <Clear
+              className="clear_btn serial_popup_clear_btn"
+              onClick={() => handleClose()}
+            />
+            <div className="serial_popup_block">
+              <p>
+                <span> Transaction Amount : </span>
+                {viewDetailOrder?.[0]?.transaction_amount}
+              </p>
+              <p>
+                <span>Transaction Date : </span>
+                {viewDetailOrder?.[0]?.transaction_date}
+              </p>
+              <p>
+                <span>Transaction Ref Number : </span>
+                {viewDetailOrder?.[0]?.transaction_ref_number}
+              </p>
+              <p>
+                <span> Transaction Remarks : </span>
+                {viewDetailOrder?.[0]?.transaction_remarks}
+              </p>
+            </div>
+          </div>
+        </Modal>
+      )}
     </div>
   );
 };

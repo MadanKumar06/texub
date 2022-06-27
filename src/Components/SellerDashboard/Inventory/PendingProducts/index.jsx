@@ -192,7 +192,7 @@ function Index({ registerproduct }) {
         <Pagination
           PaginateData={PaginateDataSplit}
           DataList={apiTableData?.products}
-          PagePerRow={50}
+          PagePerRow={parseInt(apiTableData?.pagination)}
           TotalPage={apiTableData?.count}
           apicallback={apicallback}
           handleApicallback={handleApicallback}
