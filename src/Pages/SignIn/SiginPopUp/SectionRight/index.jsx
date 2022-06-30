@@ -272,27 +272,30 @@ const TransitionsModal = ({ classes, adminToken }) => {
       });
   };
 
-  useEffect(async () => {
-    let user = JSON.parse(localStorage.getItem("userdata"));
-    if (adminToken && user?.id) {
-      try {
-        const permission = await axios({
-          method: "post",
-          url: `${Constant?.permissiondetails()}`,
-          headers: {
-            Authorization: `Bearer ${adminToken}`,
-          },
-          data: {
-            customer_id: user?.id,
-          },
-        });
-        localStorage.setItem("permissions", JSON.stringify(permission?.data));
-      } catch (e) {
-        if (e.response.status === 401) {
-          SessionExpiredLogout();
+  useEffect(() => {
+    async function fetchData() {
+      let user = JSON.parse(localStorage.getItem("userdata"));
+      if (adminToken && user?.id) {
+        try {
+          const permission = await axios({
+            method: "post",
+            url: `${Constant?.permissiondetails()}`,
+            headers: {
+              Authorization: `Bearer ${adminToken}`,
+            },
+            data: {
+              customer_id: user?.id,
+            },
+          });
+          localStorage.setItem("permissions", JSON.stringify(permission?.data));
+        } catch (e) {
+          if (e.response.status === 401) {
+            SessionExpiredLogout();
+          }
         }
       }
     }
+    fetchData();
   }, [customerdata, adminToken]);
   return (
     <div className={section_right}>
@@ -303,7 +306,7 @@ const TransitionsModal = ({ classes, adminToken }) => {
       <p className={info_text_lineNote}>
         Just wanted to try out our site? Visit our site as a guest.”
       </p>
-      <form onSubmit={handleClickValidation}>
+      <form onSubmit={(e) => handleClickValidation(e)}>
         <div className={info_text_guest}>Guest Access</div>
         <div className={input_fields}>
           <TextField
@@ -433,7 +436,7 @@ const TransitionsModal = ({ classes, adminToken }) => {
 
           <Box className={button_box}>
             <Button
-              onClick={() => handleClickValidation()}
+              onClick={(e) => handleClickValidation(e)}
               className={button_guest}
               type="submit"
             >

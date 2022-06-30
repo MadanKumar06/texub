@@ -448,7 +448,7 @@ const BuyerRegistration = ({ classes }) => {
   return (
     <div className={main_container}>
       <div className={input_fields}>
-        <form onSubmit={handleClickValidation}>
+        <form onSubmit={(e)=>handleClickValidation(e)}>
           <div className={input_textField}>
             <div className={text_field_container}>
               <TextField

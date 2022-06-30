@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 import React, { useState, useEffect } from "react";
 import styles from "./styles";
 import axios from "axios";
@@ -404,28 +405,32 @@ const TransitionsModal = ({ classes, openPopUp }) => {
       });
   };
 
-  useEffect(async () => {
-    let user = JSON.parse(localStorage.getItem("userdata"));
-    if (adminToken && user?.id) {
-      try {
-        const permission = await axios({
-          method: "post",
-          url: `${Constant?.permissiondetails()}`,
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-          data: {
-            customer_id: user?.id,
-          },
-        });
-        localStorage.setItem("permissions", JSON.stringify(permission?.data));
-      } catch (e) {
-        if (e.response.status === 401) {
-          SessionExpiredLogout();
+  useEffect(() => {
+    async function fetchData() {
+      let user = JSON.parse(localStorage.getItem("userdata"));
+      if (adminToken && user?.id) {
+        try {
+          const permission = await axios({
+            method: "post",
+            url: `${Constant?.permissiondetails()}`,
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+            data: {
+              customer_id: user?.id,
+            },
+          });
+          localStorage.setItem("permissions", JSON.stringify(permission?.data));
+        } catch (e) {
+          if (e.response.status === 401) {
+            SessionExpiredLogout();
+          }
         }
       }
     }
-  }, [customerdata, localStorage.getItem("token")]);
+    fetchData();
+  }, [customerdata, adminToken]);
+
   //// Forgor Password ///
   const [passopen, setpassopen] = useState(false);
   const forgotpass = () => {
@@ -557,7 +562,7 @@ const TransitionsModal = ({ classes, openPopUp }) => {
                   “Sign In now to gain access to exclusive benefits created only
                   for you.”
                 </p>
-                <form onSubmit={handleClickValidation}>
+                <form onSubmit={(e) => handleClickValidation(e)}>
                   <div className={info_text}>Sign-In</div>
                   <div className={input_fields}>
                     <TextField
@@ -617,7 +622,7 @@ const TransitionsModal = ({ classes, openPopUp }) => {
                     />
                     <Box className={button_box}>
                       <Button
-                        onClick={() => handleClickValidation()}
+                        onClick={(e) => handleClickValidation(e)}
                         className={button_signin}
                         type="submit"
                       >

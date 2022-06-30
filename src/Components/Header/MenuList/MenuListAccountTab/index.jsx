@@ -1,7 +1,6 @@
-import React, { useState ,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./styles";
-import { Badge ,Drawer } from "@mui/material";
 import "./styles.scss";
 import PropTypes from "prop-types";
 import {
@@ -25,13 +24,8 @@ import {
   ExitToApp,
 } from "@mui/icons-material";
 
-import Departments from "./DepartmentJson";
 import mycart_image from "../../../../Assets/User/shopping-bag (2).png";
 import whishlist_image from "../../../../Assets/User/Icon.png";
-import dashboardLogo from "../../../../Assets/CommonImage/MyAccountMegamenu/menu.png";
-import myOrderLogo from "../../../../Assets/CommonImage/MyAccountMegamenu/shopping-bag.png";
-import auctionsLogo from "../../../../Assets/CommonImage/MyAccountMegamenu/auction.png";
-import logoutLogo from "../../../../Assets/CommonImage/MyAccountMegamenu/logout.png";
 import account_circle from "../../../../Assets/User/user (3).png";
 import { useStateValue } from "../../../../store/state";
 import swal from "sweetalert2";
@@ -64,33 +58,23 @@ TabPanel.propTypes = {
 
 const BasicTabs = ({ classes, handleSideBarClose }) => {
   const [value, setValue] = React.useState(0);
-  // const [{ geo, customnostore }, dispatch] = useStateValue();
   const [open, setOpen] = useState(false);
   let isSignedIn = JSON.parse(localStorage.getItem("userdata"));
   let kycStatus = JSON.parse(
     localStorage.getItem("userdata")
   )?.custom_attributes?.filter((itm) => itm?.attribute_code === "kyc_status");
   const navigate = useNavigate();
-  const [{ geo, wishListData, customnostore, cart, homeContent  }, dispatch] = useStateValue();
+  const [{ geo, wishListData, customnostore, cart, homeContent }, dispatch] =
+    useStateValue();
   const history = useNavigate();
 
-    const handleWishlist = () => {
-    history(
-      `/${
-        customnostore ? customnostore : geo?.country_name
-      }/buyerdashboard/wishlist`
-    );
-  };
-
   const [wishlength, setwishlength] = useState(0);
-   useEffect(() => {
+  useEffect(() => {
     let temp = [];
     wishListData?.filter((wld) => temp.push(wld?.wishlist_data?.length));
     let templength = temp.reduce((initial, final) => initial + final, 0);
     setwishlength(templength);
   }, [wishListData]);
-
-
 
   const handleDashboard = () => {
     navigate(
@@ -99,14 +83,14 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
       }/buyerdashboard/dashboard`
     );
   };
-    const handleSellerDashboard = () => {
+  const handleSellerDashboard = () => {
     navigate(
       `/${
         customnostore ? customnostore : geo?.country_name
       }/sellerdashboard/dashboard`
     );
   };
-   const handleInventoryPage = () => {
+  const handleInventoryPage = () => {
     navigate(
       `/${
         customnostore ? customnostore : geo?.country_name
@@ -120,13 +104,13 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
       }/buyerdashboard/myorder`
     );
   };
-  const handleAuctions = () => {
-    navigate(
-      `/${
-        customnostore ? customnostore : geo?.country_name
-      }/buyerdashboard/auctions`
-    );
-  };
+  // const handleAuctions = () => {
+  //   navigate(
+  //     `/${
+  //       customnostore ? customnostore : geo?.country_name
+  //     }/buyerdashboard/auctions`
+  //   );
+  // };
   const handleKYCDetails = () => {
     navigate(
       `/${customnostore ? customnostore : geo?.country_name}/kycdetails`
@@ -222,79 +206,79 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
       </g>
     </svg>
   );
-  const InventoryIcon  = (
-      <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="34"
-          height="33.121"
-          viewBox="0 0 34 33.121"
+  const InventoryIcon = (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="34"
+      height="33.121"
+      viewBox="0 0 34 33.121"
+    >
+      <g
+        id="Group_1487"
+        data-name="Group 1487"
+        transform="translate(-3926.949 -459.964)"
+      >
+        <g
+          id="Group_1486"
+          data-name="Group 1486"
+          transform="translate(0.305 -44.462)"
         >
-          <g
-            id="Group_1487"
-            data-name="Group 1487"
-            transform="translate(-3926.949 -459.964)"
-          >
-            <g
-              id="Group_1486"
-              data-name="Group 1486"
-              transform="translate(0.305 -44.462)"
-            >
-              <rect
-                id="Rectangle_1713"
-                data-name="Rectangle 1713"
-                width="10"
-                height="8"
-                transform="translate(3933.644 529.048)"
-                fill="none"
-                stroke="#000"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="1"
-              />
-              <rect
-                id="Rectangle_1714"
-                data-name="Rectangle 1714"
-                width="10"
-                height="8"
-                transform="translate(3943.644 529.048)"
-                fill="none"
-                stroke="#000"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="1"
-              />
-              <path
-                id="Path_1744"
-                data-name="Path 1744"
-                d="M4115,557.237v-2.789h0c-.065-1.8,0-8.39,0-8.39h10.155v11.179"
-                transform="translate(-176.356 -25.952)"
-                fill="none"
-                stroke="#000"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="1"
-              />
-              <line
-                id="Line_31"
-                data-name="Line 31"
-                y1="2"
-                transform="translate(3943.5 520.5)"
-                fill="none"
-                stroke="#000"
-                strokeLinecap="round"
-                strokeWidth="1"
-              />
-            </g>
-            <path
-              id="Rectangle_445"
-              data-name="Rectangle 445"
-              d="M33.5,13.062V32A1.5,1.5,0,0,1,32,33.5H2A1.5,1.5,0,0,1,.5,32V13.062a1.5,1.5,0,0,1,.66-1.242l15-10.147a1.5,1.5,0,0,1,1.681,0l15,10.147A1.5,1.5,0,0,1,33.5,13.062Z"
-              transform="translate(3926.949 459.085)"
-              fill="none"
-              stroke="#000"
-              strokeWidth="1"
-            />
-          </g>
+          <rect
+            id="Rectangle_1713"
+            data-name="Rectangle 1713"
+            width="10"
+            height="8"
+            transform="translate(3933.644 529.048)"
+            fill="none"
+            stroke="#000"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="1"
+          />
+          <rect
+            id="Rectangle_1714"
+            data-name="Rectangle 1714"
+            width="10"
+            height="8"
+            transform="translate(3943.644 529.048)"
+            fill="none"
+            stroke="#000"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="1"
+          />
+          <path
+            id="Path_1744"
+            data-name="Path 1744"
+            d="M4115,557.237v-2.789h0c-.065-1.8,0-8.39,0-8.39h10.155v11.179"
+            transform="translate(-176.356 -25.952)"
+            fill="none"
+            stroke="#000"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="1"
+          />
+          <line
+            id="Line_31"
+            data-name="Line 31"
+            y1="2"
+            transform="translate(3943.5 520.5)"
+            fill="none"
+            stroke="#000"
+            strokeLinecap="round"
+            strokeWidth="1"
+          />
+        </g>
+        <path
+          id="Rectangle_445"
+          data-name="Rectangle 445"
+          d="M33.5,13.062V32A1.5,1.5,0,0,1,32,33.5H2A1.5,1.5,0,0,1,.5,32V13.062a1.5,1.5,0,0,1,.66-1.242l15-10.147a1.5,1.5,0,0,1,1.681,0l15,10.147A1.5,1.5,0,0,1,33.5,13.062Z"
+          transform="translate(3926.949 459.085)"
+          fill="none"
+          stroke="#000"
+          strokeWidth="1"
+        />
+      </g>
     </svg>
   );
   const KYSIcon = (
@@ -388,186 +372,186 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
       </g>{" "}
     </svg>
   );
-  const auctionIcon = (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="35.467"
-      height="32.107"
-      viewBox="0 0 35.467 32.107"
-    >
-      <g
-        id="Group_1456"
-        data-name="Group 1456"
-        transform="translate(-1801 -670.893)"
-      >
-        <g id="Group_1449" data-name="Group 1449" transform="translate(-43 24)">
-          <g
-            id="Rectangle_1682"
-            data-name="Rectangle 1682"
-            transform="translate(1845 672)"
-            fill="none"
-            stroke="#000"
-            strokeWidth="1"
-          >
-            <path
-              d="M4,0h7a4,4,0,0,1,4,4V4a0,0,0,0,1,0,0H0A0,0,0,0,1,0,4V4A4,4,0,0,1,4,0Z"
-              stroke="none"
-            ></path>
-            <path
-              d="M3.5.5h8a3,3,0,0,1,3,3v0a0,0,0,0,1,0,0H.5a0,0,0,0,1,0,0v0A3,3,0,0,1,3.5.5Z"
-              fill="none"
-            ></path>
-          </g>
-          <g
-            id="Rectangle_1683"
-            data-name="Rectangle 1683"
-            transform="translate(1844 675)"
-            fill="none"
-            stroke="#000"
-            strokeWidth="1"
-          >
-            <path
-              d="M2,0H15a2,2,0,0,1,2,2V4a0,0,0,0,1,0,0H0A0,0,0,0,1,0,4V2A2,2,0,0,1,2,0Z"
-              stroke="none"
-            ></path>
-            <path
-              d="M2,.5H15A1.5,1.5,0,0,1,16.5,2V3.5a0,0,0,0,1,0,0H.5a0,0,0,0,1,0,0V2A1.5,1.5,0,0,1,2,.5Z"
-              fill="none"
-            ></path>
-          </g>
-        </g>
-        <line
-          id="Line_1"
-          data-name="Line 1"
-          x1="2"
-          y2="2"
-          transform="translate(1803.5 691.5)"
-          fill="none"
-          stroke="#000"
-          strokeLinecap="round"
-          strokeWidth="1"
-        ></line>
-        <line
-          id="Line_2"
-          data-name="Line 2"
-          x1="2"
-          y1="2"
-          transform="translate(1803.5 683.5)"
-          fill="none"
-          stroke="#000"
-          strokeLinecap="round"
-          strokeWidth="1"
-        ></line>
-        <line
-          id="Line_3"
-          data-name="Line 3"
-          x1="4"
-          transform="translate(1801.5 688.5)"
-          fill="none"
-          stroke="#000"
-          strokeLinecap="round"
-          strokeWidth="1"
-        ></line>
-        <g
-          id="Rectangle_1684"
-          data-name="Rectangle 1684"
-          transform="translate(1811.282 682.828) rotate(-45)"
-          fill="none"
-          stroke="#000"
-          strokeWidth="1"
-        >
-          <rect width="11" height="8" stroke="none"></rect>
-          <rect x="0.5" y="0.5" width="10" height="7" fill="none"></rect>
-        </g>
-        <g
-          id="Rectangle_1685"
-          data-name="Rectangle 1685"
-          transform="translate(1807.05 684.429) rotate(-45)"
-          fill="none"
-          stroke="#000"
-          strokeWidth="1"
-        >
-          <rect width="5" height="11.912" rx="2.5" stroke="none"></rect>
-          <rect
-            x="0.5"
-            y="0.5"
-            width="4"
-            height="10.912"
-            rx="2"
-            fill="none"
-          ></rect>
-        </g>
-        <g
-          id="Rectangle_1686"
-          data-name="Rectangle 1686"
-          transform="translate(1817.05 674.429) rotate(-45)"
-          fill="none"
-          stroke="#000"
-          strokeWidth="1"
-        >
-          <rect width="5" height="11.912" rx="2.5" stroke="none"></rect>
-          <rect
-            x="0.5"
-            y="0.5"
-            width="4"
-            height="10.912"
-            rx="2"
-            fill="none"
-          ></rect>
-        </g>
-        <rect
-          id="Rectangle_1687"
-          data-name="Rectangle 1687"
-          width="4"
-          height="1"
-          rx="0.5"
-          transform="matrix(0.695, -0.719, 0.719, 0.695, 1816.891, 679.504)"
-        ></rect>
-        <circle
-          id="Ellipse_102"
-          data-name="Ellipse 102"
-          cx="0.5"
-          cy="0.5"
-          r="0.5"
-          transform="translate(1816 680)"
-        ></circle>
-        <g
-          id="Rectangle_1688"
-          data-name="Rectangle 1688"
-          transform="matrix(0.719, -0.695, 0.695, 0.719, 1817.623, 686.303)"
-          fill="none"
-          stroke="#000"
-          strokeWidth="1"
-        >
-          <rect width="7" height="4" rx="2" stroke="none"></rect>
-          <rect
-            x="0.5"
-            y="0.5"
-            width="6"
-            height="3"
-            rx="1.5"
-            fill="none"
-          ></rect>
-        </g>
-        <g
-          id="Path_1679"
-          data-name="Path 1679"
-          transform="matrix(0.719, -0.695, 0.695, 0.719, 1819.623, 688.623)"
-          fill="none"
-        >
-          <path
-            d="M3.5,0C5.433,0,6.1-.309,6.1,1.624L7,13.5a3.5,3.5,0,0,1-7,0L1.266,1.951C1.266.018,1.567,0,3.5,0Z"
-            stroke="none"
-          ></path>
-          <path
-            d="M 4.690639972686768 0.9818229675292969 C 4.552789688110352 0.9818229675292969 4.392859935760498 0.9855222702026367 4.223549842834473 0.9894323348999023 C 4.009380340576172 0.9943923950195312 3.766639947891235 1.000002861022949 3.5 1.000002861022949 C 3.071963310241699 1.000002861022949 2.553483009338379 1.000004768371582 2.318933010101318 1.042501449584961 C 2.29411792755127 1.161250114440918 2.265500068664551 1.414519309997559 2.265500068664551 1.950852394104004 L 2.265500068664551 2.005473136901855 L 1.000495433807373 13.5501012802124 C 1.027281761169434 14.9055643081665 2.138243198394775 16.00000190734863 3.5 16.00000190734863 C 4.866888999938965 16.00000190734863 5.981087684631348 14.89737606048584 5.999760150909424 13.53484058380127 L 5.096560001373291 1.661703109741211 L 5.096560001373291 1.623723030090332 C 5.096560001373291 1.283353805541992 5.072463512420654 1.095126152038574 5.052077770233154 0.9967937469482422 C 4.983100414276123 0.9889383316040039 4.870862007141113 0.9818229675292969 4.690639972686768 0.9818229675292969 M 4.690637111663818 -0.0181732177734375 C 5.715892791748047 -0.0181732177734375 6.096560001373291 0.1592254638671875 6.096560001373291 1.623723030090332 L 7 13.50000286102295 C 7 15.43299293518066 5.433000087738037 17.00000190734863 3.5 17.00000190734863 C 1.566999912261963 17.00000190734863 0 15.43299293518066 0 13.50000286102295 L 1.265500068664551 1.950852394104004 C 1.265500068664551 0.017852783203125 1.566999912261963 1.9073486328125e-06 3.5 1.9073486328125e-06 C 3.968502283096313 1.9073486328125e-06 4.362650871276855 -0.0181732177734375 4.690637111663818 -0.0181732177734375 Z"
-            stroke="none"
-            fill="#000"
-          ></path>
-        </g>
-      </g>
-    </svg>
-  );
+  // const auctionIcon = (
+  //   <svg
+  //     xmlns="http://www.w3.org/2000/svg"
+  //     width="35.467"
+  //     height="32.107"
+  //     viewBox="0 0 35.467 32.107"
+  //   >
+  //     <g
+  //       id="Group_1456"
+  //       data-name="Group 1456"
+  //       transform="translate(-1801 -670.893)"
+  //     >
+  //       <g id="Group_1449" data-name="Group 1449" transform="translate(-43 24)">
+  //         <g
+  //           id="Rectangle_1682"
+  //           data-name="Rectangle 1682"
+  //           transform="translate(1845 672)"
+  //           fill="none"
+  //           stroke="#000"
+  //           strokeWidth="1"
+  //         >
+  //           <path
+  //             d="M4,0h7a4,4,0,0,1,4,4V4a0,0,0,0,1,0,0H0A0,0,0,0,1,0,4V4A4,4,0,0,1,4,0Z"
+  //             stroke="none"
+  //           ></path>
+  //           <path
+  //             d="M3.5.5h8a3,3,0,0,1,3,3v0a0,0,0,0,1,0,0H.5a0,0,0,0,1,0,0v0A3,3,0,0,1,3.5.5Z"
+  //             fill="none"
+  //           ></path>
+  //         </g>
+  //         <g
+  //           id="Rectangle_1683"
+  //           data-name="Rectangle 1683"
+  //           transform="translate(1844 675)"
+  //           fill="none"
+  //           stroke="#000"
+  //           strokeWidth="1"
+  //         >
+  //           <path
+  //             d="M2,0H15a2,2,0,0,1,2,2V4a0,0,0,0,1,0,0H0A0,0,0,0,1,0,4V2A2,2,0,0,1,2,0Z"
+  //             stroke="none"
+  //           ></path>
+  //           <path
+  //             d="M2,.5H15A1.5,1.5,0,0,1,16.5,2V3.5a0,0,0,0,1,0,0H.5a0,0,0,0,1,0,0V2A1.5,1.5,0,0,1,2,.5Z"
+  //             fill="none"
+  //           ></path>
+  //         </g>
+  //       </g>
+  //       <line
+  //         id="Line_1"
+  //         data-name="Line 1"
+  //         x1="2"
+  //         y2="2"
+  //         transform="translate(1803.5 691.5)"
+  //         fill="none"
+  //         stroke="#000"
+  //         strokeLinecap="round"
+  //         strokeWidth="1"
+  //       ></line>
+  //       <line
+  //         id="Line_2"
+  //         data-name="Line 2"
+  //         x1="2"
+  //         y1="2"
+  //         transform="translate(1803.5 683.5)"
+  //         fill="none"
+  //         stroke="#000"
+  //         strokeLinecap="round"
+  //         strokeWidth="1"
+  //       ></line>
+  //       <line
+  //         id="Line_3"
+  //         data-name="Line 3"
+  //         x1="4"
+  //         transform="translate(1801.5 688.5)"
+  //         fill="none"
+  //         stroke="#000"
+  //         strokeLinecap="round"
+  //         strokeWidth="1"
+  //       ></line>
+  //       <g
+  //         id="Rectangle_1684"
+  //         data-name="Rectangle 1684"
+  //         transform="translate(1811.282 682.828) rotate(-45)"
+  //         fill="none"
+  //         stroke="#000"
+  //         strokeWidth="1"
+  //       >
+  //         <rect width="11" height="8" stroke="none"></rect>
+  //         <rect x="0.5" y="0.5" width="10" height="7" fill="none"></rect>
+  //       </g>
+  //       <g
+  //         id="Rectangle_1685"
+  //         data-name="Rectangle 1685"
+  //         transform="translate(1807.05 684.429) rotate(-45)"
+  //         fill="none"
+  //         stroke="#000"
+  //         strokeWidth="1"
+  //       >
+  //         <rect width="5" height="11.912" rx="2.5" stroke="none"></rect>
+  //         <rect
+  //           x="0.5"
+  //           y="0.5"
+  //           width="4"
+  //           height="10.912"
+  //           rx="2"
+  //           fill="none"
+  //         ></rect>
+  //       </g>
+  //       <g
+  //         id="Rectangle_1686"
+  //         data-name="Rectangle 1686"
+  //         transform="translate(1817.05 674.429) rotate(-45)"
+  //         fill="none"
+  //         stroke="#000"
+  //         strokeWidth="1"
+  //       >
+  //         <rect width="5" height="11.912" rx="2.5" stroke="none"></rect>
+  //         <rect
+  //           x="0.5"
+  //           y="0.5"
+  //           width="4"
+  //           height="10.912"
+  //           rx="2"
+  //           fill="none"
+  //         ></rect>
+  //       </g>
+  //       <rect
+  //         id="Rectangle_1687"
+  //         data-name="Rectangle 1687"
+  //         width="4"
+  //         height="1"
+  //         rx="0.5"
+  //         transform="matrix(0.695, -0.719, 0.719, 0.695, 1816.891, 679.504)"
+  //       ></rect>
+  //       <circle
+  //         id="Ellipse_102"
+  //         data-name="Ellipse 102"
+  //         cx="0.5"
+  //         cy="0.5"
+  //         r="0.5"
+  //         transform="translate(1816 680)"
+  //       ></circle>
+  //       <g
+  //         id="Rectangle_1688"
+  //         data-name="Rectangle 1688"
+  //         transform="matrix(0.719, -0.695, 0.695, 0.719, 1817.623, 686.303)"
+  //         fill="none"
+  //         stroke="#000"
+  //         strokeWidth="1"
+  //       >
+  //         <rect width="7" height="4" rx="2" stroke="none"></rect>
+  //         <rect
+  //           x="0.5"
+  //           y="0.5"
+  //           width="6"
+  //           height="3"
+  //           rx="1.5"
+  //           fill="none"
+  //         ></rect>
+  //       </g>
+  //       <g
+  //         id="Path_1679"
+  //         data-name="Path 1679"
+  //         transform="matrix(0.719, -0.695, 0.695, 0.719, 1819.623, 688.623)"
+  //         fill="none"
+  //       >
+  //         <path
+  //           d="M3.5,0C5.433,0,6.1-.309,6.1,1.624L7,13.5a3.5,3.5,0,0,1-7,0L1.266,1.951C1.266.018,1.567,0,3.5,0Z"
+  //           stroke="none"
+  //         ></path>
+  //         <path
+  //           d="M 4.690639972686768 0.9818229675292969 C 4.552789688110352 0.9818229675292969 4.392859935760498 0.9855222702026367 4.223549842834473 0.9894323348999023 C 4.009380340576172 0.9943923950195312 3.766639947891235 1.000002861022949 3.5 1.000002861022949 C 3.071963310241699 1.000002861022949 2.553483009338379 1.000004768371582 2.318933010101318 1.042501449584961 C 2.29411792755127 1.161250114440918 2.265500068664551 1.414519309997559 2.265500068664551 1.950852394104004 L 2.265500068664551 2.005473136901855 L 1.000495433807373 13.5501012802124 C 1.027281761169434 14.9055643081665 2.138243198394775 16.00000190734863 3.5 16.00000190734863 C 4.866888999938965 16.00000190734863 5.981087684631348 14.89737606048584 5.999760150909424 13.53484058380127 L 5.096560001373291 1.661703109741211 L 5.096560001373291 1.623723030090332 C 5.096560001373291 1.283353805541992 5.072463512420654 1.095126152038574 5.052077770233154 0.9967937469482422 C 4.983100414276123 0.9889383316040039 4.870862007141113 0.9818229675292969 4.690639972686768 0.9818229675292969 M 4.690637111663818 -0.0181732177734375 C 5.715892791748047 -0.0181732177734375 6.096560001373291 0.1592254638671875 6.096560001373291 1.623723030090332 L 7 13.50000286102295 C 7 15.43299293518066 5.433000087738037 17.00000190734863 3.5 17.00000190734863 C 1.566999912261963 17.00000190734863 0 15.43299293518066 0 13.50000286102295 L 1.265500068664551 1.950852394104004 C 1.265500068664551 0.017852783203125 1.566999912261963 1.9073486328125e-06 3.5 1.9073486328125e-06 C 3.968502283096313 1.9073486328125e-06 4.362650871276855 -0.0181732177734375 4.690637111663818 -0.0181732177734375 Z"
+  //           stroke="none"
+  //           fill="#000"
+  //         ></path>
+  //       </g>
+  //     </g>
+  //   </svg>
+  // );
   const pendingInvoiceIcon = (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -691,7 +675,7 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
     </svg>
   );
 
-  const RegistrationPop = (event) => {
+  const RegistrationPop = () => {
     handleSideBarClose("left", false);
     setTimeout(() => {
       dispatch({
@@ -777,13 +761,13 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
     },
   ];
 
-    const sellerMyAccountList = [
+  const sellerMyAccountList = [
     {
       image: dashboardIcon,
       name: "Seller Dashboard",
       event: handleSellerDashboard,
     },
-     {
+    {
       image: InventoryIcon,
       name: "Inventory",
       event: handleInventoryPage,
@@ -803,7 +787,7 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
     history(`/${customnostore ? customnostore : geo?.country_name}/products`, {
       state: { name: event?.attribute, value: event?.value },
     });
-    handleClick()
+    handleClick();
   };
   return (
     <Box sx={{ width: "100%" }} className={classes.main_boxt_conatainer}>
@@ -824,124 +808,131 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0} className={classes.sub_tab_conatainer}>
-         {(isSignedIn?.group_id === 5 && kycStatus?.[0]?.value === "2") ||
-          (isSignedIn?.group_id === 6 && kycStatus?.[0]?.value === "2") ? (
-            <>
+        {(isSignedIn?.group_id === 5 && kycStatus?.[0]?.value === "2") ||
+        (isSignedIn?.group_id === 6 && kycStatus?.[0]?.value === "2") ? (
+          <>
             <ListItemButton onClick={handleClick}>
               <img src={account_circle} alt="" />
               <ListItemText primary={"My Account"} />
               {open ? <ExpandLess /> : <ExpandMore />}
             </ListItemButton>
-            </>
-            ) : (
-                ""
-              )}
+          </>
+        ) : (
+          ""
+        )}
 
-          {(isSignedIn?.group_id === 5 && kycStatus?.[0]?.value === "2") ||
-          (isSignedIn?.group_id === 6 && kycStatus?.[0]?.value === "2") ? (
-            <>
+        {(isSignedIn?.group_id === 5 && kycStatus?.[0]?.value === "2") ||
+        (isSignedIn?.group_id === 6 && kycStatus?.[0]?.value === "2") ? (
+          <>
             <Collapse in={open} timeout="auto" unmountOnExit>
               <List
                 onClick={() => handleSideBarClose("left", false)}
                 component="div"
                 disablePadding
               >
-
-                 {(isSignedIn?.group_id === 5 && kycStatus?.[0]?.value === "2")
-                 ? (
+                {isSignedIn?.group_id === 5 && kycStatus?.[0]?.value === "2" ? (
                   <>
-                  <div>
-                {myAccountList?.map((itm) => (
-                  <div key={itm?.name} className={classes.dropdown_collapse_list}>
-                    <div
-                      className={(classes.link_in_tab, "mobile_sidebar_menu")}
-                      onClick={() => itm?.event()}
-                    >
-                      <ListItemButton sx={{ pl: 4 }}>
-                        {itm?.image}
-                        {/* <img src={itm?.image} alt="" /> */}
-                        <ListItemText primary={`${itm?.name}`} />
-                      </ListItemButton>
+                    <div>
+                      {myAccountList?.map((itm) => (
+                        <div
+                          key={itm?.name}
+                          className={classes.dropdown_collapse_list}
+                        >
+                          <div
+                            className={
+                              (classes.link_in_tab, "mobile_sidebar_menu")
+                            }
+                            onClick={() => itm?.event()}
+                          >
+                            <ListItemButton sx={{ pl: 4 }}>
+                              {itm?.image}
+                              {/* <img src={itm?.image} alt="" /> */}
+                              <ListItemText primary={`${itm?.name}`} />
+                            </ListItemButton>
+                          </div>
+                        </div>
+                      ))}
                     </div>
-                  </div>
-                ))}
-                </div>
-                </>
-            ) : (
-                ""
-              )}
-            {(isSignedIn?.group_id === 6 && kycStatus?.[0]?.value === "2")
-            ? (
+                  </>
+                ) : (
+                  ""
+                )}
+                {isSignedIn?.group_id === 6 && kycStatus?.[0]?.value === "2" ? (
                   <>
                     {sellerMyAccountList?.map((itm) => (
-                  <div key={itm?.name} className={classes.dropdown_collapse_list}>
-                    <div
-                      className={(classes.link_in_tab, "mobile_sidebar_menu")}
-                      onClick={() => itm?.event()}
-                    >
-                      <ListItemButton sx={{ pl: 4 }}>
-                        {itm?.image}
-                        {/* <img src={itm?.image} alt="" /> */}
-                        <ListItemText primary={`${itm?.name}`} />
-                      </ListItemButton>
-                    </div>
-                  </div>
-                ))}
-                </>
-            ) : (
-                ""
-              )}
-
+                      <div
+                        key={itm?.name}
+                        className={classes.dropdown_collapse_list}
+                      >
+                        <div
+                          className={
+                            (classes.link_in_tab, "mobile_sidebar_menu")
+                          }
+                          onClick={() => itm?.event()}
+                        >
+                          <ListItemButton sx={{ pl: 4 }}>
+                            {itm?.image}
+                            <ListItemText primary={`${itm?.name}`} />
+                          </ListItemButton>
+                        </div>
+                      </div>
+                    ))}
+                  </>
+                ) : (
+                  ""
+                )}
               </List>
             </Collapse>
-            </>
-            ) : (
-                ""
-              )}
+          </>
+        ) : (
+          ""
+        )}
 
-        {(isSignedIn?.group_id === 5 && kycStatus?.[0]?.value === "2") ? (
-            <>
+        {isSignedIn?.group_id === 5 && kycStatus?.[0]?.value === "2" ? (
+          <>
             <Link
               className={classes.link_in_tab}
               to={`/${
                 customnostore ? customnostore : geo?.country_name
               }/buyerdashboard/wishlist`}
-              // to={`/${customnostore ? customnostore : geo?.country_name}`}
               onClick={() => handleSideBarClose("left", false)}
             >
               <ListItem button>
-                
-                    <img src={whishlist_image} alt="" />
-                    <ListItemText primary={"My Wishlist"} />
-                    <span> ({wishlength})</span>
-              
+                <img src={whishlist_image} alt="" />
+                <ListItemText primary={"My Wishlist"} />
+                <span> ({wishlength})</span>
               </ListItem>
             </Link>
           </>
-            ) : (
-                ""
-              )}
-               {(isSignedIn?.group_id === 5 && kycStatus?.[0]?.value === "2")  ? (
-            <>
-              <Link
-                className={classes.link_in_tab}
-                to={`/${customnostore ? customnostore : geo?.country_name}/mycart`}
-                onClick={() => handleSideBarClose("left", false)}
-              >
-                <ListItem button>
-                
-                    
-                  <img src={mycart_image} alt="" />
-                  <ListItemText primary={"My Cart"} />
-                  <span> ({ cart?.[0]?.invoice_items?.length
-                        ? cart?.[0]?.invoice_items?.length
-                        : 0})</span>
-                </ListItem>
-              </Link>
-               </>
-            ) : (
-                ""
-              )}
+        ) : (
+          ""
+        )}
+        {isSignedIn?.group_id === 5 && kycStatus?.[0]?.value === "2" ? (
+          <>
+            <Link
+              className={classes.link_in_tab}
+              to={`/${
+                customnostore ? customnostore : geo?.country_name
+              }/mycart`}
+              onClick={() => handleSideBarClose("left", false)}
+            >
+              <ListItem button>
+                <img src={mycart_image} alt="" />
+                <ListItemText primary={"My Cart"} />
+                <span>
+                  {" "}
+                  (
+                  {cart?.[0]?.invoice_items?.length
+                    ? cart?.[0]?.invoice_items?.length
+                    : 0}
+                  )
+                </span>
+              </ListItem>
+            </Link>
+          </>
+        ) : (
+          ""
+        )}
 
         {!isSignedIn?.group_id ? (
           <Stack
@@ -984,7 +975,12 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
           </Stack>
         )}
       </TabPanel>
-      <TabPanel id="mobile_menu_categories" value={value} index={1} className={classes.sub_tab_conatainer}>
+      <TabPanel
+        id="mobile_menu_categories"
+        value={value}
+        index={1}
+        className={classes.sub_tab_conatainer}
+      >
         <List className={classes.dropdowm_list_menu}>
           <ListItemButton onClick={handleClick}>
             <ListItemText
@@ -1000,17 +996,24 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
               disablePadding
             >
               {homeContent?.menu?.map((itm) => (
-                <div key={itm?.title} className={classes.dropdown_collapse_list}>
-                    <ListItemButton sx={{ pl: 4 }} 
-                      onClick={() =>
-                        handleClickLink({
-                          attribute: itm?.attribute,
-                          value: itm?.value,
-                        })
-                      }
-                    >
-                      <ListItemText className="listitem_text" primary={`${itm?.title}`} />
-                          {/* <span
+                <div
+                  key={itm?.title}
+                  className={classes.dropdown_collapse_list}
+                >
+                  <ListItemButton
+                    sx={{ pl: 4 }}
+                    onClick={() =>
+                      handleClickLink({
+                        attribute: itm?.attribute,
+                        value: itm?.value,
+                      })
+                    }
+                  >
+                    <ListItemText
+                      className="listitem_text"
+                      primary={`${itm?.title}`}
+                    />
+                    {/* <span
                         className={`${
                           itm?.tag === "Sale"
                             ? "sale"
@@ -1021,7 +1024,7 @@ const BasicTabs = ({ classes, handleSideBarClose }) => {
                       >
                         {itm?.title}
                       </span> */}
-                    </ListItemButton>
+                  </ListItemButton>
                 </div>
               ))}
               {/* {Departments?.map((itm) => (

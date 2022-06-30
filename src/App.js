@@ -52,11 +52,7 @@ import Accountinfo from "./Components/BuyerDashboard/MyProfile/Accountinfo";
 //ResetPassword
 import ResetPassword from "./Components/ResetPassword";
 
-//coming soon page
-// import ComingSoon from "./Pages/ComingSoon";
-
 //sellontexub
-import SellonTexubNew from "./Pages/SellonTexub";
 import SellOnTexub from "./Pages/CMS/SellOnTexub";
 import BuyOnTexub from "./Pages/CMS/BuyOnTexub";
 //popup component
@@ -183,7 +179,6 @@ const App = () => {
             <Route path="/:country/Aboutus" element={ <> <Aboutus /> <ScrollToTop /> <Footer /> </> } exact />
             <Route path="/:country/sell-on-texub" element={ <> <SellOnTexub /> <ScrollToTop /> <Footer /> </> } exact />
             <Route path="/:country/buy-on-texub" element={ <> <BuyOnTexub /> <ScrollToTop /> <Footer /> </> } exact />
-            <Route path="/:country/coming-soon" element={ <> <SellonTexubNew /> <ScrollToTop /> <Footer /> </> } exact />
 
             {/* Footer section */}
             <Route path="/:country/legal" element={ <> <Legal /> <ScrollToTop /> <Footer /> </> } exact />

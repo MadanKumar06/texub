@@ -97,7 +97,6 @@ function Index() {
       delete t[key2];
       var XL_row_object = XLSX.utils.sheet_to_json(t);
       XL_row_object.splice(0, 1);
-
       if (XL_row_object?.length) {
         setRow([]);
         i.current = 0;
@@ -236,7 +235,19 @@ function Index() {
         apiCallLoop?.[0]?.__EMPTY_19 ||
         apiCallLoop?.[0]?.__EMPTY_20 ||
         apiCallLoop?.[0]?.__EMPTY_21 ||
-        apiCallLoop?.[0]?.__EMPTY_22
+        apiCallLoop?.[0]?.__EMPTY_22 ||
+        apiCallLoop?.[0]?.__EMPTY_23 ||
+        apiCallLoop?.[0]?.__EMPTY_24 ||
+        apiCallLoop?.[0]?.__EMPTY_25 ||
+        apiCallLoop?.[0]?.__EMPTY_26 ||
+        apiCallLoop?.[0]?.__EMPTY_27 ||
+        apiCallLoop?.[0]?.__EMPTY_28 ||
+        apiCallLoop?.[0]?.__EMPTY_29 ||
+        apiCallLoop?.[0]?.__EMPTY_30 ||
+        apiCallLoop?.[0]?.__EMPTY_31 ||
+        apiCallLoop?.[0]?.__EMPTY_32 ||
+        apiCallLoop?.[0]?.__EMPTY_33 ||
+        apiCallLoop?.[0]?.__EMPTY_34
       ) {
         let customerId = JSON.parse(localStorage.getItem("userdata"));
         let data = {
@@ -249,51 +260,51 @@ function Index() {
             product_id: apiCallLoop?.[0]?.__EMPTY_7
               ? apiCallLoop?.[0]?.__EMPTY_7
               : "",
-            product_condition: apiCallLoop?.[0]?.__EMPTY_18
-              ? apiCallLoop?.[0]?.__EMPTY_18
-              : "",
-            other_condition: apiCallLoop?.[0]?.__EMPTY_19
+            product_condition: apiCallLoop?.[0]?.__EMPTY_19
               ? apiCallLoop?.[0]?.__EMPTY_19
               : "",
-            warranty_type: apiCallLoop?.[0]?.__EMPTY_20
+            other_condition: apiCallLoop?.[0]?.__EMPTY_20
               ? apiCallLoop?.[0]?.__EMPTY_20
               : "",
-            warranty_country: apiCallLoop?.[0]?.__EMPTY_21
+            warranty_type: apiCallLoop?.[0]?.__EMPTY_21
               ? apiCallLoop?.[0]?.__EMPTY_21
               : "",
-            warranty_days: apiCallLoop?.[0]?.__EMPTY_22
+            warranty_country: apiCallLoop?.[0]?.__EMPTY_22
               ? apiCallLoop?.[0]?.__EMPTY_22
               : "",
-            packing_details: apiCallLoop?.[0]?.__EMPTY_23
+            warranty_days: apiCallLoop?.[0]?.__EMPTY_23
               ? apiCallLoop?.[0]?.__EMPTY_23
               : "",
-            no_pieces_per:
-              apiCallLoop?.[0]?.__EMPTY_25 || apiCallLoop?.[0]?.__EMPTY_24
-                ? apiCallLoop?.[0]?.__EMPTY_25 || apiCallLoop?.[0]?.__EMPTY_24
-                : "",
-            width: apiCallLoop?.[0]?.__EMPTY_27
-              ? apiCallLoop?.[0]?.__EMPTY_27
+            packing_details: apiCallLoop?.[0]?.__EMPTY_24
+              ? apiCallLoop?.[0]?.__EMPTY_24
               : "",
-            height: apiCallLoop?.[0]?.__EMPTY_28
+            no_pieces_per:
+              apiCallLoop?.[0]?.__EMPTY_26 || apiCallLoop?.[0]?.__EMPTY_25
+                ? apiCallLoop?.[0]?.__EMPTY_26 || apiCallLoop?.[0]?.__EMPTY_25
+                : "",
+            width: apiCallLoop?.[0]?.__EMPTY_28
               ? apiCallLoop?.[0]?.__EMPTY_28
               : "",
-            product_length: apiCallLoop?.[0]?.__EMPTY_26
-              ? apiCallLoop?.[0]?.__EMPTY_26
-              : "",
-            weight: apiCallLoop?.[0]?.__EMPTY_29
+            height: apiCallLoop?.[0]?.__EMPTY_29
               ? apiCallLoop?.[0]?.__EMPTY_29
               : "",
-            restrictions: apiCallLoop?.[0]?.__EMPTY_30
+            product_length: apiCallLoop?.[0]?.__EMPTY_27
+              ? apiCallLoop?.[0]?.__EMPTY_27
+              : "",
+            weight: apiCallLoop?.[0]?.__EMPTY_30
               ? apiCallLoop?.[0]?.__EMPTY_30
               : "",
-            restricted_region: apiCallLoop?.[0]?.__EMPTY_31
+            restrictions: apiCallLoop?.[0]?.__EMPTY_31
               ? apiCallLoop?.[0]?.__EMPTY_31
               : "",
-            restricted_country: apiCallLoop?.[0]?.__EMPTY_32
+            restricted_region: apiCallLoop?.[0]?.__EMPTY_32
               ? apiCallLoop?.[0]?.__EMPTY_32
               : "",
-            description: apiCallLoop?.[0]?.__EMPTY_33
+            restricted_country: apiCallLoop?.[0]?.__EMPTY_33
               ? apiCallLoop?.[0]?.__EMPTY_33
+              : "",
+            description: apiCallLoop?.[0]?.__EMPTY_34
+              ? apiCallLoop?.[0]?.__EMPTY_34
               : "",
             product_details: [
               {
@@ -323,6 +334,9 @@ function Index() {
                   : "",
                 igst: apiCallLoop?.[0]?.__EMPTY_16
                   ? apiCallLoop?.[0]?.__EMPTY_16
+                  : "",
+                vat_value: apiCallLoop?.[0]?.__EMPTY_18
+                  ? apiCallLoop?.[0]?.__EMPTY_18
                   : "",
               },
             ],

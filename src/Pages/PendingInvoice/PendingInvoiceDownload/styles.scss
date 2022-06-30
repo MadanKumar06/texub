@@ -45,7 +45,7 @@
           letter-spacing: 0px;
           color: #d6d8d9;
           font-size: 18px;
-          font-weight: normal;
+          font-weight: 600;
           text-align: center;
         }
         .orderinfo_value {
@@ -442,7 +442,7 @@
             color: #333c42;
             font-size: 20px;
             font-weight: 600;
-            z-index: 1;
+            // z-index: 1;
             display: flex;
             align-items: baseline;
             justify-content: flex-start;
