@@ -394,7 +394,7 @@ function Index({
       {isGstVatValid == 1 ? (
         <div className="updateproduct__gst">
           <div className="updateproduct_info_form">
-            <InputLabel>GST %</InputLabel>
+            <InputLabel>CGST %</InputLabel>
             <TextField
               id={`${"gst" + index}`}
               name="gst"

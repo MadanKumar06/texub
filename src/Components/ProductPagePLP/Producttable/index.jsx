@@ -270,9 +270,6 @@ const Productstable = ({
     setApicallback(event);
     setApplyFilter(!applyFilter);
   };
-
-  console.log(productData);
-
   return (
     <div className={producttable}>
       {productData?.length > 0 ? (

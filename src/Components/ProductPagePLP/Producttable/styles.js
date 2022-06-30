@@ -44,7 +44,6 @@ const styles = () => ({
       },
     },
     "& .MuiTableBody-root": {
-      cursor: "pointer",
       "& .MuiTableRow-root" :{
         borderBottom: "3px solid #ffffff",
       },

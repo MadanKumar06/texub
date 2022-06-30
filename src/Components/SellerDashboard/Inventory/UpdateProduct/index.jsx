@@ -144,7 +144,7 @@ function Index({ type }) {
           if (!ct?.cgst) {
             document.getElementById(`${"gst" + index}`)?.focus();
             isValidTemp.push({
-              isCGSTValid: "Please enter the gst.",
+              isCGSTValid: "Please enter the cgst.",
               ind: index,
             });
             errorHandle = true;
@@ -287,7 +287,7 @@ function Index({ type }) {
       document.getElementById("no_pieces_per")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
-        no_pieces_per: "Please enter the no. of piecies.",
+        no_pieces_per: "Please enter the no. of pieces.",
       }));
       errorHandle = true;
     } else if (!isNumber(updateform?.no_pieces_per)) {

@@ -10,7 +10,7 @@ export const isPasswordValid = (password) =>
   password.match(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,99}$/);
 
 export const isFirstAndLastNameValid = (firstAndLastName) =>
-  firstAndLastName.match(/^[a-zA-Z\s\.]*$/);
+  firstAndLastName.match(/^[a-zA-Z\s.]*$/);
 
 export const isDesignationValid = (designation) =>
   designation.match(/^[a-zA-Z ]*$/);
@@ -20,13 +20,13 @@ export const isCompanyNameValid = (company) => company.match(/^[0-9]*\d$/);
 
 export const isRolesValid = (roles) =>
   roles.match(
-    /^((?=.*[a-zA-Z])[a-zA-Z+\.\s+!@#$%^&*'~`+{}"?><,.:;/|()_-]{0,50})$/
+    /^((?=.*[a-zA-Z])[a-zA-Z+.\s+!@#$%^&*'~`+{}"?><,.:;/|()_-]{0,50})$/
   );
 
 export const isLandlineValid = (landline) => landline.match(/^[0-9+[+-\s]*$/);
 
 export const isOtherBrands = (value) =>
-  value.match(/^\d*[0-9 ][0-9-+\.+\s\.+!@#$%^&*'~`+{}"?><,.:;/|()_-]*$/);
+  value.match(/^\d*[0-9 ][0-9-+.+\s.+!@#$%^&*'~`+{}"?><,.:;/|()_-]*$/);
 
 export const isOnlySpecialCharacters = (value) =>
   value.match(/^[!@#$%^&*'~`+{}"?><,.:;/|()_-]+$/);

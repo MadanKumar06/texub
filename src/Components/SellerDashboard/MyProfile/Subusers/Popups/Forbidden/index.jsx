@@ -1,21 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import { Clear } from "@mui/icons-material";
 import "./styles.scss";
 import { Modal, Backdrop } from "@mui/material";
 
 const Index = ({ closePOPup, Forbidden_Access }) => {
-  const [open, setOpen] = useState(true);
-
   const text = [
     {
       id: 1,
-      text: Forbidden_Access    },
+      text: Forbidden_Access,
+    },
   ];
   return (
     <Modal
       aria-labelledby="transition-modal-title"
       aria-describedby="transition-modal-description"
-      open={open}
+      open={true}
       closeAfterTransition
       disableRestoreFocus={true}
       BackdropComponent={Backdrop}
