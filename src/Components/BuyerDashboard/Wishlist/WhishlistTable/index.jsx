@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./styles.scss";
 
 import { Rating, Button, Menu, MenuItem } from "@mui/material";
@@ -115,17 +115,14 @@ const WhislistTable = ({
 
   const addwishtocart = async (value) => {
     const user = JSON.parse(localStorage.getItem("userdata"));
-    if(value?.out_of_stock===1){
+    if (value?.out_of_stock === 1) {
       swal.fire({
-        title: "Stock is not available",
-        // text: "You won't be able to revert this!",
+        text: "Stock is not available",
         icon: "warning",
-        showCancelButton: false,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "OK",
-      })
-    }else{
+        showConfirmButton: false,
+        timer: 3000,
+      });
+    } else {
       try {
         const addcart = await axios({
           method: "post",
@@ -177,137 +174,112 @@ const WhislistTable = ({
         }
       }
     }
-    /*try {
-      const addcart = await axios({
-        method: "post",
-        url: `${Constant.baseUrl()}/addToCart`,
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-        data: {
-          pendingProducts: {
-            customer_id: user?.id,
-            productId: value?.product_id,
-            price: value?.texub_product_price,
-            qty: value?.texub_product_moq,
-            hub: value?.texub_product_hub_id,
-            currency: currency?.currency_id,
-            sellerId: value?.seller_id,
-          },
-        },
-      });
-      dispatch({
-        type: "SET_IS_LOADING",
-        value: false,
-      });
-      dispatch({
-        type: "CART__TRIGGER",
-      });
-      if (addcart?.data?.[0]?.status) {
-        swal.fire({
-          text: `${addcart?.data?.[0]?.message}`,
-          icon: "success",
-          showConfirmButton: false,
-          timer: 2000,
-        });
-      } else {
-        swal.fire({
-          text: `${addcart?.data?.[0]?.message}`,
-          icon: "error",
-          showConfirmButton: false,
-          timer: 2000,
-        });
-      }
-    } catch (e) {
-      dispatch({
-        type: "SET_IS_LOADING",
-        value: false,
-      });
-      if (e.response.status === 401) {
-        SessionExpiredLogout();
-      }
-    }*/
   };
 
-  const addalltocart = async () => {
-    let requests = [];
-    const user = JSON.parse(localStorage.getItem("userdata"));
-    dispatch({
-      type: "SET_IS_LOADING",
-      value: true,
-    });
-
-    wdata?.forEach((w) => {
+  const [addToCartFinalCall, setaddToCartFinalCall] = useState([]);
+  const i = useRef(0);
+  const user = JSON.parse(localStorage.getItem("userdata"));
+  useEffect(() => {
+    if (addToCartFinalCall?.length) {
       let data = {
         pendingProducts: {
           customer_id: user?.id,
-          productId: w?.product_id,
-          price: w?.texub_product_price,
-          qty: w?.texub_product_moq,
-          hub: w?.texub_product_hub_id,
+          productId: addToCartFinalCall?.[0]?.product_id,
+          price: addToCartFinalCall?.[0]?.texub_product_price,
+          qty: addToCartFinalCall?.[0]?.texub_product_moq,
+          hub: addToCartFinalCall?.[0]?.texub_product_hub_id,
           currency: currency?.currency_id,
-          sellerId: w?.seller_id,
+          sellerId: addToCartFinalCall?.[0]?.seller_id,
         },
       };
-      requests.push(
-        axios
-          .post(`${Constant.baseUrl()}/addToCart`, data, {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-          })
-          .then(async (res) => {
-            if (res?.data?.[0]?.status) {
-              return Promise.resolve(res?.data?.[0]?.message);
-            } else {
-              swal.fire({
-                text: `${res.data?.[0]?.message}`,
-                icon: "error",
-                showConfirmButton: false,
-                timer: 3000,
+      axios
+        .post(`${Constant.baseUrl()}/addToCart`, data, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        })
+        .then(async (res) => {
+          if (res?.data?.[0]?.status) {
+            i.current = i.current + 1;
+            let t = wdata[i.current];
+            if (i.current < wdata?.length) {
+              setaddToCartFinalCall([t]);
+            }
+            if (i.current === wdata?.length) {
+              dispatch({
+                type: "SET_IS_LOADING",
+                value: false,
               });
             }
-          })
-          .catch((error) => {
+            swal.fire({
+              text: `${res?.data?.[0]?.message}`,
+              icon: "success",
+              showConfirmButton: false,
+              timer: 2000,
+            });
+          } else {
+            i.current = i.current + 1;
+            let t = wdata[i.current];
+            if (i.current < wdata?.length) {
+              setaddToCartFinalCall([t]);
+            }
+            if (i.current === wdata?.length) {
+              dispatch({
+                type: "SET_IS_LOADING",
+                value: false,
+              });
+            }
+            swal.fire({
+              text: `${res?.data?.[0]?.message}`,
+              icon: "error",
+              showConfirmButton: false,
+              timer: 2000,
+            });
+          }
+        })
+        .catch((error) => {
+          dispatch({
+            type: "SET_IS_LOADING",
+            value: false,
+          });
+          i.current = i.current + 1;
+          let t = wdata[i.current];
+          if (i.current < wdata?.length) {
+            setaddToCartFinalCall([t]);
+          }
+          if (i.current === wdata?.length) {
             dispatch({
               type: "SET_IS_LOADING",
               value: false,
             });
-            if (error.response.status === 401) {
-              SessionExpiredLogout();
-            } else {
-              swal.fire({
-                text: `${error?.response?.data?.message || error.message}`,
-                icon: "error",
-                showConfirmButton: false,
-                timer: 3000,
-              });
-            }
-          })
-      );
-    });
-    await Promise.all(requests).then((results) => {
-      dispatch({
-        type: "CART__TRIGGER",
-      });
-      dispatch({
-        type: "SET_IS_LOADING",
-        value: false,
-      });
-      results &&
-        swal.fire({
-          text: `${results[0]}`,
-          icon: "success",
-          showConfirmButton: false,
-          timer: 3000,
+          }
+          if (error.response.status === 401) {
+            SessionExpiredLogout();
+          } else {
+            swal.fire({
+              text: `${error?.response?.data?.message || error.message}`,
+              icon: "error",
+              showConfirmButton: false,
+              timer: 3000,
+            });
+          }
         });
+    }
+  }, [addToCartFinalCall]);
+
+  const addalltocart = async () => {
+    dispatch({
+      type: "SET_IS_LOADING",
+      value: true,
     });
+    i.current = 0;
+    setaddToCartFinalCall([wdata?.[0]]);
   };
 
   const increment = (value, index) => {
     setwdata(
-      wdata.map((itm, wd) => {
+      wdata?.map((itm, wd) => {
         if (index === wd) {
           return {
             ...itm,
@@ -322,7 +294,7 @@ const WhislistTable = ({
 
   const decrement = (value, index) => {
     setwdata(
-      wdata.map((itm, wd) => {
+      wdata?.map((itm, wd) => {
         if (index === wd) {
           return {
             ...itm,
@@ -387,90 +359,122 @@ const WhislistTable = ({
       });
     }
   };
-  const addalltopending = async () => {
-    let requests = [];
-    setallert(false);
-    let storedata = JSON.parse(localStorage.getItem("storedata"));
-    const user = JSON.parse(localStorage.getItem("userdata"));
 
-    dispatch({
-      type: "SET_IS_LOADING",
-      value: true,
-    });
-    wdata?.forEach((info) => {
+  const [addToPendingInvoiceFinalCall, setAddToPendingInvoiceFinalCall] =
+    useState([]);
+  const j = useRef(0);
+  useEffect(() => {
+    if (addToPendingInvoiceFinalCall?.length) {
+      debugger;
+      let storedata = JSON.parse(localStorage.getItem("storedata"));
       let data = {
         pendingProducts: {
           store_id: storedata?.store_id,
           item_id: "0",
           customer_id: user?.id,
-          productId: info?.data?.product_id
-            ? info?.data?.product_id
-            : info?.product_id,
-          price: info?.data?.texub_product_price
-            ? info?.data?.texub_product_price
-            : info?.texub_product_price,
-          qty: info?.data?.texub_product_moq
-            ? info?.data?.texub_product_moq
-            : info?.texub_product_moq,
-          hub: info?.data?.texub_product_hub_id
-            ? info?.data?.texub_product_hub_id
-            : info?.texub_product_hub_id,
+          productId: addToPendingInvoiceFinalCall?.[0]?.data?.product_id
+            ? addToPendingInvoiceFinalCall?.[0]?.data?.product_id
+            : addToPendingInvoiceFinalCall?.[0]?.product_id,
+          price: addToPendingInvoiceFinalCall?.[0]?.data?.texub_product_price
+            ? addToPendingInvoiceFinalCall?.[0]?.data?.texub_product_price
+            : addToPendingInvoiceFinalCall?.[0]?.texub_product_price,
+          qty: addToPendingInvoiceFinalCall?.[0]?.data?.texub_product_moq
+            ? addToPendingInvoiceFinalCall?.[0]?.data?.texub_product_moq
+            : addToPendingInvoiceFinalCall?.[0]?.texub_product_moq,
+          hub: addToPendingInvoiceFinalCall?.[0]?.data?.texub_product_hub_id
+            ? addToPendingInvoiceFinalCall?.[0]?.data?.texub_product_hub_id
+            : addToPendingInvoiceFinalCall?.[0]?.texub_product_hub_id,
           currency: currency?.currency_id,
-          sellerId: info?.data?.seller_id
-            ? info?.data?.seller_id
-            : info?.seller_id,
+          sellerId: addToPendingInvoiceFinalCall?.[0]?.data?.seller_id
+            ? addToPendingInvoiceFinalCall?.[0]?.data?.seller_id
+            : addToPendingInvoiceFinalCall?.[0]?.seller_id,
         },
       };
-      requests.push(
-        axios
-          .post(`${Constant.baseUrl()}/addToPendingInvoice`, data, {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-          })
-          .then(async (res) => {
-            if (res?.data?.[0]?.status) {
-              return Promise.resolve(res?.data?.[0]?.message);
-            } else {
-              swal.fire({
-                text: `${res.data?.[0]?.message}`,
-                icon: "error",
-                showConfirmButton: false,
-                timer: 3000,
+
+      axios
+        .post(`${Constant.baseUrl()}/addToPendingInvoice`, data, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        })
+        .then(async (res) => {
+          if (res?.data?.[0]?.status) {
+            j.current = j.current + 1;
+            let t = wdata[j.current];
+            if (j.current < wdata?.length) {
+              setAddToPendingInvoiceFinalCall([t]);
+            }
+            if (j.current === wdata?.length) {
+              dispatch({
+                type: "SET_IS_LOADING",
+                value: false,
               });
             }
-          })
-          .catch((error) => {
+            swal.fire({
+              text: `${res?.data?.[0]?.message}`,
+              icon: "success",
+              showConfirmButton: false,
+              timer: 2000,
+            });
+          } else {
+            j.current = j.current + 1;
+            let t = wdata[j.current];
+            if (j.current < wdata?.length) {
+              setAddToPendingInvoiceFinalCall([t]);
+            }
+            if (i.current === wdata?.length) {
+              dispatch({
+                type: "SET_IS_LOADING",
+                value: false,
+              });
+            }
+            swal.fire({
+              text: `${res?.data?.[0]?.message}`,
+              icon: "error",
+              showConfirmButton: false,
+              timer: 2000,
+            });
+          }
+        })
+        .catch((error) => {
+          dispatch({
+            type: "SET_IS_LOADING",
+            value: false,
+          });
+          j.current = j.current + 1;
+          let t = wdata[j.current];
+          if (j.current < wdata?.length) {
+            setAddToPendingInvoiceFinalCall([t]);
+          }
+          if (j.current === wdata?.length) {
             dispatch({
               type: "SET_IS_LOADING",
               value: false,
             });
+          }
+          if (error.response.status === 401) {
+            SessionExpiredLogout();
+          } else {
             swal.fire({
               text: `${error?.response?.data?.message || error.message}`,
               icon: "error",
               showConfirmButton: false,
               timer: 3000,
             });
-          })
-      );
-    });
-    await Promise.all(requests).then((results) => {
-      dispatch({
-        type: "CART__TRIGGER",
-      });
-      dispatch({
-        type: "SET_IS_LOADING",
-        value: false,
-      });
-      results &&
-        swal.fire({
-          text: `${results[0]}`,
-          icon: "success",
-          showConfirmButton: false,
-          timer: 3000,
+          }
         });
+    }
+  }, [addToPendingInvoiceFinalCall]);
+
+  const addalltopending = async () => {
+    setallert(false);
+    dispatch({
+      type: "SET_IS_LOADING",
+      value: true,
     });
+    j.current = 0;
+    setAddToPendingInvoiceFinalCall([wdata?.[0]]);
   };
 
   const [name, setname] = useState(false);
@@ -519,24 +523,21 @@ const WhislistTable = ({
     setallert(event);
   };
 
-  const isAvailableStock_PendingInvoince = (value)=>{
-    if(value?.out_of_stock===1){
+  const isAvailableStock_PendingInvoince = (value) => {
+    if (value?.out_of_stock === 1) {
       swal.fire({
-        title: "Stock is not available",
-        // text: "You won't be able to revert this!",
+        text: "Stock is not available",
         icon: "warning",
-        showCancelButton: false,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "OK",
-      })
-    }else{
+        showConfirmButton: false,
+        timer: 3000,
+      });
+    } else {
       setallert(true);
       setallertData(value);
     }
-  }
-  console.log("wdata")
-  console.log(wdata)
+  };
+  console.log("wdata");
+  console.log(wdata);
   return (
     <div className="wishlist_table_container">
       <div className="whishlist_table_header">
@@ -739,7 +740,7 @@ const WhislistTable = ({
                       <Button
                         className="pending-invoice-btn"
                         onClick={() => {
-                          isAvailableStock_PendingInvoince(itm)
+                          isAvailableStock_PendingInvoince(itm);
                           // setallert(true);
                           // setallertData(itm);
                         }}

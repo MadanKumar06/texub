@@ -25,16 +25,16 @@ const PdpPopup = () => {
   let detailsData = useRef();
   const [{ pdpPopUpOpenClose }, dispatch] = useStateValue();
   const [moreOffers, setMoreOffers] = useState({ tableone: 3, tabletwo: 0 });
-  const [isOutOfStock,setisOutOfStock] = useState()
-  console.log("isOutOfStock")
-  console.log(isOutOfStock)
+  const [isOutOfStock, setisOutOfStock] = useState();
+  console.log("isOutOfStock");
+  console.log(isOutOfStock);
   const [tableData, setTableData] = useState({
     tableone: "",
     tabletwo: "",
   });
-  useEffect(()=>{
-    setisOutOfStock(tableData?.tableone?.[0]?.out_of_stock)
-  },[tableData])
+  useEffect(() => {
+    setisOutOfStock(tableData?.tableone?.[0]?.out_of_stock);
+  }, [tableData]);
   const [pdpSellerData, setPdpSellerData] = useState({});
   const handleClose = (event, reason) => {
     if (reason && reason === "backdropClick") return;
@@ -46,7 +46,7 @@ const PdpPopup = () => {
       });
     }
   };
-  console.log(JSON.parse(localStorage.getItem("userdata")))
+  console.log(JSON.parse(localStorage.getItem("userdata")));
   useEffect(() => {
     if (pdpPopUpOpenClose?.data?.CartData?.length) {
       let temp = pdpPopUpOpenClose?.data?.CartData?.[0]?.sub_products?.filter(
@@ -129,26 +129,27 @@ const PdpPopup = () => {
 
   const Out_of_StockPopup = (buttonType) => {
     //user?.group_id !== 5
-    console.log(localStorage.getItem("isLoggedIn_auth"))
-    if(!localStorage.getItem("isLoggedIn_auth") || user?.group_id === 1 || user?.group_id === 6){
-        handleIsValidUser(buttonType)
+    console.log(localStorage.getItem("isLoggedIn_auth"));
+    if (
+      !localStorage.getItem("isLoggedIn_auth") ||
+      user?.group_id === 1 ||
+      user?.group_id === 6
+    ) {
+      handleIsValidUser(buttonType);
     }
-    if(localStorage.getItem("isLoggedIn_auth") && user?.group_id === 5){
-        if(isOutOfStock===1){
-          swal.fire({
-            title: "Stock is not available",
-            // text: "You won't be able to revert this!",
-            icon: "warning",
-            showCancelButton: false,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "OK",
-          })
-        }else{
-          handleIsValidUser(buttonType)
-        }
+    if (localStorage.getItem("isLoggedIn_auth") && user?.group_id === 5) {
+      if (isOutOfStock === 1) {
+        swal.fire({
+          text: "Stock is not available",
+          icon: "warning",
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      } else {
+        handleIsValidUser(buttonType);
       }
-    };
+    }
+  };
 
   const list = (event) => {
     let permissions = JSON.parse(localStorage.getItem("permissions"));
@@ -175,8 +176,8 @@ const PdpPopup = () => {
   };
   //APi call to addtocart
   const user = JSON.parse(localStorage.getItem("userdata"));
-  console.log("user")
-  console.log(user?.group_id)
+  console.log("user");
+  console.log(user?.group_id);
   const AddToCartAndPendingInvoice = (info) => {
     setallert(false);
     let permissions = JSON.parse(localStorage.getItem("permissions"));
@@ -450,8 +451,8 @@ const PdpPopup = () => {
                   className="modal_bottom_button_add_to_cart"
                   // onClick={() => handleRouteOnButtonClick("add_to_cart")}
                   // onClick={() => handleIsValidUser("add_to_cart")}
-                  onClick={() =>{
-                    Out_of_StockPopup("add_to_cart")
+                  onClick={() => {
+                    Out_of_StockPopup("add_to_cart");
                   }}
                 >
                   <img src={shopping_cart} alt="" />
@@ -465,8 +466,8 @@ const PdpPopup = () => {
                 <Button
                   className="modal_bottom_button_pending_invoice"
                   // onClick={() => handleIsValidUser("pending_invoice")}
-                  onClick={() =>{
-                    Out_of_StockPopup("pending_invoice")
+                  onClick={() => {
+                    Out_of_StockPopup("pending_invoice");
                   }}
                 >
                   <img width="21px" src={invoice_image} alt="" />
