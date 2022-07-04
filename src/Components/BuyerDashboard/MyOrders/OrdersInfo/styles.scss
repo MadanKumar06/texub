@@ -43,6 +43,9 @@
       font-size: 20px;
       letter-spacing: 0.75px;
     }
+    .vieworders_eta {
+      flex-wrap: nowrap;
+    }
     .MuiTableHead-root {
       .MuiTableCell-root {
         font-size: 18px;
@@ -482,7 +485,7 @@
   }
 }
 .vieworders_main .vieworders__table .productname .brand_image .brand_name,
-.vieworders_main .vieworders__table .productname .brand_image{
+.vieworders_main .vieworders__table .productname .brand_image {
   width: 50px;
 }
 /* modal popup design here */
@@ -924,11 +927,11 @@
     min-width: 100% !important;
   }
 }
-@media (max-width:400px) {
-  .vieworders_main .username .id_heading{
+@media (max-width: 400px) {
+  .vieworders_main .username .id_heading {
     font-size: 16px !important;
   }
-  .vieworders_main .username .status{
+  .vieworders_main .username .status {
     margin-right: 0px;
   }
 }

@@ -9,7 +9,7 @@ import SwitchUnstyled, {
 import { styled } from "@mui/system";
 import Constant from "../../../Constant";
 
-const PdpHeader = ({ classes, pdpSellerData, dataFromPLP }) => {
+const PdpHeader = ({ classes, pdpSellerData }) => {
   const label = { componentsProps: { input: { "aria-label": "Demo switch" } } };
 
   let {
@@ -112,17 +112,16 @@ const PdpHeader = ({ classes, pdpSellerData, dataFromPLP }) => {
     <div className={pdp_top_header_container}>
       <div className={pdp_page_brands_images_container}>
         <div className={pdp_page_brands_images}>
-           {pdpSellerData?.brand ? (
-                <img
-                 className={pdp_brand_icon_1}
-            src={Constant.imageBaseUrl() + pdpSellerData?.brand}
-            alt=""
-                  
-                />
-              ) : (
-                <span className="pdp_brand_name">{pdpSellerData?.brand_name}</span>
-              )}
-          
+          {pdpSellerData?.brand ? (
+            <img
+              className={pdp_brand_icon_1}
+              src={Constant.imageBaseUrl() + pdpSellerData?.brand}
+              alt=""
+            />
+          ) : (
+            <span className="pdp_brand_name">{pdpSellerData?.brand_name}</span>
+          )}
+
           {/* <img className={pdp_brand_icon_2} src={brand_tag} alt="" /> */}
         </div>
       </div>
