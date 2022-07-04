@@ -115,7 +115,69 @@ const WhislistTable = ({
 
   const addwishtocart = async (value) => {
     const user = JSON.parse(localStorage.getItem("userdata"));
-    try {
+    if(value?.out_of_stock===1){
+      swal.fire({
+        title: "Stock is not available",
+        // text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: false,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "OK",
+      })
+    }else{
+      try {
+        const addcart = await axios({
+          method: "post",
+          url: `${Constant.baseUrl()}/addToCart`,
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          data: {
+            pendingProducts: {
+              customer_id: user?.id,
+              productId: value?.product_id,
+              price: value?.texub_product_price,
+              qty: value?.texub_product_moq,
+              hub: value?.texub_product_hub_id,
+              currency: currency?.currency_id,
+              sellerId: value?.seller_id,
+            },
+          },
+        });
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+        dispatch({
+          type: "CART__TRIGGER",
+        });
+        if (addcart?.data?.[0]?.status) {
+          swal.fire({
+            text: `${addcart?.data?.[0]?.message}`,
+            icon: "success",
+            showConfirmButton: false,
+            timer: 2000,
+          });
+        } else {
+          swal.fire({
+            text: `${addcart?.data?.[0]?.message}`,
+            icon: "error",
+            showConfirmButton: false,
+            timer: 2000,
+          });
+        }
+      } catch (e) {
+        dispatch({
+          type: "SET_IS_LOADING",
+          value: false,
+        });
+        if (e.response.status === 401) {
+          SessionExpiredLogout();
+        }
+      }
+    }
+    /*try {
       const addcart = await axios({
         method: "post",
         url: `${Constant.baseUrl()}/addToCart`,
@@ -164,7 +226,7 @@ const WhislistTable = ({
       if (e.response.status === 401) {
         SessionExpiredLogout();
       }
-    }
+    }*/
   };
 
   const addalltocart = async () => {
@@ -456,6 +518,25 @@ const WhislistTable = ({
   const AddpendingInvoiceAlert = (event) => {
     setallert(event);
   };
+
+  const isAvailableStock_PendingInvoince = (value)=>{
+    if(value?.out_of_stock===1){
+      swal.fire({
+        title: "Stock is not available",
+        // text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: false,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "OK",
+      })
+    }else{
+      setallert(true);
+      setallertData(value);
+    }
+  }
+  console.log("wdata")
+  console.log(wdata)
   return (
     <div className="wishlist_table_container">
       <div className="whishlist_table_header">
@@ -658,8 +739,9 @@ const WhislistTable = ({
                       <Button
                         className="pending-invoice-btn"
                         onClick={() => {
-                          setallert(true);
-                          setallertData(itm);
+                          isAvailableStock_PendingInvoince(itm)
+                          // setallert(true);
+                          // setallertData(itm);
                         }}
                       >
                         <span> Add to Pending Invoice</span>
