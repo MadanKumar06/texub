@@ -81,7 +81,7 @@ const PDPTable = ({ classes, tableData, setPdpSellerData }) => {
       value: true,
     });
   };
-  // update values of moq
+  // update values of moq using increament and decreament
   const handleChangeValueTableone = (event, index) => {
     setIs_table_one(
       is_table_one?.map((item, ind) => {

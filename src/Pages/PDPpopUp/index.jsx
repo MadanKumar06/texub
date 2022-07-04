@@ -4,7 +4,6 @@ import "./styles.scss";
 import { Clear } from "@mui/icons-material";
 import PDPTopHeader from "./PDPTopHeader";
 import PDPTable from "./PDPTable";
-import { table_two_data } from "./PDPTable/TableData";
 import { useStateValue } from "../../store/state";
 import Constant from "../../Constant";
 import axios from "axios";
@@ -14,7 +13,7 @@ import { SessionExpiredLogout } from "../../utilities";
 import AllertMessage from "../../Components/PendingInvoiceAlertPopup";
 
 import header_bottom_image_1 from "../../Assets/Productlist/warranty.png";
-import header_bottom_image_2 from "../../Assets/Productlist/Delivery.png";
+// import header_bottom_image_2 from "../../Assets/Productlist/Delivery.png";
 import header_bottom_image_3 from "../../Assets/Productlist/Retail.png";
 import more_offer_image from "../../Assets/Productlist/Discount.png";
 import add_whishlist from "../../Assets/CommonImage/add_wishlist.png";

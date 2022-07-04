@@ -54,10 +54,9 @@ const styles = () => ({
       },
       "@media (max-width:900px)": {
         "& .MuiTableCell-root:last-child": {
-
           "& div:first-child": {
             width: "0 !important",
-          }
+          },
         },
       },
 
@@ -83,15 +82,14 @@ const styles = () => ({
           justifyContent: "center",
           alignItems: "center",
         },
-         "& div ": {
-            "@media (max-width:900px)": {
-              fontSize:"14px",
-              textAlign :"center",
-              display:'grid',
-             justifyContent: "center",
-            },
-         },
-           
+        "& div ": {
+          "@media (max-width:900px)": {
+            fontSize: "14px",
+            textAlign: "center",
+            display: "grid",
+            justifyContent: "center",
+          },
+        },
       },
     },
   },
@@ -124,10 +122,10 @@ const styles = () => ({
   },
   producttable_description: {
     maxWidth: "300px",
-   display: "flex",
-   justifyContent: "flex-start",
-   alignItems : "center",
-   textAlign: "left",
+    display: "flex",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    textAlign: "left",
   },
   producttable_price: {
     width: "110px",
@@ -143,6 +141,7 @@ const styles = () => ({
     width: "100%",
     display: "flex",
     justifyContent: "center",
+    cursor: "pointer",
   },
   producttable_heading_icon: {
     gap: "1em",
@@ -150,7 +149,7 @@ const styles = () => ({
     justifyContent: "flex-end",
     "@media (max-width:900px)": {
       justifyContent: "center",
-      display: 'none !important',
+      display: "none !important",
     },
     "& img": {
       width: "40px",
