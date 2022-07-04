@@ -146,7 +146,6 @@ const PDPTable = ({ classes, tableData, setPdpSellerData }) => {
       // handleRadioGroupChange(is_table_one[0]);
     }
   }, [is_table_one]);
-
   return (
     <div className={table_container}>
       <div className={pdp_middle_wapper}>
@@ -257,28 +256,37 @@ const PDPTable = ({ classes, tableData, setPdpSellerData }) => {
                           </Link>
                         </span>
                       </div>
-
-                      {!localStorage.getItem("isLoggedIn_auth") ? (
+                        {!localStorage.getItem("isLoggedIn_auth") ? (
                         <div
                           className={producttable_price}
                           onClick={(e) => handleClick(e)}
-                        >
+                        > 
                           <p className={guest_login}>Login</p>
                           <p className={check_price}>to see the prices</p>
                         </div>
                       ) : (
-                        <div className={price_list_price}>
-                          <span className={price_indicator}>
-                            {item?.currency}
-                          </span>
-                          <span className={price_value}>
-                            {formatToCurrency(parseInt(item?.price))}
-                          </span>
+                          <div className={price_list_price}>
+                          {
+                            item?.out_of_stock===1?<>
+                              <span>----</span>
+                            </>:<>
+                              <span className={price_indicator}>
+                                {item?.currency}
+                              </span>
+                              <span className={price_value}>
+                                {formatToCurrency(parseInt(item?.price))}
+                              </span>
+                            </>
+                          }
                         </div>
                       )}
                       <div className={price_list_stock}>
                         <span className={seller_stock_value}>
-                          {item?.in_stock}
+                          {
+                            item?.out_of_stock===1?<>
+                            <span style={{color:"red",fontSize:"15px"}}>Out of Stock</span>
+                            </>:<>{item?.in_stock}</>
+                          }
                         </span>
                       </div>
                       <div className={price_list_eta}>

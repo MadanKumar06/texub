@@ -67,7 +67,6 @@ const Productstable = ({
     short_image: shortExpand_active_icon,
     long_image: longExpand_inactive_icon,
   });
-
   const descriptionChangeView = (event) => {
     settextsize((prevState) => ({
       ...prevState,
@@ -161,6 +160,7 @@ const Productstable = ({
       label: "PRICE",
       options: {
         customBodyRender: (value) => {
+          let is_out_of_stock = value?.[0]?.out_of_stock;
           return (
             <div className={producttable_price_block}>
               {!localStorage.getItem("isLoggedIn_auth") ? (
@@ -174,8 +174,12 @@ const Productstable = ({
               ) : (
                 localStorage.getItem("isLoggedIn_auth") && (
                   <div className={producttable_price}>
-                    <span>{value?.[0]?.currency}</span>
-                    {formatToCurrency(parseInt(value?.[0]?.price))}
+                    {
+                      is_out_of_stock===1?<span>----</span>:<div>
+                        <span>{value?.[0]?.currency}</span>
+                        {formatToCurrency(parseInt(value?.[0]?.price))}
+                      </div>
+                    }
                   </div>
                 )
               )}
@@ -189,7 +193,10 @@ const Productstable = ({
       label: "INSTOCK",
       options: {
         customBodyRender: (value) => {
-          return <div>{value?.[0]?.in_stock}</div>;
+          let is_out_of_stock = value?.[0]?.out_of_stock;
+          return <div>
+              {is_out_of_stock===1?<><span style={{color:"red"}}>Out of Stock</span></>:value?.[0]?.in_stock}
+            </div>;
         },
       },
     },
