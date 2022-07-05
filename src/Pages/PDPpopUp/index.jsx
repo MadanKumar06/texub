@@ -11,6 +11,7 @@ import swal from "sweetalert2";
 import Wishlist from "./Wishlist";
 import { SessionExpiredLogout } from "../../utilities";
 import AllertMessage from "../../Components/PendingInvoiceAlertPopup";
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 
 import header_bottom_image_1 from "../../Assets/Productlist/warranty.png";
 // import header_bottom_image_2 from "../../Assets/Productlist/Delivery.png";
@@ -26,11 +27,26 @@ const PdpPopup = () => {
   const [{ pdpPopUpOpenClose }, dispatch] = useStateValue();
   const [moreOffers, setMoreOffers] = useState({ tableone: 3, tabletwo: 0 });
   const [isOutOfStock, setisOutOfStock] = useState();
-  console.log("isOutOfStock");
-  console.log(isOutOfStock);
+  const [showDescription, setshowDescription] = useState(false);
+  const [isTabScreen, setisTabScreen] = useState(0);
+
   const [tableData, setTableData] = useState({
     tableone: "",
     tabletwo: "",
+  });
+
+  useEffect(()=>{
+    setisTabScreen(window.screen.width)
+  },[window.screen.width])
+  
+  console.log("isTabScreen")
+  console.log(isTabScreen)
+  let ignorePLPdetailsElement = document.getElementById('plp_details_popup');
+  document.addEventListener('click', function(event) {
+      var isClickInsideElement = ignorePLPdetailsElement.contains(event.target);
+      if (!isClickInsideElement) {
+        setshowDescription(false) 
+      }
   });
   useEffect(() => {
     setisOutOfStock(tableData?.tableone?.[0]?.out_of_stock);
@@ -506,11 +522,54 @@ const PdpPopup = () => {
                 {pdpSellerData?.condition}
               </span>
             </div>
-            <div className="pdp_footer_model_details">
+            <div className="pdp_footer_model_details" id="plp_details_popup">
               <span className="pdp_footer_model_info">OTHER INFO</span>
-              <span className="pdp_footer_model_info_detail">
+              {
+                isTabScreen<=992?<>
+                <span className="pdp_footer_model_info_detail" 
+                onClick={()=>setshowDescription(true)}>
+                {truncate(pdpSellerData.other_info, 30)}
+                </span>
+                </>:<>
+                <span className="pdp_footer_model_info_detail" 
+                onMouseMove={()=>setshowDescription(true)}>
                 {truncate(pdpSellerData.other_info, 30)}
               </span>
+                </>
+              }
+              {
+                showDescription===true && (isTabScreen<=992?<>
+                 <div className="pdp_footer_model_info_detail_popup"
+                  onMouseLeave={()=>{
+                    setTimeout(() => {
+                      setshowDescription(false)
+                    }, 100);
+                  }}
+                  >
+                    <div className="content">
+                      {/* <span className="cancel" onClick={()=>setshowDescription(false)}><HighlightOffIcon /></span> */}
+                      <div className="content_description">
+                        {pdpSellerData.other_info}
+                      </div>
+                    </div>
+                  </div>
+                </>:<>
+                <div className="pdp_footer_model_info_detail_popup" 
+                  onMouseLeave={()=>{
+                    setTimeout(() => {
+                      setshowDescription(false)
+                    }, 100);
+                  }}
+                  >
+                    <div className="content">
+                      {/* <span className="cancel" onClick={()=>setshowDescription(false)}><HighlightOffIcon /></span> */}
+                      <div className="content_description">
+                        {pdpSellerData.other_info}
+                      </div>
+                    </div>
+                  </div>
+                </>)
+              }
             </div>
           </div>
         </div>
