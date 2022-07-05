@@ -111,7 +111,14 @@ function Index({ type }) {
         if (!ct?.in_stock) {
           document.getElementById(`${"in_stock" + index}`)?.focus();
           isValidTemp.push({
-            isInStockValid: "Please enter the instock.",
+            isInStockValid: "Please enter the In Stock.",
+            ind: index,
+          });
+          errorHandle = true;
+        }else if (Math.sign(ct?.in_stock) === -1) {
+          document.getElementById(`${"in_stock" + index}`)?.focus();
+          isValidTemp.push({
+            isInStockValid: "Nagative values are not allowed.",
             ind: index,
           });
           errorHandle = true;
@@ -120,6 +127,21 @@ function Index({ type }) {
           document.getElementById(`${"moq_field" + index}`)?.focus();
           isValidTemp.push({
             isMoqValid: "Please enter the moq.",
+            ind: index,
+          });
+          errorHandle = true;
+        } else if (Math.sign(ct?.moq) === -1) {
+          document.getElementById(`${"moq_field" + index}`)?.focus();
+          isValidTemp.push({
+            isMoqValid: "Nagative values are not allowed.",
+            ind: index,
+          });
+          errorHandle = true;
+        }
+        if (ct?.moq === "0") {
+          document.getElementById(`${"moq_field" + index}`)?.focus();
+          isValidTemp.push({
+            isMoqValid: "Please enter greater than 0.",
             ind: index,
           });
           errorHandle = true;
@@ -864,6 +886,8 @@ function Index({ type }) {
   const isIndianSeller = Custom_Attributes?.filter(
     (ind) => ind?.attribute_code === "customer_country" && ind.value === "IN"
   );
+  console.log("count")
+  console.log(count)
   return (
     <div className="updateproduct">
       <h1>{type}</h1>
