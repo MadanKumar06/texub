@@ -193,7 +193,8 @@ const Checkout = () => {
       placeOrderApicCall();
     }
   };
-
+  console.log("userdata")
+  console.log(JSON.parse(localStorage.getItem("userdata")))
   const placeOrderApicCall = async (event) => {
     let user = JSON.parse(localStorage.getItem("userdata"));
     let storedata = JSON.parse(localStorage.getItem("storedata"));
@@ -206,6 +207,8 @@ const Checkout = () => {
     var country = user?.custom_attributes?.filter(
       (itm) => itm?.attribute_code === "customer_country"
     );
+    console.log("country")
+    console.log(country)
     let billing_or_shipping = quotedata[0]?.address_list?.filter(
       (itm) => itm?.address_id == quotedata[0]?.invoice?.billing_address_id
     );
@@ -324,7 +327,8 @@ const Checkout = () => {
               region_code: "",
               region_id: stateDropDown?.[0]?.value
                 ? stateDropDown?.[0]?.value
-                : "",
+                // : "",
+                : 0,
               street:
                 shipping_method === "texub_shipping"
                   ? billing_or_shipping?.[0]?.Street
@@ -376,7 +380,8 @@ const Checkout = () => {
                       region_code: "",
                       region_id: stateDropDown?.[0]?.value
                         ? stateDropDown?.[0]?.value
-                        : "",
+                        // : "",
+                        : 0,
                       street:
                         shipping_method === "texub_shipping"
                           ? billing_or_shipping?.[0]?.Street
@@ -575,7 +580,8 @@ const Checkout = () => {
                 : addressdata?.state,
               region_id: stateDropDown?.[0]?.value
                 ? stateDropDown?.[0]?.value
-                : "",
+                // : "",
+                : 0,
             },
           },
         },
