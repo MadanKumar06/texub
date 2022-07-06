@@ -355,7 +355,7 @@ function Index({ type }) {
       document.getElementById("dimension")?.focus();
       setInputValidation((prevState) => ({
         ...prevState,
-        dimension: "Please select the dimension.",
+        dimension: "Please select the dimensions.",
       }));
       errorHandle = true;
     }
