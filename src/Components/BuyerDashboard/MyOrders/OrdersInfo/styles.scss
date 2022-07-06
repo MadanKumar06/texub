@@ -46,6 +46,9 @@
     .vieworders_eta {
       flex-wrap: nowrap;
     }
+    table tbody tr td:nth-child(n+2){
+      white-space: nowrap;
+    }
     .MuiTableHead-root {
       .MuiTableCell-root {
         font-size: 18px;
@@ -815,6 +818,15 @@
             width: 100%;
           }
         }
+      }
+    }
+  }
+}
+@media (max-width: 899.95px){
+  .vieworders_main {
+    .vieworders__table{
+      table tbody tr td:nth-child(n+2){
+        white-space: normal;
       }
     }
   }
