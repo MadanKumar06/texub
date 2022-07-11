@@ -642,8 +642,16 @@ const WhislistTable = ({
                     <div className="products_info">
                       <p className="product_name">{itm?.product_name}</p>
                       <p className="product_price">
-                        <span>{itm?.texub_product_currency}</span>
-                        {formatToCurrency(parseInt(itm?.texub_product_price))}
+                        {itm?.out_of_stock === 1 ? (
+                          <span>-</span>
+                        ) : (
+                          <>
+                            <span>{itm?.texub_product_currency}</span>
+                            {formatToCurrency(
+                              parseInt(itm?.texub_product_price)
+                            )}{" "}
+                          </>
+                        )}
                       </p>
                     </div>
                     <div className="rating_block">
