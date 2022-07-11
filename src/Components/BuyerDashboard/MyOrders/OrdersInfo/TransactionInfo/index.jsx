@@ -81,7 +81,7 @@ export default function BasicModal({
     if (!transactiondetails?.transaction_date_time) {
       settransactionvalidation((prevstate) => ({
         ...prevstate,
-        transaction_date_time: "Please select Date",
+        transaction_date_time: "Please select Date and Time",
       }));
       errorhandle = true;
     }
