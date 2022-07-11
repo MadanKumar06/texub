@@ -633,7 +633,6 @@ const WhislistTable = ({
                           className="brand_img_section"
                           alt="No Brands"
                           title={itm?.texub_product_brand}
-                          style={{ height: "50px" }}
                         />
                       ) : (
                         <span>{itm?.texub_product_brand}</span>
